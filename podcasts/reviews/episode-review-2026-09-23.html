@@ -21,35 +21,37 @@
   <p class="meta">Published September 23, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35835129773">35835129773</a>.</em></p>
 
-<h3>Brave search budget exhausted, 34 articles dropped</h3>
+<h3>Brave's body-backfill budget exhausted; 34 articles dropped from roundup</h3>
 
-<p>The pipeline burned through its Brave API allocation during body-text backfill and stopped at 12 calls. The remaining articles in the roundup kept stub bodies and were cut as sparse. This affected 34 articles across the show.</p>
+<p>The pipeline burned through its 12-call Brave budget mid-run enriching article summaries. Thirty-four roundup pieces were dropped rather than shipped with stub bodies. This is the dominant cost of the day: nearly a third of the source material never made it to air.</p>
 
-<p>The roundup citations still matched perfectly: 15 of 15. The deep dive citations did not. One of three sources failed to resolve, leaving 2 of 3 matched.</p>
+<p>The script that shipped contained 2,866 words. The first draft came in at 2,397 words against a 3,400-word target, triggering an expand pass. The final result landed 534 words short of the stated goal.</p>
 
-<h3>Script expanded to 2,866 words after underrunning the target</h3>
+<h3>Citation matching broke on deep dives</h3>
 
-<p>The first draft arrived at 2,397 words against a 3,400-word target. The pipeline sent it back for expansion. The final script shipped at 2,866 words, still 534 short of target but 469 words longer than draft.</p>
+<p>All 15 roundup citations matched their sources. Only 2 of 3 deep dives matched. The unmatched piece stayed in the script; a rewrite to repair it was rejected, likely due to time or quality gates downstream.</p>
 
-<p>No AI tell patterns surfaced in quality check. Casey's voice ratio over Riley was 0.73.</p>
+<p>The three deep dives were: a Country Homes &amp; Interiors piece on neighbor objections to home projects; a Tom's Hardware report on RTX 5090 power draw under DLSS 5; and a Business Insider story on laid-off tech workers from Google and Microsoft.</p>
 
-<h3>Territory claims rejected, unsupported nation remained in script</h3>
+<h3>Territory check failed on two fronts</h3>
 
-<p>The pipeline flagged two territory mismatches. Sinixt was mentioned in connection with an article the map covers under Tsilhqot'in Nen and Secwepemc lands. Tsilhqot'in was mentioned in connection with an article the map covers under Mikmaq'ki and Wabanaki lands. A rewrite was rejected, and 2 sentences with an unsupported nation stayed in the episode.</p>
+<p>The pipeline flagged a Sinixt reference paired with material it maps to TsÌilhqotâin Nen, Esketemculeucw, DÃ«nÃ©ndeh, and SecwepemcÃºlâecw. It flagged a Tåilhqot'in reference paired with material it maps to Miâkmaâki and Wabanaki. Neither mismatch was resolved. Two sentences with unsupported nation names persisted after a rewrite attempt failed.</p>
 
-<h3>R2 sync missing one referenced object</h3>
+<h3>One object missing from R2 storage</h3>
 
-<p>One object referenced by the RSS feed is absent from Cloudflare R2 and cannot be recovered from disk. Crawlers will receive 404s.</p>
+<p>The RSS feed references an asset that does not exist in R2 and cannot be recovered from disk. Crawlers will receive 404s for this object.</p>
 
-<h3>Audio and video rendered at 17.6 minutes, 16.1 MB and 61.5 MB</h3>
+<h3>AI detection and voice balance clean</h3>
 
-<p>Episode 239 shipped. The show used 93,663 Claude input tokens across 14 calls and 3 Brave Answers calls. Script generation took 1,189 seconds. Audio rendering took 193 seconds. Video upload took 112 seconds.</p>
+<p>Zero hits on the AI tell pattern. Casey's voice ratio over Riley was 0.73, within expected range.</p>
 
-<p>The debate question: "Should off-grid homesteads remain invisible to external systems, or do they have an obligation to document themselves for emergency responders, insurers, and future owners?"</p>
+<h3>Three manual runs, one fallback pending</h3>
 
-<h3>Three runs completed, one in progress</h3>
+<p>Three workflow_dispatch runs completed successfully between 08:05 and 10:10 UTC. A fourth run triggered at 15:23 UTC as Fallback 2 (3:05 AM Pacific), 318 minutes late. It shows status in_progress with no conclusion.</p>
 
-<p>Two manual workflow dispatches finished cleanly this morning at 08:37 UTC and 09:05 UTC. A third began at 10:05 UTC and remains in progress.</p>
+<p>Script generation consumed the most wall time at 1,189 seconds. Video render and upload took 112 seconds. Audio render took 193 seconds. The pipeline used 93,663 Anthropic input tokens across 14 Claude calls and 3 Brave-Answers calls.</p>
+
+<p>Final episode: 17.6 minutes, 16.1 MB audio, 61.5 MB video. Episode 239 in the feed.</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -57,7 +59,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-23T08:05:03Z</td><td>+0 min</td><td>success</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-23T09:05:04Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-23T10:05:03Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-23T10:05:03Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-23T15:23:42Z</td><td>+318 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 
