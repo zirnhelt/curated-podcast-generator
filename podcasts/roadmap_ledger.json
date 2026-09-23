@@ -5,8 +5,8 @@
       "title": "A credit-balance 400 is not the usage-limit wall, and every run pays for that.",
       "detail": "2026-08-23: all three crons died with `Your credit balance is too low to access the Anthropic API` and exited 1, so the day went red and the episode only shipped from a manual dispatch at 14:42 UTC, six hours late. `_usage_limit_reset` keys on the string `usage limit`, which this message does not contain, so `check_api_budget()` printed \"preflight inconclusive — continuing\" and the run went on to spend 40 article body fetches, ~37 Brave enrichment calls and an agentic research call before failing at the script call — three times over, which is the exact waste the preflight was written to prevent (see its docstring on 2026-07-25). Match the credit-balance refusal too and exit `EXIT_BUDGET_EXHAUSTED`; the workflow already turns 75 into a skipped day with a warning instead of a failure.",
       "source": "manual",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
@@ -16,8 +16,8 @@
       "title": "The review goes quiet on exactly the days worth reviewing.",
       "detail": "`main()` only fetches a job log from a run whose conclusion is `success`. On 2026-08-23 there was no such run, so the review published a bare trigger table and no narrative — three failures and not a word about why. Fall back to the newest failed run's log (the facts are all there: the 400 above is in it), and keep the successful-run preference for ordinary days.",
       "source": "manual",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
@@ -27,8 +27,8 @@
       "title": "The review cannot see the run that made the episode when a cron did not.",
       "detail": "It is gated on the third cron, so 2026-08-23's manual dispatch four hours later is absent from the write-up and from the archive. Either widen `fetch_runs` past `event: schedule` for the day, or make the review re-runnable for a date and re-publish over the same file (`--date` already exists; the index and feed update in place).",
       "source": "manual",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
@@ -38,8 +38,8 @@
       "title": "The review reports itself as an unfinished run.",
       "detail": "The `review` job runs inside the 3:05 AM cron's own workflow run, so every review to date ends with \"Fallback 2 … in_progress\" and the narrative reads it as a pending unknown (\"a third in progress at review time\", 2026-08-20). `summarize_runs` knows `GITHUB_RUN_ID`; label that row as the reviewing run so the model stops treating it as a cliffhanger.",
       "source": "manual",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
@@ -49,8 +49,8 @@
       "title": "Decide what to do about scheduler drift.",
       "detail": "Every trigger in the sample started late: +44/+29/+32 (08-20), +46/+31/+31 (08-21), +34/+20/+25 (08-22), +35/+22/+25 (08-23). This is GitHub's scheduled-run queue, not the pipeline, and the reviews report it as a fault every single day. Either move the crons earlier and accept the drift as the schedule, or keep the number and stop framing it as one — a fact reported daily as a problem and never acted on trains the reader to skip the paragraph.",
       "source": "manual",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
@@ -60,8 +60,8 @@
       "title": "Watch the four 2026-08-22 fixes on air.",
       "detail": "None has been observed in a shipped episode: the runs the day after all died at the credit wall. The first green day's review is the check — citation alignment should land near 51%/55% rather than 5-8/15 and 0-1/deep dive, `tts_short_segments` should be ~2% of segments rather than 13 of 16, and the canary should only pin OpenAI after two timeouts per model.",
       "source": "manual",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
@@ -71,8 +71,8 @@
       "title": "Gemini has not rendered an episode in the review window.",
       "detail": "08-20, 08-21 and 08-22 all pinned OpenAI on canary read timeouts against `generativelanguage.googleapis.com`; 08-23 never got that far. The probe item under Short-term is the diagnostic — the reviews now give it a daily before/after record, so run it and read the next week's reviews rather than re-reasoning about the ladder.",
       "source": "manual",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
@@ -82,8 +82,8 @@
       "title": "All three scheduled triggers failed or did not complete on August 26th.",
       "detail": "The primary run (08:54 UTC) and Fallback 1 (09:40 UTC) both concluded in failure. Fallback 2 (10:40 UTC) was still in progress at the last update (10:44 UTC), meaning no episode was produced for the day. Three consecutive attempts to execute the pipeline all either failed or remained unfinished, which suggests a systematic problem rather than transient flakiness. Check the run logs at https://github.com/zirnhelt/curated-podcast-generator/actions/runs/32950154292 and https://github.com/zirnhelt/curated-podcast-generator/actions/runs/32954282339 to identify the failure mode that struck both the primary and first fallback identically.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-26",
       "seen": [
         "2026-08-26"
@@ -95,8 +95,8 @@
       "title": "Gemini TTS rate limit (HTTP 429) triggered twice on canary checks, forcing full OpenAI render.",
       "detail": "On 2026-08-27, the Gemini TTS pre-flight check failed with HTTP 429 errors on two separate canary attempts. The pipeline's fallback logic caught both failures before audio synthesis began and switched the entire episode to OpenAI rather than risk a mid-episode voice change. The mechanism is clear: Gemini's quota was exhausted before the render stage. To close this, either increase the Gemini quota tier for the API key, implement request queuing to respect rate limits, or add a secondary Gemini endpoint (via Vertex AI) as a separate capacity pool.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-27",
       "seen": [
         "2026-08-27"
@@ -108,8 +108,8 @@
       "title": "Roundup story order drifted again despite a repair pass, with 3 of 15 stories airing out of sequence.",
       "detail": "On 2026-08-27, the script/roundup-order segment failed once, was repaired, and still shipped with 3 stories in the wrong position relative to their assigned blocks. Of 15 roundup citations total, 13 matched their sources, but the 3 misaligned stories suggest the repair pass did not fully resolve the ordering logic. The deep dive citations fared worse: 0 of 3 matched. The root cause is in the roundup ordering algorithm—either it does not persist constraints across repair cycles, or the repair itself reintroduces drift. Trace the sort order during and after the repair pass to identify whether the issue is in the initial sort, the repair logic, or both.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-27",
       "seen": [
         "2026-08-27"
@@ -122,7 +122,7 @@
       "detail": "On 2026-08-27, the script/brave-answers segment failed with HTTP 402 (usage limit exceeded) after the quota was exhausted. The pipeline switched to web snippets for all remaining answers in that episode. The 402 error itself indicates the account hit its hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess whether the episode's answer count is typical, and decide whether to increase the quota, implement batching, or rely on web snippets as the primary source when the API is unavailable.",
       "source": "review",
       "status": "retired",
-      "occurrences": 4,
+      "occurrences": 0,
       "first_seen": "2026-08-27",
       "seen": [
         "2026-08-27",
@@ -138,7 +138,7 @@
       "detail": "On 2026-08-27, one text-to-speech take produced audio duration shorter than the word count would estimate. The pipeline retried once per protocol and the issue resolved. This is a single occurrence and may be transient voice synthesis variance. If this recurs across multiple segments or runs, it signals either a systematic issue in duration estimation, a problem with a particular voice model, or the TTS API's handling of edge-case text. Monitor for recurrence; if it persists, audit the duration formula against actual TTS output and consider adding a tolerance band before flagging a retry.",
       "source": "review",
       "status": "retired",
-      "occurrences": 2,
+      "occurrences": 0,
       "first_seen": "2026-08-27",
       "seen": [
         "2026-08-27",
@@ -151,8 +151,8 @@
       "title": "Gemini multi-speaker TTS timed out on the welcome section, forcing a mid-episode fallback to OpenAI.",
       "detail": "During audio render on 2026-08-28, the welcome section synthesis via Gemini multi-speaker hit a ReadTimeout after 120 seconds on generativelanguage.googleapis.com. The pipeline fell back to OpenAI for that section and all remaining sections and credits. The episode now spans two TTS providers—Gemini for welcome, OpenAI for body and outro—introducing a voice discontinuity in the shipped 17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency limits are being hit, and consider either increasing timeouts, implementing section-level retry logic before switching providers, or pre-allocating Gemini synthesis for critical segments at off-peak times.",
       "source": "review",
-      "status": "open",
-      "occurrences": 8,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-08-28",
@@ -167,30 +167,12 @@
       "last_seen": "2026-09-11"
     },
     {
-      "id": "deep-dive-citation-matching-below-roundup-parity",
-      "title": "Deep dive sections achieved 67% citation matching versus 87% for roundup sections.",
-      "detail": "On 2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section matched only 2 of 3 (67%). Both figures are from the same run and the same citation alignment logic. The data does not name which deep dive source failed to align. The gap suggests the matching logic may not scale from brief news stories to longer-form analysis, or that deep dive sources need different handling. Inspect the citation-matching function for whether it uses story depth or source type to vary its strategy, and run a test batch of deep dives against the current matching logic to confirm whether this is systematic or noise.",
-      "source": "review",
-      "status": "retired",
-      "occurrences": 6,
-      "first_seen": "2026-08-28",
-      "seen": [
-        "2026-08-28",
-        "2026-08-30",
-        "2026-08-31",
-        "2026-09-02",
-        "2026-09-05",
-        "2026-09-07"
-      ],
-      "last_seen": "2026-09-07"
-    },
-    {
       "id": "roundup-story-order-drift-persists-after-repair",
       "title": "Ten roundup stories remained out of sequence after one correction pass.",
       "detail": "On 2026-08-29, the script/roundup-order segment failed to sort correctly on the first attempt. After one repair pass, 10 stories still aired after a later block. The pipeline did not retry. This follows the pattern noted in the already-tracked item roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a prior run. The repair logic is insufficient; either increase retry attempts on sort failures or add a validation gate that blocks publish if any story lands in the wrong temporal position.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-29",
       "seen": [
         "2026-08-29"
@@ -203,7 +185,7 @@
       "detail": "On 2026-08-30, the render/gemini-canary segment degraded because the Gemini project spend cap had been reached. The pipeline fell back to OpenAI rather than risk a mid-episode voice change, rendering all 22.6 minutes on a different provider. The Gemini pre-flight check also failed to answer, removing any option to recover partway through. Raising the spend cap or implementing a per-segment budget ceiling that triggers earlier would prevent this fallback and keep rendering consistent.",
       "source": "review",
       "status": "retired",
-      "occurrences": 2,
+      "occurrences": 0,
       "first_seen": "2026-08-30",
       "seen": [
         "2026-08-30",
@@ -217,7 +199,7 @@
       "detail": "On 2026-09-01, the news section hit a 120-second read timeout on Gemini's generativelanguage.googleapis.com endpoint during multi-speaker synthesis. Two canary checks against the same model failed at 45 seconds earlier that morning. The pipeline fell back to OpenAI for the remaining sections and credits, creating an audible voice delivery inconsistency (Casey-to-Riley ratio 0.68 across the whole episode but synthesized on different providers for different segments). Check whether Gemini's multi-speaker quota or rate limit is exhausted, confirm the project's tier and spend cap status via the Gemini console, and either increase the timeout threshold with exponential backoff for retries, or switch multi-speaker sections to OpenAI by default if Gemini's quota is not recoverable.",
       "source": "review",
       "status": "retired",
-      "occurrences": 2,
+      "occurrences": 0,
       "first_seen": "2026-09-01",
       "seen": [
         "2026-09-01",
@@ -226,60 +208,12 @@
       "last_seen": "2026-09-02"
     },
     {
-      "id": "brave-body-backfill-budget-exhaustion-culls-articles",
-      "title": "Brave Answers body-backfill budget of 12 calls was exhausted, causing 48 roundup articles to be dropped instead of scripted.",
-      "detail": "The pipeline allocates 12 API calls to enrich thin article summaries via Brave's web search, making them narrative-ready for the script. Once the budget ran dry during this run on 2026-09-01, the remaining articles with stub bodies were culled rather than included as sparse entries. This created a 48-story gap between source volume and what shaped the final episode, introducing selection bias toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length to preserve more thin stories, or implement a second-pass fallback that scripts stub bodies without enrichment rather than dropping them.",
-      "source": "review",
-      "status": "open",
-      "occurrences": 5,
-      "first_seen": "2026-09-01",
-      "seen": [
-        "2026-09-01",
-        "2026-09-05",
-        "2026-09-06",
-        "2026-09-07",
-        "2026-09-18"
-      ],
-      "last_seen": "2026-09-18"
-    },
-    {
-      "id": "script-expansion-request-produced-net-word-loss",
-      "title": "Script expansion request produced net word loss instead of growth.",
-      "detail": "On 2026-09-02, the first draft arrived at 2,986 words against a 3,400-word target. The pipeline issued an expand pass, expecting the script to grow toward target. The shipped script measured 2,871 words—114 words shorter than the first draft. Either the expand prompt failed to add content, or trimming removed more than expansion added. Audit the expand pass logic in the script generation phase and verify the prompt is requesting additive changes without downstream cuts.",
-      "source": "review",
-      "status": "retired",
-      "occurrences": 2,
-      "first_seen": "2026-09-02",
-      "seen": [
-        "2026-09-02",
-        "2026-09-06"
-      ],
-      "last_seen": "2026-09-06"
-    },
-    {
-      "id": "brave-body-budget-hit-55-article-drop",
-      "title": "Brave body-backfill exhaustion dropped 55 roundup articles from the episode.",
-      "detail": "The pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave call budget, prioritize articles by quality score before backfill, or implement a staged fallback that scripts stubs at reduced length rather than dropping articles entirely.",
-      "source": "review",
-      "status": "open",
-      "occurrences": 5,
-      "first_seen": "2026-09-02",
-      "seen": [
-        "2026-09-02",
-        "2026-09-03",
-        "2026-09-04",
-        "2026-09-18",
-        "2026-09-19"
-      ],
-      "last_seen": "2026-09-19"
-    },
-    {
       "id": "gemini-tts-multi-speaker-preamble-reject",
       "title": "Gemini multi-speaker TTS rejected the preamble section with no audio output.",
       "detail": "On 2026-09-03 at 09:05, Gemini's multi-speaker model returned a finish reason of OTHER for the preamble with zero audio despite accepting the prompt. Four single-speaker attempts followed, all rejecting or returning silence. The pipeline fell back to OpenAI for remaining sections and credits, splitting the episode's voice mid-section rather than dropping content. Determine whether the preamble text shape triggers a known Gemini limitation, whether the quota tier has multi-speaker restrictions, or whether this is transient flakiness requiring only a retry budget increase.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-03",
       "seen": [
         "2026-09-03"
@@ -291,8 +225,8 @@
       "title": "Fallback 2 scheduled trigger started 291 minutes late and remains in-progress.",
       "detail": "On 2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC) started 291 minutes late and was still in-progress when the review ran. Three manual runs occurred before the scheduled time, and the facts do not explain why the fallback ran so late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to determine whether the runner is hung, whether there is a capacity bottleneck, or whether the cron expression is misconfigured.",
       "source": "review",
-      "status": "open",
-      "occurrences": 10,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-09-03",
       "seen": [
         "2026-09-03",
@@ -307,22 +241,6 @@
         "2026-09-20"
       ],
       "last_seen": "2026-09-20"
-    },
-    {
-      "id": "ai-tell-pattern-in-shipped-episode",
-      "title": "One AI-tell pattern phrase shipped in the final episode without removal.",
-      "detail": "The quality review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic of Claude output) in the script. The system did not remove it before shipping. The pattern was detected but the removal step either failed silently or was not enforced. Add a hard gate that blocks episode publication if any flagged patterns remain after review, or escalate unresolved flags to manual approval before render begins.",
-      "source": "review",
-      "status": "open",
-      "occurrences": 4,
-      "first_seen": "2026-09-04",
-      "seen": [
-        "2026-09-04",
-        "2026-09-06",
-        "2026-09-09",
-        "2026-09-13"
-      ],
-      "last_seen": "2026-09-13"
     },
     {
       "id": "voice-ratio-drift-toward-casey",
@@ -340,32 +258,17 @@
         "2026-09-20",
         "2026-09-21"
       ],
-      "last_seen": "2026-09-21"
-    },
-    {
-      "id": "script-expansion-ceiling-not-enforced",
-      "title": "Script expansion stopped one pass early despite remaining below target.",
-      "detail": "The first draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The result was 2,994 words—406 words short—and the pipeline accepted this without retry. The mechanism appears to be a single-pass expansion request rather than an iterative loop that continues until target is met or a hard limit is hit. Enforce expansion cycles until the script either reaches the target word count or exhausts a maximum retry count, then log and report which condition stopped it.",
-      "source": "review",
-      "status": "open",
-      "occurrences": 5,
-      "first_seen": "2026-09-06",
-      "seen": [
-        "2026-09-06",
-        "2026-09-09",
-        "2026-09-13",
-        "2026-09-14",
-        "2026-09-17"
-      ],
-      "last_seen": "2026-09-17"
+      "last_seen": "2026-09-21",
+      "signal": "voice-ratio",
+      "signal_seen": "2026-09-21"
     },
     {
       "id": "gemini-multi-speaker-section-timeout-pattern",
       "title": "Gemini multi-speaker TTS timed out on the deep-dive section after five attempts.",
       "detail": "On 2026-09-06, the deep-dive section timed out on `gemini-2.5-flash-preview-tts` multi-speaker mode after 5 unanswered attempts (ReadTimeout: HTTPSConnectionPool, read timeout=88). The pipeline fell back to OpenAI for that section and all credits, creating a mid-episode voice discontinuity. Listeners heard Gemini's voice on the roundup, OpenAI on deep dives and credits. This is the third Gemini multi-speaker timeout in the tracked issues. Implement exponential backoff with a per-section timeout ceiling, or switch multi-speaker sections to single-speaker Gemini rendering when multi-speaker fails, to avoid provider fragmentation mid-episode.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-06",
       "seen": [
         "2026-09-06"
@@ -377,8 +280,8 @@
       "title": "The daily anchor framing received no per-weekday variations in the prompt.",
       "detail": "On 2026-09-07, the debate question 'When storytelling tools become easier to use, what institutional knowledge and editorial judgment disappears along with the difficulty, and how do newsrooms maintain that skill?' was framed unaided each day without structural diversity. Add a weekday-specific framing layer to the anchor prompt—examples, angles, or constraints that vary Monday through Friday—so listeners hear evolution across the week rather than repetition.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-09-07",
       "seen": [
         "2026-09-07"
@@ -391,45 +294,31 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 11,
-      "first_seen": "2026-09-08",
+      "occurrences": 18,
+      "first_seen": "2026-09-01",
       "seen": [
-        "2026-09-11",
         "2026-09-12",
         "2026-09-13",
         "2026-09-15",
         "2026-09-16",
+        "2026-09-18",
         "2026-09-19",
         "2026-09-20",
         "2026-09-21",
         "2026-09-22",
         "2026-09-23"
       ],
-      "last_seen": "2026-09-23"
-    },
-    {
-      "id": "deep-dive-citation-alignment-below-target",
-      "title": "Deep-dive citations matched at 67 percent while roundup citations matched at 93 percent.",
-      "detail": "On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review and was also logged as a tracked item (deep-dive-citation-matching-below-roundup-parity). The mechanism is not stated in the facts, but the disparity suggests deep-dive sources may require different citation handling than roundup wire-service articles. To close this: audit the three deep-dive articles from this run to identify why citation verification failed, then adjust the citation-matching logic for long-form sources or add a manual review step before deep-dive scripting.",
-      "source": "review",
-      "status": "open",
-      "occurrences": 4,
-      "first_seen": "2026-09-08",
-      "seen": [
-        "2026-09-08",
-        "2026-09-09",
-        "2026-09-11",
-        "2026-09-13"
-      ],
-      "last_seen": "2026-09-13"
+      "last_seen": "2026-09-23",
+      "signal": "degraded:script/bodies",
+      "signal_seen": "2026-09-23"
     },
     {
       "id": "gemini-tts-multi-speaker-news-section-http-500",
       "title": "Gemini multi-speaker TTS failed on the news section with HTTP 500, requiring fallback to single-speaker.",
       "detail": "On 2026-09-08, the Gemini multi-speaker model failed on the news section with an HTTP 500 error. The pipeline retried and succeeded using Gemini single-speaker on retry 1. Two other sections later synthesized on the same retry, so their delivery may differ from the rest of the episode. The error message is truncated (RuntimeError: Gemini TTS HTTP 500: {) and the root cause is not available. To close this: log the full Gemini response body on 5xx errors, check whether the news section's character count or speaker boundary exceeds Gemini multi-speaker's limits, and consider raising the retry budget for TTS or splitting large sections at speaker boundaries before sending to Gemini.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-08",
       "seen": [
         "2026-09-08"
@@ -441,8 +330,8 @@
       "title": "Two Gemini-rendered sections shipped with degraded context after failing on earlier retry attempts.",
       "detail": "On 2026-09-09, one section synthesized on retry 3 with context and style information dropped, and another on retry 2 with context dropped. Both shipped in the final episode with potential delivery variance from the rest of the content. The pipeline does not track which sections these are or expose their identity in the degradations log, making it impossible to audit whether listeners noticed the deviation or to improve the retry strategy.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-09",
       "seen": [
         "2026-09-09",
@@ -451,42 +340,34 @@
       "last_seen": "2026-09-16"
     },
     {
-      "id": "script-expansion-produced-word-loss-again",
-      "title": "Script expansion pass reduced word count from 2945 to 2910 instead of growing toward the 3400-word target.",
-      "detail": "On 2026-09-09, the first draft came in at 2945 words against a 3400-word target and was sent back for expansion. The shipped script measured 2910 words—95 words lower than the draft it was meant to improve. This is the second occurrence of expansion requests resulting in net loss rather than growth, suggesting the expand pass is either removing material or that the final editorial step is trimming below the original draft.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-09",
-      "seen": [
-        "2026-09-09"
-      ],
-      "last_seen": "2026-09-09"
-    },
-    {
       "id": "ai-tell-patterns-shipped-in-episode",
       "title": "Three instances of AI-tell language patterns passed quality checks and shipped in the final episode.",
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
       "status": "open",
-      "occurrences": 5,
-      "first_seen": "2026-09-09",
+      "occurrences": 8,
+      "first_seen": "2026-09-04",
       "seen": [
+        "2026-09-04",
+        "2026-09-06",
         "2026-09-09",
+        "2026-09-13",
         "2026-09-14",
         "2026-09-15",
         "2026-09-16",
         "2026-09-18"
       ],
-      "last_seen": "2026-09-18"
+      "last_seen": "2026-09-18",
+      "signal": "ai-tells-shipped",
+      "signal_seen": "2026-09-18"
     },
     {
       "id": "manual-dispatch-and-fallback-both-incomplete",
       "title": "Manual dispatch and fallback trigger both launched but neither finished by review time.",
       "detail": "On 2026-09-10, run 34488334052 started at 14:19:51Z via manual dispatch and remained in_progress. Run 34492356898 started at 14:56:26Z under Fallback 2 (3:05 AM Pacific trigger) and remained pending. Both runs fell significantly behind schedule: the manual run was 254 minutes late, and the fallback run was 291 minutes late despite starting 37 minutes after the first. The pending state of the second run suggests it may be blocked waiting for the first to complete. Determine whether Fallback 2 should wait for manual runs or execute independently, and add monitoring to alert when either run stalls beyond a threshold (for example, in_progress for more than 2 hours).",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-10",
       "seen": [
         "2026-09-10"
@@ -498,21 +379,8 @@
       "title": "Gemini TTS HTTP 403 on canary forces full episode render on OpenAI.",
       "detail": "Both gemini-2.5-flash-preview-tts and gemini-2.5-flash-tts returned HTTP 403 on the pre-flight check on 2026-09-12. The pipeline bypassed Gemini entirely and rendered all 19 minutes of audio on OpenAI instead of attempting retry or section-level fallback. The episode shipped on time with no audio missing. Determine whether the 403 is a quota issue, a permissions issue, or a service degradation. If it recurs, the canary should log the error detail before fallback so the next incident response is faster.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-12",
-      "seen": [
-        "2026-09-12"
-      ],
-      "last_seen": "2026-09-12"
-    },
-    {
-      "id": "script-first-draft-undershoots-target-by-55-percent",
-      "title": "Script first draft arrived at 2,192 words against 3,400-word target.",
-      "detail": "On 2026-09-12, the first draft measured 2,192 words against the 3,400-word target—a 55 percent shortfall. The pipeline triggered one expansion pass, which produced 3,087 words. This remains 313 words (9 percent) short of target but within the acceptance threshold after a single pass. Confirm whether the prompt anchor or the context window is limiting initial draft length, then either raise the per-section budget or add a second expansion cycle when the first pass lands below 90 percent of target.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-12",
       "seen": [
         "2026-09-12"
@@ -525,25 +393,31 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 6,
-      "first_seen": "2026-09-13",
+      "occurrences": 16,
+      "first_seen": "2026-08-28",
       "seen": [
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-11",
         "2026-09-13",
         "2026-09-14",
         "2026-09-16",
         "2026-09-19",
         "2026-09-20",
+        "2026-09-22",
         "2026-09-23"
       ],
-      "last_seen": "2026-09-23"
+      "last_seen": "2026-09-23",
+      "signal": "citations:deep-dive",
+      "signal_seen": "2026-09-23"
     },
     {
       "id": "roundup-dropped-43-stories",
       "title": "Forty-three roundup stories were dropped entirely before scripting.",
       "detail": "The pipeline dropped 43 roundup articles outright, far exceeding normal story filtering. This happened upstream of the citation alignment check (which only saw 15 roundup sources total). Combined with the Brave body-backfill budget exhaustion flagged five times in degradations, the pipeline appears to have culled heavily to stay within cost constraints. To close this: log the drop reason for each culled article and set a threshold alert when drops exceed a baseline percentage of the incoming feed.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-14",
       "seen": [
         "2026-09-14"
@@ -555,8 +429,8 @@
       "title": "Daily anchor framing applied the same debate question without per-weekday context.",
       "detail": "The debate question—\"Who decides what stories get told and preserved in local communities, and how can digital tools democratize both the creation and archiving of cultural memory?\"—was used identically across all days on 2026-09-14, with no per-weekday customization in the prompt or template. The degradation log notes \"no per-weekday framings\" and \"each day frames the question unaided.\" To close this: add branching logic to the anchor framing stage that seeds the prompt with day-of-week context or topic hints, similar to how other segments vary by publication date.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "done",
+      "occurrences": 0,
       "first_seen": "2026-09-14",
       "seen": [
         "2026-09-14",
@@ -565,111 +439,41 @@
       "last_seen": "2026-09-21"
     },
     {
-      "id": "script-expansion-below-target-by-16-percent",
-      "title": "Script expansion pass closed less than half the gap to the word-count target.",
-      "detail": "The first draft delivered 2,451 words against a 3,400-word target, a 32% shortfall. The expansion pass grew the script to 2,921 words, adding 470 words but leaving a 479-word gap—14% below target. The facts do not state whether expansion was capped, whether the source articles ran thin, or whether the expander hit an internal limit. Confirming the expansion logic and whether it should continue iterating until target or maximum attempt thresholds would clarify whether this is a tuning issue or a signal that insufficient article bodies are available to expand from.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-15",
-      "seen": [
-        "2026-09-15"
-      ],
-      "last_seen": "2026-09-15"
-    },
-    {
-      "id": "script-expansion-undershooting-target-again",
-      "title": "Script expansion produced a final count 426 words below target.",
-      "detail": "The first draft arrived at 2,353 words against a 3,400-word target (69 percent). The pipeline sent it back for one expand pass. The final shipped version was 2,974 words, still 426 words short of target (87 percent of goal). This pattern recurred after the 2026-09-02 expansion that produced net word loss and the 2026-09-06 expansion that closed less than half the gap. The mechanism appears to be a prompt or stopping condition that does not drive expansion hard enough to reach the ceiling. Audit the expansion prompt, raise the target in the request, or implement multi-pass expansion with a gate that rejects expansions falling below a per-pass word increment.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-16",
-      "seen": [
-        "2026-09-16"
-      ],
-      "last_seen": "2026-09-16"
-    },
-    {
       "id": "script-expansion-undershooting-target-persistently",
       "title": "Script expansion closed only 3 percent of the gap to the target word count.",
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 3,
-      "first_seen": "2026-09-17",
+      "occurrences": 11,
+      "first_seen": "2026-09-02",
       "seen": [
+        "2026-09-06",
+        "2026-09-09",
+        "2026-09-12",
+        "2026-09-13",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
         "2026-09-17",
         "2026-09-21",
         "2026-09-23"
       ],
-      "last_seen": "2026-09-23"
+      "last_seen": "2026-09-23",
+      "signal": "short-script",
+      "signal_seen": "2026-09-23"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
       "title": "Forty-five roundup articles were dropped with no logged reason.",
       "detail": "The episode included 3 deep dives but dropped 45 roundup articles, resulting in 233 total RSS episodes shipped. The degradation log cites Brave body-backfill budget exhaustion (12 calls spent) as the cause of thin article stubs, but does not state whether those 45 articles were culled before scripting, after citation work, or during final assembly. The review infers the drops were architectural rather than accidental because the pipeline completed successfully, but the facts do not confirm this. Add explicit logging at each stage that removes articles—sourcing, body backfill, citation matching, and final script assembly—so the next run's review can trace which step and which count of articles caused the drop.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-17",
       "seen": [
         "2026-09-17"
       ],
       "last_seen": "2026-09-17"
-    },
-    {
-      "id": "ai-tell-patterns-in-shipped-episode-three-instances",
-      "title": "Three AI-tell pattern instances passed quality review and shipped in the final episode.",
-      "detail": "The quality check on 2026-09-18 flagged three instances of LLM-signature language—tell-don't-show phrasing or other markers of synthetic voice—in the script that shipped at 3,049 words. These patterns reached the audio and video output despite the quality gate. Tighten the quality filter to reject episodes with two or more flagged patterns, or add a human review checkpoint before final render when the count exceeds one.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-18",
-      "seen": [
-        "2026-09-18"
-      ],
-      "last_seen": "2026-09-18"
-    },
-    {
-      "id": "territory-check-rewrites-rejected-shipped-anyway",
-      "title": "Territory check flagged two sentences with unsupported nations; rewrites were rejected and they shipped.",
-      "detail": "The script named Sinixt in connection with Redstone and Syilx in connection with Tribune. The territory map covers those locations under other nations. Two rewrite attempts were rejected, and the unsupported references remained in the shipped episode. The pipeline should either enforce a hard block on unsupported nations or escalate rejected rewrites to the operator before shipping.",
-      "source": "review",
-      "status": "open",
-      "occurrences": 2,
-      "first_seen": "2026-09-19",
-      "seen": [
-        "2026-09-19",
-        "2026-09-20"
-      ],
-      "last_seen": "2026-09-20"
-    },
-    {
-      "id": "deep-dive-citation-alignment-zero-percent",
-      "title": "Deep dive articles shipped with zero citation matches against their source material.",
-      "detail": "All three deep dive articles (Marginalian, ScienceDaily, TechRadar) failed citation alignment: 0 of 3 matched. Roundup articles achieved 87 percent alignment (13 of 15). The deep dives appear to be selected before the expansion and citation-verification stage runs. Either delay deep dive selection until after citation matching, or add a citation-check gate that flags zero-match articles for manual review before they air.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-20",
-      "seen": [
-        "2026-09-20"
-      ],
-      "last_seen": "2026-09-20"
-    },
-    {
-      "id": "territory-check-tsilhqot-in-mismatch-recurs",
-      "title": "Territory check flags Tsilhqot'in nation mapped to wrong region.",
-      "detail": "On September 21, two degradations reported the Tsilhqot'in nation appearing in connection with a museum but mapped under Inuit Nunangat, a geographic mismatch. A third degradation noted that 2 sentences retained an unsupported nation claim after rewrite rejection. These sentences shipped in the final script. The territory validation logic either lacks the Tsilhqot'in nation in its mapping dictionary or returns false positives when matching nations to regions. Add Tsilhqot'in to the territory map with correct region coverage, and ensure rewrite rejections trigger content removal rather than passthrough to shipped audio.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-21",
-      "seen": [
-        "2026-09-21"
-      ],
-      "last_seen": "2026-09-21"
     },
     {
       "id": "r2-sync-missing-object-breaks-feed-reference",
@@ -683,7 +487,9 @@
         "2026-09-22",
         "2026-09-23"
       ],
-      "last_seen": "2026-09-23"
+      "last_seen": "2026-09-23",
+      "signal": "degraded:publish/r2-sync",
+      "signal_seen": "2026-09-23"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -691,26 +497,18 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
-      "first_seen": "2026-09-22",
+      "occurrences": 5,
+      "first_seen": "2026-09-19",
       "seen": [
+        "2026-09-19",
+        "2026-09-20",
+        "2026-09-21",
         "2026-09-22",
         "2026-09-23"
       ],
-      "last_seen": "2026-09-23"
-    },
-    {
-      "id": "deep-dive-citation-alignment-gap-widening",
-      "title": "Deep-dive citations are matching at a lower rate than roundup citations.",
-      "detail": "On 2026-09-22, deep-dive citations matched 2 out of 3 sources (67%), while roundup citations matched 12 out of 15 (80%). The gap persists from prior runs. The mechanism appears to be different handling or validation intensity between the two content streams. Align the citation-matching logic so both streams reach parity, or identify and fix the specific constraint affecting deep-dive sources.",
-      "source": "review",
-      "status": "pending",
-      "occurrences": 1,
-      "first_seen": "2026-09-22",
-      "seen": [
-        "2026-09-22"
-      ],
-      "last_seen": "2026-09-22"
+      "last_seen": "2026-09-23",
+      "signal": "degraded:script/territory-check",
+      "signal_seen": "2026-09-23"
     }
   ],
   "updated": "2026-09-23"

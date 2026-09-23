@@ -323,18 +323,40 @@ resurrected on one mention.
   hand-written items became the ledger's first entries on first run rather than being
   duplicated by a second list underneath them. It also means no id is ever written into the
   markdown — an item is matched back by its title.
-- **Ids drift, titles do not.** The model coins the id, and the same finding came back as
-  `credit-balance-preflight` and `credit-balance-not-usage-limit` in testing. `_match` tries
-  the id, then a `difflib` ratio ≥ 0.72 on the title.
+- **Findings are keyed on signals, because ids and titles both drift.** The model coins the
+  id, and the same finding came back as `credit-balance-preflight` and
+  `credit-balance-not-usage-limit` in testing. Title matching was the fallback, and titles
+  carry the night's numbers: by 2026-09-23 the ledger held three items for the Brave body
+  budget ("48 roundup articles", "55 roundup articles", "recurring"), five for deep-dive
+  citations and seven for script expansion, 24 open in all. `run_signals` reads stable keys off the facts —
+  `degraded:<segment>` for each `degrade()` row, `short-script`, `citations:<segment>` below
+  `CITATION_FLOOR`, `ai-tells-shipped`, `voice-ratio` outside `VOICE_RATIO_BAND`,
+  `run-failed` — and the schema pins each finding's `signal` to that day's set plus `other`.
+  `_match` goes signal, then id, then a `difflib` ratio ≥ 0.72 on the title; a signalled
+  finding never title-matches an item under a different signal.
 - **The first sighting's wording is kept for the life of the item.** A detail rewritten
   nightly is a daily diff on a file nobody asked to change. For the same reason the block is
   in ledger order rather than sorted by recurrence, and its header dates the *reviews that
   produced the items shown* rather than the run — dating it by the run put a one-line diff on
   ROADMAP.md every night, which is how a generated file teaches its reader to skip it.
-- **Retirement is only for items the tool wrote** (`source: "review"`), after
-  `ROADMAP_RETIRE_DAYS` (14) of silence — a quiet week is not a fix. Seeded and hand-written
-  items are exempt: a human wrote them, only a human closes them. Retired items stay in the
-  ledger and a recurrence puts them back.
+- **An item closes when its signal stops appearing** — `SIGNAL_QUIET_DAYS` (3) days absent
+  from the facts, not when the model stops mentioning it; and a present signal keeps its item
+  open on nights the model says nothing. A day whose log could not be read closes nothing: no
+  facts is not a fix. Items without a signal fall back to `ROADMAP_RETIRE_DAYS` (14) of
+  silence, **pending ones included** — twenty single sightings from August were still in the
+  prompt in late September. Only items the tool wrote (`source: "review"`) retire; seeded and
+  hand-written items are exempt, a human wrote them and only a human closes them. A retired
+  item stays in the ledger with its count restarted, and `ROADMAP_MIN_OCCURRENCES` new
+  sightings bring it back. The prompt shows only the `_CLOSED_SHOWN` most recent closed items.
+- **The review's facts about runs must match the schedule.** Until 2026-09-23 the trigger
+  labels still mapped the retired three-cron ladder: the backstop read as "Fallback 2, 291
+  minutes late", the review's own run as a trigger that never finished, and the Worker's
+  rungs as manual dispatches — and the most-sighted roadmap item (ten reviews) was that
+  mislabelling. `_trigger_label` now reads the event: `schedule` is the backstop, a dispatch
+  within `DISPATCH_WINDOW_MINUTES` of a rung is the Worker, anything else is a person; the
+  row for `GITHUB_RUN_ID` is marked as the review's own. When there is no successful run the
+  log comes from the newest failed one. The backstop passes `--skip-if-reviewed`, so a night
+  rung 3 already reviewed is not reviewed twice.
 - **It runs after the review is on disk**, inside a `try`, and `main()` swallows what escapes.
   A day without a distillation costs the roadmap a day; a distillation that raises would cost
   the review. Skip it with `--no-roadmap`; `--no-llm` and `--dry-run` already imply it.

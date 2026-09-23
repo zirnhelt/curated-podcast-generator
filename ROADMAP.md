@@ -35,111 +35,23 @@ narrative) are not repeated here — see 0a4c019 and 1ed384e.
 markers after each night's review, so edits to an item's text are overwritten. What a human
 says here is said by checking a box: a checked item is closed, and the ledger
 (`podcasts/roadmap_ledger.json`) remembers that, so a review mentioning it again tomorrow
-cannot reopen it. Anything written outside the markers is never touched.
+cannot reopen it. An item tied to a signal (a `degrade()` row, a metric past its line) also
+closes itself once that signal has been absent from the run's facts for three days. Anything
+written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-28..2026-09-23) — 24 open.
-Check a box to close one; it comes back only if the reviews raise it 2 more times._
+_Distilled from the daily reviews by `episode_review.py` (2026-09-04..2026-09-23) — 7 open. An
+item with a signal closes itself once the signal has been absent for 3 days. Check a box to
+close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
-      2026-08-23: all three crons died with `Your credit balance is too low to access the
-      Anthropic API` and exited 1, so the day went red and the episode only shipped from a
-      manual dispatch at 14:42 UTC, six hours late. `_usage_limit_reset` keys on the string
-      `usage limit`, which this message does not contain, so `check_api_budget()` printed
-      "preflight inconclusive — continuing" and the run went on to spend 40 article body
-      fetches, ~37 Brave enrichment calls and an agentic research call before failing at the
-      script call — three times over, which is the exact waste the preflight was written to
-      prevent (see its docstring on 2026-07-25). Match the credit-balance refusal too and exit
-      `EXIT_BUDGET_EXHAUSTED`; the workflow already turns 75 into a skipped day with a warning
-      instead of a failure.
-- [ ] **The review goes quiet on exactly the days worth reviewing.** `main()` only fetches a job
-      log from a run whose conclusion is `success`. On 2026-08-23 there was no such run, so the
-      review published a bare trigger table and no narrative — three failures and not a word
-      about why. Fall back to the newest failed run's log (the facts are all there: the 400
-      above is in it), and keep the successful-run preference for ordinary days.
-- [ ] **The review cannot see the run that made the episode when a cron did not.** It is gated
-      on the third cron, so 2026-08-23's manual dispatch four hours later is absent from the
-      write-up and from the archive. Either widen `fetch_runs` past `event: schedule` for the
-      day, or make the review re-runnable for a date and re-publish over the same file (`--date`
-      already exists; the index and feed update in place).
-- [ ] **The review reports itself as an unfinished run.** The `review` job runs inside the 3:05
-      AM cron's own workflow run, so every review to date ends with "Fallback 2 … in_progress"
-      and the narrative reads it as a pending unknown ("a third in progress at review time",
-      2026-08-20). `summarize_runs` knows `GITHUB_RUN_ID`; label that row as the reviewing run
-      so the model stops treating it as a cliffhanger.
-- [ ] **Decide what to do about scheduler drift.** Every trigger in the sample started late:
-      +44/+29/+32 (08-20), +46/+31/+31 (08-21), +34/+20/+25 (08-22), +35/+22/+25 (08-23). This
-      is GitHub's scheduled-run queue, not the pipeline, and the reviews report it as a fault
-      every single day. Either move the crons earlier and accept the drift as the schedule, or
-      keep the number and stop framing it as one — a fact reported daily as a problem and never
-      acted on trains the reader to skip the paragraph.
-- [ ] **Watch the four 2026-08-22 fixes on air.** None has been observed in a shipped episode:
-      the runs the day after all died at the credit wall. The first green day's review is the
-      check — citation alignment should land near 51%/55% rather than 5-8/15 and 0-1/deep dive,
-      `tts_short_segments` should be ~2% of segments rather than 13 of 16, and the canary should
-      only pin OpenAI after two timeouts per model.
-- [ ] **Gemini has not rendered an episode in the review window.** 08-20, 08-21 and 08-22 all
-      pinned OpenAI on canary read timeouts against `generativelanguage.googleapis.com`; 08-23
-      never got that far. The probe item under Short-term is the diagnostic — the reviews now
-      give it a daily before/after record, so run it and read the next week's reviews rather
-      than re-reasoning about the ladder.
-- [ ] **Gemini multi-speaker TTS timed out on the welcome section, forcing a mid-episode
-      fallback to OpenAI.** During audio render on 2026-08-28, the welcome section synthesis via
-      Gemini multi-speaker hit a ReadTimeout after 120 seconds on
-      generativelanguage.googleapis.com. The pipeline fell back to OpenAI for that section and
-      all remaining sections and credits. The episode now spans two TTS providers—Gemini for
-      welcome, OpenAI for body and outro—introducing a voice discontinuity in the shipped
-      17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency
-      limits are being hit, and consider either increasing timeouts, implementing section-level
-      retry logic before switching providers, or pre-allocating Gemini synthesis for critical
-      segments at off-peak times. (seen in 8 reviews, latest 2026-09-11)
-- [ ] **Brave Answers body-backfill budget of 12 calls was exhausted, causing 48 roundup
-      articles to be dropped instead of scripted.** The pipeline allocates 12 API calls to
-      enrich thin article summaries via Brave's web search, making them narrative-ready for the
-      script. Once the budget ran dry during this run on 2026-09-01, the remaining articles with
-      stub bodies were culled rather than included as sparse entries. This created a 48-story
-      gap between source volume and what shaped the final episode, introducing selection bias
-      toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length
-      to preserve more thin stories, or implement a second-pass fallback that scripts stub
-      bodies without enrichment rather than dropping them. (seen in 5 reviews, latest
-      2026-09-18)
-- [ ] **Brave body-backfill exhaustion dropped 55 roundup articles from the episode.** The
-      pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run
-      on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives
-      survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse
-      segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave
-      call budget, prioritize articles by quality score before backfill, or implement a staged
-      fallback that scripts stubs at reduced length rather than dropping articles entirely.
-      (seen in 5 reviews, latest 2026-09-19)
-- [ ] **Fallback 2 scheduled trigger started 291 minutes late and remains in-progress.** On
-      2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC)
-      started 291 minutes late and was still in-progress when the review ran. Three manual runs
-      occurred before the scheduled time, and the facts do not explain why the fallback ran so
-      late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run
-      URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to
-      determine whether the runner is hung, whether there is a capacity bottleneck, or whether
-      the cron expression is misconfigured. (seen in 10 reviews, latest 2026-09-20)
-- [ ] **One AI-tell pattern phrase shipped in the final episode without removal.** The quality
-      review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic
-      of Claude output) in the script. The system did not remove it before shipping. The pattern
-      was detected but the removal step either failed silently or was not enforced. Add a hard
-      gate that blocks episode publication if any flagged patterns remain after review, or
-      escalate unresolved flags to manual approval before render begins. (seen in 4 reviews,
-      latest 2026-09-13)
 - [ ] **Casey's speaking time exceeds Riley's by 13 percent.** The voice_ratio_casey_over_riley
       measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear
       whether this represents acceptable variance or systematic drift. Establish a target voice
       ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios
       outside a defined band. If this ratio persists across future runs, adjust the host
-      distribution weights in the synthesis prompt. (seen in 6 reviews, latest 2026-09-21)
-- [ ] **Script expansion stopped one pass early despite remaining below target.** The first
-      draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The
-      result was 2,994 words—406 words short—and the pipeline accepted this without retry. The
-      mechanism appears to be a single-pass expansion request rather than an iterative loop that
-      continues until target is met or a hard limit is hit. Enforce expansion cycles until the
-      script either reaches the target word count or exhausts a maximum retry count, then log
-      and report which condition stopped it. (seen in 5 reviews, latest 2026-09-17)
+      distribution weights in the synthesis prompt. (signal `voice-ratio`; seen in 6 reviews,
+      latest 2026-09-21)
 - [ ] **Brave body-backfill budget exhaustion is recurring and requires intervention.** On
       2026-09-08, the pipeline spent its full 12-call Brave budget during script generation,
       forcing nine articles to ship with stub bodies instead of full text. The degradations log
@@ -148,44 +60,22 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       fixed call budget that does not reset between runs or scale with article volume. To close
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
-      across runs and alert when 80% of the budget is consumed. (seen in 11 reviews, latest
-      2026-09-23)
-- [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
-      percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
-      deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
-      and was also logged as a tracked item (deep-dive-citation-matching-below-roundup-parity).
-      The mechanism is not stated in the facts, but the disparity suggests deep-dive sources may
-      require different citation handling than roundup wire-service articles. To close this:
-      audit the three deep-dive articles from this run to identify why citation verification
-      failed, then adjust the citation-matching logic for long-form sources or add a manual
-      review step before deep-dive scripting. (seen in 4 reviews, latest 2026-09-13)
-- [ ] **Two Gemini-rendered sections shipped with degraded context after failing on earlier
-      retry attempts.** On 2026-09-09, one section synthesized on retry 3 with context and style
-      information dropped, and another on retry 2 with context dropped. Both shipped in the
-      final episode with potential delivery variance from the rest of the content. The pipeline
-      does not track which sections these are or expose their identity in the degradations log,
-      making it impossible to audit whether listeners noticed the deviation or to improve the
-      retry strategy. (seen in 2 reviews, latest 2026-09-16)
+      across runs and alert when 80% of the budget is consumed. (signal
+      `degraded:script/bodies`; seen in 18 reviews, latest 2026-09-23)
 - [ ] **Three instances of AI-tell language patterns passed quality checks and shipped in the
       final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
       shipped script. These phrases remained in the audio and RSS feed. The detection system is
       working, but the pipeline has no gate to reject episodes with pattern hits or halt
-      publication for manual review before shipping. (seen in 5 reviews, latest 2026-09-18)
+      publication for manual review before shipping. (signal `ai-tells-shipped`; seen in 8
+      reviews, latest 2026-09-18)
 - [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
       section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
       (33%). The gap suggests a different verification pathway or a shortfall in source
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (seen in 6 reviews, latest 2026-09-23)
-- [ ] **Daily anchor framing applied the same debate question without per-weekday context.** The
-      debate question—"Who decides what stories get told and preserved in local communities, and
-      how can digital tools democratize both the creation and archiving of cultural memory?"—was
-      used identically across all days on 2026-09-14, with no per-weekday customization in the
-      prompt or template. The degradation log notes "no per-weekday framings" and "each day
-      frames the question unaided." To close this: add branching logic to the anchor framing
-      stage that seeds the prompt with day-of-week context or topic hints, similar to how other
-      segments vary by publication date. (seen in 2 reviews, latest 2026-09-21)
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 16
+      reviews, latest 2026-09-23)
 - [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
       2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
       an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
@@ -195,20 +85,15 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (seen in 3 reviews, latest 2026-09-23)
-- [ ] **Territory check flagged two sentences with unsupported nations; rewrites were rejected
-      and they shipped.** The script named Sinixt in connection with Redstone and Syilx in
-      connection with Tribune. The territory map covers those locations under other nations. Two
-      rewrite attempts were rejected, and the unsupported references remained in the shipped
-      episode. The pipeline should either enforce a hard block on unsupported nations or
-      escalate rejected rewrites to the operator before shipping. (seen in 2 reviews, latest
-      2026-09-20)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 11 reviews,
+      latest 2026-09-23)
 - [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
       errors.** On September 22, a single file present in podcast-feed.xml could not be found in
       R2 and could not be rebuilt from disk. The pipeline completed and published successfully
       despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
       reference. Identify which object is missing, restore it to R2, or remove the reference
-      from the feed XML before the next publish cycle. (seen in 2 reviews, latest 2026-09-23)
+      from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
+      in 2 reviews, latest 2026-09-23)
 - [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
       territory-check rewrites failed.** On September 22, the territory-check system flagged two
       sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
@@ -216,7 +101,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       final episode anyway, carrying geographic claims the validation layer could not support.
       Log which sentences triggered the rewrite rejection, and decide whether to cut them,
       override the territory map data, or implement a mandatory-cut rule when rewrites fail.
-      (seen in 2 reviews, latest 2026-09-23)
+      (signal `degraded:script/territory-check`; seen in 5 reviews, latest 2026-09-23)
 
 <!-- reviews:end -->
 
