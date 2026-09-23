@@ -206,3 +206,24 @@ class TestIsProducerSender:
 
         assert not is_producer_sender("someone@example.com")
         assert not is_producer_sender("")
+
+
+class TestPronunciations:
+    """The alias table moved from azure_tts.py to config/pronunciations.json on
+    2026-09-23; OpenAI and Gemini both apply it with a naive str.replace."""
+
+    def test_longer_names_precede_the_names_they_contain(self):
+        from config_loader import load_pronunciations
+        names = list(load_pronunciations())
+        assert names, "pronunciations.json is empty or unreadable"
+        for i, name in enumerate(names):
+            for later in names[i + 1:]:
+                assert name not in later, (
+                    f"{later!r} contains {name!r} but comes after it, so it can never match")
+
+    def test_aliases_carry_no_pause_markers(self):
+        """OpenAI TTS reads a hyphen as an audible pause."""
+        from config_loader import load_pronunciations
+        for name, alias in load_pronunciations().items():
+            assert "-" not in alias, (name, alias)
+            assert not alias.isupper(), (name, alias)

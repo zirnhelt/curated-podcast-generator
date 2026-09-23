@@ -888,7 +888,7 @@ class TestChunkSizing:
         assert flat == turns
 
     def test_the_ssml_tag_estimate_is_not_borrowed(self):
-        """`_split_segments_by_char_limit` budgets +120/segment for SSML tags,
+        """Azure's old splitter budgeted +120/segment for SSML tags,
         which is an Azure concern. Counting it here charged a 27-turn roundup
         3 240 phantom chars and bought two requests nobody needed."""
         turns = self._turns(7332, per_turn=270)
@@ -1679,7 +1679,7 @@ class TestStripStageDirections:
 
     def test_legacy_parenthetical_cue_still_stripped(self):
         """Every script already on disk carries `(wry)`-style cues, and a
-        re-render of one still has to clean them for OpenAI and Azure."""
+        re-render of one still has to clean them for OpenAI."""
         result = strip_stage_directions("(wry) Sure it will.")
         assert "(wry)" not in result
         assert "Sure it will." in result
@@ -1739,10 +1739,9 @@ class TestRetiredStageDirections:
 
 
 class TestProviderResolution:
-    def _fresh(self, monkeypatch, gemini=False, azure=False, used=None, rendered=()):
+    def _fresh(self, monkeypatch, gemini=False, used=None, rendered=()):
         import podcast_generator as pg
         monkeypatch.setattr(pg, "USE_GEMINI_TTS", gemini)
-        monkeypatch.setattr(pg, "USE_AZURE_TTS", azure)
         monkeypatch.setattr(pg, "_tts_provider_used", used)
         # Module-level list — reset it or renders from earlier tests leak in.
         monkeypatch.setattr(pg, "_tts_providers_rendered", list(rendered))
@@ -1753,13 +1752,8 @@ class TestProviderResolution:
         assert pg.get_active_tts_provider() == "openai"
         assert "OpenAI" in pg.get_tts_credit()
 
-    def test_azure_flag(self, monkeypatch):
-        pg = self._fresh(monkeypatch, azure=True)
-        assert pg.get_active_tts_provider() == "azure"
-        assert "Azure" in pg.get_tts_credit()
-
-    def test_gemini_flag_wins_over_azure(self, monkeypatch):
-        pg = self._fresh(monkeypatch, gemini=True, azure=True)
+    def test_gemini_flag(self, monkeypatch):
+        pg = self._fresh(monkeypatch, gemini=True)
         assert pg.get_active_tts_provider() == "gemini"
         assert pg.get_tts_credit() == "Gemini TTS"
 
@@ -1816,9 +1810,9 @@ class TestProviderResolution:
             pg.record_tts_render(provider)
         assert pg._tts_providers_rendered == ["gemini", "openai"]
 
-    def test_three_providers_use_serial_comma(self, monkeypatch):
-        pg = self._fresh(monkeypatch, rendered=("gemini", "azure", "openai"))
-        assert pg.get_tts_credit() == "Gemini TTS, Azure Neural TTS and OpenAI TTS"
+    def test_two_providers_are_both_credited(self, monkeypatch):
+        pg = self._fresh(monkeypatch, rendered=("gemini", "openai"))
+        assert pg.get_tts_credit() == "Gemini TTS and OpenAI TTS"
 
     def test_refresh_repairs_description_not_just_credits_key(self, monkeypatch, tmp_path):
         # The 2026-07-26 defect: refresh fixed credits.text_to_speech and left

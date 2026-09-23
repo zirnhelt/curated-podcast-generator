@@ -63,12 +63,7 @@ from config_loader import (
     json_output_config as _json_output,
     atomic_write_text as _atomic_write_text,
     atomic_write_json as _atomic_write_json,
-)
-from azure_tts import (
-    generate_azure_tts_for_section,
-    AZURE_VOICE_MAP,
-    PRONUNCIATION_DICT as AZURE_PRONUNCIATION_DICT,
-    get_azure_speech_config,
+    load_pronunciations,
 )
 from gemini_tts import (
     canary as gemini_canary,
@@ -409,12 +404,6 @@ def _check_tts_budget() -> None:
             return
         print("🛑 Gemini TTS did not answer the pre-flight check either.")
         _abort_if_billing_wall(wall_exc, provider="OpenAI TTS")
-
-    # Azure bills on a subscription rather than a topped-up balance, so there is
-    # no equivalent cheap probe and no confident abort. Say so and continue.
-    print(f"⚠️  OpenAI TTS is walled ({walled}); {primary} is unprobed — continuing.")
-    degrade("script/budget-preflight",
-            f"OpenAI TTS unavailable ({walled}); falling through to unprobed {primary}")
 
 
 def check_api_budget() -> None:
@@ -905,7 +894,7 @@ TARGET_INTRO_MUSIC_DBFS = -26.5
 
 # Subtle per-host stereo separation during the news roundup and deep dive —
 # a light widening cue for headphone listeners, not a hard-panned effect.
-# OpenAI TTS only: Gemini/Azure synthesize a whole section (both hosts) as one
+# OpenAI TTS only: Gemini synthesizes a whole section (both hosts) as one
 # clip for cross-speaker prosody, so there's no per-speaker channel to pan there.
 HOST_PAN = {"riley": -0.15, "casey": 0.15}
 PANNED_SECTIONS = {"news", "deep"}
@@ -930,13 +919,13 @@ MUSIC_BED_OVERLAP_MS = 2000
 # between the two rather than near either.
 SILENT_TAKE_DBFS = -50.0
 
-# TTS provider feature flags — gemini > azure > openai (see get_active_tts_provider)
-USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
-USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
+# TTS provider feature flag — gemini > openai (see get_active_tts_provider).
+# Gemini is parked as of 2026-09-23 (docs/decisions/gemini-tts.md): OpenAI is the
+# nightly provider and Gemini runs only on an explicit tts_provider=gemini dispatch.
 USE_GEMINI_TTS = bool(os.getenv("USE_GEMINI_TTS"))           # full switch to Gemini multi-speaker
 
 # Routing pin: the provider every *remaining* section should render with. Set
-# when a fallback re-routes the run (Gemini/Azure failure → OpenAI) so the rest
+# when a fallback re-routes the run (Gemini failure → OpenAI) so the rest
 # of the episode stays voice-consistent. This is a routing decision, not a
 # credit — see _tts_providers_rendered for who actually spoke.
 _tts_provider_used: str | None = None
@@ -949,7 +938,7 @@ _tts_providers_rendered: list[str] = []
 
 
 def get_active_tts_provider() -> str:
-    """Active TTS provider key: 'gemini' | 'azure' | 'openai'.
+    """Active TTS provider key: 'gemini' | 'openai'.
 
     Single source of truth for provider-dependent behaviour (rendering,
     credits) so published credits can never drift from the audio path.
@@ -960,8 +949,6 @@ def get_active_tts_provider() -> str:
         return _tts_provider_used
     if USE_GEMINI_TTS:
         return "gemini"
-    if USE_AZURE_TTS:
-        return "azure"
     return "openai"
 
 
@@ -8466,7 +8453,7 @@ def generate_tts_for_segment(text, speaker, output_file):
     # Drop Gemini-only delivery cues (OpenAI would read them aloud), then apply
     # shared pronunciation substitutions
     clean = strip_stage_directions(text)
-    for word, alias in AZURE_PRONUNCIATION_DICT.items():
+    for word, alias in load_pronunciations().items():
         clean = clean.replace(word, alias)
 
     # TTS timeouts are network blips, not API overload — 2 retries with a short
@@ -9157,106 +9144,6 @@ def _append_comparison_log(entry):
         pass
 
 
-def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=None):
-    """Generate an Azure Multi-Talker comparison episode alongside the main OpenAI one.
-
-    Produces a full episode with music interludes saved as *_azure.mp3 next to the main MP3.
-    Logs duration, latency, and estimated cost to podcasts/tts_comparison_log.json.
-    """
-    import time
-
-    if not get_azure_speech_config():
-        print("⚠️  Azure parallel: AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set — skipping")
-        return
-
-    azure_path = str(Path(base_output_filename).with_suffix("")) + "_azure.mp3"
-    print(f"🔵 Azure parallel: generating comparison audio → {Path(azure_path).name}")
-    t0 = time.time()
-
-    try:
-        intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_INTRO_MUSIC_DBFS)
-        intro_music    = intro_music.fade_out(800)
-        interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
-        interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
-        outro_music    = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)),    TARGET_MUSIC_DBFS)
-        ambient_transition = get_ambient_transition(theme_name, fallback_segment=interval_music)
-        section_gap = AudioSegment.silent(duration=400)
-
-        combined = AudioSegment.empty()
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            def _render(section_name, overlap_ms=0):
-                nonlocal combined
-                seg_list = segments.get(section_name, [])
-                if not seg_list:
-                    return
-                total_chars = sum(len(s["text"]) for s in seg_list)
-                print(f"  Azure {section_name}: {len(seg_list)} turns, {total_chars} chars")
-                section_wav = os.path.join(tmpdir, f"{section_name}.wav")
-                generate_azure_tts_for_section(seg_list, section_wav)
-                section_audio = normalize_segment(
-                    trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
-                    TARGET_SPEECH_DBFS,
-                )
-                combined = _append_with_gap(combined, section_audio, -overlap_ms)
-
-            # Cold open teaser before the theme music (optional)
-            if segments.get("preamble"):
-                _render("preamble")
-            combined = _bring_music_up_under(combined, intro_music)
-
-            _render("welcome", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
-            combined += section_gap + ambient_transition
-            _render("news", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
-            combined += section_gap + ambient_transition
-            if segments.get("community_spotlight"):
-                _render("community_spotlight", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
-                combined += section_gap + ambient_transition
-            _render("deep_dive", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
-
-            _pc = CONFIG['podcast']
-            credits_text = (
-                f"{_pc.get('title', 'This show')} is produced with Claude by Anthropic for scripting, "
-                "Azure Neural TTS, Ava and Andrew for audio synthesis, and Suno for our theme music. "
-                f"Find us at {_pc.get('url_spoken', 'cariboo signals dot c-a')}."
-            )
-            try:
-                credits_wav = os.path.join(tmpdir, "credits.wav")
-                generate_azure_tts_for_section(
-                    [{"speaker": "riley", "text": credits_text, "gap_ms": None}],
-                    credits_wav,
-                )
-                credits_audio = normalize_segment(
-                    trim_tts_silence(AudioSegment.from_file(credits_wav, format="wav")),
-                    TARGET_SPEECH_DBFS,
-                )
-                combined += AudioSegment.silent(duration=600) + credits_audio
-            except Exception as ce:
-                print(f"  ⚠️  Azure parallel credits skipped: {ce}")
-
-        combined = _bring_music_up_under(combined, outro_music)
-        combined.export(azure_path, format="mp3", bitrate=f"{MP3_BITRATE_KBPS}k")
-        elapsed = time.time() - t0
-        duration_min = len(combined) / 1000 / 60
-        total_chars = sum(
-            sum(len(s["text"]) for s in segments.get(sec, []))
-            for sec in ("preamble", "welcome", "news", "community_spotlight", "deep_dive")
-        )
-        _append_comparison_log({
-            "date": datetime.now().isoformat(),
-            "azure_file": Path(azure_path).name,
-            "openai_file": Path(base_output_filename).name,
-            "azure_duration_min": round(duration_min, 2),
-            "azure_latency_s": round(elapsed, 1),
-            "total_chars": total_chars,
-            "estimated_azure_cost_usd": round(total_chars / 1_000_000 * 22, 4),
-        })
-        print(f"  ✅ Azure parallel done: {duration_min:.1f} min, {elapsed:.1f}s → {Path(azure_path).name}")
-
-    except Exception as exc:
-        print(f"  ⚠️  Azure parallel generation failed: {exc}")
-
-
 def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False,
                                weather_used=False):
     """Convert script to audio with music interludes and theme-aware ambient transitions."""
@@ -9264,8 +9151,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
     print("📊 Generating audio with music interludes...")
 
     # This call owns the whole episode's audio, so it owns the credit. Clearing
-    # keeps a second render in the same process (Azure parallel comparison, or
-    # the TTS-only fallback) from inheriting the previous attempt's providers.
+    # keeps a second render in the same process (the TTS-only fallback) from
+    # inheriting the previous attempt's providers.
     _tts_providers_rendered.clear()
 
     if USE_GEMINI_TTS:
@@ -9279,10 +9166,6 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         # either the whole render step or the episode's voice consistency.
         gemini_set_render_deadline(GEMINI_RENDER_DEADLINE_S)
         _run_gemini_canary()
-    elif USE_AZURE_TTS:
-        if not get_azure_speech_config():
-            print("❌ Azure TTS enabled but AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set")
-            return None
     elif not get_openai_client():
         return None
     
@@ -9350,24 +9233,18 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
                 global _tts_provider_used
                 provider = get_active_tts_provider()
-                if provider in ("azure", "gemini"):
+                if provider == "gemini":
                     # One whole-section synthesis call for coherent cross-speaker prosody
-                    provider_label = {
-                        "azure": "Azure Multi-Talker",
-                        "gemini": "Gemini multi-speaker",
-                    }[provider]
+                    provider_label = "Gemini multi-speaker"
                     section_wav = os.path.join(tmpdir, f"{prefix}_{provider}.wav")
                     total_chars = sum(len(s['text']) for s in seg_list)
                     print(f"    {provider_label}: {len(seg_list)} turns, {total_chars} chars")
                     try:
-                        if provider == "gemini":
-                            _log_api_call("gemini-tts", "chars", total_chars)
-                            gemini_continuing = generate_gemini_tts_for_section(
-                                seg_list, section_wav, gemini_continuing
-                            )
-                            _report_gemini_degradations("render/gemini-take")
-                        else:
-                            generate_azure_tts_for_section(seg_list, section_wav)
+                        _log_api_call("gemini-tts", "chars", total_chars)
+                        gemini_continuing = generate_gemini_tts_for_section(
+                            seg_list, section_wav, gemini_continuing
+                        )
+                        _report_gemini_degradations("render/gemini-take")
                         raw_section = AudioSegment.from_file(section_wav, format="wav")
                         # Same failure as a silent per-turn take, one section wide:
                         # well-formed audio carrying no speech. Raising hands it to
@@ -9587,15 +9464,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
             try:
                 _credits_provider = get_active_tts_provider()
-                if _credits_provider in ("azure", "gemini"):
+                if _credits_provider == "gemini":
                     try:
                         credits_wav = os.path.join(tmpdir, "credits.wav")
                         credits_segments = [{"speaker": "riley", "text": _build_credits_text(), "gap_ms": None}]
-                        if _credits_provider == "gemini":
-                            generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_continuing)
-                            _report_gemini_degradations("render/gemini-take")
-                        else:
-                            generate_azure_tts_for_section(credits_segments, credits_wav)
+                        generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_continuing)
+                        _report_gemini_degradations("render/gemini-take")
                         credits_audio = normalize_segment(
                             trim_tts_silence(AudioSegment.from_file(credits_wav, format="wav")),
                             TARGET_SPEECH_DBFS,
@@ -9656,14 +9530,9 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         return generate_audio_tts_only(script, output_filename)
 
     # Everything below runs only once the mp3 is on disk, and is deliberately
-    # outside the TTS-only fallback above: these are sidecar writes and an
-    # optional comparison render, and a failure in any of them used to discard a
-    # finished episode and re-synthesize the whole thing without music.
-    with segment("render/azure-parallel", critical=False):
-        # Parallel Azure comparison (week-1 evaluation: generate both, keep OpenAI as main)
-        if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
-            _generate_parallel_azure_audio(segments, output_filename, theme_name=theme_name)
-
+    # outside the TTS-only fallback above: these are sidecar writes, and a failure
+    # in any of them used to discard a finished episode and re-synthesize the
+    # whole thing without music.
     with segment("render/sidecars", critical=False):
         # Save chapters JSON
         chapters_data = {"version": "1.2.0", "chapters": chapters}
@@ -9699,10 +9568,6 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
         if not gemini_available():
             print("❌ Gemini TTS enabled but not configured (studio needs "
                   "GEMINI_API_KEY; cloud needs GOOGLE_APPLICATION_CREDENTIALS)")
-            return None
-    elif provider == "azure":
-        if not get_azure_speech_config():
-            print("❌ Azure TTS enabled but credentials not set")
             return None
     elif not get_openai_client():
         print("❌ OPENAI_API_KEY not found in environment")
@@ -9740,17 +9605,13 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
 
-            if provider in ("azure", "gemini"):
+            if provider == "gemini":
                 # Whole-conversation synthesis: one call for the full flat segment list
-                section_fn = (generate_azure_tts_for_section if provider == "azure"
-                              else generate_gemini_tts_for_section)
-                print(f"  🔵 {provider.title()} section synthesis: {len(segments)} turns")
-                if provider == "gemini":
-                    _log_api_call("gemini-tts", "chars", sum(len(s['text']) for s in segments))
+                print(f"  🔵 Gemini section synthesis: {len(segments)} turns")
+                _log_api_call("gemini-tts", "chars", sum(len(s['text']) for s in segments))
                 section_wav = os.path.join(tmpdir, f"all_{provider}.wav")
-                section_fn(segments, section_wav)
-                if provider == "gemini":
-                    _report_gemini_degradations("render/gemini-take")
+                generate_gemini_tts_for_section(segments, section_wav)
+                _report_gemini_degradations("render/gemini-take")
                 combined = normalize_segment(
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
@@ -10679,102 +10540,6 @@ def generate_podcast_rss_feed():
     _atomic_write_text('podcast-feed.xml', '\n'.join(rss_lines))
 
     print(f"✅ Generated RSS feed with {len(episodes)} episodes (with citations)")
-
-
-def generate_tts_test_feed():
-    """Generate a temporary TTS A/B test feed from *_azure.mp3 parallel episodes."""
-    azure_files = glob.glob(os.path.join(str(PODCASTS_DIR), "podcast_audio_*_azure.mp3"))
-    if not azure_files:
-        print("ℹ️  No Azure parallel episodes found — skipping tts-test-feed.xml")
-        return
-
-    podcast_config = CONFIG['podcast']
-    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
-
-    def get_audio_duration(filepath):
-        try:
-            audio = AudioSegment.from_mp3(filepath)
-            total_secs = len(audio) // 1000
-            return f"{total_secs // 60}:{total_secs % 60:02d}"
-        except Exception:
-            return podcast_config["episode_duration"]
-
-    episodes = []
-    for audio_file in sorted(azure_files, reverse=True):
-        audio_basename = os.path.basename(audio_file)
-        match = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)_azure\.mp3', audio_basename)
-        if not match:
-            continue
-        date_str, theme = match.groups()
-        try:
-            date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-            pub_date = _pacific_pub_date(date_obj)
-
-            safe_theme = theme.replace(' ', '_').replace('&', 'and').lower()
-            citations_file = os.path.join(str(PODCASTS_DIR), f"citations_{date_str}_{safe_theme}.json")
-            episode_description = podcast_config["description"]
-            if os.path.exists(citations_file):
-                try:
-                    with open(citations_file, 'r', encoding='utf-8') as f:
-                        citations_data = json.load(f)
-                    if citations_data.get('episode', {}).get('description'):
-                        episode_description = citations_data['episode']['description']
-                except Exception:
-                    pass
-
-            episodes.append({
-                'title': f"{theme.replace('_', ' ').title()} [Azure TTS]",
-                'audio_url_path': f"podcasts/{audio_basename}",
-                'audio_file': audio_file,
-                'pub_date': pub_date,
-                'file_size': os.path.getsize(audio_file),
-                'duration': get_audio_duration(audio_file),
-                'description': episode_description,
-            })
-        except ValueError:
-            continue
-
-    rss_lines = [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"'
-        ' xmlns:podcast="https://podcastindex.org/namespace/1.0">',
-        '<channel>',
-        f'<title>{saxutils.escape(podcast_config["title"])} \u2013 TTS Preview</title>',
-        f'<link>{podcast_config["url"]}index.html</link>',
-        f'<language>{podcast_config["language"]}</language>',
-        f'<description>Azure Neural TTS A/B test feed \u2013 temporary, this week only.</description>',
-        f'<itunes:author>{podcast_config["author"]}</itunes:author>',
-        '<itunes:owner>',
-        f'<itunes:name>{podcast_config["author"]}</itunes:name>',
-        f'<itunes:email>{podcast_config["email"]}</itunes:email>',
-        '</itunes:owner>',
-        f'<itunes:image href="{podcast_config["url"]}{podcast_config["cover_image"]}"/>',
-        '<itunes:type>episodic</itunes:type>',
-        f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
-        f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>',
-    ]
-
-    for episode in episodes:
-        item_lines = [
-            '<item>',
-            f'<title>{saxutils.escape(episode["title"])}</title>',
-            f'<link>{podcast_config["url"]}index.html</link>',
-            f'<pubDate>{episode["pub_date"]}</pubDate>',
-            f'<description><![CDATA[{episode["description"]}]]></description>',
-            f'<itunes:summary><![CDATA[{episode["description"]}]]></itunes:summary>',
-            f'<enclosure url="{saxutils.escape(audio_base + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
-            f'<guid isPermaLink="false">cariboo-signals-tts-test-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace("_azure.mp3", "")}</guid>',
-            f'<itunes:duration>{episode["duration"]}</itunes:duration>',
-            f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
-            '</item>',
-        ]
-        rss_lines.extend(item_lines)
-
-    rss_lines.extend(['</channel>', '</rss>'])
-
-    _atomic_write_text('tts-test-feed.xml', '\n'.join(rss_lines))
-
-    print(f"✅ Generated TTS test feed with {len(episodes)} Azure episodes → tts-test-feed.xml")
 
 
 def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
@@ -11817,19 +11582,6 @@ def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
 
     if os.path.exists(audio_filename):
         print(f"🎵 Audio already exists: {audio_filename}")
-
-        # If Azure TTS is active (either parallel comparison or full-switch mode) and
-        # the _azure.mp3 is missing, generate it now from the existing script so
-        # re-runs catch up without regenerating everything.
-        if USE_AZURE_PARALLEL or USE_AZURE_TTS:
-            with segment("render/azure-parallel", critical=False):
-                azure_filename = str(Path(audio_filename).with_suffix("")) + "_azure.mp3"
-                if not os.path.exists(azure_filename):
-                    print(f"🔵 Azure parallel file missing — generating from existing script...")
-                    segments = parse_script_into_segments(script)
-                    _generate_parallel_azure_audio(segments, audio_filename, theme_name=today_theme)
-                else:
-                    print(f"✅ Azure parallel file already exists: {Path(azure_filename).name}")
     else:
         audio_file = None
         with segment("render/tts"):
@@ -11878,9 +11630,6 @@ def run_publish_stage(script_path: str = None, date_str: str = None) -> bool:
     # Generate RSS feed, regenerate index.html, and sync everything to R2
     with segment("publish/rss", critical=False):
         generate_podcast_rss_feed()
-
-    with segment("publish/tts-test-feed", critical=False):
-        generate_tts_test_feed()
 
     with segment("publish/index", critical=False):
         _regenerate_index_html()

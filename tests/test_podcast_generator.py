@@ -4102,7 +4102,6 @@ class TestAudioStageCrossBoundary:
         monkeypatch.setattr(pg, "_recover_orphaned_episodes", lambda **kw: False)
         monkeypatch.setattr(pg, "generate_episode_transcript", lambda *a, **k: None)
         monkeypatch.setattr(pg, "generate_podcast_rss_feed", lambda *a, **k: None)
-        monkeypatch.setattr(pg, "generate_tts_test_feed", lambda *a, **k: None)
         monkeypatch.setattr(pg, "_regenerate_index_html", lambda *a, **k: None)
         monkeypatch.setattr(pg, "sync_site_to_r2", lambda *a, **k: None)
         monkeypatch.setattr(pg, "refresh_citations_tts_credit", lambda *a, **k: None)
@@ -4339,12 +4338,6 @@ class TestTtsBudgetPreflight:
         with pytest.raises(SystemExit) as exc:
             _check_tts_budget()
         assert exc.value.code == EXIT_CREDITS_EXHAUSTED
-
-    def test_azure_primary_is_never_aborted_on(self, monkeypatch):
-        """No cheap Azure probe exists, so there is no confident abort."""
-        self._openai(monkeypatch, Exception(OPENAI_CREDIT_ERROR))
-        monkeypatch.setattr("podcast_generator.get_active_tts_provider", lambda: "azure")
-        assert _check_tts_budget() is None
 
     def test_a_non_billing_failure_does_not_skip_the_day(self, monkeypatch):
         """A timeout is the render's problem, not a reason to cancel the episode."""
@@ -4632,7 +4625,6 @@ class TestPublishStageIsolation:
         for name in (
             "generate_episode_transcript",
             "generate_podcast_rss_feed",
-            "generate_tts_test_feed",
             "_regenerate_index_html",
             "sync_site_to_r2",
         ):
@@ -4645,7 +4637,7 @@ class TestPublishStageIsolation:
     def test_all_steps_run_and_report_success(self, tmp_path, monkeypatch, clean_segments):
         pg, script, called = self._prepare(tmp_path, monkeypatch)
         assert run_publish_stage(script_path=script) is True
-        assert len(called) == 5
+        assert len(called) == 4
         assert all(r["status"] == "ok" for r in clean_segments)
 
     def test_a_failing_step_does_not_stop_the_rest(self, tmp_path, monkeypatch, clean_segments):
@@ -4655,10 +4647,9 @@ class TestPublishStageIsolation:
             lambda *a, **k: (_ for _ in ()).throw(RuntimeError("xml boom")),
         )
         assert run_publish_stage(script_path=script) is False
-        # transcript ran before it; the three after it still ran.
+        # transcript ran before it; the two after it still ran.
         assert called == [
             "generate_episode_transcript",
-            "generate_tts_test_feed",
             "_regenerate_index_html",
             "sync_site_to_r2",
         ]
@@ -4673,7 +4664,7 @@ class TestPublishStageIsolation:
             lambda *a, **k: (_ for _ in ()).throw(RuntimeError("bad credentials")),
         )
         assert run_publish_stage(script_path=script) is False
-        assert len(called) == 4
+        assert len(called) == 3
 
     def test_missing_script_returns_false(self, tmp_path, monkeypatch, clean_segments):
         pg, _script, called = self._prepare(tmp_path, monkeypatch)

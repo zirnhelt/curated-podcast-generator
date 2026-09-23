@@ -99,8 +99,6 @@ def pacific_today() -> str:
 def load_episode_artifacts(date_str: str) -> dict:
     """Locate today's episode files. Raises FileNotFoundError if no audio."""
     audio_matches = sorted(glob.glob(str(PODCASTS_DIR / f"podcast_audio_{date_str}_*.mp3")))
-    # Exclude the Azure comparison render (podcast_audio_*_azure.mp3)
-    audio_matches = [m for m in audio_matches if not m.endswith("_azure.mp3")]
     if not audio_matches:
         raise FileNotFoundError(f"No audio for {date_str} in {PODCASTS_DIR}")
     audio = audio_matches[0]
@@ -476,7 +474,7 @@ def merge_speaker_spans(turns: list, speaker: str, gap_tolerance_s: float = 1.5)
     """[(start_s, end_s)] for a speaker, merging turns separated by short gaps."""
     spans = []
     for turn in turns:
-        # speaker=None marks whole-section (Azure) spans with no per-turn boundaries
+        # speaker=None marks whole-section (Gemini) spans with no per-turn boundaries
         if turn.get("speaker") is None or turn["speaker"] != speaker:
             continue
         start = turn["start_ms"] / 1000.0

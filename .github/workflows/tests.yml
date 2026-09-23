@@ -45,7 +45,7 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-lock.txt
 
-      # tests/conftest.py stubs anthropic, openai, pydub, cohere and azure at
+      # tests/conftest.py stubs anthropic, openai, pydub and cohere at
       # import time, so the suite needs no API keys and no TTS packages — the
       # lock file plus pytest is the entire dependency set. ffmpeg isn't
       # needed either: nothing here renders audio.

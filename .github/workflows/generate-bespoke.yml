@@ -48,15 +48,6 @@ on:
         required: false
         default: false
         type: boolean
-      tts_provider:
-        description: 'TTS provider — both generates OpenAI (for feed) + Azure (for comparison)'
-        required: false
-        default: both
-        type: choice
-        options:
-          - both
-          - openai
-          - azure
 
   repository_dispatch:
     types: [generate-bespoke]

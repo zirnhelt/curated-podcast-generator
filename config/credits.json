@@ -7,7 +7,6 @@
     "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
     "content_curation": "Claude (Anthropic)",
     "script_generation": "Claude (Anthropic)",
-    "text_to_speech_azure": "Azure Neural TTS",
     "text_to_speech_openai": "OpenAI TTS",
     "text_to_speech_gemini": "Gemini TTS",
     "cover_art": "ChatGPT (OpenAI)",
@@ -36,7 +35,7 @@
       },
       {
         "label": "TTS Voices",
-        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the provider used"
+        "value": "OpenAI or Gemini TTS — each episode's notes credit the provider used"
       },
       {
         "label": "Cover Art",
@@ -114,7 +113,7 @@
       },
       {
         "label": "TTS Voices",
-        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the provider used"
+        "value": "OpenAI or Gemini TTS — each episode's notes credit the provider used"
       },
       {
         "label": "Sources",

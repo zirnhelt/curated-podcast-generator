@@ -19,7 +19,7 @@ on:
           - deep_dive
           - all
       providers:
-        description: 'gemini renders Gemini only; all also renders OpenAI + Azure for comparison'
+        description: 'gemini renders Gemini only; all also renders OpenAI for comparison'
         required: false
         default: gemini
         type: choice
@@ -113,8 +113,6 @@ jobs:
           GEMINI_TTS_MODEL: ${{ inputs.backend == 'studio' && vars.GEMINI_TTS_MODEL || '' }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ inputs.backend == 'studio' && vars.GEMINI_TTS_FALLBACK_MODEL || '' }}
           OPENAI_API_KEY: ${{ inputs.providers == 'all' && secrets.OPENAI_API_KEY || '' }}
-          AZURE_SPEECH_KEY: ${{ inputs.providers == 'all' && secrets.AZURE_SPEECH_KEY || '' }}
-          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           TTS_PROVIDERS: ${{ inputs.providers }}
           TTS_SECTION: ${{ inputs.section }}
           TTS_PROBE: ${{ inputs.probe_gemini }}
@@ -152,7 +150,7 @@ jobs:
           fi
           SKIP_FLAGS=""
           if [ "$TTS_PROVIDERS" = "gemini" ]; then
-            SKIP_FLAGS="--skip-openai --skip-azure"
+            SKIP_FLAGS="--skip-openai"
           fi
           python evaluate_tts.py --section "$TTS_SECTION" $SKIP_FLAGS --output-dir tts-eval
 

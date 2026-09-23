@@ -44,12 +44,11 @@ from typing import NamedTuple
 
 import requests
 
-# ponytail: reuse azure_tts's segment splitter instead of writing a second one
-from azure_tts import PRONUNCIATION_DICT, _split_segments_by_char_limit
 from config_loader import (
     get_gemini_audio_profile_for_host,
     get_gemini_voice_for_host,
     load_hosts_config,
+    load_pronunciations,
     load_prompts_config,
     strip_retired_stage_directions,
     strip_stage_directions,
@@ -425,9 +424,9 @@ def _chunk_limit() -> int:
 def _pack_segments(segments: list[dict], target: int) -> list[list[dict]]:
     """Greedily pack whole speaker turns into chunks of at most *target* units.
 
-    Measured on the transcript alone. `_split_segments_by_char_limit` budgets an
-    extra 120 chars per segment for SSML tags, which is right for Azure and
-    wrong here — Gemini is sent plain speech, and the prompt scaffolding around
+    Measured on the transcript alone. Azure's splitter (removed 2026-09-23)
+    budgeted an extra 120 chars per segment for SSML tags, which was right for
+    Azure and wrong here — Gemini is sent plain speech, and the prompt scaffolding around
     it is one fixed block per request, not per turn. Borrowing that estimate
     counted 3 240 phantom chars against a 27-turn news roundup and bought two
     requests nobody needed. (The cloud backend does charge per turn, for the
@@ -806,7 +805,7 @@ def _performance_notes_block(
 
 def apply_pronunciation(text: str) -> str:
     """Substitute Cariboo place-name phonetic aliases (plain text, no SSML)."""
-    for word, alias in PRONUNCIATION_DICT.items():
+    for word, alias in load_pronunciations().items():
         text = text.replace(word, alias)
     return text
 
@@ -815,7 +814,7 @@ def build_transcript(segments: list[dict], keep_cues: bool = True) -> str:
     """Build the speaker-labeled transcript for one request.
 
     keep_cues=False strips the whitelisted `[thoughtfully]`-style tags, the way
-    the OpenAI and Azure paths always do — a retry rung for when Gemini appears
+    the OpenAI path always does — a retry rung for when Gemini appears
     to be rejecting the request rather than failing to serve it. keep_cues=True
     still drops the *retired* cues: a script on disk may carry one the current
     prompt no longer explains, and an unexplained cue gets read aloud.

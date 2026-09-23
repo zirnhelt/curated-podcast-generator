@@ -104,6 +104,19 @@ def load_hosts_config():
         return json.load(f)
 
 @lru_cache(maxsize=1)
+def load_pronunciations() -> dict:
+    """Name -> spoken alias, applied in order before OpenAI and Gemini synthesis (cached).
+
+    A missing file costs pronunciation, never the episode, so it reads as empty.
+    """
+    try:
+        with open(CONFIG_DIR / "pronunciations.json", 'r', encoding='utf-8') as f:
+            return json.load(f).get("aliases", {})
+    except (OSError, ValueError) as e:
+        print(f"⚠️  config/pronunciations.json unreadable ({e}) — names spoken as written")
+        return {}
+
+@lru_cache(maxsize=1)
 def load_indigenous_nations():
     """Nation names and aliases the territory check recognises (cached).
 
@@ -288,9 +301,6 @@ def get_voice_for_host(host_key):
     """Get TTS voice for a host."""
     return load_hosts_config()[host_key]["voice"]
 
-def get_azure_voice_for_host(host_key):
-    """Get Azure Neural TTS voice name for a host."""
-    return load_hosts_config()[host_key]["azure_voice"]
 
 def get_gemini_voice_for_host(host_key):
     """Get Gemini TTS prebuilt voice name for a host."""
@@ -326,7 +336,7 @@ def _stage_direction_pattern(retired_only=False):
     Both delimiters, and both whitelists. Cues are written `[thoughtfully]` now
     that the Gemini prompt is scaffolded the way the model documents, but every
     script already on disk carries the older `(wry)` parentheticals and a
-    re-render of one still has to strip them for the OpenAI and Azure paths.
+    re-render of one still has to strip them for the OpenAI path.
 
     retired_only=True narrows it to the cues the whitelist no longer offers —
     what a *Gemini* re-render of an old script has to drop even on the rung that
