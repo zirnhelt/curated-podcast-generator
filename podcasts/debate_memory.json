@@ -1,30 +1,4 @@
 {
-  "2026-06-24": {
-    "timestamp": 1782299863.108679,
-    "date": "2026-06-24",
-    "theme": "Repair Culture & Practical Tech",
-    "central_question": "What institutional and structural mechanisms can sustain repair knowledge and culture in rural communities when informal networks are fragile and formal funding is unreliable?",
-    "riley_position": "Regulation requiring parts access and documentation is essential and separate from the skill-gap problem; community models like tool libraries, repair caf\u00e9s, and cooperatives can create low-cost infrastructure for knowledge transfer if designed properly.",
-    "riley_key_evidence": [
-      "EU's right-to-repair directive came into force in 2024 covering phones, laptops, and home appliances",
-      "Fairphone 5 scores 10/10 on iFixit repairability index; Framework laptops are user-serviceable from design",
-      "Toronto Public Library and smaller BC systems have integrated tool lending programs"
-    ],
-    "casey_position": "Informal repair networks and community programs are fragile without permanent institutional backing; rural communities face succession problems where aging repair knowledge holders retire without formal mechanisms for transfer, and cooperative/time-banking models struggle with operational costs and valuation disagreements.",
-    "casey_key_evidence": [
-      "The Cariboo has lost institutional repair knowledge over two decades due to lack of formal succession planning",
-      "Tool libraries consistently fail to scale due to liability, replacement costs, and staff management expenses",
-      "Time banking fails when communities disagree on valuation\u2014is an hour of electrical work equal to an hour of childcare?"
-    ],
-    "resolution": "Riley and Casey agreed on the underlying structural problem but acknowledged different solution levels: regulation and documentation are necessary but insufficient; Indigenous knowledge systems represent durable models that maintain transmission outside Western institutional funding; the real question is identifying who holds critical knowledge in each community and ensuring succession before those people leave.",
-    "topics_covered": [
-      "Right-to-repair legislation and manufacturer compliance gaps (Apple Self Service Repair model)",
-      "Rural repair knowledge succession crisis and aging skilled workers",
-      "Community repair infrastructure models (repair caf\u00e9s, tool libraries, cooperatives, time banking)",
-      "Indigenous knowledge systems and land stewardship as durable repair/technical knowledge transmission",
-      "AI and software dependency as modern repair-culture analog (local inference, vendor lock-in)"
-    ]
-  },
   "2026-06-25": {
     "timestamp": 1782384899.480301,
     "date": "2026-06-25",
@@ -2484,6 +2458,39 @@
       "Make local reporting a condition of tenure holding, tied to the permit itself rather than to corporate ownership, similar to Impact Benefit Agreements, so obligations survive corporate sales and curtailments",
       "A town could establish a local forest liaison committee made up of retired fallers and cruisers meeting a couple times a year to compare notes against the licensee's latest cut plan\u2014requiring only a room and licensee willingness, not legislative change",
       "If you've sat through a tenure review hearing or serve on a community forest board, share what working reconciliation between local knowledge and official records actually looks like by sending feedback to cariboo signals dot c-a"
+    ]
+  },
+  "2026-09-23": {
+    "timestamp": 1790152009.365047,
+    "date": "2026-09-23",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "homestead-offgrid",
+    "anchor": "place-unrecorded",
+    "central_question": "Should off-grid homesteads remain invisible to external systems, or do they have an obligation to document themselves for emergency responders, insurers, and future owners?",
+    "riley_position": "Off-grid invisibility creates real downstream costs for emergency services, insurance, and regional planning, and systems must be documented so that knowledge survives beyond the original owner.",
+    "riley_key_evidence": [
+      "RTX 5090 graphics card power connector melting when DLSS 5 software update pushed load from 450-480W to 600-720W, similar to undersized off-grid inverters facing unexpected loads",
+      "User-built repair documented and shared within days rerouted power through three 8-pin connectors instead of one 16-pin connector to solve manufacturer problem",
+      "Local First Nations governments have already implemented documentation and knowledge-transfer systems for shared community infrastructure that don't depend on one person's memory"
+    ],
+    "casey_position": "Off-grid systems don't need to report to government registries, but they must be legible to whoever comes next\u2014whether neighbors, inheritors, or emergency crews\u2014because undocumented systems are single points of failure masquerading as resilience.",
+    "casey_key_evidence": [
+      "Meshtastic mesh radios stayed unregulated because they were invisible, but plug-in solar panels triggered regulation once they became visible and popular enough to create planning disputes over sightlines and shared fences",
+      "Emergency dispatch, insurers, and regional wildfire planners cannot assess risks or plan around systems that are never reported, creating real costs to invisibility beyond paperwork",
+      "Battery-monitoring apps log data automatically but remain useless if the phone ends up in a drawer after the owner leaves, proving that data existing and data being findable are two different problems"
+    ],
+    "resolution": "Riley and Casey agree that the real answer is not government registration but basic documentation legible to the next person: a binder by the breaker box or laminated card listing panel wattage, battery capacity, and swap dates. They conclude that survival of knowledge beyond the original owner matters more than perfect secrecy.",
+    "topics_covered": [
+      "U.K. planning rule change on plug-in solar panels losing exemptions when physically fixed to shared structures",
+      "RTX 5090 graphics card power connector failures caused by software updates increasing load beyond hardware specifications",
+      "Off-grid system invisibility and its costs to emergency dispatch, insurance assessment, and regional planning",
+      "Documentation and knowledge transfer as infrastructure, borrowing from First Nations community models",
+      "The succession problem: what happens when off-grid property changes hands without system history"
+    ],
+    "calls_to_action": [
+      "If running an off-grid system, write down what is actually in it this month\u2014just a page in a notebook by the panel, updated the next time something gets swapped, rather than a formal grant application.",
+      "Develop and share a template or inventory system that a small co-op of off-grid neighbors could use together for documenting their systems.",
+      "Mount a binder or laminated card next to the breaker box listing panel wattage, battery bank capacity, and the date of the last inverter swap as a basic five-dollar fix for succession problems."
     ]
   }
 }
