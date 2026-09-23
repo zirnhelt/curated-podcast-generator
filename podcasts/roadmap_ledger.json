@@ -391,10 +391,9 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 10,
+      "occurrences": 11,
       "first_seen": "2026-09-08",
       "seen": [
-        "2026-09-08",
         "2026-09-11",
         "2026-09-12",
         "2026-09-13",
@@ -403,9 +402,10 @@
         "2026-09-19",
         "2026-09-20",
         "2026-09-21",
-        "2026-09-22"
+        "2026-09-22",
+        "2026-09-23"
       ],
-      "last_seen": "2026-09-22"
+      "last_seen": "2026-09-23"
     },
     {
       "id": "deep-dive-citation-alignment-below-target",
@@ -525,16 +525,17 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 5,
+      "occurrences": 6,
       "first_seen": "2026-09-13",
       "seen": [
         "2026-09-13",
         "2026-09-14",
         "2026-09-16",
         "2026-09-19",
-        "2026-09-20"
+        "2026-09-20",
+        "2026-09-23"
       ],
-      "last_seen": "2026-09-20"
+      "last_seen": "2026-09-23"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -674,26 +675,28 @@
       "title": "One object referenced in the podcast feed is missing from R2 storage and will cause 404 errors.",
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-22",
       "seen": [
-        "2026-09-22"
+        "2026-09-22",
+        "2026-09-23"
       ],
-      "last_seen": "2026-09-22"
+      "last_seen": "2026-09-23"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
       "title": "Two sentences with unsupported Indigenous nation references remained in the script after territory-check rewrites failed.",
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-22",
       "seen": [
-        "2026-09-22"
+        "2026-09-22",
+        "2026-09-23"
       ],
-      "last_seen": "2026-09-22"
+      "last_seen": "2026-09-23"
     },
     {
       "id": "deep-dive-citation-alignment-gap-widening",
@@ -709,5 +712,5 @@
       "last_seen": "2026-09-22"
     }
   ],
-  "updated": "2026-09-22"
+  "updated": "2026-09-23"
 }

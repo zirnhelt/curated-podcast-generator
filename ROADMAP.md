@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-28..2026-09-22) — 22 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-28..2026-09-23) — 24 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -148,8 +148,8 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       fixed call budget that does not reset between runs or scale with article volume. To close
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
-      across runs and alert when 80% of the budget is consumed. (seen in 10 reviews, latest
-      2026-09-22)
+      across runs and alert when 80% of the budget is consumed. (seen in 11 reviews, latest
+      2026-09-23)
 - [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
       percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
       deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
@@ -177,7 +177,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (seen in 5 reviews, latest 2026-09-20)
+      degraded the deep dive's source alignment. (seen in 6 reviews, latest 2026-09-23)
 - [ ] **Daily anchor framing applied the same debate question without per-weekday context.** The
       debate question—"Who decides what stories get told and preserved in local communities, and
       how can digital tools democratize both the creation and archiving of cultural memory?"—was
@@ -203,6 +203,20 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       episode. The pipeline should either enforce a hard block on unsupported nations or
       escalate rejected rewrites to the operator before shipping. (seen in 2 reviews, latest
       2026-09-20)
+- [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
+      errors.** On September 22, a single file present in podcast-feed.xml could not be found in
+      R2 and could not be rebuilt from disk. The pipeline completed and published successfully
+      despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
+      reference. Identify which object is missing, restore it to R2, or remove the reference
+      from the feed XML before the next publish cycle. (seen in 2 reviews, latest 2026-09-23)
+- [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
+      territory-check rewrites failed.** On September 22, the territory-check system flagged two
+      sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
+      nations. The system attempted rewrites and rejected them. The two sentences shipped in the
+      final episode anyway, carrying geographic claims the validation layer could not support.
+      Log which sentences triggered the rewrite rejection, and decide whether to cut them,
+      override the territory map data, or implement a mandatory-cut rule when rewrites fail.
+      (seen in 2 reviews, latest 2026-09-23)
 
 <!-- reviews:end -->
 
