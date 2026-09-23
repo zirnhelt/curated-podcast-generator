@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+It holds the **standing rules**. The incidents and reasoning behind them live in
+[`docs/decisions/`](docs/decisions/), one file per area, linked from each section below.
+Read the linked file before changing the code it describes. When you add a rule, keep it
+here as one or two lines and put the story in the decision file, not here.
+
 ## Role and Style
 
 Direct, technical, efficient. No fluff. No apologies. Get straight to the technical solution. Explain the "why" behind significant architectural decisions briefly before writing code.
@@ -57,1584 +62,205 @@ python podcast_generator.py --stage audio --script podcasts/podcast_script_2026-
 # See the per-segment status table locally (CI writes it to the job summary)
 GITHUB_STEP_SUMMARY=/tmp/summary.md python podcast_generator.py --stage publish
 
-# Bespoke episode
-python generate_bespoke.py --tag <topic-tag>
+# Preview the weekly anchor schedule without spending or writing state
+python weekly_anchor.py --preview 12
 ```
 
-**Note:** `tests/` is in `.gitignore`. Use `git add -f tests/` when committing test changes.
+Tests require no API keys — `tests/conftest.py` installs lightweight stubs for `anthropic`, `openai`, `pydub` and `cohere` at import time. CI runs the suite on every push and PR (`.github/workflows/tests.yml`).
 
-Tests require no API keys — `tests/conftest.py` installs lightweight stubs for `anthropic`, `openai`, `pydub`, and `azure` at import time.
-
-**State-file isolation:** the live memory/state JSON files in `podcasts/` (PSA rotation, episode/debate memory, article holding) are production data committed daily by CI — code under test that persists state will rewrite them in place. An autouse fixture in `tests/conftest.py` already redirects `psa_selector.PSA_STATE_FILE` to a tmp copy; any new test (or code path) that touches a `podcasts/` state file must get the same treatment (monkeypatch the path/`PODCASTS_DIR` into `tmp_path`). After any local test run, check `git status` — a modified state file is test leakage to be reverted (`git checkout -- podcasts/<file>`), never committed.
+**State-file isolation:** the live memory/state JSON files in `podcasts/` are production data committed daily by CI — code under test that persists state will rewrite them in place. An autouse fixture in `tests/conftest.py` already redirects `psa_selector.PSA_STATE_FILE` to a tmp copy; any new test (or code path) that touches a `podcasts/` state file must get the same treatment (monkeypatch the path/`PODCASTS_DIR` into `tmp_path`). After any local test run, check `git status` — a modified state file is test leakage to be reverted (`git checkout -- podcasts/<file>`), never committed.
 
 ## Architecture
 
-### High-Level Flow
-
-This is a daily AI podcast generator for **Cariboo Signals**, a two-host show (Riley & Casey) covering rural BC tech and community topics. The pipeline runs on GitHub Actions and deploys audio + RSS to GitHub Pages.
+**Cariboo Signals** is a daily two-host show (Riley & Casey) covering rural BC tech and community topics. It is public on Apple Podcasts and Spotify. The pipeline runs on GitHub Actions and deploys audio + RSS to GitHub Pages (audio also to R2).
 
 **Daily run (`podcast_generator.py`):**
 1. Idempotency check — exits if today's episode already exists in the RSS feed
-2. Pull scored articles from sibling repo `super-rss-feed` (fetches `feed-podcast-{dayname}.json` from its GitHub Pages URL)
-3. Deduplicate against last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings via `cohere_enrichment.py`)
-4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their focus day); select top stories + theme/focus-matched deep-dive articles
-5. Claude generates raw two-host script → Claude polishes script (flow, repetition). Length QA: scripts under `TARGET_SCRIPT_WORDS` (~22-min floor) get one expand retry; under `MIN_SCRIPT_WORDS` after retry the run aborts. Target runtime 22–25+ min.
-6. Writes citations JSON and every memory/state file, saves the script to `podcasts/podcast_script_{date}_{theme}.txt`
-   — **end of the script stage** (`run_script_stage`); the workflow commits and pushes here
-7. OpenAI TTS (or Azure Neural TTS) renders each speaker segment in parallel
-8. pydub assembles: cold open teaser (10–20 s, before the music) → intro → welcome → interval → news roundup → interval → deep dive debate → outro
-9. Writes transcript + RSS entry, pushes commit, deploys to `gh-pages`
+2. Pull scored articles from sibling repo `super-rss-feed` (`feed-podcast-{dayname}.json` from its GitHub Pages URL)
+3. Deduplicate against the last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings)
+4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their day); select roundup stories and deep-dive articles
+5. Claude writes the two-host script, then polishes it. Scripts under `TARGET_SCRIPT_WORDS` get one expand retry; under `MIN_SCRIPT_WORDS` after that the run aborts. Target runtime 22–25+ min
+6. Write citations JSON and every memory/state file; save the script to `podcasts/podcast_script_{date}_{theme}.txt` — **end of the script stage**; the workflow commits here
+7. OpenAI TTS renders each speaker turn in parallel
+8. pydub assembles: cold open (before the music) → intro → welcome → interval → news roundup → interval → deep dive → outro
+9. Transcript + RSS entry, commit, deploy to `gh-pages`
 
-### Who starts the run
+### Operations — see [docs/decisions/operations.md](docs/decisions/operations.md)
 
-The pipeline runs on GitHub Actions; the *trigger* comes from Cloudflare. GitHub's
-cron is best-effort — it delays scheduled workflows under load and drops the tick
-outright once the delay passes the next window — and a trigger arriving after the
-6:30 AM Pacific listener wakeup has missed the day. So the 1:05 / 2:05 / 3:05 AM
-Pacific ladder is now five Cron Triggers on a Worker (`cloudflare/scheduler/`,
-shared with `super-rss-feed`) that `workflow_dispatch` the workflow with a
-`run_slot` input.
+**Scheduling.** A Cloudflare Worker (`cloudflare/scheduler/`, shared with `super-rss-feed`) dispatches the 1:05 / 2:05 / 3:05 AM Pacific ladder with a `run_slot` input; GitHub's cron is best-effort and a late run misses the listener's morning.
+- The Worker **starts** runs; `check-episode` alone decides whether one is needed. Never add a second "did today ship?" check.
+- Keep the one GitHub cron (`5 11 * * *`) as the backstop for the Worker being down. Don't remove it; don't add ladder slots back.
+- Anything that needs to know which rung it is on reads `inputs.run_slot`, never `github.event.schedule`.
+- Deploy the Worker with **Actions → Deploy Cloudflare Scheduler**; there is no local wrangler path.
 
-Only the trigger moved. Workers cannot host the pipeline — 128 MB, no
-subprocesses, no ffmpeg, and audio assembly alone peaks at 300–600 MB.
+**Stages** (`--stage`) are separate processes with a commit between them, because they fail differently: `script` is where the API spend lives, `render` is where the runner dies, `publish` fails on credentials and network.
 
-**The Worker starts runs; it does not decide whether one is needed.**
-`check-episode` still owns that, and must stay the only implementation of it: a
-second copy in the Worker is a second source of truth for "did today ship?",
-whose failure mode when the two drift is a silently skipped day.
+| Stage | Entry point | Steps |
+|-------|-------------|-------|
+| `script` | `run_script_stage` | 1–6 |
+| `recover` | `run_recover_stage` | re-render the last 3 days' orphaned episodes |
+| `render` | `run_render_stage` | 7–8 |
+| `publish` | `run_publish_stage` | 9: transcript, RSS, `index.html`, R2 |
+| `audio` | `run_audio_stage` | recover + render + publish |
+| `all` | — | 1–9 (default) |
 
-**`daily-podcast.yml` keeps one GitHub cron** — `5 11 * * *`, 4:05 AM Pacific —
-as the backstop for the *Worker* being down. It costs ~20 s on a normal night
-and is what keeps the schedule from depending on one vendor. Do not remove it,
-and do not add ladder slots back to it.
+- Values that must cross the stage boundary ride in the script file's `#` header (`# Theme:`, `# Brave:`, `# Weather:`, `# Anchor:`), read back by `read_script_metadata`. Audio paths come from the script's own filename (`_episode_paths`); never recompute the theme.
 
-**Anything that used to branch on `github.event.schedule` must now read
-`inputs.run_slot`.** The `review` job is the one that already did, and it is the
-quiet failure to watch for: the episode ships fine without it, so a broken gate
-shows up only as a roadmap that stopped updating.
+**Segments.** Every phase runs in `with segment(name, critical=...)`.
+- `critical=True` (default) propagates; pass `exit_code=` to turn it into a process exit status.
+- `critical=False` swallows the exception. **Pre-assign the block's outputs to their fallback before the `with`.**
+- `SystemExit` always passes through. Each memory/state-file write gets its own segment.
 
-Deploy with **Actions → Deploy Cloudflare Scheduler**; there is no local wrangler
-path. See `cloudflare/scheduler/README.md` for the token scopes, the recorded PAT
-expiry, and the rollback.
+**`degrade(name, detail)`.** When you add a fallback, add a `degrade()` call — a silent fallback is the failure this exists to catch. `run_publish_stage` derives exit 78 from these records. Modules that cannot import `degrade()` without a cycle (`gemini_tts`, `weekly_anchor`, `native_land`) append to their own `_degradations` list, which the pipeline drains; a new fallback there must append too. `write_run_report()` runs from a `finally`, so a crashed run still reports.
 
-### Stages and Segments
-
-The pipeline is split at two levels: **stages** are separate processes with a git commit
-between them, **segments** are named phases inside one process with their own failure policy.
-
-#### Stages (`--stage`)
-
-| Stage | Entry point | Steps | Notes |
-|-------|-------------|-------|-------|
-| `script` | `run_script_stage` | 1–6 | Where the API spend lives |
-| `recover` | `run_recover_stage` | — | `_recover_orphaned_episodes`, 3-day lookback |
-| `render` | `run_render_stage` | 7–8 | TTS + pydub assembly + sidecars |
-| `publish` | `run_publish_stage` | 9 | Transcript, RSS, tts-test feed, `index.html`, R2 |
-| `audio` | `run_audio_stage` | 7–9 | `recover` + `render` + `publish` (back-compat) |
-| `all` | — | 1–9 | Default; behaves like the original single-process run |
-
-The stages fail differently, which is the whole reason they are separate. Script generation
-is where the API spend lives; rendering is where the runner dies (an unbounded-memory ffmpeg
-render once OOM-killed the VM); publishing fails on credentials, network and disk, and used
-to force a full 40-minute re-render to retry. The daily workflow commits between each, so a
-failure costs only its own stage.
-
-Because stages are separate processes, some values cannot ride in locals and are carried in
-the script file's `#` header instead, read back by `read_script_metadata`:
-- **`# Theme:`** — the feed can override the weekday theme, which changes the filename slug,
-  so the audio stages must never recompute it. Audio paths are derived from the script's own
-  filename (`_episode_paths`).
-- **`# Brave:`** — gates one sentence in the spoken credits. Scripts predating this header
-  degrade to `no`.
-- **`# Weather:`** — gates the spoken weather-provider credit. The weather check is read on
-  air in the welcome, and the episode description had credited Open-Meteo since the segment
-  existed while the spoken credits never did (2026-08-17). Gated on the flag rather than on
-  config, because on a day the fetch fails there is no weather segment to credit. Scripts
-  predating this header degrade to `no`.
-  **A day the fetch fails now says so.** `fetch_weather()` handles its own failure and returns
-  `None`, so `script/weather` finished clean and the run report called the phase fine on an
-  episode with no weather check in it — the exact silent fallback `degrade()` exists to catch.
-  Open-Meteo is free, keyless and normally answers in well under a second, and had no retry at
-  all until all five locations hit their 10 s read timeout inside one window on 2026-09-06; it
-  now re-asks once on a transport failure (never on a malformed body, which would come back
-  malformed) and `degrade()`s when the sweep comes back empty.
-- **`# Anchor:`** — the week's anchor question, which is named on air and appears in the
-  episode description. Whitespace-collapsed to one line, since the header parser reads one
-  key per line. Scripts predating this header degrade to `None`.
-
-#### Segments (`segment()`)
-
-Every phase inside a stage runs in a `with segment(name, critical=...)` block — a context
-manager, not an extracted function, so wrapping existing code changes no variable lifetimes.
-
-- **`critical=True`** (default): the exception propagates; pass `exit_code=` to convert it
-  into a distinct process exit status instead of a traceback.
-- **`critical=False`**: the exception is swallowed and the run continues. **The caller must
-  pre-assign the block's outputs to their fallback value before the `with`** — a non-critical
-  segment must never be the only place a downstream variable gets bound.
-- `SystemExit` always passes through untouched, so the deliberate aborts keep their codes.
-
-Roughly: article acquisition, script generation and saving the script are critical; weather,
-Brave research, PSA selection, polish, cold open, quality scoring, publishing surfaces and
-every individual state-file write are not. Each memory/state file gets its own segment — a
-failure partway through the persistence run used to mark seeds and email consumed while
-leaving three memory files unwritten, with nothing in the log naming which.
-
-#### Handled degradations (`degrade()`)
-
-`segment()` can only downgrade a phase whose exception *escapes* the block, but most
-fallbacks handle their own: the TTS provider fallback, music-less mode, a missing R2
-credential, an episode dropped from the feed. The phase then finished "successfully"
-having produced a materially different result, and the run went green — on 2026-08-02 a
-whole episode was re-rendered on OpenAI after Gemini died, visible only in stdout.
-
-`degrade(name, detail)` records that. Passing the enclosing segment's own name downgrades
-that phase in place; any other name gets its own row, which is how a fallback with no
-segment of its own still reaches the table. Repeat calls under one name merge, so a
-failure inside a per-episode loop is one row rather than fifty. Every call emits a
-`::warning::` annotation.
-
-**When you add a fallback, add a `degrade()` call.** A silent fallback is the failure mode
-this exists to prevent — the fallback itself is usually right, the silence never is.
-`run_publish_stage` derives `EXIT_PUBLISH_DEGRADED` from these records, so a publish
-surface that swallows its own failure makes that exit code unreachable.
-
-`write_run_report()` appends a per-segment table (status, duration, error) to
-`$GITHUB_STEP_SUMMARY`, printing to stdout when that is unset. It is called from a `finally`
-in `main()`, so a crashed run still reports which segment died.
-
-#### Exit codes
+**Exit codes**
 
 | Code | Meaning |
 |------|---------|
-| 75 | `EXIT_BUDGET_EXHAUSTED` — Anthropic usage limit; the workflow skips the day as a warning |
-| 76 | `EXIT_NO_ARTICLES` — upstream feed gave us nothing usable; the workflow skips the day as a warning |
-| 77 | `EXIT_RENDER_FAILED` — no audio produced; the run goes red |
-| 78 | `EXIT_PUBLISH_DEGRADED` — audio is safe, one or more publish surfaces failed |
-| 79 | `EXIT_CREDITS_EXHAUSTED` — a provider is out of credits; the run goes **red** |
+| 75 | `EXIT_BUDGET_EXHAUSTED` — Anthropic usage limit; skip the day as a warning (it lifts itself) |
+| 76 | `EXIT_NO_ARTICLES` — upstream feed gave nothing usable; skip as a warning |
+| 77 | `EXIT_RENDER_FAILED` — no audio; the run goes red |
+| 78 | `EXIT_PUBLISH_DEGRADED` — audio is safe, a publish surface failed |
+| 79 | `EXIT_CREDITS_EXHAUSTED` — a provider is out of credits; the run goes **red**, because only a human can top it up |
 
-**75 and 79 are the same outage to the listener and a different one to the operator**, which
-is the whole reason they are separate codes. A usage limit lifts itself on a stated date, so
-skipping the day quietly is right. An empty credit balance lifts only when a human tops it up
-— and a `::warning::` on a green run reaches nobody. On 2026-08-26 three crons skipped exactly
-that way with both TTS providers dry, and the outage was found by hand hours later. 79 goes
-red so GitHub's own failed-run notification does the alerting: the alert is an exit code, not
-a service to build and keep alive.
+**Money preflight** (`check_api_budget`, `_check_tts_budget`). Recognise billing walls by their **credit wording, never the status code** (`_billing_wall()`): Gemini uses the same 429 for an ordinary rate limit. TTS is preflighted in the script stage, before the day's state is spent. OpenAI is the universal fallback, so its health alone answers "can this day ship?"; the primary is probed only when OpenAI is walled, and the run aborts only when nothing left can render.
 
-#### Preflighting the money (`check_api_budget`, `_check_tts_budget`)
+**Commits.** Every workflow commits through the `./.github/actions/commit-push` composite action, never an inline `git add`/`commit`/`push`. Its `--autostash` rebase is load-bearing. **If a stage writes a tracked file, some step must stage it.**
 
-`_billing_wall()` recognizes both walls across all three providers, because each words it
-differently and none of them says "usage limit" — `_usage_limit_reset` alone matched only
-Anthropic's, so the 2026-08-23 credit-balance 400 read as "preflight inconclusive" and each of
-the three crons spent 40 article fetches, ~37 Brave lookups and a research call before dying at
-the script call. **Match on the credit wording, never the status code**: Gemini answers an
-ordinary per-minute rate limit with the same 429 `RESOURCE_EXHAUSTED`, and reading that as a
-wall would skip a day a retry would have shipped.
+**Atomic writes.** Every memory/state/feed write goes through `config_loader.atomic_write_text` / `atomic_write_json`. The loaders read a truncated JSON as `{}`, so a non-atomic write silently loses history.
 
-**TTS is preflighted in the script stage, not at the render**, because the script stage is
-where both the money and the day's state go: its commit rotates the PSA, consumes seeds and the
-email queue, pins the week's anchor, and marks every chosen article as cited, which is what
-stops dedup offering them again. On 2026-08-26 all of that was spent for an episode that could
-never air.
+**Brave spend.** Two plans, two meters: Search ($5/1000, capped) and Answers (monthly credit).
+- **The Search cap is shared with `super-rss-feed`** — one key serves both repos. Read Brave's per-key usage export before trusting any estimate.
+- A 402 closes that meter for the run (`_trip_brave_wall`); a spent meter is a reason to ask the other one, not to give up.
+- Three per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_ANSWERS_CALL_LIMIT`. **Only the two rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
+- With both meters closed, skip the research pass rather than report "no research warranted".
 
-OpenAI is the universal fallback, so its health alone answers "can this day ship?" — the common
-path is one ~1-character synthesis, well under a hundredth of a cent. **The configured primary
-is probed only once OpenAI is already walled**, and Azure is never aborted on (a subscription
-has no equivalent cheap probe). Skipping a day that Gemini would have rendered is worse than
-the wasted run this exists to prevent, so the abort fires only when nothing left can render.
+**Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box. Only tool-written items retire on silence.
 
-#### Committing between stages
+### Configuration (`config_loader.py`)
 
-Every workflow that commits uses the `./.github/actions/commit-push` composite action —
-never an inline `git add`/`commit`/`push` block. It stages each pathspec separately (a
-single unmatched glob used to abort the whole `git add` and stage nothing), commits only
-when the index is non-empty, then rebases with `--autostash` and retries the push three
-times. `fatal: 'true'` makes a push that never lands fail the step; the default is a
-`::warning::`.
-
-`--autostash` is load-bearing: the render and publish stages rewrite tracked files the
-commit step does not stage, and a plain `git pull --rebase` refuses to start against a
-dirty tree. That refusal was swallowed by `|| true`, which sent the push out un-rebased —
-the 2026-07-26 triple render and the 2026-08-02 sidecar failure.
-
-**If a stage writes a tracked file, some step must stage it.** `index.html` was
-regenerated on every publish and staged by nothing, so it sat permanently dirty and broke
-the rebase on every single run.
-
-#### Atomic state writes
-
-Every memory/state/feed write goes through `config_loader.atomic_write_text` /
-`atomic_write_json` (temp file + `os.replace`). It lives in `config_loader` so
-`psa_selector` can share it without a circular import. This is not optional: the loaders
-swallow a truncated JSON as `{}`, so a crash mid-write silently discarded a 35- or 90-day
-history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
-
-**Memory state** (JSON files in `podcasts/`):
-- `episode_memory.json` — 35-day sliding window for story continuity (spans a full 4-week super cycle; entries record the day's focus slug)
-- `host_personality_memory.json` — Evolving host traits
-- `debate_memory.json` — 90-day window to avoid repeating debate angles; must-differ filter keys on (theme, focus)
-- `psa_rotation_state.json` — Round-robin PSA org rotation state
-- `article_holding.json` — Super-cycle holding pen + aired-early callback ledger
-- `weekly_anchor_state.json` — This week's pinned anchor question + the no-repeat ledger (ids forever, dimensions for 26 weeks)
-- `phrase_ledger.json` — 21-episode rolling phrase-frequency window + the burned list
-- `roadmap_ledger.json` — findings distilled from the daily reviews, with their recurrence
-  counts and closed/retired records; renders the managed block of `ROADMAP.md`
-- `native_land_cache.json` — place name → coordinates + territory names. A lookup
-  cache, not history: losing it costs repeat lookups, never a claim
-
-### Configuration System (`config_loader.py`)
-
-All content is externalized to `config/` JSON files; loaders are LRU-cached (single load per process). No hard-coded strings — all messaging, personalities, and themes live in `config/`.
+All content lives in `config/` JSON files, loaded through LRU-cached loaders. No hard-coded strings.
 
 | File | Purpose |
 |------|---------|
-| `podcast.json` | Title, RSS metadata, TRACE accountability scores |
+| `podcast.json` | Title, RSS metadata, `local_places`, TRACE accountability scores |
 | `hosts.json` | Riley & Casey — bios, voices, personalities, debate stances |
-| `themes.json` | 7 rotating daily themes (Mon–Sun), keywords, editorial lenses |
-| `super_cycles.json` | Multi-week focus rotations within each daily theme (slug, keywords, lens per focus) |
-| `weekly_anchors.json` | Seeded pool of weekly anchor questions (question, dimension, premise, optional `pin_week`) |
-| `ai_tells.json` | Hard-banned phrases, `score_script`'s regex families, phrase-ledger tuning, rhythm budget |
-| `prompts.json` | All Claude prompt templates (~100 KB, cached in one call) |
-| `interests.txt` | Article relevance scoring rubric (primary/secondary/avoid) |
-| `blocklist.json` | Excluded domains and keywords |
+| `themes.json` | 7 daily themes, keywords, lenses, `event_focus` (the election) |
+| `super_cycles.json` | Multi-week focus rotations within each daily theme |
+| `weekly_anchors.json` | Seeded pool of weekly anchor questions |
+| `ai_tells.json` | Hard-banned phrases, `score_script` pattern families, phrase-ledger tuning, rhythm budget |
+| `prompts.json` | All Claude prompt templates |
+| `pronunciations.json` | Name → spoken alias, applied in order before synthesis; a longer name must precede any name it contains |
+| `interests.txt` | Article relevance rubric |
+| `blocklist.json` | Excluded domains and keywords; `email_producer_senders` |
+| `credits.json` | Spoken and written credits |
 | `psa_organizations.json` | Community org roster + weekday assignments |
-| `disciplines.json` | Topic hierarchy for news roundup grouping |
-| `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only — it never puts a name in a script) |
-
-### Themes
-
-Seven rotating daily themes indexed by weekday (0=Mon):
-- 0 Mon: Arts, Culture & Digital Storytelling
-- 1 Tue: Working Lands & Industry
-- 2 Wed: Gear, Gadgets & Practical Tech
-- 3 Thu: Indigenous Lands & Innovation
-- 4 Fri: Wild Spaces & Outdoor Life
-- 5 Sat: Cariboo Local Affairs (longer episode, 15 articles) — the one **geographic** theme (`geographic: true`), defined by where a story is rather than what it is about
-- 6 Sun: Science, Wonder & the Natural World
-
-**The geographic theme.** Saturday is the only theme defined by *where* a story is rather than
-what it is about, flagged `geographic: true` with its place names listed in `place_keywords`.
-Every other theme can let place names carry theme relevance; this one cannot, because every
-candidate in its pool is local by construction — a place-name hit is a constant, not a
-discriminator. `_build_theme_subject_keywords` strips the places (and the theme name, which
-contributes a place and the bare word `local`) and leaves the civic vocabulary — `council`,
-`bylaw`, `zoning`, `budget`, `referendum` — which is what ranks the deep dive and what gates the
-roundup's `theme` block. Ranking on locality picked whichever local story named the most towns:
-on 2026-08-22 that was a softwood-duty story, a ranching award and a Tyson beef-plant closure,
-and the debate that came out of them was a Working Lands debate on a civic-affairs day.
-
-**Locality is not centrality, and the flat place list could not tell them apart.**
-`local_places` answers "is this story here?"; `home_places` (themes.json, geographic day only)
-answers "is this story *ours*?". Williams Lake, the CRD and SD27 are the jurisdictions the show
-is from; Quesnel, 100 Mile House, Bella Coola and Prince George are neighbours it covers. With
-one flat list both questions had one answer, so the 2026-09-05 deep dive ran on Quesnel's
-winter-shelter siting and a Quesnel council candidate — both civic, both local, and neither
-Williams Lake. `_home_place_hits` ranks above the civic-keyword *count* in `_geographic_rank`
-and leads the roundup's `local` block sort, so a denser Quesnel story no longer outranks a
-thinner Williams Lake one. **It is an ordering rule, not an exclusion** — the neighbour story
-still airs, and subject matter still gates entry, so this promotes a home *civic* story and
-never a home speedway story. `home_places` is absent from the six topical themes, where the
-term is a constant and changes no order.
-
-**`event_focus` — a named civic event, bounded by dates rather than a rotation.** The fourth
-selection layer (theme → super-cycle focus → weekly anchor → event), resolved by
-`get_event_focus_for_day` from the theme's own `start`/`end`. Calendar-derived like
-`get_focus_for_day`, so a re-render weeks later reproduces the same answer and the window needs
-no cleanup commit when it closes. Currently the Williams Lake 2026 general local election
-(nominations closed Sept 11, voting day Oct 17, window to Oct 24).
-
-- **It is named on air, and that is the opposite of the focus rule.** A super-cycle focus is a
-  curation device listeners have no reason to hear about; an election is the civic fact the
-  coverage exists to serve. Its `lens` copy carries both the say-it-on-air instruction and the
-  no-endorsement rule — report the race and the candidates' stated positions, never rank them.
-- **An event match counts as civic subject matter on its own**, so a nomination story with no
-  theme keyword still anchors the debate. The event vocabulary is deliberately **not** folded
-  into `_build_theme_subject_keywords`, which also gates the roundup's `theme` block against the
-  whole non-local pool: 'campaign', 'ballot' and 'candidate' would admit US politics to a
-  Cariboo civic day exactly the way the bare word 'local' admitted "8 local AI models that run
-  great on 8GB of VRAM" on 2026-08-22. Inside the geographic deep dive every candidate is
-  already local by construction, which is what makes those words safe there and only there.
-- **An election story airs twice, and the second airing says so.** Local news is never
-  held — it is the most time-sensitive material in the pool — so a nomination story breaking
-  on a Tuesday runs on Tuesday. It is *also* booked back for the next civic episode
-  (`status: 'recall'` in `article_holding.json`, released by `route_articles_for_focus` with
-  `_recalled_from`). Both dates are the point: it is news on the day it breaks and context on
-  the day the show covers the race, so nothing is withheld from today to pay for Saturday.
-  - **The recall is exempt from the citation prune, alone among the statuses.** Every other
-    entry is dropped once its URL appears in recent citations; a recall exists *because* the
-    story already aired, so that rule would delete the entry on the next run. Re-injection
-    happens after `deduplicate_articles`, which is what lets a spent story return at all.
-  - **`_recalled_from` is the inverse of `_held_from`.** A held story is one the listener has
-    not heard, so explaining its timing would only expose the machinery; a recalled one they
-    *have* heard, so pretending otherwise is the failure. The tag tells the hosts to say they
-    covered it and lead with what has changed — a new name in the race, a deadline passed.
-  - **It is booked before the on-theme early-exit**, which the router returns through for
-    anything matching today's theme. An election story is usually on-theme wherever it lands
-    (a mill-town candidate on Working Lands day), so a recall gated behind "off today's
-    theme" would almost never fire.
-  - **Two event lookups, two questions.** `get_event_focus_for_day` asks "is TODAY'S theme
-    running an event" and steers the lens and the deep-dive ranking. `get_active_event_focus`
-    asks "is one running at all" — the election is configured on the civic theme, so a
-    Tuesday lookup by weekday returns None and nothing would ever be booked back.
-  - Both `_is_local_article` and an event-keyword hit are required, so US midterm coverage
-    (same vocabulary, not local) is never recalled.
-
-- **Selecting the story was never the hard part — reporting it was.** The selection layers
-  above put the right articles in the deep dive on 2026-09-12 and the segment still failed the
-  listener: it reported a mayoral candidate's **2014** win (60.4%) as his standing today
-  ("that's a mandate", "carrying a landslide from his previous term"), never mentioned that his
-  actual last run ended in a third-place loss, and called the sitting mayor "the sitting
-  incumbent" for the whole segment while its own source carried the name. Nothing was
-  fabricated and nothing was selected wrong. The record simply was not asked for, and half the
-  debate went to the week's anchor question instead of the race.
-  - **The lens carries the reporting rules, not just the no-endorsement rule.** Name every race
-    on the ballot (city mayor, council, the CRD electoral area director, the SD27 trustee — a
-    race the episode never names is a race it did not cover); name people rather than roles;
-    report a previous run's outcome, *loss included*, with the most recent result treated as
-    the load-bearing one; treat a documented controversy, ethics finding, censure or
-    resignation as part of the record rather than as an attack. **Omission is not neutrality**
-    — reporting only the win is a thumb on the scale in the incumbent-challenger direction.
-  - **Every one of those rules is bounded by SOURCED OR UNSAID**, which is what keeps them from
-    becoming an invitation to characterize a real person. A claim comes from the day's articles
-    or the research block and says where it was reported; an allegation is never rounded up
-    into a finding; an unestablished record is said out loud to be unestablished. The failure
-    mode of the old lens was omission; the failure mode of a record rule with no sourcing
-    clause would be invention, which is worse.
-  - **The anchor yields.** A named civic event is what the coverage exists to serve, so when
-    the week's anchor question does not genuinely fit the race the lens tells the segment to
-    drop it rather than bend around it — the same escape hatch `weekly_anchor` already carries,
-    spent here deliberately.
-  - **`event_focus.research` is the half that makes the rest reachable.** None of a candidate's
-    record is in a nomination-day story, so a lens demanding it would otherwise produce nothing
-    but "the show has not established that". The brief turns `research_deep_dive_with_agent`
-    from a judgement call ("is research warranted?") into a standing roster sweep — prior
-    offices, every previous result won *and* lost, the record in office, any documented
-    controversy, and the incumbent looked up **by name in every race**, including the CRD
-    directors and SD27 trustees the articles may only mention in passing. It ends by listing
-    the candidates it could *not* source, which is what lets the hosts say so on air.
-  - **The sweep costs one widened budget.** `EVENT_RESEARCH_SEARCH_LIMIT` (8) replaces the
-    ordinary day's 4 only when a `research` brief is present, and
-    `BRAVE_DEEP_DIVE_CALL_LIMIT` moved 10→16 so it does not starve
-    `_resolve_script_questions_with_brave`, which runs after it on the same meter. It is a
-    ceiling, not a floor — the other six days ask exactly what they asked before. At $5/1000
-    Search requests over ~6 election Saturdays the whole widening is under a dime against the
-    $10 monthly limit. There is a test asserting the headroom, because raising the sweep
-    without raising the meter would silently spend the script-question pass instead.
-  - **`home_places` carries the CRD electoral areas** (D, E, F and their communities) for the
-    same reason it carries Williams Lake: those directors are on the listener's own ballot, so
-    an area-director story must rank as *ours* rather than as neighbour coverage.
-  - **An instruction to name people met a prompt with no names in it.** The lens has demanded
-    every candidate by name since it was written, and on 2026-09-19 the deep dive still opened
-    on "three regional director seats we straight up can't name a single candidate for" and
-    could not say whether 100 Mile House's mayor had filed. Nothing selected wrong and nothing
-    was fabricated — a nomination-day article reports a *count*, the research sweep can only
-    look up names it was given, and the producer's filed list sat in
-    `docs/wl-2026-election-candidates.md` marked "recognize, don't cite", read by nothing.
-    `event_focus.roster` is that list as data, rendered by `_format_event_roster` into the
-    deep-dive lens and into the research sweep's standing assignment.
-    - **It settles who is running and nothing else**, and the block says so in the prompt.
-      A record, a prior result, a platform or a controversy is still SOURCED OR UNSAID — a
-      name on a nomination form is a source for the name and for nothing after it. That
-      boundary is what makes the roster safe to inject at all: the failure it fixes is
-      hedging, and the failure a wider roster would buy is invention, which is worse. The
-      platform notes stay in the doc and are deliberately absent from the JSON.
-    - **A race with no names renders as `NO FILED LIST`, not as nothing.** The ballot has four
-      races on it whether or not the show has four filed lists, so the lens names the race,
-      says in one plain sentence that the show does not have its candidates, and the sweep is
-      told to spend a search there before a fourth search on a name the articles already
-      cover. Said once inside the segment that is honest reporting; the 09-19 cold open turned
-      it into the episode's hook, which is why `cold_open_generation` now forbids teasing an
-      absence.
-    - **Two copies drift**, so `tests/test_podcast_generator.py` asserts the doc and the JSON
-      carry the same names — the lesson from this file's own claims about `super-rss-feed`.
-      Nothing else needs cleanup: `event_focus` is date-bounded, so the roster stops being
-      injected when the window shuts on Oct 24.
-
-- **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
-  "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
-  Tribune) and "Municipal elections nominations now open across the Cariboo" (My Cariboo Now)
-  — and the first scored **11** on the Saturday theme charter against Saturday's `min_score` of
-  18, so it never reached the feed at all. That is `super-rss-feed`'s gotcha 14 (joint-scoring
-  collapse) landing on the day it matters most; the upstream half of this change adds Saturday
-  to `targeted_rescore` with the Cariboo outlets as its `rescore_sources`. **When a Saturday
-  deep dive looks wrong, check the upstream theme score before touching the ranking.**
-  — **and that upstream half was never applied.** It is described above as though it shipped;
-  `targeted_rescore.days` in `super-rss-feed` read `["tuesday", "wednesday"]` until 2026-09-17,
-  with no `rescore_sources` on Saturday at all. A note in this file is not a change in the
-  other repo, and nothing checks that the two agree — when a claim here is about
-  `super-rss-feed`, read `config/podcast_schedule.json` there before trusting it.
-
-### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`, `_sequence_roundup`)
-
-The roundup's story count is derived from **airtime, not appetite**. The segment gets
-~1,100–1,300 words of a 3,400-word script, and every story owes the listener what happened,
-why it matters and the rural angle — `ROUNDUP_MIN_STORY_WORDS` (70) is the floor that takes.
-`NEWS_ROUNDUP_COUNT` (15) is that budget divided by that floor. **A story that cannot be given
-its floor is cut, never compressed**, and the prompt states the segment's word target so a
-shorter list produces deeper stories rather than a shorter segment.
-
-`NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. It used to bound the
-theme pool alone: `_curate_roundup_pool` returned `protected + kept_fill + bonus` and
-`generate_podcast_script` then concatenated the full pre-curation bonus list back in. On
-2026-08-13 that put 52 stories in a 1,237-word roundup — 24 words each, a headline crawl
-("Archaeologists in Sweden uncovered a 9,000-year-old burial. A pistachio butter was recalled.
-Ransomware operators are targeting managers."). Every coherence mechanism — blocks, cluster
-adjacency, the no-forced-segue rules — ran on the 15 and was bypassed by the 37.
-
-**`all_articles` is the curated pool and is authoritative.** The `bonus_articles` parameter to
-`generate_podcast_script` is the *pre-curation* list; concatenating it back in re-admits
-everything the cap just dropped.
-
-Blocks, in airing order — curation metadata the hosts never name on air:
-
-| Block | Contents |
-|-------|----------|
-| `local` | Cariboo/BC place name or regional outlet. Opens the show. Bonus picks are eligible — geography is orthogonal to the feed's theme judgment |
-| `theme` / `theme_adjacent` | Net-positive theme relevance; `_adjacent` matches in the body only. Never bonus picks — the feed already made that call |
-| discipline groups | Off-theme stories with ≥2 same-field siblings, kept adjacent so the back half plays as mini-arcs |
-| `standalone` | Connects to nothing; the weakest material in the segment |
-| `kicker` | One standalone, aired last, told properly — the roundup's deliberate closer |
-
-**A themed episode whose roundup carries nothing on its theme now says so.** That is the
-failure this whole selection stack exists to prevent, and until 2026-09-17 it was not an
-error, a warning or a row: that day's blocks were `local:5, community_life:3,
-life_sciences:3, physical_sciences:3, kicker:1` on Indigenous Lands day — fifteen stories,
-empty theme block — and the run went green. `script/curate` `degrade()`s below
-`ROUNDUP_THEME_FLOOR` on-theme stories, and again when the feed itself hands over
-`THEME_POOL_FLOOR` (6 = the deep dive's 3 plus the roundup's 3, which do not share) or fewer
-theme articles. The geographic day is exempt from both: it has no theme block by
-construction, which is the whole point of `_geographic_rank`.
-**Read the degradation as a scoring problem, not a supply problem** — on the day it fired,
-the feed held 65 bonus articles against 4 theme ones and APTN was publishing daily. See
-`super-rss-feed` gotcha 14, and check the theme's argmax share before touching `feeds.opml`.
-Note `ROUNDUP_THEME_FLOOR` already existed but could only reserve theme slots *within*
-`protected` when the arc overflowed the cap — it had nothing to floor when the theme block
-was empty, which is the commoner failure and the one that was silent.
-
-The **kicker** is why cutting the tail is an edit rather than a shortfall. Standalones used to
-be read out at a sentence apiece; one of them given real airtime is worth more than ten
-mentioned. It reserves its slot before the tail spends the budget, and yields it when the
-protected arc alone fills the segment.
-
-**No single discipline cluster may take more than `ROUNDUP_CLUSTER_MAX` (3) slots**, and that
-holds whether or not the pool is over the cap. On 2026-08-22 the Cariboo Local Affairs roundup
-sat exactly at its cap of 15 and still ran a seven-story US pharma and health-policy cluster
-against two local stories and one theme story — which had qualified on the word "local"
-("Scientists Saw Strange Spots on Local Fish"). Nothing bounded one field's share of a segment,
-so the cap alone let the day's identity be decided by whatever the feed happened to be heavy in.
-A cluster is kept adjacent so the back half plays as a mini-arc; past three it stops being an arc
-and becomes what the episode is about. The overflow is dropped, never compressed — dropped
-articles never reach citations, so dedup lets them resurface on a better-matched day.
-
-**Blocks decide what airs together; `_sequence_roundup` decides the order inside one.** The
-discipline clustering above ran on the tail alone — `local` and `theme` were sorted by
-place-name density and keyword density respectively, neither of which says anything about what
-a story is *about*. On 2026-09-06 the pool was 8 local + 7 theme, the tail was empty, and so no
-coherence mechanism ran at all: the roundup aired a power outage, a charity ride, a library
-opening, a cancer ride and a wildfire crew story in that order. `check_roundup_order` passed —
-it compares block ranks, and there were two.
-
-- **The pass is a chain, not a regroup.** Each story pulls its same-discipline siblings up
-  behind it; nothing is promoted ahead of a story it did not already sit behind. So the lead
-  never moves, which is the point: the first article of `local` is the show's front door and
-  the first of `theme` is the day's strongest on-theme story, and a wholesale regroup would let
-  a two-story cluster take either slot.
-- **`ROUNDUP_CLUSTER_MAX` deliberately does not apply inside an arc block.** The cap exists to
-  stop off-theme filler deciding what the episode is about; a fire week's local block *is* the
-  episode.
-- **It runs at both consumers** — `_curate_roundup_pool`'s return and the re-annotation in
-  `generate_podcast_script`. The second is the prompt's only view of the order, so sequencing
-  only the first would change the citations and leave the air order untouched.
-- **`disciplines.json` had no civic vocabulary and needed one.** The taxonomy was written for
-  the off-theme tail, which is science and tech feed material; the local block is outages,
-  wildfire, council, fundraisers, schools, health and highways, and none of it could group.
-  `public_safety`, `civic_affairs` and `community_life` are that vocabulary.
-- **`_infer_discipline` counts word-boundary hits** (`_keyword_hit_count`), not substrings.
-  Plain `in` matching filed "Traffic-pattern changes coming for Highway 1 at Mount Lehman"
-  under astrophysics, because 'star' is inside "starting" — harmless while this only sorted the
-  tail, and not harmless once it decides which stories air next to each other.
-
-**A local election story can break on any day, and until 2026-09-15 it carried none of the
-election-accuracy rules.** `event_focus`'s "NAME PEOPLE, NOT ROLES" and record-sourcing
-instructions (see the `event_focus` section below) are built into `_build_theme_lens` and
-injected only into the Deep Dive prompt, only on the weekday the event is configured for —
-Saturday. A nomination story is local news and is never held (see Article holding above), so it
-airs in the roundup the day it breaks, which for a multi-town nomination sweep is whatever
-weekday the wire ran it — with zero of those rules in scope. On 2026-09-15 (a Tuesday) the
-roundup covered both the Williams Lake and South Cariboo mayoral nominations back to back and
-merged them: it reported Walt Cobb's Williams Lake opponent as "a South Cariboo realtor" — that
-candidate (David Jurek) runs in the separate 100 Mile House race — and never named Surinderpal
-Rathor, the actual Williams Lake incumbent the source article named. The fact-check pass could
-not have caught it either: `TASK 2` in `polish_and_factcheck` explicitly scopes itself to the
-Deep Dive and carves the News Roundup out of scope but for two named exceptions (bill substance,
-leadership-race winners) — candidate-to-race attribution wasn't one of them.
-**LOCAL ELECTION RACES** is now a standing roundup rule in `script_generation_system`
-(unconditional, not gated behind `event_focus`'s weekday): keep each town's race distinct, name
-a sourced incumbent or opponent instead of leaving them as "the sitting incumbent," and never
-borrow a name from a different town's race. A third fact-check exception,
-**LOCAL ELECTION CANDIDATE ATTRIBUTION**, backs it up in both `polish_and_factcheck` and
-`agentic_polish_and_factcheck` — the roundup is otherwise off-limits to the fact-check pass, but
-a candidate pairing gets checked against the verified sources like a bill's substance or a
-leadership race's winner do.
-
-**The segment used to read out its own filing system.** `_NEVER_ANNOUNCE` has kept block
-*names* off the air since 2026-08-11, but the COVERAGE CUE rule opposite it asked the opening
-line to reflect "how much ground there is", explicitly "(count and depth of sourcing)" — and
-the ◆ headers hand the model the counts. So the rule and the ban were pulling opposite ways,
-and the rule won: "Six stories close to home to start, one that ties straight into today's
-theme, and a longer tail after that", "Fifteen stories in the queue today", "a full docket
-today". That is the running order narrated. The cue is editorial framing now — what kind of
-day it is out there — with counts, container nouns ("docket", "queue", "batch", "lineup") and
-the running order named as things never to say, and `_NEVER_ANNOUNCE` says the header count is
-a pacing budget. **Where the stories sit is still fair game**: "a lot of it close to home
-today" is a fact about the news, not about how the file was sorted, and cutting it would cost
-the roundup its one honest opening move.
-
-Two prompt rules carry the rest: **NO HEADLINE CRAWL** (never stack unrelated stories into one
-host turn as one-sentence mentions) and **DO NOT MANUFACTURE CONNECTIONS** — an abstract bridge
-that could join *any* two stories ("from one contested piece of land to another", "whoever
-controls the categories controls what counts") sounds like insight and carries none. The escape
-hatch matters more than the prohibition: if the shared thing can't be named in plain words,
-there is no thread, and the hosts just move on.
-
-### Super Cycles (`config/super_cycles.json`)
-
-Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Friday runs a 3-week cycle, all other cycled days 4-week. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.
-
-- **Selection:** the deep dive prefers focus-matching articles; a thin focus week (<3 matches) degrades to plain theme selection (logged `focus_fallback`). The focus lens is appended to the theme lens in the script prompt.
-- **Subtlety:** the focus is deliberately unannounced on air — it shapes selection and emphasis only. Hosts name and acknowledge the weekday theme, never a rotating sub-theme; every focus-derived prompt block carries a do-not-announce instruction.
-- **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming day within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on that day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their day arrives. Holding never shrinks the pool below the roundup + deep-dive budget, and **never holds a local story** — local news is the most time-sensitive material in the pool and geography is orthogonal to the rotation (`_is_local_article`, shared with the roundup's `local` block).
-  - **Both buckets are routed.** The hold loop used to iterate `theme_articles` alone — the one bucket that by definition holds nothing off-theme. Off-theme material arrives in `bonus_articles`: 72 of it against 8 theme articles on 2026-08-17, so nothing was ever eligible and Monday's roundup aired a PLA-brittleness piece that scored two hits on Wednesday's Maker & Repair focus keywords — enough for the old focus-only matcher, which never saw it.
-  - **A slot matches on its theme keywords OR its focus keywords**, and `get_upcoming_day_slots` emits a slot for every upcoming day. Focus-only matching missed whole categories: forestry is a Tuesday theme keyword every week but only reaches a Tuesday slot on the weeks the rotation sits on Forestry, so the 2026-08-17 lumber-tariffs opinion piece scored 0 focus hits on all 14 upcoming days (3 against Tuesday's theme) and had nowhere to go. The theme is the day's standing identity; the focus only narrows it.
-  - **Keyword sets that gate a decision are strict** (`_build_strict_theme_keywords`): theme-name words plus the explicit config keywords, never the description prose. `_build_theme_keywords` folds every word of the description in, which is fine for *ranking* — an extra fuzzy hit only moves an article up a list — and wrong for a gate. Saturday's description contributed `that`, `shape`, `everyday` and `life`, so nothing in the pool could read as weak on today's theme and the router had 42 keywords to match a slot on.
-  - **A geographic day is never a routing target** (`_is_geographic_theme`, themes.json `geographic: true`). Cariboo Local Affairs is defined by *where* a story is; every other theme is defined by what it is about. Geography is decided by `_is_local_article`, which also exempts local stories from holding, so the day has no import channel to fill and every match it wins is a false one. Its keyword list took the bare word `local` literally: five articles were waiting for 2026-08-22 — New York's housing shortage, a Brooklyn ADU that "follows local and zoning laws", two US drug-pricing pieces, and "8 local AI models that run great on 8GB of VRAM". Two of them aired.
-  - **A local story that belongs to another day airs today and defers its deep dive.** It is never held — local news stays the most time-sensitive material in the pool — but when it carries none of today's *subject* keywords and answers an upcoming day's theme, it gets `_no_deep_dive` and an aired-early ledger entry so the callback lands on the day whose question it actually answers. On 2026-08-22 the Cariboo Local Affairs deep dive ran on softwood duties, a ranching award and a Tyson beef-plant closure — Tuesday's episode, aired on Saturday and spent for the week by dedup, because every one of them is local and locality was the whole score.
-  - **`_no_deep_dive` is now read.** It was written by the router and read by nothing: `_ensure_deep_dive_substance` was free to swap back into the deep dive exactly what the router kept out of it. `select_deep_dive_from_feed` holds flagged articles back, and restores them only below `DEEP_DIVE_ELIGIBLE_FLOOR` (2) — a debate with no sources is a worse failure than a debate one day early.
-  - **A released article carried the labels of the day it was held on, and both consumers
-    read them** (`_relabel_for_day`). `_keyword_matches`, `_is_bonus`, `_theme_score` and
-    `_theme_score_raw` are computed by the feed *relative to whichever day the article
-    arrived on*, and the holding pen stores that snapshot verbatim. So a story held on
-    Wednesday *because it is Thursday material* was released on Thursday still stamped with
-    Wednesday's verdict that it is off-theme. `_annotate_roundup_blocks` tests `_is_bonus`
-    before it tests theme relevance, and `select_deep_dive_from_feed` split on
-    `_keyword_matches > 0` — and upstream defines `_is_bonus` as *exactly* `kw_matches == 0`,
-    so those were one gate applied twice rather than two opinions.
-    On 2026-09-17 all three articles held for Indigenous Lands day were released into the
-    pool and cut by the same run as "over budget/unconnected": two APTN pieces on First
-    Nations wildfire impacts and Indigenous land guardians, and a modern-treaties story.
-    They classified `standalone`, `standalone` and `kicker` — the weakest material in the
-    segment. The roundup aired fifteen stories with an **empty theme block** and the run
-    went green. Re-labelled against the target day, two land in `theme` and one in
-    `theme_adjacent`.
-    **A label that describes another day is worse than no label**, so `_relabel_for_day`
-    drops the two stale scores rather than rewriting them: there is no charter judgment for
-    today's theme to substitute, and a wrong number that looks authoritative is the failure
-    mode this exists to prevent. `_held_from` and `_recalled_from` now carry standing in
-    both consumers — arc-protected in `_curate_roundup_pool`, reachable by `strong_match` in
-    the deep dive, sorted last so nothing is promoted over a genuine keyword match.
-    **A story the router imported for today must not be droppable by the run that imported
-    it.**
-  - **The feed's charter score gets a vote in the export decision** (`_theme_fit_raw`,
-    `HOLD_MIN_THEME_RAW`, `HOLD_PROTECT_TOP_FRAC`). Literal substring hits on title+summary
-    were the only voice, and on 2026-09-17 that exported the day's single best-fitting
-    Indigenous story *off* Indigenous Lands day: an IndigiNews feature on an Nlaka'pamux
-    community's wildfire-mitigation programme, 98th percentile on Thursday's own feed,
-    scoring **zero** strict Thursday keywords — the nation's name is not in the list and
-    `[IndigiNews]` is stripped as a source tag — which matched Friday's wildfire slot twice
-    and left.
-    Neither `_theme_score` nor `_theme_score_raw` was read anywhere in `podcast_generator.py`
-    before this. **Use the raw score, never the percentile**: `_theme_score` is a rank within
-    that day's feed, so the top of a collapsed distribution reads 90-100 however poor the fit
-    (`super-rss-feed` gotcha 13) — on the day in question a paleo-wildfire story and a
-    consumer-electronics piece sat at 95 and 89 on Indigenous Lands day.
-    Two bars, because neither works alone. The absolute floor (`HOLD_MIN_THEME_RAW`, 25,
-    anchored to the thinnest upstream `min_score`) is the honest one and is what the upstream
-    targeted rescore makes reachable — Thursday's whole pool topped out at 58 before it. The
-    pool-relative bar (`HOLD_PROTECT_TOP_FRAC`) is what fires meanwhile, on a collapsed
-    charter where nothing reaches the floor; it carries `HOLD_RANK_MIN_THEME_RAW` and a
-    `HOLD_RANK_MIN_COVERAGE` requirement, because **rank without a floor is not evidence** —
-    on a pool where nothing is scored, a raw of 2 is top of the heap and means nothing.
-    Both log every time they fire, so they can be refitted off a measured month.
-    The cost is asymmetric on purpose: a genuinely off-theme story at the top of a bad
-    distribution stays home, which is one story in the roundup tail; the day's best on-theme
-    story cannot leave, which is the episode.
-
-- **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
-
-### Weekly Anchor Questions (`weekly_anchor.py`, `config/weekly_anchors.json`)
-
-The third rotation layer, above the daily theme and the super-cycle focus. One open question
-per ISO week — "Why is everyone in tech so sad?" — that all seven deep dives circle from their
-own theme's angle. Selected by `select_anchor()` in the non-critical `script/anchor` segment,
-rendered into the script prompt's `{anchor_block}` by `format_anchor_for_prompt()`.
-
-Unlike the focus, the anchor **is named on air**: the focus is a curation device, the anchor is
-an editorial idea and the reason to listen more than one day a week.
-
-- **Idempotency is bought with state, not the calendar.** `get_focus_for_day` is stateless
-  because the rotation is a pure function of the date; an anchor cannot be, because the pool is
-  eventually LLM-generated. Instead the week's choice is **pinned** in
-  `podcasts/weekly_anchor_state.json` on the first run of the ISO week, and every later run that
-  week — including a re-render days later — reads that record back unchanged. A second question
-  appearing mid-week is the failure this prevents.
-- **No repetition works on `dimension`, not wording.** Each question is tagged with the
-  dimension of experience it opens (`labour-meaning`, `scale`, `trust`, …). An `id` is spent
-  forever; a `dimension` has a 26-week cooldown. Keying the guard on the dimension is what stops
-  a generated question returning as a paraphrase. Both checks are local — no API call.
-- **Pool with LLM top-up.** `config/weekly_anchors.json` ships 11 seeded questions in order.
-  `top_up_pool()` fires when eligible entries drop below `MIN_POOL_REMAINING` — before the pool
-  empties, so a failed top-up costs a warning rather than the week's anchor — conditioned on
-  every question and dimension already used. Roughly one call every 11 weeks.
-- **`pin_week`** forces a question onto a specific ISO week. A **future** pin is never taken
-  early; an **overdue** pin still runs, so shipping late does not bury a question that was
-  scheduled deliberately.
-- **Framing, never selection.** Article selection is untouched — the anchor is a lens for
-  reading whatever the theme and focus already chose. One Claude call per week generates the
-  seven per-weekday angles; a failure degrades to an anchor with `framings: {}`, which still
-  works.
-- **The escape hatch is load-bearing.** The prompt block ends with an instruction to drop the
-  anchor entirely when the day's material does not genuinely reach it. Seven days orbiting one
-  question is a standing invitation to manufacture connections — the same failure the roundup's
-  `_NEVER_ANNOUNCE` block headers exist to prevent, with a much stronger pull. There is a test
-  asserting that instruction is present.
-- `weekly_anchor` cannot import `degrade()` without a circular import, so it records
-  degradations and `run_script_stage` drains them via `_report_anchor_degradations()`. **A new
-  fallback here must append to `_degradations`** or it will not reach the run report.
-- Preview the schedule without spending or writing state: `python weekly_anchor.py --preview 12`.
-
-### Naming a nation on air (`native_land.py`, `config/indigenous_nations.json`)
-
-On 2026-09-18 the Wild Spaces episode ran its deep dive on a BC Wildfire Service
-prescribed burn near Deer Park Mountain **outside Castlegar** — West Kootenay, Sinixt
-territory, about 600 km southeast of here — and asked four separate times, in the cold
-open, the deep dive and the outro, whether "Sinixt or **Tŝilhqot'in** voices" had shaped
-the burn plan. Sinixt is right. Tŝilhqot'in territory is the Chilcotin plateau and comes
-nowhere near Castlegar.
-
-**Nothing was wrong about a fact the pipeline had.** `INDIGENOUS CONTEXT` in
-`prompts.json` hands the writer the show's three acknowledgment nations as standing
-regional context, the writer reached for the vocabulary it was given, and no stage after
-it could tell that a nation and a place had been put together that do not go together.
-It is the same failure as the Sunday Meta Moment's fabricated Ktunaxa story and the
-roundup's borrowed candidate name: the prompt supplies a roster, and a roster with no
-scope attached gets used out of scope.
-
-- **The prompt fix is the load-bearing half.** Those three names now say in the prompt
-  that they describe the Cariboo and nowhere else, that a nation is named only for its
-  own territory and only when a source names it, and that a story the show has no
-  sourced nation for asks its question without naming anyone. **Naming the wrong people
-  is worse than naming none** — the escape hatch is the point, exactly as it is for the
-  weekly anchor and the Meta Moment's NONE.
-- **The check is the backstop**, and it measures the output rather than lengthening the
-  instruction — the phrase ledger's trade, and `_meta_moment_unknown_names`'.
-  `script/territory-check` runs after `script/tell-scrub`, deliberately: that day's error
-  was in the cold open, the deep dive *and* the outro, and a check placed before
-  `generate_cold_open` would have cleared two of the three.
-- **It only ever disconfirms.** A finding needs a nation, an out-of-region place, a
-  territory lookup that answered, and that nation absent from what came back. A lookup
-  that fails, is unsure, or returns an empty list changes nothing. Native Land Digital
-  says plainly that its maps are crowd-sourced, are not authoritative, and must not be
-  used to define boundaries — so it may take away a claim the show cannot source and
-  **must never supply one**. The rewrite deletes the wrong name and is forbidden from
-  substituting a right one; SOURCED OR UNSAID is not weakened by a crowd-sourced map and
-  must not be strengthened by one either.
-- **The standing land acknowledgment is exempt by construction, not by a special case.**
-  A sentence whose place names are all on `podcast.json`'s `local_places` is never
-  checked. The welcome line names the three nations and the Cariboo, is correct, and is
-  spoken every single episode — a check that rewrote it nightly would be worse than no
-  check. What is left is precisely the observed failure: a house nation attached to a
-  place the show is not from.
-- **Two keyless lookups, both cached forever, both bounded.** Place name → coordinates
-  via Open-Meteo's geocoder (already the show's weather vendor, so no new dependency and
-  no new key), coordinates → territories via `native-land.ca`.
-  **`NATIVE_LAND_API_KEY` is a repository *secret*** — the opposite of the
-  `GEMINI_TTS_MODEL` rule two sections down, because a model name is not a credential
-  and this is. It is sent when set, the request is made without one when it is not, and
-  a missing or expired key costs the confirmation rather than the episode. The
-  degradation row records only the exception *type*: the message carries the request
-  URL, and the URL carries the key. The geocoder is also the *gazetteer* — a capitalized word that does not
-  resolve to a Canadian place is cached as unresolved and costs one lookup once, ever —
-  and a Canadian result in BC outranks a same-named town elsewhere, because checking
-  Deer Park, Texas against this map would be worse than not checking.
-- **Orthography is the whole difficulty.** Tŝilhqot'in, Tsilhqot'in and Chilcotin are one
-  nation; "Secwépemc" in the script is "Secwepemc (Shuswap)" on the map. `_normalize`
-  folds diacritics and punctuation away and matching is substring in both directions —
-  a false *match* only means the line ships as written, which is the safe direction for
-  this check to fail in.
-- `native_land` cannot import `degrade()` without a circular import, so it records
-  degradations and the script stage drains them via `_report_native_land_degradations()`.
-  **A new fallback there must append to `_degradations`** or it will not reach the run
-  report.
-- **The lookup shape is not verified against the live API from this sandbox** — the
-  network policy denies both hosts. The parser accepts a bare GeoJSON feature list *and*
-  a FeatureCollection, and any other shape reads as "no answer", which produces no
-  finding. Confirm it against a real response before trusting the row it writes.
-
-**Opinion columns and crime incidents are filtered upstream, not here** —
-`super-rss-feed`'s `podcast_content_exclusion()`, whose scope is the podcast pool alone
-(the reader still gets the local RCMP story in `feed-local.json`). Articles already sitting
-in `article_holding.json` when that shipped were admitted under the old rule and age out
-on the 14-day hold window; nothing downstream re-checks them. **When a crime story or an
-op-ed reaches an episode, read `config/podcast_schedule.json` → `excluded_content` in the
-sibling repo before touching anything here.**
-
-### Voice and AI Tells (`config/ai_tells.json`, `podcasts/phrase_ledger.json`)
-
-Two mechanisms, because the obvious one had already failed. `script_generation_system`
-banned `"[X] is carrying a lot of weight in that sentence"` verbatim for a long time and the
-phrase still shipped; `genuinely` reached 146 uses across 30 episodes (~5/episode) without any
-single script looking unusual. A longer prose ban list is not the fix, and `score_script`
-counting hits into a JSON nobody reads is not enforcement.
-
-**The corpus is one file.** `config/ai_tells.json` holds `hard_banned`, the regex `patterns`
-and `soft_patterns` that `score_script` scans, the `ledger` tuning and the `rhythm` budget.
-`score_script` falls back to `_FALLBACK_TELL_PATTERNS` when the file is missing — a style file
-must never be able to fail a run. **A new pattern family goes in `soft_patterns` unless the
-extra Opus escalation is intended and costed:** `soft_patterns` are reported but excluded from
-`total_hits`, which gates `OPUS_QUALITY_HIT_THRESHOLD`. Adding two families to `patterns` took
-Opus escalation from 2/30 episodes to 5/30 before they were moved.
-
-#### The prompt was teaching the tic
-
-`genuinely` appeared **44 times in `prompts.json` prose** and 146 times in the scripts;
-`directly` 31 and 94; `actually` 26 and 405. The model copies its instructions' register, so
-the ban and the example sat in the same file. All 44 are gone (deleting the adverb never
-changed an instruction's meaning) and `tests/test_ai_tells.py` fails if a hard-banned phrase
-reappears in prompt prose outside a quoted ban example. **Check the burned list before writing
-prompt copy** — the fastest way to install a new tic is to use it in the instructions.
-
-#### The ledger — the back catalogue as the ban list
-
-`update_phrase_ledger` folds each finished script into a 21-episode window and promotes
-anything spiking. Nobody predicted `genuinely`, and nobody should have to predict its
-successor: `quietly` (31x/16 episodes) surfaced on its own.
-
-Three filters decide what may be burned, and each exists because the unfiltered version
-produced garbage on a backfill of the real 30-episode catalogue:
-
-- **Adverbs only** (`unigram_mode`). Content words are subject matter — a news show says
-  "story", "region" and "question" constantly and must keep doing so. Raw frequency burned all
-  three. The generated register lives in stance adverbs.
-- **Proper nouns never counted.** An n-gram containing a capitalized non-sentence-initial token
-  is skipped, so "Williams Lake" and "Cariboo Regional District" can never be burned.
-- **`min_repetition_ratio`** (count/episodes ≥ 2). Boilerplate is said once per episode, every
-  episode; a tic recurs inside one. This is what keeps the show's own welcome copy
-  ("impact our rural communities", 21x/21 episodes) off the list without parsing sections.
-
-**`ngram_sizes` is `[1]` deliberately.** On the backfill, every multi-word phrase clearing the
-thresholds was either basic English ("it's a", "rather than") or subject matter ("fire season"),
-and banning those in the prompt would damage the script. Division of labour: the ledger
-machine-detects the adverb register; multi-word tics are what a human notices, and
-`hard_banned` is the channel for naming them.
-
-**The tail of `hard_banned` is not a style tic.** The show renders overnight and listeners have
-it before breakfast, and nothing in the prompt said so — 2026-09-21 aired "here's a concrete
-version of tonight's argument" and "argue with either of us about tonight's conclusion". The
-prompt fix is the load-bearing half (`CRITICAL REQUIREMENTS` → **TIME OF DAY**), and the
-phrases placing the episode at night ride in `hard_banned` because that one list already buys
-all three enforcement paths with no code: the BURNED PHRASES block, the post-cold-open scrub,
-and the test that stops prompt prose teaching the phrase it bans.
-
-**It is a rule about when the SHOW is, not about when the world is.** Across 237 scripts every
-other "tonight" was correct — an overnight low, a meteor shower, a clear sky worth going
-outside for — so only literal, always-wrong forms belong there: `tonight's <episode noun>`, an
-evening greeting, a farewell to the night. A broader ban would delete the weather check. The
-scrub's rewrite rule is split for the same reason: an intensifier is deleted, a night phrase
-takes the daytime substitution.
-
-Promotion requires `phrase in counts` — the window aggregate still holds a phrase for weeks
-after the show stops saying it, so promoting off the aggregate alone re-fired daily, reset
-`clean_streak`, and nothing could ever retire. A phrase retires after
-`retire_after_clean_episodes` clean episodes, which frees the slot for whatever replaced it.
-Idempotent on date, so a re-render never double-counts its own episode.
-
-#### Enforcement
-
-`format_burned_phrases_for_prompt()` renders the block into the **dynamic** user prompt
-(never the cached system prompt — it changes daily and would defeat the cache), the expand
-retry, the cold open and both polish paths. `config_loader.format_static_tell_block()` carries
-the config-only half so `generate_bespoke.py` can use it without importing the pipeline — the
-same reason `atomic_write_text` lives there. Bespoke built its own prompt and inherited none of
-this until then.
-
-`script/tell-scrub` runs **after** `script/cold-open`, deliberately: `generate_cold_open` runs
-after every polish pass, so the teaser is the one part of the episode nothing else cleans, and
-it is the first thing a listener hears. It sends only the offending sentences to `SCRUB_MODEL`
-(Haiku) — a few hundred tokens, against 3,400 words for a re-polish. A rewrite is spliced only
-if it is clean and the original still matches verbatim; anything else keeps the original and
-`degrade()`s, so a bad rewrite can never be worse than the tic.
-
-#### The rhythm budget
-
-The vocabulary is half of it. 47 words per turn, 53 em-dashes an episode and every turn a
-finished paragraph is a fingerprint on its own. The system prompt's `**RHYTHM**` section asks
-for what the show should sound like — short turns, one flat unhedged statement, a disagreement
-allowed to not resolve — and `score_rhythm` measures exactly those, reporting `over_budget`
-into `episode.quality`. It is advisory: nothing blocks on it.
-
-### TTS Providers
-
-**OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering. Each segment is checked against `_expected_speech_ms` (`369 ms/word − 642 ms`, speed-normalised — fitted to the 688 segments of the ten episodes rendered 2026-08-13..22, whose transcript sidecars carry each segment's real duration) and re-synthesized once below 0.80 of it. **Refit those constants against the sidecars rather than assuming a rate:** the flat 400 ms/word they replace described nothing the show has produced and re-rendered ~14 complete segments a night, each retry landing within 2% of the take it was doubting.
-
-`OPENAI_TTS_MODEL` selects the model, defaulting to **`tts-1`**. The legacy pair
-(`tts-1`, `tts-1-hd`) honours the per-host `speed` multiplier from `hosts.json`;
-the steerable models (`gpt-4o-mini-tts`) take an `instructions` string instead,
-which is what `hosts.json`'s long-dormant `voice_instructions` was written for —
-authored, wired through `get_voice_instructions_for_host`, imported, and never
-called, because `tts-1` has no parameter to send it to. `_openai_speech_request`
-owns that split so the render path and `evaluate_tts.py` build the same request.
-
-#### Why the default came back to tts-1
-
-The steerable model was the default for three episodes (2026-08-23..25) and was
-reverted. The direction it buys is real; what it costs is not recoverable by
-better wording.
-
-- **`speed` is not supported there** (accepted, ignored), so Casey lost his 1.1x.
-  Paired against the script's turns, the sidecars put him at **369 ms/word
-  against 320 on tts-1** — 15% slower than the show has been since launch, and
-  for the first time slower than Riley, inverting the pace contrast the deadpan
-  read depends on. Restoring it would need ffmpeg `atempo` after synthesis.
-- **The acoustic scene is sampled per request** — mic distance, room tone,
-  register. `TTS_SEGMENT_MAX_CHARS` is 500, so a 30-second turn is 2–4
-  independent calls and the scene can change *inside one turn*: the "distant,
-  disjointed" complaint that ended the trial. A per-call sample is not made
-  deterministic by instructions text, which is why this is a revert and not a
-  prompt fix.
-
-**Before trying a steerable model again**, one of those has to be untrue: an
-acoustic scene that holds across calls, or a turn that fits in one call. Audition
-it with `python evaluate_tts.py --section deep_dive --skip-azure --skip-gemini`,
-which renders the pipeline's real request — never a nightly run.
-
-**`_SPEECH_RATE_FITS` is keyed by model**, because a speech rate is a property of
-the model. `tts-1`'s row is the solid one (688 segments, ten episodes);
-`gpt-4o-mini-tts` carries a provisional row measured off the three episodes of
-the trial. A model with no row borrows tts-1's and `_speech_rate_fit` raises
-`render/borrowed-speech-rate` once per run, so the report says the word-omission
-check is uncalibrated rather than implying it passed. Fit a new row the same way
-— pair `podcasts/video_timeline_*.json` turn durations against the script's turns
-in order and refit `ms/word` and intercept. Until then expect the retry rate to be
-wrong in one direction or the other; a mis-sized floor costs a re-render, which is
-why borrowing beats skipping.
-
-#### Per-take checksums
-
-Every take is checked twice before it joins the mix, because a bad take is not
-distinguishable from a good one by the fact that the API returned 200.
-
-- **Duration** (`generate_tts_for_segment`): a ratio under 0.80 against `_expected_speech_ms`
-  means words were dropped. Retry once, keep the longer take.
-- **Amplitude** (`_is_silent_take`): a take can come back well-formed, the right length for
-  its text, and **completely silent** — 2026-08-16 shipped 27 s of digital silence in the
-  middle of the deep dive. Nothing downstream caught it: `trim_tts_silence` returns an
-  entirely silent clip untouched at full length *by design*, `normalize_segment` leaves zeros
-  as zeros, and the duration ratio was ~1.0 because the length was right. Peak level is the
-  only signal that separates the two. Retry once; two silent takes raise `SilentTakeError`.
-
-**A turn that will not render is cut, never shipped as silence** — keeping it produces dead
-air of exactly the same length, which is worse to listen to and invisible in every duration
-the pipeline records. The caller drops the chunk and calls `degrade("render/silent-take")`,
-so the words are missing from the audio but the run report names them. The music overlap is
-tracked as a `pending_overlap_ms` rather than keyed on `i == 0`, so dropping the turn that
-would have opened a section hands the overlap to whichever turn actually starts it instead
-of leaving the music to fade out into a gap.
-
-The same check runs on whole-section (Gemini/Azure) renders, where it raises into the
-existing per-section OpenAI fallback — a silent section is this failure minutes wide.
-
-#### Per-chunk checksums (Gemini)
-
-A Gemini section is 1–3 independent chunks joined into one clip, and every guard around it
-used to run on the wrong quantity or in the wrong place. On 2026-09-06 that shipped both
-halves of the same defect in one episode: a welcome section that rendered **8 s of speech for
-113 words** and a news-roundup chunk that came back at **67% of its expected length**. Both
-passed everything.
-
-- **The ratio measures speech, not wall length** (`_duration_ratio` → `_trim_pcm_silence`).
-  The welcome's response was long enough to clear both thresholds and was mostly dead air,
-  which the assembler then trimmed off — so the check saw a healthy clip and the listener got
-  eight seconds. Measured on the trimmed span it reads 0.18 and `SEVERE_TRUNCATION_RATIO`
-  retries it.
-- **Dead air inside a chunk is its own defect** (`MAX_INTERNAL_SILENCE_MS`, 4 s). It is the
-  one the assembler cannot repair: `trim_tts_silence` touches a section's head and tail, and a
-  chunk's own trailing silence lands in the middle of the section. Raised rather than spliced
-  out — a hole that long means the words are gone too, and a fresh sampling draw beats a hard
-  cut. The script's `[pause:N]` tags never reach Gemini (`_extract_pacing_tag` parses them into
-  inter-turn gaps first), so nothing legitimate approaches the threshold.
-- **Each chunk is trimmed before it joins its neighbours**, which is what keeps a chunk
-  boundary a boundary instead of a hole.
-- **A wholly silent chunk trims to `b""`** and therefore reads as a 0 ratio. `_is_silent_take`
-  only ever sees the assembled section, so one dead chunk of three could always pass it.
-- **The soft 0.80 check still does not retry, and no longer only prints.** Brisk banter
-  genuinely renders faster than the flat 400 ms/word estimate, so it is expected to trip
-  sometimes — but a `print` reaches neither the run report nor the roadmap ledger, and the
-  only record of the 2026-09-06 omission was the audio itself. It appends to `_degradations`,
-  drained as `render/gemini-take` (renamed from `render/gemini-retry`: the rows are about what
-  the take was, not only about how many rungs it took).
-
-**Azure Neural TTS (optional, `USE_AZURE_TTS=1`):** Multi-Talker model for coherent prosody across speaker transitions. SSML with `<phoneme>` IPA tags for Cariboo place names. 8,000-char conservative SSML chunk limit. Set `AZURE_TTS_PARALLEL=1` to generate both providers for comparison.
-
-**Gemini multi-speaker TTS (optional, `USE_GEMINI_TTS=1`, wins over Azure):** `gemini_tts.py` renders each section's whole two-host conversation in one `generateContent` call (NotebookLM-style prosody) via REST — needs `GEMINI_API_KEY`; `GEMINI_TTS_MODEL` overrides the default (`gemini-3.1-flash-tts-preview`). A style prompt plus whitelisted `[tag]` stage directions live in `config/prompts.json` under `gemini_tts`; the polish pass only adds tags when Gemini is active, and the OpenAI/Azure paths (and both published transcripts) strip them. Credits on every surface resolve through `_compose_tts_credit()` — **every** provider that actually rendered audio is named, in render order, so a mid-episode fallback reads as "Gemini TTS and OpenAI TTS" rather than picking one. `get_active_tts_provider()` is the *routing* answer (what renders next), which is a different question and must not be used for a credit. Compare providers with `python evaluate_tts.py`.
-
-#### The prompt says where the speech starts
-
-The request is scaffolded rather than prose-led — `### AUDIO PROFILE` (one line per
-speaker, from `hosts.json`'s `gemini_audio_profile`), `### PERFORMANCE NOTES` (the
-config's `style_prompt` plus the speaker and tag rules this call generates), then
-`#### TRANSCRIPT` and nothing but speech below it. Every failure this endpoint has cost
-the show is a boundary failure: the cold open read aloud twice (see `CONTINUATION_NOTE`),
-a stage direction spoken as dialogue. The marker is the boundary, so the model never has
-to infer one from a colon at the end of a sentence.
-
-**That collision happened on 2026-09-14 and the profile lines are gone.** The episode read
-the hosts' own personality descriptions out on air more than once, and the render log rules
-out every other explanation: twelve cloud calls on `gemini-2.5-flash-tts`, all answered on
-the first attempt, no rung climbed, no model swapped, no degradation recorded. Nothing
-failed — the request asked for it. `Riley: Host. Earnest and intense…` is a transcript turn
-on studio and a flattened `multiSpeakerMarkup` turn on cloud, and the cloud backend is the
-worse place for it: there is no transcript in the prompt at all, so the profile lines were
-the only thing in the request shaped like speech.
-
-**A second pointer aimed the model straight at them.** The speaker sentence read "alternating
-exactly as the speaker labels *below* set it out" — written for studio, where labels do sit
-below. On cloud the turns ride structured in `multiSpeakerMarkup`, so there was nothing
-below, and the only labels anywhere in the request were the profile lines above. Direction
-copy that describes the studio layout is a live hazard on the other backend; keep it
-backend-neutral.
-
-Direction lines are now `- Delivery for Riley — …`, which keeps the binding to the pinned
-voice and cannot parse as a turn, and the header says so (`### AUDIO PROFILE — direction,
-never spoken`). **No line in either backend's direction may begin with a speaker name** —
-there is a test sweeping both.
-
-**Describe the register, never the register to avoid.** The same episode was sing-song
-against a script that is anything but. The direction spent eight negations on it — "Never
-peppy, bubbly, perky or bright", "Never laid-back, breezy or slangy", "No morning-show DJ
-energy: no hype, no exaggerated laughter, no radio-announcer voice" — and the words a TTS
-model actually receives are *peppy, bubbly, perky, bright, breezy, hype, laughter,
-announcer*, which is a fair description of what shipped. This is the prompt-teaching-the-tic
-failure from the AI-tells section, on the audio side: a ban list written in the register it
-bans. `style_prompt` and both `gemini_audio_profile`s now say what the delivery *is*, and
-name the intonation positively ("pitch falls at the end of a statement and stays in a narrow
-range"). A test asserts the burned adjectives stay out of the request.
-
-**That rewrite did not work, and what it rules out is worth more than what it fixed.**
-2026-09-15 and 2026-09-16 — the first two episodes rendered after it merged — both came back
-sing-song, bubbly and uptalked. The render logs say the direction was never the variable:
-twelve `gemini-2.5-flash-tts` cloud calls an episode plus the canary, every chunk at **rung
-0** with the style block and audio profile intact and byte-identical, **zero retries on
-09-15** and one context-dropping retry on 09-16, no model swap, no degradation touching the
-prompt. The script is not asking for it either — across the sixteen scripts of September
-2026, **1 122 of 1 168 host turns end in a period** and 36 in a question mark, and not one
-turn in the month carries an exclamation mark. So: flat copy, correct terminal punctuation,
-a direction that asks in plain words for a falling terminal and a narrow range, delivered
-unshed on every single request — and the model sings anyway. **On this surface the style
-prompt is a nudge, not a lever**, and a third rewrite of the adjectives is the move that has
-now failed twice. The lever left is the prebuilt voice, then the provider.
-
-- **The cue whitelist was the half of the direction that *was* asking for it.** `warmly`,
-  `curiosity` and `soft laugh` are performed per turn, inside the speech stream, which makes
-  them the closest and most obeyed direction in the whole request — and every one of them
-  asks for lift the style prompt above then has to argue against. `[warmly]` was also the
-  `tag_instruction`'s worked example, so it rode in the prompt of *every* request whether or
-  not a script used it, the same way `[short pause]` taught itself on 2026-09-13. All three
-  are retired to `legacy_whitelist` (strip-only — 200+ scripts on disk carry them, and an
-  unexplained cue gets read aloud), and the live list keeps only cues that do not brighten:
-  `thoughtfully`, `slow`, `fast`, `sighs`.
-- **The broadcast frame is a burned word too.** `style_prompt` opened "Two longtime co-hosts
-  on **community radio**" — the announcer prior the eight retired adjectives only *described*.
-  It is "two people talking to each other … at the volume of a kitchen table" now, with the
-  intonation rule promoted to the first bullet, and `radio` / `co-host` added to the test's
-  burned list along with the retired cues. The sweep also runs on the **studio** prompt and
-  on the live whitelist now; it covered the cloud prompt alone, which is why `[warmly]` sat
-  in every request of both post-fix episodes with a test watching.
-- **Pick the next voice by ear, not by adjective** — `evaluate_tts.py --probe-voices`
-  (TTS Eval workflow, `probe_voices`, with an optional `voice_pairs` override) renders the
-  section's first chunk through each candidate pair and uploads the WAVs. `set_voice_override`
-  exists for it and nothing else. Google's one-word voice labels (Kore *Firm*, Iapetus
-  *Clear*, Schedar *Even*, Charon *Informative*, Gacrux *Mature*) are why a pair is on the
-  candidate list and are not evidence about it — the same rule as a model preview: it is not
-  measured here until it is measured here. Listen for the terminal of a declarative: it
-  should fall and stay fallen. The winner is pinned in `hosts.json` `gemini_voice`.
-- **Changing the voice changes who the hosts sound like**, which the ordering rule elsewhere
-  in this section calls the last thing to degrade. That ordering was written for *automatic*
-  fallbacks inside a render. It does not bind a deliberate, auditioned recast — and after two
-  prompt rewrites it is the cheapest remaining option that does not mean leaving Gemini.
-
-**Speaker order is canonical, not first-to-speak** (`_ordered_speakers`). It was
-`dict.fromkeys(seg["speaker"] …)`, so the chunk's opener led — and 2026-09-14 alternated
-`Riley=Kore, Casey=Iapetus` with `Casey=Iapetus, Riley=Kore` across its twelve calls,
-reordering the profile lines, the voice-config array and the "between X and Y" sentence with
-it. The voices were never wrong (they bind by name) and the personalities still drifted
-segment to segment, which is the complaint it answers. Cloud pins no `seed` and no
-`temperature`, so **byte-identical direction on every chunk is the only consistency lever
-the backend leaves** — anything that varies the prompt per chunk is varying the performance.
-
-The direction block is 1 179 of the 1 200 bytes `CLOUD_PROMPT_BYTE_RESERVE` holds back, so
-there is ~20 bytes of room. Growing it is not free in the obvious direction either: raising
-the reserve shrinks every chunk, which buys *more* independent sampling draws, which is the
-drift above. Trim before you raise.
-
-Cues are inline `[thoughtfully]` tags now, from the documented vocabulary
-(`whitelist`), not invented ones — custom tags read flatter. Hype tags
-(`cheerfully`, `enthusiasm`, `gasp`) are deliberately not in it: the show has no
-morning-DJ register to reach for. `legacy_whitelist` is strip-only, so the
-`(wry)`-style parentheticals in every script already on disk still get cleaned on a
-re-render.
-
-**A duration cue is not a manner cue, and the model reads it out.** `short pause` and
-`long pause` were in the whitelist, the `tag_instruction` used `[short pause]` as its
-worked example, and on 2026-09-13 the episode aired several spoken "short pause"es. Every
-other cue names *how* to say the next words; these two name an absence, so there is nothing
-to perform and the text is all that is left. They are retired to `legacy_whitelist` rather
-than reworded, because **pacing is already the assembler's job**: `_extract_pacing_tag`
-parses the script's own `[pause:N]` tags into real inter-turn gaps before TTS sees them, so
-the word forms were a second channel for something the pipeline already did exactly.
-`strip_retired_stage_directions` drops them on the cue-*keeping* rungs too — the whitelist
-is what the prompt explains, so any cue outside it is unexplained text no matter which rung
-is running, and 200+ scripts on disk carry them. **The never-speak-a-tag rule is not in `style_prompt`** — it rides with the
-tags (`tag_instruction`), so the rung that sheds the style cannot ship tags with nothing
-saying they are direction.
-
-**OpenAI is the nightly default again (2026-09-17).** Gemini's multi-speaker delivery
-still reads as too sing-song after two prompt rewrites and a voice recast (see above), so
-the daily workflow's `tts_provider` input default flipped back from `gemini` to `openai`
-and `USE_GEMINI_TTS` no longer treats an unset input as `gemini` — a scheduled run (the
-cron backstop) passes no input at all, and only an explicit `tts_provider=gemini` dispatch
-enables Gemini now. Re-audition Gemini's voices later with `evaluate_tts.py` before
-flipping the default back.
-
-**The code default is `gemini-3.1-flash-tts-preview`, and it has never answered here.**
-It was made the default without the probe this section asks for, and every run from
-2026-09-01 spent two 45 s canary read timeouts on it (1082 chars, 45.1 s, unanswered,
-twice each night, identical on both dates) before pinning
-`GEMINI_TTS_FALLBACK_MODEL` for the show. **Production overrides it via the
-`GEMINI_TTS_MODEL` repository variable, set to `gemini-2.5-flash-preview-tts`, and that
-works**: on 2026-09-03 the canary passed on the first candidate in 3.4 s.
-
-**Setting that variable then collapsed the model ladder, which is the trap to know
-about.** `gemini-2.5-flash-preview-tts` was also the hard-coded default of
-`GEMINI_TTS_FALLBACK_MODEL`, so primary and fallback named one model, the canary printed
-one candidate, and `_other_model()` returned `None` on every attempt — the same hole the
-`_model_override` pin opens, reached from the configuration side and just as silent. All
-four attempts on that day's cold open re-asked the same model unchanged and the episode
-went to OpenAI. `GEMINI_TTS_FALLBACK_MODEL` is therefore resolved against the primary
-(`_default_fallback_model`, preference order `2.5-flash` then `2.5-pro`) rather than
-hard-coded, and a candidate list of one now `degrade()`s from `canary()` whether or not
-the render goes on to succeed.
-
-**Price is not a reason to keep the ladder one model short.** Pro TTS was demoted out of
-the fallback slot for costing more than flash; measured 2026-09-03 that holds only for
-*input* tokens ($1.25 vs $0.50 per MTok) while **audio output is $10 per MTok on both** —
-and audio output is essentially the whole bill. An episode sends ~2.5k input tokens, so
-choosing pro over flash as the second model costs a fraction of a cent. `3.1` is the one
-that is genuinely more expensive ($1.00 in / **$20** out) and it is also the one that has
-never answered, which is why it is not in the preference order.
-
-Before making any new preview the primary, **run `python evaluate_tts.py --probe-models`
-(TTS Eval workflow, `probe_models` input) against the 8/15 baseline** and record the
-numbers here — the reason 3.1 ran unexamined for weeks is that nobody had a measurement
-to argue with. Note the probe only ever measures the two configured models: it cannot
-discover a better one, so widening the field is a decision made here, not by the tool.
-Check the pinned `speechConfig` voices (`Kore`/`Iapetus` in `hosts.json`) carry over —
-voice identity is the last thing to degrade — and refit `READ_TIMEOUT_MS_PER_CHAR` off
-the probe's slowest column while the data is in hand.
-
-#### The reliability lever is the endpoint — the `GEMINI_TTS_BACKEND` switch
-
-The persistent-failure story above is a property of the *surface*, not the prompt: all
-three Gemini **API** TTS models (`2.5-flash-preview-tts`, `2.5-pro-preview-tts`,
-`3.1-flash-tts-preview`) are preview on `generativelanguage.googleapis.com` — no SLA,
-tighter rate limits, two weeks' notice before withdrawal, and the 500s and read timeouts
-this whole section is about. Cloud Text-to-Speech serves Gemini-TTS as **GA** on
-`texttospeech.googleapis.com`: the same prebuilt voices (`Kore`/`Iapetus`), a separate
-quota pool with requestable limits, a real SLA. That is the only change that alters the
-*reliability* rather than re-rolling the same dice, so it is wired as a backend switch, not
-another model.
-
-- **`studio`** (default) — `…:generateContent`, API-key auth (`GEMINI_API_KEY`). Unchanged;
-  every failure mechanism above lives here.
-- **`cloud`** — `v1beta1 text:synthesize`, **service-account** auth
-  (`GOOGLE_APPLICATION_CREDENTIALS`). Multi-speaker on Cloud TTS is served *only* by this
-  Google-Cloud backend — the API-key path does not offer it. The transcript rides structured
-  (`input.multiSpeakerMarkup.turns`) with the direction in `input.prompt`, so nothing in the
-  prompt is speakable: the boundary the studio path has to draw with a `TRANSCRIPT_MARKER` is
-  drawn by the schema. Shape verified against the v1beta1 proto and Google's multi-speaker
-  sample; not run here (no service-account key in the sandbox).
-
-**Only the transport changes.** The canary, retry ladder, model alternation, per-chunk
-checksums and degradation plumbing are shared — `_attempt` dispatches to `_studio_synthesize`
-/ `_cloud_synthesize` and runs the trim + truncation + silence checks on either — so the
-cloud backend inherits the entire safety net. Two differences to know: there is **no
-`seed`/`temperature`** (chunk-to-chunk prosody is not pinned the way studio pins it — the
-voices still are, by `speechConfig`), and **no `finishReason: OTHER`** (text:synthesize
-returns audio or an HTTP error), so only the HTTP/transport rungs of the ladder can fire —
-the prompt-shedding rungs are dead weight there, harmlessly.
-
-**Cloud enforces a hard 4 000-**byte** limit on the synthesis input, and that is the one
-thing about it that is not a fit.** `400 INVALID_ARGUMENT "Either `input.text` or
-`input.prompt` is longer than the limit of 4000 bytes."` Studio has no equivalent, so
-`TRANSCRIPT_CHAR_LIMIT` (3 000) is a *latency* number free to move when the endpoint is
-remeasured, while `CLOUD_INPUT_BYTE_LIMIT` is a wall no rung, retry or model change gets
-past. They are two constants for that reason — a future studio refit must not be able to
-reach across and break cloud's ceiling — and `_segment_cost` / `_chunk_limit` pick the
-active backend's.
-
-- **Bytes, not chars.** Secwépemc, Tŝilhqot'in, em dashes and curly quotes are 2–3 bytes
-  each, so a char budget over-states what fits by up to 7% on a short turn. The chunker
-  measures the encoded turns off the real payload rather than applying a fudge factor.
-- **The prompt is reserved, which assumes the stricter of two readings.** The message names
-  `input.text` and `input.prompt`, and the payload that met it had no `input.text` at all
-  while its `input.prompt` was 1 014 bytes — so the validator measures something it does not
-  name (most likely the markup flattened to text) and one 400 cannot say whether the 4 000
-  is per field or over the input as a whole. `CLOUD_PROMPT_BYTE_RESERVE` (1 200, covering the
-  worst prompt the ladder sends at 1 160) assumes the sum. Measured over ten episodes that
-  costs 10.1 requests an episode against 8.1 — two extra sampling draws, 0.4 more than studio
-  already makes. The other way round, every chunk 400s and the episode goes to OpenAI whole.
-- **The probe was asking a question production never asks.** `_probe_gemini_models` and
-  `_probe_gemini_rungs` sent the whole *unchunked* section, which on cloud is past the wall
-  before the model is ever reached: on 2026-09-12 `news` read **0/6 on both models** and
-  looked exactly like a dead endpoint. Both probes now send the largest chunk
-  `_balanced_chunks` would make, and print which it is.
-- There is a test sweeping every rung, both `continuing` values, turn lengths down to 30
-  chars and the real news/deep-dive size range against the wall — the invariant that would
-  have caught this before a probe did.
-
-**Cloud leads with pro (Option B), flash second** — and the reason given for it was wrong.
-"Audio output is $10/MTok on both, so pro buys the better dialog for ~free" is the studio
-price list; the [Cloud TTS page](https://cloud.google.com/text-to-speech/pricing) charges
-**Gemini 2.5 Pro TTS $1.00 in / $20.00 out per MTok against flash's $0.50 / $10.00**, and
-audio output is essentially the whole bill. On this surface pro is a **2x** decision, not a
-free one.
-
-**Measured on the first all-Gemini episode (2026-09-13, run 34746805021).** Audio tokens
-bill at 25/second, so a 20-minute episode is ~30k output tokens including the canary and the
-one pro chunk that timed out after being synthesized:
-
-| | pro | flash | OpenAI `tts-1` |
-|---|---|---|---|
-| audio out | ~30.6k tok @ $20/MTok = **$0.61** | @ $10/MTok = **$0.31** | 18.2k chars @ $15/1M = **$0.27** |
-| text in | ~9k tok @ $1/MTok = $0.01 | @ $0.50 = $0.005 | — |
-| ~30 days | **~$18.60** | **~$9.20** | ~$8.20 |
-
-**The render clock is the sharper cost.** That episode spent **832 s of the 1 500 s
-`GEMINI_RENDER_DEADLINE_S`** on pro — 55%, matching the ~830 s this section predicted — and
-one deep-dive chunk burned its full 142 s leash on pro before flash served the same request
-in 48.9 s. So pro costs 2x the money *and* half the headroom that keeps a bad night on
-Gemini's voices at all. Set the `GEMINI_TTS_CLOUD_MODEL` repository variable to
-`gemini-2.5-flash-tts` unless the dialog difference is audible enough to be worth both; the
-ladder already treats the slower model as the thing to fall past.
-
-**Default stays `studio` until the probe clears the 8/15 baseline — GA is not "measured
-here" until it is measured here.** Probe the cloud surface exactly like a new model, with a
-real key: `GEMINI_TTS_BACKEND=cloud python evaluate_tts.py --probe-models --section
-deep_dive` (TTS Eval workflow, `backend: cloud`).
-
-**The code default is still `studio`; production is not.** The repository variables now read
-`GEMINI_TTS_BACKEND=cloud`, `GEMINI_TTS_MODEL=gemini-2.5-flash-tts`,
-`GEMINI_TTS_FALLBACK_MODEL=gemini-2.5-pro-tts` — flash-first, as the cost table above argues
-for — and the nightly has been rendering whole episodes there since 2026-09-13. **Read the
-render log before reasoning about an episode's audio**, because the `studio` default in this
-file is not what shipped: the `[api] … service=gemini-cloud-tts model=… latency=` lines name
-the backend, the model and every chunk. On 2026-09-14 that is what separated "the endpoint
-is flaky" from "the request asked for it" — twelve calls, twelve first-attempt answers, and
-the defect was entirely in the prompt.
-
-**`READ_TIMEOUT_MS_PER_CHAR` was refitted against cloud on 2026-09-12 and did not move —
-but not for the reason the first cloud probe suggested.** Two probes, 3 calls per model
-each, both **6/6**:
-
-| section | request chars | pro median / slowest | flash median / slowest |
-|---|---|---|---|
-| `welcome` | 1 903 | 39.2 / 50.7 s | 24.9 / 33.3 s |
-| `news` (largest chunk) | 3 560 | 103.7 / 110.4 s | 64.1 / 64.4 s |
-
-**ms/char is not flat in request size on pro** — 26.6 at the small request, 31.0 at the
-large one — so fitting off the welcome number alone would have claimed a 1.5x tail margin
-that is really **1.29x** at the size that matters. Same over-confidence, from the same
-source, as the studio fit measured on one take. flash is nearly flat (17.5 → 18.1) at 2.2x.
-
-40 stays anyway, and this is the first evidence for it that is not inherited: **cloud's
-latency is predictable where studio's was not.** The three pro calls spread 9.6%
-(100.3 / 103.2 / 109.9 s) and the three flash calls 5.4%, against studio's r² = 0.14 and two
-similarly-sized calls 5.4x apart. A 1.29x margin on a tight distribution is worth more than
-1.55x on a long tail — the case for the GA surface, restated as a number.
-
-**What to watch is the render deadline, not the leash.** Pro at 29.1 ms/char median puts a
-full episode (~28 400 request chars) at **~830 s of the 1 500 s `GEMINI_RENDER_DEADLINE_S`**,
-against ~510 s on flash. Pro is not timing out — it is spending over half the render's Gemini
-budget on a clean night, so one exhausted ladder can push the episode past the deadline. The
-lever then is the `GEMINI_TTS_CLOUD_MODEL` repository variable (set it to
-`gemini-2.5-flash-tts`), not the leash constant.
-
-The leash's *scale* also differs by backend: cloud's request is the spoken turns plus a
-direction-only prompt, so its largest chunk prices ~156 s against studio's 191 s, and
-`READ_TIMEOUT_MAX_S` / `SECTION_BUDGET_S` stay non-binding on both — asserted in tests, per
-backend.
-
-**Nightly cutover is a variable flip, not a code change** — the plumbing is default-off. Set
-repository variable `GEMINI_TTS_BACKEND=cloud`, add secret `GEMINI_TTS_CLOUD_SA_KEY` (a
-service-account key with the Text-to-Speech API enabled), and — because cloud model names
-have no `-preview` suffix — optionally pin `GEMINI_TTS_CLOUD_MODEL` /
-`GEMINI_TTS_CLOUD_FALLBACK_MODEL` (unset uses pro/flash). `daily-podcast.yml` writes the key
-to `GOOGLE_APPLICATION_CREDENTIALS` only when the backend variable is `cloud`; a missing
-secret warns and falls to OpenAI rather than costing the episode.
-
-Google's Interactions API is now GA with `generateContent` marked legacy for speech, but it
-is still on `generativelanguage.googleapis.com` — the same quota pool as `studio`, so it is a
-request-shape change, not a reliability one. Port to it only if a probe shows the
-`generateContent` shape (not the surface) is holding the model back; the cloud backend is the
-surface change.
-
-#### Getting Gemini through a whole episode
-
-An episode is 6–9 independent Gemini calls, so per-call reliability compounds — in the week of 2026-08-01, seven of seven episodes fell back to OpenAI at or before the welcome section, and three shipped a Gemini cold open with an OpenAI show. Four mechanisms exist to stop that, in the order they fire:
-
-- **Canary (`gemini_tts.canary()`).** One tiny throwaway synthesis before any audio exists, run from `generate_audio_from_script`. A failed canary pins OpenAI up front, so a provider that is down costs one tiny call rather than a section's whole retry ladder — on 2026-09-02 that ladder spent 290 s of the render learning what a 3 s probe would have said. It probes the fallback model too, and pins it only if the primary is the one that's down.
-  **It does not make a mixed-voice episode unrepresentable, and it never did.** It front-runs only the *pre-render* case; the per-section fallback still leaves already-rendered sections in the earlier provider's voice, which is what 2026-09-01 shipped (Gemini cold open and welcome, OpenAI from the news on). **A mixed episode is an accepted outcome** — re-rendering good audio to force one voice spends the render clock and the OpenAI budget on nothing a listener asked for. What is *not* acceptable is a mixed episode that does not say so: `record_tts_render()` tracks every provider that spoke and `_compose_tts_credit()` names all of them, on the spoken credits, the citations sidecar and the episode description alike. Each candidate gets `CANARY_ATTEMPTS` probes, but only against a failure carrying no verdict — the same rule `_carries_no_shape_verdict` applies to the ladder. Every canary failure of the week of 2026-08-17 was a read timeout against an endpoint the 2026-08-13 probe had measured at 8/15 calls answering, so a single attempt was a coin flip that moved whole episodes onto OpenAI's voices; a tokenized rejection is still taken at its word and never re-asked.
-  **The probe has to ask the question the render asks.** It was one single-speaker turn at a 30 s leash, vouching for multi-speaker sections that get 75–120 s: on 2026-08-28 it passed and the same model then failed three multi-speaker sections in a row, so the episode was pinned to a provider that could not render it. `CANARY_SEGMENTS` is now two turns, one per speaker (still under the 10 words `_duration_ratio` needs before it will judge a clip), and `CANARY_READ_TIMEOUT` is `READ_TIMEOUT_MIN_S` — **a canary must never be stricter than the render**, or it fails endpoints the render would have waited out. That coupling means raising the floor raises what a *dead* night costs before the render starts: at 75 s, two candidates × `CANARY_ATTEMPTS` is ~310 s against ~190 s at 45. It stays coupled anyway — a probe that gives up sooner than the render is the more expensive mistake, because it spends the whole episode's voices rather than five minutes.
-  **It still only vouches for the multi-speaker shape**, and the cold open is usually one turn, which takes the `singleSpeakerVoiceConfig` branch: on 2026-09-02 the probe passed in 3.3 s and the single-speaker cold open that followed was rejected twice. Probing both shapes was considered and left out — a rung-0 rejection is not a dead provider (the same section succeeded one rung later on 2026-09-01), so vetoing Gemini on one would cost more Gemini days than it saves. `_ladder_summary()` names the shape in the degradation instead: the same information, on the day it matters, for no extra call.
-- **Retry ladder (`RETRY_LADDER`).** Each rung changes the *shape* of the request, not just the seed — `finishReason: OTHER` returns `promptTokenCount == totalTokenCount`, i.e. a rejection of what was asked, which reseeding cannot fix. Rungs shed the continuation note, then the audio profile and style block, then the tags. Backoff (0/15/45/90/90 s) is sized to outlast the minutes-long capacity windows the old 5 s/10 s ladder always died inside.
-- **Model ladder.** `GEMINI_TTS_FALLBACK_MODEL` is tried at rung 3, *before* the primary model with a bare transcript: voices are pinned by `speechConfig` on every rung, so a model change keeps the hosts sounding like themselves while a stripped prompt loses the direction. It resolves to whichever of `2.5-flash` / `2.5-pro` the primary is not, so this rung exists no matter what `GEMINI_TTS_MODEL` names — the 2026-09-03 collapse is the failure that rule exists to prevent, and it cost a whole episode's voices while every log line looked healthy.
-- **Failure-shape routing (`_carries_no_shape_verdict`).** The rung order above assumes a *rejection*. Exactly one failure here is one: `finishReason: OTHER`, which returns `promptTokenCount == totalTokenCount` — accepted, tokenized, refused. A read timeout, a dropped connection, a 429 and a 5xx all carry no verdict on the prompt, so on one the ladder keeps the request's shape and **swaps the model** (`_other_model`, alternating for as long as the budget lasts), and when there is no other model (`_model_override` pinned one, or both env vars name the same one) it re-asks the same full-quality request rather than shedding anything.
-  **The model choice is a third axis, not a rung.** It was a forward-only search of the rung ladder (`_next_model_rung`), which could change model exactly once: a transport failure at rung 0 jumped to the first fallback-model rung, and a transport failure *there* found no later rung naming a different model, so the chunk re-asked the fallback for the whole rest of its budget with no way back. On 2026-09-06 the deep dive met one HTTP 500 on the primary at rung 0 and then spent four attempts and 352 s on the fallback — each dying at the full read timeout, on a night the primary had already answered four other chunks. `_synthesize_chunk` now carries a `model_pin` alongside `rung_index`: the rungs own the *shape*, the pin owns the *model*, and a transport failure moves only the second. Alternating costs nothing — the same budget, spent asking both models instead of confirming one. A transport-set pin outranks the rung's `fallback_model` flag for the rest of the chunk, which is safe precisely because the alternation is already covering both. Prompt-shedding is not a retry strategy for a request that was never read: the two shedding rungs cost a full read timeout each and pushed the model rungs out of `SECTION_BUDGET_S` entirely — three timeouts spend 120+15+120+45+120 = 420 s, the budget exactly, which is why every August 2026 episode fell back to OpenAI mid-show and no model rung ever ran. The budget still allows three attempts; the change is *what* they ask, not how many there are.
-  **A 429 is a rate limit until proven otherwise — unless it names a spend cap.** Gemini answers an ordinary per-minute throttle with the same 429 `RESOURCE_EXHAUSTED` it uses for a spent quota, and taking it as a verdict gave both canary candidates away on one throttled call each on 2026-08-26 (two of three crons). A genuinely spent quota costs one extra tiny probe before it is believed; refusing to re-ask a rate limit costs an episode its voices. Note the asymmetry with `_billing_wall()` on the *script* side, which must match on credit wording and never on the status code — there the cost of reading a throttle as a wall is a skipped day.
-  **The one 429 that is a verdict is a spend cap** (`_is_spend_cap`, `SpendCapError`), and like `_billing_wall()` it is matched on the *wording* — `"Your project has exceeded its monthly spending cap"` — never the status. A capped project refuses every model on it until a human raises the cap or the month rolls over, so no rung, no backoff and no model rung reaches past it: `_carries_no_shape_verdict` returns False for it, the ladder hands the section back immediately, and `canary()` skips the remaining candidates instead of asking the same wall twice per model. On 2026-08-29 that wall cost four probes across two models, and would have cost four a night until Sept 1. The degradation names the cap, because "did not answer the pre-flight check" reads like a flaky endpoint and this one needs a person.
-  The 2026-08-13 probe (`--probe-gemini`, welcome section, 3 calls/rung) measured 8/15 calls succeeding, spread evenly across all five rungs — flaky endpoint, not a rejected prompt, and not a dead primary model. That is why a timeout is worth re-asking unchanged, and why the canary's verdict on the primary should be read as "slow right now", not "down".
-- **Budgets, and the leash that spends them.** `SECTION_BUDGET_S` bounds one chunk's ladder; `set_render_deadline()` (called with `GEMINI_RENDER_DEADLINE_S`) bounds all Gemini work in a render, so a provider that dies *after* the canary passed cannot eat the 40-minute render step one section at a time. `_budget_allows` reserves the attempt's own read timeout as well as its backoff, so a retry that cannot finish inside the budget is never started.
-  **`REQUEST_READ_TIMEOUT` was flat and that is what bounded the ladder's reach.** One 120 s leash covered a 354-char cold open and an 8 500-char chunk alike, so at 420 s a section afforded **two attempts** — and against the measured ~53%-per-call endpoint, two attempts is ~78% per section and **~17% across a seven-section episode**. That arithmetic, not any one outage, is why a whole Gemini episode kept not happening. `_read_timeout_for(segments)` now scales the leash by **request** chars, clamped to `[READ_TIMEOUT_MIN_S, READ_TIMEOUT_MAX_S]` = `[75, 210]`. Five attempts per section takes the episode to ~85%.
-  **It scaled on *transcript* chars until 2026-09-07, and that alone explains the shape of the failures.** The endpoint spends its time on the whole request, and the prompt scaffolding is not small — 771 chars for a single-speaker turn, 1 060–1 260 for a multi-speaker chunk (audio profile, performance notes, transcript marker, a `Riley: ` label per turn). So 32–36% of every news and deep-dive request went unbudgeted: about **50 seconds of missing leash**. The floor hides it and the scale only bites past ~1 875 transcript chars, which is exactly the line between the sections that worked and the sections that did not — cold open (333–373) and welcome (669–1 012) price under the floor and succeeded; news and deep-dive chunks (2 200–2 775) got the scaled value and failed. Two chunks on 2026-09-06 settle it: a 3 538-char request leashed at 90 s **answered at 89.8 s**, while a 3 446-char request the same night was leashed at 88 s and cut off at 88.1 s, four times. The leash was set below the slowest *successful* call at its own size. **Budget the request, never the transcript** — `_transcript_chars` still governs chunking, which is right, because that is what the model has to speak.
-  **The constants are provisional and instrumented for refit.** Every call logs `latency=` and `limit=` alongside `chars=`, success and failure alike — pair those across a few episodes and refit `READ_TIMEOUT_MS_PER_CHAR`, the same way `_SPEECH_RATE_FITS` was fitted from the transcript sidecars. Nothing recorded latency before, which is how a flat 120 s survived unexamined for the life of the integration.
-  **Before refitting it again, know that the fit is weak.** Across the 38 calls logged 2026-09-05..07, request size explained **14% of the variance** in latency among answered calls (r² = 0.14), and two calls within 5% of each other in size came back 5.4x apart (16.7 s vs 89.8 s). Latency on this endpoint is dominated by server-side queueing, not payload. So 40 ms/char is a **tail** margin — ~1.55x the slowest answered call (25.7 ms/char, 55.1 s for 2 144 chars) — not a central estimate, and a refit that fits the mean will re-create the under-leashing this replaced. The honest alternative that r² = 0.14 actually argues for is dropping the scaling entirely for a flat leash sized to the tail; that is the change to weigh next time, rather than a fourth refit of the slope.
-  **The floor was the stale half of that fit, and it is what a small section actually gets.** The formula wants 15.9 s for a 398-char cold open and the clamp lifts it, so the floor was never "3x observed" — it was 3x the single take the constants were fitted to. The same request measured **27.9 s** on 2026-09-03 and two of that section's four attempts died at exactly 45.0 s and 45.1 s, so the floor is now **75 s**. This is a hypothesis, and the counter-evidence is in the 2026-08-13 probe: 7 of 15 calls failed against a flat 120 s leash, so a longer wait does not convert every timeout into a take. What it buys is that a slow-but-alive call stops being indistinguishable from a dead one at exactly the leash.
-  **The chunk was the other half, and it is the half that was actually failing.** At
-  `TRANSCRIPT_CHAR_LIMIT` 8 500 the news roundup was one request every night — 6 382, 6 686,
-  7 410, 7 453 and 8 521 chars over the five episodes to 2026-09-05 — and it is the section
-  Gemini kept dying in. On 2026-09-05 it went out three times at 6 894 chars and came back
-  unanswered at **120.2 s, 120.1 s, 120.2 s**: stopped by the clock every time, never by a
-  verdict. The formula wanted 276 s for that request and the clamp handed it 120, so on the
-  largest chunk of every episode the fit was not loose, it was **inverted** — and the comment
-  claiming the clamp "only ever cuts the small ones" was true of the 8 500-char chunk in
-  exactly the wrong direction.
-  **Both constants moved together.** `TRANSCRIPT_CHAR_LIMIT` is 3 000, sized to what the
-  endpoint has been measured to *answer* rather than what the model will accept: the same
-  night's successful calls ran 46–62 chars/s (2 226 chars in 48.0 s and 48.2 s), so a
-  ~2 400-char chunk is a ~50 s call with 2x headroom, and the roundup becomes three of them.
-  `READ_TIMEOUT_MAX_S` is 210, chosen so the ceiling does not clamp any chunk the render can
-  make. There is a test asserting that, because raising the chunk limit without raising the
-  ceiling restores the clamp silently, which is the failure that cost a month of episodes
-  their voices.
-  **The invariant is empirical, not "by construction", and it was mis-measured until
-  2026-09-07.** The test computed `TRANSCRIPT_CHAR_LIMIT × MS_PER_CHAR` and passed at a 150 s
-  ceiling on exactly the nights every large chunk was under-leashed by ~50 s — it was
-  guarding the transcript while the leash is spent on the request. It now measures through
-  `_read_timeout_for` over a sweep of real chunk shapes, because scaffolding grows with *turn
-  count*: the same 3 000 transcript chars price differently as 11 long turns or 100 short
-  ones. The worst chunk across the whole back catalogue (223 scripts) wants 172 s; the sweep's
-  synthetic 30-char-turn shape wants 191 s. What is **not** bounded is a chunk of arbitrarily
-  many one-word turns, which no script has produced — if the ceiling starts clamping, measure
-  that before raising it again.
-  The price is extra independent sampling draws — the reason 6 000 was raised to 8 500 in the
-  first place — which the pinned seed, low temperature and `speechConfig` voices mitigate. A
-  chunk that never returns costs the whole episode its voices, which is the larger price.
-  **`_balanced_chunks` chooses the chunk COUNT first, then splits evenly.** Greedy packing
-  fills to the limit and leaves the remainder in a runt: 6 382 chars packs to 3 000/3 000/382,
-  and that tail is a whole extra request plus an extra sampling draw dropping three seconds of
-  differently-sampled audio at the end of the segment. It also does **not** borrow
-  `_split_segments_by_char_limit`'s +120-chars-per-segment SSML estimate — that is an Azure
-  concern, and counting it charged a 27-turn roundup 3 240 phantom chars and bought two
-  requests nobody needed. Gemini is sent plain speech with one fixed prompt block per request.
-
-  **`SECTION_BUDGET_S` moved with it (420 → 540 → 660 → 950), because the budget and the leash trade against each other.** At 420 s a 45 s-leash section afforded four attempts (0+45, 15+45, 45+45, 90+45 = 330 s); at 75 s the same budget affords three, so raising the timeout alone would have bought longer waits by silently spending an attempt. 540 s kept four at a 75 s floor; 660 kept four once a full chunk got a 120 s leash. Moving to request-char budgeting took the worst chunk's leash to 191 s, which 660 affords only twice — hence 950. Two bounds bracket it from opposite sides, both asserted in tests: four attempts at the worst *real* leash must fit (150 + 4×191 = 914 ≤ 950), and four at the *ceiling* must not (150 + 4×210 = 990 > 950), so a request clamped at the ceiling still fails fast. `GEMINI_RENDER_DEADLINE_S` deliberately does **not** move — the trade is tighter now (1 500 s affords ~1.7 exhausted sections rather than 2.3), and that is the right side to be on: a night where two full ladders have already failed belongs to OpenAI, and the deadline saying so sooner is the behaviour it exists for. Watch for `render/gemini-*` degradations that start naming the deadline rather than the ladder. **Move the leash, the chunk limit and the budget together or not at all.**
-
-**Ordering rule:** degrade delivery nuance before voice identity. Anything that changes *who the hosts sound like* is the last resort — a model change (which keeps the pinned `speechConfig` voices) always comes before dropping the show onto OpenAI's. That ordering is why the whole-episode decision is made up front where it can be; it is not a promise that every episode is single-provider, which the per-section fallback has never been able to keep. When the episode does end up mixed, the credit says so.
-
-#### Nothing speakable in the prompt that isn't meant to be spoken
-
-Sections used to be primed with the previous section's *verbatim* transcript tail (400 chars) under a `CONTEXT — already spoken immediately before this, do not repeat` header, so delivery continued instead of resampling cold. On 2026-08-17 the welcome section read the entire cold open aloud before its own first line and the episode opened with the teaser twice: 92.8 s of audio for a 969-char transcript, against 65–76 s on the six prior Gemini episodes, an excess matching the 25.5 s cold open.
-
-The prompt shape was the same on all seven days and so was the model, so there is no wording that makes it safe — asking a text-to-speech model not to say words you have handed it is a request it honours most of the time. It is now `continuing: bool` and a fixed `CONTINUATION_NOTE` directive (`gemini_tts`), which carries the same "open mid-flow" intent with nothing quotable in it. **Never reintroduce prior dialogue into a TTS prompt.**
-
-`gemini_tts` cannot import `degrade()` without a circular import, so it records degradations and the render path drains them via `_report_gemini_degradations()`. **A new fallback in `gemini_tts` must append to `_degradations`** or it will not reach the run report.
-
-Two probes, asking different questions — both are `TTS Eval` workflow inputs that write their table to the job summary, and both spend real budget:
-
-- `--probe-gemini` (`probe_gemini`) asks **what shape** Gemini will accept: the same text with progressively less prompt around it. Rung 0 failing while a later rung passes names the element Gemini is rejecting; every rung failing equally is an outage or a quota wall, not a prompt problem.
-- `--probe-models` (`probe_models`) asks **which model answers, and how fast**: N real section requests per candidate, reporting answer rate and median/slowest latency. This is the one to run before trusting a nightly to a new model, and its slowest column is what `READ_TIMEOUT_MS_PER_CHAR` should be refitted against.
-
-**`GEMINI_TTS_MODEL` is a repository *variable*, never a secret.** A model name is not a credential, and sourcing it from `secrets` made GitHub mask it everywhere — on 2026-08-28 the log could only say a request went unanswered on `***`, so the run report could not name the model that failed. `canary()` also prints the candidate list before probing it, so a withdrawn or misspelled model name reads as itself rather than as an outage.
-
-### Brave spend (`_brave_search`, `_BRAVE_WALLS`, the three call budgets)
-
-**Two plans, two meters** (since 2026-08-29). Search is $5/1000 requests against a
-self-imposed **$10 monthly** spend limit — 2,000 requests — and Answers is $4/1000 queries plus
-$5/MTok each way, held to its **monthly free credit** with no paid overage. Both refuse past
-their limit rather than billing on, so a 402 can arrive on any day of the month. The pipeline's
-job is to spend each month's calls on work that reaches the listener, and to stop instantly
-once one of them has nothing left.
-
-**The fallback crons are the multiplier that spends a month.** The workflow fires at 1:05, 2:05
-and 3:05 Pacific; the later two exit on the idempotency check and cost nothing — unless the
-first run failed *after* spending, when the day costs three full sets of calls (2026-08-23).
-Triple-cron days are the pathology the per-run ceilings exist to bound, not the ordinary one.
-
-**The Search cap is shared with `super-rss-feed`, and the estimate here was a third of the
-truth.** Brave's per-key export for 2026-09-01..22 put one Search key — used by both repos —
-at ~103 requests a day, ~2,260 for the period, already past $10 at list price. This file said
-a normal day was ~16. The feed's own log accounts for ~47 a night, which left the podcast at
-40–55, above the 28 its two ceilings allow: `_filter_sparse_news_articles` searched through
-`_brave_search` directly, once per thin article, and body fetching stops at 40 of a ~80-article
-pool, so everything past #40 bought an unmetered search. It now tries the feed's free
-`_excerpt` first and charges the rest to the SEARCH budget. **Only the two rate-limit wrappers
-may call `_brave_search`.** Read the per-key export in the Brave dashboard before trusting any
-figure in this section, including this one.
-
-**A 402 is a wall and closes that meter for the run** (`_is_brave_billing_wall`,
-`_trip_brave_wall(error, meter)`, `_brave_walled(meter)`). Unlike a 429 a 402 has no throttle
-reading — Brave words it plainly, `current_spend` past `usage_limit`. The Answers endpoint had
-disabled itself on a rejection since it was written; Search had no equivalent, so on 2026-08-29
-the Search plan hit its cap (then $15) on the **first call of the run** and the pipeline made 17
-more, every one refused. The wall is checked inside `_brave_search` rather than in the rate-limit
-wrappers, so the paths that call straight through (`_resolve_script_questions_with_brave`) get
-it too.
-
-**Two plans means two keys.** A Brave subscription token is scoped to one plan — subscribing to
-a second requires generating a key under it — so the Search token does not authenticate against
-Answers. `_brave_answers_key()` reads `BRAVE_ANSWERS_API_KEY` and falls back to
-`BRAVE_SEARCH_API_KEY`, which is what every deployment had set and what is right while one plan
-serves both endpoints. **`_brave_summarize` resolves its own key rather than taking the
-caller's**: every caller in the pipeline holds the Search token, so passing it through was how a
-wrong-subscription request would have looked deliberate. A 401/403 is a verdict on the key
-(`_is_brave_auth_failure`), not on the payload — it disables the endpoint without spending the
-second request shape, and the degradation names the env var to set rather than reporting an
-outage.
-
-**The two walls are separate because the two plans are.** They shared one flag while they
-shared one meter, and keeping that after the split would cost an episode its research twice
-over — the 2026-08-29 Search cap would have closed an Answers plan that had just been paid for.
-**A spent meter is now a reason to ask the other one, not to give up:** once the Search plan
-is out — walled, or over its deep-dive budget (`_brave_deep_dive_open`) —
-`_web_search_tool_executor` routes every query to Answers regardless of the `mode` the model
-asked for, and snippets remain the documented fallback when Answers is the one that is out.
-
-**A dead search endpoint must not be reported as an editorial finding.** The agentic research
-pass's only tool is web search, so with *both* meters closed it is skipped rather than run to a
-`NONE` it was always going to reach — on 2026-08-29 it made four refused searches and printed
-`No research warranted for this deep dive`, which reads as a judgment about the material. One
-meter going out is not that, since the executor asks the other, so both the pre-gate and the
-mid-pass `NONE` attribution read `_brave_research_available()` rather than a single flag.
-
-**Three budgets, because the three kinds of call are not worth the same.**
-
-| Budget | Path | Nature |
-|--------|------|--------|
-| `BRAVE_SEARCH_CALL_LIMIT` | `_fetch_article_body` thin-body backfill | **Speculative** — runs over up to 40 *pre-curation* candidates, of which ~15 air |
-| `BRAVE_DEEP_DIVE_CALL_LIMIT` | research, deep-dive enrichment, script-question resolution | **Demand-driven** — runs on material already selected |
-| `BRAVE_ANSWERS_CALL_LIMIT` | `_brave_summarize` — the same demand-driven paths, on the other plan | **Credit-bound** — one small monthly credit to spread over ~30 days of runs |
-
-The first two were one counter until 2026-08-29 (`_brave_deep_dive_rate_limit` was written for
-this and never called), and **the speculative path runs first** — so any single limit would have
-been spent entirely on backfill for stories the roundup then dropped, before the deep dive
-asked for anything. Splitting them is what makes a limit safe to set at all; both defaulted
-to `0` (disabled) and bounded nothing. The defaults (12/16) bound a runaway day rather than a
-normal one — 2026-08-29 used 10 and ~6 — so a budget that bites is a signal the pool was
-unusually thin, and it says so in the run report. The demand-driven ceiling went 10→16 for the
-election roster sweep (`EVENT_RESEARCH_SEARCH_LIMIT`, see the `event_focus` section), which
-fires only on a day whose `event_focus` carries a `research` brief; on every other day nothing
-asks for the headroom.
-
-**Answers is never reached from the speculative path.** A synthesized prose answer is the wrong
-instrument for thin-body backfill and the expensive one to run over 40 pre-curation candidates,
-so only the demand-driven callers ask it. Its budget counts **every request sent**, not each
-query answered — a shape probe is metered like an answer — and the default of 8 comes to ~250
-queries and ~$0.99 in query fees on a normal month, ~750 and ~$2.98 on a month full of
-triple-cron days. **The token half of that price is unmeasured, and it is the whole headroom
-left in the credit**, so every call logs the `usage` block Brave returns
-(`_log_api_call("brave-answers", …)`); refit the limit off a measured month the way
-`_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
-
-**The remaining lever is structural, not a limit:** the backfill spends up to two queries per
-article (title, then URL) across 40 candidates before curation cuts to 15. Moving it after
-curation is not free — `theme_adjacent` classification reads the body — so it is a real
-change, not a config tweak.
-
-### Cohere Enrichment (`cohere_enrichment.py`)
-
-Optional (`USE_COHERE=1`). Three stages:
-1. Evolving-story detection via embedding cosine similarity (threshold 0.88) against 7-day citations
-2. Intra-batch clustering to suppress duplicate articles (threshold 0.85)
-3. Deep-dive reranking via Cohere Rerank endpoint
-
-All public functions return `None` when disabled; callers fall back to string-matching transparently.
-
-### Bespoke Episodes (`generate_bespoke.py`)
-
-Long-form debate episodes triggered manually or when 3+ content seeds share the same tag (`seed.py`). Same Riley & Casey personalities but no news roundup — entire episode is a deep dive. Output goes to `podcasts/bespoke/`. Optional Brave Search expansion for source gathering.
-
-### PSA Selection (`psa_selector.py`)
-
-Event-driven: 7-day lookahead for awareness dates. Round-robin fallback cycling through `psa_organizations.json` with 28-day minimum between repeats per org. State persisted to `psa_rotation_state.json`.
-
-### Daily Review → Roadmap (`episode_review.py`, `podcasts/roadmap_ledger.json`)
-
-The review narrates each night's run; the distillation turns it into work. That distillation
-was being done by hand (7d3fd10, four reviews in), which is the part that stops happening.
-
-**Recurrence is the signal, and it is counted locally.** What made the hand-written section
-worth reading was not any one night's narrative — it was that the same items came back. So
-the Claude call is narrow: one day's labelled facts in, candidate findings out. The dedup,
-the counting and the rendering are Python, because they are arithmetic and a model that can
-restate a number can also restate it wrong (the same reason `render_numbers_table` is
-templated). One Haiku call a night, ~3.5k input tokens, schema-constrained via
-`json_output_config`.
-
-**An item reaches ROADMAP.md on its `ROADMAP_MIN_OCCURRENCES`'th sighting, not its first.**
-One bad night is an incident. This is also what makes "return an empty list" a safe answer
-for the model, and the prompt says so twice — a distiller that must find something finds
-something, and a roadmap that grows every night is one nobody reads.
-
-**The file is read before it is written.** `episode_review.py` owns only what lies between
-`<!-- reviews:begin -->` and `<!-- reviews:end -->`; everything else in ROADMAP.md is
-untouched, and a file missing the markers is left alone entirely. A human answers by checking
-a box: `harvest_checked` closes that item and resets its counter, so tomorrow's review
-mentioning it again cannot reopen it — but a problem that is genuinely still happening earns
-its way back after `ROADMAP_MIN_OCCURRENCES` more sightings. Never blocklisted, never
-resurrected on one mention.
-
-- **Seeding, not competing.** `parse_section` is the inverse of `render_section`, so the
-  hand-written items became the ledger's first entries on first run rather than being
-  duplicated by a second list underneath them. It also means no id is ever written into the
-  markdown — an item is matched back by its title.
-- **Ids drift, titles do not.** The model coins the id, and the same finding came back as
-  `credit-balance-preflight` and `credit-balance-not-usage-limit` in testing. `_match` tries
-  the id, then a `difflib` ratio ≥ 0.72 on the title.
-- **The first sighting's wording is kept for the life of the item.** A detail rewritten
-  nightly is a daily diff on a file nobody asked to change. For the same reason the block is
-  in ledger order rather than sorted by recurrence, and its header dates the *reviews that
-  produced the items shown* rather than the run — dating it by the run put a one-line diff on
-  ROADMAP.md every night, which is how a generated file teaches its reader to skip it.
-- **Retirement is only for items the tool wrote** (`source: "review"`), after
-  `ROADMAP_RETIRE_DAYS` (14) of silence — a quiet week is not a fix. Seeded and hand-written
-  items are exempt: a human wrote them, only a human closes them. Retired items stay in the
-  ledger and a recurrence puts them back.
-- **It runs after the review is on disk**, inside a `try`, and `main()` swallows what escapes.
-  A day without a distillation costs the roadmap a day; a distillation that raises would cost
-  the review. Skip it with `--no-roadmap`; `--no-llm` and `--dry-run` already imply it.
-
-The `review` job stages `ROADMAP.md` and the ledger alongside the review — a stage that writes
-a tracked file that no step stages sits permanently dirty and breaks the next rebase.
-
-### The Sunday Meta Moment (`get_weekly_changelog`, `generate_meta_moment_text`)
-
-One Haiku call turns the week's commit subjects into a short Riley/Casey segment about
-changes to the show itself. The input is `git log --since=7d` over `GENERATION_PATHS`
-(`review_scripts.py`) — subject lines only, minus merge commits and minus the embargoed
-delivery surfaces in `podcast.json`.
-
-**The failure mode is invention, and the old prompt demanded it.** A week's commits are
-usually plumbing — "Split the Brave meters: Answers is its own plan now" has no
-listener-facing form at all — while the prompt asked for the 3-4 most listener-noticeable
-changes and 320-400 words regardless. A model asked for four good answers where none exist
-supplies four: three of the four Sundays to 2026-08-30 aired a "weekly inspiration harvest"
-that was never committed, and 08-30 backed it with a Ktunaxa Nation story that did not
-exist. The instruction against it ("never fabricate names or details not in the commit
-list") had been in the prompt the whole time.
-
-- **NONE is a first-class answer**, with the segment lengths tiered by how many entries
-  genuinely reach a listener. Same shape as the roadmap distiller's empty list, and as the
-  weekly anchor's escape hatch: a segment that must find something finds something.
-- **The escape hatch had three thumbs on it and no definition of what qualifies** — "most
-  weeks the honest count is zero", "NONE is always a safe answer", "a week of internal
-  plumbing is a NONE, not a challenge" — against one unglossed phrase, "a consequence a
-  listener could notice". On 2026-09-06 a week carrying *Rank the Cariboo civic day on home
-  jurisdiction, and center the WL election* and *Recall election stories for the civic day*
-  came back NONE. The over-correction from the fabrication problem is its own failure: the
-  prompt now says what counts (what the show picks, what order it airs things in, what the
-  hosts say, how it sounds) and what does not (logging, retries, budgets, file layout), and
-  asks for an honest count **in both directions** — never pad the list, and never drop a
-  qualifying change because the segment would be short.
-- **The reply cites before it speaks.** `COVERED: <commit line>` above the dialogue,
-  matched back against the real subjects at `difflib` ratio ≥ 0.9 (`_meta_moment_covered`).
-  A change the model made up has no line to copy.
-- **Names are checked, not requested** (`_meta_moment_unknown_names`). Any capitalized word
-  the dialogue can't source from the commit list, the host roster, the show title, the
-  territory acknowledgment or the show's own place names (`local_places` / `home_places`)
-  drops the segment. The place list is load-bearing and was missing: a commit writes "the WL
-  election", a host reading it aloud says "the Williams Lake election", and the guard called
-  Williams Lake an invention. Naming a place the show is *about* is never the fabrication
-  this is looking for. Sentence-initial words, possessives and
-  quoted asides are excluded — verified against the four aired segments, which flag only
-  the fabrications. This is the phrase-ledger trade: measure the output instead of
-  lengthening the ban.
-- **Every Sunday without the segment `degrade()`s under `script/meta-moment`** — a guard
-  drop *and* a NONE. A quiet week is a legitimate answer and not an error, but it is still a
-  Sunday that aired without its Sunday segment, and until 2026-09-06 the only trace of that
-  decision was one line in the job log. "Was that by design?" is a question the run report
-  should answer without anyone reading the log.
-  - **That promise had three holes and 2026-09-13 fell through one.** The segment vanished
-    with no API call, no print and no row: `script/day-specific-inserts` opened and closed
-    empty. The paths that skip *before* the model — an empty changelog, a missing client —
-    and the caller's drop when the script carries no `**COMMUNITY SPOTLIGHT**` to splice
-    ahead of all returned `""` in silence, so only the model's own NONE was ever reported.
-    All three degrade now.
-  - **An empty changelog is not evidence of a quiet week.** `_git` returned `""` for a
-    *failed* command as readily as for no commits, which made the two indistinguishable —
-    the same silence, from the same helper, that left every `reviews/review_*.md` a bare
-    header since launch (`periodic-review.yml` checked out at depth 1, so `git log --since`
-    had no week to read; it now checks out `fetch-depth: 0`). `_git` prints the exit code
-    and stderr now, and the degradation says the row cannot tell which of the two it was.
-- **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
-  hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
-  week with no transcript commit; it now appears only when a commit earns it. The prompt
-  teaching the tic is the same failure `genuinely` documented above.
-- The last turn hands off **in general terms** — the Meta Moment is spliced ahead of the
-  community spotlight and has not been told what follows it. On 2026-08-30 it previewed a
-  deep-dive story two segments away, and invented that too.
-
-### Inbound mail, and who caught it (`email_ingest.py`, `config/blocklist.json`)
-
-Gmail items land in `podcasts/email_queue.json` as `newsletter`, `feedback` or `correction`.
-Feedback and newsletters wait for their theme day; a correction is never theme-gated and airs
-as the final beat of the next roundup (`docs/corrections-policy.md`).
-
-**The queue is committed to a public repo.** Senders are masked, and `_sanitize` redacts
-email addresses and phone numbers from bodies (`_redact_contact_details`), because a
-signature carries both. Before the recipient allowlist (2026-07-25) the ingest also queued
-personal mail as "feedback"; those items were removed on 2026-09-23 but remain in git history.
-
-**The producer is not a listener.** On 2026-09-02 a correction Erich sent himself aired as
-"A listener named Erich wrote in… Thanks, Erich" — the writer had only the body's signature to
-go on, and a signature is not provenance. `config_loader.is_producer_sender()` answers it from
-`config/blocklist.json` → `email_producer_senders`, and `email_ingest` stamps `from_producer`
-onto the queued item.
-
-- **It is decided at ingest because that is the last point identity exists.** The stored
-  address is masked (`z***@gmail.com`) so the queue can be committed; a masked address matches
-  every gmail sender whose name starts with the same letter, so the pipeline reads the flag and
-  never re-derives it.
-- **Only the attribution changes.** Production mail is queued, theme-gated and aired exactly
-  like listener mail; the prompt block labels each item `[Listener correction]` or
-  `[Production correction]` and says the show owns the in-house ones ("we caught this on our
-  end"), never names the producer on air, and thanks a listener only for a listener's catch.
-- **The block header stays `LISTENER CORRECTIONS`** even when every item is in-house — the
-  placement and fabrication rules in `prompts.json` key on that exact name. Who caught it is
-  per item, because that is what varies.
-- **The fabrication guard covers both shapes.** `_corrections_ground_truth` and
-  `strip_unsourced_correction` now treat an uncited "our production team caught…" the way they
-  always treated an uncited "a listener flagged…" — the new wording is as inventable as the old.
-
-### Sibling Repository
-
-`super-rss-feed` scores and categorizes articles, publishing `feed-podcast-{dayname}.json` to its GitHub Pages URL. The podcast generator fetches this at runtime. Deploy order matters: super-rss-feed must deploy before the podcast generator runs. See `SIBLING_REPOS.md` for integration details.
+| `disciplines.json` | Topic taxonomy for roundup grouping |
+| `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only) |
+
+**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`.
+
+### Curation — see [docs/decisions/curation.md](docs/decisions/curation.md)
+
+**Themes** (weekday 0=Mon): Arts, Culture & Digital Storytelling · Working Lands & Industry · Gear, Gadgets & Practical Tech · Indigenous Lands & Innovation · Wild Spaces & Outdoor Life · **Cariboo Local Affairs** (Sat, longer, 15 articles) · Science, Wonder & the Natural World.
+
+**Saturday is geographic** (`geographic: true`): every candidate is local, so a place-name hit is a constant, not a signal.
+- `_build_theme_subject_keywords` strips places and ranks on civic vocabulary.
+- `home_places` (Williams Lake, the CRD and its electoral areas, SD27) outranks neighbour towns. It is an **ordering rule, not an exclusion**.
+- A geographic day is never a routing target for held articles.
+
+**`event_focus`** is a date-bounded civic event: the Williams Lake 2026 local election, window to Oct 24.
+- **It is named on air.** No endorsements: report the races and the candidates' stated positions, never rank them.
+- Name every race and name people, not roles. Report a previous run's outcome, **loss included**.
+- Everything is bounded by **SOURCED OR UNSAID**: a claim comes from the day's articles or the research block, and an unestablished record is said to be unestablished.
+- `event_focus.roster` settles **who is running and nothing else**. A race with no names renders as `NO FILED LIST`.
+- `docs/wl-2026-election-candidates.md` and the JSON must carry the same names (a test enforces it).
+- An election story airs the day it breaks and is also booked back (`status: 'recall'`) for the next civic episode, tagged `_recalled_from` so the hosts say they covered it.
+- The event vocabulary is never folded into `_build_theme_subject_keywords`: "campaign" and "ballot" would admit US politics.
+- **When a Saturday deep dive looks wrong, check the upstream theme score in `super-rss-feed` before touching the ranking.**
+
+**News roundup.** The story count comes from airtime (`NEWS_ROUNDUP_COUNT`, ~70 words each), not appetite. A story that can't get its floor is cut, never compressed.
+- `NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. `all_articles` is the curated pool; never concatenate the pre-curation `bonus_articles` back in.
+- Blocks air in order: `local` → `theme` / `theme_adjacent` → discipline groups → `standalone` → `kicker`. No discipline cluster takes more than `ROUNDUP_CLUSTER_MAX` (3) slots outside the arc blocks.
+- `_sequence_roundup` is a chain, not a regroup (the block's lead never moves), and runs at both consumers.
+- `_infer_discipline` counts word-boundary hits, never substrings.
+- `script/curate` degrades when the theme block is thin. **Read that as a scoring problem, not a supply problem.**
+- Hosts never announce blocks, counts, or the running order.
+- **LOCAL ELECTION RACES** is a standing roundup rule: keep each town's race distinct, never borrow a name across races.
+- NO HEADLINE CRAWL. DO NOT MANUFACTURE CONNECTIONS: if the shared thing can't be named plainly, move on.
+
+**Super-cycles.** Each topical weekday rotates a multi-week focus, calendar-derived (`get_focus_for_day`) and **never announced on air**. Holding (`route_articles_for_focus`) parks off-theme articles for their day within 14 days, flagged `_held_from`.
+- **Never hold a local story.**
+- Route both the theme and bonus buckets. A slot matches on its theme **or** focus keywords.
+- Keyword sets that **gate** a decision are strict (`_build_strict_theme_keywords`); description prose is for ranking only.
+- `_no_deep_dive` is honoured by `select_deep_dive_from_feed`.
+- A released article is re-labelled for its new day (`_relabel_for_day`), and its stale theme scores are dropped, not rewritten. A story imported for today must not be droppable by the run that imported it.
+- The export decision reads the feed's **raw** charter score (`_theme_score_raw`), never the percentile.
+
+**Opinion and crime are filtered upstream** (`super-rss-feed` → `podcast_content_exclusion()`). When one reaches an episode, read that repo's `config/podcast_schedule.json` → `excluded_content` before touching anything here.
+
+### Editorial voice — see [docs/decisions/editorial-voice.md](docs/decisions/editorial-voice.md)
+
+**Weekly anchor** (`weekly_anchor.py`) — one open question per ISO week, **named on air**, circled by all seven deep dives.
+- It is pinned in `weekly_anchor_state.json` on the week's first run; every later run reads it back.
+- No repetition by **dimension** (26-week cooldown) as well as by id.
+- It frames, never selects.
+- The prompt's escape hatch (drop the anchor when the material doesn't reach it) is load-bearing, and tested.
+
+**Naming a nation.** The three house nations describe the Cariboo and nowhere else. Name a nation only for its own territory, and only when a source names it. **Naming the wrong people is worse than naming none.**
+- `script/territory-check` (`native_land.py`) only ever disconfirms. A crowd-sourced map may remove a claim; it must never supply one.
+- The land acknowledgment is exempt by construction (`local_places`).
+- `NATIVE_LAND_API_KEY` is a secret; degradation rows record only the exception type.
+
+**AI tells** (`config/ai_tells.json`, `podcasts/phrase_ledger.json`).
+- A new pattern family goes in `soft_patterns` unless the extra Opus escalation is intended and costed.
+- **Never use a burned phrase in prompt prose** (a test enforces it). The model copies its instructions' register.
+- The phrase ledger burns spiking adverbs only; multi-word tics go in `hard_banned` by hand.
+- The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
+- `script/tell-scrub` runs after the cold open.
+- **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
+
+**Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.
+- **NONE is a first-class answer.**
+- The reply cites its commit lines (`COVERED:`) before it speaks, and unknown capitalised names drop the segment.
+- Every Sunday without the segment `degrade()`s, whatever the reason.
+- Nothing listener-facing goes into that prompt unconditionally.
+
+**Inbound mail** (`email_ingest.py`). `podcasts/email_queue.json` is public: senders are masked and contact details redacted at ingest.
+- "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address.
+- The block header stays `LISTENER CORRECTIONS`; attribution is per item.
+- A correction airs as the final beat of the next roundup (`docs/corrections-policy.md`).
+
+### TTS — see [docs/decisions/openai-tts.md](docs/decisions/openai-tts.md)
+
+**OpenAI `tts-1` is the nightly provider**: `nova` (Riley) + `echo` (Casey), per-turn, in parallel. `OPENAI_TTS_MODEL` selects the model. The steerable `gpt-4o-mini-tts` was tried and reverted: no `speed`, and the acoustic scene resampled mid-turn.
+- `_SPEECH_RATE_FITS` is keyed by model. Refit it from the transcript sidecars, never by assumption.
+- Every take is checked for duration (`_expected_speech_ms`, retry below 0.80) and amplitude (`_is_silent_take`). **A turn that won't render is cut, never shipped as silence**, and the cut is `degrade()`d.
+- Credits name every provider that actually rendered audio (`_compose_tts_credit`). `get_active_tts_provider()` is the routing answer and must not be used for a credit.
+
+**Gemini multi-speaker TTS is parked** — [docs/decisions/gemini-tts.md](docs/decisions/gemini-tts.md) holds its exit criterion and 45 KB of history.
+- The code, tests and TTS Eval workflow stay, and `tts_provider=gemini` still dispatches.
+- Don't tune, refit or extend it while parked.
+- **Never put prior dialogue into a TTS prompt.**
+
+### Smaller subsystems
+
+- **Cohere** (`cohere_enrichment.py`, `USE_COHERE=1`): evolving-story detection, intra-batch clustering, deep-dive rerank. Every public function returns `None` when disabled; callers fall back to string matching.
+- **Bespoke episodes** (`generate_bespoke.py`) are **parked**: one episode (March 2026). The code and workflow stay because `seed-content` still triggers it when 3+ content seeds share a tag.
+- **PSA selection** (`psa_selector.py`): 7-day lookahead for awareness dates; otherwise round-robin, 28 days between repeats per org.
+
+### Sibling repository
+
+`super-rss-feed` scores the articles and publishes `feed-podcast-{dayname}.json`; it must deploy before this pipeline runs. This repo reads its underscore fields (`_is_bonus`, `_keyword_matches`, `_theme_score`, `_theme_score_raw`, `_excerpt`, …) — see `SIBLING_REPOS.md`. **A claim in this file about `super-rss-feed` is not a change in that repo**: read its config before trusting one.
 
 ## API Cost Discipline
 
 Treat API budget as a first-class constraint on every change.
 
-- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for review escalation when deep-dive sourcing is thin (<3 articles). Opus 5 costs under 2x Sonnet 5 ($5/$25 vs $3/$15 per MTok), not the ~5x the tier gap once did — the gate stays anyway, since the escalation buys nothing on a well-sourced day.
+- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for review escalation when deep-dive sourcing is thin (<3 articles).
+- **Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking={"type": "disabled"}`. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
 - **Prompt compression is mandatory.** Strip filler and redundant context before sending.
-- **Cache aggressively.** Use Anthropic `cache_control` headers for large static context (system prompts, article bodies, tags) reused across calls.
+- **Cache aggressively.** Use Anthropic `cache_control` headers for large static context reused across calls.
 - **Batch where possible.** Combine small tasks into one API call instead of N round-trips.
 - **Never call an API when local logic suffices.** Dedup, filtering, formatting, classification — do it in Python first.
 - **Log token usage.** Every call that returns usage metadata must log it. No silent spending.
@@ -1647,4 +273,14 @@ Treat API budget as a first-class constraint on every change.
 - Idempotent scripts where possible
 - Refactor existing files rather than creating new ones
 - Keep dependencies minimal — check `requirements.txt` before adding anything
-- `tests/` is gitignored; use `git add -f tests/` to stage test files
+
+## Decision records
+
+| File | Covers |
+|------|--------|
+| [operations.md](docs/decisions/operations.md) | Scheduling, stages and segments, `degrade()`, exit codes, money preflight, commits, atomic writes, Brave spend, the roadmap |
+| [curation.md](docs/decisions/curation.md) | Themes, the geographic day, the election (`event_focus`), roundup curation, super-cycles and holding |
+| [editorial-voice.md](docs/decisions/editorial-voice.md) | Weekly anchor, naming nations, AI tells and the phrase ledger, the Meta Moment, inbound mail |
+| [openai-tts.md](docs/decisions/openai-tts.md) | The nightly TTS provider, speech-rate fits, per-take checks |
+| [gemini-tts.md](docs/decisions/gemini-tts.md) | Gemini multi-speaker TTS — parked, with its exit criterion |
+| [2026-02-16-multi-feed-model.md](docs/decisions/2026-02-16-multi-feed-model.md) | The move to seven themed upstream feeds |
