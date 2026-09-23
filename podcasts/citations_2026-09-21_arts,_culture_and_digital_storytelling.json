@@ -59,7 +59,9 @@
     "anchor": {
       "id": "place-unrecorded",
       "question": "Does a place still exist if nobody records it?"
-    }
+    },
+    "audio_file_size": 17630829,
+    "audio_duration": "18:21"
   },
   "segments": {
     "news_roundup": {
