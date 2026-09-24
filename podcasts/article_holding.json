@@ -40,92 +40,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "aired_early"
   },
-  "https://www.businessinsider.com/life-lessons-from-big-tech-workers-who-got-laid-off-2026-8": {
-    "article": {
-      "id": "https://www.businessinsider.com/life-lessons-from-big-tech-workers-who-got-laid-off-2026-8",
-      "url": "https://www.businessinsider.com/life-lessons-from-big-tech-workers-who-got-laid-off-2026-8",
-      "title": "[Business Insider] Laid-off tech workers from Google, Microsoft confront a difficult job market",
-      "content_html": "<img src=\"https://i.insider.com/6a905e0f45e6f385a5169c5e?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Flife-lessons-from-big-tech-workers-who-got-laid-off-2026-8\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFour former employees of Google, Meta, Microsoft, and Intel discuss the shock they felt when they were laid off and the emotional fallout that ensued.",
-      "summary": "Four former employees of Google, Meta, Microsoft, and Intel discuss the shock they felt when they were laid off and the emotional fallout that ensued.",
-      "_excerpt": "Four former employees of Google, Meta, Microsoft, and Intel discuss the shock they felt when they were laid off and the emotional fallout that ensued.",
-      "date_published": "2026-09-01T14:01:01+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 70,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 39,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 31,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6a905e0f45e6f385a5169c5e?format=jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-09T07:11:51.474148+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-09-09",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
-  "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/": {
-    "article": {
-      "id": "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/",
-      "url": "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/",
-      "title": "[CNET] Yearn for the Tern: Apple Has a New Daddy",
-      "content_html": "<img src=\"https://www.cnet.com/wp-content/uploads/sites/2/image-9-1.png\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cnet.com%2Ftech%2Fmobile%2Fapple-new-ceo-john-ternus-first-day%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nJohn Ternus takes the helm of a $4 trillion tech giant, but it comes with challenges as Apple faces down the RAM shortage, AI launch delays and the foldable phone market.",
-      "summary": "John Ternus takes the helm of a $4 trillion tech giant, but it comes with challenges as Apple faces down the RAM shortage, AI launch delays and the foldable phone market.",
-      "_excerpt": "John Ternus takes the helm of a $4 trillion tech giant, but it comes with challenges as Apple faces down the RAM shortage, AI launch delays and the foldable phone market.",
-      "date_published": "2026-09-01T12:05:18+00:00",
-      "authors": [
-        {
-          "name": "CNET",
-          "url": "https://www.cnet.com"
-        }
-      ],
-      "ai_score": 52,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 73,
-      "_theme_score_raw": 56,
-      "_composite_podcast": 50,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.cnet.com/wp-content/uploads/sites/2/image-9-1.png",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-09-13T04:08:41.572460+00:00"
-      },
-      "_boosted_score": 52
-    },
-    "held_date": "2026-09-13",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
   "https://wltribune.com/2026/09/10/black-bear-euthanized-in-100-mile-house-after-becoming-comfortable-with-humans/": {
     "article": {
       "id": "https://wltribune.com/2026/09/10/black-bear-euthanized-in-100-mile-house-after-becoming-comfortable-with-humans/",
@@ -170,135 +84,6 @@
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
     "status": "aired_early"
-  },
-  "https://www.xda-developers.com/start-homelab-these-4-containers-not-20-container-checklist-recommends/": {
-    "article": {
-      "id": "https://www.xda-developers.com/start-homelab-these-4-containers-not-20-container-checklist-recommends/",
-      "url": "https://www.xda-developers.com/start-homelab-these-4-containers-not-20-container-checklist-recommends/",
-      "title": "[XDA Developers] Start your homelab with just these 4 containers, not the 20-container checklist everyone recommends",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/homelab-monitoring-dashboards-setup.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fstart-homelab-these-4-containers-not-20-container-checklist-recommends%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe four is the point, not the limit.",
-      "summary": "The four is the point, not the limit.",
-      "_excerpt": "The four is the point, not the limit.",
-      "date_published": "2026-09-04T20:00:16+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 61,
-      "_theme_score_raw": 16,
-      "_composite_podcast": 46,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/homelab-monitoring-dashboards-setup.jpeg",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-09-12T04:12:00.575154+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-09-14",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
-  "https://www.businessinsider.com/mykhailo-fedorov-launches-defense-tech-company-backed-palantir-ceo-2026-9": {
-    "article": {
-      "id": "https://www.businessinsider.com/mykhailo-fedorov-launches-defense-tech-company-backed-palantir-ceo-2026-9",
-      "url": "https://www.businessinsider.com/mykhailo-fedorov-launches-defense-tech-company-backed-palantir-ceo-2026-9",
-      "title": "[Business Insider] Ukraine's ousted pro-tech defense minister is launching a new company backed by Palantir's Alex Karp",
-      "content_html": "<img src=\"https://i.insider.com/6a970e078dc004cd687c7b1c?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Fmykhailo-fedorov-launches-defense-tech-company-backed-palantir-ceo-2026-9\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAfter his sacking from Ukraine's defense ministry, Mykhailo Fedorov plans to turn his wartime tech experience into a new venture backed by Alex Karp.",
-      "summary": "After his sacking from Ukraine's defense ministry, Mykhailo Fedorov plans to turn his wartime tech experience into a new venture backed by Alex Karp.",
-      "_excerpt": "After his sacking from Ukraine's defense ministry, Mykhailo Fedorov plans to turn his wartime tech experience into a new venture backed by Alex Karp.",
-      "date_published": "2026-09-01T17:42:55+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 52,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 73,
-      "_theme_score_raw": 56,
-      "_composite_podcast": 50,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6a970e078dc004cd687c7b1c?format=jpeg",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-09-13T04:08:41.572460+00:00"
-      },
-      "_boosted_score": 52
-    },
-    "held_date": "2026-09-13",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
-  "https://www.wired.com/story/why-china-is-still-the-bogeyman-for-data-center-enthusiasts/": {
-    "article": {
-      "id": "https://www.wired.com/story/why-china-is-still-the-bogeyman-for-data-center-enthusiasts/",
-      "url": "https://www.wired.com/story/why-china-is-still-the-bogeyman-for-data-center-enthusiasts/",
-      "title": "[WIRED] Why China Is the Bogeyman Data Center Enthusiasts Just Can't Quit",
-      "content_html": "<img src=\"https://media.wired.com/photos/6a998bf0d9ba7b75ced0a131/master/pass/DataCenterColumn1.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Fwhy-china-is-still-the-bogeyman-for-data-center-enthusiasts%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPolls show that overwhelming majorities of Americans hate data centers. China makes a perfect scapegoat for tech leaders and their allies\u2014the only problem is a lack of evidence.",
-      "summary": "Polls show that overwhelming majorities of Americans hate data centers. China makes a perfect scapegoat for tech leaders and their allies\u2014the only problem is a lack of evidence.",
-      "_excerpt": "Polls show that overwhelming majorities of Americans hate data centers. China makes a perfect scapegoat for tech leaders and their allies\u2014the only problem is a lack of evidence.",
-      "date_published": "2026-09-06T10:00:00+00:00",
-      "authors": [
-        {
-          "name": "WIRED",
-          "url": "https://www.wired.com"
-        }
-      ],
-      "ai_score": 48,
-      "_quality": 73,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 78,
-      "_theme_score_raw": 17,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://media.wired.com/photos/6a998bf0d9ba7b75ced0a131/master/pass/DataCenterColumn1.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 48,
-      "_topic_cluster": "Microsoft data center concerns"
-    },
-    "held_date": "2026-09-14",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
   },
   "https://www.northernminer.com/news/roosens-osisko-greenlights-cariboo-gold-project-in-bc/1003894808/": {
     "article": {
@@ -547,44 +332,6 @@
     "target_focus_name": "Visual Arts & Heritage",
     "status": "held"
   },
-  "https://www.tomshardware.com/pc-components/gpus/enthusiast-says-dlss-5-pushed-rtx-5090-past-600w-and-melted-the-16-pin-connector-nvidias-neural-rendering-tech-adds-up-to-50-percent-more-power-draw-in-testing": {
-    "article": {
-      "id": "https://www.tomshardware.com/pc-components/gpus/enthusiast-says-dlss-5-pushed-rtx-5090-past-600w-and-melted-the-16-pin-connector-nvidias-neural-rendering-tech-adds-up-to-50-percent-more-power-draw-in-testing",
-      "url": "https://www.tomshardware.com/pc-components/gpus/enthusiast-says-dlss-5-pushed-rtx-5090-past-600w-and-melted-the-16-pin-connector-nvidias-neural-rendering-tech-adds-up-to-50-percent-more-power-draw-in-testing",
-      "title": "[Tom's Hardware] Enthusiast says DLSS 5 pushed RTX 5090 past 600W and melted the 16-pin connector \u2014 Nvidia's neural rendering tech adds up to 50% more power draw in testing",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/V3GQ9DBP5BRAWcLwzBwGSL-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Fpc-components%2Fgpus%2Fenthusiast-says-dlss-5-pushed-rtx-5090-past-600w-and-melted-the-16-pin-connector-nvidias-neural-rendering-tech-adds-up-to-50-percent-more-power-draw-in-testing\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAnother RTX 5090 has gone down but this time it has something else to blame other than its own 16-pin connector. The connector is still what melted but potentially because of DLSS 5 pulling way too much power at the back end.",
-      "summary": "Another RTX 5090 has gone down but this time it has something else to blame other than its own 16-pin connector. The connector is still what melted but potentially because of DLSS 5 pulling way too much power at the back end.",
-      "_excerpt": "Another RTX 5090 has gone down but this time it has something else to blame other than its own 16-pin connector. The connector is still what melted but potentially because of DLSS 5 pulling way too much power at the back end.",
-      "date_published": "2026-09-07T10:00:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 51,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 39,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/V3GQ9DBP5BRAWcLwzBwGSL-1280-80.jpg",
-      "_boosted_score": 62
-    },
-    "held_date": "2026-09-15",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
   "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/": {
     "article": {
       "id": "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/",
@@ -624,49 +371,6 @@
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
     "status": "held"
-  },
-  "https://www.xda-developers.com/added-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims/": {
-    "article": {
-      "id": "https://www.xda-developers.com/added-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims/",
-      "url": "https://www.xda-developers.com/added-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims/",
-      "title": "[XDA Developers] I added SSD caching to my NAS and learned why it's not the performance fix everyone claims",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/optane-ssd-stick-3.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fadded-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSSD caching on a NAS sounds great until you realize what you actually use it for.",
-      "summary": "SSD caching on a NAS sounds great until you realize what you actually use it for.",
-      "_excerpt": "SSD caching on a NAS sounds great until you realize what you actually use it for.",
-      "date_published": "2026-09-15T21:00:16+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 93,
-      "_theme_score_raw": 17,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/optane-ssd-stick-3.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-16T04:09:55.776079+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-16",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
   },
   "https://newatlas.com/medical/friday-13th-unlucky/": {
     "article": {
@@ -838,53 +542,6 @@
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
   },
-  "https://www.nytimes.com/2026/09/15/us/steve-bannon-bernie-sanders-ai.html": {
-    "article": {
-      "id": "https://www.nytimes.com/2026/09/15/us/steve-bannon-bernie-sanders-ai.html",
-      "url": "https://www.nytimes.com/2026/09/15/us/steve-bannon-bernie-sanders-ai.html",
-      "title": "[NYT Business] Steve Bannon and Bernie Sanders Condemn Tech \u2018Oligarchs\u2019 and Demand A.I. Reforms",
-      "content_html": "<img src=\"https://static01.nyt.com/images/2026/09/15/multimedia/15biz-ai-bernie-bannon-plmw/15biz-ai-bernie-bannon-plmw-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F15%2Fus%2Fsteve-bannon-bernie-sanders-ai.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAt an event in Washington, partisanship took a back seat as elected officials, religious leaders, parents and artists called for reining in artificial intelligence.",
-      "summary": "At an event in Washington, partisanship took a back seat as elected officials, religious leaders, parents and artists called for reining in artificial intelligence.",
-      "_excerpt": "At an event in Washington, partisanship took a back seat as elected officials, religious leaders, parents and artists called for reining in artificial intelligence.",
-      "date_published": "2026-09-15T22:17:56+00:00",
-      "authors": [
-        {
-          "name": "NYT Business",
-          "url": "https://www.nytimes.com/section/business"
-        }
-      ],
-      "ai_score": 42,
-      "_quality": 67,
-      "_relevance": 48,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 61,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static01.nyt.com/images/2026/09/15/multimedia/15biz-ai-bernie-bannon-plmw/15biz-ai-bernie-bannon-plmw-mediumSquareAt3X.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "New York Times",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-16T04:09:55.776079+00:00"
-      },
-      "_boosted_score": 42
-    },
-    "held_date": "2026-09-16",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
   "https://www.sciencedaily.com/releases/2026/09/260915095750.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/09/260915095750.htm",
@@ -925,49 +582,6 @@
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://www.businessinsider.com/security-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9": {
-    "article": {
-      "id": "https://www.businessinsider.com/security-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9",
-      "url": "https://www.businessinsider.com/security-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9",
-      "title": "[Business Insider] Tech giants have a new headache: a looming strike by their security guards",
-      "content_html": "<img src=\"https://i.insider.com/6aa97a9f9b8974787b1cc59e?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Fsecurity-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCalifornia security workers at tech giants like Anthropic, Meta and OpenAI plan to strike. This comes at a tense moment for the AI industry.",
-      "summary": "California security workers at tech giants like Anthropic, Meta and OpenAI plan to strike. This comes at a tense moment for the AI industry.",
-      "_excerpt": "California security workers at tech giants like Anthropic, Meta and OpenAI plan to strike. This comes at a tense moment for the AI industry.",
-      "date_published": "2026-09-15T17:42:13+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 49,
-      "_quality": 58,
-      "_relevance": 62,
-      "_local": 0,
-      "_theme_score": 74,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 53,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6aa97a9f9b8974787b1cc59e?format=jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-16T04:09:55.776079+00:00"
-      },
-      "_boosted_score": 49
-    },
-    "held_date": "2026-09-16",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
   },
   "https://www.gamesradar.com/games/the-elder-scrolls/elder-scrolls-lore-master-and-20-year-bethesda-veteran-kurt-kuhlmann-cant-find-a-job-after-being-laid-off-months-ago-and-doesnt-that-sum-up-todays-industry/": {
     "article": {
@@ -1013,7 +627,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-24"
   },
   "https://www.techradar.com/pro/security/massive-data-breach-sees-220-million-traveler-records-exposed-nine-years-of-airline-info-leaked-including-passenger-and-passport-details": {
     "article": {
@@ -1101,56 +716,6 @@
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
     "status": "aired_early"
-  },
-  "https://www.cnet.com/tech/services-and-software/interest-rates-went-up-consumer-tech-might-cost-more-2/": {
-    "article": {
-      "id": "https://www.cnet.com/tech/services-and-software/interest-rates-went-up-consumer-tech-might-cost-more-2/",
-      "url": "https://www.cnet.com/tech/services-and-software/interest-rates-went-up-consumer-tech-might-cost-more-2/",
-      "title": "[CNET] Interest Rates Just Went Up. Here\u2019s Why Consumer Tech Might Cost Even More",
-      "content_html": "<img src=\"https://www.cnet.com/wp-content/uploads/sites/2/GettyImages-2206461124.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cnet.com%2Ftech%2Fservices-and-software%2Finterest-rates-went-up-consumer-tech-might-cost-more-2%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Federal Reserve hiked interest rates. Now, if you want to finance a tech upgrade, you\u2019ll pay more in interest.",
-      "summary": "The Federal Reserve hiked interest rates. Now, if you want to finance a tech upgrade, you\u2019ll pay more in interest.",
-      "_excerpt": "The Federal Reserve hiked interest rates. Now, if you want to finance a tech upgrade, you\u2019ll pay more in interest.",
-      "date_published": "2026-09-16T23:03:14+00:00",
-      "authors": [
-        {
-          "name": "CNET",
-          "url": "https://www.cnet.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 89,
-      "_theme_score_raw": 13,
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.cnet.com/wp-content/uploads/sites/2/GettyImages-2206461124.jpg",
-      "_us_policy": true,
-      "_us_policy_scope": "out-of-jurisdiction",
-      "tags": [
-        "us-policy"
-      ],
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-17T04:11:17.658071+00:00"
-      },
-      "_boosted_score": 16,
-      "_topic_cluster": "Federal Reserve raises interest rates",
-      "_cluster_suppressed": true
-    },
-    "held_date": "2026-09-17",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
   },
   "https://hyperallergic.com/striking-workers-shutter-three-v-a-london-locations/": {
     "article": {
@@ -1278,86 +843,6 @@
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
     "status": "recall"
-  },
-  "https://www.businessinsider.com/ai-agents-misbehavior-alignment-privacy-muse-instinct-2026-9": {
-    "article": {
-      "id": "https://www.businessinsider.com/ai-agents-misbehavior-alignment-privacy-muse-instinct-2026-9",
-      "url": "https://www.businessinsider.com/ai-agents-misbehavior-alignment-privacy-muse-instinct-2026-9",
-      "title": "[Business Insider] AI agents are ready to run your life. Do you trust them?",
-      "content_html": "<img src=\"https://i.insider.com/6aad9f8716256d3825fdfb12?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Fai-agents-misbehavior-alignment-privacy-muse-instinct-2026-9\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTech firms like Meta are betting users will embrace AI agents, even though they have shown they aren't always aligned with our interests.",
-      "summary": "Tech firms like Meta are betting users will embrace AI agents, even though they have shown they aren't always aligned with our interests.",
-      "_excerpt": "Tech firms like Meta are betting users will embrace AI agents, even though they have shown they aren't always aligned with our interests.",
-      "date_published": "2026-09-20T09:01:01+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 51,
-      "_quality": 58,
-      "_relevance": 65,
-      "_local": 0,
-      "_theme_score": 87,
-      "_theme_score_raw": 22,
-      "_composite_podcast": 61,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6aad9f8716256d3825fdfb12?format=jpeg",
-      "_boosted_score": 51
-    },
-    "held_date": "2026-09-21",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
-  "https://www.idealhome.co.uk/house-manual/energy-saving/can-my-neighbour-object-to-plug-in-solar-panels-on-a-fence": {
-    "article": {
-      "id": "https://www.idealhome.co.uk/house-manual/energy-saving/can-my-neighbour-object-to-plug-in-solar-panels-on-a-fence",
-      "url": "https://www.idealhome.co.uk/house-manual/energy-saving/can-my-neighbour-object-to-plug-in-solar-panels-on-a-fence",
-      "title": "[Ideal Home (Country Homes & Interiors)] Can my neighbour object to me putting plug-in solar panels on a fence? Yes they can, and for 3 good reasons",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/K5nddjoh5HJmQxPuBMNmgd-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.idealhome.co.uk%2Fhouse-manual%2Fenergy-saving%2Fcan-my-neighbour-object-to-plug-in-solar-panels-on-a-fence\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nYes they can, and for 3 good reasons",
-      "summary": "Yes they can, and for 3 good reasons",
-      "_excerpt": "Yes they can, and for 3 good reasons",
-      "date_published": "2026-09-20T12:00:00+00:00",
-      "authors": [
-        {
-          "name": "Ideal Home (Country Homes & Interiors)",
-          "url": "https://www.idealhome.co.uk"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 88,
-      "_theme_score_raw": 23,
-      "_composite_podcast": 61,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/K5nddjoh5HJmQxPuBMNmgd-1920-80.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 60
-    },
-    "held_date": "2026-09-21",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
   },
   "https://www.techradar.com/cameras/photography/pre-capture-is-the-best-wildlife-photography-trick-youre-not-using-heres-how-i-use-the-handy-tool-and-which-canon-nikon-and-sony-cameras-support-it": {
     "article": {
@@ -1742,92 +1227,6 @@
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
     "status": "held"
-  },
-  "https://www.tomshardware.com/raspberry-pi/techie-makes-his-own-motherboard-to-refurbish-15-year-old-hp-proliant-n40l-tower-server-raspberry-pi-cm5-adds-nvme-and-usb-3-0": {
-    "article": {
-      "id": "https://www.tomshardware.com/raspberry-pi/techie-makes-his-own-motherboard-to-refurbish-15-year-old-hp-proliant-n40l-tower-server-raspberry-pi-cm5-adds-nvme-and-usb-3-0",
-      "url": "https://www.tomshardware.com/raspberry-pi/techie-makes-his-own-motherboard-to-refurbish-15-year-old-hp-proliant-n40l-tower-server-raspberry-pi-cm5-adds-nvme-and-usb-3-0",
-      "title": "[Tom's Hardware] Techie makes his own motherboard to refurbish 15-year-old HP ProLiant N40L tower server \u2014 Raspberry Pi CM5 adds NVMe and USB 3.0",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/mp9joGQ4qH4oijYy8fwYS-1920-80.png\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Fraspberry-pi%2Ftechie-makes-his-own-motherboard-to-refurbish-15-year-old-hp-proliant-n40l-tower-server-raspberry-pi-cm5-adds-nvme-and-usb-3-0\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTechie makes his own motherboard to refurbish an HP ProLiant N40L \u2014 Raspberry Pi 5 Compute Module to the rescue",
-      "summary": "Techie makes his own motherboard to refurbish an HP ProLiant N40L \u2014 Raspberry Pi 5 Compute Module to the rescue",
-      "_excerpt": "Techie makes his own motherboard to refurbish an HP ProLiant N40L \u2014 Raspberry Pi 5 Compute Module to the rescue",
-      "date_published": "2026-09-21T09:35:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 81,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/mp9joGQ4qH4oijYy8fwYS-1920-80.png",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-22T04:09:30.974597+00:00"
-      },
-      "_boosted_score": 65
-    },
-    "held_date": "2026-09-22",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
-  },
-  "https://www.hackster.io/news/hacking-a-4g-hotspot-into-a-pocket-linux-computer-da3d98018306": {
-    "article": {
-      "id": "https://www.hackster.io/news/hacking-a-4g-hotspot-into-a-pocket-linux-computer-da3d98018306",
-      "url": "https://www.hackster.io/news/hacking-a-4g-hotspot-into-a-pocket-linux-computer-da3d98018306",
-      "title": "[Hackster News] Hacking a 4G Hotspot Into a Pocket Linux Computer",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/2004178/_VjB6kWt2e9.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Fhacking-a-4g-hotspot-into-a-pocket-linux-computer-da3d98018306\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWith Raspberry Pi prices rising, a maker built a Linux handheld using a $20 4G hotspot, a Clicks keyboard, and a Sharp Memory Display.",
-      "summary": "With Raspberry Pi prices rising, a maker built a Linux handheld using a $20 4G hotspot, a Clicks keyboard, and a Sharp Memory Display.",
-      "_excerpt": "With Raspberry Pi prices rising, a maker built a Linux handheld using a $20 4G hotspot, a Clicks keyboard, and a Sharp Memory Display.",
-      "date_published": "2026-09-21T14:44:03+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 68,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 71,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 53,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/2004178/_VjB6kWt2e9.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-22T04:09:30.974597+00:00"
-      },
-      "_boosted_score": 68
-    },
-    "held_date": "2026-09-22",
-    "target_date": "2026-09-23",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-09-23"
   },
   "https://www.npr.org/2026/09/14/nx-s1-5962891/research-finds-short-bursts-of-vigorous-movement-are-also-beneficial-for-longevity": {
     "article": {
@@ -2255,6 +1654,333 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/",
+      "url": "https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/",
+      "title": "[My Cariboo Now] The Premier will soon be getting a forestry request from Quesnel City Council",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316421%2Fnews%2Fmunicipal-news%2Fcity-of-quesnel%2Fthe-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"300\" src=\"https://www.mycariboonow.com/wp-content/uploads/2018/04/city-hall.jpg\" width=\"696\" />Quesnel City Council is sending a letter to the Premier on the deepening crisis in B.C.'s forest sector</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/\">The Premier will soon be getting a forestry request from Quesnel City Council</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "Quesnel City Council is sending a letter to the Premier on the deepening crisis in B.C.'s forest sector The post The Premier will soon be getting a forestry request from Quesnel City Council appeared first on My Cariboo Now .",
+      "_excerpt": "Quesnel City Council is sending a letter to the Premier on the deepening crisis in B.C.'s forest sector The post The Premier will soon be getting a forestry request from Quesnel City Council appeared first on My Cariboo Now .",
+      "date_published": "2026-09-23T12:00:30+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 89,
+      "_quality": 81,
+      "_relevance": 88,
+      "_local": 100,
+      "_theme_score": 89,
+      "_theme_score_raw": 15,
+      "_composite_podcast": 93,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-24T04:10:52.822866+00:00"
+      },
+      "_boosted_score": 89,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-10-20",
+    "target_weekday": 1,
+    "target_focus_slug": "forestry",
+    "target_focus_name": "Forestry & Timber",
+    "status": "aired_early"
+  },
+  "https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/",
+      "url": "https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/",
+      "title": "[My Cariboo Now] Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316438%2Fnews%2Fpolitics%2Fformer-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"391\" src=\"https://www.mycariboonow.com/wp-content/uploads/2026/09/Weaver.jpg\" width=\"696\" />Andrew Weaver is running as a CentreBC candidate in Oak Bay-Gordon Head, the same Victoria-area riding he previously represented as a B.C. Green MLA.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/\">Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "Andrew Weaver is running as a CentreBC candidate in Oak Bay-Gordon Head, the same Victoria-area riding he previously represented as a B.C. Green MLA. The post Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election appeared first on My Cariboo Now .",
+      "_excerpt": "Andrew Weaver is running as a CentreBC candidate in Oak Bay-Gordon Head, the same Victoria-area riding he previously represented as a B.C. Green MLA. The post Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election appeared first on My Cariboo Now .",
+      "date_published": "2026-09-23T23:47:19+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 41,
+      "_quality": 60,
+      "_relevance": 35,
+      "_local": 45,
+      "_theme_score": 99,
+      "_theme_score_raw": 23,
+      "_composite_podcast": 88,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-24T04:33:20.084022+00:00"
+      },
+      "_boosted_score": 41
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-09-26",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://newatlas.com/technology/dna-computer-calculations-without-power/": {
+    "article": {
+      "id": "https://newatlas.com/technology/dna-computer-calculations-without-power/",
+      "url": "https://newatlas.com/technology/dna-computer-calculations-without-power/",
+      "title": "[New Atlas] World-first unpowered DNA computer sets speed record",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Ftechnology%2Fdna-computer-calculations-without-power%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Graphic of a dna molecule\" src=\"https://assets.newatlas.com/dims4/default/95c3623/2147483647/strip/true/crop/2000x1250+0+0/resize/1440x900!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2F28%2F09%2F4a64b91e446196a751bac8069367%2Fdna-model-computer.jpg\" /><p>Computing is a power-hungry resource in today\u2019s world. By 2050, as much as 20% of the electricity consumed by the US commercial sector will be used to crunch numbers. Data centers alone will double their electricity demand within the next few years, making the need for more efficient systems a high priority.</p><p><a href=\"https://newatlas.com/technology/dna-computer-calculations-without-power/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://newatlas.com/technology/\">Technology</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/dna/\" rel=\"tag\">DNA</a>, <a href=\"https://newatlas.com/tag/computer/\" rel=\"tag\">Computer</a>, <a href=\"https://newatlas.com/tag/power/\" rel=\"tag\">Power</a>, <a href=\"https://newatlas.com/tag/electricity/\" rel=\"tag\">Electricity</a>, <a href=\"https://newatlas.com/tag/origami/\" rel=\"tag\">Origami</a></p>",
+      "summary": "Computing is a power-hungry resource in today\u2019s world. By 2050, as much as 20% of the electricity consumed by the US commercial sector will be used to crunch numbers. Data centers alone will double their electricity demand within the next few years, making the need for more efficient systems a high",
+      "_excerpt": "Computing is a power-hungry resource in today\u2019s world. By 2050, as much as 20% of the electricity consumed by the US commercial sector will be used to crunch numbers. Data centers alone will double their electricity demand within the next few years, making the need for more efficient systems a high priority. Continue Reading Category: Technology Tags: DNA , Computer , Power , Electricity , Origami",
+      "date_published": "2026-09-23T04:02:01+00:00",
+      "authors": [
+        {
+          "name": "New Atlas",
+          "url": "https://newatlas.com"
+        }
+      ],
+      "ai_score": 52,
+      "_quality": 72,
+      "_relevance": 62,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 12,
+      "_composite_podcast": 76,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_boosted_score": 52
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-09-27",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.sciencedaily.com/releases/2026/09/260922005712.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/09/260922005712.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/09/260922005712.htm",
+      "title": "[ScienceDaily] These tropical trees breathe at night to survive drought",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F09%2F260922005712.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSome tropical trees have evolved a clever way to survive drought by taking in carbon dioxide at night, allowing them to keep their pores closed during the hot daytime and conserve water. By comparing three Clusia species, researchers discovered that this water-saving form of photosynthesis, known as CAM, did not arise through a single evolutionary change. Instead, ancient genome duplications followed by millions of years of genetic reshuffling produced strikingly different strategies, from strong CAM to stress-triggered and hybrid forms.",
+      "summary": "Some tropical trees have evolved a clever way to survive drought by taking in carbon dioxide at night, allowing them to keep their pores closed during the hot daytime and conserve water. By comparing three Clusia species, researchers discovered that this water-saving form of photosynthesis, known",
+      "_excerpt": "Some tropical trees have evolved a clever way to survive drought by taking in carbon dioxide at night, allowing them to keep their pores closed during the hot daytime and conserve water. By comparing three Clusia species, researchers discovered that this water-saving form of photosynthesis, known as CAM, did not arise through a single evolutionary change. Instead, ancient genome duplications followed by millions of years of genetic reshuffling produced strikingly different strategies, from strong CAM to stress-triggered and hybrid forms.",
+      "date_published": "2026-09-23T12:05:24+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 72,
+      "_relevance": 68,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 12,
+      "_composite_podcast": 73,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-24T04:10:52.822866+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-09-27",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://thetyee.ca/News/2026/09/24/Harassment-Hate-Municipal-Campaign-Trail/": {
+    "article": {
+      "id": "https://thetyee.ca/News/2026/09/24/Harassment-Hate-Municipal-Campaign-Trail/",
+      "url": "https://thetyee.ca/News/2026/09/24/Harassment-Hate-Municipal-Campaign-Trail/",
+      "title": "[The Tyee] Harassment and Hate on the Municipal Campaign Trail",
+      "content_html": "<img src=\"https://thetyee.ca/News/2026/09/23/CandidateHarassmentCollage.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F09%2F24%2FHarassment-Hate-Municipal-Campaign-Trail%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nOnline abuse continues to drive away good candidates and sour political discourse, Vancouver candidates say.",
+      "summary": "Online abuse continues to drive away good candidates and sour political discourse, Vancouver candidates say.",
+      "_excerpt": "Online abuse continues to drive away good candidates and sour political discourse, Vancouver candidates say.",
+      "date_published": "2026-09-24T07:10:00+00:00",
+      "authors": [
+        {
+          "name": "The Tyee",
+          "url": "https://thetyee.ca"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 12,
+      "_composite_podcast": 58,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thetyee.ca/News/2026/09/23/CandidateHarassmentCollage.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-24T04:33:20.084022+00:00"
+      },
+      "_boosted_score": 63
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-10-02",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "held"
+  },
+  "https://www.hackster.io/news/this-is-an-awesome-pico-8-handheld-console-design-b3ba73da536d": {
+    "article": {
+      "id": "https://www.hackster.io/news/this-is-an-awesome-pico-8-handheld-console-design-b3ba73da536d",
+      "url": "https://www.hackster.io/news/this-is-an-awesome-pico-8-handheld-console-design-b3ba73da536d",
+      "title": "[Hackster News] This Is an Awesome PICO-8 Handheld Console Design",
+      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/2004872/_0vozsKFON1.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Fthis-is-an-awesome-pico-8-handheld-console-design-b3ba73da536d\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nUncleStem designed a dedicated PICO-8 handheld console that runs on a Raspberry Pi Zero 2 W.",
+      "summary": "UncleStem designed a dedicated PICO-8 handheld console that runs on a Raspberry Pi Zero 2 W.",
+      "_excerpt": "UncleStem designed a dedicated PICO-8 handheld console that runs on a Raspberry Pi Zero 2 W.",
+      "date_published": "2026-09-23T23:36:21+00:00",
+      "authors": [
+        {
+          "name": "Hackster News",
+          "url": "https://www.hackster.io"
+        }
+      ],
+      "ai_score": 45,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 84,
+      "_theme_score_raw": 13,
+      "_composite_podcast": 56,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://hackster.imgix.net/uploads/attachments/2004872/_0vozsKFON1.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-24T04:33:20.084022+00:00"
+      },
+      "_boosted_score": 45
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-09-30",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
+    "status": "held"
+  },
+  "https://www.popularmechanics.com/science/green-tech/a73796013/australia-green-hydrogen/": {
+    "article": {
+      "id": "https://www.popularmechanics.com/science/green-tech/a73796013/australia-green-hydrogen/",
+      "url": "https://www.popularmechanics.com/science/green-tech/a73796013/australia-green-hydrogen/",
+      "title": "[Popular Mechanics] A Massive Jackpot of Green Fuel Is Locked Underground\u2014and Scientists May Have Just Found the Key",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.popularmechanics.com%2Fscience%2Fgreen-tech%2Fa73796013%2Faustralia-green-hydrogen%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p class=\"rte-simple-html-paragraph\">A new study replicated the heat and pressure conditions of Western Australia\u2019s vast iron-ore deposits to produce natural hydrogen gas.</p>",
+      "summary": "A new study replicated the heat and pressure conditions of Western Australia\u2019s vast iron-ore deposits to produce natural hydrogen gas.",
+      "_excerpt": "A new study replicated the heat and pressure conditions of Western Australia\u2019s vast iron-ore deposits to produce natural hydrogen gas.",
+      "date_published": "2026-09-23T13:30:00+00:00",
+      "authors": [
+        {
+          "name": "Popular Mechanics",
+          "url": "https://www.popularmechanics.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 77,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 56,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-24T04:10:52.822866+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-09-27",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.makeuseof.com/open-source-security-apps-set-up-first-new-windows-machine/": {
+    "article": {
+      "id": "https://www.makeuseof.com/open-source-security-apps-set-up-first-new-windows-machine/",
+      "url": "https://www.makeuseof.com/open-source-security-apps-set-up-first-new-windows-machine/",
+      "title": "[MakeUseOf] 5 open-source security apps I set up first on every new Windows machine",
+      "content_html": "<img src=\"https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/04/windows-11-laptop-desk-setup.JPG\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.makeuseof.com%2Fopen-source-security-apps-set-up-first-new-windows-machine%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPasswords, encryption, firewall, debloat, and deletion, all for free.",
+      "summary": "Passwords, encryption, firewall, debloat, and deletion, all for free.",
+      "_excerpt": "Passwords, encryption, firewall, debloat, and deletion, all for free.",
+      "date_published": "2026-09-12T18:30:13+00:00",
+      "authors": [
+        {
+          "name": "MakeUseOf",
+          "url": "https://www.makeuseof.com"
+        }
+      ],
+      "ai_score": 52,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 65,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 45,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/04/windows-11-laptop-desk-setup.JPG",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-20T04:07:43.540100+00:00"
+      },
+      "_boosted_score": 52
+    },
+    "held_date": "2026-09-24",
+    "target_date": "2026-09-30",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
     "status": "held"
   }
 }

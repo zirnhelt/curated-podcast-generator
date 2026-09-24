@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-02",
-        "clue": "tech-optimism: x \u2014 Conceded that technology-first approaches risk embedding dependency",
-        "occurrences": 1
-      },
-      {
         "date": "2026-06-12",
         "clue": "funding-risk: ~ \u2014 added solar power and iNaturalist complexity to sustainability question",
         "occurrences": 2
@@ -167,6 +162,16 @@
       {
         "date": "2026-09-23",
         "clue": "Indigenous-tech:+local-First-Nations-infrastructure-model-as-template-for-private-systems",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-24",
+        "clue": "structural-lens:+ \u2014 Deepened emphasis on governance over technical solutions.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-24",
+        "clue": "Indigenous-tech:x \u2014 Conceded that tool ownership \u2260 automatic recognition in decisions.",
         "occurrences": 1
       }
     ],
@@ -415,11 +420,6 @@
       },
       {
         "date": "2026-09-18",
-        "clue": "evidence-bar:~ \u2014 granted no-burn carries deferred consequences too",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-09-18",
         "clue": "community-trust:+ \u2014 escalated from consultation critique to co-decision demand",
         "occurrences": 1
       },
@@ -446,6 +446,11 @@
       {
         "date": "2026-09-23",
         "clue": "community-trust:~undocumented-resilience-is-single-point-failure-reframing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-24",
+        "clue": "pilot-skepticism:+ \u2014 Reinforced concern that grant cycle ends before real adoption test.",
         "occurrences": 1
       }
     ],

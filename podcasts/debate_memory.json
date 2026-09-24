@@ -1,30 +1,4 @@
 {
-  "2026-06-25": {
-    "timestamp": 1782384899.480301,
-    "date": "2026-06-25",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Is 'Indigenous-led' project delivery without underlying governance authority a meaningful step toward Indigenous self-determination, or does it obscure persistent authority gaps?",
-    "riley_position": "The gap between legal Aboriginal title and actual decision-making authority on the ground remains substantial; projects like Palmer Lake demonstrate this by showing Indigenous-led delivery that still operates within provincial decision-making frameworks.",
-    "riley_key_evidence": [
-      "T\u015dilhqot'in title decision (2014) established decision-making authority, but 12 years later the gap between law and ground-level practice at Palmer Lake remains substantial",
-      "BC's expanded First Nations-led addictions treatment is Indigenous-led delivery within a provincially funded framework, not Indigenous governance authority",
-      "Arctic Observing Summit report recommends funding Indigenous organizations that hold governance authority over data, not just those participating in data collection"
-    ],
-    "casey_position": "The real question is 'who can say no?' \u2014 governance authority must be established before programs launch, not negotiated afterward; Indigenous-led delivery is cosmetic unless the Nation retains final decision-making power.",
-    "casey_key_evidence": [
-      "Denisiqi Services Society's 20+ years of operational continuity was built because communities insisted on community-controlled governance, not because the funding model was designed to produce it",
-      "At Palmer Lake, urgent provincial needs for slope stabilization and erosion control create conditions where substantive decisions (species selection, timeline, endpoints) remain with the Ministry of Forests despite Indigenous project leadership",
-      "Nations need standing legal and technical capacity before negotiation starts, not as project line items; the pattern differentiating stronger outcomes isn't funding size but pre-existing institutional capacity"
-    ],
-    "resolution": "Both agreed that governance authority must precede program delivery and that 'Indigenous-led' covers three distinct things (delivery, design, governance) often conflated. They aligned on moving from defensive veto power to generative standards-setting as a structural model for authority, with Casey proposing data revenue models and certification frameworks as self-sustaining alternatives to grant dependency.",
-    "topics_covered": [
-      "The distinction between Indigenous-led delivery, design, and governance authority",
-      "Post-wildfire forest rehabilitation at Palmer Lake as a case study in governance gaps",
-      "Data ownership and control as the next frontier of Indigenous authority",
-      "Funding models: grants vs. revenue generation vs. regulatory necessity",
-      "Standing institutional capacity as prerequisite to effective negotiation"
-    ]
-  },
   "2026-06-26": {
     "timestamp": 1782472635.881721,
     "date": "2026-06-26",
@@ -2491,6 +2465,35 @@
       "If running an off-grid system, write down what is actually in it this month\u2014just a page in a notebook by the panel, updated the next time something gets swapped, rather than a formal grant application.",
       "Develop and share a template or inventory system that a small co-op of off-grid neighbors could use together for documenting their systems.",
       "Mount a binder or laminated card next to the breaker box listing panel wattage, battery bank capacity, and the date of the last inverter swap as a basic five-dollar fix for succession problems."
+    ]
+  },
+  "2026-09-24": {
+    "timestamp": 1790237690.596027,
+    "date": "2026-09-24",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "language-culture",
+    "anchor": "place-unrecorded",
+    "central_question": "Can Indigenous nations building their own genomics capacity for salmon stock identification shift decision-making authority away from federal monopoly control toward genuine co-management and data sovereignty?",
+    "riley_position": "Decentralizing salmon genetic analysis from DFO's single lab to nation-controlled facilities fundamentally changes evidentiary standing and allows Indigenous nations to produce independently verifiable science that cannot be dismissed as anecdotal, even if recognition remains a separate governance fight.",
+    "riley_key_evidence": [
+      "Five Nuu-chah-nulth nations are developing open-source genomics tools with Ha'oom Fisheries Society and Dr. Ben Sutherland to decentralize stock identification",
+      "All coastwide salmon genetic stock identification for western Canada currently runs through exactly one facility: DFO's Molecular Genetics Laboratory at Pacific Biological Station",
+      "Williams Lake First Nation and Alkali Resource Management already operate as full operational partners with BC Wildfire Service on prescribed burns, demonstrating the model works in other resource management contexts"
+    ],
+    "casey_position": "Owning genomics equipment and producing independent data does not automatically guarantee that Indigenous nations' numbers will be weighted equally in actual allocation decisions; the real test is whether DFO treats nation-generated data as primary evidence rather than supplementary appendix, and historically federal departments have failed this test even after court rulings.",
+    "casey_key_evidence": [
+      "A federal audit found eighty-seven percent of DFO's scientific documents don't substantively draw on Indigenous knowledge despite the department's stated partnership commitments",
+      "The 1999 Marshall decision affirmed treaty-protected Indigenous fishing rights in Atlantic Canada, yet DFO meaningfully adjusted its management practices only marginally even decades later",
+      "Three-year funding from First Nations Fisheries Council, Pacific Salmon Foundation, and Genome BC means the critical question is whether the tool can be operated independently after grant funding expires and whether recognition in actual allocation decisions will be sustained"
+    ],
+    "resolution": "Riley and Casey agreed on the direction of decentralization but diverged on whether a working tool alone forces structural change in DFO decision-making; they identified a concrete testable outcome: whether Ha'oom Fisheries Society's stock data appears as primary rather than supporting evidence in at least one DFO allocation decision within three years. They also agreed that smaller-scale data-building (creel surveys, salmon counts) could begin immediately on local terms without waiting for grants, and called for reader feedback on existing Indigenous-led monitoring efforts.",
+    "topics_covered": [
+      "Data sovereignty and evidentiary standing in fisheries management",
+      "DFO's structural monopoly on salmon genetic analysis and its governance implications",
+      "Historical pattern of federal institutions collecting Indigenous knowledge without consent",
+      "Comparison between fire management partnerships (Alkali Resource Management) and fisheries management capacity-building",
+      "Post-decision recognition gap: court rulings and tools that don't automatically shift federal practice",
+      "Technical sustainability versus governance accountability in three-year grant-funded projects"
     ]
   }
 }
