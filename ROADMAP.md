@@ -41,17 +41,10 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-04..2026-09-23) — 7 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-09..2026-09-24) — 5 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **Casey's speaking time exceeds Riley's by 13 percent.** The voice_ratio_casey_over_riley
-      measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear
-      whether this represents acceptable variance or systematic drift. Establish a target voice
-      ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios
-      outside a defined band. If this ratio persists across future runs, adjust the host
-      distribution weights in the synthesis prompt. (signal `voice-ratio`; seen in 6 reviews,
-      latest 2026-09-21)
 - [ ] **Brave body-backfill budget exhaustion is recurring and requires intervention.** On
       2026-09-08, the pipeline spent its full 12-call Brave budget during script generation,
       forcing nine articles to ship with stub bodies instead of full text. The degradations log
@@ -61,21 +54,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
       across runs and alert when 80% of the budget is consumed. (signal
-      `degraded:script/bodies`; seen in 18 reviews, latest 2026-09-23)
-- [ ] **Three instances of AI-tell language patterns passed quality checks and shipped in the
-      final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
-      shipped script. These phrases remained in the audio and RSS feed. The detection system is
-      working, but the pipeline has no gate to reject episodes with pattern hits or halt
-      publication for manual review before shipping. (signal `ai-tells-shipped`; seen in 8
-      reviews, latest 2026-09-18)
+      `degraded:script/bodies`; seen in 19 reviews, latest 2026-09-24)
 - [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
       section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
       (33%). The gap suggests a different verification pathway or a shortfall in source
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 16
-      reviews, latest 2026-09-23)
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 17
+      reviews, latest 2026-09-24)
 - [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
       2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
       an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
@@ -85,15 +72,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 11 reviews,
-      latest 2026-09-23)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 12 reviews,
+      latest 2026-09-24)
 - [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
       errors.** On September 22, a single file present in podcast-feed.xml could not be found in
       R2 and could not be rebuilt from disk. The pipeline completed and published successfully
       despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
       reference. Identify which object is missing, restore it to R2, or remove the reference
       from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
-      in 2 reviews, latest 2026-09-23)
+      in 3 reviews, latest 2026-09-24)
 - [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
       territory-check rewrites failed.** On September 22, the territory-check system flagged two
       sentences claiming Tsilhqot'in nation in contexts the territory map covers as other

@@ -247,8 +247,8 @@
       "title": "Casey's speaking time exceeds Riley's by 13 percent.",
       "detail": "The voice_ratio_casey_over_riley measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear whether this represents acceptable variance or systematic drift. Establish a target voice ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios outside a defined band. If this ratio persists across future runs, adjust the host distribution weights in the synthesis prompt.",
       "source": "review",
-      "status": "open",
-      "occurrences": 6,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -294,10 +294,9 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 18,
+      "occurrences": 19,
       "first_seen": "2026-09-01",
       "seen": [
-        "2026-09-12",
         "2026-09-13",
         "2026-09-15",
         "2026-09-16",
@@ -306,11 +305,12 @@
         "2026-09-20",
         "2026-09-21",
         "2026-09-22",
-        "2026-09-23"
+        "2026-09-23",
+        "2026-09-24"
       ],
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-24",
       "signal": "degraded:script/bodies",
-      "signal_seen": "2026-09-23"
+      "signal_seen": "2026-09-24"
     },
     {
       "id": "gemini-tts-multi-speaker-news-section-http-500",
@@ -344,8 +344,8 @@
       "title": "Three instances of AI-tell language patterns passed quality checks and shipped in the final episode.",
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
-      "status": "open",
-      "occurrences": 8,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -393,10 +393,9 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 16,
+      "occurrences": 17,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-08",
         "2026-09-09",
         "2026-09-11",
         "2026-09-13",
@@ -405,11 +404,12 @@
         "2026-09-19",
         "2026-09-20",
         "2026-09-22",
-        "2026-09-23"
+        "2026-09-23",
+        "2026-09-24"
       ],
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-24",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-09-23"
+      "signal_seen": "2026-09-24"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -444,10 +444,9 @@
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 11,
+      "occurrences": 12,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-06",
         "2026-09-09",
         "2026-09-12",
         "2026-09-13",
@@ -456,11 +455,12 @@
         "2026-09-16",
         "2026-09-17",
         "2026-09-21",
-        "2026-09-23"
+        "2026-09-23",
+        "2026-09-24"
       ],
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-24",
       "signal": "short-script",
-      "signal_seen": "2026-09-23"
+      "signal_seen": "2026-09-24"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -481,15 +481,16 @@
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-09-22",
       "seen": [
         "2026-09-22",
-        "2026-09-23"
+        "2026-09-23",
+        "2026-09-24"
       ],
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-24",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-09-23"
+      "signal_seen": "2026-09-24"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -508,8 +509,8 @@
       ],
       "last_seen": "2026-09-23",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-09-23"
+      "signal_seen": "2026-09-24"
     }
   ],
-  "updated": "2026-09-23"
+  "updated": "2026-09-24"
 }
