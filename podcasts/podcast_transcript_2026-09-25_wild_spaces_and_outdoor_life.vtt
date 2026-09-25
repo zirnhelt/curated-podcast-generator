@@ -1,0 +1,220 @@
+WEBVTT
+
+00:00:00.562 --> 00:00:19.546
+<v Riley>Hey there — today we're out in the backcountry. A new camera trick called pre-capture is buffering footage before you even hit the shutter, but it's only on gear that costs thousands. And that ties straight into a harder question: does a bear nobody photographs even count, until it's too late? That and more, coming right up.
+
+00:00:33.021 --> 00:00:54.909
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. I'm Riley. It's Friday, September 25th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Wild Spaces &amp; Outdoor Life.
+
+00:00:55.909 --> 00:01:05.533
+<v Casey>And I'm Casey. We're talking about the backcountry today. How people move through it, watch it, photograph it, and try to keep some kind of record of what's actually out there.
+
+00:01:05.633 --> 00:01:28.905
+<v Casey>Quick weather check before we get into it. Drizzle out at Horsefly Lake this morning, around 8 degrees, with a high of 9 and rain expected through the day, about 12 millimetres total. 100 Mile House is sitting around 6 with moderate drizzle. Williams Lake is about 8 with light drizzle. Quesnel is around 7. Hanceville is around 6, also light drizzle. Grey across the whole region today.
+
+00:01:29.271 --> 00:01:32.031
+<v Riley>Grab a rain jacket. Let's get into what's happening.
+
+00:01:33.431 --> 00:02:06.815
+<v Riley>A lot of today's news is close to home, and a fair bit of it comes down to who's managing the land and who's cleaning up after something goes wrong on it. West Fraser and the Stswecem'c Xget'tem First Nation, whose territory sits southwest of Williams Lake, announced they're advancing joint forest stewardship work together. The release frames it as a formal step toward shared planning across the Nation's territory, moving past the older model where a licensee sets a cutting plan and consults the Nation after most of the decisions are already made.
+
+00:02:08.078 --> 00:02:15.270
+<v Casey>The release doesn't say who signs off on final plans, which is the detail that tells you whether this is co-management or co-branding.
+
+00:02:16.596 --> 00:02:39.708
+<v Casey>In Quesnel, firefighters had a rougher morning. Around six-thirty yesterday, crews responded to a call in the 600 block of Rolph Street in West Quesnel. Fire Chief Ron Richert says the homeowner had already put out most of the flames by the time crews arrived, but the Quesnel Fire Department still had to breach part of the building's structure to confirm nothing was still smoldering inside the walls.
+
+00:02:40.335 --> 00:02:43.807
+<v Riley>Good outcome, given how fast a wall fire can hide and restart.
+
+00:02:45.136 --> 00:03:04.552
+<v Riley>Down in 100 Mile House, an RCMP officer was assaulted with what the report describes as bodily fluids during an arrest. That arrest is connected to an ongoing investigation into fuel siphoning in the area, and surveillance footage of a truck allegedly involved in the thefts is part of the case file police released.
+
+00:03:05.452 --> 00:03:22.972
+<v Casey>And there's a bigger political story out of the region today. My Cariboo Now is reporting that John Rustad has exited the provincial political stage, stepping down after the caucus turmoil we've been tracking through the week. Lorne Doerkson, the Cariboo-Chilcotin MLA, has been named interim leader of the B.C. Conservatives.
+
+00:03:24.207 --> 00:03:35.535
+<v Riley>That's the fourth or fifth turn in that story just this week, and the general election is set for October 24th, so there's a month for it to turn again before anyone actually votes.
+
+00:03:36.435 --> 00:03:57.355
+<v Casey>There's a wildfire aftermath story too, though it's out of our region. Different mountains, similar summer. The Tyee has a piece on a Slocan Valley artist named Petra Hekkenberg, in the Kootenays, who's spent the weeks since a fire tore through her area trying to figure out what "safekeeping" means for the work and the place she was documenting before the fire took part of it.
+
+00:03:59.036 --> 00:04:22.628
+<v Riley>On the political front, two Vancouver Sun pieces sketch out the shape of the campaign so far. The NDP has lost four cabinet ministers heading into the election, including one of Premier Eby's closest allies. Meanwhile one poll has the Conservatives taking an early lead, and a competing poll shows the NDP still ahead. Which mostly tells you nobody has a clean read on this race yet, this early.
+
+00:04:24.019 --> 00:04:45.403
+<v Casey>And WIRED has a story that's a strange companion to all that provincial jockeying. AI-linked political action committees have already put close to a million dollars into an otherwise obscure U.S. Senate race in South Dakota, a reliably Republican seat with an incumbent on the ballot. That's more outside money than actual residents of the state have spent on the race combined.
+
+00:04:45.903 --> 00:04:50.727
+<v Riley>Worth remembering the next time somebody says AI money stays out of small races. It doesn't.
+
+00:04:52.167 --> 00:05:08.423
+<v Casey>A couple of science stories worth a beat each. ScienceDaily reports researchers may have found a previously missed cause of age-related muscle weakness, a breakdown in communication between nerves and the muscle fibres they control. In an animal model, they were able to partially reverse it.
+
+00:05:09.559 --> 00:05:23.671
+<v Riley>And ScienceAlert has a piece on two remote Amazon communities with unusually low rates of dementia. Researchers don't have a settled explanation. Lifestyle is the leading guess, but they're upfront that it's still an open question, not a finding.
+
+00:05:25.053 --> 00:05:37.453
+<v Casey>NPR Health News ties into both of those, in a roundabout way. New research suggests human activity, deforestation and climate disruption among the causes, is partly behind the rise in infectious disease outbreaks worldwide.
+
+00:05:38.869 --> 00:05:59.517
+<v Riley>STAT News has an item out of Indonesia, where a court ruled against so-called patent evergreening by pharmaceutical companies, the practice of extending patent protection through minor tweaks to keep generic competitors off the market. Patient advocates are calling the ruling a signal other countries might be willing to follow.
+
+00:06:00.710 --> 00:06:23.974
+<v Casey>Two more items on accountability, from further afield. A Croatian court has approved the extradition of a suspect in the Nord Stream pipeline bombing case, though the ruling still faces an appeal and a final decision is pending. And the Committee to Protect Journalists says three Tunisian journalists were briefly detained this week, part of what the Committee is calling an intensifying media crackdown in the country.
+
+00:06:25.174 --> 00:06:42.182
+<v Riley>We'll close on something that sounds dry but actually touches everything we cover here. Hackaday has a piece on UDP broadcasting under IPv6, working through what happens to an old networking trick, built for the previous addressing scheme, once a network moves to the new one.
+
+00:06:42.816 --> 00:06:44.496
+<v Casey>Not exactly backcountry material.
+
+00:06:45.701 --> 00:06:59.701
+<v Riley>No, but if you've ever tried to get a satellite messenger, a trail camera, or a remote weather station talking reliably to a home network out in the bush, you've hit this kind of plumbing problem before. Same headache, different jargon.
+
+00:07:00.315 --> 00:07:02.539
+<v Casey>On that note, let's get to today's spotlight.
+
+00:07:03.938 --> 00:07:29.930
+<v Casey>Today's spotlight lines up with World Tourism Day. The Cariboo Chilcotin Coast Tourism Association promotes outdoor recreation and rural businesses right across our region, from backcountry trailheads to small-town main streets, and they do it in a way that tries to send actual traffic toward the businesses that need it, not just glossy photos for a brochure. If you want to see what's in our own backyard laid out properly, it's at landwithoutlimits.com.
+
+00:07:30.511 --> 00:07:41.415
+<v Riley>It's one of the few regional tourism efforts that treats "promote responsibly" as more than a slogan on a grant application. Given where we're headed today, that distinction matters.
+
+00:07:41.692 --> 00:07:42.988
+<v Casey>It does. Let's get into it.
+
+00:07:44.388 --> 00:08:03.916
+<v Riley>There's a camera feature making the rounds in wildlife photography circles called pre-capture. Your mirrorless camera starts buffering frames continuously before you even press the shutter, so when a bear lunges or an owl strikes, you're not a half-second too slow. The camera already has the frame sitting in its buffer.
+
+00:08:04.212 --> 00:08:06.836
+<v Casey>So the machine catches the moment the photographer missed.
+
+00:08:07.449 --> 00:08:26.201
+<v Riley>That's the pitch. Nikon put a version of it on the Z9 back in 2022 through a firmware update. Canon added it to the R5 Mark II and the R1 in 2024. Sony's got it, but only on the flagship a9 III. It's spreading across the major brands fast, which for camera technology is unusually quick.
+
+00:08:26.516 --> 00:08:30.260
+<v Casey>Spreading fast among cameras that run three to six thousand dollars.
+
+00:08:30.760 --> 00:08:35.744
+<v Riley>That's the catch. It's not on anybody's phone yet, and it's not on the entry-level bodies either.
+
+00:08:36.255 --> 00:09:13.127
+<v Casey>So it's not democratizing anything for the person standing at a pullout on the Chilcotin plateau with a point-and-shoot. It's giving people who already had the gear, the time in the field, and the patience one more edge on top of everything they already had. There's a photography outlet that published a direct rebuttal to the kind of enthusiasm you're describing, calling pre-capture overhyped. Their argument is that reaction speed was never the bottleneck for wildlife photography. Proximity to the animal is the bottleneck. Patience is the bottleneck. Access to the habitat in the first place is the bottleneck. A faster shutter doesn't put you closer to a moose.
+
+00:09:13.775 --> 00:09:21.711
+<v Riley>Every technology that eventually trickles down to everyone starts at the expensive end first. Autofocus did. Image stabilization did.
+
+00:09:22.022 --> 00:09:25.558
+<v Casey>Maybe. But that's a future promise standing in for a present gap.
+
+00:09:26.158 --> 00:09:33.118
+<v Riley>Which raises something bigger than cameras. Does a place, or a population, count for anything if nobody's there to record it?
+
+00:09:33.298 --> 00:09:33.914
+<v Casey>Meaning what.
+
+00:09:34.446 --> 00:09:51.646
+<v Riley>Meaning a bear that nobody photographs, a salmon run nobody logs, a den site nobody GPS-tags. Does that matter to the people who make decisions about it? Or does it just sit there, unrecorded, until somebody with the right gear or the right mandate shows up and it becomes data?
+
+00:09:51.901 --> 00:09:57.181
+<v Casey>It's not hypothetical here. Think about the black bear in 100 Mile House that got euthanized this month.
+
+00:09:57.723 --> 00:10:21.643
+<v Riley>Worth going further on that. That bear didn't become a problem the week conservation officers finally wrote it up. People in that neighbourhood had been watching it come around garbage bins for weeks, maybe longer. The local knowledge existed well before any official record did. By the time it hit the paperwork that conservation officers act on, the only option left on the table was destroying the animal.
+
+00:10:22.322 --> 00:10:40.330
+<v Casey>So the formal record lagged the actual reality by weeks, at minimum. And there was no channel for turning "the bear's been in my yard three times this month" into an early flag that somebody with authority could act on before it escalated. It only became real, institutionally, once it was already too late for anything except euthanasia.
+
+00:10:40.937 --> 00:10:58.889
+<v Riley>That's a documentation gap with a body count attached. If anything that's a stronger argument for more recording, not less. Trail cams on problem corridors, a community reporting app, anything that turns a scattered set of individual sightings into a pattern that flags itself before month three or four.
+
+00:10:59.449 --> 00:11:15.425
+<v Casey>Or it's proof that recording without an acting mechanism behind it doesn't help anybody. Regional wildlife-safety programs in this area have reportedly struggled with unfilled coordinator positions in recent years. The sightings existed. Nobody was funded to act on them fast enough to matter.
+
+00:11:15.825 --> 00:11:34.785
+<v Riley>So the camera story and the bear story are the same failure, approached from opposite ends. The camera has beautiful footage and no urgency attached to it. The bear situation had real urgency and no record anybody in a position of authority trusted, until it was too late to do anything but put the animal down.
+
+00:11:34.965 --> 00:11:35.661
+<v Casey>That tracks.
+
+00:11:36.297 --> 00:11:47.745
+<v Riley>There's a gentler version of this question sitting in Williams Lake right now, and it's not really about data at all. A community salmon mural — wood cutouts, painted by residents, mounted along a fence.
+
+00:11:48.077 --> 00:11:49.909
+<v Casey>That's not a dataset. That's memory.
+
+00:11:50.435 --> 00:12:05.331
+<v Riley>It's a different kind of record entirely. Nobody's citing a community mural in a stock assessment report. But it's a way for a town to say this run mattered to us, we noticed it, in the years before it might stop coming back in the numbers it used to.
+
+00:12:05.884 --> 00:12:29.396
+<v Casey>Which surfaces the tension underneath all of this. Conservation science wants standing data. Repeatable, comparable, defensible in front of a regulatory hearing. Community memory doesn't care about any of that. It cares about continuity of feeling, about a town remembering what its river used to hold. Those aren't the same kind of recording, and treating them as interchangeable is where these conversations get sloppy.
+
+00:12:30.053 --> 00:12:43.885
+<v Riley>They're not interchangeable. But they're not opposites either. A mural doesn't feed a stock model. It can still be the thing that makes a town notice a decline early enough to demand that a stock model gets built in the first place.
+
+00:12:44.385 --> 00:12:51.521
+<v Casey>I'll grant that. Community attention is often the trigger for formal attention, even when it isn't formal data in its own right.
+
+00:12:52.179 --> 00:13:24.227
+<v Riley>There's an ethics thread inside the camera story too, and it cuts closer to this question of who gets to witness what than I expected. Conservation photography bodies, the International League of Conservation Photographers and the U.S. Fish and Wildlife Service among them, have flagged what they're calling an authenticity gap in modern nature photography. If the camera is already recording before a photographer consciously decides to press the shutter, is the person still choosing the moment, or is the algorithm choosing it for them?
+
+00:13:24.515 --> 00:13:36.059
+<v Casey>If the buffer decides which two seconds of continuous footage survive, the photographer's judgment has been displaced upstream into the camera's engineering, before any human made a call about what mattered.
+
+00:13:36.677 --> 00:13:45.973
+<v Riley>The animal still did the thing, though. The camera didn't invent a bear lunge that never happened. It just didn't blink at the wrong moment the way a person would.
+
+00:13:46.495 --> 00:14:04.743
+<v Casey>Nothing's fabricated, agreed. But witnessing used to mean a person paid close enough attention, for long enough, to be there when the moment actually happened. Pre-capture swaps "I was paying attention" for "the sensor happened to be running." That's a real shift in what counts as having seen something, even if the pixels are honest.
+
+00:14:04.842 --> 00:14:23.378
+<v Casey>It matters for the reason we keep circling around. If the standard for "this place is known" becomes whatever the sensor happened to be running when something moved through frame, that's a different kind of knowing than a trapper who's walked the same creek for thirty years and can tell you which willows the moose favour by late October, and why.
+
+00:14:23.977 --> 00:14:38.937
+<v Riley>Except the trapper's thirty years dies with him if nobody ever writes it down, records it, or hands it off in some form the next person can use. A camera buffer that runs continuously at least leaves something behind that outlasts the person who set it up.
+
+00:14:39.487 --> 00:14:51.279
+<v Casey>It leaves footage. It doesn't leave understanding. Those aren't the same output, and treating footage as a substitute for accumulated judgment is how you end up with a lot of clips and no idea why the animal was there.
+
+00:14:51.883 --> 00:15:07.755
+<v Riley>They're not the same, granted. But footage travels. It's easier to hand to the next generation than tacit knowledge held in one person's head. That's the actual case for recording technology. It survives past the person who made it, where oral knowledge often doesn't.
+
+00:15:08.355 --> 00:15:27.715
+<v Casey>Incomplete, though. A hard drive full of bear encounters doesn't tell you why the bear was in that yard, what the berry crop looked like that year, whether a neighbour's chicken coop had gone unlatched all August. The trapper's version comes with causation built in from decades of watching. The footage arrives with none of that context attached.
+
+00:15:28.293 --> 00:15:36.157
+<v Riley>So the actual goal is both together. Tacit knowledge paired with continuous recording, each checking the other for blind spots.
+
+00:15:36.838 --> 00:16:01.446
+<v Casey>That's the ideal. Nobody around here has built the institution that actually pairs the two well, on an ongoing basis. Williams Lake First Nation, and other Nations in the region, have reportedly worked on layered monitoring for fisheries, combining elder knowledge of run timing with instrument data on water temperature and flow. It's not a new idea. It's just never been the default model for how the province runs its own monitoring.
+
+00:16:02.041 --> 00:16:18.177
+<v Riley>Which is a stronger version of the point than just "put more cameras out there." The camera only becomes useful once there's an actual place for what it records to land, somebody whose job it is to look at the footage and connect it to the years of context that give it meaning.
+
+00:16:18.762 --> 00:16:29.082
+<v Casey>That's the whole gap, as far as I can tell. Not more sensors. Somewhere for the sensor data to meet the human record, and someone with the standing to let that meeting change a decision.
+
+00:16:29.682 --> 00:16:50.898
+<v Riley>So the answer to the question we started with isn't a clean yes or no. A bear counts, plainly, to the neighbourhood that keeps seeing it walk through their yard. It doesn't count to the system that eventually has to decide what to do about it, not until somebody translates that sighting into a form the system already knows how to recognize.
+
+00:16:51.465 --> 00:17:04.025
+<v Casey>And that translation step is exactly where the Cariboo keeps losing time. Weeks, in the 100 Mile case. Longer, probably, for a fish run nobody's tracking closely enough to notice a slow decline until it's a steep one.
+
+00:17:04.711 --> 00:17:31.375
+<v Riley>Which points to something a community could actually try, and it doesn't need a grant application behind it. A standing local reporting channel that feeds directly to whoever holds the actual mandate to act, not a general tip line that disappears into a queue nobody checks. Even a shared log a conservation officer is required to review weekly would beat what exists right now, which is mostly word of mouth until something goes wrong.
+
+00:17:32.053 --> 00:17:42.413
+<v Casey>Low-tech, cheap to run, and it solves the actual bottleneck, which was never the cameras. It was always who's listening on the other end, and whether they have the authority to move on what they hear.
+
+00:17:43.063 --> 00:18:01.951
+<v Riley>So maybe that's the real takeaway here. Not more recording for its own sake, but a place for the record to go, that somebody's formally responsible for reading and acting on. If anyone listening wants to push on that at a council meeting, or has a sighting pattern worth flagging, send it our way — feedback at cariboo signals dot c-a.
+
+00:18:02.578 --> 00:18:15.906
+<v Casey>Agreed on the diagnosis. Whether any local government wants to own that responsibility, and the liability that comes with it, is a separate fight nobody's had yet. And if you're out with a camera this weekend, pre-capture or not, that's on you.
+
+00:18:16.085 --> 00:18:17.229
+<v Riley>Enjoy the weekend anyway.
+
+00:18:17.129 --> 00:18:18.009
+<v Casey>Bring the rain jacket.

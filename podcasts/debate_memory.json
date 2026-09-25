@@ -1,30 +1,4 @@
 {
-  "2026-06-26": {
-    "timestamp": 1782472635.881721,
-    "date": "2026-06-26",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Why do backcountry safety incidents continue to rise in BC despite improved technology and data infrastructure, and what structural changes could actually reduce them?",
-    "riley_position": "Better-designed digital tools can create entry points into stewardship relationships with Indigenous nations, and proven models like Haida-Parks Canada partnerships in Gwaii Haanas demonstrate that governance interfaces between platforms, territories, and users can work.",
-    "riley_key_evidence": [
-      "Avalanche Canada's forecasting system kept fatalities flat despite increased backcountry participation by combining capability with judgment frameworks",
-      "Haida Nation stewardship model in Gwaii Haanas successfully created a formal interface between Parks Canada, the Haida Heritage Centre, and backcountry visitors",
-      "Trip-planning tools could surface prompts connecting users to T\u015dilhqot'in stewardship offices to create invitations for knowledge-holder conversations"
-    ],
-    "casey_position": "Technology creates moral hazard by expanding access without building judgment; the real gap is that data exists in portals but not at decision points, and solving it requires governance agreements and institutional resourcing that haven't been built.",
-    "casey_key_evidence": [
-      "Capability and judgment are separate\u2014communicator devices get people rescued but don't make them competent in backcountry navigation",
-      "BC Parks reservation system created a pre-trip engagement window that could attach conditions briefings, showing a model for meaningful pre-access contact",
-      "Indigenous stewardship information requires selective disclosure\u2014sensitive cultural sites and wildlife data shouldn't be visible in commercial mapping apps used by millions"
-    ],
-    "resolution": "They converged on the solution that the path forward requires a governance relationship between platforms, Indigenous nations, and users rather than another technology; both agreed that institutional resourcing\u2014not just project funding\u2014must support the nations holding stewardship authority, and that the relationship itself (not the app) is the critical component.",
-    "topics_covered": [
-      "The moral hazard of safety technology expanding access without building judgment",
-      "Information integration failures: why data exists in portals but not at trailhead decision points",
-      "Governance relationships required between commercial platforms and Indigenous nations managing Aboriginal title lands",
-      "Tiered access protocols and trip registration as upstream accountability mechanisms",
-      "Comparative models: Avalanche Canada forecasting vs. Haida-Parks Canada stewardship vs. potential Chilcotin solutions"
-    ]
-  },
   "2026-06-27": {
     "timestamp": 1782555774.700486,
     "date": "2026-06-27",
@@ -2494,6 +2468,35 @@
       "Comparison between fire management partnerships (Alkali Resource Management) and fisheries management capacity-building",
       "Post-decision recognition gap: court rulings and tools that don't automatically shift federal practice",
       "Technical sustainability versus governance accountability in three-year grant-funded projects"
+    ]
+  },
+  "2026-09-25": {
+    "timestamp": 1790324089.108812,
+    "date": "2026-09-25",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildlife-conservation",
+    "anchor": "place-unrecorded",
+    "central_question": "Does wildlife and environmental data only matter when it's formally recorded and integrated into decision-making systems, and what role should technology versus community knowledge play in that process?",
+    "riley_position": "Recording technology and continuous data capture are essential because they create lasting records that survive beyond individual people and can be handed to future generations, but only if there's an institutional structure to receive, interpret, and act on that data.",
+    "riley_key_evidence": [
+      "Pre-capture camera technology has spread across major camera brands (Nikon Z9, Canon R5 Mark II, Sony a9 III) within 2-3 years, showing rapid adoption of recording capabilities",
+      "The 100 Mile House black bear was euthanized because community sightings existed for weeks but had no formal channel to flag early intervention before the problem escalated",
+      "Williams Lake First Nation has successfully paired elder knowledge of salmon run timing with instrument data on water temperature and flow rates for layered monitoring"
+    ],
+    "casey_position": "Recording technology alone is insufficient; the real bottlenecks in wildlife management are proximity, patience, habitat access, and most critically, whether there's someone with authority and funding actually listening and empowered to act on recorded information.",
+    "casey_key_evidence": [
+      "A photography outlet published a rebuttal arguing reaction speed was never the bottleneck\u2014proximity to animals, patience, and habitat access are the actual constraints",
+      "WildSafeBC had regional coordinator vacancies when the bear situation occurred, meaning sightings existed but nobody was funded to act on them fast enough",
+      "Community memory recorded in a salmon mural serves a different purpose than scientific datasets and provides continuity of feeling that triggers formal attention"
+    ],
+    "resolution": "Riley and Casey reached agreement that the actual solution requires both continuous recording and institutional infrastructure: a formal local reporting channel that feeds directly to someone with the mandate and authority to act, combined with integration of tacit community knowledge with sensor data. Casey noted that getting local governments to accept this responsibility and liability remains an unaddressed political challenge.",
+    "topics_covered": [
+      "Wildlife photography pre-capture technology and its democratization across camera brands",
+      "The 100 Mile House bear euthanasia as a case study of documentation gaps with consequences",
+      "The distinction between scientific datasets and community memory (salmon mural example)",
+      "Authenticity and witnessing in algorithmic versus human decision-making in photography",
+      "Integration of tacit Indigenous knowledge with technological monitoring systems in fisheries management",
+      "Institutional gaps in translating community observations into actionable conservation policy"
     ]
   }
 }

@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Geekom reveals multiple mini-PCs may be infected",
       "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since ",
       "EEVblog 1769 \u2013 Who Needs Three Phases? REPAIR",
       "[TechCrunch] Google DeepMind alumni are building tools to ac",
@@ -10,7 +9,8 @@
       "[Fast Company] I use AI to save time. So why am I working mo",
       "[TechRadar] The new digital ID apps for age verification in ",
       "[TechRadar] Microsoft, Google took down $66 million cybercri",
-      "[Business Insider] Laid-off tech workers from Google, Micros"
+      "[Business Insider] Laid-off tech workers from Google, Micros",
+      "[TechRadar] Pre-capture is the best wildlife photography tri"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -135,11 +135,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-09-20",
-        "clue": "structural-lens:~ \u2014 evolved from mechanism-focus to system-critique",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-18",
         "clue": "funding-risk:x \u2014 conceded self-insurance undermines utility hardening pressure",
         "occurrences": 1
@@ -172,6 +167,11 @@
       {
         "date": "2026-09-24",
         "clue": "Indigenous-tech:x \u2014 Conceded that tool ownership \u2260 automatic recognition in decisions.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-25",
+        "clue": "evidence-bar:x \u2014 conceded tacit knowledge outlasts without recording",
         "occurrences": 1
       }
     ],
@@ -429,9 +429,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-21",
-        "clue": "community-trust:~ \u2014 Acknowledged recording value despite earlier skepticism, real movement",
-        "occurrences": 1
+        "date": "2026-09-25",
+        "clue": "community-trust:~ \u2014 acknowledged murals trigger formal attention eventually",
+        "occurrences": 2
       },
       {
         "date": "2026-09-22",
@@ -451,6 +451,11 @@
       {
         "date": "2026-09-24",
         "clue": "pilot-skepticism:+ \u2014 Reinforced concern that grant cycle ends before real adoption test.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-25",
+        "clue": "structural-lens:+ \u2014 deepened focus on actual decision-making gaps",
         "occurrences": 1
       }
     ],
