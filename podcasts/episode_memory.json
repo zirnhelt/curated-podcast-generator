@@ -1,25 +1,4 @@
 {
-  "2026-08-20": {
-    "timestamp": 1787217062.340933,
-    "topics": [
-      "[Williams Lake Tribune] Williams Lake recreation complex ann",
-      "[Williams Lake Tribune] B.C. Needs to be Better Equipped to ",
-      "Vehicle goes up in flames in Quesnel : My Cariboo Now",
-      "[100 Mile Free Press] BUXTON: Wildfires and their impact on ",
-      "[Williams Lake Tribune] Tariff deal on the horizon, but outl",
-      "[Fast Company] America\u2019s housing market is splitting in two,",
-      "[Vox] Cuba has plenty of doctors. So why is its healthcare s",
-      "[ArchDaily] NCARB 2026 Report Shows a More Diverse Candidate"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-20",
-    "focus": "governance-title",
-    "focus_name": "Governance, Title & Treaty"
-  },
   "2026-08-21": {
     "timestamp": 1787303010.938193,
     "topics": [
@@ -743,5 +722,25 @@
     "date": "2026-09-24",
     "focus": "language-culture",
     "focus_name": "Language & Culture"
+  },
+  "2026-09-25": {
+    "timestamp": 1790324085.786203,
+    "topics": [
+      "[Williams Lake Tribune] West Fraser, Stswecem\u2019c Xget\u2019tem Fir",
+      "[My Cariboo Now] Quesnel Fire Department forced to breach bu",
+      "[Williams Lake Tribune] 100 Mile RCMP officer assaulted by \u2018",
+      "[My Cariboo Now] From backbencher to brink of power: John Ru",
+      "[The Tyee] After a Wildfire, a Kootenay Artist Seeks Safe Ke",
+      "[TechRadar] Pre-capture is the best wildlife photography tri",
+      "[Mother Jones] A Bookseller Confronts a Mysterious Company H",
+      "[Williams Lake Tribune] Former rodeo rider Doerkson seeks to"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-09-25",
+    "focus": "wildlife-conservation",
+    "focus_name": "Wildlife & Conservation"
   }
 }
