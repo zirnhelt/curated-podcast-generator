@@ -1,24 +1,4 @@
 {
-  "2026-08-21": {
-    "timestamp": 1787303010.938193,
-    "topics": [
-      "[100 Mile Free Press] HANSEN: Lac La Hache returns to normal",
-      "Updated: Emergency services continue to respond to plane cra",
-      "Paving work resuming August 20 & 21 on Pigeon Avenue in Will",
-      "[Williams Lake Tribune] 1 dead after aircraft collides with ",
-      "B.C. Conservatives name new party president, vice-president ",
-      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
-      "[IndigiNews] Inside an Elder\u2019s fight to save salmon habitat ",
-      "[Outside Online] A Journalist Revisits a Tragic AT Hike in a"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact"
-    ],
-    "date": "2026-08-21",
-    "focus": "recreation-access",
-    "focus_name": "Recreation & Backcountry Access"
-  },
   "2026-08-22": {
     "timestamp": 1787388811.305923,
     "topics": [
@@ -742,5 +722,24 @@
     "date": "2026-09-25",
     "focus": "wildlife-conservation",
     "focus_name": "Wildlife & Conservation"
+  },
+  "2026-09-26": {
+    "timestamp": 1790410618.899168,
+    "topics": [
+      "[Williams Lake Tribune] UBCM backs Williams Lake call for in",
+      "[Williams Lake Tribune] Williams Lake Stampeders out of 2026",
+      "[Williams Lake Tribune] Manpreet Singh from India: Part of t",
+      "[My Cariboo Now] The Thanksgiving Food Drive is underway in ",
+      "[Quesnel Cariboo Observer] Quesnel residents warned to stay ",
+      "[My Cariboo Now] Overlapping B.C. elections will be bad for ",
+      "[Williams Lake Tribune] Nominations close Oct. 1 for 29th an",
+      "[My Cariboo Now] Former B.C. Green leader Andrew Weaver runn"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-09-26",
+    "focus": null,
+    "focus_name": null
   }
 }
