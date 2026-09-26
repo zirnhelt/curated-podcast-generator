@@ -294,10 +294,9 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 20,
+      "occurrences": 21,
       "first_seen": "2026-09-01",
       "seen": [
-        "2026-09-15",
         "2026-09-16",
         "2026-09-18",
         "2026-09-19",
@@ -306,11 +305,12 @@
         "2026-09-22",
         "2026-09-23",
         "2026-09-24",
-        "2026-09-25"
+        "2026-09-25",
+        "2026-09-26"
       ],
-      "last_seen": "2026-09-25",
+      "last_seen": "2026-09-26",
       "signal": "degraded:script/bodies",
-      "signal_seen": "2026-09-25"
+      "signal_seen": "2026-09-26"
     },
     {
       "id": "gemini-tts-multi-speaker-news-section-http-500",
@@ -393,10 +393,9 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 18,
+      "occurrences": 19,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-11",
         "2026-09-13",
         "2026-09-14",
         "2026-09-16",
@@ -405,11 +404,12 @@
         "2026-09-22",
         "2026-09-23",
         "2026-09-24",
-        "2026-09-25"
+        "2026-09-25",
+        "2026-09-26"
       ],
-      "last_seen": "2026-09-25",
+      "last_seen": "2026-09-26",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-09-25"
+      "signal_seen": "2026-09-26"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -444,10 +444,9 @@
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 13,
+      "occurrences": 14,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-12",
         "2026-09-13",
         "2026-09-14",
         "2026-09-15",
@@ -456,11 +455,12 @@
         "2026-09-21",
         "2026-09-23",
         "2026-09-24",
-        "2026-09-25"
+        "2026-09-25",
+        "2026-09-26"
       ],
-      "last_seen": "2026-09-25",
+      "last_seen": "2026-09-26",
       "signal": "short-script",
-      "signal_seen": "2026-09-25"
+      "signal_seen": "2026-09-26"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -491,7 +491,7 @@
       ],
       "last_seen": "2026-09-25",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-09-25"
+      "signal_seen": "2026-09-26"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -499,19 +499,20 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 5,
+      "occurrences": 6,
       "first_seen": "2026-09-19",
       "seen": [
         "2026-09-19",
         "2026-09-20",
         "2026-09-21",
         "2026-09-22",
-        "2026-09-23"
+        "2026-09-23",
+        "2026-09-26"
       ],
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-26",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-09-25"
+      "signal_seen": "2026-09-26"
     }
   ],
-  "updated": "2026-09-25"
+  "updated": "2026-09-26"
 }
