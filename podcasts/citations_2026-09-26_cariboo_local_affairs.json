@@ -1,0 +1,384 @@
+{
+  "episode": {
+    "date": "2026-09-26",
+    "formatted_date": "Saturday, September 26, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>THIS WEEK WE'RE ASKING:</b> Does a place still exist if nobody records it?</p><p><b>NEWS ROUNDUP:</b> We break down UBCM backs Williams Lake call for increased dead wood salvage, expedited permitting and Williams Lake Stampeders out of 2026-27 CIHL season giving heartfelt thanks to fans, plus 10 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Is BC's overlapping provincial and municipal election calendar creating an accountability gap by reducing local media coverage of certain races? Topics include: Williams Lake mayoral rematch between Surinderpal Rathor and Walt Cobb, including Cobb's 2021 residential school misinformation controversy, Williams Lake council race with 14 candidates, three with partial records and eleven with no public information, CRD electoral area director races (Areas D, E, F) with no publicly accessible candidate lists despite filed nominations, School District 27 trustee races, specifically Zone 6's unopposed incumbent Michael Franklin, Local media capacity constraints and the role of overlapping provincial elections in reducing coverage of municipal races.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://southcariboo.cmha.bc.ca\">CMHA South Cariboo</a></p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/09/25/ubcm-backs-williams-lake-call-for-increased-dead-wood-salvage-expedited-permitting/\">[Williams Lake Tribune] UBCM backs Williams Lake call for in...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/25/williams-lake-stampeders-out-of-2026-27-cihl-season-giving-heartfelt-thanks-to-fans/\">[Williams Lake Tribune] Williams Lake Stampeders out of 2026...</a></li><li>Yashvika Grover (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/25/manpreet-singh-from-india-part-of-two-worlds-anchored-by-one-city-williams-lake/\">[Williams Lake Tribune] Manpreet Singh from India: Part of t...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316453/news/communty/the-thanksgiving-food-drive-is-underway-in-quesnel/\">[My Cariboo Now] The Thanksgiving Food Drive is underway in ...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/09/25/quesnel-residents-warned-to-stay-away-from-railway-tracks/\">[Quesnel Cariboo Observer] Quesnel residents warned to stay ...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91613225/fda-approved-new-mflusiva-flu-vaccine-cdc-recommending-heres-why\">[Fast Company] The FDA approved the new mFlusiva flu vaccine...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/09/18/us/politics/faa-ai-dc-airports.html\">[NYT Top Stories] F.A.A. to Roll Out New A.I. Tool for Washi...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/conversations-that-matter-kareem-allam-vancouver-liberals\">[Vancouver Sun] Conversations That Matter: Kareem Allam of V...</a></li><li>Popular Mechanics: <a href=\"https://www.popularmechanics.com/science/environment/a73856229/southwest-megadrought-pdo/\">[Popular Mechanics] A Megadrought Has Been Plaguing the U.S....</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/home-and-office/is-solar-answer-to-spiking-energy-bills/\">[ZDNet] Is solar the answer to your spiking energy bills? It...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/09/25/this-week-in-security-fbi-gets-hacked-muse-vulnerable-to-clickfix-popular-rust-developers-at-risk-and-new-attacks-against-rsa/\">[Hackaday] This Week in Security: FBI Gets Hacked, Muse Vuln...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/09/25/pi-pico-recreates-the-heathkit-pocket-packet/\">[Hackaday] Pi Pico Recreates The Heathkit Pocket Packet</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316469/news/politics/overlapping-b-c-elections-will-be-bad-for-democracy-says-expert/\">[My Cariboo Now] Overlapping B.C. elections will be bad for ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Business Insider: <a href=\"https://www.businessinsider.com/what-i-learned-about-ai-pr-crisis-from-political-ads-2026-9\">[Business Insider] Politicians are attacking AI with a core ...</a></li><li>Mary Randolph (Scientific American): <a href=\"https://www.scientificamerican.com/article/scientists-just-found-a-bizarre-cosmic-object-hiding-in-plain-sight/\">[Scientific American] Scientists just found a bizarre cosmic...</a></li><li>The Northern Miner: <a href=\"https://www.northernminer.com/commodities-markets/uranium-miners-race-to-catch-surging-nuclear-demand/1003894961/\">[The Northern Miner] Uranium miners race to catch surging nu...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/19/nominations-close-oct-1-for-29th-annual-williams-lake-business-excellence-awards/\">[Williams Lake Tribune] Nominations close Oct. 1 for 29th an...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/\">[My Cariboo Now] Former B.C. Green leader Andrew Weaver runn...</a></li><li>Mining.com: <a href=\"https://www.mining.com/critical-minerals-boom-risks-second-funding-gap-as-governance-support-shrinks/\">[Mining.com] Critical minerals boom risks second funding gap...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316465/news/health-care/quesnel-city-council-continues-to-debate-winter-shelter-location/\">[My Cariboo Now] Quesnel City Council continues to debate wi...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-26T01:16:55.402038-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-opus-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3272,
+      "voice_ratio_casey_riley": 1.05,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 1,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 5,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 2,
+      "rhythm": {
+        "em_dashes_per_1k": 12.2,
+        "short_turns": 4,
+        "turns": 77,
+        "avg_turn_words": 41.2,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes",
+          "short_turns"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 5
+    },
+    "anchor": {
+      "id": "place-unrecorded",
+      "question": "Does a place still exist if nobody records it?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] UBCM backs Williams Lake call for increased dead wood salvage, expedited permitting",
+          "url": "https://wltribune.com/2026/09/25/ubcm-backs-williams-lake-call-for-increased-dead-wood-salvage-expedited-permitting/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 92,
+          "date_published": "2026-09-26T04:02:46.012541+00:00",
+          "summary": "## UBCM backs Williams Lake call for increased dead wood salvage, expedited permitting Published 1:33 pm Friday, September 25, 2026 **By Williams Lake Tribune Staff** In 2018 Williams Lake First Natio...",
+          "discussed": true,
+          "mention_offset_frac": 0.0076
+        },
+        {
+          "title": "[Williams Lake Tribune] Manpreet Singh from India: Part of two worlds, anchored by one city, Williams Lake",
+          "url": "https://wltribune.com/2026/09/25/manpreet-singh-from-india-part-of-two-worlds-anchored-by-one-city-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Yashvika Grover",
+          "ai_score": 78,
+          "date_published": "2026-09-26T04:02:46.012722+00:00",
+          "summary": "## Manpreet Singh from India: Part of two worlds, anchored by one city, Williams Lake Published 5:00 am Friday, September 25, 2026 **By Yashvika Grover** 1/6 Manpreet Khanouri with his daughter at the...",
+          "discussed": true,
+          "mention_offset_frac": 0.0076
+        },
+        {
+          "title": "[Popular Mechanics] A Megadrought Has Been Plaguing the U.S. for 27 Years—And Scientists Say It May Never End",
+          "url": "https://www.popularmechanics.com/science/environment/a73856229/southwest-megadrought-pdo/",
+          "source": "Popular Mechanics",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-09-25T12:30:00+00:00",
+          "summary": "The Pacific Decadal Oscillation (PDO) historically drove a regular wet-dry cycle, but climate change might’ve hijacked this once-predictable climate pattern.",
+          "discussed": true,
+          "mention_offset_frac": 0.0974
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Stampeders out of 2026-27 CIHL season giving heartfelt thanks to fans",
+          "url": "https://wltribune.com/2026/09/25/williams-lake-stampeders-out-of-2026-27-cihl-season-giving-heartfelt-thanks-to-fans/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 88,
+          "date_published": "2026-09-26T04:02:46.012638+00:00",
+          "summary": "## Williams Lake Stampeders out of 2026-27 CIHL season giving heartfelt thanks to fans Published 9:31 am Friday, September 25, 2026 **By Rebecca Dyok** The Stamps celebrate a goal against the Rampage ...",
+          "discussed": true,
+          "mention_offset_frac": 0.1177
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel residents warned to stay away from railway tracks",
+          "url": "https://quesnelobserver.com/2026/09/25/quesnel-residents-warned-to-stay-away-from-railway-tracks/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 72,
+          "date_published": "2026-09-25T22:18:27+00:00",
+          "summary": "Quesnel residents are being reminded that trespassing on railway tracks or property is not only dangerous, but also illegal. In a press release, Jonathan Abecassis, CN Police media relations manager, ...",
+          "discussed": true,
+          "mention_offset_frac": 0.1785
+        },
+        {
+          "title": "[My Cariboo Now] The Thanksgiving Food Drive is underway in Quesnel",
+          "url": "https://www.mycariboonow.com/316453/news/communty/the-thanksgiving-food-drive-is-underway-in-quesnel/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 82,
+          "date_published": "2026-09-25T13:00:59+00:00",
+          "summary": "Quesnel residents are being asked to help out the Nourish Food Bank. The post The Thanksgiving Food Drive is underway in Quesnel appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.2438
+        },
+        {
+          "title": "[Fast Company] The FDA approved the new mFlusiva flu vaccine, but the CDC isn’t recommending it. Here’s why",
+          "url": "https://www.fastcompany.com/91613225/fda-approved-new-mflusiva-flu-vaccine-cdc-recommending-heres-why",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-09-25T13:59:53+00:00",
+          "summary": "The Food and Drug Administration recently approved a new flu vaccine that tested well in older adults. But the federal agency responsible for telling doctors and the general public how to use it has m...",
+          "discussed": true,
+          "mention_offset_frac": 0.3866
+        },
+        {
+          "title": "[Scientific American] Scientists just found a bizarre cosmic object ‘hiding in plain sight’",
+          "url": "https://www.scientificamerican.com/article/scientists-just-found-a-bizarre-cosmic-object-hiding-in-plain-sight/",
+          "source": "Scientific American",
+          "author": "Mary Randolph",
+          "ai_score": 73,
+          "date_published": "2026-09-25T18:00:00+00:00",
+          "summary": "Meet the Milky Way’s first microblazar",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] F.A.A. to Roll Out New A.I. Tool for Washington Airports",
+          "url": "https://www.nytimes.com/2026/09/18/us/politics/faa-ai-dc-airports.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-09-18T20:21:00+00:00",
+          "summary": "The tool, called SMART, will crunch scheduling and weather data to predict and avoid delays. It will be deployed in the Washington region’s three major airports next week.",
+          "discussed": true,
+          "mention_offset_frac": 0.5344
+        },
+        {
+          "title": "[The Northern Miner] Uranium miners race to catch surging nuclear demand",
+          "url": "https://www.northernminer.com/commodities-markets/uranium-miners-race-to-catch-surging-nuclear-demand/1003894961/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-09-18T12:30:00+00:00",
+          "summary": "The uranium market is slipping into a structural deficit as surging nuclear demand outpaces the development of new mines. Global uranium exploration and development spending exceeded $1.78 billion in ...",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] Conversations That Matter: Kareem Allam of Vancouver Liberals",
+          "url": "https://vancouversun.com/news/conversations-that-matter-kareem-allam-vancouver-liberals",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-09-25T14:00:34+00:00",
+          "summary": "Conversations That Matter is interviewing the top five mayoral candidates in Vancouver over the next few weeks",
+          "discussed": true,
+          "mention_offset_frac": 0.6023
+        },
+        {
+          "title": "[ZDNet] Is solar the answer to your spiking energy bills? It depends on 3 factors",
+          "url": "https://www.zdnet.com/home-and-office/is-solar-answer-to-spiking-energy-bills/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-09-18T19:08:32+00:00",
+          "summary": "Solar is often viewed as an investment in ‘free electricity’ – but your location, choice of financing, and ability to store energy can all tip the scales in your favor or against it.",
+          "discussed": true,
+          "mention_offset_frac": 0.7633
+        },
+        {
+          "title": "[Hackaday] This Week in Security: FBI Gets Hacked, Muse Vulnerable to ClickFix, Popular Rust Developers at Risk, and New Attacks Against RSA",
+          "url": "https://hackaday.com/2026/09/25/this-week-in-security-fbi-gets-hacked-muse-vulnerable-to-clickfix-popular-rust-developers-at-risk-and-new-attacks-against-rsa/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-09-25T14:00:53+00:00",
+          "summary": "The prolific ShinyHunters group has announced it used a zero-day vulnerability in Oracle PeopleSoft to exploit the FBI jobs website and gain access to the AWS GovCloud instances and dump …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.832
+        },
+        {
+          "title": "[Hackaday] Pi Pico Recreates The Heathkit Pocket Packet",
+          "url": "https://hackaday.com/2026/09/25/pi-pico-recreates-the-heathkit-pocket-packet/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-09-25T20:00:50+00:00",
+          "summary": "Packet radio is a particularly fun part of the ham radio hobby. Once upon a time, you might have squirted data about the airwaves using something like the Heathkit HK-21 …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.9354
+        },
+        {
+          "title": "[Business Insider] Politicians are attacking AI with a core message: It's costing you money",
+          "url": "https://www.businessinsider.com/what-i-learned-about-ai-pr-crisis-from-political-ads-2026-9",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-25T14:42:52+00:00",
+          "summary": "Electricity bills and other costs are the focus for political campaigns attacking AI and data centers in ads, according to our review of TV spots.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Overlapping B.C. elections will be bad for democracy, says expert",
+          "url": "https://www.mycariboonow.com/316469/news/politics/overlapping-b-c-elections-will-be-bad-for-democracy-says-expert/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 86,
+          "date_published": "2026-09-25T22:13:29+00:00",
+          "summary": "B.C.’s overlapping provincial and municipal elections are raising concerns about voter attention and the impact on local campaigns. The post Overlapping B.C. elections will be bad for democracy, says ...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Nominations close Oct. 1 for 29th annual Williams Lake Business Excellence Awards",
+          "url": "https://wltribune.com/2026/09/19/nominations-close-oct-1-for-29th-annual-williams-lake-business-excellence-awards/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 88,
+          "date_published": "2026-09-20T04:02:35.355226+00:00",
+          "summary": "## Nominations close Oct. 1 for 29th annual Williams Lake Business Excellence Awards Published 7:57 am Saturday, September 19, 2026 **By Rebecca Dyok** In 2024, Cariboo Chilcotin MLA Lorne Doerkson wa...",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election",
+          "url": "https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 41,
+          "date_published": "2026-09-23T23:47:19+00:00",
+          "summary": "Andrew Weaver is running as a CentreBC candidate in Oak Bay-Gordon Head, the same Victoria-area riding he previously represented as a B.C. Green MLA. The post Former B.C. Green leader Andrew Weaver ru...",
+          "discussed": false
+        },
+        {
+          "title": "[Mining.com] Critical minerals boom risks second funding gap as governance support shrinks",
+          "url": "https://www.mining.com/critical-minerals-boom-risks-second-funding-gap-as-governance-support-shrinks/",
+          "source": "Mining.com",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-09-25T20:35:09+00:00",
+          "summary": "Washington-based donor network says development finance for mines, processing facilities and infrastructure is expanding while funding for transparency, civil society oversight and community participa...",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Quesnel City Council continues to debate winter shelter location",
+          "url": "https://www.mycariboonow.com/316465/news/health-care/quesnel-city-council-continues-to-debate-winter-shelter-location/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 82,
+          "date_published": "2026-09-25T19:26:12+00:00",
+          "summary": "A request to vote again on a proposed temporary shelter on Elliott Street in Quesnel failed to get on the floor at this week's (Sept 22) meeting. The post Quesnel City Council continues to debate wint...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Is BC's overlapping provincial and municipal election calendar creating an accountability gap by reducing local media coverage of certain races?",
+        "riley_position": "The overlapping elections create real, fixable gaps in coverage—particularly for lower-profile races like CRD director seats—where candidates and records simply aren't being documented or made public before voters cast ballots.",
+        "riley_key_evidence": [
+          "Eleven of fourteen Williams Lake council candidates have no findable prior record, biography, or public information beyond their nomination forms",
+          "CRD Areas D, E, and F have no publicly filed candidate list available despite nominations closing September 11th",
+          "School trustee Zone 6 has only one unopposed candidate (Michael Franklin) running by acclamation with no contested record to review"
+        ],
+        "casey_position": "The media capacity problem is real but uneven—high-profile races like the mayoral rematch will get coverage regardless, while quieter seats get ignored not because information doesn't exist but because it hasn't been made accessible to the public or treated as newsworthy by outlets.",
+        "casey_key_evidence": [
+          "Williams Lake Mayor Walt Cobb shared misinformation about residential schools in late 2021 while in office and was called to resign by Williams Lake First Nation, creating a documented record for voters to consider",
+          "CRD's own website lists current directors Steve Forseth (Area D) and Melynda Neufeld (Area E) but couldn't confirm Area F's current director at all",
+          "Candidate information exists on paper in returning officer files but hasn't been published in places residents would find it without already knowing to call the CRD directly"
+        ],
+        "resolution": "The hosts agreed the gap is fixable rather than systemic—they called on the Regional District to publish its filed candidate lists on cariboord.ca and asked local outlets to pursue quiet races even without dramatic hooks, while inviting listeners to send candidate information before the October 17th vote.",
+        "topics_covered": [
+          "Williams Lake mayoral rematch between Surinderpal Rathor and Walt Cobb, including Cobb's 2021 residential school misinformation controversy",
+          "Williams Lake council race with 14 candidates, three with partial records and eleven with no public information",
+          "CRD electoral area director races (Areas D, E, F) with no publicly accessible candidate lists despite filed nominations",
+          "School District 27 trustee races, specifically Zone 6's unopposed incumbent Michael Franklin",
+          "Local media capacity constraints and the role of overlapping provincial elections in reducing coverage of municipal races"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 5,
+          "conditions": "light drizzle",
+          "high": 10,
+          "low": 4
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 3,
+          "conditions": "light drizzle",
+          "high": 10,
+          "low": 2
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 5,
+          "conditions": "light drizzle",
+          "high": 13,
+          "low": 4
+        },
+        {
+          "name": "Quesnel",
+          "temp": 6,
+          "conditions": "light drizzle",
+          "high": 11,
+          "low": 4
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 2,
+          "conditions": "mainly clear",
+          "high": 13,
+          "low": 1
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "CMHA South Cariboo",
+      "description": "Free mental health programs in 100 Mile House and the South Cariboo — community navigator, suicide intervention training, life skills, and housing support from Clinton to Lac La Hache",
+      "website": "southcariboo.cmha.bc.ca",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  }
+}

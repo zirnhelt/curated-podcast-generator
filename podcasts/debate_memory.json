@@ -1,30 +1,4 @@
 {
-  "2026-06-27": {
-    "timestamp": 1782555774.700486,
-    "date": "2026-06-27",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "When Cariboo communities show up to public meetings and council hearings, does civic participation actually change outcomes, and what structural conditions make community input matter?",
-    "riley_position": "Civic participation in small municipalities can be tractable and effective because local decisions like zoning bylaws and council composition are genuinely within municipal control, unlike provincial issues like criminal justice or health funding. The key is documenting asks in the formal record rather than relying on informal conversation.",
-    "riley_key_evidence": [
-      "50+ people attended the June 17th ORV meeting in 100 Mile House, representing a meaningful turnout in a district of under 2,000 residents",
-      "Roots on First and CMHA made a direct public ask to Williams Lake council for expanded supportive living resources",
-      "The 2026 municipal election creates a window for organizations to get written commitments from candidates"
-    ],
-    "casey_position": "Municipal consultation processes have no legal binding effect on council decisions, and the real bottleneck in small towns is converting showing-up into procedural leverage; formal process and documentation matter more than turnout alone. Additionally, continuity of public servants and elected officials creates institutional memory that carries priorities across election cycles.",
-    "casey_key_evidence": [
-      "BC municipal law does not require council to act on public meeting input; council can hear residents and vote the opposite way the following Tuesday",
-      "Supportive housing in Williams Lake faces a handoff problem where provincial funding exists but municipal political will to shepherd planning approvals is the actual bottleneck",
-      "Sgt. Matt Isaak's 15 years in Quesnel demonstrates how institutional continuity in small communities creates social capital and accountability"
-    ],
-    "resolution": "Riley and Casey converged on the solution: organizations making asks must document them formally (written submissions, meeting minutes, published candidate responses) so the ask lives in the public record independent of which councillors hold office. They agreed that formal process distributes decision-making into a community record rather than relying on individual judgment, making civic participation more durable across election cycles.",
-    "topics_covered": [
-      "100 Mile House ORV bylaw meeting and municipal zoning decision-making",
-      "Williams Lake supportive housing shortage and CMHA's public ask to council",
-      "2026 municipal election timing and candidate accountability",
-      "Provincial funding bottlenecks versus municipal political will in housing policy",
-      "Institutional continuity and public servant retention in small communities"
-    ]
-  },
   "2026-06-28": {
     "timestamp": 1782643085.43557,
     "date": "2026-06-28",
@@ -2497,6 +2471,34 @@
       "Authenticity and witnessing in algorithmic versus human decision-making in photography",
       "Integration of tacit Indigenous knowledge with technological monitoring systems in fisheries management",
       "Institutional gaps in translating community observations into actionable conservation policy"
+    ]
+  },
+  "2026-09-26": {
+    "timestamp": 1790410621.582626,
+    "date": "2026-09-26",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "place-unrecorded",
+    "central_question": "Is BC's overlapping provincial and municipal election calendar creating an accountability gap by reducing local media coverage of certain races?",
+    "riley_position": "The overlapping elections create real, fixable gaps in coverage\u2014particularly for lower-profile races like CRD director seats\u2014where candidates and records simply aren't being documented or made public before voters cast ballots.",
+    "riley_key_evidence": [
+      "Eleven of fourteen Williams Lake council candidates have no findable prior record, biography, or public information beyond their nomination forms",
+      "CRD Areas D, E, and F have no publicly filed candidate list available despite nominations closing September 11th",
+      "School trustee Zone 6 has only one unopposed candidate (Michael Franklin) running by acclamation with no contested record to review"
+    ],
+    "casey_position": "The media capacity problem is real but uneven\u2014high-profile races like the mayoral rematch will get coverage regardless, while quieter seats get ignored not because information doesn't exist but because it hasn't been made accessible to the public or treated as newsworthy by outlets.",
+    "casey_key_evidence": [
+      "Williams Lake Mayor Walt Cobb shared misinformation about residential schools in late 2021 while in office and was called to resign by Williams Lake First Nation, creating a documented record for voters to consider",
+      "CRD's own website lists current directors Steve Forseth (Area D) and Melynda Neufeld (Area E) but couldn't confirm Area F's current director at all",
+      "Candidate information exists on paper in returning officer files but hasn't been published in places residents would find it without already knowing to call the CRD directly"
+    ],
+    "resolution": "The hosts agreed the gap is fixable rather than systemic\u2014they called on the Regional District to publish its filed candidate lists on cariboord.ca and asked local outlets to pursue quiet races even without dramatic hooks, while inviting listeners to send candidate information before the October 17th vote.",
+    "topics_covered": [
+      "Williams Lake mayoral rematch between Surinderpal Rathor and Walt Cobb, including Cobb's 2021 residential school misinformation controversy",
+      "Williams Lake council race with 14 candidates, three with partial records and eleven with no public information",
+      "CRD electoral area director races (Areas D, E, F) with no publicly accessible candidate lists despite filed nominations",
+      "School District 27 trustee races, specifically Zone 6's unopposed incumbent Michael Franklin",
+      "Local media capacity constraints and the role of overlapping provincial elections in reducing coverage of municipal races"
     ]
   }
 }

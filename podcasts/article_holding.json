@@ -750,45 +750,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
-  },
-  "https://www.techradar.com/cameras/photography/pre-capture-is-the-best-wildlife-photography-trick-youre-not-using-heres-how-i-use-the-handy-tool-and-which-canon-nikon-and-sony-cameras-support-it": {
-    "article": {
-      "id": "https://www.techradar.com/cameras/photography/pre-capture-is-the-best-wildlife-photography-trick-youre-not-using-heres-how-i-use-the-handy-tool-and-which-canon-nikon-and-sony-cameras-support-it",
-      "url": "https://www.techradar.com/cameras/photography/pre-capture-is-the-best-wildlife-photography-trick-youre-not-using-heres-how-i-use-the-handy-tool-and-which-canon-nikon-and-sony-cameras-support-it",
-      "title": "[TechRadar] Pre-capture is the best wildlife photography trick you\u2019re not using \u2014 here\u2019s how I use the handy tool and which Canon, Nikon and Sony cameras support it",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/fJRsy6Yhpn8dye4j79qXuV-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fcameras%2Fphotography%2Fpre-capture-is-the-best-wildlife-photography-trick-youre-not-using-heres-how-i-use-the-handy-tool-and-which-canon-nikon-and-sony-cameras-support-it\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSometimes your reactions aren\u2019t up to speed to capture the key moment, and it's gone before your finger has pressed the shutter button. That's where pre-capture comes in, and your mirrorless camera might just have the feature",
-      "summary": "Sometimes your reactions aren\u2019t up to speed to capture the key moment, and it's gone before your finger has pressed the shutter button. That's where pre-capture comes in, and your mirrorless camera might just have the feature",
-      "_excerpt": "Sometimes your reactions aren\u2019t up to speed to capture the key moment, and it's gone before your finger has pressed the shutter button. That's where pre-capture comes in, and your mirrorless camera might just have the feature",
-      "date_published": "2026-09-20T14:58:04+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 67,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 74,
-      "_theme_score_raw": 16,
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/fJRsy6Yhpn8dye4j79qXuV-1920-80.jpg",
-      "_boosted_score": 67
-    },
-    "held_date": "2026-09-21",
-    "target_date": "2026-09-25",
-    "target_weekday": 4,
-    "target_focus_slug": "wildlife-conservation",
-    "target_focus_name": "Wildlife & Conservation",
     "status": "released",
-    "release_date": "2026-09-25"
+    "release_date": "2026-09-26"
   },
   "https://www.wired.com/story/physics-predict-volcanic-eruptions/": {
     "article": {
@@ -1599,7 +1562,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-09-26"
   },
   "https://newatlas.com/technology/dna-computer-calculations-without-power/": {
     "article": {
