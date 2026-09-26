@@ -481,6 +481,29 @@ def get_active_event_focus(d: date) -> dict | None:
             return {**event, "weekday": int(weekday)}
     return None
 
+def _in_window(event: dict, d: date) -> bool:
+    try:
+        return date.fromisoformat(event["start"]) <= d <= date.fromisoformat(event["end"])
+    except (KeyError, ValueError):
+        return False
+
+def get_research_events(weekday: int, d: date) -> list:
+    """Every in-window event whose ballot the research pass may sweep on *d*.
+
+    The day's own theme `event_focus` (flagged `_own_day`) comes first: it is a
+    standing assignment. `podcast.json` → `all_week_events` follow: an election
+    that is not any one theme's (the 2026 provincial snap vote) and is swept on
+    whichever day the episode carries its material, which the caller decides.
+    """
+    events = []
+    own = get_event_focus_for_day(weekday, d)
+    if own:
+        events.append({**own, "_own_day": True})
+    for event in load_podcast_config().get("all_week_events", []):
+        if _in_window(event, d):
+            events.append({**event, "_own_day": False})
+    return events
+
 def get_upcoming_day_slots(d: date, horizon_days: int = 14) -> list:
     """Enumerate (date, weekday, theme_name, focus|None) for each day after *d*.
 

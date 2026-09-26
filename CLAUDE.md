@@ -132,7 +132,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 **Brave spend.** Two plans, two meters: Search ($5/1000, capped) and Answers (monthly credit).
 - **The Search cap is shared with `super-rss-feed`** — one key serves both repos. Read Brave's per-key usage export before trusting any estimate.
 - A 402 closes that meter for the run (`_trip_brave_wall`); a spent meter is a reason to ask the other one, not to give up.
-- Three per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_ANSWERS_CALL_LIMIT`. **Only the two rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
+- Four per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_EVENT_CALL_LIMIT` (the election roll call), `BRAVE_ANSWERS_CALL_LIMIT`. **Only the three rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
 - With both meters closed, skip the research pass rather than report "no research warranted".
 
 **Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box.
@@ -145,7 +145,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 | File | Purpose |
 |------|---------|
-| `podcast.json` | Title, RSS metadata, `local_places`, TRACE accountability scores |
+| `podcast.json` | Title, RSS metadata, `local_places`, TRACE accountability scores, `all_week_events` |
 | `hosts.json` | Riley & Casey — bios, voices, personalities, debate stances |
 | `themes.json` | 7 daily themes, keywords, lenses, `event_focus` (the election) |
 | `super_cycles.json` | Multi-week focus rotations within each daily theme |
@@ -176,7 +176,9 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - **It is named on air.** No endorsements: report the races and the candidates' stated positions, never rank them.
 - Name every race and name people, not roles. Report a previous run's outcome, **loss included**.
 - Everything is bounded by **SOURCED OR UNSAID**: a claim comes from the day's articles or the research block, and an unestablished record is said to be unestablished.
-- `event_focus.roster` settles **who is running and nothing else**. A race with no names renders as `NO FILED LIST`.
+- `event_focus.roster` settles **who is running**, plus `records`: dated lines from a named outlet, rendered as SOURCED BACKGROUND. A race with no names renders as `NO NAMES IN THE ROSTER`. **Never air a gap as "unfindable" or "not public"**: fill the race in the day its list is public.
+- The research pass runs a **Python roll call first** (`_run_event_sweep`: one search per race and per running candidate), then the agent follows up with `fetch_page`. More than a third of the ballot under `NO RECORD FOUND` `degrade()`s. Queries and the research block are saved in the citations JSON under `research`.
+- **All-week events** (`podcast.json` → `all_week_events`: the 2026 B.C. provincial vote, Oct 24) are swept and lensed on any day an episode article carries their vocabulary (`_events_in_play`). They never steer selection.
 - `docs/wl-2026-election-candidates.md` and the JSON must carry the same names (a test enforces it).
 - An election story airs the day it breaks and is also booked back (`status: 'recall'`) for the next civic episode, tagged `_recalled_from` so the hosts say they covered it.
 - The event vocabulary is never folded into `_build_theme_subject_keywords`: "campaign" and "ballot" would admit US politics.

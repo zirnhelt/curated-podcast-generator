@@ -150,6 +150,38 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
       carry the same names — the lesson from this file's own claims about `super-rss-feed`.
       Nothing else needs cleanup: `event_focus` is date-bounded, so the roster stops being
       injected when the window shuts on Oct 24.
+- **2026-09-26: the facts were public and the pipeline did not go and get them.** The episode
+  told listeners the CRD Area D/E/F candidate list "isn't findable anywhere we looked". The
+  Tribune had printed it on Sept 15, and Area F (Horsefly) was acclaimed. It also aired eleven
+  council candidates as "no biography beyond a name on a nomination form". Several things
+  went wrong together:
+  - **The roster said the race was empty**, and "NO FILED LIST — the show does not have the
+    candidates" became "not findable anywhere" on air. The race is now filled in. An empty
+    race renders as `NO NAMES IN THE ROSTER`, which points at the research block. The ballot
+    block now forbids calling a list or record unfindable or not public: the show searched a
+    few sources, not the world.
+  - **Eight agent searches met a 21-name ballot.** The agent spent three rounds on the mayoral
+    race and stopped. The roll call now runs in Python first (`_run_event_sweep`): one search
+    per race (`race.search`) and one per running candidate or `seat_holder`, on its own meter
+    (`BRAVE_EVENT_CALL_LIMIT`, 40). The results go into the agent's user message. The agent
+    keeps `EVENT_RESEARCH_SEARCH_LIMIT` (8→12) for follow-ups and gets `fetch_page`
+    (`EVENT_PAGE_FETCH_LIMIT`, 6), because a candidate list is a page and a snippet is 200
+    characters.
+  - **Names-only was too strict.** `roster.records` carries short lines a named outlet
+    published on a date (an occupation, a prior office, an acclamation, a withdrawal). They
+    render as SOURCED BACKGROUND with that attribution. The candidates' own platform notes
+    still stay in the doc.
+  - **Nothing said the sweep came back thin.** The brief now ends with a `NO RECORD FOUND:`
+    line. More than a third of the ballot on it (`EVENT_UNFOUND_DEGRADE_SHARE`), or an empty
+    result on a ballot day, `degrade()`s `script/research`. Every query and page read goes
+    into the episode's citations JSON under `research`, with the block the script was given.
+- **All-week events** (`podcast.json` → `all_week_events`, read by `get_research_events`). The
+  2026 B.C. provincial snap vote (Oct 24) belongs to no one theme. It is swept on any day an
+  episode article (deep dive or roundup) carries its word-boundary vocabulary
+  (`_events_in_play`), and its lens and riding ballot ride along with the day's theme lens
+  (`extra_events`) without changing selection. Its nominations close Oct 3. Until then the
+  renderer says the list is open, and each riding names its `seat_holder` without claiming
+  they are running. Fill `candidates` in from Elections BC once the list closes.
 
 - **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
   "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
