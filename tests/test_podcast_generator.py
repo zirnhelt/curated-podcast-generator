@@ -5048,24 +5048,87 @@ class TestEventFocusRoster:
         assert "Walt Cobb [holds the seat now]" not in block
 
     def test_empty_race_renders_as_a_named_gap(self):
-        """A race the show has no list for is still on the listener's ballot."""
+        """A race the roster has no names for is still on the listener's ballot,
+        and the research block — not the hosts — is told to fill it."""
+        from podcast_generator import _format_event_roster
+
+        event = {"name": "Test election", "roster": {"races": [
+            {"race": "Area Z director", "incumbents": [], "candidates": []}]}}
+        block = _format_event_roster(event)
+        assert "Area Z director: NO NAMES IN THE ROSTER" in block
+        assert "PRE-RESEARCHED INSIGHTS" in block
+        assert "never the segment's hook" in block
+        # SD27 Zone 6 was a gap until the City's Declaration of Candidates filled it.
+        assert "Zone 6 (City of Williams Lake) (1 running): Michael Franklin" in \
+            _format_event_roster(self._event())
+
+    def test_absence_is_never_aired_as_unfindable(self):
+        """2026-09-26 aired "isn't findable anywhere we looked" about a CRD list
+        the Tribune printed on Sept 15."""
         from podcast_generator import _format_event_roster
 
         block = _format_event_roster(self._event())
-        assert "Areas D, E and F: NO FILED LIST" in block
-        assert "never the segment's hook" in block
-        # SD27 Zone 6 was a gap until the City's Declaration of Candidates filled it.
-        assert "Zone 6 (City of Williams Lake) (1 running): Michael Franklin" in block
+        assert "NOT MISSING FROM THE WORLD" in block
+        assert "Never say a list or a record cannot be found" in block
 
-    def test_unidentified_withdrawal_corrects_the_count(self):
-        """2026-09-19 aired "fifteen" for a council race one candidate had left.
-        The renderer's count is the count the hosts say."""
+    def test_crd_areas_are_filled_and_acclamations_said(self):
+        from podcast_generator import _format_event_roster
+
+        block = _format_event_roster(self._event())
+        assert "NO NAMES IN THE ROSTER" not in block
+        assert ("Area D director (Fox Mountain / McLeese Lake) (1 running): "
+                "Steve Forseth [holds the seat now] — ACCLAIMED") in block
+        assert "(2 running): Melynda Neufeld [holds the seat now], Mary Forbes" in block
+        assert "Maureen LeBourdais [holds the seat now] — ACCLAIMED" in block
+
+    def test_sourced_background_carries_outlet_and_date(self):
+        from podcast_generator import _format_event_roster
+
+        block = _format_event_roster(self._event())
+        assert "SOURCED BACKGROUND" in block
+        assert ("Paul French: former Williams Lake city councillor who served before "
+                "2022, seeking a return (Williams Lake Tribune, 2026-09-04)") in block
+        # A record line without a source never renders.
+        event = {"name": "T", "roster": {"races": [
+            {"race": "R", "incumbents": [], "candidates": ["Ann Able"]}],
+            "records": {"Ann Able": [{"fact": "unsourced claim"}]}}}
+        assert "unsourced claim" not in _format_event_roster(event)
+
+    def test_open_nominations_do_not_claim_a_closed_list(self, monkeypatch):
+        from datetime import datetime as _dt
+
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: _dt(2026, 9, 28, 1, 0))
+        event = {"name": "Prov", "roster": {"nominations_closed": "2026-10-03", "races": [
+            {"race": "Cariboo-Chilcotin", "seat_holder": "Lorne Doerkson",
+             "incumbents": [], "candidates": []}]}}
+        block = pg._format_event_roster(event)
+        assert "Nominations are open until October 3, 2026" in block
+        assert "This is the filed list" not in block
+        assert "Seat held going in by Lorne Doerkson" in block
+
+    def test_named_withdrawal_corrects_the_count(self):
+        """2026-09-19 aired "fifteen" for a council race one candidate had left;
+        the Tribune named him on 2026-09-23. The renderer's count is the count
+        the hosts say."""
         from podcast_generator import _format_event_roster
 
         block = _format_event_roster(self._event())
         assert "council (14 running)" in block
-        assert "say 14 are running, never 15" in block
-        assert "(15)" not in block
+        assert "never describe as running: Jared Wardlaw-Gimbel" in block
+        assert "(15 running)" not in block
+
+    def test_unidentified_withdrawal_corrects_the_count(self):
+        from podcast_generator import _format_event_roster
+
+        event = {"name": "T", "roster": {"races": [{
+            "race": "Council", "incumbents": [],
+            "candidates": ["Ann Able", "Ben Baker", "Cal Cole"],
+            "unidentified_withdrawals": 1}]}}
+        block = _format_event_roster(event)
+        assert "Council (2 running)" in block
+        assert "say 2 are running, never 3" in block
 
     def test_named_withdrawal_leaves_the_list(self):
         from podcast_generator import _format_event_roster
@@ -5086,7 +5149,8 @@ class TestEventFocusRoster:
         block = _format_event_roster(self._event())
         assert "SOURCED OR UNSAID" in block
         assert "source for the name and for nothing after it" in block
-        # Platform copy lives in the doc and is deliberately kept out of the JSON.
+        # Platform copy lives in the doc and is deliberately kept out of the JSON;
+        # only dated, outlet-attributed record lines render.
         assert "Boitanio Mall" not in block
         assert "R.I.S.E." not in block
 
@@ -5347,4 +5411,5 @@ class TestSparseFilterBudget:
             fn.split("(", 1)[0] for fn in functions
             if re.search(r"\b_brave_search\(", fn.split("\n", 1)[-1])
         )
-        assert direct == ["_brave_deep_dive_rate_limit", "_brave_search_rate_limit"], direct
+        assert direct == ["_brave_deep_dive_rate_limit", "_brave_event_rate_limit",
+                          "_brave_search_rate_limit"], direct

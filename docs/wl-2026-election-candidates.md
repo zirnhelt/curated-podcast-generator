@@ -30,12 +30,16 @@ source for the name and for nothing after it.
 
 Scope: the City of Williams Lake ballot — mayor, council, and the SD27 Zone 6
 trustee seat — as filed in the City's Declaration of Candidates (Form 8-8, signed
-by the Chief Election Officer, Sept 11, 2026). The CRD electoral area director
-races (D, E, F) are in the same `event_focus` lens and the roster carries them as
-an empty race on purpose — the renderer marks it `NO FILED LIST`, the lens tells
-the hosts to name the race and say in one plain sentence that the show does not
-have its candidates, and the research sweep is told to spend a search there
-first. Fill it in here and in the JSON and that hedge disappears.
+by the Chief Election Officer, Sept 11, 2026) — and the three CRD electoral areas
+ringing the city (D, E, F), from the Williams Lake Tribune's "Six Cariboo Regional
+District directors facing challengers" (Sept 15, 2026).
+
+That CRD race sat here as an empty `NO FILED LIST` race until 2026-09-26, and the
+episode that day told listeners the candidate list "isn't findable anywhere we
+looked" — eleven days after the Tribune printed it, with Area F (Horsefly)
+acclaimed. An empty race is now rendered as a gap *in the roster*, the research
+sweep searches it first, and the hosts are told never to call something
+unfindable. Fill a race in here and in the JSON the day its list is public.
 
 ## Mayor
 
@@ -88,12 +92,20 @@ first. Fill it in here and in the JSON and that hedge disappears.
 
 ## Council — withdrawal after close of nominations
 
-Fifteen filed. One council candidate withdrew around Sept 16 (listener
-correction, Sept 19), so fourteen are running. Which one is not yet confirmed,
-so the JSON carries `"unidentified_withdrawals": 1` on the council race: the
-renderer says 14, never 15, and tells the hosts not to present every name as
-still in the race. When the name is confirmed, move it to that race's
-`"withdrawn"` list, set the count back to 0, and delete it from this file.
+Fifteen filed. **Jared Wardlaw-Gimbel** withdrew by the Sept. 18 withdrawal
+deadline (Williams Lake Tribune, Sept 23), so fourteen are running. The JSON
+carries him in the council race's `"withdrawn"` list: the renderer says 14, never
+15, and tells the hosts never to describe him as running.
+
+## CRD electoral area directors — Areas D, E and F
+
+- **Steve Forseth** (Area D, Fox Mountain / McLeese Lake; incumbent) — acclaimed.
+  No vote in Area D.
+- **Melynda Neufeld** (Area E, South Lakeside / Dog Creek; incumbent) — director
+  since 2022, board vice-chair since November 2023. Challenged by
+  **Mary Forbes**.
+- **Maureen LeBourdais** (Area F, 150 Mile House / Horsefly / Likely; incumbent) —
+  acclaimed. No vote in Area F.
 
 ## School trustee — SD27 Zone 6 (City of Williams Lake)
 
@@ -103,12 +115,14 @@ One to be elected; one filed.
 
 ## Using this list
 
-- **Names are citable; records are not.** The show may say "Ruth Lloyd is
-  running for council" on the strength of this list alone. It may not say what
+- **Names are citable; records mostly are not.** The show may say "Ruth Lloyd
+  is running for council" on the strength of this list alone. It may not say what
   she did, won, lost or was accused of without a sourced finding, even when the
-  fact is also written above. That line is what makes the roster safe to put in
-  a prompt at all — widening it trades a hedging segment for an inventing one,
-  which is the worse failure.
+  fact is also written above. The one exception is `event_focus.roster.records`
+  in the JSON: a short line **a named outlet published on a date**, rendered as
+  SOURCED BACKGROUND with that attribution. The platform notes in this file are
+  the candidates' own words and stay out; add a record line only with its outlet
+  and date.
 - **Update both copies, don't append forever.** If a candidate withdraws, is
   acclaimed, or a race changes shape between now and Oct 17, edit this file
   *and* `event_focus.roster` in place rather than layering corrections — it's a

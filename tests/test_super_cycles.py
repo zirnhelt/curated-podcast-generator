@@ -979,12 +979,29 @@ class TestEventResearchSweep:
         def fake_loop(client, model, system_prompt, user_content, tools,
                       tool_executors, max_iterations, max_tokens):
             seen["system"] = system_prompt
+            seen["user"] = user_content
+            seen["tools"] = [t["name"] for t in tools]
             seen["iterations"] = max_iterations
-            return "NONE"
+            return seen.get("reply", "NONE")
+
+        seen["queries"] = []
+
+        def fake_search(query, api_key, count=5):
+            seen["queries"].append(query)
+            return [{"title": f"hit for {query}", "url": "https://example.org",
+                     "description": "snippet"}]
 
         monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "test-key")
         monkeypatch.setattr(pg, "_run_agentic_loop", fake_loop)
         monkeypatch.setattr(pg, "_brave_research_available", lambda: True)
+        monkeypatch.setattr(pg, "_brave_search", fake_search)
+        monkeypatch.setattr(pg, "_BRAVE_WALLS", {
+            "search": {"hit": False, "detail": ""}, "answers": {"hit": False, "detail": ""}})
+        monkeypatch.setattr(pg, "_BRAVE_SEARCH_STATE", {
+            "search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+            "answer_calls": 0, "event_calls": 0, "page_fetches": 0})
+        seen["degraded"] = []
+        monkeypatch.setattr(pg, "degrade", lambda seg, detail: seen["degraded"].append(detail))
         return seen
 
     def _run(self, event):
@@ -1006,7 +1023,72 @@ class TestEventResearchSweep:
     def test_an_active_event_widens_the_search_allowance(self, capture):
         self._run(get_event_focus_for_day(5, date(2026, 9, 19)))
         assert f"up to {pg.EVENT_RESEARCH_SEARCH_LIMIT} targeted" in capture["system"]
-        assert capture["iterations"] == pg.EVENT_RESEARCH_SEARCH_LIMIT + 1
+        assert capture["iterations"] == (pg.EVENT_RESEARCH_SEARCH_LIMIT
+                                         + pg.EVENT_PAGE_FETCH_LIMIT + 1)
+        assert capture["tools"] == ["web_search", "fetch_page"]
+
+    def test_the_roll_call_searches_every_race_and_candidate(self, capture):
+        """2026-09-26: eight agent searches met a twenty-name ballot, and eleven
+        council candidates plus three CRD seats aired as "nothing found"."""
+        event = get_event_focus_for_day(5, date(2026, 9, 26))
+        self._run(event)
+        races = event["roster"]["races"]
+        running = {c for r in races for c in r["candidates"]} - {"Jared Wardlaw-Gimbel"}
+        for race in races:
+            assert race["search"] in capture["queries"]
+        for name in running:
+            assert f'"{name}" Williams Lake' in capture["queries"], name
+        assert '"Jared Wardlaw-Gimbel" Williams Lake' not in capture["queries"]
+        assert len(capture["queries"]) == len(races) + len(running)
+        assert len(capture["queries"]) <= pg.BRAVE_EVENT_CALL_LIMIT
+        # The agent reads the roll call before it spends a search.
+        assert "ROLL-CALL SEARCHES" in capture["user"]
+        assert 'QUERY: "Ruth Lloyd" Williams Lake' in capture["user"]
+
+    def test_the_roll_call_stops_at_its_own_meter(self, capture, monkeypatch):
+        monkeypatch.setattr(pg, "BRAVE_EVENT_CALL_LIMIT", 5)
+        self._run(get_event_focus_for_day(5, date(2026, 9, 26)))
+        assert len(capture["queries"]) == 5
+        # The deep-dive meter fact resolution runs on is untouched.
+        assert pg._BRAVE_SEARCH_STATE["deep_calls"] == 0
+        assert any("event-sweep budget spent" in d for d in capture["degraded"])
+
+    def test_an_ordinary_day_runs_no_roll_call(self, capture):
+        self._run(None)
+        assert capture["queries"] == []
+        assert capture["tools"] == ["web_search"]
+
+    def test_a_thin_result_degrades(self, capture):
+        """Most of the ballot unfound is a research failure the run report
+        carries, not a quiet green day."""
+        event = get_event_focus_for_day(5, date(2026, 9, 26))
+        capture["reply"] = ("PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n...\n"
+                            "NO RECORD FOUND: Ruth Lloyd; Charlene Hays; Cianna O'Connor; "
+                            "Billie Sheridan; Nathan Wiebe; Kayla Zaruk; Greg Jeannotte; "
+                            "Mary Forbes")
+        assert self._run(event)
+        assert any("no record for 8 of 21" in d for d in capture["degraded"])
+
+    def test_a_mostly_sourced_result_does_not_degrade(self, capture):
+        event = get_event_focus_for_day(5, date(2026, 9, 26))
+        capture["reply"] = ("PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n...\n"
+                            "NO RECORD FOUND: Ruth Lloyd; Kayla Zaruk")
+        self._run(event)
+        assert not any("no record" in d for d in capture["degraded"])
+
+    def test_an_empty_result_on_a_ballot_day_degrades(self, capture):
+        self._run(get_event_focus_for_day(5, date(2026, 9, 26)))
+        assert any("returned nothing" in d for d in capture["degraded"])
+
+    def test_page_reads_are_budgeted(self, capture, monkeypatch):
+        monkeypatch.setattr(pg, "EVENT_PAGE_FETCH_LIMIT", 1)
+        monkeypatch.setattr(pg, "_fetch_page_text", lambda url: "Area F: acclaimed")
+        assert pg._fetch_page_tool_executor({"url": "https://a.example"}) == "Area F: acclaimed"
+        assert "budget spent" in pg._fetch_page_tool_executor({"url": "https://b.example"})
+
+    def test_page_reads_refuse_non_http(self):
+        assert pg._fetch_page_text("file:///etc/passwd") == ""
+
 
     def test_an_ordinary_day_is_unchanged(self, capture):
         """Six days in seven still decide for themselves whether to research,
@@ -1021,6 +1103,64 @@ class TestEventResearchSweep:
         the same meter — the widened sweep must not spend the whole budget."""
         assert pg.EVENT_RESEARCH_SEARCH_LIMIT < pg.BRAVE_DEEP_DIVE_CALL_LIMIT
         assert pg.BRAVE_DEEP_DIVE_CALL_LIMIT - pg.EVENT_RESEARCH_SEARCH_LIMIT >= 4
+
+
+class TestAllWeekEvents:
+    """The 2026 provincial snap vote belongs to no one theme: it is swept on
+    whichever day the episode carries its material."""
+
+    def test_provincial_event_is_live_every_day_of_its_window(self):
+        from config_loader import get_research_events
+
+        for weekday in range(7):
+            names = [e["name"] for e in get_research_events(weekday, date(2026, 10, 6))]
+            assert "2026 B.C. provincial general election" in names
+        assert get_research_events(1, date(2026, 11, 1)) == []
+
+    def test_saturday_carries_both_ballots_own_day_first(self):
+        from config_loader import get_research_events
+
+        events = get_research_events(5, date(2026, 10, 3))
+        assert [e["_own_day"] for e in events] == [True, False]
+
+    def test_provincial_sweep_needs_provincial_material(self):
+        from config_loader import get_research_events
+
+        events = get_research_events(1, date(2026, 10, 6))
+        tech = [{"title": "A new 3D printer review", "summary": "Hands-on with the X1"}]
+        prov = [{"title": "Cariboo-Chilcotin candidates debate in Williams Lake",
+                 "summary": "The B.C. NDP and B.C. Conservatives met at the hall."}]
+        us = [{"title": "Senate race tightens", "summary": "US midterm election polls"}]
+        assert pg._events_in_play(events, tech) == []
+        assert pg._events_in_play(events, us) == []
+        assert [e["name"] for e in pg._events_in_play(events, prov)] == [
+            "2026 B.C. provincial general election"]
+
+    def test_mla_matches_on_word_boundary(self):
+        from config_loader import get_research_events
+
+        events = get_research_events(1, date(2026, 10, 6))
+        assert pg._events_in_play(events, [{"title": "Dalmatian rescue", "summary": ""}]) == []
+        assert pg._events_in_play(events, [{"title": "MLA opens office", "summary": ""}])
+
+    def test_provincial_roll_call_covers_ridings_and_seat_holders(self):
+        from config_loader import get_research_events
+
+        event = [e for e in get_research_events(1, date(2026, 10, 6)) if not e["_own_day"]][0]
+        queries = pg._event_sweep_queries(event)
+        assert "Cariboo-Chilcotin candidates 2026 B.C. election" in queries
+        assert '"Lorne Doerkson" B.C. election 2026' in queries
+        assert '"Sheldon Clare" B.C. election 2026' in queries
+
+    def test_provincial_lens_rides_along_without_changing_the_theme(self):
+        from config_loader import get_research_events
+
+        event = [e for e in get_research_events(1, date(2026, 10, 6)) if not e["_own_day"]][0]
+        plain = pg._build_theme_lens("Working Lands & Industry")
+        lens = pg._build_theme_lens("Working Lands & Industry", extra_events=[event])
+        assert lens.startswith(plain)
+        assert "never move a name between the two ballots" in lens
+        assert "Seat held going in by Lorne Doerkson" in lens
 
 
 # ---------------------------------------------------------------------------

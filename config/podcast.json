@@ -27,6 +27,35 @@
     "_comment": "Delivery surfaces still in test that the hosts must not mention on air. Commit subjects matching these terms are dropped from the Sunday Meta Moment changelog. Remove this block once the surface is publicly launched.",
     "terms": ["video", "youtube", "slide", "mp4", "thumbnail"]
   },
+  "all_week_events": [
+    {
+      "name": "2026 B.C. provincial general election",
+      "start": "2026-09-22",
+      "end": "2026-10-25",
+      "search_context": "B.C. election 2026",
+      "keywords": ["provincial election", "b.c. election", "bc election", "snap election", "elections bc", "mla", "mlas", "cariboo-chilcotin", "prince george-north cariboo", "b.c. ndp", "bc ndp", "b.c. conservatives", "bc conservatives", "conservative party of b.c.", "b.c. greens", "bc greens", "green party of b.c.", "david eby", "b.c. legislature"],
+      "roster": {
+        "_note": "The listeners' two ridings. Nominations close 2026-10-03, so both races start empty and the research sweep is told to find who has filed; fill `candidates` from Elections BC once the list closes. `seat_holder` is who held the seat at dissolution, which is not the same claim as running again.",
+        "nominations_closed": "2026-10-03",
+        "races": [
+          {"race": "Cariboo-Chilcotin (provincial riding)",
+           "search": "Cariboo-Chilcotin candidates 2026 B.C. election",
+           "seat_holder": "Lorne Doerkson",
+           "incumbents": [], "candidates": []},
+          {"race": "Prince George-North Cariboo (provincial riding, includes Quesnel)",
+           "search": "Prince George-North Cariboo candidates 2026 B.C. election",
+           "seat_holder": "Sheldon Clare",
+           "incumbents": [], "candidates": []}
+        ],
+        "records": {
+          "Lorne Doerkson": [{"fact": "MLA for Cariboo-Chilcotin since 2020, first elected as a B.C. Liberal; re-elected in 2024 as a B.C. Conservative", "source": "Elections BC results", "date": "2024-10-19"}],
+          "Sheldon Clare": [{"fact": "won Prince George-North Cariboo for the B.C. Conservatives in 2024", "source": "Elections BC results", "date": "2024-10-19"}]
+        }
+      },
+      "lens": "B.C. goes to a snap provincial election on October 24, 2026, and listeners vote in Cariboo-Chilcotin or Prince George-North Cariboo. When the day's material carries the provincial race, name it on air and name the local ridings' candidates, not just the party leaders. REPORTING, NOT ENDORSEMENT: report the candidates and their stated positions, hold every party to the same standard, never rank them and never tell listeners how to vote. SOURCED OR UNSAID: every factual claim about a candidate or party comes from today's articles, the PRE-RESEARCHED INSIGHTS block or the ballot's SOURCED BACKGROUND lines, and says where it was reported. Keep the provincial race distinct from the Williams Lake and CRD local election on October 17: never move a name between the two ballots.",
+      "research": "Today's episode carries B.C. provincial election material, and the local ridings are the research task. For each riding on the ballot below: who has filed or been nominated for each party, and for each named candidate their prior offices and every previous run, won or LOST, with year and margin; any reported controversy with its date, outcome and the person's response. Report only what a source states, give the outlet and date for every claim, keep an allegation distinguishable from a finding, and do not carry a name across from the Williams Lake local election."
+    }
+  ],
   "trace": {
     "namespace": "https://tracestandard.org/ns/trace/1.0",
     "version": "1.0",

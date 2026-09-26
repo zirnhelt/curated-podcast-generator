@@ -199,7 +199,7 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 - `native_land_cache.json` — place name → coordinates + territory names. A lookup
   cache, not history: losing it costs repeat lookups, never a claim
 
-## Brave spend (`_brave_search`, `_BRAVE_WALLS`, the three call budgets)
+## Brave spend (`_brave_search`, `_BRAVE_WALLS`, the four call budgets)
 
 **Two plans, two meters** (since 2026-08-29). Search is $5/1000 requests against a
 self-imposed **$10 monthly** spend limit — 2,000 requests — and Answers is $4/1000 queries plus
@@ -287,6 +287,16 @@ triple-cron days. **The token half of that price is unmeasured, and it is the wh
 left in the credit**, so every call logs the `usage` block Brave returns
 (`_log_api_call("brave-answers", …)`); refit the limit off a measured month the way
 `_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
+
+**The fourth budget is the election roll call** (`BRAVE_EVENT_CALL_LIMIT`, 40, via
+`_brave_event_rate_limit`), added 2026-09-26 after a 21-name ballot got 8 searches. It is its
+own meter so that ~30 roll-call searches cannot starve `_resolve_script_questions_with_brave`.
+It spends only while an election window is open: ~31 on a Saturday (local ballot plus the two
+provincial ridings), ~4-12 on a weekday whose episode carries provincial material. That is
+roughly 300-400 extra Search requests (~$1.50-2) a month against the **$10 cap shared with
+`super-rss-feed`**. The producer approved the spend for election season. Read Brave's per-key
+export before raising it. `_brave_search` now logs every request as `brave-search` in the cost
+snapshot, which used to count Answers alone.
 
 **The remaining lever is structural, not a limit:** the backfill spends up to two queries per
 article (title, then URL) across 40 candidates before curation cuts to 15. Moving it after
