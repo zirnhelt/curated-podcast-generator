@@ -233,6 +233,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - Nothing listener-facing goes into that prompt unconditionally.
 - A thin week (under `META_MOMENT_SPARSE_BELOW` show commits) folds in `super-rss-feed`'s human commits under `UPSTREAM_HEADER`; only `- ` lines are citable subjects.
 - **Never `git fetch --depth` over the full checkout**: a shallow repo answers `git log --since` with one commit and no error.
+- **Protect the segment; never force it.** A NONE or a guard drop gets one retry, with upstream changes and the refusal reason (`script/meta-moment/retry`); a failed call degrades; the splice falls back to the deep dive; and a Sunday that ships without it turns the run red (last step, after deploy).
 
 **Inbound mail** (`email_ingest.py`). `podcasts/email_queue.json` is public: senders are masked and contact details redacted at ingest.
 - "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address.

@@ -222,7 +222,7 @@ def excerpt_script(content: str, max_chars: int = 8000) -> str:
     return pre_dd[:pre_budget] + "\n\n[...News Roundup continues, omitted...]\n\n" + deep_dive
 
 
-def _git(*args: str) -> str:
+def _git(*args: str, timeout: float | None = None) -> str:
     """Run git, returning stdout — or "" when the command fails.
 
     The failure is printed rather than swallowed. An empty result reads as "no
@@ -231,7 +231,11 @@ def _git(*args: str) -> str:
     Sunday Meta Moment vanished on 2026-09-13 with nothing in the log naming
     which of the two it was.
     """
-    result = subprocess.run(["git", *args], capture_output=True, text=True)
+    try:
+        result = subprocess.run(["git", *args], capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        print(f"   ⚠️  git {' '.join(args[:2])} timed out after {timeout}s")
+        return ""
     if result.returncode != 0:
         detail = (result.stderr or "").strip().splitlines()
         print(f"   ⚠️  git {' '.join(args[:2])} failed (exit {result.returncode}): "

@@ -8935,6 +8935,13 @@ _MERGE_SUBJECT_RE = re.compile(r"Merge (pull request|branch|remote-tracking|comm
 # super-rss-feed finds and scores every story before this repo picks from them,
 # so a change there is a change to what the show airs. Paths are the ones that
 # shape the pool; `feedback/`, caches and reports are the nightly bot's churn.
+# The show's own list is wider than the reviewer's GENERATION_PATHS: a
+# pronunciation fix, a standing note or the territory check changes what the
+# hosts say as surely as a prompt edit, and before 2026-09-27 "Update reference
+# to Williams Lake First Nation abbreviation" could never reach the segment.
+META_MOMENT_PATHS = (*GENERATION_PATHS, "config", "ambient.py", "cohere_enrichment.py",
+                     "dedup_articles.py", "email_ingest.py", "native_land.py",
+                     "psa_selector.py", "weather.py", "weekly_anchor.py")
 UPSTREAM_REPO = "zirnhelt/super-rss-feed"
 UPSTREAM_GENERATION_PATHS = ("super_rss_curator_json.py", "config", "feeds.opml")
 # Below this many show-side subjects the week is thin, and upstream changes are
@@ -8982,9 +8989,9 @@ def get_upstream_changelog(days: int = 7) -> list:
                 if subject:
                     commits[c.get("sha")] = (author.get("date", ""), subject[0])
     except (requests.RequestException, ValueError) as exc:
-        degrade("script/meta-moment",
-                f"upstream changelog unavailable ({type(exc).__name__}) — the thin "
-                "week's segment is built from the show's own commits alone")
+        degrade("script/meta-moment/upstream",
+                f"upstream changelog unavailable ({type(exc).__name__}) — the "
+                "segment is built from the show's own commits alone")
         return []
     return _changelog_subjects([s for _, s in sorted(commits.values())])
 
@@ -9002,9 +9009,15 @@ def get_weekly_changelog(days: int = 7) -> str:
     # to the week rather than report a quiet one.
     if _git("rev-parse", "--is-shallow-repository") == "true":
         print("   ⚠️  Meta Moment: shallow clone — deepening to the week before reading it")
-        _git("fetch", "--quiet", f"--shallow-since={since}", "origin")
-    log = _git("log", "--reverse", f"--since={since}", "--pretty=format:%s", "--", *GENERATION_PATHS)
-    lines = [f"- {s}" for s in _changelog_subjects(log.splitlines())]
+        # One branch, bounded: every branch at once stalled for over a minute.
+        _git("fetch", "--quiet", f"--shallow-since={since}", "origin", "main", timeout=60)
+    log = _git("log", "--reverse", f"--since={since}", "--pretty=format:%an%x09%s",
+               "--", *META_MOMENT_PATHS)
+    # The pipeline's own commits ("Episode script - …") name a run, not a change,
+    # and a shallow boundary commit shows the whole tree as touched.
+    authored = [line.rpartition("\t") for line in log.splitlines()]
+    lines = [f"- {s}" for s in _changelog_subjects(
+        [subject for author, _, subject in authored if "[bot]" not in author])]
     if len(lines) < META_MOMENT_SPARSE_BELOW:
         upstream = get_upstream_changelog(days)
         if upstream:
@@ -9405,6 +9418,47 @@ def generate_meta_moment_text(changelog: str) -> str:
         degrade("script/meta-moment",
                 "no Anthropic client — the episode airs without the segment")
         return ""
+    block, kind, detail = _meta_moment_attempt(client, changelog)
+    if block:
+        return block
+    # One second chance, and only with something the first call lacked: the
+    # upstream feed's changes when they weren't in the list, and the reason a
+    # draft was refused. A NONE over the same list is the same answer, and a
+    # failed call already had api_retry's retries.
+    first = detail
+    retry_log = changelog
+    if UPSTREAM_HEADER not in changelog and kind != "error":
+        upstream = get_upstream_changelog()
+        if upstream:
+            retry_log += f"\n{UPSTREAM_HEADER}\n" + "\n".join(f"- {s}" for s in upstream)
+    if kind == "guard" or retry_log != changelog:
+        feedback = (f"A first draft of this segment was refused: {detail}. Cite only lines "
+                    "copied from the list, and name nothing that is not in it.\n\n"
+                    if kind == "guard" else "")
+        block, kind, detail = _meta_moment_attempt(client, retry_log, feedback)
+        if block:
+            degrade("script/meta-moment/retry",
+                    f"first draft failed ({first}); the retry"
+                    f"{' with upstream changes' if retry_log != changelog else ''} aired")
+            return block
+    degrade("script/meta-moment", f"{detail} — the episode airs without the segment")
+    return ""
+
+
+def _splice_meta_moment(script: str, block: str) -> "str | None":
+    """The script with `block` ahead of the community spotlight — or ahead of the
+    deep dive when a day ships without one — or None when it has neither. A
+    written, paid-for segment is never binned for want of one header."""
+    for pattern in (r"^\*\*COMMUNITY SPOTLIGHT\*\*", r"^\*\*DEEP DIVE\b"):
+        anchor = re.search(pattern, script, re.M)
+        if anchor:
+            return f"{script[:anchor.start()]}{block}\n\n{script[anchor.start():]}"
+    return None
+
+
+def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> tuple:
+    """One Haiku call → (block, kind, detail). `kind` is "", "none", "guard"
+    or "error"; the caller decides whether a retry is worth it and degrades."""
     subjects = [line[2:].strip() for line in changelog.splitlines() if line.startswith("- ")]
     hosts_config = CONFIG.get('hosts', {})
     riley_bio = hosts_config.get('riley', {}).get('full_bio', 'Riley, optimistic tech host')
@@ -9495,7 +9549,7 @@ def generate_meta_moment_text(changelog: str) -> str:
         "This is an audio show only. Never mention video, YouTube, a visual or watchable "
         f"version of the show, or anything a listener would have to look at. {transcript_note}"
         "If a change only makes sense visually, skip it and pick another.\n\n"
-        f"{upstream_note}This week's changes:\n{changelog}"
+        f"{upstream_note}{feedback}This week's changes:\n{changelog}"
     )
     try:
         response = api_retry(lambda: client.messages.create(
@@ -9509,8 +9563,10 @@ def generate_meta_moment_text(changelog: str) -> str:
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         raw = message_text(response).strip()
     except Exception as exc:
+        # Printed and nothing else until 2026-09-27: the one drop path that
+        # reached neither the run report nor the roadmap.
         print(f"  ⚠️  Meta Moment generation failed: {exc}")
-        return ""
+        return "", "error", f"generation failed ({type(exc).__name__})"
 
     start = raw.find("**RILEY:**")
     if start == -1:
@@ -9519,24 +9575,18 @@ def generate_meta_moment_text(changelog: str) -> str:
         # Sunday that aired without its Sunday segment, and until 2026-09-06 the
         # only trace of that decision was one line in the job log. "Was that by
         # design?" is a question the run report should have already answered.
-        print("   🔇 Meta Moment: no listener-noticeable change this week — segment skipped")
-        degrade("script/meta-moment",
-                f"model judged none of the week's {len(subjects)} commit(s) "
-                "listener-noticeable — the episode airs without the segment")
-        return ""
+        print("   🔇 Meta Moment: no listener-noticeable change in the list")
+        return "", "none", (f"model judged none of the week's {len(subjects)} commit(s) "
+                            "listener-noticeable")
 
     dialogue = raw[start:]
     if not _meta_moment_covered(raw[:start], subjects):
-        degrade("script/meta-moment",
-                "dialogue cited no commit from the week's list — segment dropped")
-        return ""
+        return "", "guard", "the dialogue cited no commit from the week's list"
     unknown = _meta_moment_unknown_names(dialogue, changelog)
     if unknown:
-        degrade("script/meta-moment",
-                f"dialogue named {', '.join(unknown[:5])}, absent from the week's "
-                "commits — segment dropped")
-        return ""
-    return f"**META MOMENT**\n{dialogue}"
+        return "", "guard", (f"the dialogue named {', '.join(unknown[:5])}, absent from "
+                             "the week's commits")
+    return f"**META MOMENT**\n{dialogue}", "", ""
 
 
 def _append_comparison_log(entry):
@@ -11843,15 +11893,16 @@ def run_script_stage() -> tuple[str, str] | None:
             # Sunday: "Meta Moment" — light recap of the week's tweaks to the show itself
             if today_weekday == 6:
                 meta_text = generate_meta_moment_text(get_weekly_changelog())
-                if meta_text and "**COMMUNITY SPOTLIGHT**" in script:
-                    script = script.replace("**COMMUNITY SPOTLIGHT**", meta_text + "\n\n**COMMUNITY SPOTLIGHT**", 1)
+                spliced = _splice_meta_moment(script, meta_text) if meta_text else None
+                if spliced:
+                    script = spliced
                 elif meta_text:
                     # The segment was written and paid for, and then had nowhere
                     # to go. Silently dropping a generated segment is the same
                     # failure as silently skipping one.
                     degrade("script/meta-moment",
-                            "segment generated but the script carries no COMMUNITY SPOTLIGHT "
-                            "header to splice it ahead of — dropped")
+                            "segment generated but the script carries neither a COMMUNITY "
+                            "SPOTLIGHT nor a DEEP DIVE header to splice it ahead of — dropped")
 
         # The script file is the stage's product and the audio stage's only
         # input. If this cannot be written there is nothing to commit and
