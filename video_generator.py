@@ -9,7 +9,9 @@ speaker badge synced to the per-turn timings in video_timeline_*.json.
 Rollout is gated on YouTube credentials: when the YT_* env vars are unset
 the script runs in render-only mode and leaves the MP4 in podcasts/ for
 the workflow to attach as a run artifact. Video generation is additive —
-every failure path exits 0 so the audio pipeline is never blocked.
+every failure path exits 0 so the audio pipeline is never blocked, and prints
+a degrade row instead (video/render, video/upload) for the nightly review.
+When uploading, past days whose upload failed are retried first.
 
 Usage:
     python video_generator.py [--date YYYY-MM-DD] [--skip-upload]
@@ -601,40 +603,59 @@ def main() -> int:
                         help="Keep the MP4 in podcasts/ even after a successful upload")
     args = parser.parse_args()
 
-    date_str = args.date or pacific_today()
-
     import youtube_upload  # deferred so render-only mode works without google libs configured
 
-    try:
-        if youtube_upload.already_uploaded(date_str):
-            print(f"✅ {date_str} already uploaded to YouTube — nothing to do")
-            return 0
+    uploading = not args.skip_upload and youtube_upload.have_credentials()
+    if args.date:
+        dates = [args.date]
+    else:
+        today = pacific_today()
+        # Backlog only when uploading: in render-only mode it would re-render
+        # the same past days every night for nobody.
+        dates = (youtube_upload.pending_dates(today) if uploading else []) + [today]
+    privacy = args.privacy or os.getenv("YT_PRIVACY", "unlisted")
 
+    for date_str in dates:
+        _publish_day(youtube_upload, date_str, uploading, privacy, args.keep_video)
+    # Video is additive — never fail the pipeline over it. Failures surface as
+    # degrade rows, which the nightly review turns into roadmap signals.
+    return 0
+
+
+def _publish_day(youtube_upload, date_str: str, uploading: bool,
+                 privacy: str, keep_video: bool) -> None:
+    """Render and (when uploading) upload one day. Never raises."""
+    if youtube_upload.already_uploaded(date_str):
+        print(f"✅ {date_str} already uploaded to YouTube — nothing to do")
+        return
+
+    try:
         artifacts = load_episode_artifacts(date_str)
         mp4 = render_video(artifacts)
+    except Exception as e:
+        youtube_upload.degrade("video/render", f"{date_str}: {type(e).__name__}: {e}"[:300])
+        return
 
-        if args.skip_upload or not youtube_upload.have_credentials():
-            print("📦 Render-only mode (no YouTube credentials or --skip-upload): "
-                  f"MP4 left at {mp4} for review")
-            return 0
+    if not uploading:
+        print("📦 Render-only mode (no YouTube credentials or --skip-upload): "
+              f"MP4 left at {mp4} for review")
+        return
 
+    try:
         result = youtube_upload.upload_episode(
             mp4_path=mp4,
             citations_path=artifacts.get("citations"),
             chapters_path=artifacts.get("chapters"),
             vtt_path=artifacts.get("vtt"),
             date_str=date_str,
-            privacy=args.privacy or os.getenv("YT_PRIVACY", "unlisted"),
+            privacy=privacy,
         )
-        if result and not args.keep_video:
-            os.remove(mp4)
-            print("🧹 Removed local MP4 after upload")
-        return 0
     except Exception as e:
-        # Video is additive — never fail the pipeline over it.
-        print(f"::warning::Video generation failed for {date_str}: {e}")
-        return 0
-
+        youtube_upload.degrade("video/upload", f"{date_str}: {type(e).__name__}: {e}"[:300])
+        return
+    if result and not keep_video:
+        os.remove(mp4)
+        print("🧹 Removed local MP4 after upload")
 
 if __name__ == "__main__":
     sys.exit(main())

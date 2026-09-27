@@ -162,7 +162,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 | `disciplines.json` | Topic taxonomy for roundup grouping |
 | `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only) |
 
-**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`.
+**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`, `youtube_uploads.json`.
 
 ### Curation — see [docs/decisions/curation.md](docs/decisions/curation.md)
 
