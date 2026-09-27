@@ -31,6 +31,8 @@ The podcast generator fetches from `https://zirnhelt.github.io/super-rss-feed/`:
 
 These URLs are configured via `SUPER_RSS_BASE_URL` in `podcast_generator.py`.
 
+One read is not over Pages: on a thin week the Sunday Meta Moment reads `super-rss-feed`'s commit subjects from the GitHub API (`get_upstream_changelog`, paths in `UPSTREAM_GENERATION_PATHS`). Commit subjects there can reach the air, so write them in plain language.
+
 ---
 
 ## Deployment Order
