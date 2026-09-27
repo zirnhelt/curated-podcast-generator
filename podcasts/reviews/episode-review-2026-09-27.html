@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 27, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 27, 2026</h1>
+  <p class="meta">Published September 27, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/36305105257">36305105257</a>.</em></p>
+
+<h3>Search budget exhausted mid-roundup: 38 stories cut, sparse article bodies remain</h3>
+
+<p>The Brave Search body-backfill budget (12 calls) spent to completion during roundup curation. Thirty-eight stories were cut from the pool by airtime constraints, as designed. But the remaining thin articles—those that arrived with stub bodies and did not get backfilled—stay sparse in the script. Some will be cut on future runs as selection filters see insufficient depth. This is a known degradation mode, not a failure, but it narrows the pool available tomorrow.</p>
+
+<h3>Script expanded successfully after short first draft</h3>
+
+<p>The first draft came in at 2,599 words against a 3,400-word target. The pipeline sent it back for expansion. The shipped script landed at 3,390 words—10 words shy of target but within acceptable range. The voice ratio between Casey and Riley settled at 0.97. No AI tell-pattern hits were detected in quality review.</p>
+
+<h3>Citation alignment split between segments</h3>
+
+<p>Roundup citations matched 14 of 15 sources. Deep dive citations matched only 1 of 3 sources. The unmatched deep dive stories—a volcano cloud story from ScienceDaily, an asteroid atmospheric entry from EarthSky, and a paleontology piece from Popular Mechanics—carry citation gaps that may surface in listener fact-checking.</p>
+
+<h3>Territory-check indexing hit its ceiling early</h3>
+
+<p>The territory verification system ran its per-run lookup limit (8 checks) and stopped. A Forbes article was not checked before the ceiling was reached. Earlier, one Sinixt-territory conflict was rewritten but rejected; the rewrite stayed out and the original sentence kept an unsupported nation claim in the script. This creates a known gap in territorial accuracy for this episode.</p>
+
+<h3>Generator-shaping segment did not generate</h3>
+
+<p>No <code>git log</code> commits were found for the week tied to generator-shaping. The meta-moment segment was never produced. The system warning notes the cause could be either a genuinely quiet development week or a failed log operation—the warning itself should clarify which.</p>
+
+<h3>Missing R2 object will break feed links</h3>
+
+<p>One object referenced in the podcast feed is missing from Cloudflare R2 storage and cannot be healed from disk. Crawlers will return 404 for this asset. The episode aired but the link is broken.</p>
+
+<h3>Episode shipped at 20.6 minutes across audio and video</h3>
+
+<p>Audio rendered at 20.6 minutes (18.8 MB). Video rendered at the same 20.6-minute duration (73.5 MB). Three deep dives were selected. The episode is now RSS episode 243. Total pipeline time from checkout to Pages deployment: 33 minutes 20 seconds, spread across six stages. Primary and Fallback 1 runs both completed successfully at 0 minutes late; Fallback 2 triggered at 3:05 AM Pacific as this review's run.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>2026-09-27T08:05:25Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2026-09-27T09:05:25Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>2026-09-27T10:05:25Z</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.97, 3390 words</td></tr>
+<tr><td>Audio</td><td>20.6 min</td></tr>
+<tr><td>Audio size</td><td>18.8 MB</td></tr>
+<tr><td>Citations matched</td><td>14/15 roundup, 1/3 deep dive</td></tr>
+<tr><td>Feed</td><td>243 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>95,361 input tokens, calls ***'brave-search': 14, 'claude': 14, 'brave-answers': 2***</td></tr>
+</tbody>
+</table>
+</body>
+</html>

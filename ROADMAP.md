@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-13..2026-09-26) — 5 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-13..2026-09-27) — 5 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -54,15 +54,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
       across runs and alert when 80% of the budget is consumed. (signal
-      `degraded:script/bodies`; seen in 21 reviews, latest 2026-09-26)
+      `degraded:script/bodies`; seen in 22 reviews, latest 2026-09-27)
 - [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
       section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
       (33%). The gap suggests a different verification pathway or a shortfall in source
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 19
-      reviews, latest 2026-09-26)
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 20
+      reviews, latest 2026-09-27)
 - [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
       2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
       an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
@@ -80,7 +80,7 @@ close one; it comes back only if the reviews raise it 2 more times._
       despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
       reference. Identify which object is missing, restore it to R2, or remove the reference
       from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
-      in 4 reviews, latest 2026-09-25)
+      in 5 reviews, latest 2026-09-27)
 - [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
       territory-check rewrites failed.** On September 22, the territory-check system flagged two
       sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
@@ -88,7 +88,7 @@ close one; it comes back only if the reviews raise it 2 more times._
       final episode anyway, carrying geographic claims the validation layer could not support.
       Log which sentences triggered the rewrite rejection, and decide whether to cut them,
       override the territory map data, or implement a mandatory-cut rule when rewrites fail.
-      (signal `degraded:script/territory-check`; seen in 6 reviews, latest 2026-09-26)
+      (signal `degraded:script/territory-check`; seen in 7 reviews, latest 2026-09-27)
 
 <!-- reviews:end -->
 
