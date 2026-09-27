@@ -198,6 +198,25 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
   counts and closed/retired records; renders the managed block of `ROADMAP.md`
 - `native_land_cache.json` — place name → coordinates + territory names. A lookup
   cache, not history: losing it costs repeat lookups, never a claim
+- `youtube_uploads.json` — date → YouTube video id. The upload idempotency record:
+  a lost entry re-uploads that day, so it goes through `atomic_write_json`. Absent
+  until the `YT_*` secrets exist (render-only mode writes nothing)
+
+## The video step (`video_generator.py`, `youtube_upload.py`)
+
+Additive, and last: it runs after deploy so an OOM-killed render can't take the
+episode with it (2026-07-15/16), and it always exits 0. Its failures therefore
+can't turn a run red, so each one prints a `degrade()` row itself —
+`video/render`, `video/upload`, `video/captions` — in the exact log format
+`episode_review` parses. It can't import `degrade()` (it is its own process after
+the run report is written), so the row format is the contract, and a test pins it.
+
+The step only runs for the day it generated, so a day whose upload failed
+(quota, network) was never retried. With credentials present it now retries the
+last `BACKLOG_DAYS` days that have audio on disk but no ledger entry, oldest
+first; the workflow fetches the last five episodes' audio, which bounds it.
+Render-only mode skips the backlog: it would re-render the same days nightly for
+nobody.
 
 ## Brave spend (`_brave_search`, `_BRAVE_WALLS`, the four call budgets)
 

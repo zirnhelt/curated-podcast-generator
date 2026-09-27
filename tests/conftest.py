@@ -126,3 +126,17 @@ def _isolate_roadmap(tmp_path, monkeypatch):
 
     monkeypatch.setattr(episode_review, "LEDGER_FILE", tmp_path / "roadmap_ledger.json")
     monkeypatch.setattr(episode_review, "ROADMAP_FILE", tmp_path / "ROADMAP.md")
+
+
+@pytest.fixture(autouse=True)
+def _isolate_youtube_ledger(tmp_path, monkeypatch):
+    """Redirect the YouTube upload ledger to tmp for every test.
+
+    upload_episode() rewrites podcasts/youtube_uploads.json, which CI commits
+    once uploads go live — same hazard as _isolate_psa_state. A leaked entry
+    would also stop that day's real upload, since the ledger is the idempotency
+    record.
+    """
+    import youtube_upload
+
+    monkeypatch.setattr(youtube_upload, "LEDGER_PATH", tmp_path / "youtube_uploads.json")

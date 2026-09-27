@@ -166,3 +166,33 @@ class TestUploadFlow:
         assert captured["captions"] == ("vid123", str(vtt_path))
         # Ledger persisted
         assert yu.already_uploaded("2026-07-14")
+
+
+class TestBacklog:
+    def test_pending_dates_skips_ledgered_and_audioless(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(yu, "PODCASTS_DIR", tmp_path)
+        for d in ("2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27"):
+            (tmp_path / f"podcast_audio_{d}_theme.mp3").write_bytes(b"\x00")
+        (tmp_path / "podcast_audio_2026-09-25_theme.mp3").unlink()
+        yu.save_ledger({"2026-09-26": {"video_id": "a", "url": "u", "uploaded_at": "t"}})
+        # 09-25 has no audio, 09-26 is done, today (09-27) is the caller's job
+        assert yu.pending_dates("2026-09-27") == ["2026-09-24"]
+
+
+class TestDegradeRow:
+    def test_row_matches_episode_review_parser(self, capsys):
+        import re
+
+        import episode_review
+
+        yu.degrade("video/upload", "2026-09-27: HttpError: quota")
+        line = capsys.readouterr().out.strip().replace("::warning::", "##[warning]")
+        assert re.search(episode_review._MULTI["degradations"], line).groups() == ("video/upload", "2026-09-27: HttpError: quota")
+
+    def test_caption_failure_degrades(self, capsys):
+        class Boom:
+            def captions(self):
+                raise RuntimeError("forbidden")
+
+        yu.upload_captions(Boom(), "vid", "t.vtt")
+        assert "Degraded 'video/captions'" in capsys.readouterr().out

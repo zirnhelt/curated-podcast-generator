@@ -17,7 +17,10 @@ Quota: videos.insert = 1600 units + captions.insert = 400 of the default
 import json
 import os
 import time
+from datetime import date, timedelta
 from pathlib import Path
+
+from config_loader import atomic_write_json
 
 PODCASTS_DIR = Path(__file__).parent / "podcasts"
 LEDGER_PATH = PODCASTS_DIR / "youtube_uploads.json"
@@ -31,6 +34,19 @@ MAX_TITLE_LEN = 100
 MAX_DESC_LEN = 5000
 CATEGORY_SCIENCE_TECH = "28"
 UPLOAD_RETRIES = 3
+# Past days retried when a day's upload failed (quota, network). The daily
+# workflow fetches the last 5 episodes' audio, so this must stay below that.
+BACKLOG_DAYS = 3
+
+
+def degrade(name: str, detail: str) -> None:
+    """Emit the degrade() log row without importing podcast_generator.
+
+    The video step is its own process after publish, so it has no run report
+    to join; episode_review reads this exact line off the job log and keys the
+    roadmap signal `degraded:<name>` on it.
+    """
+    print(f"::warning::Degraded '{name}': {detail}")
 
 
 def have_credentials() -> bool:
@@ -62,12 +78,25 @@ def load_ledger() -> dict:
 
 
 def save_ledger(ledger: dict) -> None:
-    with open(LEDGER_PATH, "w", encoding="utf-8") as f:
-        json.dump(ledger, f, indent=2)
+    # A truncated ledger reads back as {} and re-uploads every day in it.
+    atomic_write_json(LEDGER_PATH, ledger)
 
 
 def already_uploaded(date_str: str) -> bool:
     return date_str in load_ledger()
+
+
+def pending_dates(today: str, lookback: int = BACKLOG_DAYS) -> list[str]:
+    """Past days (oldest first) with local audio but no ledger entry.
+
+    A day whose upload failed is otherwise never retried: the step only runs
+    for the day it generated.
+    """
+    ledger = load_ledger()
+    end = date.fromisoformat(today)
+    days = [(end - timedelta(days=n)).isoformat() for n in range(lookback, 0, -1)]
+    return [d for d in days
+            if d not in ledger and any(PODCASTS_DIR.glob(f"podcast_audio_{d}_*.mp3"))]
 
 
 def _fmt_ts(seconds: float) -> str:
@@ -182,7 +211,8 @@ def upload_captions(service, video_id: str, vtt_path: str) -> None:
         ).execute()
         print("  💬 Captions uploaded")
     except Exception as e:
-        print(f"  ⚠️  Caption upload failed (YouTube auto-captions will apply): {e}")
+        degrade("video/captions",
+                f"{type(e).__name__}: {e} — YouTube auto-captions apply to {video_id}")
 
 
 def upload_episode(mp4_path: str, citations_path: str | None, chapters_path: str | None,

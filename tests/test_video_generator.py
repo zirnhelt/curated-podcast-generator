@@ -2,6 +2,7 @@
 
 import json
 import os
+import sys
 
 import pytest
 
@@ -356,3 +357,57 @@ class TestArtifacts:
         assert vg.pick_cover_image("2026-07-14").name == "cariboo-signals.png"
         assert vg.pick_cover_image("2026-07-18").name == "cariboo-saturday.png"
         assert vg.pick_cover_image("2026-07-19").name == "cariboo-sunday.png"
+
+
+class TestMain:
+    """The step always exits 0; failures become degrade rows, backlog only when uploading."""
+
+    def _run(self, monkeypatch, argv, uploading, pending=()):
+        import youtube_upload
+
+        calls = []
+        monkeypatch.setattr(sys, "argv", ["video_generator.py", *argv])
+        monkeypatch.setattr(vg, "pacific_today", lambda: "2026-09-27")
+        monkeypatch.setattr(youtube_upload, "have_credentials", lambda: uploading)
+        monkeypatch.setattr(youtube_upload, "pending_dates", lambda today: list(pending))
+        monkeypatch.setattr(vg, "_publish_day",
+                            lambda yu, d, up, priv, keep: calls.append((d, up)))
+        assert vg.main() == 0
+        return calls
+
+    def test_render_only_skips_backlog(self, monkeypatch):
+        calls = self._run(monkeypatch, [], uploading=False, pending=["2026-09-25"])
+        assert calls == [("2026-09-27", False)]
+
+    def test_uploading_retries_backlog_first(self, monkeypatch):
+        calls = self._run(monkeypatch, [], uploading=True, pending=["2026-09-25"])
+        assert calls == [("2026-09-25", True), ("2026-09-27", True)]
+
+    def test_explicit_date_is_the_only_date(self, monkeypatch):
+        calls = self._run(monkeypatch, ["--date", "2026-09-20"], uploading=True,
+                          pending=["2026-09-25"])
+        assert calls == [("2026-09-20", True)]
+
+    def test_render_failure_degrades(self, monkeypatch, capsys):
+        import youtube_upload
+
+        monkeypatch.setattr(vg, "load_episode_artifacts",
+                            lambda d: (_ for _ in ()).throw(FileNotFoundError("no audio")))
+        vg._publish_day(youtube_upload, "2026-09-27", True, "unlisted", False)
+        assert "Degraded 'video/render': 2026-09-27: FileNotFoundError" in capsys.readouterr().out
+
+    def test_upload_failure_degrades_and_keeps_mp4(self, monkeypatch, tmp_path, capsys):
+        import youtube_upload
+
+        mp4 = tmp_path / "v.mp4"
+        mp4.write_bytes(b"\x00")
+        monkeypatch.setattr(vg, "load_episode_artifacts", lambda d: {"mp4": str(mp4)})
+        monkeypatch.setattr(vg, "render_video", lambda a: a["mp4"])
+
+        def _quota(**kw):
+            raise RuntimeError("quotaExceeded")
+
+        monkeypatch.setattr(youtube_upload, "upload_episode", _quota)
+        vg._publish_day(youtube_upload, "2026-09-27", True, "unlisted", False)
+        assert "Degraded 'video/upload': 2026-09-27: RuntimeError" in capsys.readouterr().out
+        assert mp4.exists()
