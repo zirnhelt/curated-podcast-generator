@@ -746,7 +746,7 @@ BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOW
 # after it on the same meter. It is a ceiling, not a floor: nothing spends up to
 # it unless it asks, so the other six days are unchanged. The election window is
 # ~6 Saturdays and Search is $5/1000, so the whole widening costs well under a
-# dime against the $10 monthly limit.
+# dime against the $15 monthly limit ($5 of it Brave's credit).
 EVENT_RESEARCH_SEARCH_LIMIT = int(os.getenv("PODCAST_EVENT_RESEARCH_SEARCH_LIMIT", "12"))
 #
 # The agent's follow-ups above were the whole election sweep until 2026-09-26,
@@ -779,6 +779,15 @@ EVENT_UNFOUND_DEGRADE_SHARE = 1 / 3
 # measured month the way _SPEECH_RATE_FITS was refitted from the sidecars,
 # rather than off appetite.
 BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"))  # 0=disabled
+#
+# September 2026 spent ~65 Answers queries against ~2,750 Search: the only
+# caller that asked Answers first was _resolve_script_questions_with_brave, capped
+# at 3, and the research agent almost never picked mode="answer". So 5 of the 8
+# slots a run could not be reached and the credit went unused while Search ran
+# short. Fact resolution now asks up to 5, and the tool description makes
+# "answer" the default for direct factual questions. Tokens are still the
+# unmeasured half of the price: refit off the logged `brave-answers tokens=`.
+SCRIPT_QUESTION_LIMIT = 5
 DEEP_DIVE_INJECT_DISCIPLINE_TAGS = os.getenv("PODCAST_DEEP_DIVE_INJECT_DISCIPLINE_TAGS", "0") == "1"
 
 # prompt slice registry — only append injected context when caller opts in
@@ -839,6 +848,15 @@ DEEP_DIVE_ELIGIBLE_FLOOR = 2
 # roundup, against two local stories, because nothing bounded one field's share
 # of the segment.
 ROUNDUP_CLUSTER_MAX = 3
+
+# Paid body backfill (Brave title search) runs after the roundup is curated, on
+# the cut plus this many spares, so a story the sparse filter drops has a
+# replacement. It used to run over up to 40 pre-curation candidates: on
+# 2026-09-26 the 12-call budget ran out on stories the airtime cap then cut
+# (38 of 53), and survivors kept their stubs. The free direct fetch and the
+# feed excerpt still run over the whole pool, because curation reads `_body`
+# (theme_adjacent) and the deep-dive substance swap picks from it.
+ROUNDUP_BACKFILL_SPARES = 5
 
 # Tracks which review model was actually used this run; read by citation/description generators.
 _api_call_counts = {}
@@ -1357,16 +1375,19 @@ def _fetch_article_body(url, brave_key=None, title=None):
     return body
 
 
-def _enrich_articles_with_body(articles, label="", max_articles=None):
+def _enrich_articles_with_body(articles, label="", max_articles=None, use_brave=True):
     """Fetch body text for articles in-place, adding a '_body' field.
 
     Only enriches up to max_articles (fetches the whole list if None).
     Uses Brave Search as fallback when direct fetching fails or yields thin
-    content.  Articles that already have a rich body (>= 400 chars) are
-    skipped; articles with a pre-existing stub are re-enriched so that a
-    feed-provided summary never silently blocks a better fetch.
+    content, unless use_brave is False: the roundup candidates are fetched
+    free before curation and only the survivors are searched (see
+    ROUNDUP_BACKFILL_SPARES).  Articles that already have a rich body
+    (>= 400 chars) are skipped; articles with a pre-existing stub are
+    re-enriched so that a feed-provided summary never silently blocks a
+    better fetch.
     """
-    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY") if use_brave else None
     targets = articles if max_articles is None else articles[:max_articles]
     if not targets:
         return
@@ -2946,9 +2967,12 @@ WEB_SEARCH_TOOL = {
                 "type": "string",
                 "enum": ["results", "answer"],
                 "description": (
-                    "'results' returns web snippets (default, good for broad "
-                    "context); 'answer' returns a synthesized prose answer "
-                    "(best for direct factual questions like specs or prices)."
+                    "'answer' returns a synthesized prose answer: use it for any "
+                    "direct factual question (a figure, date, price, spec, who "
+                    "holds a role). It carries no source URL. 'results' returns "
+                    "web snippets with URLs: use it for broad context, or when a "
+                    "claim must be attributed to an outlet or a page read with "
+                    "fetch_page."
                 ),
             },
         },
@@ -3272,6 +3296,20 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
     return result + "\n\n"
 
 
+def _fill_body_from_excerpt(articles: list) -> None:
+    """Give a thin article the feed's own `_excerpt` as its body, in place.
+
+    Free, and the same kind of snippet a search would return (up to 600 chars):
+    ~55% of items carry one past NEWS_BODY_MIN_CHARS.
+    """
+    for a in articles:
+        if len(a.get("_body", "") or "") >= NEWS_BODY_MIN_CHARS:
+            continue
+        excerpt = (a.get("_excerpt", "") or "").strip()
+        if len(excerpt) >= NEWS_BODY_MIN_CHARS:
+            a["_body"] = excerpt
+
+
 def _filter_sparse_news_articles(articles: list) -> list:
     """Remove news articles without sufficient body text after trying enrichment.
 
@@ -3286,22 +3324,19 @@ def _filter_sparse_news_articles(articles: list) -> list:
     ~30 unmetered calls a night on stories the 15-slot roundup mostly drops, and
     the reason the podcast spent 40-55 Search requests a day in September 2026
     against per-run ceilings that add up to 28.
+
+    It runs on the curated roundup (plus ROUNDUP_BACKFILL_SPARES), never on the
+    whole candidate pool: on 2026-09-26 the 12-call budget ran out on stories
+    the airtime cap then cut, and 46 survivors went unsearched.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     kept, skipped = [], []
     brave_used = False
 
+    _fill_body_from_excerpt(articles)
     for a in articles:
         body = a.get("_body", "") or ""
         if len(body) >= NEWS_BODY_MIN_CHARS:
-            kept.append(a)
-            continue
-
-        # The feed ships the same kind of snippet a search would return (up to
-        # 600 chars) and ~55% of items carry one past the floor.
-        excerpt = (a.get("_excerpt", "") or "").strip()
-        if len(excerpt) >= NEWS_BODY_MIN_CHARS:
-            a["_body"] = excerpt
             kept.append(a)
             continue
 
@@ -3523,7 +3558,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         return ""
 
     results = []
-    for query in queries[:3]:  # Cap at 3 Brave calls
+    for query in queries[:SCRIPT_QUESTION_LIMIT]:
         # Try the Summarizer first — it returns a synthesized prose answer which is
         # more directly useful for factual gap-fill than raw snippet concatenation.
         answer = _brave_summarize(query)   # its own subscription, its own key
@@ -11359,10 +11394,12 @@ def run_script_stage() -> tuple[str, str] | None:
             # Fetch article body text so Claude has real content to work from,
             # not just headlines and meta-description snippets.
             _enrich_articles_with_body(deep_dive_articles, label="deep dive")
-            _enrich_articles_with_body(news_articles, label="news roundup", max_articles=40)
+            # Free fetch only: Brave waits for the curated cut (ROUNDUP_BACKFILL_SPARES).
+            _enrich_articles_with_body(news_articles, label="news roundup", max_articles=40,
+                                       use_brave=False)
+            _fill_body_from_excerpt(news_articles)
 
             deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
-            news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
 
             # Confirm substance — not just attempted enrichment — before the deep dive
             # locks in: swap any thin deep-dive article for a substantive alternative
@@ -11387,7 +11424,13 @@ def run_script_stage() -> tuple[str, str] | None:
             # reach citations, so dedup lets them resurface on a better-matched
             # theme day.
             _pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if today_weekday == 5 else NEWS_ROUNDUP_COUNT
-            news_articles, _roundup_dropped = _curate_roundup_pool(news_articles, today_theme, _pool_size)
+            # Curate with spares, search only those for thin bodies, then cut to
+            # size: a sparse story's slot goes to the next one in line.
+            news_articles, _roundup_dropped = _curate_roundup_pool(
+                news_articles, today_theme, _pool_size + ROUNDUP_BACKFILL_SPARES)
+            news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
+            news_articles, _spares_dropped = _curate_roundup_pool(news_articles, today_theme, _pool_size)
+            _roundup_dropped = _roundup_dropped + _spares_dropped
             _blocks = Counter(a.get('_roundup_block') for a in news_articles)
             print(f"🧵 Roundup pool: {len(news_articles)} stories "
                   f"(~{len(news_articles) * ROUNDUP_MIN_STORY_WORDS} words minimum) — "
