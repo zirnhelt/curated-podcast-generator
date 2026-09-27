@@ -8932,20 +8932,86 @@ def _is_embargoed_subject(subject: str) -> bool:
 _MERGE_SUBJECT_RE = re.compile(r"Merge (pull request|branch|remote-tracking|commit)\b", re.I)
 
 
-def get_weekly_changelog(days: int = 7) -> str:
-    """Commit subjects touching generator-shaping files in the last N days, for the Sunday Meta Moment."""
-    since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
-    log = _git("log", "--reverse", f"--since={since}", "--pretty=format:%s", "--", *GENERATION_PATHS)
-    if not log:
-        return ""
-    subjects = [
-        line.strip() for line in log.splitlines()
-        if line.strip() and not _MERGE_SUBJECT_RE.match(line.strip())
-    ]
+# super-rss-feed finds and scores every story before this repo picks from them,
+# so a change there is a change to what the show airs. Paths are the ones that
+# shape the pool; `feedback/`, caches and reports are the nightly bot's churn.
+UPSTREAM_REPO = "zirnhelt/super-rss-feed"
+UPSTREAM_GENERATION_PATHS = ("super_rss_curator_json.py", "config", "feeds.opml")
+# Below this many show-side subjects the week is thin, and upstream changes are
+# folded in. A count, not a verdict: the model still answers NONE on plumbing.
+META_MOMENT_SPARSE_BELOW = 3
+UPSTREAM_HEADER = ("Upstream — the article feed that finds and scores stories before "
+                   "the show picks from them:")
+
+
+def _changelog_subjects(lines: list) -> list:
+    """Non-merge, non-embargoed subjects, reporting what the embargo withheld."""
+    subjects = [s.strip() for s in lines if s.strip() and not _MERGE_SUBJECT_RE.match(s.strip())]
     kept = [s for s in subjects if not _is_embargoed_subject(s)]
     if len(kept) < len(subjects):
         print(f"   🔇 Meta Moment: withheld {len(subjects) - len(kept)} unreleased-surface commit(s)")
-    return "\n".join(f"- {s}" for s in kept)
+    return kept
+
+
+def get_upstream_changelog(days: int = 7) -> list:
+    """Human commit subjects in super-rss-feed's pool-shaping paths, oldest first.
+
+    Read from the GitHub API rather than a clone: the repo is public, and this is
+    three small requests once a week. Bot commits are the nightly cache run and
+    the weekly agents, whose subjects ("Weekly calibration agent run") name a
+    job, not a change.
+    """
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    headers = {"Accept": "application/vnd.github+json"}
+    token = os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    commits = {}
+    try:
+        for path in UPSTREAM_GENERATION_PATHS:
+            resp = requests.get(f"https://api.github.com/repos/{UPSTREAM_REPO}/commits",
+                                params={"since": since, "path": path, "per_page": 100},
+                                headers=headers, timeout=15)
+            resp.raise_for_status()
+            for c in resp.json():
+                author = (c.get("commit") or {}).get("author") or {}
+                login = (c.get("author") or {}).get("login") or ""
+                if len(c.get("parents") or []) > 1 or "[bot]" in author.get("name", "") + login:
+                    continue
+                subject = ((c.get("commit") or {}).get("message") or "").splitlines()
+                if subject:
+                    commits[c.get("sha")] = (author.get("date", ""), subject[0])
+    except (requests.RequestException, ValueError) as exc:
+        degrade("script/meta-moment",
+                f"upstream changelog unavailable ({type(exc).__name__}) — the thin "
+                "week's segment is built from the show's own commits alone")
+        return []
+    return _changelog_subjects([s for _, s in sorted(commits.values())])
+
+
+def get_weekly_changelog(days: int = 7) -> str:
+    """Commit subjects touching generator-shaping files in the last N days, for the Sunday Meta Moment.
+
+    A thin week gets super-rss-feed's changes under `UPSTREAM_HEADER`; only
+    `- ` lines are subjects, so the header is framing, never a citable change.
+    """
+    since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
+    # A shallow clone answers `git log --since` with its one boundary commit and
+    # no error: 2026-09-27 (and likely 09-13 and 09-20) lost the segment because the
+    # workflow's idempotency fetch ran `--depth=1` over a full checkout. Deepen
+    # to the week rather than report a quiet one.
+    if _git("rev-parse", "--is-shallow-repository") == "true":
+        print("   ⚠️  Meta Moment: shallow clone — deepening to the week before reading it")
+        _git("fetch", "--quiet", f"--shallow-since={since}", "origin")
+    log = _git("log", "--reverse", f"--since={since}", "--pretty=format:%s", "--", *GENERATION_PATHS)
+    lines = [f"- {s}" for s in _changelog_subjects(log.splitlines())]
+    if len(lines) < META_MOMENT_SPARSE_BELOW:
+        upstream = get_upstream_changelog(days)
+        if upstream:
+            print(f"   🔁 Meta Moment: thin week ({len(lines)} show commit(s)) — "
+                  f"adding {len(upstream)} upstream")
+            lines += [UPSTREAM_HEADER] + [f"- {s}" for s in upstream]
+    return "\n".join(lines)
 
 
 # Words the Meta Moment is allowed to capitalize. The segment describes the
@@ -9339,7 +9405,7 @@ def generate_meta_moment_text(changelog: str) -> str:
         degrade("script/meta-moment",
                 "no Anthropic client — the episode airs without the segment")
         return ""
-    subjects = [line.strip().lstrip("-").strip() for line in changelog.splitlines() if line.strip()]
+    subjects = [line[2:].strip() for line in changelog.splitlines() if line.startswith("- ")]
     hosts_config = CONFIG.get('hosts', {})
     riley_bio = hosts_config.get('riley', {}).get('full_bio', 'Riley, optimistic tech host')
     casey_bio = hosts_config.get('casey', {}).get('full_bio', 'Casey, skeptical co-host')
@@ -9351,6 +9417,15 @@ def generate_meta_moment_text(changelog: str) -> str:
         "Describe caption or transcript work as transcripts in your podcast app — never "
         "as captions you watch. "
         if re.search(r"transcript|caption|subtitle|vtt", changelog, re.I) else ""
+    )
+    # Only a thin week carries upstream lines, and only then does the prompt
+    # explain them — the same rule as the transcript sentence above.
+    upstream_note = (
+        "Lines under the Upstream heading changed the article feed that finds and scores "
+        "stories before the show picks from them, not the show itself. Describe them as "
+        "changes to which stories reach the show, and never name the feed or its files. "
+        "Prefer the show's own changes when both qualify.\n\n"
+        if UPSTREAM_HEADER in changelog else ""
     )
     prompt = (
         "Write the 'Meta Moment' segment for the Cariboo Signals podcast: a dialogue "
@@ -9420,7 +9495,7 @@ def generate_meta_moment_text(changelog: str) -> str:
         "This is an audio show only. Never mention video, YouTube, a visual or watchable "
         f"version of the show, or anything a listener would have to look at. {transcript_note}"
         "If a change only makes sense visually, skip it and pick another.\n\n"
-        f"This week's changes:\n{changelog}"
+        f"{upstream_note}This week's changes:\n{changelog}"
     )
     try:
         response = api_retry(lambda: client.messages.create(

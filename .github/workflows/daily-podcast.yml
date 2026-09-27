@@ -187,6 +187,9 @@ jobs:
           # refused, records a degradation and leaves every claim as written — a
           # missing key costs the confirmation, never the episode.
           NATIVE_LAND_API_KEY: ${{ secrets.NATIVE_LAND_API_KEY }}
+          # Sunday's thin-week Meta Moment reads super-rss-feed's commits from the
+          # GitHub API; the token only lifts the anonymous rate limit.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # The TTS provider flags (not the keys) must be set on this stage too:
           # the polish prompt is provider-gated — only Gemini performs `[tag]`
           # stage directions, so _stage_direction_addendum() would omit them and
@@ -217,8 +220,12 @@ jobs:
           # trigger-time SHA, so a run queued behind the concurrency group sees
           # the repo as it was *before* the earlier run shipped the episode —
           # which is how 2026-07-26 rendered the same episode three times.
+          #
+          # Never --depth here: over this fetch-depth 0 checkout it makes the
+          # repo shallow whenever origin/main is HEAD, and the Meta Moment's
+          # `git log --since` then reads one commit (lost 2026-09-27's segment).
           TODAY=$(TZ='America/Vancouver' date '+%Y-%m-%d')
-          git fetch --depth=1 origin main || echo "::warning::Could not fetch origin/main — idempotency check falls back to the checked-out feed"
+          git fetch origin main || echo "::warning::Could not fetch origin/main — idempotency check falls back to the checked-out feed"
           FEED_AT_HEAD=$(git show origin/main:podcast-feed.xml 2>/dev/null || cat podcast-feed.xml)
           if [ "${{ github.event_name }}" = "schedule" ] && echo "$FEED_AT_HEAD" | grep -q "$TODAY"; then
             echo "✅ Episode for $TODAY already committed to git — skipping duplicate generation."

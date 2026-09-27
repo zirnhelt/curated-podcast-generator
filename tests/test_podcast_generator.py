@@ -2545,6 +2545,12 @@ class TestSyncSiteToR2FeedReferenceHeal:
 
 
 class TestGetWeeklyChangelog:
+    @pytest.fixture(autouse=True)
+    def _no_upstream(self, monkeypatch):
+        # A thin week asks the GitHub API for super-rss-feed's commits; these
+        # tests are about the show's own list, and tests never touch the network.
+        monkeypatch.setattr("podcast_generator.get_upstream_changelog", lambda days=7: [])
+
     def test_empty_git_log_returns_empty_string(self, monkeypatch):
         monkeypatch.setattr("podcast_generator._git", lambda *a, **k: "")
         assert get_weekly_changelog() == ""
@@ -2601,6 +2607,100 @@ class TestGetWeeklyChangelog:
         )
         # Only the configured term is withheld; "video" is no longer embargoed.
         assert get_weekly_changelog() == "- Render video slides"
+
+
+class TestThinWeekChangelog:
+    """2026-09-27: 'if content is sparse we can pull in from the super rss feed
+    changes too.' A week under META_MOMENT_SPARSE_BELOW show commits gets the
+    upstream feed's commits under a header that is framing, not a subject."""
+
+    _SHOW = "Anchor the script to mornings"
+
+    def test_thin_week_appends_upstream_under_its_header(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_git", lambda *a, **k: self._SHOW if a[0] == "log" else "")
+        monkeypatch.setattr(pg, "get_upstream_changelog",
+                            lambda days=7: ["Stop the gate rejecting business news"])
+        assert pg.get_weekly_changelog() == (
+            f"- {self._SHOW}\n{pg.UPSTREAM_HEADER}\n- Stop the gate rejecting business news")
+
+    def test_busy_week_never_asks_upstream(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_git", lambda *a, **k: "A\nB\nC" if a[0] == "log" else "")
+
+        def boom(days=7):
+            raise AssertionError("upstream fetched on a busy week")
+        monkeypatch.setattr(pg, "get_upstream_changelog", boom)
+        assert pg.get_weekly_changelog() == "- A\n- B\n- C"
+
+    def test_shallow_clone_is_deepened_before_the_log(self, monkeypatch):
+        # The workflow's --depth=1 idempotency fetch made the checkout shallow,
+        # and `git log --since` read one merge commit: three silent Sundays.
+        import podcast_generator as pg
+        calls = []
+
+        def fake_git(*args):
+            calls.append(args[0])
+            return "true" if args[0] == "rev-parse" else ""
+        monkeypatch.setattr(pg, "_git", fake_git)
+        monkeypatch.setattr(pg, "get_upstream_changelog", lambda days=7: [])
+        pg.get_weekly_changelog()
+        assert calls == ["rev-parse", "fetch", "log"]
+
+    def test_upstream_note_only_when_upstream_lines_present(self, monkeypatch):
+        import podcast_generator as pg
+        client = TestGenerateMetaMomentText._client_returning("NONE")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda *a: None)
+
+        def prompt():
+            return client.messages.create.call_args.kwargs["messages"][0]["content"]
+        pg.generate_meta_moment_text(f"- {self._SHOW}")
+        assert "Upstream heading" not in prompt()
+        pg.generate_meta_moment_text(f"- {self._SHOW}\n{pg.UPSTREAM_HEADER}\n- Upstream change")
+        assert "Upstream heading" in prompt()
+
+    def test_header_is_never_a_citable_subject(self, monkeypatch):
+        import podcast_generator as pg
+        header_only = f"COVERED: {pg.UPSTREAM_HEADER}\n\n**RILEY:** Quick meta moment.\n"
+        monkeypatch.setattr(pg, "get_anthropic_client",
+                            lambda: TestGenerateMetaMomentText._client_returning(header_only))
+        monkeypatch.setattr(pg, "degrade", lambda *a: None)
+        assert pg.generate_meta_moment_text(f"{pg.UPSTREAM_HEADER}\n- Real change") == ""
+
+
+class TestGetUpstreamChangelog:
+    @staticmethod
+    def _commit(sha, subject, date, name="Claude", login="", parents=1):
+        return {"sha": sha, "parents": [{}] * parents, "author": {"login": login},
+                "commit": {"message": f"{subject}\n\nbody", "author": {"name": name, "date": date}}}
+
+    def test_keeps_human_commits_once_oldest_first(self, monkeypatch):
+        import podcast_generator as pg
+        page = [
+            self._commit("b", "Widen the US-politics KEEP", "2026-09-25T00:00:00Z"),
+            self._commit("a", "Filter what the ratings reject", "2026-09-21T00:00:00Z"),
+            self._commit("c", "Update cache and feed log [skip ci]", "2026-09-26T00:00:00Z",
+                         name="github-actions[bot]", login="github-actions[bot]"),
+            self._commit("d", "Merge pull request #300 from x/y", "2026-09-26T00:00:00Z", parents=2),
+        ]
+        resp = MagicMock()
+        resp.json.return_value = page
+        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: resp)
+        # Every path returns the same page; a commit touching several is one line.
+        assert pg.get_upstream_changelog() == [
+            "Filter what the ratings reject", "Widen the US-politics KEEP"]
+
+    def test_api_failure_degrades_and_returns_nothing(self, monkeypatch):
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+
+        def down(*a, **k):
+            raise pg.requests.ConnectionError("no route")
+        monkeypatch.setattr(pg.requests, "get", down)
+        assert pg.get_upstream_changelog() == []
+        assert recorded == ["script/meta-moment"]
 
 
 class TestMetaMomentUnknownNames:

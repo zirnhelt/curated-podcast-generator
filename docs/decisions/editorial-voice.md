@@ -272,6 +272,23 @@ list") had been in the prompt the whole time.
     header since launch (`periodic-review.yml` checked out at depth 1, so `git log --since`
     had no week to read; it now checks out `fetch-depth: 0`). `_git` prints the exit code
     and stderr now, and the degradation says the row cannot tell which of the two it was.
+  - **The actual cause, found 2026-09-27: the repo was shallow.** 09-13, 09-20 and 09-27
+    all aired without the segment; 09-27's job log says "no generator-shaping commits" in a
+    week carrying eight, and the other two fit the same silent path. The script step's idempotency check ran `git fetch --depth=1 origin
+    main` over the `fetch-depth: 0` checkout; when origin/main *is* HEAD — every first run
+    of the day — that marks HEAD as the shallow boundary, and `git log --since=7d` reads
+    one merge commit, filtered out, with exit 0. `_git` could not warn because nothing
+    failed. The fetch is full now, and `get_weekly_changelog` deepens a shallow clone to the
+    week before reading it rather than reporting a quiet one.
+- **A thin week borrows from upstream.** `super-rss-feed` finds and scores every story the
+  show picks from, so a change there ("keep Canadian politics out of the US-politics
+  reject") is a change a listener hears. Under `META_MOMENT_SPARSE_BELOW` (3) show-side
+  subjects, `get_upstream_changelog` reads that repo's human commits over its pool-shaping
+  paths from the GitHub API (public repo; bot commits name a job, not a change) and appends
+  them under `UPSTREAM_HEADER`. The header is framing: only `- ` lines are subjects, so it
+  can never be cited. The sentence explaining upstream lines to the model appears only
+  when they do, per the rule below. The gate is a count, not a verdict — a week of three
+  plumbing commits can still come back NONE without asking upstream.
 - **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
   hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
   week with no transcript commit; it now appears only when a commit earns it. The prompt

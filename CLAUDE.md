@@ -231,6 +231,8 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The reply cites its commit lines (`COVERED:`) before it speaks, and unknown capitalised names drop the segment.
 - Every Sunday without the segment `degrade()`s, whatever the reason.
 - Nothing listener-facing goes into that prompt unconditionally.
+- A thin week (under `META_MOMENT_SPARSE_BELOW` show commits) folds in `super-rss-feed`'s human commits under `UPSTREAM_HEADER`; only `- ` lines are citable subjects.
+- **Never `git fetch --depth` over the full checkout**: a shallow repo answers `git log --since` with one commit and no error.
 
 **Inbound mail** (`email_ingest.py`). `podcasts/email_queue.json` is public: senders are masked and contact details redacted at ingest.
 - "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address.
