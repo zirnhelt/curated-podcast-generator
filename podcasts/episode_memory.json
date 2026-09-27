@@ -1,26 +1,4 @@
 {
-  "2026-08-22": {
-    "timestamp": 1787388811.305923,
-    "topics": [
-      "Stolen pumps hamper crews as Summerland-area wildfire grows ",
-      "[Williams Lake Tribune] Weekend weather could bring \u2018dramati",
-      "The Atlas Obscura Guide to Seeing the Northern Lights",
-      "[STAT News] Opinion: Capricor\u2019s Duchenne muscular dystrophy ",
-      "[Business Insider] The states where public school students g",
-      "Riders gearing up with escorted training ride for Tour de No",
-      "B.C. lumber industry hoping for trade relief in new Canada-U",
-      "[Williams Lake Tribune] Ranching families west of Williams L"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-22",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-08-23": {
     "timestamp": 1787496728.160515,
     "topics": [
@@ -741,5 +719,24 @@
     "date": "2026-09-26",
     "focus": null,
     "focus_name": null
+  },
+  "2026-09-27": {
+    "timestamp": 1790497588.721334,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake Tourism Discovery Cent",
+      "[Williams Lake Tribune] Kings and Queens two-pitch tournamen",
+      "[My Cariboo Now] Winter tires needed on many northern B.C. h",
+      "[Williams Lake Tribune] Kelowna urged to disclose bids in Pr",
+      "[Tom's Hardware] US AI data centers projected to become the ",
+      "[ScienceDaily] Scientists stunned as volcano cloud starts de",
+      "[EarthSky] Small asteroid hit Earth\u2019s atmosphere Sunday near",
+      "[Popular Mechanics] He Wanted to Study Dinosaurs for a Livin"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-09-27",
+    "focus": "earth-systems",
+    "focus_name": "Earth Systems & Climate Science"
   }
 }

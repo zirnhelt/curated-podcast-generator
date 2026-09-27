@@ -1,0 +1,386 @@
+{
+  "episode": {
+    "date": "2026-09-27",
+    "formatted_date": "Sunday, September 27, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>THIS WEEK WE'RE ASKING:</b> Does a place still exist if nobody records it?</p><p><b>NEWS ROUNDUP:</b> We break down Williams Lake Tourism Discovery Centre celebrates 20th anniversary and Kings and Queens two-pitch tournament in Williams Lake ends on perfect weather, plus 12 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How do we ensure that critical environmental monitoring systems survive beyond the researchers or funding cycles that initially created them? Topics include: Hunga Tonga eruption's unexpected stratospheric chlorine chemistry and the role of satellite detection in knowledge creation, Asteroid detection systems and how monitoring is scaled to threat size rather than scientific curiosity, Glacier mass balance tracking in Cariboo Mountains and its dependence on researcher continuity, The Hunga Tonga problem applied to slow environmental changes that require multi-year baselines to understand, First Nations river flow and temperature monitoring as a sustainable model for long-term environmental data collection.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://scoutisland.ca\">Scout Island Nature Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/26/williams-lake-tourism-discovery-centre-celebrates-20th-anniversary/\">[Williams Lake Tribune] Williams Lake Tourism Discovery Cent...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/26/kings-and-queens-two-pitch-tournament-in-williams-lake-ends-on-perfect-weather/\">[Williams Lake Tribune] Kings and Queens two-pitch tournamen...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316473/news/roads/winter-tires-needed-on-many-northern-b-c-highways-next-week/\">[My Cariboo Now] Winter tires needed on many northern B.C. h...</a></li><li>Brayden Ursel (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/25/kelowna-urged-to-disclose-bids-in-prospera-place-management-deal/\">[Williams Lake Tribune] Kelowna urged to disclose bids in Pr...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/tech-industry/data-centers/us-ai-data-centers-projected-to-become-the-fifth-largest-natural-gas-consumer-in-the-world-by-2035-consumption-to-grow-by-15-billion-cubic-feet-per-day-as-demand-for-compute-increases\">[Tom's Hardware] US AI data centers projected to become the ...</a></li><li>NPR Health News: <a href=\"https://www.npr.org/2026/09/14/nx-s1-5962891/research-finds-short-bursts-of-vigorous-movement-are-also-beneficial-for-longevity\">[NPR Health News] Research finds short bursts of vigorous mo...</a></li><li>Science-Based Medicine: <a href=\"http://sciencebasedmedicine.org/making-measles-great-again-in-ohio/?utm_source=rss&utm_medium=rss&utm_campaign=making-measles-great-again-in-ohio\">[Science-Based Medicine] Making measles great again in Ohio</a></li><li>Nieman Lab: <a href=\"https://www.niemanlab.org/2026/09/is-science-journalism-dying-comparing-a-science-crash-40-years-ago-to-today/\">[Nieman Lab] Is science journalism dying? Comparing a “scien...</a></li><li>New Atlas: <a href=\"https://newatlas.com/medical/friday-13th-unlucky/\">[New Atlas] We've uncovered the deadliest days – and they do...</a></li><li>Neuroscience News: <a href=\"https://neurosciencenews.com/core-contractions-brain-blood-flow-32231/\">[Neuroscience News] Core Contractions Drive Brain Blood Flow</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/09/260914102436.htm\">[ScienceDaily] UV light reveals possible camouflage on a 125...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/home/energy-saving/new-solar-panel-tech-could-trap-heat-for-1-000-times-longer-to-beat-a-long-standing-limit-in-energy-production\">[TechRadar] New solar panel tech could trap heat for 1,000 t...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/09/260922005712.htm\">[ScienceDaily] These tropical trees breathe at night to surv...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/the-parthenons-famous-optical-illusion-may-itself-be-an-illusion-study-shows\">[ScienceAlert] The Parthenon's Famous Optical Illusion May I...</a></li><li>Kelly Kizer Whitt (EarthSky): <a href=\"https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/\">[EarthSky] Small asteroid hit Earth’s atmosphere Sunday near...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Popular Mechanics: <a href=\"https://www.popularmechanics.com/science/green-tech/a73796013/australia-green-hydrogen/\">[Popular Mechanics] A Massive Jackpot of Green Fuel Is Locke...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/09/260915095750.htm\">[ScienceDaily] Scientists stunned as volcano cloud starts de...</a></li><li>Popular Mechanics: <a href=\"https://www.popularmechanics.com/science/a73688976/franz-nopcsa-career-murder/\">[Popular Mechanics] He Wanted to Study Dinosaurs for a Livin...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-27T01:26:26.169054-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3390,
+      "voice_ratio_casey_riley": 0.97,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 13.6,
+        "short_turns": 6,
+        "turns": 61,
+        "avg_turn_words": 53.9,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes",
+          "short_turns"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "place-unrecorded",
+      "question": "Does a place still exist if nobody records it?"
+    },
+    "audio_file_size": 19743021,
+    "audio_duration": "20:33"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Tourism Discovery Centre celebrates 20th anniversary",
+          "url": "https://wltribune.com/2026/09/26/williams-lake-tourism-discovery-centre-celebrates-20th-anniversary/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 88,
+          "date_published": "2026-09-27T04:03:08.565529+00:00",
+          "summary": "## Williams Lake Tourism Discovery Centre celebrates 20th anniversary Published 11:54 am Saturday, September 26, 2026 **By Rebecca Dyok** 1/5 Williams Lake & District Chamber of Commerce executive dir...",
+          "discussed": true,
+          "mention_offset_frac": 0.013
+        },
+        {
+          "title": "[Popular Mechanics] A Massive Jackpot of Green Fuel Is Locked Underground—and Scientists May Have Just Found the Key",
+          "url": "https://www.popularmechanics.com/science/green-tech/a73796013/australia-green-hydrogen/",
+          "source": "Popular Mechanics",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-23T13:30:00+00:00",
+          "summary": "A new study replicated the heat and pressure conditions of Western Australia’s vast iron-ore deposits to produce natural hydrogen gas.",
+          "discussed": false
+        },
+        {
+          "title": "[Nieman Lab] Is science journalism dying? Comparing a “science crash” 40 years ago to today",
+          "url": "https://www.niemanlab.org/2026/09/is-science-journalism-dying-comparing-a-science-crash-40-years-ago-to-today/",
+          "source": "Nieman Lab",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-15T16:14:44+00:00",
+          "summary": "When two popular science magazines — out of about 17 in circulation — ceased publication in the same year, one commentator said, “The science magazines didn’t shake out. They fell apart.” The general ...",
+          "discussed": true,
+          "mention_offset_frac": 0.0537
+        },
+        {
+          "title": "[NPR Health News] Research finds short bursts of vigorous movement are also beneficial for longevity",
+          "url": "https://www.npr.org/2026/09/14/nx-s1-5962891/research-finds-short-bursts-of-vigorous-movement-are-also-beneficial-for-longevity",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-14T08:43:58+00:00",
+          "summary": "When it comes to longevity, lots of research has shown how much you move matters. But a new study finds your pace may also be key -- even if you fall far short of daily step goals.",
+          "discussed": true,
+          "mention_offset_frac": 0.0676
+        },
+        {
+          "title": "[Williams Lake Tribune] Kings and Queens two-pitch tournament in Williams Lake ends on perfect weather",
+          "url": "https://wltribune.com/2026/09/26/kings-and-queens-two-pitch-tournament-in-williams-lake-ends-on-perfect-weather/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 90,
+          "date_published": "2026-09-27T04:03:08.565341+00:00",
+          "summary": "## Kings and Queens two-pitch tournament in Williams Lake ends on perfect weather Published 1:42 pm Saturday, September 26, 2026 **By Rebecca Dyok** 1/4 A Kings and Queens two-pitch tournament was hel...",
+          "discussed": true,
+          "mention_offset_frac": 0.0682
+        },
+        {
+          "title": "[My Cariboo Now] Winter tires needed on many northern B.C. highways next week",
+          "url": "https://www.mycariboonow.com/316473/news/roads/winter-tires-needed-on-many-northern-b-c-highways-next-week/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-09-26T20:35:53+00:00",
+          "summary": "Whether you like it or not, winter is fast approaching, which means winter tire requirements will be needed on many northern B.C. highways. The post Winter tires needed on many northern B.C. highways ...",
+          "discussed": true,
+          "mention_offset_frac": 0.1169
+        },
+        {
+          "title": "[Williams Lake Tribune] Kelowna urged to disclose bids in Prospera Place management deal",
+          "url": "https://wltribune.com/2026/09/25/kelowna-urged-to-disclose-bids-in-prospera-place-management-deal/",
+          "source": "Williams Lake Tribune",
+          "author": "Brayden Ursel",
+          "ai_score": 58,
+          "date_published": "2026-09-25T22:03:00+00:00",
+          "summary": "## Kelowna urged to disclose bids in Prospera Place management deal Published 3:03 pm Friday, September 25, 2026 **By Brayden Ursel** Prospera Place in Kelowna. (File Photo) | **Getting your Trinity A...",
+          "discussed": true,
+          "mention_offset_frac": 0.1387
+        },
+        {
+          "title": "[Tom's Hardware] US AI data centers projected to become the fifth-largest natural gas consumer in the world by 2035 — consumption to grow by 15 billion cubic feet per day as demand for compute increases",
+          "url": "https://www.tomshardware.com/tech-industry/data-centers/us-ai-data-centers-projected-to-become-the-fifth-largest-natural-gas-consumer-in-the-world-by-2035-consumption-to-grow-by-15-billion-cubic-feet-per-day-as-demand-for-compute-increases",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/jowi-morales",
+          "ai_score": 62,
+          "date_published": "2026-09-15T13:57:36+00:00",
+          "summary": "Data centers in the U.S. are projected to use up more natural gas than most of the rest of the world to generate the electricity they need. Estimates suggest that 15 billion cubic feet per day are nee...",
+          "discussed": true,
+          "mention_offset_frac": 0.2476
+        },
+        {
+          "title": "[Science-Based Medicine] Making measles great again in Ohio",
+          "url": "http://sciencebasedmedicine.org/making-measles-great-again-in-ohio/?utm_source=rss&utm_medium=rss&utm_campaign=making-measles-great-again-in-ohio",
+          "source": "Science-Based Medicine",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-14T07:00:00+00:00",
+          "summary": "Dr. Jonathan Howard was right. They really do want you—and your kids—infected, preferably with measles. One way they'll accomplish this is by preventing schools from excluding unvaccinated children du...",
+          "discussed": true,
+          "mention_offset_frac": 0.4275
+        },
+        {
+          "title": "[New Atlas] We've uncovered the deadliest days – and they don't fall on Friday the 13th",
+          "url": "https://newatlas.com/medical/friday-13th-unlucky/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/mike-mcrae/",
+          "ai_score": 62,
+          "date_published": "2026-09-08T19:49:10+00:00",
+          "summary": "Long before I wrote about science, I was a vampire. I worked at night, sucking blood in a hospital. Continue Reading Category: Body and Mind Tags: Psychology , Moon , superstition , Mortality , Emerge...",
+          "discussed": true,
+          "mention_offset_frac": 0.5294
+        },
+        {
+          "title": "[Neuroscience News] Core Contractions Drive Brain Blood Flow",
+          "url": "https://neurosciencenews.com/core-contractions-brain-blood-flow-32231/",
+          "source": "Neuroscience News",
+          "author": "https://www.facebook.com/neurosciencenews",
+          "ai_score": 62,
+          "date_published": "2026-09-21T19:42:10+00:00",
+          "summary": "Engaging core muscles rapidly constricts cerebral veins to regulate brain blood flow, revealing a mechanical body-brain link in PNAS study.",
+          "discussed": true,
+          "mention_offset_frac": 0.5738
+        },
+        {
+          "title": "[ScienceDaily] UV light reveals possible camouflage on a 125-million-year-old crocodile",
+          "url": "https://www.sciencedaily.com/releases/2026/09/260914102436.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-09-15T14:07:13+00:00",
+          "summary": "A 125-million-year-old crocodile fossil has revealed preserved skin, possible sensory organs, sophisticated respiratory structures, and an unexpected pattern on its tail. Ultraviolet light exposed alt...",
+          "discussed": true,
+          "mention_offset_frac": 0.6186
+        },
+        {
+          "title": "[TechRadar] New solar panel tech could trap heat for 1,000 times longer to beat a long-standing limit in energy production",
+          "url": "https://www.techradar.com/home/energy-saving/new-solar-panel-tech-could-trap-heat-for-1-000-times-longer-to-beat-a-long-standing-limit-in-energy-production",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/david-nield",
+          "ai_score": 60,
+          "date_published": "2026-09-19T16:30:00+00:00",
+          "summary": "A new discovery about tin-based solar panels means the long-standing 33% limit could eventually be breached.",
+          "discussed": true,
+          "mention_offset_frac": 0.6819
+        },
+        {
+          "title": "[ScienceDaily] These tropical trees breathe at night to survive drought",
+          "url": "https://www.sciencedaily.com/releases/2026/09/260922005712.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-23T12:05:24+00:00",
+          "summary": "Some tropical trees have evolved a clever way to survive drought by taking in carbon dioxide at night, allowing them to keep their pores closed during the hot daytime and conserve water. By comparing ...",
+          "discussed": true,
+          "mention_offset_frac": 0.7203
+        },
+        {
+          "title": "[ScienceAlert] The Parthenon's Famous Optical Illusion May Itself Be an Illusion, Study Shows",
+          "url": "https://www.sciencealert.com/the-parthenons-famous-optical-illusion-may-itself-be-an-illusion-study-shows",
+          "source": "ScienceAlert",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-09-19T20:00:00+00:00",
+          "summary": "Now you see it – now you don't. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.7871
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[ScienceDaily] Scientists stunned as volcano cloud starts destroying methane",
+          "url": "https://www.sciencedaily.com/releases/2026/09/260915095750.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-09-15T15:15:31+00:00",
+          "summary": "The Hunga Tonga eruption may have triggered a surprising chemical reaction that destroyed some of the methane released into the atmosphere. Scientists say the discovery could reshape estimates of meth...",
+          "discussed": false
+        },
+        {
+          "title": "[EarthSky] Small asteroid hit Earth’s atmosphere Sunday near Australia",
+          "url": "https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/",
+          "source": "EarthSky",
+          "author": "Kelly Kizer Whitt",
+          "ai_score": 62,
+          "date_published": "2026-09-07T12:19:54+00:00",
+          "summary": "A small asteroid impacted Earth's atmosphere harmlessly on Sunday. Scientists spotted it just 6 hours earlier. It was the 13th asteroid spotted before impact. The post Small asteroid hit Earth’s atmos...",
+          "discussed": true
+        },
+        {
+          "title": "[Popular Mechanics] He Wanted to Study Dinosaurs for a Living. Somehow, He Became a Spy Who Hijacked a Plane.",
+          "url": "https://www.popularmechanics.com/science/a73688976/franz-nopcsa-career-murder/",
+          "source": "Popular Mechanics",
+          "author": "",
+          "ai_score": 26,
+          "date_published": "2026-09-15T12:00:00+00:00",
+          "summary": "He invented a science, spied in the Balkans, and smuggled guns. Then history erased his name.",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How do we ensure that critical environmental monitoring systems survive beyond the researchers or funding cycles that initially created them?",
+        "riley_position": "Small-team, locally-grounded monitoring systems like glacier tracking and river flow measurement can persist through community need rather than grant cycles, and existing culturally-embedded data collection already models this sustainability.",
+        "riley_key_evidence": [
+          "One Cariboo First Nation has been tracking river flow and water temperature for salmon management for years, functioning as climate baseline data",
+          "Glacier mass balance in Cariboo Mountains tracked for over a decade through researchers hiking and taking measurements repeatedly",
+          "Detection networks in astronomy are designed around threat size, not curiosity, showing how systems built for specific needs sustain longer than general-purpose ones"
+        ],
+        "casey_position": "Volunteer and small-team research systems are inherently fragile because they depend on personal continuity; once a key person leaves or a grant ends, the baseline disappears, leaving downstream users unable to understand changes that nonetheless continue happening.",
+        "casey_key_evidence": [
+          "Glacier doesn't stop melting if no one walks up with a GPS unit, but the ability to act on the loss requires years of consecutive photos nobody else took",
+          "Hunga Tonga chemistry happened whether satellites watched or not, but discovery depends on instrumentation being aimed at the right sky patch at the right moment",
+          "Salmon monitoring and groundwater systems have failed due to same fragility of depending on specific individuals rather than institutional guarantees"
+        ],
+        "resolution": "They agree that the solution is not scattering new sensors everywhere, but rather identifying existing locally-held monitoring systems already answering community needs (like First Nations river tracking) and embedding responsibility in governance structures that outlast individual researchers—making the real question who inherits the monitoring point after the original grant ends.",
+        "topics_covered": [
+          "Hunga Tonga eruption's unexpected stratospheric chlorine chemistry and the role of satellite detection in knowledge creation",
+          "Asteroid detection systems and how monitoring is scaled to threat size rather than scientific curiosity",
+          "Glacier mass balance tracking in Cariboo Mountains and its dependence on researcher continuity",
+          "The Hunga Tonga problem applied to slow environmental changes that require multi-year baselines to understand",
+          "First Nations river flow and temperature monitoring as a sustainable model for long-term environmental data collection"
+        ],
+        "calls_to_action": [
+          "Ask whether there's already a physical marker near your community being measured—a stream gauge, snow stake, or long-running local record—that could simply continue being measured instead of starting something new from zero.",
+          "If you know of an existing monitoring point in the region, contact the podcast at feedback@cariboosignals.ca with corrections, tips, or any information about it.",
+          "Regional districts, school science programs, or local naturalist groups should investigate who currently measures something in their community and ask who will inherit that responsibility when the current person moves on, rather than launching new pilots with two-year funding clocks."
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 4,
+          "conditions": "overcast",
+          "high": 15,
+          "low": 2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 2,
+          "conditions": "partly cloudy",
+          "high": 14,
+          "low": 0
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 4,
+          "conditions": "overcast",
+          "high": 16,
+          "low": 2
+        },
+        {
+          "name": "Quesnel",
+          "temp": 4,
+          "conditions": "mainly clear",
+          "high": 15,
+          "low": 4
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 4,
+          "conditions": "partly cloudy",
+          "high": 15,
+          "low": 3
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Scout Island Nature Centre",
+      "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
+      "website": "scoutisland.ca",
+      "psa_angle": "Scout Island's Salmon Trip takes students on a three-day adventure at Gavin Lake — brood stock collection, stream surveys, and hands-on salmon habitat research. Apply at scoutisland.ca.",
+      "event_name": "Scout Island Salmon Trip"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\nThese analytical threads were identified before generation. Use the findings to ground Riley's and Casey's arguments with real evidence — develop them as substantive exchanges, not a citation list. Cite naturally.\n\nRESEARCH QUESTION: Is the Hunga Tonga \"methane-destroying\" chemistry a real, verified finding, and what does it actually imply for climate policy?\nFindings: Independent coverage (ScienceDaily, Science News, sciencex.com) confirms researchers observed that the 2022 Hunga Tonga eruption sent volcanic ash mixed with seawater into the stratosphere, and sunlight striking this mixture is theorized to have generated highly reactive chlorine, which in turn broke down some atmospheric methane. Crucially, the coverage frames this as a hypothesis/proposed mechanism (\"researchers propose,\" \"the theory is\") based on one unusual natural event — not a repeatable, engineered climate solution. There's no indication scientists have proposed deliberately triggering this reaction at scale, nor that the methane destroyed was a significant fraction of global emissions.\nSuggested angle: Riley can frame this as an exciting proof-of-concept — nature demonstrating an atmospheric chemistry pathway humans might one day engineer (a \"geoengineering lesson from a volcano\") to buy time on methane, a potent short-lived climate pollutant. Casey should push back that this is a single observational case tied to a rare, massive eruption injecting seawater directly into the stratosphere — conditions humans can't easily or safely replicate (stratospheric chlorine injection has its own ozone-depletion risks), and that \"reshape estimates\" language in the article is speculative framing, not a validated climate fix. Good moment to discuss the gap between an intriguing atmospheric-chemistry discovery and an actionable climate intervention.\n\nRESEARCH QUESTION: How exceptional is it that the asteroid mentioned in the EarthSky piece was detected only 6 hours before impact, and what does that reveal about planetary defense capabilities?\nFindings: Real-world tracking shows a mixed picture: larger, more dangerous asteroids like 2024 YR4 get years of advance notice and tracking (initially flagged with up to 1.2% impact probability for 2032, later downgraded to no significant risk), thanks to systems built for city-killer-scale objects. But small, harmless asteroids that burn up in the atmosphere are routinely detected only hours before impact — this has become almost routine, with dozens now spotted this way before entry. It underscores that detection windows scale with an asteroid's size/threat level: small ones are cosmically frequent and low-stakes, so short notice is acceptable, while surveys are specifically optimized to catch the rare large threats years in advance.\nSuggested angle: Riley can highlight this as a genuine win for citizen/professional sky-survey networks — the fact we can catch harmless car-sized rocks hours out shows how far detection tech (and public alert pipelines) has come. Casey can counter by noting the real test isn't these harmless hits but whether we'd get similarly short notice on something actually dangerous — pointing to 2024 YR4 as an example where even a \"close call\" asteroid needed months of refinement before risk was ruled out, questioning whether 6-hour warnings would ever be adequate for a genuinely hazardous object approaching from an unexpected trajectory (e.g., sun-glare blind spots).\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Hunga Tonga volcano methane destruction chlorine reaction study"
+      },
+      {
+        "kind": "agent-search",
+        "query": "asteroid detected before impact 2024 2025 count small asteroid warning system"
+      }
+    ]
+  }
+}
