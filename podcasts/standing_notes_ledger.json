@@ -19,7 +19,21 @@
     "c7feef44",
     "45b154a7",
     "5daa2b7e",
-    "adc1835a"
+    "adc1835a",
+    "prod0926"
   ],
-  "proposed": []
+  "proposed": [
+    {
+      "note": "When reporting on Cariboo Regional District elections, note which areas have no vote due to acclamation and which have contested races.",
+      "date": "2026-09-27"
+    },
+    {
+      "note": "When a candidate withdraws from an election, verify the withdrawal against the source's reporting rather than assuming it is unconfirmed.",
+      "date": "2026-09-27"
+    },
+    {
+      "note": "Before saying a candidate has no public record, check local news outlets for background information such as prior service or first-time candidate status.",
+      "date": "2026-09-27"
+    }
+  ]
 }
