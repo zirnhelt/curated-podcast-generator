@@ -640,6 +640,23 @@ jobs:
           retention-days: 7
         if: always()
 
+      # The Meta Moment is the producer's favourite segment, and four Sundays in
+      # a row (2026-09-06 to 09-27) it went missing with the run green: its
+      # degrade() row is a warning, and a warning on a green run reaches nobody
+      # (see exit 79 above). Last step, so the episode has already shipped —
+      # this only makes the absence arrive as a failed-run email the same
+      # morning. The reason is in the run report's script/meta-moment row.
+      - name: Check the Sunday Meta Moment aired
+        if: steps.generate.outputs.generated == 'true' && endsWith(steps.stamp.outputs.date, 'Sunday')
+        run: |
+          DAY="${{ steps.stamp.outputs.date }}"
+          SCRIPT=$(ls podcasts/podcast_script_"${DAY%% *}"_*.txt 2>/dev/null | head -1)
+          if [ -z "$SCRIPT" ] || ! grep -q '^\*\*META MOMENT\*\*' "$SCRIPT"; then
+            echo "::error::Sunday episode shipped without its Meta Moment — see the script/meta-moment row in the run report for why."
+            exit 1
+          fi
+          echo "✅ Meta Moment present in $SCRIPT"
+
   # The day's editorial review, published to the site and picked up by
   # super-rss-feed over RSS. Gated on the last cron rather than on a clock:
   # the concurrency group serializes the three triggers, so by the time this

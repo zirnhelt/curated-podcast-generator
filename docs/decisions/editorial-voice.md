@@ -289,6 +289,30 @@ list") had been in the prompt the whole time.
   can never be cited. The sentence explaining upstream lines to the model appears only
   when they do, per the rule below. The gate is a count, not a verdict — a week of three
   plumbing commits can still come back NONE without asking upstream.
+- **Protected, not forced (2026-09-27).** The producer's favourite segment had gone
+  missing four Sundays running, each time for a reason the run report named and nobody
+  read. Forcing it back is not the fix: a segment that must exist is how the "inspiration
+  harvest" got invented. So every path that dropped it now gets one honest second chance
+  or a fallback:
+  - The show's list is `META_MOMENT_PATHS`, not the reviewer's `GENERATION_PATHS`: all of
+    `config/` and the modules that change what the hosts say. A pronunciation fix ("Update
+    reference to Williams Lake First Nation abbreviation") could never reach the segment
+    before. Bot-authored commits are dropped on both sides.
+  - A NONE or a guard drop gets **one** retry, and only with something the first call
+    lacked: the upstream changes if they weren't in the list, and the refusal reason for a
+    guard drop. The guards run on the retry exactly as on the first draft. A retry that
+    airs still `degrade()`s under `script/meta-moment/retry`, so how often the second
+    chance is carrying the segment stays visible.
+  - The failed-call path printed and returned — the last silent drop. It degrades now.
+  - `_splice_meta_moment` falls back to ahead of the deep dive when a day has no
+    community spotlight, rather than binning a written segment.
+  - **A Sunday without the segment goes red.** The last step of the generate job, after
+    the deploy, greps the day's script for `**META MOMENT**`. A warning on a green run
+    reaches nobody (the exit-79 lesson); a failed run emails the producer that morning.
+    NONE still counts as missing here: a genuinely quiet week is rare enough now that
+    it is worth a look.
+  - The deepen fetch names `origin main` and carries a timeout: fetching every branch
+    through a proxy stalled for over a minute, and the script stage has a 35-minute cap.
 - **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
   hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
   week with no transcript commit; it now appears only when a commit earns it. The prompt

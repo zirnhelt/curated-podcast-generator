@@ -47,6 +47,8 @@ from podcast_generator import (
     sync_site_to_r2,
     get_weekly_changelog,
     generate_meta_moment_text,
+    get_upstream_changelog,
+    _splice_meta_moment,
     _meta_moment_unknown_names,
     _annotate_roundup_blocks,
     _cluster_adjacent,
@@ -2544,13 +2546,17 @@ class TestSyncSiteToR2FeedReferenceHeal:
         assert "::error::" not in capsys.readouterr().out
 
 
-class TestGetWeeklyChangelog:
-    @pytest.fixture(autouse=True)
-    def _no_upstream(self, monkeypatch):
-        # A thin week asks the GitHub API for super-rss-feed's commits; these
-        # tests are about the show's own list, and tests never touch the network.
-        monkeypatch.setattr("podcast_generator.get_upstream_changelog", lambda days=7: [])
+_real_get_upstream_changelog = get_upstream_changelog
 
+
+@pytest.fixture(autouse=True)
+def _no_upstream(monkeypatch):
+    # A thin week and a failed first draft both ask the GitHub API for
+    # super-rss-feed's commits; tests never touch the network.
+    monkeypatch.setattr("podcast_generator.get_upstream_changelog", lambda days=7: [])
+
+
+class TestGetWeeklyChangelog:
     def test_empty_git_log_returns_empty_string(self, monkeypatch):
         monkeypatch.setattr("podcast_generator._git", lambda *a, **k: "")
         assert get_weekly_changelog() == ""
@@ -2639,7 +2645,7 @@ class TestThinWeekChangelog:
         import podcast_generator as pg
         calls = []
 
-        def fake_git(*args):
+        def fake_git(*args, **kwargs):
             calls.append(args[0])
             return "true" if args[0] == "rev-parse" else ""
         monkeypatch.setattr(pg, "_git", fake_git)
@@ -2688,7 +2694,7 @@ class TestGetUpstreamChangelog:
         resp.json.return_value = page
         monkeypatch.setattr(pg.requests, "get", lambda *a, **k: resp)
         # Every path returns the same page; a commit touching several is one line.
-        assert pg.get_upstream_changelog() == [
+        assert _real_get_upstream_changelog() == [
             "Filter what the ratings reject", "Widen the US-politics KEEP"]
 
     def test_api_failure_degrades_and_returns_nothing(self, monkeypatch):
@@ -2699,8 +2705,9 @@ class TestGetUpstreamChangelog:
         def down(*a, **k):
             raise pg.requests.ConnectionError("no route")
         monkeypatch.setattr(pg.requests, "get", down)
-        assert pg.get_upstream_changelog() == []
-        assert recorded == ["script/meta-moment"]
+        assert _real_get_upstream_changelog() == []
+        # Its own row: a missing upstream is not a missing segment.
+        assert recorded == ["script/meta-moment/upstream"]
 
 
 class TestMetaMomentUnknownNames:
@@ -5558,3 +5565,106 @@ class TestScriptQuestionAnswers:
         out = pg._resolve_script_questions_with_brave("script", "key", object())
         assert asked == queries[:pg.SCRIPT_QUESTION_LIMIT]
         assert out.count("Answer: An answer.") == pg.SCRIPT_QUESTION_LIMIT
+
+
+class TestProtectTheMetaMoment:
+    """2026-09-27: 'Meta moment is my favourite segment of the week. Protect it.'
+    Every path that used to lose the segment gets one honest second chance or a
+    fallback — never a forced segment, which is what invented the 'weekly
+    inspiration harvest'."""
+
+    _GOOD = TestGenerateMetaMomentText._REPLY
+    _LOG = TestGenerateMetaMomentText._CHANGELOG
+
+    @staticmethod
+    def _client(*replies):
+        client = MagicMock()
+        responses = []
+        for text in replies:
+            r = _response("end_turn", [_text_block(text)])
+            r.usage.input_tokens = 10
+            responses.append(r)
+        client.messages.create.side_effect = responses
+        return client
+
+    @staticmethod
+    def _prompt(client, n):
+        return client.messages.create.call_args_list[n].kwargs["messages"][0]["content"]
+
+    def _wire(self, monkeypatch, client, upstream=()):
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "get_upstream_changelog", lambda days=7: list(upstream))
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        return pg, recorded
+
+    def test_none_retries_with_upstream_and_airs(self, monkeypatch):
+        # 2026-09-06: a busy week came back NONE and upstream was never asked.
+        client = self._client("NONE", self._GOOD)
+        pg, recorded = self._wire(monkeypatch, client, ["Keep Canadian politics in the pool"])
+        assert pg.generate_meta_moment_text(self._LOG).startswith("**META MOMENT**")
+        assert pg.UPSTREAM_HEADER not in self._prompt(client, 0)
+        assert "- Keep Canadian politics in the pool" in self._prompt(client, 1)
+        assert recorded == ["script/meta-moment/retry"]
+
+    def test_none_with_nothing_new_is_one_call_and_a_row(self, monkeypatch):
+        client = self._client("NONE")
+        pg, recorded = self._wire(monkeypatch, client)
+        assert pg.generate_meta_moment_text(self._LOG) == ""
+        assert client.messages.create.call_count == 1
+        assert recorded == ["script/meta-moment"]
+
+    def test_guard_drop_retries_once_with_the_reason(self, monkeypatch):
+        uncited = TestGenerateMetaMomentText._DIALOGUE
+        client = self._client(uncited, self._GOOD)
+        pg, recorded = self._wire(monkeypatch, client)
+        assert pg.generate_meta_moment_text(self._LOG).startswith("**META MOMENT**")
+        assert "first draft of this segment was refused" in self._prompt(client, 1)
+        assert recorded == ["script/meta-moment/retry"]
+
+    def test_second_refusal_is_final(self, monkeypatch):
+        uncited = TestGenerateMetaMomentText._DIALOGUE
+        client = self._client(uncited, uncited)
+        pg, recorded = self._wire(monkeypatch, client)
+        assert pg.generate_meta_moment_text(self._LOG) == ""
+        assert client.messages.create.call_count == 2
+        assert recorded == ["script/meta-moment"]
+
+    def test_failed_call_degrades_instead_of_vanishing(self, monkeypatch):
+        client = MagicMock()
+        client.messages.create.side_effect = RuntimeError("overloaded")
+        pg, recorded = self._wire(monkeypatch, client)
+        monkeypatch.setattr(pg, "api_retry", lambda fn: fn())
+        assert pg.generate_meta_moment_text(self._LOG) == ""
+        assert recorded == ["script/meta-moment"]
+
+    def test_splices_ahead_of_spotlight_else_deep_dive(self):
+        block = "**META MOMENT**\n**RILEY:** Hi."
+        with_both = "**NEWS ROUNDUP**\nx\n**COMMUNITY SPOTLIGHT**\ny\n**DEEP DIVE: Z**\nz"
+        assert _splice_meta_moment(with_both, block) == (
+            f"**NEWS ROUNDUP**\nx\n{block}\n\n**COMMUNITY SPOTLIGHT**\ny\n**DEEP DIVE: Z**\nz")
+        no_spot = "**NEWS ROUNDUP**\nx\n**DEEP DIVE: Z**\nz"
+        assert _splice_meta_moment(no_spot, block) == (
+            f"**NEWS ROUNDUP**\nx\n{block}\n\n**DEEP DIVE: Z**\nz")
+        assert _splice_meta_moment("**NEWS ROUNDUP**\nx", block) is None
+
+    def test_bot_commits_never_reach_the_list(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_git", lambda *a, **k: (
+            "github-actions[bot]\tEpisode script - 2026-09-21 Monday\n"
+            "Claude\tA\nzirnhelt\tB\nClaude\tC") if a[0] == "log" else "")
+        assert pg.get_weekly_changelog() == "- A\n- B\n- C"
+
+    def test_listener_shaping_config_is_in_the_list(self):
+        import podcast_generator as pg
+        assert "config" in pg.META_MOMENT_PATHS
+        assert set(pg.GENERATION_PATHS) <= set(pg.META_MOMENT_PATHS)
+
+    def test_workflow_never_shallows_the_checkout_and_checks_sunday(self):
+        # `git fetch --depth=1` over the full checkout emptied the changelog on
+        # 2026-09-27 with exit 0; the Sunday check turns a miss into a red run.
+        from pathlib import Path
+        wf = (Path(__file__).parent.parent / ".github/workflows/daily-podcast.yml").read_text()
+        assert not re.search(r"git fetch[^\n]*--depth", wf)
+        assert "Check the Sunday Meta Moment aired" in wf
