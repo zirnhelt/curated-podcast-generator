@@ -5413,3 +5413,48 @@ class TestSparseFilterBudget:
         )
         assert direct == ["_brave_deep_dive_rate_limit", "_brave_event_rate_limit",
                           "_brave_search_rate_limit"], direct
+
+    def test_pre_curation_fetch_never_searches(self, monkeypatch):
+        """Roundup candidates are fetched free; Brave waits for the curated cut."""
+        import podcast_generator as pg
+
+        def _no_search(*a, **k):
+            raise AssertionError("searched a pre-curation candidate")
+        monkeypatch.setattr(pg, "_brave_search", _no_search)
+        monkeypatch.setattr(pg, "_fetch_page_text", lambda url: "")
+
+        articles = [{"title": f"Thin {i}", "url": f"https://x.test/{i}"} for i in range(5)]
+        pg._enrich_articles_with_body(articles, max_articles=40, use_brave=False)
+        assert all(not a.get("_body") for a in articles)
+
+    def test_run_curates_before_the_paid_backfill(self):
+        """The sparse filter (the paid step) sits between the two curation passes."""
+        from pathlib import Path
+        src = (Path(__file__).resolve().parent.parent / "podcast_generator.py").read_text()
+        spares = src.index("_pool_size + ROUNDUP_BACKFILL_SPARES")
+        sparse = src.index("= _filter_sparse_news_articles(news_articles)")
+        final = src.index("_curate_roundup_pool(news_articles, today_theme, _pool_size)")
+        assert spares < sparse < final
+
+
+class TestScriptQuestionAnswers:
+    """Fact resolution asks Answers first, up to SCRIPT_QUESTION_LIMIT queries."""
+
+    def test_asks_answers_for_every_question_up_to_the_limit(self, monkeypatch):
+        import json
+        import podcast_generator as pg
+
+        queries = [f"question {i}" for i in range(8)]
+        resp = type("R", (), {"usage": None})()
+        monkeypatch.setattr(pg, "api_retry", lambda fn: resp)
+        monkeypatch.setattr(pg, "message_text", lambda r: json.dumps({"queries": queries}))
+        asked = []
+        monkeypatch.setattr(pg, "_brave_summarize", lambda q: asked.append(q) or "An answer.")
+
+        def _no_search(*a, **k):
+            raise AssertionError("fell back to Search while Answers answered")
+        monkeypatch.setattr(pg, "_brave_deep_dive_rate_limit", _no_search)
+
+        out = pg._resolve_script_questions_with_brave("script", "key", object())
+        assert asked == queries[:pg.SCRIPT_QUESTION_LIMIT]
+        assert out.count("Answer: An answer.") == pg.SCRIPT_QUESTION_LIMIT

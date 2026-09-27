@@ -202,7 +202,8 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 ## Brave spend (`_brave_search`, `_BRAVE_WALLS`, the four call budgets)
 
 **Two plans, two meters** (since 2026-08-29). Search is $5/1000 requests against a
-self-imposed **$10 monthly** spend limit — 2,000 requests — and Answers is $4/1000 queries plus
+**$15 monthly** spend limit — 3,000 requests, of which Brave's $5 credit covers 1,000 and the
+producer pays for the other $10 — and Answers is $4/1000 queries plus
 $5/MTok each way, held to its **monthly free credit** with no paid overage. Both refuse past
 their limit rather than billing on, so a 402 can arrive on any day of the month. The pipeline's
 job is to spend each month's calls on work that reaches the listener, and to stop instantly
@@ -263,7 +264,7 @@ mid-pass `NONE` attribution read `_brave_research_available()` rather than a sin
 
 | Budget | Path | Nature |
 |--------|------|--------|
-| `BRAVE_SEARCH_CALL_LIMIT` | `_fetch_article_body` thin-body backfill | **Speculative** — runs over up to 40 *pre-curation* candidates, of which ~15 air |
+| `BRAVE_SEARCH_CALL_LIMIT` | `_filter_sparse_news_articles` thin-body backfill | **Speculative** — runs over the curated roundup plus `ROUNDUP_BACKFILL_SPARES` (~20), of which ~15 air |
 | `BRAVE_DEEP_DIVE_CALL_LIMIT` | research, deep-dive enrichment, script-question resolution | **Demand-driven** — runs on material already selected |
 | `BRAVE_ANSWERS_CALL_LIMIT` | `_brave_summarize` — the same demand-driven paths, on the other plan | **Credit-bound** — one small monthly credit to spread over ~30 days of runs |
 
@@ -288,12 +289,30 @@ left in the credit**, so every call logs the `usage` block Brave returns
 (`_log_api_call("brave-answers", …)`); refit the limit off a measured month the way
 `_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
 
+**Backfill runs after curation, not before** (2026-09-27). The 2026-09-26 review flagged the
+12-call body-backfill budget: it ran over up to 40 pre-curation candidates, the airtime cap
+then cut 38 of 53, and 46 lookups for stories still in the running were refused. Curation
+reads `_body` in one place (`body_theme_hits`, the `theme_adjacent` block) and the deep-dive
+substance swap picks from news bodies, so the **free** steps (direct fetch, the feed's
+`_excerpt`) still run over the whole pool; only the paid title search moved. The roundup is
+curated to `pool_size + ROUNDUP_BACKFILL_SPARES`, thin survivors are searched, then it is cut to
+size so a sparse story's slot goes to the next in line. `_fetch_article_body`'s title+URL
+search now runs for the deep dive only.
+
+**Answers was the unused meter** (2026-09-27). September's export: ~2,750 Search, ~65
+Answers. The only caller that asked Answers first was `_resolve_script_questions_with_brave`,
+capped at 3, and the research agent almost never chose `mode="answer"`, so 5 of the 8 Answers
+slots a run were unreachable. The cap is now `SCRIPT_QUESTION_LIMIT` (5) and the tool
+description makes `answer` the default for direct factual questions, `results` for context or
+anything that must be attributed to an outlet (SOURCED OR UNSAID: an answer carries no URL).
+Answers stays off the speculative path and off the election roll call.
+
 **The fourth budget is the election roll call** (`BRAVE_EVENT_CALL_LIMIT`, 40, via
 `_brave_event_rate_limit`), added 2026-09-26 after a 21-name ballot got 8 searches. It is its
 own meter so that ~30 roll-call searches cannot starve `_resolve_script_questions_with_brave`.
 It spends only while an election window is open: ~31 on a Saturday (local ballot plus the two
 provincial ridings), ~4-12 on a weekday whose episode carries provincial material. That is
-roughly 300-400 extra Search requests (~$1.50-2) a month against the **$10 cap shared with
+roughly 300-400 extra Search requests (~$1.50-2) a month against the **$15 cap shared with
 `super-rss-feed`**. The producer approved the spend for election season. Read Brave's per-key
 export before raising it. `_brave_search` now logs every request as `brave-search` in the cost
 snapshot, which used to count Answers alone.

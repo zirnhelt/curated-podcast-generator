@@ -134,6 +134,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 - A 402 closes that meter for the run (`_trip_brave_wall`); a spent meter is a reason to ask the other one, not to give up.
 - Four per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_EVENT_CALL_LIMIT` (the election roll call), `BRAVE_ANSWERS_CALL_LIMIT`. **Only the three rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
 - With both meters closed, skip the research pass rather than report "no research warranted".
+- Paid body backfill runs on the curated roundup plus `ROUNDUP_BACKFILL_SPARES`, never the pre-curation pool. Direct factual lookups default to Answers; Search is for context and anything attributed to an outlet.
 
 **Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box.
 - **Findings are keyed on signals** read off the facts (`run_signals`: `degraded:<segment>`, `short-script`, `citations:*`, …), never on the model's id or title, and an item closes itself once its signal has been absent `SIGNAL_QUIET_DAYS`. A new failure mode worth tracking gets a signal, not a looser title match.
