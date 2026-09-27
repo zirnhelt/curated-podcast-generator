@@ -2263,6 +2263,21 @@
       "theme_day": 5,
       "status": "used",
       "used_at": "2026-09-27"
+    },
+    {
+      "id": "ba77ef5c",
+      "type": "correction",
+      "message_id": "<F4C09770-1363-4376-8871-76845A2BD1E2@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "from_producer": true,
+      "subject": "Municipal election nominations deadline",
+      "received_at": "2026-09-27T09:24:51-07:00",
+      "body_text": "Today\u2019s episode said nominations close oct 1. Earlier in the same correction snippet the actual close date was cited. This is a mistake in an easily handled fact set. Do better! Thanks, Erich",
+      "extracted_urls": [],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2354,6 +2369,7 @@
     "1a0bf2d466c58e46",
     "1a0cfa9491fc98ef",
     "1a0da5fecedae3a5",
-    "1a0de084c8bf983e"
+    "1a0de084c8bf983e",
+    "1a0e3af2ad7a8664"
   ]
 }
