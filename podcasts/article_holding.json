@@ -119,7 +119,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://vancouversun.com/news/bc-now-projecting-a-deficit-of-over-13-7-billion-amid-errors-on-natural-gas-revenue": {
     "article": {
@@ -201,7 +202,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://hyperallergic.com/activists-protest-bayeux-tapestry-sponsors-ties-to-israeli-settlements/": {
     "article": {
@@ -365,7 +367,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://wltribune.com/2026/09/15/children-and-youth-race-zucchinis-cars-at-williams-lake-harvest-fair/": {
     "article": {
@@ -450,7 +453,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.scientificamerican.com/article/why-we-love-unexplainable-mysteries/": {
     "article": {
@@ -495,7 +499,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.sciencedaily.com/releases/2026/09/260915095750.htm": {
     "article": {
@@ -536,7 +541,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.techradar.com/pro/security/massive-data-breach-sees-220-million-traveler-records-exposed-nine-years-of-airline-info-leaked-including-passenger-and-passport-details": {
     "article": {
@@ -708,51 +714,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "held"
   },
-  "https://wltribune.com/2026/09/19/nominations-close-oct-1-for-29th-annual-williams-lake-business-excellence-awards/": {
-    "article": {
-      "id": "https://wltribune.com/2026/09/19/nominations-close-oct-1-for-29th-annual-williams-lake-business-excellence-awards/",
-      "url": "https://wltribune.com/2026/09/19/nominations-close-oct-1-for-29th-annual-williams-lake-business-excellence-awards/",
-      "title": "[Williams Lake Tribune] Nominations close Oct. 1 for 29th annual Williams Lake Business Excellence Awards",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F19%2Fnominations-close-oct-1-for-29th-annual-williams-lake-business-excellence-awards%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Nominations close Oct. 1 for 29th annual Williams Lake Business Excellence Awards Published 7:57 am Saturday, September 19, 2026 **By Rebecca Dyok** In 2024, Cariboo Chilcotin MLA Lorne Doerkson was the MC, assisted by Tamara Garreau, during the Williams Lake and District Chamber of Commerce Business Excellence Awards held at Sacred Heart Hall. The annual awards this year will be taking place at the Gibraltar Room on Saturday, Oct. 24\\. (File photo) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Nominations",
-      "summary": "## Nominations close Oct. 1 for 29th annual Williams Lake Business Excellence Awards Published 7:57 am Saturday, September 19, 2026 **By Rebecca Dyok** In 2024, Cariboo Chilcotin MLA Lorne Doerkson was the MC, assisted by Tamara Garreau, during the Williams Lake and District Chamber of Commerce",
-      "_excerpt": "## Nominations close Oct. 1 for 29th annual Williams Lake Business Excellence Awards Published 7:57 am Saturday, September 19, 2026 **By Rebecca Dyok** In 2024, Cariboo Chilcotin MLA Lorne Doerkson was the MC, assisted by Tamara Garreau, during the Williams Lake and District Chamber of Commerce Business Excellence Awards held at Sacred Heart Hall. The annual awards this year will be taking place at the Gibraltar Room on Saturday, Oct. 24\\. (File photo) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Nominations",
-      "date_published": "2026-09-20T04:02:35.355226+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 88,
-      "_quality": 78,
-      "_relevance": 88,
-      "_local": 100,
-      "_theme_score": 93,
-      "_theme_score_raw": 64,
-      "_composite_podcast": 95,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-20T04:07:43.540100+00:00"
-      },
-      "_boosted_score": 88
-    },
-    "held_date": "2026-09-20",
-    "target_date": "2026-09-26",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-09-26"
-  },
   "https://www.wired.com/story/physics-predict-volcanic-eruptions/": {
     "article": {
       "id": "https://www.wired.com/story/physics-predict-volcanic-eruptions/",
@@ -797,7 +758,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://quesnelobserver.com/2026/09/17/hometown-hero-literacy-quesnel-approaching-20th-anniversary-of-enriching-the-community/": {
     "article": {
@@ -1139,7 +1101,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.nytimes.com/2026/09/21/business/ai-data-center-ipos.html": {
     "article": {
@@ -1352,7 +1315,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.techradar.com/tech/researchers-say-that-fields-of-house-sized-buoys-could-capture-up-to-90-percent-of-wave-energy-and-each-buoy-could-provide-the-power-for-several-hundred-households": {
     "article": {
@@ -1439,7 +1403,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.tomshardware.com/tech-industry/data-centers/us-ai-data-centers-projected-to-become-the-fifth-largest-natural-gas-consumer-in-the-world-by-2035-consumption-to-grow-by-15-billion-cubic-feet-per-day-as-demand-for-compute-increases": {
     "article": {
@@ -1481,7 +1446,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/": {
     "article": {
@@ -1524,47 +1490,6 @@
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
   },
-  "https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/": {
-    "article": {
-      "id": "https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/",
-      "url": "https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/",
-      "title": "[My Cariboo Now] Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316438%2Fnews%2Fpolitics%2Fformer-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"391\" src=\"https://www.mycariboonow.com/wp-content/uploads/2026/09/Weaver.jpg\" width=\"696\" />Andrew Weaver is running as a CentreBC candidate in Oak Bay-Gordon Head, the same Victoria-area riding he previously represented as a B.C. Green MLA.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316438/news/politics/former-b-c-green-leader-andrew-weaver-running-as-centrebc-candidate-in-fall-election/\">Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
-      "summary": "Andrew Weaver is running as a CentreBC candidate in Oak Bay-Gordon Head, the same Victoria-area riding he previously represented as a B.C. Green MLA. The post Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election appeared first on My Cariboo Now .",
-      "_excerpt": "Andrew Weaver is running as a CentreBC candidate in Oak Bay-Gordon Head, the same Victoria-area riding he previously represented as a B.C. Green MLA. The post Former B.C. Green leader Andrew Weaver running as CentreBC candidate in fall election appeared first on My Cariboo Now .",
-      "date_published": "2026-09-23T23:47:19+00:00",
-      "authors": [
-        {
-          "name": "My Cariboo Now",
-          "url": "https://www.mycariboonow.com"
-        }
-      ],
-      "ai_score": 41,
-      "_quality": 60,
-      "_relevance": 35,
-      "_local": 45,
-      "_theme_score": 99,
-      "_theme_score_raw": 23,
-      "_composite_podcast": 88,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-24T04:33:20.084022+00:00"
-      },
-      "_boosted_score": 41
-    },
-    "held_date": "2026-09-24",
-    "target_date": "2026-09-26",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-09-26"
-  },
   "https://newatlas.com/technology/dna-computer-calculations-without-power/": {
     "article": {
       "id": "https://newatlas.com/technology/dna-computer-calculations-without-power/",
@@ -1598,7 +1523,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.sciencedaily.com/releases/2026/09/260922005712.htm": {
     "article": {
@@ -1638,7 +1564,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://thetyee.ca/News/2026/09/24/Harassment-Hate-Municipal-Campaign-Trail/": {
     "article": {
@@ -1767,7 +1694,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-27"
   },
   "https://www.makeuseof.com/open-source-security-apps-set-up-first-new-windows-machine/": {
     "article": {
