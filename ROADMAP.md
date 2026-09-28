@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-13..2026-09-27) — 5 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-13..2026-09-28) — 5 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -80,7 +80,7 @@ close one; it comes back only if the reviews raise it 2 more times._
       despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
       reference. Identify which object is missing, restore it to R2, or remove the reference
       from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
-      in 5 reviews, latest 2026-09-27)
+      in 6 reviews, latest 2026-09-28)
 - [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
       territory-check rewrites failed.** On September 22, the territory-check system flagged two
       sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
