@@ -78,6 +78,10 @@ LADDER_HOURS = {8: "Primary (1:05 AM Pacific)",
 BACKSTOP_HOUR, BACKSTOP_LABEL = 11, "Backstop (4:05 AM Pacific) — GitHub cron"
 # A dispatch this soon after a rung is the Worker's; later is a person.
 DISPATCH_WINDOW_MINUTES = 10
+# Every clock time the review shows, to the reader or the model, is Pacific.
+# The API's raw "...T10:05:35Z" went to the model as-is, and it read 10:05 UTC
+# as "10:05 AM Pacific, 34 minutes after its scheduled window" (2026-09-28).
+PACIFIC = timezone(timedelta(hours=-7), "PT")
 
 
 # ---------------------------------------------------------------------------
@@ -143,6 +147,13 @@ def _parse(ts: str) -> datetime:
     return datetime.fromisoformat(ts.replace("Z", "+00:00"))
 
 
+def _pacific(ts: str | None) -> str | None:
+    """An API timestamp as a Pacific clock time, e.g. "1:05 AM Pacific"."""
+    if not ts:
+        return None
+    return _parse(ts).astimezone(PACIFIC).strftime("%-I:%M %p Pacific")
+
+
 # ---------------------------------------------------------------------------
 # Run metadata → facts
 # ---------------------------------------------------------------------------
@@ -174,18 +185,16 @@ def summarize_runs(runs: list[dict]) -> list[dict]:
     for r in runs:
         created = _parse(r["created_at"])
         label, late = _trigger_label(created, r.get("event", ""))
-        jobs_started = r.get("run_started_at")
         is_own = str(r["id"]) == own_run
         out.append({
             "run_id": r["id"],
             "trigger": f"{label} — this review's own run" if is_own else label,
             "minutes_late": late,
-            "created_at": r["created_at"],
-            "updated_at": r.get("updated_at"),
+            "created": _pacific(r["created_at"]),
+            "finished": None if is_own else _pacific(r.get("updated_at")),
             "status": "running this review" if is_own else r.get("status"),
             "conclusion": r.get("conclusion"),
             "url": r.get("html_url"),
-            "run_started_at": jobs_started,
         })
     return out
 
@@ -442,7 +451,7 @@ def render_run_table(runs: list[dict]) -> str:
     for r in runs:
         late = f"{r['minutes_late']:+d} min" if r.get("minutes_late") is not None else "—"
         rows.append(
-            f"<tr><td>{escape(r['trigger'])}</td><td>{escape(r['created_at'])}</td>"
+            f"<tr><td>{escape(r['trigger'])}</td><td>{escape(r['created'])}</td>"
             f"<td>{late}</td><td>{escape(r.get('conclusion') or r.get('status') or '—')}</td></tr>")
     return ("<h3>The day's triggers</h3>\n<table>\n"
             "<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n"
@@ -1119,7 +1128,7 @@ def main() -> int:
                         help="Exit if the date already has a review (the backstop after rung 3).")
     args = parser.parse_args()
 
-    date = args.date or (datetime.now(timezone.utc) - timedelta(hours=7)).strftime("%Y-%m-%d")
+    date = args.date or datetime.now(PACIFIC).strftime("%Y-%m-%d")
     # Both rung 3 and the backstop carry the review job, for the nights the
     # Worker is down. On every other night the backstop's review repeated
     # rung 3's — two narratives, two distillations — and described its own
