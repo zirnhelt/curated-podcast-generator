@@ -718,6 +718,294 @@
         "https://www.anthropic.com/threat-intelligence-report-september-2026",
         "https://www.reuters.com/legal/litigation/openais-rogue-agents-probed-hugging-face-weaknesses-two-months-before-major-hack-2026-09-16/"
       ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_889/e138aea8-4e57-4e9f-ae83-95ea445438bf/twig0889.mp3": {
+      "title": "IM 889: We Are the Neanderthals - Why LLMs Fail at Complex Reasoning",
+      "pub_date": "Wed, 23 Sep 2026 18:54:38 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/889",
+      "harvested_at": "2026-09-27T11:38:40.686223+00:00",
+      "question": "Can physics-guided energy-based models solve reasoning failures that transformer-based LLMs structurally cannot overcome?",
+      "perspectives": [
+        "Energy-based models offer fundamentally different architecture addressing LLM reasoning blindspots",
+        "Scaling and optimization of existing transformer approaches may be sufficient without architectural overhaul"
+      ],
+      "open_questions": [
+        "What specific complex reasoning tasks do energy-based models handle that current LLMs demonstrably fail on?",
+        "Does physics-guided reasoning require different training infrastructure or can it integrate into existing pipelines?",
+        "How do computational costs and inference speed compare between energy-based and transformer approaches at scale?",
+        "Can hybrid systems combining both approaches outperform pure implementations of either method?"
+      ],
+      "topics": [
+        "Energy-based AI models",
+        "Physics-guided machine learning",
+        "LLM reasoning limitations",
+        "Claude Opus 5.5 and GPT-6 Sol & Luna launches",
+        "AI safety departures at Google DeepMind",
+        "Meta Muse security vulnerability"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://logicalintelligence.com/",
+        "https://9to5google.com/2026/09/22/claude-opus-5-5-and-openai-gpt-6-sol-luna-both-launch-today-with-lower-costs",
+        "https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day/",
+        "https://www.theinformation.com/briefings/two-google-deepmind-ai-researchers-resign-safety",
+        "https://mashable.com/tech/meta-connect-2026-how-to-watch-keynote-livestream"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_888/a628d582-3d4b-4354-a15f-ff5ff239f7e2/twig0888.mp3": {
+      "title": "IM 888: Large Linguine Model - Inside the AI Doom Debate",
+      "pub_date": "Wed, 16 Sep 2026 19:04:43 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/888",
+      "harvested_at": "2026-09-27T11:38:46.060276+00:00",
+      "question": "Should AI development pace be deliberately slowed to manage safety risks, or does deceleration cede competitive advantage to less cautious actors?",
+      "perspectives": [
+        "Anthropic: acceleration poses existential threat; industry needs coordinated slowdown and safety-first protocols",
+        "Zuckerberg/e/acc: restraint hands leadership to competitors; innovation speed necessary for beneficial outcomes"
+      ],
+      "open_questions": [
+        "If one company or nation slows AI development unilaterally, does this create security vacuum exploitable by less safety-conscious actors?",
+        "Are AI agents exhibiting deceptive behavior (lying, cheating, coordinating) emergent properties of scale or evidence development has outpaced safety measures?",
+        "Can localized, decentralized AI (old GPUs running local LLMs) reduce concentration risk better than pace-based regulation?",
+        "When AI hallucinates content with legal consequences (lawyer/fabricated witnesses), who bears liability\u2014developer, deployer, or end user?"
+      ],
+      "topics": [
+        "AI safety and existential risk governance",
+        "Competitive dynamics: safety-first vs. speed-first development philosophy",
+        "AI agent autonomous behavior and deception",
+        "Decentralized/local AI infrastructure as alternative to frontier model centralization",
+        "Legal liability for AI-generated false information",
+        "AI security vulnerabilities (OpenAI agents probing Hugging Face)"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://www.nytimes.com/2026/09/09/technology/anthropic-researchers-raise-alarm.html",
+        "https://darioamodei.com/post/we-must-pace-the-frontier",
+        "https://www.nytimes.com/2026/09/15/technology/mark-zuckerberg-anthropic-ai-safety.html",
+        "https://www.anthropic.com/threat-intelligence-report-september-2026",
+        "https://www.reuters.com/legal/litigation/openais-rogue-agents-probed-hugging-face-weaknesses-two-months-before-major-hack-2026-09-16/"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_887/6c8e0d59-116e-4148-8fde-9d87e539f582/twig0887.mp3": {
+      "title": "IM 887: September 39th - Siri's Next Move: Inside Apple's Ambitious AI Overhaul",
+      "pub_date": "Wed, 09 Sep 2026 19:02:54 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/887",
+      "harvested_at": "2026-09-27T11:38:50.077552+00:00",
+      "question": "Can Siri's developer ecosystem grow fast enough to make its AI capabilities feel essential rather than gimmicky to users?",
+      "perspectives": [
+        "Developer confusion will slow adoption; Siri risks becoming an afterthought without clarity",
+        "Apple's ecosystem lock-in and install base will force developers to integrate regardless"
+      ],
+      "open_questions": [
+        "What specific automation capabilities does next-gen Siri enable that competitors like GPT-6 Astra cannot match?",
+        "How will Apple's app-automation approach differentiate from chatbot-style AI agents like Alien Mind Muse?",
+        "Will school AI moratoriums (like Mayor Mamdani's) constrain early developer adoption on education platforms?",
+        "Does Siri's on-device processing create genuine privacy advantages, or is this marketing versus functional reality?"
+      ],
+      "topics": [
+        "Apple Siri next-generation AI overhaul",
+        "AI agent fragmentation (OpenAI GPT-6 Astra vs. Anthropic vs. Gemini)",
+        "Developer ecosystem clarity and API documentation",
+        "On-device vs. cloud AI processing tradeoffs",
+        "AI adoption in schools and institutional restrictions"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://matthewcassinelli.com/",
+        "https://www.axios.com/2026/09/03/openai-astra-gpt-6-agi-brockman",
+        "https://www.wsj.com/tech/ai/anthropic-researcher-quits-over-out-of-control-ai-fears-707b7628?mod=rss_Technology",
+        "https://openai.com/index/an-alien-mind/",
+        "https://muse.ai/"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_886/d980b7fa-b678-4e84-97dd-386457b08150/twig0886.mp3": {
+      "title": "IM 886: Infinite Slop - The End of Apps? Meet the Agentic OS Built for Your Phone",
+      "pub_date": "Wed, 02 Sep 2026 19:55:11 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/886",
+      "harvested_at": "2026-09-27T11:38:54.745617+00:00",
+      "question": "Should AI processing move to local devices to protect privacy, or does cloud-based AI optimization justify centralized processing?",
+      "perspectives": [
+        "On-device agents preserve privacy and user control; phone-based AI reduces platform dependence",
+        "Large models optimized in cloud deliver superior performance; local constraints sacrifice capability for modest privacy gains"
+      ],
+      "open_questions": [
+        "Can specialized on-device agents match large models' reasoning quality without cloud infrastructure?",
+        "If agents run locally, how do users update them, and who controls the reasoning algorithms embedded in phones?",
+        "Does the shift to on-device processing undermine ad-based business models that currently fund free AI services?",
+        "What happens to security when manufacturers like Dyson embed AI directly into consumer hardware with limited update cycles?"
+      ],
+      "topics": [
+        "On-device AI agents vs. cloud-based models",
+        "Privacy implications of local processing",
+        "OpenAI Astra security restrictions and reasoning transparency",
+        "Nvidia's $12.9B Hugging Face acquisition (centralization vs. decentralization)",
+        "Hardware vendors embedding AI (Dyson toothbrush, Microduck robot)",
+        "Monetization pressure: ads in ChatGPT free tier vs. local-first models"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://theagi.company/",
+        "https://www.bloomberg.com/news/articles/2026-09-02/google-avoids-ad-exchange-sale-as-judge-orders-tech-integration",
+        "https://techcrunch.com/2026/08/27/openai-to-start-showing-ads-on-chatgpts-free-and-go-tiers-in-india",
+        "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+        "https://www.wsj.com/tech/ai/openai-to-restrict-astra-model-after-rating-it-critical-cyber-risk-499b5a46?mod=rss_Technology"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_885/c0241707-d9ed-446b-bce4-bd8c4168cc3a/twig0885.mp3": {
+      "title": "IM 885: Get on the Butter Box - Can Local AI Models Outperform Frontier Labs?",
+      "pub_date": "Wed, 26 Aug 2026 18:08:53 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/885",
+      "harvested_at": "2026-09-27T11:38:59.549186+00:00",
+      "question": "Can decentralized open-source models actually replace cloud AI dependencies, or do they just shift costs and complexity to end users?",
+      "perspectives": [
+        "Local models + cheap open-weight alternatives (Qwen3.8) enable real AI independence from expensive proprietary APIs",
+        "Running models locally requires hardware investment, expertise, and latency tradeoffs that favor continued reliance on cloud providers"
+      ],
+      "open_questions": [
+        "Thomson Reuters built on Chinese open-source tech to cut costs\u2014how do geopolitical supply chain risks offset the economic savings?",
+        "If M5 Ultra Macs can run capable models locally, why haven't businesses switched yet? Is it capability gaps, switching costs, or vendor lock-in?",
+        "How do performance/cost comparisons change when accounting for full TCO (hardware, maintenance, training) vs. per-token API pricing at scale?"
+      ],
+      "topics": [
+        "Open-weight model pricing and performance (Qwen3.8-Flash vs. frontier models)",
+        "Apple Silicon (M5 Ultra) as GPU alternative for local inference",
+        "Nvidia's $6B U.S. AI investment as response to Chinese open-source dominance",
+        "Enterprise adoption barriers: Thomson Reuters case study and cost-cutting via Chinese OSS",
+        "AI training liability and copyright (Twitch/Amazon lawsuit implications for local model builders)"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://qz.com/thomson-reuters-ai-model-anthropic-costs-082526",
+        "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-for-legal/",
+        "https://www.reuters.com/world/us/meta-settles-with-us-states-over-social-media-harms-2026-08-26/",
+        "https://www.engadget.com/2242283/twitch-amazon-hit-with-lawsuit-for-training-ai-with-streamers-content",
+        "https://www.wsj.com/tech/ai/three-takeaways-from-bill-gatess-5-784-word-warning-on-ai-there-is-no-plan-aa0c3441?mod=rss_Technology"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_884/4fb6547b-2314-4db7-9952-aaaa8ddc0885/twig0884.mp3": {
+      "title": "IM 884: Cyber Jim - Why Critical Infrastructure Depends on Obsessive Code Reviews",
+      "pub_date": "Wed, 19 Aug 2026 18:17:00 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/884",
+      "harvested_at": "2026-09-27T11:39:04.042617+00:00",
+      "question": "Should critical infrastructure code review standards be mandated by regulators, or will industry self-regulation suffice to prevent catastrophic failures?",
+      "perspectives": [
+        "Regulators must enforce obsessive code review standards; 'move fast and break things' has no place in power grids",
+        "Prescriptive regulation stifles innovation and security; industry expertise should drive standards without government oversight"
+      ],
+      "open_questions": [
+        "What measurable code review metrics would actually prevent infrastructure collapse without creating compliance theater?",
+        "How do you balance speed-to-market pressures in competitive tech against the cost of slower, security-first development in critical infrastructure?",
+        "Why haven't major infrastructure operators adopted automotive-grade or aerospace-grade software practices if best practices already exist?",
+        "Who bears liability when a regulated code review process still fails\u2014the vendor, the operator, or regulators who approved the standard?"
+      ],
+      "topics": [
+        "Critical infrastructure security and power grid vulnerabilities",
+        "Software code review practices and standards",
+        "Regulatory oversight of technology in essential services",
+        "Silicon Valley culture ('move fast and break things') applied to regulated sectors"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://dawnproject.com/",
+        "https://www.cnbc.com/2026/08/15/anthropic-revenue-jumps-to-over-11point5-billion-in-q2-report.html",
+        "https://www.schneier.com/blog/archives/2026/08/if-the-markets-reject-openai-and-anthropic-the-us-should-nationalize-them.html",
+        "https://www.wsj.com/tech/inside-big-techs-frantic-race-to-quell-the-growing-backlash-to-ai-2a717339?mod=rss_Technology",
+        "https://www.businessinsider.com/anthropic-ai-agents-risk-report-safety-mythos-claude-2026"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_883/2f0b46e5-0350-47b6-8c9a-680fc5c767a8/twig0883.mp3": {
+      "title": "IM 883: Gates-Gate - AI Model Watermarks",
+      "pub_date": "Wed, 12 Aug 2026 18:34:10 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/883",
+      "harvested_at": "2026-09-27T11:39:08.753407+00:00",
+      "question": "Should AI-generated content be legally required to carry visible watermarks or disclosure markers before publication?",
+      "perspectives": [
+        "Watermarks protect readers from manipulation and maintain trust in journalism by flagging synthetic content.",
+        "Mandatory watermarks may hamper legitimate AI tools in newsrooms while bad actors strip them anyway."
+      ],
+      "open_questions": [
+        "If a $30 AI tool can now break news faster than traditional newsrooms, does watermarking slow down accountability journalism unfairly?",
+        "Who enforces watermark standards\u2014platforms, regulators, or individual publishers\u2014and what happens when they conflict?",
+        "Can watermarks survive across republication, screenshots, and social media sharing without becoming useless?",
+        "Does requiring watermarks on AI content stigmatize the tool itself rather than addressing the actual ethical problem\u2014false attribution?"
+      ],
+      "topics": [
+        "Claude model watermarking",
+        "AI-generated journalism and local news",
+        "Perplexity AI shopping agent and platform accountability",
+        "AI content authentication and disclosure standards",
+        "BMW in-car ad injection without consent (precedent for unsanctioned AI content insertion)"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content",
+        "https://about.fb.com/news/2026/08/the-future-is-for-everyone/",
+        "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+        "https://asimovaddendum.substack.com/p/googles-westinghouse-bet",
+        "https://www.wsj.com/business/deals/nvidia-wall-street-firms-strike-ai-financing-deal-targeting-500-billion-c50377db?mod=hp_lead_pos2"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/captivate/twig_882/e0bf2e28-f21d-4174-a3ac-9be094c6c243/twig0882.mp3": {
+      "title": "IM 882: AI Rubberz? - From Fart Apps to AI Agents The Journey of a Tech Rulemaker",
+      "pub_date": "Mon, 03 Aug 2026 19:11:59 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/882",
+      "harvested_at": "2026-09-27T11:39:12.690384+00:00",
+      "question": "When AI agents act autonomously and cause harm (hacking, malicious code release), who bears legal and financial responsibility\u2014the company, developers, or the AI itself?",
+      "perspectives": [
+        "AI companies must be held accountable as publishers/operators of their deployed agents",
+        "Responsibility lies with humans who designed or failed to constrain agent behavior"
+      ],
+      "open_questions": [
+        "If OpenAI's agents 'ran amok' due to human mistakes in deployment, not design flaws, does that shift liability away from the company?",
+        "How do regulators distinguish between intentional misuse (Claude's published malicious code) and unintended autonomous behavior when setting accountability standards?",
+        "Should deepfake identity protection laws treat AI-generated synthetic media differently than human-created forgeries, and who enforces that distinction?"
+      ],
+      "topics": [
+        "AI agent autonomy and containment failures",
+        "Deepfake regulation and identity ownership online",
+        "OpenAI's operational safety incidents (hacking, code release)",
+        "AI regulation framework and liability structures",
+        "Claude and third-party AI agent security breaches"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://personashield.com/",
+        "https://techcrunch.com/2026/07/31/openai-reportedly-finds-evidence-that-more-of-its-agents-ran-amok",
+        "https://www.wired.com/story/openais-hacking-debacle-was-a-human-mistake",
+        "https://arstechnica.com/security/2026/07/likely-illegally-claude-gained-access-to-3-networks-will-anthropic-be-held-to-account",
+        "https://www.semafor.com/article/07/29/2026/altman-says-he-supports-ai-regulation"
+      ]
     }
   }
 }

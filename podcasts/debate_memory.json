@@ -1,30 +1,4 @@
 {
-  "2026-06-29": {
-    "timestamp": 1782737169.616585,
-    "date": "2026-06-29",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How can rural artists and communities safely adopt digital tools and platforms while maintaining ownership and control of their cultural content?",
-    "riley_position": "Digital tools like BandLab are genuinely transformative for rural artists despite legitimate concerns; the solution is building governance infrastructure and audience ownership structures alongside tool adoption, not avoiding the tools themselves.",
-    "riley_key_evidence": [
-      "BandLab removes the hardware/cost barrier that made music production inaccessible ('gap between idea and finished recording used to cost thousands, now costs time')",
-      "Tod Maffin's model demonstrates platform-independent audience ownership through email lists survives algorithm changes better than platform followers",
-      "Three hundred engaged local email subscribers at $10/month generates $3,000 monthly revenue\u2014enough for basic production costs"
-    ],
-    "casey_position": "Rural artists face structural capacity disadvantages (no lawyers, no industry representatives) that make platform contract risks invisible to them, and building sustainable regional cultural infrastructure requires permanent funding commitment, not temporary grants.",
-    "casey_key_evidence": [
-      "BandLab's broad content licensing ToS poses real extraction risk for Indigenous cultural material under OCAP principles",
-      "Rural artists lack access to industry lawyers and union protections that urban artists have when evaluating platform terms",
-      "Regional coordinating bodies in rural BC repeatedly collapse when funders exit or organizational priorities absorb others' interests"
-    ],
-    "resolution": "They moved toward agreement that the gap isn't technology but governance\u2014specifically, whether communities can build permanent, self-sustaining cultural production infrastructure (like a Canadaland model) that owns its economics rather than chasing two-year grant cycles.",
-    "topics_covered": [
-      "Free creative tools (BandLab) and their hidden extraction mechanisms through terms of service",
-      "Indigenous data sovereignty and OCAP principles applied to digital cultural production",
-      "Platform incubator programs (Suno Spark) as potential data-harvesting mechanisms disguised as artist development",
-      "Sustainable revenue models for regional cultural production (subscriptions, cooperative earnings-sharing, audience ownership)",
-      "Accountability and infrastructure vs. project-based funding in rural arts ecosystems"
-    ]
-  },
   "2026-06-30": {
     "timestamp": 1782826473.870558,
     "date": "2026-06-30",
@@ -2506,6 +2480,38 @@
       "Ask whether there's already a physical marker near your community being measured\u2014a stream gauge, snow stake, or long-running local record\u2014that could simply continue being measured instead of starting something new from zero.",
       "If you know of an existing monitoring point in the region, contact the podcast at feedback@cariboosignals.ca with corrections, tips, or any information about it.",
       "Regional districts, school science programs, or local naturalist groups should investigate who currently measures something in their community and ask who will inherit that responsibility when the current person moves on, rather than launching new pilots with two-year funding clocks."
+    ]
+  },
+  "2026-09-28": {
+    "timestamp": 1790584003.311823,
+    "date": "2026-09-28",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "visual-arts-heritage",
+    "anchor": "small-better-or-excuse",
+    "central_question": "Is a tiny volunteer-run gallery actually safer and more resilient than a large institution, or is it simply underfunded and vulnerable to collapse when key people leave?",
+    "riley_position": "Small organizations can be nimble and secure if they document institutional knowledge properly, but the critical factor isn't size\u2014it's whether knowledge is written down and stored off-site rather than kept in one person's head; small galleries can implement basic security measures cheaply through hardware-store locks and photographic inventories without expensive consultants.",
+    "riley_key_evidence": [
+      "V&A staff struck over 'Amazon-style' working conditions despite the institution's centuries of weight and resources, showing that being big doesn't guarantee good management",
+      "A photographic inventory of collections stored off-site is inexpensive\u2014usually just an afternoon with a camera and a hard drive\u2014and is critical for insurance claims and recovery after theft",
+      "A three-person board can change locks by Thursday and implement basic security measures far faster than large institutions can retrain entire security staffs"
+    ],
+    "casey_position": "Small organizations are inherently vulnerable because they lack dedicated staff whose job is to think proactively about problems before they occur, and clarity about who made decisions doesn't help when those people have no choice but to accept compromising money or are too stretched to notice gaps like missing off-site backups.",
+    "casey_key_evidence": [
+      "Small museums often fail quietly when the one person who understood the alarm system retires and nobody was ever trained, not through dramatic break-ins or fires",
+      "A volunteer board can't be held accountable for refusing funding it desperately needs, so 'we know who said yes' describes a cornered organization, not a principled one",
+      "The real barrier at small institutions is usually the decision and ongoing attention, not the invoice\u2014but nobody's job description says 'think about this before it's a problem,' so things stay reactive"
+    ],
+    "resolution": "Riley and Casey agreed that the dividing line between viable and fragile isn't size but whether institutional knowledge is documented and stored separately from the building; they converged on testing this through a simple yes-or-no question: does a small gallery have an off-site photographic inventory of its collection? They disagreed on whether cost or staff attention is the primary barrier, but both acknowledged the test itself is actionable and inexpensive.",
+    "topics_covered": [
+      "Security vulnerabilities at small versus large cultural institutions",
+      "The role of institutional knowledge and documentation in organizational resilience",
+      "How theft protection depends on off-site provenance documentation rather than just locks",
+      "The difference between reactive and proactive management in volunteer-run organizations",
+      "Governance failures in cultural institutions (using the Bayeux Tapestry sponsorship controversy as an example)"
+    ],
+    "calls_to_action": [
+      "If you run or volunteer with a small gallery, museum, or archive in the Cariboo, write in to discuss what basic documentation could look like at your size, or share if you've already got an off-site copy of your collection inventory sorted (feedback at cariboosignals.ca)",
+      "Culture Days weekends offer an opportunity to ask the people running small cultural spaces whether they have a photographic inventory of their collection stored off-site, and if not, whether a volunteer could complete one this month using just a phone camera and a hard drive kept at someone's house across town"
     ]
   }
 }

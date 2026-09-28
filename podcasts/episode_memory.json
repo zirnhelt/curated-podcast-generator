@@ -1,25 +1,4 @@
 {
-  "2026-08-23": {
-    "timestamp": 1787496728.160515,
-    "topics": [
-      "A couple of fences took brunt of single vehicle crash in 100",
-      "[Williams Lake Tribune] Divisions within B.C. Conservative c",
-      "[Williams Lake Tribune] Okanagan protesters spread awareness",
-      "[100 Mile Free Press] Poor air quality lingers over Southern",
-      "[Tom's Hardware] Peer-reviewed study of 443,000 Backblaze ha",
-      "[Engadget] What the world's oldest telecommunications compan",
-      "[ScienceAlert] Large Hadron Collider Reveals an Atomic Nucle",
-      "[Nautilus] You\u2019re Not a Universal Mosquito Magnet"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "connectivity"
-    ],
-    "date": "2026-08-23",
-    "focus": "living-world",
-    "focus_name": "The Living World"
-  },
   "2026-08-24": {
     "timestamp": 1787562469.202302,
     "topics": [
@@ -738,5 +717,24 @@
     "date": "2026-09-27",
     "focus": "earth-systems",
     "focus_name": "Earth Systems & Climate Science"
+  },
+  "2026-09-28": {
+    "timestamp": 1790584000.163763,
+    "topics": [
+      "[My Cariboo Now] Mounties offer firearm storage tips to help",
+      "[Williams Lake Tribune] No new taxes: BC Conservative leader",
+      "[Williams Lake Tribune] Eby focuses on U.S. health worker re",
+      "[Hyperallergic] Striking Workers Shutter Three V&A London Lo",
+      "[Hyperallergic] Activists Protest Bayeux Tapestry Sponsor\u2019s ",
+      "[Hyperallergic] Staff at Three Major Museums Vote to Strike",
+      "[Vancouver Sun] Surrey wins bid to host long-awaited B.C. So",
+      "[Hyperallergic] Europe\u2019s Art Theft Problem Is Much Bigger Th"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-09-28",
+    "focus": "visual-arts-heritage",
+    "focus_name": "Visual Arts & Heritage"
   }
 }
