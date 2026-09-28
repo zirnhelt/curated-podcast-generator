@@ -116,6 +116,20 @@ class TestTriggerLabels:
         assert runs[1]["status"] == "running this review"
         assert runs[1]["trigger"].endswith("this review's own run")
 
+    def test_run_times_reach_the_facts_as_pacific(self, monkeypatch):
+        """2026-09-28 read a raw 10:05Z as "10:05 AM Pacific"."""
+        monkeypatch.setenv("GITHUB_RUN_ID", "43")
+        runs = episode_review.summarize_runs([
+            {"id": 41, "event": "workflow_dispatch", "created_at": "2026-09-28T08:05:38Z",
+             "updated_at": "2026-09-28T08:32:40Z", "status": "completed", "conclusion": "success"},
+            {"id": 43, "event": "workflow_dispatch", "created_at": "2026-09-28T10:05:35Z",
+             "updated_at": "2026-09-28T10:05:50Z", "status": "in_progress", "conclusion": None},
+        ])
+        assert (runs[0]["created"], runs[0]["finished"]) == ("1:05 AM Pacific", "1:32 AM Pacific")
+        assert (runs[1]["created"], runs[1]["finished"]) == ("3:05 AM Pacific", None)
+        assert "Z" not in json.dumps(runs)
+        assert "3:05 AM Pacific" in episode_review.render_run_table(runs)
+
 
 class TestRendering:
     def test_numbers_table_omits_absent_facts(self):
