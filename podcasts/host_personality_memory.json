@@ -163,6 +163,11 @@
         "date": "2026-09-25",
         "clue": "evidence-bar:x \u2014 conceded tacit knowledge outlasts without recording",
         "occurrences": 1
+      },
+      {
+        "date": "2026-09-28",
+        "clue": "structural-lens:+ \u2014 Small institutions can move faster on concrete solutions",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -312,11 +317,6 @@
         "date": "2026-04-02",
         "clue": "community-trust: x \u2014 Acknowledged genuine shift in explicit data sovereignty negotiations among First Nations",
         "occurrences": 1
-      },
-      {
-        "date": "2026-05-30",
-        "clue": "funding-risk:x \u2014 Conceded Riley's point on specificity mattering, then immediately undercut it with provincial track record",
-        "occurrences": 2
       },
       {
         "date": "2026-04-16",
@@ -558,6 +558,11 @@
       {
         "formed": "2026-08-01",
         "signal": "community-trust:- \u2014 Softened skepticism of board authority when paired with concrete local input",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-09-28",
+        "signal": "funding-risk:x \u2014 Conceded cost barriers lower than assumed, knowledge gaps real",
         "occurrences": 3
       }
     ]

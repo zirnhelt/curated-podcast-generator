@@ -69,6 +69,24 @@
       "framings": {},
       "assigned_at": "2026-09-21",
       "origin": "seeded"
+    },
+    "2026-W40": {
+      "id": "small-better-or-excuse",
+      "question": "When is small genuinely better, and when is it just an excuse?",
+      "dimension": "scale",
+      "premise": "Small is the region's default virtue \u2014 small mills, small farms, small classrooms, small government. Sometimes small really does mean responsive, repairable, and accountable. Sometimes it means underfunded, unaccountable, and one retirement away from collapse, defended with the language of virtue. The question is which one you're looking at, and how you'd know.",
+      "reading": null,
+      "framings": {
+        "0": "Test whether a small-town arts festival or community radio station running on three volunteers is nimble and authentic, or one grant rejection away from folding entirely.",
+        "1": "Weigh whether a small independent logging contractor or family ranch surviving without new equipment is resourceful stewardship, or a safety and viability gap the big licensees no longer have to own.",
+        "2": "Ask whether the homelab hobbyist or one-truck repair shop fixing gear instead of replacing it is genuine self-reliance, or a workaround for the parts and service the region can no longer get delivered.",
+        "3": "Examine whether a small, community-run language or land-monitoring program is the right scale for T\u015dilhqot'in, Secw\u00e9pemc, or Dakelh governance, or a chronic underfunding that outside agencies count on to stay convenient.",
+        "4": "Question whether a small volunteer search-and-rescue or backcountry patrol crew is the fitting size for Chilcotin wilderness, or a thin, exhausted line standing between wildfire season and disaster.",
+        "5": "Press whether Williams Lake council, SD27, or a Bella Coola improvement district keeping things small and local means real accountability, or just too few staff and dollars to do the job asked of them.",
+        "6": "Consider whether a small local citizen-science or monitoring project tracking Cariboo ecology yields real, usable knowledge, or is too thin a dataset to tell us anything the region can act on."
+      },
+      "assigned_at": "2026-09-28",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -113,6 +131,12 @@
       "dimension": "memory-record",
       "question": "Does a place still exist if nobody records it?",
       "week": "2026-W39"
+    },
+    {
+      "id": "small-better-or-excuse",
+      "dimension": "scale",
+      "question": "When is small genuinely better, and when is it just an excuse?",
+      "week": "2026-W40"
     }
   ],
   "generated": []

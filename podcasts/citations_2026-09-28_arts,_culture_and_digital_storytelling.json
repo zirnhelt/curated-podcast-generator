@@ -1,0 +1,410 @@
+{
+  "episode": {
+    "date": "2026-09-28",
+    "formatted_date": "Monday, September 28, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>THIS WEEK WE'RE ASKING:</b> When is small genuinely better, and when is it just an excuse?</p><p><b>NEWS ROUNDUP:</b> We break down Mounties offer firearm storage tips to help “prevent the loss of a buck” and No new taxes: BC Conservative leader brings fiscal message to Surrey campaign stop, plus 12 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Is a tiny volunteer-run gallery actually safer and more resilient than a large institution, or is it simply underfunded and vulnerable to collapse when key people leave? Topics include: Security vulnerabilities at small versus large cultural institutions, The role of institutional knowledge and documentation in organizational resilience, How theft protection depends on off-site provenance documentation rather than just locks, The difference between reactive and proactive management in volunteer-run organizations, Governance failures in cultural institutions (using the Bayeux Tapestry sponsorship controversy as an example).</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://centralcaribooarts.com\">Central Cariboo Arts &amp; Culture Society</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316476/news/rcmp/mounties-offer-firearm-storage-tips-to-help-prevent-the-loss-of-a-buck/\">[My Cariboo Now] Mounties offer firearm storage tips to help...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/09/27/no-new-taxes-bc-conservative-leader-brings-fiscal-message-to-surrey-campaign-stop/\">[Williams Lake Tribune] No new taxes: BC Conservative leader...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/09/23/eby-focuses-on-u-s-health-worker-recruitment-at-surrey-border-stop/\">[Williams Lake Tribune] Eby focuses on U.S. health worker re...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/striking-workers-shutter-three-v-a-london-locations/\">[Hyperallergic] Striking Workers Shutter Three V&A London Lo...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/activists-protest-bayeux-tapestry-sponsors-ties-to-israeli-settlements/\">[Hyperallergic] Activists Protest Bayeux Tapestry Sponsor’s ...</a></li><li>Terrence O&#x27;Brien (The Verge): <a href=\"https://www.theverge.com/entertainment/1001056/this-american-life-npr-kids-group-chat-comment-section\">[The Verge] Kids turned the comment section of an NPR podcas...</a></li><li>ArchDaily: <a href=\"https://www.archdaily.com/1184296/beyond-the-replica-digital-heritage-and-the-limits-of-preservation\">[ArchDaily] Beyond the Replica: Digital Heritage and the Lim...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/09/27/center-pivot-system-modified-to-mow-lawn/\">[Hackaday] Center-Pivot System Modified to Mow Lawn</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/09/260925005439.htm\">[ScienceDaily] Atrial fibrillation patients saw 69% lower ri...</a></li><li>Julia Evans (Julia Evans Blog): <a href=\"https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/\">[Julia Evans Blog] Replacing the old battery on rechargeable...</a></li><li>CBC Arts: <a href=\"https://www.cbc.ca/news/entertainment/cineplex-possible-sale-movie-theatre-industy-9.7359365?cmp=rss\">[CBC Arts] As Cineplex considers a potential sale, audiences...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/scientists-watched-a-deadly-cancer-physically-reshape-the-brain-as-it-grew\">[ScienceAlert] Scientists Watched a Deadly Cancer Physically...</a></li><li>NPR Health News: <a href=\"https://www.npr.org/2026/09/27/nx-s1-5981264/lung-cancer-treatment-mrna-affordability\">[NPR Health News] From professor to patient: One man's journ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/britains-new-main-battle-tank-evolving-alongside-ukraine-war-2026-9\">[Business Insider] The British military is feeding a 'load o...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/south-asian-heritage-museum-surrey\">[Vancouver Sun] Surrey wins bid to host long-awaited B.C. So...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/europes-art-theft-problem-is-much-bigger-than-the-louvre/\">[Hyperallergic] Europe’s Art Theft Problem Is Much Bigger Th...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>XDA Developers: <a href=\"https://www.xda-developers.com/changing-one-windows-11-setting-made-my-pc-instantly-cleaner-and-faster/\">[XDA Developers] I changed one Windows 11 setting, and my PC...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/staff-at-three-major-museums-vote-to-strike/\">[Hyperallergic] Staff at Three Major Museums Vote to Strike</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-28T01:26:37.233609-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-opus-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3548,
+      "voice_ratio_casey_riley": 1.02,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 4,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 1,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 5,
+      "rhythm": {
+        "em_dashes_per_1k": 13.8,
+        "short_turns": 13,
+        "turns": 73,
+        "avg_turn_words": 47.4,
+        "antithesis_hits": 1,
+        "over_budget": [
+          "em_dashes"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "small-better-or-excuse",
+      "question": "When is small genuinely better, and when is it just an excuse?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Eby focuses on U.S. health worker recruitment at Surrey border stop",
+          "url": "https://wltribune.com/2026/09/23/eby-focuses-on-u-s-health-worker-recruitment-at-surrey-border-stop/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 82,
+          "date_published": "2026-09-23T23:10:00+00:00",
+          "summary": "## Eby focuses on U.S. health worker recruitment at Surrey border stop Published 4:10 pm Wednesday, September 23, 2026 **By Tricia Leslie/Peace Arch News** 1/3 NDP leader David Eby speaks at a South S...",
+          "discussed": true,
+          "mention_offset_frac": 0.0092
+        },
+        {
+          "title": "[Hyperallergic] Striking Workers Shutter Three V&A London Locations",
+          "url": "https://hyperallergic.com/striking-workers-shutter-three-v-a-london-locations/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-09T19:28:32+00:00",
+          "summary": "Unionized staff at the Victoria and Albert Museum staged a two-day strike last weekend, citing “Amazon-style” working conditions.",
+          "discussed": true,
+          "mention_offset_frac": 0.0092
+        },
+        {
+          "title": "[My Cariboo Now] Mounties offer firearm storage tips to help “prevent the loss of a buck”",
+          "url": "https://www.mycariboonow.com/316476/news/rcmp/mounties-offer-firearm-storage-tips-to-help-prevent-the-loss-of-a-buck/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-09-27T20:10:44+00:00",
+          "summary": "\"We would like to encourage the public to be mindful of safe storage and transportation of their firearms, whether they are making a quick stop or staying overnight.\" The post Mounties offer firearm s...",
+          "discussed": true,
+          "mention_offset_frac": 0.0577
+        },
+        {
+          "title": "[Williams Lake Tribune] No new taxes: BC Conservative leader brings fiscal message to Surrey campaign stop",
+          "url": "https://wltribune.com/2026/09/27/no-new-taxes-bc-conservative-leader-brings-fiscal-message-to-surrey-campaign-stop/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 62,
+          "date_published": "2026-09-27T18:51:00+00:00",
+          "summary": "## No new taxes: BC Conservative leader brings fiscal message to Surrey campaign stop Published 11:51 am Sunday, September 27, 2026 **By Grace McLeod/Peace Arch News** B.C. Conservative leader Lorne D...",
+          "discussed": true,
+          "mention_offset_frac": 0.092
+        },
+        {
+          "title": "[ArchDaily] Beyond the Replica: Digital Heritage and the Limits of Preservation",
+          "url": "https://www.archdaily.com/1184296/beyond-the-replica-digital-heritage-and-the-limits-of-preservation",
+          "source": "ArchDaily",
+          "author": "",
+          "ai_score": 44,
+          "date_published": "2026-09-15T07:30:00+00:00",
+          "summary": "A cave in Maharashtra can now be entered without travelling to it. Through a virtual reality experience developed around Ajanta , visitors can move through a digitally reconstructed version of the cav...",
+          "discussed": true,
+          "mention_offset_frac": 0.2399
+        },
+        {
+          "title": "[NPR Health News] From professor to patient: One man's journey on the frontier of lung cancer treatment",
+          "url": "https://www.npr.org/2026/09/27/nx-s1-5981264/lung-cancer-treatment-mrna-affordability",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-27T11:00:00+00:00",
+          "summary": "Lung cancer is still the top cancer killer, but new developments are shifting what the future might hold for patients.",
+          "discussed": true,
+          "mention_offset_frac": 0.4924
+        },
+        {
+          "title": "[Hyperallergic] Activists Protest Bayeux Tapestry Sponsor’s Ties to Israeli Settlements",
+          "url": "https://hyperallergic.com/activists-protest-bayeux-tapestry-sponsors-ties-to-israeli-settlements/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-14T17:39:28+00:00",
+          "summary": "Demonstrators at the British Museum decried billionaire Igor Tulchinsky’s financing of a community center in an illegal Israeli settlement in the Occupied West Bank.",
+          "discussed": true,
+          "mention_offset_frac": 0.5108
+        },
+        {
+          "title": "[The Verge] Kids turned the comment section of an NPR podcast into a group chat",
+          "url": "https://www.theverge.com/entertainment/1001056/this-american-life-npr-kids-group-chat-comment-section",
+          "source": "The Verge",
+          "author": "Terrence O&#x27;Brien",
+          "ai_score": 47,
+          "date_published": "2026-09-26T17:32:35+00:00",
+          "summary": "Middle schoolers, likely blocked from other apps and social networks, apparently turned the Spotify comment section under an episode of NPR's Wild Card into an impromptu group chat. In a new episode o...",
+          "discussed": true,
+          "mention_offset_frac": 0.5614
+        },
+        {
+          "title": "[Hackaday] Center-Pivot System Modified to Mow Lawn",
+          "url": "https://hackaday.com/2026/09/27/center-pivot-system-modified-to-mow-lawn/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-09-28T02:00:00+00:00",
+          "summary": "When flying over the United States, Australia, and a few other vast and relatively empty parts of the world, strange circular formations can be spotted. These are typically center-pivot irrigation …re...",
+          "discussed": true,
+          "mention_offset_frac": 0.6502
+        },
+        {
+          "title": "[ScienceDaily] Atrial fibrillation patients saw 69% lower risk with common blood thinners",
+          "url": "https://www.sciencedaily.com/releases/2026/09/260925005439.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-09-27T13:41:36+00:00",
+          "summary": "Direct oral anticoagulants cut the risk of serious clinical events by 69% in atrial fibrillation patients with an intermediate risk of stroke, according to the randomized SINGLE-AF trial. The benefit ...",
+          "discussed": true,
+          "mention_offset_frac": 0.6913
+        },
+        {
+          "title": "[Julia Evans Blog] Replacing the old battery on rechargeable bike lights",
+          "url": "https://jvns.ca/blog/2026/09/27/replacing-the-old-battery-on-rechargeable-bike-lights/",
+          "source": "Julia Evans Blog",
+          "author": "Julia Evans",
+          "ai_score": 45,
+          "date_published": "2026-09-27T00:00:00+00:00",
+          "summary": "Hello! Recently I needed bike lights for my bike. And I remembered that I already had rechargeable bike lights that I bought ten years ago, that I hadn’t tried in a long time. I tried to recharge them...",
+          "discussed": true,
+          "mention_offset_frac": 0.726
+        },
+        {
+          "title": "[CBC Arts] As Cineplex considers a potential sale, audiences appear to be rediscovering movie theatre magic",
+          "url": "https://www.cbc.ca/news/entertainment/cineplex-possible-sale-movie-theatre-industy-9.7359365?cmp=rss",
+          "source": "CBC Arts",
+          "author": "",
+          "ai_score": 40,
+          "date_published": "2026-09-26T08:00:00+00:00",
+          "summary": "As Cineplex indicates a sale might be in its future, experts and the company's own financial reports suggest movie theatres are seeing a resurgence in popularity in Canada — thanks in part to younger ...",
+          "discussed": true,
+          "mention_offset_frac": 0.8016
+        },
+        {
+          "title": "[ScienceAlert] Scientists Watched a Deadly Cancer Physically Reshape The Brain as It Grew",
+          "url": "https://www.sciencealert.com/scientists-watched-a-deadly-cancer-physically-reshape-the-brain-as-it-grew",
+          "source": "ScienceAlert",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-28T01:55:05+00:00",
+          "summary": "Trimodal ultrasound image of a mouse brain, showing the glioblastoma tumor (orange-red), blood vessels (white), and functional brain activity (green). (Rabut et al., iScience, 2026) \"A major step forw...",
+          "discussed": true,
+          "mention_offset_frac": 0.8447
+        },
+        {
+          "title": "[Business Insider] The British military is feeding a 'load of data' from the war in Ukraine into its next-gen Challenger 3 main battle tank",
+          "url": "https://www.businessinsider.com/britains-new-main-battle-tank-evolving-alongside-ukraine-war-2026-9",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-09-27T11:25:01+00:00",
+          "summary": "The Challenger 3 is a major upgrade over its predecessor, which has been in service with the British Army and the Ukrainian military.",
+          "discussed": true,
+          "mention_offset_frac": 0.8988
+        },
+        {
+          "title": "[XDA Developers] I changed one Windows 11 setting, and my PC instantly looked cleaner and felt faster",
+          "url": "https://www.xda-developers.com/changing-one-windows-11-setting-made-my-pc-instantly-cleaner-and-faster/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-09-21T00:00:16+00:00",
+          "summary": "On low end hardware the UI shed its visual weight, easing CPU and GPU load so menus and animations feel effortless.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Hyperallergic] Staff at Three Major Museums Vote to Strike",
+          "url": "https://hyperallergic.com/staff-at-three-major-museums-vote-to-strike/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-15T21:54:05+00:00",
+          "summary": "An interview with Alfredo Jaar, a new craft supply lending program at the Brooklyn Public Library, and workers at the Whitney Museum, the Brooklyn Museum, and the American Folk Art Museum vote in favo...",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] Surrey wins bid to host long-awaited B.C. South Asian heritage museum",
+          "url": "https://vancouversun.com/news/south-asian-heritage-museum-surrey",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-09-20T21:47:56+00:00",
+          "summary": "The province and the city will now work together to find a site for the museum",
+          "discussed": true
+        },
+        {
+          "title": "[Hyperallergic] Europe’s Art Theft Problem Is Much Bigger Than the Louvre",
+          "url": "https://hyperallergic.com/europes-art-theft-problem-is-much-bigger-than-the-louvre/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-09-14T16:06:14+00:00",
+          "summary": "A wave of museum thefts is exposing the vulnerabilities of institutions struggling to protect irreplaceable collections after years of underfunding.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Is a tiny volunteer-run gallery actually safer and more resilient than a large institution, or is it simply underfunded and vulnerable to collapse when key people leave?",
+        "riley_position": "Small organizations can be nimble and secure if they document institutional knowledge properly, but the critical factor isn't size—it's whether knowledge is written down and stored off-site rather than kept in one person's head; small galleries can implement basic security measures cheaply through hardware-store locks and photographic inventories without expensive consultants.",
+        "riley_key_evidence": [
+          "V&A staff struck over 'Amazon-style' working conditions despite the institution's centuries of weight and resources, showing that being big doesn't guarantee good management",
+          "A photographic inventory of collections stored off-site is inexpensive—usually just an afternoon with a camera and a hard drive—and is critical for insurance claims and recovery after theft",
+          "A three-person board can change locks by Thursday and implement basic security measures far faster than large institutions can retrain entire security staffs"
+        ],
+        "casey_position": "Small organizations are inherently vulnerable because they lack dedicated staff whose job is to think proactively about problems before they occur, and clarity about who made decisions doesn't help when those people have no choice but to accept compromising money or are too stretched to notice gaps like missing off-site backups.",
+        "casey_key_evidence": [
+          "Small museums often fail quietly when the one person who understood the alarm system retires and nobody was ever trained, not through dramatic break-ins or fires",
+          "A volunteer board can't be held accountable for refusing funding it desperately needs, so 'we know who said yes' describes a cornered organization, not a principled one",
+          "The real barrier at small institutions is usually the decision and ongoing attention, not the invoice—but nobody's job description says 'think about this before it's a problem,' so things stay reactive"
+        ],
+        "resolution": "Riley and Casey agreed that the dividing line between viable and fragile isn't size but whether institutional knowledge is documented and stored separately from the building; they converged on testing this through a simple yes-or-no question: does a small gallery have an off-site photographic inventory of its collection? They disagreed on whether cost or staff attention is the primary barrier, but both acknowledged the test itself is actionable and inexpensive.",
+        "topics_covered": [
+          "Security vulnerabilities at small versus large cultural institutions",
+          "The role of institutional knowledge and documentation in organizational resilience",
+          "How theft protection depends on off-site provenance documentation rather than just locks",
+          "The difference between reactive and proactive management in volunteer-run organizations",
+          "Governance failures in cultural institutions (using the Bayeux Tapestry sponsorship controversy as an example)"
+        ],
+        "calls_to_action": [
+          "If you run or volunteer with a small gallery, museum, or archive in the Cariboo, write in to discuss what basic documentation could look like at your size, or share if you've already got an off-site copy of your collection inventory sorted (feedback at cariboosignals.ca)",
+          "Culture Days weekends offer an opportunity to ask the people running small cultural spaces whether they have a photographic inventory of their collection stored off-site, and if not, whether a volunteer could complete one this month using just a phone camera and a hard drive kept at someone's house across town"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 7,
+          "conditions": "partly cloudy",
+          "high": 14,
+          "low": 5
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 5,
+          "conditions": "partly cloudy",
+          "high": 13,
+          "low": 3
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 5,
+          "conditions": "partly cloudy",
+          "high": 14,
+          "low": 4
+        },
+        {
+          "name": "Quesnel",
+          "temp": 7,
+          "conditions": "overcast",
+          "high": 12,
+          "low": 7
+        },
+        {
+          "name": "Redstone",
+          "temp": 5,
+          "conditions": "overcast",
+          "high": 11,
+          "low": 4
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Central Cariboo Arts & Culture Society",
+      "description": "Manages the Arts Centre, grants programs, and Performances in the Park summer concert series",
+      "website": "centralcaribooarts.com",
+      "psa_angle": "It's Culture Days. CCACS and local arts organizations are hosting open studios, workshops, and free events across the Central Cariboo.",
+      "event_name": "Culture Days"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nThe three arts/culture articles (Hyperallergic museum strikes and art theft feature, Vancouver Sun on the Surrey South Asian heritage museum) do not intersect with the B.C. election material, so the election research below is reported separately per the standing assignment.\n\nRESEARCH QUESTION: Who has filed for Cariboo-Chilcotin, and what does the record show for Lorne Doerkson?\nFindings: No candidate has been reported as filed/nominated for the Cariboo-Chilcotin provincial riding in the sources found (roll-call searches returned only Cariboo Regional District local-government races — a different level of government — plus general background on Doerkson). On Doerkson himself: he was first elected MLA for Cariboo-Chilcotin in 2020 running under the B.C. Liberal/BC United banner, winning 51.25% of the vote (Vancouver Sun, undated 2026 profile; Global News, BC election 2024 results page). He was re-elected in 2024 as a B.C. Conservative with roughly 69% of the vote against the NDP candidate (My Cariboo Now, \"BC Election 2024 Live Results: Cariboo-Chilcotin Riding\"). CBC News reported that Doerkson was named interim leader of the Conservative Party of British Columbia \"following Findlay resignation,\" described as taking over \"a party in turmoil amid speculation\" (CBC News, headline dated 2026). The Globe and Mail reported he \"takes the reins of B.C. Conservatives, with a party to rebuild and election ahead\" (The Globe and Mail, 2026). CTV News reported the snap election was called fewer than 48 hours after Doerkson was named leader (CTV News, 2026-09-24). The 100 Mile Free Press, in a piece headlined \"Former rodeo rider Doerkson seeks to buck-off Eby in B.C. election,\" reported Doerkson leading the party into the snap election (100 Mile Free Press, 2026-09-24).\nSuggested angle: Casey can press on how thin the public record is for who is actually contesting Cariboo-Chilcotin this cycle even as its sitting MLA has become the party's provincial leader overnight — a governance-and-media-attention mismatch. Riley could note the digital-storytelling angle: local outlets (My Cariboo Now, 100 Mile Free Press) are the ones carrying granular vote-margin data that bigger outlets skip, underscoring the value of hyperlocal digital journalism for democratic accountability.\n\nRESEARCH QUESTION: Who has filed for Prince George-North Cariboo, and what does the record show for Sheldon Clare?\nFindings: No candidate has been reported as filed/nominated for the Prince George-North Cariboo provincial riding in the sources found. On Clare: Wikipedia and the Conservative Party of BC's own site confirm he has represented Prince George-North Cariboo since winning it for the B.C. Conservatives in 2024 (Wikipedia; conservativebc.ca). CTV News reported Clare launched a bid for the B.C. Conservative leadership, saying he was running \"to stop former provincial Liberals from regaining control of the party\" (CTV News, undated 2026 article). CFJC Today Kamloops reported that on 2026-02-28 Clare suspended his leadership bid; the party's Leadership Election Organizing Committee found \"a critical number\" of his 250 submitted nomination signatures were invalid — from people who were not party members or whose memberships had lapsed. Clare said in his statement, \"I take full responsibility for that deficiency in my application,\" while adding he remained \"proud of the ideas we have advanced\" (CFJC Today, 2026-02-28). The same article reported fellow MLA Steve Kooner withdrew the same week to help \"unite the party,\" and that nine candidates remained, including incumbent MLAs Peter Milobar and Bruce Banman and Harman Bhangu, plus Iain Black, Caroline Elliott, Kerry-Lynne Findlay, Yuri Fulmer, Warren Hamm and Darrell Jones, with the leadership vote set for May 30, 2026 (CFJC Today, 2026-02-28). The Victoria Times Colonist and CTV News separately reported Clare saying new leadership-contest rules were meant to stop \"any funny business\" after the prior year's leadership review was \"marred\" by controversy — this is Clare's characterization, not an independent finding of wrongdoing (Times Colonist / CTV News, undated 2026). My Cariboo Now reported that \"Kerry Lynne\" (Kerry-Lynne Findlay) won that leadership race with over 61% support in the Quesnel/Prince George-North Cariboo area in the first round, defeating second-place finisher Caroline Elliott at just over 38% (My Cariboo Now, undated 2026); CBC's headline separately referred to a \"Findlay resignation\" preceding Doerkson's appointment as interim leader, indicating Findlay did not remain leader through to the election — the show has not established further detail on that transition.\nSuggested angle: Riley could frame the leadership signature-verification stumble as a case study in the fragility of digital-era party membership systems (lapsed online memberships, digital signature drives) mirroring the show's \"digital storytelling\" theme — process failures in verifying who counts as a \"member\" echo debates over digital authentication generally. Casey could push back that this is an old-fashioned organizational failure dressed up in tech language, and that Clare's own admission of responsibility is the notable, verifiable finding here rather than any deeper conspiracy.\n\nNO RECORD FOUND: none\n\n",
+    "log": [
+      {
+        "kind": "roll-call",
+        "query": "Cariboo-Chilcotin candidates 2026 B.C. election",
+        "results": 3
+      },
+      {
+        "kind": "roll-call",
+        "query": "Prince George-North Cariboo candidates 2026 B.C. election",
+        "results": 3
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Lorne Doerkson\" B.C. election 2026",
+        "results": 3
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Sheldon Clare\" B.C. election 2026",
+        "results": 3
+      },
+      {
+        "kind": "agent-search",
+        "query": "Lorne Doerkson interim leader Conservative Party British Columbia 2026"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Sheldon Clare leadership bid Conservative Party BC controversy"
+      },
+      {
+        "kind": "page",
+        "url": "https://cfjctoday.com/2026/02/28/prince-george-mla-sheldon-clare-suspending-bc-conservative-leadership-bid/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Lorne Doerkson 2020 2024 election margin Cariboo-Chilcotin results"
+      }
+    ]
+  }
+}
