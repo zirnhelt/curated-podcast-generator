@@ -1,25 +1,4 @@
 {
-  "2026-08-24": {
-    "timestamp": 1787562469.202302,
-    "topics": [
-      "[Williams Lake Tribune] Love speaks loudly outweighing onlin",
-      "South Cariboo residents won\u2019t have access to their local eme",
-      "[Williams Lake Tribune] Highway 1 from Yale to Boston Bar st",
-      "[Williams Lake Tribune] City of Revelstoke issues wildfire e",
-      "[Canadian Architect] Southern Alberta Art Gallery enhancemen",
-      "[Engadget] Study finds a 15 percent increase in traffic deat",
-      "[WIRED] New York City Lawmakers Push to \u2018Ban the Scan\u2019 at MS",
-      "[TechRadar] Gemini now lets you turn off the visible waterma"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-24",
-    "focus": "music-performance",
-    "focus_name": "Music & Live Performance"
-  },
   "2026-08-25": {
     "timestamp": 1787648541.018546,
     "topics": [
@@ -736,5 +715,25 @@
     "date": "2026-09-28",
     "focus": "visual-arts-heritage",
     "focus_name": "Visual Arts & Heritage"
+  },
+  "2026-09-29": {
+    "timestamp": 1790670005.824998,
+    "topics": [
+      "[My Cariboo Now] Charges are possible in connection with acc",
+      "[Williams Lake Tribune] Credit union hosts silent auction to",
+      "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
+      "[My Cariboo Now] Nazko celebrates opening of new cultural si",
+      "[Canadian Forest Industries] Community knowledge helps guide",
+      "[Small Farm Canada] Will Rural Canada Share in the Country\u2019s",
+      "[My Cariboo Now] B.C. parties tout plans for critical minera",
+      "[Canadian Mining Journal] Ore sorting tests slice CAPEX for "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-09-29",
+    "focus": "mining-energy",
+    "focus_name": "Mining & Energy"
   }
 }

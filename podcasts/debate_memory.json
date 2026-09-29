@@ -1,30 +1,4 @@
 {
-  "2026-06-30": {
-    "timestamp": 1782826473.870558,
-    "date": "2026-06-30",
-    "theme": "Working Lands & Industry",
-    "central_question": "Who captures economic value from working lands in the Cariboo, and what structural changes are actually enabling communities to retain more of that value?",
-    "riley_position": "New mechanisms exist to change value capture in resource development\u2014particularly Indigenous title rights, carbon markets, and income stacking models\u2014and the question is whether communities have the capacity and leverage to use them effectively.",
-    "riley_key_evidence": [
-      "Osisko Mining in Malartic, Quebec developed explicit community benefit agreements and reclamation funds built into operating structures",
-      "T\u015dilhqot'in Supreme Court decision fundamentally changed consultation and consent requirements for resource development on Aboriginal title land",
-      "Ranches can now stack multiple income streams: beef production, carbon sequestration, biodiversity offsets, and renewable energy development on the same land base"
-    ],
-    "casey_position": "The structural critiques about value bleeding from resource communities are not new, and real change requires communities to build permanent internal capacity rather than becoming dependent on external consultants and grant cycles.",
-    "casey_key_evidence": [
-      "Bunker Hill mine cleanup costs were borne by taxpayers, not original operators, and the TSX-listed rebuild doesn't guarantee the town of Kellogg sees meaningful long-term economic benefit",
-      "The Malartic community benefit agreement emerged from resistance and conflict, not voluntary developer design, suggesting leverage matters more than goodwill",
-      "Most producer associations focus on regulatory advocacy and let new revenue development fall to whoever has a grant, leading to pilots that are abandoned when funding ends"
-    ],
-    "resolution": "They converged on the importance of permanent capacity-building over temporary projects, agreeing that internal ownership of verification infrastructure and planning functions\u2014rather than external contracting\u2014is what distinguishes temporary benefit from permanent change, and that grant-dependent project models should be replaced with evaluation criteria requiring documented internal capacity transfer.",
-    "topics_covered": [
-      "Mining value capture and the Bunker Hill Idaho-to-Cariboo comparison",
-      "Indigenous title and legal leverage in resource negotiations post-T\u015dilhqot'in decision",
-      "Carbon markets and income stacking on working lands",
-      "Capacity building and internal institutional ownership versus consultant dependency",
-      "Funding and grant treadmill problems in economic development projects"
-    ]
-  },
   "2026-07-01": {
     "timestamp": 1782906242.516261,
     "date": "2026-07-01",
@@ -2512,6 +2486,34 @@
     "calls_to_action": [
       "If you run or volunteer with a small gallery, museum, or archive in the Cariboo, write in to discuss what basic documentation could look like at your size, or share if you've already got an off-site copy of your collection inventory sorted (feedback at cariboosignals.ca)",
       "Culture Days weekends offer an opportunity to ask the people running small cultural spaces whether they have a photographic inventory of their collection stored off-site, and if not, whether a volunteer could complete one this month using just a phone camera and a hard drive kept at someone's house across town"
+    ]
+  },
+  "2026-09-29": {
+    "timestamp": 1790670009.037963,
+    "date": "2026-09-29",
+    "theme": "Working Lands & Industry",
+    "focus": "mining-energy",
+    "anchor": "small-better-or-excuse",
+    "central_question": "Does provincial policy adequately support small resource operators, or does optimizing for headline export numbers create a two-tier system where small operators absorb disproportionate risk?",
+    "riley_position": "Small operators are being structurally disadvantaged by policies that treat all operations under one flat regulatory standard while capital and technology benefits scale unevenly; smaller players can access new equipment like sensor-based ore sorting but cannot compete for trained engineers or absorb the same compliance costs as majors.",
+    "riley_key_evidence": [
+      "EDM Resources' ore sorting tests showed potential 57% capital cost reduction, opening processing infrastructure to junior operators",
+      "Fourteen accredited North American mining schools produce flat or shrinking enrollment while processing plants are being built faster than workforce training can supply",
+      "Provincial policy focuses only on export volume targets (doubling LNG, doubling mineral exports) without distinguishing between value capture by majors versus small contractors"
+    ],
+    "casey_position": "The regulatory and policy framework fails to distinguish between institutional small operations (like Nation-owned CCR with governance backing) and structurally exposed solo operators, while major licensees can outbid small operations for scarce talent and absorb compliance costs that smaller players cannot meet.",
+    "casey_key_evidence": [
+      "Majors can offer relocation packages and competitive salaries to pull engineers away from small operations entirely, concentrating talent regardless of overall workforce shortage",
+      "Five hundred billion in investment commitments from Canada's Investment Summit exist on paper but don't automatically fund infrastructure, housing, or support needed in rural communities absorbing that growth",
+      "B.C.'s reclamation bonding and safety inspection regime applies one flat standard across all operator sizes, transparent design choices that have gone unexamined for three governments"
+    ],
+    "resolution": "The debate remained unresolved as an open policy question; Riley and Casey identified that the actual issue lies in whether B.C.'s inspection and bonding standards scale by operator size in practice, and explicitly asked listeners to submit records, corrections, and operational experiences to help chase this story further.",
+    "topics_covered": [
+      "Workforce shortage in rare earth processing versus equipment cost scaling",
+      "Distinction between Nation-owned small operators with institutional backing versus solo contractors bearing all risk",
+      "Provincial election promises focusing on output doubling without addressing who captures value or how small operators participate",
+      "Technology democratization (sensor-based ore sorting, AI safety monitoring) and whether benefits reach operators below major-licensee scale",
+      "Gap between investment commitments and actual rural infrastructure funding for communities hosting resource sector growth"
     ]
   }
 }
