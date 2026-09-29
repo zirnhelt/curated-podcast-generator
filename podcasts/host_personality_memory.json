@@ -165,8 +165,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-28",
-        "clue": "structural-lens:+ \u2014 Small institutions can move faster on concrete solutions",
+        "date": "2026-09-29",
+        "clue": "structural-lens:+ \u2014 Built case that scale decides safety access",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-09-29",
+        "clue": "rural-context:x \u2014 Conceded majors also lose hiring wars",
         "occurrences": 1
       }
     ],
@@ -290,8 +295,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Williams Lake Tribune] Williams Lake community shows its he",
-      "Immersed in Community (and Archives!)",
       "[Williams Lake Tribune] Community volunteers create meaningf",
       "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
       "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
@@ -299,7 +302,9 @@
       "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
       "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
       "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
-      "[My Cariboo Now] Cops for Cancer riders to make community st"
+      "[My Cariboo Now] Cops for Cancer riders to make community st",
+      "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
+      "[Canadian Forest Industries] Community knowledge helps guide"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -414,9 +419,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-20",
-        "clue": "evidence-bar:+ \u2014 reinforced distinction between lab-discovery and real-world outcome",
-        "occurrences": 1
+        "date": "2026-09-29",
+        "clue": "evidence-bar:+ \u2014 Demanded concrete policy documents over campaign promises",
+        "occurrences": 2
       },
       {
         "date": "2026-09-25",
@@ -437,11 +442,6 @@
         "date": "2026-09-23",
         "clue": "community-trust:~undocumented-resilience-is-single-point-failure-reframing",
         "occurrences": 1
-      },
-      {
-        "date": "2026-09-27",
-        "clue": "pilot-skepticism:+ \u2014 deepened skepticism of new sensor projects",
-        "occurrences": 2
       },
       {
         "date": "2026-09-27",
