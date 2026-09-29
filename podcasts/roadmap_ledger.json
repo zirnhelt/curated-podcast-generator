@@ -460,7 +460,7 @@
       ],
       "last_seen": "2026-09-26",
       "signal": "short-script",
-      "signal_seen": "2026-09-28"
+      "signal_seen": "2026-09-29"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -481,7 +481,7 @@
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
       "status": "open",
-      "occurrences": 6,
+      "occurrences": 7,
       "first_seen": "2026-09-22",
       "seen": [
         "2026-09-22",
@@ -489,11 +489,12 @@
         "2026-09-24",
         "2026-09-25",
         "2026-09-27",
-        "2026-09-28"
+        "2026-09-28",
+        "2026-09-29"
       ],
-      "last_seen": "2026-09-28",
+      "last_seen": "2026-09-29",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-09-28"
+      "signal_seen": "2026-09-29"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -501,7 +502,7 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 7,
+      "occurrences": 8,
       "first_seen": "2026-09-19",
       "seen": [
         "2026-09-19",
@@ -510,11 +511,12 @@
         "2026-09-22",
         "2026-09-23",
         "2026-09-26",
-        "2026-09-27"
+        "2026-09-27",
+        "2026-09-29"
       ],
-      "last_seen": "2026-09-27",
+      "last_seen": "2026-09-29",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-09-27"
+      "signal_seen": "2026-09-29"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
@@ -528,7 +530,35 @@
         "2026-09-28"
       ],
       "last_seen": "2026-09-28"
+    },
+    {
+      "id": "research-budget-exhaustion-cascading-to-expansion",
+      "title": "Research budgets exhausted before script generation completed, forcing expansion to proceed without full lookup capability.",
+      "detail": "The pipeline spent its Brave Search deep-dive budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on September 29. Later fact-resolution queries fell back to web snippets or went unanswered. The script then required an expand pass to close a 774-word gap (starting at 2,626 words against a 3,400-word target), but that expansion had to work with degraded research tools. No facts dropped from the episode, but the mechanism shows a constraint: when story complexity demands early lookups, the expand phase runs blind. Increase the per-run budgets for Brave Search and Answers, or implement a two-phase research strategy that reserves lookups for the expansion pass.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-29",
+      "seen": [
+        "2026-09-29"
+      ],
+      "signal": "degraded:script/research",
+      "signal_seen": "2026-09-29",
+      "last_seen": "2026-09-29"
+    },
+    {
+      "id": "citation-alignment-roundup-one-source-unmatched",
+      "title": "Roundup citations matched at 93 percent (14 of 15), with one source unmatched to queried material.",
+      "detail": "On September 29, the citation alignment check found 14 of 15 roundup citations matched to source material, while all 3 deep-dive citations matched. One citation—likely from the research phase—could not be traced back to a queried source or snippet. The episode shipped with it intact. One unmatched citation per 15 is below the threshold for a pattern, but check whether this source came from a fallback to web snippets after research budget exhaustion (which occurred on this run) and whether snippet-sourced citations align at a lower rate than queried sources.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-29",
+      "seen": [
+        "2026-09-29"
+      ],
+      "last_seen": "2026-09-29"
     }
   ],
-  "updated": "2026-09-28"
+  "updated": "2026-09-29"
 }
