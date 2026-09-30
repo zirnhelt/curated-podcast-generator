@@ -41,28 +41,10 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-13..2026-09-29) — 5 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-13..2026-09-29) — 3 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **Brave body-backfill budget exhaustion is recurring and requires intervention.** On
-      2026-09-08, the pipeline spent its full 12-call Brave budget during script generation,
-      forcing nine articles to ship with stub bodies instead of full text. The degradations log
-      lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as
-      brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a
-      fixed call budget that does not reset between runs or scale with article volume. To close
-      this: either expand the Brave quota in config, implement per-article fallback logic that
-      drops sparse articles before scripting rather than airing them, or track Brave spend
-      across runs and alert when 80% of the budget is consumed. (signal
-      `degraded:script/bodies`; seen in 22 reviews, latest 2026-09-27)
-- [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
-      section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
-      (33%). The gap suggests a different verification pathway or a shortfall in source
-      retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
-      proceeded despite this disparity. Audit the deep dive citation matching logic and the
-      Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 20
-      reviews, latest 2026-09-27)
 - [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
       2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
       an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were

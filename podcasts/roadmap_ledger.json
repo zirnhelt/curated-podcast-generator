@@ -293,8 +293,8 @@
       "title": "Brave body-backfill budget exhaustion is recurring and requires intervention.",
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
-      "status": "open",
-      "occurrences": 22,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-01",
       "seen": [
         "2026-09-18",
@@ -392,8 +392,8 @@
       "title": "Deep dive citations matched at 33% versus roundup at 80%.",
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
-      "status": "open",
-      "occurrences": 20,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-09-14",
@@ -560,5 +560,5 @@
       "last_seen": "2026-09-29"
     }
   ],
-  "updated": "2026-09-29"
+  "updated": "2026-09-30"
 }
