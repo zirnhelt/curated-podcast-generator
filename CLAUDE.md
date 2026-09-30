@@ -277,6 +277,18 @@ Treat API budget as a first-class constraint on every change.
 - **Fail fast on runaway cost.** Unexpectedly large token counts should raise, not proceed.
 - **Review diffs for cost regressions.** Call out any prompt/pipeline change that increases per-run token usage.
 
+**Anthropic prices** (USD per million tokens, first-party API, checked 2026-09-30; refresh from the pricing page before any cost decision):
+
+| Model | Input | Output | Cache read |
+|-------|-------|--------|------------|
+| Haiku 4.5 | $1 | $5 | $0.10 |
+| Sonnet 5 / 5.5 | $2 | $10 | $0.20 |
+| Sonnet 4.5 | $3 | $15 | $0.30 |
+| Opus 5.5 | $4 | $20 | $0.20 |
+| Opus 5 | $5 | $25 | $0.50 |
+
+Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API halves every line, cache included. A cancelled batch still bills the requests that finished before the cancel. Baseline for September 2026 was $31.34 across both keys: `cariboosignals` $22.1 (Sonnet 5 script and polish about 3/4 of it), `superfeed` $10.2 (Haiku scoring $9.2).
+
 ## Project Constraints
 
 - Python 3.11+, PEP 8, type hints on all functions
