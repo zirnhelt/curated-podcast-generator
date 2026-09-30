@@ -466,13 +466,96 @@ def _log_api_call(service: str, unit: str, count: int) -> None:
     print(f"  [api] {ts} service={service} {unit}={count}")
 
 
+# USD per million tokens (input, output, cache read), first-party list prices
+# checked 2026-09-30. Cache writes are 1.25x input (5-minute TTL — the only one
+# this pipeline uses); the Batch API halves every line. Longest prefix wins, so
+# claude-opus-5-5 is not priced as claude-opus-5.
+_CLAUDE_PRICES = {
+    "claude-haiku-4-5": (1.0, 5.0, 0.10),
+    "claude-sonnet-5": (2.0, 10.0, 0.20),
+    "claude-opus-5": (5.0, 25.0, 0.50),
+    "claude-opus-5-5": (4.0, 20.0, 0.20),
+}
+_api_usage_totals = {"cache_write": 0, "cache_read": 0, "output": 0, "thinking_est": 0}
+_api_cost_usd = 0.0
+
+
+def _usage_int(obj, name: str) -> int:
+    value = getattr(obj, name, 0)
+    return value if isinstance(value, int) and not isinstance(value, bool) else 0
+
+
+def _claude_price(model) -> tuple[float, float, float] | None:
+    if not isinstance(model, str):
+        return None
+    for prefix in sorted(_CLAUDE_PRICES, key=len, reverse=True):
+        if model.startswith(prefix):
+            return _CLAUDE_PRICES[prefix]
+    return None
+
+
+def _log_claude_usage(response, batch: bool = False) -> None:
+    """Meter one Claude response: every token class, a thinking estimate, and $.
+
+    The API folds thinking into output_tokens and returns no separate count, so
+    thinking is estimated as output minus the visible text and tool input at
+    ~4 characters a token. It is an estimate; the cost is exact list price.
+    """
+    global _api_cost_usd
+    usage = getattr(response, "usage", None)
+    fresh = _usage_int(usage, "input_tokens")
+    written = _usage_int(usage, "cache_creation_input_tokens")
+    read = _usage_int(usage, "cache_read_input_tokens")
+    output = _usage_int(usage, "output_tokens")
+
+    visible_chars = 0
+    for block in getattr(response, "content", None) or []:
+        text = getattr(block, "text", None)
+        if isinstance(text, str):
+            visible_chars += len(text)
+        elif getattr(block, "type", None) == "tool_use":
+            visible_chars += len(json.dumps(getattr(block, "input", {}), default=str))
+    thinking = max(output - visible_chars // 4, 0)
+
+    _api_call_counts["claude"] = _api_call_counts.get("claude", 0) + 1
+    _api_input_token_totals["claude"] = _api_input_token_totals.get("claude", 0) + fresh
+    _api_usage_totals["cache_write"] += written
+    _api_usage_totals["cache_read"] += read
+    _api_usage_totals["output"] += output
+    _api_usage_totals["thinking_est"] += thinking
+
+    model = getattr(response, "model", None)
+    price = _claude_price(model)
+    cost = ""
+    if price:
+        p_in, p_out, p_read = price
+        usd = (fresh * p_in + written * p_in * 1.25 + read * p_read + output * p_out) / 1e6
+        if batch:
+            usd /= 2
+        _api_cost_usd += usd
+        cost = f" usd={usd:.4f}"
+
+    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    print(f"  [api] {ts} service=claude{'-batch' if batch else ''} model={model} "
+          f"input_tokens={fresh} cache_write={written} cache_read={read} "
+          f"output_tokens={output} thinking_est={thinking}{cost}")
+
+
 def _format_daily_cost_summary() -> str:
-    """Return a one-line estimated daily API cost summary from logged usage."""
+    """Return the estimated daily API cost summary from logged usage.
+
+    The first line's wording is parsed by episode_review.py (`spend`); new
+    fields go on the second line.
+    """
     anthropic_input = _api_input_token_totals.get("claude", 0)
     call_counts = dict(_api_call_counts)
+    t = _api_usage_totals
     return (
         f"💰 Daily cost snapshot — Anthropic input tokens: {anthropic_input:,} | "
-        f"API call counts: {call_counts}"
+        f"API call counts: {call_counts}\n"
+        f"💰 Anthropic est. ${_api_cost_usd:.2f} at list price — cache write {t['cache_write']:,}, "
+        f"cache read {t['cache_read']:,}, output {t['output']:,} "
+        f"(~{t['thinking_est']:,} thinking, estimated)"
     )
 
 
@@ -1203,10 +1286,12 @@ CONFIG = {
 # Set PODCAST_USE_BATCH=0 to disable batch processing and use real-time calls
 USE_BATCH_API = os.getenv("PODCAST_USE_BATCH", "1") == "1"
 BATCH_POLL_INTERVAL = 10   # seconds between status checks
-# 10-minute default: small 2-request batches finish in 2-5 min under normal conditions;
-# longer waits just delay the real-time fallback when the API is under pressure.
+# 20 minutes. At 600s, 12 of September's 29 batches timed out: the run then paid
+# for the real-time polish on top, and a cancelled batch still bills whatever
+# finished before the cancel (6 of those 12). Waiting costs runner minutes; the
+# fallback costs about $0.40. The script step's timeout-minutes leaves room.
 # Override with PODCAST_BATCH_TIMEOUT env var if needed.
-BATCH_POLL_TIMEOUT = int(os.getenv("PODCAST_BATCH_TIMEOUT", "600"))
+BATCH_POLL_TIMEOUT = int(os.getenv("PODCAST_BATCH_TIMEOUT", "1200"))
 
 # ---------------------------------------------------------------------------
 # Content seeding helpers
@@ -1462,7 +1547,7 @@ def _claude_theme_match(text: str, themes_config: dict) -> tuple:
             max_tokens=10,
             messages=[{"role": "user", "content": prompt}]
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         raw = message_text(response).strip().lower()
         if raw == "none":
             return None, None
@@ -2382,7 +2467,7 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
             max_tokens=16000,
             messages=[{"role": "user", "content": prompt}]
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
 
         checked_script = message_text(response)
 
@@ -2618,7 +2703,7 @@ def _assess_deep_dive_for_enrichment(deep_dive_articles, theme_name, client):
                 "additionalProperties": False,
             }),
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         data = json.loads(message_text(response))
         return bool(data.get("should_enrich", False)), data.get("reason", ""), data.get("queries", [])[:3]
     except Exception as e:
@@ -2858,7 +2943,7 @@ def _brave_research_available() -> bool:
 # ---------------------------------------------------------------------------
 
 def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_executors,
-                      max_iterations=6, max_tokens=8000):
+                      max_iterations=6, max_tokens=8000, effort=None):
     """Run a bounded agentic tool-use loop and return the final text response.
 
     Repeatedly calls client.messages.create, executing any requested tools via
@@ -2900,21 +2985,26 @@ def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_ex
                 **overrides,
             ))
 
+        # A money wall is not a loop failure: every later call in the run will
+        # hit it too. 2026-09-30 logged it here as "Agentic loop error" and
+        # carried on to the script call before exiting.
         try:
-            response = call(max_tokens)
+            response = call(max_tokens, **({"output_config": {"effort": effort}} if effort else {}))
         except Exception as e:
+            _abort_if_billing_wall(e)
             print(f"  ⚠️ Agentic loop error: {e}")
             return None
 
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         if _truncated(response):
             print("  ⚠️ Agentic loop response truncated at max_tokens — retrying with larger budget, low thinking effort...")
             try:
                 response = call(int(max_tokens * 1.5), output_config={"effort": "low"})
             except Exception as e:
+                _abort_if_billing_wall(e)
                 print(f"  ⚠️ Agentic loop error: {e}")
                 return None
-            _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+            _log_claude_usage(response)
             if _truncated(response):
                 print("  ⚠️ Agentic loop response truncated at max_tokens after retry — discarding partial output")
                 return None
@@ -3548,7 +3638,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
                 "additionalProperties": False,
             }),
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(resp, "usage", None), "input_tokens", 0))
+        _log_claude_usage(resp)
         import json as _json
         queries = _json.loads(message_text(resp)).get("queries", [])
         if not queries or not isinstance(queries, list):
@@ -3686,7 +3776,9 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         system_prompt=system_prompt,
         user_content=user_content,
         tools=tools, tool_executors=tool_executors,
-        max_iterations=4, max_tokens=16000,
+        # Same budget and effort as the batch request it stands in for. At
+        # 16000/medium the rewrite truncated and was paid for twice (2026-09-27).
+        max_iterations=4, max_tokens=24000, effort="low",
     )
 
     if result and _polish_valid(script, result):
@@ -3828,11 +3920,12 @@ def poll_batch_completion(batch_id):
         elapsed += BATCH_POLL_INTERVAL
 
     print(f"⚠️ Batch {batch_id} timed out after {BATCH_POLL_TIMEOUT}s")
-    # Cancel the batch so we don't get charged for it when it eventually
-    # completes in the background — we're about to fall back to real-time calls.
+    # Cancel so requests that have not finished are not billed — we're about to
+    # fall back to real-time calls. Requests that finished before the cancel
+    # are billed regardless.
     try:
         client.messages.batches.cancel(batch_id)
-        print(f"   Cancelled timed-out batch {batch_id} to avoid double-billing")
+        print(f"   Cancelled timed-out batch {batch_id} (anything already finished is still billed)")
     except Exception as cancel_err:
         print(f"   ⚠️ Could not cancel batch {batch_id}: {cancel_err}")
     return None
@@ -3854,6 +3947,7 @@ def collect_batch_results(batch_id):
 
             if result.result.type == "succeeded":
                 message = result.result.message
+                _log_claude_usage(message, batch=True)
                 results[custom_id] = {
                     "text": message_text(message),
                     "truncated": _truncated(message),
@@ -4705,7 +4799,7 @@ def generate_cold_open(script, theme_name):
             max_tokens=300,
             messages=[{"role": "user", "content": prompt}]
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         teaser = message_text(response).strip()
         m = re.match(r'\*{0,2}(RILEY|CASEY):\*{0,2}\s*(.+)', teaser, re.DOTALL)
         if not m or not m.group(2).strip():
@@ -4753,7 +4847,7 @@ def extract_debate_summary(script, theme_name):
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output(_debate_summary_schema(True)),
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         return json.loads(message_text(response))
     except Exception as e:
         _abort_if_billing_wall(e)
@@ -4846,7 +4940,7 @@ def extract_personality_clues(script):
                 "additionalProperties": False,
             }),
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         result = json.loads(message_text(response))
         return {k: v for k, v in result.items() if isinstance(v, list)}
     except Exception as e:
@@ -6014,8 +6108,7 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
             max_tokens=4000,
             messages=[{"role": "user", "content": prompt}],
         ))
-        _log_api_call("claude", "input_tokens",
-                      getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         if _truncated(response):
             print("  ⚠️  Roundup reorder truncated at max_tokens, discarding")
             return script
@@ -7241,10 +7334,7 @@ def scrub_hard_banned(script_text, hits):
                 "additionalProperties": False,
             }),
         ))
-        _log_api_call("claude", "input_tokens",
-                      getattr(getattr(response, "usage", None), "input_tokens", 0))
-        _log_api_call("claude", "output_tokens",
-                      getattr(getattr(response, "usage", None), "output_tokens", 0))
+        _log_claude_usage(response)
         rewrites = json.loads(message_text(response)).get("rewrites", [])
         if not isinstance(rewrites, list) or len(rewrites) != len(sentences):
             raise ValueError(f"expected {len(sentences)} rewrites, got {len(rewrites)}")
@@ -8145,7 +8235,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     burned_phrases = format_burned_phrases_for_prompt()
 
     if system_prompt and 'script_generation_user' in prompts:
-        # New path: static system prompt (cached) + dynamic user prompt
+        # New path: static system prompt + dynamic user prompt (neither is cached)
         user_prompt = prompts['script_generation_user']['template'].format(
             weekday=weekday,
             date_str=date_str,
@@ -8218,7 +8308,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             request["system"] = system_prompt
 
         response = api_retry(lambda: create_message(client, stream=True, **request))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
 
         if _truncated(response):
             # Thinking ate the shared budget. Retry once with more headroom
@@ -8229,7 +8319,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
                 output_config={"effort": "low"},
                 **{**request, "max_tokens": 32000},
             ))
-            _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+            _log_claude_usage(response)
             if _truncated(response):
                 print("❌ Script generation truncated at max_tokens after retry.")
                 return None
@@ -8245,8 +8335,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             # the ~5,000-6,500 word target (2026-07-07: 1,984 words; 2026-07-08:
             # 2,212 words → a 14-minute episode), which the truncation guard
             # above doesn't catch. Retry once with the short draft and explicit
-            # length feedback — the system prompt prefix stays cached, so the
-            # retry is mostly cache reads.
+            # length feedback. The request carries no cache_control, so the
+            # retry re-bills the whole prompt at full price (~$0.09 on Sonnet 5).
+            # ponytail: left uncached — one run a day never reuses the prefix
+            # outside this retry, so the 1.25x write would cost most days.
             print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
             expand_prompt = prompts['script_expand_retry']['template'].format(
                 word_count=word_count, burned_phrases=burned_phrases)
@@ -8259,7 +8351,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
                 ],
             }
             response = api_retry(lambda: create_message(client, stream=True, **retry_request))
-            _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+            _log_claude_usage(response)
             if _truncated(response):
                 print("❌ Script expansion retry truncated at max_tokens.")
                 return None
@@ -8906,7 +8998,7 @@ def _generate_host_line(context: str, host: str) -> str:
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         return message_text(response).strip()
     except Exception as exc:
         print(f"  ⚠️  Claude host-line generation failed: {exc}")
@@ -9285,10 +9377,7 @@ def scrub_territory_claims(script_text: str, findings: list) -> str:
                 "additionalProperties": False,
             }),
         ))
-        _log_api_call("claude", "input_tokens",
-                      getattr(getattr(response, "usage", None), "input_tokens", 0))
-        _log_api_call("claude", "output_tokens",
-                      getattr(getattr(response, "usage", None), "output_tokens", 0))
+        _log_claude_usage(response)
         rewrites = json.loads(message_text(response)).get("rewrites", [])
         if not isinstance(rewrites, list) or len(rewrites) != len(sentences):
             raise ValueError(f"expected {len(sentences)} rewrites, got {len(rewrites)}")
@@ -9560,7 +9649,7 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}],
         ))
-        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_claude_usage(response)
         raw = message_text(response).strip()
     except Exception as exc:
         # Printed and nothing else until 2026-09-27: the one drop path that

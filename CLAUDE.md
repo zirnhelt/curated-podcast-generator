@@ -123,7 +123,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 | 78 | `EXIT_PUBLISH_DEGRADED` — audio is safe, a publish surface failed |
 | 79 | `EXIT_CREDITS_EXHAUSTED` — a provider is out of credits; the run goes **red**, because only a human can top it up |
 
-**Money preflight** (`check_api_budget`, `_check_tts_budget`). Recognise billing walls by their **credit wording, never the status code** (`_billing_wall()`): Gemini uses the same 429 for an ordinary rate limit. TTS is preflighted in the script stage, before the day's state is spent. OpenAI is the universal fallback, so its health alone answers "can this day ship?"; the primary is probed only when OpenAI is walled, and the run aborts only when nothing left can render.
+**Money preflight** (`check_api_budget`, `_check_tts_budget`). Recognise billing walls by their **credit wording, never the status code** (`_billing_wall()`): Gemini uses the same 429 for an ordinary rate limit. TTS is preflighted in the script stage, before the day's state is spent. OpenAI is the universal fallback, so its health alone answers "can this day ship?"; the primary is probed only when OpenAI is walled, and the run aborts only when nothing left can render. A wall can also arrive mid-run: any `except` around a Claude call that falls back must call `_abort_if_billing_wall(e)` first.
 
 **Commits.** Every workflow commits through the `./.github/actions/commit-push` composite action, never an inline `git add`/`commit`/`push`. Its `--autostash` rebase is load-bearing. **If a stage writes a tracked file, some step must stage it.**
 
@@ -273,9 +273,21 @@ Treat API budget as a first-class constraint on every change.
 - **Cache aggressively.** Use Anthropic `cache_control` headers for large static context reused across calls.
 - **Batch where possible.** Combine small tasks into one API call instead of N round-trips.
 - **Never call an API when local logic suffices.** Dedup, filtering, formatting, classification — do it in Python first.
-- **Log token usage.** Every call that returns usage metadata must log it. No silent spending.
+- **Log token usage.** Every Claude response goes through `_log_claude_usage(response)` (every token class, a thinking estimate, list-price $). No silent spending.
 - **Fail fast on runaway cost.** Unexpectedly large token counts should raise, not proceed.
 - **Review diffs for cost regressions.** Call out any prompt/pipeline change that increases per-run token usage.
+
+**Anthropic prices** (USD per million tokens, first-party API, checked 2026-09-30; refresh from the pricing page before any cost decision):
+
+| Model | Input | Output | Cache read |
+|-------|-------|--------|------------|
+| Haiku 4.5 | $1 | $5 | $0.10 |
+| Sonnet 5 / 5.5 | $2 | $10 | $0.20 |
+| Sonnet 4.5 | $3 | $15 | $0.30 |
+| Opus 5.5 | $4 | $20 | $0.20 |
+| Opus 5 | $5 | $25 | $0.50 |
+
+Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API halves every line, cache included. A cancelled batch still bills the requests that finished before the cancel. Baseline for September 2026 was $31.21 billed (list price, no discounts) across both keys: `cariboosignals` $21.0 (Sonnet 5 script and polish about 3/4 of it), `superfeed` $10.2 (Haiku scoring $9.2).
 
 ## Project Constraints
 

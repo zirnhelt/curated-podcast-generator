@@ -176,7 +176,8 @@ jobs:
       # citations, and memory updates that were already paid for.
       - name: Generate episode script
         id: generate
-        timeout-minutes: 35
+        # 20 of these minutes can be the polish batch wait (BATCH_POLL_TIMEOUT).
+        timeout-minutes: 45
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
