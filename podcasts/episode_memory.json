@@ -1,45 +1,4 @@
 {
-  "2026-08-25": {
-    "timestamp": 1787648541.018546,
-    "topics": [
-      "Emergency Services unavailable until 8 tonight (August 24) i",
-      "[100 Mile Free Press] Lac La Hache family extinguishes light",
-      "[Williams Lake Tribune] Fire activity could increase at 164,",
-      "[Williams Lake Tribune] Evacuation orders, alerts downgraded",
-      "[Western Producer] Farm worker numbers take significant nose",
-      "[Williams Lake Tribune] FVRD rescinds 1 evacuation alert aft",
-      "[Global News] B.C. plywood manufacturer says it cannot absor",
-      "[Mother Jones] Should We Kill One Kind of Owl To Save Anothe"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-25",
-    "focus": "forestry",
-    "focus_name": "Forestry & Timber"
-  },
-  "2026-08-26": {
-    "timestamp": 1787735040.292445,
-    "topics": [
-      "[Williams Lake Tribune] Prince George-Valemount MLA quits B.",
-      "Funding announced for salmon hatcheries across north and cen",
-      "[Williams Lake Tribune] Weekend rain helping slow growth of ",
-      "[The Tyee] As AI Data Centre Backlash Builds, What Will Smit",
-      "[Scientific American] Why parabolas are crucial to cryptogra",
-      "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Drivin",
-      "[ZDNet] A low-tech solution from the past may be your best d",
-      "[XDA Developers] I thought my NAS drives were the bottleneck"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-26",
-    "focus": "homestead-offgrid",
-    "focus_name": "Homestead & Off-Grid Tech"
-  },
   "2026-08-27": {
     "timestamp": 1787852913.165578,
     "topics": [
@@ -735,5 +694,25 @@
     "date": "2026-09-29",
     "focus": "mining-energy",
     "focus_name": "Mining & Energy"
+  },
+  "2026-09-30": {
+    "timestamp": 1790790042.196649,
+    "topics": [
+      "[My Cariboo Now] Emergency officials called to motel in 100 ",
+      "[Williams Lake Tribune] Flames destroy house on Horsefly Roa",
+      "[BC Wildfire Service] Open burning permitted in the Cariboo ",
+      "[100 Mile Free Press] Orange Shirt Day commemorated by South",
+      "[Quesnel Cariboo Observer] RCMP recover loaded firearms and ",
+      "[MakeUseOf] 5 open-source security apps I set up first on ev",
+      "[TechRadar] Massive data breach sees 220 million traveler re",
+      "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-09-30",
+    "focus": "digital-life-security",
+    "focus_name": "Digital Life & Security"
   }
 }
