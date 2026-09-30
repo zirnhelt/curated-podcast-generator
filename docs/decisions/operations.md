@@ -160,6 +160,27 @@ is probed only once OpenAI is already walled** (Azure, removed 2026-09-23, was n
 on: a subscription has no equivalent cheap probe). Skipping a day that Gemini would have rendered is worse than
 the wasted run this exists to prevent, so the abort fires only when nothing left can render.
 
+**A wall can arrive mid-run, after the preflight passed.** On 2026-09-30 the balance ran out
+inside the research loop, which caught the 400 as an ordinary "Agentic loop error" and carried
+on to the script call. **Any `except` around a Claude call that returns a fallback must call
+`_abort_if_billing_wall(e)` first**; `_run_agentic_loop` now does.
+
+### What a run costs (`_log_claude_usage`, the polish batch)
+
+Every Claude response goes through `_log_claude_usage`, which logs fresh input, cache write,
+cache read and output tokens, an estimate of thinking (output minus visible text at ~4
+characters a token — the API reports no separate count), and the list-price cost from
+`_CLAUDE_PRICES`. The run report and `episode_review.py` carry the day's total. Refresh the
+price table from the pricing page, never by assumption.
+
+September 2026's bill ($31.21 across both repos) had one outsized leak: the polish batch.
+`BATCH_POLL_TIMEOUT` was 600s, and 12 of 29 batches were still processing at the deadline. Each
+timeout fell back to the real-time polish, which at 16000 tokens and medium effort truncated and
+ran a second time, and **a cancelled batch still bills every request that finished before the
+cancel** (6 of the 12). That was about $5–6 of the month, close to a fifth. The timeout is now
+20 minutes (the script step's `timeout-minutes` went to 45 to hold it), and the fallback runs at
+the batch's own budget: 24000 tokens, low effort.
+
 ### Committing between stages
 
 Every workflow that commits uses the `./.github/actions/commit-push` composite action —

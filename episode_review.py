@@ -230,6 +230,7 @@ _SINGLE: dict[str, tuple[str, list[type]]] = {
     "audio_mb": (r"File size: ([\d.]+) MB", [float]),
     "rss_episodes": (r"Generated RSS feed with (\d+) episodes", [int]),
     "spend": (r"Anthropic input tokens: ([\d,]+) \| API call counts: (.+)", [str, str]),
+    "spend_usd": (r"💰 Anthropic est\. \$([\d.]+) at list price", [str]),
     "video": (r"Video rendered: \S+ \(([\d.]+) MB, ([\d.]+) min\)", [float, float]),
 }
 
@@ -479,6 +480,7 @@ def render_numbers_table(facts: dict[str, Any]) -> str:
         row("Citations matched", "citation_alignment", "{}/{} roundup, {}/{} deep dive"),
         row("Feed", "rss_episodes", "{} episodes"),
         row("Anthropic spend", "spend", "{} input tokens, calls {}"),
+        row("Anthropic cost", "spend_usd", "${} at list price (estimate)"),
     ]
     body = "\n".join(f"<tr><td>{label}</td><td>{escape(str(value))}</td></tr>"
                      for label, value in filter(None, rows))

@@ -623,6 +623,31 @@ class TestRunAgenticLoop:
 
         assert result is None
 
+    def test_credit_wall_exits_instead_of_returning_none(self):
+        """2026-09-30: the research loop swallowed the empty-balance 400 and the
+        run carried on to the script call before exiting."""
+        import podcast_generator as pg
+        client = MagicMock()
+        client.messages.stream.side_effect = Exception(
+            "Error code: 400 - Your credit balance is too low to access the Anthropic API.")
+
+        with pytest.raises(SystemExit) as exc:
+            _run_agentic_loop(
+                client, "test-model", "system prompt", "user content",
+                tools=[], tool_executors={}, max_iterations=1,
+            )
+        assert exc.value.code == pg.EXIT_CREDITS_EXHAUSTED
+
+    def test_effort_applies_to_the_first_call(self):
+        client = _stream_client([_response("end_turn", [_text_block("done")])])
+
+        _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[], tool_executors={}, effort="low",
+        )
+
+        assert client.messages.stream.call_args.kwargs["output_config"] == {"effort": "low"}
+
     def test_retries_with_larger_budget_and_succeeds_after_truncation(self):
         client = _stream_client([
             _response("max_tokens", [_text_block("script cut off mid-sen")]),
@@ -653,6 +678,85 @@ class TestRunAgenticLoop:
 
         assert result is None
         assert client.messages.stream.call_count == 2
+
+
+class TestLogClaudeUsage:
+    @pytest.fixture(autouse=True)
+    def _fresh_meters(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_api_call_counts", {})
+        monkeypatch.setattr(pg, "_api_input_token_totals", {})
+        monkeypatch.setattr(pg, "_api_usage_totals",
+                            {"cache_write": 0, "cache_read": 0, "output": 0, "thinking_est": 0})
+        monkeypatch.setattr(pg, "_api_cost_usd", 0.0)
+        return pg
+
+    @staticmethod
+    def _message(model, text="", fresh=0, written=0, read=0, output=0):
+        from types import SimpleNamespace
+        return SimpleNamespace(
+            model=model,
+            content=[SimpleNamespace(type="text", text=text)],
+            usage=SimpleNamespace(input_tokens=fresh, cache_creation_input_tokens=written,
+                                  cache_read_input_tokens=read, output_tokens=output),
+        )
+
+    def test_prices_every_token_class_and_estimates_thinking(self, _fresh_meters):
+        pg = _fresh_meters
+        pg._log_claude_usage(self._message(
+            "claude-sonnet-5", text="x" * 800,
+            fresh=1000, written=2000, read=10000, output=4000))
+
+        # 1000*$2 + 2000*$2*1.25 + 10000*$0.20 + 4000*$10, per million
+        assert pg._api_cost_usd == pytest.approx(0.049)
+        assert pg._api_usage_totals["thinking_est"] == 4000 - 800 // 4
+        assert pg._api_input_token_totals["claude"] == 1000
+        assert pg._api_call_counts["claude"] == 1
+
+    def test_batch_is_half_price(self, _fresh_meters):
+        pg = _fresh_meters
+        pg._log_claude_usage(self._message("claude-sonnet-5", fresh=1_000_000), batch=True)
+        assert pg._api_cost_usd == pytest.approx(1.0)
+
+    def test_longest_prefix_wins(self):
+        import podcast_generator as pg
+        assert pg._claude_price("claude-opus-5-5") == (4.0, 20.0, 0.20)
+        assert pg._claude_price("claude-opus-5") == (5.0, 25.0, 0.50)
+        assert pg._claude_price("claude-haiku-4-5-20251001") == (1.0, 5.0, 0.10)
+        assert pg._claude_price("gpt-4o") is None
+
+    def test_tolerates_stub_responses(self, _fresh_meters):
+        pg = _fresh_meters
+        pg._log_claude_usage(_response("end_turn", [_text_block("hi")], input_tokens=50))
+        assert pg._api_input_token_totals["claude"] == 50
+        assert pg._api_cost_usd == 0.0   # a MagicMock model has no price
+
+    def test_snapshot_keeps_the_line_episode_review_parses(self, _fresh_meters):
+        import episode_review
+        pg = _fresh_meters
+        pg._log_claude_usage(self._message("claude-haiku-4-5", fresh=86414))
+
+        facts = episode_review.scan_log(pg._format_daily_cost_summary())
+
+        assert facts["spend"][0] == "86,414"
+        assert facts["spend"][1] == "{'claude': 1}"
+        assert facts["spend_usd"] == "0.09"
+
+
+class TestPolishFallbackBudget:
+    def test_fallback_matches_the_batch_budget(self, monkeypatch):
+        """At 16000/medium the 2026-09-27 fallback truncated and ran twice."""
+        import podcast_generator as pg
+        seen = {}
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: MagicMock())
+        monkeypatch.setattr(pg, "_run_agentic_loop",
+                            lambda *a, **k: seen.update(k) or None)
+
+        pg.polish_and_factcheck_with_agent("RILEY: hello", "Theme", [], [],
+                                           model="claude-sonnet-5")
+
+        assert seen["max_tokens"] == 24000
+        assert seen["effort"] == "low"
 
 
 class TestBraveBillingWall:
