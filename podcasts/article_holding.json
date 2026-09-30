@@ -1,87 +1,4 @@
 {
-  "https://vancouversun.com/news/bc-now-projecting-a-deficit-of-over-13-7-billion-amid-errors-on-natural-gas-revenue": {
-    "article": {
-      "id": "https://vancouversun.com/news/bc-now-projecting-a-deficit-of-over-13-7-billion-amid-errors-on-natural-gas-revenue",
-      "url": "https://vancouversun.com/news/bc-now-projecting-a-deficit-of-over-13-7-billion-amid-errors-on-natural-gas-revenue",
-      "title": "[Vancouver Sun] B.C. finance minister faces heat over increasing deficit, projection errors",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fvancouversun.com%2Fnews%2Fbc-now-projecting-a-deficit-of-over-13-7-billion-amid-errors-on-natural-gas-revenue\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nRecord deficit grows to $13.8 billion after province admitted it miscalculated natural gas revenue projections by $1.5 billion",
-      "summary": "Record deficit grows to $13.8 billion after province admitted it miscalculated natural gas revenue projections by $1.5 billion",
-      "_excerpt": "Record deficit grows to $13.8 billion after province admitted it miscalculated natural gas revenue projections by $1.5 billion",
-      "date_published": "2026-09-14T19:56:27+00:00",
-      "authors": [
-        {
-          "name": "Vancouver Sun",
-          "url": "https://vancouversun.com/news/bc-wildfires-new-evacuation-orders-issued-south-chilcotin"
-        }
-      ],
-      "ai_score": 48,
-      "_quality": 62,
-      "_relevance": 48,
-      "_local": 35,
-      "_theme_score": 97,
-      "_theme_score_raw": 18,
-      "_composite_podcast": 71,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-15T04:09:48.485935+00:00"
-      },
-      "_boosted_score": 48
-    },
-    "held_date": "2026-09-15",
-    "target_date": "2026-09-29",
-    "target_weekday": 1,
-    "target_focus_slug": "mining-energy",
-    "target_focus_name": "Mining & Energy",
-    "status": "released",
-    "release_date": "2026-09-29"
-  },
-  "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/": {
-    "article": {
-      "id": "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/",
-      "url": "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/",
-      "title": "[Canadian Mining Journal] New Cat D11 XE electric-drive dozer pushes productivity higher",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.canadianminingjournal.com%2Fnews%2Fnew-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Caterpillar has launched the Cat D11 XE, its first electric-drive large dozer, promising mining operations higher productivity, lower fuel consumption and reduced [&#8230;]</p>\n<p>The post <a href=\"https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/\">New Cat D11 XE electric-drive dozer pushes productivity higher</a> appeared first on <a href=\"https://www.canadianminingjournal.com\">Canadian Mining Journal</a>.</p>",
-      "summary": "Caterpillar has launched the Cat D11 XE, its first electric-drive large dozer, promising mining operations higher productivity, lower fuel consumption and reduced [\u2026] The post New Cat D11 XE electric-drive dozer pushes productivity higher appeared first on Canadian Mining Journal .",
-      "_excerpt": "Caterpillar has launched the Cat D11 XE, its first electric-drive large dozer, promising mining operations higher productivity, lower fuel consumption and reduced [\u2026] The post New Cat D11 XE electric-drive dozer pushes productivity higher appeared first on Canadian Mining Journal .",
-      "date_published": "2026-09-09T17:22:19+00:00",
-      "authors": [
-        {
-          "name": "Canadian Mining Journal",
-          "url": "https://www.canadianminingjournal.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 74,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-11T04:10:27.924839+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-16",
-    "target_date": "2026-09-29",
-    "target_weekday": 1,
-    "target_focus_slug": "mining-energy",
-    "target_focus_name": "Mining & Energy",
-    "status": "released",
-    "release_date": "2026-09-29"
-  },
   "https://wltribune.com/2026/09/15/children-and-youth-race-zucchinis-cars-at-williams-lake-harvest-fair/": {
     "article": {
       "id": "https://wltribune.com/2026/09/15/children-and-youth-race-zucchinis-cars-at-williams-lake-harvest-fair/",
@@ -167,7 +84,8 @@
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-30"
   },
   "https://wltribune.com/2026/09/16/williams-lake-log-loader-competition-raises-over-10k-for-cariboo-memorial-hospital/": {
     "article": {
@@ -213,48 +131,6 @@
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
     "status": "aired_early"
-  },
-  "https://www.mining.com/op-ed-chiles-copper-sector-faces-a-growing-power-problem/": {
-    "article": {
-      "id": "https://www.mining.com/op-ed-chiles-copper-sector-faces-a-growing-power-problem/",
-      "url": "https://www.mining.com/op-ed-chiles-copper-sector-faces-a-growing-power-problem/",
-      "title": "[Mining.com] Op-Ed: Chile\u2019s copper sector faces a growing power problem",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mining.com%2Fop-ed-chiles-copper-sector-faces-a-growing-power-problem%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTwo decades of falling ore grades and mine electrification are putting mounting pressure on Chile\u2019s electricity system.",
-      "summary": "Two decades of falling ore grades and mine electrification are putting mounting pressure on Chile\u2019s electricity system.",
-      "_excerpt": "Two decades of falling ore grades and mine electrification are putting mounting pressure on Chile\u2019s electricity system.",
-      "date_published": "2026-09-09T11:01:00+00:00",
-      "authors": [
-        {
-          "name": "Mining.com",
-          "url": "https://www.mining.com"
-        }
-      ],
-      "ai_score": 70,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 53,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 42,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-09-17T04:11:17.658071+00:00"
-      },
-      "_boosted_score": 70
-    },
-    "held_date": "2026-09-17",
-    "target_date": "2026-09-29",
-    "target_weekday": 1,
-    "target_focus_slug": "mining-energy",
-    "target_focus_name": "Mining & Energy",
-    "status": "released",
-    "release_date": "2026-09-29"
   },
   "https://quesnelobserver.com/2026/09/17/hometown-hero-literacy-quesnel-approaching-20th-anniversary-of-enriching-the-community/": {
     "article": {
@@ -555,54 +431,8 @@
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
-    "status": "held"
-  },
-  "https://www.nytimes.com/2026/09/21/business/ai-data-center-ipos.html": {
-    "article": {
-      "id": "https://www.nytimes.com/2026/09/21/business/ai-data-center-ipos.html",
-      "url": "https://www.nytimes.com/2026/09/21/business/ai-data-center-ipos.html",
-      "title": "[NYT Business] Wall Street Is Growing Skeptical of the Data Center Boom",
-      "content_html": "<img src=\"https://static01.nyt.com/images/2026/09/21/multimedia/21biz-ipo-delay-qphb/21biz-ipo-delay-qphb-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F21%2Fbusiness%2Fai-data-center-ipos.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSeveral companies tied to the data center industry have delayed their initial public offerings amid the increasing public backlash to these energy guzzling facilities.",
-      "summary": "Several companies tied to the data center industry have delayed their initial public offerings amid the increasing public backlash to these energy guzzling facilities.",
-      "_excerpt": "Several companies tied to the data center industry have delayed their initial public offerings amid the increasing public backlash to these energy guzzling facilities.",
-      "date_published": "2026-09-21T20:04:39+00:00",
-      "authors": [
-        {
-          "name": "NYT Business",
-          "url": "https://www.nytimes.com/section/business"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 71,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static01.nyt.com/images/2026/09/21/multimedia/21biz-ipo-delay-qphb/21biz-ipo-delay-qphb-mediumSquareAt3X.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "New York Times",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-22T04:09:30.974597+00:00"
-      },
-      "_boosted_score": 63
-    },
-    "held_date": "2026-09-22",
-    "target_date": "2026-09-29",
-    "target_weekday": 1,
-    "target_focus_slug": "mining-energy",
-    "target_focus_name": "Mining & Energy",
     "status": "released",
-    "release_date": "2026-09-29"
+    "release_date": "2026-09-30"
   },
   "https://www.scientificamerican.com/article/why-mathematicians-are-hiding-research-results-in-zero-knowledge-proofs/": {
     "article": {
@@ -814,7 +644,8 @@
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-30"
   },
   "https://www.makeuseof.com/open-source-security-apps-set-up-first-new-windows-machine/": {
     "article": {
@@ -856,7 +687,8 @@
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-30"
   },
   "https://wltribune.com/2026/09/27/no-new-taxes-bc-conservative-leader-brings-fiscal-message-to-surrey-campaign-stop/": {
     "article": {
@@ -1376,7 +1208,8 @@
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-30"
   },
   "https://hackaday.com/2026/09/21/new-research-suggests-that-a-neutrino-laser-is-impossible/": {
     "article": {
@@ -1667,6 +1500,605 @@
       "_boosted_score": 70
     },
     "held_date": "2026-09-29",
+    "target_date": "2026-10-04",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/": {
+    "article": {
+      "id": "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/",
+      "url": "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/",
+      "title": "[Mother Jones] How I Got Dragged Into a Putin Disinformation Op",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fpolitics%2F2026%2F09%2Frussian-disinformation-election-matryoshka-david-corn-mother-jones%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA version of the below article&#160;first appeared&#160;in David Corn\u2019s newsletter,&#160;Our Land.&#160;The newsletter&#160;comes out twice a week (most of the time) and provides behind-the-scenes stories and articles about politics, media, and culture. Subscribing costs just $5 a month\u2014but you can&#160;sign up for a free 30-day trial. I just published a book that exposes Russian disinformation operations. [&#8230;]",
+      "summary": "A version of the below article first appeared in David Corn\u2019s newsletter, Our Land. The newsletter comes out twice a week (most of the time) and provides behind-the-scenes stories and articles about politics, media, and culture. Subscribing costs just $5 a month\u2014but you can sign up for a free",
+      "_excerpt": "A version of the below article first appeared in David Corn\u2019s newsletter, Our Land. The newsletter comes out twice a week (most of the time) and provides behind-the-scenes stories and articles about politics, media, and culture. Subscribing costs just $5 a month\u2014but you can sign up for a free 30-day trial. I just published a book that exposes Russian disinformation operations. [\u2026]",
+      "date_published": "2026-09-29T13:08:21+00:00",
+      "authors": [
+        {
+          "name": "Mother Jones",
+          "url": "https://www.motherjones.com"
+        }
+      ],
+      "ai_score": 67,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 89,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 78,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 67
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-05",
+    "target_weekday": 0,
+    "target_focus_slug": "words-journalism",
+    "target_focus_name": "Writing, Journalism & Podcasting",
+    "status": "held"
+  },
+  "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/": {
+    "article": {
+      "id": "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/",
+      "url": "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/",
+      "title": "[New Atlas] Largest rocket ever built successfully enters orbit",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Fspace-systems%2Fstarship-orbits-earth-landmark-event%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Starship in orbit\" src=\"https://assets.newatlas.com/dims4/default/268d6a8/2147483647/strip/true/crop/1525x671+0+0/resize/1440x634!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2F1b%2F7a%2F7c00b4d64425bacb2c0c6dc81c6b%2Fscreenshot-2026-09-28-200049.png\" /><p>SpaceX has raised the bar for spaceflight again as its Starship, history's largest rocket, reaches Earth orbit. Despite the failure of an upper stage engine, an abort was avoided, allowing the spacecraft to reach orbit and deploy 26 Starlink satellites.</p><p><a href=\"https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://newatlas.com/space-systems/\">Space Systems</a>, <a href=\"https://newatlas.com/engineering/\">Engineering</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/spacex/\" rel=\"tag\">SpaceX</a>, <a href=\"https://newatlas.com/tag/starship/\" rel=\"tag\">Starship</a></p>",
+      "summary": "SpaceX has raised the bar for spaceflight again as its Starship, history's largest rocket, reaches Earth orbit. Despite the failure of an upper stage engine, an abort was avoided, allowing the spacecraft to reach orbit and deploy 26 Starlink satellites. Continue Reading Category: Space Systems ,",
+      "_excerpt": "SpaceX has raised the bar for spaceflight again as its Starship, history's largest rocket, reaches Earth orbit. Despite the failure of an upper stage engine, an abort was avoided, allowing the spacecraft to reach orbit and deploy 26 Starlink satellites. Continue Reading Category: Space Systems , Engineering Tags: SpaceX , Starship",
+      "date_published": "2026-09-29T05:43:49+00:00",
+      "authors": [
+        {
+          "name": "New Atlas",
+          "url": "https://newatlas.com"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 89,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 77,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 17,
+      "_topic_cluster": "SpaceX Starship reaches orbit",
+      "_cluster_suppressed": true
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-11",
+    "target_weekday": 6,
+    "target_focus_slug": "sky-cosmos",
+    "target_focus_name": "Sky & Cosmos",
+    "status": "held"
+  },
+  "https://www.mycariboonow.com/316509/news/rcmp/police-incident-underway-at-motel-in-100-mile-house/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316509/news/rcmp/police-incident-underway-at-motel-in-100-mile-house/",
+      "url": "https://www.mycariboonow.com/316509/news/rcmp/police-incident-underway-at-motel-in-100-mile-house/",
+      "title": "[My Cariboo Now] Emergency officials called to motel in 100 Mile House",
+      "content_html": "<img src=\"https://www.mycariboonow.com/wp-content/uploads/2026/09/100m-rcmp-presence.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316509%2Fnews%2Frcmp%2Fpolice-incident-underway-at-motel-in-100-mile-house%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"522\" src=\"https://www.mycariboonow.com/wp-content/uploads/2026/09/100m-rcmp-presence-1024x768.jpg\" width=\"696\" />RCMP responded to an incident at the 100 Mile Motel &#038; RV Park this (Tuesday) morning.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316509/news/rcmp/police-incident-underway-at-motel-in-100-mile-house/\">Emergency officials called to motel in 100 Mile House</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "RCMP responded to an incident at the 100 Mile Motel & RV Park this (Tuesday) morning. The post Emergency officials called to motel in 100 Mile House appeared first on My Cariboo Now .",
+      "_excerpt": "RCMP responded to an incident at the 100 Mile Motel & RV Park this (Tuesday) morning. The post Emergency officials called to motel in 100 Mile House appeared first on My Cariboo Now .",
+      "date_published": "2026-09-29T21:08:57+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 71,
+      "_quality": 30,
+      "_relevance": 75,
+      "_local": 100,
+      "_theme_score": 91,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 77,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "image": "https://www.mycariboonow.com/wp-content/uploads/2026/09/100m-rcmp-presence.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 71,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-02",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "aired_early"
+  },
+  "https://neurosciencenews.com/migraines-stoke-neurology-31234/": {
+    "article": {
+      "id": "https://neurosciencenews.com/migraines-stoke-neurology-31234/",
+      "url": "https://neurosciencenews.com/migraines-stoke-neurology-31234/",
+      "title": "[Neuroscience News] Migraines May Leave the Brain Vulnerable to Stroke",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fneurosciencenews.com%2Fmigraines-stoke-neurology-31234%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<a href=\"https://neurosciencenews.com/migraines-stoke-neurology-31234/\" rel=\"nofollow\" title=\"Migraines May Leave the Brain Vulnerable to Stroke\"><img alt=\"This shows a head surrounded by a red aura. Caption reads &quot;Why do migraines increase your risk of stroke?&quot;\" class=\"webfeedsFeaturedVisual wp-post-image\" height=\"770\" src=\"https://neurosciencenews.com/files/2026/09/Why-do-migraines-increase-your-risk-of-stroke-1155x770.jpg\" style=\"float: left; margin-right: 5px;\" width=\"1155\" /></a>A new study aims to investigate how chronic migraine and headache disorders weaken brain blood vessels, alter glymphatics, and elevate stroke risk.",
+      "summary": "A new study aims to investigate how chronic migraine and headache disorders weaken brain blood vessels, alter glymphatics, and elevate stroke risk.",
+      "_excerpt": "A new study aims to investigate how chronic migraine and headache disorders weaken brain blood vessels, alter glymphatics, and elevate stroke risk.",
+      "date_published": "2026-09-22T16:21:19+00:00",
+      "authors": [
+        {
+          "name": "Neuroscience News",
+          "url": ""
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 73,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-04",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.sciencealert.com/huge-haul-of-ice-age-mammoth-bones-unearthed-beneath-czech-construction-site": {
+    "article": {
+      "id": "https://www.sciencealert.com/huge-haul-of-ice-age-mammoth-bones-unearthed-beneath-czech-construction-site",
+      "url": "https://www.sciencealert.com/huge-haul-of-ice-age-mammoth-bones-unearthed-beneath-czech-construction-site",
+      "title": "[ScienceAlert] Huge Haul of Ice Age\u00a0Mammoth\u00a0Bones Unearthed Beneath Czech Construction Site",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fhuge-haul-of-ice-age-mammoth-bones-unearthed-beneath-czech-construction-site\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure id=\"attachment_220911\"><img alt=\"A trio of woolly mammoths trudges over snow covered hills. Behind them, mountains with snow covered peaks rise above dark green forests of fir trees\" class=\"attachment-full size-full\" height=\"1440\" src=\"https://www.sciencealert.com/images/2026/09/Mammoths-on-a-hill.jpg\" width=\"2560\" /><figcaption>(Daniel Eskridge/iStock/Getty Images)</figcaption></figure>\n<p><img alt=\"A trio of woolly mammoths trudges over snow covered hills. Behind them, mountains with snow covered peaks rise above dark green forests of fir trees\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/09/Mammoths-on-a-hill-1200x675.jpg\" style=\"float: left; margin: 0 15px 15px 0;\" width=\"1200\" />An Ice Age hunting mystery.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&#038;utm_medium=feed&#038;utm_campaign=rss_feed_promo\" rel=\"noopener\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don&#039;t miss a story, subscribe here.</a></p>",
+      "summary": "(Daniel Eskridge/iStock/Getty Images) An Ice Age hunting mystery. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "_excerpt": "(Daniel Eskridge/iStock/Getty Images) An Ice Age hunting mystery. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "date_published": "2026-09-22T11:00:00+00:00",
+      "authors": [
+        {
+          "name": "ScienceAlert",
+          "url": "https://www.sciencealert.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 72,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_boosted_score": 55
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-02",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "held"
+  },
+  "https://www.motherjones.com/politics/2026/09/us-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia/": {
+    "article": {
+      "id": "https://www.motherjones.com/politics/2026/09/us-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia/",
+      "url": "https://www.motherjones.com/politics/2026/09/us-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia/",
+      "title": "[Mother Jones] Sickened Coal Miners Plead for Their Black Lung Benefits as Cases Surge",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fpolitics%2F2026%2F09%2Fus-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis story was originally published by\u00a0the Guardian and is reproduced here as part of the\u00a0Climate Desk\u00a0collaboration. For 38 years, Josh Armes worked as a coal miner in&#160;West Virginia&#160;and Virginia. After retirement, Armes, 74, of Grundy, Virginia, was diagnosed with black lung disease,&#160;medically known&#160;as coal workers\u2019 pneumoconiosis (CWP), caused by breathing in coal dust over long [&#8230;]",
+      "summary": "This story was originally published by the Guardian and is reproduced here as part of the Climate Desk collaboration. For 38 years, Josh Armes worked as a coal miner in West Virginia and Virginia. After retirement, Armes, 74, of Grundy, Virginia, was diagnosed with black lung disease, medically",
+      "_excerpt": "This story was originally published by the Guardian and is reproduced here as part of the Climate Desk collaboration. For 38 years, Josh Armes worked as a coal miner in West Virginia and Virginia. After retirement, Armes, 74, of Grundy, Virginia, was diagnosed with black lung disease, medically known as coal workers\u2019 pneumoconiosis (CWP), caused by breathing in coal dust over long [\u2026]",
+      "date_published": "2026-09-22T11:30:00+00:00",
+      "authors": [
+        {
+          "name": "Mother Jones",
+          "url": "https://www.motherjones.com"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 77,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 50
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-08",
+    "target_weekday": 3,
+    "target_focus_slug": "guardians-stewardship",
+    "target_focus_name": "Guardians & Land Stewardship",
+    "status": "held"
+  },
+  "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re": {
+    "article": {
+      "id": "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re",
+      "url": "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re",
+      "title": "[Kottke.org] Ross Anderson on NASA\u2019s recently launched Nancy Grace...",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fkottke.org%2F26%2F09%2F0049652-ross-anderson-on-nasas-re\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><a href=\"https://www.theatlantic.com/science/2026/08/nasa-roman-telescope-alien-worlds/688426?gift=j9r7avb6p-KY8zdjhsiSZ1NT_2Qm_w9P7F_QyBy-yJU\">Ross Anderson on NASA\u2019s recently launched Nancy Grace Roman Space Telescope</a>, which may &#8220;be able to deliver the first direct images of distant planets in visible light\u201d as well as measure the effects of dark energy.\n</p>",
+      "summary": "Ross Anderson on NASA\u2019s recently launched Nancy Grace Roman Space Telescope , which may \u201cbe able to deliver the first direct images of distant planets in visible light\u201d as well as measure the effects of dark energy.",
+      "_excerpt": "Ross Anderson on NASA\u2019s recently launched Nancy Grace Roman Space Telescope , which may \u201cbe able to deliver the first direct images of distant planets in visible light\u201d as well as measure the effects of dark energy.",
+      "date_published": "2026-09-22T17:52:00+00:00",
+      "authors": [
+        {
+          "name": "Kottke.org",
+          "url": "https://kottke.org/"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 72,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_boosted_score": 55
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-11",
+    "target_weekday": 6,
+    "target_focus_slug": "sky-cosmos",
+    "target_focus_name": "Sky & Cosmos",
+    "status": "held"
+  },
+  "https://indiginews.com/news/new-book-aims-to-push-back-and-defend-survivors-against-denialism/": {
+    "article": {
+      "id": "https://indiginews.com/news/new-book-aims-to-push-back-and-defend-survivors-against-denialism/",
+      "url": "https://indiginews.com/news/new-book-aims-to-push-back-and-defend-survivors-against-denialism/",
+      "title": "[IndigiNews] New book aims to \u2018push back and defend survivors\u2019 against denialism",
+      "content_html": "<img src=\"https://media.indiginews.com/2026/09/P1048351-1024x644.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Fnews%2Fnew-book-aims-to-push-back-and-defend-survivors-against-denialism%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Drawing on personal accounts and historical evidence, \u2018Truth Before Reconciliation: Confronting Residential School Denialism\u2019 was launched in Winnipeg on Sept. 17</p>\n<p>The post <a href=\"https://indiginews.com/news/new-book-aims-to-push-back-and-defend-survivors-against-denialism/\">New book aims to \u2018push back and defend survivors\u2019 against denialism</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
+      "summary": "Drawing on personal accounts and historical evidence, \u2018Truth Before Reconciliation: Confronting Residential School Denialism\u2019 was launched in Winnipeg on Sept. 17 The post New book aims to \u2018push back and defend survivors\u2019 against denialism appeared first on Indiginews .",
+      "_excerpt": "Drawing on personal accounts and historical evidence, \u2018Truth Before Reconciliation: Confronting Residential School Denialism\u2019 was launched in Winnipeg on Sept. 17 The post New book aims to \u2018push back and defend survivors\u2019 against denialism appeared first on Indiginews .",
+      "date_published": "2026-09-29T15:04:15+00:00",
+      "authors": [
+        {
+          "name": "IndigiNews",
+          "url": "https://indiginews.com/"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 68,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "https://media.indiginews.com/2026/09/P1048351-1024x644.jpg",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 63
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-01",
+    "target_weekday": 3,
+    "target_focus_slug": "economic-development",
+    "target_focus_name": "Economic Development",
+    "status": "held"
+  },
+  "https://www.myeastkootenaynow.com/58381/news/environment/restoration-work-aims-to-reduce-wildfire-risk-north-of-cranbrook/": {
+    "article": {
+      "id": "https://www.myeastkootenaynow.com/58381/news/environment/restoration-work-aims-to-reduce-wildfire-risk-north-of-cranbrook/",
+      "url": "https://www.myeastkootenaynow.com/58381/news/environment/restoration-work-aims-to-reduce-wildfire-risk-north-of-cranbrook/",
+      "title": "[My East Kootenay Now] Restoration work aims to reduce wildfire risk north of Cranbrook",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.myeastkootenaynow.com%2F58381%2Fnews%2Fenvironment%2Frestoration-work-aims-to-reduce-wildfire-risk-north-of-cranbrook%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"271\" src=\"https://www.myeastkootenaynow.com/wp-content/uploads/2026/09/tree-e1790101182895.jpg\" width=\"481\" />A restoration project north of Cranbrook is working to reduce wildfire risk while improving forest, grassland and wildlife habitat.</p>\n<p>The post <a href=\"https://www.myeastkootenaynow.com/58381/news/environment/restoration-work-aims-to-reduce-wildfire-risk-north-of-cranbrook/\">Restoration work aims to reduce wildfire risk north of Cranbrook</a> appeared first on <a href=\"https://www.myeastkootenaynow.com\">My East Kootenay Now</a>.</p>",
+      "summary": "A restoration project north of Cranbrook is working to reduce wildfire risk while improving forest, grassland and wildlife habitat. The post Restoration work aims to reduce wildfire risk north of Cranbrook appeared first on My East Kootenay Now .",
+      "_excerpt": "A restoration project north of Cranbrook is working to reduce wildfire risk while improving forest, grassland and wildlife habitat. The post Restoration work aims to reduce wildfire risk north of Cranbrook appeared first on My East Kootenay Now .",
+      "date_published": "2026-09-22T07:17:23+00:00",
+      "authors": [
+        {
+          "name": "My East Kootenay Now",
+          "url": "https://www.myeastkootenaynow.com"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 67,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 57
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-02",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "held"
+  },
+  "https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/?utm_source=rss": {
+    "article": {
+      "id": "https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/?utm_source=rss",
+      "url": "https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/?utm_source=rss",
+      "title": "[Neowin] Adobe Premiere finally lands on Android, but has steep RAM requirements",
+      "content_html": "<img src=\"https://cdn.neowin.com/news/images/uploaded/2026/09/1790109264_media_18ca513c2139c5f05781c7d076921926c64caa00f-fotor-2026092313313_story.webp\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.neowin.net%2Fnews%2Fadobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements%2F%3Futm_source%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div style=\"float: left; margin-right: 10px;\"><img alt=\"\" src=\"https://cdn.neowin.com/news/images/uploaded/2026/09/1790109264_media_18ca513c2139c5f05781c7d076921926c64caa00f-fotor-2026092313313_medium.webp\" /></div>Android creators finally get a powerful new editing option, but Adobe&#039;s latest mobile app comes with a few notable catches. <a href=\"https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/\">Read more...</a>",
+      "summary": "Android creators finally get a powerful new editing option, but Adobe's latest mobile app comes with a few notable catches. Read more...",
+      "_excerpt": "Android creators finally get a powerful new editing option, but Adobe's latest mobile app comes with a few notable catches. Read more...",
+      "date_published": "2026-09-22T20:54:01+00:00",
+      "authors": [
+        {
+          "name": "Neowin",
+          "url": "https://www.neowin.net"
+        }
+      ],
+      "ai_score": 45,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "https://cdn.neowin.com/news/images/uploaded/2026/09/1790109264_media_18ca513c2139c5f05781c7d076921926c64caa00f-fotor-2026092313313_story.webp",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 45
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-08",
+    "target_weekday": 3,
+    "target_focus_slug": "guardians-stewardship",
+    "target_focus_name": "Guardians & Land Stewardship",
+    "status": "held"
+  },
+  "https://vancouversun.com/news/bc-conservation-officer-service-warns-of-increased-grizzly-bear-sightings-on-sunshine-coast": {
+    "article": {
+      "id": "https://vancouversun.com/news/bc-conservation-officer-service-warns-of-increased-grizzly-bear-sightings-on-sunshine-coast",
+      "url": "https://vancouversun.com/news/bc-conservation-officer-service-warns-of-increased-grizzly-bear-sightings-on-sunshine-coast",
+      "title": "[Vancouver Sun] B.C. Conservation Officer Service warns of increased grizzly bear sightings on Sunshine Coast",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fvancouversun.com%2Fnews%2Fbc-conservation-officer-service-warns-of-increased-grizzly-bear-sightings-on-sunshine-coast\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPoor berry crop and increase in bear population linked to reports in\u00a0Pender Harbour, Madeira Park and Sechelt communities",
+      "summary": "Poor berry crop and increase in bear population linked to reports in Pender Harbour, Madeira Park and Sechelt communities",
+      "_excerpt": "Poor berry crop and increase in bear population linked to reports in Pender Harbour, Madeira Park and Sechelt communities",
+      "date_published": "2026-09-30T01:23:20+00:00",
+      "authors": [
+        {
+          "name": "Vancouver Sun",
+          "url": "https://vancouversun.com/news/bc-wildfires-new-evacuation-orders-issued-south-chilcotin"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 89,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 62,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-30T04:11:21.314165+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-02",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "held"
+  },
+  "https://www.sciencedaily.com/releases/2026/09/260922005649.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/09/260922005649.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/09/260922005649.htm",
+      "title": "[ScienceDaily] The LHC just ruled out another hiding place for quantum black holes",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F09%2F260922005649.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPhysicists searching through Large Hadron Collider data found no evidence that the machine has been producing microscopic quantum black holes, but the result sharply narrows where such exotic physics could still be hiding. These hypothetical black holes could form if extra spatial dimensions make gravity much stronger at extremely tiny scales, potentially offering clues toward the long-sought theory of quantum gravity.",
+      "summary": "Physicists searching through Large Hadron Collider data found no evidence that the machine has been producing microscopic quantum black holes, but the result sharply narrows where such exotic physics could still be hiding. These hypothetical black holes could form if extra spatial dimensions make",
+      "_excerpt": "Physicists searching through Large Hadron Collider data found no evidence that the machine has been producing microscopic quantum black holes, but the result sharply narrows where such exotic physics could still be hiding. These hypothetical black holes could form if extra spatial dimensions make gravity much stronger at extremely tiny scales, potentially offering clues toward the long-sought theory of quantum gravity.",
+      "date_published": "2026-09-23T03:32:54+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 74,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 59,
+      "_theme_score_raw": 2,
+      "_composite_podcast": 58,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_boosted_score": 57
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-04",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://insideevs.com/news/809068/1970-international-scout-ev-conversion-price/": {
+    "article": {
+      "id": "https://insideevs.com/news/809068/1970-international-scout-ev-conversion-price/",
+      "url": "https://insideevs.com/news/809068/1970-international-scout-ev-conversion-price/",
+      "title": "[InsideEVs] This 1970 Scout Sat In A Field For Years. Now It\u2019s An EV With Its Original 4-Speed Manual",
+      "content_html": "<img src=\"https://cdn.motor1.com/images/mgl/KbZBpQ/s3/1970-international-harvester-scout-800a-ev-conversion-by-beachman.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Finsideevs.com%2Fnews%2F809068%2F1970-international-scout-ev-conversion-price%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCanada\u2019s Beachman says EV conversions start at $25,000.",
+      "summary": "Canada\u2019s Beachman says EV conversions start at $25,000.",
+      "_excerpt": "Canada\u2019s Beachman says EV conversions start at $25,000.",
+      "date_published": "2026-09-22T08:34:13+00:00",
+      "authors": [
+        {
+          "name": "InsideEVs",
+          "url": "https://www.insideevs.com"
+        }
+      ],
+      "ai_score": 48,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 51,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.motor1.com/images/mgl/KbZBpQ/s3/1970-international-harvester-scout-800a-ev-conversion-by-beachman.jpg",
+      "_boosted_score": 48
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-07",
+    "target_weekday": 2,
+    "target_focus_slug": "vehicles-field-gear",
+    "target_focus_name": "Vehicles & Field Gear",
+    "status": "held"
+  },
+  "https://www.wired.com/story/tiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans/": {
+    "article": {
+      "id": "https://www.wired.com/story/tiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans/",
+      "url": "https://www.wired.com/story/tiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans/",
+      "title": "[WIRED] Tiny Hairs That Help Corals Breathe May Malfunction in Warming Oceans",
+      "content_html": "<img src=\"https://media.wired.com/clips/6aac22cde42f8093b632ba5e/master/pass/CoralCilia-crCesarPacharres-Lede.mp4\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Ftiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSeveral new studies have uncovered this long overlooked aspect of coral physiology that could be the key to the animals\u2019 fate in a changing climate.",
+      "summary": "Several new studies have uncovered this long overlooked aspect of coral physiology that could be the key to the animals\u2019 fate in a changing climate.",
+      "_excerpt": "Several new studies have uncovered this long overlooked aspect of coral physiology that could be the key to the animals\u2019 fate in a changing climate.",
+      "date_published": "2026-09-20T09:00:00+00:00",
+      "authors": [
+        {
+          "name": "WIRED",
+          "url": "https://www.wired.com"
+        }
+      ],
+      "ai_score": 56,
+      "_quality": 77,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 59,
+      "_theme_score_raw": 2,
+      "_composite_podcast": 45,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://media.wired.com/clips/6aac22cde42f8093b632ba5e/master/pass/CoralCilia-crCesarPacharres-Lede.mp4",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-28T04:07:28.368905+00:00"
+      },
+      "_boosted_score": 56
+    },
+    "held_date": "2026-09-30",
+    "target_date": "2026-10-09",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.npr.org/2026/09/22/nx-s1-5976782/your-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says": {
+    "article": {
+      "id": "https://www.npr.org/2026/09/22/nx-s1-5976782/your-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says",
+      "url": "https://www.npr.org/2026/09/22/nx-s1-5976782/your-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says",
+      "title": "[NPR Health News] Your smartwatch isn't accurately counting how many calories you burn, study says",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.npr.org%2F2026%2F09%2F22%2Fnx-s1-5976782%2Fyour-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA new study finds that consumer-grade fitness wearables are generally inaccurate when calculating calories burned. NPR's Leila Fadel speaks with the study's lead author Jason Kostrna.",
+      "summary": "A new study finds that consumer-grade fitness wearables are generally inaccurate when calculating calories burned. NPR's Leila Fadel speaks with the study's lead author Jason Kostrna.",
+      "_excerpt": "A new study finds that consumer-grade fitness wearables are generally inaccurate when calculating calories burned. NPR's Leila Fadel speaks with the study's lead author Jason Kostrna.",
+      "date_published": "2026-09-22T08:44:15+00:00",
+      "authors": [
+        {
+          "name": "NPR Health News",
+          "url": "https://www.npr.org/sections/health-shots/"
+        }
+      ],
+      "ai_score": 36,
+      "_quality": 68,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 59,
+      "_theme_score_raw": 2,
+      "_composite_podcast": 39,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_boosted_score": 36
+    },
+    "held_date": "2026-09-30",
     "target_date": "2026-10-04",
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",

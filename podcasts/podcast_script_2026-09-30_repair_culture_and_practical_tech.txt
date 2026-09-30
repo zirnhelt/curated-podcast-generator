@@ -1,0 +1,181 @@
+# Cariboo Signals Podcast Script - 2026-09-30
+# Theme: Repair Culture & Practical Tech
+# Brave: yes
+# Weather: yes
+# Anchor: When is small genuinely better, and when is it just an excuse?
+# Generated: 2026-09-30 10:40:42 PDT
+
+**COLD OPEN**
+**CASEY:** Hey, welcome back. On today's episode, our own MLA Lorne Doerkson just became interim leader of the B.C. Conservatives weeks before an election, and we're digging into what that means for Cariboo-Chilcotin's ballot. Plus, a 220-million-record airline breach and a fresh AirPods teardown push us into a deep dive: is a household running its own encryption really self-reliance, or just an unpaid job nobody asked for? That and more, coming right up.
+
+**WELCOME**
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Casey. It's Wednesday, September 30th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Repair Culture & Practical Tech.
+
+**RILEY:** [pause:1000] And I'm Riley. Today we're looking at the gear and the habits that outlast whatever's supposed to support them, and what that says about how much of our own digital security we're expected to shoulder ourselves. Quick weather check first — Horsefly Lake is overcast this morning, around 3 degrees, with a high of 12 and some light drizzle through the day, maybe 8 percent chance of it amounting to anything. Around the region: 100 Mile House sitting near 2 with clear skies, Williams Lake about 2 and overcast, Quesnel around 3 and clear, Riske Creek near 2, also clear.
+
+**CASEY:** Let's get into what's happening around the region.
+
+**NEWS ROUNDUP**
+
+**RILEY:** A fairly quiet news day close to home, with one loud exception on the political side that we'll spend some real time on.
+
+**CASEY:** RCMP responded to an incident at the 100 Mile Motel and RV Park Tuesday morning. Officials were called to the scene but details remain thin — no word yet on what triggered the response or whether charges are involved.
+
+**RILEY:** [pause:1200] More serious news out of Williams Lake. Flames destroyed a house on Horsefly Road on Tuesday. A neighbour, Kayla Bush, has already launched a GoFundMe for the woman who lost the home, Lana Wilson. No cause has been released yet.
+
+**CASEY:** That kind of loss lands differently out here — no quick hotel booking, no easy replacement for a rural household that's often also a small farm operation.
+
+**RILEY:** The Cariboo Fire Centre is lifting its open burning prohibition. Category 2 and 3 fires will be permitted again starting at noon on Friday, October 2nd.
+
+**CASEY:** After a summer of watching for smoke on the horizon, that's a real seasonal marker — people can finally get back to burning slash piles and yard debris without a permit violation hanging over them.
+
+**RILEY:** Today is the National Day for Truth and Reconciliation, and South Cariboo schools marked Orange Shirt Day yesterday ahead of it. Students and staff across 100 Mile House wore orange in recognition of residential school survivors and the children who never made it home.
+
+**CASEY:** Over in Quesnel, RCMP recovered loaded firearms and drugs in two separate incidents — one Saturday the 26th, one Monday the 28th.
+
+**RILEY:** [pause:900] The Okanagan Nation Alliance put out a strong statement after members of a white nationalist group were spotted in Kamloops. Chief Clarence Louie and the Alliance condemned the group's presence on their territory in blunt terms.
+
+**CASEY:** Worth noting that's Kamloops, not anywhere in the Cariboo proper — but the Alliance's statement traveled through regional coverage because the group has been showing up at events across the interior.
+
+**RILEY:** [pause:900] And now the story that actually touches our own ballots directly. The Tribune published a piece asking whether Premier Eby's snap election call was a bad bet for the NDP — but there's a bigger story sitting underneath that headline, and it involves our own MLA.
+
+**CASEY:** Lorne Doerkson, the sitting Cariboo-Chilcotin MLA, is now the interim leader of the B.C. Conservative Party. The party's board installed him after Kerry-Lynne Findlay resigned on September 21st.
+
+**RILEY:** The Chilliwack Progress described Findlay's time in charge as a "scandal-plagued tenure of under four months" during which the party nearly split in two. That's not a small collapse to have happen weeks before a provincial vote.
+
+**CASEY:** From riding MLA to party leader in a matter of days, and by board appointment, not by a membership vote. CBC reported speculation the appointment came amid talk of an early election call, which — well, here we are.
+
+**RILEY:** Doerkson first won Cariboo-Chilcotin back in 2020 running as a B.C. Liberal, with just over 51 percent of the vote, beating NDP candidate Scott Andrews by about 19 points. He held the seat again in 2024, this time under the Conservative banner, by a margin of over 7,700 votes.
+
+**CASEY:** That's a big enough cushion that the leadership chaos probably doesn't touch his own seat much. It's the party's stability voters should be watching, not his.
+
+**RILEY:** He's filed to run again on October 24th, according to bcballot.ca. No NDP or Green candidate has filed in Cariboo-Chilcotin as of today's sources.
+
+**CASEY:** Next door in Prince George-North Cariboo, Sheldon Clare is also on the ballot for the Conservatives. He unseated BC United's Coralee Oakes by a wide margin in 2024 — final counts had him near 57 percent to her roughly 22.
+
+**RILEY:** Clare's had his own detour through party politics this year. He briefly ran for the Conservative leadership himself back in January, then withdrew in late February alongside another sitting MLA, Steve Kooner.
+
+**CASEY:** Findlay won that leadership contest in May with 51 percent of points on a fourth-round count. Four months later, she was out.
+
+**RILEY:** Clare's since become the Opposition House Leader, so the caucus clearly still trusts him with a real role even after he pulled out of the leadership race himself.
+
+**CASEY:** No NDP or Green candidate has filed yet in Prince George-North Cariboo either, though a 2024 Green candidate, Randy Thompson, hasn't been confirmed one way or the other for this cycle.
+
+**RILEY:** Nominations stay open until October 3rd for both ridings, so all of this could shift within the week.
+
+**CASEY:** [pause:600] Worth being clear — this is a completely separate ballot from the Williams Lake municipal race on October 17th. Different offices, different date, different names. Don't let them blur together over the next few weeks.
+
+**RILEY:** Agreed. On to something a little less fraught. California just legislated a piece of hardware out of existence. Governor Newsom signed a bill banning police use of electrical shock gloves, a so-called "pain compliance" tool that had become popular with ICE officers in recent months.
+
+**CASEY:** A tool getting banned outright rather than reformed or redesigned. That's its own kind of technology story — sometimes the fix is a law, not an engineer.
+
+**RILEY:** [pause:1000] Sticking with things you build and maintain rather than replace — Small Farm Canada has a piece on cereal rye as a fall cover crop. Plant it now, and it holds soil through winter, adds organic matter, and cuts erosion before spring planting.
+
+**CASEY:** Cheap, too. A bag of rye seed costs a fraction of what a bag of fertilizer runs next April, and it does more for the soil structure long-term.
+
+**RILEY:** iFixit put the new AirPods 5 through their usual teardown, and for the first time in a decade, Apple's earbuds didn't score a flat zero for repairability. Small changes to how the battery is mounted mean an independent shop might actually manage a swap without destroying the case.
+
+**CASEY:** Ten years of zero is a low bar to finally clear. Still, if there's a path for AirPods toward something better than landfill, that's the payoff of years of right-to-repair pressure finally showing up in a product design decision.
+
+**RILEY:** [pause:800] In the same spirit, Hackaday featured someone building a fully 3D-printed mechanical calculator — no batteries, no firmware, no chip that stops getting security patches in five years. Just gears turning gears.
+
+**CASEY:** You could hand that calculator to a kid forty years from now and it would still work exactly the same way.
+
+**RILEY:** Engadget has a piece on AI companies scrambling to release tools that stop lawyers from citing fake, AI-hallucinated case law in actual court filings, after several attorneys got fined for exactly that this year.
+
+**CASEY:** Dezeen is asking whether data centres — these enormous buildings going up to feed AI demand across North America — can ever actually be good architecture, or whether they're just warehouses with nicer landscaping around the perimeter fence.
+
+**RILEY:** And a Singapore-based company called Nexstrom raised new funding this month to bring 2D semiconductor materials into chip fabrication at industrial scale. It's years away from touching anything in a Cariboo garage, but it's the kind of foundational manufacturing bet that everything downstream — phones, laptops, sensors — eventually depends on.
+
+**CASEY:** Last item's a bit of a pivot south of the border — Business Insider reports nearly ninety organizations are calling on the U.S. Congress for an emergency hearing over what they're calling "drastic changes" to federal student loan repayment.
+
+**RILEY:** Not strictly a tech story, but a reminder that sudden policy whiplash isn't unique to a snap provincial election call here at home. We'll leave that one south of the border for now.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** That election thread is one we'll pick back up shortly. First, today's spotlight is on the Cariboo Regional District Library system — branches in Williams Lake, Quesnel, 100 Mile House, and several smaller communities across the region. Free internet access for anyone who walks through the door, digital literacy programs for people getting comfortable with a new device, and honestly, just a warm, quiet room with wifi when your own connection is out. If you haven't been in for a while, check what your local branch is running this fall — hours and programs are posted at cln.ca.
+
+**RILEY:** The library is one of the only places left in a lot of these towns where "help me with my computer" doesn't come with an invoice attached.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**RILEY:** A household setting up its own password vault and encrypting its own hard drive instead of paying for managed security — is that real self-reliance, or is it just picking up a job that used to belong to somebody else?
+
+**CASEY:** Depends who used to be doing it. For a lot of rural households, nobody ever was.
+
+**RILEY:** That's the piece worth sitting with from the MakeUseOf rundown this month — five open-source security tools people are installing on a fresh Windows machine. A password manager, VeraCrypt for full-disk encryption, a firewall utility, a debloating tool, and something for secure file deletion. All free. All of it used to sit under an IT department's job description, or a paid service plan.
+
+**CASEY:** Or a service you never had access to in the first place because the nearest provider doesn't sell it out here.
+
+**RILEY:** Which is the case for calling it self-reliance rather than a workaround. VeraCrypt does the same job as the enterprise disk encryption built into a corporate laptop. A password manager closes the single largest hole in home security, which is reused passwords across a dozen accounts, and it costs nothing.
+
+**CASEY:** The problem is somebody has to know these tools exist, know how to configure them correctly, and keep using them without skipping a step. That's a real ask for a household in Wells with one shared laptop and nobody in the house who's ever heard the word "encryption" outside a heist movie.
+
+**RILEY:** It's a skill gap, not a cost gap. And a skill gap is the better problem to have — it closes with one good library session.
+
+**CASEY:** [pause:400] Only if somebody's actually teaching that session. Who's running it in 100 Mile House this month?
+
+**RILEY:** The library system, potentially — they already run digital literacy programming. That's their stated mandate, not a hypothetical.
+
+**CASEY:** A stated mandate and a delivered class aren't the same thing. Does a two-person branch have the staff time to add a session on disk encryption on top of story hour and the tax clinic and everything else already on the calendar?
+
+**RILEY:** I don't have that staffing number in front of me. But the tools being free now is still a meaningfully different starting point than five years ago, when the commercial equivalent of that same suite ran real money every month.
+
+**CASEY:** The tools got cheaper. The person who has to sit down and actually configure them for their household is still entirely on their own.
+
+**RILEY:** [pause:600] There's a TechRadar story this week that cuts against that, though. A data breach involving 220 million traveler records — nine years of airline passenger and passport data exposed because of a misconfiguration on the provider's end. That's not a home user skipping VeraCrypt. That's an institution with an actual security team getting it wrong at scale.
+
+**CASEY:** So the claim that institutions handle this more competently than individuals doesn't hold up either.
+
+**RILEY:** Not automatically. Scale doesn't guarantee competence. It just guarantees the failure is bigger and more expensive to clean up when it finally happens.
+
+**CASEY:** Which arguably argues for the small homelab setup, not against it. If an airline with a dedicated IT staff can still leak nine years of passport numbers, maybe the household quietly running its own encrypted backup isn't behind the curve. Maybe it's just small enough that nobody's paying attention when it goes right.
+
+**RILEY:** That's a real case for small being the safer bet — not romantic, just a matter of fewer records worth stealing, less of a visible target.
+
+**CASEY:** Except a small target with weak defenses is still an easy target, even if it's not a lucrative one. There's a difference between "too small to be worth attacking" and "actually protected." A lot of households assume they're the second when they're really only the first.
+
+**RILEY:** [pause:500] There's a TechRadar piece from this week that complicates that picture further. A group called ShinyHunters reportedly hacked into Cl0p, an established ransomware gang, defaced their site, and stole their data. Criminal operations are now attacking each other.
+
+**CASEY:** A cybercrime civil war three time zones away doesn't trickle down to a business in Wells running budget hardware. If anything it's background noise. Nobody's publishing a plain-language bulletin out of that fight that a one-truck repair shop can actually act on.
+
+**RILEY:** Except it tells you something concrete about the shape of the threat. There's no single monolithic "the hackers" out there to defend against — there are competing operations with competing targets and competing incentives, some of them now actively undermining each other. A household treating security like a one-time checklist is missing that the whole field keeps shifting underneath it.
+
+**CASEY:** Which is exactly my point restated the other way. This isn't a problem you configure once and close the laptop on. It's ongoing maintenance, indefinitely. And rural households don't get paid to do ongoing maintenance on their own digital lives.
+
+**RILEY:** Nobody gets paid to lock their front door at night either. Some things are baseline hygiene, not a job with a salary attached.
+
+**CASEY:** A door lock doesn't need a firmware patch six months later when somebody discovers a new way to pick it.
+
+**RILEY:** [pause:500] That cuts the other way too with physical gear. On Tuesday's roundup we heard about the AirPods teardown — a decade of zero scores on repairability before this year's small fix. The same pattern shows up with a repair shop running budget hardware with no in-house IT, entirely dependent on whoever locally understands how the tools actually work. One person, often unpaid or barely compensated, becomes the de facto security node for an entire community.
+
+**CASEY:** And when that person retires, or takes a better-paying job in Kamloops, the knowledge leaves with them. Nothing gets written down anywhere. That's a single point of failure wearing self-reliance as a costume.
+
+**RILEY:** So write it down. A one-page sheet posted at the library, at the credit union, wherever people already go through the door.
+
+**CASEY:** That's the cheapest option on the table, not a fix for the turnover problem. The bulletin still depends on somebody committing to keep it updated month after month.
+
+**RILEY:** Every system depends on somebody maintaining it. The airline's IT department was somebody maintaining something too, and it still leaked 220 million records.
+
+**CASEY:** [pause:400] Which might be the actual answer to your opening question. Small isn't automatically safer, and it isn't automatically worse. It's just less visible in a specific way — a small failure never makes the news, and a small success never gets audited either. From the outside you can't tell which one you're looking at.
+
+**RILEY:** So what's the concrete marker that separates a homelab setup that's actually secure from one that just hasn't been tested yet?
+
+**CASEY:** Whether the knowledge survives the person who built it. If a household's encryption setup, or the Wells repair shop's whole operation, only works because one specific person remembers exactly how it's configured, that's a countdown clock nobody's watching.
+
+**RILEY:** [pause:600] Which is a testable claim, not just a feeling about it. A household or a small business could run that test today — write down the recovery keys somewhere durable, document the setup so a second person could follow it cold, and then try having someone else restore from the backup without calling the person who built the system.
+
+**CASEY:** A real experiment, and a cheap one. No grant application, no board meeting, no funding cycle. Somebody just has to sit down and do it before the emergency hits, which is exactly the part everybody skips.
+
+**RILEY:** The Cariboo Regional District Library could even be the place that holds a sealed copy of the instructions. Not running anyone's security for them, just keeping the envelope — the digital version of a fire safe for your recovery keys.
+
+**CASEY:** Nobody's actually proposed that to the library yet, so it's a question for them to answer, not something we get to settle on air.
+
+**RILEY:** Where this lands for me is that the actual failure point isn't household versus institution — it's whether anybody tested the recovery process before the emergency showed up. That's true whether you're running one laptop or nine years of passenger records. And if you've got a story about how your setup handles any of this, send it to feedback at cariboo signals dot c-a.
+
+**CASEY:** Where it lands for me is narrower — the tools got cheaper and better this year, but cheaper tools don't close the maintenance gap, they just lower the price of admission into one. Try the restore test on your own setup and tell us how it actually goes, because I suspect most people fail it.
+
+**RILEY:** We might be back with results nobody's going to want to hear. Have a great rest of your day.
+
+**CASEY:** See you tomorrow.
