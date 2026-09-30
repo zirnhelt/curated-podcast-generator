@@ -743,6 +743,74 @@ class TestLogClaudeUsage:
         assert facts["spend_usd"] == "0.09"
 
 
+class TestRefusalRetry:
+    """Sonnet 5.5 and Opus 5.5 decline in categories their predecessors don't;
+    a decline is a 200 with no text, which downstream reads as an empty answer."""
+
+    @staticmethod
+    def _client(*responses):
+        client = MagicMock()
+        client.messages.create.side_effect = list(responses)
+        return client
+
+    @staticmethod
+    def _refusal(category="general_harms"):
+        response = _response("refusal", [])
+        response.stop_details.category = category
+        return response
+
+    @pytest.fixture(autouse=True)
+    def _quiet(self, monkeypatch):
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        monkeypatch.setattr(pg, "_log_claude_usage", lambda *a, **k: None)
+        return recorded
+
+    def test_newer_model_decline_is_retried_on_its_predecessor(self, _quiet):
+        import podcast_generator as pg
+        ok = _response("end_turn", [_text_block("script")])
+        client = self._client(self._refusal(), ok)
+
+        result = pg.send_claude(client, model="claude-sonnet-5-5", max_tokens=10,
+                                thinking={"type": "between_tools"}, messages=[])
+
+        assert result is ok
+        retry = client.messages.create.call_args_list[1].kwargs
+        assert retry["model"] == "claude-sonnet-5"
+        assert retry["thinking"] == {"type": "disabled"}   # between_tools is 5.5-only
+        assert _quiet == [("claude/refusal",
+                           "claude-sonnet-5-5 declined (general_harms); retried on claude-sonnet-5")]
+
+    def test_opus_5_5_falls_back_to_opus_5(self, _quiet):
+        import podcast_generator as pg
+        client = self._client(self._refusal("bio"), _response("end_turn", [_text_block("ok")]))
+
+        pg.create_message(client, model="claude-opus-5-5", max_tokens=10, messages=[])
+
+        assert client.messages.create.call_args_list[1].kwargs["model"] == "claude-opus-5"
+
+    def test_decline_without_a_fallback_is_still_recorded(self, _quiet):
+        import podcast_generator as pg
+        refusal = self._refusal()
+        client = self._client(refusal)
+
+        assert pg.send_claude(client, model="claude-sonnet-5", messages=[]) is refusal
+        assert client.messages.create.call_count == 1
+        assert "no fallback model" in _quiet[0][1]
+
+    def test_an_answer_is_not_retried(self, _quiet):
+        import podcast_generator as pg
+        client = self._client(_response("end_turn", [_text_block("ok")]))
+        pg.send_claude(client, model="claude-sonnet-5-5", messages=[])
+        assert client.messages.create.call_count == 1
+        assert _quiet == []
+
+    def test_opus_escalation_defaults_to_opus_5_5(self):
+        import podcast_generator as pg
+        assert pg.OPUS_REVIEW_MODEL == "claude-opus-5-5"
+
+
 class TestPolishFallbackBudget:
     def test_fallback_matches_the_batch_budget(self, monkeypatch):
         """At 16000/medium the 2026-09-27 fallback truncated and ran twice."""

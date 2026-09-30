@@ -268,7 +268,9 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 Treat API budget as a first-class constraint on every change.
 
 - **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for review escalation when deep-dive sourcing is thin (<3 articles).
-- **Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking={"type": "disabled"}`. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
+- **Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking=thinking_off(model)` (`config_loader`), never a literal: Sonnet 5 takes `{"type": "disabled"}`, Sonnet 5.5 rejects it with a 400 and takes `between_tools`, and Opus 5.5 can't turn thinking off at all. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
+- **One switch for Sonnet.** Every Sonnet role follows `CLAUDE_SONNET_MODEL` (a repository variable both workflows pass through; unset means `claude-sonnet-5`); a per-role `CLAUDE_*_MODEL` still overrides it. Opus escalation is `claude-opus-5-5`.
+- **A refusal is retried once on the model it replaced** (`send_claude`, `_REFUSAL_FALLBACK`) and always `degrade()`s as `claude/refusal`. Every Sonnet or Opus call goes through `send_claude` or `create_message`, never a bare `client.messages.create`.
 - **Prompt compression is mandatory.** Strip filler and redundant context before sending.
 - **Cache aggressively.** Use Anthropic `cache_control` headers for large static context reused across calls.
 - **Batch where possible.** Combine small tasks into one API call instead of N round-trips.

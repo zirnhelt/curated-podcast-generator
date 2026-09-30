@@ -57,3 +57,12 @@ def test_empty_report_fails_instead_of_saving_a_header(review_env):
 def test_truncated_report_says_so(review_env):
     review_env("## Review\nPartial", "max_tokens")
     assert "truncated" in rs.run_review(7)
+
+
+def test_sonnet_5_5_gets_between_tools_not_disabled(review_env, monkeypatch):
+    """Sonnet 5.5 answers thinking={"type": "disabled"} with a 400."""
+    monkeypatch.setattr(rs, "REVIEW_MODEL", "claude-sonnet-5-5")
+    client = review_env("## Review\nFine.", "end_turn")
+    rs.run_review(7)
+    assert client.kwargs["model"] == "claude-sonnet-5-5"
+    assert client.kwargs["thinking"] == {"type": "between_tools"}

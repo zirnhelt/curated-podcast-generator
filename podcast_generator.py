@@ -37,6 +37,8 @@ except ImportError:
 
 # Import configuration loader
 from config_loader import (
+    SONNET_MODEL,
+    thinking_off,
     load_podcast_config,
     load_hosts_config,
     load_themes_config,
@@ -577,10 +579,57 @@ def create_message(client, stream=False, **kwargs):
     """
     kwargs.setdefault("thinking", {"type": "adaptive"})
     kwargs.setdefault("output_config", {"effort": THINKING_EFFORT})
-    if stream:
-        with client.messages.stream(**kwargs) as s:
-            return s.get_final_message()
-    return client.messages.create(**kwargs)
+    return send_claude(client, stream=stream, **kwargs)
+
+
+# A decline from a newer model is retried once on the model it replaced. Sonnet
+# 5.5 declines in categories Sonnet 5 does not ("general_harms" among them) and
+# Opus 5.5 adds a biology classifier, while the show reads crime, election and
+# health news every week. The API's server-side `fallbacks` option does not
+# retry general_harms on Sonnet 5.5, so this retry is ours, and it covers every
+# category. The predecessor cannot read the newer model's thinking blocks; the
+# API drops them unbilled, which is fine for a one-off retry.
+_REFUSAL_FALLBACK = {
+    "claude-sonnet-5-5": "claude-sonnet-5",
+    "claude-opus-5-5": "claude-opus-5",
+}
+
+
+def _refusal_category(response) -> str:
+    category = getattr(getattr(response, "stop_details", None), "category", None)
+    return category if isinstance(category, str) else "unspecified"
+
+
+def send_claude(client, stream=False, **kwargs):
+    """One Claude call, streamed or not, with the refusal retry above.
+
+    A decline is a normal 200 with stop_reason "refusal" and no text, so without
+    this it reads downstream as an empty answer: a skipped cold open, an
+    unpolished script, or no episode. Every decline is degrade()d, retried or not.
+    """
+    def send(params):
+        if stream:
+            with client.messages.stream(**params) as s:
+                return s.get_final_message()
+        return client.messages.create(**params)
+
+    response = send(kwargs)
+    if getattr(response, "stop_reason", None) != "refusal":
+        return response
+
+    model = kwargs.get("model")
+    category = _refusal_category(response)
+    fallback = _REFUSAL_FALLBACK.get(model)
+    if not fallback:
+        degrade("claude/refusal", f"{model} declined ({category}); no fallback model")
+        return response
+
+    _log_claude_usage(response)  # the caller logs only the response it gets back
+    retry = {**kwargs, "model": fallback}
+    if (retry.get("thinking") or {}).get("type") == "between_tools":
+        retry["thinking"] = {"type": "disabled"}  # only Sonnet 5.5 accepts between_tools
+    degrade("claude/refusal", f"{model} declined ({category}); retried on {fallback}")
+    return send(retry)
 
 def _debate_summary_schema(with_calls_to_action: bool) -> dict:
     """JSON schema for the deep-dive debate summary.
@@ -695,18 +744,19 @@ def get_podcast_feed_url(weekday):
 
 # Claude model selection (override via environment variables)
 # Cost hierarchy (cheapest to most expensive): Haiku → Sonnet → Opus.
-# Opus 5 is $5/$25 per MTok against Sonnet 5's $3/$15 — under 2x, not the ~5x
-# the tier gap used to cost, but still a real premium: keep the escalation
-# gated on select_review_model rather than making it the default.
+# Opus 5.5 is $4/$20 per MTok against Sonnet's $2/$10 — 2x, still a real
+# premium: keep the escalation gated on select_review_model rather than making
+# it the default. Every Sonnet role follows CLAUDE_SONNET_MODEL (config_loader)
+# unless its own variable overrides it.
 # Model IDs carry no date suffix; the bare ID is the complete identifier.
-SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-5")
-POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
-OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-5")
+SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL") or SONNET_MODEL
+POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL") or SONNET_MODEL
+OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL") or "claude-opus-5-5"
 SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5")
 # Rewrites only the handful of sentences that kept a hard-banned phrase, never
 # the script — cheapest model is the right one for a few hundred tokens.
 SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL", "claude-haiku-4-5")
-COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL", "claude-sonnet-5")
+COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL") or SONNET_MODEL
 
 # OpenAI TTS model. tts-1/tts-1-hd are the legacy pair and the only ones that
 # honour `speed`; gpt-4o-mini-tts takes an `instructions` parameter instead —
@@ -3948,6 +3998,11 @@ def collect_batch_results(batch_id):
             if result.result.type == "succeeded":
                 message = result.result.message
                 _log_claude_usage(message, batch=True)
+                if getattr(message, "stop_reason", None) == "refusal":
+                    # The real-time fallback that follows gets the refusal retry.
+                    degrade("claude/refusal",
+                            f"batch {custom_id} declined on {getattr(message, 'model', '?')} "
+                            f"({_refusal_category(message)})")
                 results[custom_id] = {
                     "text": message_text(message),
                     "truncated": _truncated(message),
@@ -4794,9 +4849,14 @@ def generate_cold_open(script, theme_name):
     )
 
     try:
-        response = api_retry(lambda: client.messages.create(
+        # A 300-token budget has no room for thinking, which shares it: the
+        # small-call rule in CLAUDE.md. Sonnet 5.5 thinks before almost every
+        # reply at its default effort and would spend the budget doing it.
+        response = api_retry(lambda: send_claude(
+            client,
             model=COLD_OPEN_MODEL,
             max_tokens=300,
+            thinking=thinking_off(COLD_OPEN_MODEL),
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_claude_usage(response)
@@ -6103,7 +6163,8 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
     )
 
     try:
-        response = api_retry(lambda: client.messages.create(
+        response = api_retry(lambda: send_claude(
+            client,
             model=POLISH_MODEL,
             max_tokens=4000,
             messages=[{"role": "user", "content": prompt}],

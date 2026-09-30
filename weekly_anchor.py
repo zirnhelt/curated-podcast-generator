@@ -30,11 +30,13 @@ from pathlib import Path
 
 from config_loader import (
     atomic_write_json,
+    SONNET_MODEL,
     json_output_config,
     load_prompts_config,
     load_themes_config,
     load_weekly_anchors_config,
     message_text,
+    thinking_off,
 )
 
 # ponytail: MEMORY_DIR mirrors psa_selector — a future multi-tenant deployment
@@ -57,7 +59,7 @@ TOP_UP_COUNT = 6
 ASSIGNED_RETENTION_WEEKS = 8
 USED_RETENTION_WEEKS = 104
 
-ANCHOR_MODEL = os.getenv("CLAUDE_ANCHOR_MODEL", "claude-sonnet-5")
+ANCHOR_MODEL = os.getenv("CLAUDE_ANCHOR_MODEL") or SONNET_MODEL
 
 # This module cannot import degrade() from podcast_generator without a circular
 # import — same constraint gemini_tts lives under, same solution.
@@ -191,7 +193,7 @@ def _call_claude(client, prompt: str, max_tokens: int, schema: dict, log_usage=N
             max_tokens=max_tokens,
             messages=[{"role": "user", "content": prompt}],
             output_config=json_output_config(schema),
-            thinking={"type": "disabled"},
+            thinking=thinking_off(ANCHOR_MODEL),
         )
         if log_usage:
             usage = getattr(response, "usage", None)
