@@ -181,6 +181,30 @@ cancel** (6 of the 12). That was about $5–6 of the month, close to a fifth. Th
 20 minutes (the script step's `timeout-minutes` went to 45 to hold it), and the fallback runs at
 the batch's own budget: 24000 tokens, low effort.
 
+### Model moves (Opus 5.5, Sonnet 5.5)
+
+**Opus 5.5 replaced Opus 5 for the polish escalation on 2026-09-30**: $4/$20 against $5/$25,
+and Anthropic reports it cites sources more reliably, which is the job it does here. The
+polish routes already set effort explicitly (Opus 5.5 defaults to `medium`, not `high`) and
+never turn thinking off (Opus 5.5 can't). Moving `cache_control` markers in the agentic loop
+does not count as editing history under preserved thinking, and the account predates the
+2026-08-31 enforcement anyway.
+
+**Sonnet 5.5 is staged, not switched.** Same price as Sonnet 5, but three things differ for
+this show: `{"type": "disabled"}` is a 400 (hence `thinking_off()`); effort levels are
+recalibrated, so `medium` no longer means the same script; and it declines in five categories,
+including a broad `general_harms`, which the API's server-side `fallbacks` option does not
+retry. A news show reads crime and election stories weekly, and a declined script call is a day
+with no episode, so `send_claude` retries any decline once on the predecessor model and
+`degrade()`s. The server-side option was skipped for that coverage gap and because the client
+retry is testable offline. The cold open's 300-token call now turns thinking off: Sonnet 5.5
+thinks before almost every reply at its default effort and would spend the budget.
+
+To switch: set the `CLAUDE_SONNET_MODEL` repository variable to `claude-sonnet-5-5`, after a
+baseline week of `_log_claude_usage` totals on Sonnet 5. Compare script length, AI-tell hits,
+short-script retries, `claude/refusal` rows and cost per run in the nightly review; start
+`CLAUDE_THINKING_EFFORT` at `medium` and try `low`. Unset the variable to go back.
+
 ### Committing between stages
 
 Every workflow that commits uses the `./.github/actions/commit-push` composite action —

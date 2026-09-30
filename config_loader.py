@@ -15,6 +15,25 @@ from typing import Any
 
 CONFIG_DIR = Path(__file__).parent / "config"
 
+# One switch for every Sonnet call in the show. The workflows pass the
+# CLAUDE_SONNET_MODEL repository variable through, so moving the whole show to
+# another Sonnet (or back) is a settings change, not a commit. An unset variable
+# arrives as "", hence `or` rather than a getenv default.
+SONNET_MODEL = os.getenv("CLAUDE_SONNET_MODEL") or "claude-sonnet-5"
+
+
+def thinking_off(model: str) -> dict:
+    """The lowest thinking setting `model` accepts, for small structured calls.
+
+    Sonnet 5 takes {"type": "disabled"}. Sonnet 5.5 answers that with a 400 and
+    offers {"type": "between_tools"} instead: no extended thinking, effort `high`
+    or below, and no other field inside `thinking`. Only Sonnet 5.5 accepts
+    between_tools, so the choice has to follow the model, never be hard-coded.
+    """
+    if model.startswith("claude-sonnet-5-5"):
+        return {"type": "between_tools"}
+    return {"type": "disabled"}
+
 
 # Lives here for the same reason atomic_write_text does: generate_bespoke and
 # weekly_anchor both parse JSON out of Claude and neither may import the

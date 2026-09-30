@@ -110,6 +110,13 @@ class TestSelectAnchor:
         assert client.last_kwargs.get("thinking") == {"type": "disabled"}
         assert len(anchor["framings"]) == 7
 
+    def test_framings_on_sonnet_5_5_use_between_tools(self, pool, monkeypatch):
+        """Sonnet 5.5 rejects {"type": "disabled"}; between_tools is its off switch."""
+        monkeypatch.setattr(wa, "ANCHOR_MODEL", "claude-sonnet-5-5")
+        client = FakeClient(FRAMINGS_JSON)
+        wa.select_anchor(date(2026, 8, 17), client=client)
+        assert client.last_kwargs.get("thinking") == {"type": "between_tools"}
+
     def test_same_week_returns_same_anchor(self, pool):
         client = FakeClient(FRAMINGS_JSON)
         monday = wa.select_anchor(date(2026, 8, 17), client=client)

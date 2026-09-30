@@ -24,13 +24,13 @@ from pathlib import Path
 
 import anthropic
 
-from config_loader import message_text
+from config_loader import SONNET_MODEL, message_text, thinking_off
 
 SCRIPTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podcasts"
 CONFIG_DIR = Path(__file__).parent / "config"
 REVIEWS_DIR = Path("reviews")
 
-REVIEW_MODEL = "claude-sonnet-5"
+REVIEW_MODEL = SONNET_MODEL
 
 WEEKDAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
@@ -418,7 +418,7 @@ def run_review(days: int) -> str:
         max_tokens=16000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": build_review_prompt(scripts, config, recent_changes)}],
-        thinking={"type": "disabled"},
+        thinking=thinking_off(REVIEW_MODEL),
     )
 
     report = message_text(response)
