@@ -287,7 +287,7 @@ Treat API budget as a first-class constraint on every change.
 | Opus 5.5 | $4 | $20 | $0.20 |
 | Opus 5 | $5 | $25 | $0.50 |
 
-Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API halves every line, cache included. A cancelled batch still bills the requests that finished before the cancel. Baseline for September 2026 was $31.34 across both keys: `cariboosignals` $22.1 (Sonnet 5 script and polish about 3/4 of it), `superfeed` $10.2 (Haiku scoring $9.2).
+Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API halves every line, cache included. A cancelled batch still bills the requests that finished before the cancel. Baseline for September 2026 was $31.21 billed (list price, no discounts) across both keys: `cariboosignals` $21.0 (Sonnet 5 script and polish about 3/4 of it), `superfeed` $10.2 (Haiku scoring $9.2).
 
 ## Project Constraints
 
