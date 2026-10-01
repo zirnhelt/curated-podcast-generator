@@ -3398,8 +3398,10 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
         tool_executors["fetch_page"] = _fetch_page_tool_executor
         fetches = EVENT_PAGE_FETCH_LIMIT
 
+    # Sonnet, not SCRIPT_MODEL: a tool loop is a different job from writing the
+    # script, and trialling another script model must not move this one too.
     result = _run_agentic_loop(
-        client, SCRIPT_MODEL,
+        client, SONNET_MODEL,
         system_prompt=system_prompt,
         user_content=user_content,
         tools=tools, tool_executors=tool_executors,
@@ -6162,11 +6164,15 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
         template, required_order=required, roundup=body,
     )
 
+    # Thinking off: a reorder needs no reasoning, and Sonnet thinks by default
+    # into the same 4000 tokens the roundup has to fit in. 2026-09-26 truncated
+    # and was discarded.
     try:
         response = api_retry(lambda: send_claude(
             client,
             model=POLISH_MODEL,
             max_tokens=4000,
+            thinking=thinking_off(POLISH_MODEL),
             messages=[{"role": "user", "content": prompt}],
         ))
         _log_claude_usage(response)
@@ -8296,7 +8302,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     burned_phrases = format_burned_phrases_for_prompt()
 
     if system_prompt and 'script_generation_user' in prompts:
-        # New path: static system prompt + dynamic user prompt (neither is cached)
+        # New path: static system prompt + dynamic user prompt (cached together for the expand retry)
         user_prompt = prompts['script_generation_user']['template'].format(
             weekday=weekday,
             date_str=date_str,
@@ -8360,10 +8366,17 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
 
         print(f"   Using model: {SCRIPT_MODEL}")
 
+        # Cached for the expand retry below, which resends this exact prefix a
+        # minute later. The episode reviews record that retry on 28 of 29 days
+        # 2026-09-01..29: the write premium costs ~$0.02 and the read saves
+        # ~$0.06. Revisit if first drafts start landing on target.
         request = {
             "model": SCRIPT_MODEL,
             "max_tokens": 24000,
-            "messages": [{"role": "user", "content": user_prompt}],
+            "messages": [{"role": "user", "content": [
+                {"type": "text", "text": user_prompt,
+                 "cache_control": {"type": "ephemeral"}},
+            ]}],
         }
         if use_cached:
             request["system"] = system_prompt
@@ -8396,10 +8409,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             # the ~5,000-6,500 word target (2026-07-07: 1,984 words; 2026-07-08:
             # 2,212 words → a 14-minute episode), which the truncation guard
             # above doesn't catch. Retry once with the short draft and explicit
-            # length feedback. The request carries no cache_control, so the
-            # retry re-bills the whole prompt at full price (~$0.09 on Sonnet 5).
-            # ponytail: left uncached — one run a day never reuses the prefix
-            # outside this retry, so the 1.25x write would cost most days.
+            # length feedback; the prompt prefix is read from cache.
             print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
             expand_prompt = prompts['script_expand_retry']['template'].format(
                 word_count=word_count, burned_phrases=burned_phrases)
