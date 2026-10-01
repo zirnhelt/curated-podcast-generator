@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 1, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 1, 2026</h1>
+  <p class="meta">Published October 1, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>
+
+<h3>Two runs failed before this one started</h3>
+
+<p>The primary run at 1:05 AM Pacific and its fallback at 2:05 AM both completed but concluded as failures. The script generation step failed in both cases after 92 seconds of work. This run — Fallback 2, triggered at 3:05 AM Pacific — is executing now.</p>
+
+<h3>Script generation failed twice, then succeeded here</h3>
+
+<p>The <code>Generate episode script</code> step broke the first two attempts. The facts do not state what caused the breakage. This run's script generation completed successfully, taking 92 seconds as well.</p>
+
+<h3>The script came in short and was expanded</h3>
+
+<p>The first draft delivered 2001 words against a target of 3400 words. The pipeline sent it back for an expand pass rather than shipping it undersized. The final script reflects that revision cycle.</p>
+
+<h3>Three deep dives made the cut</h3>
+
+<p>The episode carries stories from Quartz on power generation economics, APTN News on Mark Carney and economic reconciliation, and RealAgriculture on plant breeding strategy. That is 3 deep dives for the day.</p>
+
+<h3>Fifty-three stories were dropped by design</h3>
+
+<p>The roundup pool held 53 more stories than the airtime budget allows in a single segment. Those stories remain eligible to surface on better-matched days. This is the intended behavior of the NEWS_ROUNDUP_COUNT constraint.</p>
+
+<h3>No other warnings flagged</h3>
+
+<p>The run produced no anomalies outside script length and the earlier failures.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+</tbody>
+</table>
+</body>
+</html>
