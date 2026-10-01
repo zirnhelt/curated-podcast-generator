@@ -707,6 +707,18 @@ def _truncated(response) -> bool:
 MIN_SCRIPT_WORDS = 2800
 TARGET_SCRIPT_WORDS = 3400
 
+# Per-section floors the expand retry measures against. A whole-script "make it
+# longer" rewrite recovered ~400 words on Sonnet 5 and ~300 on Sonnet 5.5
+# (2026-10-01: 1,833 → 2,320, run aborted), and the Deep Dive never reached its
+# prompted 2,000 words on any September day (1,350-1,820). So the retry names
+# the short sections and their measured shortfall, and rewrites only those.
+SECTION_WORD_FLOORS = {"NEWS ROUNDUP": 1200, "DEEP DIVE": 2000}
+# A header line opens a section that runs to the next header; the Deep Dive
+# runs to the end of the script, sign-off included.
+_EXPANDABLE_HEADER_RE = re.compile(
+    r'^\*\*(NEWS ROUNDUP|COMMUNITY SPOTLIGHT|META MOMENT|DEEP DIVE)\b[^\n]*$', re.M)
+_SPEAKER_TAG_RE = re.compile(r'\*\*(?:RILEY|CASEY):\*\*')
+
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
 # ponytail: MEMORY_DIR lets a future multi-tenant deployment point each show at
@@ -7973,7 +7985,47 @@ def us_policy_framing_tag(article) -> str:
     return f' [US POLICY — {framing}]'
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None, event_focus=None, extra_events=None):
+def _script_sections(script: str) -> dict[str, tuple[int, int]]:
+    """Section name → (start, end) offsets in `script`, header line included.
+    The first header of each name wins."""
+    heads = list(_EXPANDABLE_HEADER_RE.finditer(script))
+    spans: dict[str, tuple[int, int]] = {}
+    for i, m in enumerate(heads):
+        end = heads[i + 1].start() if i + 1 < len(heads) else len(script)
+        spans.setdefault(m.group(1), (m.start(), end))
+    return spans
+
+
+def _section_words(section: str) -> int:
+    """Spoken words in a section: header line and speaker tags excluded."""
+    body = section.partition('\n')[2]
+    return len(_SPEAKER_TAG_RE.sub(' ', body).split())
+
+
+def _short_sections(script: str) -> dict[str, int]:
+    """Sections under their SECTION_WORD_FLOORS → spoken word count."""
+    counts = {name: _section_words(script[s:e])
+              for name, (s, e) in _script_sections(script).items()
+              if name in SECTION_WORD_FLOORS}
+    return {n: c for n, c in counts.items() if c < SECTION_WORD_FLOORS[n]}
+
+
+def _splice_sections(script: str, rewrite: str, names: list[str]) -> str:
+    """`script` with each named section replaced by its counterpart in
+    `rewrite`, where the rewrite's version is longer. Sections the rewrite
+    lacks, or shortened, keep the draft's text."""
+    old, new = _script_sections(script), _script_sections(rewrite)
+    # Splice back to front so earlier offsets stay valid.
+    for name in sorted((n for n in names if n in old and n in new),
+                       key=lambda n: old[n][0], reverse=True):
+        (os_, oe), (ns, ne) = old[name], new[name]
+        if len(rewrite[ns:ne].split()) > len(script[os_:oe].split()):
+            replacement = rewrite[ns:ne].rstrip() + ('\n\n' if oe < len(script) else '\n')
+            script = script[:os_] + replacement + script[oe:]
+    return script
+
+
+def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None, event_focus=None, extra_events=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -8411,8 +8463,19 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             # above doesn't catch. Retry once with the short draft and explicit
             # length feedback; the prompt prefix is read from cache.
             print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
-            expand_prompt = prompts['script_expand_retry']['template'].format(
-                word_count=word_count, burned_phrases=burned_phrases)
+            short = _short_sections(script)
+            if short:
+                shortfalls = "\n".join(
+                    f"- {name}: {count:,} words now; write at least "
+                    f"{SECTION_WORD_FLOORS[name]:,} (about {SECTION_WORD_FLOORS[name] - count:,} more)"
+                    for name, count in short.items())
+                print(f"   Rewriting short section(s) only:\n{shortfalls}")
+                expand_prompt = prompts['script_section_expand_retry']['template'].format(
+                    word_count=word_count, target_words=TARGET_SCRIPT_WORDS,
+                    shortfalls=shortfalls, burned_phrases=burned_phrases)
+            else:
+                expand_prompt = prompts['script_expand_retry']['template'].format(
+                    word_count=word_count, burned_phrases=burned_phrases)
             retry_request = {
                 **request,
                 "max_tokens": 32000,
@@ -8426,8 +8489,12 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             if _truncated(response):
                 print("❌ Script expansion retry truncated at max_tokens.")
                 return None
-            script = message_text(response)
+            if short:
+                script = _splice_sections(script, message_text(response), list(short))
+            else:
+                script = message_text(response)
             word_count = len(script.split())
+            print(f"   After expand retry: {word_count} words")
         if word_count < MIN_SCRIPT_WORDS:
             print(f"❌ Script too short ({word_count} words < {MIN_SCRIPT_WORDS} minimum) — refusing to publish a truncated episode.")
             return None
