@@ -1366,6 +1366,22 @@ class TestGenerateScriptTruncationGuard:
         assert messages[2]["role"] == "user"
         assert str(len(short_script.split())) in messages[2]["content"]
 
+    def test_expand_retry_reads_the_prompt_from_cache(self, monkeypatch):
+        # The expand retry ran on 28 of 29 reviewed days in September. It must
+        # resend the first message byte-identical, breakpoint included, or the
+        # cached prefix is a 1.25x write that nothing reads.
+        short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        client = _stream_client([
+            _response("end_turn", [_text_block(short_script)]),
+            _response("end_turn", [_text_block(full_script)]),
+        ])
+
+        self._run(monkeypatch, client)
+        first, retry = (c.kwargs["messages"] for c in client.messages.stream.call_args_list)
+        assert first[0]["content"][-1]["cache_control"] == {"type": "ephemeral"}
+        assert retry[0] == first[0]
+
     def test_rejects_script_still_short_after_retry(self, monkeypatch):
         short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
         client = _stream_client([
@@ -1423,7 +1439,7 @@ class TestGenerateScriptCorrectionsGroundTruth:
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         pg.generate_podcast_script([], [], "Working Lands & Industry", {}, {}, **kwargs)
-        return client.messages.stream.call_args.kwargs["messages"][0]["content"]
+        return client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
 
     def test_states_none_supplied_when_no_corrections_queued(self, monkeypatch, tmp_path):
         sent = self._run(monkeypatch, tmp_path)
@@ -1455,7 +1471,7 @@ class TestGenerateScriptRoundupPool:
         pg.generate_podcast_script(
             articles, [], "Working Lands & Industry", {}, {}, bonus_articles=bonus,
         )
-        return client.messages.stream.call_args.kwargs["messages"][0]["content"]
+        return client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
 
     def test_dropped_bonus_articles_never_reach_the_prompt(self, monkeypatch, tmp_path):
         kept_bonus = {"title": "Kept bonus story", "url": "https://b0.com",
@@ -3845,6 +3861,25 @@ class TestRepairRoundupOrder:
         monkeypatch.setattr(pg, "message_text", lambda r: "**RILEY:** Too short.")
         monkeypatch.setattr(pg, "_log_api_call", lambda *a, **k: None)
         assert repair_roundup_order(script, _order_articles()) == script
+
+    def test_reorder_turns_thinking_off(self, monkeypatch):
+        # 2026-09-26: Sonnet thought into the same 4000 tokens the roundup had
+        # to fit in, truncated, and the reorder was discarded.
+        import podcast_generator as pg
+        script = _ROUNDUP_SCRIPT.format(first="A.", second="B.", third="C.")
+        sent = {}
+
+        def fake_send(client, **kwargs):
+            sent.update(kwargs)
+            return object()
+
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: object())
+        monkeypatch.setattr(pg, "api_retry", lambda fn, **kw: fn())
+        monkeypatch.setattr(pg, "send_claude", fake_send)
+        monkeypatch.setattr(pg, "_log_claude_usage", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "_truncated", lambda r: True)
+        repair_roundup_order(script, _order_articles())
+        assert sent["thinking"] == pg.thinking_off(pg.POLISH_MODEL)
 
     def test_reordered_body_is_spliced_back_in(self, monkeypatch):
         import podcast_generator as pg

@@ -46,6 +46,9 @@ env:
   # Every Sonnet call follows this repository variable (Settings → Secrets and
   # variables → Actions → Variables). Unset means claude-sonnet-5 (config_loader).
   CLAUDE_SONNET_MODEL: ${{ vars.CLAUDE_SONNET_MODEL }}
+  # The script writer alone, for trialling a model on the one call that sets
+  # episode length. Unset means CLAUDE_SONNET_MODEL.
+  CLAUDE_SCRIPT_MODEL: ${{ vars.CLAUDE_SCRIPT_MODEL }}
 
 permissions:
   contents: write
