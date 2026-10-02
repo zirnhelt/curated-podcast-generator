@@ -1366,6 +1366,34 @@ class TestGenerateScriptTruncationGuard:
         assert messages[2]["role"] == "user"
         assert str(len(short_script.split())) in messages[2]["content"]
 
+    def test_short_sections_rewritten_and_spliced(self, monkeypatch):
+        # 2026-10-01: whole-script rewrites added ~300 words and the run
+        # aborted. A draft with a short Deep Dive gets the measured shortfall
+        # and only that section is rewritten; the rest of the draft stays.
+        roundup = "**NEWS ROUNDUP**\n**RILEY:** " + ("news " * 1300) + "\n\n"
+        spotlight = "**COMMUNITY SPOTLIGHT**\n**CASEY:** spotlight words here\n\n"
+        draft = ("**WELCOME**\n**RILEY:** hi\n\n" + roundup + spotlight
+                 + "**DEEP DIVE: Fences**\n**CASEY:** " + ("thin " * 800) + "\n")
+        rewrite = "**DEEP DIVE: Fences**\n**CASEY:** " + ("deep " * 2200) + "\n"
+        client = _stream_client([
+            _response("end_turn", [_text_block(draft)]),
+            _response("end_turn", [_text_block(rewrite)]),
+        ])
+
+        result = self._run(monkeypatch, client)
+        assert result is not None
+        assert "thin" not in result.split() and result.split().count("deep") == 2200
+        assert result.startswith("**WELCOME**") and roundup + spotlight in result
+        prompt = client.messages.stream.call_args_list[1].kwargs["messages"][2]["content"]
+        assert "DEEP DIVE: 800 words now" in prompt and "1,200 more" in prompt
+        assert "NEWS ROUNDUP:" not in prompt
+
+    def test_splice_keeps_draft_section_when_rewrite_is_shorter(self):
+        from podcast_generator import _splice_sections
+        draft = "**NEWS ROUNDUP**\n**RILEY:** a b c\n\n**DEEP DIVE: X**\n**CASEY:** d e f g\n"
+        assert _splice_sections(draft, "**DEEP DIVE: X**\n**CASEY:** d\n", ["DEEP DIVE"]) == draft
+        assert _splice_sections(draft, "no headers at all", ["DEEP DIVE"]) == draft
+
     def test_expand_retry_reads_the_prompt_from_cache(self, monkeypatch):
         # The expand retry ran on 28 of 29 reviewed days in September. It must
         # resend the first message byte-identical, breakpoint included, or the
