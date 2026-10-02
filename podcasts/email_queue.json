@@ -2278,6 +2278,21 @@
       "theme_day": 5,
       "status": "used",
       "used_at": "2026-09-28"
+    },
+    {
+      "id": "787d3002",
+      "type": "feedback",
+      "message_id": "<01a0fcbb-98b6-7aa6-ab4f-350b87da6332@novamediapodcasts.com>",
+      "from_address": "t***@novamediapodcasts.com",
+      "from_producer": false,
+      "subject": "Re: We build top ten podcasts - interested in yours.",
+      "received_at": "2026-10-02T13:09:07+00:00",
+      "body_text": "Before I take Cariboo Signals from my radar, I just wanted to understand why I\u2019ve not heard back. Is it a time factor, are you already working with someone, or would you like a few examples of our work? Tiffany Mercer Podcast Growth Specialist @ NOVA (If you're not interested, simply reply \"No\" and I'll stop emailing) Original Thread: On September 10, 2026 07:23, NOVA Podcasts wrote: Ramit Sethi came to us with three goals: become an authority in his space, land a Netflix show, and have a book e",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2372,6 +2387,9 @@
     "1a0de084c8bf983e",
     "1a0e3af2ad7a8664",
     "1a0f3b0e7666e1fd",
-    "1a0f86ababa6cb54"
+    "1a0f86ababa6cb54",
+    "1a0fde8a8976dd80",
+    "1a0fd5d11b045db2",
+    "1a0fcbbb50cfa613"
   ]
 }
