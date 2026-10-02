@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-13..2026-09-29) — 3 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-14..2026-10-02) — 3 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -54,15 +54,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 14 reviews,
-      latest 2026-09-26)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 15 reviews,
+      latest 2026-10-02)
 - [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
       errors.** On September 22, a single file present in podcast-feed.xml could not be found in
       R2 and could not be rebuilt from disk. The pipeline completed and published successfully
       despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
       reference. Identify which object is missing, restore it to R2, or remove the reference
       from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
-      in 7 reviews, latest 2026-09-29)
+      in 8 reviews, latest 2026-10-02)
 - [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
       territory-check rewrites failed.** On September 22, the territory-check system flagged two
       sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
@@ -70,7 +70,7 @@ close one; it comes back only if the reviews raise it 2 more times._
       final episode anyway, carrying geographic claims the validation layer could not support.
       Log which sentences triggered the rewrite rejection, and decide whether to cut them,
       override the territory map data, or implement a mandatory-cut rule when rewrites fail.
-      (signal `degraded:script/territory-check`; seen in 8 reviews, latest 2026-09-29)
+      (signal `degraded:script/territory-check`; seen in 9 reviews, latest 2026-10-02)
 
 <!-- reviews:end -->
 

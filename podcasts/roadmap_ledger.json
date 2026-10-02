@@ -393,10 +393,9 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-14",
         "2026-09-16",
         "2026-09-19",
         "2026-09-20",
@@ -405,11 +404,12 @@
         "2026-09-24",
         "2026-09-25",
         "2026-09-26",
-        "2026-09-27"
+        "2026-09-27",
+        "2026-10-02"
       ],
-      "last_seen": "2026-09-27",
+      "last_seen": "2026-10-02",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-09-27"
+      "signal_seen": "2026-10-02"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -444,10 +444,9 @@
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 14,
+      "occurrences": 15,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-13",
         "2026-09-14",
         "2026-09-15",
         "2026-09-16",
@@ -456,11 +455,12 @@
         "2026-09-23",
         "2026-09-24",
         "2026-09-25",
-        "2026-09-26"
+        "2026-09-26",
+        "2026-10-02"
       ],
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-02",
       "signal": "short-script",
-      "signal_seen": "2026-10-01"
+      "signal_seen": "2026-10-02"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -481,7 +481,7 @@
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
       "status": "open",
-      "occurrences": 7,
+      "occurrences": 8,
       "first_seen": "2026-09-22",
       "seen": [
         "2026-09-22",
@@ -490,11 +490,12 @@
         "2026-09-25",
         "2026-09-27",
         "2026-09-28",
-        "2026-09-29"
+        "2026-09-29",
+        "2026-10-02"
       ],
-      "last_seen": "2026-09-29",
+      "last_seen": "2026-10-02",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-09-29"
+      "signal_seen": "2026-10-02"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -502,7 +503,7 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 8,
+      "occurrences": 9,
       "first_seen": "2026-09-19",
       "seen": [
         "2026-09-19",
@@ -512,11 +513,12 @@
         "2026-09-23",
         "2026-09-26",
         "2026-09-27",
-        "2026-09-29"
+        "2026-09-29",
+        "2026-10-02"
       ],
-      "last_seen": "2026-09-29",
+      "last_seen": "2026-10-02",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-09-29"
+      "signal_seen": "2026-10-02"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
@@ -536,8 +538,8 @@
       "title": "Research budgets exhausted before script generation completed, forcing expansion to proceed without full lookup capability.",
       "detail": "The pipeline spent its Brave Search deep-dive budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on September 29. Later fact-resolution queries fell back to web snippets or went unanswered. The script then required an expand pass to close a 774-word gap (starting at 2,626 words against a 3,400-word target), but that expansion had to work with degraded research tools. No facts dropped from the episode, but the mechanism shows a constraint: when story complexity demands early lookups, the expand phase runs blind. Increase the per-run budgets for Brave Search and Answers, or implement a two-phase research strategy that reserves lookups for the expansion pass.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-29",
       "seen": [
         "2026-09-29"
@@ -575,5 +577,5 @@
       "last_seen": "2026-10-01"
     }
   ],
-  "updated": "2026-10-01"
+  "updated": "2026-10-02"
 }
