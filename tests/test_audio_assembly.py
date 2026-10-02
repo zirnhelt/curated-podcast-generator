@@ -483,6 +483,39 @@ class TestSilentTakeIsDroppedNotShipped:
         assert deep[0]["start_ms"] == pytest.approx(deep_start_ms, abs=100)
 
 
+class TestChunkSeams:
+    """A turn over TTS_SEGMENT_MAX_CHARS renders as several calls. Each take is
+    trimmed of its own head and tail, so a bare join rushed the one sentence
+    break per turn that fell on a seam (120-185 ms on 2026-10-02, against a
+    ~305 ms pause between sentences inside a take)."""
+
+    def test_chunks_of_one_turn_are_joined_with_a_sentence_pause(self, monkeypatch, tmp_path):
+        pg = podcast_generator
+        _openai_only_setup(monkeypatch, tmp_path)
+        monkeypatch.setattr(pg, "_split_at_sentences",
+                            lambda text, **k: [text, text] if text == "Closing it out." else [text])
+
+        pg.generate_audio_from_script("script", str(tmp_path / "episode.mp3"),
+                                      theme_name="Test Theme")
+
+        turns = json.loads((tmp_path / "video_timeline.json").read_text())["turns"]
+        last = [t for t in turns if t["section"] == "deep"][-1]
+        assert last["dur_ms"] == 2 * 5000 + pg.TTS_CHUNK_GAP_MS
+
+    def test_split_never_lands_inside_an_initialism(self):
+        text = ("Elections BC results from 2024 show he was first elected as a B.C. "
+                "Liberal and re-elected as a B.C. Conservative in the same riding. ") * 6
+        chunks = podcast_generator._split_at_sentences(text, max_chars=120)
+        assert len(chunks) > 1
+        assert not any(c.rstrip().endswith("B.C.") for c in chunks)
+
+    def test_split_still_breaks_at_real_sentence_ends(self):
+        text = ("One short sentence here. " * 30).strip()
+        chunks = podcast_generator._split_at_sentences(text, max_chars=100)
+        assert len(chunks) > 1
+        assert all(c.endswith(".") for c in chunks)
+
+
 class TestHostPanningDuringRoundupAndDeepDive:
     """Riley/Casey get a subtle stereo separation in the news roundup and deep
     dive only — never the welcome, cold open, spoken credits, or community

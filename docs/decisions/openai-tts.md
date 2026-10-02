@@ -72,3 +72,36 @@ of leaving the music to fade out into a gap.
 
 The same check runs on whole-section (Gemini) renders, where it raises into the
 existing per-section OpenAI fallback — a silent section is this failure minutes wide.
+
+### Pacing: roundup grouping, backchannels and chunk seams (2026-10-02)
+
+The producer heard "topics bleeding together" on the 2026-10-02 roundup. The gaps were
+measured off the shipped MP3 against the video timeline, and every one matched what the
+code asked for. The code was asking for the wrong things.
+
+- **A reaction sat closer to the next story than to its own.** Any news line over 80
+  characters got the 1300 ms "story hand-off" heuristic, so Casey's 82-character reaction
+  to the Askew story got 1475 ms before it. The script's `[pause:1200]` then set the story
+  break after it to 1200 ms. The roundup's rhythm made it worse: whoever reacts reads the
+  next story, so the voice change marks *story → reaction* and the real boundary has none.
+  The quip played as the next story's opening line. The prompt's "every new story
+  introduction is a strong candidate for [pause:1200]" also overrode the code's own
+  1500/1800 ms story-break rule, so all fifteen breaks that night were exactly 1200 ms.
+  `turn_gap_ms` now applies a grouping rule over tag and heuristic alike in the news
+  section. A reaction (≤ `NEWS_REACTION_MAX_CHARS`) is capped at `NEWS_REACTION_GAP_MAX_MS`.
+  A story intro gets a floor, `NEWS_STORY_GAP_MS`, or `NEWS_SAME_VOICE_STORY_GAP_MS` when the
+  same voice continues, with upward-only jitter. A tag can only raise a story break. A story
+  intro is a tag ≥ 1000, a transition phrase, a source attribution in the first 120
+  characters, or a full-length turn straight after a reaction. The tag alone can't be
+  trusted: 9 of the 22 nights to 10-02 tagged no story at all. The prompt now makes the
+  tag a rule and tells reactions to carry none.
+- **The parser deleted every turn of ten characters or fewer.** The system prompt asks for
+  "Right." / "Mm-hm." / "Ha." backchannels, so 23 lines in 16 of ~60 episodes never
+  reached the audio. Some were "How so?" and "Say more.", questions the next line answers.
+  On 10-02, Casey's "Right." vanished and Riley's "…three people doing everything" ran into
+  "Wildfire makes it sharper" 100 ms later, as one voice. The filter is now "has a word in it".
+- **Chunk seams were bare joins.** A turn over `TTS_SEGMENT_MAX_CHARS` renders as several
+  calls, each trimmed of its own head and tail. The seam measured 120-185 ms against a
+  ~305 ms median pause between sentences inside one take. They now join with
+  `TTS_CHUNK_GAP_MS`. The splitter also broke after "B.C." ("first elected as a B.C. |
+  Liberal"); it now rejoins pieces that end on an initialism or a title.

@@ -240,11 +240,24 @@ class TestParseScriptIntoSegments:
         segments = parse_script_into_segments(self.SAMPLE_SCRIPT)
         assert segments["meta_moment"] == []
 
-    def test_filters_short_text(self):
-        """Segments with <= 10 chars of text should be dropped."""
-        segments = parse_script_into_segments("**RILEY:** Hi\n**CASEY:** Ok")
-        total = sum(len(v) for v in segments.values())
-        assert total == 0
+    def test_keeps_short_backchannels(self):
+        """The system prompt asks for "Right." / "Mm-hm." / "How so?". A length
+        filter deleted them (23 lines in 16 episodes), and on 2026-10-02 Riley's
+        two turns either side of Casey's "Right." played as one run-on turn."""
+        script = ("**DEEP DIVE: CARIBOO CONNECTIONS - Wild Spaces**\n"
+                  "**RILEY:** Thirty people each doing a bit is a different team.\n"
+                  "**CASEY:** [overlap:-100] Right.\n"
+                  "**RILEY:** Wildfire makes it sharper.\n"
+                  "**CASEY:** How so?\n")
+        deep = parse_script_into_segments(script)["deep_dive"]
+        assert [s["text"] for s in deep] == [
+            "Thirty people each doing a bit is a different team.",
+            "Right.", "Wildfire makes it sharper.", "How so?"]
+        assert deep[1]["gap_ms"] == -100
+
+    def test_drops_turns_with_no_words(self):
+        segments = parse_script_into_segments("**RILEY:** ...\n**CASEY:** —")
+        assert sum(len(v) for v in segments.values()) == 0
 
     SCRIPT_WITH_COLD_OPEN = """
 **COLD OPEN**
@@ -430,6 +443,75 @@ class TestHeuristicGapMs:
     def test_short_gaps_not_jittered(self):
         gap = heuristic_gap_ms("Ha!", "riley", "casey")
         assert gap == 180
+
+
+class TestRoundupGrouping:
+    """A reaction must sit closer to the story it answers than to the next one.
+
+    The turns are 2026-10-02's: Casey's 82-char reaction got 1475 ms before it
+    and 1200 ms after it, then Casey read the next story in the same voice.
+    """
+
+    STORY = ("The Williams Lake Tribune reports that Kathryn Askew of Canim Lake has been "
+             "named the BC NDP candidate for Cariboo-Chilcotin. She's a retired school teacher.")
+    REACTION = "The Tribune gave her a full profile. Filers nobody has profiled will get less ink."
+    NEXT = ("Staying with politics. The Williams Lake Tribune, via Black Press, reports the NDP "
+            "is calling on the Conservatives to fire their North Island candidate.")
+
+    @staticmethod
+    def _gap(text, tag, prev_speaker, speaker, prev_text, section="news"):
+        import podcast_generator as pg
+        return pg.turn_gap_ms({"speaker": speaker, "text": text, "gap_ms": tag},
+                              prev_speaker, prev_text, section)
+
+    def test_reaction_binds_to_the_story_it_answers(self):
+        import podcast_generator as pg
+        before = self._gap(self.REACTION, None, "riley", "casey", self.STORY)
+        after = self._gap(self.NEXT, 1200, "casey", "casey", self.REACTION)
+        assert before <= pg.NEWS_REACTION_GAP_MAX_MS
+        assert after >= pg.NEWS_SAME_VOICE_STORY_GAP_MS
+        assert after >= 3 * before
+
+    def test_a_story_tag_only_raises_the_gap(self):
+        import podcast_generator as pg
+        assert self._gap(self.NEXT, 1200, "riley", "casey", self.STORY) >= pg.NEWS_STORY_GAP_MS
+        assert self._gap(self.NEXT, 3000, "riley", "casey", self.STORY) == 3000
+
+    def test_same_voice_story_break_is_wider_than_a_handoff(self):
+        handoff = self._gap(self.NEXT, 1200, "riley", "casey", self.REACTION)
+        same = self._gap(self.NEXT, 1200, "casey", "casey", self.REACTION)
+        assert same > handoff
+
+    def test_untagged_story_after_a_reaction_still_gets_the_floor(self):
+        """On 9 of the 22 nights to 2026-10-02 the model tagged no story at all."""
+        import podcast_generator as pg
+        text = ("Downtown, a different kind of fire. Firefighters responded to a vehicle "
+                "fire in Williams Lake on Tuesday evening. Nobody was hurt, and the "
+                "department says the cause is still under investigation this week.")
+        assert self._gap(text, None, "riley", "casey", "Lucky bear, and lucky boaters.") \
+            >= pg.NEWS_STORY_GAP_MS
+
+    def test_attribution_marks_an_untagged_story(self):
+        import podcast_generator as pg
+        text = ("Cineplex may be headed toward a sale, and CBC Arts reports something that "
+                "cuts against the streaming story everyone has been telling for years now: "
+                "attendance at small-town screens is up this fall.")
+        long_prev = "x " * 200
+        assert self._gap(text, None, "riley", "casey", long_prev) >= pg.NEWS_STORY_GAP_MS
+
+    def test_overlap_tag_on_a_reaction_survives(self):
+        assert self._gap("Nazko opened a cultural site last week too.", -100,
+                         "riley", "casey", self.STORY) == -100
+
+    def test_other_sections_keep_the_tag(self):
+        assert self._gap(self.REACTION, 1200, "riley", "casey", self.STORY,
+                         section="deep") == 1200
+        assert self._gap("Back to rescue. What would fix it?", 400, "casey", "riley",
+                         "That's a sequel, not an audit.", section="deep") == 400
+
+    def test_story_floor_is_deterministic(self):
+        gaps = {self._gap(self.NEXT, 1200, "riley", "casey", self.STORY) for _ in range(3)}
+        assert len(gaps) == 1
 
 
 class TestScoreScriptSoftTics:
@@ -5800,6 +5882,39 @@ class TestScriptQuestionAnswers:
         out = pg._resolve_script_questions_with_brave("script", "key", object())
         assert asked == queries[:pg.SCRIPT_QUESTION_LIMIT]
         assert out.count("Answer: An answer.") == pg.SCRIPT_QUESTION_LIMIT
+
+    def test_detection_reads_the_deep_dive(self, monkeypatch):
+        """Detection read script[:5000] until 2026-10-02; the deep dive, where
+        "What does it cost?" is asked, starts near character 10,000."""
+        import podcast_generator as pg
+
+        script = ("**COLD OPEN**\n**CASEY:** Then, in our deep dive, we ask about rescue.\n"
+                  "**NEWS ROUNDUP**\n" + "**RILEY:** A roundup story. " * 600 +
+                  "\n**DEEP DIVE: CARIBOO CONNECTIONS - Wild Spaces**\n"
+                  "**RILEY:** That's a staffing model. What does it cost?\n")
+        assert script.index("What does it cost?") > 10000
+        seen = {}
+
+        class _Client:
+            class messages:
+                @staticmethod
+                def create(**kw):
+                    seen["prompt"] = kw["messages"][0]["content"]
+        monkeypatch.setattr(pg, "api_retry", lambda fn: (fn(), type("R", (), {"usage": None})())[1])
+        monkeypatch.setattr(pg, "message_text", lambda r: '{"queries": []}')
+        pg._resolve_script_questions_with_brave(script, "key", _Client())
+        prompt = seen["prompt"]
+        assert "What does it cost?" in prompt
+        assert prompt.index("What does it cost?") < prompt.index("A roundup story.")
+
+    def test_deep_dive_section_starts_at_the_header_not_the_tease(self):
+        import podcast_generator as pg
+
+        script = ("**COLD OPEN**\n**CASEY:** Then, in our deep dive, we ask.\n"
+                  "**NEWS ROUNDUP**\n**RILEY:** News.\n"
+                  "**DEEP DIVE: CARIBOO CONNECTIONS - Test**\n**RILEY:** The debate.\n")
+        assert pg._extract_deep_dive_section(script).startswith("**DEEP DIVE")
+        assert pg._extract_deep_dive_section("no sections here") == "no sections here"
 
 
 class TestProtectTheMetaMoment:

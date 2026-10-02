@@ -182,6 +182,19 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   (`extra_events`) without changing selection. Its nominations close Oct 3. Until then the
   renderer says the list is open, and each riding names its `seat_holder` without claiming
   they are running. Fill `candidates` in from Elections BC once the list closes.
+  - **It took the deep dive's research for a week** (2026-09-28 to 10-02). One roundup story
+    carrying the vocabulary (a candidate profile) put the event in play, and the event's
+    standing assignment then ran the whole research pass. On 09-28, 29, 30 and 10-02 every
+    research question was the ballot and none was the debate's. On 10-02 the deep dive on
+    volunteer search and rescue had no research at all, and Casey said twice on air that
+    there was no number to give. On 09-29 the pass made 24 searches against an allowance of
+    12 and emptied the Answers credit before fact resolution ran. An all-week event now gets
+    its own pass (`_research_event_ballot`). It runs on the election meter, reads the
+    articles that brought it in (`_event_articles`) and searches results-only, since an
+    Answers reply carries no URL and the ballot is SOURCED OR UNSAID. `recent` limits a
+    search to this campaign (Brave `freshness`), so a 2024 race page stops reading as this
+    year's field. The deep dive keeps the ordinary day's pass. Only the day's own event
+    (Saturday) still shares that pass, because there the ballot is the deep dive.
 
 - **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
   "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
