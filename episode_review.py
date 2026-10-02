@@ -521,7 +521,10 @@ PAGE = """<!DOCTYPE html>
 def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str) -> tuple[str, str, str]:
     """Return (title, content_html, page_html)."""
     theme = facts.get("theme_feed") or facts.get("theme_configured") or ""
-    title = f"Episode Review — Cariboo Signals, {_human_date(date)}"
+    # The day's theme makes each title distinct: a templated "Cariboo Signals,
+    # <date>" title shares its term set with yesterday's, and super-rss-feed's
+    # story dedup read every review after the first as a repeat.
+    title = f"Episode Review — {theme or 'Cariboo Signals'}, {_human_date(date)}"
     generated = next((r for r in runs if r.get("conclusion") == "success"), None)
 
     parts = ["What the pipeline did, what broke, and what it chose when something broke."]

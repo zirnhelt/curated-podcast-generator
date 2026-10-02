@@ -161,7 +161,16 @@ class TestRendering:
         _title, _content, page = episode_review.build_review(
             "2026-08-19", [], {"theme_feed": "Repair & Practical Tech"}, "")
         assert "Repair &amp; Practical Tech" in page
-        assert "<h1>Episode Review — Cariboo Signals, August 19, 2026</h1>" in page
+        assert "<h1>Episode Review — Repair &amp; Practical Tech, August 19, 2026</h1>" in page
+
+    def test_title_names_the_theme(self):
+        title, _content, _page = episode_review.build_review(
+            "2026-08-19", [], {"theme_feed": "Wild Spaces & Outdoor Life"}, "")
+        assert title == "Episode Review — Wild Spaces & Outdoor Life, August 19, 2026"
+
+    def test_title_falls_back_without_a_theme(self):
+        title, _content, _page = episode_review.build_review("2026-08-19", [], {}, "")
+        assert title == "Episode Review — Cariboo Signals, August 19, 2026"
 
 
 class TestIndex:
