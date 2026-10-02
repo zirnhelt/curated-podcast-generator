@@ -1,26 +1,4 @@
 {
-  "2026-08-27": {
-    "timestamp": 1787852913.165578,
-    "topics": [
-      "[100 Mile Free Press] Wildfire smoke continues to cover part",
-      "[Williams Lake Tribune] FVRD cancels evacuation alert for ar",
-      "[Kagi Small Web] Forty-Nine Megawatts",
-      "[Scientific American] See states\u2019 kindergarten vaccination r",
-      "[Kagi Small Web] A high-fat Western diet alters bile acid me",
-      "[The Guardian Global Development] After 100 days of the dead",
-      "[ScienceDaily] MIT neuroscientists discover the brain can re",
-      "[Country Life] From body-building to ballet, the refurbished"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-27",
-    "focus": "language-culture",
-    "focus_name": "Language & Culture"
-  },
   "2026-08-28": {
     "timestamp": 1787923744.962338,
     "topics": [
@@ -714,5 +692,25 @@
     "date": "2026-09-30",
     "focus": "digital-life-security",
     "focus_name": "Digital Life & Security"
+  },
+  "2026-10-02": {
+    "timestamp": 1790928843.520568,
+    "topics": [
+      "[Williams Lake Tribune] Retired school teacher named BC NDP ",
+      "[Canadian Architect] Northern Secw\u00e9pemc Cultural Centre, 108",
+      "[Williams Lake Tribune] NDP calls on Conservatives to fire N",
+      "[Williams Lake Tribune] Alcohol impairment suspected in two-",
+      "[My Cariboo Now] Xat\u015b\u016bll First Nation announce termination o",
+      "[BC Wildfire Service] c\u00edk\u00edlaxwm (cultural burn) planned for ",
+      "[Vancouver Sun] B.C. Conservation Officer Service warns of i",
+      "[The Tyee] Harassment and Hate on the Municipal Campaign Tra"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-02",
+    "focus": "recreation-access",
+    "focus_name": "Recreation & Backcountry Access"
   }
 }
