@@ -105,3 +105,9 @@ code asked for. The code was asking for the wrong things.
   ~305 ms median pause between sentences inside one take. They now join with
   `TTS_CHUNK_GAP_MS`. The splitter also broke after "B.C." ("first elected as a B.C. |
   Liberal"); it now rejoins pieces that end on an initialism or a title.
+
+- **The 10-02 floors overshot (2026-10-03).** The producer called the next night's roundup
+  "better than before" but "a touch too much" at about 2 s. Floors were 1700 ms (voice change)
+  and 2000 ms (same voice), plus up to 15% jitter, so same-voice breaks reached 2300 ms. Now
+  1400 / 1600 ms (ceilings ~1610 / ~1840). Still above the 450 ms reaction cap and the 1000 ms
+  tag minimum, so the grouping rule holds. Tune by ear from here: one step of ~300 ms at a time.

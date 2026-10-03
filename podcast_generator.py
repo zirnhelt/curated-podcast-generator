@@ -1306,8 +1306,8 @@ TTS_CHUNK_GAP_MS = 350
 # no voice change marks the boundary.
 NEWS_REACTION_MAX_CHARS = 160
 NEWS_REACTION_GAP_MAX_MS = 450
-NEWS_STORY_GAP_MS = 1700
-NEWS_SAME_VOICE_STORY_GAP_MS = 2000
+NEWS_STORY_GAP_MS = 1400
+NEWS_SAME_VOICE_STORY_GAP_MS = 1600
 NEWS_STORY_TAG_MIN_MS = 1000   # the script's own story-break tag is [pause:1200]
 
 # Interval music duration (ms) — trim long theme to a short chime
