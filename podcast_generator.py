@@ -631,12 +631,14 @@ def send_claude(client, stream=False, **kwargs):
     degrade("claude/refusal", f"{model} declined ({category}); retried on {fallback}")
     return send(retry)
 
-def _debate_summary_schema(with_calls_to_action: bool) -> dict:
+def _debate_summary_schema() -> dict:
     """JSON schema for the deep-dive debate summary.
 
     The field descriptions used to live in a hand-written JSON template inside
-    the prompt; they belong here, where they also constrain the reply. The
-    batch path asks for the same summary without calls_to_action.
+    the prompt; they belong here, where they also constrain the reply. Both
+    paths ask for the same fields. The batch path, which is the default, used
+    to leave out calls_to_action, so the one-year CTA cache filled only on the
+    days batch fell through (24 of 87 debate-memory entries on 2026-10-03).
     """
     props = {
         "central_question": {
@@ -668,16 +670,15 @@ def _debate_summary_schema(with_calls_to_action: bool) -> dict:
             "type": "array", "items": {"type": "string"},
             "description": "3-5 specific subtopics explored during the debate",
         },
-    }
-    if with_calls_to_action:
-        props["calls_to_action"] = {
+        "calls_to_action": {
             "type": "array", "items": {"type": "string"},
             "description": ("Every concrete suggestion, project idea, or community action "
                             "proposed during this segment — verbatim or very close "
                             "paraphrase, 1-2 sentences each. Include all 'what if', "
                             "'imagine', 'here's who to call', or 'a community could try' "
                             "style suggestions."),
-        }
+        },
+    }
     return {
         "type": "object",
         "properties": props,
@@ -4212,7 +4213,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                         "model": SUMMARY_MODEL,
                         "max_tokens": 1000,
                         "messages": [{"role": "user", "content": debate_prompt}],
-                        "output_config": _json_output(_debate_summary_schema(False)),
+                        "output_config": _json_output(_debate_summary_schema()),
                     }
                 },
             ]
@@ -5205,7 +5206,7 @@ def extract_debate_summary(script, theme_name):
             model=SUMMARY_MODEL,
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}],
-            output_config=_json_output(_debate_summary_schema(True)),
+            output_config=_json_output(_debate_summary_schema()),
         ))
         _log_claude_usage(response)
         return json.loads(message_text(response))

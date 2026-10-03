@@ -6018,3 +6018,21 @@ class TestProtectTheMetaMoment:
         wf = (Path(__file__).parent.parent / ".github/workflows/daily-podcast.yml").read_text()
         assert not re.search(r"git fetch[^\n]*--depth", wf)
         assert "Check the Sunday Meta Moment aired" in wf
+
+
+class TestScriptStageStagesItsState:
+    def test_every_generator_state_file_is_committed_after_the_script_stage(self):
+        """A state file the script stage writes but nothing stages is lost with
+        the runner. cta_memory.json was, from the day it was added until
+        2026-10-03, so the one-year CTA cache never held more than one day."""
+        from pathlib import Path
+        import podcast_generator as pg
+        wf = (Path(__file__).parent.parent / ".github/workflows/daily-podcast.yml").read_text()
+        step = wf.split("- name: Commit script, citations and memory", 1)[1]
+        paths = step.split("paths: |", 1)[1].split("\n\n", 1)[0]
+        state_files = [v for k, v in vars(pg).items()
+                       if k.endswith("_FILE") and isinstance(v, Path)
+                       and v.parent == pg.PODCASTS_DIR]
+        assert state_files
+        missing = [f.name for f in state_files if f"podcasts/{f.name}" not in paths]
+        assert not missing, missing

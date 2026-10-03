@@ -310,12 +310,16 @@ jobs:
           # it would sit permanently dirty and break the rebase on every run —
           # the index.html failure mode — and the burned list would reset daily,
           # which is the one thing that makes it work at all.
+          # cta_memory.json is the one-year calls-to-action cache. It was written
+          # from the start and never staged, so every runner started it empty and
+          # the "do not repeat these" block never had a year to show (2026-10-03).
           paths: |
             podcasts/podcast_script_*.txt
             podcasts/citations_*.json
             podcasts/episode_memory.json
             podcasts/host_personality_memory.json
             podcasts/debate_memory.json
+            podcasts/cta_memory.json
             podcasts/psa_rotation_state.json
             podcasts/article_holding.json
             podcasts/weekly_anchor_state.json
