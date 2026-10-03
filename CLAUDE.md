@@ -163,7 +163,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 | `disciplines.json` | Topic taxonomy for roundup grouping |
 | `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only) |
 
-**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`, `youtube_uploads.json`.
+**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days, carries `open_threads`), `cta_memory.json` (1 year), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`, `youtube_uploads.json`.
 
 ### Curation — see [docs/decisions/curation.md](docs/decisions/curation.md)
 
@@ -226,6 +226,8 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The phrase ledger burns spiking adverbs only; multi-word tics go in `hard_banned` by hand.
 - The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
 - `script/tell-scrub` runs after the cold open.
+- **A repeat is said to be a repeat.** Recalled, held and running-thread tags (`_coverage_tags`) go on roundup *and* deep-dive articles. `mark_running_threads` matches adjacent headline word pairs, never shared single words. A false positive goes in `_THREAD_PAIR_STOPLIST`.
+- **Open threads:** at most two "I'll be watching for…" lines per episode, from the debate summary. They are searched (deep-dive meter) and offered on the first same-theme episode once due, under SOURCED OR UNSAID, and an unanswered one `degrade()`s when it expires.
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
 
 **Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.

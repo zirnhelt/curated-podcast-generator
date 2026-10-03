@@ -678,6 +678,35 @@ def _debate_summary_schema() -> dict:
                             "'imagine', 'here's who to call', or 'a community could try' "
                             "style suggestions."),
         },
+        "open_threads": {
+            "type": "array",
+            "description": ("Only things a host explicitly says on air they will watch for, "
+                            "check back on, or report later (\"I'll be watching to see whether "
+                            "...\"). Not open questions in general, not hopes. At most 2. "
+                            "Empty if none."),
+            "items": {
+                "type": "object",
+                "properties": {
+                    "host": {"type": "string", "enum": ["riley", "casey"]},
+                    "watch_for": {
+                        "type": "string",
+                        "description": "What the host will watch for, as one plain sentence",
+                    },
+                    "due": {
+                        "type": "string",
+                        "description": ("YYYY-MM-DD: the earliest day the answer could be "
+                                        "public, counted from Today. Tied to an event, use "
+                                        "that event's date plus a few days"),
+                    },
+                    "query": {
+                        "type": "string",
+                        "description": "A 4-8 word web search that would find the answer",
+                    },
+                },
+                "required": ["host", "watch_for", "due", "query"],
+                "additionalProperties": False,
+            },
+        },
     }
     return {
         "type": "object",
@@ -2694,7 +2723,7 @@ def _brave_search_rate_limit(query, api_key, count=5):
     return _brave_search(query, api_key, count=count)
 
 
-def _brave_deep_dive_rate_limit(query, api_key, count=5):
+def _brave_deep_dive_rate_limit(query, api_key, count=5, freshness=None):
     if _brave_walled("search"):
         return []
     now = time.time()
@@ -2712,6 +2741,8 @@ def _brave_deep_dive_rate_limit(query, api_key, count=5):
         time.sleep(wait)
     state["deep_calls"] += 1
     state["deep_ts"] = now
+    if freshness:
+        return _brave_search(query, api_key, count=count, freshness=freshness)
     return _brave_search(query, api_key, count=count)
 
 
@@ -4178,11 +4209,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)
-    debate_prompt = (
-        "Analyze this DEEP DIVE podcast segment and extract a structured summary.\n\n"
-        f"Theme: {theme_name}\n\n"
-        "Segment:\n" + deep_dive_section
-    )
+    debate_prompt = _debate_summary_prompt(deep_dive_section, theme_name)
 
     review_model = select_review_model(deep_dive_articles)
     try:
@@ -4211,7 +4238,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                     "custom_id": "debate-summary",
                     "params": {
                         "model": SUMMARY_MODEL,
-                        "max_tokens": 1000,
+                        "max_tokens": 1500,
                         "messages": [{"role": "user", "content": debate_prompt}],
                         "output_config": _json_output(_debate_summary_schema()),
                     }
@@ -4576,9 +4603,151 @@ def update_debate_memory(date_key, theme, debate_summary, focus=None, anchor=Non
         "theme": theme,
         "focus": focus.get("slug") if focus else None,
         "anchor": anchor.get("id") if anchor else None,
-        **debate_summary
+        **debate_summary,
+        "open_threads": _normalize_open_threads(
+            (debate_summary or {}).get("open_threads"), date_key),
     }
     save_memory(DEBATE_MEMORY_FILE, memory)
+
+
+# ---------------------------------------------------------------------------
+# Open threads: what a host said on air they would watch for
+# ---------------------------------------------------------------------------
+# On 2026-10-03 Casey said he would be watching whether the deferred-items list
+# reached the first council agenda after the vote, and nothing anywhere wrote
+# that down. The debate summary now extracts such lines; each one is searched
+# and offered back to the hosts on the first same-theme episode on or after it
+# falls due, so the show keeps the promise or says plainly it is still open.
+OPEN_THREAD_MAX_PER_EPISODE = 2   # caps promise inflation, whatever the model returns
+OPEN_THREAD_SEARCH_LIMIT = 2      # due threads searched per run, on the deep-dive meter
+OPEN_THREAD_RESULTS = 5
+OPEN_THREAD_MAX_LEAD_DAYS = 60    # a due date further out is clamped to this
+OPEN_THREAD_WINDOW_DAYS = 14      # after `due`, two same-theme episodes to close it
+OPEN_THREAD_MAX_SURFACINGS = 2    # offered this often with no source, it expires
+
+
+def _normalize_open_threads(threads, date_key: str) -> list:
+    """Cap, validate and date the model's open_threads for storage.
+
+    `due` is clamped to [tomorrow, +OPEN_THREAD_MAX_LEAD_DAYS]; an unreadable
+    one becomes a week out, the show's own cadence for a same-theme day.
+    """
+    try:
+        opened = date.fromisoformat(date_key)
+    except ValueError:
+        return []
+    out = []
+    for t in (threads or [])[:OPEN_THREAD_MAX_PER_EPISODE]:
+        if not isinstance(t, dict) or not (t.get("watch_for") or "").strip():
+            continue
+        try:
+            due = date.fromisoformat(str(t.get("due", ""))[:10])
+        except ValueError:
+            due = opened + timedelta(days=7)
+        due = min(max(due, opened + timedelta(days=1)),
+                  opened + timedelta(days=OPEN_THREAD_MAX_LEAD_DAYS))
+        out.append({
+            "host": t.get("host", ""),
+            "watch_for": t["watch_for"].strip(),
+            "due": due.isoformat(),
+            "query": (t.get("query") or t["watch_for"]).strip(),
+            "status": "open",
+            "surfaced": [],
+        })
+    return out
+
+
+def due_open_threads(debate_memory: dict, today_iso: str, theme: str) -> list:
+    """Open threads to offer today: due, from an earlier episode on today's theme.
+
+    Same theme, because a promise made on the civic day belongs on the civic
+    day, and a weekly theme reaches it within seven days of `due`. Returns
+    dicts carrying `opened` (the episode date) beside the stored fields,
+    earliest due first, at most OPEN_THREAD_SEARCH_LIMIT.
+    """
+    due = []
+    for key, entry in (debate_memory or {}).items():
+        if key >= today_iso or (entry.get("theme") or "").lower() != theme.lower():
+            continue
+        for t in entry.get("open_threads") or []:
+            if t.get("status") == "open" and t.get("due", "9999") <= today_iso:
+                due.append({**t, "opened": key})
+    due.sort(key=lambda t: (t["due"], t["opened"]))
+    return due[:OPEN_THREAD_SEARCH_LIMIT]
+
+
+def research_open_threads(threads: list, api_key: str | None, today_iso: str) -> tuple:
+    """One Brave search per due thread, limited to pages since it was opened.
+
+    Demand-driven, so the deep-dive meter. Returns (prompt block, {thread key:
+    True sourced / False searched, nothing / None not searched}). A thread with
+    no results still goes in the block: the hosts say it is still open rather
+    than staying quiet about a promise. None keeps a spent meter from counting
+    against the thread's expiry.
+    """
+    if not threads:
+        return "", {}
+    found, lines = {}, []
+    for t in threads:
+        hits, searched = [], bool(api_key) and _brave_deep_dive_open()
+        if searched:
+            hits = _brave_deep_dive_rate_limit(
+                t["query"], api_key, count=OPEN_THREAD_RESULTS,
+                freshness=f"{t['opened']}to{today_iso}")
+            _RESEARCH_LOG.append({"kind": "thread", "query": t["query"], "results": len(hits)})
+        found[(t["opened"], t["watch_for"])] = bool(hits) if searched else None
+        who = (t.get("host") or "a host").capitalize()
+        lines.append(f'- {who} said on {_spoken_date(t["opened"])} they would watch for: '
+                     f'{t["watch_for"]}')
+        lines.append("  Search results since then:\n" + _indent(_format_search_hits(hits))
+                     if hits else "  Nothing found since then.")
+    block = (
+        "OPEN THREADS — things a host told listeners they would watch for. Close each "
+        "one on air, briefly, wherever it fits (the deep dive or the sign-off), and say "
+        "who promised it. SOURCED OR UNSAID: report only what these results establish, "
+        "naming the outlet. If they don't answer it, say in one sentence that it is "
+        "still open. Never guess the outcome.\n" + "\n".join(lines) + "\n"
+    )
+    return block, found
+
+
+def _indent(text: str, prefix: str = "    ") -> str:
+    return "\n".join(prefix + line for line in text.splitlines())
+
+
+def record_open_threads(offered: list, found: dict, today_iso: str) -> None:
+    """Write back what happened to each thread; expire the ones that ran out.
+
+    Offered with a source: aired. Searched OPEN_THREAD_MAX_SURFACINGS times with
+    nothing (an unsearched offer doesn't count), or past `due` +
+    OPEN_THREAD_WINDOW_DAYS: expired, and degraded, so
+    a promise the show could not keep is a row in the run report. Idempotent on
+    a same-day re-run.
+    """
+    memory = get_debate_memory()
+    cutoff = (date.fromisoformat(today_iso) - timedelta(days=OPEN_THREAD_WINDOW_DAYS)).isoformat()
+    offered_keys = {(t["opened"], t["watch_for"]) for t in offered}
+    changed = False
+    for key, entry in memory.items():
+        for t in entry.get("open_threads") or []:
+            if t.get("status") != "open":
+                continue
+            tkey = (key, t.get("watch_for"))
+            if tkey in offered_keys and found.get(tkey) is not None:
+                if today_iso not in t.setdefault("surfaced", []):
+                    t["surfaced"].append(today_iso)
+                if found.get(tkey):
+                    t["status"] = "aired"
+                changed = True
+            if t["status"] == "open" and (
+                    len(t.get("surfaced", [])) >= OPEN_THREAD_MAX_SURFACINGS
+                    or t.get("due", "9999") < cutoff):
+                t["status"] = "expired"
+                changed = True
+                degrade("script/open-threads",
+                        f"Open thread from {key} expired unanswered: {t.get('watch_for', '')[:100]}")
+    if changed:
+        save_memory(DEBATE_MEMORY_FILE, memory)
 
 def get_cta_memory():
     """Load and clean CTA memory (keep last CTA_MEMORY_RETENTION_DAYS = 365 days)."""
@@ -5180,6 +5349,16 @@ def generate_cold_open(script, theme_name):
         return script
 
 
+def _debate_summary_prompt(deep_dive_section: str, theme_name: str) -> str:
+    """One prompt for both summary paths. Today's date anchors open_threads' `due`."""
+    return (
+        "Analyze this DEEP DIVE podcast segment and extract a structured summary.\n\n"
+        f"Theme: {theme_name}\n"
+        f"Today: {get_pacific_now().date().isoformat()}\n\n"
+        "Segment:\n" + deep_dive_section
+    )
+
+
 def extract_debate_summary(script, theme_name):
     """Extract a structured summary of the deep dive debate from the script.
 
@@ -5195,16 +5374,12 @@ def extract_debate_summary(script, theme_name):
     # and wastes input tokens (deep dive is ~30% of the full script).
     deep_dive_section = _extract_deep_dive_section(script)
 
-    prompt = (
-        "Analyze this DEEP DIVE podcast segment and extract a structured summary.\n\n"
-        f"Theme: {theme_name}\n\n"
-        "Segment:\n" + deep_dive_section
-    )
+    prompt = _debate_summary_prompt(deep_dive_section, theme_name)
 
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
-            max_tokens=1000,
+            max_tokens=1500,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output(_debate_summary_schema()),
         ))
@@ -12342,7 +12517,16 @@ def run_script_stage() -> tuple[str, str] | None:
                     _event_articles(_ballot_events, _episode_articles),
                     get_anthropic_client(), _ballot_events)
         brave_context += ballot_context
-        brave_used = _sparse_brave_used or bool(brave_context)
+        # Promises a host made on an earlier same-theme episode that are now due.
+        threads_offered, threads_found, threads_block = [], {}, ""
+        with segment("script/open-threads", critical=False):
+            threads_offered = due_open_threads(debate_memory, date_key, today_theme)
+            if threads_offered:
+                threads_block, threads_found = research_open_threads(
+                    threads_offered, os.getenv("BRAVE_SEARCH_API_KEY"), date_key)
+                print(f"🧶 {len(threads_offered)} open thread(s) due, "
+                      f"{sum(threads_found.values())} with sources")
+        brave_used = _sparse_brave_used or bool(brave_context) or any(threads_found.values())
 
         weather_data = None
         with segment("script/weather", critical=False):
@@ -12376,6 +12560,9 @@ def run_script_stage() -> tuple[str, str] | None:
             if prior_coverage:
                 print("🔁 Prior coverage overlap detected — acknowledgment instruction injected")
                 evolving_context += "\n" + prior_coverage
+
+            if threads_block:
+                evolving_context += "\n" + threads_block
 
             # Running threads: the same subject through a different story, across
             # the roundup and the deep dive. Tags the articles in place.
@@ -12708,6 +12895,11 @@ def run_script_stage() -> tuple[str, str] | None:
         with segment("script/persist-debate-memory", critical=False):
             update_debate_memory(date_key, today_theme, debate_summary,
                                  focus=today_focus, anchor=today_anchor)
+
+        with segment("script/persist-open-threads", critical=False):
+            # After today's debate memory, so today's own threads are in the file;
+            # runs every day because expiry is checked here too.
+            record_open_threads(threads_offered, threads_found, date_key)
 
         with segment("script/persist-cta-memory", critical=False):
             # Update one-year CTA cache

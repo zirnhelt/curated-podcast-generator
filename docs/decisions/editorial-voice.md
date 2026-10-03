@@ -352,3 +352,56 @@ onto the queued item.
 - **The fabrication guard covers both shapes.** `_corrections_ground_truth` and
   `strip_unsourced_correction` now treat an uncited "our production team caught…" the way they
   always treated an uncited "a listener flagged…" — the new wording is as inventable as the old.
+
+## Continuity: repeats and promises (`mark_running_threads`, `podcasts/debate_memory.json` → `open_threads`)
+
+**The 2026-10-03 episode exposed two gaps.**
+
+- It aired three stories the show had already run, as if they were new.
+- Casey closed by saying he would be watching whether the deferred-items list reached the
+  first council agenda after the vote. Nothing anywhere recorded that.
+
+**Repeats.** A repeat can be worth airing. It is never news to the listener, so the hosts
+must say they have covered it.
+
+- **Recalled election stories went untagged in the deep dive.** The recall tag
+  (`ALREADY COVERED`) reached only roundup articles. Two of that day's three repeats were
+  recalled stories that became deep-dive material. Both formatters now share
+  `_coverage_tags()`.
+- **The same subject arrived through a different story.** Data centres aired on five
+  episodes in eight days (09-26 to 10-03), and each one introduced them from scratch.
+  Evolving-story detection matches the same *story*. `mark_running_threads` matches the same
+  *subject*, locally with no API call. It compares adjacent content-word pairs in headlines
+  against the last `RUNNING_THREAD_DAYS` of aired citations (`discussed` only) and tags the
+  article `RUNNING THREAD` with the earlier dates.
+- **Pairs, not shared words.** On a week of real citations, shared single words flagged
+  "year + million" and "call + back". A frequency cut-off would have dropped exactly the
+  subjects that recur most. Adjacent pairs flagged data centres, solar panels and the snap
+  election, with little else. Place names break a pair, and `_THREAD_PAIR_STOPLIST` holds
+  the generic ones. A new false positive goes in the stoplist; don't loosen the matching.
+
+**Promises (open threads).**
+
+- **Extraction costs no extra call.** The debate summary extracts at most two
+  (`OPEN_THREAD_MAX_PER_EPISODE`). It extracts only what a host explicitly says they will
+  watch for, with a due date counted from `Today:` in the prompt. The threads are stored on
+  the episode's own `debate_memory.json` entry, which is already committed.
+- **Offering.** A thread is offered on the first episode **on the same theme** on or after
+  its due date. A promise made on the civic day belongs on the civic day.
+- **Search.** Each thread due that day gets one Brave Search, limited to pages since the
+  thread was opened, on the **deep-dive meter**: up to `OPEN_THREAD_SEARCH_LIMIT` (2) a
+  run, on days that have one. **SOURCED OR UNSAID** applies. With no results the hosts say
+  in one sentence that it is still open, rather than staying quiet about a promise.
+- **Lifecycle.** A thread offered with a source is marked `aired`. It becomes `expired` and
+  `degrade()`s `script/open-threads` in either of two cases: it was searched
+  `OPEN_THREAD_MAX_SURFACINGS` times with nothing found, or it is more than
+  `OPEN_THREAD_WINDOW_DAYS` past due. A broken promise is then a row in the run report.
+  An offer with no search behind it (the meter was spent) does not count toward expiry.
+- **Watch the ratio of `aired` to `expired`.** Many expiries mean either the due dates
+  are too early or the hosts are promising what nobody publishes. Measure that before
+  making the search more aggressive.
+
+**CTA cache.** `cta_memory.json` was written from the start and never staged, so the
+one-year "do not repeat these" block always started empty. The batch summary path (the
+default) also never asked for `calls_to_action`. A test now requires every `podcasts/`
+state file the generator defines to be staged by the script-stage commit.

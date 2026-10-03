@@ -1637,3 +1637,108 @@ class TestCohereDeepDiveRerank:
         monkeypatch.setattr(ce, "_degradations", ["deep-dive rerank: failed"])
         pg._report_cohere_degradations("script/cohere")
         assert rows == [("script/cohere", "deep-dive rerank: failed")]
+
+
+class TestOpenThreads:
+    """2026-10-03: Casey said he'd watch the first post-vote agenda; nothing kept it."""
+    CASEY = {"host": "casey", "query": "Williams Lake council first agenda deferred items",
+             "watch_for": "Whether the deferred-items list is on the first agenda after the vote",
+             "due": "2026-10-25"}
+
+    @pytest.fixture
+    def memory_env(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(pg, "DEBATE_MEMORY_FILE", tmp_path / "debate_memory.json")
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: pg.datetime(2026, 10, 3, 9))
+        pg._RUN_SEGMENTS.clear()
+        pg._RESEARCH_LOG.clear()
+        yield
+        pg._RUN_SEGMENTS.clear()
+        pg._RESEARCH_LOG.clear()
+
+    def _save(self, *threads, theme="Cariboo Local Affairs", day="2026-10-03"):
+        pg.update_debate_memory(day, theme, {"central_question": "q",
+                                             "open_threads": list(threads)})
+        return pg.get_debate_memory()
+
+    def test_summary_schema_asks_for_open_threads(self):
+        item = pg._debate_summary_schema()["properties"]["open_threads"]["items"]
+        assert set(item["required"]) == {"host", "watch_for", "due", "query"}
+        assert "calls_to_action" in pg._debate_summary_schema()["required"]
+
+    def test_stored_threads_are_capped_dated_and_open(self, memory_env):
+        stored = self._save(self.CASEY, {**self.CASEY, "due": "not a date"},
+                            {**self.CASEY, "due": "2027-06-01"})["2026-10-03"]["open_threads"]
+        assert len(stored) == pg.OPEN_THREAD_MAX_PER_EPISODE
+        assert stored[0]["due"] == "2026-10-25" and stored[0]["status"] == "open"
+        assert stored[1]["due"] == "2026-10-10"          # unreadable: a week out
+
+    def test_due_date_is_clamped(self):
+        far, past = pg._normalize_open_threads(
+            [{**self.CASEY, "due": "2027-06-01"}, {**self.CASEY, "due": "2026-01-01"}],
+            "2026-10-03")
+        assert far["due"] == "2026-12-02" and past["due"] == "2026-10-04"
+
+    def test_due_only_on_the_same_theme_on_or_after_due(self, memory_env):
+        memory = self._save(self.CASEY)
+        assert pg.due_open_threads(memory, "2026-10-24", "Cariboo Local Affairs") == []
+        assert pg.due_open_threads(memory, "2026-10-26", "Science, Wonder & the Natural World") == []
+        (due,) = pg.due_open_threads(memory, "2026-10-31", "Cariboo Local Affairs")
+        assert due["opened"] == "2026-10-03"
+
+    def test_search_uses_the_deep_dive_meter_since_the_thread_opened(self, monkeypatch):
+        calls = []
+        monkeypatch.setattr(pg, "_brave_deep_dive_open", lambda: True)
+        monkeypatch.setattr(pg, "_brave_deep_dive_rate_limit", lambda q, k, count, freshness:
+                            calls.append(freshness) or
+                            [{"title": "Council agenda Nov 4", "url": "https://wltribune.com/x",
+                              "description": "Deferred items listed."}])
+        thread = {**self.CASEY, "opened": "2026-10-03"}
+        block, found = pg.research_open_threads([thread], "key", "2026-10-31")
+        assert calls == ["2026-10-03to2026-10-31"]
+        assert found == {("2026-10-03", self.CASEY["watch_for"]): True}
+        assert "Casey said on Saturday Oct 3" in block and "wltribune.com" in block
+        assert "SOURCED OR UNSAID" in block
+
+    def test_nothing_found_still_reaches_the_hosts(self, monkeypatch):
+        monkeypatch.setattr(pg, "_brave_deep_dive_open", lambda: False)
+        block, found = pg.research_open_threads(
+            [{**self.CASEY, "opened": "2026-10-03"}], "key", "2026-10-31")
+        assert "Nothing found since then" in block
+        assert found == {("2026-10-03", self.CASEY["watch_for"]): None}
+
+    def test_an_unsearched_offer_does_not_count_toward_expiry(self, memory_env):
+        self._save(self.CASEY)
+        offered = [{**pg.get_debate_memory()["2026-10-03"]["open_threads"][0], "opened": "2026-10-03"}]
+        key = ("2026-10-03", self.CASEY["watch_for"])
+        pg.record_open_threads(offered, {key: None}, "2026-10-31")
+        pg.record_open_threads(offered, {key: None}, "2026-11-07")
+        (t,) = pg.get_debate_memory()["2026-10-03"]["open_threads"]
+        assert t["status"] == "open" and t["surfaced"] == []
+
+    def test_sourced_thread_is_aired_once(self, memory_env):
+        self._save(self.CASEY)
+        offered = [{**pg.get_debate_memory()["2026-10-03"]["open_threads"][0], "opened": "2026-10-03"}]
+        key = ("2026-10-03", self.CASEY["watch_for"])
+        pg.record_open_threads(offered, {key: True}, "2026-10-31")
+        pg.record_open_threads(offered, {key: True}, "2026-10-31")   # same-day re-run
+        (t,) = pg.get_debate_memory()["2026-10-03"]["open_threads"]
+        assert t["status"] == "aired" and t["surfaced"] == ["2026-10-31"]
+        assert pg.due_open_threads(pg.get_debate_memory(), "2026-11-07", "Cariboo Local Affairs") == []
+
+    def test_unsourced_thread_expires_after_two_offers_and_degrades(self, memory_env):
+        self._save(self.CASEY)
+        offered = [{**pg.get_debate_memory()["2026-10-03"]["open_threads"][0], "opened": "2026-10-03"}]
+        key = ("2026-10-03", self.CASEY["watch_for"])
+        pg.record_open_threads(offered, {key: False}, "2026-10-31")
+        assert pg.get_debate_memory()["2026-10-03"]["open_threads"][0]["status"] == "open"
+        assert not pg._RUN_SEGMENTS
+        pg.record_open_threads(offered, {key: False}, "2026-11-07")
+        assert pg.get_debate_memory()["2026-10-03"]["open_threads"][0]["status"] == "expired"
+        assert pg._RUN_SEGMENTS[-1]["name"] == "script/open-threads"
+
+    def test_thread_never_offered_expires_after_its_window(self, memory_env):
+        self._save(self.CASEY)
+        pg.record_open_threads([], {}, "2026-11-08")
+        assert pg.get_debate_memory()["2026-10-03"]["open_threads"][0]["status"] == "open"
+        pg.record_open_threads([], {}, "2026-11-09")
+        assert pg.get_debate_memory()["2026-10-03"]["open_threads"][0]["status"] == "expired"
