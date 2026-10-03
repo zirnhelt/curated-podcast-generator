@@ -381,6 +381,33 @@ roughly 300-400 extra Search requests (~$1.50-2) a month against the **$15 cap s
 export before raising it. `_brave_search` now logs every request as `brave-search` in the cost
 snapshot, which used to count Answers alone.
 
+**Getting more out of each paid call** (2026-10-02). The ceilings stayed where they were.
+What changed is how much each call returns, and which pass spends which meter.
+- **The election meter now also carries the weekday election pass's follow-ups**
+  (`_research_event_ballot`; see curation.md, all-week events). Before, those follow-ups ran
+  on the deep-dive meter and fell through to Answers. 09-29 made 24 such searches,
+  emptied the deep-dive meter, then spent all 8 Answers calls before fact resolution ran. A
+  weekday election pass is ≤ ~18 calls (roll call, a fallback re-query per race whose
+  campaign-window search came back empty, 12 follow-ups) against the meter's 40.
+- **Allowances are enforced in code** (`_budgeted`). "Up to N searches" lived in the prompt
+  and in `max_iterations`, and a model that issues parallel tool calls walks past both.
+- **A paid call returns more.** Brave bills per request, not per result. Agent searches now
+  take `AGENT_SEARCH_RESULTS` (8, was 4) at `AGENT_SNIPPET_CHARS` (400, was 200), and roll-call
+  searches `EVENT_ROLL_CALL_RESULTS` (6, was 3). The cost is Claude input tokens, mostly
+  re-read from cache inside the loop: about +$0.05 on a Saturday, less on a weekday.
+- **Page reads are free and now run every day.** `fetch_page` is a plain HTTP GET on no Brave
+  meter. Only election days had it, so the deep dive's own pass saw 200-character snippets.
+  It now gets `TOPIC_PAGE_FETCH_LIMIT` (3) on its own counter.
+- **Fact resolution never read a deep dive.** `_resolve_script_questions_with_brave` sent Haiku
+  `script[:5000]`: the cold open, the welcome and a few roundup stories. The deep dive starts
+  near character 10,000, and that's where the hosts ask "What does it cost?". It now reads the
+  deep dive first, then the rest (`_script_question_excerpt`, capped at
+  `SCRIPT_QUESTION_SCAN_CHARS`), for under a cent of Haiku. Its queries go into the citations
+  `research` log as `question`. The same week, `_extract_deep_dive_section` turned out to key
+  on the first "deep dive" anywhere, which is the cold open's tease. The debate summary and
+  the personality clues were reading 97% of the script instead of ~30%. It now keys on the
+  section header.
+
 **The remaining lever is structural, not a limit:** the backfill spends up to two queries per
 article (title, then URL) across 40 candidates before curation cuts to 15. Moving it after
 curation is not free — `theme_adjacent` classification reads the body — so it is a real

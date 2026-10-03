@@ -905,6 +905,21 @@ EVENT_RESEARCH_SEARCH_LIMIT = int(os.getenv("PODCAST_EVENT_RESEARCH_SEARCH_LIMIT
 # super-rss-feed: read Brave's per-key export before raising this.
 BRAVE_EVENT_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_EVENT_CALL_LIMIT", "40"))  # 0=disabled
 EVENT_PAGE_FETCH_LIMIT = int(os.getenv("PODCAST_EVENT_PAGE_FETCH_LIMIT", "6"))
+# Results per roll-call search (was 3). Same price per request; a Saturday's ~27
+# searches add ~9k input tokens to the research loop, mostly read from cache.
+EVENT_ROLL_CALL_RESULTS = 6
+#
+# The deep dive's own pass reads pages too. A read is a plain HTTP GET on no Brave
+# meter: the only cost is the Claude tokens of the page it returns (<=6000 chars).
+TOPIC_PAGE_FETCH_LIMIT = 3
+#
+# Until 2026-10-02 an all-week event that rode in on one roundup story (the
+# provincial vote, via a candidate profile) turned the deep dive's research pass
+# into the ballot sweep: 2026-09-28, 29, 30 and 10-02 asked every research
+# question about the election and none about the debate. It now gets a pass of
+# its own on the election meter (_research_event_ballot), and the deep dive keeps
+# the ordinary day's. The day's own event (Saturday) still shares one pass,
+# because there the ballot is the deep dive.
 # A sweep that comes back empty on more than this share of the ballot is a
 # research failure, not a quiet ballot: it degrade()s so the run says so.
 EVENT_UNFOUND_DEGRADE_SHARE = 1 / 3
@@ -933,6 +948,8 @@ BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"
 # "answer" the default for direct factual questions. Tokens are still the
 # unmeasured half of the price: refit off the logged `brave-answers tokens=`.
 SCRIPT_QUESTION_LIMIT = 5
+# How much script question detection reads (see _script_question_excerpt).
+SCRIPT_QUESTION_SCAN_CHARS = 24000
 DEEP_DIVE_INJECT_DISCIPLINE_TAGS = os.getenv("PODCAST_DEEP_DIVE_INJECT_DISCIPLINE_TAGS", "0") == "1"
 
 # prompt slice registry — only append injected context when caller opts in
@@ -1253,6 +1270,26 @@ _openai_quota_exceeded = False
 # Maximum characters per OpenAI TTS call. Segments above this are pre-split at
 # sentence boundaries so no single call carries enough text to risk a hang.
 TTS_SEGMENT_MAX_CHARS = 500
+
+# Silence between the chunks of one pre-split turn. Each chunk is trimmed of its
+# own head and tail, so a bare join left the seam at 120-185 ms on 2026-10-02
+# against a ~305 ms median pause between sentences inside a single take: the
+# one sentence break per turn the listener could hear being rushed.
+TTS_CHUNK_GAP_MS = 350
+
+# News roundup grouping. The listener hears a story boundary as a gap that is
+# clearly longer than the gaps inside a story, so a reaction must sit closer to
+# the story it answers than to the next one. On 2026-10-02 it was the other way
+# round: an 82-char reaction got the 1300 ms "story hand-off" heuristic before
+# it and the script's [pause:1200] after it, and the host who reacted then read
+# the next story in the same voice — so the quip played as the next story's
+# opening line. Reactions are capped; story intros get a floor, a higher one when
+# no voice change marks the boundary.
+NEWS_REACTION_MAX_CHARS = 160
+NEWS_REACTION_GAP_MAX_MS = 450
+NEWS_STORY_GAP_MS = 1700
+NEWS_SAME_VOICE_STORY_GAP_MS = 2000
+NEWS_STORY_TAG_MIN_MS = 1000   # the script's own story-break tag is [pause:1200]
 
 # Interval music duration (ms) — trim long theme to a short chime
 # Use only the crisp front-end attack of the intermission MP3
@@ -2669,23 +2706,27 @@ def _brave_deep_dive_rate_limit(query, api_key, count=5):
     return _brave_search(query, api_key, count=count)
 
 
-def _brave_event_rate_limit(query, api_key, count=3):
-    """The election roll-call meter (BRAVE_EVENT_CALL_LIMIT), separate from the
-    deep-dive meter so a 30-search ballot cannot starve fact resolution."""
+def _brave_event_rate_limit(query, api_key, count=3, freshness=None):
+    """The election meter (BRAVE_EVENT_CALL_LIMIT): the roll call and, on a day
+    the election rides in on a roundup story, the election pass's follow-ups.
+    Separate from the deep-dive meter so a 30-search ballot cannot starve the
+    deep dive's own research or fact resolution."""
     if _brave_walled("search"):
         return []
     state = _BRAVE_SEARCH_STATE
     if BRAVE_EVENT_CALL_LIMIT > 0 and state.get("event_calls", 0) >= BRAVE_EVENT_CALL_LIMIT:
         print("  Brave event-sweep call limit reached; stopping the roll call")
         degrade("script/research",
-                f"Brave event-sweep budget spent ({BRAVE_EVENT_CALL_LIMIT} calls) — the "
-                "rest of the ballot went to the agent's follow-up budget")
+                f"Brave event-sweep budget spent ({BRAVE_EVENT_CALL_LIMIT} calls) — later "
+                "roll-call and election-pass searches went unsearched")
         return []
     state["event_calls"] = state.get("event_calls", 0) + 1
+    if freshness:
+        return _brave_search(query, api_key, count=count, freshness=freshness)
     return _brave_search(query, api_key, count=count)
 
 
-def _brave_search(query, api_key, count=5):
+def _brave_search(query, api_key, count=5, freshness=None):
     """Call Brave Search API and return a list of result dicts.
 
     Call it only through _brave_search_rate_limit, _brave_deep_dive_rate_limit
@@ -2696,6 +2737,12 @@ def _brave_search(query, api_key, count=5):
     """
     if _brave_walled("search"):
         return []
+    params = {"q": query, "count": count, "search_lang": "en", "safesearch": "moderate"}
+    if freshness:
+        # pd/pw/pm/py or "YYYY-MM-DDtoYYYY-MM-DD". Brave bills per request, not
+        # per result, so a window costs nothing; it keeps a 2024 race page out of
+        # a 2026 roll call (the Bardua mix-up the 2026-10-02 research block flagged).
+        params["freshness"] = freshness
     try:
         resp = requests.get(
             "https://api.search.brave.com/res/v1/web/search",
@@ -2704,7 +2751,7 @@ def _brave_search(query, api_key, count=5):
                 "Accept-Encoding": "gzip",
                 "X-Subscription-Token": api_key,
             },
-            params={"q": query, "count": count, "search_lang": "en", "safesearch": "moderate"},
+            params=params,
             timeout=10,
         )
         resp.raise_for_status()
@@ -3133,7 +3180,47 @@ WEB_SEARCH_TOOL = {
 }
 
 
-def _web_search_tool_executor(tool_input):
+# The election pass's search: results only, because SOURCED OR UNSAID needs a
+# URL on every claim and an Answers reply carries none (on 2026-10-02 the pass
+# could only offer two vote counts "with no source URL, attribute loosely").
+EVENT_SEARCH_TOOL = {
+    "name": "web_search",
+    "description": (
+        "Search the web for the ballot: who filed, prior results won and lost, records "
+        "in office. Returns snippets with source URLs; every claim you keep needs one."
+    ),
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "query": {"type": "string", "description": "The search query."},
+            "recent": {
+                "type": "boolean",
+                "description": (
+                    "true limits results to pages published during this campaign: use it "
+                    "for who is running now. Leave it off for a candidate's earlier record."
+                ),
+            },
+        },
+        "required": ["query"],
+    },
+}
+
+# Results per agent search, and how much of each snippet the agent reads. Brave
+# bills per request, not per result: the old 4 results cut to 200 characters left
+# most of each paid call unread. Only Claude input grows, and the loop re-reads it
+# from cache.
+AGENT_SEARCH_RESULTS = 8
+AGENT_SNIPPET_CHARS = 400
+
+
+def _format_search_hits(hits: list) -> str:
+    return "\n".join(
+        f"- {h['title']}\n  {h['description'][:AGENT_SNIPPET_CHARS]}\n  Source: {h['url']}"
+        for h in hits
+    )
+
+
+def _web_search_tool_executor(tool_input, meter="deep_dive", window=None):
     """Execute a web_search tool call via Brave. Never returns empty.
 
     Search and Answers are separate plans, so one being spent is a reason to ask
@@ -3141,35 +3228,62 @@ def _web_search_tool_executor(tool_input):
     snippets, and snippets are already the documented fallback for an answer.
     Without this, the 2026-08-29 Search cap left the research pass with no tool
     at all on a night the Answers plan was live and unused.
+
+    meter="event" is the election pass (EVENT_SEARCH_TOOL): the election meter,
+    results only and never Answers, with *window* (the campaign's date range)
+    applied when the agent asks for `recent`.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     query = tool_input.get("query", "")
     if not query or not brave_key:
         return "Web search is not available."
     print(f"    🔎 research query: {query}")
-    _RESEARCH_LOG.append({"kind": "agent-search", "query": query})
+    _RESEARCH_LOG.append({"kind": "agent-search", "query": query, "pass": meter})
+
+    if meter == "event":
+        recent = bool(tool_input.get("recent") and window)
+        hits = _brave_event_rate_limit(query, brave_key, count=AGENT_SEARCH_RESULTS,
+                                       freshness=window if recent else None)
+        if not hits:
+            return ("No results inside the campaign window; search again without `recent` "
+                    "for older pages." if recent else "No results found.")
+        return _format_search_hits(hits)
 
     if tool_input.get("mode") == "answer" or not _brave_deep_dive_open():
         answer = _brave_summarize(query)   # its own subscription, its own key
         if answer:
             return answer
 
-    hits = _brave_deep_dive_rate_limit(query, brave_key, count=4)
+    hits = _brave_deep_dive_rate_limit(query, brave_key, count=AGENT_SEARCH_RESULTS)
     if not hits:
         return "No results found."
+    return _format_search_hits(hits)
 
-    return "\n".join(
-        f"- {h['title']}\n  {h['description'][:200]}\n  Source: {h['url']}"
-        for h in hits
-    )
+
+def _budgeted(executor, allowance: int, what: str):
+    """Hold one research pass's tool to *allowance* calls.
+
+    The allowance used to live in the prompt ("up to N searches") and in
+    max_iterations, and a model issuing parallel tool calls walks past both:
+    2026-09-29's election pass made 24 searches against 12, emptied the deep-dive
+    meter and then all 8 Answers calls before fact resolution ran.
+    """
+    used = [0]
+
+    def run(tool_input):
+        if used[0] >= allowance:
+            return f"{what} allowance for this pass is spent; work from what you have."
+        used[0] += 1
+        return executor(tool_input)
+    return run
 
 
 FETCH_PAGE_TOOL = {
     "name": "fetch_page",
     "description": (
-        "Read the text of one web page, e.g. a candidate list, a declaration of "
-        "candidates or a news story a search result pointed to. Returns up to "
-        "6000 characters. Budgeted: fetch only pages a search showed are relevant."
+        "Read the text of one web page a search result pointed to: the report, the "
+        "source article, a candidate list. Returns up to 6000 characters. Budgeted: "
+        "fetch only pages a search showed are relevant."
     ),
     "input_schema": {
         "type": "object",
@@ -3179,17 +3293,21 @@ FETCH_PAGE_TOOL = {
 }
 
 
-def _fetch_page_tool_executor(tool_input):
-    """Read a page for the election research pass, on EVENT_PAGE_FETCH_LIMIT.
+def _fetch_page_tool_executor(tool_input, limit=None, counter="page_fetches"):
+    """Read a page for a research pass, on that pass's page budget.
 
-    Snippets are 200 characters; a candidate list is a page. On 2026-09-26 the
-    pass could see that cariboord.ca listed directors and could not open it.
+    Snippets are a few hundred characters; a candidate list or a report is a page.
+    On 2026-09-26 the pass could see that cariboord.ca listed directors and could
+    not open it. A read is a plain HTTP GET on no search meter, so the deep dive's
+    own pass gets it too (TOPIC_PAGE_FETCH_LIMIT, its own counter); the election
+    passes keep EVENT_PAGE_FETCH_LIMIT.
     """
+    limit = EVENT_PAGE_FETCH_LIMIT if limit is None else limit
     url = (tool_input.get("url") or "").strip()
     state = _BRAVE_SEARCH_STATE
-    if state.get("page_fetches", 0) >= EVENT_PAGE_FETCH_LIMIT:
+    if state.get(counter, 0) >= limit:
         return "Page-read budget spent; work from the search results you have."
-    state["page_fetches"] = state.get("page_fetches", 0) + 1
+    state[counter] = state.get(counter, 0) + 1
     print(f"    📖 research page: {url[:120]}")
     _RESEARCH_LOG.append({"kind": "page", "url": url})
     text = _fetch_page_text(url)
@@ -3222,15 +3340,25 @@ def _running(race) -> list:
     return [c for c in race.get("candidates") or [] if c and c not in withdrawn]
 
 
+def _race_queries(event) -> list:
+    """One "who is running" query per race."""
+    roster = (event or {}).get("roster") or {}
+    year = (event.get("end") or "")[:4]
+    return [race.get("search") or f"{race.get('race', '')} candidates {year}".strip()
+            for race in roster.get("races") or []]
+
+
+def _campaign_window(event) -> str | None:
+    """Brave's freshness range for "who is running now": the event's start to today."""
+    start = (event or {}).get("start")
+    return f"{start}to{date.today().isoformat()}" if start else None
+
+
 def _event_sweep_queries(event) -> list:
     """One query per race and one per running candidate or seat holder."""
     roster = (event or {}).get("roster") or {}
     context = event.get("search_context", "")
-    year = (event.get("end") or "")[:4]
-    queries, seen = [], set()
-    for race in roster.get("races") or []:
-        q = race.get("search") or f"{race.get('race', '')} candidates {year}".strip()
-        queries.append(q)
+    queries, seen = _race_queries(event), set()
     for race in roster.get("races") or []:
         for name in _running(race) + [race.get("seat_holder") or ""]:
             if name and name not in seen:
@@ -3250,9 +3378,16 @@ def _run_event_sweep(events, brave_key) -> str:
     sections = []
     for event in events:
         lines = []
+        races, window = set(_race_queries(event)), _campaign_window(event)
         for q in _event_sweep_queries(event):
             print(f"    🗳️  roll-call query: {q}")
-            hits = _brave_event_rate_limit(q, brave_key, count=3)
+            # "Who is running" is asked of this campaign only; a candidate's own
+            # query is not, because their record is the earlier pages.
+            hits = (_brave_event_rate_limit(q, brave_key, count=EVENT_ROLL_CALL_RESULTS,
+                                            freshness=window)
+                    if q in races and window else [])
+            if not hits:
+                hits = _brave_event_rate_limit(q, brave_key, count=EVENT_ROLL_CALL_RESULTS)
             _RESEARCH_LOG.append({"kind": "roll-call", "query": q, "results": len(hits)})
             lines.append(f"QUERY: {q}")
             if not hits:
@@ -3289,6 +3424,134 @@ def _check_unfound(result: str, events) -> None:
                 f"candidates on the ballot: {', '.join(unfound[:12])}")
 
 
+# The ballot half of a research prompt, shared by the Saturday pass (where the
+# ballot is the deep dive) and the weekday election pass, so the two cannot drift.
+_BALLOT_SWEEP_INSTRUCTIONS = (
+    "The roster above is the filed list of who is running — research those people by "
+    "name whether or not the source articles mention them. The ROLL-CALL SEARCHES in the "
+    "user message already ran one search per race and per candidate: read them first, then "
+    "spend your own searches and page reads on the races and people they left thinnest. "
+    "Where a race has no names, finding who filed comes before any other search, and a "
+    "candidate list or declaration page is worth reading with fetch_page rather than "
+    "guessing from a snippet. Check the date on every page: a result from an earlier "
+    "election is that election's record, not this one's field.\n\n"
+)
+_BALLOT_FINDINGS_FORMAT = (
+    "One FINDINGS block per race naming each candidate with what the sources establish, "
+    "outlet and date on every claim. Then end with exactly one line: NO RECORD FOUND: "
+    "<names separated by semicolons, or none>. A person on that line is someone this "
+    "search did not establish a record for — the hosts will say the show has not "
+    "established it, never that no public record exists.\n\n"
+)
+
+
+def _standing_assignments(events) -> str:
+    return "".join(
+        f"STANDING ASSIGNMENT — {e.get('name', 'active event')}:\n"
+        f"{e['research']}\n{_format_event_roster(e)}\n\n"
+        for e in events)
+
+
+def _research_articles_text(articles) -> str:
+    return "\n\n".join(
+        f"ARTICLE: {a.get('title', '')}\n"
+        f"Summary: {a.get('summary', '')[:300]}\n"
+        f"Body excerpt: {(a.get('_body', '') or '')[:500]}"
+        for a in articles
+    )
+
+
+def _ballot_pass_events(events) -> list:
+    """The events that get a research pass of their own.
+
+    All-week events with a research brief, on a day with no event of its own. On
+    the day's own event (Saturday) the ballot is the deep dive, so one pass keeps
+    covering both, exactly as before.
+    """
+    events = [e for e in events or [] if e.get("research")]
+    if any(e.get("_own_day") for e in events):
+        return []
+    return events
+
+
+def _event_articles(events, articles) -> list:
+    """The episode articles that carry these events' vocabulary — the election
+    pass reads the stories that brought the event in, not the deep dive's."""
+    keywords = [k for e in events or [] for k in _build_event_focus_keywords(e)]
+    return [a for a in articles or []
+            if _keyword_hit_count(f"{a.get('title', '')} {a.get('summary', '')}".lower(),
+                                  keywords)]
+
+
+def _research_event_ballot(articles, client, events) -> str:
+    """The ballot sweep for an all-week event, in a pass of its own.
+
+    The Python roll call runs first; the agent follows up on the election meter
+    with results-only search (EVENT_SEARCH_TOOL — every claim needs a URL) and
+    page reads, each held to its allowance. Returns an ELECTION RESEARCH block,
+    or "" when there is nothing to sweep or nothing came back.
+    """
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    if not brave_key or not client or not events:
+        return ""
+    if _brave_walled("search"):
+        # Answers is no substitute here: the ballot is SOURCED OR UNSAID and an
+        # answer carries no URL.
+        degrade("script/research",
+                "Brave Search unavailable before the election pass — the ballot went "
+                "unswept (Answers carries no source URLs, so it is not used for it)")
+        return ""
+
+    names = "; ".join(e.get("name", "election") for e in events)
+    print(f"🗳️  Researching the ballot (agentic): {names}")
+    window = next((w for w in (_campaign_window(e) for e in events) if w), None)
+    roll_call = _run_event_sweep(events, brave_key)
+    system_prompt = (
+        "You are preparing election research for a daily podcast. Today's episode carries "
+        "material on the election below. Your job is the ballot, not the day's deep dive, "
+        "which is researched separately.\n\n"
+        "Never fabricate organization names, person names, or event details — only reference "
+        "entities found in the source articles or verified by your web searches.\n\n"
+        + _standing_assignments(events) + _BALLOT_SWEEP_INSTRUCTIONS +
+        f"Use web_search for up to {EVENT_RESEARCH_SEARCH_LIMIT} searches (set recent=true "
+        "for who is running now) and fetch_page for up to "
+        f"{EVENT_PAGE_FETCH_LIMIT} pages. Then respond with:\n\n"
+        f"ELECTION RESEARCH — {names}\n"
+        "Background for the roundup's election stories and any race the hosts mention. It "
+        "is not the deep dive's subject.\n\n"
+        + _BALLOT_FINDINGS_FORMAT +
+        "If your searches turn up nothing useful, respond with exactly: NONE"
+    )
+    user_content = (f"Election material in today's episode:\n\n{_research_articles_text(articles)}"
+                    + (f"\n\n{roll_call}" if roll_call else ""))
+    tool_executors = {
+        "web_search": _budgeted(
+            lambda i: _web_search_tool_executor(i, meter="event", window=window),
+            EVENT_RESEARCH_SEARCH_LIMIT, "Search"),
+        "fetch_page": _fetch_page_tool_executor,
+    }
+    result = _run_agentic_loop(
+        client, SONNET_MODEL,
+        system_prompt=system_prompt,
+        user_content=user_content,
+        tools=[EVENT_SEARCH_TOOL, FETCH_PAGE_TOOL], tool_executors=tool_executors,
+        max_iterations=EVENT_RESEARCH_SEARCH_LIMIT + EVENT_PAGE_FETCH_LIMIT + 1,
+        max_tokens=12000,
+    )
+    if result is None:
+        print("  ⚠️ Election research failed, skipping it")
+        return ""
+    result = result.strip()
+    if result == "NONE" or not result:
+        degrade("script/research",
+                "Election research returned nothing on a day with a ballot to sweep — "
+                "the hosts had the roster and no records")
+        return ""
+    _check_unfound(result, events)
+    print("  ✅ Election research gathered")
+    return result + "\n\n"
+
+
 def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_focus=None,
                                   events=None):
     """Agentic pre-generation research pass for the deep dive.
@@ -3313,10 +3576,19 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
     candidate's 2014 win as his current standing, never mentioned the 2022 loss
     that followed it, and called the incumbent "the sitting incumbent" for the
     whole segment.
+
+    Only the day's own event shares this pass. An all-week event (the provincial
+    vote riding in on a roundup story) is dropped here and researched by
+    _research_event_ballot in a pass of its own (see _ballot_pass_events), so the
+    deep dive keeps the ordinary day's research.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     if not brave_key or not client:
         return ""
+    if events is None:
+        events = [{**event_focus, "_own_day": True}] if event_focus else []
+    if _ballot_pass_events(events):
+        events = []
     if not _brave_research_available():
         # The loop's only tool is web search. Running it anyway spends Claude
         # calls to reach a walled endpoint and then reports "NONE", which reads
@@ -3331,42 +3603,26 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
 
     print("🔬 Researching deep dive angles (agentic)...")
 
-    articles_text = "\n\n".join(
-        f"ARTICLE: {a.get('title', '')}\n"
-        f"Summary: {a.get('summary', '')[:300]}\n"
-        f"Body excerpt: {(a.get('_body', '') or '')[:500]}"
-        for a in deep_dive_articles
-    )
+    articles_text = _research_articles_text(deep_dive_articles)
 
     # A named civic event is a standing assignment, not a judgement call: the
     # record it asks for is never in the day's articles, so "is research
     # warranted?" is already answered and the budget is the only open question.
-    if events is None:
-        events = [{**event_focus, "_own_day": True}] if event_focus else []
     events = [e for e in events if e.get('research')]
     # The brief says to sweep every candidate on the ballot, which on a
     # nomination-day story is a count and no names at all. The roster is the
     # filed list, so the sweep gets a roll call instead of whoever the wire
     # happened to quote — and the closing NO RECORD FOUND line has a denominator.
-    assignments = "".join(
-        f"STANDING ASSIGNMENT — {e.get('name', 'active event')}:\n"
-        f"{e['research']}\n{_format_event_roster(e)}\n\n"
-        for e in events)
+    assignments = _standing_assignments(events)
     searches = EVENT_RESEARCH_SEARCH_LIMIT if events else 4
+    fetches = EVENT_PAGE_FETCH_LIMIT if events else TOPIC_PAGE_FETCH_LIMIT
     roll_call = _run_event_sweep(events, brave_key) if events else ""
 
     system_prompt = (
         f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
         "Never fabricate organization names, person names, or event details — "
         "only reference entities found in the source articles or verified by your web searches.\n\n"
-        + (assignments +
-           "The roster above is the filed list of who is running — research those people "
-           "by name whether or not the source articles mention them. The ROLL-CALL SEARCHES "
-           "in the user message already ran one search per race and per candidate: read them "
-           "first, then spend your own searches and page reads on the races and people they "
-           "left thinnest. Where a race has no names, finding who filed comes before any "
-           "other search, and a candidate list or declaration page is worth reading with "
-           "fetch_page rather than guessing from a snippet.\n\n"
+        + (assignments + _BALLOT_SWEEP_INSTRUCTIONS +
            "Research IS warranted today; go straight to the searches below.\n\n"
            if events else "") +
         "First, decide whether live web research would meaningfully enrich this deep dive. "
@@ -3380,7 +3636,9 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
         "applies locally\n\n"
         f"If research IS warranted, use the web_search tool for up to {searches} targeted "
         "searches — fact-checking specific claims, finding recent developments, or surfacing "
-        "counterpoints/comparable cases. Then respond with insights formatted as:\n\n"
+        "counterpoints/comparable cases — and fetch_page for up to "
+        f"{fetches} pages when a result looks like it holds the figure or the report itself "
+        "(a snippet is a few hundred characters). Then respond with insights formatted as:\n\n"
         "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n"
         "These analytical threads were identified before generation. Use the findings to "
         "ground Riley's and Casey's arguments with real evidence — develop them as "
@@ -3388,12 +3646,7 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
         "RESEARCH QUESTION: <question>\nFindings: <findings>\nSuggested angle: <how Riley "
         "(tech optimist) and Casey (skeptic) could develop this in their debate>\n\n"
         "(repeat for each useful finding)\n\n"
-        + ("For the election work, add one FINDINGS block per race naming each candidate "
-           "with what the sources establish, outlet and date on every claim. Then end with "
-           "exactly one line: NO RECORD FOUND: <names separated by semicolons, or none>. A "
-           "person on that line is someone this search did not establish a record for — the "
-           "hosts will say the show has not established it, never that no public record "
-           "exists.\n\n" if events else "") +
+        + ("For the election work, add: " + _BALLOT_FINDINGS_FORMAT if events else "") +
         "If research is NOT warranted, or your searches turn up nothing useful, respond "
         "with exactly: NONE"
     )
@@ -3402,13 +3655,13 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
     if roll_call:
         user_content += f"\n\n{roll_call}"
 
-    tools = [WEB_SEARCH_TOOL]
-    tool_executors = {"web_search": _web_search_tool_executor}
-    fetches = 0
-    if events:
-        tools.append(FETCH_PAGE_TOOL)
-        tool_executors["fetch_page"] = _fetch_page_tool_executor
-        fetches = EVENT_PAGE_FETCH_LIMIT
+    tools = [WEB_SEARCH_TOOL, FETCH_PAGE_TOOL]
+    tool_executors = {
+        "web_search": _budgeted(_web_search_tool_executor, searches, "Search"),
+        "fetch_page": (_fetch_page_tool_executor if events else
+                       lambda i: _fetch_page_tool_executor(
+                           i, limit=TOPIC_PAGE_FETCH_LIMIT, counter="topic_page_fetches")),
+    }
 
     # Sonnet, not SCRIPT_MODEL: a tool loop is a different job from writing the
     # script, and trialling another script model must not move this one too.
@@ -3668,6 +3921,21 @@ def _build_verified_sources(news_articles, deep_dive_articles):
     return "\n".join(verified_sources) if verified_sources else "(no articles provided)"
 
 
+def _script_question_excerpt(script: str) -> str:
+    """The script for question detection: the deep dive first, then the rest.
+
+    Detection read `script[:5000]` until 2026-10-02 — the cold open, the welcome
+    and the first few roundup stories. The deep dive, where the hosts actually ask
+    "What does that cost?", starts near character 10,000 and was never read. A
+    whole script is ~4-6k tokens of Haiku (under a cent); the cap only bounds a
+    runaway, and the deep dive leads so a long Saturday loses roundup tail, not
+    the debate.
+    """
+    deep = _extract_deep_dive_section(script)
+    rest = script[:len(script) - len(deep)]
+    return (deep + ("\n\n" + rest if rest else ""))[:SCRIPT_QUESTION_SCAN_CHARS]
+
+
 def _resolve_script_questions_with_brave(script, brave_key, client):
     """Detect unanswered factual questions in the script and answer them via Brave.
 
@@ -3687,7 +3955,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         "Give concise, web-searchable search queries that would find each answer "
         "(e.g. \"Tesla Semi second battery weight kg\"). Return an empty list if there "
         "are no unanswered factual questions.\n\n"
-        f"SCRIPT (first 5000 chars):\n{script[:5000]}"
+        f"SCRIPT:\n{_script_question_excerpt(script)}"
     )
 
     try:
@@ -3713,6 +3981,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
 
     results = []
     for query in queries[:SCRIPT_QUESTION_LIMIT]:
+        _RESEARCH_LOG.append({"kind": "question", "query": query})
         # Try the Summarizer first — it returns a synthesized prose answer which is
         # more directly useful for factual gap-fill than raw snippet concatenation.
         answer = _brave_summarize(query)   # its own subscription, its own key
@@ -4808,7 +5077,16 @@ def consume_focus_callbacks(urls):
 
 
 def _extract_deep_dive_section(script):
-    """Return just the DEEP DIVE section of the script, or the full script as fallback."""
+    """Return just the DEEP DIVE section of the script, or the full script as fallback.
+
+    Keyed on the section header, the way parse_script_into_segments reads it.
+    The first "deep dive" anywhere used to win, which is the cold open's own
+    tease ("Then, in our deep dive, we ask…"), so on 2026-10-02 every caller
+    meant to read ~30% of the script read 97% of it.
+    """
+    m = re.search(r'^\*{0,2}(?:DEEP DIVE|SEGMENT 2:)', script, re.M)
+    if m:
+        return script[m.start():]
     idx = script.lower().find("deep dive")
     if idx != -1:
         return script[idx:]
@@ -8553,16 +8831,75 @@ def _is_story_transition(text):
     return any(lower.startswith(phrase) for phrase in transition_starters)
 
 
+def _gap_jitter_frac(text):
+    """A stable 0..1 value per text: a CRC, not hash(), which is salted per
+    process, so reruns produce identical audio."""
+    return (zlib.crc32(text.encode("utf-8")) % 1000) / 1000.0
+
+
 def _jitter_gap_ms(gap_ms, text):
     """Apply deterministic ±15% jitter so gaps don't fall on a metronomic grid.
 
-    Seeded from a CRC of the text (not hash(), which is salted per process)
-    so reruns produce identical audio. Short gaps are left untouched.
+    Short gaps are left untouched.
     """
     if gap_ms < 300:
         return gap_ms
-    frac = (zlib.crc32(text.encode("utf-8")) % 1000) / 1000.0
-    return int(gap_ms * (0.85 + 0.30 * frac))
+    return int(gap_ms * (0.85 + 0.30 * _gap_jitter_frac(text)))
+
+
+# Who-said-it phrasing that opens a roundup story ("The Narwhal reports",
+# "Hackaday has a piece", "BC Wildfire Service says"). Read off a turn's first
+# 120 characters only: further in, it is the story's body quoting someone.
+_NEWS_ATTRIBUTION_RE = re.compile(
+    r"\b(?:reports?|reported|reporting|has (?:a|an|the) (?:piece|story|feature|report|update|look)"
+    r"|ran (?:a|an)|covered|writes|says|announced|according to|looks at)\b",
+    re.I,
+)
+
+
+def _is_news_story_intro(text, tag, prev_text=None):
+    """True when a roundup turn starts a new story.
+
+    The script's [pause:1200] says so when the model writes it, which it does on
+    some nights and on none at all on others (0 of ~15 stories on 9 of the 22
+    nights to 2026-10-02), so the text has to say it too: a transition phrase, a
+    source attribution up front, or a full-length turn straight after a reaction —
+    the roundup's rhythm is story, reaction, next story.
+    """
+    if tag is not None and tag >= NEWS_STORY_TAG_MIN_MS:
+        return True
+    stripped = text.strip()
+    if _is_story_transition(stripped):
+        return True
+    if len(stripped) <= NEWS_REACTION_MAX_CHARS:
+        return False
+    if _NEWS_ATTRIBUTION_RE.search(stripped[:120]):
+        return True
+    return prev_text is not None and len(prev_text.strip()) <= NEWS_REACTION_MAX_CHARS
+
+
+def turn_gap_ms(segment, prev_speaker, prev_text, section):
+    """The silence before a turn: its pacing tag, else the heuristic, with the
+    roundup's grouping rule applied over both.
+
+    In the news section a story intro never gets less than the story-break floor
+    (a tag only raises it) and a reaction never gets more than the reaction cap
+    (an overlap tag still pulls it tighter). Everywhere else the tag wins as before.
+    """
+    text = segment['text']
+    tag = segment.get('gap_ms')
+    gap = tag if tag is not None else heuristic_gap_ms(
+        text, prev_speaker, segment['speaker'], section=section, prev_text=prev_text)
+    if section != "news" or prev_speaker is None:
+        return gap
+    if _is_news_story_intro(text, tag, prev_text):
+        floor = (NEWS_SAME_VOICE_STORY_GAP_MS if prev_speaker == segment['speaker']
+                 else NEWS_STORY_GAP_MS)
+        # Upward-only jitter, so a floor stays a floor.
+        return max(gap, floor + int(floor * 0.15 * _gap_jitter_frac(text)))
+    if len(text.strip()) <= NEWS_REACTION_MAX_CHARS:
+        return min(gap, NEWS_REACTION_GAP_MAX_MS)
+    return gap
 
 
 def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive", prev_text=None):
@@ -8694,6 +9031,11 @@ def _bring_music_up_under(combined, music, overlap_ms=None):
     if overlap <= 0:
         return combined + music
     return _append_with_gap(combined, music.fade_in(overlap), -overlap)
+
+
+def _is_spoken(text: str) -> bool:
+    """True when a turn carries at least one word to say."""
+    return bool(re.search(r'\w', text or ''))
 
 
 def parse_script_into_segments(script):
@@ -8906,9 +9248,12 @@ def parse_script_into_segments(script):
         segments['welcome'] = segments['preamble'] + segments['welcome']
         segments['preamble'] = []
 
-    # Clean up segments
+    # Drop turns with nothing to say. Not a length test: until 2026-10-02 any
+    # turn of ten characters or fewer was cut here, which deleted the "Right." /
+    # "Mm-hm." / "How so?" backchannels the system prompt asks for (23 lines in
+    # 16 of ~60 episodes) and glued the turns either side of them into one voice.
     for section in segments:
-        segments[section] = [s for s in segments[section] if len(s['text']) > 10]
+        segments[section] = [s for s in segments[section] if _is_spoken(s['text'])]
 
     print(f"🎭 Parsed script into segments:")
     print(f"   Cold open: {len(segments['preamble'])} segments")
@@ -8920,6 +9265,15 @@ def parse_script_into_segments(script):
     
     return segments
 
+
+# Periods that do not end a sentence: initialisms (B.C., U.S.), titles and
+# a.m./p.m. A real sentence that happens to end on one only loses a split point.
+_ABBREVIATION_END_RE = re.compile(
+    r"(?:\b[A-Z]\.){2,}$|\b(?:St|Dr|Mr|Mrs|Ms|Mt|Ft|No|Jr|Sr|vs|Inc|Ltd|Co)\.$"
+    r"|\b(?:a\.m|p\.m|e\.g|i\.e)\.$"
+)
+
+
 def _split_at_sentences(text, max_chars=TTS_SEGMENT_MAX_CHARS):
     """Split text into chunks at sentence boundaries, each under max_chars.
 
@@ -8928,7 +9282,14 @@ def _split_at_sentences(text, max_chars=TTS_SEGMENT_MAX_CHARS):
     if len(text) <= max_chars:
         return [text]
 
-    sentences = re.split(r'(?<=[.!?])\s+', text)
+    # A seam is a hard sentence break in the audio, so "B.C. Liberal" must not
+    # become one: rejoin any piece that ended on an abbreviation.
+    sentences = []
+    for piece in re.split(r'(?<=[.!?])\s+', text):
+        if sentences and _ABBREVIATION_END_RE.search(sentences[-1]):
+            sentences[-1] += " " + piece
+        else:
+            sentences.append(piece)
     raw_chunks = []
     current = ""
     for sentence in sentences:
@@ -10019,7 +10380,9 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         chunk_audios.append(trim_tts_silence(chunk_audio))
                     if not chunk_audios:
                         continue  # whole turn was silent; prev_* stay on the last turn heard
-                    speech = sum(chunk_audios[1:], chunk_audios[0])
+                    speech = chunk_audios[0]
+                    for chunk_audio in chunk_audios[1:]:
+                        speech += AudioSegment.silent(duration=TTS_CHUNK_GAP_MS) + chunk_audio
                     if prefix in PANNED_SECTIONS:
                         pan_amount = HOST_PAN.get(segment['speaker'])
                         if pan_amount is not None:
@@ -10034,9 +10397,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         gap = -pending_overlap_ms
                         pending_overlap_ms = 0
                     else:
-                        gap = segment.get('gap_ms')
-                        if gap is None:
-                            gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix, prev_text=prev_text)
+                        gap = turn_gap_ms(segment, prev_speaker, prev_text, prefix)
                     turn_start_ms = max(len(combined) + gap, 0)
                     combined = _append_with_gap(combined, speech, gap)
                     record_tts_render("openai")
@@ -10238,6 +10599,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
     _tts_provider_used = get_active_tts_provider()
     return output_filename
 
+# The music path's section prefixes, by the fallback's chapter titles, so the
+# roundup keeps its story/reaction grouping when the music beds are missing.
+_TTS_ONLY_PACING = {"Introduction": "welcome", "News Roundup": "news"}
+
+
 def generate_audio_tts_only(script, output_filename, _force_openai=False):
     """Fallback: Generate audio without music (TTS only)."""
     print("📊 Generating TTS-only audio...")
@@ -10272,7 +10638,7 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
             ("Deep Dive", parsed['deep_dive']),
         ]
         sections = [
-            (title, [s for s in segs if len(s['text']) > 10])
+            (title, [s for s in segs if _is_spoken(s['text'])])
             for title, segs in raw_sections
         ]
         sections = [(title, segs) for title, segs in sections if segs]
@@ -10334,9 +10700,8 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                             )
                             continue
                         speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
-                        gap = segment.get('gap_ms')
-                        if gap is None:
-                            gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], prev_text=prev_text)
+                        gap = turn_gap_ms(segment, prev_speaker, prev_text,
+                                          _TTS_ONLY_PACING.get(title, "deep_dive"))
                         combined = _append_with_gap(combined, speech, gap)
                         video_timeline.append({
                             "speaker": segment['speaker'], "section": title,
@@ -10696,9 +11061,9 @@ def _vtt_cues_from_timeline(script_content: str, turns: list) -> list | None:
             continue  # speech absent from the audio (e.g. old fallback renders)
 
         if all(t.get('speaker') for t in T):
-            # Exact path: pair timeline turns with parsed turns. The TTS-only
-            # path drops turns of ≤10 chars before rendering, so retry the
-            # pairing against that filtered view.
+            # Exact path: pair timeline turns with parsed turns. Episodes
+            # rendered before 2026-10-02 dropped turns of ≤10 chars, so retry
+            # the pairing against that filtered view for a re-publish.
             for cand in (P, [p for p in P if len(p['text']) > 10]):
                 if len(T) == len(cand) and all(
                         t['speaker'] == p['speaker'] for t, p in zip(T, cand)):
@@ -11814,11 +12179,12 @@ def run_script_stage() -> tuple[str, str] | None:
         # being load-bearing for it. Each degrades to the value pre-assigned
         # above its block rather than discarding an already-curated corpus.
         brave_context = ""
+        ballot_context = ""
         # Elections the episode should sweep: the day's own event, plus any
         # all-week one (the provincial vote) whose material reached the episode.
+        _episode_articles = list(deep_dive_articles) + list(news_articles)
         research_events = _events_in_play(
-            get_research_events(today_weekday, pacific_now.date()),
-            list(deep_dive_articles) + list(news_articles))
+            get_research_events(today_weekday, pacific_now.date()), _episode_articles)
         extra_events = [e for e in research_events if not e.get('_own_day')]
         with segment("script/research", critical=False):
             # Proactive research pass: identify analytical angles and run Brave for each.
@@ -11827,6 +12193,15 @@ def run_script_stage() -> tuple[str, str] | None:
             brave_context = research_deep_dive_with_agent(
                 deep_dive_articles, today_theme, brave_client,
                 event_focus=today_event, events=research_events) if brave_client else ""
+        # An all-week election that rode in on a roundup story gets its own pass,
+        # so the deep dive above kept the ordinary day's research (2026-10-02).
+        _ballot_events = _ballot_pass_events(research_events)
+        if _ballot_events:
+            with segment("script/election-research", critical=False):
+                ballot_context = _research_event_ballot(
+                    _event_articles(_ballot_events, _episode_articles),
+                    get_anthropic_client(), _ballot_events)
+        brave_context += ballot_context
         brave_used = _sparse_brave_used or bool(brave_context)
 
         weather_data = None

@@ -981,13 +981,18 @@ class TestEventResearchSweep:
             seen["system"] = system_prompt
             seen["user"] = user_content
             seen["tools"] = [t["name"] for t in tools]
+            seen["tool_defs"] = tools
+            seen["executors"] = tool_executors
             seen["iterations"] = max_iterations
             return seen.get("reply", "NONE")
 
         seen["queries"] = []
 
-        def fake_search(query, api_key, count=5):
+        seen["freshness"] = {}
+
+        def fake_search(query, api_key, count=5, freshness=None):
             seen["queries"].append(query)
+            seen["freshness"][query] = freshness
             return [{"title": f"hit for {query}", "url": "https://example.org",
                      "description": "snippet"}]
 
@@ -1056,7 +1061,8 @@ class TestEventResearchSweep:
     def test_an_ordinary_day_runs_no_roll_call(self, capture):
         self._run(None)
         assert capture["queries"] == []
-        assert capture["tools"] == ["web_search"]
+        # Page reads are on no Brave meter, so every day's pass gets them.
+        assert capture["tools"] == ["web_search", "fetch_page"]
 
     def test_a_thin_result_degrades(self, capture):
         """Most of the ballot unfound is a research failure the run report
@@ -1090,13 +1096,116 @@ class TestEventResearchSweep:
         assert pg._fetch_page_text("file:///etc/passwd") == ""
 
 
-    def test_an_ordinary_day_is_unchanged(self, capture):
+    def test_an_ordinary_day_decides_for_itself(self, capture):
         """Six days in seven still decide for themselves whether to research,
-        at the original four-search budget."""
+        at the original four-search budget, now with page reads."""
         self._run(None)
         assert "STANDING ASSIGNMENT" not in capture["system"]
         assert "up to 4 targeted" in capture["system"]
-        assert capture["iterations"] == 5
+        assert capture["iterations"] == 4 + pg.TOPIC_PAGE_FETCH_LIMIT + 1
+
+    # --- An all-week election gets its own pass (2026-10-02) ---------------
+    # From 2026-09-28 the provincial vote rode in on a roundup story every
+    # weekday and took the whole research pass: every research question was the
+    # ballot, none was the deep dive's.
+
+    @staticmethod
+    def _weekday_events():
+        from config_loader import get_research_events
+        return get_research_events(1, date(2026, 10, 6))
+
+    def test_a_provincial_story_leaves_the_deep_dive_its_own_pass(self, capture):
+        pg.research_deep_dive_with_agent(self.ARTICLES, "Working Lands & Industry",
+                                         object(), events=self._weekday_events())
+        assert "STANDING ASSIGNMENT" not in capture["system"]
+        assert "up to 4 targeted" in capture["system"]
+        assert capture["queries"] == [], "the roll call belongs to the election pass"
+
+    def test_saturday_still_shares_one_pass(self, capture):
+        from config_loader import get_research_events
+        events = get_research_events(5, date(2026, 10, 3))
+        assert pg._ballot_pass_events(events) == []
+        pg.research_deep_dive_with_agent(self.ARTICLES, "Cariboo Local Affairs",
+                                         object(), events=events)
+        assert "STANDING ASSIGNMENT" in capture["system"]
+
+    def test_only_a_weekday_all_week_event_gets_a_pass(self):
+        names = [e["name"] for e in pg._ballot_pass_events(self._weekday_events())]
+        assert names == ["2026 B.C. provincial general election"]
+        assert pg._ballot_pass_events([]) == []
+
+    def test_the_ballot_pass_runs_on_the_election_meter(self, capture):
+        events = self._weekday_events()
+        pg._research_event_ballot(self.ARTICLES, object(), events)
+        assert "ELECTION RESEARCH" in capture["system"]
+        assert "not the deep dive's subject" in capture["system"]
+        assert "STANDING ASSIGNMENT" in capture["system"]
+        assert capture["tools"] == ["web_search", "fetch_page"]
+        assert pg._BRAVE_SEARCH_STATE["deep_calls"] == 0
+        assert pg._BRAVE_SEARCH_STATE["event_calls"] == len(capture["queries"]) > 0
+
+    def test_who_is_running_is_asked_of_this_campaign_only(self, capture):
+        events = self._weekday_events()
+        pg._research_event_ballot(self.ARTICLES, object(), events)
+        race = "Cariboo-Chilcotin candidates 2026 B.C. election"
+        assert capture["freshness"][race].startswith("2026-09-22to")
+        # A candidate's record is the earlier pages.
+        assert capture["freshness"]['"Lorne Doerkson" B.C. election 2026'] is None
+
+    def test_the_ballot_search_is_results_only(self, capture, monkeypatch):
+        """SOURCED OR UNSAID: an Answers reply carries no URL."""
+        events = self._weekday_events()
+        pg._research_event_ballot(self.ARTICLES, object(), events)
+        tool = next(t for t in capture["tool_defs"] if t["name"] == "web_search")
+        assert "mode" not in tool["input_schema"]["properties"]
+
+        def _no_answers(q):
+            raise AssertionError("the election pass asked Answers")
+        monkeypatch.setattr(pg, "_brave_summarize", _no_answers)
+        out = capture["executors"]["web_search"]({"query": "who filed", "mode": "answer"})
+        assert "Source: https://example.org" in out
+        assert pg._BRAVE_SEARCH_STATE["deep_calls"] == 0
+
+    def test_recent_applies_the_campaign_window(self, capture):
+        pg._research_event_ballot(self.ARTICLES, object(), self._weekday_events())
+        capture["executors"]["web_search"]({"query": "who filed now", "recent": True})
+        capture["executors"]["web_search"]({"query": "2020 result"})
+        assert capture["freshness"]["who filed now"].startswith("2026-09-22to")
+        assert capture["freshness"]["2020 result"] is None
+
+    def test_each_pass_is_held_to_its_search_allowance(self, capture):
+        """2026-09-29: 24 searches against an allowance of 12, then all 8
+        Answers calls, before fact resolution ran."""
+        self._run(None)
+        run = capture["executors"]["web_search"]
+        outs = [run({"query": f"q{i}", "mode": "results"}) for i in range(5)]
+        assert all("Source:" in o for o in outs[:4])
+        assert "allowance for this pass is spent" in outs[4]
+        assert pg._BRAVE_SEARCH_STATE["deep_calls"] == 4
+
+    def test_the_deep_dive_pass_reads_pages_on_its_own_budget(self, capture, monkeypatch):
+        monkeypatch.setattr(pg, "_fetch_page_text", lambda url: "the report")
+        self._run(None)
+        read = capture["executors"]["fetch_page"]
+        outs = [read({"url": f"https://p.example/{i}"}) for i in range(pg.TOPIC_PAGE_FETCH_LIMIT + 1)]
+        assert outs[:-1] == ["the report"] * pg.TOPIC_PAGE_FETCH_LIMIT
+        assert "budget spent" in outs[-1]
+        # The election passes' page budget is untouched.
+        assert pg._BRAVE_SEARCH_STATE["page_fetches"] == 0
+
+    def test_the_election_pass_reads_the_stories_that_brought_it_in(self):
+        askew = {"title": "Retired school teacher named BC NDP candidate for Cariboo-Chilcotin",
+                 "summary": "Kathryn Askew of Canim Lake"}
+        sar = {"title": "Volunteer search and rescue in the Chilcotin", "summary": "Callouts"}
+        assert pg._event_articles(self._weekday_events(), [sar, askew]) == [askew]
+
+    def test_the_pipeline_runs_the_ballot_after_the_deep_dive_in_its_own_segment(self):
+        from pathlib import Path
+        src = (Path(__file__).resolve().parent.parent / "podcast_generator.py").read_text()
+        deep = src.index("brave_context = research_deep_dive_with_agent(")
+        seg = src.index('with segment("script/election-research", critical=False):')
+        ballot = src.index("ballot_context = _research_event_ballot(")
+        assert deep < seg < ballot
 
     def test_the_sweep_fits_under_the_deep_dive_meter(self):
         """`_resolve_script_questions_with_brave` runs after the research pass on

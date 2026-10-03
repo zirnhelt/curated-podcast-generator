@@ -132,7 +132,8 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 **Brave spend.** Two plans, two meters: Search ($5/1000, capped) and Answers (monthly credit).
 - **The Search cap is shared with `super-rss-feed`** — one key serves both repos. Read Brave's per-key usage export before trusting any estimate.
 - A 402 closes that meter for the run (`_trip_brave_wall`); a spent meter is a reason to ask the other one, not to give up.
-- Four per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_EVENT_CALL_LIMIT` (the election roll call), `BRAVE_ANSWERS_CALL_LIMIT`. **Only the three rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
+- Four per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_EVENT_CALL_LIMIT` (the election roll call and the weekday election pass), `BRAVE_ANSWERS_CALL_LIMIT`. **Only the three rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
+- **A research pass's allowance is enforced in code** (`_budgeted`), never by the prompt or `max_iterations` alone: parallel tool calls walk past both. Fact resolution reads the deep dive first (`_script_question_excerpt`), never a prefix of the script.
 - With both meters closed, skip the research pass rather than report "no research warranted".
 - Paid body backfill runs on the curated roundup plus `ROUNDUP_BACKFILL_SPARES`, never the pre-curation pool. Direct factual lookups default to Answers; Search is for context and anything attributed to an outlet.
 
@@ -180,6 +181,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - `event_focus.roster` settles **who is running**, plus `records`: dated lines from a named outlet, rendered as SOURCED BACKGROUND. A race with no names renders as `NO NAMES IN THE ROSTER`. **Never air a gap as "unfindable" or "not public"**: fill the race in the day its list is public.
 - The research pass runs a **Python roll call first** (`_run_event_sweep`: one search per race and per running candidate), then the agent follows up with `fetch_page`. More than a third of the ballot under `NO RECORD FOUND` `degrade()`s. Queries and the research block are saved in the citations JSON under `research`.
 - **All-week events** (`podcast.json` → `all_week_events`: the 2026 B.C. provincial vote, Oct 24) are swept and lensed on any day an episode article carries their vocabulary (`_events_in_play`). They never steer selection.
+- **An all-week event gets its own research pass** (`_research_event_ballot`: election meter, results-only search, `recent` for this campaign). It never takes the deep dive's pass; only the day's own event shares that one.
 - `docs/wl-2026-election-candidates.md` and the JSON must carry the same names (a test enforces it).
 - An election story airs the day it breaks and is also booked back (`status: 'recall'`) for the next civic episode, tagged `_recalled_from` so the hosts say they covered it.
 - The event vocabulary is never folded into `_build_theme_subject_keywords`: "campaign" and "ballot" would admit US politics.
@@ -246,6 +248,8 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 **OpenAI `tts-1` is the nightly provider**: `nova` (Riley) + `echo` (Casey), per-turn, in parallel. `OPENAI_TTS_MODEL` selects the model. The steerable `gpt-4o-mini-tts` was tried and reverted: no `speed`, and the acoustic scene resampled mid-turn.
 - `_SPEECH_RATE_FITS` is keyed by model. Refit it from the transcript sidecars, never by assumption.
 - Every take is checked for duration (`_expected_speech_ms`, retry below 0.80) and amplitude (`_is_silent_take`). **A turn that won't render is cut, never shipped as silence**, and the cut is `degrade()`d.
+- **Roundup grouping** (`turn_gap_ms`): a reaction sits closer to the story it answers than to the next one — reactions capped at `NEWS_REACTION_GAP_MAX_MS`, story intros floored at `NEWS_STORY_GAP_MS` (higher when the same voice continues). A tag only raises a story break.
+- **Never filter turns by length**: the prompt asks for "Right." / "How so?" backchannels. Chunks of one turn join with `TTS_CHUNK_GAP_MS`, and never split inside an initialism.
 - Credits name every provider that actually rendered audio (`_compose_tts_credit`). `get_active_tts_provider()` is the routing answer and must not be used for a credit.
 
 **Gemini multi-speaker TTS is parked** — [docs/decisions/gemini-tts.md](docs/decisions/gemini-tts.md) holds its exit criterion and 45 KB of history.
