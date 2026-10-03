@@ -217,3 +217,62 @@ class TestClusterAndRescore:
         # Original list items must not have been modified
         assert articles[1]["_boosted_score"] == 60
         assert not articles[1].get("_cluster_suppressed")
+
+
+class TestCohereEmbeddings:
+    """USE_COHERE was off from the day the module landed, so nothing noticed
+    that its embedding path could never work: it read `embeddings.float`
+    (the SDK field is `float_`) and sent ~230 texts where Cohere takes 96."""
+
+    @staticmethod
+    def _client(calls, fail=False):
+        class _Embeddings:
+            def __init__(self, n):
+                self.float_ = [[1.0, float(i)] for i in range(n)]
+
+        class _Client:
+            def embed(self, texts, **kw):
+                if fail:
+                    raise RuntimeError("boom")
+                calls.append(len(texts))
+                return type("R", (), {"embeddings": _Embeddings(len(texts))})()
+        return _Client()
+
+    @pytest.fixture
+    def cohere(self, monkeypatch):
+        import cohere_enrichment as ce
+        monkeypatch.setattr(ce, "COHERE_ENABLED", True)
+        monkeypatch.setattr(ce, "_used", False)
+        monkeypatch.setattr(ce, "_degradations", [])
+        return ce
+
+    def test_embeds_in_batches_of_96_from_float_(self, cohere, monkeypatch):
+        calls = []
+        monkeypatch.setattr(cohere, "_get_client", lambda: self._client(calls))
+        vectors = cohere._embed([f"t{i}" for i in range(230)])
+        assert calls == [96, 96, 38]
+        assert len(vectors) == 230
+        assert cohere.was_used()
+
+    def test_a_failure_is_a_degradation_not_silence(self, cohere, monkeypatch):
+        monkeypatch.setattr(cohere, "_get_client", lambda: self._client([], fail=True))
+        assert cohere._embed(["a", "b"], "same-story clustering") is None
+        rows = cohere.drain_degradations()
+        assert rows and rows[0].startswith("same-story clustering")
+        assert "RuntimeError" in rows[0]
+        assert cohere.drain_degradations() == []
+        assert not cohere.was_used()
+
+    def test_evolving_story_check_survives_a_large_history(self, cohere, monkeypatch):
+        calls = []
+        monkeypatch.setattr(cohere, "_get_client", lambda: self._client(calls))
+        new = [{"title": f"n{i}", "summary": "", "url": f"n{i}"} for i in range(80)]
+        past = [{"title": f"p{i}", "summary": "", "url": f"p{i}"} for i in range(150)]
+        assert cohere.detect_evolving_stories(new, past) is not None
+        assert max(calls) <= cohere.EMBED_BATCH_SIZE
+
+    def test_disabled_is_a_no_op(self, monkeypatch):
+        import cohere_enrichment as ce
+        monkeypatch.setattr(ce, "COHERE_ENABLED", False)
+        assert ce.cluster_articles([{"title": "a"}, {"title": "b"}]) is None
+        assert ce.rerank_for_deep_dive("Theme", [{"title": "a"}], 1) is None
