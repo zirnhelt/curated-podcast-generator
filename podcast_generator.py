@@ -8,6 +8,7 @@ All text content loaded from config/ directory for easy updates.
 import argparse
 import difflib
 import io
+import ipaddress
 import os
 import sys
 import json
@@ -22,6 +23,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 import requests
 import re
+import socket
 import tempfile
 import zlib
 import httpx
@@ -114,6 +116,15 @@ except ImportError as e:
     print("Please install with: pip install anthropic openai pydub")
     print("Also ensure ffmpeg is installed for audio processing")
     sys.exit(1)
+
+def _cdata_safe(text: str) -> str:
+    """Split any "]]>" so a show-notes string cannot close its CDATA section early.
+
+    Episode notes quote third-party titles, and one "]]>" would make the whole
+    feed unparseable for every podcast app.
+    """
+    return (text or "").replace("]]>", "]]]]><![CDATA[>")
+
 
 # Retry helper for API calls
 def _build_trace_channel_xml(trace_cfg, producer_name):
@@ -1465,16 +1476,47 @@ def _extract_author_from_html(html):
     return ""
 
 
+def _public_http_url(url) -> bool:
+    """True for an http(s) URL whose host is not a loopback, private or link-local address.
+
+    Article links come from a third-party feed and the research pass's page URLs
+    from the model, and what these fetches read ends up in the public citations
+    JSON. Checks the literal host (including inet_aton forms like 127.1); it does
+    not resolve DNS.
+    """
+    try:
+        parts = urlparse((url or "").strip())
+        host = (parts.hostname or "").rstrip(".")
+    except ValueError:
+        return False
+    if parts.scheme not in ("http", "https") or not host or parts.username or parts.password:
+        return False
+    if host == "localhost" or host.endswith((".localhost", ".local", ".internal")):
+        return False
+    try:
+        address = ipaddress.ip_address(host)
+    except ValueError:
+        address = None
+        if re.fullmatch(r"[0-9a-fx.]+", host):
+            try:
+                address = ipaddress.ip_address(socket.inet_aton(host))
+            except OSError:
+                pass
+    return address is None or address.is_global
+
+
 def _fetch_article_author(url):
     """Best-effort fetch of article author from HTML meta tags.
 
     Returns author name string or empty string on any failure.
     """
-    if not url:
+    if not _public_http_url(url):
         return ""
     try:
         resp = requests.get(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
         resp.raise_for_status()
+        if not _public_http_url(getattr(resp, "url", url)):
+            return ""
         return _extract_author_from_html(resp.text)
     except Exception:
         return ""
@@ -1485,9 +1527,13 @@ def _fetch_url_metadata(url):
 
     Returns (title, description, author) strings; any may be empty on failure.
     """
+    if not _public_http_url(url):
+        return "", "", ""
     try:
         resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
         resp.raise_for_status()
+        if not _public_http_url(getattr(resp, "url", url)):
+            return "", "", ""
         html = resp.text
 
         title = ""
@@ -1517,11 +1563,13 @@ def _fetch_url_metadata(url):
 
 def _fetch_page_text(url: str) -> str:
     """A page's visible text (scripts, styles and tags stripped), or "" on failure."""
-    if not re.match(r'https?://', url or ''):
+    if not _public_http_url(url):
         return ""
     try:
         resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
         resp.raise_for_status()
+        if not _public_http_url(getattr(resp, "url", url)):
+            return ""
         text = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', resp.text, flags=re.I | re.S)
         text = re.sub(r'<[^>]+>', ' ', text)
         return re.sub(r'\s+', ' ', html_lib.unescape(text)).strip()
@@ -7325,9 +7373,9 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
         f"<p>Riley and Casey explore technology and society in rural communities. "
         f"Today's focus: {theme_name}.</p>"
         f"{anchor_line}"
-        f"<p><b>NEWS ROUNDUP:</b> We break down {stories_preview}, and explore what "
+        f"<p><b>NEWS ROUNDUP:</b> We break down {html_lib.escape(stories_preview, quote=False)}, and explore what "
         f"these developments mean for communities like ours.</p>"
-        f"<p><b>RURAL CONNECTIONS:</b> {deep_dive_desc}</p>"
+        f"<p><b>RURAL CONNECTIONS:</b> {html_lib.escape(deep_dive_desc, quote=False)}</p>"
         f"<p><b>Hosts:</b> Riley ({riley_bio}) and Casey ({casey_bio}).</p>"
     )
 
@@ -7366,8 +7414,11 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
             attribution = f"{author} ({source_name})"
         else:
             attribution = source_name
-        if url:
-            return f'{attribution}: <a href="{url}">{article_title}</a>'
+        # Titles and bylines are third-party text, and these notes are HTML.
+        attribution = html_lib.escape(attribution, quote=False)
+        article_title = html_lib.escape(article_title, quote=False)
+        if _public_http_url(url):
+            return f'{attribution}: <a href="{html_lib.escape(url)}">{article_title}</a>'
         return f"{attribution}: {article_title}"
 
     citations_html = ""
@@ -11440,23 +11491,24 @@ def generate_podcast_rss_feed():
                 deep_dive = citations_data.get('segments', {}).get('deep_dive', {})
                 discussion = deep_dive.get('discussion', {})
                 if discussion.get('central_question'):
-                    episode_description += f"\n\nDEEP DIVE: {discussion['central_question']}"
+                    episode_description += f"\n\nDEEP DIVE: {html_lib.escape(discussion['central_question'], quote=False)}"
                     topics = discussion.get('topics_covered', [])
                     if topics:
-                        episode_description += f"\nTopics: {', '.join(topics)}"
+                        episode_description += f"\nTopics: {html_lib.escape(', '.join(topics), quote=False)}"
 
                 if citations_data.get('segments'):
                     episode_description += "\n\nSources cited in this episode:\n"
                     source_num = 1
                     for segment_name, segment_data in citations_data['segments'].items():
                         for article in segment_data.get('articles', []):
-                            source_name = article.get('source', 'Unknown')
+                            source_name = html_lib.escape(article.get('source', 'Unknown'), quote=False)
                             title = article.get('title', '')[:60]
                             if len(article.get('title', '')) > 60:
                                 title += "..."
+                            title = html_lib.escape(title, quote=False)
                             url = article.get('url', '')
-                            if url:
-                                episode_description += f'{source_num}. {source_name}: <a href="{url}">{title}</a>\n'
+                            if _public_http_url(url):
+                                episode_description += f'{source_num}. {source_name}: <a href="{html_lib.escape(url)}">{title}</a>\n'
                             else:
                                 episode_description += f"{source_num}. {source_name}: {title}\n"
                             source_num += 1
@@ -11601,8 +11653,8 @@ def generate_podcast_rss_feed():
             f'<title>{escaped_title}</title>',
             f'<link>{podcast_config["url"]}index.html</link>',
             f'<pubDate>{episode["pub_date"]}</pubDate>',
-            f'<description><![CDATA[{episode["description"]}]]></description>',
-            f'<itunes:summary><![CDATA[{episode["description"]}]]></itunes:summary>',
+            f'<description><![CDATA[{_cdata_safe(episode["description"])}]]></description>',
+            f'<itunes:summary><![CDATA[{_cdata_safe(episode["description"])}]]></itunes:summary>',
             f'<enclosure url="{saxutils.escape(audio_base + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
             f'<itunes:duration>{episode["duration"]}</itunes:duration>',

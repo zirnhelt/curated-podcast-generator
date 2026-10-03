@@ -483,3 +483,20 @@ resurrected on one mention.
 
 The `review` job stages `ROADMAP.md` and the ledger alongside the review — a stage that writes
 a tracked file that no step stages sits permanently dirty and breaks the next rebase.
+
+## Third-party text in the episode notes, and fetches of outside URLs (2026-10-03)
+
+The episode description is HTML inside a CDATA section of the public RSS feed, and it quoted
+feed titles, bylines and links verbatim (`<a href="{url}">{title}</a>`). A title carrying markup
+reached Apple Podcasts and Spotify as markup, a `javascript:` link as a link, and a single `]]>`
+would have closed the CDATA early and made the whole feed unparseable. `super-rss-feed` now
+sanitizes its feeds at the source (its `docs/decisions/sources.md`), but seeded and emailed items
+do not pass through it, so the show escapes at its own boundary too: text is
+`html.escape(..., quote=False)`, a link needs `_public_http_url`, and CDATA goes through
+`_cdata_safe`. Past episodes keep their stored notes until they are re-published.
+
+`_public_http_url` also guards every fetch whose URL came from outside: article author and
+metadata lookups (feed links) and `_fetch_page_text`, which serves the research pass's
+`fetch_page` tool with a URL the model chose. What those reads return is saved in the public
+citations JSON, so a loopback, private or link-local (cloud metadata) address is refused, and so is
+a redirect that lands on one. It checks the literal host only; DNS is not resolved.

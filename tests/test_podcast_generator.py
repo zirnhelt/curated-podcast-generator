@@ -5771,6 +5771,68 @@ class TestEpisodeMetadata:
         assert "author/etiido-uko (" not in desc
         assert "Khushi Arora (Williams Lake Tribune)" in desc
 
+    def test_hostile_feed_text_is_inert_in_the_show_notes(self, monkeypatch):
+        """The notes are HTML in the public feed; titles, bylines and links are third-party."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: (_ for _ in ()).throw(AssertionError("fetched")))
+        articles = [
+            {"title": "Dam vote <script>alert(1)</script> & more", "url": "javascript:alert(1)",
+             "authors": [{"name": "Outlet <img src=x onerror=alert(1)>"}], "_article_author": "x"},
+            {"title": 'Quote " breaks ]]> CDATA', "url": 'https://news.test/a?b="><script>',
+             "authors": [{"name": "Outlet"}], "_article_author": "x"},
+        ]
+        desc = pg.generate_episode_description(articles, [], "Working Lands & Industry")
+        assert "<script" not in desc and "<img" not in desc
+        assert "javascript:" not in desc
+        assert "Dam vote &lt;script&gt;alert(1)&lt;/script&gt; &amp; more" in desc
+        assert 'href="https://news.test/a?b=&quot;&gt;&lt;script&gt;"' in desc
+
+    def test_cdata_survives_a_closing_marker_in_the_notes(self):
+        import xml.etree.ElementTree as ET
+        from podcast_generator import _cdata_safe
+        notes = "<p>A title with ]]> in it</p>"
+        parsed = ET.fromstring(f"<description><![CDATA[{_cdata_safe(notes)}]]></description>")
+        assert parsed.text == notes
+
+    @pytest.mark.parametrize("url, public", [
+        ("https://wltribune.com/news/x", True),
+        ("http://169.254.169.254/latest/meta-data/", False),
+        ("http://127.1/", False),
+        ("http://2130706433/", False),
+        ("http://10.0.0.5/", False),
+        ("http://[::1]/", False),
+        ("http://localhost:8080/", False),
+        ("http://metadata.google.internal/", False),
+        ("https://user@news.test/", False),
+        ("file:///etc/passwd", False),
+        ("javascript:alert(1)", False),
+        ("", False),
+    ])
+    def test_fetch_guard(self, url, public):
+        from podcast_generator import _public_http_url
+        assert _public_http_url(url) is public
+
+    def test_research_page_reads_never_reach_a_private_address(self, monkeypatch):
+        """fetch_page takes the model's URL, and its text is saved to the public citations."""
+        import podcast_generator as pg
+
+        class Redirected:
+            url = "http://169.254.169.254/latest/meta-data/"
+            text = "secret"
+
+            def raise_for_status(self):
+                pass
+
+        calls = []
+        monkeypatch.setattr(pg.requests, "get", lambda url, **k: calls.append(url) or Redirected())
+        assert pg._fetch_page_text("http://169.254.169.254/latest/meta-data/") == ""
+        assert pg._fetch_article_author("http://127.0.0.1/admin") == ""
+        assert pg._fetch_url_metadata("http://localhost/") == ("", "", "")
+        assert calls == []
+        # A public URL that redirects inward is fetched but never read.
+        assert pg._fetch_page_text("https://news.test/a") == ""
+        assert calls == ["https://news.test/a"]
+
 
 class TestSparseFilterBudget:
     """_filter_sparse_news_articles spends from the SEARCH budget, never around it.
