@@ -1,24 +1,4 @@
 {
-  "2026-08-28": {
-    "timestamp": 1787923744.962338,
-    "topics": [
-      "[Williams Lake Tribune] Former chief sentenced to 4 years fo",
-      "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
-      "[ScienceAlert] Deep Sea Scientists Hunting a Shipwreck Accid",
-      "[Scientific American] Wall of floodwater sweeps away village",
-      "[Business Insider] US Air Force special operations forces ar",
-      "[The Narwhal] One woman\u2019s race to save her horses from a B.C",
-      "[Forbes Innovation] The Communities Choosing Managed Retreat",
-      "[Vancouver Sun] Fast-moving wildfires reshaping B.C.\u2019s fores"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-08-28",
-    "focus": "wildfire-resilience",
-    "focus_name": "Wildfire & Climate Resilience"
-  },
   "2026-08-29": {
     "timestamp": 1788011914.889907,
     "topics": [
@@ -712,5 +692,27 @@
     "date": "2026-10-02",
     "focus": "recreation-access",
     "focus_name": "Recreation & Backcountry Access"
+  },
+  "2026-10-03": {
+    "timestamp": 1791015328.117692,
+    "topics": [
+      "[My Cariboo Now] Eby promises gas tax cut, price caps at the",
+      "[My Cariboo Now] Carney designates proposed Alberta to B.C. ",
+      "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
+      "[Williams Lake Tribune] NDP calls on Conservatives to fire N",
+      "[Mother Jones] Burned Cattle, Drought, Smoke-Choked Pastures",
+      "[Quesnel Cariboo Observer] Meet the Candidates: Jay Jardosh ",
+      "[My Cariboo Now] B.C. parties race to file candidates as nom",
+      "[Williams Lake Tribune] Retired school teacher named BC NDP "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-03",
+    "focus": null,
+    "focus_name": null
   }
 }
