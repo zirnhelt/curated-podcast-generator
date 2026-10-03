@@ -847,6 +847,62 @@ class TestPriorCoverage:
         assert pg.format_prior_coverage_for_prompt(deep_dive, episode_memory, {}) == ""
 
 
+def _cite(day, title, url=None, discussed=True):
+    return {"episode_date": day, "title": title, "url": url or title, "discussed": discussed}
+
+
+class TestRunningThreads:
+    """2026-10-03: data centres aired a fifth time in eight days, introduced fresh."""
+    PRIOR = [
+        _cite("2026-09-27", "[Tom's Hardware] US AI data centers projected to become a top gas consumer"),
+        _cite("2026-09-29", "[NYT Business] Wall Street Is Growing Skeptical of the Data Center Boom"),
+        _cite("2026-09-30", "[Dezeen] Can data centres ever be examples of good design?"),
+    ]
+
+    def test_same_subject_through_a_different_story_is_tagged(self):
+        arts = [{"title": "[Williams Lake Tribune] B.C. Greens propose AI data centre moratorium",
+                 "url": "greens"}]
+        assert pg.mark_running_threads(arts, self.PRIOR, "2026-10-03") == 1
+        assert arts[0]["_prior_mentions"] == ["2026-09-30", "2026-09-29", "2026-09-27"]
+        tag = pg._coverage_tags(arts[0])
+        assert "RUNNING THREAD" in tag and "data centre" in tag and "Wednesday Sep 30" in tag
+
+    def test_shared_words_that_are_not_a_pair_do_not_match(self):
+        prior = [_cite("2026-09-27", "Data breach exposes 220 million records from last year")]
+        arts = [{"title": "Million-year-old crocodile skin shows camouflage, study year", "url": "x"}]
+        assert pg.mark_running_threads(arts, prior, "2026-10-03") == 0
+
+    def test_place_names_and_stopwords_never_make_a_thread(self):
+        prior = [_cite("2026-09-29", "South Cariboo school runs Terry Fox event in 100 Mile House")]
+        arts = [{"title": "Orange Shirt Day commemorated by South Cariboo schools in 100 Mile House",
+                 "url": "x"}]
+        assert pg.mark_running_threads(arts, prior, "2026-10-03") == 0
+
+    def test_window_undiscussed_and_same_url_are_ignored(self):
+        prior = [
+            _cite("2026-09-20", "Data centre boom"),                      # outside the window
+            _cite("2026-10-01", "Data centre boom", discussed=False),     # never aired
+            _cite("2026-10-02", "Data centre boom", url="same"),          # recall's job
+            _cite("2026-10-03", "Data centre boom"),                      # today's re-run
+        ]
+        arts = [{"title": "Data centre moratorium proposed", "url": "same"}]
+        assert pg.mark_running_threads(arts, prior, "2026-10-03") == 0
+
+    def test_recall_tag_wins_over_thread_tag(self):
+        a = {"_recalled_from": "2026-10-02", "_prior_mentions": ["2026-10-02"],
+             "_thread_phrase": "snap election"}
+        tag = pg._coverage_tags(a)
+        assert "ALREADY COVERED" in tag and "RUNNING THREAD" not in tag
+
+    def test_deep_dive_articles_carry_the_coverage_tags(self):
+        """The recall tag reached only the roundup; two recalled stories aired as
+        new deep-dive material on 2026-10-03."""
+        import inspect
+        src = inspect.getsource(pg.generate_podcast_script)
+        dd = src.split("def _format_deep_dive_article", 1)[1].split("\n    def ", 1)[0]
+        assert "_coverage_tags(a)" in dd
+
+
 class TestFocusMemory:
     def test_last_time_on_focus_recalled(self):
         episode_memory = {

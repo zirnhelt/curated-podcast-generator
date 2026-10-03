@@ -70,7 +70,8 @@ def load_recent_citations(days=8):
                                     'url': article['url'],
                                     'title': article['title'],
                                     'episode_date': episode_date,
-                                    'segment': segment_name
+                                    'segment': segment_name,
+                                    'discussed': article.get('discussed', True),
                                 })
         except Exception as e:
             print(f"  ⚠️ Error loading {filename}: {e}")

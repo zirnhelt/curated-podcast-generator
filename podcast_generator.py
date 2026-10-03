@@ -5470,6 +5470,114 @@ def format_prior_coverage_for_prompt(deep_dive_articles, episode_memory, debate_
     return context + "\n"
 
 
+# Two-word subjects common enough in headlines that sharing one says nothing.
+_THREAD_PAIR_STOPLIST = frozenset({
+    ("social", "media"), ("first", "nation"), ("study", "show"),
+})
+RUNNING_THREAD_DAYS = 7  # how far back a subject counts as one the listener just heard
+
+
+def _norm_thread_word(word: str) -> str:
+    word = word.replace("center", "centre")
+    return word[:-1] if word.endswith("s") and not word.endswith("ss") else word
+
+
+def _title_pairs(title: str) -> set:
+    """Adjacent content-word pairs of a headline ("data centre", "snap election").
+
+    Pairs, not shared words: two headlines sharing "year" and "million" are not
+    one subject, two sharing "data centre" are. The pair must be adjacent in the
+    headline itself, so dropping a stopword never joins its neighbours, and a
+    place name breaks the run because a town in two headlines is not a thread.
+    """
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', title).lower()
+    places = sorted((p.lower() for p in CONFIG['podcast'].get('local_places', [])),
+                    key=len, reverse=True)
+    if places:
+        title = re.sub("|".join(re.escape(p) for p in places), " | ", title)
+    tokens = re.findall(r"[a-z0-9']+|\|", title)
+    keep = [_norm_thread_word(t) if len(t) > 3 and t not in _PRIOR_COVERAGE_STOPWORDS
+            else None for t in tokens]
+    return {(a, b) for a, b in zip(keep, keep[1:])
+            if a and b and (a, b) not in _THREAD_PAIR_STOPLIST}
+
+
+def mark_running_threads(articles: list, recent_citations: list, today_iso: str) -> int:
+    """Tag articles whose subject aired in the last RUNNING_THREAD_DAYS (local, no API).
+
+    On 2026-10-03 data centres aired for the fifth episode in eight days, and every
+    one introduced them from scratch ("these enormous buildings going up to feed
+    AI demand"). Evolving-story detection matches the same *story*; this matches
+    the same *subject* through a different one. A repeat can be worth airing; it
+    is never news to the listener. Sets `_prior_mentions` (dates, newest first)
+    and `_thread_phrase`; returns how many articles were tagged. The same URL is
+    skipped: a recalled story carries its own tag.
+    """
+    try:
+        cutoff = (date.fromisoformat(today_iso) - timedelta(days=RUNNING_THREAD_DAYS)).isoformat()
+    except ValueError:
+        return 0
+    prior = [(c['episode_date'], _title_pairs(c.get('title', '')), c.get('url'))
+             for c in recent_citations
+             if c.get('discussed', True) and cutoff <= c.get('episode_date', '') < today_iso]
+    tagged = 0
+    for a in articles:
+        pairs = _title_pairs(a.get('title', ''))
+        if not pairs:
+            continue
+        dates, phrase = set(), None
+        for ep_date, prior_pairs, url in prior:
+            shared = pairs & prior_pairs
+            if shared and url != a.get('url'):
+                dates.add(ep_date)
+                phrase = phrase or " ".join(sorted(shared)[0])
+        if dates:
+            a['_prior_mentions'] = sorted(dates, reverse=True)
+            a['_thread_phrase'] = phrase
+            tagged += 1
+    return tagged
+
+
+def _spoken_date(iso: str) -> str:
+    try:
+        return date.fromisoformat(iso).strftime("%A %b %-d")
+    except ValueError:
+        return iso
+
+
+def _coverage_tags(a: dict) -> str:
+    """Prompt tags for an article the listener may already have heard.
+
+    Shared by the roundup and the deep dive. The deep dive went untagged until
+    2026-10-03, when two recalled election stories became deep-dive material and
+    aired as if new, a day after the roundup ran them.
+    """
+    # Held-and-released article: aired today because it matches this week's
+    # rotation focus — hosts must not frame it as breaking, nor explain the timing.
+    held_tag = (f' [FROM {a["_held_from"]}: frame as "earlier this week", not '
+                f'breaking — do not explain why it airs today]'
+                if a.get('_held_from') else '')
+    # The inverse instruction to held_tag, and deliberately so. A held story
+    # is one the listener has not heard, aired on a better-matched day, so
+    # explaining the timing would only expose the machinery. A recalled one
+    # they HAVE heard — it ran on the day it broke — so pretending otherwise
+    # is the failure. Say we covered it and say what has moved since.
+    recall_tag = (f' [ALREADY COVERED {a["_recalled_from"]} — say so plainly '
+                  f'("we mentioned this on Tuesday") and lead with what has '
+                  f'CHANGED since: a new name in the race, a deadline passed, '
+                  f'a position stated. Never re-read the original story as '
+                  f'though it were new]'
+                  if a.get('_recalled_from') else '')
+    thread_tag = ''
+    if a.get('_prior_mentions') and not a.get('_recalled_from'):
+        dates = ", ".join(_spoken_date(d) for d in a['_prior_mentions'][:3])
+        thread_tag = (f' [RUNNING THREAD: "{a.get("_thread_phrase", "")}" also aired '
+                      f'{dates}. The listener has heard this subject; tie it back in a '
+                      f'clause ("data centres again") and lead with what this piece '
+                      f'adds. Never introduce the subject from scratch]')
+    return held_tag + recall_tag + thread_tag
+
+
 def format_cta_history_for_prompt(cta_memory, today_theme):
     """Format one-year CTA history into prompt context to prevent repetition.
 
@@ -8394,27 +8502,11 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         # story that survives curation is a story the show is covering, and where
         # it came from is no longer the writer's business.
         cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
-        # Held-and-released article: aired today because it matches this week's
-        # rotation focus — hosts must not frame it as breaking, nor explain the timing.
-        held_tag = (f' [FROM {a["_held_from"]}: frame as "earlier this week", not '
-                    f'breaking — do not explain why it airs today]'
-                    if a.get('_held_from') else '')
-        # The inverse instruction to held_tag, and deliberately so. A held story
-        # is one the listener has not heard, aired on a better-matched day, so
-        # explaining the timing would only expose the machinery. A recalled one
-        # they HAVE heard — it ran on the day it broke — so pretending otherwise
-        # is the failure. Say we covered it and say what has moved since.
-        recall_tag = (f' [ALREADY COVERED {a["_recalled_from"]} — say so plainly '
-                      f'("we mentioned this on Tuesday") and lead with what has '
-                      f'CHANGED since: a new name in the race, a deadline passed, '
-                      f'a position stated. Never re-read the original story as '
-                      f'though it were new]'
-                      if a.get('_recalled_from') else '')
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{recall_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{_coverage_tags(a)}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     # These headers are curation metadata. They tell the model what order to air
     # stories in — never what to say about them. Naming a block on air, or
@@ -8479,7 +8571,7 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:1000]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{jurisdiction_tag}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
+        return f"- [{source}] {title}{_coverage_tags(a)}{jurisdiction_tag}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
 
     deep_dive_text = "\n".join([_format_deep_dive_article(a) for a in deep_dive_articles])
 
@@ -12284,6 +12376,15 @@ def run_script_stage() -> tuple[str, str] | None:
             if prior_coverage:
                 print("🔁 Prior coverage overlap detected — acknowledgment instruction injected")
                 evolving_context += "\n" + prior_coverage
+
+            # Running threads: the same subject through a different story, across
+            # the roundup and the deep dive. Tags the articles in place.
+            _threads = mark_running_threads(
+                list(news_articles) + list(deep_dive_articles),
+                load_recent_citations(days=RUNNING_THREAD_DAYS), date_key)
+            if _threads:
+                print(f"🧵 {_threads} article(s) continue a subject aired in the last "
+                      f"{RUNNING_THREAD_DAYS} days — tagged RUNNING THREAD")
 
             # Focus-day callbacks: stories that aired early in a bonus slot and
             # whose rotation focus day is today
