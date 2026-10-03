@@ -1473,3 +1473,111 @@ class TestThinThemePoolIsReported:
         # Saturday has no theme block by construction — every candidate is local.
         assert pg._is_geographic_theme("Cariboo Local Affairs")
         assert not pg._is_geographic_theme(THURSDAY_THEME)
+
+
+class TestCohereDeepDiveRerank:
+    """USE_COHERE reranks the live deep-dive pick. It reorders the head of the
+    rule-ranked list and never admits what the rules left out. On 2026-10-02
+    the Tyee's "Municipal Campaign Trail" piece reached the Wild Spaces deep
+    dive on the focus keyword "trail"."""
+
+    RECREATION_FOCUS = {
+        "slug": "recreation-access", "name": "Recreation & Backcountry Access",
+        "keywords": ["trail", "backcountry", "hiking", "access", "camping"],
+        "lens": "Center the deep dive on recreation and backcountry access.",
+    }
+
+    @pytest.fixture
+    def rerank(self, monkeypatch):
+        import cohere_enrichment as ce
+        seen = {"calls": []}
+
+        class _Client:
+            def rerank(self, query, documents, model, top_n):
+                seen["calls"].append({"query": query, "docs": documents, "top_n": top_n})
+                order = seen.get("order") or list(range(len(documents)))
+                return type("R", (), {"results": [type("H", (), {"index": i})()
+                                                  for i in order[:top_n]]})()
+
+        monkeypatch.setattr(ce, "COHERE_ENABLED", True)
+        monkeypatch.setattr(ce, "_get_client", lambda: _Client())
+        monkeypatch.setattr(ce, "_degradations", [])
+        return seen
+
+    def _focus_pool(self):
+        return [
+            _article("Harassment and Hate on the Municipal Campaign Trail", "tyee", kw=1, boosted=63),
+            _article("Backcountry access road reopens to hikers", "road", kw=1, boosted=55),
+            _article("Hiking trail stewardship crew expands", "crew", kw=1, boosted=50),
+            _article("Camping fees rise at recreation sites", "fees", kw=1, boosted=45),
+            _article("Celebrity gossip with no keywords", "gossip", kw=0, boosted=99),
+        ]
+
+    def _keyword_pool(self):
+        """The keyword ranking puts the Tyee piece first, on a word coincidence."""
+        pool = self._focus_pool()
+        pool[0]["_keyword_matches"] = 2
+        return pool
+
+    def test_rerank_picks_from_the_rule_ranked_head(self, rerank):
+        rerank["order"] = [1, 2, 3, 0]   # the model puts the Tyee piece last
+        deep_dive, news = pg.select_deep_dive_from_feed(
+            self._keyword_pool(), "Wild Spaces & Outdoor Life", count=3)
+        assert [a["url"] for a in deep_dive] == ["road", "crew", "fees"]
+        assert "tyee" in {a["url"] for a in news}
+
+    def test_rerank_never_admits_what_the_rules_left_out(self, rerank):
+        pg.select_deep_dive_from_feed(
+            self._focus_pool(), "Wild Spaces & Outdoor Life", count=3,
+            focus=self.RECREATION_FOCUS)
+        docs = " ".join(rerank["calls"][0]["docs"])
+        assert "Celebrity gossip" not in docs
+
+    def test_query_is_theme_and_focus_never_the_anchor(self, rerank):
+        pg.select_deep_dive_from_feed(
+            self._focus_pool(), "Wild Spaces & Outdoor Life", count=3,
+            focus=self.RECREATION_FOCUS)
+        query = rerank["calls"][0]["query"]
+        assert "Wild Spaces & Outdoor Life" in query
+        assert "Recreation & Backcountry Access" in query
+        assert "backcountry access" in query.lower()
+
+    def test_pool_is_bounded(self, rerank):
+        pool = [_article(f"Trail story {i}", f"u{i}", kw=1, boosted=50) for i in range(30)]
+        pg.select_deep_dive_from_feed(pool, "Wild Spaces & Outdoor Life", count=3,
+                                      focus=self.RECREATION_FOCUS)
+        assert len(rerank["calls"][0]["docs"]) == pg.DEEP_DIVE_RERANK_POOL
+
+    def test_nothing_to_choose_means_no_call(self, rerank):
+        pool = self._focus_pool()[:3]
+        pg.select_deep_dive_from_feed(pool, "Wild Spaces & Outdoor Life", count=3,
+                                      focus=self.RECREATION_FOCUS)
+        assert rerank["calls"] == []
+
+    def test_the_geographic_day_is_never_reranked(self, rerank):
+        pool = [_article(f"Williams Lake council votes on budget {i}", f"c{i}",
+                         kw=1, boosted=50) for i in range(6)]
+        pg.select_deep_dive_from_feed(pool, "Cariboo Local Affairs", count=3)
+        assert rerank["calls"] == []
+
+    def test_a_failed_rerank_keeps_the_keyword_ranking(self, monkeypatch):
+        import cohere_enrichment as ce
+
+        class _Broken:
+            def rerank(self, **kw):
+                raise RuntimeError("down")
+        monkeypatch.setattr(ce, "COHERE_ENABLED", True)
+        monkeypatch.setattr(ce, "_get_client", lambda: _Broken())
+        monkeypatch.setattr(ce, "_degradations", [])
+        deep_dive, _ = pg.select_deep_dive_from_feed(
+            self._keyword_pool(), "Wild Spaces & Outdoor Life", count=3)
+        assert [a["url"] for a in deep_dive] == ["tyee", "road", "crew"]
+        assert any("deep-dive rerank" in d for d in ce.drain_degradations())
+
+    def test_the_run_report_carries_cohere_fallbacks(self, monkeypatch):
+        import cohere_enrichment as ce
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda seg, detail: rows.append((seg, detail)))
+        monkeypatch.setattr(ce, "_degradations", ["deep-dive rerank: failed"])
+        pg._report_cohere_degradations("script/cohere")
+        assert rows == [("script/cohere", "deep-dive rerank: failed")]

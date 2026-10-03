@@ -10,17 +10,40 @@ Single revert: set USE_COHERE=0 or unset the variable entirely.
 Tunable thresholds (via env vars):
   COHERE_DEDUP_THRESHOLD   — cosine similarity for evolving-story detection (default 0.88)
   COHERE_CLUSTER_THRESHOLD — cosine similarity for same-story clustering (default 0.85)
+
+A failed call is never silent: it appends to `_degradations`, which the
+pipeline drains into degrade() rows (this module cannot import degrade()
+without a cycle, the same arrangement as native_land and weekly_anchor).
 """
 
 import math
 import os
+from typing import List
 
 COHERE_ENABLED = os.getenv("USE_COHERE", "0").strip() == "1"
 
 EMBED_DEDUP_THRESHOLD = float(os.getenv("COHERE_DEDUP_THRESHOLD", "0.88"))
 EMBED_CLUSTER_THRESHOLD = float(os.getenv("COHERE_CLUSTER_THRESHOLD", "0.85"))
 
+# Cohere's Embed endpoint takes at most 96 texts per request.
+EMBED_BATCH_SIZE = 96
+
 _client = None
+_degradations: List[str] = []
+# True once any call this run returned a result: the episode's "Content
+# Enrichment" credit names Cohere only when Cohere actually did something.
+_used = False
+
+
+def drain_degradations() -> List[str]:
+    """Hand the caller every degradation recorded since the last drain."""
+    global _degradations
+    drained, _degradations = _degradations, []
+    return drained
+
+
+def was_used() -> bool:
+    return _used
 
 
 def _get_client():
@@ -37,21 +60,35 @@ def _cosine(a, b):
     return dot / mag if mag else 0.0
 
 
-def _embed(texts):
-    """Embed a list of strings; returns list-of-vectors or None on failure."""
+def _embed(texts, purpose: str = "embedding"):
+    """Embed a list of strings; returns list-of-vectors or None on failure.
+
+    Batched at EMBED_BATCH_SIZE, and read from `embeddings.float_`: the SDK
+    names the field `float_` (alias "float"). Until 2026-10-03 this read
+    `.float`, an AttributeError on every SDK the requirements allow, and sent
+    the evolving-story check's ~230 texts in one request, so neither embedding
+    path could ever have worked; nothing said so because USE_COHERE was off.
+    """
+    global _used
     if not texts:
         return []
     try:
         client = _get_client()
-        resp = client.embed(
-            texts=texts,
-            model="embed-english-v3.0",
-            input_type="search_document",
-            embedding_types=["float"],
-        )
-        return resp.embeddings.float
+        vectors = []
+        for start in range(0, len(texts), EMBED_BATCH_SIZE):
+            resp = client.embed(
+                texts=texts[start:start + EMBED_BATCH_SIZE],
+                model="embed-english-v3.0",
+                input_type="search_document",
+                embedding_types=["float"],
+            )
+            vectors.extend(resp.embeddings.float_)
+        _used = True
+        return vectors
     except Exception as exc:
         print(f"  ⚠️  Cohere embed failed ({exc}), falling back")
+        _degradations.append(f"{purpose}: Cohere embed failed ({type(exc).__name__}) — "
+                             "fell back to the non-Cohere path")
         return None
 
 
@@ -71,7 +108,7 @@ def detect_evolving_stories(new_articles, past_articles):
     new_texts = [f"{a.get('title', '')} {a.get('summary', '')[:150]}" for a in new_articles]
     past_texts = [f"{a.get('title', '')} {a.get('summary', '')[:150]}" for a in past_articles]
 
-    embeddings = _embed(new_texts + past_texts)
+    embeddings = _embed(new_texts + past_texts, "evolving-story detection")
     if embeddings is None:
         return None
 
@@ -112,7 +149,7 @@ def cluster_articles(articles):
         return None
 
     texts = [f"{a.get('title', '')} {a.get('summary', '')[:150]}" for a in articles]
-    embeddings = _embed(texts)
+    embeddings = _embed(texts, "same-story clustering")
     if embeddings is None:
         return None
 
@@ -162,29 +199,35 @@ def cluster_articles(articles):
     return articles
 
 
-def rerank_for_deep_dive(theme_name, articles, top_n):
+def rerank_for_deep_dive(theme_name, articles, top_n, query=None):
     """
     Rerank candidate articles against the day's theme using Cohere Rerank.
 
-    Returns a list of length top_n in relevance order, or None when Cohere
-    is disabled or the API call fails (caller uses keyword-sort fallback).
+    *query* overrides the default theme-name query (the live selector passes
+    the theme description and the week's focus). Returns a list of length
+    top_n in relevance order, or None when Cohere is disabled or the API call
+    fails (caller keeps its keyword ranking).
     """
+    global _used
     if not COHERE_ENABLED or not articles:
         return None
     try:
         client = _get_client()
         docs = [f"{a.get('title', '')} {a.get('summary', '')[:300]}" for a in articles]
         resp = client.rerank(
-            query=f"Best articles for a podcast deep dive on: {theme_name}",
+            query=query or f"Best articles for a podcast deep dive on: {theme_name}",
             documents=docs,
             model="rerank-english-v3.0",
             top_n=top_n,
         )
         reranked = [articles[r.index] for r in resp.results]
+        _used = True
         print(f"  🎯 Cohere rerank: selected {len(reranked)} deep-dive articles for '{theme_name}'")
         for a in reranked:
             print(f"    - {a.get('title', '')[:70]}...")
         return reranked
     except Exception as exc:
         print(f"  ⚠️  Cohere rerank failed ({exc}), falling back to keyword sort")
+        _degradations.append(f"deep-dive rerank: Cohere rerank failed ({type(exc).__name__}) — "
+                             "kept the keyword ranking")
         return None

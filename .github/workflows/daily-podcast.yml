@@ -189,6 +189,11 @@ jobs:
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           BRAVE_ANSWERS_API_KEY: ${{ secrets.BRAVE_ANSWERS_API_KEY }}
           COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+          # On by default: deep-dive rerank, embedding dedup and same-story
+          # clustering (cohere_enrichment). Set the repository variable
+          # USE_COHERE to 0 to turn it off without a commit; every Cohere path
+          # falls back and says so in the run report (script/cohere).
+          USE_COHERE: ${{ vars.USE_COHERE || '1' }}
           # Territory confirmation for on-air nation names (script/territory-check).
           # Absent, native_land.py asks the endpoint without a key and, if that is
           # refused, records a degradation and leaves every claim as written — a

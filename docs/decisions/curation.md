@@ -210,6 +210,54 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   other repo, and nothing checks that the two agree — when a claim here is about
   `super-rss-feed`, read `config/podcast_schedule.json` there before trusting it.
 
+## Cohere (`cohere_enrichment.py`, `USE_COHERE`)
+
+**Switched on 2026-10-03, after the code turned out never to have worked.** The workflow
+passed `COHERE_API_KEY` to the script step from the start, but nothing set `USE_COHERE`,
+so every function returned at its first line. Turning it on as written would still have
+done nothing:
+- `_embed` read `resp.embeddings.float`. The SDK field is `float_` (alias `"float"`), so
+  that was an `AttributeError` on every version the requirements allow.
+- It also sent the evolving-story check's ~230 texts (today's pool plus 8 days of
+  citations) in one request, where Cohere takes 96.
+- Both failures were caught and printed, then fell back silently, so evolving-story
+  detection and clustering would have run on their old paths every night under a credit
+  claiming Cohere.
+- The deep-dive rerank existed only in `categorize_articles_for_deep_dive`, the
+  category-feed fallback. `select_deep_dive_from_feed`, which picks every normal day's
+  deep dive, never called it.
+
+**What it does now**
+- **Live deep-dive rerank.** `select_deep_dive_from_feed` ranks by keyword count, which is
+  where coincidences live. On 10-02 "Harassment and Hate on the Municipal *Campaign Trail*"
+  (The Tyee) reached the Wild Spaces deep dive on the focus keyword "trail". Rerank now
+  reorders the head (`DEEP_DIVE_RERANK_POOL`, 12) of whichever list the rules produced
+  (focus, feed keyword matches, or local scoring), against the theme description and the
+  focus lens.
+  - It **reorders, never admits**: deferred (`_no_deep_dive`) and zero-keyword articles
+    stay out.
+  - It never runs on the geographic day, whose home-jurisdiction and event ordering is
+    deliberate.
+  - It never sees the weekly anchor, which frames and must not select.
+- **Evolving-story detection** uses embeddings against 8 days of citations. A scan of the 31
+  episodes to 10-02 found one cross-day repeat the title matcher let through, a genuine
+  follow-up, so expect little change; `super-rss-feed` already removes most repeats.
+- **Same-story clustering** uses cosine ≥ `COHERE_CLUSTER_THRESHOLD` (0.85) in place of the
+  Haiku call. Embeddings rate "same topic" as close as "same story", and a clustered
+  non-canonical article drops to 30% of its score. If two distinct stories start
+  suppressing each other, raise the threshold before reverting.
+
+**Failures are rows, not stdout.** The module can't import `degrade()` (`dedup_articles`
+imports it), so it appends to `_degradations`. The script path drains those after curation
+as `script/cohere`. The "Content Enrichment" credit follows `was_used()`, which only a
+successful call sets, never the switch.
+
+**Cost and limits.** One rerank (~$0.002) and about four small embed requests a day:
+roughly $0.12 a month, offset by the Haiku clustering call it replaces. `super-rss-feed`
+makes ~16 Cohere calls a night. If the two repos share a trial key, its monthly call cap is
+the limit to watch (~500 upstream plus ~150 here). Setting the repository variable
+`USE_COHERE=0` turns all of this off without a commit.
+
 ## News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`, `_sequence_roundup`)
 
 The roundup's story count is derived from **airtime, not appetite**. The segment gets

@@ -259,7 +259,9 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 ### Smaller subsystems
 
-- **Cohere** (`cohere_enrichment.py`, `USE_COHERE=1`): evolving-story detection, intra-batch clustering, deep-dive rerank. Every public function returns `None` when disabled; callers fall back to string matching.
+- **Cohere** (`cohere_enrichment.py`, `USE_COHERE`, on in the script step; the repo variable set to `0` turns it off): evolving-story detection, intra-batch clustering, and the live deep-dive rerank. Every public function returns `None` when disabled or failed; callers fall back, and a failure is a `script/cohere` row (`drain_degradations`).
+  - **Rerank reorders, never admits**: it picks from the head (`DEEP_DIVE_RERANK_POOL`) of the rule-ranked list, never on the geographic day, and its query is the theme and focus, never the weekly anchor.
+  - The credit follows `was_used()`, not the switch. Embed is batched at 96 texts and read from `embeddings.float_`.
 - **Bespoke episodes** (`generate_bespoke.py`) are **parked**: one episode (March 2026). The code and workflow stay because `seed-content` still triggers it when 3+ content seeds share a tag.
 - **PSA selection** (`psa_selector.py`): 7-day lookahead for awareness dates; otherwise round-robin, 28 days between repeats per org.
 

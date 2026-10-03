@@ -1004,6 +1004,14 @@ SATURDAY_NEWS_ROUNDUP_COUNT = 15
 # worse failure than a debate one day early.
 DEEP_DIVE_ELIGIBLE_FLOOR = 2
 
+# How many of the rule-ranked deep-dive candidates Cohere Rerank may reorder
+# (USE_COHERE). The rules decide who is eligible and in what order; rerank only
+# picks the top `count` from the head of that list, by meaning rather than by
+# keyword count. On 2026-10-02 "Harassment and Hate on the Municipal Campaign
+# Trail" (The Tyee) reached the Wild Spaces deep dive on the focus keyword
+# "trail".
+DEEP_DIVE_RERANK_POOL = 12
+
 # No single off-theme discipline cluster may take more than this many roundup
 # slots. The tail is supposed to play as mini-arcs; on 2026-08-22 a seven-story
 # US pharma and health-policy run took nearly half a Cariboo Local Affairs
@@ -6863,6 +6871,18 @@ def _focus_hit_count(article, focus_keywords) -> int:
     return _keyword_hit_count(text, focus_keywords)
 
 
+def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
+    """What Cohere Rerank scores deep-dive candidates against: the theme and its
+    description, plus the week's focus and its lens. Never the weekly anchor,
+    which frames the debate and must not select it."""
+    info = _theme_info(theme_name) or {}
+    query = (f"News that can carry a two-host podcast debate about {theme_name}"
+             + (f" ({info['description']})" if info.get('description') else "") + ".")
+    if focus:
+        query += f" This week's focus: {focus.get('name', '')}. {focus.get('lens', '')}".rstrip()
+    return query
+
+
 def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
                                event_focus=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
@@ -6999,12 +7019,16 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
             print(f"  🎯 focus_fallback: only {len(focus_strong)} article(s) matched focus "
                   f"'{focus['name']}' (<{count}) — using base theme selection")
 
+    rerank_pool = None
     if subject_deep_dive is not None:
+        # The geographic day's civic ranking is deliberate (home jurisdiction,
+        # then the event): never reranked.
         deep_dive = subject_deep_dive
     elif deep_dive is not None:
-        pass
+        rerank_pool = focus_strong
     elif strong_match:
         # Feed provided keyword matches — use them
+        rerank_pool = strong_match
         deep_dive = strong_match[:count]
         if len(deep_dive) < count:
             deep_dive.extend(weak_match[:count - len(deep_dive)])
@@ -7019,7 +7043,18 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
             key=lambda a: _local_theme_relevance(a, theme_keywords, anti_keywords=theme_anti_keywords),
             reverse=True,
         )
+        rerank_pool = scored
         deep_dive = scored[:count]
+
+    # Rerank reorders the head of the rule-ranked list and never admits an
+    # article the rules left out. Disabled or failed, it returns None and the
+    # keyword ranking stands.
+    if rerank_pool is not None and len(rerank_pool) > count:
+        reranked = cohere_enrichment.rerank_for_deep_dive(
+            theme_name, rerank_pool[:DEEP_DIVE_RERANK_POOL], count,
+            query=_deep_dive_rerank_query(theme_name, focus))
+        if reranked:
+            deep_dive = reranked
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
     news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
@@ -9913,6 +9948,14 @@ def scrub_territory_claims(script_text: str, findings: list) -> str:
     return script_text
 
 
+def _report_cohere_degradations(name: str) -> None:
+    """Surface Cohere fallbacks (USE_COHERE) as run-report rows. The module
+    collects and the script path drains, like native_land: dedup_articles
+    imports cohere_enrichment, and degrade() lives here."""
+    for detail in cohere_enrichment.drain_degradations():
+        degrade(name, detail)
+
+
 def _report_native_land_degradations(name: str) -> None:
     """Surface territory-lookup fallbacks as rows in the run report.
 
@@ -12097,6 +12140,10 @@ def run_script_stage() -> tuple[str, str] | None:
                 # not additions to the segment.
                 news_articles = news_articles + bonus_articles
 
+        # Dedup, clustering and the deep-dive pick are the Cohere calls; any that
+        # fell back are rows in the run report, not a line of stdout.
+        _report_cohere_degradations("script/cohere")
+
         print(f"📊 Ready to generate podcast:")
         print(f"   News roundup: {len(news_articles)} articles")
         print(f"   Deep dive: {len(deep_dive_articles)} articles")
@@ -12471,7 +12518,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 debate_summary=debate_summary, psa_info=psa_info, quality=script_quality,
                 brave_used=brave_used,
                 weather_used=bool(weather_data),
-                cohere_used=cohere_enrichment.COHERE_ENABLED,
+                cohere_used=cohere_enrichment.was_used(),
                 weather_data=weather_data,
                 anchor=today_anchor,
                 research={"block": brave_context, "log": list(_RESEARCH_LOG)},
