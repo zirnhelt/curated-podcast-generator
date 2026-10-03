@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[The Verge] Musicians-turned-detectives are hunting for AI g",
       "[TechRadar] Microsoft 365 users hit by two major threat camp",
       "[Fast Company] I use AI to save time. So why am I working mo",
       "[TechRadar] The new digital ID apps for age verification in ",
@@ -10,7 +9,8 @@
       "[TechRadar] Pre-capture is the best wildlife photography tri",
       "[Tom's Hardware] US AI data centers projected to become the ",
       "[TechRadar] Massive data breach sees 220 million traveler re",
-      "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor"
+      "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
+      "[Williams Lake Tribune] B.C. Greens propose AI data centre m"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -167,6 +167,11 @@
       {
         "date": "2026-09-29",
         "clue": "rural-context:x \u2014 Conceded majors also lose hiring wars",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-03",
+        "clue": "structural-lens:~ \u2014 Conceded thin newsroom limits Tribune's coverage capacity",
         "occurrences": 1
       }
     ],
@@ -412,11 +417,6 @@
         "date": "2026-09-18",
         "clue": "community-trust:+ \u2014 escalated from consultation critique to co-decision demand",
         "occurrences": 1
-      },
-      {
-        "date": "2026-09-29",
-        "clue": "evidence-bar:+ \u2014 Demanded concrete policy documents over campaign promises",
-        "occurrences": 2
       },
       {
         "date": "2026-09-25",
