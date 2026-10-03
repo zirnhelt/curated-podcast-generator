@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 3, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 3, 2026</h1>
+  <p class="meta">Published October 3, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37108537814">37108537814</a>.</em></p>
+
+<h3>Cohere embeddings offline: story clustering and evolution detection fell back to baseline</h3>
+
+<p>The script generation step encountered a <code>ModuleNotFoundError</code> in Cohere's embedding module twice — once during evolving-story detection, once during same-story clustering. Both times the pipeline fell back to non-Cohere logic and completed the run. The listener hears no missing segments, but the script lost its ability to detect when a story mutates across sources and when multiple outlets cover the same event. That work will not resume until the module is restored.</p>
+
+<h3>Territory lookups hit their per-run ceiling at eight checks</h3>
+
+<p>The territory-check segment performed eight named-entity lookups before exhausting its configured limit. Nine publication names and one geographic identifier were not checked: Tribune (three times), Mental Health Association, Sheridan, Valley, Doerkson, and Cariboo-Chilcotin. One successful lookup found Secwepemc territory coverage mapped to Michif Piyii (Métis) and Anishinabewaki, flagging a conflict in the territory database itself rather than a pipeline error.</p>
+
+<p>The ceiling exists to control cost. Raising it requires a deliberate trade-off against API spend and latency.</p>
+
+<h3>Citation coverage splits between segments</h3>
+
+<p>The roundup matched 13 of 14 citations to their sources. The deep dive — five stories from Cariboo regional outlets covering candidate nominations and mineral policy — matched only 2 of 5. No citations were dropped from the episode; the mismatch is a measure of how thoroughly each segment's sourcing could be validated before broadcast.</p>
+
+<h3>Voice balance and budget discipline</h3>
+
+<p>Casey's voice time exceeded Riley's by a factor of 1.06. The script reached 3,378 words across 20.5 minutes of audio. Forty-nine stories were cut from the roundup pool to fit the airtime budget; by design, they remain eligible for future days when the topic mix may align better with their content.</p>
+
+<h3>Delivery and publishing damage</h3>
+
+<p>R2 object storage is missing one file that the podcast feed references. Crawlers requesting that asset will receive a 404. The file cannot be healed from disk, so either the feed entry must be removed or the asset must be re-uploaded. Three runs executed on schedule: the primary at 1:05 AM Pacific finished at 1:28 AM, a fallback at 2:05 AM completed instantly, and this review's own run began at 3:05 AM.</p>
+
+<p>Two TTS takes arrived shorter than word count predicted. One retry succeeded; the longer take was kept, so nothing was truncated from the final episode.</p>
+
+<h3>Daily output</h3>
+
+<p>Episode 248 in the RSS feed: 20.5 minutes audio (18.7 MB), 20.5 minutes video (72.1 MB). The debate question asks whether small-town governance delivers accountability through proximity or fails from thin staffing and weak public scrutiny. The deep dive tracks candidate nominations and provincial energy policy across five Cariboo outlets. Brave Search made 44 calls, Brave Answers 5, and Claude 11, consuming 46,667 Anthropic input tokens.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>5 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 1.06, 3378 words</td></tr>
+<tr><td>Audio</td><td>20.5 min</td></tr>
+<tr><td>Audio size</td><td>18.7 MB</td></tr>
+<tr><td>Citations matched</td><td>13/14 roundup, 2/5 deep dive</td></tr>
+<tr><td>Feed</td><td>248 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>46,667 input tokens, calls ***'brave-search': 44, 'claude': 11, 'brave-answers': 5***</td></tr>
+</tbody>
+</table>
+</body>
+</html>

@@ -392,11 +392,10 @@
       "title": "Deep dive citations matched at 33% versus roundup at 80%.",
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
-      "status": "retired",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-16",
         "2026-09-19",
         "2026-09-20",
         "2026-09-22",
@@ -405,11 +404,12 @@
         "2026-09-25",
         "2026-09-26",
         "2026-09-27",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-03"
       ],
-      "last_seen": "2026-10-02",
+      "last_seen": "2026-10-03",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-10-02"
+      "signal_seen": "2026-10-03"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -481,7 +481,7 @@
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
       "status": "open",
-      "occurrences": 8,
+      "occurrences": 9,
       "first_seen": "2026-09-22",
       "seen": [
         "2026-09-22",
@@ -491,11 +491,12 @@
         "2026-09-27",
         "2026-09-28",
         "2026-09-29",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-03"
       ],
-      "last_seen": "2026-10-02",
+      "last_seen": "2026-10-03",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-10-02"
+      "signal_seen": "2026-10-03"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -503,7 +504,7 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 9,
+      "occurrences": 10,
       "first_seen": "2026-09-19",
       "seen": [
         "2026-09-19",
@@ -514,11 +515,12 @@
         "2026-09-26",
         "2026-09-27",
         "2026-09-29",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-03"
       ],
-      "last_seen": "2026-10-02",
+      "last_seen": "2026-10-03",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-10-02"
+      "signal_seen": "2026-10-03"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
@@ -575,7 +577,22 @@
       "signal": "run-failed",
       "signal_seen": "2026-10-01",
       "last_seen": "2026-10-01"
+    },
+    {
+      "id": "cohere-embedding-module-missing",
+      "title": "Cohere embedding module is unavailable, blocking story clustering and evolution detection.",
+      "detail": "On 2026-10-03, script generation encountered ModuleNotFoundError twice: once during evolving-story detection, once during same-story clustering. The pipeline fell back to baseline logic both times and completed the run. The listener hears no gaps, but the script lost its ability to detect when a story mutates across sources or when multiple outlets cover the same event. Restore the Cohere module or replace the embedding layer with an alternative that can detect story evolution and same-story clustering without external dependencies.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-10-03",
+      "seen": [
+        "2026-10-03"
+      ],
+      "signal": "degraded:script/cohere",
+      "signal_seen": "2026-10-03",
+      "last_seen": "2026-10-03"
     }
   ],
-  "updated": "2026-10-02"
+  "updated": "2026-10-03"
 }

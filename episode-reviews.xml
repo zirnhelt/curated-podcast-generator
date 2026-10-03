@@ -5,7 +5,66 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 02 Oct 2026 10:06:19 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2026 10:06:10 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, October 3, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-03.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-03.html</guid>
+      <pubDate>Sat, 03 Oct 2026 10:06:10 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37108537814"&gt;37108537814&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Cohere embeddings offline: story clustering and evolution detection fell back to baseline&lt;/h3&gt;
+
+&lt;p&gt;The script generation step encountered a &lt;code&gt;ModuleNotFoundError&lt;/code&gt; in Cohere's embedding module twice — once during evolving-story detection, once during same-story clustering. Both times the pipeline fell back to non-Cohere logic and completed the run. The listener hears no missing segments, but the script lost its ability to detect when a story mutates across sources and when multiple outlets cover the same event. That work will not resume until the module is restored.&lt;/p&gt;
+
+&lt;h3&gt;Territory lookups hit their per-run ceiling at eight checks&lt;/h3&gt;
+
+&lt;p&gt;The territory-check segment performed eight named-entity lookups before exhausting its configured limit. Nine publication names and one geographic identifier were not checked: Tribune (three times), Mental Health Association, Sheridan, Valley, Doerkson, and Cariboo-Chilcotin. One successful lookup found Secwepemc territory coverage mapped to Michif Piyii (Métis) and Anishinabewaki, flagging a conflict in the territory database itself rather than a pipeline error.&lt;/p&gt;
+
+&lt;p&gt;The ceiling exists to control cost. Raising it requires a deliberate trade-off against API spend and latency.&lt;/p&gt;
+
+&lt;h3&gt;Citation coverage splits between segments&lt;/h3&gt;
+
+&lt;p&gt;The roundup matched 13 of 14 citations to their sources. The deep dive — five stories from Cariboo regional outlets covering candidate nominations and mineral policy — matched only 2 of 5. No citations were dropped from the episode; the mismatch is a measure of how thoroughly each segment's sourcing could be validated before broadcast.&lt;/p&gt;
+
+&lt;h3&gt;Voice balance and budget discipline&lt;/h3&gt;
+
+&lt;p&gt;Casey's voice time exceeded Riley's by a factor of 1.06. The script reached 3,378 words across 20.5 minutes of audio. Forty-nine stories were cut from the roundup pool to fit the airtime budget; by design, they remain eligible for future days when the topic mix may align better with their content.&lt;/p&gt;
+
+&lt;h3&gt;Delivery and publishing damage&lt;/h3&gt;
+
+&lt;p&gt;R2 object storage is missing one file that the podcast feed references. Crawlers requesting that asset will receive a 404. The file cannot be healed from disk, so either the feed entry must be removed or the asset must be re-uploaded. Three runs executed on schedule: the primary at 1:05 AM Pacific finished at 1:28 AM, a fallback at 2:05 AM completed instantly, and this review's own run began at 3:05 AM.&lt;/p&gt;
+
+&lt;p&gt;Two TTS takes arrived shorter than word count predicted. One retry succeeded; the longer take was kept, so nothing was truncated from the final episode.&lt;/p&gt;
+
+&lt;h3&gt;Daily output&lt;/h3&gt;
+
+&lt;p&gt;Episode 248 in the RSS feed: 20.5 minutes audio (18.7 MB), 20.5 minutes video (72.1 MB). The debate question asks whether small-town governance delivers accountability through proximity or fails from thin staffing and weak public scrutiny. The deep dive tracks candidate nominations and provincial energy policy across five Cariboo outlets. Brave Search made 44 calls, Brave Answers 5, and Claude 11, consuming 46,667 Anthropic input tokens.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 1.06, 3378 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;20.5 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;18.7 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/14 roundup, 2/5 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;248 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;46,667 input tokens, calls ***'brave-search': 44, 'claude': 11, 'brave-answers': 5***&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, October 2, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-02.html</link>
@@ -1674,66 +1733,6 @@
 &lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/15 roundup, 3/3 deep dive&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;220 episodes&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;89,057 input tokens, calls {'claude': 10, 'brave-answers': 3}&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, September 3, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-03.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-03.html</guid>
-      <pubDate>Thu, 03 Sep 2026 14:57:05 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33736913709"&gt;33736913709&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;Three manual runs, then the fallback misfired&lt;/h3&gt;
-
-&lt;p&gt;The pipeline ran three times by hand on 2026-09-03 before the scheduled fallback trigger at 3:05 AM Pacific. The first manual run failed; the second and third succeeded. At 14:56 UTC, the fallback ran 291 minutes late and remains in progress.&lt;/p&gt;
-
-&lt;p&gt;This timing pattern suggests the scheduled trigger may have been skipped or delayed. The in-progress state at fallback 2 is the immediate concern for maintenance.&lt;/p&gt;
-
-&lt;h3&gt;Body backfill exhausted; thin articles became stubs&lt;/h3&gt;
-
-&lt;p&gt;The Brave API budget for article body expansion spent its 12 calls. All 56 dropped roundups and remaining thin articles kept their stub bodies instead of being expanded. The pipeline chose to preserve what was available rather than halt.&lt;/p&gt;
-
-&lt;p&gt;This is a content quality degradation, not a count loss. The script shipped at 3,038 words after one expand pass, but those words came from fewer sources elaborated at depth rather than more sources elaborated to full body.&lt;/p&gt;
-
-&lt;h3&gt;Gemini multi-speaker failed on preamble; OpenAI finished the episode&lt;/h3&gt;
-
-&lt;p&gt;The Gemini TTS endpoint rejected the preamble section with finish reason OTHER. It failed on all four retry attempts: one explicit rejection and three unanswered calls. The pipeline fell back to OpenAI for that section and all subsequent sections, including credits.&lt;/p&gt;
-
-&lt;p&gt;The episode is discontinuous in voice. The early sections kept whatever voices Gemini had rendered before the preamble failed. The rest of the 19.2-minute episode is OpenAI single-speaker. Nothing was dropped.&lt;/p&gt;
-
-&lt;h3&gt;Citation alignment: roundup 93%, deep dive 67%&lt;/h3&gt;
-
-&lt;p&gt;14 of 15 roundup citations matched their sources. 2 of 3 deep dive citations matched. The debate question—on Indigenous land infrastructure ownership—appears in the published episode without a source flag in the facts.&lt;/p&gt;
-
-&lt;h3&gt;Rendering pipeline stayed steady despite failures&lt;/h3&gt;
-
-&lt;p&gt;Audio render took 529 seconds. One TTS segment came back shorter than word count predicted, and its retry also fell short. The longer take was kept, so nothing was trimmed from the episode. Voice ratio between Casey and Riley came to 1.06; one AI-tell pattern was caught and shipped as-is.&lt;/p&gt;
-
-&lt;p&gt;One quality flag detected and one minor TTS artifact retained. The published episode is 19.2 minutes audio, 17.6 MB, paired with 55.4 MB video. RSS published as episode 219.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-03T08:05:28Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-03T09:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-03T10:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-03T14:56:26Z&lt;/td&gt;&lt;td&gt;+291 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;3 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 1.06, 3038 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;19.2 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;17.6 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;14/15 roundup, 2/3 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;219 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;88,500 input tokens, calls {'claude': 8}&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>
