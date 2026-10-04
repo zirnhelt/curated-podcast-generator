@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 4, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 4, 2026</h1>
+  <p class="meta">Published October 4, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>
+
+<h3>Three runs, two failures, one success with infrastructure debt</h3>
+
+<p>The primary run at 1:05 AM Pacific failed. The first fallback at 2:05 AM also failed. The second fallback at 3:05 AM — this run — completed and produced an episode. The pipeline was forced to execute its maximum retry logic before reaching air.</p>
+
+<p>Both prior failures point to the same root cause: a <code>ModuleNotFoundError</code> in Cohere embedding. This broke three distinct scriptwriting steps — evolving-story detection, same-story clustering, and deep-dive reranking — and the pipeline fell back to non-Cohere and keyword-based paths for each.</p>
+
+<h3>What the episode contains</h3>
+
+<p>18.2 minutes of audio, 249 episodes in the RSS feed. Three deep dives selected from ScienceAlert, Scientific American, and Nautilus. The debate question: can small citizen-science projects produce credible, usable scientific knowledge?</p>
+
+<p>The roundup pool held more stories than the segment could air. The pipeline cut 62 stories by design — they remain in the pool for better-matched days rather than discarding them entirely. Of the 15 roundup citations, 11 matched their sources in the final script. The deep dives fared worse: only 1 of 3 citations verified against their sources.</p>
+
+<h3>Script undershooting and a territory-check collision</h3>
+
+<p>The first draft arrived at 2,670 words against a target of 3,400. The pipeline triggered an expand pass and shipped 2,955 words — still 445 words short of target, but the expand step had exhausted its retries.</p>
+
+<p>Territory-check flagged two separate issues. A sentence named the Tl'ilhqot'in nation in connection with Lorne, which the territory map covers as Mikmaki and Wabanaki confederation land — a mismatch. A rewrite was requested and rejected. The pipeline kept the unsupported sentence in the final script rather than dropping it.</p>
+
+<h3>Meta-moment segment absent</h3>
+
+<p>The meta-moment segment was authored around a dialogue involving an API and Google's infrastructure. Neither appeared in the week's GitHub commits. The pipeline cannot air a segment that cannot be verified to the codebase it documents. It cut the segment entirely.</p>
+
+<h3>Voice balance and AI pattern detection</h3>
+
+<p>Casey spoke 1.03 times as much as Riley — a 3-percent imbalance favoring Casey. One hit for AI-tell pattern flagged in quality review, meaning one sentence carried markers of machine generation that should have been edited out.</p>
+
+<h3>Missing objects in R2</h3>
+
+<p>The podcast feed references 1 object that does not exist in R2 cloud storage and cannot be restored from disk. Crawlers will receive a 404 for that object. The feed published anyway.</p>
+
+<p>The episode completed. The infrastructure failures and editorial gaps remain in the transcript.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.03, 2955 words</td></tr>
+<tr><td>Audio</td><td>18.2 min</td></tr>
+<tr><td>Audio size</td><td>16.6 MB</td></tr>
+<tr><td>Citations matched</td><td>11/15 roundup, 1/3 deep dive</td></tr>
+<tr><td>Feed</td><td>249 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>51,236 input tokens, calls ***'brave-search': 9, 'claude': 16, 'brave-answers': 8***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
