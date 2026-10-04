@@ -1,30 +1,4 @@
 {
-  "2026-07-05": {
-    "timestamp": 1783263120.797183,
-    "date": "2026-07-05",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "How can the Cariboo region systematically document its undercounted insect species and natural biodiversity without relying on unsustainable grant funding or overlooking Indigenous knowledge systems?",
-    "riley_position": "A low-cost, sustainable model for specimen collection can work by attaching it to existing work that people already do (ranching, trail crews) and routing findings through existing local institutions like natural history societies, similar to how the Christmas bird count has survived on volunteer continuity.",
-    "riley_key_evidence": [
-      "Global insect undercount runs two to three to one, with no reason to think the Cariboo is an exception",
-      "The Antarctic bio-duck sound was identified after 50 years of submarine logs existed and eventually got cross-referenced by acousticians",
-      "Christmas bird count has survived on volunteer continuity for a century in some towns without ongoing grant funding"
-    ],
-    "casey_position": "Attaching specimen collection to existing roles doesn't solve the deeper problems of expertise recognition, institutional continuity for processing backlogs, and the exclusion of Indigenous observational knowledge from what counts as \"official\" discovery.",
-    "casey_key_evidence": [
-      "Royal BC Museum has a backlog measured in years for undescribed specimens, so a rancher submitting beetles won't get an answer this decade",
-      "Secw\u00e9pemc and T\u015dilhqot'in land users have generational observation that never made it into peer-reviewed descriptions because the system only counts credentialed taxonomist findings as official",
-      "Most one-off biodiversity documentation weekends in small towns don't get a second year because they depend on a single organizer who eventually moves on"
-    ],
-    "resolution": "They agreed to disagree on whether existing infrastructure is sufficient, but converged on the Christmas bird count model as a viable precedent and jointly committed to testing an annual bio-blitz through an existing regional naturalist group, while acknowledging they haven't directly consulted First Nations knowledge keepers about participation and inviting listener input on what groups or initiatives already exist.",
-    "topics_covered": [
-      "The global insect undercount and what it means for regional biodiversity documentation",
-      "Sustainable infrastructure models for long-term citizen science (specimen collection pipelines, natural history societies, Christmas bird counts)",
-      "The credentialing problem: how Western taxonomy excludes Indigenous observation from official discovery",
-      "Methodology blind spots in science (alien biosignatures, detection assumptions) and their parallel to institutional credentialing blind spots",
-      "Practical design solutions: bio-blitz weekends, mail-in specimen protocols, and existing community group partnerships"
-    ]
-  },
   "2026-07-06": {
     "timestamp": 1783340353.363835,
     "date": "2026-07-06",
@@ -2501,6 +2475,34 @@
       "Scott Nelson's unresolved business lawsuit and the absence of an integrity commissioner in small-town governance",
       "The role of local media (Tribune) and the conflict of interest when a reporter becomes a candidate",
       "School board trustee Michael Franklin running unopposed and the challenge of evaluating single candidates"
+    ]
+  },
+  "2026-10-04": {
+    "timestamp": 1791105290.392168,
+    "date": "2026-10-04",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "discovery-health",
+    "anchor": "small-better-or-excuse",
+    "central_question": "Can small citizen-science projects conducted by local volunteers produce credible, usable scientific knowledge?",
+    "riley_position": "Yes, small science projects can generate reliable and actionable data if designed with clear protocols, public data release, external verification, and institutional backing to ensure continuity.",
+    "riley_key_evidence": [
+      "NASA's OSIRIS-REx Bennu sample, though small and pristine, revealed RNA ingredients (ribose, glucose) that large contaminated meteorite samples could not conclusively show",
+      "Carnegie Mellon's nanoscale Hall effect study published in Nature Materials overturned textbook assumptions with a tiny device at a single interface",
+      "Andr\u00e9 Schrottenloher independently rebuilt a secret Google quantum circuit in 63 days from public literature, showing open replication works fast when results are interesting"
+    ],
+    "casey_position": "Small projects can be useful only under strict conditions: written protocols, public data, external auditing, institutional affiliation, and community consent; most fail because volunteers leave, documentation disappears, and data gets misrepresented in reports and funding pitches.",
+    "casey_key_evidence": [
+      "Volunteer-run monitoring projects tend to end when the person retires or loses interest, creating discontinuity and lost institutional knowledge",
+      "Google's withheld quantum circuit was vulnerable\u2014Trail of Bits found bugs in the prover code and the method was rebuilt independently, showing closed-team control creates weak points",
+      "Post-fire toxic metals in Maui lingered for months but monitoring often stops once visible events end, demonstrating need for long-term persistence that small projects rarely sustain"
+    ],
+    "resolution": "Riley and Casey largely agree that small projects are workable with strong safeguards: written protocols, public data, external validation, and institutional continuity. They propose a concrete experiment: one site, one sensor, one written protocol with a named backup, public raw data, plus outreach to Indigenous communities (Secw\u00e9pemc, T\u015dilhqot'in, Dakelh) and provincial experts to validate whether the data is actually usable.",
+    "topics_covered": [
+      "Pristine small samples versus large contaminated ones in origin-of-life research (Bennu asteroid)",
+      "Nanoscale physics breakthroughs and their path from lab to practical sensors",
+      "Data security, secrecy, and zero-knowledge proofs in dual-use quantum cryptography",
+      "Indigenous long-baseline observation and the importance of community consent before deploying monitoring technology",
+      "Institutional continuity and succession planning as keys to sustainable citizen science projects"
     ]
   }
 }
