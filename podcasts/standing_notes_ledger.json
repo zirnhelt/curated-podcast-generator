@@ -20,7 +20,9 @@
     "45b154a7",
     "5daa2b7e",
     "adc1835a",
-    "prod0926"
+    "prod0926",
+    "ba77ef5c",
+    "787d3002"
   ],
   "proposed": [
     {
@@ -34,6 +36,10 @@
     {
       "note": "Before saying a candidate has no public record, check local news outlets for background information such as prior service or first-time candidate status.",
       "date": "2026-09-27"
+    },
+    {
+      "note": "Verify facts about dates and deadlines carefully, especially when multiple dates appear in the same story segment, as these are easily corrected mistakes that should not occur.",
+      "date": "2026-10-04"
     }
   ]
 }
