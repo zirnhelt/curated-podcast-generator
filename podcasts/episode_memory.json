@@ -1,25 +1,4 @@
 {
-  "2026-08-29": {
-    "timestamp": 1788011914.889907,
-    "topics": [
-      "[Quesnel Cariboo Observer] Recreational sockeye opening on F",
-      "[Regional News Archives",
-      "[Hyperallergic] How AIDS Activists Turned Graphic Design Int",
-      "[TechCrunch] How AI accounting startup Rillet raised $100M a",
-      "[Toms Guide] Over 60? Start doing these 3 seated exercises t",
-      "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
-      "[Hyperallergic] Artists Commit to the Bit at This Year\u2019s Vul",
-      "[Williams Lake Tribune] Williams Lake cannabis store seeks t"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-29",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-08-30": {
     "timestamp": 1788098866.686001,
     "topics": [
@@ -714,5 +693,26 @@
     "date": "2026-10-03",
     "focus": null,
     "focus_name": null
+  },
+  "2026-10-04": {
+    "timestamp": 1791105287.483423,
+    "topics": [
+      "[Williams Lake Tribune] Hearing truth, honouring survivors: ",
+      "[My Cariboo Now] B.C. Conservatives pledge $400M to buy wate",
+      "[100 Mile Free Press] Inaugural CariBOO Con raises over $1,0",
+      "[Regional News Archives",
+      "[The Tyee] Carney\u2019s Push to Fund Industry Imperils Canada\u2019s ",
+      "[ScienceAlert] A 100-Year-Old Physics Effect Doesn't Work Ho",
+      "[Scientific American] Why mathematicians are hiding research",
+      "[Nautilus] How Sugar from Outer Space Became One of the Back"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-10-04",
+    "focus": "discovery-health",
+    "focus_name": "Discovery, Health & How Science Works"
   }
 }
