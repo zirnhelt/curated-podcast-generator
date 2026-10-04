@@ -345,7 +345,7 @@
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -355,11 +355,12 @@
         "2026-09-14",
         "2026-09-15",
         "2026-09-16",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-10-04"
       ],
-      "last_seen": "2026-09-18",
+      "last_seen": "2026-10-04",
       "signal": "ai-tells-shipped",
-      "signal_seen": "2026-09-18"
+      "signal_seen": "2026-10-04"
     },
     {
       "id": "manual-dispatch-and-fallback-both-incomplete",
@@ -409,7 +410,7 @@
       ],
       "last_seen": "2026-10-03",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-10-03"
+      "signal_seen": "2026-10-04"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -460,7 +461,7 @@
       ],
       "last_seen": "2026-10-02",
       "signal": "short-script",
-      "signal_seen": "2026-10-02"
+      "signal_seen": "2026-10-04"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -496,7 +497,7 @@
       ],
       "last_seen": "2026-10-03",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-10-03"
+      "signal_seen": "2026-10-04"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -520,7 +521,7 @@
       ],
       "last_seen": "2026-10-03",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-10-03"
+      "signal_seen": "2026-10-04"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
@@ -575,7 +576,7 @@
         "2026-10-01"
       ],
       "signal": "run-failed",
-      "signal_seen": "2026-10-01",
+      "signal_seen": "2026-10-04",
       "last_seen": "2026-10-01"
     },
     {
@@ -583,16 +584,17 @@
       "title": "Cohere embedding module is unavailable, blocking story clustering and evolution detection.",
       "detail": "On 2026-10-03, script generation encountered ModuleNotFoundError twice: once during evolving-story detection, once during same-story clustering. The pipeline fell back to baseline logic both times and completed the run. The listener hears no gaps, but the script lost its ability to detect when a story mutates across sources or when multiple outlets cover the same event. Restore the Cohere module or replace the embedding layer with an alternative that can detect story evolution and same-story clustering without external dependencies.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-10-03",
       "seen": [
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-04"
       ],
       "signal": "degraded:script/cohere",
-      "signal_seen": "2026-10-03",
-      "last_seen": "2026-10-03"
+      "signal_seen": "2026-10-04",
+      "last_seen": "2026-10-04"
     }
   ],
-  "updated": "2026-10-03"
+  "updated": "2026-10-04"
 }

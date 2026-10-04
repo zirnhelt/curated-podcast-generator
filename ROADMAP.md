@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-14..2026-10-03) — 4 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-14..2026-10-04) — 5 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -79,6 +79,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       Log which sentences triggered the rewrite rejection, and decide whether to cut them,
       override the territory map data, or implement a mandatory-cut rule when rewrites fail.
       (signal `degraded:script/territory-check`; seen in 10 reviews, latest 2026-10-03)
+- [ ] **Cohere embedding module is unavailable, blocking story clustering and evolution
+      detection.** On 2026-10-03, script generation encountered ModuleNotFoundError twice: once
+      during evolving-story detection, once during same-story clustering. The pipeline fell back
+      to baseline logic both times and completed the run. The listener hears no gaps, but the
+      script lost its ability to detect when a story mutates across sources or when multiple
+      outlets cover the same event. Restore the Cohere module or replace the embedding layer
+      with an alternative that can detect story evolution and same-story clustering without
+      external dependencies. (signal `degraded:script/cohere`; seen in 2 reviews, latest
+      2026-10-04)
 
 <!-- reviews:end -->
 
