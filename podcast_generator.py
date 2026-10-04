@@ -30,7 +30,7 @@ import httpx
 from collections import Counter
 from functools import lru_cache
 from itertools import groupby
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 try:
     from twit_harvest import load_relevant_inspiration as _load_twit_inspiration
@@ -1505,18 +1505,52 @@ def _public_http_url(url) -> bool:
     return address is None or address.is_global
 
 
+MAX_REDIRECTS = 5
+
+
+def _resolves_public(host: str) -> bool:
+    """True if every address ``host`` resolves to is global. Fails closed."""
+    try:
+        infos = socket.getaddrinfo(host, None, proto=socket.IPPROTO_TCP)
+        addresses = {ipaddress.ip_address(info[4][0].split("%")[0]) for info in infos}
+    except (OSError, UnicodeError, ValueError):
+        return False
+    return bool(addresses) and all(a.is_global for a in addresses)
+
+
+def _get_public(url: str, **kwargs) -> "requests.Response | None":
+    """``requests.get`` for a feed- or model-supplied URL, or None if any hop is not public.
+
+    Each hop must pass ``_public_http_url`` and resolve only to global addresses
+    before it is requested, so neither a public name pointing at a private
+    address nor a redirect through one is fetched. Redirects are followed here
+    (cookies carried, at most ``MAX_REDIRECTS``) so each hop is checked.
+    """
+    # ponytail: resolve-and-check, not resolve-and-pin. requests resolves again, so a
+    # DNS answer that changes between the two lookups still gets through (operations.md).
+    cookies = requests.cookies.RequestsCookieJar()
+    for _ in range(MAX_REDIRECTS + 1):
+        if not _public_http_url(url) or not _resolves_public(urlparse(url).hostname):
+            return None
+        resp = requests.get(url, allow_redirects=False, cookies=cookies, **kwargs)
+        if not getattr(resp, "is_redirect", False):
+            return resp if _public_http_url(getattr(resp, "url", url)) else None
+        cookies.update(resp.cookies)
+        url = urljoin(url, resp.headers["location"])
+        resp.close()
+    return None
+
+
 def _fetch_article_author(url):
     """Best-effort fetch of article author from HTML meta tags.
 
     Returns author name string or empty string on any failure.
     """
-    if not _public_http_url(url):
-        return ""
     try:
-        resp = requests.get(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
-        resp.raise_for_status()
-        if not _public_http_url(getattr(resp, "url", url)):
+        resp = _get_public(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
             return ""
+        resp.raise_for_status()
         return _extract_author_from_html(resp.text)
     except Exception:
         return ""
@@ -1527,13 +1561,11 @@ def _fetch_url_metadata(url):
 
     Returns (title, description, author) strings; any may be empty on failure.
     """
-    if not _public_http_url(url):
-        return "", "", ""
     try:
-        resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
-        resp.raise_for_status()
-        if not _public_http_url(getattr(resp, "url", url)):
+        resp = _get_public(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
             return "", "", ""
+        resp.raise_for_status()
         html = resp.text
 
         title = ""
@@ -1563,13 +1595,11 @@ def _fetch_url_metadata(url):
 
 def _fetch_page_text(url: str) -> str:
     """A page's visible text (scripts, styles and tags stripped), or "" on failure."""
-    if not _public_http_url(url):
-        return ""
     try:
-        resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
-        resp.raise_for_status()
-        if not _public_http_url(getattr(resp, "url", url)):
+        resp = _get_public(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
             return ""
+        resp.raise_for_status()
         text = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', resp.text, flags=re.I | re.S)
         text = re.sub(r'<[^>]+>', ' ', text)
         return re.sub(r'\s+', ' ', html_lib.unescape(text)).strip()

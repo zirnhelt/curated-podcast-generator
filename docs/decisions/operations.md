@@ -500,3 +500,21 @@ metadata lookups (feed links) and `_fetch_page_text`, which serves the research 
 `fetch_page` tool with a URL the model chose. What those reads return is saved in the public
 citations JSON, so a loopback, private or link-local (cloud metadata) address is refused, and so is
 a redirect that lands on one. It checks the literal host only; DNS is not resolved.
+
+**2026-10-04: the fetches go through `_get_public`, and the bespoke feed through `_cdata_safe`.**
+`_get_public` resolves each hop's hostname and refuses it unless every address is global (an
+unresolvable name too), and follows redirects by hand (at most five, cookies carried), so a hop into
+a private address is never requested rather than requested and then not read. On GitHub-hosted
+runners this buys little today (nothing listens on the runner's private addresses, and Azure's
+metadata service needs a `Metadata: true` header these fetches never send); it was built because the
+reads are published, `fetch_page`'s URL is the model's choice and so steerable by any page it read
+earlier, it cost about 30 lines and no dependency, and a self-hosted runner on a home network would
+turn the gap into a way to publish a LAN admin page. It checks but does not pin: `requests` resolves
+again, so a rebinding DNS server with a zero TTL can still slip between the two lookups. Behind a
+proxy that does its own DNS, a name the runner cannot resolve is refused. `super-rss-feed` has the
+same guard as `sanitize.get_public`.
+
+The parked bespoke feed's two CDATA bodies now go through `_cdata_safe` too. Every value
+interpolated into that description was already `saxutils.escape`d, which turns `>` into `&gt;`, so
+`]]>` could not reach it; the wrap keeps the invariant uniform, and a test fails on any f-string
+CDATA in the repo that is not wrapped.
