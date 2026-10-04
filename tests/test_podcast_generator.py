@@ -5794,6 +5794,19 @@ class TestEpisodeMetadata:
         parsed = ET.fromstring(f"<description><![CDATA[{_cdata_safe(notes)}]]></description>")
         assert parsed.text == notes
 
+    def test_every_interpolated_cdata_goes_through_cdata_safe(self):
+        # Both feed writers (daily and the parked bespoke one) wrap every
+        # f-string CDATA body; a bare one is a feed one "]]>" away from broken.
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        bare = [
+            f"{path.name}:{n}"
+            for path in root.glob("*.py")
+            for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1)
+            if re.search(r"CDATA\[\{(?!_cdata_safe\()", line)
+        ]
+        assert bare == []
+
     @pytest.mark.parametrize("url, public", [
         ("https://wltribune.com/news/x", True),
         ("http://169.254.169.254/latest/meta-data/", False),
@@ -5816,22 +5829,59 @@ class TestEpisodeMetadata:
         """fetch_page takes the model's URL, and its text is saved to the public citations."""
         import podcast_generator as pg
 
-        class Redirected:
-            url = "http://169.254.169.254/latest/meta-data/"
-            text = "secret"
+        dns = {"news.test": "93.184.216.34", "cdn.test": "93.184.216.35",
+               "rebind.test": "169.254.169.254", "lan.test": "192.168.1.10"}
+
+        def getaddrinfo(host, *a, **k):
+            if host not in dns:
+                raise pg.socket.gaierror("no such host")
+            return [(None, None, None, "", (dns[host], 0))]
+
+        class Resp:
+            text = "page text"
+            cookies = {}
+
+            def __init__(self, url, location=None):
+                self.url, self.is_redirect = url, location is not None
+                self.headers = {"location": location} if location else {}
 
             def raise_for_status(self):
                 pass
 
-        calls = []
-        monkeypatch.setattr(pg.requests, "get", lambda url, **k: calls.append(url) or Redirected())
-        assert pg._fetch_page_text("http://169.254.169.254/latest/meta-data/") == ""
+            def close(self):
+                pass
+
+        calls, routes = [], {}
+
+        def get(url, **k):
+            assert k.get("allow_redirects") is False
+            calls.append(url)
+            return routes.get(url, Resp(url))
+
+        monkeypatch.setattr(pg.socket, "getaddrinfo", getaddrinfo)
+        monkeypatch.setattr(pg.requests, "get", get)
+
+        # Private by literal, by DNS, or unresolvable: never requested.
+        for url in ("http://169.254.169.254/latest/meta-data/", "http://rebind.test/latest/meta-data/",
+                    "https://lan.test/admin", "https://nxdomain.test/"):
+            assert pg._fetch_page_text(url) == ""
         assert pg._fetch_article_author("http://127.0.0.1/admin") == ""
         assert pg._fetch_url_metadata("http://localhost/") == ("", "", "")
         assert calls == []
-        # A public URL that redirects inward is fetched but never read.
-        assert pg._fetch_page_text("https://news.test/a") == ""
-        assert calls == ["https://news.test/a"]
+
+        # A redirect hop into a private address is never requested.
+        for hop in ("http://169.254.169.254/latest/meta-data/", "http://rebind.test/x", "https://lan.test/r"):
+            routes["https://news.test/a"] = Resp("https://news.test/a", location=hop)
+            assert pg._fetch_page_text("https://news.test/a") == ""
+        assert set(calls) == {"https://news.test/a"}
+
+        # A public chain is followed hop by hop, and a loop gives up.
+        calls.clear()
+        routes["https://news.test/a"] = Resp("https://news.test/a", location="https://cdn.test/a")
+        assert pg._fetch_page_text("https://news.test/a") == "page text"
+        assert calls == ["https://news.test/a", "https://cdn.test/a"]
+        routes["https://news.test/loop"] = Resp("https://news.test/loop", location="/loop")
+        assert pg._get_public("https://news.test/loop") is None
 
 
 class TestSparseFilterBudget:
