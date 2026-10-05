@@ -1,0 +1,391 @@
+{
+  "episode": {
+    "date": "2026-10-05",
+    "formatted_date": "Monday, October 05, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>THIS WEEK WE'RE ASKING:</b> What are we actually measuring?</p><p><b>NEWS ROUNDUP:</b> We break down 31 motorcycles hit the road for fourth annual Cariboo Toy Run and LETTER: Williams Lake Lions Club raffle allows continued community support, plus 13 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should arts and cultural organizations rely primarily on quantitative metrics like attendance counts to measure value and success, or should they prioritize qualitative community input and contextual understanding? Topics include: The distortion of metrics when counts become funding targets, Quantifiable versus unmeasurable value in journalism and cultural programming, How digital platforms' engagement metrics differ from analog measurement problems, Longevity and sustained presence as undervalued measures in annual grant cycles, Trust and familiarity as forms of accountability in small communities, Information design and how charts can legitimize questionable data, Participatory measurement: letting communities define what gets counted.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Williams Lake and District Seniors Activity Centre Society</p><p><b>Sources discussed:</b></p><ul><li>Khushi Arora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/04/31-motorcycles-hit-the-road-for-fourth-annual-cariboo-toy-run/\">[Williams Lake Tribune] 31 motorcycles hit the road for four...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/09/27/letter-raffle-allows-williams-lake-lions-club-to-continue-supporting-community/\">[Williams Lake Tribune] LETTER: Williams Lake Lions Club raf...</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/10/03/2026-100-mile-sockathon-aims-to-raise-500-pairs-of-socks/\">[100 Mile Free Press] 2026 100 Mile Sockathon aims to raise ...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91616832/digital-media-bad-young-people-health-lancet-series-research\">[Fast Company] From nearsightedness to self-harm: Meta-revie...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/10/02/business/economy/tariffs-instruments-school-music-programs.html\">[NYT Business] Tariffs Are Making Instruments So Expensive, ...</a></li><li>Tom Warren (The Verge): <a href=\"https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad\">[The Verge] Inside Microsoft’s big Copilot rethink</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/youtube-music-replaced-my-plex-setup-and-i-didnt-need-to-pay-a-dollar/\">[How-To Geek] YouTube Music replaced my Plex setup, and I di...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/microsoft-excel-tables-do-more-than-format-your-data/\">[How-To Geek] Excel tables do way more than format your data...</a></li><li>Edge (GamesRadar): <a href=\"https://www.gamesradar.com/games/grand-theft-auto/having-a-hand-in-the-game-etches-you-in-history-how-grand-theft-auto-became-a-musical-tastemaker/\">[Edge (GamesRadar)] \"Having a hand in the game etches you in...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/10/02/business/economy/jobs-report-black-unemployment.html\">[NYT Business] Black Unemployment Rose Sharply in September,...</a></li><li>Hayden Field (The Verge): <a href=\"https://www.theverge.com/ai-artificial-intelligence/1001427/ai-is-supercharging-hacking-and-your-local-hospitals-and-banks-arent-ready\">[The Verge] AI is supercharging hacking, and your local hosp...</a></li><li>Molly Taft (WIRED): <a href=\"https://www.wired.com/story/rural-data-centers-are-in-for-a-big-federal-tax-break/\">[WIRED] Rural Data Centers Are in for a Big Federal Tax Brea...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/10/261002080017.htm\">[ScienceDaily] Diet drinks work as well as water for weight ...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/10/01/science/pike-execution-pentobarbital.html\">[NYT Top Stories] How Did Christa Pike Survive Two Lethal In...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/10/04/tearing-down-a-heavy-oscilloscope/\">[Hackaday] Tearing Down a Heavy Oscilloscope</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91612965/moma-explores-the-useful-beauty-of-information-design\">[Fast Company] MoMA explores the useful beauty of informatio...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/04/special-film-screening-chronicling-man-in-motion-world-tour-coming-to-williams-lake/\">[Williams Lake Tribune] Special film screening chronicling M...</a></li><li>David Corn (Mother Jones): <a href=\"https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/\">[Mother Jones] How I Got Dragged Into a Putin Disinformation...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-05T02:15:35.600248-07:00",
+    "models": {
+      "script": "claude-sonnet-5-5",
+      "review": "claude-sonnet-5-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3184,
+      "voice_ratio_casey_riley": 1.01,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 22,
+        "turns": 94,
+        "avg_turn_words": 32.5,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "actually-measuring",
+      "question": "What are we actually measuring?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] LETTER: Williams Lake Lions Club raffle allows continued community support",
+          "url": "https://wltribune.com/2026/09/27/letter-raffle-allows-williams-lake-lions-club-to-continue-supporting-community/",
+          "source": "Williams Lake Tribune",
+          "author": "",
+          "ai_score": 83,
+          "date_published": "2026-09-28T04:03:34.190065+00:00",
+          "summary": "## LETTER: Williams Lake Lions Club raffle allows continued community support Published 10:20 am Sunday, September 27, 2026 The Williams Lake Lions Club was established in 1965 and is a member of Lion...",
+          "discussed": true,
+          "mention_offset_frac": 0.0105
+        },
+        {
+          "title": "[Williams Lake Tribune] 31 motorcycles hit the road for fourth annual Cariboo Toy Run",
+          "url": "https://wltribune.com/2026/10/04/31-motorcycles-hit-the-road-for-fourth-annual-cariboo-toy-run/",
+          "source": "Williams Lake Tribune",
+          "author": "Khushi Arora",
+          "ai_score": 87,
+          "date_published": "2026-10-05T04:03:19.519710+00:00",
+          "summary": "## 31 motorcycles hit the road for fourth annual Cariboo Toy Run Published 9:49 am Sunday, October 4, 2026 **By Khushi Arora** 1/4 The Cariboo Motorcycle Association organized annual Toy Run for the c...",
+          "discussed": true,
+          "mention_offset_frac": 0.025
+        },
+        {
+          "title": "[100 Mile Free Press] 2026 100 Mile Sockathon aims to raise 500 pairs of socks",
+          "url": "https://100milefreepress.net/2026/10/03/2026-100-mile-sockathon-aims-to-raise-500-pairs-of-socks/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 47,
+          "date_published": "2026-10-03T12:00:00+00:00",
+          "summary": "Last year's fundraiser raised 220 pairs of socks",
+          "discussed": true,
+          "mention_offset_frac": 0.1788
+        },
+        {
+          "title": "[Fast Company] From nearsightedness to self-harm: Meta-review looks at how digital media impacts young people’s health",
+          "url": "https://www.fastcompany.com/91616832/digital-media-bad-young-people-health-lancet-series-research",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-10-04T22:31:00+00:00",
+          "summary": "Digital media has become inescapable, and there’s still a lot we don’t know about its effects on young people’s physical and mental health. But we do have enough evidence of its harms to warrant gover...",
+          "discussed": true,
+          "mention_offset_frac": 0.2411
+        },
+        {
+          "title": "[How-To Geek] Excel tables do way more than format your data—7 things I actually use them for",
+          "url": "https://www.howtogeek.com/microsoft-excel-tables-do-more-than-format-your-data/",
+          "source": "How-To Geek",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-09-28T21:00:13+00:00",
+          "summary": "Excel tables let you create consistent formulas, build smarter filters, create expanding drop-downs, and keep charts and totals up to date.",
+          "discussed": true,
+          "mention_offset_frac": 0.2661
+        },
+        {
+          "title": "[NYT Business] Tariffs Are Making Instruments So Expensive, School Music Programs Are at Risk",
+          "url": "https://www.nytimes.com/2026/10/02/business/economy/tariffs-instruments-school-music-programs.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-02T09:03:00+00:00",
+          "summary": "When a single cello can cost $1,000 and a tuba $9,000, tariffs are straining meager band and orchestra budgets.",
+          "discussed": true,
+          "mention_offset_frac": 0.359
+        },
+        {
+          "title": "[The Verge] Inside Microsoft’s big Copilot rethink",
+          "url": "https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad",
+          "source": "The Verge",
+          "author": "Tom Warren",
+          "ai_score": 60,
+          "date_published": "2026-10-01T16:00:00+00:00",
+          "summary": "Last week, Microsoft CEO Satya Nadella hosted an intimate, invite-only event for leaders from some of its key enterprise customers. Instead of a flashy media event, Nadella outlined the future of Copi...",
+          "discussed": true,
+          "mention_offset_frac": 0.4158
+        },
+        {
+          "title": "[How-To Geek] YouTube Music replaced my Plex setup, and I didn’t need to pay a dollar",
+          "url": "https://www.howtogeek.com/youtube-music-replaced-my-plex-setup-and-i-didnt-need-to-pay-a-dollar/",
+          "source": "How-To Geek",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-10-04T21:00:14+00:00",
+          "summary": "Stop paying Plex to stream your own music—YouTube offers the same thing free.",
+          "discussed": true,
+          "mention_offset_frac": 0.4976
+        },
+        {
+          "title": "[Edge (GamesRadar)] \"Having a hand in the game etches you in history\": How Grand Theft Auto became a musical tastemaker",
+          "url": "https://www.gamesradar.com/games/grand-theft-auto/having-a-hand-in-the-game-etches-you-in-history-how-grand-theft-auto-became-a-musical-tastemaker/",
+          "source": "Edge (GamesRadar)",
+          "author": "https://www.gamesradar.com/author/adam-davidson/",
+          "ai_score": 60,
+          "date_published": "2026-09-28T08:29:58+00:00",
+          "summary": "For this week's Saturday Read, join us as we dive into impact of GTA's radio stations - and meet two musicians who have been on them",
+          "discussed": true,
+          "mention_offset_frac": 0.6296
+        },
+        {
+          "title": "[NYT Business] Black Unemployment Rose Sharply in September, Jobs Report Shows",
+          "url": "https://www.nytimes.com/2026/10/02/business/economy/jobs-report-black-unemployment.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-10-02T16:41:45+00:00",
+          "summary": "Economists had taken a recent drop in Black unemployment as a hopeful sign that job gains were lifting a broad share of workers.",
+          "discussed": true,
+          "mention_offset_frac": 0.6909
+        },
+        {
+          "title": "[The Verge] AI is supercharging hacking, and your local hospitals and banks aren’t ready",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1001427/ai-is-supercharging-hacking-and-your-local-hospitals-and-banks-arent-ready",
+          "source": "The Verge",
+          "author": "Hayden Field",
+          "ai_score": 60,
+          "date_published": "2026-09-28T18:30:00+00:00",
+          "summary": "In March, Janice Malone began getting calls about suspicious activity from her nonprofit organization, Vivian's Door. Vivian's Door, headquartered in Alabama, typically provided training, resources, a...",
+          "discussed": true,
+          "mention_offset_frac": 0.736
+        },
+        {
+          "title": "[WIRED] Rural Data Centers Are in for a Big Federal Tax Break",
+          "url": "https://www.wired.com/story/rural-data-centers-are-in-for-a-big-federal-tax-break/",
+          "source": "WIRED",
+          "author": "Molly Taft",
+          "ai_score": 60,
+          "date_published": "2026-10-04T10:00:00+00:00",
+          "summary": "Under the One Big Beautiful Bill Act, data center projects in rural areas could be eligible for major tax benefits starting next year. Some hyperscalers do not seem eager to take the free cash.",
+          "discussed": true,
+          "mention_offset_frac": 0.7988
+        },
+        {
+          "title": "[ScienceDaily] Diet drinks work as well as water for weight loss, major trial finds",
+          "url": "https://www.sciencedaily.com/releases/2026/10/261002080017.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-10-04T02:10:59+00:00",
+          "summary": "A two-year randomized clinical trial involving 493 adults with overweight or obesity found that diet soft drinks were essentially as effective as water for long-term weight loss and weight maintenance...",
+          "discussed": true,
+          "mention_offset_frac": 0.8749
+        },
+        {
+          "title": "[NYT Top Stories] How Did Christa Pike Survive Two Lethal Injections of Pentobarbital?",
+          "url": "https://www.nytimes.com/2026/10/01/science/pike-execution-pentobarbital.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-01T22:30:28+00:00",
+          "summary": "A catheter carrying the drug may not have delivered the doses to Ms. Pike’s bloodstream, experts said. The drug itself may have been degraded.",
+          "discussed": true,
+          "mention_offset_frac": 0.9114
+        },
+        {
+          "title": "[Hackaday] Tearing Down a Heavy Oscilloscope",
+          "url": "https://hackaday.com/2026/10/04/tearing-down-a-heavy-oscilloscope/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-10-04T20:00:49+00:00",
+          "summary": "When [Thomas] showed his 1960s-era Tektronix 545A oscilloscope in a recent video, it made us both nostalgic and happy. Nostalgic because we miss the days when our oscilloscopes were “mainframes” …read...",
+          "discussed": true,
+          "mention_offset_frac": 0.941
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Fast Company] MoMA explores the useful beauty of information design",
+          "url": "https://www.fastcompany.com/91612965/moma-explores-the-useful-beauty-of-information-design",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-09-27T11:00:00+00:00",
+          "summary": "When people post infographics on their Instagram accounts, they’re sharing information and facts about the world with their followers. They’re also trying to convey something about the kind of person ...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Special film screening chronicling Man in Motion World Tour coming to Williams Lake",
+          "url": "https://wltribune.com/2026/10/04/special-film-screening-chronicling-man-in-motion-world-tour-coming-to-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 68,
+          "date_published": "2026-10-05T04:03:19.519604+00:00",
+          "summary": "## Special film screening chronicling Man in Motion World Tour coming to Williams Lake Published 4:26 pm Sunday, October 4, 2026 **By Rebecca Dyok** Rick Hansen attends the Toronto International Film ...",
+          "discussed": true
+        },
+        {
+          "title": "[Mother Jones] How I Got Dragged Into a Putin Disinformation Op",
+          "url": "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/",
+          "source": "Mother Jones",
+          "author": "David Corn",
+          "ai_score": 67,
+          "date_published": "2026-09-29T13:08:21+00:00",
+          "summary": "A version of the below article first appeared in David Corn’s newsletter, Our Land. The newsletter comes out twice a week (most of the time) and provides behind-the-scenes stories and articles about p...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Should arts and cultural organizations rely primarily on quantitative metrics like attendance counts to measure value and success, or should they prioritize qualitative community input and contextual understanding?",
+        "riley_position": "Quantitative counts provide necessary, objective, and checkable baseline measures that funders and skeptics require to allocate resources fairly, though they should be supplemented with other inputs like subscriptions, editorial impact, and audience voices.",
+        "riley_key_evidence": [
+          "A ticket count is 'the one number everybody can read the same way' and provides a floor for comparison across applications and years",
+          "Podcasts and web stories with repeat listener data show 'attention' better than one-off tickets",
+          "Raw audio of audience answers, published in full, creates an auditable record that 'the ones who care most' can verify"
+        ],
+        "casey_position": "Quantitative metrics become distorting ends rather than means, incentivizing organizations to optimize for countable outputs rather than meaningful community outcomes, and obscuring the actual value that emerges from sustained local presence and relationship.",
+        "casey_key_evidence": [
+          "The Toy Run headline reported '31 motorcycles' while ignoring what toys did in living rooms; 'the number survives and the thing it was for drops out'",
+          "The Lancet study shows engagement metrics targeting young people's screen time led to documented health harms because dashboards 'counted time on screen, and time on screen became the goal'",
+          "A local paper's real value—watching officials and affecting policy—'produces no number at all' and 'a story that never gets written because an official knew someone was watching doesn't show up in anyone's analytics'"
+        ],
+        "resolution": "Riley and Casey agree counts will not disappear and disagree on whether they stay as a floor versus becoming a ceiling, but agree to pilot a Williams Lake experiment placing audience-generated questions alongside ticket counts on grant reports, with follow-up assessment of whether the audio answers change how organizations operate.",
+        "topics_covered": [
+          "The distortion of metrics when counts become funding targets",
+          "Quantifiable versus unmeasurable value in journalism and cultural programming",
+          "How digital platforms' engagement metrics differ from analog measurement problems",
+          "Longevity and sustained presence as undervalued measures in annual grant cycles",
+          "Trust and familiarity as forms of accountability in small communities",
+          "Information design and how charts can legitimize questionable data",
+          "Participatory measurement: letting communities define what gets counted"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 17,
+          "low": 8
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 19,
+          "low": 6
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 6,
+          "conditions": "overcast",
+          "high": 20,
+          "low": 6
+        },
+        {
+          "name": "Quesnel",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 19,
+          "low": 8
+        },
+        {
+          "name": "Anahim Lake",
+          "temp": 2,
+          "conditions": "partly cloudy",
+          "high": 14,
+          "low": 2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Williams Lake and District Seniors Activity Centre Society",
+      "description": "Social programs, fitness classes, daily lunch, and volunteer-delivered home support helping Cariboo seniors stay independent since the 1970s",
+      "website": "",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "",
+    "log": [
+      {
+        "kind": "question",
+        "query": "The Lancet digital media young people health study 9 million people data"
+      },
+      {
+        "kind": "question",
+        "query": "New York Times cello cost $1000 tuba $9000 tariffs school music"
+      },
+      {
+        "kind": "question",
+        "query": "Tektronix 545A oscilloscope weight specifications 1960s"
+      },
+      {
+        "kind": "question",
+        "query": "Williams Lake Tribune Khushi Arora Cariboo Toy Run four annual"
+      },
+      {
+        "kind": "question",
+        "query": "diet soft drinks weight loss randomized clinical trial 493 adults"
+      }
+    ]
+  }
+}

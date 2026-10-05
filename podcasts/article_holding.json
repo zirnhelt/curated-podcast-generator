@@ -89,48 +89,6 @@
     "target_focus_name": "Agriculture & Ranching",
     "status": "aired_early"
   },
-  "https://quesnelobserver.com/2026/09/17/hometown-hero-literacy-quesnel-approaching-20th-anniversary-of-enriching-the-community/": {
-    "article": {
-      "id": "https://quesnelobserver.com/2026/09/17/hometown-hero-literacy-quesnel-approaching-20th-anniversary-of-enriching-the-community/",
-      "url": "https://quesnelobserver.com/2026/09/17/hometown-hero-literacy-quesnel-approaching-20th-anniversary-of-enriching-the-community/",
-      "title": "[Quesnel Cariboo Observer] HOMETOWN HERO: Literacy Quesnel approaching 20th anniversary of enriching the community",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F09%2F17%2Fhometown-hero-literacy-quesnel-approaching-20th-anniversary-of-enriching-the-community%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe society recently celebrated 10 years of its Used Books section",
-      "summary": "The society recently celebrated 10 years of its Used Books section",
-      "_excerpt": "The society recently celebrated 10 years of its Used Books section",
-      "date_published": "2026-09-17T20:43:38+00:00",
-      "authors": [
-        {
-          "name": "Quesnel Cariboo Observer",
-          "url": "https://quesnelobserver.com"
-        }
-      ],
-      "ai_score": 84,
-      "_quality": 67,
-      "_relevance": 84,
-      "_local": 100,
-      "_theme_score": 19,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 29,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "saturday",
-        "label": "Cariboo Local Affairs",
-        "shown_at": "2026-09-18T04:12:23.483522+00:00"
-      },
-      "_boosted_score": 84,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-09-21",
-    "target_date": "2026-10-05",
-    "target_weekday": 0,
-    "target_focus_slug": "words-journalism",
-    "target_focus_name": "Writing, Journalism & Podcasting",
-    "status": "aired_early"
-  },
   "https://wltribune.com/2026/09/21/investigation-continues-into-wildfire-that-destroyed-100-structures-near-summerland/": {
     "article": {
       "id": "https://wltribune.com/2026/09/21/investigation-continues-into-wildfire-that-destroyed-100-structures-near-summerland/",
@@ -176,182 +134,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "aired_early"
-  },
-  "https://www.sciencedaily.com/releases/2026/09/260920222412.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/09/260920222412.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/09/260920222412.htm",
-      "title": "[ScienceDaily] Brain scans reveal a possible cause of long COVID fatigue and brain fog",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F09%2F260920222412.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResearchers have found evidence that long COVID may damage dopamine releasing neurons in the brain, potentially explaining persistent fatigue, low motivation, slowed movement, and memory difficulties. The discovery could lead to new treatments that target the brain's dopamine system.",
-      "summary": "Researchers have found evidence that long COVID may damage dopamine releasing neurons in the brain, potentially explaining persistent fatigue, low motivation, slowed movement, and memory difficulties. The discovery could lead to new treatments that target the brain's dopamine system.",
-      "_excerpt": "Researchers have found evidence that long COVID may damage dopamine releasing neurons in the brain, potentially explaining persistent fatigue, low motivation, slowed movement, and memory difficulties. The discovery could lead to new treatments that target the brain's dopamine system.",
-      "date_published": "2026-09-22T03:48:58+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 59,
-      "_quality": 78,
-      "_relevance": 72,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 80,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-22T04:09:30.974597+00:00"
-      },
-      "_boosted_score": 59
-    },
-    "held_date": "2026-09-22",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://www.theverge.com/transportation/998550/a-cut-cable-disrupted-hundreds-of-flights-across-the-us": {
-    "article": {
-      "id": "https://www.theverge.com/transportation/998550/a-cut-cable-disrupted-hundreds-of-flights-across-the-us",
-      "url": "https://www.theverge.com/transportation/998550/a-cut-cable-disrupted-hundreds-of-flights-across-the-us",
-      "title": "[The Verge] A cut cable disrupted hundreds of flights across the US",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theverge.com%2Ftransportation%2F998550%2Fa-cut-cable-disrupted-hundreds-of-flights-across-the-us\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHundreds of flights were cancelled or delayed on Monday after construction crews in New Jersey accidentally cut a Verizon fiber cable used for air traffic control. FAA Administrator Bryan Bedford said that a circuit failure led to the discovery of the severed fiber cable, ABC News reports. The outage hammered airports across the Northeast, causing [&#8230;]",
-      "summary": "Hundreds of flights were cancelled or delayed on Monday after construction crews in New Jersey accidentally cut a Verizon fiber cable used for air traffic control. FAA Administrator Bryan Bedford said that a circuit failure led to the discovery of the severed fiber cable, ABC News reports. The",
-      "_excerpt": "Hundreds of flights were cancelled or delayed on Monday after construction crews in New Jersey accidentally cut a Verizon fiber cable used for air traffic control. FAA Administrator Bryan Bedford said that a circuit failure led to the discovery of the severed fiber cable, ABC News reports. The outage hammered airports across the Northeast, causing [\u2026]",
-      "date_published": "2026-09-21T23:48:56+00:00",
-      "authors": [
-        {
-          "name": "The Verge",
-          "url": "https://www.theverge.com"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 75,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-22T04:09:30.974597+00:00"
-      },
-      "_boosted_score": 63,
-      "_topic_cluster": "Flight disruptions from cable cut"
-    },
-    "held_date": "2026-09-22",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://www.scientificamerican.com/article/why-mathematicians-are-hiding-research-results-in-zero-knowledge-proofs/": {
-    "article": {
-      "id": "https://www.scientificamerican.com/article/why-mathematicians-are-hiding-research-results-in-zero-knowledge-proofs/",
-      "url": "https://www.scientificamerican.com/article/why-mathematicians-are-hiding-research-results-in-zero-knowledge-proofs/",
-      "title": "[Scientific American] Why mathematicians are hiding research results in zero-knowledge proofs",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.scientificamerican.com%2Farticle%2Fwhy-mathematicians-are-hiding-research-results-in-zero-knowledge-proofs%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Google made a major breakthrough in quantum computing. To prevent the results from being misused, the company kept them secret. That backfired</p>",
-      "summary": "Google made a major breakthrough in quantum computing. To prevent the results from being misused, the company kept them secret. That backfired",
-      "_excerpt": "Google made a major breakthrough in quantum computing. To prevent the results from being misused, the company kept them secret. That backfired",
-      "date_published": "2026-09-22T18:00:00+00:00",
-      "authors": [
-        {
-          "name": "Scientific American",
-          "url": "https://www.scientificamerican.com"
-        }
-      ],
-      "ai_score": 52,
-      "_quality": 79,
-      "_relevance": 61,
-      "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-23T04:09:38.705410+00:00"
-      },
-      "_boosted_score": 52
-    },
-    "held_date": "2026-09-23",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://www.techradar.com/tech/researchers-say-that-fields-of-house-sized-buoys-could-capture-up-to-90-percent-of-wave-energy-and-each-buoy-could-provide-the-power-for-several-hundred-households": {
-    "article": {
-      "id": "https://www.techradar.com/tech/researchers-say-that-fields-of-house-sized-buoys-could-capture-up-to-90-percent-of-wave-energy-and-each-buoy-could-provide-the-power-for-several-hundred-households",
-      "url": "https://www.techradar.com/tech/researchers-say-that-fields-of-house-sized-buoys-could-capture-up-to-90-percent-of-wave-energy-and-each-buoy-could-provide-the-power-for-several-hundred-households",
-      "title": "[TechRadar] Researchers say fields of house-sized buoys capture 90% of wave energy",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/zqp2DG8vMoudJwMQK9ZP5Z-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Ftech%2Fresearchers-say-that-fields-of-house-sized-buoys-could-capture-up-to-90-percent-of-wave-energy-and-each-buoy-could-provide-the-power-for-several-hundred-households\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nNew research proposes a way of converting more energy from the sways of the ocean, though it's only theoretical for now.",
-      "summary": "New research proposes a way of converting more energy from the sways of the ocean, though it's only theoretical for now.",
-      "_excerpt": "New research proposes a way of converting more energy from the sways of the ocean, though it's only theoretical for now.",
-      "date_published": "2026-09-22T20:00:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 67,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 88,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 63,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/zqp2DG8vMoudJwMQK9ZP5Z-1920-80.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-23T04:09:38.705410+00:00"
-      },
-      "_boosted_score": 67
-    },
-    "held_date": "2026-09-23",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
   },
   "https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/": {
     "article": {
@@ -428,114 +210,6 @@
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
     "status": "held"
-  },
-  "https://www.sciencealert.com/even-very-slow-running-can-benefit-the-brain-study-suggests": {
-    "article": {
-      "id": "https://www.sciencealert.com/even-very-slow-running-can-benefit-the-brain-study-suggests",
-      "url": "https://www.sciencealert.com/even-very-slow-running-can-benefit-the-brain-study-suggests",
-      "title": "[ScienceAlert] Even Very Slow Running Can Benefit The Brain, Study Suggests",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Feven-very-slow-running-can-benefit-the-brain-study-suggests\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure id=\"attachment_221425\"><img alt=\"Even Very Slow Running Can Benefit The Brain, Study Suggests\" class=\"attachment-full size-full\" height=\"1440\" src=\"https://www.sciencealert.com/images/2026/09/GettyImages-2225557002-2560x1440-1.jpg\" width=\"2560\" /><figcaption>(Angel Santana/Moment RF/Getty Images)</figcaption></figure>\n<p><img alt=\"Even Very Slow Running Can Benefit The Brain, Study Suggests\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/09/GettyImages-2225557002-2560x1440-1-1200x675.jpg\" style=\"float: left; margin: 0 15px 15px 0;\" width=\"1200\" />Nice and steady.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&#038;utm_medium=feed&#038;utm_campaign=rss_feed_promo\" rel=\"noopener\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don&#039;t miss a story, subscribe here.</a></p>",
-      "summary": "(Angel Santana/Moment RF/Getty Images) Nice and steady. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
-      "_excerpt": "(Angel Santana/Moment RF/Getty Images) Nice and steady. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
-      "date_published": "2026-09-27T13:00:00+00:00",
-      "authors": [
-        {
-          "name": "ScienceAlert",
-          "url": "https://www.sciencealert.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 74,
-      "_theme_score_raw": 17,
-      "_composite_podcast": 69,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_boosted_score": 62
-    },
-    "held_date": "2026-09-28",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://www.sciencedaily.com/releases/2026/09/260919031023.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/09/260919031023.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/09/260919031023.htm",
-      "title": "[ScienceDaily] Einstein\u2019s \u201cspooky action\u201d just survived one of physics\u2019 most extreme tests",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F09%2F260919031023.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPhysicists have detected strong evidence that heavy, fleeting Z bosons can become quantum entangled during Higgs boson decays at CERN\u2019s Large Hadron Collider. The result shows that Einstein\u2019s \u201cspooky action at a distance\u201d survives even under some of the most extreme conditions ever created in a laboratory.",
-      "summary": "Physicists have detected strong evidence that heavy, fleeting Z bosons can become quantum entangled during Higgs boson decays at CERN\u2019s Large Hadron Collider. The result shows that Einstein\u2019s \u201cspooky action at a distance\u201d survives even under some of the most extreme conditions ever created in a",
-      "_excerpt": "Physicists have detected strong evidence that heavy, fleeting Z bosons can become quantum entangled during Higgs boson decays at CERN\u2019s Large Hadron Collider. The result shows that Einstein\u2019s \u201cspooky action at a distance\u201d survives even under some of the most extreme conditions ever created in a laboratory.",
-      "date_published": "2026-09-20T05:16:00+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 78,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 74,
-      "_theme_score_raw": 17,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_boosted_score": 56
-    },
-    "held_date": "2026-09-28",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://www.sciencealert.com/a-100-year-old-physics-effect-doesnt-work-how-we-thought-it-did-study-finds": {
-    "article": {
-      "id": "https://www.sciencealert.com/a-100-year-old-physics-effect-doesnt-work-how-we-thought-it-did-study-finds",
-      "url": "https://www.sciencealert.com/a-100-year-old-physics-effect-doesnt-work-how-we-thought-it-did-study-finds",
-      "title": "[ScienceAlert] A 100-Year-Old Physics Effect Doesn't Work How We Thought It Did, Study Finds",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fa-100-year-old-physics-effect-doesnt-work-how-we-thought-it-did-study-finds\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Hall effect illustration\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/09/HallEffect.jpg\" style=\"float: left; margin: 0 15px 15px 0;\" width=\"1200\" />Expanding the Hall effect.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&#038;utm_medium=feed&#038;utm_campaign=rss_feed_promo\" rel=\"noopener\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don&#039;t miss a story, subscribe here.</a></p>",
-      "summary": "Expanding the Hall effect. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
-      "_excerpt": "Expanding the Hall effect. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
-      "date_published": "2026-09-20T11:00:00+00:00",
-      "authors": [
-        {
-          "name": "ScienceAlert",
-          "url": "https://www.sciencealert.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 72,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 71,
-      "_theme_score_raw": 16,
-      "_composite_podcast": 64,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_boosted_score": 55
-    },
-    "held_date": "2026-09-28",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
   },
   "https://www.vox.com/climate/504064/hail-damage-climate-change-insurance-science-ncar": {
     "article": {
@@ -617,181 +291,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://hackaday.com/2026/09/21/new-research-suggests-that-a-neutrino-laser-is-impossible/": {
-    "article": {
-      "id": "https://hackaday.com/2026/09/21/new-research-suggests-that-a-neutrino-laser-is-impossible/",
-      "url": "https://hackaday.com/2026/09/21/new-research-suggests-that-a-neutrino-laser-is-impossible/",
-      "title": "[Hackaday] New Research Suggests that a Neutrino Laser is Impossible",
-      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/09/neutrino_laser_aps_carin_cain.png\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F09%2F21%2Fnew-research-suggests-that-a-neutrino-laser-is-impossible%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"400\" src=\"https://hackaday.com/wp-content/uploads/2026/09/neutrino_laser_aps_carin_cain.png?w=800\" style=\"margin: 0 auto; margin-bottom: 15px;\" width=\"800\" /></div>As cool as it would have been to wield lasers that produce a beam of neutrinos, recently two papers were published by MIT researchers that seem to dampen the likelihood <a class=\"read-more\" href=\"https://hackaday.com/2026/09/21/new-research-suggests-that-a-neutrino-laser-is-impossible/\">&#8230;read more</a>",
-      "summary": "As cool as it would have been to wield lasers that produce a beam of neutrinos, recently two papers were published by MIT researchers that seem to dampen the likelihood \u2026read more",
-      "_excerpt": "As cool as it would have been to wield lasers that produce a beam of neutrinos, recently two papers were published by MIT researchers that seem to dampen the likelihood \u2026read more",
-      "date_published": "2026-09-22T02:00:16+00:00",
-      "authors": [
-        {
-          "name": "Hackaday",
-          "url": "https://hackaday.com"
-        }
-      ],
-      "ai_score": 50,
-      "_quality": 75,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 83,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 76,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "image": "https://hackaday.com/wp-content/uploads/2026/09/neutrino_laser_aps_carin_cain.png",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-29T04:10:25.035876+00:00"
-      },
-      "_boosted_score": 50
-    },
-    "held_date": "2026-09-29",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://www.statnews.com/2026/09/28/hawaii-wildfire-air-quality-risk-study/?utm_campaign=rss": {
-    "article": {
-      "id": "https://www.statnews.com/2026/09/28/hawaii-wildfire-air-quality-risk-study/?utm_campaign=rss",
-      "url": "https://www.statnews.com/2026/09/28/hawaii-wildfire-air-quality-risk-study/?utm_campaign=rss",
-      "title": "[STAT News] Risk from toxic metals can persist months after wildfires, Maui study finds",
-      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/09/AP26271524443890-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F09%2F28%2Fhawaii-wildfire-air-quality-risk-study%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPost-wildfire air quality needs to be monitored long term, suggests a study finding Maui residents had high levels of toxic metals months later.",
-      "summary": "Post-wildfire air quality needs to be monitored long term, suggests a study finding Maui residents had high levels of toxic metals months later.",
-      "_excerpt": "Post-wildfire air quality needs to be monitored long term, suggests a study finding Maui residents had high levels of toxic metals months later.",
-      "date_published": "2026-09-28T21:07:09+00:00",
-      "authors": [
-        {
-          "name": "STAT News",
-          "url": "https://www.statnews.com"
-        }
-      ],
-      "ai_score": 68,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 93,
-      "_theme_score_raw": 13,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.statnews.com/wp-content/uploads/2026/09/AP26271524443890-645x645.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-29T04:10:25.035876+00:00"
-      },
-      "_boosted_score": 68
-    },
-    "held_date": "2026-09-29",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://thetyee.ca/News/2026/09/28/Carney-Push-Fund-Industry-Imperils-Canada-Nature-Promises/": {
-    "article": {
-      "id": "https://thetyee.ca/News/2026/09/28/Carney-Push-Fund-Industry-Imperils-Canada-Nature-Promises/",
-      "url": "https://thetyee.ca/News/2026/09/28/Carney-Push-Fund-Industry-Imperils-Canada-Nature-Promises/",
-      "title": "[The Tyee] Carney\u2019s Push to Fund Industry Imperils Canada\u2019s Nature Promises",
-      "content_html": "<img src=\"https://thetyee.ca/News/2026/09/26/DavidEvyMarkCarneyHandshake.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F09%2F28%2FCarney-Push-Fund-Industry-Imperils-Canada-Nature-Promises%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCanada participated in a \u2018historic\u2019 global moment for biodiversity. Experts say we\u2019re not following through.",
-      "summary": "Canada participated in a \u2018historic\u2019 global moment for biodiversity. Experts say we\u2019re not following through.",
-      "_excerpt": "Canada participated in a \u2018historic\u2019 global moment for biodiversity. Experts say we\u2019re not following through.",
-      "date_published": "2026-09-28T07:40:00+00:00",
-      "authors": [
-        {
-          "name": "The Tyee",
-          "url": "https://thetyee.ca"
-        }
-      ],
-      "ai_score": 73,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 83,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 61,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://thetyee.ca/News/2026/09/26/DavidEvyMarkCarneyHandshake.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-29T04:10:25.035876+00:00"
-      },
-      "_boosted_score": 73
-    },
-    "held_date": "2026-09-29",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
-  "https://www.nytimes.com/2026/09/28/world/europe/urkaine-drone-attack-kyiv-academy-sciences.html": {
-    "article": {
-      "id": "https://www.nytimes.com/2026/09/28/world/europe/urkaine-drone-attack-kyiv-academy-sciences.html",
-      "url": "https://www.nytimes.com/2026/09/28/world/europe/urkaine-drone-attack-kyiv-academy-sciences.html",
-      "title": "[NYT Top Stories] Russian Drone Strikes Ukraine\u2019s Science Academy, Causing Fire in City Center",
-      "content_html": "<img src=\"https://static01.nyt.com/images/2026/09/28/multimedia/28ukraine-strike-01-fmzj/28ukraine-strike-01-fmzj-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F28%2Fworld%2Feurope%2Furkaine-drone-attack-kyiv-academy-sciences.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA Russian jet-powered drone hit Ukraine\u2019s National Academy of Sciences, the source of almost all of the country\u2019s major scientific discoveries.",
-      "summary": "A Russian jet-powered drone hit Ukraine\u2019s National Academy of Sciences, the source of almost all of the country\u2019s major scientific discoveries.",
-      "_excerpt": "A Russian jet-powered drone hit Ukraine\u2019s National Academy of Sciences, the source of almost all of the country\u2019s major scientific discoveries.",
-      "date_published": "2026-09-28T19:33:55+00:00",
-      "authors": [
-        {
-          "name": "NYT Top Stories",
-          "url": "https://nytimes.com"
-        }
-      ],
-      "ai_score": 70,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 65,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 48,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static01.nyt.com/images/2026/09/28/multimedia/28ukraine-strike-01-fmzj/28ukraine-strike-01-fmzj-mediumSquareAt3X.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "New York Times",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-29T04:10:25.035876+00:00"
-      },
-      "_boosted_score": 70
-    },
-    "held_date": "2026-09-29",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
   "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/": {
     "article": {
       "id": "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/",
@@ -834,7 +333,8 @@
     "target_weekday": 0,
     "target_focus_slug": "words-journalism",
     "target_focus_name": "Writing, Journalism & Podcasting",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-05"
   },
   "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/": {
     "article": {
@@ -877,47 +377,6 @@
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
     "status": "held"
-  },
-  "https://neurosciencenews.com/migraines-stoke-neurology-31234/": {
-    "article": {
-      "id": "https://neurosciencenews.com/migraines-stoke-neurology-31234/",
-      "url": "https://neurosciencenews.com/migraines-stoke-neurology-31234/",
-      "title": "[Neuroscience News] Migraines May Leave the Brain Vulnerable to Stroke",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fneurosciencenews.com%2Fmigraines-stoke-neurology-31234%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<a href=\"https://neurosciencenews.com/migraines-stoke-neurology-31234/\" rel=\"nofollow\" title=\"Migraines May Leave the Brain Vulnerable to Stroke\"><img alt=\"This shows a head surrounded by a red aura. Caption reads &quot;Why do migraines increase your risk of stroke?&quot;\" class=\"webfeedsFeaturedVisual wp-post-image\" height=\"770\" src=\"https://neurosciencenews.com/files/2026/09/Why-do-migraines-increase-your-risk-of-stroke-1155x770.jpg\" style=\"float: left; margin-right: 5px;\" width=\"1155\" /></a>A new study aims to investigate how chronic migraine and headache disorders weaken brain blood vessels, alter glymphatics, and elevate stroke risk.",
-      "summary": "A new study aims to investigate how chronic migraine and headache disorders weaken brain blood vessels, alter glymphatics, and elevate stroke risk.",
-      "_excerpt": "A new study aims to investigate how chronic migraine and headache disorders weaken brain blood vessels, alter glymphatics, and elevate stroke risk.",
-      "date_published": "2026-09-22T16:21:19+00:00",
-      "authors": [
-        {
-          "name": "Neuroscience News",
-          "url": ""
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 82,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 73,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-30T04:11:21.314165+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
   },
   "https://www.motherjones.com/politics/2026/09/us-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia/": {
     "article": {
@@ -1039,42 +498,6 @@
     "target_focus_name": "Guardians & Land Stewardship",
     "status": "held"
   },
-  "https://www.sciencedaily.com/releases/2026/09/260922005649.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/09/260922005649.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/09/260922005649.htm",
-      "title": "[ScienceDaily] The LHC just ruled out another hiding place for quantum black holes",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F09%2F260922005649.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPhysicists searching through Large Hadron Collider data found no evidence that the machine has been producing microscopic quantum black holes, but the result sharply narrows where such exotic physics could still be hiding. These hypothetical black holes could form if extra spatial dimensions make gravity much stronger at extremely tiny scales, potentially offering clues toward the long-sought theory of quantum gravity.",
-      "summary": "Physicists searching through Large Hadron Collider data found no evidence that the machine has been producing microscopic quantum black holes, but the result sharply narrows where such exotic physics could still be hiding. These hypothetical black holes could form if extra spatial dimensions make",
-      "_excerpt": "Physicists searching through Large Hadron Collider data found no evidence that the machine has been producing microscopic quantum black holes, but the result sharply narrows where such exotic physics could still be hiding. These hypothetical black holes could form if extra spatial dimensions make gravity much stronger at extremely tiny scales, potentially offering clues toward the long-sought theory of quantum gravity.",
-      "date_published": "2026-09-23T03:32:54+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 74,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 59,
-      "_theme_score_raw": 2,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_boosted_score": 57
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-04",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
-  },
   "https://insideevs.com/news/809068/1970-international-scout-ev-conversion-price/": {
     "article": {
       "id": "https://insideevs.com/news/809068/1970-international-scout-ev-conversion-price/",
@@ -1158,41 +581,165 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.npr.org/2026/09/22/nx-s1-5976782/your-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says": {
+  "https://www.motherjones.com/politics/2026/09/german-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository/": {
     "article": {
-      "id": "https://www.npr.org/2026/09/22/nx-s1-5976782/your-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says",
-      "url": "https://www.npr.org/2026/09/22/nx-s1-5976782/your-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says",
-      "title": "[NPR Health News] Your smartwatch isn't accurately counting how many calories you burn, study says",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.npr.org%2F2026%2F09%2F22%2Fnx-s1-5976782%2Fyour-smartwatch-isnt-accurately-counting-how-many-calories-you-burn-study-says\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA new study finds that consumer-grade fitness wearables are generally inaccurate when calculating calories burned. NPR's Leila Fadel speaks with the study's lead author Jason Kostrna.",
-      "summary": "A new study finds that consumer-grade fitness wearables are generally inaccurate when calculating calories burned. NPR's Leila Fadel speaks with the study's lead author Jason Kostrna.",
-      "_excerpt": "A new study finds that consumer-grade fitness wearables are generally inaccurate when calculating calories burned. NPR's Leila Fadel speaks with the study's lead author Jason Kostrna.",
-      "date_published": "2026-09-22T08:44:15+00:00",
+      "id": "https://www.motherjones.com/politics/2026/09/german-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository/",
+      "url": "https://www.motherjones.com/politics/2026/09/german-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository/",
+      "title": "[Mother Jones] Germany Is Building a Digital Noah\u2019s Ark for US Climate Data",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fpolitics%2F2026%2F09%2Fgerman-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis story was originally published by\u00a0Yale E360\u00a0and\u00a0is reproduced here as part of the\u00a0Climate Desk\u00a0collaboration. In a modern five-story building in the center of Hamburg, Germany, technicians are preparing to install several new \u201cracks\u201d\u2014gray metal casings that hold computing hardware\u2014alongside the scores that already line the narrow, dimly lit corridors of the German Climate Computing Center [\u2026]",
+      "summary": "This story was originally published by Yale E360 and is reproduced here as part of the Climate Desk collaboration. In a modern five-story building in the center of Hamburg, Germany, technicians are preparing to install several new \u201cracks\u201d\u2014gray metal casings that hold computing hardware\u2014alongside",
+      "_excerpt": "This story was originally published by Yale E360 and is reproduced here as part of the Climate Desk collaboration. In a modern five-story building in the center of Hamburg, Germany, technicians are preparing to install several new \u201cracks\u201d\u2014gray metal casings that hold computing hardware\u2014alongside the scores that already line the narrow, dimly lit corridors of the German Climate Computing Center [\u2026]",
+      "date_published": "2026-09-27T12:00:00+00:00",
       "authors": [
         {
-          "name": "NPR Health News",
-          "url": "https://www.npr.org/sections/health-shots/"
+          "name": "Mother Jones",
+          "url": "https://www.motherjones.com"
         }
       ],
-      "ai_score": 36,
-      "_quality": 68,
+      "ai_score": 58,
+      "_quality": 79,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 59,
-      "_theme_score_raw": 2,
-      "_composite_podcast": 39,
+      "_theme_score": 91,
+      "_theme_score_raw": 21,
+      "_composite_podcast": 74,
       "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_boosted_score": 58
+    },
+    "held_date": "2026-10-05",
+    "target_date": "2026-10-09",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/": {
+    "article": {
+      "id": "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/",
+      "url": "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/",
+      "title": "[Outside Online] I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous Guides Who Know Them Best",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Fadventure-travel%2Fdestinations%2Fnorth-america%2Fkodiak-island-bear-viewing-alutiiq%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"I Tracked the World's Largest Bears in Alaska with the Indigenous Guides Who Know Them Best\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/09/GettyImages-1181628709.jpg?width=1200\"/></figure>\n<p>Deep in the Kodiak National Wildlife Refuge, an Indigenious-owned lodge offers an intimate look at the world\u2019s largest brown bears alongside the Alutiiq people who have shared the island with them for thousands of years.</p>\n<p>The post <a href=\"https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/\">I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous Guides Who Know Them Best</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
+      "summary": "Deep in the Kodiak National Wildlife Refuge, an Indigenious-owned lodge offers an intimate look at the world\u2019s largest brown bears alongside the Alutiiq people who have shared the island with them for thousands of years. The post I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous",
+      "_excerpt": "Deep in the Kodiak National Wildlife Refuge, an Indigenious-owned lodge offers an intimate look at the world\u2019s largest brown bears alongside the Alutiiq people who have shared the island with them for thousands of years. The post I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous Guides Who Know Them Best appeared first on Outside Online .",
+      "date_published": "2026-09-27T16:11:23+00:00",
+      "authors": [
+        {
+          "name": "Outside Online",
+          "url": "https://www.outsideonline.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 71,
+      "_theme_score_raw": 17,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "saturday",
+        "label": "Cariboo Local Affairs",
+        "shown_at": "2026-10-04T04:07:10.226457+00:00"
+      },
+      "_boosted_score": 60
+    },
+    "held_date": "2026-10-05",
+    "target_date": "2026-10-16",
+    "target_weekday": 4,
+    "target_focus_slug": "wildlife-conservation",
+    "target_focus_name": "Wildlife & Conservation",
+    "status": "held"
+  },
+  "https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/": {
+    "article": {
+      "id": "https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/",
+      "url": "https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/",
+      "title": "[IndigiNews] Near Grassy Narrows, an Elder shows us how using the land also protects it",
+      "content_html": "<img src=\"https://media.indiginews.com/2026/10/IMG_5585-Edit-1024x683.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Ffirst-person%2Fgrassy-narrows-elder-demonstrates-how-using-the-land-protects-it%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Writer Taina Da Silva reflects on how Anishinaabe activist Gwawich\u2019s work has helped her to remember the power of her treaty rights \u2014 and why utilizing them is crucial</p>\n<p>The post <a href=\"https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/\">Near Grassy Narrows, an Elder shows us how using the land also protects it</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
+      "summary": "Writer Taina Da Silva reflects on how Anishinaabe activist Gwawich\u2019s work has helped her to remember the power of her treaty rights \u2014 and why utilizing them is crucial The post Near Grassy Narrows, an Elder shows us how using the land also protects it appeared first on Indiginews .",
+      "_excerpt": "Writer Taina Da Silva reflects on how Anishinaabe activist Gwawich\u2019s work has helped her to remember the power of her treaty rights \u2014 and why utilizing them is crucial The post Near Grassy Narrows, an Elder shows us how using the land also protects it appeared first on Indiginews .",
+      "date_published": "2026-10-04T14:13:28+00:00",
+      "authors": [
+        {
+          "name": "IndigiNews",
+          "url": "https://indiginews.com/"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 64,
+      "_theme_score_raw": 15,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "https://media.indiginews.com/2026/10/IMG_5585-Edit-1024x683.jpg",
+      "_boosted_score": 63
+    },
+    "held_date": "2026-10-05",
+    "target_date": "2026-10-08",
+    "target_weekday": 3,
+    "target_focus_slug": "guardians-stewardship",
+    "target_focus_name": "Guardians & Land Stewardship",
+    "status": "held"
+  },
+  "https://www.techradar.com/ai-platforms-assistants/ai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world": {
+    "article": {
+      "id": "https://www.techradar.com/ai-platforms-assistants/ai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world",
+      "url": "https://www.techradar.com/ai-platforms-assistants/ai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world",
+      "title": "[TechRadar] From event posters to cafe menus, AI slop is everywhere in the real world",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/RgDqGC9htM6VNYyMYSBt6P-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fai-platforms-assistants%2Fai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFrom event posters to cafe menus, AI slop is suddenly everywhere \u2014 I asked artists and designers what\u2019s going on",
+      "summary": "From event posters to cafe menus, AI slop is suddenly everywhere \u2014 I asked artists and designers what\u2019s going on",
+      "_excerpt": "From event posters to cafe menus, AI slop is suddenly everywhere \u2014 I asked artists and designers what\u2019s going on",
+      "date_published": "2026-09-29T16:18:18+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 88,
+      "_theme_score_raw": 20,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
       "_is_bonus": true,
       "_thin_body": true,
-      "_boosted_score": 36
+      "image": "https://cdn.mos.cms.futurecdn.net/RgDqGC9htM6VNYyMYSBt6P-1920-80.jpg",
+      "_cross_theme": {
+        "day": "saturday",
+        "label": "Cariboo Local Affairs",
+        "shown_at": "2026-10-02T04:13:03.538629+00:00"
+      },
+      "_boosted_score": 60
     },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-04",
+    "held_date": "2026-10-05",
+    "target_date": "2026-10-18",
     "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "released",
-    "release_date": "2026-10-04"
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
   }
 }

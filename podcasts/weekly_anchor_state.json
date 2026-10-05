@@ -87,6 +87,24 @@
       },
       "assigned_at": "2026-09-28",
       "origin": "seeded"
+    },
+    "2026-W41": {
+      "id": "actually-measuring",
+      "question": "What are we actually measuring?",
+      "dimension": "measurement",
+      "premise": "Timber volume is not forest health. Test scores are not learning. Attendance is not participation. Engagement is not attention. Every institution runs on a number that stands in for something it cannot count directly, and over time the proxy quietly becomes the goal. The question is what each of our numbers was originally supposed to be about, and how far it has drifted.",
+      "reading": null,
+      "framings": {
+        "0": "When a festival or gallery grant is judged by ticket counts and tourism dollars, what gets lost that a Williams Lake audience would actually value, and should arts funders keep counting at all?",
+        "1": "Allowable annual cut and cubic metres harvested drive Cariboo forestry policy, yet mill closures continue, so ask what those volumes never captured about fibre quality, jobs, and whether the forest is healthy.",
+        "2": "Spec sheets and star ratings sell the gear, but on a ranch with spotty signal and a tight budget, what should we measure instead to know a gadget or homelab build is worth owning?",
+        "3": "Count of fluent speakers and signed agreements are how language revitalization and governance get reported, so ask what T\u015dilhqot'in, Secw\u00e9pemc, and Dakelh communities would count instead to know their stewardship is working.",
+        "4": "Hectares burned and evacuation numbers define each wildfire season, but what do they hide about backcountry recovery, ranch and trail losses, and who actually carries the cost of a bad year?",
+        "5": "Council and school board reports lean on permits issued, enrolment, and attendance, so ask which local numbers in Williams Lake, Quesnel, or 100 Mile House have drifted furthest from the everyday life they claim to track.",
+        "6": "Species counts, snowpack readings, and salmon returns anchor Cariboo science stories, yet each is a stand-in, so ask what researchers truly cannot count directly and whether we are ever tempted to treat the proxy as the ecosystem."
+      },
+      "assigned_at": "2026-10-05",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -137,7 +155,56 @@
       "dimension": "scale",
       "question": "When is small genuinely better, and when is it just an excuse?",
       "week": "2026-W40"
+    },
+    {
+      "id": "actually-measuring",
+      "dimension": "measurement",
+      "question": "What are we actually measuring?",
+      "week": "2026-W41"
     }
   ],
-  "generated": []
+  "generated": [
+    {
+      "id": "who-counts-as-local",
+      "question": "Who gets to call themselves local?",
+      "dimension": "belonging-membership",
+      "premise": "Small places run on a quiet sorting of who belongs, and the rules are never written down. Length of residence, family name, land ownership, showing up to the work, and simply staying through bad winters all compete as claims. Newcomers often carry the energy and money that keep a town alive, while old-timers carry the history and the right to feel crowded out. It is hard to say whether belonging is something you inherit, something you earn, or something a place decides for itself.",
+      "origin": "generated"
+    },
+    {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?",
+      "dimension": "harmony-honesty",
+      "premise": "In a place where you will meet the same people at the post office, the rink, and the funeral for decades, every disagreement carries a long tail. Swallowing a complaint can protect a neighbour, a working relationship, or a fragile committee. It can also let a bad practice, a quiet injustice, or a dangerous shortcut carry on for years. Whether silence is a form of care or a form of cowardice often only becomes clear in hindsight, and sometimes not even then.",
+      "origin": "generated"
+    },
+    {
+      "id": "fairness-of-who-gets-help",
+      "question": "Is it fair to help the people who are already helping?",
+      "dimension": "reciprocity-fairness",
+      "premise": "Rural life runs on favours, volunteer hours, and informal credit, and those who give the most tend to be the first called on and the first looked after. That keeps the web of obligation alive and rewards real contribution. It also leaves out the person who is new, shy, sick, or simply unable to give back. We disagree about whether help is a debt repaid or a gift that should reach people regardless of what they have put in.",
+      "origin": "generated"
+    },
+    {
+      "id": "the-right-to-be-left-alone",
+      "question": "How much should neighbours know about each other?",
+      "dimension": "privacy-visibility",
+      "premise": "Everyone notices whose truck is in the yard, whose lights are on late, and whose marriage is struggling. That watchfulness is also what gets a stranded driver found, a failing elder checked on, and a theft noticed. But it is the same attention that fuels gossip, judgment, and the feeling of never being able to start over. Where care ends and surveillance begins depends on who is looking and what they intend to do with what they see.",
+      "origin": "generated"
+    },
+    {
+      "id": "staying-versus-leaving",
+      "question": "Is staying put a virtue or a failure of nerve?",
+      "dimension": "rootedness-mobility",
+      "premise": "Some people stay because the land, the family, and the work are the point, and holding a place together takes someone willing to hold still. Others stay because leaving was frightening, expensive, or never seriously imagined. Those who go often send back money, ideas, and a wider view, though they also take young talent and leave thinner communities behind. It is hard to know from the outside whether a given decision to stay or go is courage, habit, or fear.",
+      "origin": "generated"
+    },
+    {
+      "id": "risk-and-who-carries-it",
+      "question": "Who should carry the risk when something goes wrong?",
+      "dimension": "risk-responsibility",
+      "premise": "Out where help is hours away, a bad road, a late fire season, a failed crop, or a backcountry mistake lands on someone, and the question of who is responsible gets tangled fast. Individuals are expected to look after themselves, yet institutions, employers, landowners, and whole towns end up absorbing the cost. Pushing risk onto the person closest to it preserves freedom and keeps decisions local. Spreading it out is gentler and fairer, but it can make everyone more careless and more dependent. We disagree about where the line sits between your problem and ours.",
+      "origin": "generated"
+    }
+  ]
 }
