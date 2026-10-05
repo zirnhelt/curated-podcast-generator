@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-14..2026-10-04) — 5 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-15..2026-10-05) — 5 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -62,15 +62,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 15 reviews,
-      latest 2026-10-02)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 16 reviews,
+      latest 2026-10-05)
 - [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
       errors.** On September 22, a single file present in podcast-feed.xml could not be found in
       R2 and could not be rebuilt from disk. The pipeline completed and published successfully
       despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
       reference. Identify which object is missing, restore it to R2, or remove the reference
       from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
-      in 9 reviews, latest 2026-10-03)
+      in 10 reviews, latest 2026-10-05)
 - [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
       territory-check rewrites failed.** On September 22, the territory-check system flagged two
       sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
@@ -86,8 +86,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       script lost its ability to detect when a story mutates across sources or when multiple
       outlets cover the same event. Restore the Cohere module or replace the embedding layer
       with an alternative that can detect story evolution and same-story clustering without
-      external dependencies. (signal `degraded:script/cohere`; seen in 2 reviews, latest
-      2026-10-04)
+      external dependencies. (signal `degraded:script/cohere`; seen in 3 reviews, latest
+      2026-10-05)
 
 <!-- reviews:end -->
 

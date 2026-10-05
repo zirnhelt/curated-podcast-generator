@@ -172,12 +172,15 @@
       "detail": "On 2026-08-29, the script/roundup-order segment failed to sort correctly on the first attempt. After one repair pass, 10 stories still aired after a later block. The pipeline did not retry. This follows the pattern noted in the already-tracked item roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a prior run. The repair logic is insufficient; either increase retry attempts on sort failures or add a validation gate that blocks publish if any story lands in the wrong temporal position.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-08-29",
       "seen": [
-        "2026-08-29"
+        "2026-08-29",
+        "2026-10-05"
       ],
-      "last_seen": "2026-08-29"
+      "last_seen": "2026-10-05",
+      "signal": "degraded:script/roundup-order",
+      "signal_seen": "2026-10-05"
     },
     {
       "id": "gemini-project-spend-cap-blocks-rendering",
@@ -445,10 +448,9 @@
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 15,
+      "occurrences": 16,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-14",
         "2026-09-15",
         "2026-09-16",
         "2026-09-17",
@@ -457,11 +459,12 @@
         "2026-09-24",
         "2026-09-25",
         "2026-09-26",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-05"
       ],
-      "last_seen": "2026-10-02",
+      "last_seen": "2026-10-05",
       "signal": "short-script",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-05"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -482,7 +485,7 @@
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
       "status": "open",
-      "occurrences": 9,
+      "occurrences": 10,
       "first_seen": "2026-09-22",
       "seen": [
         "2026-09-22",
@@ -493,11 +496,12 @@
         "2026-09-28",
         "2026-09-29",
         "2026-10-02",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-05"
       ],
-      "last_seen": "2026-10-03",
+      "last_seen": "2026-10-05",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-05"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -576,7 +580,7 @@
         "2026-10-01"
       ],
       "signal": "run-failed",
-      "signal_seen": "2026-10-04",
+      "signal_seen": "2026-10-05",
       "last_seen": "2026-10-01"
     },
     {
@@ -585,16 +589,17 @@
       "detail": "On 2026-10-03, script generation encountered ModuleNotFoundError twice: once during evolving-story detection, once during same-story clustering. The pipeline fell back to baseline logic both times and completed the run. The listener hears no gaps, but the script lost its ability to detect when a story mutates across sources or when multiple outlets cover the same event. Restore the Cohere module or replace the embedding layer with an alternative that can detect story evolution and same-story clustering without external dependencies.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-10-03",
       "seen": [
         "2026-10-03",
-        "2026-10-04"
+        "2026-10-04",
+        "2026-10-05"
       ],
       "signal": "degraded:script/cohere",
-      "signal_seen": "2026-10-04",
-      "last_seen": "2026-10-04"
+      "signal_seen": "2026-10-05",
+      "last_seen": "2026-10-05"
     }
   ],
-  "updated": "2026-10-04"
+  "updated": "2026-10-05"
 }
