@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 5, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 5, 2026</h1>
+  <p class="meta">Published October 5, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37287761323">37287761323</a>.</em></p>
+
+<h3>Primary run failed; fallback succeeded with Cohere embed failures</h3>
+
+<p>The 1:05 AM primary run did not complete. The 2:05 AM fallback (run 37287761323) finished in 23 minutes with a success conclusion. That run is the source of all shipped content below.</p>
+
+<p>Three Cohere embedding operations failed with ModuleNotFoundError during script generation. The pipeline fell back to non-Cohere paths for evolving-story detection and same-story clustering. For deep-dive reranking, it kept the keyword ranking instead. These degradations mean the script used simpler clustering and ranking than designed, but produced output.</p>
+
+<h3>Script expanded after first draft came short</h3>
+
+<p>The first draft measured 2785 words against a 3400-word target. The script was sent back for expansion and shipped at 3184 words. The target was not met, but the gap closed from 615 words to 216 words.</p>
+
+<p>One TTS segment returned shorter than its word count predicted. It was retried once per protocol and included in the final audio.</p>
+
+<h3>Citation coverage complete; story ordering still imperfect</h3>
+
+<p>All 15 roundup citations matched their sources. All 3 deep-dive citations matched. The pipeline found no reference gaps in either segment.</p>
+
+<p>Five stories still aired out of intended order after one repair pass in the roundup-order step. This is a recurring degradation: the reordering logic has not fully stabilized.</p>
+
+<h3>Deep dives and debate</h3>
+
+<p>Three deep dives shipped: MoMA on information design (Fast Company), a Man in Motion film screening (Williams Lake Tribune), and a Putin disinformation operation narrative (Mother Jones).</p>
+
+<p>The debate question: Should arts and cultural organizations rely primarily on quantitative metrics like attendance counts to measure value and success, or should they prioritize qualitative community input and contextual understanding?</p>
+
+<h3>Audio, video, and distribution</h3>
+
+<p>The episode ran 18.4 minutes of audio and video. Audio file: 16.9 MB. Video file: 63.3 MB. This episode marked RSS entry 250.</p>
+
+<p>One object referenced by podcast-feed.xml is missing from Cloudflare R2 and cannot be healed from disk. Crawlers will 404 on that asset.</p>
+
+<h3>Quality and voice balance</h3>
+
+<p>Casey spoke 1.01 times as much as Riley — near parity. The script triggered one AI-tell pattern hit during quality review.</p>
+
+<h3>Compute and API calls</h3>
+
+<p>The run consumed 50,860 Anthropic input tokens across 13 Claude calls. Search and answers came from 7 Brave Search calls and 5 Brave Answers calls.</p>
+
+<p>Roundup pool held 49 more stories than the airtime budget allowed. Those 49 stories were cut and remain available for later matching.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.01, 3184 words</td></tr>
+<tr><td>Audio</td><td>18.4 min</td></tr>
+<tr><td>Audio size</td><td>16.9 MB</td></tr>
+<tr><td>Citations matched</td><td>15/15 roundup, 3/3 deep dive</td></tr>
+<tr><td>Feed</td><td>250 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>50,860 input tokens, calls ***'claude': 13, 'brave-search': 7, 'brave-answers': 5***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
