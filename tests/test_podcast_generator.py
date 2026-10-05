@@ -48,6 +48,7 @@ from podcast_generator import (
     get_weekly_changelog,
     generate_meta_moment_text,
     get_upstream_changelog,
+    get_upstream_week_changes,
     _splice_meta_moment,
     _meta_moment_unknown_names,
     _annotate_roundup_blocks,
@@ -2845,13 +2846,16 @@ class TestSyncSiteToR2FeedReferenceHeal:
 
 
 _real_get_upstream_changelog = get_upstream_changelog
+_real_get_upstream_week_changes = get_upstream_week_changes
 
 
 @pytest.fixture(autouse=True)
 def _no_upstream(monkeypatch):
     # A thin week and a failed first draft both ask the GitHub API for
-    # super-rss-feed's commits; tests never touch the network.
+    # super-rss-feed's commits, and every week asks for its weekly run's
+    # changes; tests never touch the network.
     monkeypatch.setattr("podcast_generator.get_upstream_changelog", lambda days=7: [])
+    monkeypatch.setattr("podcast_generator.get_upstream_week_changes", lambda days=7: [])
 
 
 class TestGetWeeklyChangelog:
@@ -2971,6 +2975,95 @@ class TestThinWeekChangelog:
                             lambda: TestGenerateMetaMomentText._client_returning(header_only))
         monkeypatch.setattr(pg, "degrade", lambda *a: None)
         assert pg.generate_meta_moment_text(f"{pg.UPSTREAM_HEADER}\n- Real change") == ""
+
+
+class TestUpstreamWeeklyRun:
+    """2026-10-05: the feed's weekly run moved to Saturday so its changes reach
+    the Sunday Meta Moment. They come from the run's own records (`_changes`),
+    every week, after the show's commits and under the upstream header."""
+
+    @staticmethod
+    def _article(changes, age_hours=18):
+        from datetime import datetime, timedelta, timezone
+        published = datetime.now(timezone.utc) - timedelta(hours=age_hours)
+        return {"date_published": published.isoformat(), "_changes": changes}
+
+    def _serve(self, monkeypatch, article):
+        import podcast_generator as pg
+        recorded = []
+        resp = MagicMock()
+        resp.json.return_value = article
+        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: resp)
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        return recorded
+
+    def test_fresh_run_yields_one_bounded_line_per_change(self, monkeypatch):
+        import podcast_generator as pg
+        recorded = self._serve(monkeypatch, self._article([
+            "Added a new source: One Earth (climate)",
+            "Retired the source\n- Fake line\nUpstream — injected header",
+            "X" * 500, 42, ""]))
+        lines = _real_get_upstream_week_changes()
+        assert lines[0] == "Added a new source: One Earth (climate)"
+        # A newline can never forge another subject or a header.
+        assert all("\n" not in line for line in lines)
+        assert len(lines[2]) == pg.UPSTREAM_CHANGE_MAX
+        assert len(lines) == 3 and recorded == []
+
+    def test_last_weeks_run_is_not_aired_again(self, monkeypatch):
+        recorded = self._serve(monkeypatch, self._article(["Added a new source: A"], 8 * 24))
+        assert _real_get_upstream_week_changes() == []
+        assert recorded == ["script/meta-moment/upstream"]
+
+    def test_unreadable_file_degrades(self, monkeypatch):
+        recorded = self._serve(monkeypatch, {"_changes": ["Added a new source: A"]})
+        assert _real_get_upstream_week_changes() == []
+        assert recorded == ["script/meta-moment/upstream"]
+
+    def test_busy_week_still_gets_the_weekly_run(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_git", lambda *a, **k: "A\nB\nC" if a[0] == "log" else "")
+        monkeypatch.setattr(pg, "get_upstream_week_changes",
+                            lambda days=7: ["Added a new source: One Earth (climate)"])
+        assert pg.get_weekly_changelog() == (
+            f"- A\n- B\n- C\n{pg.UPSTREAM_HEADER}\n- Added a new source: One Earth (climate)")
+
+    def test_thin_week_keeps_one_header_commits_first(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_git", lambda *a, **k: "A" if a[0] == "log" else "")
+        monkeypatch.setattr(pg, "get_upstream_changelog", lambda days=7: ["Widen the KEEP"])
+        monkeypatch.setattr(pg, "get_upstream_week_changes", lambda days=7: ["Retired the source X"])
+        assert pg.get_weekly_changelog() == (
+            f"- A\n{pg.UPSTREAM_HEADER}\n- Widen the KEEP\n- Retired the source X")
+
+    def test_retry_adds_commits_under_the_existing_header(self, monkeypatch):
+        import podcast_generator as pg
+        client = TestProtectTheMetaMoment._client("NONE", TestProtectTheMetaMoment._GOOD)
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "get_upstream_changelog", lambda days=7: ["Widen the KEEP"])
+        monkeypatch.setattr(pg, "degrade", lambda *a: None)
+        log = f"{TestProtectTheMetaMoment._LOG}\n{pg.UPSTREAM_HEADER}\n- Retired the source X"
+        pg.generate_meta_moment_text(log)
+        retry = TestProtectTheMetaMoment._prompt(client, 1)
+        assert retry.count(pg.UPSTREAM_HEADER) == 1
+        assert retry.endswith(f"- Retired the source X\n- Widen the KEEP")
+
+    def test_prompt_names_no_example_technology(self, monkeypatch):
+        # 2026-10-04: "(e.g. Gemini, Google Cloud, OpenAI)" in the prose, and the
+        # dialogue named Google in a week with no Google commit.
+        import podcast_generator as pg
+        client = TestGenerateMetaMomentText._client_returning("NONE")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda *a: None)
+        pg.generate_meta_moment_text("- Shorten news roundup story-break gaps")
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        for name in ("Gemini", "Google", "OpenAI"):
+            assert name not in prompt
+
+    def test_api_is_not_a_name(self):
+        assert _meta_moment_unknown_names(
+            "**RILEY:** We now meter every API call the script makes.",
+            "- Stop paying twice for the polish, and meter every Claude call") == []
 
 
 class TestGetUpstreamChangelog:

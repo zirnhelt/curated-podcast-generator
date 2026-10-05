@@ -313,10 +313,28 @@ list") had been in the prompt the whole time.
     it is worth a look.
   - The deepen fetch names `origin main` and carries a timeout: fetching every branch
     through a proxy stalled for over a minute, and the script stage has a 35-minute cap.
+- **Every week hears from the feed's weekly run (2026-10-05).** `super-rss-feed`'s weekly
+  agents add, heal and retire sources and move its tuning knobs, and their commits name a
+  job ("Weekly calibration agent run"), so the thin-week path never carried them. That run
+  moved from Sunday 13:00 UTC to Saturday so it lands before the Sunday script, and its
+  report job writes the applied changes to `weekly-state-article.json` → `_changes`, one
+  plain line each, built from the agents' records rather than the report's model-written
+  narrative. `get_upstream_week_changes` reads that file from the GitHub API every Sunday
+  and appends the lines under `UPSTREAM_HEADER` (after the thin-week commits, when there
+  are any). Only a file under 7 days old counts: older means last Sunday already had it,
+  or the run failed, and either way it `degrade()`s under `script/meta-moment/upstream`
+  rather than airing a week twice. Feed titles in those lines are chosen by publishers, so
+  each is collapsed to one line and capped. The retry no longer assumes a header means the
+  upstream commits are already in: it adds any that are missing beneath the block.
 - **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
   hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
   week with no transcript commit; it now appears only when a commit earns it. The prompt
   teaching the tic is the same failure `genuinely` documented above.
+  - **Example names count too.** "Name the actual technology … (e.g. Gemini, Google Cloud,
+    OpenAI)" sat in the prompt until 2026-10-04, when the retry draft named Google in a
+    week whose commits never did and the guard dropped the segment (the run went
+    red). The examples are gone. The same draft was also dropped for "API", which is an
+    acronym, not a name, and is now in `_META_MOMENT_KNOWN_WORDS` with "AI" and "BC".
 - The last turn hands off **in general terms** — the Meta Moment is spliced ahead of the
   community spotlight and has not been told what follows it. On 2026-08-30 it previewed a
   deep-dive story two segments away, and invented that too.

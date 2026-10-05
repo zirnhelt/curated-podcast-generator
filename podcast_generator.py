@@ -9656,6 +9656,9 @@ UPSTREAM_GENERATION_PATHS = ("super_rss_curator_json.py", "config", "feeds.opml"
 META_MOMENT_SPARSE_BELOW = 3
 UPSTREAM_HEADER = ("Upstream — the article feed that finds and scores stories before "
                    "the show picks from them:")
+# super-rss-feed's weekly run (Saturdays) records what its agents changed here.
+UPSTREAM_WEEKLY_FILE = "weekly-state-article.json"
+UPSTREAM_CHANGE_MAX = 200
 
 
 def _changelog_subjects(lines: list) -> list:
@@ -9703,11 +9706,52 @@ def get_upstream_changelog(days: int = 7) -> list:
     return _changelog_subjects([s for _, s in sorted(commits.values())])
 
 
+def get_upstream_week_changes(days: int = 7) -> list:
+    """super-rss-feed's weekly run: the changes its agents applied, if it ran in the last N days.
+
+    Every Saturday that run adds, repairs and retires sources and moves its
+    tuning knobs. Its commits name a job ("Weekly calibration agent run"), so
+    `get_upstream_changelog` skips them; the run's report job writes what they
+    changed to `_changes`, one plain line each, from the agents' own records.
+    Older than the week means last Sunday already had it, or the run failed.
+    """
+    headers = {"Accept": "application/vnd.github.raw+json"}
+    token = os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    try:
+        resp = requests.get(
+            f"https://api.github.com/repos/{UPSTREAM_REPO}/contents/{UPSTREAM_WEEKLY_FILE}",
+            headers=headers, timeout=15)
+        resp.raise_for_status()
+        article = resp.json()
+        published = datetime.fromisoformat(article.get("date_published") or "")
+        if published.tzinfo is None:
+            published = published.replace(tzinfo=timezone.utc)
+    except (requests.RequestException, ValueError, AttributeError) as exc:
+        degrade("script/meta-moment/upstream",
+                f"upstream weekly changes unavailable ({type(exc).__name__}) — the "
+                "segment is built without the feed's weekly run")
+        return []
+    age = datetime.now(timezone.utc) - published
+    if age > timedelta(days=days):
+        degrade("script/meta-moment/upstream",
+                f"the feed's weekly run last reported {age.days} days ago — the segment "
+                "is built without it (super-rss-feed → Weekly Quality & Reporting)")
+        return []
+    # Feed titles in these lines are chosen by publishers: one line each, bounded.
+    raw = article.get("_changes")
+    changes = [" ".join(c.split())[:UPSTREAM_CHANGE_MAX]
+               for c in (raw if isinstance(raw, list) else []) if isinstance(c, str)]
+    return _changelog_subjects([c for c in changes if c])
+
+
 def get_weekly_changelog(days: int = 7) -> str:
     """Commit subjects touching generator-shaping files in the last N days, for the Sunday Meta Moment.
 
-    A thin week gets super-rss-feed's changes under `UPSTREAM_HEADER`; only
-    `- ` lines are subjects, so the header is framing, never a citable change.
+    Every week gets super-rss-feed's weekly-run changes under `UPSTREAM_HEADER`,
+    and a thin week its commits too; only `- ` lines are subjects, so the header
+    is framing, never a citable change. The upstream block is always last.
     """
     since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
     # A shallow clone answers `git log --since` with its one boundary commit and
@@ -9725,12 +9769,18 @@ def get_weekly_changelog(days: int = 7) -> str:
     authored = [line.rpartition("\t") for line in log.splitlines()]
     lines = [f"- {s}" for s in _changelog_subjects(
         [subject for author, _, subject in authored if "[bot]" not in author])]
+    upstream = []
     if len(lines) < META_MOMENT_SPARSE_BELOW:
         upstream = get_upstream_changelog(days)
         if upstream:
             print(f"   🔁 Meta Moment: thin week ({len(lines)} show commit(s)) — "
                   f"adding {len(upstream)} upstream")
-            lines += [UPSTREAM_HEADER] + [f"- {s}" for s in upstream]
+    weekly = get_upstream_week_changes(days)
+    if weekly:
+        print(f"   🔁 Meta Moment: adding {len(weekly)} change(s) from the feed's weekly run")
+    upstream += [s for s in weekly if s not in upstream]
+    if upstream:
+        lines += [UPSTREAM_HEADER] + [f"- {s}" for s in upstream]
     return "\n".join(lines)
 
 
@@ -9740,12 +9790,13 @@ def get_weekly_changelog(days: int = 7) -> str:
 # words English capitalizes mid-sentence. Anything else is invention: on
 # 2026-08-30 the hosts credited a "weekly inspiration harvest" with airing a
 # Ktunaxa Nation story, and neither the harvest nor the story appeared anywhere
-# in that week's eleven commit subjects.
+# in that week's eleven commit subjects. "API" is an acronym, not a name: on
+# 2026-10-04 the last draft was dropped for "API" and "Google's".
 _META_MOMENT_KNOWN_WORDS = frozenset({
     "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
     "january", "february", "march", "april", "may", "june", "july", "august",
     "september", "october", "november", "december",
-    "i'm", "i've", "i'll", "i'd", "ok", "okay", "ai", "bc", "canada",
+    "i'm", "i've", "i'll", "i'd", "ok", "okay", "ai", "api", "bc", "canada",
 })
 
 _META_MOMENT_WORD_RE = re.compile(r"[^\W\d_]+(?:'[^\W\d_]+)*")
@@ -10139,10 +10190,14 @@ def generate_meta_moment_text(changelog: str) -> str:
     # failed call already had api_retry's retries.
     first = detail
     retry_log = changelog
-    if UPSTREAM_HEADER not in changelog and kind != "error":
-        upstream = get_upstream_changelog()
+    if kind != "error":
+        # A busy week's list carries the weekly run's changes but not the
+        # upstream commits; the upstream block is last, so new lines join it.
+        listed = set(changelog.splitlines())
+        upstream = [s for s in get_upstream_changelog() if f"- {s}" not in listed]
         if upstream:
-            retry_log += f"\n{UPSTREAM_HEADER}\n" + "\n".join(f"- {s}" for s in upstream)
+            retry_log += ("" if UPSTREAM_HEADER in changelog else f"\n{UPSTREAM_HEADER}")
+            retry_log += "\n" + "\n".join(f"- {s}" for s in upstream)
     if kind == "guard" or retry_log != changelog:
         feedback = (f"A first draft of this segment was refused: {detail}. Cite only lines "
                     "copied from the list, and name nothing that is not in it.\n\n"
@@ -10189,10 +10244,14 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
     upstream_note = (
         "Lines under the Upstream heading changed the article feed that finds and scores "
         "stories before the show picks from them, not the show itself. Describe them as "
-        "changes to which stories reach the show, and never name the feed or its files. "
+        "changes to which stories reach the show. Never name that feed or its files; a news "
+        "source one of those lines adds or drops may be named. "
         "Prefer the show's own changes when both qualify.\n\n"
         if UPSTREAM_HEADER in changelog else ""
     )
+    # No example technologies in the prose: "(e.g. Gemini, Google Cloud, OpenAI)"
+    # sat here until 2026-10-04, when the retry named Google in a week whose
+    # commits never did, and the guard dropped the segment.
     prompt = (
         "Write the 'Meta Moment' segment for the Cariboo Signals podcast: a dialogue "
         "between co-hosts Riley and Casey recapping what the team tweaked about the show "
@@ -10216,8 +10275,8 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
         "given that much is cut, not compressed into a one-line mention — skip the rest of "
         "the list without apologizing for it.\n\n"
         "Name the actual technology when a commit names one — a model, provider, or tool "
-        "(e.g. Gemini, Google Cloud, OpenAI) — rather than paraphrasing it into something "
-        "vaguer. The tech is part of what changed, so say it plainly, without turning the "
+        "— rather than paraphrasing it into something vaguer, and only the one that line "
+        "names. The tech is part of what changed, so say it plainly, without turning the "
         "line into a spec sheet. And if the change is a fallback, or otherwise not "
         "guaranteed to hold every episode, say that too — describing it as certain when "
         "it isn't is its own kind of invention.\n\n"

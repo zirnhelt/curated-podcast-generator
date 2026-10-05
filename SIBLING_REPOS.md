@@ -31,7 +31,10 @@ The podcast generator fetches from `https://zirnhelt.github.io/super-rss-feed/`:
 
 These URLs are configured via `SUPER_RSS_BASE_URL` in `podcast_generator.py`.
 
-One read is not over Pages: on a thin week the Sunday Meta Moment reads `super-rss-feed`'s commit subjects from the GitHub API (`get_upstream_changelog`, paths in `UPSTREAM_GENERATION_PATHS`). Commit subjects there can reach the air, so write them in plain language.
+Two reads are not over Pages, both for the Sunday Meta Moment and both from the GitHub API:
+
+- On a thin week, `super-rss-feed`'s commit subjects (`get_upstream_changelog`, paths in `UPSTREAM_GENERATION_PATHS`). Commit subjects there can reach the air, so write them in plain language.
+- Every week, `weekly-state-article.json` on its `main` (`get_upstream_week_changes`): `date_published` and `_changes`, a list of one-line strings written by `generate_weekly_report.get_week_changes()` in that repo's Saturday weekly run. Older than 7 days is ignored. Renaming either key silently empties the upstream half of the segment, so change both repos together.
 
 ---
 

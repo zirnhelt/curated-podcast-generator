@@ -236,6 +236,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - Every Sunday without the segment `degrade()`s, whatever the reason.
 - Nothing listener-facing goes into that prompt unconditionally.
 - A thin week (under `META_MOMENT_SPARSE_BELOW` show commits) folds in `super-rss-feed`'s human commits under `UPSTREAM_HEADER`; only `- ` lines are citable subjects.
+- Every week also folds in `super-rss-feed`'s Saturday weekly run (`get_upstream_week_changes`: `weekly-state-article.json` → `_changes`), only while it is under 7 days old. **No example names in the prompt prose**: the hosts said "Google" because the prompt did.
 - **Never `git fetch --depth` over the full checkout**: a shallow repo answers `git log --since` with one commit and no error.
 - **Protect the segment; never force it.** A NONE or a guard drop gets one retry, with upstream changes and the refusal reason (`script/meta-moment/retry`); a failed call degrades; the splice falls back to the deep dive; and a Sunday that ships without it turns the run red (last step, after deploy).
 
