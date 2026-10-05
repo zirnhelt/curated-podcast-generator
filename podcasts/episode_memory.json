@@ -1,25 +1,4 @@
 {
-  "2026-08-30": {
-    "timestamp": 1788098866.686001,
-    "topics": [
-      "[100 Mile Free Press] Future of 100 Mile House railway still",
-      "[Williams Lake Tribune] Williams Lake strongman picks up a w",
-      "[CFJC Today Kamloops] CSRD board approves raises to Director",
-      "[CFJC Today Kamloops] \u2018We just never had any rain,\u2019 lack of ",
-      "[Regional News Archives",
-      "[ScienceDaily] Tiny 1.7-billion-year-old fossils could revea",
-      "[ScienceDaily] Depression may shut down the brain\u2019s ability ",
-      "[Scientific American] How changes to Endangered Species Act "
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-30",
-    "focus": "earth-systems",
-    "focus_name": "Earth Systems & Climate Science"
-  },
   "2026-08-31": {
     "timestamp": 1788181072.952274,
     "topics": [
@@ -714,5 +693,24 @@
     "date": "2026-10-04",
     "focus": "discovery-health",
     "focus_name": "Discovery, Health & How Science Works"
+  },
+  "2026-10-05": {
+    "timestamp": 1791191739.295795,
+    "topics": [
+      "[Williams Lake Tribune] 31 motorcycles hit the road for four",
+      "[Williams Lake Tribune] LETTER: Williams Lake Lions Club raf",
+      "[100 Mile Free Press] 2026 100 Mile Sockathon aims to raise ",
+      "[Fast Company] From nearsightedness to self-harm: Meta-revie",
+      "[NYT Business] Tariffs Are Making Instruments So Expensive, ",
+      "[Fast Company] MoMA explores the useful beauty of informatio",
+      "[Williams Lake Tribune] Special film screening chronicling M",
+      "[Mother Jones] How I Got Dragged Into a Putin Disinformation"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-10-05",
+    "focus": "words-journalism",
+    "focus_name": "Writing, Journalism & Podcasting"
   }
 }

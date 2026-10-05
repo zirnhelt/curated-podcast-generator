@@ -110,11 +110,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-30",
-        "clue": "evidence-bar:+ \u2014 Demands testable claims, actual experiments over speculation",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-13",
         "clue": "pilot-skepticism:- \u2014 mitigation tech exists, engineering can reduce harm",
         "occurrences": 1
@@ -172,6 +167,11 @@
       {
         "date": "2026-10-04",
         "clue": "structural-lens:+ \u2014 Emphasized institutional succession over individual enthusiasm",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-05",
+        "clue": "structural-lens:x \u2014 Conceded counts distort but defended page-one visibility",
         "occurrences": 1
       }
     ],
@@ -439,19 +439,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-27",
-        "clue": "structural-lens:+ \u2014 sharpened focus on institutional responsibility persistence",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-04",
         "clue": "evidence-bar:~ \u2014 Acknowledged small data useful if protocol-protected",
         "occurrences": 2
       },
       {
-        "date": "2026-09-30",
-        "clue": "pilot-skepticism:~ \u2014 Concedes cheaper tools matter, but adds maintenance complexity cost",
-        "occurrences": 1
+        "date": "2026-10-05",
+        "clue": "pilot-skepticism:~ \u2014 Acknowledged testing audio-plus-count model despite doubts",
+        "occurrences": 2
       },
       {
         "date": "2026-10-02",

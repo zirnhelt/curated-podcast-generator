@@ -1,30 +1,4 @@
 {
-  "2026-07-06": {
-    "timestamp": 1783340353.363835,
-    "date": "2026-07-06",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How can small rural arts organizations sustainably preserve twenty years of cultural history without institutional resources or ongoing funding?",
-    "riley_position": "Digital tools have made archiving affordable enough for volunteer organizations to implement basic systems immediately; a single coordinated effort tied to a milestone event could establish practices that spread peer-to-peer across the region without new funding.",
-    "riley_key_evidence": [
-      "Cloud storage, AI-assisted transcription, and automated photo tagging have reduced archival costs from requiring a full-time archivist to a few volunteer hours monthly",
-      "Internet Archive provides free hosting for community media with no ongoing cost to organizations",
-      "Central Cariboo Arts & Culture Society could create a standardized template once and share it across the region's arts organizations"
-    ],
-    "casey_position": "Technical solutions don't address the real problems: governance decisions, continuity risks, organizational bandwidth limitations, and the coordination failures that plague small nonprofit partnerships.",
-    "casey_key_evidence": [
-      "Mukurtu's success required purpose-built design with sovereignty as a core requirement from inception, not bolted-on tools",
-      "Twenty years of volunteer festival records exist in fragmented formats across different people; completeness cannot be assumed",
-      "Coordination between separate volunteer boards with competing priorities consistently fails at the second meeting when unpaid work is revealed"
-    ],
-    "resolution": "Casey conceded that a backup with known risks beats no backup, and agreed that a shared regional template approach differs meaningfully from traditional grant-based models. They agreed the real question is whether local organizations actually have bandwidth to implement even a simple solution, and suggested posing this directly to the community.",
-    "topics_covered": [
-      "Digital archival tools and their declining costs",
-      "Sovereignty and community control of cultural records (Mukurtu example)",
-      "Organizational coordination failures in nonprofit sectors",
-      "Peer-to-peer knowledge transfer models (Christmas bird count analogy)",
-      "Timing archival efforts to natural milestones (anniversary events)"
-    ]
-  },
   "2026-07-07": {
     "timestamp": 1783431567.780847,
     "date": "2026-07-07",
@@ -2503,6 +2477,36 @@
       "Data security, secrecy, and zero-knowledge proofs in dual-use quantum cryptography",
       "Indigenous long-baseline observation and the importance of community consent before deploying monitoring technology",
       "Institutional continuity and succession planning as keys to sustainable citizen science projects"
+    ]
+  },
+  "2026-10-05": {
+    "timestamp": 1791191742.488713,
+    "date": "2026-10-05",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "words-journalism",
+    "anchor": "actually-measuring",
+    "central_question": "Should arts and cultural organizations rely primarily on quantitative metrics like attendance counts to measure value and success, or should they prioritize qualitative community input and contextual understanding?",
+    "riley_position": "Quantitative counts provide necessary, objective, and checkable baseline measures that funders and skeptics require to allocate resources fairly, though they should be supplemented with other inputs like subscriptions, editorial impact, and audience voices.",
+    "riley_key_evidence": [
+      "A ticket count is 'the one number everybody can read the same way' and provides a floor for comparison across applications and years",
+      "Podcasts and web stories with repeat listener data show 'attention' better than one-off tickets",
+      "Raw audio of audience answers, published in full, creates an auditable record that 'the ones who care most' can verify"
+    ],
+    "casey_position": "Quantitative metrics become distorting ends rather than means, incentivizing organizations to optimize for countable outputs rather than meaningful community outcomes, and obscuring the actual value that emerges from sustained local presence and relationship.",
+    "casey_key_evidence": [
+      "The Toy Run headline reported '31 motorcycles' while ignoring what toys did in living rooms; 'the number survives and the thing it was for drops out'",
+      "The Lancet study shows engagement metrics targeting young people's screen time led to documented health harms because dashboards 'counted time on screen, and time on screen became the goal'",
+      "A local paper's real value\u2014watching officials and affecting policy\u2014'produces no number at all' and 'a story that never gets written because an official knew someone was watching doesn't show up in anyone's analytics'"
+    ],
+    "resolution": "Riley and Casey agree counts will not disappear and disagree on whether they stay as a floor versus becoming a ceiling, but agree to pilot a Williams Lake experiment placing audience-generated questions alongside ticket counts on grant reports, with follow-up assessment of whether the audio answers change how organizations operate.",
+    "topics_covered": [
+      "The distortion of metrics when counts become funding targets",
+      "Quantifiable versus unmeasurable value in journalism and cultural programming",
+      "How digital platforms' engagement metrics differ from analog measurement problems",
+      "Longevity and sustained presence as undervalued measures in annual grant cycles",
+      "Trust and familiarity as forms of accountability in small communities",
+      "Information design and how charts can legitimize questionable data",
+      "Participatory measurement: letting communities define what gets counted"
     ]
   }
 }
