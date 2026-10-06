@@ -448,10 +448,9 @@
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 16,
+      "occurrences": 17,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-15",
         "2026-09-16",
         "2026-09-17",
         "2026-09-21",
@@ -460,11 +459,12 @@
         "2026-09-25",
         "2026-09-26",
         "2026-10-02",
-        "2026-10-05"
+        "2026-10-05",
+        "2026-10-06"
       ],
-      "last_seen": "2026-10-05",
+      "last_seen": "2026-10-06",
       "signal": "short-script",
-      "signal_seen": "2026-10-05"
+      "signal_seen": "2026-10-06"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -485,10 +485,9 @@
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
       "status": "open",
-      "occurrences": 10,
+      "occurrences": 11,
       "first_seen": "2026-09-22",
       "seen": [
-        "2026-09-22",
         "2026-09-23",
         "2026-09-24",
         "2026-09-25",
@@ -497,11 +496,12 @@
         "2026-09-29",
         "2026-10-02",
         "2026-10-03",
-        "2026-10-05"
+        "2026-10-05",
+        "2026-10-06"
       ],
-      "last_seen": "2026-10-05",
+      "last_seen": "2026-10-06",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-10-05"
+      "signal_seen": "2026-10-06"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
@@ -509,10 +509,9 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 10,
+      "occurrences": 11,
       "first_seen": "2026-09-19",
       "seen": [
-        "2026-09-19",
         "2026-09-20",
         "2026-09-21",
         "2026-09-22",
@@ -521,11 +520,12 @@
         "2026-09-27",
         "2026-09-29",
         "2026-10-02",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-06"
       ],
-      "last_seen": "2026-10-03",
+      "last_seen": "2026-10-06",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-06"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
@@ -597,9 +597,22 @@
         "2026-10-05"
       ],
       "signal": "degraded:script/cohere",
-      "signal_seen": "2026-10-05",
+      "signal_seen": "2026-10-06",
       "last_seen": "2026-10-05"
+    },
+    {
+      "id": "deep-dive-citation-source-url-missing",
+      "title": "One deep dive source has no backing URL in the pipeline record.",
+      "detail": "The deep dive matched only 2 of 3 citations on October 6, compared to 14 of 15 for the roundup. No source URL appears in the facts for the third deep dive story. The pipeline may have failed to retrieve the URL or generated the story from a headline without one. This splits the data integrity problem: roundup sources are traceable; deep dive sources are not.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-10-06",
+      "seen": [
+        "2026-10-06"
+      ],
+      "last_seen": "2026-10-06"
     }
   ],
-  "updated": "2026-10-05"
+  "updated": "2026-10-06"
 }
