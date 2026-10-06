@@ -1,30 +1,4 @@
 {
-  "2026-07-07": {
-    "timestamp": 1783431567.780847,
-    "date": "2026-07-07",
-    "theme": "Working Lands & Industry",
-    "central_question": "Can member-owned mutual insurance pools and permanent institutional funding structures help small producers survive climate-driven wildfire costs, or will consolidation pressure inevitably favor larger operators regardless of policy interventions?",
-    "riley_position": "Wildfire risk is now a structural operating cost across resource industries, and smaller producers can survive it through member-owned mutual insurance pools and permanent institutional capacity\u2014models that Prairie provinces have already proven viable, though they require long-term institution-building rather than one-off grants.",
-    "riley_key_evidence": [
-      "Gibraltar Mine has budgeted air quality monitoring, helicopter contracts, and revised schedules as permanent operating costs",
-      "Central Chilcotin Rehabilitation's Nation-owned forestry venture internalizes fire risk mitigation into baseline operating contracts",
-      "Prairie hail insurance mutuals successfully spread agricultural risk across membership bases and took decades to build but are now durable"
-    ],
-    "casey_position": "Structural consolidation pressure from climate costs is inevitable and will eliminate smaller producers before institution-building solutions can scale; even member-owned mutuals require permanent staff and actuarial capacity that thin-population regions cannot sustainably support, and multi-year timelines don't help ranchers facing immediate fire season threats.",
-    "casey_key_evidence": [
-      "Cariboo Regional District has 65,000 people across enormous land base with insufficient membership density for viable mutual modeling",
-      "U.S. rangeland consolidation is already documented and measurable, with insurers declining renewal after repeat wildfire claims",
-      "Agricultural extension services in the region are already cut to the bone, leaving no institutional capacity to run ongoing actuarial work"
-    ],
-    "resolution": "They agreed that permanent institutional funding structures (mutuals, producer association-hosted functions) are theoretically necessary but genuinely uncertain in practice; they disagreed on timeline feasibility and whether the Cariboo has sufficient producer density to capitalize a mutual, and closed by inviting listener feedback on whether regional producers have already attempted such models.",
-    "topics_covered": [
-      "Asymmetry in climate cost absorption between large capital-backed operators and small independent producers",
-      "Member-owned mutual insurance as alternative to grant-cycle dependency and consolidation pressure",
-      "Institutional capacity and governance requirements for risk-pooling versus one-off resilience projects",
-      "Tenure structure incentives and whether Crown forest licensees should bear more wildfire suppression cost",
-      "Producer self-capitalization versus government funding for cooperative risk institutions"
-    ]
-  },
   "2026-07-08": {
     "timestamp": 1783507100.506718,
     "date": "2026-07-08",
@@ -2507,6 +2481,34 @@
       "Trust and familiarity as forms of accountability in small communities",
       "Information design and how charts can legitimize questionable data",
       "Participatory measurement: letting communities define what gets counted"
+    ]
+  },
+  "2026-10-06": {
+    "timestamp": 1791274549.972298,
+    "date": "2026-10-06",
+    "theme": "Working Lands & Industry",
+    "focus": "tourism-outdoor-economy",
+    "anchor": "actually-measuring",
+    "central_question": "What metrics should be used to measure success and sustainability in working-lands industries, and do current numbers hide more than they reveal?",
+    "riley_position": "Single headline metrics (like cut volume or visitor numbers) are useful tools that enforce limits and drive accountability, but they should be paired with additional measurements like jobs per thousand cubic metres or repeat guest ratios to capture what matters beyond the primary figure.",
+    "riley_key_evidence": [
+      "64 billion dollars in stalled or blocked AI data centre projects shows developers pay a price for ignoring communities, and standardized community benefits agreements make projects bankable",
+      "Allowable annual cut volume is auditable and enforceable, providing a hard cap that forces a limit on harvest within forest sustainability",
+      "Guest ranches can afford to keep working herds when earning tourism revenue, pairing bookings with repeat guests and local hires reveals whether the operation remains genuinely productive"
+    ],
+    "casey_position": "Metrics become reductive proxies that obscure what they were meant to measure; once a number runs the budget, people optimize for the number itself rather than the underlying outcome it represented, creating drift between reported success and actual community benefit.",
+    "casey_key_evidence": [
+      "The 170 billion dollar data centre figure is actually 'announced investment' from press releases with a 108 billion dollar spread depending on the source, lumping temporary 'stalled' projects with permanently 'blocked' ones",
+      "Cubic metres harvested don't capture fibre quality, employment per operation, or whether mills stay open\u2014mills keep closing while harvest volumes are met on paper",
+      "Farmonaut's definition of sustainable farming centered on 'uptime of the factory that builds the sensor' rather than soil health, yield, or farm income, exemplifying how vendor metrics displace actual outcomes"
+    ],
+    "resolution": "Riley and Casey agreed that publishing multiple numbers instead of single metrics is necessary, and proposed a small experiment: asking all candidates in Cariboo-Chilcotin and Prince George-North Cariboo at campaign forums what number should accompany cut volume, booking counts, and other working-lands measures. They acknowledged neither has evidence to settle whether better numbers change what people actually do versus what they report.",
+    "topics_covered": [
+      "AI data centre siting and community consent frameworks in Massachusetts and Pennsylvania",
+      "Forestry metrics and the drift between harvest volume caps and mill employment in the Cariboo",
+      "Agricultural technology ownership and data capture in precision farming",
+      "Tourism measurement at heritage ranches and the risk of working landscapes becoming themed hotels",
+      "First Nations-led forestry operations and stewardship-based permit terms"
     ]
   }
 }
