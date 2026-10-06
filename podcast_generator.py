@@ -920,6 +920,15 @@ EVENT_PAGE_FETCH_LIMIT = int(os.getenv("PODCAST_EVENT_PAGE_FETCH_LIMIT", "6"))
 # searches add ~9k input tokens to the research loop, mostly read from cache.
 EVENT_ROLL_CALL_RESULTS = 6
 #
+# The weekday election pass researched the whole ballot again every day the vote
+# reached the episode, and handed the writer the same records as new: 2026-10-06
+# re-aired a vote count four days running. Once nominations close, the field and
+# the records behind it stand still, so the last complete pass is reused until it
+# is this old, the roster or brief in config changes, or a story says the field
+# changed (_ballot_cache_reusable).
+BALLOT_RESEARCH_CACHE_FILE = PODCASTS_DIR / "ballot_research_cache.json"
+BALLOT_RESEARCH_MAX_AGE_DAYS = int(os.getenv("PODCAST_BALLOT_RESEARCH_MAX_AGE_DAYS", "7"))
+#
 # The deep dive's own pass reads pages too. A read is a plain HTTP GET on no Brave
 # meter: the only cost is the Claude tokens of the page it returns (<=6000 chars).
 TOPIC_PAGE_FETCH_LIMIT = 3
@@ -3569,6 +3578,62 @@ def _event_articles(events, articles) -> list:
                                   keywords)]
 
 
+# A story that says the field itself changed. A reused ballot would then air
+# someone who is no longer running, so any of these forces a fresh pass. Broad
+# on purpose: a false hit costs one day's research, a miss costs a wrong name.
+_ROSTER_CHANGE_RE = re.compile(
+    r"\b(?:withdr[ae]w\w*|drop(?:s|ped|ping)? out|pull(?:s|ed|ing)? out|"
+    r"step(?:s|ped|ping)? (?:down|aside)|resign\w*|disqualif\w*|acclaim\w*|"
+    r"nominat\w*|new candidate|replac\w*)\b",
+    re.I)
+
+
+def _ballot_basis(events) -> list:
+    """What a ballot pass was researched against: each event's brief and roster.
+    An edit to either in config is a reason to research again."""
+    return sorted(([e.get("name", ""), e.get("research", ""), e.get("roster") or {}]
+                   for e in events), key=lambda b: b[0])
+
+
+def _ballot_complete(result: str) -> bool:
+    """The pass sourced everyone it named: its NO RECORD FOUND line says none.
+    A missing line is format drift, not a clean sweep."""
+    m = _NO_RECORD_RE.search(result or "")
+    return bool(m) and m.group(1).strip().rstrip(".").lower() in ("", "none")
+
+
+def _ballot_cache_reusable(cached: dict, events, articles, today: date) -> str:
+    """Why the cached pass cannot stand in for today's, or "" when it can."""
+    if not cached.get("block") or not cached.get("complete"):
+        return "no complete pass on file"
+    if cached.get("basis") != _ballot_basis(events):
+        return "the roster or brief in config changed"
+    try:
+        researched = date.fromisoformat(cached.get("researched", ""))
+    except ValueError:
+        return "no research date on file"
+    if (today - researched).days >= BALLOT_RESEARCH_MAX_AGE_DAYS:
+        return f"last researched {researched}, {BALLOT_RESEARCH_MAX_AGE_DAYS}-day limit"
+    for event in events:
+        closed = ((event.get("roster") or {}).get("nominations_closed") or "")
+        if closed and researched.isoformat() <= closed:
+            return f"researched before nominations closed ({closed})"
+    for a in articles or []:
+        if _ROSTER_CHANGE_RE.search(f"{a.get('title', '')} {a.get('summary', '')}"):
+            return f"a story may change the field: {a.get('title', '')[:80]}"
+    return ""
+
+
+def _save_ballot_cache(result: str, events, today: date) -> None:
+    with segment("script/ballot-cache", critical=False):
+        _atomic_write_json(BALLOT_RESEARCH_CACHE_FILE, {
+            "researched": today.isoformat(),
+            "complete": _ballot_complete(result),
+            "basis": _ballot_basis(events),
+            "block": result,
+        })
+
+
 def _research_event_ballot(articles, client, events) -> str:
     """The ballot sweep for an all-week event, in a pass of its own.
 
@@ -3576,9 +3641,27 @@ def _research_event_ballot(articles, client, events) -> str:
     with results-only search (EVENT_SEARCH_TOOL — every claim needs a URL) and
     page reads, each held to its allowance. Returns an ELECTION RESEARCH block,
     or "" when there is nothing to sweep or nothing came back.
+
+    Once nominations close, the last complete pass is reused instead
+    (_ballot_cache_reusable), marked with the day it was researched.
     """
+    if not events:
+        return ""
+    today = get_pacific_now().date()
+    cached = load_memory(BALLOT_RESEARCH_CACHE_FILE)
+    cached = cached if isinstance(cached, dict) else {}
+    stale = _ballot_cache_reusable(cached, events, articles, today)
+    if not stale:
+        researched = date.fromisoformat(cached["researched"])
+        print(f"🗳️  Reusing the ballot researched {researched}: nothing has changed the field since")
+        _RESEARCH_LOG.append({"kind": "cached", "researched": researched.isoformat()})
+        return (f"(Ballot researched {_air_day(researched.isoformat())} and unchanged since. "
+                f"Background, not news.)\n{cached['block']}\n\n")
+    if cached:
+        print(f"🗳️  Researching the ballot again: {stale}")
+
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
-    if not brave_key or not client or not events:
+    if not brave_key or not client:
         return ""
     if _brave_walled("search"):
         # Answers is no substitute here: the ballot is SOURCED OR UNSAID and an
@@ -3634,6 +3717,7 @@ def _research_event_ballot(articles, client, events) -> str:
                 "the hosts had the roster and no records")
         return ""
     _check_unfound(result, events)
+    _save_ballot_cache(result, events, today)
     print("  ✅ Election research gathered")
     return result + "\n\n"
 

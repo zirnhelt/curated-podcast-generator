@@ -1207,6 +1207,86 @@ class TestEventResearchSweep:
         ballot = src.index("ballot_context = _research_event_ballot(")
         assert deep < seg < ballot
 
+    # --- The weekday pass reuses a settled ballot (2026-10-06) -------------
+    # The pass researched the whole ballot again every weekday and handed the
+    # writer the same records as new; a vote count aired four days running.
+
+    BALLOT = ("ELECTION RESEARCH — 2026 B.C. provincial general election\n"
+              "- Lorne Doerkson won in 2024 with 13,714 votes (BC Ballot, 2026-10-05).\n"
+              "NO RECORD FOUND: none")
+
+    POLL = [{"title": "B.C. Conservatives hold 5 point lead over NDP, says election poll",
+             "summary": "A new poll as voters firm up their choices."}]
+
+    def _ballot_on(self, monkeypatch, day, events=None, articles=None):
+        from datetime import datetime
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime.combine(day, datetime.min.time()))
+        return pg._research_event_ballot(articles if articles is not None else self.POLL,
+                                         object(), events or self._weekday_events())
+
+    def test_a_settled_ballot_is_reused_without_a_search(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        first = self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        assert searched > 0 and "13,714" in first
+
+        monkeypatch.setattr(pg, "_RESEARCH_LOG", [])
+        monkeypatch.delenv("BRAVE_SEARCH_API_KEY")
+        again = self._ballot_on(monkeypatch, date(2026, 10, 8))
+
+        assert len(capture["queries"]) == searched
+        assert "Ballot researched Tuesday October 6 and unchanged since" in again
+        assert "13,714" in again
+        assert pg._RESEARCH_LOG == [{"kind": "cached", "researched": "2026-10-06"}]
+
+    def test_the_field_is_researched_daily_until_nominations_close(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 3))   # closing day itself
+        searched = len(capture["queries"])
+        self._ballot_on(monkeypatch, date(2026, 10, 5))
+        assert len(capture["queries"]) > searched
+
+    def test_a_week_old_ballot_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        self._ballot_on(monkeypatch, date(2026, 10, 6 + pg.BALLOT_RESEARCH_MAX_AGE_DAYS))
+        assert len(capture["queries"]) > searched
+
+    def test_a_roster_edit_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        events = self._weekday_events()
+        self._ballot_on(monkeypatch, date(2026, 10, 6), events)
+        searched = len(capture["queries"])
+        edited = [{**e, "roster": {**e["roster"], "races": [
+            {**e["roster"]["races"][0], "withdrawn": ["Douglas Gook"]}] + e["roster"]["races"][1:]}}
+            for e in events]
+        self._ballot_on(monkeypatch, date(2026, 10, 7), edited)
+        assert len(capture["queries"]) > searched
+
+    def test_an_incomplete_ballot_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT.replace("NO RECORD FOUND: none",
+                                               "NO RECORD FOUND: Douglas Gook")
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        self._ballot_on(monkeypatch, date(2026, 10, 7))
+        assert len(capture["queries"]) > searched
+
+    def test_a_story_that_changes_the_field_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        story = {"title": "Green candidate withdraws from Cariboo-Chilcotin race", "summary": ""}
+        self._ballot_on(monkeypatch, date(2026, 10, 7), articles=[story])
+        assert len(capture["queries"]) > searched
+
+    def test_a_failed_pass_leaves_the_cache_alone(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        capture["reply"] = "NONE"
+        self._ballot_on(monkeypatch, date(2026, 10, 13))   # stale: researched, came back empty
+        assert pg.load_memory(pg.BALLOT_RESEARCH_CACHE_FILE)["researched"] == "2026-10-06"
+
     def test_the_sweep_fits_under_the_deep_dive_meter(self):
         """`_resolve_script_questions_with_brave` runs after the research pass on
         the same meter — the widened sweep must not spend the whole budget."""

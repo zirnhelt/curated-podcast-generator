@@ -195,6 +195,21 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
     search to this campaign (Brave `freshness`), so a 2024 race page stops reading as this
     year's field. The deep dive keeps the ordinary day's pass. Only the day's own event
     (Saturday) still shares that pass, because there the ballot is the deep dive.
+  - **Then it researched the same ballot every weekday** (to 2026-10-06). Nominations closed
+    Oct 3 with `candidates` still empty in config, so each weekday the pass rediscovered the
+    whole field from scratch (four roll-call searches, the agent's follow-ups, up to six page
+    reads, a Sonnet loop) and handed the writer the same vote counts and biographies as new.
+    Doerkson's 13,714 aired on four of five days. Once nominations close, the last
+    **complete** pass (its `NO RECORD FOUND` line says none) is reused from
+    `podcasts/ballot_research_cache.json`, headed with the day it was researched
+    (`_ballot_cache_reusable`). It is researched again when it is
+    `BALLOT_RESEARCH_MAX_AGE_DAYS` (7) old, when the event's roster or brief in config
+    changes, or when an election story that brought the event in reads like the field moved
+    (`_ROSTER_CHANGE_RE`: withdraws, resigns, steps down, acclaimed, nominated, replaced).
+    That regex is broad on purpose: a false hit costs one day's research, a miss airs
+    someone who is no longer running. Over 2026-09-22 to 10-06 it fired once (09-23, the
+    interim-leader story). A failed or empty pass never overwrites the cache. Saturday's
+    shared pass is not cached: there the ballot is the deep dive and the field is the news.
 
 - **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
   "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
