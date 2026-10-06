@@ -1,24 +1,4 @@
 {
-  "2026-08-31": {
-    "timestamp": 1788181072.952274,
-    "topics": [
-      "[Williams Lake Tribune] 8 weeks of live music: Williams Lake",
-      "[Williams Lake Tribune] More properties downgraded to all cl",
-      "[Williams Lake Tribune] Wildfire fighting crews continue to ",
-      "[ScienceAlert] Scientists Filmed an Alien-Looking Fish Moonw",
-      "[Dezeen] KFA set to transform 1970s brutalist LA office into",
-      "[CBC Arts] Australia bans fully AI-made songs from charts af",
-      "[Committee to Protect Journalists] In rebel-controlled easte",
-      "[The New Yorker] Smokejumpers Leap Out of Planes to Fight Wi"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-08-31",
-    "focus": "visual-arts-heritage",
-    "focus_name": "Visual Arts & Heritage"
-  },
   "2026-09-01": {
     "timestamp": 1788251207.221168,
     "topics": [
@@ -712,5 +692,24 @@
     "date": "2026-10-05",
     "focus": "words-journalism",
     "focus_name": "Writing, Journalism & Podcasting"
+  },
+  "2026-10-06": {
+    "timestamp": 1791274547.348248,
+    "topics": [
+      "[Quesnel Cariboo Observer] Meet the Candidates: Tony Goulet ",
+      "[My Cariboo Now] B.C. Conservatives hold 5 point lead over N",
+      "[Williams Lake Tribune] Quesnel Writer\u2019s Day returns for the",
+      "[My Cariboo Now] B.C. NDP plans to resume seven paused long-",
+      "[Williams Lake Tribune] Lorne Doerkson pledges to create $50",
+      "[Fast Company] The $170 billion lesson data center developer",
+      "[Williams Lake Tribune] Options being considered for B.C.\u2019s ",
+      "[farmonaut.com] Farming 4.0: Why the Future of Sustainable F"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-10-06",
+    "focus": "tourism-outdoor-economy",
+    "focus_name": "Tourism & the Outdoor Economy"
   }
 }

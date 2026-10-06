@@ -291,51 +291,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/": {
-    "article": {
-      "id": "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/",
-      "url": "https://www.motherjones.com/politics/2026/09/russian-disinformation-election-matryoshka-david-corn-mother-jones/",
-      "title": "[Mother Jones] How I Got Dragged Into a Putin Disinformation Op",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fpolitics%2F2026%2F09%2Frussian-disinformation-election-matryoshka-david-corn-mother-jones%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA version of the below article&#160;first appeared&#160;in David Corn\u2019s newsletter,&#160;Our Land.&#160;The newsletter&#160;comes out twice a week (most of the time) and provides behind-the-scenes stories and articles about politics, media, and culture. Subscribing costs just $5 a month\u2014but you can&#160;sign up for a free 30-day trial. I just published a book that exposes Russian disinformation operations. [&#8230;]",
-      "summary": "A version of the below article first appeared in David Corn\u2019s newsletter, Our Land. The newsletter comes out twice a week (most of the time) and provides behind-the-scenes stories and articles about politics, media, and culture. Subscribing costs just $5 a month\u2014but you can sign up for a free",
-      "_excerpt": "A version of the below article first appeared in David Corn\u2019s newsletter, Our Land. The newsletter comes out twice a week (most of the time) and provides behind-the-scenes stories and articles about politics, media, and culture. Subscribing costs just $5 a month\u2014but you can sign up for a free 30-day trial. I just published a book that exposes Russian disinformation operations. [\u2026]",
-      "date_published": "2026-09-29T13:08:21+00:00",
-      "authors": [
-        {
-          "name": "Mother Jones",
-          "url": "https://www.motherjones.com"
-        }
-      ],
-      "ai_score": 67,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 89,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 78,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-30T04:11:21.314165+00:00"
-      },
-      "_boosted_score": 67
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-05",
-    "target_weekday": 0,
-    "target_focus_slug": "words-journalism",
-    "target_focus_name": "Writing, Journalism & Podcasting",
-    "status": "released",
-    "release_date": "2026-10-05"
-  },
   "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/": {
     "article": {
       "id": "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/",
@@ -740,6 +695,428 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://wildfiretoday.com/advancing-community-wildfire-adaptation/": {
+    "article": {
+      "id": "https://wildfiretoday.com/advancing-community-wildfire-adaptation/",
+      "url": "https://wildfiretoday.com/advancing-community-wildfire-adaptation/",
+      "title": "[Wildfire Today] Advancing community wildfire adaptation",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwildfiretoday.com%2Fadvancing-community-wildfire-adaptation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCommunity wildfire adaption activities may not work as well as hoped because they downplay the importance of local contexts and local input, argues Catrin Edgeley from Utah State University, in an editorial for the International Journal of Wildland Fire. Science, policy and practice surrounding how human communities navigate wildfire adaptation continue to evolve across changing [\u2026]",
+      "summary": "Community wildfire adaption activities may not work as well as hoped because they downplay the importance of local contexts and local input, argues Catrin Edgeley from Utah State University, in an editorial for the International Journal of Wildland Fire. Science, policy and practice surrounding how",
+      "_excerpt": "Community wildfire adaption activities may not work as well as hoped because they downplay the importance of local contexts and local input, argues Catrin Edgeley from Utah State University, in an editorial for the International Journal of Wildland Fire. Science, policy and practice surrounding how human communities navigate wildfire adaptation continue to evolve across changing [\u2026]",
+      "date_published": "2026-10-05T03:09:48+00:00",
+      "authors": [
+        {
+          "name": "Wildfire Today",
+          "url": "https://wildfiretoday.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 90,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 79,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-09",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal": {
+    "article": {
+      "id": "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal",
+      "url": "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal",
+      "title": "[ScienceAlert] As Permafrost Melts, Toxic Metals Are Poisoning Rivers With Levels 70 Times Higher Than Normal",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fas-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"As Permafrost Melts, Toxic Metals Are Poisoning Rivers With Levels 70 Times Higher Than Normal\" class=\"attachment-full size-full\" height=\"1440\" src=\"https://www.sciencealert.com/images/2026/09/Kutuk_2016_2-2560x1440-1.jpg\" width=\"2560\"/><figcaption>An aerial view of the Kutuk River in Alaska's Gates of the Arctic National Park. (Ken Hill/National Park Service)</figcaption></figure>\n<p><img alt=\"As Permafrost Melts, Toxic Metals Are Poisoning Rivers With Levels 70 Times Higher Than Normal\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/09/Kutuk_2016_2-2560x1440-1-1200x675.jpg\" style=\"float:left;margin:0 15px 15px 0;\" width=\"1200\"/>An unexpected side effect of a thawing world.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&amp;utm_medium=feed&amp;utm_campaign=rss_feed_promo\" rel=\"noopener noreferrer\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.</a></p>",
+      "summary": "An aerial view of the Kutuk River in Alaska's Gates of the Arctic National Park. (Ken Hill/National Park Service) An unexpected side effect of a thawing world. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "_excerpt": "An aerial view of the Kutuk River in Alaska's Gates of the Arctic National Park. (Ken Hill/National Park Service) An unexpected side effect of a thawing world. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "date_published": "2026-09-30T02:33:31+00:00",
+      "authors": [
+        {
+          "name": "ScienceAlert",
+          "url": "https://www.sciencealert.com"
+        }
+      ],
+      "ai_score": 59,
+      "_quality": 74,
+      "_relevance": 68,
+      "_local": 15,
+      "_theme_score": 86,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 79,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 59
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-11",
+    "target_weekday": 6,
+    "target_focus_slug": "sky-cosmos",
+    "target_focus_name": "Sky & Cosmos",
+    "status": "held"
+  },
+  "https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/": {
+    "article": {
+      "id": "https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/",
+      "url": "https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/",
+      "title": "[BC Wildfire Service] Pile burning planned for areas within the Kamloops Fire Zone",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.gov.bc.ca%2Fbcwildfire%2Fpile-burning-planned-for-areas-within-the-kamloops-fire-zone%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nKAMLOOPS \u2013 The BC Wildfire Service is assisting Interfor in conducting wildfire risk reduction projects throughout the Kamloops Fire Zone, as described below. Crews will be burning approximately 20 piles throughout these locations as site and weather conditions allow. Pile burning will occur: The purpose of this project is to help mitigate wildfire risk in \u2026 <a href=\"https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/\">Continued</a>",
+      "summary": "KAMLOOPS \u2013 The BC Wildfire Service is assisting Interfor in conducting wildfire risk reduction projects throughout the Kamloops Fire Zone, as described below. Crews will be burning approximately 20 piles throughout these locations as site and weather conditions allow. Pile burning will occur: The",
+      "_excerpt": "KAMLOOPS \u2013 The BC Wildfire Service is assisting Interfor in conducting wildfire risk reduction projects throughout the Kamloops Fire Zone, as described below. Crews will be burning approximately 20 piles throughout these locations as site and weather conditions allow. Pile burning will occur: The purpose of this project is to help mitigate wildfire risk in \u2026 Continued",
+      "date_published": "2026-10-02T15:54:09+00:00",
+      "authors": [
+        {
+          "name": "BC Wildfire Service",
+          "url": "https://blog.gov.bc.ca/bcwildfire/"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 86,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 75,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-09",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/": {
+    "article": {
+      "id": "https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/",
+      "url": "https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/",
+      "title": "[Quesnel Cariboo Observer] Meet the Candidates: Tony Goulet seeks re-election as councillor for City of Quesnel",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F05%2Fmeet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nGeneral voting day across B.C., including Quesnel, will take place on Oct. 17.",
+      "summary": "General voting day across B.C., including Quesnel, will take place on Oct. 17.",
+      "_excerpt": "General voting day across B.C., including Quesnel, will take place on Oct. 17.",
+      "date_published": "2026-10-05T21:44:16+00:00",
+      "authors": [
+        {
+          "name": "Quesnel Cariboo Observer",
+          "url": "https://quesnelobserver.com"
+        }
+      ],
+      "ai_score": 85,
+      "_quality": 60,
+      "_relevance": 88,
+      "_local": 100,
+      "_theme_score": 86,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 71,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 85
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-10",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://www.theguardian.com/global-development/2026/oct/05/shortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts": {
+    "article": {
+      "id": "https://www.theguardian.com/global-development/2026/oct/05/shortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts",
+      "url": "https://www.theguardian.com/global-development/2026/oct/05/shortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts",
+      "title": "[The Guardian Global Development] Shortages of crucial HIV medicines due to aid cuts are a \u2018warning\u2019, say experts",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theguardian.com%2Fglobal-development%2F2026%2Foct%2F05%2Fshortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>More than half of organisations providing HIV care surveyed by International Planned Parenthood Federation said they had run out of stock at some point during past 12 months</p><p>Aid cuts have affected HIV drug and test supplies across the world, with some providers reporting they are out of stock of key medicines, according to a survey of 40 countries.</p><p>Organisations providing HIV care revealed that more than half (55%) had run out of stock within the past year, with a critical scarcity of HIV tests and pre-exposure prophylaxis (PrEP) \u2013 a prescription medicine that people take to reduce the risk of getting HIV.</p> <a href=\"https://www.theguardian.com/global-development/2026/oct/05/shortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts\">Continue reading...</a>",
+      "summary": "More than half of organisations providing HIV care surveyed by International Planned Parenthood Federation said they had run out of stock at some point during past 12 months Aid cuts have affected HIV drug and test supplies across the world, with some providers reporting they are out of stock of",
+      "_excerpt": "More than half of organisations providing HIV care surveyed by International Planned Parenthood Federation said they had run out of stock at some point during past 12 months Aid cuts have affected HIV drug and test supplies across the world, with some providers reporting they are out of stock of key medicines, according to a survey of 40 countries. Organisations providing HIV care revealed that more than half (55%) had run out of stock within the past year, with a critical scarcity of HIV tests and pre-exposure prophylaxis (PrEP) \u2013 a prescription medicine that people take to reduce the risk",
+      "date_published": "2026-10-05T09:00:52+00:00",
+      "authors": [
+        {
+          "name": "The Guardian Global Development",
+          "url": "https://www.theguardian.com/global-development"
+        }
+      ],
+      "ai_score": 67,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 67
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-18",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.nytimes.com/2026/10/05/business/hormuz-saudi-iran-houthis.html": {
+    "article": {
+      "id": "https://www.nytimes.com/2026/10/05/business/hormuz-saudi-iran-houthis.html",
+      "url": "https://www.nytimes.com/2026/10/05/business/hormuz-saudi-iran-houthis.html",
+      "title": "[NYT Business] Burst of Attacks in Gulf Heightens Fears Over Fragile Energy Trade",
+      "content_html": "<img src=\"https://static01.nyt.com/images/2026/10/05/multimedia/05Biz-Hormuz-01-hgml/05Biz-Hormuz-01-hgml-mediumSquareAt3X-v2.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F10%2F05%2Fbusiness%2Fhormuz-saudi-iran-houthis.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nStrikes on tankers in the Strait of Hormuz and oil infrastructure in Saudi Arabia came as the region\u2019s exporters were getting more oil to the world market.",
+      "summary": "Strikes on tankers in the Strait of Hormuz and oil infrastructure in Saudi Arabia came as the region\u2019s exporters were getting more oil to the world market.",
+      "_excerpt": "Strikes on tankers in the Strait of Hormuz and oil infrastructure in Saudi Arabia came as the region\u2019s exporters were getting more oil to the world market.",
+      "date_published": "2026-10-05T23:10:32+00:00",
+      "authors": [
+        {
+          "name": "NYT Business",
+          "url": "https://www.nytimes.com/section/business"
+        }
+      ],
+      "ai_score": 70,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 97,
+      "_theme_score_raw": 18,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static01.nyt.com/images/2026/10/05/multimedia/05Biz-Hormuz-01-hgml/05Biz-Hormuz-01-hgml-mediumSquareAt3X-v2.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "New York Times",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 70,
+      "_topic_cluster": "Middle East military tensions"
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-18",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.nytimes.com/2026/10/01/business/energy-environment/oil-prices-iran-war-trump.html": {
+    "article": {
+      "id": "https://www.nytimes.com/2026/10/01/business/energy-environment/oil-prices-iran-war-trump.html",
+      "url": "https://www.nytimes.com/2026/10/01/business/energy-environment/oil-prices-iran-war-trump.html",
+      "title": "[NYT Business] Oil Is Flowing From the Persian Gulf, but Prices Remain High. Why?",
+      "content_html": "<img src=\"https://static01.nyt.com/images/2026/10/01/multimedia/01biz-oil-price-zlhp/01biz-oil-price-zlhp-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F10%2F01%2Fbusiness%2Fenergy-environment%2Foil-prices-iran-war-trump.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCrude oil costs close to $100 a barrel because traders are worried hostilities could soon restart and the world is burning through its emergency stockpiles.",
+      "summary": "Crude oil costs close to $100 a barrel because traders are worried hostilities could soon restart and the world is burning through its emergency stockpiles.",
+      "_excerpt": "Crude oil costs close to $100 a barrel because traders are worried hostilities could soon restart and the world is burning through its emergency stockpiles.",
+      "date_published": "2026-10-01T09:06:44+00:00",
+      "authors": [
+        {
+          "name": "NYT Business",
+          "url": "https://www.nytimes.com/section/business"
+        }
+      ],
+      "ai_score": 59,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 90,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 62,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static01.nyt.com/images/2026/10/01/multimedia/01biz-oil-price-zlhp/01biz-oil-price-zlhp-mediumSquareAt3X.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "New York Times",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 17,
+      "_topic_cluster": "Middle East military tensions",
+      "_cluster_suppressed": true
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-18",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://eaglefeathernews.com/2026/10/05/carry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre/": {
+    "article": {
+      "id": "https://eaglefeathernews.com/2026/10/05/carry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre/",
+      "url": "https://eaglefeathernews.com/2026/10/05/carry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre/",
+      "title": "[Eagle Feather News] Carry the Kettle First Nation call on provincial and federal governments to pause AI Data Centre",
+      "content_html": "<img src=\"https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/screenshot-2026-10-05-at-50842-pm.png\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Feaglefeathernews.com%2F2026%2F10%2F05%2Fcarry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBell Canada's AI data centre is located in the Rural Municipality of Sherwood, Saskatchewan, just southeast of Regina",
+      "summary": "Bell Canada's AI data centre is located in the Rural Municipality of Sherwood, Saskatchewan, just southeast of Regina",
+      "_excerpt": "Bell Canada's AI data centre is located in the Rural Municipality of Sherwood, Saskatchewan, just southeast of Regina",
+      "date_published": "2026-10-05T23:11:36+00:00",
+      "authors": [
+        {
+          "name": "Eagle Feather News",
+          "url": "https://www.eaglefeathernews.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 76,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 53,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/screenshot-2026-10-05-at-50842-pm.png",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 60
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-08",
+    "target_weekday": 3,
+    "target_focus_slug": "guardians-stewardship",
+    "target_focus_name": "Guardians & Land Stewardship",
+    "status": "held"
+  },
+  "https://www.xda-developers.com/squeeze-entire-network-stack-onto-a-raspberry-pi-zero/": {
+    "article": {
+      "id": "https://www.xda-developers.com/squeeze-entire-network-stack-onto-a-raspberry-pi-zero/",
+      "url": "https://www.xda-developers.com/squeeze-entire-network-stack-onto-a-raspberry-pi-zero/",
+      "title": "[XDA Developers] I squeezed my entire network stack onto a Raspberry Pi Zero, and it broke my assumptions about what's essential",
+      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/10/pi-zero-2w-network-stack.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fsqueeze-entire-network-stack-onto-a-raspberry-pi-zero%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA compact home network stacks Pi-hole, Unbound, Tailscale, and monitoring onto a Raspberry Pi Zero 2 W with headroom.",
+      "summary": "A compact home network stacks Pi-hole, Unbound, Tailscale, and monitoring onto a Raspberry Pi Zero 2 W with headroom.",
+      "_excerpt": "A compact home network stacks Pi-hole, Unbound, Tailscale, and monitoring onto a Raspberry Pi Zero 2 W with headroom.",
+      "date_published": "2026-10-03T19:30:17+00:00",
+      "authors": [
+        {
+          "name": "XDA Developers",
+          "url": "https://www.xda-developers.com"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 66,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 50,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/10/pi-zero-2w-network-stack.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-06T04:08:52.870645+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-07",
+    "target_weekday": 2,
+    "target_focus_slug": "vehicles-field-gear",
+    "target_focus_name": "Vehicles & Field Gear",
+    "status": "held"
+  },
+  "https://www.howtogeek.com/the-only-2-linux-distros-i-recommend-for-laptops-with-4gb-of-ram/": {
+    "article": {
+      "id": "https://www.howtogeek.com/the-only-2-linux-distros-i-recommend-for-laptops-with-4gb-of-ram/",
+      "url": "https://www.howtogeek.com/the-only-2-linux-distros-i-recommend-for-laptops-with-4gb-of-ram/",
+      "title": "[How-To Geek] The only 2 Linux distros I recommend for laptops with 4GB of RAM",
+      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/09/img_4831.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fthe-only-2-linux-distros-i-recommend-for-laptops-with-4gb-of-ram%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBreathing life into old hardware has been getting increasingly complicated, but it can work out if you know how to.",
+      "summary": "Breathing life into old hardware has been getting increasingly complicated, but it can work out if you know how to.",
+      "_excerpt": "Breathing life into old hardware has been getting increasingly complicated, but it can work out if you know how to.",
+      "date_published": "2026-10-05T00:00:13+00:00",
+      "authors": [
+        {
+          "name": "How-To Geek",
+          "url": "https://www.howtogeek.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 66,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 48,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/09/img_4831.jpg",
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-10-05T04:06:51.935278+00:00"
+      },
+      "_boosted_score": 60
+    },
+    "held_date": "2026-10-06",
+    "target_date": "2026-10-07",
+    "target_weekday": 2,
+    "target_focus_slug": "vehicles-field-gear",
+    "target_focus_name": "Vehicles & Field Gear",
     "status": "held"
   }
 }
