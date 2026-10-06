@@ -228,6 +228,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The phrase ledger burns spiking adverbs only; multi-word tics go in `hard_banned` by hand.
 - The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
 - `script/tell-scrub` runs after the cold open.
+- **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat.
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
 
 **Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.

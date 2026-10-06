@@ -4182,7 +4182,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
-        + format_standing_notes_block(for_factcheck=True)
+        + format_standing_notes_block(for_factcheck=True) + _aired_repeats_addendum(script)
 
     review_model = model or select_review_model(deep_dive_articles)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
@@ -4251,7 +4251,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
-        + format_standing_notes_block(for_factcheck=True)
+        + format_standing_notes_block(for_factcheck=True) + _aired_repeats_addendum(script)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)
@@ -5545,6 +5545,161 @@ def format_prior_coverage_for_prompt(deep_dive_articles, episode_memory, debate_
     for match_date, prior, title in matches[:5]:
         context += f"- \"{title}\" overlaps with [{match_date}] {prior}\n"
     return context + "\n"
+
+
+# Already-aired guard. The topic guard above works on titles; this one works on
+# the sentences the hosts actually said. The all-week election pass hands the
+# writer the same ballot records every day, and 2026-10-06 aired a 2024 vote
+# count and a candidate biography that had aired on three of the four days before.
+# A sentence boundary, but not inside "B.C." or "St.".
+_AIRED_SENTENCE_SPLIT_RE = re.compile(
+    r'(?<![A-Z]\.[A-Z]\.)(?<!\b[A-Z][a-z]\.)(?<=[.!?])\s+(?=["\'A-Z])')
+_AIRED_TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z'’\-]+|\d[\d,.]*\d|\d")
+# "108 Mile Ranch" and "Highway 97" are places, not figures.
+_AIRED_PLACE_NUMBER_RE = re.compile(r'\b\d+(?=\s+Mile\b)|(?<=\bHighway)\s+\d+\b')
+_AIRED_STOPWORDS = _PRIOR_COVERAGE_STOPWORDS | frozenset(
+    "also just only very much like here know think yeah really because today "
+    "today's that's it's we're we'll they're there's what's report reports "
+    "reported reporting according".split())
+
+
+def _aired_tokens(text: str) -> set[str]:
+    """Content words, plus figures as '#13714'. Years and single digits are not
+    figures worth matching on."""
+    tokens = set()
+    for raw in _AIRED_TOKEN_RE.findall(_AIRED_PLACE_NUMBER_RE.sub('', text)):
+        if raw[0].isdigit():
+            figure = raw.replace(',', '').rstrip('.')
+            if len(figure) > 1 and not re.fullmatch(r'(?:19|20)\d\d', figure):
+                tokens.add('#' + figure)
+            continue
+        word = raw.lower().replace('’', "'").removesuffix("'s")
+        if len(word) > 3 and word not in _AIRED_STOPWORDS:
+            tokens.add(word)
+    return tokens
+
+
+def _specific_figure(token: str) -> bool:
+    """13,714 or 69.6, not 100 or 32: a figure two sentences only share by
+    repeating the same fact."""
+    if not token.startswith('#'):
+        return False
+    digits = re.sub(r'\D', '', token)
+    return len(digits) >= 3 and ('.' in token or not token.endswith('00'))
+
+
+def _echoes(a: set[str], b: set[str]) -> bool:
+    """Do two token sets state the same thing? A shared specific figure plus
+    one more word, or half the shorter sentence's words (at least five)."""
+    shared = a & b
+    if len(shared) >= 2 and any(_specific_figure(t) for t in shared):
+        return True
+    return len(shared) >= 5 and len(shared) >= 0.5 * min(len(a), len(b))
+
+
+def _aired_sentences(script: str) -> list[str]:
+    """Spoken sentences of the News Roundup and Deep Dive. The welcome, weather,
+    land acknowledgment and spotlight repeat by design and are left out."""
+    sentences = []
+    for name, (start, end) in _script_sections(script).items():
+        if name not in ("NEWS ROUNDUP", "DEEP DIVE"):
+            continue
+        for line in script[start:end].splitlines():
+            if not _SPEAKER_TAG_RE.match(line):
+                continue
+            spoken = re.sub(r'\[[^\]]*\]', '', _SPEAKER_TAG_RE.sub('', line)).strip()
+            sentences += [s.strip() for s in _AIRED_SENTENCE_SPLIT_RE.split(spoken)
+                          if len(s.split()) >= 6]
+    return sentences
+
+
+def _recent_aired(today: str, days: int) -> list[tuple[str, str, set[str]]]:
+    """(air date, sentence, tokens) from the scripts of the `days` before
+    `today`, newest first. A missing or unreadable day is skipped."""
+    first = (date.fromisoformat(today) - timedelta(days=days)).isoformat()
+    aired = []
+    for path in sorted(PODCASTS_DIR.glob("podcast_script_*.txt"), reverse=True):
+        m = re.match(r'podcast_script_(\d{4}-\d{2}-\d{2})_', path.name)
+        if not m or not first <= m.group(1) < today:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        aired += [(m.group(1), s, toks) for s in _aired_sentences(text)
+                  if len(toks := _aired_tokens(s)) >= 4]
+    return aired
+
+
+def _air_day(date_key: str) -> str:
+    d = date.fromisoformat(date_key)
+    return f"{d:%A} {d:%B} {d.day}"
+
+
+def _clip(sentence: str, limit: int = 240) -> str:
+    return sentence if len(sentence) <= limit else sentence[:limit].rsplit(' ', 1)[0] + '…'
+
+
+def format_aired_ledger_for_prompt(material: str, today: str) -> str:
+    """The past week's sentences that today's material would have the hosts say
+    again, for the script prompt. Purely local; "" when nothing repeats.
+
+    `material` is everything the writer is handed: articles and the research
+    block. It is read in three-sentence windows because the research block
+    states one fact across sentences ("won by 7,722 votes. He had 13,714").
+    """
+    cfg = CONFIG['prompts'].get('aired_ledger') or {}
+    if not cfg.get('generation_template'):
+        return ""
+    pieces = [p.strip() for p in re.split(r'\n|(?<=[.!?])\s+', material) if len(p.split()) >= 3]
+    windows = [_aired_tokens(' '.join(pieces[i:i + 3])) for i in range(len(pieces))]
+    kept: list[tuple[str, str, set[str]]] = []
+    for day, sentence, toks in _recent_aired(today, cfg.get('lookback_days', 7)):
+        if any(_echoes(toks, k[2]) for k in kept):
+            continue  # an older airing of a line already listed
+        if any(_echoes(toks, w) for w in windows):
+            kept.append((day, sentence, toks))
+        if len(kept) >= cfg.get('max_lines', 30):
+            break
+    if not kept:
+        return ""
+    print(f"  🔁 Already-aired ledger: {len(kept)} line(s) from the past week")
+    lines = "\n".join(f'- {_air_day(day)}: "{_clip(s)}"' for day, s, _ in sorted(kept))
+    return cfg['generation_template'].format(lines=lines)
+
+
+def find_aired_repeats(script: str, today: str) -> list[tuple[str, str, str]]:
+    """(draft sentence, air date, earlier sentence) for each Roundup or Deep
+    Dive sentence of `script` that restates one from the past week."""
+    cfg = CONFIG['prompts'].get('aired_ledger') or {}
+    aired = _recent_aired(today, cfg.get('lookback_days', 7))
+    repeats = []
+    for sentence in _aired_sentences(script):
+        toks = _aired_tokens(sentence)
+        if len(toks) < 4:
+            continue
+        hit = next(((day, s) for day, s, t in aired if _echoes(toks, t)), None)
+        if hit:
+            repeats.append((sentence, *hit))
+    return repeats
+
+
+def _aired_repeats_addendum(script: str) -> str:
+    """Polish-prompt addendum naming the draft's lines that restate the past
+    week. The generation prompt already carried the ledger; this catches what
+    got through. Never fails the polish: on error it is just absent."""
+    cfg = CONFIG['prompts'].get('aired_ledger') or {}
+    if not cfg.get('polish_template'):
+        return ""
+    repeats = []
+    with segment("script/aired-repeats", critical=False):
+        repeats = find_aired_repeats(script, get_pacific_now().strftime("%Y-%m-%d"))
+    if not repeats:
+        return ""
+    print(f"  🔁 {len(repeats)} draft line(s) restate the past week — sent to polish")
+    lines = "\n".join(f'- "{_clip(new)}" (aired {_air_day(day)} as "{_clip(old, 160)}")'
+                      for new, day, old in repeats[:cfg.get('max_lines', 30)])
+    return "\n\n" + cfg['polish_template'].format(lines=lines)
 
 
 def format_cta_history_for_prompt(cta_memory, today_theme):
@@ -8668,6 +8823,15 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
     # Inject Brave Search enrichment context (fact-checking + recent developments)
     if brave_context:
         memory_context += brave_context
+
+    # What of today's material already aired this week, so it is recalled
+    # rather than restated. Dynamic prompt only: it changes daily.
+    aired_ledger = ""
+    with segment("script/aired-ledger", critical=False):
+        aired_ledger = format_aired_ledger_for_prompt(
+            "\n".join((news_text, deep_dive_text, brave_context or "")),
+            get_pacific_now().strftime("%Y-%m-%d"))
+    memory_context += aired_ledger
 
     # Add holiday context if today is a special holiday that should be acknowledged in opening/closing
     if psa_info and psa_info.get('event_name') and psa_info.get('source') == 'event':
@@ -12562,6 +12726,11 @@ def run_script_stage() -> tuple[str, str] | None:
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
+
+        with segment("script/aired-check", critical=False):
+            # What the ledger and the polish addendum let through, for the log.
+            print(f"🔁 {len(find_aired_repeats(script, date_key))} line(s) still "
+                  f"restate the past week after polish")
 
         with segment("script/correction-guard", critical=False):
             # Last line of defence against an invented on-air correction — both

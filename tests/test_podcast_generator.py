@@ -6223,3 +6223,139 @@ class TestProtectTheMetaMoment:
         wf = (Path(__file__).parent.parent / ".github/workflows/daily-podcast.yml").read_text()
         assert not re.search(r"git fetch[^\n]*--depth", wf)
         assert "Check the Sunday Meta Moment aired" in wf
+
+
+class TestAiredLedger:
+    """The past week's spoken lines that today's material would repeat.
+
+    2026-10-06 aired Doerkson's 2024 vote count and Askew's biography for the
+    third and fourth time that week: the all-week election pass hands the
+    writer the same ballot records every day, and nothing told it they had aired.
+    """
+
+    PRIOR = (
+        "# Cariboo Signals Podcast Script - {day}\n\n"
+        "**WELCOME**\n\n"
+        "**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest "
+        "tech news and ideas that impact our rural communities.\n\n"
+        "**NEWS ROUNDUP**\n\n"
+        "**RILEY:** [pause:1200] Doerkson won in 2024 by 7,722 votes, 13,714 to 5,992.\n\n"
+        "**CASEY:** She volunteers with the Hawkins Lake Volunteer Fire Department, "
+        "the Forest Grove Legion and the Canim Lake Community Club.\n\n"
+        "**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands**\n\n"
+        "**RILEY:** Seed growers in Saskatoon are watching the move to one site closely.\n"
+    )
+
+    @pytest.fixture
+    def podcasts(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+
+        def write(day, text=None):
+            (tmp_path / f"podcast_script_{day}_working_lands.txt").write_text(
+                text or self.PRIOR.format(day=day), encoding="utf-8")
+        return write
+
+    RESEARCH = ("2024 win: BC Ballot, citing Elections BC, says he won by 7,722 votes. "
+                "He had 13,714 votes (69.6%) against NDP's Michael Moses with 5,992.")
+
+    def test_lists_an_aired_fact_the_research_restates(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-03")
+
+        block = pg.format_aired_ledger_for_prompt(self.RESEARCH, "2026-10-06")
+
+        assert "ALREADY ON AIR THIS WEEK" in block
+        assert '- Saturday October 3: "Doerkson won in 2024 by 7,722 votes, 13,714 to 5,992."' in block
+        assert "Welcome to Cariboo Signals" not in block   # boilerplate by design
+        assert "Hawkins Lake" not in block                 # not in today's material
+
+    def test_reads_only_the_lookback_window(self, podcasts):
+        import podcast_generator as pg
+        for day in ("2026-09-28", "2026-10-06", "2026-10-07"):
+            podcasts(day)   # 8 days back, today's own draft, tomorrow
+
+        assert pg.format_aired_ledger_for_prompt(self.RESEARCH, "2026-10-06") == ""
+
+    def test_lists_a_fact_once_at_its_latest_airing(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-02")
+        podcasts("2026-10-04")
+
+        block = pg.format_aired_ledger_for_prompt(self.RESEARCH, "2026-10-06")
+
+        assert block.count("7,722") == 1
+        assert "Sunday October 4" in block
+
+    def test_empty_when_nothing_repeats(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-03")
+
+        assert pg.format_aired_ledger_for_prompt(
+            "Ottawa announced a $1 billion Food-Link Fund for food terminals.", "2026-10-06") == ""
+
+    def test_finds_the_drafts_restated_lines(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-03")
+        draft = (
+            "**NEWS ROUNDUP**\n\n"
+            "**CASEY:** BC Ballot gives his 2024 result as 13,714 votes, about 69.6 percent.\n\n"
+            "**RILEY:** She also volunteers with the Hawkins Lake fire department, "
+            "the Forest Grove Legion and the Canim Lake Community Club.\n\n"
+            "**CASEY:** Ottawa announced a $1 billion Food-Link Fund for food terminals.\n"
+        )
+
+        repeats = pg.find_aired_repeats(draft, "2026-10-06")
+
+        assert [(new[:20], day) for new, day, _ in repeats] == [
+            ("BC Ballot gives his ", "2026-10-03"),
+            ("She also volunteers ", "2026-10-03"),
+        ]
+
+    def test_numbered_places_are_not_figures(self):
+        import podcast_generator as pg
+        a = pg._aired_tokens("In 108 Mile Ranch, a feature on the cultural centre.")
+        b = pg._aired_tokens("The 100 Mile Free Press says 108 Mile Ranch raised money on Highway 97.")
+
+        assert not any(t.startswith("#") for t in a | b)
+        assert not pg._echoes(a, b)
+
+    def test_sentences_do_not_split_inside_initialisms(self):
+        import podcast_generator as pg
+        draft = ("**NEWS ROUNDUP**\n\n**RILEY:** He was first elected as a B.C. Liberal "
+                 "in Cariboo-Chilcotin. He was re-elected in 2024 as a Conservative.\n")
+
+        assert pg._aired_sentences(draft) == [
+            "He was first elected as a B.C. Liberal in Cariboo-Chilcotin.",
+            "He was re-elected in 2024 as a Conservative.",
+        ]
+
+    def test_polish_prompt_carries_the_drafts_repeats(self, podcasts, monkeypatch):
+        import podcast_generator as pg
+        from datetime import datetime
+        podcasts("2026-10-03")
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 10, 6, 1, 0))
+        draft = "**NEWS ROUNDUP**\n\n**CASEY:** He took 13,714 votes in 2024, about 69.6 percent.\n"
+
+        addendum = pg._aired_repeats_addendum(draft)
+
+        assert "REPEATS FROM EARLIER EPISODES" in addendum
+        assert "aired Saturday October 3" in addendum
+        assert pg._aired_repeats_addendum("**NEWS ROUNDUP**\n\n**CASEY:** Nothing aired.\n") == ""
+
+    def test_generation_prompt_carries_the_ledger(self, podcasts, monkeypatch):
+        import podcast_generator as pg
+        from datetime import datetime
+        podcasts("2026-10-03")
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 10, 6, 1, 0))
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+
+        pg.generate_podcast_script([], [], "Working Lands & Industry", {}, {},
+                                   brave_context=self.RESEARCH)
+
+        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        assert "ALREADY ON AIR THIS WEEK" in sent
+        assert "13,714 to 5,992" in sent

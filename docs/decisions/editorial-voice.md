@@ -213,6 +213,38 @@ for what the show should sound like — short turns, one flat unhedged statement
 allowed to not resolve — and `score_rhythm` measures exactly those, reporting `over_budget`
 into `episode.quality`. It is advisory: nothing blocks on it.
 
+### Already aired: the week's own lines (`format_aired_ledger_for_prompt`, `find_aired_repeats`)
+
+On 2026-10-06 the roundup gave Lorne Doerkson's 2024 result (13,714 votes), Kathryn Askew's
+32 years in education and her volunteer list, and Sheldon Clare's 2024 win. Each had aired on
+two to four of the five days before, close to word for word. The cause was upstream of the
+writer: the all-week election pass (`_research_event_ballot`) researches the whole ballot again
+every day an article carries the election's vocabulary, and hands the writer the same records
+as fresh background. The topic guard (`format_prior_coverage_for_prompt`) compares titles, so
+it could not see a repeat that came in through the research block.
+
+The ask was to put the past week's scripts in the prompt cache. Two reasons it went the other way:
+
+- **The cache does not carry from one day to the next.** A 5-minute (or 1-hour) TTL only pays
+  off inside a run, for the expand retry. Seven scripts are about 28k tokens, about $0.07 a run
+  on the generation call alone (roughly 10% more on the show's monthly spend), sent fresh every day.
+- **The model copies what it is shown.** Twenty thousand words of the show's own dialogue in the
+  prompt is the strongest register cue it could get (see *The prompt was teaching the tic*).
+
+What runs instead, with no API call: the News Roundup and Deep Dive sentences of the last
+`lookback_days` scripts are matched against everything the writer is handed (articles plus
+research, read in three-sentence windows because the research block splits one fact across
+sentences). Matches go into the dynamic prompt as `ALREADY ON AIR THIS WEEK`, dated and listed
+once, at most `max_lines`. Two sentences state the same thing when they share a specific figure
+(three or more digits, not round, not a year; "108 Mile" and "Highway 97" are places) plus one
+more word, or half the shorter one's content words (at least five). Over September and October
+2026 the ledger stayed under about 500 tokens a day.
+
+The draft is then checked against the same week, and its repeats go to both polish paths as
+`REPEATS FROM EARLIER EPISODES`; `script/aired-check` logs how many survive. Both templates say
+a candidate's name is never a repeat, because the roster rule (name everyone running) wins over
+brevity. The welcome, weather, land acknowledgment and spotlight are left out: they repeat by design.
+
 ## The Sunday Meta Moment (`get_weekly_changelog`, `generate_meta_moment_text`)
 
 One Haiku call turns the week's commit subjects into a short Riley/Casey segment about
