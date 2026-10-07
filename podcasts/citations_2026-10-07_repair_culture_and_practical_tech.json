@@ -1,0 +1,389 @@
+{
+  "episode": {
+    "date": "2026-10-07",
+    "formatted_date": "Wednesday, October 07, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> What are we actually measuring?</p><p><b>NEWS ROUNDUP:</b> We break down Two vehicle MVI in 100 Mile House sent two to hospital and Search and Rescue teams find person who was lost over the weekend, plus 13 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How should rural communities measure equipment repairability and reliability beyond standardized spec sheets and online review scores? Topics include: Limitations of spec sheets and online review scores for rural equipment decisions, Proxy metrics and how they can drift from measuring actual reliability to measuring repair speed, Local expertise and institutional knowledge versus centralized data sources, Network dependency and the cable-unplugged test for equipment resilience, Institutional sustainability of community-maintained repair logs and failure databases.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://bgcwilliamslake.com\">Boys and Girls Club of Williams Lake</a></p><p><b>Sources discussed:</b></p><ul><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/10/06/two-vehicle-mvi-in-100-mile-house-sent-two-to-hospital/\">[100 Mile Free Press] Two vehicle MVI in 100 Mile House sent...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316593/news/emergency-services/search-and-rescue/search-and-rescue-teams-find-person-who-was-lost-over-the-weekend/\">[My Cariboo Now] Search and Rescue teams find person who was...</a></li><li>Brendan Shykora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/23/vancouver-man-experiences-okanagan-wildfire-season-on-cross-country-coffee-bike-tour/\">[Williams Lake Tribune] Vancouver man experiences Okanagan w...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/09/29/letter-kudos-to-everyone-keeping-racing-alive-in-williams-lake/\">[Williams Lake Tribune] LETTER: Kudos to everyone keeping ra...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316591/news/indigenous/esketemc-first-nation-head-to-the-polls-for-upcoming-election/\">[My Cariboo Now] Esk’etemc First Nation head to the polls fo...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316601/news/elections/2026-municipal-election/early-voting-opportunities-in-the-cariboo/\">[My Cariboo Now] Early voting opportunities in the Cariboo</a></li><li>Patrick Davies (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/06/mp-todd-doherty-endorses-lorne-doerkson-for-premier/\">[Williams Lake Tribune] MP Todd Doherty endorses Lorne Doerk...</a></li><li>The Northern Miner: <a href=\"https://www.northernminer.com/news/westwin-to-build-502m-nickel-refinery-in-mississippi/1003895478/\">[The Northern Miner] Westwin to build $502M nickel refinery ...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91619102/hubspot-layoffs-today-jobs-slashed-stock-struggles-why\">[Fast Company] HubSpot layoffs: CEO says job cuts are not dr...</a></li><li>Brian Celenza (Engineering – The GitHub Blog): <a href=\"https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/\">[Engineering – The GitHub Blog] Building Git infrastructure ...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/dutch-tax-authority-will-ditch-microsoft-365-in-favor-of-on-premises-and-open-source/?utm_source=rss\">[Neowin] Dutch tax authority will ditch Microsoft 365 in fav...</a></li><li>Architizer: <a href=\"https://architizer.com/blog/practice/tools/residential-design-saraiva-associados-visoid/\">[Architizer] The Cost of Every Compromise: How Saraiva + Ass...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91616713/employers-have-a-bizarre-new-job-interview-problem-figuring-out-if-theyre-talking-to-a-human\">[Fast Company] Employers have a bizarre new job interview pr...</a></li><li>Neowin: <a href=\"https://www.neowin.net/guides/how-to-quickly-redact-sensitive-info-from-screenshots-in-windows-11/?utm_source=rss\">[Neowin] How to quickly redact sensitive info from screensho...</a></li><li>New Atlas: <a href=\"https://newatlas.com/robotics/elastic-robot-jump-infrared-light/\">[New Atlas] Wind-up elastic robot jumps forever when fed inf...</a></li><li>iFixit: <a href=\"https://www.ifixit.com/News/119658/apple-watch-series-12-and-ultra-4-teardown-reveals-a-gap-in-right-to-repair-coverage\">[iFixit] Apple Watch Series 12 and Ultra 4 Teardown Reveals ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/09/260928100547.htm\">[ScienceDaily] Creatine may help build muscle even without e...</a></li><li>The Guardian Global Development: <a href=\"https://www.theguardian.com/global-development/video/2026/oct/06/ngos-say-israel-bombed-a-journalist-and-appeared-to-attack-ambulances-trying-to-aid-her-explainer\">[The Guardian Global Development] NGOs say Israel bombed a j...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-07T01:12:14.263268-07:00",
+    "models": {
+      "script": "claude-sonnet-5-5",
+      "review": "claude-sonnet-5-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 2913,
+      "voice_ratio_casey_riley": 1.01,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 7,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 28,
+        "turns": 87,
+        "avg_turn_words": 32.1,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "actually-measuring",
+      "question": "What are we actually measuring?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[100 Mile Free Press] Two vehicle MVI in 100 Mile House sent two to hospital",
+          "url": "https://100milefreepress.net/2026/10/06/two-vehicle-mvi-in-100-mile-house-sent-two-to-hospital/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 75,
+          "date_published": "2026-10-07T00:08:31+00:00",
+          "summary": "A two-vehicle collision on Highway 97 sent two people to the hospital in late September. On Tuesday, Sept. 29, 100 Mile House RCMP responded to a report of a two-vehicle […]",
+          "discussed": true,
+          "mention_offset_frac": 0.0233
+        },
+        {
+          "title": "[My Cariboo Now] Search and Rescue teams find person who was lost over the weekend",
+          "url": "https://www.mycariboonow.com/316593/news/emergency-services/search-and-rescue/search-and-rescue-teams-find-person-who-was-lost-over-the-weekend/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-10-06T19:52:58+00:00",
+          "summary": "Multiple Search and Rescue teams assisted in finding a missing person in the Cottonwood/Victoria Creek are over the weekend. The post Search and Rescue teams find person who was lost over the weekend ...",
+          "discussed": true,
+          "mention_offset_frac": 0.1007
+        },
+        {
+          "title": "[Williams Lake Tribune] Vancouver man experiences Okanagan wildfire season on cross-country coffee bike tour",
+          "url": "https://wltribune.com/2026/09/23/vancouver-man-experiences-okanagan-wildfire-season-on-cross-country-coffee-bike-tour/",
+          "source": "Williams Lake Tribune",
+          "author": "Brendan Shykora",
+          "ai_score": 70,
+          "date_published": "2026-10-07T04:03:20.404762+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.1791
+        },
+        {
+          "title": "[Williams Lake Tribune] LETTER: Kudos to everyone keeping racing alive in Williams Lake",
+          "url": "https://wltribune.com/2026/09/29/letter-kudos-to-everyone-keeping-racing-alive-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 79,
+          "date_published": "2026-09-30T04:02:50.070945+00:00",
+          "summary": "## LETTER: Kudos to everyone keeping racing alive in Williams Lake Published 11:07 am Tuesday, September 29, 2026 1/3 René Liebaert of Parksville is proud of his granddaughter, Presley Liebaert, who r...",
+          "discussed": true,
+          "mention_offset_frac": 0.261
+        },
+        {
+          "title": "[My Cariboo Now] Esk’etemc First Nation head to the polls for upcoming election",
+          "url": "https://www.mycariboonow.com/316591/news/indigenous/esketemc-first-nation-head-to-the-polls-for-upcoming-election/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 78,
+          "date_published": "2026-10-06T17:44:14+00:00",
+          "summary": "Members of the Esk'etemc First Nation will head to the polls on Thursday, November 8, to elect a possible new chief, and three councillors. The post Esk’etemc First Nation head to the polls for upcomi...",
+          "discussed": true,
+          "mention_offset_frac": 0.313
+        },
+        {
+          "title": "[My Cariboo Now] Early voting opportunities in the Cariboo",
+          "url": "https://www.mycariboonow.com/316601/news/elections/2026-municipal-election/early-voting-opportunities-in-the-cariboo/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 87,
+          "date_published": "2026-10-06T21:51:50+00:00",
+          "summary": "Cariboo residents can take the opportunity to cast in their ballots for the municipal elections early this week. The post Early voting opportunities in the Cariboo appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.3579
+        },
+        {
+          "title": "[Williams Lake Tribune] MP Todd Doherty endorses Lorne Doerkson for Premier",
+          "url": "https://wltribune.com/2026/10/06/mp-todd-doherty-endorses-lorne-doerkson-for-premier/",
+          "source": "Williams Lake Tribune",
+          "author": "Patrick Davies",
+          "ai_score": 77,
+          "date_published": "2026-10-07T04:03:20.404553+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.4116
+        },
+        {
+          "title": "[Engineering – The GitHub Blog] Building Git infrastructure for agent-scale development",
+          "url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/",
+          "source": "Engineering – The GitHub Blog",
+          "author": "Brian Celenza",
+          "ai_score": 62,
+          "date_published": "2026-10-06T20:57:56+00:00",
+          "summary": "We're rebuilding GitHub's Git infrastructure while GitHub keeps running, creating a foundation for agent-scale software development. The post Building Git infrastructure for agent-scale development ap...",
+          "discussed": true,
+          "mention_offset_frac": 0.4841
+        },
+        {
+          "title": "[The Northern Miner] Westwin to build $502M nickel refinery in Mississippi",
+          "url": "https://www.northernminer.com/news/westwin-to-build-502m-nickel-refinery-in-mississippi/1003895478/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-10-06T20:55:06+00:00",
+          "summary": "Westwin Elements plans to invest $502 million over five years to build a commercial-scale high-purity nickel refinery in Mississippi, as the U.S. seeks to expand domestic processing of critical minera...",
+          "discussed": true,
+          "mention_offset_frac": 0.4871
+        },
+        {
+          "title": "[Fast Company] HubSpot layoffs: CEO says job cuts are not driven by AI ‘efficiencies,’ but AI is still behind the sweeping changes",
+          "url": "https://www.fastcompany.com/91619102/hubspot-layoffs-today-jobs-slashed-stock-struggles-why",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-10-06T18:55:00+00:00",
+          "summary": "HubSpot announced on Tuesday that it is cutting 7% of its workforce—roughly 660 employees—as it reorganizes around what it calls AI -driven customer outcomes. The layoffs come as investors have spent ...",
+          "discussed": true,
+          "mention_offset_frac": 0.5562
+        },
+        {
+          "title": "[Neowin] Dutch tax authority will ditch Microsoft 365 in favor of on-premises and open source",
+          "url": "https://www.neowin.net/news/dutch-tax-authority-will-ditch-microsoft-365-in-favor-of-on-premises-and-open-source/?utm_source=rss",
+          "source": "Neowin",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-06T15:36:01+00:00",
+          "summary": "It is attempting to reduce its reliance on Microsoft, but it won't cut it off entirely. It'll still rely on tools like Outlook. Read more...",
+          "discussed": true,
+          "mention_offset_frac": 0.7045
+        },
+        {
+          "title": "[Architizer] The Cost of Every Compromise: How Saraiva + Associados Brought AI Into Residential Practice",
+          "url": "https://architizer.com/blog/practice/tools/residential-design-saraiva-associados-visoid/",
+          "source": "Architizer",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-06T12:01:27+00:00",
+          "summary": "With Portuguese housing costs up nearly 20%, one Lisbon practice is using AI to make design trade-offs visible while there's still time to change them. The post The Cost of Every Compromise: How Sarai...",
+          "discussed": true,
+          "mention_offset_frac": 0.7757
+        },
+        {
+          "title": "[Fast Company] Employers have a bizarre new job interview problem: Figuring out if they’re talking to a human",
+          "url": "https://www.fastcompany.com/91616713/employers-have-a-bizarre-new-job-interview-problem-figuring-out-if-theyre-talking-to-a-human",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-10-02T17:30:00+00:00",
+          "summary": "The recruitment process has become so frustrating lately that more than 1.2 million recruiters and candidates alike take to Reddit each week to peruse a subreddit appropriately called r/recruitinghell...",
+          "discussed": true,
+          "mention_offset_frac": 0.8551
+        },
+        {
+          "title": "[Neowin] How to quickly redact sensitive info from screenshots in Windows 11",
+          "url": "https://www.neowin.net/guides/how-to-quickly-redact-sensitive-info-from-screenshots-in-windows-11/?utm_source=rss",
+          "source": "Neowin",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-10-05T19:20:01+00:00",
+          "summary": "Windows 11's built-in screenshot taker, Snipping Tool, has one underrated feature that lets you hide sensitive info from screenshots. Learn more about it: Read more...",
+          "discussed": true,
+          "mention_offset_frac": 0.9293
+        },
+        {
+          "title": "[New Atlas] Wind-up elastic robot jumps forever when fed infrared light",
+          "url": "https://newatlas.com/robotics/elastic-robot-jump-infrared-light/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/malcolm-azania/",
+          "ai_score": 62,
+          "date_published": "2026-09-28T02:43:49+00:00",
+          "summary": "Robots – that is, self-guided mechanisms interacting with or changing their environments – exist in the popular imagination as large, blocky, metallic beings like R2D2 or TARS from Interstellar. But t...",
+          "discussed": true,
+          "mention_offset_frac": 0.963
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[iFixit] Apple Watch Series 12 and Ultra 4 Teardown Reveals a Gap in Right to Repair Coverage",
+          "url": "https://www.ifixit.com/News/119658/apple-watch-series-12-and-ultra-4-teardown-reveals-a-gap-in-right-to-repair-coverage",
+          "source": "iFixit",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-10-06T19:31:33+00:00",
+          "summary": "We just tore down the two latest Apple Watches. And Apple, we need to have a talk. Let’s cut to the chase: there’s no big repairability news here. The Series…",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceDaily] Creatine may help build muscle even without exercise, researchers find",
+          "url": "https://www.sciencedaily.com/releases/2026/09/260928100547.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 51,
+          "date_published": "2026-09-30T03:12:34+00:00",
+          "summary": "Creatine helped middle-aged adults gain muscle and strength even without a structured workout program in a new 12-week study. When combined with exercise and a calorie-reduced diet, it produced even g...",
+          "discussed": false
+        },
+        {
+          "title": "[The Guardian Global Development] NGOs say Israel bombed a journalist and appeared to attack ambulances trying to aid her – explainer",
+          "url": "https://www.theguardian.com/global-development/video/2026/oct/06/ngos-say-israel-bombed-a-journalist-and-appeared-to-attack-ambulances-trying-to-aid-her-explainer",
+          "source": "The Guardian Global Development",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-10-06T14:13:55+00:00",
+          "summary": "Journalist Amal Khalil was killed in April in what colleagues described as a sustained attack by Israeli forces. Rescuers attempted to dig her out of the rubble of a building that had been targeted by...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How should rural communities measure equipment repairability and reliability beyond standardized spec sheets and online review scores?",
+        "riley_position": "People should track practical repairability metrics like downtime, repair time, local repair expertise, and network dependency, sharing this data through community logs to build better local decision-making tools that account for regional failure patterns.",
+        "riley_key_evidence": [
+          "iFixit's Apple Watch teardown shows no repairability improvement despite generations of iterations, revealing that headline scores can miss meaningful data",
+          "Commercial fleets already track hours down, dollars spent, and days to fix in detailed logs that provide actionable insights",
+          "Search and rescue teams and racing communities maintain real field failure databases from actual use under local conditions that beat magazine reviews"
+        ],
+        "casey_position": "While better personal metrics help attentive buyers, most people still purchase based on headlines and star ratings, so community logging efforts will struggle with maintenance and adoption unless embedded in existing institutional practices like volunteer organizations.",
+        "casey_key_evidence": [
+          "Repair metrics can drift into false proxies—fast courier delivery makes days-to-fix look good while machines still fail repeatedly",
+          "Community sheets depend on a single maintainer while benefiting many readers, creating an unsustainable incentive gap",
+          "Most rural programs die when the enthusiast maintaining them moves away, suggesting standalone logging systems lack institutional resilience"
+        ],
+        "resolution": "They agreed to pilot a small experiment: a shared community spreadsheet tracking equipment failures, downtime, and repair time for local ranchers and backcountry users, with four columns, to test whether neighbors will actually contribute data and whether the practice survives beyond early adoption.",
+        "topics_covered": [
+          "Limitations of spec sheets and online review scores for rural equipment decisions",
+          "Proxy metrics and how they can drift from measuring actual reliability to measuring repair speed",
+          "Local expertise and institutional knowledge versus centralized data sources",
+          "Network dependency and the cable-unplugged test for equipment resilience",
+          "Institutional sustainability of community-maintained repair logs and failure databases"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 7,
+          "conditions": "overcast",
+          "high": 13,
+          "low": 6
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 6,
+          "conditions": "overcast",
+          "high": 16,
+          "low": 5
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 6,
+          "conditions": "overcast",
+          "high": 15,
+          "low": 6
+        },
+        {
+          "name": "Quesnel",
+          "temp": 6,
+          "conditions": "overcast",
+          "high": 11,
+          "low": 5
+        },
+        {
+          "name": "Redstone",
+          "temp": 2,
+          "conditions": "overcast",
+          "high": 15,
+          "low": 2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Boys and Girls Club of Williams Lake",
+      "description": "After-school programs, summer camps, and youth mentorship serving Williams Lake families since 1994 — low-to-no-cost programs open to all kids and teens",
+      "website": "bgcwilliamslake.com",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "",
+    "log": [
+      {
+        "kind": "question",
+        "query": "iFixit Apple Watch Series 12 Ultra 4 repairability score rating"
+      },
+      {
+        "kind": "question",
+        "query": "Williams Lake population 2026"
+      },
+      {
+        "kind": "question",
+        "query": "100 Mile House population 2026"
+      },
+      {
+        "kind": "question",
+        "query": "Cottonwood Victoria Creek Search and Rescue area location"
+      },
+      {
+        "kind": "question",
+        "query": "Esk'etemc First Nation chief election November 8 2026 candidates"
+      }
+    ]
+  }
+}
