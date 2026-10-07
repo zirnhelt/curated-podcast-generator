@@ -95,6 +95,16 @@
       "disclosure": "Brave Search is used to enrich our fact-checking and deep-dive research for each episode"
     },
     {
+      "keywords": ["github"],
+      "name": "GitHub",
+      "disclosure": "GitHub (owned by Microsoft) hosts this show's code, and GitHub Actions runs the nightly pipeline that builds and publishes every episode"
+    },
+    {
+      "keywords": ["cloudflare"],
+      "name": "Cloudflare",
+      "disclosure": "Cloudflare starts our nightly production run and hosts this show's website and audio files"
+    },
+    {
       "keywords": ["open-meteo"],
       "name": "Open-Meteo",
       "disclosure": "Open-Meteo provides the weather data used in our episode openings"
