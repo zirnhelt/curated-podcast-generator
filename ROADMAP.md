@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-16..2026-10-06) — 5 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-17..2026-10-07) — 5 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -51,8 +51,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 2
-      reviews, latest 2026-10-03)
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 3
+      reviews, latest 2026-10-07)
 - [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
       2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
       an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
@@ -62,15 +62,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 17 reviews,
-      latest 2026-10-06)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 18 reviews,
+      latest 2026-10-07)
 - [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
       errors.** On September 22, a single file present in podcast-feed.xml could not be found in
       R2 and could not be rebuilt from disk. The pipeline completed and published successfully
       despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
       reference. Identify which object is missing, restore it to R2, or remove the reference
       from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
-      in 11 reviews, latest 2026-10-06)
+      in 12 reviews, latest 2026-10-07)
 - [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
       territory-check rewrites failed.** On September 22, the territory-check system flagged two
       sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
@@ -86,8 +86,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       script lost its ability to detect when a story mutates across sources or when multiple
       outlets cover the same event. Restore the Cohere module or replace the embedding layer
       with an alternative that can detect story evolution and same-story clustering without
-      external dependencies. (signal `degraded:script/cohere`; seen in 3 reviews, latest
-      2026-10-05)
+      external dependencies. (signal `degraded:script/cohere`; seen in 4 reviews, latest
+      2026-10-07)
 
 <!-- reviews:end -->
 
