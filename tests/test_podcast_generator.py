@@ -6359,3 +6359,14 @@ class TestAiredLedger:
         sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
         assert "ALREADY ON AIR THIS WEEK" in sent
         assert "13,714 to 5,992" in sent
+
+
+def test_production_disclosure_covers_infrastructure_vendors():
+    """A story about GitHub or Cloudflare gets the on-air disclosure: both run the show."""
+    import podcast_generator as pg
+    articles = [
+        {'title': 'GitHub rebuilds its Git infrastructure for agent-scale development', 'summary': ''},
+        {'title': 'Cloudflare outage takes sites offline', 'summary': ''},
+    ]
+    names = {name for name, _ in pg._detect_production_company_mentions(articles, pg.CONFIG['credits'])}
+    assert {'GitHub', 'Cloudflare'} <= names
