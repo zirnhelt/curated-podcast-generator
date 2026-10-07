@@ -1,31 +1,4 @@
 {
-  "2026-07-08": {
-    "timestamp": 1783507100.506718,
-    "date": "2026-07-08",
-    "theme": "Repair Culture & Practical Tech",
-    "central_question": "Is repair culture and durable tech a viable solution for rural resilience, or merely a lifestyle choice for the already-affluent?",
-    "riley_position": "Repairability isn't inherently expensive\u2014it's a market failure caused by lack of scale and regulatory pressure. Multiple levers exist outside grant cycles: co-purchasing, DIY design, procurement policy, and open-source tools can shift incentives without waiting for manufacturers to voluntarily change.",
-    "riley_key_evidence": [
-      "Fairphone and Framework proved market demand exists; scale is what's missing, not feasibility",
-      "Hackaday sailing kit uses off-the-shelf hardware and requires only an afternoon and basic skills",
-      "EU right-to-repair rules forced manufacturers to change without relying on market generosity"
-    ],
-    "casey_position": "Repairable tech costs significantly more upfront than disposable alternatives, and knowledge/capacity gaps prevent rural residents from actually using repair solutions. The real structural barriers aren't solved by procurement policy or library programs\u2014they require either funding or someone volunteering unpaid labor.",
-    "casey_key_evidence": [
-      "Jackery power station, rugged smartphone, and flip phone all cost substantially more than disposable versions",
-      "Cariboo Regional District (65,000 people) lacks volume to move manufacturer production lines",
-      "Most people don't think 'I could build this'\u2014knowledge gap prevents adoption of DIY solutions"
-    ],
-    "resolution": "They agreed to disagree on affordability but converged on concrete, low-cost levers: provincial procurement policy, small-scale library pilots (one session, one branch), and pushing MLA representatives on equipment standards. Casey insisted on pilot testing before claiming scalability; Riley acknowledged the affordability question remains unresolved by any single lever.",
-    "topics_covered": [
-      "Premium pricing of durable/repairable tech vs. disposable alternatives",
-      "Regional co-purchasing as a volume strategy for rural areas",
-      "DIY/open-design solutions as manufacturer-independent repair approaches",
-      "Library programs and repair caf\u00e9s as community knowledge infrastructure",
-      "Open-source AI models running on older hardware as repair-culture infrastructure",
-      "Provincial procurement policy as a lever to shift manufacturer incentives"
-    ]
-  },
   "2026-07-09": {
     "timestamp": 1783597360.960518,
     "date": "2026-07-09",
@@ -2509,6 +2482,34 @@
       "Agricultural technology ownership and data capture in precision farming",
       "Tourism measurement at heritage ranches and the risk of working landscapes becoming themed hotels",
       "First Nations-led forestry operations and stewardship-based permit terms"
+    ]
+  },
+  "2026-10-07": {
+    "timestamp": 1791360742.429353,
+    "date": "2026-10-07",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "vehicles-field-gear",
+    "anchor": "actually-measuring",
+    "central_question": "How should rural communities measure equipment repairability and reliability beyond standardized spec sheets and online review scores?",
+    "riley_position": "People should track practical repairability metrics like downtime, repair time, local repair expertise, and network dependency, sharing this data through community logs to build better local decision-making tools that account for regional failure patterns.",
+    "riley_key_evidence": [
+      "iFixit's Apple Watch teardown shows no repairability improvement despite generations of iterations, revealing that headline scores can miss meaningful data",
+      "Commercial fleets already track hours down, dollars spent, and days to fix in detailed logs that provide actionable insights",
+      "Search and rescue teams and racing communities maintain real field failure databases from actual use under local conditions that beat magazine reviews"
+    ],
+    "casey_position": "While better personal metrics help attentive buyers, most people still purchase based on headlines and star ratings, so community logging efforts will struggle with maintenance and adoption unless embedded in existing institutional practices like volunteer organizations.",
+    "casey_key_evidence": [
+      "Repair metrics can drift into false proxies\u2014fast courier delivery makes days-to-fix look good while machines still fail repeatedly",
+      "Community sheets depend on a single maintainer while benefiting many readers, creating an unsustainable incentive gap",
+      "Most rural programs die when the enthusiast maintaining them moves away, suggesting standalone logging systems lack institutional resilience"
+    ],
+    "resolution": "They agreed to pilot a small experiment: a shared community spreadsheet tracking equipment failures, downtime, and repair time for local ranchers and backcountry users, with four columns, to test whether neighbors will actually contribute data and whether the practice survives beyond early adoption.",
+    "topics_covered": [
+      "Limitations of spec sheets and online review scores for rural equipment decisions",
+      "Proxy metrics and how they can drift from measuring actual reliability to measuring repair speed",
+      "Local expertise and institutional knowledge versus centralized data sources",
+      "Network dependency and the cable-unplugged test for equipment resilience",
+      "Institutional sustainability of community-maintained repair logs and failure databases"
     ]
   }
 }

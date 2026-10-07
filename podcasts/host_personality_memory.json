@@ -70,11 +70,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-02",
-        "clue": "community-trust:~ \u2014 Acknowledges local repair shops as informal infrastructure without funding",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-18",
         "clue": "tech-optimism:- \u2014 Conceded forest management fixes app cannot solve.",
         "occurrences": 1
@@ -172,6 +167,11 @@
       {
         "date": "2026-10-05",
         "clue": "structural-lens:x \u2014 Conceded counts distort but defended page-one visibility",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-07",
+        "clue": "evidence-bar:+ \u2014 Pushes for measurable local data over abstractions",
         "occurrences": 1
       }
     ],
@@ -444,9 +444,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-02",
-        "clue": "pilot-skepticism:+ \u2014 pressed for long-term audits beyond phase sequels",
-        "occurrences": 1
+        "date": "2026-10-07",
+        "clue": "pilot-skepticism:+ \u2014 Warns shared logs drift without active maintenance",
+        "occurrences": 2
       },
       {
         "date": "2026-10-02",
@@ -456,6 +456,11 @@
       {
         "date": "2026-10-06",
         "clue": "evidence-bar:+ \u2014 Consistently demands source verification and narrow definitions",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-07",
+        "clue": "structural-lens:x \u2014 Concedes personal metrics help attentive buyers",
         "occurrences": 1
       }
     ],
