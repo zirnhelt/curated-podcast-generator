@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-17..2026-10-07) — 5 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-20..2026-10-08) — 6 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -62,8 +62,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 18 reviews,
-      latest 2026-10-07)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 19 reviews,
+      latest 2026-10-08)
 - [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
       errors.** On September 22, a single file present in podcast-feed.xml could not be found in
       R2 and could not be rebuilt from disk. The pipeline completed and published successfully
@@ -79,6 +79,15 @@ close one; it comes back only if the reviews raise it 2 more times._
       Log which sentences triggered the rewrite rejection, and decide whether to cut them,
       override the territory map data, or implement a mandatory-cut rule when rewrites fail.
       (signal `degraded:script/territory-check`; seen in 11 reviews, latest 2026-10-06)
+- [ ] **Script generation failed in the primary and first fallback run but succeeded in the
+      second fallback.** The Generate episode script step failed after 92 seconds in both the
+      primary run (1:05 AM Pacific, run 36834215592) and Fallback 1 (2:05 AM Pacific, run
+      36840498673), causing both runs to conclude as failures. The same step succeeded in
+      Fallback 2 (3:05 AM Pacific, run 36846937721) in the same duration. The facts do not state
+      what caused the failures or what changed between attempts. Check the error logs from runs
+      36834215592 and 36840498673 to identify whether the breakage was transient (a retry-worthy
+      timeout or rate limit) or a code issue that the third attempt avoided by accident. (signal
+      `run-failed`; seen in 2 reviews, latest 2026-10-08)
 - [ ] **Cohere embedding module is unavailable, blocking story clustering and evolution
       detection.** On 2026-10-03, script generation encountered ModuleNotFoundError twice: once
       during evolving-story detection, once during same-story clustering. The pipeline fell back
@@ -86,8 +95,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       script lost its ability to detect when a story mutates across sources or when multiple
       outlets cover the same event. Restore the Cohere module or replace the embedding layer
       with an alternative that can detect story evolution and same-story clustering without
-      external dependencies. (signal `degraded:script/cohere`; seen in 4 reviews, latest
-      2026-10-07)
+      external dependencies. (signal `degraded:script/cohere`; seen in 5 reviews, latest
+      2026-10-08)
 
 <!-- reviews:end -->
 
