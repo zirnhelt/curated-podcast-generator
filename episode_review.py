@@ -43,12 +43,14 @@ from xml.sax.saxutils import escape
 import requests
 
 from config_loader import (
+    HAIKU_MODEL,
     atomic_write_json,
     atomic_write_text,
     format_static_tell_block,
     json_output_config,
     load_prompts_config,
     message_text,
+    thinking_off,
 )
 
 API_ROOT = "https://api.github.com"
@@ -62,7 +64,7 @@ INDEX_FILE = REVIEWS_DIR / "index.json"
 FEED_FILE = Path("episode-reviews.xml")
 FEED_LIMIT = 30
 
-REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL", "claude-haiku-4-5")
+REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL") or HAIKU_MODEL
 REVIEW_MAX_TOKENS = 2200
 
 # Where the day's runs come from, by UTC hour (BC is permanent UTC-7). The
@@ -407,6 +409,7 @@ def generate_narrative(facts: dict[str, Any]) -> str:
     try:
         resp = client.messages.create(
             model=REVIEW_MODEL,
+            thinking=thinking_off(REVIEW_MODEL),
             max_tokens=REVIEW_MAX_TOKENS,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -1052,6 +1055,7 @@ def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         resp = client.messages.create(
             model=ROADMAP_MODEL,
+            thinking=thinking_off(ROADMAP_MODEL),
             max_tokens=ROADMAP_MAX_TOKENS,
             messages=[{"role": "user", "content": prompt}],
             output_config=json_output_config(_finding_schema(signals)),

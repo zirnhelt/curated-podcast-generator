@@ -279,8 +279,8 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 Treat API budget as a first-class constraint on every change.
 
 - **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for polish escalation (`select_review_model`): thin deep-dive sourcing (<3 articles) or more than `OPUS_QUALITY_HIT_THRESHOLD` (3) pre-polish tell hits. In practice the hit count is what fires it (about 1 day in 5).
-- **Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking=thinking_off(model)` (`config_loader`), never a literal: Sonnet 5 takes `{"type": "disabled"}`, Sonnet 5.5 rejects it with a 400 and takes `between_tools`, and Opus 5.5 can't turn thinking off at all. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
-- **One switch for Sonnet.** Every Sonnet role follows `CLAUDE_SONNET_MODEL` (a repository variable both workflows pass through; unset means `claude-sonnet-5`); a per-role `CLAUDE_*_MODEL` still overrides it. Opus escalation is `claude-opus-5-5`.
+- **Haiku 5.5, Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking=thinking_off(model)` (`config_loader`), never a literal: Haiku 5.5 and Sonnet 5 take `{"type": "disabled"}`, Sonnet 5.5 rejects it with a 400 and takes `between_tools`, and Opus 5.5 can't turn thinking off at all. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
+- **One switch for Sonnet, one for Haiku.** Every Sonnet role follows `CLAUDE_SONNET_MODEL` (a repository variable both workflows pass through; **unset means `claude-haiku-5-5`** since 2026-10-08, see [operations.md](docs/decisions/operations.md)); every Haiku role follows `CLAUDE_HAIKU_MODEL` (`config_loader.HAIKU_MODEL`, default `claude-haiku-5-5`). A per-role `CLAUDE_*_MODEL` still overrides either. Opus escalation is `claude-opus-5-5`; a Haiku 5.5 decline retries on `claude-sonnet-5` (`_REFUSAL_FALLBACK`).
 - **A refusal is retried once on the model it replaced** (`send_claude`, `_REFUSAL_FALLBACK`) and always `degrade()`s as `claude/refusal`. Every Sonnet or Opus call goes through `send_claude` or `create_message`, never a bare `client.messages.create`.
 - **Prompt compression is mandatory.** Strip filler and redundant context before sending.
 - **Cache aggressively.** Use Anthropic `cache_control` headers for large static context reused across calls.
@@ -290,10 +290,12 @@ Treat API budget as a first-class constraint on every change.
 - **Fail fast on runaway cost.** Unexpectedly large token counts should raise, not proceed.
 - **Review diffs for cost regressions.** Call out any prompt/pipeline change that increases per-run token usage.
 
-**Anthropic prices** (USD per million tokens, first-party API, checked 2026-09-30; refresh from the pricing page before any cost decision):
+**Anthropic prices** (USD per million tokens, first-party API, checked 2026-10-08; refresh from the pricing page before any cost decision):
 
 | Model | Input | Output | Cache read |
 |-------|-------|--------|------------|
+| Haiku 5.5 (prompt ≤ 100K tokens) | $0.10 | $0.50 | $0.01 |
+| Haiku 5.5 (prompt > 100K) | $0.50 | $2.50 | $0.05 |
 | Haiku 4.5 | $1 | $5 | $0.10 |
 | Sonnet 5 / 5.5 | $2 | $10 | $0.20 |
 | Sonnet 4.5 | $3 | $15 | $0.30 |

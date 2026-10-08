@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
 
-from config_loader import message_text
+from config_loader import HAIKU_MODEL, message_text, thinking_off
 import cohere_enrichment
 
 PODCASTS_DIR = Path(__file__).parent / "podcasts"
@@ -178,7 +178,7 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
         articles: list of article dicts (must have title, summary, _boosted_score or ai_score)
         theme_name: today's theme name (used in the Claude prompt for context)
         client: Anthropic client instance (or None to skip Claude fallback)
-        model: Claude model ID to use (defaults to claude-haiku-4-5)
+        model: Claude model ID to use (defaults to HAIKU_MODEL)
 
     Returns:
         articles list with updated _boosted_score, _cluster_suppressed, _topic_cluster fields
@@ -196,7 +196,7 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
         return articles
 
     if model is None:
-        model = "claude-haiku-4-5"
+        model = HAIKU_MODEL
 
     # Build compact article list for the prompt
     article_list = []
@@ -228,7 +228,8 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
         try:
             response = client.messages.create(
                 model=model,
-                max_tokens=600,
+                thinking=thinking_off(model),
+                max_tokens=800,
                 messages=[{"role": "user", "content": prompt}],
             )
             raw = message_text(response).strip()
