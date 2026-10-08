@@ -39,6 +39,7 @@ except ImportError:
 
 # Import configuration loader
 from config_loader import (
+    HAIKU_MODEL,
     SONNET_MODEL,
     thinking_off,
     load_podcast_config,
@@ -439,7 +440,7 @@ def check_api_budget() -> None:
         return
     try:
         client.messages.create(
-            model=SUMMARY_MODEL, max_tokens=1,
+            model=SUMMARY_MODEL, max_tokens=1, thinking=thinking_off(SUMMARY_MODEL),
             messages=[{"role": "user", "content": "ok"}],
         )
     except Exception as e:
@@ -480,15 +481,19 @@ def _log_api_call(service: str, unit: str, count: int) -> None:
 
 
 # USD per million tokens (input, output, cache read), first-party list prices
-# checked 2026-09-30. Cache writes are 1.25x input (5-minute TTL — the only one
+# checked 2026-10-08. Cache writes are 1.25x input (5-minute TTL — the only one
 # this pipeline uses); the Batch API halves every line. Longest prefix wins, so
 # claude-opus-5-5 is not priced as claude-opus-5.
 _CLAUDE_PRICES = {
     "claude-haiku-4-5": (1.0, 5.0, 0.10),
+    "claude-haiku-5-5": (0.10, 0.50, 0.01),
     "claude-sonnet-5": (2.0, 10.0, 0.20),
     "claude-opus-5": (5.0, 25.0, 0.50),
     "claude-opus-5-5": (4.0, 20.0, 0.20),
 }
+# Haiku 5.5 bills a call whose prompt (fresh + cached) passes 100K tokens on a
+# second rate card, 5x the first: (prompt threshold, multiplier).
+_LONG_PROMPT_RATES = {"claude-haiku-5-5": (100_000, 5.0)}
 _api_usage_totals = {"cache_write": 0, "cache_read": 0, "output": 0, "thinking_est": 0}
 _api_cost_usd = 0.0
 
@@ -543,6 +548,9 @@ def _log_claude_usage(response, batch: bool = False) -> None:
     if price:
         p_in, p_out, p_read = price
         usd = (fresh * p_in + written * p_in * 1.25 + read * p_read + output * p_out) / 1e6
+        for prefix, (threshold, multiplier) in _LONG_PROMPT_RATES.items():
+            if model.startswith(prefix) and fresh + written + read > threshold:
+                usd *= multiplier
         if batch:
             usd /= 2
         _api_cost_usd += usd
@@ -572,9 +580,9 @@ def _format_daily_cost_summary() -> str:
     )
 
 
-# Bounded adaptive thinking for the Sonnet-5/Opus generative calls. Env-tunable:
-# "low" is cheapest, "high" is Sonnet-5's default. Do NOT use on Haiku calls —
-# Haiku 4.5 rejects the effort parameter.
+# Bounded adaptive thinking for the generative calls (the Sonnet roles, now on
+# Haiku 5.5 by default, and Opus). Env-tunable: "low" is cheapest; "medium" is
+# Haiku 5.5's and Opus 5.5's own default, and Sonnet 5's is "high".
 THINKING_EFFORT = os.getenv("CLAUDE_THINKING_EFFORT", "medium")
 
 def create_message(client, stream=False, **kwargs):
@@ -599,10 +607,13 @@ def create_message(client, stream=False, **kwargs):
 # health news every week. The API's server-side `fallbacks` option does not
 # retry general_harms on Sonnet 5.5, so this retry is ours, and it covers every
 # category. The predecessor cannot read the newer model's thinking blocks; the
-# API drops them unbilled, which is fine for a one-off retry.
+# API drops them unbilled, which is fine for a one-off retry. Haiku 5.5 has no
+# server-side fallback at all and took over the Sonnet roles from Sonnet 5, so
+# that is where its declines go.
 _REFUSAL_FALLBACK = {
     "claude-sonnet-5-5": "claude-sonnet-5",
     "claude-opus-5-5": "claude-opus-5",
+    "claude-haiku-5-5": "claude-sonnet-5",
 }
 
 
@@ -767,18 +778,19 @@ def get_podcast_feed_url(weekday):
 
 # Claude model selection (override via environment variables)
 # Cost hierarchy (cheapest to most expensive): Haiku → Sonnet → Opus.
-# Opus 5.5 is $4/$20 per MTok against Sonnet's $2/$10 — 2x, still a real
-# premium: keep the escalation gated on select_review_model rather than making
-# it the default. Every Sonnet role follows CLAUDE_SONNET_MODEL (config_loader)
-# unless its own variable overrides it.
+# Opus 5.5 is $4/$20 per MTok against Haiku 5.5's $0.10/$0.50 — 40x: keep the
+# escalation gated on select_review_model rather than making it the default.
+# Every Sonnet role follows CLAUDE_SONNET_MODEL (config_loader, Haiku 5.5 when
+# unset) unless its own variable overrides it; every Haiku role follows
+# CLAUDE_HAIKU_MODEL.
 # Model IDs carry no date suffix; the bare ID is the complete identifier.
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL") or SONNET_MODEL
 POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL") or SONNET_MODEL
 OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL") or "claude-opus-5-5"
-SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5")
+SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL") or HAIKU_MODEL
 # Rewrites only the handful of sentences that kept a hard-banned phrase, never
 # the script — cheapest model is the right one for a few hundred tokens.
-SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL", "claude-haiku-4-5")
+SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL") or HAIKU_MODEL
 COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL") or SONNET_MODEL
 
 # OpenAI TTS model. tts-1/tts-1-hd are the legacy pair and the only ones that
@@ -1738,6 +1750,7 @@ def _claude_theme_match(text: str, themes_config: dict) -> tuple:
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=10,
             messages=[{"role": "user", "content": prompt}]
         ))
@@ -2894,6 +2907,7 @@ def _assess_deep_dive_for_enrichment(deep_dive_articles, theme_name, client):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=300,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output({
@@ -4130,7 +4144,8 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
 
     try:
         resp = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5",
+            model=HAIKU_MODEL,
+            thinking=thinking_off(HAIKU_MODEL),
             max_tokens=300,
             messages=[{"role": "user", "content": detect_prompt}],
             output_config=_json_output({
@@ -4372,6 +4387,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                     "custom_id": "debate-summary",
                     "params": {
                         "model": SUMMARY_MODEL,
+                        "thinking": thinking_off(SUMMARY_MODEL),
                         "max_tokens": 1000,
                         "messages": [{"role": "user", "content": debate_prompt}],
                         "output_config": _json_output(_debate_summary_schema(False)),
@@ -5365,6 +5381,7 @@ def extract_debate_summary(script, theme_name):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output(_debate_summary_schema(True)),
@@ -5450,6 +5467,7 @@ def extract_personality_clues(script):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output({
@@ -8032,6 +8050,7 @@ def scrub_hard_banned(script_text, hits):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SCRUB_MODEL,
+            thinking=thinking_off(SCRUB_MODEL),
             max_tokens=1500,
             messages=[{"role": "user", "content": prompt}],
             # An object wrapping the array, not a bare array: the count check
@@ -9857,7 +9876,8 @@ def _generate_host_line(context: str, host: str) -> str:
     )
     try:
         response = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5",
+            model=HAIKU_MODEL,
+            thinking=thinking_off(HAIKU_MODEL),
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
         ))
@@ -10280,6 +10300,7 @@ def scrub_territory_claims(script_text: str, findings: list) -> str:
     try:
         response = api_retry(lambda: client.messages.create(
             model=SCRUB_MODEL,
+            thinking=thinking_off(SCRUB_MODEL),
             max_tokens=1500,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output({
@@ -10572,7 +10593,8 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
     )
     try:
         response = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5",
+            model=HAIKU_MODEL,
+            thinking=thinking_off(HAIKU_MODEL),
             # Sized for the 320-400 word target plus speaker markers and the
             # COVERED lines above them; the old 450 capped the segment below its
             # own word floor once it was widened.

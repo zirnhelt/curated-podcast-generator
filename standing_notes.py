@@ -37,10 +37,12 @@ from pathlib import Path
 from typing import Any
 
 from config_loader import (
+    HAIKU_MODEL,
     atomic_write_json,
     json_output_config,
     load_standing_notes,
     message_text,
+    thinking_off,
 )
 
 BASE_DIR = Path(__file__).parent
@@ -49,7 +51,7 @@ LEDGER_FILE = BASE_DIR / "podcasts" / "standing_notes_ledger.json"
 NOTES_FILE = BASE_DIR / "config" / "standing_notes.txt"
 PR_BODY_FILE = BASE_DIR / "standing_notes_pr.md"
 
-MODEL = os.getenv("CLAUDE_STANDING_NOTES_MODEL", "claude-haiku-4-5")
+MODEL = os.getenv("CLAUDE_STANDING_NOTES_MODEL") or HAIKU_MODEL
 EMAIL_TYPES = ("correction", "feedback")
 WINDOW_DAYS = 30
 MAX_BODY_CHARS = 1500
@@ -157,6 +159,7 @@ def call_haiku(prompt: str) -> list[dict[str, Any]] | None:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         resp = client.messages.create(
             model=MODEL,
+            thinking=thinking_off(MODEL),
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}],
             output_config=json_output_config(_SCHEMA),

@@ -801,11 +801,21 @@ class TestLogClaudeUsage:
         pg._log_claude_usage(self._message("claude-sonnet-5", fresh=1_000_000), batch=True)
         assert pg._api_cost_usd == pytest.approx(1.0)
 
+    def test_haiku_5_5_prompt_over_100k_is_priced_on_the_long_rate_card(self, _fresh_meters):
+        pg = _fresh_meters
+        pg._log_claude_usage(self._message("claude-haiku-5-5", fresh=100_000, output=1000))
+        # At the threshold: 100000*$0.10 + 1000*$0.50, per million
+        assert pg._api_cost_usd == pytest.approx(0.0105)
+        pg._log_claude_usage(self._message("claude-haiku-5-5", fresh=60_000, read=60_000))
+        # Past it the whole call is 5x: (60000*$0.10 + 60000*$0.01) * 5
+        assert pg._api_cost_usd == pytest.approx(0.0105 + 0.033)
+
     def test_longest_prefix_wins(self):
         import podcast_generator as pg
         assert pg._claude_price("claude-opus-5-5") == (4.0, 20.0, 0.20)
         assert pg._claude_price("claude-opus-5") == (5.0, 25.0, 0.50)
         assert pg._claude_price("claude-haiku-4-5-20251001") == (1.0, 5.0, 0.10)
+        assert pg._claude_price("claude-haiku-5-5") == (0.10, 0.50, 0.01)
         assert pg._claude_price("gpt-4o") is None
 
     def test_tolerates_stub_responses(self, _fresh_meters):
@@ -864,6 +874,18 @@ class TestRefusalRetry:
         assert retry["thinking"] == {"type": "disabled"}   # between_tools is 5.5-only
         assert _quiet == [("claude/refusal",
                            "claude-sonnet-5-5 declined (general_harms); retried on claude-sonnet-5")]
+
+    def test_haiku_5_5_falls_back_to_sonnet_5(self, _quiet):
+        # Haiku 5.5 has no server-side fallback and took over the Sonnet roles.
+        import podcast_generator as pg
+        ok = _response("end_turn", [_text_block("script")])
+        client = self._client(self._refusal(), ok)
+
+        assert pg.send_claude(client, model="claude-haiku-5-5", max_tokens=10,
+                              thinking={"type": "adaptive"}, messages=[]) is ok
+        retry = client.messages.create.call_args_list[1].kwargs
+        assert retry["model"] == "claude-sonnet-5"
+        assert retry["thinking"] == {"type": "adaptive"}
 
     def test_opus_5_5_falls_back_to_opus_5(self, _quiet):
         import podcast_generator as pg

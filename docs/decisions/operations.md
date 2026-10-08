@@ -518,3 +518,31 @@ The parked bespoke feed's two CDATA bodies now go through `_cdata_safe` too. Eve
 interpolated into that description was already `saxutils.escape`d, which turns `>` into `&gt;`, so
 `]]>` could not reach it; the wrap keeps the invariant uniform, and a test fails on any f-string
 CDATA in the repo that is not wrapped.
+
+## Haiku 5.5 for every Haiku and Sonnet role (2026-10-08)
+
+Haiku 5.5 costs $0.10 / $0.50 per million tokens for prompts up to 100K: a tenth of
+Haiku 4.5 and a twentieth of Sonnet 5. In September Sonnet 5 script writing and polish
+were about $15 of the show's $21. Every Haiku call moved to it (`HAIKU_MODEL`), and so
+did every Sonnet role, by changing what an unset `CLAUDE_SONNET_MODEL` means. The roles
+kept their name so the repository variable and the per-role overrides still work.
+There was no trial: the producer accepted a few odd episodes as the price of learning
+the model.
+
+What protects quality:
+
+- **The Opus polish escalation is unchanged.** If Haiku drafts trip more tells,
+  `select_review_model` sends polish to Opus more often. That is the backstop working,
+  and it costs far less than a Sonnet draft every day. Watch the escalation rate.
+- **Declines retry on Sonnet 5.** Haiku 5.5 runs safety classifiers that Haiku 4.5 did
+  not, and it has no server-side fallback. The show reads crime, election and health
+  news, so `send_claude` retries a decline once on `claude-sonnet-5` and `degrade()`s.
+  Haiku calls made directly through `client.messages.create` get no retry. A decline
+  there reads as an empty reply, and each caller's existing fallback handles it.
+- **Thinking stays off on small calls.** Haiku 5.5 thinks by default and thinking
+  shares `max_tokens`, so every Haiku call passes `thinking_off(model)`.
+
+To move the Sonnet roles back: set the `CLAUDE_SONNET_MODEL` repository variable to
+`claude-sonnet-5`, or set `CLAUDE_SCRIPT_MODEL` alone to move only the script writer.
+The same text counts as about 30% more tokens on Haiku 5.5's tokenizer, so token
+totals in the run log jumped that day without the workload changing.
