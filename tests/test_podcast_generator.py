@@ -2777,14 +2777,23 @@ class TestSyncSiteToR2FeedReferenceHeal:
         ' type="text/vtt" language="en-CA"/>'
         '<podcast:transcript url="https://podcast.example.ca/podcasts/podcast_transcript_2025-12-25_gone_theme.vtt"'
         ' type="text/vtt" language="en-CA"/>'
+        # A cited article on another site with /podcasts/ in its path: not an
+        # R2 object, and it read as one every night from 2026-09-22.
+        '<description><![CDATA[<a href="https://www.vox.com/podcasts/503465/alzheimers">x</a>]]>'
+        '</description>'
         '</item></channel></rss>'
     )
 
     def _run(self, tmp_path, monkeypatch, r2_keys):
+        import podcast_generator as pg
         podcasts_dir = tmp_path / "podcasts"
         podcasts_dir.mkdir()
         monkeypatch.setattr("podcast_generator.SCRIPT_DIR", tmp_path)
         monkeypatch.setattr("podcast_generator.PODCASTS_DIR", podcasts_dir)
+        monkeypatch.setattr("podcast_generator._RUN_SEGMENTS", [])
+        podcast_config = pg.CONFIG["podcast"]
+        monkeypatch.setitem(podcast_config, "url", "https://podcast.example.ca/")
+        monkeypatch.setitem(podcast_config, "audio_base_url", "https://podcast.example.ca/")
         (tmp_path / "podcast-feed.xml").write_text(self.FEED)
         # Old filename dates: the recency filter (max_age_days=2) skips both,
         # so only the heal step can upload them.
@@ -2823,12 +2832,23 @@ class TestSyncSiteToR2FeedReferenceHeal:
     def test_unhealable_reference_emits_ci_error_but_feed_still_uploads(
         self, tmp_path, monkeypatch, capsys
     ):
+        import podcast_generator as pg
         uploaded = self._run(tmp_path, monkeypatch, r2_keys=set())
 
         out = capsys.readouterr().out
         assert "::error::" in out
         assert "podcast_transcript_2025-12-25_gone_theme.vtt" in out
         assert "podcast-feed.xml" in uploaded
+        rows = [r for r in pg._RUN_SEGMENTS if r["name"] == "publish/r2-sync"]
+        assert rows and "podcast_transcript_2025-12-25_gone_theme.vtt" in rows[0]["error"]
+
+    def test_other_sites_podcasts_paths_are_not_r2_objects(self, tmp_path, monkeypatch, capsys):
+        import podcast_generator as pg
+        self._run(tmp_path, monkeypatch, r2_keys=set())
+
+        out = capsys.readouterr().out
+        assert "503465" not in out
+        assert not any("503465" in (r.get("error") or "") for r in pg._RUN_SEGMENTS)
 
     def test_no_reupload_when_objects_already_in_r2(self, tmp_path, monkeypatch, capsys):
         uploaded = self._run(

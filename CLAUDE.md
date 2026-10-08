@@ -308,6 +308,7 @@ Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API ha
 - Idempotent scripts where possible
 - Refactor existing files rather than creating new ones
 - Keep dependencies minimal — check `requirements.txt` before adding anything
+- Every workflow installs `requirements-lock.txt`. Edit `requirements.txt`, then regenerate the lock (Python 3.11); `tests/test_requirements_lock.py` fails until you do
 
 ## Decision records
 

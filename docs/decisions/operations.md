@@ -484,6 +484,21 @@ resurrected on one mention.
 The `review` job stages `ROADMAP.md` and the ledger alongside the review — a stage that writes
 a tracked file that no step stages sits permanently dirty and breaks the next rebase.
 
+**Two roadmap items were the check's own bugs (2026-10-08).** Both sat open for days, each
+recurring every night, which is what prompted a weekly agent pass over the open items:
+- `degraded:script/cohere` (5 sightings): `cohere` was in `requirements.txt` but never in
+  `requirements-lock.txt`, which is what every workflow installs, so turning `USE_COHERE` on
+  on 2026-10-03 produced a nightly `ModuleNotFoundError`. `tests/test_requirements_lock.py`
+  (ported from `super-rss-feed`) now fails when a requirement is missing from the lock or
+  outside its specifier.
+- `degraded:publish/r2-sync` (12 sightings): the feed-reference check matched every
+  `url=`/`href=` with `/podcasts/` in its path, so a cited `vox.com/podcasts/...` article in
+  the 2026-09-22 show notes read as a missing R2 object every night. Only the show's own
+  `url` / `audio_base_url` name R2 objects now, and the degrade row names the unresolved keys
+  instead of counting them. The review had said "restore the object to R2": the narrative
+  describes symptoms well and diagnoses them badly, so the fix starts from the signal and the
+  log, never the review's suggested remedy.
+
 ## Third-party text in the episode notes, and fetches of outside URLs (2026-10-03)
 
 The episode description is HTML inside a CDATA section of the public RSS feed, and it quoted
