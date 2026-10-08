@@ -11371,12 +11371,22 @@ def sync_site_to_r2(max_age_days: float = 2.0):
     feed_path = base_dir / "podcast-feed.xml"
     if feed_path.exists():
         feed_xml = feed_path.read_text(encoding="utf-8")
+        # Only the show's own URLs name R2 objects. The show notes link to other
+        # sites, some with /podcasts/ in the path: a cited vox.com/podcasts/...
+        # article read as a missing object every night from 2026-09-22 while R2
+        # was complete.
+        podcast_config = CONFIG["podcast"]
+        own_bases = "|".join(
+            re.escape(base.rstrip("/") + "/")
+            for base in {podcast_config["url"],
+                         podcast_config.get("audio_base_url", podcast_config["url"])}
+        )
         referenced = {
             saxutils.unescape(m)
-            for m in re.findall(r'(?:url|href)="[^"]*?/(podcasts/[^"?]+)"', feed_xml)
+            for m in re.findall(rf'(?:url|href)="(?:{own_bases})(podcasts/[^"?]+)"', feed_xml)
         }
         healed = 0
-        unresolved = 0
+        unresolved: list[str] = []
         for r2_key in sorted(referenced):
             try:
                 r2.head_object(Bucket=bucket, Key=r2_key)
@@ -11387,17 +11397,21 @@ def sync_site_to_r2(max_age_days: float = 2.0):
             if local_file.exists() and _upload(str(local_file), r2_key):
                 healed += 1
             else:
-                unresolved += 1
+                unresolved.append(r2_key)
                 print(f"::error::podcast-feed.xml references {r2_key} but it is neither "
                       "in R2 nor healable from disk — crawlers will 404 (Apple falls back "
                       "to auto-generated transcripts)")
         print(f"   Feed reference check: {len(referenced)} object(s) verified, {healed} healed"
-              + (f", {unresolved} UNRESOLVED" if unresolved else ""))
+              + (f", {len(unresolved)} UNRESOLVED" if unresolved else ""))
         if unresolved:
+            # Named in the row, not just counted: the review reads degrade rows,
+            # and "one object" was all it could say for twelve nights.
+            shown = ", ".join(unresolved[:3])
+            more = f" (+{len(unresolved) - 3} more)" if len(unresolved) > 3 else ""
             degrade(
                 "publish/r2-sync",
-                f"{unresolved} object(s) referenced by podcast-feed.xml are missing "
-                "from R2 and unhealable from disk — crawlers will 404",
+                f"{len(unresolved)} object(s) referenced by podcast-feed.xml are missing "
+                f"from R2 and unhealable from disk — crawlers will 404: {shown}{more}",
             )
 
     # Site assets — always upload; they are regenerated each run. Uploaded
