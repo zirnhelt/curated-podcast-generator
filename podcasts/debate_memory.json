@@ -1,35 +1,4 @@
 {
-  "2026-07-09": {
-    "timestamp": 1783597360.960518,
-    "date": "2026-07-09",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Does the term 'coproduced' in Indigenous data and land management projects guarantee genuine partnership and control, or does it mask arrangements that still favor outside institutions?",
-    "riley_position": "Coproduction can represent genuine partnership if Indigenous Nations control the underlying data and access from the beginning, making it a fundamentally different legal instrument than top-down impositions, with real leverage implications for future governance.",
-    "riley_key_evidence": [
-      "Permafrost Pathways project describes participants as transforming spatial data into a tool for empowerment, suggesting Indigenous partners shape what gets tracked from the start",
-      "Osoyoos Indian Band is exercising existing land management authority independently by restoring the Nk'Mip fire area with their own species selection, regardless of reconciliation agreement outcomes",
-      "If a Nation's dataset becomes the legal reference regulators must consult before approving development, funding relationships flip from charity to leverage that doesn't evaporate when grant cycles end"
-    ],
-    "casey_position": "The term 'coproduced' obscures persistent control problems: outside institutions still own servers, publications, and decide which versions get cited in regulatory decisions, and there is no enforcement mechanism to make engagement-first the default across jurisdictions.",
-    "casey_key_evidence": [
-      "The Esquimalt and Nanaimo Railway land grant from 140 years ago without First Nations consent is still the document being argued over in active title claims today",
-      "Aamjiwnaang First Nation had to publicly demand engagement-first sequencing on a pipeline the same week Osoyoos reconciliation talks claimed to adopt it, showing the model hasn't become standard practice",
-      "OCAP (Ownership, Control, Access, Possession) questions about data\u2014who hosts it, who queries it in five years, who can revoke access\u2014remain unresolved by the word 'coproduced' alone"
-    ],
-    "resolution": "They agreed that genuine control requires Nations holding access decisions now while projects are new, and that the concrete test is not the word 'coproduced' but who can revoke access and control what happens to data in future years. Both acknowledged they were working from public materials and that ground-truth arrangements may differ.",
-    "topics_covered": [
-      "Data sovereignty and the OCAP framework (Ownership, Control, Access, Possession) in coproduced research",
-      "Sequencing of consultation: engagement before decisions are locked versus comment periods after the fact",
-      "Historical land grabs (Esquimalt and Nanaimo Railway) and their ongoing legal consequences",
-      "Indigenous Nations exercising existing authority independently versus waiting for formal governance agreements",
-      "Funding mechanisms and accountability when data might be used to challenge the same government ministry that funded it"
-    ],
-    "calls_to_action": [
-      "Any Cariboo Nation considering a coproduced dataset with a university or provincial ministry should negotiate a written data-hosting and access agreement before sensors go in the ground or researchers arrive.",
-      "Communities should raise directly at band council meetings or regional forestry tables: before sensors are deployed, who signs off on what happens to this data in year six when current decision-makers are no longer around to remember what was promised?",
-      "Anyone part of a Cariboo Nation or community organization working through a data agreement, or with corrections on how this episode characterized things, should contact feedback at cariboosignals.ca to share ground-truth experiences with data negotiations."
-    ]
-  },
   "2026-07-10": {
     "timestamp": 1783697903.804784,
     "date": "2026-07-10",
@@ -2510,6 +2479,34 @@
       "Local expertise and institutional knowledge versus centralized data sources",
       "Network dependency and the cable-unplugged test for equipment resilience",
       "Institutional sustainability of community-maintained repair logs and failure databases"
+    ]
+  },
+  "2026-10-08": {
+    "timestamp": 1791455016.880588,
+    "date": "2026-10-08",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "guardians-stewardship",
+    "anchor": "actually-measuring",
+    "central_question": "Who should define and measure Indigenous consultation, consent, and stewardship on development projects affecting Indigenous lands?",
+    "riley_position": "Measurement and quantification are necessary tools for accountability, but the metrics must be redesigned to capture meaningful outcomes like Indigenous-led decision-making, data ownership, and actual project outcomes rather than just procedural counts of meetings and letters.",
+    "riley_key_evidence": [
+      "The Kimberley study showed a clear number: fewer large destructive fires over a decade of Indigenous-led burning, demonstrating that counted outcomes can point at the right thing",
+      "The 2014 Tsilhqot'in title decision accepted the Nation's own evidence of sustained occupation and maps as the measure, which changed the legal standard in B.C.",
+      "Tools like satellite monitoring, community-run sensors, and guardian patrol logs allow Nations to build measurable records in weeks rather than decades if they hold the data under their own terms"
+    ],
+    "casey_position": "The current system counts procedural compliance rather than meaningful consent or actual protection of Indigenous rights and territories; the gap between consultation metrics (letters sent, meetings attended) and real decision-making power (whether a Nation's no stops a project) reveals that numbers filed in government records often stand in for actual consent.",
+    "casey_key_evidence": [
+      "Kebaowek First Nation suspended consultations on a nuclear waste proposal and said other parties failed, yet the government's file kept the consultation count unchanged, showing records mask failed processes",
+      "Grassy Narrows has won litigation arguments for decades but continues fighting new industrial projects, demonstrating that winning counts doesn't mean the river or territory is actually protected",
+      "The Tsilhqot'in had to litigate for twenty-five years to establish their own yardstick as the legal standard, illustrating the timeline problem: territories cannot wait a quarter century between proposal and answer"
+    ],
+    "resolution": "Riley and Casey agree the test is practical: whether a paused project on a Nation's say-so actually sticks, and they invite listeners to identify Cariboo-region proposals with Nation-written conditions to track what happens to them, leaving the core question of who truly holds measurement power still open.",
+    "topics_covered": [
+      "The Valar Atomics Project Beehive proposal in Utah and the absence of documented tribal consultation in public records",
+      "The gap between procedural consultation metrics (meetings, letters) and meaningful consent (whether a Nation's refusal can stop a project)",
+      "How Indigenous-led practices like traditional burning, hunting, and harvesting serve as both stewardship and measures of presence on the land",
+      "Data ownership, sovereignty, and whether Nation-collected evidence gets weighted equally against consultant data in permitting decisions",
+      "Governance and control of what gets counted: which Nations hold the pen to define success on their own territories"
     ]
   }
 }

@@ -1,0 +1,47 @@
+{
+  "researched": "2026-10-08",
+  "complete": false,
+  "basis": [
+    [
+      "2026 B.C. provincial general election",
+      "Today's episode carries B.C. provincial election material, and the local ridings are the research task. For each riding on the ballot below: who has filed or been nominated for each party, and for each named candidate their prior offices and every previous run, won or LOST, with year and margin; any reported controversy with its date, outcome and the person's response. Report only what a source states, give the outlet and date for every claim, keep an allegation distinguishable from a finding, and do not carry a name across from the Williams Lake local election.",
+      {
+        "_note": "The listeners' two ridings. Nominations close 2026-10-03, so both races start empty and the research sweep is told to find who has filed; fill `candidates` from Elections BC once the list closes. `seat_holder` is who held the seat at dissolution, which is not the same claim as running again.",
+        "nominations_closed": "2026-10-03",
+        "races": [
+          {
+            "race": "Cariboo-Chilcotin (provincial riding)",
+            "search": "Cariboo-Chilcotin candidates 2026 B.C. election",
+            "seat_holder": "Lorne Doerkson",
+            "incumbents": [],
+            "candidates": []
+          },
+          {
+            "race": "Prince George-North Cariboo (provincial riding, includes Quesnel)",
+            "search": "Prince George-North Cariboo candidates 2026 B.C. election",
+            "seat_holder": "Sheldon Clare",
+            "incumbents": [],
+            "candidates": []
+          }
+        ],
+        "records": {
+          "Lorne Doerkson": [
+            {
+              "fact": "MLA for Cariboo-Chilcotin since 2020, first elected as a B.C. Liberal; re-elected in 2024 as a B.C. Conservative",
+              "source": "Elections BC results",
+              "date": "2024-10-19"
+            }
+          ],
+          "Sheldon Clare": [
+            {
+              "fact": "won Prince George-North Cariboo for the B.C. Conservatives in 2024",
+              "source": "Elections BC results",
+              "date": "2024-10-19"
+            }
+          ]
+        }
+      }
+    ]
+  ],
+  "block": "ELECTION RESEARCH \u2014 2026 B.C. provincial general election\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\n**FINDINGS: Cariboo-Chilcotin**\nRoll-call searches for this race returned the Elections BC candidate report, the studioxnews.ca final list, and CFJC Today (Oct. 7, 2026). They give the same three names: Kathryn Askew (BC NDP), Lorne Doerkson (Conservative) and Douglas Gook (BC Green). Armchair Mayor (Oct. 5, 2026) also gives three candidates, but it spells the Green candidate \"Douglas Goods\".\n\n- **Lorne Doerkson (BC Conservative, incumbent)**\n  - Elections BC results (Oct. 19, 2024): MLA for Cariboo-Chilcotin since 2020, first elected as a B.C. Liberal and re-elected in 2024 as a B.C. Conservative.\n  - bcballot.ca lists the 2024 result as a Conservative win by 7,722 votes. That is a secondary source, not Elections BC.\n  - 100 Mile Free Press (Oct. 1, 2026) calls him \"the B.C. interim conservative leader.\"\n  - Globe and Mail (Sept. 26, 2026): headline says he \"takes the reins of B.C. Conservatives.\"\n  - Vancouver Sun (Sept. 22, 2026 photo caption): calls him B.C. Conservative leader. Its story reports the party's first campaign announcement, a promise to \"never raise taxes.\"\n  - Williams Lake Tribune: a headline reads \"BC Conservatives' Doerkson announces plan to 'supercharge' B.C. economy.\" The article body wasn't retrieved, so no detail from it.\n  - The search snippets gave no 2020 margin and no controversy for him.\n- **Kathryn Askew (BC NDP)**\n  - 100 Mile Free Press / Williams Lake Tribune staff (Oct. 1, 2026): a retired school teacher from Canim Lake, named the NDP candidate.\n  - Same article: she has 32 years in education, with leadership roles in the BC Teachers' Federation and her local union, including local president and bargaining chair.\n  - Same article: she volunteers with the Hawkins Lake Volunteer Fire Department, Forest Grove Legion and Canim Lake Community Club.\n  - Same article: in the NDP release she said she saw \"the damage caused by cuts to schools and public services under the previous government.\" That is her statement, not a finding.\n  - The sources reviewed show no prior runs for office and no controversy.\n- **Douglas Gook (BC Green)**\n  - The 2026 sources only list him as a candidate.\n  - A 2020 blog (cariboopolitics.blogspot.com, Oct. 2020) and a Williams Lake Tribune student-vote story list a Douglas Gook as the Green candidate in Cariboo North in 2020. The Tribune story gave a student-vote result of 586 votes, 6.423 per cent. That is a school mock vote, not the real result.\n  - The blog also says a Douglas Gook ran for the federal Greens in 2015.\n  - CKPG Today (Sept. 13, 2024) announced a Douglas Gook as the Green candidate in Nechako Lakes, with no result retrieved.\n  - These sources don't confirm it is the same person as the 2026 candidate, so treat these runs as unverified for him. Actual vote margins were not retrieved.\n\n**FINDINGS: Prince George-North Cariboo**\n- **Candidates:** CKPG Today (Oct. 3, 2026) lists Denise Bardua (BC NDP), Sheldon Clare (i, BC Conservative) and Randy Thompson (BC Green). It spells the NDP candidate \"Denise\". The Quesnel Cariboo Observer (Oct. 7, 2026) and the Elections BC report spell it \"Denice\". Use \"Denice\", which is the Observer's and Elections BC's spelling.\n- **Sheldon Clare (BC Conservative, incumbent)**\n  - Elections BC (Oct. 19, 2024): won the riding for the Conservatives in 2024.\n  - Quesnel Cariboo Observer (Oct. 7, 2026): he won with 11,430 votes, 56.82 per cent. He defeated independent Coralee Oakes, who took 21.84 per cent. Bardua was third at 17.03 per cent and Thompson took just over 4 per cent.\n  - bcballot.ca lists the margin as 7,036 votes.\n  - CTV News / Times Colonist (Jan. 8, 2026): he said he was running for the Conservative leadership to stop former provincial Liberals from regaining control of the party.\n  - CFJC Today (Feb. 28, 2026): he and Steve Kooner withdrew from the leadership race.\n  - My Cariboo Now / My Prince George Now (Oct. 2, 2026): published a piece headlined \"Conservative candidate Sheldon Clare clears the air on the past 48 hours.\" The page wouldn't load. The snippet only has him saying Doerkson was less controversial as Assistant Deputy Speaker. The nature of the \"past 48 hours\" is not established, so no controversy should be stated.\n- **Denice Bardua (BC NDP)**\n  - Quesnel Cariboo Observer (Oct. 7, 2026): finished third in 2024 with 17.03 per cent. Her party that year was not stated in the retrieved text.\n  - No other record was retrieved.\n- **Randy Thompson (BC Green)**\n  - Quesnel Cariboo Observer (Oct. 7, 2026): took just over 4 per cent in 2024. His party that year was not stated in the retrieved text.\n  - No other record was retrieved.\n\nThe show has not established prior offices, other runs or controversies for the candidates noted above.\n\nNO RECORD FOUND: Denice Bardua; Randy Thompson; Douglas Gook"
+}
