@@ -289,6 +289,11 @@ def roadmap(tmp_path):
     return episode_review.ROADMAP_FILE
 
 
+# Longer than ROADMAP_WRAP, as four of the six open items were on 2026-10-09.
+LONG_TITLE = ("Two sentences with unsupported Indigenous nation references remained in the "
+              "script after territory-check rewrites failed.")
+
+
 def _finding(id_="thing-is-broken", title="A third thing is broken.", detail="Evidence.",
              signal="other"):
     return {"id": id_, "title": title, "detail": detail, "signal": signal}
@@ -318,6 +323,21 @@ class TestParseSection:
 
     def test_no_markers_is_no_items_rather_than_an_error(self):
         assert episode_review.parse_section("# Roadmap\n- [ ] **A.** B\n") == []
+
+    def test_a_title_the_render_wrapped_is_read_back_whole(self):
+        """The render wraps at ROADMAP_WRAP, so a long title's closing ** sits on
+        a continuation line. Four of six open items on 2026-10-09 never parsed."""
+        ledger = _ledger(_finding(title=LONG_TITLE), dates=("2026-08-20", "2026-08-21"))
+        section = episode_review.render_section(ledger["items"])
+        assert LONG_TITLE not in section  # the render really did wrap it
+        assert [i["title"] for i in episode_review.parse_section(section)] == [LONG_TITLE]
+
+    def test_a_wrapped_title_does_not_leak_into_the_item_above(self):
+        ledger = _ledger(_finding(), _finding(id_="long", title=LONG_TITLE),
+                         dates=("2026-08-20", "2026-08-21"))
+        first = episode_review.parse_section(episode_review.render_section(ledger["items"]))[0]
+        assert first["detail"].startswith("Evidence.")
+        assert "territory" not in first["detail"]
 
 
 class TestApplySection:
@@ -427,6 +447,23 @@ class TestHarvestChecked:
         ledger["items"][1]["status"] = "open"
         assert episode_review.harvest_checked(ledger, text) == ["The second thing was broken."]
         assert ledger["items"][1]["status"] == "done"
+
+    def test_checking_a_wrapped_title_closes_it(self):
+        ledger = _ledger(_finding(title=LONG_TITLE), dates=("2026-08-20", "2026-08-21"))
+        text = episode_review.render_section(ledger["items"]).replace("- [ ] **", "- [x] **")
+        assert episode_review.harvest_checked(ledger, text) == [LONG_TITLE]
+        assert ledger["items"][0]["status"] == "done"
+
+    def test_a_wrapped_title_with_odd_whitespace_is_still_the_same_item(self):
+        """The wrap folds a double space at the break into one; matching the
+        ledger exactly would seed a duplicate manual item that never retires."""
+        title = LONG_TITLE.replace("script after", "script  after")
+        ledger = _ledger(_finding(title=title), dates=("2026-08-20", "2026-08-21"))
+        text = episode_review.render_section(ledger["items"])
+        assert [i["title"] for i in episode_review.parse_section(text)] != [title]
+        assert len(episode_review.seed_ledger(ledger, text, "2026-08-22")["items"]) == 1
+        checked = text.replace("- [ ] **", "- [x] **")
+        assert episode_review.harvest_checked(ledger, checked) == [title]
 
     def test_a_closed_item_leaves_the_section(self, roadmap):
         text = roadmap.read_text("utf-8")

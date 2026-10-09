@@ -752,6 +752,7 @@ def load_ledger() -> dict:
 # The managed section: parse and render
 # ---------------------------------------------------------------------------
 
+_ITEM_BOX = re.compile(r"^- \[[ xX]\] ")
 _ITEM_START = re.compile(r"^- \[( |x|X)\] \*\*(.+?)\*\*[ ]?(.*)$")
 
 
@@ -762,23 +763,38 @@ def parse_section(text: str) -> list[dict]:
     into the markdown: an item is matched back by its title. It runs on the
     hand-written section too, which is how the existing roadmap items seed the
     ledger instead of being competed with by a second list.
+
+    An item is its box line plus the indented lines under it, rejoined before
+    the title is matched. `_render_item` wraps at ROADMAP_WRAP, so a long
+    title's closing `**` lands on a continuation line; matched line by line,
+    four of the six open items on 2026-10-09 never parsed, and checking their
+    boxes closed nothing.
     """
     body = _section_body(text)
     if body is None:
         return []
-    items: list[dict] = []
+    paragraphs: list[str] = []
     for line in body.splitlines():
-        match = _ITEM_START.match(line)
+        if _ITEM_BOX.match(line):
+            paragraphs.append(line.strip())
+        elif paragraphs and line.startswith("  ") and line.strip():
+            paragraphs[-1] += " " + line.strip()
+    items: list[dict] = []
+    for paragraph in paragraphs:
+        match = _ITEM_START.match(paragraph)
         if match:
             checked, title, rest = match.groups()
-            items.append({"title": title.strip(),
-                          "detail_lines": [rest.strip()] if rest.strip() else [],
+            items.append({"title": title.strip(), "detail": rest.strip(),
                           "done": checked.lower() == "x"})
-        elif items and line.startswith("  ") and line.strip():
-            items[-1]["detail_lines"].append(line.strip())
-    for item in items:
-        item["detail"] = " ".join(item.pop("detail_lines")).strip()
     return items
+
+
+def _title_key(title: str) -> str:
+    """A title as the file can give it back. The render's wrap folds a double
+    space, tab or newline at the break into the one space parse_section rejoins
+    with, so an exact match would seed a wrapped title a second time, as a
+    manual item that never retires."""
+    return " ".join(title.split())
 
 
 def _section_body(text: str) -> str | None:
@@ -854,9 +870,9 @@ def seed_ledger(ledger: dict, text: str, date: str) -> dict:
     edit instead of a replacement. They are marked `source: "manual"`, which
     exempts them from retirement.
     """
-    known = {i["title"] for i in ledger["items"]}
+    known = {_title_key(i["title"]) for i in ledger["items"]}
     for parsed in parse_section(text):
-        if parsed["title"] in known:
+        if _title_key(parsed["title"]) in known:
             continue
         ledger["items"].append({
             "id": _slug(parsed["title"]),
@@ -881,10 +897,10 @@ def harvest_checked(ledger: dict, text: str) -> list[str]:
     ROADMAP_MIN_OCCURRENCES more sightings, and one that was actually fixed
     never does.
     """
-    checked = {i["title"] for i in parse_section(text) if i["done"]}
+    checked = {_title_key(i["title"]) for i in parse_section(text) if i["done"]}
     closed = []
     for item in ledger["items"]:
-        if item["title"] in checked and item.get("status") != "done":
+        if _title_key(item["title"]) in checked and item.get("status") != "done":
             item["status"] = "done"
             item["occurrences"] = 0
             closed.append(item["title"])
