@@ -1,35 +1,4 @@
 {
-  "2026-07-10": {
-    "timestamp": 1783697903.804784,
-    "date": "2026-07-10",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "How can wild spaces and public land be protected from extraction and development pressure while remaining accessible to recreationalists and communities, and what governance model\u2014federal appointee-driven or title-based\u2014actually delivers durable protection?",
-    "riley_position": "Regulatory frameworks and legal structures already exist to protect wild spaces; the real problem is institutional accountability for maintaining those protections over time rather than concentrating decision-making power in a single appointed official. Design choices like co-decision clauses can make protections durable without requiring complete governance overhauls.",
-    "riley_key_evidence": [
-      "Stevan Pearce's appointment to the BLM (overseeing 245 million acres) represents concentrated discretion that rotates with election cycles, unlike title-based governance",
-      "Courts and public comment periods constrain even industry-friendly appointees from unilaterally weakening protections",
-      "Narrower legislative asks (like co-decision language in new designations) clear legislatures more often than sweeping overhauls"
-    ],
-    "casey_position": "Current regulatory protections are fundamentally weaker than they appear because they can be unilaterally downgraded by cabinet order, and extraction pressure erodes protection at the edges over time. Title-based governance with nations as decision-makers is structurally superior because it survives political cycles and doesn't depend on a single appointee's priorities.",
-    "casey_key_evidence": [
-      "Wildlife management areas are provincial designations that can be redrawn by cabinet order whenever priorities shift, unlike Aboriginal title",
-      "Osisko's gold drilling is actively extending zones deeper at the Cariboo project in real time, showing extraction pressure doesn't wait for perfect governance",
-      "Protection erodes slowly at the edges until permitted extraction becomes active haul roads, at which point change accelerates"
-    ],
-    "resolution": "The debate shifted toward concrete implementation rather than governance philosophy: both agreed that the missing piece isn't legal tools but ongoing institutional accountability for maintenance and updates. They converged on asking specifically how Cariboo designations handle updates six months or two years after initial announcement, and who actually owns that responsibility.",
-    "topics_covered": [
-      "How concentrated appointee authority (BLM model) compares to title-based distributed governance (T\u015dilhqot'in model)",
-      "The difference between regulatory protection on paper versus durable protection that survives political cycles",
-      "Active extraction pressure as a real-time phenomenon (Osisko drilling, seabed mining) versus hypothetical future risks",
-      "Structural safeguards that could make designations harder to downgrade (co-decision clauses requiring bilateral agreement for future changes)",
-      "Information and signage infrastructure as the gap between written titles/designations and ground-level knowledge for actual land users"
-    ],
-    "calls_to_action": [
-      "Write to the Ministry of Forests or bring a question to Cariboo Regional District board meetings asking specifically whether new wildlife management area designations include co-decision language with relevant nations for any future downgrade, not just initial announcement.",
-      "If you have a concrete example of how a specific Cariboo designation actually handles ongoing accountability\u2014whether through T\u015dilhqot'in National Government, Williams Lake First Nation, Xat\u015b\u016bll, or another nation with a working answer\u2014send it to cariboo signals dot c-a.",
-      "Propose updated trailhead panels and recreation site postings that note title areas alongside standard provincial boundaries, making the durable authority relationships visible to people actually using the landscapes."
-    ]
-  },
   "2026-07-11": {
     "timestamp": 1783763764.907397,
     "date": "2026-07-11",
@@ -2507,6 +2476,34 @@
       "How Indigenous-led practices like traditional burning, hunting, and harvesting serve as both stewardship and measures of presence on the land",
       "Data ownership, sovereignty, and whether Nation-collected evidence gets weighted equally against consultant data in permitting decisions",
       "Governance and control of what gets counted: which Nations hold the pen to define success on their own territories"
+    ]
+  },
+  "2026-10-09": {
+    "timestamp": 1791534299.268944,
+    "date": "2026-10-09",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildfire-resilience",
+    "anchor": "actually-measuring",
+    "central_question": "Should wildfire impacts be measured and planned for using aggregate economic and ecological models, or do these models systematically miss local human costs, recovery, and community context that should be built into planning?",
+    "riley_position": "Aggregate models like the SFU wildfire cost estimate are useful planning tools that give councils concrete numbers; their gaps should be fixed by adding missing lines and standardized tools with local input, not by discarding the framework.",
+    "riley_key_evidence": [
+      "SFU model (Kou-Giesbrecht, Environmental Research) puts Canadian wildfire costs above $2 trillion over the 21st century, with about $43 billion annually by century's end under a realistic worst case of 3-4 degrees of warming.",
+      "Recreation losses are valued using established economic methods such as travel costs and visitor willingness-to-pay surveys, and the model's total is a conservative floor.",
+      "A 2024 Auk study analyzing two decades of California banding data shows long-term monitoring is how the field matures and detects patterns a single fire season would hide."
+    ],
+    "casey_position": "Aggregate figures and standard templates systematically exclude the people who bear the costs, the recovery process, and local knowledge, so measurement and planning must be redesigned to capture those losses and involve affected communities.",
+    "casey_key_evidence": [
+      "The SFU model excludes health impacts, evacuations, infrastructure loss, and singular extreme events such as the 2023 season that forced more than 200 communities to evacuate; hectare counts measure area burned, not recovery.",
+      "The 2024 Auk study found acute fine-particle exposure reduced bird capture rates while chronic exposure had a positive effect, showing a proxy can reverse direction depending on timescale.",
+      "Edgeley's editorial argues community wildfire adaptation underperforms because it downplays local context; Burnett and Edgeley (2025) and a 2024 Fire paper question whether standard community archetypes remain useful for planning."
+    ],
+    "resolution": "They did not fully resolve the disagreement, but converged on concrete steps: publish both burn area and recovery metrics, build required local-input fields into standard tools, and create a per-fire loss register housed in the regional district's standing reporting. Casey remained skeptical that such a register would survive an election, while Riley remained confident an institutional home could sustain it.",
+    "topics_covered": [
+      "Economic valuation of wildfire costs and what the SFU model includes and excludes",
+      "Ecological measurement: hectares burned versus recovery, and bird banding data on smoke effects",
+      "Standardized community wildfire planning templates versus local input and context",
+      "Local human costs such as evacuations, mental health, and infrastructure loss in Cariboo communities",
+      "Institutional design for a durable community loss register"
     ]
   }
 }
