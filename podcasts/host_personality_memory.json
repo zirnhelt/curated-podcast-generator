@@ -160,13 +160,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-05",
-        "clue": "structural-lens:x \u2014 Conceded counts distort but defended page-one visibility",
-        "occurrences": 1
+        "date": "2026-10-09",
+        "clue": "structural-lens:x \u2014 concedes register must survive staff turnover, needs institution",
+        "occurrences": 2
       },
       {
-        "date": "2026-10-07",
-        "clue": "evidence-bar:+ \u2014 Pushes for measurable local data over abstractions",
+        "date": "2026-10-09",
+        "clue": "evidence-bar:+ \u2014 defends dollar figure as a budget-setting tool",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-10-09",
+        "clue": "community-trust:~ \u2014 proposes standing loss register inside regional district reporting",
         "occurrences": 1
       }
     ],
@@ -290,7 +295,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Williams Lake Tribune] Community volunteers create meaningf",
       "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
       "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
       "[Resilience.org] Social capital and community resilience: A ",
@@ -299,7 +303,8 @@
       "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
       "[My Cariboo Now] Cops for Cancer riders to make community st",
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
-      "[Canadian Forest Industries] Community knowledge helps guide"
+      "[Canadian Forest Industries] Community knowledge helps guide",
+      "[Wildfire Today] Advancing community wildfire adaptation"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -394,19 +399,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-06",
-        "clue": "rural-context:+ \u2014 emphasized frontline communities bear different order of harm than distant urban centers",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-04",
         "clue": "pilot-skepticism:x \u2014 Granted one season beats zero baseline",
         "occurrences": 2
       },
       {
-        "date": "2026-09-18",
-        "clue": "community-trust:+ \u2014 escalated from consultation critique to co-decision demand",
-        "occurrences": 1
+        "date": "2026-10-09",
+        "clue": "community-trust:+ \u2014 local ranchers and outfitters are the omitted experts",
+        "occurrences": 2
       },
       {
         "date": "2026-09-25",
@@ -442,11 +442,6 @@
         "date": "2026-10-02",
         "clue": "funding-risk:+ \u2014 highlighted retirement and institutional knowledge loss risk",
         "occurrences": 1
-      },
-      {
-        "date": "2026-10-08",
-        "clue": "evidence-bar:+ \u2014 demands Nation's no as measure of real consent",
-        "occurrences": 2
       },
       {
         "date": "2026-10-07",

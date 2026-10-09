@@ -89,52 +89,6 @@
     "target_focus_name": "Agriculture & Ranching",
     "status": "aired_early"
   },
-  "https://wltribune.com/2026/09/21/investigation-continues-into-wildfire-that-destroyed-100-structures-near-summerland/": {
-    "article": {
-      "id": "https://wltribune.com/2026/09/21/investigation-continues-into-wildfire-that-destroyed-100-structures-near-summerland/",
-      "url": "https://wltribune.com/2026/09/21/investigation-continues-into-wildfire-that-destroyed-100-structures-near-summerland/",
-      "title": "[Williams Lake Tribune] Investigation continues into wildfire that destroyed 100+ structures near Summerland",
-      "content_html": "<img src=\"https://wltribune.com/wp-content/uploads/sites/6/2026/09/1.jpeg?w=1024\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F21%2Finvestigation-continues-into-wildfire-that-destroyed-100-structures-near-summerland%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Investigation continues into wildfire that destroyed 100+ structures near Summerland Published 7:41 pm Monday, September 21, 2026 **By Brennan Phillips** Firefighters hosing down a section of the Bald Range wildfire west of Summerland. (BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Investigators continue to seek additional potential witnesses or evidence into the origins of the Bald Range Wildfire on Aug. 7. Penticton RCMP investigators have been working in partnership with the RCMP",
-      "summary": "## Investigation continues into wildfire that destroyed 100+ structures near Summerland Published 7:41 pm Monday, September 21, 2026 **By Brennan Phillips** Firefighters hosing down a section of the Bald Range wildfire west of Summerland. (BC Wildfire Service) | **Getting your Trinity Audio player",
-      "_excerpt": "## Investigation continues into wildfire that destroyed 100+ structures near Summerland Published 7:41 pm Monday, September 21, 2026 **By Brennan Phillips** Firefighters hosing down a section of the Bald Range wildfire west of Summerland. (BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Investigators continue to seek additional potential witnesses or evidence into the origins of the Bald Range Wildfire on Aug. 7. Penticton RCMP investigators have been working in partnership with the RCMP",
-      "date_published": "2026-09-22T02:41:42+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 87,
-      "_quality": 85,
-      "_relevance": 88,
-      "_local": 85,
-      "_theme_score": 97,
-      "_theme_score_raw": 16,
-      "_composite_podcast": 89,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "image": "https://wltribune.com/wp-content/uploads/sites/6/2026/09/1.jpeg?w=1024",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-22T04:09:30.974597+00:00"
-      },
-      "_boosted_score": 87,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-09-22",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
-  },
   "https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/": {
     "article": {
       "id": "https://www.mycariboonow.com/316421/news/municipal-news/city-of-quesnel/the-premier-will-soon-be-getting-a-forestry-request-from-quesnel-city-council/",
@@ -213,7 +167,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://www.wired.com/story/data-center-backlash-climate-reckoning/": {
     "article": {
@@ -254,7 +209,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/": {
     "article": {
@@ -298,51 +254,6 @@
     "target_focus_name": "Sky & Cosmos",
     "status": "held"
   },
-  "https://www.motherjones.com/politics/2026/09/us-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia/": {
-    "article": {
-      "id": "https://www.motherjones.com/politics/2026/09/us-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia/",
-      "url": "https://www.motherjones.com/politics/2026/09/us-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia/",
-      "title": "[Mother Jones] Sickened Coal Miners Plead for Their Black Lung Benefits as Cases Surge",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fpolitics%2F2026%2F09%2Fus-coal-miners-black-lung-benefits-cases-trump-administration-delays-denials-appalachia%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis story was originally published by\u00a0the Guardian and is reproduced here as part of the\u00a0Climate Desk\u00a0collaboration. For 38 years, Josh Armes worked as a coal miner in&#160;West Virginia&#160;and Virginia. After retirement, Armes, 74, of Grundy, Virginia, was diagnosed with black lung disease,&#160;medically known&#160;as coal workers\u2019 pneumoconiosis (CWP), caused by breathing in coal dust over long [&#8230;]",
-      "summary": "This story was originally published by the Guardian and is reproduced here as part of the Climate Desk collaboration. For 38 years, Josh Armes worked as a coal miner in West Virginia and Virginia. After retirement, Armes, 74, of Grundy, Virginia, was diagnosed with black lung disease, medically",
-      "_excerpt": "This story was originally published by the Guardian and is reproduced here as part of the Climate Desk collaboration. For 38 years, Josh Armes worked as a coal miner in West Virginia and Virginia. After retirement, Armes, 74, of Grundy, Virginia, was diagnosed with black lung disease, medically known as coal workers\u2019 pneumoconiosis (CWP), caused by breathing in coal dust over long [\u2026]",
-      "date_published": "2026-09-22T11:30:00+00:00",
-      "authors": [
-        {
-          "name": "Mother Jones",
-          "url": "https://www.motherjones.com"
-        }
-      ],
-      "ai_score": 50,
-      "_quality": 77,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 82,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 69,
-      "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-30T04:11:21.314165+00:00"
-      },
-      "_boosted_score": 50
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-08",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-10-08"
-  },
   "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re": {
     "article": {
       "id": "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re",
@@ -377,48 +288,6 @@
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
     "status": "held"
-  },
-  "https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/?utm_source=rss": {
-    "article": {
-      "id": "https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/?utm_source=rss",
-      "url": "https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/?utm_source=rss",
-      "title": "[Neowin] Adobe Premiere finally lands on Android, but has steep RAM requirements",
-      "content_html": "<img src=\"https://cdn.neowin.com/news/images/uploaded/2026/09/1790109264_media_18ca513c2139c5f05781c7d076921926c64caa00f-fotor-2026092313313_story.webp\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.neowin.net%2Fnews%2Fadobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements%2F%3Futm_source%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div style=\"float: left; margin-right: 10px;\"><img alt=\"\" src=\"https://cdn.neowin.com/news/images/uploaded/2026/09/1790109264_media_18ca513c2139c5f05781c7d076921926c64caa00f-fotor-2026092313313_medium.webp\" /></div>Android creators finally get a powerful new editing option, but Adobe&#039;s latest mobile app comes with a few notable catches. <a href=\"https://www.neowin.net/news/adobe-premiere-finally-lands-on-android-but-has-steep-ram-requirements/\">Read more...</a>",
-      "summary": "Android creators finally get a powerful new editing option, but Adobe's latest mobile app comes with a few notable catches. Read more...",
-      "_excerpt": "Android creators finally get a powerful new editing option, but Adobe's latest mobile app comes with a few notable catches. Read more...",
-      "date_published": "2026-09-22T20:54:01+00:00",
-      "authors": [
-        {
-          "name": "Neowin",
-          "url": "https://www.neowin.net"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://cdn.neowin.com/news/images/uploaded/2026/09/1790109264_media_18ca513c2139c5f05781c7d076921926c64caa00f-fotor-2026092313313_story.webp",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-30T04:11:21.314165+00:00"
-      },
-      "_boosted_score": 45
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-08",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-10-08"
   },
   "https://www.wired.com/story/tiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans/": {
     "article": {
@@ -464,7 +333,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://www.motherjones.com/politics/2026/09/german-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository/": {
     "article": {
@@ -503,7 +373,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/": {
     "article": {
@@ -548,43 +419,6 @@
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
     "status": "held"
-  },
-  "https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/": {
-    "article": {
-      "id": "https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/",
-      "url": "https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/",
-      "title": "[IndigiNews] Near Grassy Narrows, an Elder shows us how using the land also protects it",
-      "content_html": "<img src=\"https://media.indiginews.com/2026/10/IMG_5585-Edit-1024x683.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Ffirst-person%2Fgrassy-narrows-elder-demonstrates-how-using-the-land-protects-it%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Writer Taina Da Silva reflects on how Anishinaabe activist Gwawich\u2019s work has helped her to remember the power of her treaty rights \u2014 and why utilizing them is crucial</p>\n<p>The post <a href=\"https://indiginews.com/first-person/grassy-narrows-elder-demonstrates-how-using-the-land-protects-it/\">Near Grassy Narrows, an Elder shows us how using the land also protects it</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
-      "summary": "Writer Taina Da Silva reflects on how Anishinaabe activist Gwawich\u2019s work has helped her to remember the power of her treaty rights \u2014 and why utilizing them is crucial The post Near Grassy Narrows, an Elder shows us how using the land also protects it appeared first on Indiginews .",
-      "_excerpt": "Writer Taina Da Silva reflects on how Anishinaabe activist Gwawich\u2019s work has helped her to remember the power of her treaty rights \u2014 and why utilizing them is crucial The post Near Grassy Narrows, an Elder shows us how using the land also protects it appeared first on Indiginews .",
-      "date_published": "2026-10-04T14:13:28+00:00",
-      "authors": [
-        {
-          "name": "IndigiNews",
-          "url": "https://indiginews.com/"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 64,
-      "_theme_score_raw": 15,
-      "_composite_podcast": 61,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://media.indiginews.com/2026/10/IMG_5585-Edit-1024x683.jpg",
-      "_boosted_score": 63
-    },
-    "held_date": "2026-10-05",
-    "target_date": "2026-10-08",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-10-08"
   },
   "https://www.techradar.com/ai-platforms-assistants/ai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world": {
     "article": {
@@ -666,7 +500,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal": {
     "article": {
@@ -746,7 +581,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/": {
     "article": {
@@ -924,49 +760,6 @@
     "target_focus_name": "The Living World",
     "status": "held"
   },
-  "https://eaglefeathernews.com/2026/10/05/carry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre/": {
-    "article": {
-      "id": "https://eaglefeathernews.com/2026/10/05/carry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre/",
-      "url": "https://eaglefeathernews.com/2026/10/05/carry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre/",
-      "title": "[Eagle Feather News] Carry the Kettle First Nation call on provincial and federal governments to pause AI Data Centre",
-      "content_html": "<img src=\"https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/screenshot-2026-10-05-at-50842-pm.png\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Feaglefeathernews.com%2F2026%2F10%2F05%2Fcarry-the-kettle-first-nation-call-on-provincial-and-federal-governments-to-pause-ai-data-centre%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBell Canada's AI data centre is located in the Rural Municipality of Sherwood, Saskatchewan, just southeast of Regina",
-      "summary": "Bell Canada's AI data centre is located in the Rural Municipality of Sherwood, Saskatchewan, just southeast of Regina",
-      "_excerpt": "Bell Canada's AI data centre is located in the Rural Municipality of Sherwood, Saskatchewan, just southeast of Regina",
-      "date_published": "2026-10-05T23:11:36+00:00",
-      "authors": [
-        {
-          "name": "Eagle Feather News",
-          "url": "https://www.eaglefeathernews.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 76,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 53,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/screenshot-2026-10-05-at-50842-pm.png",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-06T04:08:52.870645+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-10-06",
-    "target_date": "2026-10-08",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-10-08"
-  },
   "https://www.mycariboonow.com/316601/news/elections/2026-municipal-election/early-voting-opportunities-in-the-cariboo/": {
     "article": {
       "id": "https://www.mycariboonow.com/316601/news/elections/2026-municipal-election/early-voting-opportunities-in-the-cariboo/",
@@ -1007,47 +800,6 @@
     "recall": true,
     "status": "recall"
   },
-  "https://www.cbc.ca/news/entertainment/hudson-williams-sweater-by-canadian-indigenous-designer-9.7367645?cmp=rss": {
-    "article": {
-      "id": "https://www.cbc.ca/news/entertainment/hudson-williams-sweater-by-canadian-indigenous-designer-9.7367645?cmp=rss",
-      "url": "https://www.cbc.ca/news/entertainment/hudson-williams-sweater-by-canadian-indigenous-designer-9.7367645?cmp=rss",
-      "title": "[CBC Arts] Hudson Williams wore this cardigan. Then the Indigenous designer's business went viral",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cbc.ca%2Fnews%2Fentertainment%2Fhudson-williams-sweater-by-canadian-indigenous-designer-9.7367645%3Fcmp%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<img alt=\"man wearing a blue and black cardigan with an orange ribbon on his chest\" height=\"349\" src=\"https://i.cbc.ca/ais/995046eb-8d7c-4771-9cc4-881b37f891fc,1790977813053/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C0%2C1920%2C1080%29%3B\" title=\"Hudson Williams wore Canadian Indigenous designer Justin Jacob Louis' blue-and-black Journey Knit Cardigan to the Kate Spade New York Global Summit on Women's Mental Health. The cardigan, which costs\n$350, quickly sold out.\" width=\"620\"/><p>The Heated Rivalry star wore Indigenous designer Justin Jacob Louis's blue-and-black journey knit cardigan to an event in New York on Wednesday along with an orange ribbon on his chest marking National Day for Truth and Reconciliation.</p>",
-      "summary": "The Heated Rivalry star wore Indigenous designer Justin Jacob Louis's blue-and-black journey knit cardigan to an event in New York on Wednesday along with an orange ribbon on his chest marking National Day for Truth and Reconciliation.",
-      "_excerpt": "The Heated Rivalry star wore Indigenous designer Justin Jacob Louis's blue-and-black journey knit cardigan to an event in New York on Wednesday along with an orange ribbon on his chest marking National Day for Truth and Reconciliation.",
-      "date_published": "2026-10-02T23:14:49+00:00",
-      "authors": [
-        {
-          "name": "CBC Arts",
-          "url": "https://www.cbc.ca/arts"
-        }
-      ],
-      "ai_score": 32,
-      "_quality": 50,
-      "_relevance": 38,
-      "_local": 0,
-      "_theme_score": 94,
-      "_theme_score_raw": 14,
-      "_composite_podcast": 80,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-10-05T04:06:51.935278+00:00"
-      },
-      "_boosted_score": 32
-    },
-    "held_date": "2026-10-07",
-    "target_date": "2026-10-08",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-10-08"
-  },
   "https://blog.adafruit.com/2026/09/29/an-interactive-map-of-every-passenger-rail-line-in-the-world/": {
     "article": {
       "id": "https://blog.adafruit.com/2026/09/29/an-interactive-map-of-every-passenger-rail-line-in-the-world/",
@@ -1087,47 +839,6 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://www.aptnnews.ca/national-news/kebaowek-nation-suspends-consultations-saying-other-parties-failed/": {
-    "article": {
-      "id": "https://www.aptnnews.ca/national-news/kebaowek-nation-suspends-consultations-saying-other-parties-failed/",
-      "url": "https://www.aptnnews.ca/national-news/kebaowek-nation-suspends-consultations-saying-other-parties-failed/",
-      "title": "[APTN News] Kebaowek Nation pulls out of nuclear consultations, saying other parties failed",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Fnational-news%2Fkebaowek-nation-suspends-consultations-saying-other-parties-failed%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Kebaowek First Nation announced Tuesday that it is suspending consultations on the proposed nuclear waste...</p>\n<p>The post <a href=\"https://www.aptnnews.ca/national-news/kebaowek-nation-suspends-consultations-saying-other-parties-failed/\">Kebaowek Nation pulls out of nuclear consultations, saying other parties failed</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
-      "summary": "Kebaowek First Nation announced Tuesday that it is suspending consultations on the proposed nuclear waste... The post Kebaowek Nation pulls out of nuclear consultations, saying other parties failed appeared first on APTN News .",
-      "_excerpt": "Kebaowek First Nation announced Tuesday that it is suspending consultations on the proposed nuclear waste... The post Kebaowek Nation pulls out of nuclear consultations, saying other parties failed appeared first on APTN News .",
-      "date_published": "2026-09-29T22:01:55+00:00",
-      "authors": [
-        {
-          "name": "APTN News",
-          "url": "https://www.aptnnews.ca"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 82,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 73,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-07T04:12:24.966270+00:00"
-      },
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-07",
-    "target_date": "2026-10-08",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-10-08"
   },
   "https://www.xda-developers.com/my-router-was-handing-every-device-my-isps-dns-servers-and-fixing-it-took-less-than-five-minutes/": {
     "article": {
@@ -1170,95 +881,6 @@
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
     "status": "held"
-  },
-  "https://www.resilience.org/stories/2026-10-06/9000-acre-nuclear-powered-data-center-proposed-on-public-lands-in-utah/": {
-    "article": {
-      "id": "https://www.resilience.org/stories/2026-10-06/9000-acre-nuclear-powered-data-center-proposed-on-public-lands-in-utah/",
-      "url": "https://www.resilience.org/stories/2026-10-06/9000-acre-nuclear-powered-data-center-proposed-on-public-lands-in-utah/",
-      "title": "[Resilience.org] 9,000-acre nuclear-powered data center proposed on public lands in Utah",
-      "content_html": "<img src=\"https://www.resilience.org/wp-content/uploads/2026/10/nuclear-power-plant-reactor-atomic-industry-craft-1f5529.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.resilience.org%2Fstories%2F2026-10-06%2F9000-acre-nuclear-powered-data-center-proposed-on-public-lands-in-utah%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe facility calls for 456 small nuclear reactors, nuclear fuel production and nuclear waste storage. On the same day it surfaced, Sen. Ron Wyden introduced legislation that would ban new data centers.",
-      "summary": "The facility calls for 456 small nuclear reactors, nuclear fuel production and nuclear waste storage. On the same day it surfaced, Sen. Ron Wyden introduced legislation that would ban new data centers.",
-      "_excerpt": "The facility calls for 456 small nuclear reactors, nuclear fuel production and nuclear waste storage. On the same day it surfaced, Sen. Ron Wyden introduced legislation that would ban new data centers.",
-      "date_published": "2026-10-06T08:00:25+00:00",
-      "authors": [
-        {
-          "name": "Resilience.org",
-          "url": "https://www.resilience.org"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 85,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 60,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.resilience.org/wp-content/uploads/2026/10/nuclear-power-plant-reactor-atomic-industry-craft-1f5529.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-07T04:12:24.966270+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-07",
-    "target_date": "2026-10-08",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-10-08"
-  },
-  "https://wltribune.com/2026/09/23/vancouver-man-experiences-okanagan-wildfire-season-on-cross-country-coffee-bike-tour/": {
-    "article": {
-      "id": "https://wltribune.com/2026/09/23/vancouver-man-experiences-okanagan-wildfire-season-on-cross-country-coffee-bike-tour/",
-      "url": "https://wltribune.com/2026/09/23/vancouver-man-experiences-okanagan-wildfire-season-on-cross-country-coffee-bike-tour/",
-      "title": "[Williams Lake Tribune] Vancouver man experiences Okanagan wildfire season on cross-country coffee bike tour",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F23%2Fvancouver-man-experiences-okanagan-wildfire-season-on-cross-country-coffee-bike-tour%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n",
-      "summary": "",
-      "_excerpt": "",
-      "date_published": "2026-10-07T04:03:20.404762+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 70,
-      "_quality": 62,
-      "_relevance": 68,
-      "_local": 82,
-      "_theme_score": 78,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-07T04:12:24.966270+00:00"
-      },
-      "_boosted_score": 70,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-10-07",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
   },
   "https://www.theguardian.com/global-development/2026/oct/06/argentina-land-reform-protests-javier-milei": {
     "article": {
@@ -1599,7 +1221,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://www.dwell.com/article/cathedral-house-jak-architecture-bushfire-design-a56ccfab": {
     "article": {
@@ -1645,7 +1268,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://newatlas.com/technology/germany-come-close-atomic-bomb/": {
     "article": {
@@ -1723,7 +1347,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/": {
     "article": {
@@ -2085,7 +1710,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-09"
   },
   "https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds": {
     "article": {
@@ -2132,5 +1758,49 @@
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
     "status": "held"
+  },
+  "https://wltribune.com/2026/10/08/free-transit-for-residents-in-quesnel-williams-lake-bella-coola-on-election-day/": {
+    "article": {
+      "id": "https://wltribune.com/2026/10/08/free-transit-for-residents-in-quesnel-williams-lake-bella-coola-on-election-day/",
+      "url": "https://wltribune.com/2026/10/08/free-transit-for-residents-in-quesnel-williams-lake-bella-coola-on-election-day/",
+      "title": "[Williams Lake Tribune] Free transit for residents in Quesnel, Williams Lake, Bella Coola on election day",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F08%2Ffree-transit-for-residents-in-quesnel-williams-lake-bella-coola-on-election-day%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFree transit for residents in Quesnel, Williams Lake and Bella Coola on election day, Oct. 17. Residents in some communities in the Cariboo will be able to ride transit for free on Saturday, Oct. 17, when British Columbians head to the polls for the 2026 General Local Election. BC Transit, in partnership with local government partners across the province, will offer free transit to 44 communities in B.C., including Quesnel, Bella Coola and Williams Lake. BC Transit said free transit includes handyDART service in all applicable regions. The 2026 General Local Elections take place Oct. 17, with",
+      "summary": "Free transit for residents in Quesnel, Williams Lake and Bella Coola on election day, Oct. 17. Residents in some communities in the Cariboo will be able to ride transit for free on Saturday, Oct. 17, when British Columbians head to the polls for the 2026 General Local Election. BC Transit, in",
+      "_excerpt": "Free transit for residents in Quesnel, Williams Lake and Bella Coola on election day, Oct. 17. Residents in some communities in the Cariboo will be able to ride transit for free on Saturday, Oct. 17, when British Columbians head to the polls for the 2026 General Local Election. BC Transit, in partnership with local government partners across the province, will offer free transit to 44 communities in B.C., including Quesnel, Bella Coola and Williams Lake. BC Transit said free transit includes handyDART service in all applicable regions. The 2026 General Local Elections take place Oct. 17, with",
+      "date_published": "2026-10-09T04:03:14.269632+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 89,
+      "_quality": 75,
+      "_relevance": 90,
+      "_local": 100,
+      "_theme_score": 92,
+      "_theme_score_raw": 51,
+      "_composite_podcast": 94,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-09T04:09:41.111718+00:00"
+      },
+      "_boosted_score": 89
+    },
+    "held_date": "2026-10-09",
+    "target_date": "2026-10-10",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
   }
 }
