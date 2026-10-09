@@ -448,10 +448,9 @@
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 19,
+      "occurrences": 20,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-21",
         "2026-09-23",
         "2026-09-24",
         "2026-09-25",
@@ -460,11 +459,12 @@
         "2026-10-05",
         "2026-10-06",
         "2026-10-07",
-        "2026-10-08"
+        "2026-10-08",
+        "2026-10-09"
       ],
-      "last_seen": "2026-10-08",
+      "last_seen": "2026-10-09",
       "signal": "short-script",
-      "signal_seen": "2026-10-08"
+      "signal_seen": "2026-10-09"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -509,10 +509,9 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 11,
+      "occurrences": 12,
       "first_seen": "2026-09-19",
       "seen": [
-        "2026-09-20",
         "2026-09-21",
         "2026-09-22",
         "2026-09-23",
@@ -521,11 +520,12 @@
         "2026-09-29",
         "2026-10-02",
         "2026-10-03",
-        "2026-10-06"
+        "2026-10-06",
+        "2026-10-09"
       ],
-      "last_seen": "2026-10-06",
+      "last_seen": "2026-10-09",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-10-06"
+      "signal_seen": "2026-10-09"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
@@ -617,5 +617,5 @@
       "last_seen": "2026-10-06"
     }
   ],
-  "updated": "2026-10-08"
+  "updated": "2026-10-09"
 }

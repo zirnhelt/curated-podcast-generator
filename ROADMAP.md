@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-20..2026-10-08) — 6 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-20..2026-10-09) — 6 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -62,8 +62,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 19 reviews,
-      latest 2026-10-08)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 20 reviews,
+      latest 2026-10-09)
 - [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
       errors.** On September 22, a single file present in podcast-feed.xml could not be found in
       R2 and could not be rebuilt from disk. The pipeline completed and published successfully
@@ -78,7 +78,7 @@ close one; it comes back only if the reviews raise it 2 more times._
       final episode anyway, carrying geographic claims the validation layer could not support.
       Log which sentences triggered the rewrite rejection, and decide whether to cut them,
       override the territory map data, or implement a mandatory-cut rule when rewrites fail.
-      (signal `degraded:script/territory-check`; seen in 11 reviews, latest 2026-10-06)
+      (signal `degraded:script/territory-check`; seen in 12 reviews, latest 2026-10-09)
 - [ ] **Script generation failed in the primary and first fallback run but succeeded in the
       second fallback.** The Generate episode script step failed after 92 seconds in both the
       primary run (1:05 AM Pacific, run 36834215592) and Fallback 1 (2:05 AM Pacific, run
