@@ -789,6 +789,14 @@ def parse_section(text: str) -> list[dict]:
     return items
 
 
+def _title_key(title: str) -> str:
+    """A title as the file can give it back. The render's wrap folds a double
+    space, tab or newline at the break into the one space parse_section rejoins
+    with, so an exact match would seed a wrapped title a second time, as a
+    manual item that never retires."""
+    return " ".join(title.split())
+
+
 def _section_body(text: str) -> str | None:
     """The text between the markers, or None when the section is absent."""
     start = text.find(SECTION_BEGIN)
@@ -862,9 +870,9 @@ def seed_ledger(ledger: dict, text: str, date: str) -> dict:
     edit instead of a replacement. They are marked `source: "manual"`, which
     exempts them from retirement.
     """
-    known = {i["title"] for i in ledger["items"]}
+    known = {_title_key(i["title"]) for i in ledger["items"]}
     for parsed in parse_section(text):
-        if parsed["title"] in known:
+        if _title_key(parsed["title"]) in known:
             continue
         ledger["items"].append({
             "id": _slug(parsed["title"]),
@@ -889,10 +897,10 @@ def harvest_checked(ledger: dict, text: str) -> list[str]:
     ROADMAP_MIN_OCCURRENCES more sightings, and one that was actually fixed
     never does.
     """
-    checked = {i["title"] for i in parse_section(text) if i["done"]}
+    checked = {_title_key(i["title"]) for i in parse_section(text) if i["done"]}
     closed = []
     for item in ledger["items"]:
-        if item["title"] in checked and item.get("status") != "done":
+        if _title_key(item["title"]) in checked and item.get("status") != "done":
             item["status"] = "done"
             item["occurrences"] = 0
             closed.append(item["title"])

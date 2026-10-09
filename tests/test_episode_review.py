@@ -454,6 +454,17 @@ class TestHarvestChecked:
         assert episode_review.harvest_checked(ledger, text) == [LONG_TITLE]
         assert ledger["items"][0]["status"] == "done"
 
+    def test_a_wrapped_title_with_odd_whitespace_is_still_the_same_item(self):
+        """The wrap folds a double space at the break into one; matching the
+        ledger exactly would seed a duplicate manual item that never retires."""
+        title = LONG_TITLE.replace("script after", "script  after")
+        ledger = _ledger(_finding(title=title), dates=("2026-08-20", "2026-08-21"))
+        text = episode_review.render_section(ledger["items"])
+        assert [i["title"] for i in episode_review.parse_section(text)] != [title]
+        assert len(episode_review.seed_ledger(ledger, text, "2026-08-22")["items"]) == 1
+        checked = text.replace("- [ ] **", "- [x] **")
+        assert episode_review.harvest_checked(ledger, checked) == [title]
+
     def test_a_closed_item_leaves_the_section(self, roadmap):
         text = roadmap.read_text("utf-8")
         ledger = episode_review.seed_ledger({"items": []}, text, "2026-08-23")
