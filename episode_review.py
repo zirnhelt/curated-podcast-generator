@@ -752,6 +752,7 @@ def load_ledger() -> dict:
 # The managed section: parse and render
 # ---------------------------------------------------------------------------
 
+_ITEM_BOX = re.compile(r"^- \[[ xX]\] ")
 _ITEM_START = re.compile(r"^- \[( |x|X)\] \*\*(.+?)\*\*[ ]?(.*)$")
 
 
@@ -762,22 +763,29 @@ def parse_section(text: str) -> list[dict]:
     into the markdown: an item is matched back by its title. It runs on the
     hand-written section too, which is how the existing roadmap items seed the
     ledger instead of being competed with by a second list.
+
+    An item is its box line plus the indented lines under it, rejoined before
+    the title is matched. `_render_item` wraps at ROADMAP_WRAP, so a long
+    title's closing `**` lands on a continuation line; matched line by line,
+    four of the six open items on 2026-10-09 never parsed, and checking their
+    boxes closed nothing.
     """
     body = _section_body(text)
     if body is None:
         return []
-    items: list[dict] = []
+    paragraphs: list[str] = []
     for line in body.splitlines():
-        match = _ITEM_START.match(line)
+        if _ITEM_BOX.match(line):
+            paragraphs.append(line.strip())
+        elif paragraphs and line.startswith("  ") and line.strip():
+            paragraphs[-1] += " " + line.strip()
+    items: list[dict] = []
+    for paragraph in paragraphs:
+        match = _ITEM_START.match(paragraph)
         if match:
             checked, title, rest = match.groups()
-            items.append({"title": title.strip(),
-                          "detail_lines": [rest.strip()] if rest.strip() else [],
+            items.append({"title": title.strip(), "detail": rest.strip(),
                           "done": checked.lower() == "x"})
-        elif items and line.startswith("  ") and line.strip():
-            items[-1]["detail_lines"].append(line.strip())
-    for item in items:
-        item["detail"] = " ".join(item.pop("detail_lines")).strip()
     return items
 
 

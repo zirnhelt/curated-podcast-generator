@@ -443,6 +443,11 @@ resurrected on one mention.
   hand-written items became the ledger's first entries on first run rather than being
   duplicated by a second list underneath them. It also means no id is ever written into the
   markdown — an item is matched back by its title.
+  **Until 2026-10-09 it was only the inverse for short titles.** The render wraps at
+  `ROADMAP_WRAP`, and the parser matched `**title**` one line at a time, so any title whose
+  closing `**` wrapped onto a continuation line was never read back: checking its box closed
+  nothing, and the next night's render unchecked it. Four of the six open items were like
+  that. The parser now rejoins an item's box line with its indented lines before matching.
 - **Findings are keyed on signals, because ids and titles both drift.** The model coins the
   id, and the same finding came back as `credit-balance-preflight` and
   `credit-balance-not-usage-limit` in testing. Title matching was the fallback, and titles
