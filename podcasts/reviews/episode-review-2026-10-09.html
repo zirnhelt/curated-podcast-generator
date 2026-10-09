@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 9, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 9, 2026</h1>
+  <p class="meta">Published October 9, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37902833997">37902833997</a>.</em></p>
+
+<h3>The territory check ran out of lookups before it finished</h3>
+<p>The script's territory check is meant to confirm that every nation named in the script is supported by the territory map. This run's check hit its per-run ceiling of 8 lookups and stopped with names still unchecked: "Douglas", "Gook", "Greens", "Prince", "George-North", "Sheldon", "Clare", "Denice", "Bardua", "Randy", "Greens" (again), "News", and "Osoyoos". The ceiling was reached, so those names were never checked. "Greens" and "News" appear to be false hits on common words, but the pipeline did not establish that. It recorded them as unchecked.</p>
+<p>A separate check did resolve something. "Tŝilhqot'in" was named in connection with Lorne, which the territory map covers as Miâkmaâki, Wabanaki (Dawnland Confederacy). One sentence kept an unsupported nation after a rewrite was rejected. The script shipped with that sentence in it. The pipeline flagged the mismatch and did not fix it. A listener hears a Tŝilhqot'in reference attached to a place the map assigns to another nation.</p>
+
+<h3>The script came in short and was sent back once</h3>
+<p>The first draft ran 2,517 words against a target of 3,400. The pipeline sent it back for one expand pass. The shipped script is 3,237 words, which is 163 short of target. The expand pass closed most of the gap but not all of it. The shipped number is the one that matters for the listener, and it is still under target.</p>
+<p>The quality checks came back clean on the points they measure. There were 0 AI-tell pattern hits, and the Casey-to-Riley voice ratio was 0.99.</p>
+
+<h3>The curated pool was far larger than the airtime</h3>
+<p>The roundup pool held 64 stories more than the airtime budget could carry, and those were cut. The pipeline's design treats this as intended: a cut story can come back on a day when it fits better. What the cut count does not tell you is how many of the stories that aired were picked from the strongest part of the pool and how many were picked for coverage. That choice is not recorded in the facts.</p>
+<p>Citations on the roundup matched fully: 15 of 15. On the deep dives, 2 of 3 matched. The unmatched deep-dive citation is the one that would need checking before anyone treats the deep-dive segment as sourced end to end.</p>
+
+<h3>The episode runs long and the video is heavier than the audio</h3>
+<p>The audio is 19.2 minutes and 17.5 MB. The video is also 19.2 minutes, at 66.4 MB, so the two tracks match in length while the video file is nearly four times the audio size. The RSS feed now lists 254 episodes.</p>
+<p>The script generation step took 1,038 seconds, by far the longest step. Deploy to GitHub Pages took 517 seconds. Those two steps account for most of the run's wall-clock time.</p>
+
+<h3>The run itself was on schedule</h3>
+<p>The primary run started at 1:05 AM Pacific and finished at 1:40 AM Pacific. Fallback 1 started and finished at 2:05 AM Pacific. Both completed successfully and neither was late. Fallback 2, which is the run producing this review, was created at 3:05 AM Pacific and is still running. Nothing in the facts says the primary run needed a fallback to finish, so the fallbacks here were scheduled retries and not recoveries.</p>
+<p>The debate question for the day asks whether wildfire impacts should be planned for with aggregate economic and ecological models, or whether those models systematically miss local human costs, recovery, and community context. The script's deep dives were built around that question. The territory failures above fall in the same area: the places and nations the episode names are the part of the script the pipeline could least verify.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.99, 3237 words</td></tr>
+<tr><td>Audio</td><td>19.2 min</td></tr>
+<tr><td>Audio size</td><td>17.5 MB</td></tr>
+<tr><td>Citations matched</td><td>15/15 roundup, 2/3 deep dive</td></tr>
+<tr><td>Feed</td><td>254 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>50,587 input tokens, calls ***'brave-search': 19, 'claude': 19***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
