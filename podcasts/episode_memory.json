@@ -1,25 +1,4 @@
 {
-  "2026-09-04": {
-    "timestamp": 1788510396.944115,
-    "topics": [
-      "[My Cariboo Now] Quesnel man sentenced for assault with a we",
-      "[My Cariboo Now] Prince George-North Cariboo Conservative ML",
-      "[Williams Lake Tribune] Cariboo Chilcotin Orienteering Club ",
-      "[My Cariboo Now] Quesnel non-profit part of Rona\u2019s nationwid",
-      "[Williams Lake Tribune] Family shocked as B.C. teen\u2019s killer",
-      "[Williams Lake Tribune] Man survives grizzly bear attack whi",
-      "[The Tyee] BC Has an Extinction Problem. Scientists Say Ther",
-      "[Business Insider] How illegal wildlife poaching actually wo"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-04",
-    "focus": "wildlife-conservation",
-    "focus_name": "Wildlife & Conservation"
-  },
   "2026-09-05": {
     "timestamp": 1788596361.074854,
     "topics": [
@@ -710,5 +689,25 @@
     "date": "2026-10-09",
     "focus": "wildfire-resilience",
     "focus_name": "Wildfire & Climate Resilience"
+  },
+  "2026-10-10": {
+    "timestamp": 1791620233.911972,
+    "topics": [
+      "[My Cariboo Now] BC Cancer opens breast cancer screening app",
+      "[Williams Lake Tribune] Disgraced Vernon lawyer misappropria",
+      "[Williams Lake Tribune] Williams Lake Salvation Army shares ",
+      "[Williams Lake Tribune] Cannabis store move to Williams Lake",
+      "[My Cariboo Now] The unemployment rate takes a plunge in the",
+      "[Quesnel Cariboo Observer] Meet the Candidates: Tony Goulet ",
+      "[Williams Lake Tribune] Free transit for residents in Quesne",
+      "[My Cariboo Now] Early voting opportunities in the Cariboo"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-10-10",
+    "focus": null,
+    "focus_name": null
   }
 }
