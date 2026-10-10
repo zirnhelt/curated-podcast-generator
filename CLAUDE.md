@@ -142,6 +142,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 **Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box.
 - **Findings are keyed on signals** read off the facts (`run_signals`: `degraded:<segment>`, `short-script`, `citations:*`, …), never on the model's id or title, and an item closes itself once its signal has been absent `SIGNAL_QUIET_DAYS`. A new failure mode worth tracking gets a signal, not a looser title match.
 - Only tool-written items retire. The review's run labels must follow the schedule (`_trigger_label`); a stale label was the most-sighted roadmap item for three weeks.
+- Once the review is live on Pages, the review job dispatches `super-rss-feed`'s `refresh-editorial.yml` (scheduler PAT), so it reaches `feed-local` that morning rather than with the next nightly.
 
 ### Configuration (`config_loader.py`)
 
@@ -220,6 +221,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 **Naming a nation.** The three house nations describe the Cariboo and nowhere else. Name a nation only for its own territory, and only when a source names it. **Naming the wrong people is worse than naming none.**
 - `script/territory-check` (`native_land.py`) only ever disconfirms. A crowd-sourced map may remove a claim; it must never supply one.
+- **Detection is whole words, places are whole phrases, and only an unambiguous BC place can disconfirm.** A name in `place_aliases` (Chilcotin, Okanagan, Thompson…) names the people only with a suffix ("Nation", "people"); "Cariboo-Chilcotin" names no one. `podcasts/native_land_cache.json` rides the script commit.
 - The land acknowledgment is exempt by construction (`local_places`).
 - `NATIVE_LAND_API_KEY` is a secret; degradation rows record only the exception type.
 

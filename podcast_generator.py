@@ -10139,45 +10139,98 @@ def _territory_nation_vocabulary():
             for n in cfg.get('nations', []) if n.get('name')]
 
 
+def _fold_sentence(sentence: str) -> str:
+    """Fold a sentence for whole-word nation matching: possessives off, word
+    breaks kept, whitespace collapsed."""
+    text = re.sub(r"['’]s\b", "", sentence)
+    return re.sub(r"\s+", " ", native_land._fold(text))
+
+
+def _word_re(phrase: str) -> str:
+    """A folded phrase as a whole word: a hyphen joins, it does not separate, so
+    "Cariboo-Chilcotin" (the riding) never contains "Chilcotin" (the people)."""
+    return rf"(?<![\w-]){re.escape(phrase)}(?![\w-])"
+
+
 def _nations_named_in(sentence: str) -> list:
     """Nations this sentence names, as (display, aliases) pairs.
 
-    Matched on the folded form so Tŝilhqot'in, Tsilhqot'in and Chilcotin are
-    one nation rather than three — the orthography is exactly what a naive
-    string comparison gets wrong.
+    Whole words on the folded form, so Tŝilhqot'in, Tsilhqot'in and TSILHQOT’IN
+    are one nation and "Cariboo-Chilcotin" names none. A name in `place_aliases`
+    is also a place, a common word or a surname (Chilcotin, Okanagan, Thompson,
+    Carrier, Squamish, Haida Gwaii): it names the people only when a
+    `name_suffixes` word or "people" follows it, and is blanked out otherwise
+    before anything is matched. "Lorne Doerkson for Cariboo-Chilcotin" and
+    "Randy Thompson for the Greens" were read as naming Tŝilhqot'in and
+    Nlaka'pamux on four episodes between 2026-09-22 and 2026-10-09.
     """
-    folded = native_land._normalize(sentence)
+    cfg = load_indigenous_nations() or {}
+    suffixes = [native_land._fold(x) for x in cfg.get('name_suffixes', [])] + ['people', 'peoples']
+    qualifier = r"\s+(?:" + "|".join(re.escape(x) for x in sorted(suffixes, key=len, reverse=True)) + ")"
+    text = _fold_sentence(sentence)
+    for place in sorted((native_land._fold(p) for p in cfg.get('place_aliases', [])),
+                        key=len, reverse=True):
+        text = re.sub(_word_re(place) + rf"(?!{qualifier}(?![\w-]))", " | ", text)
     found = []
     for display, aliases in _territory_nation_vocabulary():
         for candidate in [display] + list(aliases):
-            token = native_land._normalize(candidate)
-            if len(token) >= 5 and token in folded:
+            token = native_land._fold(candidate)
+            if len(native_land._normalize(candidate)) >= 5 and re.search(_word_re(token), text):
                 found.append((display, aliases))
                 break
     return found
 
 
-def _territory_place_candidates(sentence: str, nation_words: set) -> list:
-    """Capitalized tokens in the sentence that might be place names.
+def _territory_place_candidates(sentence: str, nation_phrases: set) -> list:
+    """Capitalized phrases in the sentence that might be place names.
 
-    Deliberately over-generous: the geocoder is the gazetteer, and a candidate
-    that is not a Canadian place resolves to nothing, is cached as unresolved
-    and costs one lookup once, ever. Sentence-initial tokens are dropped for
-    the reason `_meta_moment_unknown_names` drops them — they are capitalized
-    by grammar and prove nothing.
+    A phrase, never a lone word out of one: "Lorne Doerkson" is a single
+    candidate that geocodes to nothing, where "Lorne" alone resolved to the
+    Maritimes and was checked against the Mi'kmaq map. A phrase containing a
+    nation name ("Okanagan Nation Alliance", "Randy Thompson") is dropped whole
+    rather than split, so no first name is left behind to geocode. The geocoder
+    is still the gazetteer: a phrase that is not a Canadian place resolves to
+    nothing and is cached as unresolved. Sentence-initial tokens are dropped for
+    the reason `_meta_moment_unknown_names` drops them — they are capitalized by
+    grammar and prove nothing.
     """
     body = re.sub(r"\*\*[A-Za-z]+:\*\*", "", sentence)
     body = re.sub(r"\[(?:pause|overlap):[^\]]*\]", "", body)
-    tokens = _TERRITORY_WORD_RE.findall(body)
-    out = []
-    for token in tokens[1:]:
+    phrases, current, prev_end = [], [], None
+    for m in list(_TERRITORY_WORD_RE.finditer(body))[1:]:
+        if current and body[prev_end:m.start()].strip():
+            phrases.append(current)
+            current = []
+        token = m.group()
         stem = re.sub(r"['’]s$", "", token)
-        low = stem.lower()
-        if len(stem) < 4 or low in _TERRITORY_NON_PLACES or low in nation_words:
+        current.append(stem)
+        prev_end = m.end()
+        if stem != token:              # a possessive closes the phrase
+            phrases.append(current)
+            current = []
+    if current:
+        phrases.append(current)
+
+    out = []
+    for phrase in phrases:
+        folded = " ".join(native_land._fold(t) for t in phrase)
+        if any(re.search(_word_re(n), folded) for n in nation_phrases):
             continue
-        if stem not in out:
-            out.append(stem)
+        segment = []
+        for token in phrase + [None]:    # stop words split; None flushes
+            if token is not None and native_land._fold(token) not in _TERRITORY_NON_PLACES:
+                segment.append(token)
+                continue
+            candidate = " ".join(segment)
+            segment = []
+            if len(candidate) >= 4 and candidate not in out:
+                out.append(candidate)
     return out
+
+
+def _is_local_place(place: str, local_places: set) -> bool:
+    """On `local_places`, or a whole-word part of one ("Mile House")."""
+    return any(f" {place.lower()} " in f" {p} " for p in local_places)
 
 
 def check_territory_claims(script_text: str) -> list:
@@ -10196,10 +10249,8 @@ def check_territory_claims(script_text: str) -> list:
         return []
 
     local_places = {p.lower() for p in CONFIG['podcast'].get('local_places', [])}
-    nation_words = set()
-    for display, aliases in _territory_nation_vocabulary():
-        for candidate in [display] + list(aliases):
-            nation_words.update(w.lower() for w in candidate.split())
+    nation_phrases = {native_land._fold(c) for display, aliases in _territory_nation_vocabulary()
+                      for c in [display] + list(aliases)}
 
     findings = []
     seen = set()
@@ -10213,11 +10264,11 @@ def check_territory_claims(script_text: str) -> list:
             named = _nations_named_in(sentence)
             if not named:
                 continue
-            places = _territory_place_candidates(sentence, nation_words)
+            places = _territory_place_candidates(sentence, nation_phrases)
             # Every place in the sentence is somewhere the show is from: this
             # is the acknowledgment or ordinary local coverage, not a borrowed
             # nation name.
-            offsite = [p for p in places if p.lower() not in local_places]
+            offsite = [p for p in places if not _is_local_place(p, local_places)]
             if not offsite:
                 continue
             for place in offsite:
@@ -10326,14 +10377,15 @@ def scrub_territory_claims(script_text: str, findings: list) -> str:
     for original, replacement in zip(sentences, rewrites):
         replacement = str(replacement).strip()
         wrong = {f['nation'] for f in by_sentence[original]}
-        aliases = {a for f in by_sentence[original]
-                   for d, al in _territory_nation_vocabulary() if d == f['nation']
-                   for a in [d] + list(al)}
-        folded = native_land._normalize(replacement)
+        # Every alias as a whole word, with no place masking: stricter than
+        # detection on purpose, so a rewrite that swaps Tŝilhqot'in for a bare
+        # "Chilcotin" is refused, while "Cariboo-Chilcotin" (the riding) may stay.
+        folded = _fold_sentence(replacement)
         still_there = any(
             len(native_land._normalize(a)) >= 5
-            and native_land._normalize(a) in folded
-            for a in aliases
+            and re.search(_word_re(native_land._fold(a)), folded)
+            for d, al in _territory_nation_vocabulary() if d in wrong
+            for a in [d] + list(al)
         )
         if not replacement or still_there or original not in script_text:
             skipped.append(original)

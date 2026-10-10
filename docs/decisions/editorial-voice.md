@@ -111,6 +111,34 @@ scope attached gets used out of scope.
   a FeatureCollection, and any other shape reads as "no answer", which produces no
   finding. Confirm it against a real response before trusting the row it writes.
 
+**The check accused the election coverage four times (2026-09-22 to 2026-10-09).** Every
+review in that stretch carried "Tŝilhqot'in named in connection with Lorne, which the map
+covers as Mi'kma'ki, Wabanaki", from sentences like "Cariboo-Chilcotin, with Lorne Doerkson
+for the Conservatives". No nation was named. Four faults stacked:
+
+- **Detection was substring on letters only**, so "Cariboo-Chilcotin" (the riding) contained
+  "Chilcotin" (an alias), "Randy Thompson" named the Nlaka'pamux, and "in the Okanagan" named
+  the Syilx in a sentence that said it would not guess at the nation. Matching is now whole
+  words on `_fold` (diacritics and apostrophes off, hyphens kept as part of a word), and the
+  names in `place_aliases` (Chilcotin, Okanagan, Thompson, Carrier, Squamish, Haida Gwaii…)
+  name the people only when a `name_suffixes` word or "people" follows; otherwise they are
+  blanked out first. The scrub's "still there" test is whole words too, so a rewrite may keep
+  "Cariboo-Chilcotin", but it skips the place masking: a rewrite that swaps Tŝilhqot'in for a
+  bare "Chilcotin" is still refused.
+- **Places were single words.** "Lorne" was geocoded on its own. Candidates are now runs of
+  capitalized words ("Lorne Doerkson", "Deer Park Mountain"), split only at stop words, and a
+  run holding a nation name is dropped whole so no first name is left behind.
+- **The geocoder fell back to other provinces**: "Lorne" went to the Maritimes and other names
+  to Alberta and the Prairies. It now takes only an exact-name BC match, and a name that is
+  several BC places more than `AMBIGUOUS_SPREAD_DEG` apart ("Stump Lake") is no answer.
+- **`native_land_cache.json` was never committed**, so "one lookup ever" was one lookup per
+  night, and names spent the 8-lookup ceiling before real places were reached. It rides the
+  script commit now.
+
+The responses were also mojibake ("Miâkmaâki", "KâÃ³moks"): Native Land sends no charset and
+`r.json()` decoded Latin-1, which would make a correct `Tŝilhqot’in` territory unmatchable.
+`_get_json` parses the bytes.
+
 **Opinion columns and crime incidents are filtered upstream, not here** —
 `super-rss-feed`'s `podcast_content_exclusion()`, whose scope is the podcast pool alone
 (the reader still gets the local RCMP story in `feed-local.json`). Articles already sitting

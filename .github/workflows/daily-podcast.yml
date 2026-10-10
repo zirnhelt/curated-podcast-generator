@@ -310,6 +310,9 @@ jobs:
           # it would sit permanently dirty and break the rebase on every run —
           # the index.html failure mode — and the burned list would reset daily,
           # which is the one thing that makes it work at all.
+          # native_land_cache.json is what makes a territory lookup cost one
+          # call ever. Unstaged it reset nightly, and election names spent the
+          # 8-lookup ceiling every run before real places were reached.
           paths: |
             podcasts/podcast_script_*.txt
             podcasts/citations_*.json
@@ -324,6 +327,7 @@ jobs:
             podcasts/content_seeds.json
             podcasts/email_queue.json
             podcasts/ballot_research_cache.json
+            podcasts/native_land_cache.json
 
       # The audio half is three steps, not one. They fail for different reasons
       # — back-catalogue TTS, today's TTS, and publishing surfaces (R2
@@ -713,6 +717,7 @@ jobs:
       # some step must stage — an unstaged regeneration sits permanently dirty
       # and breaks the next rebase.
       - name: Commit review
+        id: commit_review
         uses: ./.github/actions/commit-push
         with:
           message: Episode review - ${{ github.run_id }}
@@ -739,3 +744,37 @@ jobs:
           publish_branch: gh-pages
           keep_files: true
           commit_message: 'Episode review - ${{ github.run_id }}'
+
+      # super-rss-feed reads episode-reviews.xml into feed-local, but its nightly
+      # runs at 04:00 UTC, six hours before this review exists, so the review
+      # reached the feed beside the NEXT day's episode. Ask it to splice the
+      # review in now (its refresh-editorial.yml spends nothing). It reads this
+      # feed from Pages, which publishes a minute or more after the push above,
+      # so wait until the review is live there first. The scheduler PAT is the
+      # one token with Actions write on both repos; it goes to this step only.
+      # A miss costs the same-morning copy: tomorrow's nightly still picks it up.
+      - name: Refresh super-rss-feed's editorial items
+        if: steps.commit_review.outputs.pushed == 'true'
+        continue-on-error: true
+        env:
+          SCHEDULER_GITHUB_TOKEN: ${{ secrets.SCHEDULER_GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+          review=$(basename "$(ls podcasts/reviews/episode-review-*.html | sort | tail -1)")
+          feed="https://zirnhelt.github.io/curated-podcast-generator/episode-reviews.xml"
+          for attempt in $(seq 1 30); do
+            curl -sf --max-time 10 "$feed" | grep -q "$review" && break
+            sleep 30
+          done
+          code=$(curl -sS -o /tmp/dispatch.json -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer $SCHEDULER_GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/zirnhelt/super-rss-feed/actions/workflows/refresh-editorial.yml/dispatches" \
+            -d '{"ref":"main"}')
+          if [ "$code" = "204" ]; then
+            echo "✅ Dispatched super-rss-feed editorial refresh for $review"
+          else
+            echo "::warning::super-rss-feed editorial refresh not dispatched (HTTP $code) — $review reaches feed-local with tomorrow's nightly."
+            cat /tmp/dispatch.json
+          fi
