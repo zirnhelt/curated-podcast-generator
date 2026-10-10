@@ -310,6 +310,9 @@ jobs:
           # it would sit permanently dirty and break the rebase on every run —
           # the index.html failure mode — and the burned list would reset daily,
           # which is the one thing that makes it work at all.
+          # native_land_cache.json is what makes a territory lookup cost one
+          # call ever. Unstaged it reset nightly, and election names spent the
+          # 8-lookup ceiling every run before real places were reached.
           paths: |
             podcasts/podcast_script_*.txt
             podcasts/citations_*.json
@@ -324,6 +327,7 @@ jobs:
             podcasts/content_seeds.json
             podcasts/email_queue.json
             podcasts/ballot_research_cache.json
+            podcasts/native_land_cache.json
 
       # The audio half is three steps, not one. They fail for different reasons
       # — back-catalogue TTS, today's TTS, and publishing surfaces (R2

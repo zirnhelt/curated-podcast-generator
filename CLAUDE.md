@@ -220,6 +220,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 **Naming a nation.** The three house nations describe the Cariboo and nowhere else. Name a nation only for its own territory, and only when a source names it. **Naming the wrong people is worse than naming none.**
 - `script/territory-check` (`native_land.py`) only ever disconfirms. A crowd-sourced map may remove a claim; it must never supply one.
+- **Detection is whole words, places are whole phrases, and only an unambiguous BC place can disconfirm.** A name in `place_aliases` (Chilcotin, Okanagan, Thompson…) names the people only with a suffix ("Nation", "people"); "Cariboo-Chilcotin" names no one. `podcasts/native_land_cache.json` rides the script commit.
 - The land acknowledgment is exempt by construction (`local_places`).
 - `NATIVE_LAND_API_KEY` is a secret; degradation rows record only the exception type.
 
