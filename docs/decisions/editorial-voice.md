@@ -273,6 +273,13 @@ The draft is then checked against the same week, and its repeats go to both poli
 a candidate's name is never a repeat, because the roster rule (name everyone running) wins over
 brevity. The welcome, weather, land acknowledgment and spotlight are left out: they repeat by design.
 
+On 2026-10-10 the draft carried 2 repeated lines and the polished script 18. The polish prompt
+tells the model to weave in any research finding the draft left out, and the draft had left
+last Saturday's candidate records out because the ledger said they had aired. The polish only
+saw the draft's own two repeats. Both polish paths now get the research half of the ledger as
+well (`_aired_repeats_addendum(script, research)`), the weave-in line excepts it, and
+`script/aired-check` degrades when the polish adds more than `AIRED_POLISH_SLACK` repeats.
+
 ## The Sunday Meta Moment (`get_weekly_changelog`, `generate_meta_moment_text`)
 
 One Haiku call turns the week's commit subjects into a short Riley/Casey segment about

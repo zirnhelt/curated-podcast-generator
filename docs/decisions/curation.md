@@ -167,6 +167,16 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
     keeps `EVENT_RESEARCH_SEARCH_LIMIT` (8→12) for follow-ups and gets `fetch_page`
     (`EVENT_PAGE_FETCH_LIMIT`, 6), because a candidate list is a page and a snippet is 200
     characters.
+  - **The profiles were in the feed; the research read directory sites.** The week of
+    2026-10-05 the Tribune ran a Meet the Candidates profile for most of the council field.
+    None reached the 2026-10-10 deep dive: upstream story dedup read the templated headlines
+    as one story (fixed in `super-rss-feed`), and the roll call only knows what search
+    returns, so Whitney Spearing's record came from ZoomInfo. `_candidate_profiles` now
+    looks through everything the feed sent that day (not just what curation kept) for a
+    headline naming a running candidate and reads the page directly, no search, ahead of
+    the agent. The same run spent most of its follow-ups on Sheldon Clare's provincial file
+    while eight local names stayed under NO RECORD FOUND; the sweep instructions now put
+    local names first.
   - **Names-only was too strict.** `roster.records` carries short lines a named outlet
     published on a date (an occupation, a prior office, an acclamation, a withdrawal). They
     render as SOURCED BACKGROUND with that attribution. The candidates' own platform notes

@@ -933,6 +933,9 @@ EVENT_PAGE_FETCH_LIMIT = int(os.getenv("PODCAST_EVENT_PAGE_FETCH_LIMIT", "6"))
 # Results per roll-call search (was 3). Same price per request; a Saturday's ~27
 # searches add ~9k input tokens to the research loop, mostly read from cache.
 EVENT_ROLL_CALL_RESULTS = 6
+# A candidate profile the feed already carries is read in full before the agent
+# starts: a free page fetch, no Brave call. Characters kept per profile.
+CANDIDATE_PROFILE_CHARS = 1500
 #
 # The weekday election pass researched the whole ballot again every day the vote
 # reached the episode, and handed the writer the same records as new: 2026-10-06
@@ -1354,6 +1357,8 @@ HOLDING_FILE = PODCASTS_DIR / "article_holding.json"
 # by its rate, not by a human noticing it first.
 PHRASE_LEDGER_FILE = PODCASTS_DIR / "phrase_ledger.json"
 HOLD_MAX_DAYS = 14              # max days an article may wait for its focus day
+# Repeated lines the polish may add over the draft before script/aired-check degrades.
+AIRED_POLISH_SLACK = 2
 AIRED_EARLY_RETENTION_DAYS = 30 # how long the aired-early callback ledger keeps entries
 HOLD_MIN_FOCUS_HITS = 2         # focus-keyword hits required before holding
 # An article the feed scores at or above this against TODAY's charter is never
@@ -3478,7 +3483,41 @@ def _event_sweep_queries(event) -> list:
     return [q for q in queries if q]
 
 
-def _run_event_sweep(events, brave_key) -> str:
+def _candidate_profiles(events, pool) -> list[str]:
+    """Pages in the day's feed whose headline names a running candidate, read in full.
+
+    2026-10-10: the Tribune ran a Meet the Candidates profile for most of the
+    council field that week, and the research cited six-year-old snippets and
+    directory sites instead, because the roll call only knows what search
+    returns. The feed had the pages; this reads them. One page per candidate,
+    fetched directly, so it costs no search.
+    """
+    running = {n for e in events for r in ((e.get("roster") or {}).get("races") or [])
+               for n in _running(r)}
+    blocks, seen = [], set()
+    for name in sorted(running):
+        pattern = re.compile(rf"\b{re.escape(name)}\b", re.I)
+        art = next((a for a in pool or []
+                    if pattern.search(a.get("title") or "")
+                    and _public_http_url(a.get("url") or "")
+                    and a.get("url") not in seen), None)
+        if not art:
+            continue
+        seen.add(art["url"])
+        text = _fetch_page_text(art["url"])
+        last = name.split()[-1]
+        at = text.find(last)
+        excerpt = text[max(0, at - 200):][:CANDIDATE_PROFILE_CHARS] if at >= 0 else ""
+        if not excerpt:
+            continue
+        _RESEARCH_LOG.append({"kind": "profile", "candidate": name, "url": art["url"]})
+        blocks.append(f"  - {name}: {art.get('title', '')} "
+                      f"({(art.get('date_published') or '')[:10]})\n"
+                      f"    Source: {art['url']}\n    {excerpt}")
+    return blocks
+
+
+def _run_event_sweep(events, brave_key, pool=None) -> str:
     """Run the ballot roll call in Python and return it as a results block.
 
     Deterministic on purpose: the agent rationed eight searches across twenty
@@ -3507,6 +3546,11 @@ def _run_event_sweep(events, brave_key) -> str:
                 lines.append(f"  - {h['title']}\n    {h['description'][:300]}\n    Source: {h['url']}")
         if lines:
             sections.append(f"ROLL-CALL SEARCHES — {event.get('name', 'event')}:\n" + "\n".join(lines))
+    profiles = _candidate_profiles(events, pool)
+    if profiles:
+        print(f"    🗳️  {len(profiles)} candidate profile(s) read from the day's feed")
+        sections.append("CANDIDATE PROFILES (the outlet's own article on that candidate, "
+                        "read in full):\n" + "\n".join(profiles))
     return "\n\n".join(sections)
 
 
@@ -3545,7 +3589,10 @@ _BALLOT_SWEEP_INSTRUCTIONS = (
     "Where a race has no names, finding who filed comes before any other search, and a "
     "candidate list or declaration page is worth reading with fetch_page rather than "
     "guessing from a snippet. Check the date on every page: a result from an earlier "
-    "election is that election's record, not this one's field.\n\n"
+    "election is that election's record, not this one's field. Where CANDIDATE PROFILES "
+    "carries a person, that article is their record for this campaign: cite it by outlet "
+    "and date before any snippet. Local races come first; follow-ups on a provincial "
+    "candidate wait until every local name with no record has had one.\n\n"
 )
 _BALLOT_FINDINGS_FORMAT = (
     "One FINDINGS block per race naming each candidate with what the sources establish, "
@@ -3650,7 +3697,7 @@ def _save_ballot_cache(result: str, events, today: date) -> None:
         })
 
 
-def _research_event_ballot(articles, client, events) -> str:
+def _research_event_ballot(articles, client, events, pool=None) -> str:
     """The ballot sweep for an all-week event, in a pass of its own.
 
     The Python roll call runs first; the agent follows up on the election meter
@@ -3690,7 +3737,7 @@ def _research_event_ballot(articles, client, events) -> str:
     names = "; ".join(e.get("name", "election") for e in events)
     print(f"🗳️  Researching the ballot (agentic): {names}")
     window = next((w for w in (_campaign_window(e) for e in events) if w), None)
-    roll_call = _run_event_sweep(events, brave_key)
+    roll_call = _run_event_sweep(events, brave_key, pool)
     system_prompt = (
         "You are preparing election research for a daily podcast. Today's episode carries "
         "material on the election below. Your job is the ballot, not the day's deep dive, "
@@ -3739,7 +3786,7 @@ def _research_event_ballot(articles, client, events) -> str:
 
 
 def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_focus=None,
-                                  events=None):
+                                  events=None, pool=None):
     """Agentic pre-generation research pass for the deep dive.
 
     Gives Claude the deep dive articles plus a web_search tool and lets it
@@ -3802,7 +3849,7 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
     assignments = _standing_assignments(events)
     searches = EVENT_RESEARCH_SEARCH_LIMIT if events else 4
     fetches = EVENT_PAGE_FETCH_LIMIT if events else TOPIC_PAGE_FETCH_LIMIT
-    roll_call = _run_event_sweep(events, brave_key) if events else ""
+    roll_call = _run_event_sweep(events, brave_key, pool) if events else ""
 
     system_prompt = (
         f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
@@ -4283,7 +4330,8 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
-        + format_standing_notes_block(for_factcheck=True) + _aired_repeats_addendum(script)
+        + format_standing_notes_block(for_factcheck=True) \
+        + _aired_repeats_addendum(script, research_insights)
 
     review_model = model or select_review_model(deep_dive_articles)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
@@ -4352,7 +4400,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
-        + format_standing_notes_block(for_factcheck=True) + _aired_repeats_addendum(script)
+        + format_standing_notes_block(for_factcheck=True) \
+        + _aired_repeats_addendum(script, research_insights)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)
@@ -5788,22 +5837,31 @@ def find_aired_repeats(script: str, today: str) -> list[tuple[str, str, str]]:
     return repeats
 
 
-def _aired_repeats_addendum(script: str) -> str:
+def _aired_repeats_addendum(script: str, research: str | None = None) -> str:
     """Polish-prompt addendum naming the draft's lines that restate the past
-    week. The generation prompt already carried the ledger; this catches what
-    got through. Never fails the polish: on error it is just absent."""
+    week, plus the research findings that already aired. Never fails the
+    polish: on error it is just absent.
+
+    The polish is told to weave in research findings the draft left out, and the
+    draft left them out because the ledger said they had aired: 2026-10-10 went
+    from 2 repeated lines in the draft to 18 after polish. The research half of
+    the ledger tells the polish which findings stay out."""
     cfg = CONFIG['prompts'].get('aired_ledger') or {}
     if not cfg.get('polish_template'):
         return ""
-    repeats = []
+    today = get_pacific_now().strftime("%Y-%m-%d")
+    repeats, ledger = [], ""
     with segment("script/aired-repeats", critical=False):
-        repeats = find_aired_repeats(script, get_pacific_now().strftime("%Y-%m-%d"))
+        repeats = find_aired_repeats(script, today)
+        if research:
+            ledger = format_aired_ledger_for_prompt(research, today)
+    addendum = "\n\n" + ledger.strip() if ledger else ""
     if not repeats:
-        return ""
+        return addendum
     print(f"  🔁 {len(repeats)} draft line(s) restate the past week — sent to polish")
     lines = "\n".join(f'- "{_clip(new)}" (aired {_air_day(day)} as "{_clip(old, 160)}")'
                       for new, day, old in repeats[:cfg.get('max_lines', 30)])
-    return "\n\n" + cfg['polish_template'].format(lines=lines)
+    return addendum + "\n\n" + cfg['polish_template'].format(lines=lines)
 
 
 def format_cta_history_for_prompt(cta_memory, today_theme):
@@ -12717,6 +12775,9 @@ def run_script_stage() -> tuple[str, str] | None:
         # Elections the episode should sweep: the day's own event, plus any
         # all-week one (the provincial vote) whose material reached the episode.
         _episode_articles = list(deep_dive_articles) + list(news_articles)
+        # Candidate profiles are looked up in everything the feed sent today,
+        # not just what curation kept.
+        _profile_pool = _episode_articles + list(theme_articles) + list(bonus_articles)
         research_events = _events_in_play(
             get_research_events(today_weekday, pacific_now.date()), _episode_articles)
         extra_events = [e for e in research_events if not e.get('_own_day')]
@@ -12726,7 +12787,8 @@ def run_script_stage() -> tuple[str, str] | None:
             brave_client = get_anthropic_client()
             brave_context = research_deep_dive_with_agent(
                 deep_dive_articles, today_theme, brave_client,
-                event_focus=today_event, events=research_events) if brave_client else ""
+                event_focus=today_event, events=research_events,
+                pool=_profile_pool) if brave_client else ""
         # An all-week election that rode in on a roundup story gets its own pass,
         # so the deep dive above kept the ordinary day's research (2026-10-02).
         _ballot_events = _ballot_pass_events(research_events)
@@ -12734,7 +12796,7 @@ def run_script_stage() -> tuple[str, str] | None:
             with segment("script/election-research", critical=False):
                 ballot_context = _research_event_ballot(
                     _event_articles(_ballot_events, _episode_articles),
-                    get_anthropic_client(), _ballot_events)
+                    get_anthropic_client(), _ballot_events, pool=_profile_pool)
         brave_context += ballot_context
         brave_used = _sparse_brave_used or bool(brave_context)
 
@@ -12852,6 +12914,9 @@ def run_script_stage() -> tuple[str, str] | None:
         anchor_block_for_polish = format_anchor_for_prompt(
             today_anchor, today_weekday, today_theme
         )
+        _aired_draft = 0
+        with segment("script/aired-draft", critical=False):
+            _aired_draft = len(find_aired_repeats(script, date_key)) if script else 0
         with segment("script/polish", critical=False):
             # Post-processing: polish + fact-check + debate summary.
             # One chain, not three independent ifs: the fast-path branch below
@@ -12910,9 +12975,15 @@ def run_script_stage() -> tuple[str, str] | None:
             sys.exit(1)
 
         with segment("script/aired-check", critical=False):
-            # What the ledger and the polish addendum let through, for the log.
-            print(f"🔁 {len(find_aired_repeats(script, date_key))} line(s) still "
-                  f"restate the past week after polish")
+            # What the ledger and the polish addendum let through. A polish that
+            # adds repeats is the failure, not the count itself.
+            _aired_after = len(find_aired_repeats(script, date_key))
+            print(f"🔁 {_aired_after} line(s) still restate the past week after polish "
+                  f"({_aired_draft} in the draft)")
+            if _aired_after > _aired_draft + AIRED_POLISH_SLACK:
+                degrade("script/aired-check",
+                        f"polish raised the past week's repeated lines from "
+                        f"{_aired_draft} to {_aired_after}")
 
         with segment("script/correction-guard", critical=False):
             # Last line of defence against an invented on-air correction — both
