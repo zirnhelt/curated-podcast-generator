@@ -142,6 +142,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 **Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box.
 - **Findings are keyed on signals** read off the facts (`run_signals`: `degraded:<segment>`, `short-script`, `citations:*`, …), never on the model's id or title, and an item closes itself once its signal has been absent `SIGNAL_QUIET_DAYS`. A new failure mode worth tracking gets a signal, not a looser title match.
 - Only tool-written items retire. The review's run labels must follow the schedule (`_trigger_label`); a stale label was the most-sighted roadmap item for three weeks.
+- Once the review is live on Pages, the review job dispatches `super-rss-feed`'s `refresh-editorial.yml` (scheduler PAT), so it reaches `feed-local` that morning rather than with the next nightly.
 
 ### Configuration (`config_loader.py`)
 

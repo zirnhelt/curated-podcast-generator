@@ -504,6 +504,16 @@ recurring every night, which is what prompted a weekly agent pass over the open 
   describes symptoms well and diagnoses them badly, so the fix starts from the signal and the
   log, never the review's suggested remedy.
 
+### The review reaches `feed-local` the morning it is written (2026-10-10)
+
+`super-rss-feed` reads `episode-reviews.xml` into `feed-local.json`, but its nightly runs at
+04:00 UTC and this review lands at about 10:05, so every review reached the reader beside the
+*next* day's episode. The review job now waits until the review is live on Pages (it publishes
+a minute or more after the gh-pages push), then dispatches that repo's `refresh-editorial.yml`
+with the scheduler PAT, the one token with Actions write on both repos. The refresh spends
+nothing. The step is `continue-on-error`: a miss costs only the same-morning copy, because the
+nightly still picks the review up.
+
 ## Third-party text in the episode notes, and fetches of outside URLs (2026-10-03)
 
 The episode description is HTML inside a CDATA section of the public RSS feed, and it quoted
