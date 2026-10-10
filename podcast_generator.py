@@ -725,9 +725,11 @@ def _truncated(response) -> bool:
 # MIN_SCRIPT_WORDS is the hard publish floor (~19 min) — below this the episode
 # is unpublishably short and the run aborts rather than shipping it.
 # TARGET_SCRIPT_WORDS (~22-23 min) triggers the expand retry: any script under
-# it gets one length-feedback rewrite before the publish floor is checked.
+# it gets up to EXPAND_MAX_PASSES length-feedback rewrites before the publish
+# floor is checked.
 MIN_SCRIPT_WORDS = 2800
 TARGET_SCRIPT_WORDS = 3400
+EXPAND_MAX_PASSES = 2
 
 # Per-section floors the expand retry measures against. A whole-script "make it
 # longer" rewrite recovered ~400 words on Sonnet 5 and ~300 on Sonnet 5.5
@@ -9117,12 +9119,17 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
             print(f"❌ Script generation returned empty text (stop_reason={stop}).")
             return None
         word_count = len(script.split())
-        if word_count < TARGET_SCRIPT_WORDS:
-            # The model can finish naturally (stop_reason=end_turn) well under
-            # the ~5,000-6,500 word target (2026-07-07: 1,984 words; 2026-07-08:
-            # 2,212 words → a 14-minute episode), which the truncation guard
-            # above doesn't catch. Retry once with the short draft and explicit
-            # length feedback; the prompt prefix is read from cache.
+        # The model can finish naturally (stop_reason=end_turn) well under
+        # the ~5,000-6,500 word target (2026-07-07: 1,984 words; 2026-07-08:
+        # 2,212 words → a 14-minute episode), which the truncation guard
+        # above doesn't catch. Retry with the short draft and explicit length
+        # feedback; the prompt prefix is read from cache. One pass recovers
+        # about three quarters of the ask (2026-10-09: 2,517 → 3,272 against
+        # 3,400), so a second pass measures again; a pass that adds nothing
+        # ends the loop.
+        for _ in range(EXPAND_MAX_PASSES):
+            if word_count >= TARGET_SCRIPT_WORDS:
+                break
             print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
             short = _short_sections(script)
             if short:
@@ -9151,11 +9158,14 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                 print("❌ Script expansion retry truncated at max_tokens.")
                 return None
             if short:
-                script = _splice_sections(script, message_text(response), list(short))
+                expanded = _splice_sections(script, message_text(response), list(short))
             else:
-                script = message_text(response)
-            word_count = len(script.split())
-            print(f"   After expand retry: {word_count} words")
+                expanded = message_text(response)
+            expanded_count = len(expanded.split())
+            print(f"   After expand retry: {expanded_count} words")
+            if expanded_count <= word_count:
+                break  # a shorter "expansion" is worse than the draft
+            script, word_count = expanded, expanded_count
         if word_count < MIN_SCRIPT_WORDS:
             print(f"❌ Script too short ({word_count} words < {MIN_SCRIPT_WORDS} minimum) — refusing to publish a truncated episode.")
             return None

@@ -459,6 +459,13 @@ resurrected on one mention.
   `run-failed` — and the schema pins each finding's `signal` to that day's set plus `other`.
   `_match` goes signal, then id, then a `difflib` ratio ≥ 0.72 on the title; a signalled
   finding never title-matches an item under a different signal.
+- **`short-script` fires on what shipped, not on the first draft.** It keyed on the
+  "Script complete but short" line, so a draft the expand pass carried past target
+  (2026-09-28: 2,877 → 3,548) still counted as a sighting and the item could never go quiet.
+  It now needs `quality.script_words` under the target too. The same review (20 sightings to
+  2026-10-09) showed one section pass recovering about three quarters of its ask (2,517 →
+  3,272), so the expand retry runs up to `EXPAND_MAX_PASSES` (2) and stops on a pass that adds
+  nothing. On Haiku 5.5 the second pass is about $0.002 a run that needs it.
 - **The first sighting's wording is kept for the life of the item.** A detail rewritten
   nightly is a daily diff on a file nobody asked to change. For the same reason the block is
   in ledger order rather than sorted by recurrence, and its header dates the *reviews that
