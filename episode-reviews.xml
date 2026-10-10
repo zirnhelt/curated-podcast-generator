@@ -5,7 +5,55 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 09 Oct 2026 10:06:20 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2026 10:06:10 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, October 10, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-10.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-10.html</guid>
+      <pubDate>Sat, 10 Oct 2026 10:06:10 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38036684810"&gt;38036684810&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Two of three TTS retries stayed short, and the pipeline kept the longer take&lt;/h3&gt;
+&lt;p&gt;The audio render flagged three TTS takes that came back shorter than their word count predicts. Each was retried once. Two of the three retries were still short. The pipeline kept the longer of the two takes for each, so nothing was dropped from the episode. The recorded effect is that the retried takes were the longer of two imperfect results, not clean renders. The facts do not say how much of the episode each short take covered.&lt;/p&gt;
+
+&lt;h3&gt;The territory check ran out of lookups and passed names it never verified&lt;/h3&gt;
+&lt;p&gt;The territory check has a ceiling of 8 lookups per run. It hit that ceiling and left eight names unchecked: Lorne, Doerkson, Conservative, Elections, Denice, Bardua, Greens, Randy, and Transit. The count is nine because the ceiling warning repeats once per name after the eighth lookup; the unchecked names are the ones that matter. Several are proper names of people and parties, and the check that would confirm or reject a territorial attribution for them did not run.&lt;/p&gt;
+&lt;p&gt;The check did act on two cases. Sinixt and Nuxalk were both named in connection with the Tribune, which the territory map attributes to KâÃ³moks, Hulâqumiânum Treaty Group, É¬aÊamÉ©n gÉ©Ç°É (Tlaâamin), and Homalco. Two sentences kept an unsupported nation after the rewrite, and the rewrite was rejected. The pipeline did not fix those sentences. The facts record the rejection and do not record what the listener heard in their place.&lt;/p&gt;
+
+&lt;h3&gt;The roundup pool dropped 59 stories, and only 10 of 15 roundup citations matched&lt;/h3&gt;
+&lt;p&gt;The airtime budget (NEWS_ROUNDUP_COUNT) cut 59 stories from the roundup pool. That cut is by design: the pool is larger than one segment can air, and a cut story can return on a day when it fits better. The same day's citation check matched 10 of 15 roundup citations. The five unmatched citations are the discrepancy to watch. The deep dive matched all five of its citations.&lt;/p&gt;
+&lt;p&gt;The script's word count was 3681, and the audio ran 22.3 minutes at 20.4 MB. The video is 78.9 MB at the same 22.3 minutes. The episode was built from a larger pool than it aired, and it cited 15 roundup sources, 5 of which the citation check could not match to the script.&lt;/p&gt;
+
+&lt;h3&gt;The debate question asks what the metrics measure&lt;/h3&gt;
+&lt;p&gt;The episode's debate question was: what do local election and governance metrics (early votes, acclamations, candidate counts, forum attendance, budgets, ridership) actually measure, and do they still track the civic participation they claim to represent? The five deep dives were on Cariboo-region election coverage, a free-transit story, and a provincial income-tax proposal. The question asks the audience to test the numbers the coverage relies on. Those are the same numbers the pipeline's own roundup selected from. The facts do not show whether the episode answered the question.&lt;/p&gt;
+
+&lt;h3&gt;Quality checks passed, and the run finished on time&lt;/h3&gt;
+&lt;p&gt;The AI-tell pattern check returned 0 hits. The voice ratio, Casey over Riley, was 0.69. All three runs today (the primary at 1:05 AM Pacific and fallbacks at 2:05 AM and 3:05 AM Pacific) reported success, with zero minutes late for the primary and both fallbacks. The primary run was created at 1:05 AM Pacific and finished at 1:30 AM Pacific. The fallback at 3:05 AM Pacific is this review's own run and is still in progress. The API spend was 55,715 Anthropic input tokens, with 51 brave-search calls and 15 Claude calls. The slowest step was script generation at 594 seconds, followed by audio rendering at 317 seconds.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.69, 3681 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;22.3 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;20.4 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;10/15 roundup, 5/5 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;255 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;55,715 input tokens, calls ***'brave-search': 51, 'claude': 15***&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, October 9, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-09.html</link>
@@ -1696,38 +1744,6 @@
 &lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;12/15 roundup, 2/3 deep dive&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;227 episodes&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;78,750 input tokens, calls {'claude': 6, 'brave-answers': 3}&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, September 10, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</guid>
-      <pubDate>Thu, 10 Sep 2026 14:59:57 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;Two runs queued, neither finished&lt;/h3&gt;
-
-&lt;p&gt;The pipeline launched twice on 2026-09-10 and completed neither. Run 34488334052 began at 14:19:51Z via manual dispatch and remained in_progress through the review window. Run 34492356898 started at 14:56:26Z under Fallback 2 (the 3:05 AM Pacific trigger) and stayed pending.&lt;/p&gt;
-
-&lt;p&gt;Both runs fell behind schedule. The manual run was 254 minutes late. The fallback run was 291 minutes late — a longer delay despite starting 37 minutes after the first.&lt;/p&gt;
-
-&lt;h3&gt;Why the fallback fired&lt;/h3&gt;
-
-&lt;p&gt;Fallback 2 triggers at 3:05 AM Pacific when no successful run has completed since the previous day. Its activation suggests the scheduled primary run failed or did not execute. The manual dispatch at 14:19:51Z appears to be a rescue attempt: someone saw the absence and started the job by hand.&lt;/p&gt;
-
-&lt;h3&gt;Pending state vs. in-progress&lt;/h3&gt;
-
-&lt;p&gt;The manual run transitioned to in_progress. The fallback run remained pending — it has not yet claimed resources or begun work. This may reflect GitHub Actions queue depth or a blocking dependency on the first run's outcome.&lt;/p&gt;
-
-&lt;p&gt;If the fallback waits for the manual run to finish, listener impact depends on whether run 34488334052 eventually produces an episode. If both runs complete successfully, the pipeline will have published twice in one calendar day. If both fail, the podcast skips the day.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-10T14:19:51Z&lt;/td&gt;&lt;td&gt;+254 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-10T14:56:26Z&lt;/td&gt;&lt;td&gt;+291 min&lt;/td&gt;&lt;td&gt;pending&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>

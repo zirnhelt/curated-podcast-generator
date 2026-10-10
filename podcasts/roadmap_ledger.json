@@ -251,7 +251,7 @@
       "detail": "The voice_ratio_casey_over_riley measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear whether this represents acceptable variance or systematic drift. Establish a target voice ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios outside a defined band. If this ratio persists across future runs, adjust the host distribution weights in the synthesis prompt.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -259,11 +259,12 @@
         "2026-09-13",
         "2026-09-17",
         "2026-09-20",
-        "2026-09-21"
+        "2026-09-21",
+        "2026-10-10"
       ],
-      "last_seen": "2026-09-21",
+      "last_seen": "2026-10-10",
       "signal": "voice-ratio",
-      "signal_seen": "2026-09-21"
+      "signal_seen": "2026-10-10"
     },
     {
       "id": "gemini-multi-speaker-section-timeout-pattern",
@@ -396,8 +397,8 @@
       "title": "Deep dive citations matched at 33% versus roundup at 80%.",
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
-      "status": "open",
-      "occurrences": 3,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-09-20",
@@ -484,8 +485,8 @@
       "title": "One object referenced in the podcast feed is missing from R2 storage and will cause 404 errors.",
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
-      "status": "open",
-      "occurrences": 12,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-22",
       "seen": [
         "2026-09-24",
@@ -509,10 +510,9 @@
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
       "status": "open",
-      "occurrences": 12,
+      "occurrences": 13,
       "first_seen": "2026-09-19",
       "seen": [
-        "2026-09-21",
         "2026-09-22",
         "2026-09-23",
         "2026-09-26",
@@ -521,11 +521,12 @@
         "2026-10-02",
         "2026-10-03",
         "2026-10-06",
-        "2026-10-09"
+        "2026-10-09",
+        "2026-10-10"
       ],
-      "last_seen": "2026-10-09",
+      "last_seen": "2026-10-10",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-10-09"
+      "signal_seen": "2026-10-10"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
@@ -617,5 +618,5 @@
       "last_seen": "2026-10-06"
     }
   ],
-  "updated": "2026-10-09"
+  "updated": "2026-10-10"
 }
