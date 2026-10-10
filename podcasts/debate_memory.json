@@ -1,30 +1,4 @@
 {
-  "2026-07-11": {
-    "timestamp": 1783763764.907397,
-    "date": "2026-07-11",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "When crises cross multiple jurisdictions in rural areas, how can local communities ensure they have a voice in decisions that affect them, and who should be responsible for closing information and institutional gaps?",
-    "riley_position": "Existing volunteer institutions like Search and Rescue already have the trust and training to serve as information nodes; the solution isn't new funding but formalizing relationships that already work informally and adopting proven low-tech models like mesh-radio networks.",
-    "riley_key_evidence": [
-      "Ontario restructured wildfire response after 2023 with real-time data-sharing agreements that cut translation lag from hours to near-real-time",
-      "Rural U.S. counties use mesh-radio repeater networks maintained by volunteer fire departments that don't require ongoing grants or cell coverage",
-      "Central Cariboo Search and Rescue already functions as an informal last-mile information network during emergencies"
-    ],
-    "casey_position": "Simply formalizing existing volunteer capacity masks a deeper structural failure: rural governance institutions are quietly relying on unpaid labour to cover gaps they should solve deliberately, and person-dependent arrangements don't survive leadership transitions.",
-    "casey_key_evidence": [
-      "The regional district lacks communication capacity to localize fast-moving smoke advisories for every hamlet in real time",
-      "Horsefly's festival permitting depends on institutional memory of informal relationships that would be lost if current organizers stepped away",
-      "Provincial bargaining processes like the nurses' mediation don't have mechanisms to surface what outcomes mean specifically for a town of 10,000 versus a city of a million"
-    ],
-    "resolution": "Both agreed that the underlying problem is whether institutions build durable structures or rely on volunteers to fill gaps informally. They converged on the idea that 'built deliberately' doesn't require new bureaucracy\u2014sometimes just documenting what already works (like formalizing SAR relationships, publishing festival checklists) would solve continuity problems before they start.",
-    "topics_covered": [
-      "Fragmented emergency alert systems across wildfire, health authority, and municipal jurisdictions",
-      "Unincorporated community governance and informal permitting relationships",
-      "Institutional reliance on unpaid volunteer labour for essential services",
-      "Provincial policy outcomes landing differently in rural vs. urban contexts",
-      "Low-tech infrastructure solutions (mesh radio networks) vs. grant-dependent models"
-    ]
-  },
   "2026-07-12": {
     "timestamp": 1783851113.517887,
     "date": "2026-07-12",
@@ -2504,6 +2478,34 @@
       "Standardized community wildfire planning templates versus local input and context",
       "Local human costs such as evacuations, mental health, and infrastructure loss in Cariboo communities",
       "Institutional design for a durable community loss register"
+    ]
+  },
+  "2026-10-10": {
+    "timestamp": 1791620236.241713,
+    "date": "2026-10-10",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "actually-measuring",
+    "central_question": "What do local election and governance metrics (early votes, acclamations, candidate counts, forum attendance, budgets, ridership) actually measure, and do they still track the civic participation they claim to represent?",
+    "riley_position": "Riley argues that imperfect proxies like ballot counts, acclamations, and budgets are still useful, measurable, and enforceable, and that the fix for drift is to publish clearer records rather than abandon measurement.",
+    "riley_key_evidence": [
+      "Williams Lake logged 541 early votes this week, more than the early count at the last municipal election four years ago, and 100 Mile House had 255 people vote on its one early day.",
+      "Steve Forseth in Area D and Maureen LeBourdais in Area F were elected by acclamation, and under the rules a seat with a filed name counts as filled.",
+      "Elections BC issued a notice dated March 30th imposing a $1,500 administrative penalty on Sheldon Clare for accepting anonymous contributions above the limit in his 2024 campaign."
+    ],
+    "casey_position": "Casey argues that the metrics have drifted from their original purpose: ballots cast are not participation, acclamations and filed nominations are not informed representation, and once a count becomes the goal it stops measuring what it was meant to.",
+    "casey_key_evidence": [
+      "Acclamation measures the absence of a second filed name, and nobody checks whether residents knew who was sitting on the board.",
+      "The Prince George Citizen puts the amount over the limit in Clare's 2024 campaign at $4,007.75, while the official Elections BC penalty is $1,500, showing two different measures of the same donations.",
+      "Lorne Doerkson's proposed raise of the basic personal income tax threshold from $13,216 to $32,000 can be counted in a budget, but the count says nothing about rent or whether seasonal jobs last."
+    ],
+    "resolution": "Riley and Casey did not agree on whether the proxies are useful, but they agreed that nobody has clearly asked which number is supposed to be the goal. They converged on the need for specific public records, such as a Regional District comment log and clearer candidate histories, while Casey remained skeptical that the measurement would survive thin local newsroom staffing.",
+    "topics_covered": [
+      "Early voting and ballot counts as measures of engagement",
+      "Acclamations, candidate nominations, and representation in the Regional District",
+      "Mayoral and council candidate records, including unresolved complaints and lawsuits",
+      "Provincial and Regional District races, including Doerkson's tax proposal and Clare's campaign finance penalty",
+      "Free transit on election day and the proposal to publish comment logs, minutes, and attendance records"
     ]
   }
 }

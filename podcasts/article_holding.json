@@ -130,88 +130,6 @@
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
   },
-  "https://www.vox.com/climate/504064/hail-damage-climate-change-insurance-science-ncar": {
-    "article": {
-      "id": "https://www.vox.com/climate/504064/hail-damage-climate-change-insurance-science-ncar",
-      "url": "https://www.vox.com/climate/504064/hail-damage-climate-change-insurance-science-ncar",
-      "title": "[Vox] This weather threat costs us billions. And it&#8217;s about to get worse.",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.vox.com%2Fclimate%2F504064%2Fhail-damage-climate-change-insurance-science-ncar\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis story was originally published by High Country News and is reproduced here as part of the Climate Desk Collaboration. At a specialized cold lab in Boulder, Colorado, where indoor temperatures hover around minus 4 degrees Fahrenheit (minus 20 degrees Celsius), atmospheric researcher Anthony Bernal Ayala slices hailstones with a band saw, revealing layers of [&#8230;]",
-      "summary": "This story was originally published by High Country News and is reproduced here as part of the Climate Desk Collaboration. At a specialized cold lab in Boulder, Colorado, where indoor temperatures hover around minus 4 degrees Fahrenheit (minus 20 degrees Celsius), atmospheric researcher Anthony",
-      "_excerpt": "This story was originally published by High Country News and is reproduced here as part of the Climate Desk Collaboration. At a specialized cold lab in Boulder, Colorado, where indoor temperatures hover around minus 4 degrees Fahrenheit (minus 20 degrees Celsius), atmospheric researcher Anthony Bernal Ayala slices hailstones with a band saw, revealing layers of [\u2026]",
-      "date_published": "2026-09-27T11:00:00+00:00",
-      "authors": [
-        {
-          "name": "Vox",
-          "url": "https://www.vox.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 77,
-      "_relevance": 78,
-      "_local": 15,
-      "_theme_score": 36,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 40,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 65
-    },
-    "held_date": "2026-09-28",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
-  "https://www.wired.com/story/data-center-backlash-climate-reckoning/": {
-    "article": {
-      "id": "https://www.wired.com/story/data-center-backlash-climate-reckoning/",
-      "url": "https://www.wired.com/story/data-center-backlash-climate-reckoning/",
-      "title": "[WIRED] The Data Center Backlash Should Also Be a Climate Reckoning. It Isn\u2019t Yet",
-      "content_html": "<img src=\"https://media.wired.com/photos/6ab67c97580ac2113d437689/master/pass/092526-Power%20Play.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Fdata-center-backlash-climate-reckoning%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nClimate groups are latching onto the data center opposition movement, but it remains to be seen if they can get people to care about the facilities\u2019 impact on the atmosphere.",
-      "summary": "Climate groups are latching onto the data center opposition movement, but it remains to be seen if they can get people to care about the facilities\u2019 impact on the atmosphere.",
-      "_excerpt": "Climate groups are latching onto the data center opposition movement, but it remains to be seen if they can get people to care about the facilities\u2019 impact on the atmosphere.",
-      "date_published": "2026-09-27T10:00:00+00:00",
-      "authors": [
-        {
-          "name": "WIRED",
-          "url": "https://www.wired.com"
-        }
-      ],
-      "ai_score": 68,
-      "_quality": 80,
-      "_relevance": 82,
-      "_local": 15,
-      "_theme_score": 20,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 15,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://media.wired.com/photos/6ab67c97580ac2113d437689/master/pass/092526-Power%20Play.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 68
-    },
-    "held_date": "2026-09-28",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
   "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/": {
     "article": {
       "id": "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/",
@@ -288,93 +206,6 @@
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
     "status": "held"
-  },
-  "https://www.wired.com/story/tiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans/": {
-    "article": {
-      "id": "https://www.wired.com/story/tiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans/",
-      "url": "https://www.wired.com/story/tiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans/",
-      "title": "[WIRED] Tiny Hairs That Help Corals Breathe May Malfunction in Warming Oceans",
-      "content_html": "<img src=\"https://media.wired.com/clips/6aac22cde42f8093b632ba5e/master/pass/CoralCilia-crCesarPacharres-Lede.mp4\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Ftiny-hairs-that-help-corals-breathe-may-malfunction-in-warming-oceans%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSeveral new studies have uncovered this long overlooked aspect of coral physiology that could be the key to the animals\u2019 fate in a changing climate.",
-      "summary": "Several new studies have uncovered this long overlooked aspect of coral physiology that could be the key to the animals\u2019 fate in a changing climate.",
-      "_excerpt": "Several new studies have uncovered this long overlooked aspect of coral physiology that could be the key to the animals\u2019 fate in a changing climate.",
-      "date_published": "2026-09-20T09:00:00+00:00",
-      "authors": [
-        {
-          "name": "WIRED",
-          "url": "https://www.wired.com"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 77,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 59,
-      "_theme_score_raw": 2,
-      "_composite_podcast": 45,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://media.wired.com/clips/6aac22cde42f8093b632ba5e/master/pass/CoralCilia-crCesarPacharres-Lede.mp4",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-09-28T04:07:28.368905+00:00"
-      },
-      "_boosted_score": 56
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
-  "https://www.motherjones.com/politics/2026/09/german-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository/": {
-    "article": {
-      "id": "https://www.motherjones.com/politics/2026/09/german-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository/",
-      "url": "https://www.motherjones.com/politics/2026/09/german-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository/",
-      "title": "[Mother Jones] Germany Is Building a Digital Noah\u2019s Ark for US Climate Data",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fpolitics%2F2026%2F09%2Fgerman-climate-computing-senter-backup-storate-us-climate-data-trump-administration-tampering-digital-repository%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis story was originally published by\u00a0Yale E360\u00a0and\u00a0is reproduced here as part of the\u00a0Climate Desk\u00a0collaboration. In a modern five-story building in the center of Hamburg, Germany, technicians are preparing to install several new \u201cracks\u201d\u2014gray metal casings that hold computing hardware\u2014alongside the scores that already line the narrow, dimly lit corridors of the German Climate Computing Center [\u2026]",
-      "summary": "This story was originally published by Yale E360 and is reproduced here as part of the Climate Desk collaboration. In a modern five-story building in the center of Hamburg, Germany, technicians are preparing to install several new \u201cracks\u201d\u2014gray metal casings that hold computing hardware\u2014alongside",
-      "_excerpt": "This story was originally published by Yale E360 and is reproduced here as part of the Climate Desk collaboration. In a modern five-story building in the center of Hamburg, Germany, technicians are preparing to install several new \u201cracks\u201d\u2014gray metal casings that hold computing hardware\u2014alongside the scores that already line the narrow, dimly lit corridors of the German Climate Computing Center [\u2026]",
-      "date_published": "2026-09-27T12:00:00+00:00",
-      "authors": [
-        {
-          "name": "Mother Jones",
-          "url": "https://www.motherjones.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 79,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 91,
-      "_theme_score_raw": 21,
-      "_composite_podcast": 74,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-05",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
   },
   "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/": {
     "article": {
@@ -462,47 +293,6 @@
     "target_focus_name": "The Living World",
     "status": "held"
   },
-  "https://wildfiretoday.com/advancing-community-wildfire-adaptation/": {
-    "article": {
-      "id": "https://wildfiretoday.com/advancing-community-wildfire-adaptation/",
-      "url": "https://wildfiretoday.com/advancing-community-wildfire-adaptation/",
-      "title": "[Wildfire Today] Advancing community wildfire adaptation",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwildfiretoday.com%2Fadvancing-community-wildfire-adaptation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCommunity wildfire adaption activities may not work as well as hoped because they downplay the importance of local contexts and local input, argues Catrin Edgeley from Utah State University, in an editorial for the International Journal of Wildland Fire. Science, policy and practice surrounding how human communities navigate wildfire adaptation continue to evolve across changing [\u2026]",
-      "summary": "Community wildfire adaption activities may not work as well as hoped because they downplay the importance of local contexts and local input, argues Catrin Edgeley from Utah State University, in an editorial for the International Journal of Wildland Fire. Science, policy and practice surrounding how",
-      "_excerpt": "Community wildfire adaption activities may not work as well as hoped because they downplay the importance of local contexts and local input, argues Catrin Edgeley from Utah State University, in an editorial for the International Journal of Wildland Fire. Science, policy and practice surrounding how human communities navigate wildfire adaptation continue to evolve across changing [\u2026]",
-      "date_published": "2026-10-05T03:09:48+00:00",
-      "authors": [
-        {
-          "name": "Wildfire Today",
-          "url": "https://wildfiretoday.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 79,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-06T04:08:52.870645+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-10-06",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
   "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal": {
     "article": {
       "id": "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal",
@@ -543,47 +333,6 @@
     "target_focus_name": "Sky & Cosmos",
     "status": "held"
   },
-  "https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/": {
-    "article": {
-      "id": "https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/",
-      "url": "https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/",
-      "title": "[BC Wildfire Service] Pile burning planned for areas within the Kamloops Fire Zone",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.gov.bc.ca%2Fbcwildfire%2Fpile-burning-planned-for-areas-within-the-kamloops-fire-zone%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nKAMLOOPS \u2013 The BC Wildfire Service is assisting Interfor in conducting wildfire risk reduction projects throughout the Kamloops Fire Zone, as described below. Crews will be burning approximately 20 piles throughout these locations as site and weather conditions allow. Pile burning will occur: The purpose of this project is to help mitigate wildfire risk in \u2026 <a href=\"https://blog.gov.bc.ca/bcwildfire/pile-burning-planned-for-areas-within-the-kamloops-fire-zone/\">Continued</a>",
-      "summary": "KAMLOOPS \u2013 The BC Wildfire Service is assisting Interfor in conducting wildfire risk reduction projects throughout the Kamloops Fire Zone, as described below. Crews will be burning approximately 20 piles throughout these locations as site and weather conditions allow. Pile burning will occur: The",
-      "_excerpt": "KAMLOOPS \u2013 The BC Wildfire Service is assisting Interfor in conducting wildfire risk reduction projects throughout the Kamloops Fire Zone, as described below. Crews will be burning approximately 20 piles throughout these locations as site and weather conditions allow. Pile burning will occur: The purpose of this project is to help mitigate wildfire risk in \u2026 Continued",
-      "date_published": "2026-10-02T15:54:09+00:00",
-      "authors": [
-        {
-          "name": "BC Wildfire Service",
-          "url": "https://blog.gov.bc.ca/bcwildfire/"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 75,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-06T04:08:52.870645+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-06",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
   "https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/": {
     "article": {
       "id": "https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/",
@@ -623,7 +372,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-10"
   },
   "https://www.theguardian.com/global-development/2026/oct/05/shortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts": {
     "article": {
@@ -798,7 +548,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-10"
   },
   "https://blog.adafruit.com/2026/09/29/an-interactive-map-of-every-passenger-rail-line-in-the-world/": {
     "article": {
@@ -1177,100 +928,6 @@
     "target_focus_name": "Film & Screen",
     "status": "held"
   },
-  "https://www.motherjones.com/environment/2026/10/new-wildfire-response-technology-ai-drones-robots-robotic-vehicles/": {
-    "article": {
-      "id": "https://www.motherjones.com/environment/2026/10/new-wildfire-response-technology-ai-drones-robots-robotic-vehicles/",
-      "url": "https://www.motherjones.com/environment/2026/10/new-wildfire-response-technology-ai-drones-robots-robotic-vehicles/",
-      "title": "[Mother Jones] The Future of Wildfire Response: AI, Drones, and Robots",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fenvironment%2F2026%2F10%2Fnew-wildfire-response-technology-ai-drones-robots-robotic-vehicles%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis story was originally published by\u00a0Inside Climate News\u00a0and\u00a0is reproduced here as part of the\u00a0Climate Desk\u00a0collaboration. During the Sand Creek Fire, which has burned since the start of August in southwestern Montana, difficult terrain and fire-weakened trees posed hazards to crews searching for areas still smoldering on steep slopes after the blaze passed. So instead of [\u2026]",
-      "summary": "This story was originally published by Inside Climate News and is reproduced here as part of the Climate Desk collaboration. During the Sand Creek Fire, which has burned since the start of August in southwestern Montana, difficult terrain and fire-weakened trees posed hazards to crews searching for",
-      "_excerpt": "This story was originally published by Inside Climate News and is reproduced here as part of the Climate Desk collaboration. During the Sand Creek Fire, which has burned since the start of August in southwestern Montana, difficult terrain and fire-weakened trees posed hazards to crews searching for areas still smoldering on steep slopes after the blaze passed. So instead of [\u2026]",
-      "date_published": "2026-10-03T11:30:00+00:00",
-      "authors": [
-        {
-          "name": "Mother Jones",
-          "url": "https://www.motherjones.com"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 77,
-      "_relevance": 68,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 15,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-10-04T04:07:10.226457+00:00"
-      },
-      "_boosted_score": 16,
-      "_topic_cluster": "Wildfire management and innovation",
-      "_cluster_suppressed": true
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
-  "https://www.dwell.com/article/cathedral-house-jak-architecture-bushfire-design-a56ccfab": {
-    "article": {
-      "id": "https://www.dwell.com/article/cathedral-house-jak-architecture-bushfire-design-a56ccfab",
-      "url": "https://www.dwell.com/article/cathedral-house-jak-architecture-bushfire-design-a56ccfab",
-      "title": "[Dwell] This Country Home in Australia Almost Burned Down Before It Was Even Completed",
-      "content_html": "<img src=\"https://images.dwell.com/photos/6818593201364905984/7506184960471654400/small.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.dwell.com%2Farticle%2Fcathedral-house-jak-architecture-bushfire-design-a56ccfab\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA team stepped in to save the residence from a wildfire, which was designed with concrete and a corrugated-metal roof to ward of flames.",
-      "summary": "A team stepped in to save the residence from a wildfire, which was designed with concrete and a corrugated-metal roof to ward of flames.",
-      "_excerpt": "A team stepped in to save the residence from a wildfire, which was designed with concrete and a corrugated-metal roof to ward of flames.",
-      "date_published": "2026-10-07T21:46:06+00:00",
-      "authors": [
-        {
-          "name": "Dwell",
-          "url": "https://www.dwell.com"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 96,
-      "_theme_score_raw": 23,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://images.dwell.com/photos/6818593201364905984/7506184960471654400/small.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-10-08T04:10:57.717271+00:00"
-      },
-      "_boosted_score": 63
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
   "https://newatlas.com/technology/germany-come-close-atomic-bomb/": {
     "article": {
       "id": "https://newatlas.com/technology/germany-come-close-atomic-bomb/",
@@ -1310,45 +967,6 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://www.npr.org/2026/10/06/nx-s1-5991854/wildfire-smoke-ecology-birds-wildlife-health": {
-    "article": {
-      "id": "https://www.npr.org/2026/10/06/nx-s1-5991854/wildfire-smoke-ecology-birds-wildlife-health",
-      "url": "https://www.npr.org/2026/10/06/nx-s1-5991854/wildfire-smoke-ecology-birds-wildlife-health",
-      "title": "[NPR Health News] Wildfire smoke affects animals in unique ways. Scientists are trying to understand it",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.npr.org%2F2026%2F10%2F06%2Fnx-s1-5991854%2Fwildfire-smoke-ecology-birds-wildlife-health\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe new field of \"smoke ecology\" examines how wildfire smoke perturbs wild places and animals \u2014 and what might be done to prevent its worst mayhem.",
-      "summary": "The new field of \"smoke ecology\" examines how wildfire smoke perturbs wild places and animals \u2014 and what might be done to prevent its worst mayhem.",
-      "_excerpt": "The new field of \"smoke ecology\" examines how wildfire smoke perturbs wild places and animals \u2014 and what might be done to prevent its worst mayhem.",
-      "date_published": "2026-10-06T09:00:00+00:00",
-      "authors": [
-        {
-          "name": "NPR Health News",
-          "url": "https://www.npr.org/sections/health-shots/"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 72,
-      "_relevance": 68,
-      "_local": 0,
-      "_theme_score": 84,
-      "_theme_score_raw": 17,
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_boosted_score": 16,
-      "_topic_cluster": "Wildfire management and innovation",
-      "_cluster_suppressed": true
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
   },
   "https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/": {
     "article": {
@@ -1666,53 +1284,6 @@
     "target_focus_name": "Maker & Repair",
     "status": "held"
   },
-  "https://www.nytimes.com/2026/10/04/climate/boulder-lawsuit-supreme-court.html": {
-    "article": {
-      "id": "https://www.nytimes.com/2026/10/04/climate/boulder-lawsuit-supreme-court.html",
-      "url": "https://www.nytimes.com/2026/10/04/climate/boulder-lawsuit-supreme-court.html",
-      "title": "[NYT Top Stories] A Supreme Court Battle Over Climate Change Begins",
-      "content_html": "<img src=\"https://static01.nyt.com/images/2026/09/24/multimedia/00cli-boulder-01-vgtb/00cli-boulder-01-vgtb-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F10%2F04%2Fclimate%2Fboulder-lawsuit-supreme-court.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe justices are about to hear a lawsuit that could determine whether the oil industry faces billions of dollars in liability for damages caused by global warming.",
-      "summary": "The justices are about to hear a lawsuit that could determine whether the oil industry faces billions of dollars in liability for damages caused by global warming.",
-      "_excerpt": "The justices are about to hear a lawsuit that could determine whether the oil industry faces billions of dollars in liability for damages caused by global warming.",
-      "date_published": "2026-10-04T20:51:03+00:00",
-      "authors": [
-        {
-          "name": "NYT Top Stories",
-          "url": "https://nytimes.com"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 77,
-      "_relevance": 68,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 15,
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static01.nyt.com/images/2026/09/24/multimedia/00cli-boulder-01-vgtb/00cli-boulder-01-vgtb-mediumSquareAt3X.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "New York Times",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-08T04:10:57.717271+00:00"
-      },
-      "_boosted_score": 56
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-09",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "released",
-    "release_date": "2026-10-09"
-  },
   "https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds": {
     "article": {
       "id": "https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds",
@@ -1801,6 +1372,49 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-10"
+  },
+  "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/": {
+    "article": {
+      "id": "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/",
+      "url": "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/",
+      "title": "[CNET] EVgo\u2019s Next-Gen 750kW EV Charging System Is Capable of 10-Minute Recharge",
+      "content_html": "<img src=\"https://www.cnet.com/wp-content/uploads/sites/2/evgo-construction-1909-og.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cnet.com%2Fhome%2Felectric-vehicles%2Fevgo-next-gen-750kw-ev-charging-system-10-minute-recharge%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe company estimates its fastest-charging tech yet is coming next year, but it\u2019ll be a while before cars can hit its top speed.",
+      "summary": "The company estimates its fastest-charging tech yet is coming next year, but it\u2019ll be a while before cars can hit its top speed.",
+      "_excerpt": "The company estimates its fastest-charging tech yet is coming next year, but it\u2019ll be a while before cars can hit its top speed.",
+      "date_published": "2026-09-30T22:16:07+00:00",
+      "authors": [
+        {
+          "name": "CNET",
+          "url": "https://www.cnet.com"
+        }
+      ],
+      "ai_score": 47,
+      "_quality": 48,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 7,
+      "_theme_score_raw": 18,
+      "_composite_podcast": 4,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.cnet.com/wp-content/uploads/sites/2/evgo-construction-1909-og.jpeg",
+      "_cross_theme": {
+        "day": "friday",
+        "label": "Wild Spaces & Outdoor Life",
+        "shown_at": "2026-10-08T04:10:57.717271+00:00"
+      },
+      "_boosted_score": 47
+    },
+    "held_date": "2026-10-10",
+    "target_date": "2026-10-21",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
   }
 }
