@@ -1493,6 +1493,40 @@ class TestGenerateScriptTruncationGuard:
         assert "DEEP DIVE: 800 words now" in prompt and "1,200 more" in prompt
         assert "NEWS ROUNDUP:" not in prompt
 
+    def test_second_expand_pass_when_the_first_falls_short(self, monkeypatch):
+        # 2026-10-09: one section pass took 2,517 words to 3,272 against a
+        # 3,400 target. The loop measures again and asks once more.
+        def draft(dd_words: int) -> str:
+            return ("**WELCOME**\n**RILEY:** hi\n\n**NEWS ROUNDUP**\n**RILEY:** "
+                    + ("news " * 1300) + "\n\n**DEEP DIVE: Fences**\n**CASEY:** "
+                    + ("deep " * dd_words) + "\n")
+
+        def dd(words: int) -> str:
+            return "**DEEP DIVE: Fences**\n**CASEY:** " + ("deep " * words) + "\n"
+
+        client = _stream_client([
+            _response("end_turn", [_text_block(draft(800))]),
+            _response("end_turn", [_text_block(dd(1500))]),
+            _response("end_turn", [_text_block(dd(2200))]),
+        ])
+        result = self._run(monkeypatch, client)
+        assert client.messages.stream.call_count == 3
+        assert result.split().count("deep") == 2200
+        second = client.messages.stream.call_args_list[2].kwargs["messages"]
+        assert second[1]["content"].split().count("deep") == 1500
+
+    def test_expand_loop_stops_when_a_pass_adds_nothing(self, monkeypatch):
+        from podcast_generator import EXPAND_MAX_PASSES
+        assert EXPAND_MAX_PASSES >= 2
+        draft = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 3000)
+        shorter = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 2900)
+        client = _stream_client([
+            _response("end_turn", [_text_block(draft)]),
+            _response("end_turn", [_text_block(shorter)]),
+        ])
+        assert self._run(monkeypatch, client) == draft
+        assert client.messages.stream.call_count == 2
+
     def test_splice_keeps_draft_section_when_rewrite_is_shorter(self):
         from podcast_generator import _splice_sections
         draft = "**NEWS ROUNDUP**\n**RILEY:** a b c\n\n**DEEP DIVE: X**\n**CASEY:** d e f g\n"

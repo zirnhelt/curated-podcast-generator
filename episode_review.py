@@ -358,8 +358,8 @@ _MEANS: dict[str, str] = {
                          "kept, so nothing is dropped from the episode."),
     "brave_enriched": ("articles whose body was too thin to script from, topped up from Brave "
                        "search results."),
-    "short_script": ("the first draft came in under target and was sent back for one expand pass. "
-                     "quality.script_words is what shipped."),
+    "short_script": ("the first draft came in under target and was sent back for up to two "
+                     "expand passes. quality.script_words is what shipped."),
     # Raised as a lost-articles problem on five nights before this was here.
     "roundup_dropped": ("stories cut from the roundup pool by the airtime budget "
                         "(NEWS_ROUNDUP_COUNT). By design: the pool is larger than one segment "
@@ -709,9 +709,15 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
     for entry in facts.get("degradations", []):
         if isinstance(entry, list) and len(entry) == 2:
             signals.setdefault(f"degraded:{entry[0]}", f"degrade() row: {entry[1][:160]}")
+    # A short first draft that the expand pass brought to target is the
+    # pipeline working (2026-09-28: 2,877 → 3,548 shipped). The listener hears
+    # what shipped, so that is what keeps the item open.
     short = facts.get("short_script")
-    if isinstance(short, list) and len(short) == 2:
-        signals["short-script"] = f"first draft {short[0]} words against a {short[1]}-word target"
+    quality = facts.get("quality")
+    shipped = quality[2] if isinstance(quality, list) and len(quality) == 3 else None
+    if isinstance(short, list) and len(short) == 2 and (shipped is None or shipped < short[1]):
+        signals["short-script"] = (f"shipped {shipped if shipped is not None else '?'} words "
+                                   f"against a {short[1]}-word target (first draft {short[0]})")
     cites = facts.get("citation_alignment")
     if isinstance(cites, list) and len(cites) == 4:
         for name, matched, total in (("roundup", cites[0], cites[1]),

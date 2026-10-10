@@ -539,6 +539,15 @@ class TestSignals:
                                 "ai-tells-shipped", "voice-ratio", "run-failed"}
         assert "12 calls" in signals[BODIES]
 
+    def test_short_draft_that_shipped_at_target_is_not_a_signal(self):
+        # 2026-09-28: first draft 2,877, shipped 3,548. The expand pass did
+        # its job; only a short *shipped* script keeps short-script open.
+        assert "short-script" not in episode_review.run_signals(
+            {"short_script": [2877, 3400], "quality": [0, 1.0, 3548]})
+        signals = episode_review.run_signals(
+            {"short_script": [2517, 3400], "quality": [0, 1.0, 3237]})
+        assert signals["short-script"].startswith("shipped 3237 words")
+
     def test_metrics_inside_their_lines_are_not_signals(self):
         signals = episode_review.run_signals({
             "citation_alignment": [12, 15, 2, 3], "quality": [0, 1.13, 3300]})
