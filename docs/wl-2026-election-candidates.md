@@ -28,11 +28,11 @@ before. The platform notes below are *what the candidate says about themselves*
 and are deliberately **not** in the JSON: a name on a nomination form is a
 source for the name and for nothing after it.
 
-Scope: the City of Williams Lake ballot — mayor, council, and the SD27 Zone 6
-trustee seat — as filed in the City's Declaration of Candidates (Form 8-8, signed
+Scope: the City of Williams Lake ballot — mayor and council — as filed in the City's Declaration of Candidates (Form 8-8, signed
 by the Chief Election Officer, Sept 11, 2026) — and the three CRD electoral areas
 ringing the city (D, E, F), from the Williams Lake Tribune's "Six Cariboo Regional
-District directors facing challengers" (Sept 15, 2026).
+District directors facing challengers" (Sept 15, 2026) — and the SD27 trustee areas covering the city and those CRD
+areas (TEA 4, 5, 6), from the district's declaration of candidates.
 
 That CRD race sat here as an empty `NO FILED LIST` race until 2026-09-26, and the
 episode that day told listeners the candidate list "isn't findable anywhere we
@@ -107,11 +107,30 @@ carries him in the council race's `"withdrawn"` list: the renderer says 14, neve
 - **Maureen LeBourdais** (Area F, 150 Mile House / Horsefly / Likely; incumbent) —
   acclaimed. No vote in Area F.
 
-## School trustee — SD27 Zone 6 (City of Williams Lake)
+## School trustees — SD27 Trustee Electoral Areas 4, 5 and 6
 
-One to be elected; one filed.
+From School District 27's own School Trustee Elections page (declaration of
+candidates) and its Board of Education page, both read 2026-10-11 from copies the
+producer supplied. This section was "Zone 6, one filed" until then: the area is
+called a Trustee Electoral Area (TEA), Franklin was acclaimed rather than
+unopposed on a ballot, and the two contested areas ringing the city were missing.
+Seven areas elect one trustee each; TEA 1–3 (100 Mile House and south) and TEA 7
+(the Chilcotin) are outside this roster's scope, as the other CRD areas are.
 
-- **Michael Franklin** — Williams Lake. No platform notes yet.
+- **Melissa Coates** (TEA 4 — CRD Area F: 150 Mile House / Horsefly / Likely;
+  incumbent) and **Laura Zimmerman** of Williams Lake.
+- **Nicole Berreth** (listed as Nicole (Nikki) Berreth, Williams Lake) and
+  **Mary Forbes** (TEA 5 — CRD Area E and part of Area D). Forbes is the board's
+  vice-chair and sits for TEA 2 now; TEA 5's sitting trustee, board chair Angie
+  Delainey, is not on the TEA 5 list.
+- **Michael Franklin** (TEA 6 — City of Williams Lake; incumbent) — acclaimed.
+  No vote in TEA 6.
+
+_On two ballots:_ Mary Forbes is a candidate for CRD Area E director (Tribune,
+Sept 15) and for SD27 trustee in TEA 5 (SD27 declaration). The producer confirmed
+both on 2026-10-11. `_format_event_roster` prints an ON TWO BALLOTS line for any
+name in more than one race, so the hosts say so instead of treating it as a
+mix-up.
 
 ## Using this list
 

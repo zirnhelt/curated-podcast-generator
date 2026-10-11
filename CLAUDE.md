@@ -182,7 +182,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - Name every race and name people, not roles. Report a previous run's outcome, **loss included**.
 - Everything is bounded by **SOURCED OR UNSAID**: a claim comes from the day's articles or the research block, and an unestablished record is said to be unestablished.
 - `event_focus.roster` settles **who is running**, plus `records`: dated lines from a named outlet, rendered as SOURCED BACKGROUND. A race with no names renders as `NO NAMES IN THE ROSTER`. **Never air a gap as "unfindable" or "not public"**: fill the race in the day its list is public.
-- The research pass runs a **Python roll call first** (`_run_event_sweep`: one search per race and per running candidate), then the agent follows up with `fetch_page`. More than a third of the ballot under `NO RECORD FOUND` `degrade()`s. Queries and the research block are saved in the citations JSON under `research`.
+- The research pass runs a **Python roll call first** (`_run_event_sweep`: one search per race and per running candidate), then the agent follows up with `fetch_page`. A page in the day's feed whose headline names a running candidate is read in full first (`_candidate_profiles`, no search); local names come before provincial follow-ups. More than a third of the ballot under `NO RECORD FOUND` `degrade()`s. Queries and the research block are saved in the citations JSON under `research`.
 - **All-week events** (`podcast.json` → `all_week_events`: the 2026 B.C. provincial vote, Oct 24) are swept and lensed on any day an episode article carries their vocabulary (`_events_in_play`). They never steer selection.
 - **An all-week event gets its own research pass** (`_research_event_ballot`: election meter, results-only search, `recent` for this campaign). It never takes the deep dive's pass; only the day's own event shares that one.
 - **Once nominations close, the weekday ballot pass reuses its last complete research** (`podcasts/ballot_research_cache.json`) until it is `BALLOT_RESEARCH_MAX_AGE_DAYS` old, the roster or brief changes, or an election story reads like the field moved (`_ROSTER_CHANGE_RE`). Saturday's shared pass is never cached.
@@ -231,7 +231,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The phrase ledger burns spiking adverbs only; multi-word tics go in `hard_banned` by hand.
 - The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
 - `script/tell-scrub` runs after the cold open.
-- **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat.
+- **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat. The polish gets the research half of the ledger too: it is told to weave in findings the draft left out, and a polish that adds repeats `degrade()`s (`script/aired-check`).
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
 
 **Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.

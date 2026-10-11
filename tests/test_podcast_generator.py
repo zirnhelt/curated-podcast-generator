@@ -5651,9 +5651,12 @@ class TestEventFocusRoster:
         assert "Area Z director: NO NAMES IN THE ROSTER" in block
         assert "PRE-RESEARCHED INSIGHTS" in block
         assert "never the segment's hook" in block
-        # SD27 Zone 6 was a gap until the City's Declaration of Candidates filled it.
-        assert "Zone 6 (City of Williams Lake) (1 running): Michael Franklin" in \
-            _format_event_roster(self._event())
+        # SD27's own declaration: TEA 6 was acclaimed, and TEA 4 and 5 are contested.
+        block = _format_event_roster(self._event())
+        assert ("Trustee Electoral Area 6 (City of Williams Lake) (1 running): "
+                "Michael Franklin [holds the seat now] — ACCLAIMED") in block
+        assert "(2 running): Nicole Berreth, Mary Forbes" in block
+        assert "ON TWO BALLOTS: Mary Forbes is a candidate in each of" in block
 
     def test_absence_is_never_aired_as_unfindable(self):
         """2026-09-26 aired "isn't findable anywhere we looked" about a CRD list
@@ -6435,6 +6438,58 @@ class TestAiredLedger:
         sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
         assert "ALREADY ON AIR THIS WEEK" in sent
         assert "13,714 to 5,992" in sent
+
+    def test_polish_prompt_keeps_aired_research_out(self, podcasts, monkeypatch):
+        """2026-10-10: the draft left last Saturday's bios out, and the polish wove
+        them back in from the research block (2 repeated lines became 18)."""
+        import podcast_generator as pg
+        from datetime import datetime
+        podcasts("2026-10-03")
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 10, 6, 1, 0))
+        draft = "**NEWS ROUNDUP**\n\n**CASEY:** Nothing aired.\n"
+
+        addendum = pg._aired_repeats_addendum(draft, self.RESEARCH)
+
+        assert "ALREADY ON AIR THIS WEEK" in addendum
+        assert "13,714 to 5,992" in addendum
+        assert "REPEATS FROM EARLIER EPISODES" not in addendum
+        for key in ("polish_and_factcheck", "agentic_polish_and_factcheck"):
+            prompt = str(pg.CONFIG["prompts"][key])
+            assert "unless it appears under ALREADY ON AIR THIS WEEK" in prompt
+
+
+class TestCandidateProfiles:
+    """2026-10-10: the Tribune profiled most of the council field that week and
+    the research cited directory sites instead. The roll call reads them."""
+
+    EVENTS = [{"roster": {"races": [
+        {"race": "Council", "candidates": ["Ruth Lloyd", "Greg Jeannotte", "Gone Person"],
+         "withdrawn": ["Gone Person"]}]}}]
+    POOL = [
+        {"title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Ruth Lloyd",
+         "url": "https://wltribune.com/2026/10/07/meet-ruth-lloyd/", "date_published": "2026-10-07T04:00:00"},
+        {"title": "Unrelated story", "url": "https://example.com/x"},
+        {"title": "Gone Person drops out", "url": "https://example.com/gone"},
+    ]
+
+    def test_reads_the_profile_of_a_running_candidate(self, monkeypatch):
+        import podcast_generator as pg
+        fetched = []
+        monkeypatch.setattr(pg, "_fetch_page_text",
+                            lambda url: fetched.append(url) or "Menu Home Ruth Lloyd says housing comes first.")
+        monkeypatch.setattr(pg, "_public_http_url", lambda url: True)
+
+        blocks = pg._candidate_profiles(self.EVENTS, self.POOL)
+
+        assert fetched == ["https://wltribune.com/2026/10/07/meet-ruth-lloyd/"]
+        assert len(blocks) == 1
+        assert "Ruth Lloyd says housing comes first." in blocks[0]
+        assert "2026-10-07" in blocks[0]
+
+    def test_no_pool_no_fetch(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_fetch_page_text", lambda url: pytest.fail("fetched"))
+        assert pg._candidate_profiles(self.EVENTS, None) == []
 
 
 def test_production_disclosure_covers_infrastructure_vendors():
