@@ -455,7 +455,7 @@ resurrected on one mention.
   budget ("48 roundup articles", "55 roundup articles", "recurring"), five for deep-dive
   citations and seven for script expansion, 24 open in all. `run_signals` reads stable keys off the facts —
   `degraded:<segment>` for each `degrade()` row, `short-script`, `citations:<segment>` below
-  `CITATION_FLOOR`, `ai-tells-shipped`, `voice-ratio` outside `VOICE_RATIO_BAND`,
+  `CITATION_FLOOR`, `ai-tells-shipped` (above `AI_TELL_SIGNAL_ABOVE`, the Opus escalation line), `voice-ratio` outside `VOICE_RATIO_BAND`,
   `run-failed` — and the schema pins each finding's `signal` to that day's set plus `other`.
   `_match` goes signal, then id, then a `difflib` ratio ≥ 0.72 on the title; a signalled
   finding never title-matches an item under a different signal.
