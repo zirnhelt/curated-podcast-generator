@@ -10657,8 +10657,10 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
         "between co-hosts Riley and Casey recapping what the team tweaked about the show "
         "itself this past week. Translate the raw commit list below into plain language a "
         "listener would care about — no jargon, filenames, or hashes.\n\n"
-        "FIRST, decide whether there is a segment here at all. Go through the list and "
-        "count the entries with a consequence a listener could notice while listening. A "
+        "FIRST, decide whether there is a segment here at all, silently: never write out "
+        "the list, your count or your reasoning. Your whole reply is either NONE or the "
+        "COVERED lines and the dialogue. Count the entries with a consequence a listener "
+        "could notice while listening. A "
         "change counts when it alters what the show picks, what order it airs things in, "
         "what the hosts say, or how the show sounds. It does not count when it only "
         "changes logging, retries, budgets, credentials or file layout — nothing a "
@@ -10727,9 +10729,10 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
             model=HAIKU_MODEL,
             thinking=thinking_off(HAIKU_MODEL),
             # Sized for the 320-400 word target plus speaker markers and the
-            # COVERED lines above them; the old 450 capped the segment below its
-            # own word floor once it was widened.
-            max_tokens=1000,
+            # COVERED lines above them. 1000 was enough for Haiku 4.5; Haiku 5.5
+            # spends ~30% more tokens on the same text, and on 2026-10-11 both
+            # calls stopped at exactly 1000 with no dialogue written.
+            max_tokens=2500,
             messages=[{"role": "user", "content": prompt}],
         ))
         _log_claude_usage(response)
@@ -10740,16 +10743,27 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
         print(f"  ⚠️  Meta Moment generation failed: {exc}")
         return "", "error", f"generation failed ({type(exc).__name__})"
 
+    # A reply cut at the cap is never aired, even with dialogue in it: the
+    # segment would stop mid-sentence. Until 2026-10-11 it was read as NONE.
+    if getattr(response, "stop_reason", None) == "max_tokens":
+        print(f"  ⚠️  Meta Moment reply hit max_tokens; it began: {raw[:300]!r}")
+        return "", "error", (f"reply truncated at max_tokens ({len(raw)} chars, no "
+                             "complete dialogue)")
+
     start = raw.find("**RILEY:**")
     if start == -1:
-        # NONE, or a reply with no dialogue in it — both mean no segment. A quiet
-        # week is a legitimate answer and this is not an error, but it is still a
-        # Sunday that aired without its Sunday segment, and until 2026-09-06 the
-        # only trace of that decision was one line in the job log. "Was that by
-        # design?" is a question the run report should have already answered.
-        print("   🔇 Meta Moment: no listener-noticeable change in the list")
-        return "", "none", (f"model judged none of the week's {len(subjects)} commit(s) "
-                            "listener-noticeable")
+        lines = [line for line in raw.splitlines() if line.strip()]
+        if lines and re.fullmatch(r"\W*NONE\W*", lines[-1], re.I):
+            # A quiet week is a legitimate answer and not an error, but it is
+            # still a Sunday without its Sunday segment, and until 2026-09-06 the
+            # only trace was one line in the job log. The run report says so.
+            print("   🔇 Meta Moment: no listener-noticeable change in the list")
+            return "", "none", (f"model judged none of the week's {len(subjects)} "
+                                "commit(s) listener-noticeable")
+        # Neither NONE nor dialogue: a format failure, worth the retry with its
+        # reason, and never reported as the model's verdict on the week.
+        print(f"  ⚠️  Meta Moment reply had no dialogue; it began: {raw[:300]!r}")
+        return "", "guard", "the reply was neither NONE nor a **RILEY:**/**CASEY:** dialogue"
 
     dialogue = raw[start:]
     if not _meta_moment_covered(raw[:start], subjects):
