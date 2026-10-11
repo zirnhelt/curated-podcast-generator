@@ -1,30 +1,4 @@
 {
-  "2026-07-12": {
-    "timestamp": 1783851113.517887,
-    "date": "2026-07-12",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "Can a low-cost, volunteer-based monitoring system detect early ecological shifts in Cariboo salmon runs before they become established problems, and what structural design would be required to make it work?",
-    "riley_position": "Early ecological signals already exist in community observations; the problem is designing data collection systems that survive personnel turnover by removing human bottlenecks through automatic reporting rather than sustained volunteer attention.",
-    "riley_key_evidence": [
-      "Temperature loggers clipped to bridge pilings cost minimal money and can run unattended for months",
-      "Mesh networks or satellite uplinks could solve connectivity gaps in areas without cell service",
-      "Salmon in the Classroom program already tracks phenology year-over-year; existing infrastructure could be leveraged"
-    ],
-    "casey_position": "Volunteer-based systems consistently fail when key individuals leave; the real bottleneck isn't funding or sensor cost but ensuring data survives and reaches decision-makers, and this requires institutional continuity that small pilots fundamentally lack.",
-    "casey_key_evidence": [
-      "Large clinical datasets held by institutions with sustained funding were necessary to distinguish two distinct forms of depression",
-      "LIGO succeeded only because it had decades of federal budget backing, not volunteer goodwill",
-      "Half the Cariboo backcountry lacks cell coverage, making automatic reporting impossible in priority monitoring zones"
-    ],
-    "resolution": "Both agreed on a specific testable pilot (one logger, one season, one river) but only if outreach to First Nations happens first to address data sovereignty and existing knowledge claims, acknowledging that the technology question and relationship question are inseparable.",
-    "topics_covered": [
-      "Detection lag in ecological monitoring (fisheries and invasive species examples)",
-      "Signal literacy versus signal detection (knowing what observations mean)",
-      "Institutional continuity versus volunteer sustainability in citizen science",
-      "Infrastructure design to remove human bottlenecks",
-      "Indigenous data sovereignty and existing community knowledge"
-    ]
-  },
   "2026-07-13": {
     "timestamp": 1783942520.460722,
     "date": "2026-07-13",
@@ -2506,6 +2480,34 @@
       "Mayoral and council candidate records, including unresolved complaints and lawsuits",
       "Provincial and Regional District races, including Doerkson's tax proposal and Clare's campaign finance penalty",
       "Free transit on election day and the proposal to publish comment logs, minutes, and attendance records"
+    ]
+  },
+  "2026-10-11": {
+    "timestamp": 1791706710.047298,
+    "date": "2026-10-11",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "sky-cosmos",
+    "anchor": "actually-measuring",
+    "central_question": "Should scientific and technical measurements (telescope milestones, geocenter estimates, planetary atmospheres, rocket success, dark-sky counts) be reported with explicit labels about what they measure, what models they depend on, and what they stand for?",
+    "riley_position": "Revisions and early milestones are the normal path of sharper measurement; progress should be counted step by step, and proxies are acceptable as long as the process of revision is visible.",
+    "riley_key_evidence": [
+      "Roman launched August 30th from Kennedy Space Center on a Falcon Heavy, and its first test image was starlight on the Wide Field Instrument, an optics check rather than a science result.",
+      "A 2026 analysis reported in ScienceDaily and Phys.org finds the annual Earth center-of-mass motion is about half of previous estimates, a refinement of a known effect rather than a new one.",
+      "Starship Flight 14 reached orbit and deployed 26 Starlink V3 satellites at roughly 170 miles despite one of six Raptor engines shutting down early."
+    ],
+    "casey_position": "Stand-ins such as models, proxies, and sampling methods must be labeled and published alongside results, and headlines should report only what was actually measured.",
+    "casey_key_evidence": [
+      "The Kottke post quotes a piece saying Roman 'may deliver' planet images, and 'may' is a forecast rather than a result.",
+      "The GPS and satellite orbit reference point for Earth's center moved by about a factor of two, and users of that reference may not know it began as a model.",
+      "A clear August night can be hidden by smoke, so a dark-sky reading needs its smoke days labeled to avoid misattributing the cause."
+    ],
+    "resolution": "They agreed that revisions are part of honest measurement and that sampling methods should be printed alongside figures, but they did not settle who should own long-term protocols; Casey accepted a regional body holding the log only as a possible fix and both admitted the Chilcotin protocol question remains unanswered.",
+    "topics_covered": [
+      "Roman Space Telescope commissioning and the distinction between optics checks and science results",
+      "Revisions to Earth's center-of-mass estimates and the role of models in geodesy and GPS",
+      "Webb's atmospheric detection on HD 3167 b and the inferred nature of exoplanet atmospheres",
+      "Starship Flight 14 orbital success, engine shutdown, and the metrics used to judge test flights",
+      "Dark-sky and aurora counting in the Cariboo, smoke labeling, and long-term local data stewardship"
     ]
   }
 }

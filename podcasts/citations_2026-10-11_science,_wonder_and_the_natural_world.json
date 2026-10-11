@@ -1,0 +1,476 @@
+{
+  "episode": {
+    "date": "2026-10-11",
+    "formatted_date": "Sunday, October 11, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>THIS WEEK WE'RE ASKING:</b> What are we actually measuring?</p><p><b>NEWS ROUNDUP:</b> We break down WorkBC hosting job fair at 100 Mile House Community Hall and Williams Lake Royal Purple supporting local women’s shelter with care bags, plus 10 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should scientific and technical measurements (telescope milestones, geocenter estimates, planetary atmospheres, rocket success, dark-sky counts) be reported with explicit labels about what they measure, what models they depend on, and what they stand for? Topics include: Roman Space Telescope commissioning and the distinction between optics checks and science results, Revisions to Earth's center-of-mass estimates and the role of models in geodesy and GPS, Webb's atmospheric detection on HD 3167 b and the inferred nature of exoplanet atmospheres, Starship Flight 14 orbital success, engine shutdown, and the metrics used to judge test flights, Dark-sky and aurora counting in the Cariboo, smoke labeling, and long-term local data stewardship.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Central Chilcotin Rehabilitation Ltd.</p><p><b>Sources discussed:</b></p><ul><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/10/10/workbc-hosting-job-fair-at-100-mile-house-community-hall/\">[100 Mile Free Press] WorkBC hosting job fair at 100 Mile Ho...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/10/williams-lake-royal-purple-supporting-local-womens-shelter-with-care-bags/\">[Williams Lake Tribune] Williams Lake Royal Purple supportin...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/10/shovel-ready-new-modern-skatepark-in-williams-lake-moves-to-fundraising-stage/\">[Williams Lake Tribune] Shovel-ready new modern skatepark in...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/10/09/b-c-greens-release-transportation-plans-includes-free-transit-for-youth-seniors/\">[Quesnel Cariboo Observer] B.C. Greens release transportatio...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/10/02/meet-the-candidates-rocky-nenka-seeks-mayors-seat-for-district-of-wells/\">[Quesnel Cariboo Observer] Meet the Candidates: Rocky Nenka ...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316675/news/environment/advocates-urge-next-b-c-government-to-address-water-scarcity-as-el-nino-forecast-adds-to-drought-concerns-2/\">[My Cariboo Now] Advocates urge next B.C. government to addr...</a></li><li>Brendan Shykora (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/10/09/disgraced-vernon-lawyer-misappropriated-116k-from-elderly-client-with-dementia/\">[Quesnel Cariboo Observer] Disgraced Vernon lawyer misapprop...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/10/261005071526.htm\">[ScienceDaily] Webb finds a surprising atmosphere on a scorc...</a></li><li>Jess Cockerill (ScienceAlert): <a href=\"https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal\">[ScienceAlert] As Permafrost Melts, Toxic Metals Are Poisoni...</a></li><li>Nicholas Florko (STAT News): <a href=\"https://www.statnews.com/2026/10/10/u-s-trust-science-higher-than-other-nations-wellcome-survey/?utm_campaign=rss\">[STAT News] Americans trust science more than peers around t...</a></li><li>Mary Randolph (Scientific American): <a href=\"https://www.scientificamerican.com/article/this-beer-making-waste-may-offer-a-new-stream-for-cleaner-water/\">[Scientific American] This beer-making waste may offer a new...</a></li><li>Maria Popova (The Marginalian): <a href=\"https://www.themarginalian.org/2026/10/09/rashomon-effect-memory/\">[The Marginalian] How Memory Makes Us and Breaks Truth: The ...</a></li><li>New Atlas: <a href=\"https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/\">[New Atlas] Largest rocket ever built successfully enters or...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/10/261005071520.htm\">[ScienceDaily] Earth’s center is moving, and NASA just measu...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/05/hope-veterans-death-shines-spotlight-on-little-known-legion-service/\">[Williams Lake Tribune] Hope veteran’s death shines spotligh...</a></li><li>Maggie O&amp;#x27;Neill (Outside Online): <a href=\"https://www.outsideonline.com/health/training-performance/when-to-wear-compression-garments-running-recovery/\">[Outside Online] New Research Shows When You Wear Compressio...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91619252/south-koreas-bank-hacks-offer-a-warning-about-ai-powered-cyberattacks\">[Fast Company] South Korea’s bank hacks offer a warning abou...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re\">[Kottke.org] Ross Anderson on NASA’s recently launched Nancy...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-haiku-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-11T01:18:14.261789-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-haiku-5-5",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3024,
+      "voice_ratio_casey_riley": 0.96,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 1,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 6,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 11,
+        "turns": 81,
+        "avg_turn_words": 36.1,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "actually-measuring",
+      "question": "What are we actually measuring?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[100 Mile Free Press] WorkBC hosting job fair at 100 Mile House Community Hall",
+          "url": "https://100milefreepress.net/2026/10/10/workbc-hosting-job-fair-at-100-mile-house-community-hall/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 61,
+          "date_published": "2026-10-10T12:00:00+00:00",
+          "summary": "The fair is being held from 11 a.m. to 4 p.m. at the 100 Mile House Community Hall",
+          "discussed": true,
+          "mention_offset_frac": 0.023
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Royal Purple supporting local women’s shelter with care bags",
+          "url": "https://wltribune.com/2026/10/10/williams-lake-royal-purple-supporting-local-womens-shelter-with-care-bags/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 54,
+          "date_published": "2026-10-11T04:03:08.320571+00:00",
+          "summary": "Williams Lake Royal Purple is once again supporting collecting donations to fill care bags for the local women's shelter. (Williams Lake Royal Purple - Darlene Doucette/Facebook) Volunteers with the C...",
+          "discussed": true,
+          "mention_offset_frac": 0.094
+        },
+        {
+          "title": "[Williams Lake Tribune] Shovel-ready new modern skatepark in Williams Lake moves to fundraising stage",
+          "url": "https://wltribune.com/2026/10/10/shovel-ready-new-modern-skatepark-in-williams-lake-moves-to-fundraising-stage/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 81,
+          "date_published": "2026-10-11T04:03:08.320915+00:00",
+          "summary": "The Williams Lake Skateboard Association recently provided an update on the modern skatepark project to city council on Tuesday, Oct. 6\\. (Photo submitted) The Williams Lake Skateboard Park Associatio...",
+          "discussed": true,
+          "mention_offset_frac": 0.094
+        },
+        {
+          "title": "[Fast Company] South Korea’s bank hacks offer a warning about AI-powered cyberattacks",
+          "url": "https://www.fastcompany.com/91619252/south-koreas-bank-hacks-offer-a-warning-about-ai-powered-cyberattacks",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-10-06T17:53:26+00:00",
+          "summary": "Some of South Korea’s biggest banks have been hacked with the assistance of an artificial intelligence agent, opening up a new front in the AI and cybersecurity worlds. Officials say at least seven fi...",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] B.C. Greens release transportation plans, includes free transit for youth, seniors",
+          "url": "https://quesnelobserver.com/2026/10/09/b-c-greens-release-transportation-plans-includes-free-transit-for-youth-seniors/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "none",
+          "ai_score": 68,
+          "date_published": "2026-10-09T23:24:10+00:00",
+          "summary": "Party looks to develop passenger rail, expand ferry services",
+          "discussed": true,
+          "mention_offset_frac": 0.2471
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Meet the Candidates: Rocky Nenka seeks mayor’s seat for District of Wells",
+          "url": "https://quesnelobserver.com/2026/10/02/meet-the-candidates-rocky-nenka-seeks-mayors-seat-for-district-of-wells/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "none",
+          "ai_score": 53,
+          "date_published": "2026-10-02T23:00:34+00:00",
+          "summary": "General voting day across B.C., including Wells, will take place on Oct. 17.",
+          "discussed": true,
+          "mention_offset_frac": 0.3101
+        },
+        {
+          "title": "[My Cariboo Now] Advocates urge next B.C. government to address water scarcity as El Niño forecast adds to drought concerns",
+          "url": "https://www.mycariboonow.com/316675/news/environment/advocates-urge-next-b-c-government-to-address-water-scarcity-as-el-nino-forecast-adds-to-drought-concerns-2/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 74,
+          "date_published": "2026-10-10T08:05:54+00:00",
+          "summary": "A potentially powerful El Niño could worsen drought conditions across B.C., prompting calls for stronger water protection measures from the next provincial government. The post Advocates urge next B.C...",
+          "discussed": true,
+          "mention_offset_frac": 0.3309
+        },
+        {
+          "title": "[Scientific American] This beer-making waste may offer a new stream for cleaner water",
+          "url": "https://www.scientificamerican.com/article/this-beer-making-waste-may-offer-a-new-stream-for-cleaner-water/",
+          "source": "Scientific American",
+          "author": "Mary Randolph",
+          "ai_score": 57,
+          "date_published": "2026-10-10T11:00:00+00:00",
+          "summary": "The research offers yet another way the brewery industry might repurpose its myriad by-products",
+          "discussed": true,
+          "mention_offset_frac": 0.3369
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Disgraced Vernon lawyer misappropriated $116K from elderly client with dementia",
+          "url": "https://quesnelobserver.com/2026/10/09/disgraced-vernon-lawyer-misappropriated-116k-from-elderly-client-with-dementia/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Brendan Shykora",
+          "ai_score": 46,
+          "date_published": "2026-10-10T01:00:00+00:00",
+          "summary": "It's the latest finding of professional misconduct against Leonard Hil Marriott.",
+          "discussed": true,
+          "mention_offset_frac": 0.3931
+        },
+        {
+          "title": "[ScienceDaily] Webb finds a surprising atmosphere on a scorching lava world",
+          "url": "https://www.sciencedaily.com/releases/2026/10/261005071526.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-07T11:58:25+00:00",
+          "summary": "The James Webb Space Telescope has found strong evidence that the rocky lava world HD 3167 b has an atmosphere, despite circling its star every 24 hours under extreme heat. The surprising discovery co...",
+          "discussed": true,
+          "mention_offset_frac": 0.4845
+        },
+        {
+          "title": "[Outside Online] New Research Shows When You Wear Compression Socks Actually Matters",
+          "url": "https://www.outsideonline.com/health/training-performance/when-to-wear-compression-garments-running-recovery/",
+          "source": "Outside Online",
+          "author": "Maggie O&#x27;Neill",
+          "ai_score": 33,
+          "date_published": "2026-10-10T09:00:14+00:00",
+          "summary": "A new study shows that wearing compression gear during long runs aids muscle recovery better than wearing it afterward. The post New Research Shows When You Wear Compression Socks Actually Matters app...",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] As Permafrost Melts, Toxic Metals Are Poisoning Rivers With Levels 70 Times Higher Than Normal",
+          "url": "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal",
+          "source": "ScienceAlert",
+          "author": "Jess Cockerill",
+          "ai_score": 59,
+          "date_published": "2026-09-30T02:33:31+00:00",
+          "summary": "An aerial view of the Kutuk River in Alaska's Gates of the Arctic National Park. (Ken Hill/National Park Service) An unexpected side effect of a thawing world. ScienceAlert stories are written, fact-c...",
+          "discussed": true,
+          "mention_offset_frac": 0.5768
+        },
+        {
+          "title": "[STAT News] Americans trust science more than peers around the world, survey shows",
+          "url": "https://www.statnews.com/2026/10/10/u-s-trust-science-higher-than-other-nations-wellcome-survey/?utm_campaign=rss",
+          "source": "STAT News",
+          "author": "Nicholas Florko",
+          "ai_score": 28,
+          "date_published": "2026-10-10T23:01:00+00:00",
+          "summary": "Just 40 percent of Americans reported a lot of confidence in U.S. hospitals and health clinics, the same proportion as in Portugal and Uruguay.",
+          "discussed": true,
+          "mention_offset_frac": 0.7082
+        },
+        {
+          "title": "[The Marginalian] How Memory Makes Us and Breaks Truth: The Rashomon Effect and the Science of How Memories Form and Falter in the Brain",
+          "url": "https://www.themarginalian.org/2026/10/09/rashomon-effect-memory/",
+          "source": "The Marginalian",
+          "author": "Maria Popova",
+          "ai_score": 56,
+          "date_published": "2026-10-10T02:35:29+00:00",
+          "summary": "\"We are our memory… that chimerical museum of shifting shapes, that pile of broken mirrors.”",
+          "discussed": true,
+          "mention_offset_frac": 0.9316
+        },
+        {
+          "title": "[Williams Lake Tribune] Hope veteran’s death shines spotlight on little-known Legion service",
+          "url": "https://wltribune.com/2026/10/05/hope-veterans-death-shines-spotlight-on-little-known-legion-service/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 60,
+          "date_published": "2026-10-05T21:00:00+00:00",
+          "summary": "## Hope veteran’s death shines spotlight on little-known Legion service Published 2:00 pm Monday, October 5, 2026 **By Brandon Tucker/Abbotsford News** 1/3 A backyard memorial service was held in Hope...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[Kottke.org] Ross Anderson on NASA’s recently launched Nancy Grace...",
+          "url": "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re",
+          "source": "Kottke.org",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-22T17:52:00+00:00",
+          "summary": "Ross Anderson on NASA’s recently launched Nancy Grace Roman Space Telescope , which may “be able to deliver the first direct images of distant planets in visible light” as well as measure the effects ...",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Largest rocket ever built successfully enters orbit",
+          "url": "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/david-szondy/",
+          "ai_score": 58,
+          "date_published": "2026-09-29T05:43:49+00:00",
+          "summary": "SpaceX has raised the bar for spaceflight again as its Starship, history's largest rocket, reaches Earth orbit. Despite the failure of an upper stage engine, an abort was avoided, allowing the spacecr...",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceDaily] Earth’s center is moving, and NASA just measured it",
+          "url": "https://www.sciencedaily.com/releases/2026/10/261005071520.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-07T11:30:51+00:00",
+          "summary": "Earth’s center of mass is constantly on the move, shifting by a few millimeters as enormous amounts of water, ice, and even air migrate around the planet with the seasons. NASA scientists have develop...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Should scientific and technical measurements (telescope milestones, geocenter estimates, planetary atmospheres, rocket success, dark-sky counts) be reported with explicit labels about what they measure, what models they depend on, and what they stand for?",
+        "riley_position": "Revisions and early milestones are the normal path of sharper measurement; progress should be counted step by step, and proxies are acceptable as long as the process of revision is visible.",
+        "riley_key_evidence": [
+          "Roman launched August 30th from Kennedy Space Center on a Falcon Heavy, and its first test image was starlight on the Wide Field Instrument, an optics check rather than a science result.",
+          "A 2026 analysis reported in ScienceDaily and Phys.org finds the annual Earth center-of-mass motion is about half of previous estimates, a refinement of a known effect rather than a new one.",
+          "Starship Flight 14 reached orbit and deployed 26 Starlink V3 satellites at roughly 170 miles despite one of six Raptor engines shutting down early."
+        ],
+        "casey_position": "Stand-ins such as models, proxies, and sampling methods must be labeled and published alongside results, and headlines should report only what was actually measured.",
+        "casey_key_evidence": [
+          "The Kottke post quotes a piece saying Roman 'may deliver' planet images, and 'may' is a forecast rather than a result.",
+          "The GPS and satellite orbit reference point for Earth's center moved by about a factor of two, and users of that reference may not know it began as a model.",
+          "A clear August night can be hidden by smoke, so a dark-sky reading needs its smoke days labeled to avoid misattributing the cause."
+        ],
+        "resolution": "They agreed that revisions are part of honest measurement and that sampling methods should be printed alongside figures, but they did not settle who should own long-term protocols; Casey accepted a regional body holding the log only as a possible fix and both admitted the Chilcotin protocol question remains unanswered.",
+        "topics_covered": [
+          "Roman Space Telescope commissioning and the distinction between optics checks and science results",
+          "Revisions to Earth's center-of-mass estimates and the role of models in geodesy and GPS",
+          "Webb's atmospheric detection on HD 3167 b and the inferred nature of exoplanet atmospheres",
+          "Starship Flight 14 orbital success, engine shutdown, and the metrics used to judge test flights",
+          "Dark-sky and aurora counting in the Cariboo, smoke labeling, and long-term local data stewardship"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": -2,
+          "conditions": "clear skies",
+          "high": 8,
+          "low": -2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": -3,
+          "conditions": "clear skies",
+          "high": 6,
+          "low": -3
+        },
+        {
+          "name": "Williams Lake",
+          "temp": -1,
+          "conditions": "clear skies",
+          "high": 9,
+          "low": -2
+        },
+        {
+          "name": "Quesnel",
+          "temp": -3,
+          "conditions": "clear skies",
+          "high": 7,
+          "low": -3
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": -2,
+          "conditions": "clear skies",
+          "high": 9,
+          "low": -3
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Central Chilcotin Rehabilitation Ltd.",
+      "description": "Indigenous joint venture doing award-winning forest rehabilitation and biomass work across Tŝideldel, Tl'etinqox, and Yunesit'in territories",
+      "website": "",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Has the Nancy Grace Roman Space Telescope actually launched, and what has it demonstrated so far versus what it is designed to do?\nFindings: Roman launched on August 30, 2026, at 7:26 a.m. EDT from Launch Complex 39A at Kennedy Space Center, aboard a SpaceX Falcon Heavy. It is heading to a Sun-Earth L2 orbit. NASA has begun commissioning, and the first test image was of starlight reaching the Wide Field Instrument, taken with the detector array still stowed. That image was an initial performance check far from best focus, not a science result. The direct-imaging of distant planets and the dark-energy measurements described in the Kottke piece are mission goals that are still ahead.\nSuggested angle: Riley can argue that a telescope that has just reached orbit already represents a leap in what we can see, and that the first light image shows the instrument works. Casey can press that \"may deliver the first direct images\" is a forecast, not a finding. Hubble and Webb both had long commissioning periods and early setbacks, so the enthusiasm should be tempered until calibrated science data arrives. The episode can use this to separate engineering milestones from discoveries.\n\nRESEARCH QUESTION: Did SpaceX's Starship reach orbit, and how serious was the upper-stage failure?\nFindings: Starship Flight 14 lifted off from Starbase in Boca Chica, Texas, on September 28, 2026, and became the first Starship flight to reach orbit. It deployed 26 Starlink V3 satellites at roughly 170 miles up. One of the six Raptor engines on the upper stage shut down early during ascent. The engine ran for a 19-second burn, and SpaceX did not need to reuse it, so the mission proceeded. Reports say the mission was cut short to about three hours, and the vehicle was set to complete six laps around Earth before a planned reentry. SpaceX still has to investigate the cause of the engine shutdown and show that long orbital flights can be completed as planned. The reported failure is a real engineering problem and was not a total loss.\nSuggested angle: Riley can present this as a sign of rapid iteration. A redundant engine design let the vehicle reach orbit despite a fault, and the vehicle deployed operational satellites, which is a step toward reusable heavy launch. Casey can point out the concentration of launch capacity in one company, the lack of detail on the root cause, and the environmental and orbital-debris questions that come with high-cadence launches. Both can agree that \"largest rocket ever built\" is a marketing-friendly phrase that deserves context on what the orbital milestone actually proved.\n\nRESEARCH QUESTION: How much does Earth's center of mass move, and does the new NASA measurement change previous estimates?\nFindings: NASA's Space Geodesy Project tracks the geocenter, the point that defines Earth's center of mass, using satellite laser ranging, GPS, and other space and ground techniques. Earlier NASA work (JPL, using data from 1993 to 2017) already showed millimeter-scale motion. A 2026 analysis reported in ScienceDaily and Phys.org combines satellite ranging, GPS, and orbital data, and models how water and ice deform the crust. It finds the annual motion is about half of previous estimates. The shifts are caused by seasonal snow, monsoon rain, ocean water, and air mass movements. The new measurement is a refinement of a known effect, not a new discovery that the center moves. Tracking the geocenter also matters for GPS and satellite orbit accuracy, since current GNSS processing relies on a theoretical reference point.\nSuggested angle: Riley can use this as an example of how precise geodesy turns invisible planetary motion into usable measurement, and how better tracking improves the navigation systems people depend on. Casey can note that a reduction of a factor of two in the estimate shows how unsettled even \"measured\" quantities can be, and ask how much of the earlier figure was model dependent. This makes a good wonder-versus-rigor exchange: Earth is a moving, breathing system, and our confidence in its numbers is itself still being revised.\n\nELECTION RESEARCH — 2026 B.C. provincial general election\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\nNote on names: the confirmed ballot carries no names for either riding below, and no pre-researched block was supplied. The names come from published candidate lists and campaign coverage, cited by outlet and date. Nominations closed October 3, 2026, and voting is October 24, 2026.\n\n**FINDINGS — Cariboo-Chilcotin**\n\nNamed on published lists (Studio X News final list; CFJC Today, Oct. 3, 2026; Elections BC candidate report):\n- **Lorne Doerkson (BC Conservative), incumbent.** Sitting MLA. The Legislative Assembly lists him as the MLA for Cariboo-Chilcotin, and the Globe and Mail (Sept. 26, 2026) reports he took over as party leader. The Ashcroft-Cache Creek Journal (Oct. 20, 2024) says he was first elected in 2020 as a B.C. Liberal and crossed the floor to the Conservatives in May 2024. Electoral record: 2020 win with 6,600 votes and 51.25% (Global News, 2020 results). 2024 re-election with about 70% of the vote (CBC News, 2026) and a 7,722-vote margin over the NDP (BC Ballot). Party-position allegation: the BC NDP (statement reported by Indo-Canadian Voice, Oct. 3, 2026) said he \"declined\" to act on candidates' past remarks. That is a partisan allegation, not a finding. The show has not found his response to it.\n- **Kathryn Askew (BC NDP).** Williams Lake Tribune (Oct. 1, 2026) reports she is a retired teacher from Canim Lake, with 32 years in education and past leadership roles with the BC Teachers' Federation and her local union. She volunteers with the Hawkins Lake Volunteer Fire Department, Forest Grove Legion and the Canim Lake Community Club. The show has not established any prior candidacy or elected office for her.\n- **Douglas Gook (BC Green).** Elections BC candidate report (Oct. 10, 2026) and CFJC Today (Oct. 3, 2026) list him. Prior runs: BC Greens' Cariboo North candidate in 2020, with 707 votes and 6.38% (Elections BC statement of votes, 2020). Williams Lake Tribune (undated snippet) reports he ran in Nechako Lakes in 2017 and got about 9%. A Cariboo Politics blog (Oct. 2020) says he ran federally for the Greens in 2015. The blog is not a major outlet, so treat that claim as unverified.\n\n**FINDINGS — Prince George-North Cariboo (includes Quesnel)**\n\nNamed on published lists (Quesnel Cariboo Observer, Oct. 7, 2026; CKPG Today, Oct. 5, 2026; Studio X News final list):\n- **Sheldon Clare (BC Conservative), incumbent.** Wikipedia lists him as MLA since 2024. He was first elected in 2024, with 11,430 votes and 56.82% (Elections BC statement of votes, Oct. 19, 2024). His margin over second place was 7,036 votes (BC Ballot). He ran for the B.C. Conservative leadership in early 2026. Langley Advance Times (Jan. 9, 2026) reports he announced the run, and CFJC Today (Feb. 28, 2026) reports he suspended it. Controversy, dated: the BC NDP (statement reported by Indo-Canadian Voice, Oct. 3, 2026) alleged that he said municipal politicians \"should be hanged,\" defended residential-school child death rates, denied climate change, and compared gun restrictions to Japanese Canadian internment. These are partisan allegations, not findings. PressProgress (undated in the snippet) reports a Conservative municipal-election chat in which Clare reportedly suggested some municipal politicians \"should be hanged,\" and says he has been criticized for \"residential school denialism.\" My Cariboo Now (Oct. 8, 2026) headline says Clare \"clears the air on the past 48 hours\" and confirms he is the Conservative candidate. The show could not read the article body, so his response is not established.\n- **Denice Bardua (BC NDP).** Elections BC statement of votes (Oct. 19, 2024) lists her as the 2024 NDP candidate, with 3,426 votes and 17.03%, third place. BC Ballot lists one previous run, which is that 2024 race. The show has not established any other candidacy or office for her.\n- **Randy Thompson (BC Green).** BC Greens' candidate page (2026) says he served two years on the party's Provincial Council and ran in this riding in 2024. Elections BC statement of votes (Oct. 19, 2024) lists him with 866 votes and 4.31%, fourth of four. Note: My Cariboo Now's live-results page gave 848 votes; the Elections BC figure is used here. Prince George Citizen (Oct. 2026) says Bardua and Thompson both ran for the same parties in 2024.\n\nNO RECORD FOUND: Kathryn Askew\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Nancy Grace Roman Space Telescope launch date launched",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "SpaceX Starship Mission 14 orbit Starlink deploy upper stage engine failure",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "NASA Earth center of mass geocenter motion laser ranging satellites GPS measurement",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo-Chilcotin candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Prince George-North Cariboo candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Lorne Doerkson\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Sheldon Clare\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "agent-search",
+        "query": "Kathryn Askew BC NDP Cariboo-Chilcotin candidate",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook BC Green Cariboo-Chilcotin candidate",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Denice Bardua BC NDP Prince George-North Cariboo",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Randy Thompson BC Green Prince George-North Cariboo",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mycariboonow.com/316427/news/politics/conservative-candidate-sheldon-clare-clears-the-air-on-the-past-48-hours/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Sheldon Clare clears the air past 48 hours October 2026",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Prince George-North Cariboo 2024 election results Randy Thompson Green votes percent",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Lorne Doerkson Cariboo-Chilcotin 2020 by-election 2024 results margin Liberal Conservative",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://wltribune.com/2026/10/01/retired-school-teacher-named-bc-ndp-candidate-for-cariboo-chilcoin/"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.myprincegeorgenow.com/253046/news/politics/conservative-candidate-sheldon-clare-clears-the-air-on-the-past-48-hours/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Sheldon Clare \"should be hanged\" municipal politicians comments",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://pressprogress.ca/bc-conservatives-run-full-slate-of-candidates-with-views-ranging-from-conspiratorial-to-bigoted/"
+      },
+      {
+        "kind": "page",
+        "url": "https://voiceonline.com/bc-ndp-doerkson-welcomes-extreme-views-on-deadline-day/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook Green candidate Cariboo-Chilcotin previous run 2024 OR 2020 OR municipal",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Cariboo North 2020 election results Scott Elliot Douglas Gook Green votes",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Denice Bardua NDP candidate Prince George previous run council",
+        "pass": "event"
+      }
+    ]
+  }
+}

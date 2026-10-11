@@ -1,42 +1,4 @@
 {
-  "2026-09-05": {
-    "timestamp": 1788596361.074854,
-    "topics": [
-      "[My Cariboo Now] Millar Western to curtail operations at Que",
-      "[Williams Lake Tribune] B.C. sheds 5,500 jobs in August amid",
-      "[Business Insider] Famed economist Mohamed El-Erian lays out",
-      "[NYT Top Stories] In Complex Cases Like Lindsay Clancy\u2019s, a ",
-      "[Popular Mechanics] Scientists Removed Crucial Structures fr",
-      "[Quesnel Cariboo Observer] City of Quesnel makes final push ",
-      "[My Cariboo Now] Longtime city employee is running for Quesn",
-      "[Williams Lake Tribune] Racers took their final laps at Thun"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-09-05",
-    "focus": null,
-    "focus_name": null
-  },
-  "2026-09-06": {
-    "timestamp": 1788682510.309657,
-    "topics": [
-      "[My Cariboo Now] Thousands were left without power in Willia",
-      "[Williams Lake Tribune] Hooligans support Williams Lake Boys",
-      "[CFJC Today Kamloops] Pop-up library services to open outsid",
-      "[My Cariboo Now] Cops for Cancer riders to make community st",
-      "[CFJC Today Kamloops] Massive wildfires near Clinton, South ",
-      "[Forbes Innovation] Wildfires Have Left The Forest And Moved",
-      "[New Atlas] Dementia strikes children, too \u2013 but we've found",
-      "[Boing Boing] Study finds alcohol-linked cancer deaths have "
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-09-06",
-    "focus": "discovery-health",
-    "focus_name": "Discovery, Health & How Science Works"
-  },
   "2026-09-07": {
     "timestamp": 1788769636.187226,
     "topics": [
@@ -709,5 +671,25 @@
     "date": "2026-10-10",
     "focus": null,
     "focus_name": null
+  },
+  "2026-10-11": {
+    "timestamp": 1791706707.618413,
+    "topics": [
+      "[100 Mile Free Press] WorkBC hosting job fair at 100 Mile Ho",
+      "[Williams Lake Tribune] Williams Lake Royal Purple supportin",
+      "[Williams Lake Tribune] Shovel-ready new modern skatepark in",
+      "[Quesnel Cariboo Observer] B.C. Greens release transportatio",
+      "[Quesnel Cariboo Observer] Meet the Candidates: Rocky Nenka ",
+      "[Kottke.org] Ross Anderson on NASA\u2019s recently launched Nancy",
+      "[New Atlas] Largest rocket ever built successfully enters or",
+      "[ScienceDaily] Earth\u2019s center is moving, and NASA just measu"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-11",
+    "focus": "sky-cosmos",
+    "focus_name": "Sky & Cosmos"
   }
 }
