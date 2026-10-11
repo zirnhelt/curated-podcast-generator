@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-22..2026-10-10) — 4 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-22..2026-10-11) — 4 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -72,7 +72,7 @@ close one; it comes back only if the reviews raise it 2 more times._
       what caused the failures or what changed between attempts. Check the error logs from runs
       36834215592 and 36840498673 to identify whether the breakage was transient (a retry-worthy
       timeout or rate limit) or a code issue that the third attempt avoided by accident. (signal
-      `run-failed`; seen in 2 reviews, latest 2026-10-08)
+      `run-failed`; seen in 3 reviews, latest 2026-10-11)
 - [ ] **Cohere embedding module is unavailable, blocking story clustering and evolution
       detection.** On 2026-10-03, script generation encountered ModuleNotFoundError twice: once
       during evolving-story detection, once during same-story clustering. The pipeline fell back
