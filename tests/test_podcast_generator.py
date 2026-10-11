@@ -5656,6 +5656,7 @@ class TestEventFocusRoster:
         assert ("Trustee Electoral Area 6 (City of Williams Lake) (1 running): "
                 "Michael Franklin [holds the seat now] — ACCLAIMED") in block
         assert "(2 running): Nicole Berreth, Mary Forbes" in block
+        assert "ON TWO BALLOTS: Mary Forbes is a candidate in each of" in block
 
     def test_absence_is_never_aired_as_unfindable(self):
         """2026-09-26 aired "isn't findable anywhere we looked" about a CRD list

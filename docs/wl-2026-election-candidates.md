@@ -126,11 +126,11 @@ Seven areas elect one trustee each; TEA 1–3 (100 Mile House and south) and TEA
 - **Michael Franklin** (TEA 6 — City of Williams Lake; incumbent) — acclaimed.
   No vote in TEA 6.
 
-**Unresolved:** the Tribune's Sept 15 CRD story (above) has Mary Forbes
-challenging Melynda Neufeld for CRD Area E director, and SD27's declaration has
-her running for trustee in TEA 5, which covers Area E. She may be on both
-ballots, or the CRD entry may be a mix-up of the two races. Check the CRD's own
-declaration and correct the Area E race here and in the JSON.
+_On two ballots:_ Mary Forbes is a candidate for CRD Area E director (Tribune,
+Sept 15) and for SD27 trustee in TEA 5 (SD27 declaration). The producer confirmed
+both on 2026-10-11. `_format_event_roster` prints an ON TWO BALLOTS line for any
+name in more than one race, so the hosts say so instead of treating it as a
+mix-up.
 
 ## Using this list
 

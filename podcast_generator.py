@@ -7144,6 +7144,17 @@ def _format_event_roster(event_focus) -> str:
         "\n\nSOURCED BACKGROUND — published by the named outlet on the date given; the "
         "hosts may state each line with that attribution:\n" + "\n".join(record_lines)
         if record_lines else "")
+    # Mary Forbes filed for CRD Area E director and SD27 TEA 5 trustee. Without
+    # this the "never move a name between races" rule reads it as an error.
+    seats: dict[str, list[str]] = {}
+    for race in roster.get('races', []):
+        for c in race.get('candidates', []):
+            if c and c not in (race.get('withdrawn') or []):
+                seats.setdefault(c, []).append(race.get('race', ''))
+    for person, in_races in seats.items():
+        if len(in_races) > 1:
+            background += (f"\n\nON TWO BALLOTS: {person} is a candidate in each of "
+                           f"{' and '.join(in_races)}. Both are real; say so once.")
 
     if still_open:
         head = (f" Nominations are open until {closed_text}: the list below is who the "
