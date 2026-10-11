@@ -3403,6 +3403,53 @@ class TestGenerateMetaMomentText:
                             lambda: self._client_returning("NONE"))
         assert generate_meta_moment_text(self._CHANGELOG) == ""
 
+    def test_truncated_reply_is_not_reported_as_none(self, monkeypatch):
+        """2026-10-11: both Haiku 5.5 calls stopped at exactly max_tokens=1000
+        with no dialogue written, and the run report said the model judged
+        none of 27 commits listener-noticeable. A cut reply is a failure of
+        its own, and never airs even when its dialogue had started."""
+        import podcast_generator as pg
+        client = MagicMock()
+        response = _response("max_tokens", [_text_block(self._COVERED + "**RILEY:** Quick")])
+        response.usage.input_tokens = 10
+        client.messages.create.return_value = response
+        recorded = []
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+        assert client.messages.create.call_count == 1
+        assert recorded and "truncated at max_tokens" in recorded[0][1]
+        assert "listener-noticeable" not in recorded[0][1]
+
+    def test_reply_without_dialogue_or_none_is_retried_as_a_format_failure(
+            self, monkeypatch):
+        import podcast_generator as pg
+        client = self._client_returning("1. Rework welcome intro order: counts.\n2. ...")
+        recorded = []
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+        assert client.messages.create.call_count == 2
+        assert "neither NONE nor" in recorded[0][1]
+
+    def test_none_after_stray_text_is_still_none(self, monkeypatch):
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "get_anthropic_client",
+                            lambda: self._client_returning("Nothing qualifies.\n\nNONE."))
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+        assert "listener-noticeable" in recorded[0][1]
+
+    def test_prompt_keeps_the_count_out_of_the_reply(self, monkeypatch):
+        # With thinking off, "go through the list and count" was answered in
+        # the reply itself, line by line, before any dialogue.
+        client = self._client_returning(self._REPLY)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text(self._CHANGELOG)
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "never write out the list, your count or your reasoning" in prompt
+
     def test_uncited_dialogue_is_dropped(self, monkeypatch):
         # A dialogue that names no commit it came from is not checkable, and
         # every fabricated Meta Moment to date would have cited nothing.

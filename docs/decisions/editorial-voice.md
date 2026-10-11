@@ -393,6 +393,16 @@ list") had been in the prompt the whole time.
   rather than airing a week twice. Feed titles in those lines are chosen by publishers, so
   each is collapsed to one line and capped. The retry no longer assumes a header means the
   upstream commits are already in: it adds any that are missing beneath the block.
+- **A truncated reply is not a NONE (2026-10-11).** The first Sunday on Haiku 5.5 went red
+  with "model judged none of the week's 27 commit(s) listener-noticeable", but both calls
+  had stopped at exactly `max_tokens=1000` — a real NONE costs two tokens. Haiku 5.5 spends
+  ~30% more tokens on the same text, and with thinking off it most likely answered "go
+  through the list and count" in the reply itself before reaching any dialogue (the reply
+  was not logged, so that half is inference). Any reply without `**RILEY:**` was read as
+  NONE. Now: the cap is 2500 (~$0.001 a Sunday); `stop_reason == "max_tokens"` is its own
+  error and never airs, even with dialogue started; only a reply ending in NONE is a NONE,
+  and anything else is a format failure that gets the guard retry; both print the reply's
+  head to the job log. The prompt says the decision is made silently.
 - **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
   hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
   week with no transcript commit; it now appears only when a commit earns it. The prompt
