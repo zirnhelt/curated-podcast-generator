@@ -5651,9 +5651,11 @@ class TestEventFocusRoster:
         assert "Area Z director: NO NAMES IN THE ROSTER" in block
         assert "PRE-RESEARCHED INSIGHTS" in block
         assert "never the segment's hook" in block
-        # SD27 Zone 6 was a gap until the City's Declaration of Candidates filled it.
-        assert "Zone 6 (City of Williams Lake) (1 running): Michael Franklin" in \
-            _format_event_roster(self._event())
+        # SD27's own declaration: TEA 6 was acclaimed, and TEA 4 and 5 are contested.
+        block = _format_event_roster(self._event())
+        assert ("Trustee Electoral Area 6 (City of Williams Lake) (1 running): "
+                "Michael Franklin [holds the seat now] — ACCLAIMED") in block
+        assert "(2 running): Nicole Berreth, Mary Forbes" in block
 
     def test_absence_is_never_aired_as_unfindable(self):
         """2026-09-26 aired "isn't findable anywhere we looked" about a CRD list

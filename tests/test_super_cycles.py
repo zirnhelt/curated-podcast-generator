@@ -1071,9 +1071,9 @@ class TestEventResearchSweep:
         capture["reply"] = ("PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n...\n"
                             "NO RECORD FOUND: Ruth Lloyd; Charlene Hays; Cianna O'Connor; "
                             "Billie Sheridan; Nathan Wiebe; Kayla Zaruk; Greg Jeannotte; "
-                            "Mary Forbes")
+                            "Mary Forbes; Laura Zimmerman")
         assert self._run(event)
-        assert any("no record for 8 of 21" in d for d in capture["degraded"])
+        assert any("no record for 9 of 24" in d for d in capture["degraded"])
 
     def test_a_mostly_sourced_result_does_not_degrade(self, capture):
         event = get_event_focus_for_day(5, date(2026, 9, 26))
