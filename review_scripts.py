@@ -30,7 +30,10 @@ SCRIPTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podca
 CONFIG_DIR = Path(__file__).parent / "config"
 REVIEWS_DIR = Path("reviews")
 
-REVIEW_MODEL = SONNET_MODEL
+# CLAUDE_REVIEW_MODEL pins the reviewer apart from the Sonnet roles. Since
+# 2026-10-08 those default to Haiku 5.5, so without a pin the model grading the
+# scripts changes whenever the model writing them does.
+REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL") or SONNET_MODEL
 
 WEEKDAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 

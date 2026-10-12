@@ -17,6 +17,10 @@ env:
   # Every Sonnet call follows this repository variable (Settings → Secrets and
   # variables → Actions → Variables). Unset means claude-haiku-5-5 (config_loader).
   CLAUDE_SONNET_MODEL: ${{ vars.CLAUDE_SONNET_MODEL }}
+  # The weekly script reviewer alone. Set it to a fixed model (e.g.
+  # claude-sonnet-5-5, ~$0.50/month) so the grades stay comparable when the
+  # script writer changes. Unset means CLAUDE_SONNET_MODEL.
+  CLAUDE_REVIEW_MODEL: ${{ vars.CLAUDE_REVIEW_MODEL }}
 
 permissions:
   contents: write

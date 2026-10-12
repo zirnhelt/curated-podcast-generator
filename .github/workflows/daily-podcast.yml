@@ -49,6 +49,10 @@ env:
   # The script writer alone, for trialling a model on the one call that sets
   # episode length. Unset means CLAUDE_SONNET_MODEL.
   CLAUDE_SCRIPT_MODEL: ${{ vars.CLAUDE_SCRIPT_MODEL }}
+  # The polish pass alone, for a stronger editor over a Haiku draft (e.g.
+  # claude-sonnet-5-5, ~$1.70/month in the batch). Opus escalation still
+  # overrides it. Unset means CLAUDE_SONNET_MODEL.
+  CLAUDE_POLISH_MODEL: ${{ vars.CLAUDE_POLISH_MODEL }}
 
 permissions:
   contents: write
