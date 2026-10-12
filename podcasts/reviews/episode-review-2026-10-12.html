@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 12, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 12, 2026</h1>
+  <p class="meta">Published October 12, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38221496054">38221496054</a>.</em></p>
+
+<h3>The short draft and the expand passes</h3>
+<p>The first script draft came in at 3,003 words against a target of 3,400. The pipeline sent it back for up to two expand passes. The script that shipped is 3,513 words, which is above target, so the expansion overshot. The first draft was short by 397 words and the shipped script is 113 words over the target.</p>
+<p>Quality checks on that script: zero AI-tell pattern hits. The Casey-to-Riley voice ratio is 0.82.</p>
+
+<h3>Roundup: 44 stories cut, 2 aired out of order</h3>
+<p>The roundup pool was larger than one segment could air. The airtime budget (NEWS_ROUNDUP_COUNT) dropped 44 stories. That is the design: a cut story stays in the pool and can run on a day that matches it better.</p>
+<p>The script stage had a degradation. Two stories still aired after a later block, even after one repair pass on the roundup order. The listener heard two items out of their intended sequence. The pipeline did not fix this and shipped the episode with it.</p>
+<p>Citations for the roundup matched 12 of 14. Two roundup citations did not match their sources.</p>
+
+<h3>Deep dives: three segments, two citations matched</h3>
+<p>The episode carried three deep dives: a Business Insider piece on a cookie business that scaled too quickly, an NYT Top Stories piece on a new generation of Inuit creatives in Canada's Arctic, and a Mother Jones piece titled "Stop the Steal Never Stopped." Deep-dive citations matched 2 of 3. One deep-dive citation did not match its source.</p>
+<p>The debate question for the episode was: when a talented kid leaves a small town, is that a loss for the town or a success for the kid, and what does the town owe the people who stay?</p>
+
+<h3>Audio: three short takes, one retry still short</h3>
+<p>Text-to-speech returned three segments shorter than their word count predicted. Each got one retry. One of those retries was still short. The pipeline keeps the longer of the two takes for each segment, so the episode drops no content. The one that stayed short is a take that ran short on both attempts, and the longer of those two is what aired.</p>
+<p>The rendered episode runs 20.8 minutes at 19.0 MB. The video render is 20.8 minutes at 71.4 MB, and it went to YouTube.</p>
+
+<h3>Timing and spend</h3>
+<p>The primary run started at 1:05 AM Pacific and finished at 1:44 AM Pacific with a success conclusion, 0 minutes late. Fallback 1 started at 2:05 AM Pacific and finished at 2:05 AM Pacific, also a success and 0 minutes late. Fallback 2 started at 3:05 AM Pacific, is the run writing this review, and has no finish time yet.</p>
+<p>The script stage ran for 607 seconds and install system dependencies took 710 seconds, the longest step. Deploy to GitHub Pages took 349 seconds. Render episode audio took 300 seconds.</p>
+<p>Spend: 59,133 Anthropic input tokens across 19 Claude calls, and 23 Brave Search calls. The feed now holds 257 episodes.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.82, 3513 words</td></tr>
+<tr><td>Audio</td><td>20.8 min</td></tr>
+<tr><td>Audio size</td><td>19.0 MB</td></tr>
+<tr><td>Citations matched</td><td>12/14 roundup, 2/3 deep dive</td></tr>
+<tr><td>Feed</td><td>257 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>59,133 input tokens, calls ***'claude': 19, 'brave-search': 23***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
