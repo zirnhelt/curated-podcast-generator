@@ -583,3 +583,20 @@ To move the Sonnet roles back: set the `CLAUDE_SONNET_MODEL` repository variable
 `claude-sonnet-5`, or set `CLAUDE_SCRIPT_MODEL` alone to move only the script writer.
 The same text counts as about 30% more tokens on Haiku 5.5's tokenizer, so token
 totals in the run log jumped that day without the workload changing.
+
+**What the first four nights showed (2026-10-12).** Two of the protections above did not
+hold. The escalation never fired: Haiku drafts scored 0–1 pre-polish tells, under the >3
+threshold, so 0 of 4 episodes reached Opus (Sonnet 5: 17 of 85). And the token budgets were
+still sized for Sonnet:
+
+- **Fact questions** (`_resolve_script_questions_with_brave`) cut its JSON at
+  `max_tokens=300` every night, and its `except` only printed. No Answers query ran from
+  10-09 to 10-12. It now has 1000 tokens, asks for at most `SCRIPT_QUESTION_LIMIT`, and
+  `degrade()`s as `script/fact-questions`.
+- **The script** spent all 24000 tokens thinking at Haiku's default `medium` effort, so
+  every aired draft was the low-effort retry. It now has 64000, as do its retries.
+- **Polish** used 18,418 of 24000 at low effort, so `POLISH_MAX_TOKENS` is 64000 on both
+  paths. **The research agent** truncated at 12000 on the 10-10 ballot pass and was doubled.
+
+`BRAVE_ANSWERS_CALL_LIMIT` was refit from 8 to 4 off the measured months (about $0.041 a
+query, mostly input tokens) so the $5 Answers credit lasts the month.
