@@ -1,24 +1,4 @@
 {
-  "2026-09-07": {
-    "timestamp": 1788769636.187226,
-    "topics": [
-      "[Williams Lake Tribune] Williams Lake First Nation Competiti",
-      "[Williams Lake Tribune] Budget 2027: Williams Lake City Coun",
-      "[My Cariboo Now] Many B.C. drivers unaware amber lights trig",
-      "[Quesnel Cariboo Observer] Disturbing \u2018Cat in the Hat\u2019 trend",
-      "[ArchDaily] Public Library in Choszcz\u00f3wka / Ambient",
-      "The Tyee Podcast: Why We All Win with the Cowichan Decision",
-      "[Columbia Journalism Review] Should the Press \u2018Run Toward\u2019 A",
-      "[Columbia Journalism Review] The 69-Year-Old Rookie"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact"
-    ],
-    "date": "2026-09-07",
-    "focus": "words-journalism",
-    "focus_name": "Writing, Journalism & Podcasting"
-  },
   "2026-09-08": {
     "timestamp": 1788856108.139084,
     "topics": [
@@ -691,5 +671,26 @@
     "date": "2026-10-11",
     "focus": "sky-cosmos",
     "focus_name": "Sky & Cosmos"
+  },
+  "2026-10-12": {
+    "timestamp": 1791793757.140756,
+    "topics": [
+      "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor",
+      "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor",
+      "[Williams Lake Tribune] Hereditary chiefs call for closure o",
+      "[Nieman Lab] Fox News attacks the media roughly every 15 min",
+      "[Adafruit Blog] Automating a 35mm film scanning pipeline",
+      "[Business Insider] I started a cookie business and scaled to",
+      "[NYT Top Stories] In Canada\u2019s Arctic, a New Generation of In",
+      "[Mother Jones] Stop the Steal Never Stopped"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-10-12",
+    "focus": "film-screen",
+    "focus_name": "Film & Screen"
   }
 }

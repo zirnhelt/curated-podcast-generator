@@ -1,0 +1,465 @@
+{
+  "episode": {
+    "date": "2026-10-12",
+    "formatted_date": "Monday, October 12, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who gets to leave, and who has to stay?</p><p><b>NEWS ROUNDUP:</b> We break down MEET THE CANDIDATES: City councillor candidate Nathan Wiebe and MEET THE CANDIDATES: City councillor candidate Kayla Zaruk, plus 10 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When a talented kid leaves a small town, is that a loss for the town or a success for the kid, and what does the town owe the people who stay? Topics include: Inuit Language Protection Act and language rights in signage and commerce, Archives, lost films and rights ownership in the Iqaluit animation rediscovery, Digital distribution versus gatekeeping by platforms and festivals, Audience measurement and whether small towns should count local viewers rather than exports, Identity, local artists and copyright in cultural products like tattoo designs.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://literacyquesnel.ca\">Literacy Quesnel Society</a></p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/\">[Williams Lake Tribune] MEET THE CANDIDATES: City councillor...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/\">[Williams Lake Tribune] MEET THE CANDIDATES: City councillor...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/11/hereditary-chiefs-call-for-closure-of-park-on-vancouver-island-over-ancestral-graves/\">[Williams Lake Tribune] Hereditary chiefs call for closure o...</a></li><li>Nieman Lab: <a href=\"https://www.niemanlab.org/2026/10/fox-news-attacks-the-media-roughly-every-15-minutes-our-study-finds-cnn-every-140-minutes/\">[Nieman Lab] Fox News attacks the media roughly every 15 min...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/10/07/automating-a-35mm-film-scanning-pipeline/\">[Adafruit Blog] Automating a 35mm film scanning pipeline</a></li><li>Terrence O&amp;#x27;Brien (The Verge): <a href=\"https://www.theverge.com/entertainment/1009309/distrokid-take-down-songs-umg-lawsuit\">[The Verge] DistroKid has been quietly taking down songs in ...</a></li><li>Isabella Wen (OpenMedia): <a href=\"https://openmedia.org/article/item/what-would-online-safety-look-like-if-young-people-helped-design-it\">[OpenMedia] What Would Online Safety Look Like If Young Peop...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/10/08/No-Excuse-Doerkson-Fires-Conservative-Candidate/\">[The Tyee] ‘No Excuse’: Doerkson Fires Conservative Candidat...</a></li><li>ArchDaily: <a href=\"https://www.archdaily.com/1186468/chaume-sublime-coat\">[ArchDaily] Chaume Sublimé / COAT</a></li><li>Dezeen: <a href=\"https://www.dezeen.com/2026/10/11/daniel-libeskind-interview-key-projects/\">[Dezeen] Architecture is \"much the same\" as music says Danie...</a></li><li>My East Kootenay Now: <a href=\"https://www.myeastkootenaynow.com/58697/news/elections/2026-municipal-election/experience-and-fiscal-responsibility-drive-sandra-roberts-bid-for-kimberley-mayor/\">[My East Kootenay Now] Experience and fiscal responsibility ...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/rfoxia-picks-stmicroelectronics-stm32-to-build-a-long-range-mesh-capable-bluetooth-le-module-16dfff47e78f\">[Hackster News] RFOXiA Picks STMicroelectronics' STM32 to Bu...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/10/11/world/canada/inuit-inuk-indigenous-people-identity-iqaluit.html\">[NYT Top Stories] In Canada’s Arctic, a New Generation of In...</a></li><li>Reveal (Mother Jones): <a href=\"https://www.motherjones.com/politics/2026/10/stop-the-steal-election-denial-2026-midterms-misinformation-update/\">[Mother Jones] Stop the Steal Never Stopped</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/10/08/Doerkson-Stumbles-into-First-Campaign-Crisis/\">[The Tyee] Doerkson Stumbles into First Campaign Crisis with...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/10/08/nyregion/mamdani-nyc-october-7-vigil-protesters.html\">[NYT Top Stories] Some Palestinians Express Discomfort With ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/how-partake-foods-founder-denise-woodard-scaled-small-business-2026-10\">[Business Insider] I started a cookie business and scaled to...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-haiku-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-12T01:29:02.106635-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-haiku-5-5",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3513,
+      "voice_ratio_casey_riley": 0.82,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 6,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 11,
+        "turns": 86,
+        "avg_turn_words": 39.7,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "leave-or-stay",
+      "question": "Who gets to leave, and who has to stay?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Nathan Wiebe",
+          "url": "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 85,
+          "date_published": "2026-10-12T04:03:34.731350+00:00",
+          "summary": "Nathan Wiebe is a 2026 councillor candidate for Williams Lake. (Photo submitted) **In advance of this year’s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provi...",
+          "discussed": true,
+          "mention_offset_frac": 0.0023
+        },
+        {
+          "title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Kayla Zaruk",
+          "url": "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 85,
+          "date_published": "2026-10-12T04:03:34.731452+00:00",
+          "summary": "Kayla Zaruk is a 2026 councillor candidate for Williams Lake. (Facebook) **In advance of this year’s general election on Saturday, Oct. 17 the _Tribune_ asked city councillor candidates to provide a b...",
+          "discussed": true,
+          "mention_offset_frac": 0.0023
+        },
+        {
+          "title": "[The Tyee] ‘No Excuse’: Doerkson Fires Conservative Candidate",
+          "url": "https://thetyee.ca/News/2026/10/08/No-Excuse-Doerkson-Fires-Conservative-Candidate/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-08T22:09:00+00:00",
+          "summary": "Bigoted social media posts, some celebrating Trump, Musk and other right-wing leaders, prompted the action.",
+          "discussed": true,
+          "mention_offset_frac": 0.004
+        },
+        {
+          "title": "[Williams Lake Tribune] Hereditary chiefs call for closure of park on Vancouver Island over ancestral graves",
+          "url": "https://wltribune.com/2026/10/11/hereditary-chiefs-call-for-closure-of-park-on-vancouver-island-over-ancestral-graves/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 71,
+          "date_published": "2026-10-11T16:03:23+00:00",
+          "summary": "A view looking out over the water from Patricia Bay Park. (Tony Trozzo/Victoria News) Standing above a site they say fails to respect their ancestors, W̱SÁNEĆ hereditary chiefs called for action Satur...",
+          "discussed": true,
+          "mention_offset_frac": 0.1244
+        },
+        {
+          "title": "[Nieman Lab] Fox News attacks the media roughly every 15 minutes, our study finds. (CNN? Every 140 minutes.)",
+          "url": "https://www.niemanlab.org/2026/10/fox-news-attacks-the-media-roughly-every-15-minutes-our-study-finds-cnn-every-140-minutes/",
+          "source": "Nieman Lab",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-08T18:38:33+00:00",
+          "summary": "In 2025, trust in journalism reached a record low. According to Gallup, only 8% of Republicans expressed trust in the news media, compared with 51% of Democrats. New data show an uptick among Republic...",
+          "discussed": true,
+          "mention_offset_frac": 0.1924
+        },
+        {
+          "title": "[NYT Top Stories] Some Palestinians Express Discomfort With Protest Targeting Mamdani",
+          "url": "https://www.nytimes.com/2026/10/08/nyregion/mamdani-nyc-october-7-vigil-protesters.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-09T01:09:20+00:00",
+          "summary": "Palestinian advocates acknowledged the range of viewpoints within their movement but were dismayed by the vitriol directed at Mayor Zohran Mamdani, a longtime ally of their cause.",
+          "discussed": false
+        },
+        {
+          "title": "[My East Kootenay Now] Experience and fiscal responsibility drive Sandra Roberts’ bid for Kimberley mayor",
+          "url": "https://www.myeastkootenaynow.com/58697/news/elections/2026-municipal-election/experience-and-fiscal-responsibility-drive-sandra-roberts-bid-for-kimberley-mayor/",
+          "source": "My East Kootenay Now",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-11T06:57:32+00:00",
+          "summary": "Kimberley mayoral candidate Sandra Roberts is campaigning on her 12 years of council experience, fiscal responsibility and strengthening the city's commercial sector. The post Experience and fiscal re...",
+          "discussed": true,
+          "mention_offset_frac": 0.2577
+        },
+        {
+          "title": "[Adafruit Blog] Automating a 35mm film scanning pipeline",
+          "url": "https://blog.adafruit.com/2026/10/07/automating-a-35mm-film-scanning-pipeline/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-10-07T15:43:09+00:00",
+          "summary": "A photographer shooting a Canon AE-1P was spending about four hours per roll of 36 frames: scanning negatives, inverting each file by hand in darktable, cleaning up dust, then editing and filing the r...",
+          "discussed": true,
+          "mention_offset_frac": 0.2784
+        },
+        {
+          "title": "[Hackster News] RFOXiA Picks STMicroelectronics' STM32 to Build a Long-Range, Mesh-Capable Bluetooth LE Module",
+          "url": "https://www.hackster.io/news/rfoxia-picks-stmicroelectronics-stm32-to-build-a-long-range-mesh-capable-bluetooth-le-module-16dfff47e78f",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-10-06T11:07:13+00:00",
+          "summary": "Designed to offer competition to LoRa-based systems like Meshtastic, the MultiNav Pro+ has been tested to multiple miles line of sight.",
+          "discussed": true,
+          "mention_offset_frac": 0.315
+        },
+        {
+          "title": "[The Verge] DistroKid has been quietly taking down songs in response to UMG lawsuit",
+          "url": "https://www.theverge.com/entertainment/1009309/distrokid-take-down-songs-umg-lawsuit",
+          "source": "The Verge",
+          "author": "Terrence O&#x27;Brien",
+          "ai_score": 55,
+          "date_published": "2026-10-10T18:52:07+00:00",
+          "summary": "Artists are taking to social media to complain that DistroKid has unceremoniously removed their work without notice. Now DistroKid has confirmed to The Verge that the takedowns are a direct response t...",
+          "discussed": true,
+          "mention_offset_frac": 0.3576
+        },
+        {
+          "title": "[OpenMedia] What Would Online Safety Look Like If Young People Helped Design It?",
+          "url": "https://openmedia.org/article/item/what-would-online-safety-look-like-if-young-people-helped-design-it",
+          "source": "OpenMedia",
+          "author": "Isabella Wen",
+          "ai_score": 55,
+          "date_published": "2026-10-09T11:05:00+00:00",
+          "summary": "Isabella Wen, a University of Toronto student and content creator, examines youth perspectives on Bill C-34's age restrictions for social media. As an OpenMedia Youth Ambassador, they argue the bill i...",
+          "discussed": true,
+          "mention_offset_frac": 0.4566
+        },
+        {
+          "title": "[ArchDaily] Chaume Sublimé / COAT",
+          "url": "https://www.archdaily.com/1186468/chaume-sublime-coat",
+          "source": "ArchDaily",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-10-11T10:00:00+00:00",
+          "summary": "Chaume Sublimé is an ephemeral installation for Montpellier's Festival des Architectures Vives 2025 that elevates humble reed grass into a sensory and atmospheric experience, celebrating both sustaina...",
+          "discussed": true,
+          "mention_offset_frac": 0.6665
+        },
+        {
+          "title": "[Dezeen] Architecture is \"much the same\" as music says Daniel Libeskind",
+          "url": "https://www.dezeen.com/2026/10/11/daniel-libeskind-interview-key-projects/",
+          "source": "Dezeen",
+          "author": "",
+          "ai_score": 26,
+          "date_published": "2026-10-11T07:00:57+00:00",
+          "summary": "As readers get their chance to have their say in this year's Dezeen Awards public vote, 2026 judge Daniel Libeskind talks to Dezeen about five projects that best represent his approach to design. The ...",
+          "discussed": true,
+          "mention_offset_frac": 0.7375
+        },
+        {
+          "title": "[The Tyee] Doerkson Stumbles into First Campaign Crisis with Secret ICBC Promises",
+          "url": "https://thetyee.ca/Opinion/2026/10/08/Doerkson-Stumbles-into-First-Campaign-Crisis/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-10-08T19:28:00+00:00",
+          "summary": "The NDP is quick to warn of a hidden agenda from BC Conservatives.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Business Insider] I started a cookie business and scaled too quickly. We got caught up in a growth-at-all-costs mentality — here's how I turned it around.",
+          "url": "https://www.businessinsider.com/how-partake-foods-founder-denise-woodard-scaled-small-business-2026-10",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-10-11T11:08:01+00:00",
+          "summary": "Inspired by her daughter's allergies, Partake Foods founder, Denise Woodard raised millions, overcoming growth challenges with storytelling skills.",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] In Canada’s Arctic, a New Generation of Inuit Creatives Are Using Identity to Fuel Their Art",
+          "url": "https://www.nytimes.com/2026/10/11/world/canada/inuit-inuk-indigenous-people-identity-iqaluit.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 37,
+          "date_published": "2026-10-11T09:00:31+00:00",
+          "summary": "In Iqaluit, the only city in Canada’s Arctic, a new generation of Inuit writers and artists is turning questions of language, land and identity into books, films and even tattoos.",
+          "discussed": true
+        },
+        {
+          "title": "[Mother Jones] Stop the Steal Never Stopped",
+          "url": "https://www.motherjones.com/politics/2026/10/stop-the-steal-election-denial-2026-midterms-misinformation-update/",
+          "source": "Mother Jones",
+          "author": "Reveal",
+          "ai_score": 55,
+          "date_published": "2026-10-10T07:00:00+00:00",
+          "summary": "When the FBI showed up at a warehouse in Fulton County, Georgia, to seize hundreds of boxes of 2020 election records this past January, County Commissioner Dana Barrett thought it looked less like a c...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "When a talented kid leaves a small town, is that a loss for the town or a success for the kid, and what does the town owe the people who stay?",
+        "riley_position": "Leaving can be a success for the individual and digital tools make distribution possible from anywhere, so a town's creative economy can be built on local institutions, training pipelines, and reach beyond the town.",
+        "riley_key_evidence": [
+          "Nunavut's Department of Culture and Heritage has run a Language Implementation Fund and Inuktut Affairs unit for more than a decade, following a $200,000 addition for Inuktut film, television and digital media in 2013.",
+          "In July 2025, Nunavut News reported rediscovered animation by roughly thirteen Inuit filmmakers from about half a century ago, including Aoudla Pudlat, Pitaloosie Saila and Kanayuk Pootoogook.",
+          "Nyla Innuksuk, who grew up in Iqaluit, is a director, writer and VR creator and CEO of Mixtape VR, and imagineNATIVE and TIFF have featured Indigenous filmmakers from the circumpolar region."
+        ],
+        "casey_position": "Export success hides a loss for the town, since the audience and archive can leave with the talent, and the town should measure what its own residents can see and keep rather than what it exports.",
+        "casey_key_evidence": [
+          "The Inuit Language Protection Act's commissioner argues Inuktut advertising pays off, but the department also offers businesses a $5,000 grant to comply, so the market argument has a subsidy underneath it.",
+          "The 2013 $200,000 line is small for a film industry, and the article gives no figures on how much reaches filmmakers versus administration or whether training graduates stayed in the field.",
+          "Rediscovered Inuit films were lost because nobody kept prints, masters or rights paperwork, making it an archive problem, and small-town counts of local screenings have no funding or institution to hold them long term."
+        ],
+        "resolution": "They agreed the archive and the audience are the key structural issues and that nobody currently pays to hold a town's film data, and proposed a cheap experiment of one locally screened film per season with a published, method-labelled count. They still disagreed on whether the export is a success, with Riley seeing it as a success for the person who left and Casey seeing a loss nobody can see.",
+        "topics_covered": [
+          "Inuit Language Protection Act and language rights in signage and commerce",
+          "Archives, lost films and rights ownership in the Iqaluit animation rediscovery",
+          "Digital distribution versus gatekeeping by platforms and festivals",
+          "Audience measurement and whether small towns should count local viewers rather than exports",
+          "Identity, local artists and copyright in cultural products like tattoo designs"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 0,
+          "conditions": "overcast",
+          "high": 12,
+          "low": -2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": -2,
+          "conditions": "clear skies",
+          "high": 12,
+          "low": -3
+        },
+        {
+          "name": "Williams Lake",
+          "temp": -1,
+          "conditions": "clear skies",
+          "high": 13,
+          "low": -2
+        },
+        {
+          "name": "Quesnel",
+          "temp": 0,
+          "conditions": "mainly clear",
+          "high": 10,
+          "low": -2
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": -1,
+          "conditions": "overcast",
+          "high": 13,
+          "low": -1
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Literacy Quesnel Society",
+      "description": "Adult literacy, digital literacy, and one-on-one tutoring in Quesnel — including an Indigenous stream and an English conversation circle for newcomers",
+      "website": "literacyquesnel.ca",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Does the Iqaluit Inuit creative boom have a real institutional base (language law, funding, training), or is it mainly a story about individual talent and identity?\n\nFindings:\n- The NYT piece (dated October 2026 in its URL) describes Iqaluit, Nunavut's capital and the only city in Canada's Arctic, as the setting for writers and artists turning language, land and identity into books, films and tattoos.\n- Nunavut has a legal framework that touches creative and commercial work. The Inuit Language Protection Act requires private businesses and government offices across Nunavut to offer services and communications in Inuktitut or Inuinnaqtun, including public signs, posters, advertising and invoices. CBC reported that these provisions came into force on July 9 (the snippet doesn't give the year, which appears to be 2019).\n- Public money supports Inuktut in media. In 2013 the Government of Nunavut's Department of Culture and Heritage announced $200,000 in additional funding for Inuktut in film, television and digital media. The department still runs a Language Implementation Fund and an Inuktut Affairs unit that administers language funding.\n- Businesses can get a $5,000 grant from the same department to help them comply with the language law. The Nunavut languages commissioner has argued that Inuktut advertising pays off.\n- The roots are older than the current wave. In July 2025, Nunavut News reported a \"historic discovery\" of animation by Inuit filmmakers from roughly half a century ago. Thirteen artists' published films were named, including Aoudla Pudlat, Pitaloosie Saila and Kanayuk Pootoogook, after that work had been effectively lost.\n- Training pipelines are emerging. CBC covered a media production program teaching Inuit youth scripting and filmmaking, and the Inuit Broadcasting Corp. launched hands-on training for Inuit youth.\n- Festival visibility is growing. imagineNATIVE in Toronto screens Inuit filmmakers, and TIFF has featured circumpolar Indigenous filmmakers.\n- Nyla Innuksuk, who grew up in Iqaluit, is a director, writer and VR creator and CEO of Mixtape VR. She is a concrete example of a local kid moving into digital storytelling.\n\nSuggested angle: Riley (optimist) can argue that the Iqaluit story shows digital tools and distribution let a small Arctic community reach global audiences, citing Innuksuk's VR work, the rediscovered 1970s animation now reaching audiences, and youth training programs. Casey (skeptic) can push back that the creative economy here rests heavily on government mandates and grants, such as the language law and the $200,000 film fund, so \"identity-driven art\" may partly be a policy product rather than a market success. Casey can also ask how much of the audience is local versus festival and institutional, and whether a city of this size can sustain a creative career path without leaving. Both can agree that language protection and storytelling are linked, since the work itself is in Inuktut and carries land and language knowledge. The debate can turn on whether digital distribution helps preserve that language or dilutes it.\n\nNote: I did not run independent searches on the Partake Foods or Mother Jones pieces. The Mother Jones article (\"Stop the Steal Never Stopped\") is about election politics rather than arts or culture, so it may fit the theme poorly unless the episode frames it around media narratives or documentary storytelling.\n\nELECTION RESEARCH: 2026 B.C. provincial general election\n\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\nNames below come from the roll-call searches and the pages I read. Every claim carries its outlet and date. Where a snippet gave no date, I say so.\n\n---\n\n**FINDINGS: Cariboo-Chilcotin**\n\n*Lorne Doerkson (Conservative, incumbent)*\n- Current office: Interim leader of the BC Conservatives and Leader of the Opposition. Wikipedia describes him this way; the Globe and Mail (Sept. 26, 2026) reports he \"takes the reins\" of the party. (Wikipedia, undated snippet; Globe and Mail, Sept. 26, 2026)\n- Earlier election: first elected in Cariboo-Chilcotin in 2020 as a B.C. Liberal, winning 6,600 votes (51.25%) over the NDP's Scott Andrews (32.46%). (Elections BC 2020 Statement of Votes; Vancouver Sun, undated snippet)\n- 2024 election: re-elected as a Conservative. He crossed the floor from B.C. United on May 31, 2024. The Conservatives won the riding by 7,722 votes. (Penticton Western News, Oct. 20, 2024; bcballot.ca candidate page, undated)\n- Controversy (allegation, reported, not a finding): Doerkson's Sept. 29, 2026 letter to the Insurance Bureau of Canada, the Law Society of BC, the Trial Lawyers Association of BC and the Canadian Bar Association's B.C. branch reportedly committed a Conservative government to overhauling auto insurance, including ending no-fault. MoveUP, the ICBC union, made the letter public. (The Tyee, Oct. 8, 2026, headline and deck only, full text not read; Global News, undated snippet; Daily Hive, undated snippet)\n- CBC described the letter as \"leaked\" and said it proposed a hybrid system that would allow lawsuits again. (CBC News, undated snippet)\n- Doerkson's response, as reported: Vaughn Palmer's Vancouver Sun column contrasts Doerkson's \"we are working on it\" remarks to reporters with the letter's detail. The column date was not visible in the snippet. I did not find a direct Doerkson statement on the letter in the sources I could read.\n\n*Kathryn Askew (BC NDP)*\n- Named as the BC NDP candidate for Cariboo-Chilcotin. She is a retired teacher from Canim Lake and a former BCTF local president and bargaining chair. (100 Mile Free Press, Oct. 1, 2026; BC NDP release, Oct. 1, 2026, per search snippet)\n- Earlier runs: none found in the sources I searched.\n- No controversy found.\n\n*Douglas Gook (BC Green)*\n- On the ballot per the Elections BC candidate report and the Canadian Elections Tracker. (Elections BC candidate report; Canadian Elections Tracker, undated)\n- 2020: ran as the BC Green candidate in Cariboo North and lost. He received 707 votes (6.38%), finishing fourth behind Coralee Oakes (Liberal, 5,367 votes, 48.42%). (Elections BC 2020 Statement of Votes)\n- 2017: ran in Nechako Lakes, receiving about 9% of the vote. (Williams Lake Tribune, undated snippet, referencing the 2017 provincial election)\n- No controversy found.\n\n---\n\n**FINDINGS: Prince George-North Cariboo**\n\n*Sheldon Clare (Conservative, incumbent)*\n- Office: MLA for Prince George-North Cariboo since 2024. Opposition House Leader per Wikipedia. (Wikipedia, undated snippet)\n- 2024: won the seat with 11,430 votes (56.82%), defeating independent Coralee Oakes (21.84%). (Quesnel Cariboo Observer, Oct. 7, 2026)\n- Leadership bid: Clare said in January 2026 he was running for the BC Conservative leadership. (Times Colonist/Canadian Press, Jan. 8, 2026) He and MLA Steve Kooner withdrew, per CFJC Kamloops (Feb. 28, 2026).\n- Controversy (allegations, not findings): The BC NDP accused Clare of saying municipal politicians \"should be hanged,\" defending residential school death rates, and comparing gun restrictions to the internment of Japanese Canadians. The NDP made this claim in an X post and in a deadline-day statement reported by the Indo-Canadian Voice (undated snippet; the article refers to \"deadline day,\" which I take to mean Oct. 3, 2026). The Western Standard (day 14 of the campaign, undated snippet) reported the same accusations. PressProgress (undated snippet) reported that Clare made the \"hanged\" remark in a Conservative BC municipal elections chat \"last month.\" I could not read the PressProgress page to confirm the date.\n- Clare's response: I did not find a response to the 2026 allegations in the sources I could read. His My Prince George Now interview (Sept. 23, 2026) addresses his leadership-era support for Kerry-Lynn Findlay and his support for Doerkson, not these remarks.\n\n*Denice Bardua (BC NDP)*\n- Named as the BC NDP candidate for Prince George-North Cariboo. (CKPG Today, Oct. 3, 2026; Quesnel Cariboo Observer, Oct. 7, 2026)\n- 2024: ran for the same party in the same riding and finished third with 17.03%, behind Clare and Oakes. (Quesnel Cariboo Observer, Oct. 7, 2026; Prince George Citizen, undated snippet)\n- No controversy found.\n\n*Randy Thompson (BC Green)*\n- Named as the BC Green candidate. (BC Greens candidate page; Quesnel Cariboo Observer, Oct. 7, 2026; Prince George Daily News, Oct. 11, 2026)\n- 2024: ran as the BC Green candidate in the same riding and received just over 4% of the vote. (Quesnel Cariboo Observer, Oct. 7, 2026; BC Greens candidate page)\n- He previously served two years on the BC Green Provincial Council. (BC Greens candidate page, undated)\n- No controversy found.\n\nThe show has not yet established a full record for every candidate in these races. Kathryn Askew's earlier runs and any controversy involving her are still open questions.\n\n---\n\n**NO RECORD FOUND:** Kathryn Askew\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Iqaluit Inuit writers artists filmmakers new generation 2025",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Inuit Language Protection Act Nunavut Inuktut media arts funding",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo-Chilcotin candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Prince George-North Cariboo candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Lorne Doerkson\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Sheldon Clare\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "page",
+        "url": "https://quesnelobserver.com/2026/10/07/three-prince-george-north-cariboo-mla-candidates-announced/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Dave Culos candidate Prince George-North Cariboo 2026",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook BC Green candidate Cariboo-Chilcotin",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://100milefreepress.net/2026/10/01/retired-school-teacher-named-bc-ndp-candidate-for-cariboo-chilcoin/"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mycariboonow.com/316427/news/politics/conservative-candidate-sheldon-clare-clears-the-air-on-the-past-48-hours/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Denice Bardua BC NDP candidate Prince George",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Randy Thompson BC Green candidate Prince George-North Cariboo",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook Cariboo North 2020 election results votes BC Green",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Kathryn Askew NDP Cariboo-Chilcotin previous candidate election",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Sheldon Clare clears the air past 48 hours Conservative candidate October 2026",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://thetyee.ca/News/2026/10/01/Doerkson-Campaign-Crisis-ICBC/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Lorne Doerkson Cariboo-Chilcotin 2020 election result Liberal votes",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.myprincegeorgenow.com/253046/news/politics/conservative-candidate-sheldon-clare-clears-the-air-on-the-past-48-hours/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Sheldon Clare \"should be hanged\" municipal politicians comments Conservative",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Doerkson ICBC no-fault insurance letter MoveUP Insurance Bureau of Canada",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://pressprogress.ca/bc-conservatives-run-full-slate-of-candidates-with-views-ranging-from-conspiratorial-to-bigoted/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Sheldon Clare responds comments residential schools hanged Doerkson candidate",
+        "pass": "event"
+      }
+    ]
+  }
+}

@@ -1,30 +1,4 @@
 {
-  "2026-07-13": {
-    "timestamp": 1783942520.460722,
-    "date": "2026-07-13",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Does cheaper digital production tools actually change who tells stories in rural communities, or do they just widen the gap between infinitely reproducible digital content and irreplaceable physical art?",
-    "riley_position": "Cheaper mocap technology removes real barriers to entry for rural creators, enabling filmmakers in smaller towns to produce visually ambitious work without flying in technicians or renting expensive gear from major cities.",
-    "riley_key_evidence": [
-      "Single-camera mocap technology reduces production costs from six figures and travel requirements to a laptop and tripod",
-      "School District 27 and the college media programs historically hit gear costs as a barrier, which this tool removes",
-      "Physical events like Performances in the Park demonstrate that live, non-algorithmic experiences aren't losing ground to digital content"
-    ],
-    "casey_position": "Cheaper tools don't address the actual constraints rural creators face: coordination, bandwidth, and available hours to do the work; moreover, cheaper digital tools risk producing high-volume, low-meaning content while physical art remains irreplaceable once destroyed.",
-    "casey_key_evidence": [
-      "Sand sculpture vandalism in Parksville demonstrates that physical art has no undo button or backup file, unlike digital renders",
-      "No local Cariboo filmmakers have actually adopted the mocap technology yet despite its availability, suggesting the tool isn't the real bottleneck",
-      "CBC Arts review of live-action Moana called it 'slop from the trough,' showing cheaper tools enable quantity without guaranteeing quality or originality"
-    ],
-    "resolution": "Riley and Casey agreed that the central variable isn't the tool itself but whether there's sustainable economic reason for local creators to continue past the first project, and that the real structural gap is whether arts organizations treat documentation as a core job rather than an afterthought. They agreed to test whether one volunteer with a phone documenting Performances in the Park each week could solve the documentation problem.",
-    "topics_covered": [
-      "Motion capture technology democratization and its actual barriers to local adoption",
-      "Physical versus digital art and their different preservation risks",
-      "Documentation as a structural responsibility for arts organizations",
-      "Economic sustainability for rural creators versus tool cost reduction",
-      "Quality and originality as separate from accessibility to production tools"
-    ]
-  },
   "2026-07-14": {
     "timestamp": 1784024441.645579,
     "date": "2026-07-14",
@@ -2508,6 +2482,34 @@
       "Webb's atmospheric detection on HD 3167 b and the inferred nature of exoplanet atmospheres",
       "Starship Flight 14 orbital success, engine shutdown, and the metrics used to judge test flights",
       "Dark-sky and aurora counting in the Cariboo, smoke labeling, and long-term local data stewardship"
+    ]
+  },
+  "2026-10-12": {
+    "timestamp": 1791793759.939923,
+    "date": "2026-10-12",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "film-screen",
+    "anchor": "leave-or-stay",
+    "central_question": "When a talented kid leaves a small town, is that a loss for the town or a success for the kid, and what does the town owe the people who stay?",
+    "riley_position": "Leaving can be a success for the individual and digital tools make distribution possible from anywhere, so a town's creative economy can be built on local institutions, training pipelines, and reach beyond the town.",
+    "riley_key_evidence": [
+      "Nunavut's Department of Culture and Heritage has run a Language Implementation Fund and Inuktut Affairs unit for more than a decade, following a $200,000 addition for Inuktut film, television and digital media in 2013.",
+      "In July 2025, Nunavut News reported rediscovered animation by roughly thirteen Inuit filmmakers from about half a century ago, including Aoudla Pudlat, Pitaloosie Saila and Kanayuk Pootoogook.",
+      "Nyla Innuksuk, who grew up in Iqaluit, is a director, writer and VR creator and CEO of Mixtape VR, and imagineNATIVE and TIFF have featured Indigenous filmmakers from the circumpolar region."
+    ],
+    "casey_position": "Export success hides a loss for the town, since the audience and archive can leave with the talent, and the town should measure what its own residents can see and keep rather than what it exports.",
+    "casey_key_evidence": [
+      "The Inuit Language Protection Act's commissioner argues Inuktut advertising pays off, but the department also offers businesses a $5,000 grant to comply, so the market argument has a subsidy underneath it.",
+      "The 2013 $200,000 line is small for a film industry, and the article gives no figures on how much reaches filmmakers versus administration or whether training graduates stayed in the field.",
+      "Rediscovered Inuit films were lost because nobody kept prints, masters or rights paperwork, making it an archive problem, and small-town counts of local screenings have no funding or institution to hold them long term."
+    ],
+    "resolution": "They agreed the archive and the audience are the key structural issues and that nobody currently pays to hold a town's film data, and proposed a cheap experiment of one locally screened film per season with a published, method-labelled count. They still disagreed on whether the export is a success, with Riley seeing it as a success for the person who left and Casey seeing a loss nobody can see.",
+    "topics_covered": [
+      "Inuit Language Protection Act and language rights in signage and commerce",
+      "Archives, lost films and rights ownership in the Iqaluit animation rediscovery",
+      "Digital distribution versus gatekeeping by platforms and festivals",
+      "Audience measurement and whether small towns should count local viewers rather than exports",
+      "Identity, local artists and copyright in cultural products like tattoo designs"
     ]
   }
 }

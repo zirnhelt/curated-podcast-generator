@@ -130,85 +130,6 @@
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
   },
-  "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/": {
-    "article": {
-      "id": "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/",
-      "url": "https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/",
-      "title": "[New Atlas] Largest rocket ever built successfully enters orbit",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Fspace-systems%2Fstarship-orbits-earth-landmark-event%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Starship in orbit\" src=\"https://assets.newatlas.com/dims4/default/268d6a8/2147483647/strip/true/crop/1525x671+0+0/resize/1440x634!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2F1b%2F7a%2F7c00b4d64425bacb2c0c6dc81c6b%2Fscreenshot-2026-09-28-200049.png\" /><p>SpaceX has raised the bar for spaceflight again as its Starship, history's largest rocket, reaches Earth orbit. Despite the failure of an upper stage engine, an abort was avoided, allowing the spacecraft to reach orbit and deploy 26 Starlink satellites.</p><p><a href=\"https://newatlas.com/space-systems/starship-orbits-earth-landmark-event/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://newatlas.com/space-systems/\">Space Systems</a>, <a href=\"https://newatlas.com/engineering/\">Engineering</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/spacex/\" rel=\"tag\">SpaceX</a>, <a href=\"https://newatlas.com/tag/starship/\" rel=\"tag\">Starship</a></p>",
-      "summary": "SpaceX has raised the bar for spaceflight again as its Starship, history's largest rocket, reaches Earth orbit. Despite the failure of an upper stage engine, an abort was avoided, allowing the spacecraft to reach orbit and deploy 26 Starlink satellites. Continue Reading Category: Space Systems ,",
-      "_excerpt": "SpaceX has raised the bar for spaceflight again as its Starship, history's largest rocket, reaches Earth orbit. Despite the failure of an upper stage engine, an abort was avoided, allowing the spacecraft to reach orbit and deploy 26 Starlink satellites. Continue Reading Category: Space Systems , Engineering Tags: SpaceX , Starship",
-      "date_published": "2026-09-29T05:43:49+00:00",
-      "authors": [
-        {
-          "name": "New Atlas",
-          "url": "https://newatlas.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 89,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 77,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-30T04:11:21.314165+00:00"
-      },
-      "_boosted_score": 17,
-      "_topic_cluster": "SpaceX Starship reaches orbit",
-      "_cluster_suppressed": true
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-11",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-10-11"
-  },
-  "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re": {
-    "article": {
-      "id": "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re",
-      "url": "https://kottke.org/26/09/0049652-ross-anderson-on-nasas-re",
-      "title": "[Kottke.org] Ross Anderson on NASA\u2019s recently launched Nancy Grace...",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fkottke.org%2F26%2F09%2F0049652-ross-anderson-on-nasas-re\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><a href=\"https://www.theatlantic.com/science/2026/08/nasa-roman-telescope-alien-worlds/688426?gift=j9r7avb6p-KY8zdjhsiSZ1NT_2Qm_w9P7F_QyBy-yJU\">Ross Anderson on NASA\u2019s recently launched Nancy Grace Roman Space Telescope</a>, which may &#8220;be able to deliver the first direct images of distant planets in visible light\u201d as well as measure the effects of dark energy.\n</p>",
-      "summary": "Ross Anderson on NASA\u2019s recently launched Nancy Grace Roman Space Telescope , which may \u201cbe able to deliver the first direct images of distant planets in visible light\u201d as well as measure the effects of dark energy.",
-      "_excerpt": "Ross Anderson on NASA\u2019s recently launched Nancy Grace Roman Space Telescope , which may \u201cbe able to deliver the first direct images of distant planets in visible light\u201d as well as measure the effects of dark energy.",
-      "date_published": "2026-09-22T17:52:00+00:00",
-      "authors": [
-        {
-          "name": "Kottke.org",
-          "url": "https://kottke.org/"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 72,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 69,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_boosted_score": 55
-    },
-    "held_date": "2026-09-30",
-    "target_date": "2026-10-11",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-10-11"
-  },
   "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/": {
     "article": {
       "id": "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/",
@@ -294,47 +215,6 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal": {
-    "article": {
-      "id": "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal",
-      "url": "https://www.sciencealert.com/as-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal",
-      "title": "[ScienceAlert] As Permafrost Melts, Toxic Metals Are Poisoning Rivers With Levels 70 Times Higher Than Normal",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fas-permafrost-melts-toxic-metals-are-poisoning-rivers-with-levels-70-times-higher-than-normal\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"As Permafrost Melts, Toxic Metals Are Poisoning Rivers With Levels 70 Times Higher Than Normal\" class=\"attachment-full size-full\" height=\"1440\" src=\"https://www.sciencealert.com/images/2026/09/Kutuk_2016_2-2560x1440-1.jpg\" width=\"2560\"/><figcaption>An aerial view of the Kutuk River in Alaska's Gates of the Arctic National Park. (Ken Hill/National Park Service)</figcaption></figure>\n<p><img alt=\"As Permafrost Melts, Toxic Metals Are Poisoning Rivers With Levels 70 Times Higher Than Normal\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/09/Kutuk_2016_2-2560x1440-1-1200x675.jpg\" style=\"float:left;margin:0 15px 15px 0;\" width=\"1200\"/>An unexpected side effect of a thawing world.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&amp;utm_medium=feed&amp;utm_campaign=rss_feed_promo\" rel=\"noopener noreferrer\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.</a></p>",
-      "summary": "An aerial view of the Kutuk River in Alaska's Gates of the Arctic National Park. (Ken Hill/National Park Service) An unexpected side effect of a thawing world. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
-      "_excerpt": "An aerial view of the Kutuk River in Alaska's Gates of the Arctic National Park. (Ken Hill/National Park Service) An unexpected side effect of a thawing world. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
-      "date_published": "2026-09-30T02:33:31+00:00",
-      "authors": [
-        {
-          "name": "ScienceAlert",
-          "url": "https://www.sciencealert.com"
-        }
-      ],
-      "ai_score": 59,
-      "_quality": 74,
-      "_relevance": 68,
-      "_local": 15,
-      "_theme_score": 86,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 79,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-06T04:08:52.870645+00:00"
-      },
-      "_boosted_score": 59
-    },
-    "held_date": "2026-10-06",
-    "target_date": "2026-10-11",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-10-11"
   },
   "https://www.theguardian.com/global-development/2026/oct/05/shortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts": {
     "article": {
@@ -846,7 +726,8 @@
     "target_weekday": 0,
     "target_focus_slug": "film-screen",
     "target_focus_name": "Film & Screen",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-12"
   },
   "https://newatlas.com/technology/germany-come-close-atomic-bomb/": {
     "article": {
@@ -1047,47 +928,6 @@
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
   },
-  "https://www.sciencedaily.com/releases/2026/10/261005071520.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/10/261005071520.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/10/261005071520.htm",
-      "title": "[ScienceDaily] Earth\u2019s center is moving, and NASA just measured it",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261005071520.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEarth\u2019s center of mass is constantly on the move, shifting by a few millimeters as enormous amounts of water, ice, and even air migrate around the planet with the seasons. NASA scientists have developed a more precise way to track these tiny swings using laser-ranging satellites, GPS data, and measurements of how water and ice deform Earth\u2019s crust.",
-      "summary": "Earth\u2019s center of mass is constantly on the move, shifting by a few millimeters as enormous amounts of water, ice, and even air migrate around the planet with the seasons. NASA scientists have developed a more precise way to track these tiny swings using laser-ranging satellites, GPS data, and",
-      "_excerpt": "Earth\u2019s center of mass is constantly on the move, shifting by a few millimeters as enormous amounts of water, ice, and even air migrate around the planet with the seasons. NASA scientists have developed a more precise way to track these tiny swings using laser-ranging satellites, GPS data, and measurements of how water and ice deform Earth\u2019s crust.",
-      "date_published": "2026-10-07T11:30:51+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 60,
-      "_theme_score_raw": 13,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-08T04:10:57.717271+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-11",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-10-11"
-  },
   "https://blog.adafruit.com/2026/10/02/new-guide-circuitpython-turbo-sushi-conveyor-belt-adafruitlearningsystem-adafruit/": {
     "article": {
       "id": "https://blog.adafruit.com/2026/10/02/new-guide-circuitpython-turbo-sushi-conveyor-belt-adafruitlearningsystem-adafruit/",
@@ -1127,47 +967,6 @@
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
     "status": "held"
-  },
-  "https://www.sciencedaily.com/releases/2026/10/261005071526.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/10/261005071526.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/10/261005071526.htm",
-      "title": "[ScienceDaily] Webb finds a surprising atmosphere on a scorching lava world",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261005071526.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe James Webb Space Telescope has found strong evidence that the rocky lava world HD 3167 b has an atmosphere, despite circling its star every 24 hours under extreme heat. The surprising discovery could help scientists understand how rocky planets retain atmospheres and what the young, molten Earth may once have looked like.",
-      "summary": "The James Webb Space Telescope has found strong evidence that the rocky lava world HD 3167 b has an atmosphere, despite circling its star every 24 hours under extreme heat. The surprising discovery could help scientists understand how rocky planets retain atmospheres and what the young, molten",
-      "_excerpt": "The James Webb Space Telescope has found strong evidence that the rocky lava world HD 3167 b has an atmosphere, despite circling its star every 24 hours under extreme heat. The surprising discovery could help scientists understand how rocky planets retain atmospheres and what the young, molten Earth may once have looked like.",
-      "date_published": "2026-10-07T11:58:25+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 58,
-      "_theme_score_raw": 11,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-10-08T04:10:57.717271+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-11",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-10-11"
   },
   "https://www.howtogeek.com/your-smart-home-is-probably-running-ai-written-code/": {
     "article": {
@@ -1334,5 +1133,439 @@
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
     "status": "recall"
+  },
+  "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data": {
+    "article": {
+      "id": "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data",
+      "url": "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data",
+      "title": "[The Verge] NASA dumped over 800GB of Artemis II data online",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theverge.com%2Fscience%2F1009379%2Fnasa-800gb-artemis-ii-data\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIf you thought you'd seen all there is to see from the Artemis II mission, you're wrong. This week NASA posted over 800GB worth of science data, images, and videos on the Artemis II: Sights &amp; Sounds of Science site. The archive includes over 11,000 photos and videos, over 8.5 hours of audio, and crew-annotated [\u2026]",
+      "summary": "If you thought you'd seen all there is to see from the Artemis II mission, you're wrong. This week NASA posted over 800GB worth of science data, images, and videos on the Artemis II: Sights & Sounds of Science site. The archive includes over 11,000 photos and videos, over 8.5 hours of audio, and",
+      "_excerpt": "If you thought you'd seen all there is to see from the Artemis II mission, you're wrong. This week NASA posted over 800GB worth of science data, images, and videos on the Artemis II: Sights & Sounds of Science site. The archive includes over 11,000 photos and videos, over 8.5 hours of audio, and crew-annotated [\u2026]",
+      "date_published": "2026-10-11T15:34:40+00:00",
+      "authors": [
+        {
+          "name": "The Verge",
+          "url": "https://www.theverge.com"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 88,
+      "_theme_score_raw": 24,
+      "_composite_podcast": 73,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News",
+      "_boosted_score": 50
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-25",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/10/11/hereditary-chiefs-call-for-closure-of-park-on-vancouver-island-over-ancestral-graves/": {
+    "article": {
+      "id": "https://wltribune.com/2026/10/11/hereditary-chiefs-call-for-closure-of-park-on-vancouver-island-over-ancestral-graves/",
+      "url": "https://wltribune.com/2026/10/11/hereditary-chiefs-call-for-closure-of-park-on-vancouver-island-over-ancestral-graves/",
+      "title": "[Williams Lake Tribune] Hereditary chiefs call for closure of park on Vancouver Island over ancestral graves",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F11%2Fhereditary-chiefs-call-for-closure-of-park-on-vancouver-island-over-ancestral-graves%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA view looking out over the water from Patricia Bay Park. (Tony Trozzo/Victoria News) Standing above a site they say fails to respect their ancestors, W\u0331S\u00c1NE\u0106 hereditary chiefs called for action Saturday, demanding the closure of Patricia Bay Park and greater protection for ancestral burial places. Roughly 40 people gathered at the park on Oct. 10 to hear Tseycum Nation (W\u0331S\u00cd\u1e34EM) Hereditary Chief Vern Jacks, or X\u00c1L\u00c1\u023eE, and Tsawout (S\u023e\u00c1UTW\u0331) Hereditary Chief Eric Pelkey, or WI\u0106KINEM, speak about the ongoing harm caused by disturbances to ancestral burial sites along West Saanich Road. The",
+      "summary": "A view looking out over the water from Patricia Bay Park. (Tony Trozzo/Victoria News) Standing above a site they say fails to respect their ancestors, W\u0331S\u00c1NE\u0106 hereditary chiefs called for action Saturday, demanding the closure of Patricia Bay Park and greater protection for ancestral burial places.",
+      "_excerpt": "A view looking out over the water from Patricia Bay Park. (Tony Trozzo/Victoria News) Standing above a site they say fails to respect their ancestors, W\u0331S\u00c1NE\u0106 hereditary chiefs called for action Saturday, demanding the closure of Patricia Bay Park and greater protection for ancestral burial places. Roughly 40 people gathered at the park on Oct. 10 to hear Tseycum Nation (W\u0331S\u00cd\u1e34EM) Hereditary Chief Vern Jacks, or X\u00c1L\u00c1\u023eE, and Tsawout (S\u023e\u00c1UTW\u0331) Hereditary Chief Eric Pelkey, or WI\u0106KINEM, speak about the ongoing harm caused by disturbances to ancestral burial sites along West Saanich Road. The",
+      "date_published": "2026-10-11T16:03:23+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 71,
+      "_quality": 82,
+      "_relevance": 78,
+      "_local": 40,
+      "_theme_score": 77,
+      "_theme_score_raw": 18,
+      "_composite_podcast": 73,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_boosted_score": 71,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-23",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "aired_early"
+  },
+  "https://blog.adafruit.com/2026/10/08/dspi-a-fully-featured-audio-dsp-firmware-for-the-raspberry-pi-pico-rp2040-and-pico-2-rp2350/": {
+    "article": {
+      "id": "https://blog.adafruit.com/2026/10/08/dspi-a-fully-featured-audio-dsp-firmware-for-the-raspberry-pi-pico-rp2040-and-pico-2-rp2350/",
+      "url": "https://blog.adafruit.com/2026/10/08/dspi-a-fully-featured-audio-dsp-firmware-for-the-raspberry-pi-pico-rp2040-and-pico-2-rp2350/",
+      "title": "[Adafruit Blog] DSPi: a fully featured audio DSP firmware for the Raspberry Pi Pico (RP2040) and Pico 2 (RP2350)",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F10%2F08%2Fdspi-a-fully-featured-audio-dsp-firmware-for-the-raspberry-pi-pico-rp2040-and-pico-2-rp2350%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWeeb Labs has published DSPi on GitHub, a firmware that turns a Raspberry Pi Pico or Pico 2 into a USB sound card with an onboard DSP engine. It handles room correction, active crossovers, parametric EQ, time alignment, loudness compensation, and headphone crossfeed. Both chips run at a fixed 307.2 MHz system clock, which keeps [\u2026]",
+      "summary": "Weeb Labs has published DSPi on GitHub, a firmware that turns a Raspberry Pi Pico or Pico 2 into a USB sound card with an onboard DSP engine. It handles room correction, active crossovers, parametric EQ, time alignment, loudness compensation, and headphone crossfeed. Both chips run at a fixed 307.2",
+      "_excerpt": "Weeb Labs has published DSPi on GitHub, a firmware that turns a Raspberry Pi Pico or Pico 2 into a USB sound card with an onboard DSP engine. It handles room correction, active crossovers, parametric EQ, time alignment, loudness compensation, and headphone crossfeed. Both chips run at a fixed 307.2 MHz system clock, which keeps [\u2026]",
+      "date_published": "2026-10-08T16:40:25+00:00",
+      "authors": [
+        {
+          "name": "Adafruit Blog",
+          "url": "https://blog.adafruit.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 77,
+      "_theme_score_raw": 18,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-10-09T04:09:41.111718+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-14",
+    "target_weekday": 2,
+    "target_focus_slug": "maker-repair",
+    "target_focus_name": "Maker & Repair",
+    "status": "held"
+  },
+  "https://www.statnews.com/2026/10/09/robert-gallo-interleukin-2-human-retroviruses-immunotherapy-basic-science/?utm_campaign=rss": {
+    "article": {
+      "id": "https://www.statnews.com/2026/10/09/robert-gallo-interleukin-2-human-retroviruses-immunotherapy-basic-science/?utm_campaign=rss",
+      "url": "https://www.statnews.com/2026/10/09/robert-gallo-interleukin-2-human-retroviruses-immunotherapy-basic-science/?utm_campaign=rss",
+      "title": "[STAT News] Opinion: 50 years ago, my colleagues and I pursued basic research science that became revolutionary",
+      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/10/C0180126-Budding_HIV_particles_TEM-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F10%2F09%2Frobert-gallo-interleukin-2-human-retroviruses-immunotherapy-basic-science%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n\u201cBasic studies led to clinical and translational advances that no one could have predicted,\u201d Robert Gallo writes of his work with interleukin-2.",
+      "summary": "\u201cBasic studies led to clinical and translational advances that no one could have predicted,\u201d Robert Gallo writes of his work with interleukin-2.",
+      "_excerpt": "\u201cBasic studies led to clinical and translational advances that no one could have predicted,\u201d Robert Gallo writes of his work with interleukin-2.",
+      "date_published": "2026-10-09T08:30:00+00:00",
+      "authors": [
+        {
+          "name": "STAT News",
+          "url": "https://www.statnews.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 20,
+      "_composite_podcast": 57,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.statnews.com/wp-content/uploads/2026/10/C0180126-Budding_HIV_particles_TEM-645x645.jpg",
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-10-10T04:08:55.360812+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-18",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.theatlantic.com/science/2026/10/anthropic-artificial-intelligence-science-biology/688878/?utm_source=feed": {
+    "article": {
+      "id": "https://www.theatlantic.com/science/2026/10/anthropic-artificial-intelligence-science-biology/688878/?utm_source=feed",
+      "url": "https://www.theatlantic.com/science/2026/10/anthropic-artificial-intelligence-science-biology/688878/?utm_source=feed",
+      "title": "[The Atlantic] AI\u2019s Real Gift to Science",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theatlantic.com%2Fscience%2F2026%2F10%2Fanthropic-artificial-intelligence-science-biology%2F688878%2F%3Futm_source%3Dfeed\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAdvanced models can help researchers sort through mountains of biological data.",
+      "summary": "Advanced models can help researchers sort through mountains of biological data.",
+      "_excerpt": "Advanced models can help researchers sort through mountains of biological data.",
+      "date_published": "2026-10-04T15:56:28+00:00",
+      "authors": [
+        {
+          "name": "The Atlantic",
+          "url": "https://www.theatlantic.com"
+        }
+      ],
+      "ai_score": 53,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 85,
+      "_theme_score_raw": 22,
+      "_composite_podcast": 57,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_boosted_score": 53
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-25",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.makeuseof.com/bars-ryobi-battery-meaning/": {
+    "article": {
+      "id": "https://www.makeuseof.com/bars-ryobi-battery-meaning/",
+      "url": "https://www.makeuseof.com/bars-ryobi-battery-meaning/",
+      "title": "[MakeUseOf] Those bars on your Ryobi battery don't mean what you think they do",
+      "content_html": "<img src=\"https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/09/ryobi-batteries-on-desktop.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.makeuseof.com%2Fbars-ryobi-battery-meaning%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nRyobi battery packs have 4 charge level indicators, but what do they really mean?",
+      "summary": "Ryobi battery packs have 4 charge level indicators, but what do they really mean?",
+      "_excerpt": "Ryobi battery packs have 4 charge level indicators, but what do they really mean?",
+      "date_published": "2026-10-04T20:30:14+00:00",
+      "authors": [
+        {
+          "name": "MakeUseOf",
+          "url": "https://www.makeuseof.com"
+        }
+      ],
+      "ai_score": 42,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 77,
+      "_theme_score_raw": 18,
+      "_composite_podcast": 51,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/09/ryobi-batteries-on-desktop.jpg",
+      "_boosted_score": 42
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-14",
+    "target_weekday": 2,
+    "target_focus_slug": "maker-repair",
+    "target_focus_name": "Maker & Repair",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/": {
+    "article": {
+      "id": "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/",
+      "url": "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/",
+      "title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Nathan Wiebe",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F11%2Fmeet-the-candidates-city-councillor-candidate-nathan-wiebe%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nNathan Wiebe is a 2026 councillor candidate for Williams Lake. (Photo submitted) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** I was born and raised in Williams Lake; I have built",
+      "summary": "Nathan Wiebe is a 2026 councillor candidate for Williams Lake. (Photo submitted) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in",
+      "_excerpt": "Nathan Wiebe is a 2026 councillor candidate for Williams Lake. (Photo submitted) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** I was born and raised in Williams Lake; I have built",
+      "date_published": "2026-10-12T04:03:34.731350+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 85,
+      "_quality": 70,
+      "_relevance": 88,
+      "_local": 90,
+      "_theme_score": 28,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 50,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_boosted_score": 85
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-17",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://eaglefeathernews.com/2026/10/04/the-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools/": {
+    "article": {
+      "id": "https://eaglefeathernews.com/2026/10/04/the-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools/",
+      "url": "https://eaglefeathernews.com/2026/10/04/the-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools/",
+      "title": "[Eagle Feather News] The Last Generation \u2013 Survivors share stories from Canada\u2019s final chapter of residential schools",
+      "content_html": "<img src=\"https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/img-1880.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Feaglefeathernews.com%2F2026%2F10%2F04%2Fthe-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe last generation of graduates from the Lebret Residential School in 1998 (photo provided by Sonia Pete)",
+      "summary": "The last generation of graduates from the Lebret Residential School in 1998 (photo provided by Sonia Pete)",
+      "_excerpt": "The last generation of graduates from the Lebret Residential School in 1998 (photo provided by Sonia Pete)",
+      "date_published": "2026-10-04T16:54:56+00:00",
+      "authors": [
+        {
+          "name": "Eagle Feather News",
+          "url": "https://www.eaglefeathernews.com"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 15,
+      "_composite_podcast": 50,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/img-1880.jpeg",
+      "_boosted_score": 57
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-15",
+    "target_weekday": 3,
+    "target_focus_slug": "governance-title",
+    "target_focus_name": "Governance, Title & Treaty",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/": {
+    "article": {
+      "id": "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/",
+      "url": "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/",
+      "title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Kayla Zaruk",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F10%2Fmeet-the-candidates-city-councillor-candidate-kayla-zaruk%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nKayla Zaruk is a 2026 councillor candidate for Williams Lake. (Facebook) **In advance of this year\u2019s general election on Saturday, Oct. 17 the _Tribune_ asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** My name is Kayla Zaruk. I am an Indigenous woman and have",
+      "summary": "Kayla Zaruk is a 2026 councillor candidate for Williams Lake. (Facebook) **In advance of this year\u2019s general election on Saturday, Oct. 17 the _Tribune_ asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in",
+      "_excerpt": "Kayla Zaruk is a 2026 councillor candidate for Williams Lake. (Facebook) **In advance of this year\u2019s general election on Saturday, Oct. 17 the _Tribune_ asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** My name is Kayla Zaruk. I am an Indigenous woman and have",
+      "date_published": "2026-10-12T04:03:34.731452+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 85,
+      "_quality": 70,
+      "_relevance": 88,
+      "_local": 90,
+      "_theme_score": 23,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 46,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_boosted_score": 85
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-17",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://www.nrdc.org/press-releases/scotus-grapple-climates-costs": {
+    "article": {
+      "id": "https://www.nrdc.org/press-releases/scotus-grapple-climates-costs",
+      "url": "https://www.nrdc.org/press-releases/scotus-grapple-climates-costs",
+      "title": "[NRDC] SCOTUS to Grapple with Climate\u2019s Costs",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nrdc.org%2Fpress-releases%2Fscotus-grapple-climates-costs\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>In the <em>Suncor v. Boulder</em> argument today, the Supreme Court will consider how state and local governments can get fossil fuel companies to pay for the damage they have caused.</p>",
+      "summary": "In the Suncor v. Boulder argument today, the Supreme Court will consider how state and local governments can get fossil fuel companies to pay for the damage they have caused.",
+      "_excerpt": "In the Suncor v. Boulder argument today, the Supreme Court will consider how state and local governments can get fossil fuel companies to pay for the damage they have caused.",
+      "date_published": "2026-10-05T13:04:15+00:00",
+      "authors": [
+        {
+          "name": "NRDC",
+          "url": "https://www.nrdc.org/stories/regenerative-agriculture-101"
+        }
+      ],
+      "ai_score": 56,
+      "_quality": 65,
+      "_relevance": 72,
+      "_local": 0,
+      "_theme_score": 42,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 29,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_us_policy": true,
+      "_us_policy_scope": "out-of-jurisdiction",
+      "tags": [
+        "us-policy"
+      ],
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-10-11T04:08:04.556342+00:00"
+      },
+      "_boosted_score": 56
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-25",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/": {
+    "article": {
+      "id": "https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/",
+      "url": "https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/",
+      "title": "[Marius Bogdan Lixandru] How to Install FileBrowser Quantum on Your Synology NAS",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fmariushosting.com%2Fhow-to-install-filebrowser-quantum-on-your-synology-nas%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFileBrowser Quantum is a heavily reworked fork of the classic Filebrowser project, aimed at being the best free self-hosted web file manager available. It provides a modern, responsive web interface for browsing, uploading, editing, previewing, and sharing files on your own NAS server, with support for multiple sources, real-time indexed search, thumbnails for office documents ... <a class=\"read-more\" href=\"https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/\" title=\"How to Install FileBrowser Quantum on Your Synology NAS\">Read more about How to Install FileBrowser Quantum on Your Synology NAS</a>",
+      "summary": "FileBrowser Quantum is a heavily reworked fork of the classic Filebrowser project, aimed at being the best free self-hosted web file manager available. It provides a modern, responsive web interface for browsing, uploading, editing, previewing, and sharing files on your own NAS server, with support",
+      "_excerpt": "FileBrowser Quantum is a heavily reworked fork of the classic Filebrowser project, aimed at being the best free self-hosted web file manager available. It provides a modern, responsive web interface for browsing, uploading, editing, previewing, and sharing files on your own NAS server, with support for multiple sources, real-time indexed search, thumbnails for office documents ... Read more about How to Install FileBrowser Quantum on Your Synology NAS",
+      "date_published": "2026-10-11T19:49:57+00:00",
+      "authors": [
+        {
+          "name": "Marius Bogdan Lixandru",
+          "url": "https://mariushosting.com"
+        }
+      ],
+      "ai_score": 56,
+      "_quality": 55,
+      "_relevance": 75,
+      "_local": 0,
+      "_theme_score": 16,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 25,
+      "_keyword_matches": 0,
+      "_category": "homelab",
+      "_source_category": "homelab",
+      "_is_bonus": true,
+      "_boosted_score": 56
+    },
+    "held_date": "2026-10-12",
+    "target_date": "2026-10-21",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
   }
 }

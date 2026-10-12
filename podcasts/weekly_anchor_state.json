@@ -1,15 +1,5 @@
 {
   "assigned": {
-    "2026-W33": {
-      "id": "owe-those-after",
-      "question": "What do we owe the people who come after us?",
-      "dimension": "legacy-time",
-      "premise": "Almost every decision in a resource region is really a decision about time \u2014 a cutblock, a tailings pond, a municipal debt, an archive nobody funds, a language with four fluent speakers left. Some traditions formalise the obligation across generations; most institutions discount it to nearly zero. The question is what a duty to people who cannot yet object actually requires, and who is willing to pay for it now.",
-      "reading": null,
-      "framings": {},
-      "assigned_at": "2026-08-12",
-      "origin": "seeded"
-    },
     "2026-W34": {
       "id": "tech-sadness",
       "question": "Why is everyone in tech so sad?",
@@ -105,6 +95,24 @@
       },
       "assigned_at": "2026-10-05",
       "origin": "seeded"
+    },
+    "2026-W42": {
+      "id": "leave-or-stay",
+      "question": "Who gets to leave, and who has to stay?",
+      "dimension": "mobility-belonging",
+      "premise": "Movement is unevenly distributed. Some people leave for school and choose whether to return; some commute two weeks in, two weeks out; some are evacuated and come back to nothing; some cannot leave because of family, a mortgage, a herd, or a territory that is the whole point. The question is how a place should think about the people who go, the people who arrive, and the people for whom leaving was never really an option.",
+      "reading": null,
+      "framings": {
+        "0": "Frame Monday's arts stories around the festival organizer who books touring acts and the local painter who stayed, asking whether a creative economy in a small Cariboo town should be judged by the talent it exports or the audiences it keeps at home.",
+        "1": "Frame Tuesday's working-lands coverage around the ranch or sawmill that automates with remote monitoring, asking whether new tech keeps young workers in the Cariboo or simply lets fewer people run the operation while the rest commute out.",
+        "2": "Frame Wednesday's gear coverage around the homelab built by a rural resident for remote work or a small business, asking whether self-reliant tech gives isolated households a real reason to stay or just a costly way to stay connected to elsewhere.",
+        "3": "Frame Thursday's Indigenous lands coverage around a T\u015dilhqot'in or Secw\u00e9pemc youth returning from the city to teach language through a digital archive, asking whether return on cultural terms is a form of leaving or a form of staying faithful.",
+        "4": "Frame Friday's wild spaces coverage around the wildfire evacuee who came back to a burned homestead and the crews now using drones to map the backcountry, asking who bears the cost when a landscape's recovery depends on people who cannot afford to leave.",
+        "5": "Frame Saturday's local affairs coverage around a Williams Lake council vote on a housing or school closure, asking whether decisions made for families who must stay should weigh more heavily than the views of residents who can simply move away.",
+        "6": "Frame Sunday's science coverage around a research team tracking caribou or salmon across the Chilcotin, asking whether the animals and ecosystems that cannot leave should shape civic life in the Cariboo as much as the people who choose to go."
+      },
+      "assigned_at": "2026-10-12",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -161,6 +169,12 @@
       "dimension": "measurement",
       "question": "What are we actually measuring?",
       "week": "2026-W41"
+    },
+    {
+      "id": "leave-or-stay",
+      "dimension": "mobility-belonging",
+      "question": "Who gets to leave, and who has to stay?",
+      "week": "2026-W42"
     }
   ],
   "generated": [
