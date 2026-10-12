@@ -929,7 +929,7 @@ class TestPolishFallbackBudget:
         pg.polish_and_factcheck_with_agent("RILEY: hello", "Theme", [], [],
                                            model="claude-sonnet-5")
 
-        assert seen["max_tokens"] == 24000
+        assert seen["max_tokens"] == pg.POLISH_MAX_TOKENS
         assert seen["effort"] == "low"
 
 
@@ -1435,8 +1435,11 @@ class TestGenerateScriptTruncationGuard:
 
         assert self._run(monkeypatch, client) is None
         assert client.messages.stream.call_count == 2
+        first_kwargs = client.messages.stream.call_args_list[0].kwargs
         retry_kwargs = client.messages.stream.call_args_list[1].kwargs
-        assert retry_kwargs["max_tokens"] == 32000
+        # Haiku 5.5 spent all of the old 24000 thinking (2026-10-10, -12).
+        assert first_kwargs["max_tokens"] >= 64000
+        assert retry_kwargs["max_tokens"] == first_kwargs["max_tokens"]
         assert retry_kwargs["output_config"] == {"effort": "low"}
 
     def test_retry_succeeds_with_full_script(self, monkeypatch):
@@ -1465,7 +1468,7 @@ class TestGenerateScriptTruncationGuard:
         assert self._run(monkeypatch, client) == full_script
         assert client.messages.stream.call_count == 2
         retry_kwargs = client.messages.stream.call_args_list[1].kwargs
-        assert retry_kwargs["max_tokens"] == 32000
+        assert retry_kwargs["max_tokens"] == client.messages.stream.call_args_list[0].kwargs["max_tokens"]
         messages = retry_kwargs["messages"]
         assert len(messages) == 3
         assert messages[1] == {"role": "assistant", "content": short_script}
@@ -6271,6 +6274,32 @@ class TestScriptQuestionAnswers:
         out = pg._resolve_script_questions_with_brave("script", "key", object())
         assert asked == queries[:pg.SCRIPT_QUESTION_LIMIT]
         assert out.count("Answer: An answer.") == pg.SCRIPT_QUESTION_LIMIT
+
+    def test_cut_off_detection_degrades_instead_of_going_silent(self, monkeypatch):
+        """2026-10-09..12: Haiku 5.5 filled max_tokens=300 mid-string every night
+        and the except printed one line; four episodes polished with no answers."""
+        import podcast_generator as pg
+
+        seen = {}
+
+        class _Client:
+            class messages:
+                @staticmethod
+                def create(**kw):
+                    seen.update(kw)
+        monkeypatch.setattr(pg, "api_retry", lambda fn: (fn(), type("R", (), {"usage": None})())[1])
+        monkeypatch.setattr(pg, "message_text", lambda r: '{"queries": ["Tesla Semi battery wei')
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+
+        assert pg._resolve_script_questions_with_brave("script", "key", _Client()) == ""
+        assert [name for name, _ in recorded] == ["script/fact-questions"]
+        assert seen["max_tokens"] >= 1000
+        assert f"at most {pg.SCRIPT_QUESTION_LIMIT}" in seen["messages"][0]["content"]
+
+    def test_question_limit_fits_the_answers_budget(self):
+        import podcast_generator as pg
+        assert pg.SCRIPT_QUESTION_LIMIT <= pg.BRAVE_ANSWERS_CALL_LIMIT
 
     def test_detection_reads_the_deep_dive(self, monkeypatch):
         """Detection read script[:5000] until 2026-10-02; the deep dive, where

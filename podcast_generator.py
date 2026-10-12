@@ -585,6 +585,11 @@ def _format_daily_cost_summary() -> str:
 # Haiku 5.5's and Opus 5.5's own default, and Sonnet 5's is "high".
 THINKING_EFFORT = os.getenv("CLAUDE_THINKING_EFFORT", "medium")
 
+# The polish rewrites the whole script. On Haiku 5.5 at low effort it used
+# 18,418 of the old 24000 (2026-10-12), too close to truncation; a truncated
+# batch polish is discarded and paid for again on the real-time path.
+POLISH_MAX_TOKENS = 64000
+
 def create_message(client, stream=False, **kwargs):
     """client.messages.create/stream with adaptive thinking + bounded effort.
 
@@ -975,16 +980,21 @@ EVENT_UNFOUND_DEGRADE_SHARE = 1 / 3
 # credit — every call logs the usage block Brave returns, so refit this off a
 # measured month the way _SPEECH_RATE_FITS was refitted from the sidecars,
 # rather than off appetite.
-BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"))  # 0=disabled
+#
+# Refit 2026-10-12 off the measured months: September 77 queries for $3.11,
+# October 1-8 43 queries for $1.82 — about $0.041 a query, ~90% of it input
+# tokens (~7K a query). The $5 credit buys ~120 queries a month, so 4 a run
+# lasts the month; October's pace under 8 would have spent it by about the 22nd.
+BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "4"))  # 0=disabled
 #
 # September 2026 spent ~65 Answers queries against ~2,750 Search: the only
 # caller that asked Answers first was _resolve_script_questions_with_brave, capped
 # at 3, and the research agent almost never picked mode="answer". So 5 of the 8
 # slots a run could not be reached and the credit went unused while Search ran
 # short. Fact resolution now asks up to 5, and the tool description makes
-# "answer" the default for direct factual questions. Tokens are still the
-# unmeasured half of the price: refit off the logged `brave-answers tokens=`.
-SCRIPT_QUESTION_LIMIT = 5
+# "answer" the default for direct factual questions. Matches the run's Answers
+# budget since the 2026-10-12 refit.
+SCRIPT_QUESTION_LIMIT = 4
 # How much script question detection reads (see _script_question_excerpt).
 SCRIPT_QUESTION_SCAN_CHARS = 24000
 DEEP_DIVE_INJECT_DISCIPLINE_TAGS = os.getenv("PODCAST_DEEP_DIVE_INJECT_DISCIPLINE_TAGS", "0") == "1"
@@ -3904,7 +3914,9 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
         user_content=user_content,
         tools=tools, tool_executors=tool_executors,
         max_iterations=searches + fetches + 1,
-        max_tokens=12000 if events else 6000,
+        # Doubled for Haiku 5.5: the 2026-10-10 ballot pass truncated at 12000
+        # and wrote its findings on the low-effort retry.
+        max_tokens=24000 if events else 12000,
     )
 
     if result is None:
@@ -4185,9 +4197,10 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         "asked by one host but NOT answered within the dialogue — e.g. 'How much does it weigh?', "
         "'What does that cost?', 'How far is that?'. Ignore rhetorical questions and questions "
         "that are clearly answered later in the same exchange.\n\n"
-        "Give concise, web-searchable search queries that would find each answer "
-        "(e.g. \"Tesla Semi second battery weight kg\"). Return an empty list if there "
-        "are no unanswered factual questions.\n\n"
+        f"Give at most {SCRIPT_QUESTION_LIMIT} concise, web-searchable search queries that "
+        "would find each answer (e.g. \"Tesla Semi second battery weight kg\"), most "
+        "important first. Return an empty list if there are no unanswered factual "
+        "questions.\n\n"
         f"SCRIPT:\n{_script_question_excerpt(script)}"
     )
 
@@ -4195,7 +4208,10 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         resp = api_retry(lambda: client.messages.create(
             model=HAIKU_MODEL,
             thinking=thinking_off(HAIKU_MODEL),
-            max_tokens=300,
+            # 300 cut the JSON mid-string on every Haiku 5.5 run 2026-10-09..12
+            # ("Unterminated string ... char 711"): its tokenizer counts ~30%
+            # more tokens and it listed more queries than the slice keeps.
+            max_tokens=1000,
             messages=[{"role": "user", "content": detect_prompt}],
             output_config=_json_output({
                 "type": "object",
@@ -4210,7 +4226,13 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         if not queries or not isinstance(queries, list):
             return ""
     except Exception as e:
+        _abort_if_billing_wall(e)
         print(f"  ⚠️ Question detection skipped: {e}")
+        # Silent until 2026-10-12: four nights of polish ran without a single
+        # fact answer and neither the episode review nor the roadmap saw it.
+        degrade("script/fact-questions",
+                f"question detection failed ({type(e).__name__}) — polish ran "
+                f"without Brave fact answers")
         return ""
 
     results = []
@@ -4346,7 +4368,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         tools=tools, tool_executors=tool_executors,
         # Same budget and effort as the batch request it stands in for. At
         # 16000/medium the rewrite truncated and was paid for twice (2026-09-27).
-        max_iterations=4, max_tokens=24000, effort="low",
+        max_iterations=4, max_tokens=POLISH_MAX_TOKENS, effort="low",
     )
 
     if result and _polish_valid(script, result):
@@ -4428,7 +4450,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                         # be inspected and retried like the real-time path.
                         # Low effort leaves the budget for output instead of
                         # thinking, same tradeoff as the script-gen retry.
-                        "max_tokens": 24000,
+                        "max_tokens": POLISH_MAX_TOKENS,
                         "thinking": {"type": "adaptive"},
                         "output_config": {"effort": "low"},
                         "messages": [{"role": "user", "content": pf_prompt}]
@@ -9184,9 +9206,13 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         # minute later. The episode reviews record that retry on 28 of 29 days
         # 2026-09-01..29: the write premium costs ~$0.02 and the read saves
         # ~$0.06. Revisit if first drafts start landing on target.
+        # 24000 was Sonnet's budget. Haiku 5.5 thinks at medium by default and
+        # spent all 24000 thinking on every night checked (2026-10-10, -12), so
+        # each aired script was the low-effort retry below. Streaming carries
+        # 64000; on Haiku the extra headroom costs about $0.02 a night.
         request = {
             "model": SCRIPT_MODEL,
-            "max_tokens": 24000,
+            "max_tokens": 64000,
             "messages": [{"role": "user", "content": [
                 {"type": "text", "text": user_prompt,
                  "cache_control": {"type": "ephemeral"}},
@@ -9199,13 +9225,13 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         _log_claude_usage(response)
 
         if _truncated(response):
-            # Thinking ate the shared budget. Retry once with more headroom
-            # and low thinking effort so the full script fits.
-            print("⚠️ Script truncated at max_tokens — retrying with larger budget, low thinking effort...")
+            # Thinking ate the shared budget. Retry once at low thinking effort
+            # so the full script fits.
+            print("⚠️ Script truncated at max_tokens — retrying with low thinking effort...")
             response = api_retry(lambda: create_message(
                 client, stream=True,
                 output_config={"effort": "low"},
-                **{**request, "max_tokens": 32000},
+                **request,
             ))
             _log_claude_usage(response)
             if _truncated(response):
@@ -9245,7 +9271,6 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                     word_count=word_count, burned_phrases=burned_phrases)
             retry_request = {
                 **request,
-                "max_tokens": 32000,
                 "messages": request["messages"] + [
                     {"role": "assistant", "content": script},
                     {"role": "user", "content": expand_prompt},
