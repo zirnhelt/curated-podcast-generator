@@ -60,6 +60,7 @@ from podcast_generator import (
     strip_unsourced_correction,
     check_roundup_order,
     repair_roundup_order,
+    repair_roundup_until_ordered,
     _slice_roundup,
     _script_match_position,
     match_articles_to_script,
@@ -4228,6 +4229,63 @@ class TestRepairRoundupOrder:
         # Everything outside the roundup survives the splice
         assert "**COMMUNITY SPOTLIGHT**" in out
         assert "**CASEY:** Welcome to the show." in out
+
+
+    def test_retry_names_the_stories_left_behind(self, monkeypatch):
+        import podcast_generator as pg
+        script = _ROUNDUP_SCRIPT.format(first="A.", second="B.", third="C.")
+        sent = {}
+
+        def fake_send(client, **kwargs):
+            sent.update(kwargs)
+            return object()
+
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: object())
+        monkeypatch.setattr(pg, "api_retry", lambda fn, **kw: fn())
+        monkeypatch.setattr(pg, "send_claude", fake_send)
+        monkeypatch.setattr(pg, "_log_claude_usage", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "_truncated", lambda r: True)
+        articles = _order_articles()
+        repair_roundup_order(script, articles)
+        assert "PREVIOUS RE-SEQUENCE" not in sent["messages"][0]["content"]
+        repair_roundup_order(script, articles, [{"title": articles[1]["title"]}])
+        prompt = sent["messages"][0]["content"]
+        assert "PREVIOUS RE-SEQUENCE" in prompt
+        title = re.sub(r"^\W*\[[^\]]*\]\s*", "", articles[1]["title"])
+        assert f"- #2 {title}" in prompt
+
+
+class TestRepairRoundupUntilOrdered:
+    """2026-10-12: one reorder pass returned the same order (2 → 2)."""
+
+    def test_second_pass_gets_the_violations(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+        checks = iter([[{"title": "x"}], []])
+        monkeypatch.setattr(pg, "repair_roundup_order",
+                            lambda s, a, v=None: calls.append(v) or s + "!")
+        monkeypatch.setattr(pg, "check_roundup_order", lambda s, a: next(checks))
+        out, left = repair_roundup_until_ordered("s", [], [{"title": "first"}])
+        assert calls == [None, [{"title": "x"}]]
+        assert out == "s!!" and left == []
+
+    def test_stops_after_a_clean_pass(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+        monkeypatch.setattr(pg, "repair_roundup_order",
+                            lambda s, a, v=None: calls.append(v) or s)
+        monkeypatch.setattr(pg, "check_roundup_order", lambda s, a: [])
+        assert repair_roundup_until_ordered("s", [], [{"title": "t"}]) == ("s", [])
+        assert calls == [None]
+
+    def test_gives_up_after_the_pass_limit(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+        monkeypatch.setattr(pg, "repair_roundup_order",
+                            lambda s, a, v=None: calls.append(v) or s)
+        monkeypatch.setattr(pg, "check_roundup_order", lambda s, a: [{"title": "t"}])
+        _, left = repair_roundup_until_ordered("s", [], [{"title": "t"}])
+        assert len(calls) == pg.ROUNDUP_REPAIR_PASSES and left == [{"title": "t"}]
 
 
 class TestStripUnsourcedCorrection:

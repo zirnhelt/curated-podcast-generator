@@ -6350,6 +6350,10 @@ ROUNDUP_TAIL_RANK = 2
 # The kicker closes the roundup, so it ranks after the tail.
 ROUNDUP_KICKER_RANK = 3
 
+# Reorder calls before a mis-ordered roundup ships anyway; the second names the
+# stories the first left behind.
+ROUNDUP_REPAIR_PASSES = 2
+
 # Theme slots the pool cap reserves when the local block alone would fill the
 # segment. Local leads the show, but a themed episode with no theme stories in
 # its roundup is a worse outcome than a shorter local block.
@@ -6816,12 +6820,17 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
     return violations
 
 
-def repair_roundup_order(script: str, ordered_articles: list) -> str:
+def repair_roundup_order(script: str, ordered_articles: list,
+                         violations: list | None = None) -> str:
     """Re-sequence a roundup that ignored block order, rewriting only its bridges.
 
     Sends the roundup section alone (~1,200-1,500 words), not the whole script —
     the Deep Dive and spotlight have nothing to do with the defect. Returns the
     script unchanged on any failure: a mis-ordered episode still ships.
+
+    `violations` (from `check_roundup_order` after a failed pass) names the
+    stories the last pass left behind a later block, so the retry is told
+    exactly which ones to move.
     """
     client = get_anthropic_client()
     template = CONFIG['prompts'].get('roundup_reorder', {}).get('template')
@@ -6856,6 +6865,14 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
     prompt = _safe_template_substitute(
         template, required_order=required, roundup=body,
     )
+    retry_note = CONFIG['prompts']['roundup_reorder'].get('retry_note')
+    if violations and retry_note:
+        listed = {a.get('title', ''): i for i, a in enumerate(ordered_articles, start=1)}
+        displaced = "\n".join(
+            f"- #{listed.get(v['title'], '?')} "
+            + re.sub(r'^\W*\[[^\]]*\]\s*', '', v['title'])
+            for v in violations)
+        prompt += _safe_template_substitute(retry_note, displaced=displaced)
 
     # Thinking off: a reorder needs no reasoning, and Sonnet thinks by default
     # into the same 4000 tokens the roundup has to fit in. 2026-09-26 truncated
@@ -6882,6 +6899,19 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
         print("  ⚠️  Roundup reorder came back short, keeping original order")
         return script
     return f"{before}\n{reordered}\n{after}" if after else f"{before}\n{reordered}"
+
+
+def repair_roundup_until_ordered(script: str, ordered_articles: list,
+                                 violations: list) -> tuple[str, list]:
+    """Up to ROUNDUP_REPAIR_PASSES reorder calls; returns the script and what is
+    still out of order. The first pass gets the plain prompt; later passes name
+    the stories the last one left behind (2026-10-12: one pass, 2 → 2)."""
+    for n in range(ROUNDUP_REPAIR_PASSES):
+        script = repair_roundup_order(script, ordered_articles, violations if n else None)
+        violations = check_roundup_order(script, ordered_articles)
+        if not violations:
+            break
+    return script, violations
 
 
 def _keyword_hit_count(text: str, keywords) -> int:
@@ -13032,12 +13062,12 @@ def run_script_stage() -> tuple[str, str] | None:
                       f"{_worst['title'][:70]!r} at turn {_worst['position']} "
                       f"behind a rank-{_worst['blocked_by_rank']} story at turn "
                       f"{_worst['blocked_by_position']}; repairing...")
-                script = repair_roundup_order(script, news_articles)
-                _violations = check_roundup_order(script, news_articles)
+                script, _violations = repair_roundup_until_ordered(
+                    script, news_articles, _violations)
                 if _violations:
                     degrade("script/roundup-order",
                             f"{len(_violations)} story(ies) still aired after a later "
-                            f"block after one repair pass")
+                            f"block after {ROUNDUP_REPAIR_PASSES} repair passes")
                 else:
                     print("✅ Roundup re-sequenced into block order")
 
