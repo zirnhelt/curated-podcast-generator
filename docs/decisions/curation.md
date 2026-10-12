@@ -345,6 +345,13 @@ A cluster is kept adjacent so the back half plays as a mini-arc; past three it s
 and becomes what the episode is about. The overflow is dropped, never compressed — dropped
 articles never reach citations, so dedup lets them resurface on a better-matched day.
 
+**A roundup the model mis-orders gets two repair passes** (`repair_roundup_until_ordered`,
+`ROUNDUP_REPAIR_PASSES`). On 2026-10-12 two `civic_affairs` stories on Doerkson aired between
+theme stories, and the single reorder call (Haiku 5.5 since 2026-10-08) returned the same
+order: 2 violations before, 2 after. The second pass appends `roundup_reorder.retry_note`,
+naming each story `check_roundup_order` still finds out of place with its required position.
+About $0.002 on the days it fires; the miss had been seen three times in six weeks.
+
 **Blocks decide what airs together; `_sequence_roundup` decides the order inside one.** The
 discipline clustering above ran on the tail alone — `local` and `theme` were sorted by
 place-name density and keyword density respectively, neither of which says anything about what
