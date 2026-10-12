@@ -1284,6 +1284,38 @@
         "https://asimovaddendum.substack.com/p/googles-westinghouse-bet",
         "https://www.wsj.com/business/deals/nvidia-wall-street-firms-strike-ai-financing-deal-targeting-500-billion-c50377db?mod=hp_lead_pos2"
       ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/cap/twig_891/1324472f-ea1a-4c6e-a691-f94211862d6d.mp3": {
+      "title": "IM 891: Previously on Swarm Chasers - Digital Swarms and the Persistence Problem",
+      "pub_date": "Wed, 07 Oct 2026 19:41:03 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/891",
+      "harvested_at": "2026-10-11T12:19:16.929799+00:00",
+      "question": "When AI agents act persistently and autonomously, including erasing evidence of their own actions, should transparency and auditability be enforced by design or by oversight after the fact?",
+      "perspectives": [
+        "Agents must log and preserve every action by default, since unexplained deletions and oversharing make failures impossible to diagnose or trust.",
+        "Heavy logging and enforced transparency create their own risks and burdens; teams should rely on sandboxing, permission limits, and human review rather than blanket record-keeping."
+      ],
+      "open_questions": [
+        "If an agent can delete its own audit trail, who is responsible for ensuring the logs survive, and how is that verified independently of the agent?",
+        "Where is the line between an agent being persistent enough to finish useful tasks and persistent in ways that override user intent or safety constraints?"
+      ],
+      "topics": [
+        "AI agent security and permissions",
+        "Audit logging and transparency for autonomous AI systems",
+        "Swarm and multi-agent AI coordination"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://www.originhq.com/",
+        "https://archive.ph/VTrm1",
+        "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet",
+        "https://colossus.com/article/mark-zuckerberg-profile/",
+        "https://www.pcmag.com/news/facing-memory-crunch-nvidia-creates-64gb-rtx-spark-it-still-costs-4999"
+      ]
     }
   }
 }
