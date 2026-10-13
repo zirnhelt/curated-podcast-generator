@@ -620,6 +620,19 @@ changes, none of which alters what airs:
   until 2026-10-13 it followed `CLAUDE_SONNET_MODEL`, which changed to Haiku 5.5 on 2026-10-08, so
   the grades on either side of that date came from different graders.
 
+**The weekly review also prints the reader's own verdicts, by polish arm** (2026-10-14).
+Story-choice ratings cannot grade a polish model, because the polish never changes which stories
+air; the reader's keep / meh / skip on each episode can (`review.html` in `super-rss-feed`,
+"How was the episode?", saved as `rating: 'episode'` rows in its `feedback/` files). The report
+ends with a table built in Python, not by the model (`verdict_table`): the last 28 days of
+verdicts joined by date to each episode's citations and grouped by `models.review` and
+`models.polish` (`original` is the unpolished draft; `not recorded` is every episode before
+2026-10-14). It reads the feed repo's files over the GitHub contents API, one request per save date;
+a failed read is named in the report as partial rather than shown as a quiet fortnight, and a
+failure building the table is one line in the report, never a failed review. About 14 episodes
+per arm shows only a large gap (6 keeps against 12 is p = 0.046; 7 against 11 is p = 0.24): read
+anything smaller as no detectable difference.
+
 `CLAUDE_REVIEW_MODEL` is also read by `episode_review.py` (the nightly review, and the roadmap
 distiller through `ROADMAP_MODEL`). It is passed only to `periodic-review.yml`; passing it to
 `daily-podcast.yml` would move both off Haiku.
