@@ -1079,8 +1079,39 @@ ROUNDUP_BACKFILL_SPARES = 5
 _api_call_counts = {}
 _api_input_token_totals = {}
 _review_model_used = None
+# How the polish pass actually ended: "batch", "realtime", "skipped" (the clean-draft
+# fast path) or "original" (every attempt was rejected or failed, so the unpolished
+# draft shipped). _review_model_used only records the model that was *selected*: from
+# 2026-10-07 the batch polish was discarded on about four nights in seven and nothing
+# said so, which made a polish-model trial unreadable.
+_polish_outcome_used = None
 # Pre-polish quality score set in main() before the polish call; read by select_review_model.
 _raw_quality_score = None
+
+
+def _record_polish_outcome(outcome: str) -> None:
+    """Remember how the polish ended for the citations, and say so when it did not.
+
+    "original" means the unpolished draft ships. The polish is an improvement pass and
+    is allowed to fail, but not silently: this used to leave a green run, an unchanged
+    credit and no trace beyond one stdout line.
+    """
+    global _polish_outcome_used
+    _polish_outcome_used = outcome
+    if outcome == "original":
+        degrade("script/polish",
+                f"polish did not ship — the unpolished draft aired "
+                f"(selected {_review_model_used or POLISH_MODEL}; see the batch and "
+                f"real-time lines above)")
+
+
+def _review_credit_label() -> str:
+    """The credits name what edited the script. A draft that shipped as written
+    ("original", or "skipped" on the clean-draft fast path, where no model is even
+    selected) had no reviewer, so naming POLISH_MODEL there would be wrong."""
+    if _polish_outcome_used in ("original", "skipped"):
+        return "none (unpolished draft)"
+    return _review_model_used or POLISH_MODEL
 
 
 def select_review_model(deep_dive_articles):
@@ -7849,7 +7880,8 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     # Build HTML credits block
     credits = CONFIG['credits']['structured']
-    review_model_label = _review_model_used or POLISH_MODEL
+    # Credits name what actually did the work: an unpolished draft has no reviewer.
+    review_model_label = _review_credit_label()
     tts_label = get_tts_credit()
     brave_credit = "Web Search: Brave Search API<br>"
     weather_credit = f"Weather Data: {credits['weather_data']}<br>" if weather_used else ""
@@ -8492,6 +8524,9 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
             "models": {
                 "script": SCRIPT_MODEL,
                 "review": _review_model_used or POLISH_MODEL,
+                # What happened to the polish: batch | realtime | skipped | original.
+                # "review" is the model selected, not proof its text shipped.
+                "polish": _polish_outcome_used,
                 "summary": SUMMARY_MODEL,
             },
             **({"quality": quality} if quality else {}),
@@ -12997,6 +13032,7 @@ def run_script_stage() -> tuple[str, str] | None:
         _aired_draft = 0
         with segment("script/aired-draft", critical=False):
             _aired_draft = len(find_aired_repeats(script, date_key)) if script else 0
+        _polish_outcome = "original"  # the fallback; set before the block (segment rule)
         with segment("script/polish", critical=False):
             # Post-processing: polish + fact-check + debate summary.
             # One chain, not three independent ifs: the fast-path branch below
@@ -13007,6 +13043,7 @@ def run_script_stage() -> tuple[str, str] | None:
             # Optional fast-path: skip rewrite when the script is already clean.
             if PODCAST_SKIP_CLEAN_POLISH and _raw_quality_score.get("total_hits", 999) <= CLEAN_POLISH_MAX_HITS:
                 print("✨ Skipping polish: clean script fast-path enabled")
+                _polish_outcome = "skipped"
             # Try batch API first (50% cost discount), fall back to the agentic
             # real-time polish+factcheck loop (which resolves unanswered factual
             # questions itself via web_search, only when it decides it needs to).
@@ -13028,27 +13065,37 @@ def run_script_stage() -> tuple[str, str] | None:
                 )
                 if batch_script:
                     script = batch_script
+                    _polish_outcome = "batch"
                 else:
                     # Batch polish failed — fall back to the agentic real-time loop
                     print("⚠️ Batch polish failed, falling back to agentic polish+factcheck...")
+                    _unpolished = script
                     script = polish_and_factcheck_with_agent(
                         script, today_theme, news_articles, deep_dive_articles,
                         research_insights=brave_context,
                         corrections=email_corrections,
                         anchor_block=anchor_block_for_polish,
                     )
+                    # It hands back the very object it was given when it gives up.
+                    if script is not _unpolished:
+                        _polish_outcome = "realtime"
 
                 if batch_debate:
                     debate_summary = batch_debate
 
             elif script:
                 # Real-time path (batch disabled) — agentic polish+factcheck loop
+                _unpolished = script
                 script = polish_and_factcheck_with_agent(
                     script, today_theme, news_articles, deep_dive_articles,
                     research_insights=brave_context,
                     corrections=email_corrections,
                     anchor_block=anchor_block_for_polish,
                 )
+                if script is not _unpolished:
+                    _polish_outcome = "realtime"
+
+        _record_polish_outcome(_polish_outcome)
 
         if not script:
             print("❌ Failed to generate script. Exiting.")

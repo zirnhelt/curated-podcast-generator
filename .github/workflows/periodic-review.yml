@@ -2,7 +2,9 @@ name: Periodic Script Review
 
 on:
   schedule:
-    # Every Sunday at 2:00 AM Pacific (09:00 UTC summer / 10:00 UTC winter)
+    # Scheduled for Sunday 2:00 AM Pacific (09:00 UTC summer / 10:00 UTC winter), but
+    # GitHub has started it at 14:47 and 15:33 UTC on recent Sundays: read the report
+    # in the afternoon.
     - cron: '0 9 * * 0'
   workflow_dispatch:
     inputs:

@@ -917,6 +917,78 @@ class TestRefusalRetry:
         assert pg.OPUS_REVIEW_MODEL == "claude-opus-5-5"
 
 
+class TestPolishOutcome:
+    """models.review is the model *selected*. From 2026-10-07 the batch polish was
+    discarded on about four nights in seven (the rewrite landed under the word floor)
+    and the unpolished draft or a second, real-time polish shipped with nothing to say
+    so, which made a polish-model trial unreadable."""
+
+    @pytest.fixture(autouse=True)
+    def _reset(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", None)
+        self.recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: self.recorded.append((name, detail)))
+
+    def test_an_unpolished_draft_is_recorded_and_degrades(self):
+        import podcast_generator as pg
+        pg._record_polish_outcome("original")
+        assert pg._polish_outcome_used == "original"
+        assert [name for name, _ in self.recorded] == ["script/polish"]
+
+    @pytest.mark.parametrize("outcome", ["batch", "realtime", "skipped"])
+    def test_a_shipped_or_deliberately_skipped_polish_is_not_a_degradation(self, outcome):
+        import podcast_generator as pg
+        pg._record_polish_outcome(outcome)
+        assert pg._polish_outcome_used == outcome
+        assert self.recorded == []
+
+    def test_the_citations_carry_the_outcome_beside_the_selected_model(self):
+        """The models block is built inside a very large function; read it from the
+        source so no pipeline run is needed. The value must be the module global
+        itself: a bare `"polish": None` would carry the key and say nothing."""
+        import ast
+        from pathlib import Path
+        import podcast_generator as pg
+        tree = ast.parse(Path(pg.__file__).read_text(encoding="utf-8"))
+        models = [n for n in ast.walk(tree) if isinstance(n, ast.Dict)
+                  and {"script", "review", "summary"} <= {k.value for k in n.keys
+                                                          if isinstance(k, ast.Constant)}]
+        assert models, "the citations models block is gone"
+        for block in models:
+            value = dict((k.value, v) for k, v in zip(block.keys, block.values)
+                         if isinstance(k, ast.Constant))["polish"]
+            assert isinstance(value, ast.Name) and value.id == "_polish_outcome_used"
+
+    @pytest.mark.parametrize("outcome", ["original", "skipped"])
+    def test_a_draft_that_shipped_as_written_credits_no_reviewer(self, monkeypatch, outcome):
+        """"skipped" never selects a model, so the credit used to name POLISH_MODEL."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", outcome)
+        monkeypatch.setattr(pg, "_review_model_used", "claude-sonnet-5-5")
+        assert pg._review_credit_label() == "none (unpolished draft)"
+
+    @pytest.mark.parametrize("outcome", [None, "batch", "realtime"])
+    def test_a_polish_that_shipped_credits_the_model_selected(self, monkeypatch, outcome):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", outcome)
+        monkeypatch.setattr(pg, "_review_model_used", "claude-opus-5-5")
+        assert pg._review_credit_label() == "claude-opus-5-5"
+        monkeypatch.setattr(pg, "_review_model_used", None)
+        assert pg._review_credit_label() == pg.POLISH_MODEL
+
+    def test_the_credit_reaches_the_published_episode_notes(self, monkeypatch):
+        """End to end through the real description builder, not the helper alone."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_review_model_used", "claude-sonnet-5-5")
+        monkeypatch.setattr(pg, "_polish_outcome_used", "original")
+        unpolished = pg.generate_episode_description([], [], "Working Lands & Industry")
+        assert "Script Review Model: none (unpolished draft)<br>" in unpolished
+        monkeypatch.setattr(pg, "_polish_outcome_used", "batch")
+        polished = pg.generate_episode_description([], [], "Working Lands & Industry")
+        assert "Script Review Model: claude-sonnet-5-5<br>" in polished
+
+
 class TestPolishFallbackBudget:
     def test_fallback_matches_the_batch_budget(self, monkeypatch):
         """At 16000/medium the 2026-09-27 fallback truncated and ran twice."""
