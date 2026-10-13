@@ -86,6 +86,10 @@ def _resp(status=200, body=None):
         raise_for_status=lambda: (_ for _ in ()).throw(requests.HTTPError(str(status))) if status >= 400 else None)
 
 
+def _article_row():
+    return {"url": "https://x.test/a", "rating": "good"}
+
+
 def _episode(when, verdict, reasons=(), rated="2026-10-14T10:00:00Z"):
     return {"rating": "episode", "episode_date": when, "episode_verdict": verdict,
             "episode_reasons": list(reasons), "rated_at": rated}
@@ -133,17 +137,35 @@ class TestFetchEpisodeVerdicts:
         rs.fetch_episode_verdicts(TODAY, days=3, get=self._get({}, calls))
         assert calls == ["2026-10-20", "2026-10-19", "2026-10-18", "2026-10-17"]
 
-    def test_a_failure_stops_the_read_and_is_reported_with_what_was_read(self):
-        files = {"2026-10-20": [_episode("2026-10-19", "keep")], "2026-10-19": _resp(403)}
+    def test_a_failed_read_is_counted_and_does_not_discard_the_other_days(self):
+        files = {"2026-10-20": [_episode("2026-10-19", "keep")], "2026-10-19": _resp(403),
+                 "2026-10-15": [_episode("2026-10-14", "meh")]}
         verdicts, problem = rs.fetch_episode_verdicts(TODAY, get=self._get(files))
-        assert list(verdicts) == ["2026-10-19"]
-        assert "HTTPError" in problem and "2026-10-19" in problem
+        assert sorted(verdicts) == ["2026-10-14", "2026-10-19"]
+        assert problem.startswith("1 of 29 reads failed") and "HTTPError" in problem and "2026-10-19" in problem
+
+    def test_no_file_in_the_whole_window_is_a_problem_not_a_quiet_fortnight(self):
+        """The reader reviews articles most days, so 29 straight 404s mean the repo, the path or
+        the token changed, not that nobody rated."""
+        verdicts, problem = rs.fetch_episode_verdicts(TODAY, get=self._get({}))
+        assert verdicts == {} and "no feedback file found in the last 29 days" in problem
+
+    def test_files_with_no_episode_rows_are_not_a_problem(self):
+        _, problem = rs.fetch_episode_verdicts(TODAY, get=self._get({"2026-10-20": [_article_row()]}))
+        assert problem is None
+
+    def test_a_tie_goes_to_the_newer_file(self):
+        """Files are read newest first; with equal (or missing) timestamps the newer file's row stays."""
+        files = {"2026-10-20": [_episode("2026-10-18", "skip", rated="")],
+                 "2026-10-19": [_episode("2026-10-18", "keep", rated="")]}
+        verdicts, _ = rs.fetch_episode_verdicts(TODAY, get=self._get(files))
+        assert verdicts["2026-10-18"]["episode_verdict"] == "skip"
 
     def test_a_network_error_is_a_problem_not_a_crash(self):
         def get(*a, **k):
             raise requests.ConnectionError("down")
         verdicts, problem = rs.fetch_episode_verdicts(TODAY, get=get)
-        assert verdicts == {} and "ConnectionError" in problem
+        assert verdicts == {} and "29 of 29 reads failed" in problem and "ConnectionError" in problem
 
     def test_a_malformed_file_is_a_problem_not_a_crash(self):
         files = {"2026-10-20": SimpleNamespace(status_code=200, raise_for_status=lambda: None,
@@ -217,17 +239,43 @@ class TestVerdictTable:
         assert "could not be read in full" in out and "partial" in out
 
     def test_the_small_sample_caveat_matches_the_arithmetic(self):
-        """6 keeps against 12 of 14 each is p = 0.046 (two-sided Fisher); 7 against 11 is 0.24."""
+        """Two-sided Fisher exact, keeps out of n rated in each arm."""
         from math import comb
 
-        def fisher(a, b, n=14):
+        def fisher(a, b, n):
             k, total = a + b, 2 * n
 
             def p(x):
                 return comb(n, x) * comb(n, k - x) / comb(total, k)
             return sum(p(x) for x in range(max(0, k - n), min(n, k) + 1) if p(x) <= p(a) + 1e-12)
-        assert round(fisher(6, 12), 2) == 0.05 and fisher(7, 11) > 0.2
-        assert "6 keeps against 12 is about p = 0.05; 7 against 11 is not" in self._table({"2026-10-15": _episode("2026-10-15", "keep")})
+        # "at 7 rated per arm ... 1 against 6, or 2 against 7" shows; one fewer does not
+        assert fisher(1, 6, 7) < 0.05 and fisher(2, 7, 7) < 0.05
+        assert fisher(1, 5, 7) >= 0.05 and fisher(2, 6, 7) >= 0.05
+        # "at 14 per arm ... 6 against 12 is p = 0.046, 7 against 11 is not"
+        assert round(fisher(6, 12, 14), 3) == 0.046 and fisher(7, 11, 14) > 0.2
+        out = self._table({"2026-10-15": _episode("2026-10-15", "keep")})
+        assert "at 7 rated per arm only about a 5-keep gap shows (1 against 6, or 2 against 7)" in out
+        assert "6 against 12 is p = 0.046, 7 against 11 is not" in out
+        assert "Count the Rated column, not Episodes" in out
+
+    def test_the_keep_rate_is_of_rated_episodes_not_of_all_episodes(self):
+        """Two original-arm episodes, one rated keep: 100%, not 50%."""
+        out = self._table({"2026-10-16": _episode("2026-10-16", "keep")})
+        assert "| claude-sonnet-5-5 | original | 2 | 1 | 1 | 0 | 0 | 100% | — |" in out
+
+    def test_every_ticked_reason_is_shown_not_just_the_top_three(self):
+        """The caption asks for Writing against Stories; a top-three cut can hide one of them."""
+        reasons = ["Too long", "Repetitive", "Hosts", "Writing", "Stories"]
+        verdicts = {d: _episode(d, "meh", reasons) for d in ("2026-10-16", "2026-10-17")}
+        row = next(l for l in self._table(verdicts).splitlines() if "| original |" in l)
+        assert "Writing ×2" in row and "Stories ×2" in row
+
+    def test_a_window_with_more_than_one_script_model_says_the_rows_may_mix_writers(self):
+        mixed = {d: {**m, "script": "claude-haiku-5-5"} for d, m in MODELS.items()}
+        mixed["2026-10-14"] = {"review": "claude-sonnet-5-5", "polish": "batch", "script": "claude-sonnet-5"}
+        out = self._table({"2026-10-15": _episode("2026-10-15", "keep")}, models=mixed)
+        assert "More than one script model in this window (claude-haiku-5-5, claude-sonnet-5)" in out
+        assert "More than one script model" not in self._table({"2026-10-15": _episode("2026-10-15", "keep")})
 
 
 class TestLoadEpisodeModels:
@@ -241,6 +289,12 @@ class TestLoadEpisodeModels:
 
         assert rs.load_episode_models(TODAY) == {"2026-10-19": {"review": "m", "polish": "batch"}}
 
+    def test_the_window_includes_its_first_day_and_excludes_the_one_before(self, tmp_path, monkeypatch):
+        for when in ("2026-09-21", "2026-09-22"):          # TODAY (2026-10-20) minus 28 days is 09-22
+            (tmp_path / f"citations_{when}_x.json").write_text(json.dumps({"episode": {"date": when, "models": {"review": "m"}}}))
+        monkeypatch.setattr(rs, "SCRIPTS_DIR", tmp_path)
+        assert list(rs.load_episode_models(TODAY)) == ["2026-09-22"]
+
 
 class TestBuildVerdictSection:
     def test_a_failure_becomes_a_line_not_an_exception(self, monkeypatch):
@@ -250,11 +304,13 @@ class TestBuildVerdictSection:
         out = rs.build_verdict_section(TODAY)
         assert "could not be built (RuntimeError)" in out
 
-    def test_main_appends_it_to_the_saved_report(self, tmp_path, monkeypatch):
+    def test_main_puts_it_ahead_of_the_model_report(self, tmp_path, monkeypatch):
+        """The issue body keeps the first 65,000 characters: a cut should take the long model
+        report, never the table that decides the polish trial."""
         monkeypatch.chdir(tmp_path)
         monkeypatch.setattr(rs, "run_review", lambda days: "MODEL REPORT")
         monkeypatch.setattr(rs, "build_verdict_section", lambda: "## Listener verdicts by polish arm\n\nTABLE\n")
         monkeypatch.setattr(sys, "argv", ["review_scripts.py", "--output", "file"])
         rs.main()
         saved = next((tmp_path / "reviews").glob("review_*.md")).read_text()
-        assert saved.index("MODEL REPORT") < saved.index("## Listener verdicts by polish arm")
+        assert saved.index("## Listener verdicts by polish arm") < saved.index("MODEL REPORT")

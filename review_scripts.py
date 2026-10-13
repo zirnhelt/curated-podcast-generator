@@ -412,16 +412,19 @@ Format as clean Markdown. Be direct and specific — vague feedback is not usefu
 def fetch_episode_verdicts(today: date, days: int = VERDICT_WINDOW_DAYS, get=requests.get):
     """(episode date -> the reader's latest verdict row, problem or None).
 
-    Reads the feed repo's feedback files for the last `days` save dates. A day with no file is
-    a 404 and normal. Anything else (network, rate limit, bad JSON) stops the read and is
-    returned as `problem`, with what was read so far, so a partial table says it is partial
-    instead of passing for a quiet fortnight.
+    Reads the feed repo's feedback files for the last `days` save dates, newest first. A day
+    with no file is a 404 and normal. A failed read (network, rate limit, bad JSON) does not
+    stop the others, but is counted in `problem`; and finding no file at all in the window is a
+    problem too (the repo, path or token access changed), because the reader reviews articles
+    most days and an empty window is not "nobody rated". Either way the table says so instead
+    of passing for a quiet fortnight.
     """
     headers = {"Accept": "application/vnd.github.raw+json"}
     token = os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
     verdicts: dict[str, dict] = {}
+    files, failures = 0, []
     for back in range(days + 1):
         day = (today - timedelta(days=back)).isoformat()
         try:
@@ -432,7 +435,9 @@ def fetch_episode_verdicts(today: date, days: int = VERDICT_WINDOW_DAYS, get=req
             resp.raise_for_status()
             rows = resp.json().get("ratings", [])
         except (requests.RequestException, ValueError, AttributeError) as exc:
-            return verdicts, f"{type(exc).__name__} reading feedback/{day}.json"
+            failures.append(f"{type(exc).__name__} reading feedback/{day}.json")
+            continue
+        files += 1
         for row in rows if isinstance(rows, list) else []:
             if not isinstance(row, dict) or row.get("rating") != EPISODE_RATING:
                 continue
@@ -440,9 +445,15 @@ def fetch_episode_verdicts(today: date, days: int = VERDICT_WINDOW_DAYS, get=req
             if not isinstance(when, str) or verdict not in VERDICT_ORDER:
                 continue
             prior = verdicts.get(when)
-            # Changing your mind about an episode replaces the earlier answer: latest wins.
-            if prior is None or str(row.get("rated_at") or "") >= str(prior.get("rated_at") or ""):
+            # Changing your mind about an episode replaces the earlier answer: latest wins. Files
+            # are read newest first, so on a tie (or no timestamp) the newer file's row stays.
+            if prior is None or str(row.get("rated_at") or "") > str(prior.get("rated_at") or ""):
                 verdicts[when] = row
+    if failures:
+        return verdicts, f"{len(failures)} of {days + 1} reads failed, first: {failures[0]}"
+    if not files:
+        return verdicts, (f"no feedback file found in the last {days + 1} days; the repo, the path "
+                          "or the token's access may have changed")
     return verdicts, None
 
 
@@ -502,19 +513,26 @@ def verdict_table(verdicts: dict[str, dict], episode_models: dict[str, dict], to
         counts = Counter(r["episode_verdict"] for r in rated)
         reasons = Counter(x for r in rated for x in (r.get("episode_reasons") or []) if isinstance(x, str))
         rate = f"{round(100 * counts['keep'] / len(rated))}%" if rated else "—"
-        top = ", ".join(f"{name} ×{n}" for name, n in reasons.most_common(3)) or "—"
+        # All of them (the page offers six): the caption's Writing-versus-Stories comparison is
+        # the one thing a top-three cut can hide.
+        top = ", ".join(f"{name} ×{n}" for name, n in reasons.most_common()) or "—"
         lines.append(f"| {key[0]} | {key[1]} | {len(dates)} | {len(rated)} | {counts['keep']} | "
                      f"{counts['meh']} | {counts['skip']} | {rate} | {top} |")
 
     unmatched = sorted(d for d in verdicts if d not in episode_models)
     lines += ["", f"Rated {rated_total} of {len(episode_models)} episodes with citations in the window."]
+    writers = sorted({str(m.get("script") or "?") for m in episode_models.values()})
+    if len(writers) > 1:
+        lines.append(f"⚠️ More than one script model in this window ({', '.join(writers)}): "
+                     "a row can mix episodes written by different models.")
     if unmatched:
         lines.append(f"Verdicts for dates with no citations in the window (not in the table): {', '.join(unmatched)}.")
     lines += [
         "",
-        "*Small samples: with about 14 episodes per arm only a large gap shows (6 keeps against 12 is "
-        "about p = 0.05; 7 against 11 is not). Read anything smaller as no detectable difference. "
-        "\"Writing\" ticked more than \"Stories\" is what points at the polish rather than story choice.*",
+        "*Small samples. Count the Rated column, not Episodes: at 7 rated per arm only about a 5-keep gap "
+        "shows (1 against 6, or 2 against 7); at 14 per arm about 6 (6 against 12 is p = 0.046, 7 against 11 "
+        "is not). Read anything smaller as no detectable difference, and a row with fewer than about 5 rated "
+        "as an anecdote. \"Writing\" ticked more than \"Stories\" points at the polish rather than story choice.*",
     ]
     return "\n".join(lines) + "\n"
 
@@ -599,7 +617,9 @@ def main():
     args = parser.parse_args()
 
     report = run_review(args.days)
-    report += "\n\n---\n\n" + build_verdict_section()
+    # First, not last: the issue body keeps the first 65,000 characters, so the long model
+    # report is what a cut should take, never the table that decides the polish trial.
+    report = build_verdict_section() + "\n\n---\n\n" + report
 
     if args.output in ("stdout", "both"):
         print("\n" + "=" * 72 + "\n")
