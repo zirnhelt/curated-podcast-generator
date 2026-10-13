@@ -620,6 +620,31 @@ changes, none of which alters what airs:
   until 2026-10-13 it followed `CLAUDE_SONNET_MODEL`, which changed to Haiku 5.5 on 2026-10-08, so
   the grades on either side of that date came from different graders.
 
+**The weekly review also prints the reader's own verdicts, by polish arm** (2026-10-14).
+Story-choice ratings cannot grade a polish model, because the polish never changes which stories
+air; the reader's keep / meh / skip on each episode can (`review.html` in `super-rss-feed`,
+"How was the episode?", saved as `rating: 'episode'` rows in its `feedback/` files). The report
+opens with a table built in Python, not by the model (`verdict_table`): the last 28 days of
+verdicts joined by date to each episode's citations and grouped by `models.review` and
+`models.polish` (`original` is the unpolished draft; `not recorded` is every episode before
+2026-10-14). It sits first because the issue body keeps the first 65,000 characters, so a cut
+takes the long model report, never the table. It reads the feed repo's files over the GitHub
+contents API, one request per save date (the step passes `GH_TOKEN`: unauthenticated, a shared
+runner IP gets 60 an hour). A failed read does not stop the others, and is counted; finding no
+file at all in the window is reported too, because the reader reviews articles most days, so
+"no episode verdicts" would otherwise hide a changed repo, path or token. A failure building the
+table is one line in the report, never a failed review.
+
+What the table can and cannot say. The arms of a polish trial differ in `models.review`; the
+outcome splits each arm into nights the polish shipped (`batch`, `realtime`) and nights the draft
+aired unpolished (`original`), so read the `batch`/`realtime` rows against each other. Count the
+**Rated** column, not Episodes: at 7 rated per arm only about a 5-keep gap shows (1 against 6, or
+2 against 7); at 14 per arm about 6 (6 against 12 is p = 0.046, 7 against 11 is p = 0.24); a row
+with fewer than about 5 rated is an anecdote. Rows pool by review model and outcome only, so the
+report warns when the window holds more than one script model. `models.review` is the model
+selected for the polish: a Haiku refusal retried on the fallback model (a `claude/refusal` row),
+and other calls that use `POLISH_MODEL` (the roundup-order repair), are not separated in `models`.
+
 `CLAUDE_REVIEW_MODEL` is also read by `episode_review.py` (the nightly review, and the roadmap
 distiller through `ROADMAP_MODEL`). It is passed only to `periodic-review.yml`; passing it to
 `daily-podcast.yml` would move both off Haiku.

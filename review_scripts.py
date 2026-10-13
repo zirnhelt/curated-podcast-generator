@@ -19,10 +19,12 @@ import os
 import re
 import subprocess
 import sys
-from datetime import datetime, timedelta
+from collections import Counter
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import anthropic
+import requests
 
 from config_loader import SONNET_MODEL, message_text, thinking_off
 
@@ -34,6 +36,18 @@ REVIEWS_DIR = Path("reviews")
 # 2026-10-08 those default to Haiku 5.5, so without a pin the model grading the
 # scripts changes whenever the model writing them does.
 REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL") or SONNET_MODEL
+
+# The reader's own verdict on each episode: review.html's "How was the episode?" card saves
+# {rating: 'episode', episode_date, episode_verdict, episode_reasons} into super-rss-feed's
+# feedback/YYYY-MM-DD.json (named for the day it was saved, not the episode's date). Article
+# ratings grade story choice; the polish never changes which stories air, so only this grades
+# the writing. The window is wider than the report's --days so a trial that spans weeks
+# accumulates in one table.
+FEEDBACK_REPO = "zirnhelt/super-rss-feed"
+EPISODE_RATING = "episode"
+VERDICT_ORDER = ("keep", "meh", "skip")
+VERDICT_WINDOW_DAYS = 28
+POLISH_ORDER = ("batch", "realtime", "skipped", "original", "not recorded")
 
 WEEKDAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
@@ -395,6 +409,145 @@ Format as clean Markdown. Be direct and specific — vague feedback is not usefu
 """
 
 
+def fetch_episode_verdicts(today: date, days: int = VERDICT_WINDOW_DAYS, get=requests.get):
+    """(episode date -> the reader's latest verdict row, problem or None).
+
+    Reads the feed repo's feedback files for the last `days` save dates, newest first. A day
+    with no file is a 404 and normal. A failed read (network, rate limit, bad JSON) does not
+    stop the others, but is counted in `problem`; and finding no file at all in the window is a
+    problem too (the repo, path or token access changed), because the reader reviews articles
+    most days and an empty window is not "nobody rated". Either way the table says so instead
+    of passing for a quiet fortnight.
+    """
+    headers = {"Accept": "application/vnd.github.raw+json"}
+    token = os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    verdicts: dict[str, dict] = {}
+    files, failures = 0, []
+    for back in range(days + 1):
+        day = (today - timedelta(days=back)).isoformat()
+        try:
+            resp = get(f"https://api.github.com/repos/{FEEDBACK_REPO}/contents/feedback/{day}.json",
+                       headers=headers, timeout=15)
+            if resp.status_code == 404:
+                continue
+            resp.raise_for_status()
+            rows = resp.json().get("ratings", [])
+        except (requests.RequestException, ValueError, AttributeError) as exc:
+            failures.append(f"{type(exc).__name__} reading feedback/{day}.json")
+            continue
+        files += 1
+        for row in rows if isinstance(rows, list) else []:
+            if not isinstance(row, dict) or row.get("rating") != EPISODE_RATING:
+                continue
+            when, verdict = row.get("episode_date"), row.get("episode_verdict")
+            if not isinstance(when, str) or verdict not in VERDICT_ORDER:
+                continue
+            prior = verdicts.get(when)
+            # Changing your mind about an episode replaces the earlier answer: latest wins. Files
+            # are read newest first, so on a tie (or no timestamp) the newer file's row stays.
+            if prior is None or str(row.get("rated_at") or "") > str(prior.get("rated_at") or ""):
+                verdicts[when] = row
+    if failures:
+        return verdicts, f"{len(failures)} of {days + 1} reads failed, first: {failures[0]}"
+    if not files:
+        return verdicts, (f"no feedback file found in the last {days + 1} days; the repo, the path "
+                          "or the token's access may have changed")
+    return verdicts, None
+
+
+def load_episode_models(today: date, days: int = VERDICT_WINDOW_DAYS) -> dict[str, dict]:
+    """Episode date -> its `models` block, from the citations files in the window."""
+    cutoff = (today - timedelta(days=days)).isoformat()
+    found: dict[str, dict] = {}
+    for path in sorted(glob.glob(str(SCRIPTS_DIR / "citations_*.json"))):
+        try:
+            episode = json.loads(Path(path).read_text(encoding="utf-8")).get("episode") or {}
+        except (OSError, ValueError, AttributeError):
+            continue
+        when = episode.get("date")
+        if isinstance(when, str) and when >= cutoff:
+            found[when] = episode.get("models") or {}
+    return found
+
+
+def verdict_table(verdicts: dict[str, dict], episode_models: dict[str, dict], today: date,
+                  days: int = VERDICT_WINDOW_DAYS, problem: str | None = None) -> str:
+    """The reader's verdicts grouped by (review model, polish outcome), as a markdown section.
+
+    `models.review` is the model *selected*; `models.polish` says whether its text shipped
+    (`original` is the unpolished draft). Episodes before the outcome was logged are
+    `not recorded`. Python only: this is the ground truth the model's report is read against.
+    """
+    heading = "## Listener verdicts by polish arm"
+    lines = [heading, ""]
+    if problem:
+        lines += [f"⚠️ Verdicts could not be read in full ({problem}); what follows is partial.", ""]
+    if not verdicts:
+        lines.append(f"No episode verdicts in the last {days} days. Rate one with the card at the top of review.html.")
+        return "\n".join(lines) + "\n"
+
+    groups: dict[tuple[str, str], list[str]] = {}
+    for when, models in episode_models.items():
+        key = (str(models.get("review") or "?"), str(models.get("polish") or "not recorded"))
+        groups.setdefault(key, []).append(when)
+
+    def order(key: tuple[str, str]):
+        review, polish = key
+        return (POLISH_ORDER.index(polish) if polish in POLISH_ORDER else len(POLISH_ORDER), review)
+
+    lines += [
+        f"*Your keep / meh / skip per episode (review.html, \"How was the episode?\"), grouped by the episode's "
+        f"`models.review` and `models.polish`; `original` means the unpolished draft aired. "
+        f"The {days} days to {today.isoformat()}.*",
+        "",
+        "| Review model | Polish outcome | Episodes | Rated | Keep | Meh | Skip | Keep rate | Reasons ticked |",
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    rated_total = 0
+    for key in sorted(groups, key=order):
+        dates = groups[key]
+        rated = [verdicts[d] for d in dates if d in verdicts]
+        rated_total += len(rated)
+        counts = Counter(r["episode_verdict"] for r in rated)
+        reasons = Counter(x for r in rated for x in (r.get("episode_reasons") or []) if isinstance(x, str))
+        rate = f"{round(100 * counts['keep'] / len(rated))}%" if rated else "—"
+        # All of them (the page offers six): the caption's Writing-versus-Stories comparison is
+        # the one thing a top-three cut can hide.
+        top = ", ".join(f"{name} ×{n}" for name, n in reasons.most_common()) or "—"
+        lines.append(f"| {key[0]} | {key[1]} | {len(dates)} | {len(rated)} | {counts['keep']} | "
+                     f"{counts['meh']} | {counts['skip']} | {rate} | {top} |")
+
+    unmatched = sorted(d for d in verdicts if d not in episode_models)
+    lines += ["", f"Rated {rated_total} of {len(episode_models)} episodes with citations in the window."]
+    writers = sorted({str(m.get("script") or "?") for m in episode_models.values()})
+    if len(writers) > 1:
+        lines.append(f"⚠️ More than one script model in this window ({', '.join(writers)}): "
+                     "a row can mix episodes written by different models.")
+    if unmatched:
+        lines.append(f"Verdicts for dates with no citations in the window (not in the table): {', '.join(unmatched)}.")
+    lines += [
+        "",
+        "*Small samples. Count the Rated column, not Episodes: at 7 rated per arm only about a 5-keep gap "
+        "shows (1 against 6, or 2 against 7); at 14 per arm about 6 (6 against 12 is p = 0.046, 7 against 11 "
+        "is not). Read anything smaller as no detectable difference, and a row with fewer than about 5 rated "
+        "as an anecdote. \"Writing\" ticked more than \"Stories\" points at the polish rather than story choice.*",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def build_verdict_section(today: date | None = None) -> str:
+    """The verdict table, or one line saying why there is none. Never raises: the weekly
+    report is worth more than this table."""
+    today = today or datetime.utcnow().date()
+    try:
+        verdicts, problem = fetch_episode_verdicts(today)
+        return verdict_table(verdicts, load_episode_models(today), today, problem=problem)
+    except Exception as exc:  # noqa: BLE001 — see docstring
+        return f"## Listener verdicts by polish arm\n\n⚠️ The table could not be built ({type(exc).__name__}).\n"
+
+
 def run_review(days: int) -> str:
     config = load_config()
     scripts = find_recent_scripts(days)
@@ -464,6 +617,9 @@ def main():
     args = parser.parse_args()
 
     report = run_review(args.days)
+    # First, not last: the issue body keeps the first 65,000 characters, so the long model
+    # report is what a cut should take, never the table that decides the polish trial.
+    report = build_verdict_section() + "\n\n---\n\n" + report
 
     if args.output in ("stdout", "both"):
         print("\n" + "=" * 72 + "\n")
