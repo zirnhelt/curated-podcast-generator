@@ -244,7 +244,9 @@ _MULTI: dict[str, str] = {
     "deep_dive": r"- \[kw=\d+[^\]]*\] (.+)",
     "degradations": r"##\[warning\]Degraded '([^']+)': (.+)",
     "canary_failures": r"Gemini TTS canary failed on (.+?): (.+)",
-    "brave_failures": r"Brave Answers API failed for '([^']+)': (.+)",
+    # The print carries the payload's keys between the query and the error since
+    # 2026-09; without the optional bracket this matched nothing.
+    "brave_failures": r"Brave Answers API failed for '([^']+)'(?: \[[^\]]*\])?: (.+)",
 }
 
 # Things worth counting rather than listing — nine near-identical warnings are

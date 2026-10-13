@@ -106,6 +106,10 @@ When a change spans both repos:
 
 ---
 
+## Shared spend
+
+The two repos draw on one Brave Search key and its monthly cap, which is also the podcast's research budget. Read Brave's per-key usage export before trusting an estimate. Brave Answers is a separate plan with its own monthly credit, used only by this repo.
+
 ## Monitoring and Failure
 
 The podcast generator exits cleanly if the feed data is unavailable or stale. This is by design — a feed outage should never produce a bad episode.

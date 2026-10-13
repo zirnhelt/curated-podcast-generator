@@ -403,7 +403,7 @@ def run_review(days: int) -> str:
         print(f"No scripts found in the last {days} days under {SCRIPTS_DIR}/", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Reviewing {len(scripts)} script(s) from the last {days} day(s)...")
+    print(f"Reviewing {len(scripts)} script(s) from the last {days} day(s) with {REVIEW_MODEL}...")
     for name, _ in scripts:
         print(f"  • {name}")
 
@@ -442,6 +442,9 @@ def save_report(report: str, days: int) -> Path:
     with open(path, "w") as f:
         f.write(f"# Cariboo Signals Script Review — {date_str}\n\n")
         f.write(f"*Covering the last {days} day(s) of episodes.*  \n")
+        # Without this a week's grades cannot be tied to a grader: the reviewer has
+        # followed CLAUDE_SONNET_MODEL, and then CLAUDE_REVIEW_MODEL, as they changed.
+        f.write(f"*Reviewed by: {REVIEW_MODEL}*  \n")
         f.write(f"*Generated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}*\n\n")
         f.write("---\n\n")
         f.write(report)

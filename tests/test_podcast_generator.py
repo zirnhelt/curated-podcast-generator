@@ -917,6 +917,47 @@ class TestRefusalRetry:
         assert pg.OPUS_REVIEW_MODEL == "claude-opus-5-5"
 
 
+class TestPolishOutcome:
+    """models.review is the model *selected*. From 2026-10-07 the batch polish was
+    discarded on about four nights in seven (the rewrite landed under the word floor)
+    and the unpolished draft or a second, real-time polish shipped with nothing to say
+    so, which made a polish-model trial unreadable."""
+
+    @pytest.fixture(autouse=True)
+    def _reset(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", None)
+        self.recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: self.recorded.append((name, detail)))
+
+    def test_an_unpolished_draft_is_recorded_and_degrades(self):
+        import podcast_generator as pg
+        pg._record_polish_outcome("original")
+        assert pg._polish_outcome_used == "original"
+        assert [name for name, _ in self.recorded] == ["script/polish"]
+
+    @pytest.mark.parametrize("outcome", ["batch", "realtime", "skipped"])
+    def test_a_shipped_or_deliberately_skipped_polish_is_not_a_degradation(self, outcome):
+        import podcast_generator as pg
+        pg._record_polish_outcome(outcome)
+        assert pg._polish_outcome_used == outcome
+        assert self.recorded == []
+
+    def test_the_citations_carry_the_outcome_beside_the_selected_model(self):
+        """The models block is built inside a very large function; read it from the
+        source so no pipeline run is needed."""
+        import ast
+        from pathlib import Path
+        import podcast_generator as pg
+        tree = ast.parse(Path(pg.__file__).read_text(encoding="utf-8"))
+        models = [n for n in ast.walk(tree) if isinstance(n, ast.Dict)
+                  and {"script", "review", "summary"} <= {k.value for k in n.keys
+                                                          if isinstance(k, ast.Constant)}]
+        assert models, "the citations models block is gone"
+        assert all("polish" in {k.value for k in n.keys if isinstance(k, ast.Constant)}
+                   for n in models)
+
+
 class TestPolishFallbackBudget:
     def test_fallback_matches_the_batch_budget(self, monkeypatch):
         """At 16000/medium the 2026-09-27 fallback truncated and ran twice."""

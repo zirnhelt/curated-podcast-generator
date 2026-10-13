@@ -60,6 +60,13 @@ class TestScanLog:
         assert len(facts["brave_failures"]) == 3
         assert len(facts["clusters"]) == 3
 
+    def test_answers_failure_with_the_payload_keys_still_matches(self):
+        """The print gained "[keys]" between the query and the error; the pattern
+        matched nothing for as long as it did not allow for it."""
+        log = "  Brave Answers API failed for 'meshtastic 2.8' [model,stream]: 400 Client Error\n"
+        facts = episode_review.scan_log(log)
+        assert facts["brave_failures"] == [["meshtastic 2.8", "400 Client Error"]]
+
 
 class TestFalsehoodGuards:
     def test_echoed_workflow_source_is_not_a_warning(self, facts):

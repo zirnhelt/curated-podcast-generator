@@ -138,6 +138,16 @@ Optional (for weekend shows and bespoke):
 | `PODCAST_DEBUG_AGENT` | Set to `1` to log each tool call/result made by the agentic research and polish/fact-check loops |
 | `COHERE_API_KEY` | Cohere API key — enables semantic dedup and deep-dive reranking (set `USE_COHERE=1`) |
 
+Optional **repository variables** (the Variables tab, not Secrets; each is inert when unset):
+
+| Variable | Value |
+|---|---|
+| `CLAUDE_SONNET_MODEL` | Model for every Sonnet role. Unset means `claude-haiku-5-5` |
+| `CLAUDE_SCRIPT_MODEL` | Script writer alone. Unset means `CLAUDE_SONNET_MODEL` |
+| `CLAUDE_POLISH_MODEL` | Polish and fact-check pass alone (Opus escalation still overrides it). Unset means `CLAUDE_SONNET_MODEL` |
+| `CLAUDE_REVIEW_MODEL` | The weekly script reviewer alone. Unset means `CLAUDE_SONNET_MODEL`. Set it to a fixed model so grades stay comparable |
+| `USE_COHERE` | `0` turns Cohere off |
+
 Optional (for Cloudflare R2 audio hosting):
 
 | Secret | Value |

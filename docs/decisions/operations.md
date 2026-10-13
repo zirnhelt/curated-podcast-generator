@@ -179,7 +179,7 @@ timeout fell back to the real-time polish, which at 16000 tokens and medium effo
 ran a second time, and **a cancelled batch still bills every request that finished before the
 cancel** (6 of the 12). That was about $5–6 of the month, close to a fifth. The timeout is now
 20 minutes (the script step's `timeout-minutes` went to 45 to hold it), and the fallback runs at
-the batch's own budget: 24000 tokens, low effort.
+the batch's own budget: `POLISH_MAX_TOKENS` (64000 since 2026-10-12), low effort.
 
 ### Model moves (Opus 5.5, Sonnet 5.5)
 
@@ -346,12 +346,12 @@ asks for the headroom.
 **Answers is never reached from the speculative path.** A synthesized prose answer is the wrong
 instrument for thin-body backfill and the expensive one to run over 40 pre-curation candidates,
 so only the demand-driven callers ask it. Its budget counts **every request sent**, not each
-query answered — a shape probe is metered like an answer — and the default of 8 comes to ~250
-queries and ~$0.99 in query fees on a normal month, ~750 and ~$2.98 on a month full of
-triple-cron days. **The token half of that price is unmeasured, and it is the whole headroom
-left in the credit**, so every call logs the `usage` block Brave returns
-(`_log_api_call("brave-answers", …)`); refit the limit off a measured month the way
-`_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
+query answered — a shape probe is metered like an answer. Measured (September: 77 queries for
+$3.11; October 1–8: 43 for $1.82) a query costs about $0.041, ~90% of it input tokens, so the
+$5 credit buys ~120 queries a month and the default is **4 a run** (it was 8 until 2026-10-12,
+which at October's pace would have spent the credit by about the 22nd). Every call logs the
+`usage` block Brave returns (`_log_api_call("brave-answers", …)`); refit the limit off a
+measured month the way `_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
 
 **Backfill runs after curation, not before** (2026-09-27). The 2026-09-26 review flagged the
 12-call body-backfill budget: it ran over up to 40 pre-curation candidates, the airtime cap
@@ -600,3 +600,23 @@ still sized for Sonnet:
 
 `BRAVE_ANSWERS_CALL_LIMIT` was refit from 8 to 4 off the measured months (about $0.041 a
 query, mostly input tokens) so the $5 Answers credit lasts the month.
+
+**The polish now says how it ended (2026-10-13).** `models.review` in the citations is the model
+`select_review_model` *chose*, not proof its text aired. From 2026-10-07 the batch polish was
+discarded on about four nights in seven (the rewrite landed under `MIN_SCRIPT_WORDS` in
+`_polish_valid`), after which a second, real-time polish was paid for or the unpolished draft
+shipped, with no degrade row and a credit naming a model that never edited the script. Three
+changes, none of which alters what airs:
+
+- **`episode.models.polish`** is `batch`, `realtime`, `skipped` (the clean-draft fast path) or
+  `original`. A polish-model trial groups episodes by (model, outcome), never by model alone.
+- **`original` calls `degrade('script/polish')`**, so it reaches the job summary, the nightly review's
+  facts and the roadmap as `degraded:script/polish`. The credit then reads
+  `Script Review Model: none (unpolished draft)` instead of naming a model.
+- **The weekly reviewer records its own model** (`*Reviewed by: …*`). `CLAUDE_REVIEW_MODEL` pins it;
+  until 2026-10-13 it followed `CLAUDE_SONNET_MODEL`, which changed to Haiku 5.5 on 2026-10-08, so
+  the grades on either side of that date came from different graders.
+
+`CLAUDE_REVIEW_MODEL` is also read by `episode_review.py` (the nightly review, and the roadmap
+distiller through `ROADMAP_MODEL`). It is passed only to `periodic-review.yml`; passing it to
+`daily-podcast.yml` would move both off Haiku.
