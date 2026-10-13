@@ -62,6 +62,9 @@ jobs:
       - name: Run script review
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # The verdict table reads super-rss-feed's public feedback files, about 29 requests.
+          # Unauthenticated, a shared runner IP gets 60 an hour for everyone on it.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DAYS_TO_REVIEW: ${{ steps.params.outputs.days }}
         run: |
           python review_scripts.py --days "$DAYS_TO_REVIEW" --output file
