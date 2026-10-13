@@ -945,7 +945,8 @@ class TestPolishOutcome:
 
     def test_the_citations_carry_the_outcome_beside_the_selected_model(self):
         """The models block is built inside a very large function; read it from the
-        source so no pipeline run is needed."""
+        source so no pipeline run is needed. The value must be the module global
+        itself: a bare `"polish": None` would carry the key and say nothing."""
         import ast
         from pathlib import Path
         import podcast_generator as pg
@@ -954,8 +955,38 @@ class TestPolishOutcome:
                   and {"script", "review", "summary"} <= {k.value for k in n.keys
                                                           if isinstance(k, ast.Constant)}]
         assert models, "the citations models block is gone"
-        assert all("polish" in {k.value for k in n.keys if isinstance(k, ast.Constant)}
-                   for n in models)
+        for block in models:
+            value = dict((k.value, v) for k, v in zip(block.keys, block.values)
+                         if isinstance(k, ast.Constant))["polish"]
+            assert isinstance(value, ast.Name) and value.id == "_polish_outcome_used"
+
+    @pytest.mark.parametrize("outcome", ["original", "skipped"])
+    def test_a_draft_that_shipped_as_written_credits_no_reviewer(self, monkeypatch, outcome):
+        """"skipped" never selects a model, so the credit used to name POLISH_MODEL."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", outcome)
+        monkeypatch.setattr(pg, "_review_model_used", "claude-sonnet-5-5")
+        assert pg._review_credit_label() == "none (unpolished draft)"
+
+    @pytest.mark.parametrize("outcome", [None, "batch", "realtime"])
+    def test_a_polish_that_shipped_credits_the_model_selected(self, monkeypatch, outcome):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", outcome)
+        monkeypatch.setattr(pg, "_review_model_used", "claude-opus-5-5")
+        assert pg._review_credit_label() == "claude-opus-5-5"
+        monkeypatch.setattr(pg, "_review_model_used", None)
+        assert pg._review_credit_label() == pg.POLISH_MODEL
+
+    def test_the_credit_reaches_the_published_episode_notes(self, monkeypatch):
+        """End to end through the real description builder, not the helper alone."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_review_model_used", "claude-sonnet-5-5")
+        monkeypatch.setattr(pg, "_polish_outcome_used", "original")
+        unpolished = pg.generate_episode_description([], [], "Working Lands & Industry")
+        assert "Script Review Model: none (unpolished draft)<br>" in unpolished
+        monkeypatch.setattr(pg, "_polish_outcome_used", "batch")
+        polished = pg.generate_episode_description([], [], "Working Lands & Industry")
+        assert "Script Review Model: claude-sonnet-5-5<br>" in polished
 
 
 class TestPolishFallbackBudget:

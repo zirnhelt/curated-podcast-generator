@@ -1105,6 +1105,15 @@ def _record_polish_outcome(outcome: str) -> None:
                 f"real-time lines above)")
 
 
+def _review_credit_label() -> str:
+    """The credits name what edited the script. A draft that shipped as written
+    ("original", or "skipped" on the clean-draft fast path, where no model is even
+    selected) had no reviewer, so naming POLISH_MODEL there would be wrong."""
+    if _polish_outcome_used in ("original", "skipped"):
+        return "none (unpolished draft)"
+    return _review_model_used or POLISH_MODEL
+
+
 def select_review_model(deep_dive_articles):
     """Return the model to use for the polish+factcheck pass.
 
@@ -7872,8 +7881,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     # Build HTML credits block
     credits = CONFIG['credits']['structured']
     # Credits name what actually did the work: an unpolished draft has no reviewer.
-    review_model_label = ("none (unpolished draft)" if _polish_outcome_used == "original"
-                          else _review_model_used or POLISH_MODEL)
+    review_model_label = _review_credit_label()
     tts_label = get_tts_credit()
     brave_credit = "Web Search: Brave Search API<br>"
     weather_credit = f"Weather Data: {credits['weather_data']}<br>" if weather_used else ""

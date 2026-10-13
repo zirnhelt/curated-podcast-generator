@@ -612,7 +612,10 @@ changes, none of which alters what airs:
   `original`. A polish-model trial groups episodes by (model, outcome), never by model alone.
 - **`original` calls `degrade('script/polish')`**, so it reaches the job summary, the nightly review's
   facts and the roadmap as `degraded:script/polish`. The credit then reads
-  `Script Review Model: none (unpolished draft)` instead of naming a model.
+  `Script Review Model: none (unpolished draft)` instead of naming a model; so does `skipped`,
+  where no model was selected at all (`_review_credit_label`). A discarded polish `degrade()`s every
+  night it happens, so `degraded:script/polish` will sit on the roadmap while the pattern lasts: the
+  cause is known (the rewrite lands under `MIN_SCRIPT_WORDS`), and the item is the trial's scoreboard.
 - **The weekly reviewer records its own model** (`*Reviewed by: …*`). `CLAUDE_REVIEW_MODEL` pins it;
   until 2026-10-13 it followed `CLAUDE_SONNET_MODEL`, which changed to Haiku 5.5 on 2026-10-08, so
   the grades on either side of that date came from different graders.
