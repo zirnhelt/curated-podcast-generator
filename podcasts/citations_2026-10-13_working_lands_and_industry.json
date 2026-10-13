@@ -1,0 +1,393 @@
+{
+  "episode": {
+    "date": "2026-10-13",
+    "formatted_date": "Tuesday, October 13, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who gets to leave, and who has to stay?</p><p><b>NEWS ROUNDUP:</b> We break down Station House Gallery invites community to experience the Cariboo through local artist’s work in Williams Lake and Meet the Candidates: Mike Cave seeks council seat for City of Quesnel, plus 9 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When a global commodity shock hits, who absorbs the loss and who stays on the land to make the next crop work, and can technology and local institutions protect working-lands producers? Topics include: Commodity price shocks and who absorbs losses in the supply chain, Cooperatives, aggregators, and access to hedging and insurance for smallholders, Barcelona rooftop greenhouse study and the limits of technology claims, Foreign land ownership in Argentina and implications for Cariboo ranchers, Food hubs, food banks, and the year-five sustainability test for local food systems.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Williams Lake Food Policy Council</p><p><b>Sources discussed:</b></p><ul><li>Khushi Arora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/12/station-house-gallery-invites-community-to-experience-the-cariboo-through-local-artists-work-in-williams-lake/\">[Williams Lake Tribune] Station House Gallery invites commun...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/10/09/meet-the-candidates-mike-cave-seeks-council-seat-for-city-of-quesnel/\">[Quesnel Cariboo Observer] Meet the Candidates: Mike Cave se...</a></li><li>Valentina Di Liscia. Photographs by Roxana Sposaro (The Guardian Global Development): <a href=\"https://www.theguardian.com/global-development/2026/oct/06/argentina-land-reform-protests-javier-milei\">[The Guardian Global Development] ‘They take our water, our ...</a></li><li>Small Farm Canada: <a href=\"https://www.smallfarmcanada.ca/news/canadian-food-charities-face-growing-demand-and-shortages/\">[Small Farm Canada] Canadian Food Charities Face Growing Dem...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91622217/china-car-sales-exports-evs\">[Fast Company] As a domestic car sales slump continues, Chin...</a></li><li>The Northern Miner: <a href=\"https://www.northernminer.com/news/falco-vies-for-environmental-ok/1003895648/\">[The Northern Miner] Falco vies for environmental OK</a></li><li>Edge (GamesRadar): <a href=\"https://www.gamesradar.com/games/minecraft/xbox-puts-former-reddit-and-facebook-exec-in-charge-of-minecraft-studio-mojang/\">[Edge (GamesRadar)] Xbox puts former Reddit and Facebook exe...</a></li><li>reddit.com: <a href=\"https://www.reddit.com/r/climate/comments/1x3bu0b/a_tropical_storm_threatening_las_vegas_the/\">[reddit.com] Pacific El Niño sets September sea-temperature ...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/10/13/12-10-sv-france-supermarket-fridges-targeted?traffic_source=rss\">[Al Jazeera English] Cyberattack on French supermarkets caus...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/he-says-amazon-nearly-wrecked-bedscrunchie-business-still-shop-amazon-2026-10\">[Business Insider] This entrepreneur says Amazon nearly dest...</a></li><li>New Atlas: <a href=\"https://newatlas.com/technology/chatgpt-build-a-1-000-effects-pedal/\">[New Atlas] I asked ChatGPT to build me a $1,000 effects ped...</a></li><li>Quartz: <a href=\"https://qz.com/el-nino-grocery-prices-staples\">[Quartz] Grocery staples most likely to cost more because of...</a></li><li>Country Life: <a href=\"https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds\">[Country Life] How sheep farming transformed the architectur...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/12/new-kamloops-facility-supports-rural-patients-getting-care-at-rih/\">[Williams Lake Tribune] New Kamloops facility supports rural...</a></li><li>New Atlas: <a href=\"https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/\">[New Atlas] Tiny robot harvests battery power via skin on it...</a></li><li>Rob Beschizza (Boing Boing): <a href=\"https://boingboing.net/2026/10/12/new-fda-loophole-would-allow-toxic-chemicals-into-food.html\">[Boing Boing] New FDA loophole would allow toxic chemicals i...</a></li><li>Jorge Garay (WIRED): <a href=\"https://www.wired.com/story/humans-watched-this-supernova-explode-nearly-a-millennium-ago-now-you-can-see-it-in-high-definition/\">[WIRED] Humans Watched This Supernova Explode Nearly a Mille...</a></li><li>Small Farm Canada: <a href=\"https://www.smallfarmcanada.ca/study-shows-light-and-smart-nutrient-use-drive-better-urban-/\">[Small Farm Canada] Study shows light and smart nutrient use...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-13T01:14:39.998824-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 2935,
+      "voice_ratio_casey_riley": 0.85,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 3,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 20,
+        "turns": 97,
+        "avg_turn_words": 28.9,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "leave-or-stay",
+      "question": "Who gets to leave, and who has to stay?"
+    },
+    "audio_file_size": 16889133,
+    "audio_duration": "17:35"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Station House Gallery invites community to experience the Cariboo through local artist’s work in Williams Lake",
+          "url": "https://wltribune.com/2026/10/12/station-house-gallery-invites-community-to-experience-the-cariboo-through-local-artists-work-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Khushi Arora",
+          "ai_score": 79,
+          "date_published": "2026-10-13T04:03:24.202163+00:00",
+          "summary": "Williams Lake artist Kendal Anderson explores abandoned Cariboo places through oil paintings in her exhibition, The Ghosts of the Cariboo in the upper gallery at Station House Gallery. (Rebecca Dyok/W...",
+          "discussed": true,
+          "mention_offset_frac": 0.0012
+        },
+        {
+          "title": "[Fast Company] As a domestic car sales slump continues, China’s automakers lean on exports",
+          "url": "https://www.fastcompany.com/91622217/china-car-sales-exports-evs",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 51,
+          "date_published": "2026-10-12T20:40:55+00:00",
+          "summary": "China ’s passenger car exports surged 64% in September from the same month in 2025, an industry association reported Monday, as Chinese automakers increasingly focus on exports to drive growth amid sl...",
+          "discussed": true,
+          "mention_offset_frac": 0.0161
+        },
+        {
+          "title": "[WIRED] Humans Watched This Supernova Explode Nearly a Millennium Ago. Now You Can See It in High Definition",
+          "url": "https://www.wired.com/story/humans-watched-this-supernova-explode-nearly-a-millennium-ago-now-you-can-see-it-in-high-definition/",
+          "source": "WIRED",
+          "author": "Jorge Garay",
+          "ai_score": 52,
+          "date_published": "2026-10-10T09:30:00+00:00",
+          "summary": "Astronomers have obtained the most detailed image to date of the Pa 30 nebula, the remnants of a supernova famous for having likely been observed and documented from Earth during the Middle Ages. Now,...",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Meet the Candidates: Mike Cave seeks council seat for City of Quesnel",
+          "url": "https://quesnelobserver.com/2026/10/09/meet-the-candidates-mike-cave-seeks-council-seat-for-city-of-quesnel/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "none",
+          "ai_score": 74,
+          "date_published": "2026-10-13T04:03:24.202888+00:00",
+          "summary": "Mike Cave is seeking a council seat for City of Quesnel. (Mike Cave submitted) _The Quesnel Cariboo Observer sent the following four questions to all the councillor candidates for the City of Quesnel....",
+          "discussed": true,
+          "mention_offset_frac": 0.1146
+        },
+        {
+          "title": "[reddit.com] Pacific El Niño sets September sea-temperature records as event intensifies",
+          "url": "https://www.reddit.com/r/climate/comments/1x3bu0b/a_tropical_storm_threatening_las_vegas_the/",
+          "source": "reddit.com",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-10-11T16:00:23+00:00",
+          "summary": "The developing 2026 El Niño pushed sea-surface temperatures in the Pacific’s Niño 3.4 reference region to a record 29.70°C in September, while average sea temperatures outside polar waters reached a S...",
+          "discussed": true,
+          "mention_offset_frac": 0.1303
+        },
+        {
+          "title": "[New Atlas] I asked ChatGPT to build me a $1,000 effects pedal. Here's what it did",
+          "url": "https://newatlas.com/technology/chatgpt-build-a-1-000-effects-pedal/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/howard-armitage/",
+          "ai_score": 38,
+          "date_published": "2026-10-13T03:48:54+00:00",
+          "summary": "stompbox (noun) A little box of knobs, switches, and dark magic that musicians stomp on to summon everything from angelic shimmer to utter filth. Continue Reading Category: Technology Tags: Digital mu...",
+          "discussed": true,
+          "mention_offset_frac": 0.1776
+        },
+        {
+          "title": "[The Guardian Global Development] ‘They take our water, our soil’: protesters fight ‘foreignisation’ as Javier Milei encourages land sales in Argentina",
+          "url": "https://www.theguardian.com/global-development/2026/oct/06/argentina-land-reform-protests-javier-milei",
+          "source": "The Guardian Global Development",
+          "author": "Valentina Di Liscia. Photographs by Roxana Sposaro",
+          "ai_score": 70,
+          "date_published": "2026-10-06T10:00:51+00:00",
+          "summary": "The country’s far-right president is courting billionaire investors by removing a block on foreign ownership of land and natural resources On 19 September, Marta Sahores, an 84-year-old chemistry prof...",
+          "discussed": true,
+          "mention_offset_frac": 0.3198
+        },
+        {
+          "title": "[Small Farm Canada] Canadian Food Charities Face Growing Demand and Shortages",
+          "url": "https://www.smallfarmcanada.ca/news/canadian-food-charities-face-growing-demand-and-shortages/",
+          "source": "Small Farm Canada",
+          "author": "https://www.smallfarmcanada.ca/topics/ray-douglas/",
+          "ai_score": 45,
+          "date_published": "2026-10-12T21:45:00+00:00",
+          "summary": "Second Harvest helps Canadian communities tackle hunger by redirecting surplus food to non-profits, supporting organizations facing shortages, growing demand and limited resources.",
+          "discussed": true,
+          "mention_offset_frac": 0.3488
+        },
+        {
+          "title": "[The Northern Miner] Falco vies for environmental OK",
+          "url": "https://www.northernminer.com/news/falco-vies-for-environmental-ok/1003895648/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 47,
+          "date_published": "2026-10-12T13:00:02+00:00",
+          "summary": "After eight years in environmental review, Falco Resources (TSXV: FPC) expects Quebec to sign off on Horne 5 by year-end — a decision that would unlock a gold and critical... The post Falco vies for e...",
+          "discussed": true,
+          "mention_offset_frac": 0.5394
+        },
+        {
+          "title": "[Edge (GamesRadar)] Xbox puts former Reddit and Facebook exec in charge of Minecraft studio Mojang",
+          "url": "https://www.gamesradar.com/games/minecraft/xbox-puts-former-reddit-and-facebook-exec-in-charge-of-minecraft-studio-mojang/",
+          "source": "Edge (GamesRadar)",
+          "author": "https://www.gamesradar.com/author/anthony-mcglynn/",
+          "ai_score": 53,
+          "date_published": "2026-10-08T16:36:23+00:00",
+          "summary": "While the former president overlooks broader franchising",
+          "discussed": true,
+          "mention_offset_frac": 0.7082
+        },
+        {
+          "title": "[Al Jazeera English] Cyberattack on French supermarkets causes fires, millions in losses",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/10/13/12-10-sv-france-supermarket-fridges-targeted?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-10-13T03:01:53+00:00",
+          "summary": "A cyberattack targeting supermarket refrigeration systems has left shelves empty across France.",
+          "discussed": true,
+          "mention_offset_frac": 0.8222
+        },
+        {
+          "title": "[Business Insider] This entrepreneur says Amazon nearly destroyed his business. He still shops on it every week. 'It's crazy.'",
+          "url": "https://www.businessinsider.com/he-says-amazon-nearly-wrecked-bedscrunchie-business-still-shop-amazon-2026-10",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 40,
+          "date_published": "2026-10-12T18:47:22+00:00",
+          "summary": "The Bed Scrunchie company made $4.5 million before Amazon deactivated its seller account. But one of the founders still can't quit shopping there.",
+          "discussed": true,
+          "mention_offset_frac": 0.8983
+        },
+        {
+          "title": "[Williams Lake Tribune] New Kamloops facility supports rural patients getting care at RIH",
+          "url": "https://wltribune.com/2026/10/12/new-kamloops-facility-supports-rural-patients-getting-care-at-rih/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 68,
+          "date_published": "2026-10-13T04:03:24.202345+00:00",
+          "summary": "A former housing co-op on Battle Street West in Kamloops has been turned into Mercier House, which will provide temporary accommodation for out-of-town residents receiving treatment at Royal Inland Ho...",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Tiny robot harvests battery power via skin on its feet",
+          "url": "https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/omar-kardoudi/",
+          "ai_score": 58,
+          "date_published": "2026-10-08T02:51:40+00:00",
+          "summary": "Researchers have developed a paper-thin foot membrane that lets crawling microrobots harvest electricity directly from the ground beneath them, ditching heavy onboard batteries by turning metal and si...",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] New FDA loophole would allow toxic chemicals into food",
+          "url": "https://boingboing.net/2026/10/12/new-fda-loophole-would-allow-toxic-chemicals-into-food.html",
+          "source": "Boing Boing",
+          "author": "Rob Beschizza",
+          "ai_score": 40,
+          "date_published": "2026-10-12T14:26:07+00:00",
+          "summary": "No longer will Americans have to go without delicious and inexpensive industrial dyes in their foodstuffs. The U.S. Food and Drug Administration is reportedly to allow additives to be added to food wi...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[Small Farm Canada] Study shows light and smart nutrient use drive better urban crop yields",
+          "url": "https://www.smallfarmcanada.ca/study-shows-light-and-smart-nutrient-use-drive-better-urban-/",
+          "source": "Small Farm Canada",
+          "author": "https://www.smallfarmcanada.ca/topics/ray-douglas/",
+          "ai_score": 49,
+          "date_published": "2026-10-12T15:42:02+00:00",
+          "summary": "An eight-year study found that sunlight, efficient fertilizer use, and regular greenhouse maintenance significantly improve urban farming productivity and sustainability.",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Grocery staples most likely to cost more because of El Niño",
+          "url": "https://qz.com/el-nino-grocery-prices-staples",
+          "source": "Quartz",
+          "author": "",
+          "ai_score": 32,
+          "date_published": "2026-10-12T21:22:16+00:00",
+          "summary": "El Niño weather swings strain crops worldwide, pushing up grocery prices for coffee, cocoa, rice, sugar and other kitchen staples",
+          "discussed": true
+        },
+        {
+          "title": "[Country Life] How sheep farming transformed the architectural face of the Cotswolds",
+          "url": "https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds",
+          "source": "Country Life",
+          "author": "https://www.countrylife.co.uk/author/john-goodall",
+          "ai_score": 60,
+          "date_published": "2026-10-07T08:00:00+00:00",
+          "summary": "John Goodall looks at some of the parish churches that were a product of the wealth it generated.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "When a global commodity shock hits, who absorbs the loss and who stays on the land to make the next crop work, and can technology and local institutions protect working-lands producers?",
+        "riley_position": "Technology, aggregation through cooperatives and food hubs, and structured contracts can blunt supply shocks and spread access to tools, and local training can turn the technology into a local career path.",
+        "riley_key_evidence": [
+          "Quartz and CNN name coffee, cocoa, rice, sugar, and palm oil as products likely to rise in price due to El Niño",
+          "A Barcelona rooftop greenhouse study (ICTA-UAB, Agronomy for Sustainable Development) across eleven tomato cycles from 2015 to 2023 found sunlight and stage-specific nutrient timing matter more than fixed recipes",
+          "Cooperatives have used collective buying and shared storage for decades to get better terms for smallholders"
+        ],
+        "casey_position": "The benefits of these shocks and technologies flow to owners, buyers, and capital rather than to the farmers and workers who carry the risk, and the real question is who stays to run the systems and who owns the data and land.",
+        "casey_key_evidence": [
+          "A Guardian bank scenario projects commodity price shocks of 10 to 50 percent, with the most exposed crops rising 50 to 100 percent or more and lasting into 2028, though the bank is unnamed",
+          "When deteriorated greenhouse panels were replaced in 2023, yields rose over 56 percent, suggesting maintenance rather than fertilizer tinkering drove the gain",
+          "Argentina's Milei government removed the block on foreign land and resource ownership, with protesters warning of water and soil loss"
+        ],
+        "resolution": "They did not fully agree. They concurred that the small operator needs a say in contract terms and that the data-ownership question matters, but they disagreed on whether these tools actually help small operators, and both left open whether Cariboo food hubs can survive past their grant years.",
+        "topics_covered": [
+          "Commodity price shocks and who absorbs losses in the supply chain",
+          "Cooperatives, aggregators, and access to hedging and insurance for smallholders",
+          "Barcelona rooftop greenhouse study and the limits of technology claims",
+          "Foreign land ownership in Argentina and implications for Cariboo ranchers",
+          "Food hubs, food banks, and the year-five sustainability test for local food systems"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 2,
+          "conditions": "overcast",
+          "high": 14,
+          "low": 2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 4,
+          "conditions": "partly cloudy",
+          "high": 12,
+          "low": 3
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 2,
+          "conditions": "foggy",
+          "high": 12,
+          "low": 2
+        },
+        {
+          "name": "Quesnel",
+          "temp": 1,
+          "conditions": "overcast",
+          "high": 9,
+          "low": 1
+        },
+        {
+          "name": "Redstone",
+          "temp": 2,
+          "conditions": "overcast",
+          "high": 14,
+          "low": -1
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Williams Lake Food Policy Council",
+      "description": "Community organization supporting local food security through community gardens, food recovery, and farm-to-table initiatives in the Cariboo",
+      "website": "",
+      "psa_angle": "It's World Food Day. The Williams Lake Food Policy Council supports local food security through community gardens and food recovery — because food grown here feeds here.",
+      "event_name": "World Food Day"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Is the El Niño grocery price warning in the Quartz piece backed by current forecasts, and how confident are analysts about which staples will rise?\n\nFindings: Coverage from September and October 2026 (Weather.com, CNN) says a record-strong El Niño threatens crops from Brazil and Colombia to Indonesia and Thailand, and that grocery prices could keep rising into 2027. CNN names coffee, chocolate and palm oil as the tropical products most likely to climb. A Guardian report from July 2026 quotes a bank warning that price shocks could reach 10% to 50% across core commodities, with the most exposed crops (rice, palm oil, sugar, coffee) rising 50% to 100% or more, and that the shock could last into 2028. That bank is not named in the snippet, so treat the figures as one institution's scenario rather than consensus. Sugar is the exception: Quartz notes that drought in Thailand and India can cut both harvest tonnage and sugar's price path, so direction is harder to read. Commentary on cocoa cites Citigroup's warning that cocoa could reach $5,000 and possibly $6,000 a tonne if West African output is hit. Some lower-quality blogs forecast coffee falling 5–15%, which contradicts the mainstream view, so they should be avoided as sources. Price effects also tend to lag the weather event by six to twelve months.\n\nSuggested angle: Riley can argue that this is exactly why the industry needs technology: better drought-resistant varieties, precision irrigation, forecasting and futures hedging can blunt the shock, and the lag gives farmers and buyers time to adapt. Casey can counter that the same tools are unevenly available. Smallholders in Thailand or Colombia rarely have the capital for them, and the price spikes will land on consumers and on the farmers least able to absorb a bad harvest. The useful tension is that El Niño is a weather shock to a supply chain that is already concentrated in a few tropical regions, so the question is whether \"working lands\" resilience is built locally or through global commodity markets.\n\nRESEARCH QUESTION: Does the eight-year urban farming study hold up as evidence for \"smart nutrient use\" in general, and what do its numbers actually show?\n\nFindings: The study was run by ICTA-UAB (Universitat Autònoma de Barcelona) in a building-integrated rooftop greenhouse in Barcelona, not in Canada. It was published in Agronomy for Sustainable Development. It evaluated 11 tomato crop cycles between 2015 and 2023. The main finding is that sunlight and stage-specific nutrient application determine success \"far beyond fixed recipes or miracle solutions.\" One detail matters a lot: the researchers report that when deteriorated greenhouse panels were replaced in 2023, yields rose more than 56% over the previous year. That suggests maintenance and light transmission can outweigh fertilizer tinkering. The study is a single site with one crop, so its findings are case-specific.\n\nSuggested angle: Riley can point to this as a proof that controlled-environment farming can be engineered and optimized, with data from every crop cycle feeding a better system design. Casey can push on the scale: one rooftop greenhouse on a university campus, one crop, and a yield jump caused partly by fixing broken panels, which is a maintenance story more than a breakthrough. The debate can ask whether urban rooftop growing is a serious food-supply strategy or a high-tech niche that works because of institutional support, and what it would cost to replicate in a rural or small-community setting.\n\nRESEARCH QUESTION: Not researched. The Cotswolds sheep-wealth article is historical architecture commentary, and the web search found no current developments that would materially change its story.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "El Niño 2026 forecast grocery prices coffee cocoa rice sugar",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Agronomy for Sustainable Development eight-year urban greenhouse study light fertilizer yield",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "question",
+        "query": "Citigroup cocoa $5,000 tonne forecast West Africa output 2026"
+      },
+      {
+        "kind": "question",
+        "query": "Guardian bank scenario commodity prices 10 to 50 percent 2028 rice palm oil sugar coffee"
+      },
+      {
+        "kind": "question",
+        "query": "Argentina Milei foreign ownership land natural resources rule change terms"
+      },
+      {
+        "kind": "question",
+        "query": "Mercier House Kamloops Battle Street West housing co-op conversion Royal Inland Hospital"
+      }
+    ]
+  }
+}
