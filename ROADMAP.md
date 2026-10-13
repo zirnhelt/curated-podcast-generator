@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-12) — 3 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-12) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -54,14 +54,6 @@ close one; it comes back only if the reviews raise it 2 more times._
       failures or add a validation gate that blocks publish if any story lands in the wrong
       temporal position. (signal `degraded:script/roundup-order`; seen in 2 reviews, latest
       2026-10-12)
-- [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
-      territory-check rewrites failed.** On September 22, the territory-check system flagged two
-      sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
-      nations. The system attempted rewrites and rejected them. The two sentences shipped in the
-      final episode anyway, carrying geographic claims the validation layer could not support.
-      Log which sentences triggered the rewrite rejection, and decide whether to cut them,
-      override the territory map data, or implement a mandatory-cut rule when rewrites fail.
-      (signal `degraded:script/territory-check`; seen in 13 reviews, latest 2026-10-10)
 - [ ] **Script generation failed in the primary and first fallback run but succeeded in the
       second fallback.** The Generate episode script step failed after 92 seconds in both the
       primary run (1:05 AM Pacific, run 36834215592) and Fallback 1 (2:05 AM Pacific, run
