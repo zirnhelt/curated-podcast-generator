@@ -692,5 +692,26 @@
     "date": "2026-10-12",
     "focus": "film-screen",
     "focus_name": "Film & Screen"
+  },
+  "2026-10-13": {
+    "timestamp": 1791879286.339825,
+    "topics": [
+      "[Williams Lake Tribune] Station House Gallery invites commun",
+      "[Quesnel Cariboo Observer] Meet the Candidates: Mike Cave se",
+      "[Williams Lake Tribune] New Kamloops facility supports rural",
+      "[The Guardian Global Development] \u2018They take our water, our ",
+      "[Small Farm Canada] Canadian Food Charities Face Growing Dem",
+      "[Small Farm Canada] Study shows light and smart nutrient use",
+      "[Quartz] Grocery staples most likely to cost more because of",
+      "[Country Life] How sheep farming transformed the architectur"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-10-13",
+    "focus": "agriculture-ranching",
+    "focus_name": "Agriculture & Ranching"
   }
 }

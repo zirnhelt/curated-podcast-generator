@@ -1,30 +1,4 @@
 {
-  "2026-07-14": {
-    "timestamp": 1784024441.645579,
-    "date": "2026-07-14",
-    "theme": "Working Lands & Industry",
-    "central_question": "When capital consolidates ownership of working lands and resource operations, does ownership structure matter more than the technology or operations sitting on top of it?",
-    "riley_position": "Ownership structure matters significantly, but the real leverage lies in legally-binding agreements tied to permits and Aboriginal title rather than in ownership type alone. Existing tools like BC's Land Owner Transparency Registry could solve farmland speculation problems by simply connecting two already-existing systems.",
-    "riley_key_evidence": [
-      "Impact Benefit Agreements negotiated with First Nations survive corporate takeovers because they're attached to regulatory permits and Nations, not shareholder registers",
-      "BC's Land Owner Transparency Registry already exists and could be cross-referenced against ALR parcel data without new legislation",
-      "Codelco (state-owned) prioritizes profitability over production, showing public ownership alone doesn't guarantee community accountability"
-    ],
-    "casey_position": "Ownership structure fundamentally matters because it determines who decision-makers answer to and what they optimize for. Corporate consolidation allows distant boards to renegotiate local commitments, and farmland speculative buying lacks any meaningful protection despite the false confidence of the Agricultural Land Reserve.",
-    "casey_key_evidence": [
-      "The ALR restricts land use but not ownership, allowing billionaires to acquire and hold farmland as appreciating assets rather than productive operations",
-      "Corporate takeovers (like Genesis acquiring Vault) renegotiate community benefit agreements and environmental commitments once ownership changes",
-      "Bunker Hill in Idaho shows environmental cleanup obligations don't transfer cleanly when ownership changes, leaving taxpayers covering the difference"
-    ],
-    "resolution": "They agreed to disagree on whether ownership type alone solves the problem, but converged on two specific, concrete next steps: (1) flagging agricultural land purchases above a size threshold using the existing Land Owner Transparency Registry, and (2) relying on Nation-negotiated agreements tied to permits for mining operations. Neither solution is currently implemented.",
-    "topics_covered": [
-      "Farmland speculation and the gap between Agricultural Land Reserve policy and actual ownership protection",
-      "Mining sector consolidation (Genesis-Vault deal) and corporate accountability for environmental/community commitments",
-      "Impact Benefit Agreements as a mechanism that survives ownership changes",
-      "Comparison of public vs. private ownership structures and accountability mechanisms",
-      "Policy solutions: Land Owner Transparency Registry cross-referencing and title-based agreements"
-    ]
-  },
   "2026-07-16": {
     "timestamp": 1784198332.921212,
     "date": "2026-07-16",
@@ -2510,6 +2484,34 @@
       "Digital distribution versus gatekeeping by platforms and festivals",
       "Audience measurement and whether small towns should count local viewers rather than exports",
       "Identity, local artists and copyright in cultural products like tattoo designs"
+    ]
+  },
+  "2026-10-13": {
+    "timestamp": 1791879288.924184,
+    "date": "2026-10-13",
+    "theme": "Working Lands & Industry",
+    "focus": "agriculture-ranching",
+    "anchor": "leave-or-stay",
+    "central_question": "When a global commodity shock hits, who absorbs the loss and who stays on the land to make the next crop work, and can technology and local institutions protect working-lands producers?",
+    "riley_position": "Technology, aggregation through cooperatives and food hubs, and structured contracts can blunt supply shocks and spread access to tools, and local training can turn the technology into a local career path.",
+    "riley_key_evidence": [
+      "Quartz and CNN name coffee, cocoa, rice, sugar, and palm oil as products likely to rise in price due to El Ni\u00f1o",
+      "A Barcelona rooftop greenhouse study (ICTA-UAB, Agronomy for Sustainable Development) across eleven tomato cycles from 2015 to 2023 found sunlight and stage-specific nutrient timing matter more than fixed recipes",
+      "Cooperatives have used collective buying and shared storage for decades to get better terms for smallholders"
+    ],
+    "casey_position": "The benefits of these shocks and technologies flow to owners, buyers, and capital rather than to the farmers and workers who carry the risk, and the real question is who stays to run the systems and who owns the data and land.",
+    "casey_key_evidence": [
+      "A Guardian bank scenario projects commodity price shocks of 10 to 50 percent, with the most exposed crops rising 50 to 100 percent or more and lasting into 2028, though the bank is unnamed",
+      "When deteriorated greenhouse panels were replaced in 2023, yields rose over 56 percent, suggesting maintenance rather than fertilizer tinkering drove the gain",
+      "Argentina's Milei government removed the block on foreign land and resource ownership, with protesters warning of water and soil loss"
+    ],
+    "resolution": "They did not fully agree. They concurred that the small operator needs a say in contract terms and that the data-ownership question matters, but they disagreed on whether these tools actually help small operators, and both left open whether Cariboo food hubs can survive past their grant years.",
+    "topics_covered": [
+      "Commodity price shocks and who absorbs losses in the supply chain",
+      "Cooperatives, aggregators, and access to hedging and insurance for smallholders",
+      "Barcelona rooftop greenhouse study and the limits of technology claims",
+      "Foreign land ownership in Argentina and implications for Cariboo ranchers",
+      "Food hubs, food banks, and the year-five sustainability test for local food systems"
     ]
   }
 }

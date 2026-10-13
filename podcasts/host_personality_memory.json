@@ -85,11 +85,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-12",
-        "clue": "tech-optimism:+ \u2014 digital tools make looking, distribution cheaper",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-04",
         "clue": "community-trust:x \u2014 Conceded relationship must come first",
         "occurrences": 2
@@ -103,11 +98,6 @@
         "date": "2026-09-13",
         "clue": "pilot-skepticism:- \u2014 mitigation tech exists, engineering can reduce harm",
         "occurrences": 1
-      },
-      {
-        "date": "2026-09-16",
-        "clue": "community-trust:+ \u2014 shifted toward local inventory over legal filing",
-        "occurrences": 2
       },
       {
         "date": "2026-09-18",
@@ -170,9 +160,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-12",
-        "clue": "evidence-bar:x \u2014 concedes need for labelled audience counts",
-        "occurrences": 1
+        "date": "2026-10-13",
+        "clue": "evidence-bar:x \u2014 concedes budget question is right, not against tool",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -295,7 +285,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
       "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
       "[Resilience.org] Social capital and community resilience: A ",
       "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
@@ -304,7 +293,8 @@
       "[My Cariboo Now] Cops for Cancer riders to make community st",
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
       "[Canadian Forest Industries] Community knowledge helps guide",
-      "[Wildfire Today] Advancing community wildfire adaptation"
+      "[Wildfire Today] Advancing community wildfire adaptation",
+      "[Williams Lake Tribune] New Kamloops facility supports rural"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -429,11 +419,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-07",
-        "clue": "pilot-skepticism:+ \u2014 Warns shared logs drift without active maintenance",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-12",
         "clue": "funding-risk:+ \u2014 asks who pays to hold the archive",
         "occurrences": 2
@@ -456,6 +441,16 @@
       {
         "date": "2026-10-12",
         "clue": "pilot-skepticism:~ \u2014 a count is useful but volunteers end",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-13",
+        "clue": "structural-lens:+ \u2014 frames ownership versus operation, rents leaving the land",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-13",
+        "clue": "funding-risk:~ \u2014 concedes Riley's hub-fee model is a structural test",
         "occurrences": 1
       }
     ],
