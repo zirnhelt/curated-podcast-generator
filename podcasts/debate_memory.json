@@ -2513,5 +2513,33 @@
       "Foreign land ownership in Argentina and implications for Cariboo ranchers",
       "Food hubs, food banks, and the year-five sustainability test for local food systems"
     ]
+  },
+  "2026-10-14": {
+    "timestamp": 1791965858.816672,
+    "date": "2026-10-14",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "maker-repair",
+    "anchor": "leave-or-stay",
+    "central_question": "Does self-built, self-maintained technology give a Cariboo household a real reason to stay, or is it a costly way to stay connected to somebody else's city?",
+    "riley_position": "Self-reliant gear, when its skills and documentation stay in the community, gives households a practical reason to stay; the failures are fixable problems of documentation and staffing rather than proof the approach is a trap.",
+    "riley_key_evidence": [
+      "The Ping2 sonar has a 100 metre range, 25 degree beam and 115 kHz transducer, with a housing rated to 300 metres in the technical guide and ArduPilot documentation.",
+      "The Geekworm supercapacitor board gives roughly 10 to 45 seconds of backup power for a clean shutdown, and an INA219 current monitor logs voltage, current and power over I2C.",
+      "A UNIHIKER K10 with a time-of-flight sensor and HX711 load cell lets a rural seller price parcels at home, saving trips into town."
+    ],
+    "casey_position": "Self-reliant gear only gives a real reason to stay when the skill, record and upkeep remain local; otherwise parts, subscriptions and know-how keep the household tied to another city, and the upkeep that decides longevity is rarely documented.",
+    "casey_key_evidence": [
+      "At 100 metres a 25 degree beam covers roughly a 40 metre footprint, so depth readings are averages over a patch rather than points, and the 0.5 per cent resolution figure was not confirmed.",
+      "Forum consensus holds that there is no reliable software-only fix for root filesystem corruption from hard power cuts on an SD card, pointing toward a UPS or SSD instead.",
+      "Shop-class students often leave for school after training, and the write-up gives no population figure for remote workers, so the claim that people drive for connection remains unverified."
+    ],
+    "resolution": "They agreed the answer depends on whether the skill and method stay in the community: Riley argued the leave case is fixable, and Casey agreed the record is valuable but insisted on the test of whether someone who didn't build the gear can reproduce the calibration, leaving the question open pending a one-lake trial.",
+    "topics_covered": [
+      "Sonar accuracy, beam footprint and calibration against known depths",
+      "Power-loss protection for Raspberry Pi and home servers, including UPS and SSD options",
+      "Parcel-weighing and load-cell recalibration over time",
+      "Home server costs versus subscriptions, backup and restore procedures",
+      "Community skill retention, documentation and whether a second person can reproduce results"
+    ]
   }
 }

@@ -1,0 +1,486 @@
+{
+  "episode": {
+    "date": "2026-10-14",
+    "formatted_date": "Wednesday, October 14, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who gets to leave, and who has to stay?</p><p><b>NEWS ROUNDUP:</b> We break down Advance voting days in 2026 municipal election a hit in Quesnel and Can a Former BC Liberal Unseat Quesnel’s Controversial Mayor?, plus 13 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Does self-built, self-maintained technology give a Cariboo household a real reason to stay, or is it a costly way to stay connected to somebody else's city? Topics include: Sonar accuracy, beam footprint and calibration against known depths, Power-loss protection for Raspberry Pi and home servers, including UPS and SSD options, Parcel-weighing and load-cell recalibration over time, Home server costs versus subscriptions, backup and restore procedures, Community skill retention, documentation and whether a second person can reproduce results.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cedarcrestsociety.com\">Cedar Crest Society for Community Living</a></p><p><b>Sources discussed:</b></p><ul><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/\">[My Cariboo Now] Advance voting days in 2026 municipal elect...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/10/13/Can-Former-BC-Liberal-Unseat-Quesnel-Mayor/\">[The Tyee] Can a Former BC Liberal Unseat Quesnel’s Controve...</a></li><li>Emily Joveski (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316728/news/elections/2026-bc-election/first-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism/\">[My Cariboo Now] First Nations leaders call on B.C. Conserva...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/13/spooky-vibes-in-full-swing-at-williams-lake-bewitching-market/\">[Williams Lake Tribune] Spooky vibes in full swing at Willia...</a></li><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/07/multiple-sar-teams-locate-missing-person-after-overnight-search-east-of-quesnel/\">[Williams Lake Tribune] Multiple SAR teams locate missing pe...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/\">[Williams Lake Tribune] B.C. southern resident orca census c...</a></li><li>John White (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/\">[My Cariboo Now] B.C. NDP pledges millions for clean energy ...</a></li><li>Regional News Archives - Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/06/this-happens-all-the-time-mid-island-resident-died-without-access-to-modern-cardiac-care-nrgh-doctor-reports/\">[Regional News Archives - Williams Lake Tribune] ‘This happe...</a></li><li>iFixit: <a href=\"https://www.ifixit.com/News/119742/scars-can-be-mended-repair-lessons-from-the-uss-hornet\">[iFixit] Scars Can Be Mended: Repair Lessons from the USS Ho...</a></li><li>Joshua Woodsman (Small Wooden House Plans | Micro Cabin Plans | Garden Shed Plans | Cottage Blueprints): <a href=\"https://www.pinuphouses.com/garage-doors-for-self-builders-and-shed-conversions/\">[Small Wooden House Plans | Micro Cabin Plans | Garden Shed ...</a></li><li>MIT News: <a href=\"https://news.mit.edu/2026/how-artificial-neural-networks-build-their-own-learning-machinery-1013\">[MIT News] How artificial neural networks build their own le...</a></li><li>Ram Iyer (TechCrunch): <a href=\"https://techcrunch.com/2026/10/13/flox-intelligence-is-building-ai-to-keep-wildlife-away-from-trains-airports-and-roads/\">[TechCrunch] Flox Intelligence is building AI to keep wildli...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/dropped-900gb-duplicate-files-home-server-tool-found-free/\">[XDA Developers] I dropped 900GB of duplicate files across m...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/my-router-was-handing-every-device-my-isps-dns-servers-and-fixing-it-took-less-than-five-minutes/\">[XDA Developers] Your router is probably using your ISP's sl...</a></li><li>Popular Woodworking: <a href=\"https://www.popularwoodworking.com/techniques/rehabilitating-a-classic-rescuing-a-stanley-no-220-block-plane-part-1/\">[Popular Woodworking] Rehabilitating a Classic: Rescuing a S...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/protect-your-raspberry-pi-5-from-sudden-power-losses-5296a712e710\">[Hackster News] Protect Your Raspberry Pi 5 From Sudden Powe...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Hackster News: <a href=\"https://www.hackster.io/news/this-diy-system-automatically-measures-packages-for-shipping-6ea6420e8aa6\">[Hackster News] This DIY System Automatically Measures Packa...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/going-to-great-depths-to-map-lakebeds-19fb2fcb47dc\">[Hackster News] Going to Great Depths to Map Lakebeds</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-14T01:17:33.262563-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "realtime",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3237,
+      "voice_ratio_casey_riley": 0.88,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 4,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 18,
+        "turns": 89,
+        "avg_turn_words": 35.0,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "leave-or-stay",
+      "question": "Who gets to leave, and who has to stay?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Advance voting days in 2026 municipal election a hit in Quesnel",
+          "url": "https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 59,
+          "date_published": "2026-10-13T18:48:39+00:00",
+          "summary": "Voters turned out in droves across the two advance voting days in Quesnel. There is one more advance voting day for the Cariboo Regional District on Oct. 13, and one more advance voting day in William...",
+          "discussed": true,
+          "mention_offset_frac": 0.0131
+        },
+        {
+          "title": "[The Tyee] Can a Former BC Liberal Unseat Quesnel’s Controversial Mayor?",
+          "url": "https://thetyee.ca/News/2026/10/13/Can-Former-BC-Liberal-Unseat-Quesnel-Mayor/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 89,
+          "date_published": "2026-10-13T07:10:00+00:00",
+          "summary": "Incumbent Ron Paull faced resignation calls after his wife distributed a book questioning residential school truths.",
+          "discussed": true,
+          "mention_offset_frac": 0.0141
+        },
+        {
+          "title": "[Williams Lake Tribune] Spooky vibes in full swing at Williams Lake Bewitching Market",
+          "url": "https://wltribune.com/2026/10/13/spooky-vibes-in-full-swing-at-williams-lake-bewitching-market/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 84,
+          "date_published": "2026-10-14T04:03:24.311951+00:00",
+          "summary": "Participating in her first Bewitching Market was Chantelle Robertson with Elle's Crochet Creations. She was joined with her daughter Keira. (Rebecca Dyok/Williams Lake Tribune) With the countdown to H...",
+          "discussed": true,
+          "mention_offset_frac": 0.0532
+        },
+        {
+          "title": "[My Cariboo Now] First Nations leaders call on B.C. Conservatives to drop candidate over alleged residential school denialism",
+          "url": "https://www.mycariboonow.com/316728/news/elections/2026-bc-election/first-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism/",
+          "source": "My Cariboo Now",
+          "author": "Emily Joveski",
+          "ai_score": 70,
+          "date_published": "2026-10-14T03:11:02+00:00",
+          "summary": "First Nations leaders are calling on the B.C. Conservatives to remove a candidate over allegations of residential school denialism. The post First Nations leaders call on B.C. Conservatives to drop ca...",
+          "discussed": true,
+          "mention_offset_frac": 0.1462
+        },
+        {
+          "title": "[Williams Lake Tribune] Multiple SAR teams locate missing person after overnight search east of Quesnel",
+          "url": "https://wltribune.com/2026/10/07/multiple-sar-teams-locate-missing-person-after-overnight-search-east-of-quesnel/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 84,
+          "date_published": "2026-10-08T04:03:32.413501+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.2886
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. southern resident orca census counts 76 in 2nd year population growth",
+          "url": "https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 65,
+          "date_published": "2026-10-13T23:30:00+00:00",
+          "summary": "Southern resident killer whale K36 breaches during an encounter with Center for Whale Research team members Aug. 13\\. (Center for Whale Research) The plight of the endangered southern resident killer ...",
+          "discussed": true,
+          "mention_offset_frac": 0.3051
+        },
+        {
+          "title": "[My Cariboo Now] B.C. NDP pledges millions for clean energy and climate programs",
+          "url": "https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/",
+          "source": "My Cariboo Now",
+          "author": "John White",
+          "ai_score": 63,
+          "date_published": "2026-10-14T03:33:26+00:00",
+          "summary": "The B.C. NDP is promising millions of dollars in new investments in clean energy and climate programs if re-elected, while warning a Conservative government would roll back environmental protections. ...",
+          "discussed": true,
+          "mention_offset_frac": 0.3653
+        },
+        {
+          "title": "[Regional News Archives - Williams Lake Tribune] ‘This happens all the time’ Mid Island resident died without access to modern cardiac care, NRGH doctor reports",
+          "url": "https://wltribune.com/2026/10/06/this-happens-all-the-time-mid-island-resident-died-without-access-to-modern-cardiac-care-nrgh-doctor-reports/",
+          "source": "Regional News Archives - Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 55,
+          "date_published": "2026-10-06T21:00:00+00:00",
+          "summary": "Nanaimo doctor reports every week NRGH patients are dying without access to timely 21st century cardiac care",
+          "discussed": true,
+          "mention_offset_frac": 0.4848
+        },
+        {
+          "title": "[iFixit] Scars Can Be Mended: Repair Lessons from the USS Hornet",
+          "url": "https://www.ifixit.com/News/119742/scars-can-be-mended-repair-lessons-from-the-uss-hornet",
+          "source": "iFixit",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-14T00:24:56+00:00",
+          "summary": "Talking line inspection and repairability inside an 80-year-old aircraft carrier",
+          "discussed": true,
+          "mention_offset_frac": 0.5347
+        },
+        {
+          "title": "[Small Wooden House Plans | Micro Cabin Plans | Garden Shed Plans | Cottage Blueprints] Garage doors for self builders and shed conversions",
+          "url": "https://www.pinuphouses.com/garage-doors-for-self-builders-and-shed-conversions/",
+          "source": "Small Wooden House Plans | Micro Cabin Plans | Garden Shed Plans | Cottage Blueprints",
+          "author": "Joshua Woodsman",
+          "ai_score": 59,
+          "date_published": "2026-10-05T09:11:54+00:00",
+          "summary": "If you are building your own house, a shed, a workshop or a cabin, the garage door is one of the few components where the gap between doing it yourself and bringing someone in is genuinely worth think...",
+          "discussed": true,
+          "mention_offset_frac": 0.6051
+        },
+        {
+          "title": "[MIT News] How artificial neural networks build their own learning machinery",
+          "url": "https://news.mit.edu/2026/how-artificial-neural-networks-build-their-own-learning-machinery-1013",
+          "source": "MIT News",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-10-13T21:00:00+00:00",
+          "summary": "Machine-learning networks can learn without detailed instructions from a designer. Those that do may offer insight into how the brain reorganizes itself during learning.",
+          "discussed": true,
+          "mention_offset_frac": 0.6657
+        },
+        {
+          "title": "[TechCrunch] Flox Intelligence is building AI to keep wildlife away from trains, airports, and roads",
+          "url": "https://techcrunch.com/2026/10/13/flox-intelligence-is-building-ai-to-keep-wildlife-away-from-trains-airports-and-roads/",
+          "source": "TechCrunch",
+          "author": "Ram Iyer",
+          "ai_score": 52,
+          "date_published": "2026-10-13T18:30:00+00:00",
+          "summary": "Flox's edge devices can identify animals and use species-specific sounds to drive them away from critical infrastructure.",
+          "discussed": true,
+          "mention_offset_frac": 0.7241
+        },
+        {
+          "title": "[XDA Developers] I dropped 900GB of duplicate files across my home server, and the tool that found them was free",
+          "url": "https://www.xda-developers.com/dropped-900gb-duplicate-files-home-server-tool-found-free/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-10-06T21:00:17+00:00",
+          "summary": "Krokiet is open-source and free.",
+          "discussed": true,
+          "mention_offset_frac": 0.7978
+        },
+        {
+          "title": "[XDA Developers] Your router is probably using your ISP's slow DNS, and you can fix it in minutes",
+          "url": "https://www.xda-developers.com/my-router-was-handing-every-device-my-isps-dns-servers-and-fixing-it-took-less-than-five-minutes/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-10-05T21:00:18+00:00",
+          "summary": "Your ISP's DNS might be slowing down your browsing",
+          "discussed": true,
+          "mention_offset_frac": 0.8042
+        },
+        {
+          "title": "[Popular Woodworking] Rehabilitating a Classic: Rescuing a Stanley No. 220 Block Plane (Part 1)",
+          "url": "https://www.popularwoodworking.com/techniques/rehabilitating-a-classic-rescuing-a-stanley-no-220-block-plane-part-1/",
+          "source": "Popular Woodworking",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-07T14:25:56+00:00",
+          "summary": "Long before premium makers like Lie-Nielsen and Lee Valley entered the scene, Stanley essentially governed the block plane market. For decades, the standard was set by a classic triad of... Source",
+          "discussed": true,
+          "mention_offset_frac": 0.9418
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[Hackster News] This DIY System Automatically Measures Packages for Shipping",
+          "url": "https://www.hackster.io/news/this-diy-system-automatically-measures-packages-for-shipping-6ea6420e8aa6",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-05T22:43:36+00:00",
+          "summary": "Jaychouu built a UNIHIKER K10-powered system that automatically measures boxes and calculates shipping fees.",
+          "discussed": false
+        },
+        {
+          "title": "[Hackster News] Going to Great Depths to Map Lakebeds",
+          "url": "https://www.hackster.io/news/going-to-great-depths-to-map-lakebeds-19fb2fcb47dc",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-10-12T22:23:28+00:00",
+          "summary": "Maker Cy Antony Ash built an autonomous, 3D-printed robotic boat that uses GPS and sonar to map lakebeds on a budget.",
+          "discussed": false
+        },
+        {
+          "title": "[Hackster News] Protect Your Raspberry Pi 5 From Sudden Power Losses",
+          "url": "https://www.hackster.io/news/protect-your-raspberry-pi-5-from-sudden-power-losses-5296a712e710",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-05T12:40:35+00:00",
+          "summary": "Geekworm's Supercapacitor UPS HAT gives the Raspberry Pi 5 just enough backup power to shut down safely and avoid SD card corruption.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Does self-built, self-maintained technology give a Cariboo household a real reason to stay, or is it a costly way to stay connected to somebody else's city?",
+        "riley_position": "Self-reliant gear, when its skills and documentation stay in the community, gives households a practical reason to stay; the failures are fixable problems of documentation and staffing rather than proof the approach is a trap.",
+        "riley_key_evidence": [
+          "The Ping2 sonar has a 100 metre range, 25 degree beam and 115 kHz transducer, with a housing rated to 300 metres in the technical guide and ArduPilot documentation.",
+          "The Geekworm supercapacitor board gives roughly 10 to 45 seconds of backup power for a clean shutdown, and an INA219 current monitor logs voltage, current and power over I2C.",
+          "A UNIHIKER K10 with a time-of-flight sensor and HX711 load cell lets a rural seller price parcels at home, saving trips into town."
+        ],
+        "casey_position": "Self-reliant gear only gives a real reason to stay when the skill, record and upkeep remain local; otherwise parts, subscriptions and know-how keep the household tied to another city, and the upkeep that decides longevity is rarely documented.",
+        "casey_key_evidence": [
+          "At 100 metres a 25 degree beam covers roughly a 40 metre footprint, so depth readings are averages over a patch rather than points, and the 0.5 per cent resolution figure was not confirmed.",
+          "Forum consensus holds that there is no reliable software-only fix for root filesystem corruption from hard power cuts on an SD card, pointing toward a UPS or SSD instead.",
+          "Shop-class students often leave for school after training, and the write-up gives no population figure for remote workers, so the claim that people drive for connection remains unverified."
+        ],
+        "resolution": "They agreed the answer depends on whether the skill and method stay in the community: Riley argued the leave case is fixable, and Casey agreed the record is valuable but insisted on the test of whether someone who didn't build the gear can reproduce the calibration, leaving the question open pending a one-lake trial.",
+        "topics_covered": [
+          "Sonar accuracy, beam footprint and calibration against known depths",
+          "Power-loss protection for Raspberry Pi and home servers, including UPS and SSD options",
+          "Parcel-weighing and load-cell recalibration over time",
+          "Home server costs versus subscriptions, backup and restore procedures",
+          "Community skill retention, documentation and whether a second person can reproduce results"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 4,
+          "conditions": "clear skies",
+          "high": 13,
+          "low": 3
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 2,
+          "conditions": "clear skies",
+          "high": 12,
+          "low": 2
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 2,
+          "conditions": "overcast",
+          "high": 14,
+          "low": 2
+        },
+        {
+          "name": "Quesnel",
+          "temp": 2,
+          "conditions": "clear skies",
+          "high": 13,
+          "low": 1
+        },
+        {
+          "name": "Riske Creek",
+          "temp": 2,
+          "conditions": "clear skies",
+          "high": 14,
+          "low": 2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cedar Crest Society for Community Living",
+      "description": "100 Mile House nonprofit ensuring full community citizenship for adults with developmental disabilities — employment support, independent living, and community inclusion programs",
+      "website": "cedarcrestsociety.com",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Does the BlueRobotics Ping2 sonar actually support the \"up to 100 meters\" depth claim in the lakebed-mapping article?\n\nFindings: The 100 m figure is confirmed, but it is a measurement range, not a depth rating. BlueRobotics and several retailers list a 100 m range with a 25° beam and a 115 kHz transducer. The technical guide and ArduPilot documentation list a 300 m depth rating for the housing, so the sonar's limit is the acoustic range, not the housing. I could not verify the \"0.5% resolution\" figure from the article in the sources I checked, so treat it as unconfirmed. The article's \"Clay Builds\" and \"Cy Antony Ash\" names also differ, and I did not resolve which is the correct maker attribution.\n\nSuggested angle: Riley can point to this as proof that a budget boat built from a 3D-printed hull and a commercial $100-range sonar can produce real bathymetric data, with the Ping's Arduino-friendly interface doing the heavy lifting. Casey can push on the distinction between \"measures 100 m\" and \"maps a lakebed to 100 m\": a 25° beam at depth covers a wide footprint, so accuracy depends on GPS fixes, boat pitch and roll, and calibration against known depths. Good material for asking what a hobbyist survey is actually good for compared with a professional echosounder survey.\n\nRESEARCH QUESTION: Does a supercapacitor UPS HAT really protect a Raspberry Pi 5 SD card from sudden power loss, and what do experienced users recommend?\n\nFindings: The Geekworm UPS Scap 5V5A is designed for ride-through of seconds to a few minutes, not hours. Coverage describes it as built to save data and shut down safely, not to keep the Pi running. A separate guide estimates a 10 to 45 second shutdown window for supercapacitor boards, depending on capacitance and attached peripherals such as USB drives and cameras. Raspberry Pi Forums threads repeatedly say there is no reliable software-only fix for root-filesystem corruption from hard power cuts. The forum consensus is a UPS plus proper shutdown software (NUT is named), or moving the root filesystem off the SD card onto a USB drive or SSD. One Reddit user reports no corruption in their own tests, which is a useful anecdotal counterpoint.\n\nSuggested angle: Riley can argue that a roughly $-level add-on board with a power-loss GPIO signal and an INA219 power monitor turns a fragile Pi into something deployable in a shop, kiosk, or field station. Casey can argue that the board only buys seconds, so the real fix is architectural: move storage off the SD card. That makes the debate concrete: is the repair a clever hardware patch, or a sign that a consumer SD card was the wrong foundation? Note the forum advice that a UPS only helps if outages are short, which tests how far \"practical tech\" can go before it needs a different design.\n\nELECTION RESEARCH: 2026 B.C. provincial general election\n\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\n**Cariboo-Chilcotin**\n\nCandidates on the filed list, per the roll-call sources: Kathryn Askew (BC NDP), Lorne Doerkson (Conservative), Douglas Gook (BC Green). The Elections BC candidate report lists all three for this riding (elections.bc.ca candidate report, Oct. 2026). Studio X News carries the same three (studioxnews.ca, final candidate list).\n\n- **Kathryn Askew (BC NDP).** 100 Mile Free Press (Oct. 1, 2026) reports she is a retired school teacher from Canim Lake, named the NDP candidate in a party news release. It says she has 32 years in education, served in leadership roles with the BC Teachers' Federation and her local union, and volunteers with local fire, legion and community clubs. The same article says she has received a national teaching award. No previous election run by Askew has been established in the sources checked.\n- **Lorne Doerkson (Conservative).** Sourced background: MLA for Cariboo-Chilcotin since 2020, first elected as a B.C. Liberal, re-elected in 2024 as a B.C. Conservative (Elections BC results, 2024-10-19). Vancouver Sun reports he was first elected in 2020 with 51.25 per cent of the vote, running for the B.C. Liberals (Vancouver Sun, undated in snippet). Elections BC's 2020 statement of votes shows him at 6,600 votes (51.25%) (elections.bc.ca statement of votes, 2020). The Ashcroft-Cache Creek Journal (Oct. 20, 2024) reports he crossed the floor on May 31, 2024 to join the B.C. Conservatives and was re-elected in 2024. BC Ballot gives the 2024 Conservative margin in the riding as 7,722 votes (bcballot.ca). The Globe and Mail (Sept. 26, 2026) reports he took over as Conservative leader and is leading the party into this election. No controversy involving Doerkson was established in the sources checked.\n- **Douglas Gook (BC Green).** My Cariboo Now (Oct. 6, 2020) reports this was his fourth run for the BC Greens in the North Cariboo riding. The Elections BC 2020 statement of votes shows him at 707 votes, 6.38%, in Cariboo North (elections.bc.ca statement of votes, 2020). Caledonia Courier (Oct. 2024) reports he had run unsuccessfully four times in North Cariboo, including a 2017 Nechako Lakes bid where he took about nine per cent. CKPG Today (Sept. 13, 2024) announced him as the Green candidate for Nechako Lakes in 2024. He is also described as a Quesnel resident. No controversy was established in the sources checked.\n\n**Prince George-North Cariboo (includes Quesnel)**\n\nCandidates on the filed list: Sheldon Clare (Conservative), Denice Bardua (BC NDP), Randy Thompson (BC Green). The Quesnel Cariboo Observer (Oct. 7, 2026) reports the list was confirmed by Elections BC after nominations closed on Oct. 3. CKPG Today (Oct. 3, 2026) lists the same three.\n\n- **Sheldon Clare (Conservative, incumbent).** Sourced background: won the riding for the B.C. Conservatives in 2024 (Elections BC results, 2024-10-19). Quesnel Cariboo Observer (Oct. 7, 2026) reports he won 11,430 votes, or 56.82%, in 2024, ahead of independent Coralee Oakes at 21.84%. Times Colonist (Jan. 8, 2026, Canadian Press) reports he said he was running for the B.C. Conservative leadership, and CFJC Today (Feb. 28, 2026) reports he and fellow MLA Steve Kooner withdrew from that race. Prince George Citizen (June 29, 2026) reports he was named the party's house leader. No controversy involving Clare was established in the sources checked.\n- **Denice Bardua (BC NDP).** CKPG Today (Sept. 24, 2024) reports she was announced as the NDP candidate for this riding in 2024. Quesnel Cariboo Observer (Oct. 7, 2026) reports she finished third in 2024 with 17.03%. BC Ballot lists her in the riding (bcballot.ca). Business in Vancouver's 2024 riding brief describes her as an employee of the Quesnel school board. No controversy was established in the sources checked.\n- **Randy Thompson (BC Green).** Quesnel Cariboo Observer (Oct. 7, 2026) reports he finished fourth in 2024 with just over four per cent of the vote. BC Greens' candidate page (bcgreens.ca) says he ran as the Green candidate in this riding in 2024 and previously served two years on the party's provincial council. PG Daily News (Oct. 11, 2026) reports the Greens announced him as the candidate. No controversy was established in the sources checked.\n\n**Roster and articles**\n\nThe My Cariboo Now article on First Nations leaders and a candidate over alleged residential school denialism (Oct. 13, 2026) does not name a candidate for either of these two ridings in the excerpt I could read. The version I read names a candidate in a different riding, so I have not attached it to either race. The My Cariboo Now B.C. NDP climate pledge article (Oct. 13, 2026) names no candidates in the excerpt.\n\nThe show has not yet established any previous election run for Kathryn Askew.\n\nNO RECORD FOUND: Kathryn Askew\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "BlueRobotics Ping2 Sonar Altimeter specifications depth range 100 m resolution",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Geekworm supercapacitor UPS HAT Raspberry Pi 5 power loss shutdown",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Raspberry Pi SD card corruption sudden power loss official recommendation UPS",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo-Chilcotin candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Prince George-North Cariboo candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Lorne Doerkson\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Sheldon Clare\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "page",
+        "url": "https://quesnelobserver.com/2026/10/07/three-prince-george-north-cariboo-mla-candidates-announced/"
+      },
+      {
+        "kind": "page",
+        "url": "https://ckpgtoday.ca/2026/10/03/prince-george-area-candidates-announced-for-2026-provincial-election/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Kathryn Askew BC NDP Cariboo-Chilcotin candidate",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook BC Green Cariboo-Chilcotin candidate",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Denice Bardua BC NDP Prince George candidate",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://100milefreepress.net/2026/10/01/retired-school-teacher-named-bc-ndp-candidate-for-cariboo-chilcoin/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "First Nations leaders call on B.C. Conservatives to drop candidate residential school denialism",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook Green candidate Williams Lake Cariboo-Chilcotin 2026",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Randy Thompson BC Green Prince George-North Cariboo 2026 candidate",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mynelsonnow.com/80824/news/elections/2026-bc-election/first-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism/"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mycariboonow.com/66278/news/familiar-face-running-for-bc-green-party-in-cariboo-north/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Lorne Doerkson 2020 Cariboo-Chilcotin byelection BC Liberal elected votes margin",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Denice Bardua 2024 provincial election Prince George-North Cariboo NDP candidate",
+        "pass": "event"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Doug Gook Green Party Cariboo North candidate previous election results votes",
+        "pass": "event"
+      },
+      {
+        "kind": "question",
+        "query": "Ping2 sonar BlueRobotics 100 metre range specifications"
+      },
+      {
+        "kind": "question",
+        "query": "Geekworm supercapacitor UPS board Raspberry Pi 5 shutdown time"
+      },
+      {
+        "kind": "question",
+        "query": "Tesla Semi second battery weight kg"
+      },
+      {
+        "kind": "question",
+        "query": "Cariboo Quesnel Williams Lake population 2026"
+      }
+    ]
+  }
+}

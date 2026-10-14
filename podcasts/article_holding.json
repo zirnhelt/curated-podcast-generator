@@ -341,48 +341,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
-  },
-  "https://www.theguardian.com/global-development/2026/oct/06/argentina-land-reform-protests-javier-milei": {
-    "article": {
-      "id": "https://www.theguardian.com/global-development/2026/oct/06/argentina-land-reform-protests-javier-milei",
-      "url": "https://www.theguardian.com/global-development/2026/oct/06/argentina-land-reform-protests-javier-milei",
-      "title": "[The Guardian Global Development] \u2018They take our water, our soil\u2019: protesters fight \u2018foreignisation\u2019 as Javier Milei encourages land sales in Argentina",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theguardian.com%2Fglobal-development%2F2026%2Foct%2F06%2Fargentina-land-reform-protests-javier-milei\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>The country\u2019s far-right president is courting billionaire investors by removing a block on foreign ownership of land and natural resources</p><p>On 19 September, Marta Sahores, an 84-year-old chemistry professor and activist who has mobilised against mega-mining projects for more than two decades, took to the streets in <a href=\"https://www.theguardian.com/world/argentina\">Argentina</a>. Alongside workers, retirees, students, Indigenous groups and human rights organisations, Sahores was there to protest against the country\u2019s far-right president, Javier Milei. During the <em>marcha de la bronca</em> \u2013 the \u201cmarch of anger\u201d \u2013 protesters held signs reading, among other rallying cries, \u201cThe land is not for sale\u201d.</p><p>Marching in Esquel, a town nestled in the foothills of the Andes in Chubut province, she also held up a sign defending the country\u2019s water resources against what she called the government\u2019s \u201chandover\u201d to investors.</p> <a href=\"https://www.theguardian.com/global-development/2026/oct/06/argentina-land-reform-protests-javier-milei\">Continue reading...</a>",
-      "summary": "The country\u2019s far-right president is courting billionaire investors by removing a block on foreign ownership of land and natural resources On 19 September, Marta Sahores, an 84-year-old chemistry professor and activist who has mobilised against mega-mining projects for more than two decades, took",
-      "_excerpt": "The country\u2019s far-right president is courting billionaire investors by removing a block on foreign ownership of land and natural resources On 19 September, Marta Sahores, an 84-year-old chemistry professor and activist who has mobilised against mega-mining projects for more than two decades, took to the streets in Argentina . Alongside workers, retirees, students, Indigenous groups and human rights organisations, Sahores was there to protest against the country\u2019s far-right president, Javier Milei. During the marcha de la bronca \u2013 the \u201cmarch of anger\u201d \u2013 protesters held signs reading, among",
-      "date_published": "2026-10-06T10:00:51+00:00",
-      "authors": [
-        {
-          "name": "The Guardian Global Development",
-          "url": "https://www.theguardian.com/global-development"
-        }
-      ],
-      "ai_score": 70,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 56,
-      "_theme_score_raw": 2,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-07T04:12:24.966270+00:00"
-      },
-      "_boosted_score": 70
-    },
-    "held_date": "2026-10-07",
-    "target_date": "2026-10-13",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
     "status": "released",
-    "release_date": "2026-10-13"
+    "release_date": "2026-10-14"
   },
   "https://nautil.us/from-the-great-sphinxs-raw-materials-a-new-crocodile-species-surfaces-1285592/": {
     "article": {
@@ -597,7 +557,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-14"
   },
   "https://newatlas.com/technology/germany-come-close-atomic-bomb/": {
     "article": {
@@ -638,42 +599,6 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/": {
-    "article": {
-      "id": "https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/",
-      "url": "https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/",
-      "title": "[New Atlas] Tiny robot harvests battery power via skin on its feet",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Frobotics%2Frobot-harvests-power-skin-feet-membrane%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"The technology could power micro-robots such as this one\" src=\"https://assets.newatlas.com/dims4/default/157fd10/2147483647/strip/true/crop/5120x3412+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2Fc8%2Fb8%2F05c7c7e54d82b5547a7d25ba0d6b%2Fdownload.jpeg\"/><p>Researchers have developed a paper-thin foot membrane that lets crawling microrobots harvest electricity directly from the ground beneath them, ditching heavy onboard batteries by turning metal and silicon surfaces into an active power source.</p><p><a href=\"https://newatlas.com/robotics/robot-harvests-power-skin-feet-membrane/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://newatlas.com/robotics/\">Robotics</a>, <a href=\"https://newatlas.com/engineering/\">Engineering</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/robotics/\" rel=\"tag\">Robotics</a>, <a href=\"https://newatlas.com/tag/skin/\" rel=\"tag\">Skin</a>, <a href=\"https://newatlas.com/tag/energy/\" rel=\"tag\">Energy</a>, <a href=\"https://newatlas.com/tag/batteries/\" rel=\"tag\">Batteries</a></p></p>",
-      "summary": "Researchers have developed a paper-thin foot membrane that lets crawling microrobots harvest electricity directly from the ground beneath them, ditching heavy onboard batteries by turning metal and silicon surfaces into an active power source. Continue Reading Category: Robotics , Engineering Tags:",
-      "_excerpt": "Researchers have developed a paper-thin foot membrane that lets crawling microrobots harvest electricity directly from the ground beneath them, ditching heavy onboard batteries by turning metal and silicon surfaces into an active power source. Continue Reading Category: Robotics , Engineering Tags: Robotics , Skin , Energy , Batteries",
-      "date_published": "2026-10-08T02:51:40+00:00",
-      "authors": [
-        {
-          "name": "New Atlas",
-          "url": "https://newatlas.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 65,
-      "_theme_score_raw": 14,
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-13",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-10-13"
   },
   "https://www.techradar.com/vehicle-tech/hybrid-electric-vehicles/tesla-model-y-tops-global-ev-sales-figures-again-but-new-report-reveals-byd-is-closing-fast-with-4-of-the-top-10-models": {
     "article": {
@@ -757,7 +682,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-14"
   },
   "https://www.niemanlab.org/2026/10/two-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina/": {
     "article": {
@@ -837,7 +763,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-14"
   },
   "https://www.howtogeek.com/your-smart-home-is-probably-running-ai-written-code/": {
     "article": {
@@ -874,54 +801,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
-  },
-  "https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds": {
-    "article": {
-      "id": "https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds",
-      "url": "https://www.countrylife.co.uk/architecture/how-sheep-farming-transformed-the-architectural-face-of-the-cotswolds",
-      "title": "[Country Life] How sheep farming transformed the architectural face of the Cotswolds",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/xtExKc9fxN8b9NufkBHS9A-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.countrylife.co.uk%2Farchitecture%2Fhow-sheep-farming-transformed-the-architectural-face-of-the-cotswolds\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nJohn Goodall looks at some of the parish churches that were a product of the wealth it generated.",
-      "summary": "John Goodall looks at some of the parish churches that were a product of the wealth it generated.",
-      "_excerpt": "John Goodall looks at some of the parish churches that were a product of the wealth it generated.",
-      "date_published": "2026-10-07T08:00:00+00:00",
-      "authors": [
-        {
-          "name": "Country Life",
-          "url": "https://www.countrylife.co.uk"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 28,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 17,
-      "_keyword_matches": 0,
-      "_category": "design",
-      "_source_category": "design",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/xtExKc9fxN8b9NufkBHS9A-1920-80.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-10-08T04:10:57.717271+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-13",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
     "status": "released",
-    "release_date": "2026-10-13"
+    "release_date": "2026-10-14"
   },
   "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/": {
     "article": {
@@ -1123,7 +1004,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-14"
   },
   "https://www.statnews.com/2026/10/09/robert-gallo-interleukin-2-human-retroviruses-immunotherapy-basic-science/?utm_campaign=rss": {
     "article": {
@@ -1242,7 +1124,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-14"
   },
   "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/": {
     "article": {
@@ -1485,7 +1368,7 @@
       "id": "https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/",
       "url": "https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/",
       "title": "[IndigiNews] A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation",
-      "content_html": "<img src=\"https://media.indiginews.com/2026/10/PIC-3-tipi-cover-IMG_1192-BrittanyB-1024x683.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Fnews%2Fancestral-tipi-cover-kawacatoose-first-nation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Cree community in Saskatchewan brings home their Ancestor s\u00eepiskw\u00eas\u00eekan's painted fabric from Smithsonian in 'Washington, D.C.'</p>\n<p>The post <a href=\"https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/\">A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation\u00a0</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
+      "content_html": "<img src=\"https://media.indiginews.com/2026/10/PIC-3-tipi-cover-IMG_1192-BrittanyB-1024x683.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Fnews%2Fancestral-tipi-cover-kawacatoose-first-nation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Cree community in Saskatchewan brings home their Ancestor s\u00eepiskw\u00eas\u00eekan's painted fabric from Smithsonian in 'Washington, D.C.'</p>\n<p>The post <a href=\"https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/\">A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation\u00a0</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
       "summary": "Cree community in Saskatchewan brings home their Ancestor s\u00eepiskw\u00eas\u00eekan's painted fabric from Smithsonian in 'Washington, D.C.' The post A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation appeared first on Indiginews .",
       "_excerpt": "Cree community in Saskatchewan brings home their Ancestor s\u00eepiskw\u00eas\u00eekan's painted fabric from Smithsonian in 'Washington, D.C.' The post A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation appeared first on Indiginews .",
       "date_published": "2026-10-08T20:54:18+00:00",
@@ -1499,22 +1382,22 @@
       "_quality": 70,
       "_relevance": 60,
       "_local": 20,
-      "_theme_score": 70,
+      "_theme_score": 82,
       "_theme_score_raw": 4,
-      "_composite_podcast": 68,
+      "_composite_podcast": 76,
       "_keyword_matches": 0,
       "_category": "news",
       "_source_category": "news",
       "_is_bonus": true,
       "image": "https://media.indiginews.com/2026/10/PIC-3-tipi-cover-IMG_1192-BrittanyB-1024x683.jpg",
       "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-10-09T04:09:41.111718+00:00"
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
       },
       "_boosted_score": 54
     },
-    "held_date": "2026-10-13",
+    "held_date": "2026-10-14",
     "target_date": "2026-10-15",
     "target_weekday": 3,
     "target_focus_slug": "governance-title",
@@ -1644,7 +1527,7 @@
       "id": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/",
       "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/",
       "title": "[Outside Online] \u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet.",
-      "content_html": "<img src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/GettyImages-2168066743.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Foutdoor-adventure%2Fexploration-survival%2Fcabin-creek-hiker-100-foot-fall-six-days%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/GettyImages-2168066743.jpg?width=1200\"/></figure>\n<p>A 72-year-old hiker survived six nights stranded near the Pacific Crest Trail after a 100-foot fall. Here is how she survived and what rescuers learned.</p>\n<p>The post <a href=\"https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/\">\u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet.</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
+      "content_html": "<img src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/GettyImages-2168066743.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Foutdoor-adventure%2Fexploration-survival%2Fcabin-creek-hiker-100-foot-fall-six-days%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/GettyImages-2168066743.jpg?width=1200\"/></figure>\n<p>A 72-year-old hiker survived six nights stranded near the Pacific Crest Trail after a 100-foot fall. Here is how she survived and what rescuers learned.</p>\n<p>The post <a href=\"https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/\">\u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet.</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
       "summary": "A 72-year-old hiker survived six nights stranded near the Pacific Crest Trail after a 100-foot fall. Here is how she survived and what rescuers learned. The post \u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet. appeared first on Outside",
       "_excerpt": "A 72-year-old hiker survived six nights stranded near the Pacific Crest Trail after a 100-foot fall. Here is how she survived and what rescuers learned. The post \u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet. appeared first on Outside Online .",
       "date_published": "2026-10-07T19:40:13+00:00",
@@ -1658,9 +1541,9 @@
       "_quality": 80,
       "_relevance": 62,
       "_local": 0,
-      "_theme_score": 70,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 58,
+      "_theme_score": 21,
+      "_theme_score_raw": 1,
+      "_composite_podcast": 26,
       "_keyword_matches": 0,
       "_category": "outdoors",
       "_source_category": "outdoors",
@@ -1670,9 +1553,14 @@
         "subscriber-access"
       ],
       "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
       "_boosted_score": 53
     },
-    "held_date": "2026-10-13",
+    "held_date": "2026-10-14",
     "target_date": "2026-10-16",
     "target_weekday": 4,
     "target_focus_slug": "wildlife-conservation",
@@ -1761,7 +1649,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-14"
   },
   "https://www.countrylife.co.uk/architecture/this-ruinous-stately-home-inspired-one-of-britains-greatest-satirical-paintings": {
     "article": {
@@ -1844,6 +1733,508 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
+    "status": "released",
+    "release_date": "2026-10-14"
+  },
+  "https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/",
+      "url": "https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/",
+      "title": "[My Cariboo Now] Advance voting days in 2026 municipal election a hit in Quesnel",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316691%2Fnews%2Felections%2F2026-municipal-election%2Fadvance-voting-days-in-2026-municipal-election-a-hit-in-quesnel%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"390\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2025/03/vote-poll-election-1140x641-750x420-1.jpg?fit=696%2C390&amp;quality=89&amp;ssl=1\" width=\"696\"/>Voters turned out in droves across the two advance voting days in Quesnel. There is one more advance voting day for the Cariboo Regional District on Oct. 13, and one more advance voting day in Williams Lake on Oct. 14.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/\">Advance voting days in 2026 municipal election a hit in Quesnel</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "Voters turned out in droves across the two advance voting days in Quesnel. There is one more advance voting day for the Cariboo Regional District on Oct. 13, and one more advance voting day in Williams Lake on Oct. 14. The post Advance voting days in 2026 municipal election a hit in Quesnel",
+      "_excerpt": "Voters turned out in droves across the two advance voting days in Quesnel. There is one more advance voting day for the Cariboo Regional District on Oct. 13, and one more advance voting day in Williams Lake on Oct. 14. The post Advance voting days in 2026 municipal election a hit in Quesnel appeared first on My Cariboo Now .",
+      "date_published": "2026-10-13T18:48:39+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 59,
+      "_quality": 60,
+      "_relevance": 45,
+      "_local": 100,
+      "_theme_score": 90,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 84,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 59
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-17",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://www.mycariboonow.com/316728/news/elections/2026-bc-election/first-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316728/news/elections/2026-bc-election/first-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism/",
+      "url": "https://www.mycariboonow.com/316728/news/elections/2026-bc-election/first-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism/",
+      "title": "[My Cariboo Now] First Nations leaders call on B.C. Conservatives to drop candidate over alleged residential school denialism",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316728%2Fnews%2Felections%2F2026-bc-election%2Ffirst-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2026/10/Screenshot_7-10-2026_13442_www.facebook.com_.jpeg?fit=696%2C392&amp;quality=89&amp;ssl=1\" width=\"696\"/>First Nations leaders are calling on the B.C. Conservatives to remove a candidate over allegations of residential school denialism.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316728/news/elections/2026-bc-election/first-nations-leaders-call-on-b-c-conservatives-to-drop-candidate-over-alleged-residential-school-denialism/\">First Nations leaders call on B.C. Conservatives to drop candidate over alleged residential school denialism</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "First Nations leaders are calling on the B.C. Conservatives to remove a candidate over allegations of residential school denialism. The post First Nations leaders call on B.C. Conservatives to drop candidate over alleged residential school denialism appeared first on My Cariboo Now .",
+      "_excerpt": "First Nations leaders are calling on the B.C. Conservatives to remove a candidate over allegations of residential school denialism. The post First Nations leaders call on B.C. Conservatives to drop candidate over alleged residential school denialism appeared first on My Cariboo Now .",
+      "date_published": "2026-10-14T03:11:02+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 70,
+      "_quality": 75,
+      "_relevance": 80,
+      "_local": 35,
+      "_theme_score": 93,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 82,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 70,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-15",
+    "target_weekday": 3,
+    "target_focus_slug": "governance-title",
+    "target_focus_name": "Governance, Title & Treaty",
+    "status": "aired_early"
+  },
+  "https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/",
+      "url": "https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/",
+      "title": "[My Cariboo Now] B.C. NDP pledges millions for clean energy and climate programs",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316733%2Fnews%2Felections%2F2026-bc-election%2Fb-c-ndp-pledges-millions-for-clean-energy-and-climate-programs%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2026/10/PXL_20230515_213857921.PORTRAIT-scaled-e1791923196566.jpg?fit=696%2C392&amp;quality=89&amp;ssl=1\" width=\"696\"/>The B.C. NDP is promising millions of dollars in new investments in clean energy and climate programs if re-elected, while warning a Conservative government would roll back environmental protections.\u00a0</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/\">B.C. NDP pledges millions for clean energy and climate programs</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "The B.C. NDP is promising millions of dollars in new investments in clean energy and climate programs if re-elected, while warning a Conservative government would roll back environmental protections. The post B.C. NDP pledges millions for clean energy and climate programs appeared first on My",
+      "_excerpt": "The B.C. NDP is promising millions of dollars in new investments in clean energy and climate programs if re-elected, while warning a Conservative government would roll back environmental protections. The post B.C. NDP pledges millions for clean energy and climate programs appeared first on My Cariboo Now .",
+      "date_published": "2026-10-14T03:33:26+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 60,
+      "_relevance": 60,
+      "_local": 75,
+      "_theme_score": 86,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 74,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 63,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-30",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/": {
+    "article": {
+      "id": "https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/",
+      "url": "https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/",
+      "title": "[Williams Lake Tribune] B.C. southern resident orca census counts 76 in 2nd year population growth",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F13%2Fb-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSouthern resident killer whale K36 breaches during an encounter with Center for Whale Research team members Aug. 13\\. (Center for Whale Research) The plight of the endangered southern resident killer whales remains in the balance despite a rise in their population. The annual photographic census of the killer whales, conducted by Washington-based Center for Whale Research, found that as of July 1, there were 76 living individuals, up two from last year\u2019s 74. During the census period, four calves were born, with only two surviving. \u201cJ64 survived for less than a month, while L129 was only",
+      "summary": "Southern resident killer whale K36 breaches during an encounter with Center for Whale Research team members Aug. 13\\. (Center for Whale Research) The plight of the endangered southern resident killer whales remains in the balance despite a rise in their population. The annual photographic census of",
+      "_excerpt": "Southern resident killer whale K36 breaches during an encounter with Center for Whale Research team members Aug. 13\\. (Center for Whale Research) The plight of the endangered southern resident killer whales remains in the balance despite a rise in their population. The annual photographic census of the killer whales, conducted by Washington-based Center for Whale Research, found that as of July 1, there were 76 living individuals, up two from last year\u2019s 74. During the census period, four calves were born, with only two surviving. \u201cJ64 survived for less than a month, while L129 was only",
+      "date_published": "2026-10-13T23:30:00+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 65,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 72,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 65,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "aired_early"
+  },
+  "https://thetyee.ca/News/2026/10/13/Can-Former-BC-Liberal-Unseat-Quesnel-Mayor/": {
+    "article": {
+      "id": "https://thetyee.ca/News/2026/10/13/Can-Former-BC-Liberal-Unseat-Quesnel-Mayor/",
+      "url": "https://thetyee.ca/News/2026/10/13/Can-Former-BC-Liberal-Unseat-Quesnel-Mayor/",
+      "title": "[The Tyee] Can a Former BC Liberal Unseat Quesnel\u2019s Controversial Mayor?",
+      "content_html": "<img src=\"https://thetyee.ca/News/2026/10/12/RonPaullCoraleeOakes.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F10%2F13%2FCan-Former-BC-Liberal-Unseat-Quesnel-Mayor%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIncumbent Ron Paull faced resignation calls after his wife distributed a book questioning residential school truths.",
+      "summary": "Incumbent Ron Paull faced resignation calls after his wife distributed a book questioning residential school truths.",
+      "_excerpt": "Incumbent Ron Paull faced resignation calls after his wife distributed a book questioning residential school truths.",
+      "date_published": "2026-10-13T07:10:00+00:00",
+      "authors": [
+        {
+          "name": "The Tyee",
+          "url": "https://thetyee.ca"
+        }
+      ],
+      "ai_score": 89,
+      "_quality": 79,
+      "_relevance": 88,
+      "_local": 100,
+      "_theme_score": 86,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 71,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thetyee.ca/News/2026/10/12/RonPaullCoraleeOakes.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 89,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-15",
+    "target_weekday": 3,
+    "target_focus_slug": "governance-title",
+    "target_focus_name": "Governance, Title & Treaty",
+    "status": "aired_early"
+  },
+  "https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/": {
+    "article": {
+      "id": "https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/",
+      "url": "https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/",
+      "title": "[APTN News] First Nations child advocate hopes 20 year old case against government is almost over",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Ffacetoface%2Ffirst-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>In an interview with Face to Face, Cindy Blackstock says file has regressed since Mandy Gull-Masty became minister.</p>\n<p>The post <a href=\"https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/\">First Nations child advocate hopes 20 year old case against government is almost over</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
+      "summary": "In an interview with Face to Face, Cindy Blackstock says file has regressed since Mandy Gull-Masty became minister. The post First Nations child advocate hopes 20 year old case against government is almost over appeared first on APTN News .",
+      "_excerpt": "In an interview with Face to Face, Cindy Blackstock says file has regressed since Mandy Gull-Masty became minister. The post First Nations child advocate hopes 20 year old case against government is almost over appeared first on APTN News .",
+      "date_published": "2026-10-13T23:47:23+00:00",
+      "authors": [
+        {
+          "name": "APTN News",
+          "url": "https://www.aptnnews.ca"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 67,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-15",
+    "target_weekday": 3,
+    "target_focus_slug": "governance-title",
+    "target_focus_name": "Governance, Title & Treaty",
+    "status": "held"
+  },
+  "https://www.nytimes.com/2026/10/13/science/inhabitable-planets-solar-system.html": {
+    "article": {
+      "id": "https://www.nytimes.com/2026/10/13/science/inhabitable-planets-solar-system.html",
+      "url": "https://www.nytimes.com/2026/10/13/science/inhabitable-planets-solar-system.html",
+      "title": "[NYT Top Stories] There\u2019s Worlds Out There More Habitable Than Earth",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F10%2F13%2Fscience%2Finhabitable-planets-solar-system.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nScientists believe there are planets outside our solar system where life is even more abundant and sustainable.",
+      "summary": "Scientists believe there are planets outside our solar system where life is even more abundant and sustainable.",
+      "_excerpt": "Scientists believe there are planets outside our solar system where life is even more abundant and sustainable.",
+      "date_published": "2026-10-14T03:51:08+00:00",
+      "authors": [
+        {
+          "name": "NYT Top Stories",
+          "url": "https://nytimes.com"
+        }
+      ],
+      "ai_score": 53,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 91,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "New York Times",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 53
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-18",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.mining.com/air-strike-kills-at-least-72-miners-in-sudan-rights-group-says/": {
+    "article": {
+      "id": "https://www.mining.com/air-strike-kills-at-least-72-miners-in-sudan-rights-group-says/",
+      "url": "https://www.mining.com/air-strike-kills-at-least-72-miners-in-sudan-rights-group-says/",
+      "title": "[Mining.com] Air strike kills at least 72 miners in Sudan, rights group says",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mining.com%2Fair-strike-kills-at-least-72-miners-in-sudan-rights-group-says%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nLocated near Sudan\u2019s disputed border with Egypt, Jabal al-Uqaydat is a mountainous, traditional gold-mining region.",
+      "summary": "Located near Sudan\u2019s disputed border with Egypt, Jabal al-Uqaydat is a mountainous, traditional gold-mining region.",
+      "_excerpt": "Located near Sudan\u2019s disputed border with Egypt, Jabal al-Uqaydat is a mountainous, traditional gold-mining region.",
+      "date_published": "2026-10-13T15:24:06+00:00",
+      "authors": [
+        {
+          "name": "Mining.com",
+          "url": "https://www.mining.com"
+        }
+      ],
+      "ai_score": 46,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 90,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 60,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 46
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-27",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.aljazeera.com/news/2026/10/7/australia-top-court-rules-against-coal-mine-expansion-citing-climate-harm?traffic_source=rss": {
+    "article": {
+      "id": "https://www.aljazeera.com/news/2026/10/7/australia-top-court-rules-against-coal-mine-expansion-citing-climate-harm?traffic_source=rss",
+      "url": "https://www.aljazeera.com/news/2026/10/7/australia-top-court-rules-against-coal-mine-expansion-citing-climate-harm?traffic_source=rss",
+      "title": "[Al Jazeera English] Australia top court rules against coal mine expansion, citing climate harm",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aljazeera.com%2Fnews%2F2026%2F10%2F7%2Faustralia-top-court-rules-against-coal-mine-expansion-citing-climate-harm%3Ftraffic_source%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCampaigners say ruling sets a precedent requiring climate damage be weighed when fossil fuel projects are considered.",
+      "summary": "Campaigners say ruling sets a precedent requiring climate damage be weighed when fossil fuel projects are considered.",
+      "_excerpt": "Campaigners say ruling sets a precedent requiring climate damage be weighed when fossil fuel projects are considered.",
+      "date_published": "2026-10-07T02:17:07+00:00",
+      "authors": [
+        {
+          "name": "Al Jazeera English",
+          "url": "https://www.aljazeera.com"
+        }
+      ],
+      "ai_score": 51,
+      "_quality": 58,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 88,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 58,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-07T04:12:24.966270+00:00"
+      },
+      "_boosted_score": 51
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-25",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.popularmechanics.com/culture/a73995695/worlds-fair-greatest-refrigerator-fire/": {
+    "article": {
+      "id": "https://www.popularmechanics.com/culture/a73995695/worlds-fair-greatest-refrigerator-fire/",
+      "url": "https://www.popularmechanics.com/culture/a73995695/worlds-fair-greatest-refrigerator-fire/",
+      "title": "[Popular Mechanics] A Tiny Architectural Mistake Turned a World\u2019s Fair Attraction Into a Deadly Trap",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.popularmechanics.com%2Fculture%2Fa73995695%2Fworlds-fair-greatest-refrigerator-fire%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p class=\"rte-simple-html-paragraph\">A vanity cover for an ugly smokestack turned the \u201cgreatest refrigerator on Earth\u201d into a deadly inferno.</p>",
+      "summary": "A vanity cover for an ugly smokestack turned the \u201cgreatest refrigerator on Earth\u201d into a deadly inferno.",
+      "_excerpt": "A vanity cover for an ugly smokestack turned the \u201cgreatest refrigerator on Earth\u201d into a deadly inferno.",
+      "date_published": "2026-10-06T13:00:00+00:00",
+      "authors": [
+        {
+          "name": "Popular Mechanics",
+          "url": "https://www.popularmechanics.com"
+        }
+      ],
+      "ai_score": 33,
+      "_quality": 62,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 55,
+      "_keyword_matches": 0,
+      "_category": "design",
+      "_source_category": "design",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-14T04:10:57.216424+00:00"
+      },
+      "_boosted_score": 33
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-18",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig": {
+    "article": {
+      "id": "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig",
+      "url": "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig",
+      "title": "[TechRadar] Google and Microsoft hit by fresh criticism of their AI data center plans",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/SDj9iGeTf2hdogWtK4UFWM-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fcomputing%2Fgoogle-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBig Tech firms are destroying the environment in a quest for further AI gains, critics claim.",
+      "summary": "Big Tech firms are destroying the environment in a quest for further AI gains, critics claim.",
+      "_excerpt": "Big Tech firms are destroying the environment in a quest for further AI gains, critics claim.",
+      "date_published": "2026-10-06T00:00:00+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 53,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 49,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/SDj9iGeTf2hdogWtK4UFWM-1920-80.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-13T04:08:04.510527+00:00"
+      },
+      "_boosted_score": 53
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-21",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams": {
+    "article": {
+      "id": "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams",
+      "url": "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams",
+      "title": "[TechRadar] These social media posts promise big online discounts on Lego, Calvin Klein and more \u2014 but really they're just phishing scams",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/HamXBgURVeMtS8ULECqnyn-1920-80.png\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fsecurity%2Fthese-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThere's an elaborate scheme making rounds on Facebook and TikTok to get people to websites laden with infostealers.",
+      "summary": "There's an elaborate scheme making rounds on Facebook and TikTok to get people to websites laden with infostealers.",
+      "_excerpt": "There's an elaborate scheme making rounds on Facebook and TikTok to get people to websites laden with infostealers.",
+      "date_published": "2026-10-05T15:10:00+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 53,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 49,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/HamXBgURVeMtS8ULECqnyn-1920-80.png",
+      "_boosted_score": 53
+    },
+    "held_date": "2026-10-14",
+    "target_date": "2026-10-28",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
     "status": "held"
   }
 }

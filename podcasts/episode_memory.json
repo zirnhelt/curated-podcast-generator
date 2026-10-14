@@ -1,26 +1,4 @@
 {
-  "2026-09-08": {
-    "timestamp": 1788856108.139084,
-    "topics": [
-      "[Williams Lake Tribune] Grand Forks muralist nears 150 mural",
-      "[Williams Lake Tribune] OPINION: Celebrating B.C.\u2019s workers ",
-      "[Williams Lake Tribune] B.C. couple take care of business, r",
-      "[CFJC Today Kamloops] 25 years of overdose prevention: ASK W",
-      "[Hackster News] Astrall Dynamics' Hypertron-T01 Is Hot Stuff",
-      "[Small Farm Canada] Getting Started with Cover Crops for a H",
-      "[Adafruit Blog] What it took to triple software engineering ",
-      "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-08",
-    "focus": "tourism-outdoor-economy",
-    "focus_name": "Tourism & the Outdoor Economy"
-  },
   "2026-09-09": {
     "timestamp": 1788942269.810102,
     "topics": [
@@ -713,5 +691,26 @@
     "date": "2026-10-13",
     "focus": "agriculture-ranching",
     "focus_name": "Agriculture & Ranching"
+  },
+  "2026-10-14": {
+    "timestamp": 1791965856.081062,
+    "topics": [
+      "[My Cariboo Now] Advance voting days in 2026 municipal elect",
+      "[The Tyee] Can a Former BC Liberal Unseat Quesnel\u2019s Controve",
+      "[My Cariboo Now] First Nations leaders call on B.C. Conserva",
+      "[Williams Lake Tribune] Spooky vibes in full swing at Willia",
+      "[Williams Lake Tribune] Multiple SAR teams locate missing pe",
+      "[Hackster News] This DIY System Automatically Measures Packa",
+      "[Hackster News] Going to Great Depths to Map Lakebeds",
+      "[Hackster News] Protect Your Raspberry Pi 5 From Sudden Powe"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-14",
+    "focus": "maker-repair",
+    "focus_name": "Maker & Repair"
   }
 }

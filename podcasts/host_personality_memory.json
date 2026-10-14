@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-16",
-        "clue": "structural-lens: x \u2014 Accepted Casey's point about temporal asymmetry between building and extraction.",
-        "occurrences": 1
-      },
-      {
         "date": "2026-04-27",
         "clue": "structural-lens: + \u2014 Deepened platform-harm analysis; systematized algorithmic suppression of community content",
         "occurrences": 1
@@ -163,6 +158,21 @@
         "date": "2026-10-13",
         "clue": "evidence-bar:x \u2014 concedes budget question is right, not against tool",
         "occurrences": 2
+      },
+      {
+        "date": "2026-10-14",
+        "clue": "tech-optimism:+ \u2014 reframes sonar, supercap board as practical wins",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-14",
+        "clue": "community-trust:+ \u2014 skill and record should live in the community",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-14",
+        "clue": "pilot-skepticism:~ \u2014 proposes testing one lake before scaling claims",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -309,11 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-02",
-        "clue": "community-trust: x \u2014 Acknowledged genuine shift in explicit data sovereignty negotiations among First Nations",
-        "occurrences": 1
-      },
-      {
         "date": "2026-04-16",
         "clue": "pilot-skepticism: ~ \u2014 Deepened concern from extraction risk to intergenerational governance responsibility.",
         "occurrences": 1
@@ -449,8 +454,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-13",
-        "clue": "funding-risk:~ \u2014 concedes Riley's hub-fee model is a structural test",
+        "date": "2026-10-14",
+        "clue": "funding-risk:~ \u2014 who pays to keep the depth file current",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-10-14",
+        "clue": "evidence-bar:+ \u2014 insists on checking the unverified 0.5 per cent figure",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-14",
+        "clue": "rural-context:x \u2014 concedes stay case depends on community-held skill",
         "occurrences": 1
       }
     ],
