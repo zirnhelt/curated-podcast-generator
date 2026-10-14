@@ -308,9 +308,84 @@ class TestBuildVerdictSection:
         """The issue body keeps the first 65,000 characters: a cut should take the long model
         report, never the table that decides the polish trial."""
         monkeypatch.chdir(tmp_path)
-        monkeypatch.setattr(rs, "run_review", lambda days: "MODEL REPORT")
-        monkeypatch.setattr(rs, "build_verdict_section", lambda: "## Listener verdicts by polish arm\n\nTABLE\n")
+        monkeypatch.setattr(rs, "fetch_verdicts_safely", lambda today: ({}, None))
+        monkeypatch.setattr(rs, "run_review", lambda days, notes: "MODEL REPORT")
+        monkeypatch.setattr(rs, "build_verdict_section",
+                            lambda today, fetched: "## Listener verdicts by polish arm\n\nTABLE\n")
         monkeypatch.setattr(sys, "argv", ["review_scripts.py", "--output", "file"])
         rs.main()
         saved = next((tmp_path / "reviews").glob("review_*.md")).read_text()
         assert saved.index("## Listener verdicts by polish arm") < saved.index("MODEL REPORT")
+
+
+def _commented(when, verdict, segments=None, note=None, reasons=()):
+    row = _episode(when, verdict, reasons)
+    if segments is not None:
+        row["episode_segments"] = segments
+    if note is not None:
+        row["episode_note"] = note
+    return row
+
+
+class TestEpisodeCommentary:
+    def test_segment_thumbs_are_tallied_in_airing_order(self):
+        verdicts = {
+            "2026-10-15": _commented("2026-10-15", "keep", {"roundup": "up", "deep_dive": "down"}),
+            "2026-10-16": _commented("2026-10-16", "meh", {"deep_dive": "down", "bogus": "up"}),
+        }
+        out = rs.verdict_table(verdicts, MODELS, TODAY)
+        assert "| Cold open | 0 | 0 |\n| News roundup | 1 | 0 |\n| Deep dive | 0 | 2 |" in out
+
+    def test_verdicts_from_before_the_segments_add_no_segment_table(self):
+        out = rs.verdict_table({"2026-10-15": _episode("2026-10-15", "keep")}, MODELS, TODAY)
+        assert "| Segment |" not in out and "Your notes" not in out
+
+    def test_notes_are_listed_newest_first_with_their_thumbs(self):
+        verdicts = {
+            "2026-10-15": _commented("2026-10-15", "keep", note="Loved the  mill\nstory."),
+            "2026-10-17": _commented("2026-10-17", "skip", {"deep_dive": "down"}, "Deep dive dragged."),
+        }
+        out = rs.verdict_table(verdicts, MODELS, TODAY)
+        assert out.index("2026-10-17") < out.index("2026-10-15**")
+        assert "- **2026-10-17** (skip; Deep dive 👎): “Deep dive dragged.”" in out
+        assert "“Loved the mill story.”" in out          # whitespace collapsed
+
+    def test_the_prompt_block_covers_the_review_window_only(self):
+        verdicts = {
+            "2026-10-10": _commented("2026-10-10", "keep", note="old"),
+            "2026-10-18": _commented("2026-10-18", "meh", {"roundup": "up"}, "Too many election stories.",
+                                     ["Repetitive"]),
+        }
+        block = rs.listener_notes_block(verdicts, TODAY, days=7)
+        assert "2026-10-10" not in block
+        assert ('- 2026-10-18: verdict: meh; segments: News roundup 👍; reasons: Repetitive; '
+                'note: "Too many election stories."') in block
+
+    def test_no_verdicts_in_the_window_adds_nothing_to_the_prompt(self):
+        assert rs.listener_notes_block({}, TODAY, days=7) == ""
+
+    def test_a_long_note_is_capped(self):
+        row = _commented("2026-10-18", "keep", note="q" * 5000)
+        block = rs.listener_notes_block({"2026-10-18": row}, TODAY, days=7)
+        assert "q" * rs.EPISODE_NOTE_MAX + "\"" in block
+
+    def test_main_reads_the_verdicts_once_and_hands_them_to_both(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        reads = []
+        verdicts = {"2026-10-18": _commented("2026-10-18", "skip", note="Wrong mayor named.")}
+        monkeypatch.setattr(rs, "fetch_verdicts_safely", lambda today: reads.append(today) or (verdicts, None))
+        seen = {}
+        monkeypatch.setattr(rs, "run_review", lambda days, notes: seen.setdefault("notes", notes) and "REPORT")
+        monkeypatch.setattr(rs, "load_episode_models", lambda today: {})
+        monkeypatch.setattr(sys, "argv", ["review_scripts.py", "--output", "file"])
+        rs.main()
+        assert len(reads) == 1
+        assert "Wrong mayor named." in seen["notes"]
+        saved = next((tmp_path / "reviews").glob("review_*.md")).read_text()
+        assert "“Wrong mayor named.”" in saved
+
+    def test_a_failed_read_still_lets_the_review_run(self, monkeypatch):
+        def boom(today):
+            raise RuntimeError("x")
+        monkeypatch.setattr(rs, "fetch_episode_verdicts", boom)
+        assert rs.fetch_verdicts_safely(TODAY) == ({}, "the read failed (RuntimeError)")
