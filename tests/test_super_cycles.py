@@ -157,7 +157,12 @@ def holding_env(tmp_path, monkeypatch):
     return tmp_path
 
 
-def _filler_pool(n=20):
+def _filler_pool(n: int | None = None):
+    # Two over what the roundup and deep dive need, so the holding guard
+    # (max_holds) leaves room to hold; sized from the constants so raising
+    # either count doesn't silently turn holding off in these tests.
+    if n is None:
+        n = pg.NEWS_ROUNDUP_COUNT + pg.DEEP_DIVE_COUNT + 2
     return [
         _article(f"Williams Lake council briefs part {i}", f"filler-{i}", kw=2)
         for i in range(n)
@@ -218,6 +223,21 @@ class TestArticleHolding:
             _filler_pool(5) + [mining], [], saturday, "Cariboo Local Affairs", None
         )
         # Pool below roundup+deep-dive budget: article airs today instead
+        assert any(a["url"] == "mining-url" for a in theme)
+        assert "mining-url" not in pg.load_memory(pg.HOLDING_FILE)
+
+    def test_pool_exactly_at_budget_holds_nothing(self, holding_env):
+        # The guard reserves the roundup plus the weekday deep dive. It used a
+        # literal 3 for the deep dive; DEEP_DIVE_COUNT is 4 since 2026-10-14.
+        saturday, _ = _find_saturday_before_focus("mining-energy")
+        mining = _article(
+            "Copper mine expansion clears exploration drilling permit",
+            "mining-url", kw=0, boosted=50,
+        )
+        budget = pg.NEWS_ROUNDUP_COUNT + pg.DEEP_DIVE_COUNT
+        theme, _ = pg.route_articles_for_focus(
+            _filler_pool(budget - 1) + [mining], [], saturday, "Cariboo Local Affairs", None
+        )
         assert any(a["url"] == "mining-url" for a in theme)
         assert "mining-url" not in pg.load_memory(pg.HOLDING_FILE)
 

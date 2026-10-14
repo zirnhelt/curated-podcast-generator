@@ -170,7 +170,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 ### Curation — see [docs/decisions/curation.md](docs/decisions/curation.md)
 
-**Themes** (weekday 0=Mon): Arts, Culture & Digital Storytelling · Working Lands & Industry · Gear, Gadgets & Practical Tech · Indigenous Lands & Innovation · Wild Spaces & Outdoor Life · **Cariboo Local Affairs** (Sat, longer, 15 articles) · Science, Wonder & the Natural World.
+**Themes** (weekday 0=Mon): Arts, Culture & Digital Storytelling · Working Lands & Industry · Gear, Gadgets & Practical Tech · Indigenous Lands & Innovation · Wild Spaces & Outdoor Life · **Cariboo Local Affairs** (Sat, longer: 18 roundup stories + a 5-source deep dive; weekdays 18 + 4) · Science, Wonder & the Natural World.
 
 **Saturday is geographic** (`geographic: true`): every candidate is local, so a place-name hit is a constant, not a signal.
 - `_build_theme_subject_keywords` strips places and ranks on civic vocabulary.
