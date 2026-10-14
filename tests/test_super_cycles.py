@@ -1287,6 +1287,29 @@ class TestEventResearchSweep:
         self._ballot_on(monkeypatch, date(2026, 10, 13))   # stale: researched, came back empty
         assert pg.load_memory(pg.BALLOT_RESEARCH_CACHE_FILE)["researched"] == "2026-10-06"
 
+    # --- A fresh pass starts from the last one (2026-10-14) ----------------
+    # The show called unestablished what earlier passes had sourced, and the
+    # pass read a syndicated copy because it was never given the story's URL.
+
+    def test_a_fresh_pass_is_handed_the_prior_one(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT.replace("NO RECORD FOUND: none",
+                                               "NO RECORD FOUND: Douglas Gook")
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        assert "PRIOR RESEARCH" not in capture["user"]
+        self._ballot_on(monkeypatch, date(2026, 10, 7))
+        assert "PRIOR RESEARCH (researched 2026-10-06)" in capture["user"]
+        assert "13,714" in capture["user"]
+        assert "never put on the NO RECORD FOUND line" in capture["system"]
+
+    def test_the_pass_gets_each_story_url_and_a_longer_body(self, capture, monkeypatch):
+        story = {"title": "Can a former BC Liberal unseat Quesnel's mayor?",
+                 "url": "https://thetyee.example/quesnel", "summary": "Incumbent Ron Paull",
+                 "_body": "x" * 400 + " Coralee Oakes is running " + "y" * 3000}
+        self._ballot_on(monkeypatch, date(2026, 10, 6), articles=[story])
+        assert "URL: https://thetyee.example/quesnel" in capture["user"]
+        assert "Coralee Oakes" in capture["user"]
+        assert "the outlet's own page comes before a copy elsewhere" in capture["system"]
+
     def test_the_sweep_fits_under_the_deep_dive_meter(self):
         """`_resolve_script_questions_with_brave` runs after the research pass on
         the same meter — the widened sweep must not spend the whole budget."""

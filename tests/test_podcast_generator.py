@@ -6309,7 +6309,7 @@ class TestSparseFilterBudget:
         def _no_search(*a, **k):
             raise AssertionError("searched a pre-curation candidate")
         monkeypatch.setattr(pg, "_brave_search", _no_search)
-        monkeypatch.setattr(pg, "_fetch_page_text", lambda url: "")
+        monkeypatch.setattr(pg, "_fetch_article_text", lambda url: "")
 
         articles = [{"title": f"Thin {i}", "url": f"https://x.test/{i}"} for i in range(5)]
         pg._enrich_articles_with_body(articles, max_articles=40, use_brave=False)
@@ -6707,3 +6707,64 @@ def test_production_disclosure_covers_infrastructure_vendors():
     ]
     names = {name for name, _ in pg._detect_production_company_mentions(articles, pg.CONFIG['credits'])}
     assert {'GitHub', 'Cloudflare'} <= names
+
+
+class TestArticleProse:
+    """2026-10-14: the roundup's 500-character body was the page's menus, so the
+    show said a Tyee excerpt didn't name the challenger its second paragraph named."""
+
+    PAGE = ("<html><nav><ul><li><a>News</a></li><li><a>Sports</a></li><li><a>Opinion"
+            "</a></li></ul></nav><script>var x = 1;</script><article>"
+            "<p>By Staff</p>"
+            "<p>Incumbent Ron Paull faced calls to resign after a book was distributed.</p>"
+            "<p>Former MLA Coralee Oakes is challenging him for the mayor&#8217;s chair "
+            "in Quesnel this fall.</p></article><footer><p>Subscribe</p></footer></html>")
+
+    def test_prose_skips_menus_and_short_paragraphs(self):
+        import podcast_generator as pg
+        prose = pg._article_prose(self.PAGE)
+        assert prose.startswith("Incumbent Ron Paull")
+        assert "Coralee Oakes" in prose and "mayor’s" in prose
+        assert "Sports" not in prose and "By Staff" not in prose and "var x" not in prose
+
+    def test_article_body_prefers_prose(self, monkeypatch):
+        import podcast_generator as pg
+        page = self.PAGE.replace("</article>", "<p>" + "Council met on Tuesday. " * 12 + "</p></article>")
+        monkeypatch.setattr(pg, "_fetch_page_html", lambda url: page)
+        assert pg._fetch_article_body("https://news.test/a").startswith("Incumbent Ron Paull")
+
+    def test_a_page_without_prose_falls_back_to_its_text(self, monkeypatch):
+        import podcast_generator as pg
+        page = "<div>" + "Candidate list Area F acclaimed " * 20 + "</div>"
+        monkeypatch.setattr(pg, "_fetch_page_html", lambda url: page)
+        assert pg._fetch_article_text("https://news.test/a").startswith("Candidate list")
+
+
+class TestRecentColdOpens:
+    """"Hey there, welcome in ... That and more, coming right up" aired five
+    mornings running: the prompt's examples were copied, not varied."""
+
+    def _write(self, d, day, line):
+        (d / f"podcast_script_{day}_theme.txt").write_text(
+            f"# Theme: x\n\n**COLD OPEN**\n**RILEY:** {line}\n\n**WELCOME**\n", encoding="utf-8")
+
+    def test_lists_the_past_week_greeting_and_closer(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        self._write(tmp_path, "2026-10-13", "Hey there, welcome in. Today we've got orcas. That and more, coming right up.")
+        self._write(tmp_path, "2026-10-01", "Too old. Not listed.")
+        self._write(tmp_path, "2026-10-14", "Today itself. Not listed.")
+        out = pg._format_recent_cold_opens("2026-10-14")
+        assert "Hey there, welcome in. … That and more, coming right up." in out
+        assert "Too old" not in out and "Today itself" not in out
+
+    def test_empty_when_nothing_aired(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        assert pg._format_recent_cold_opens("2026-10-14") == ""
+
+    def test_the_prompt_takes_the_list_and_no_longer_offers_examples(self):
+        import config_loader
+        template = config_loader.load_prompts_config()["cold_open_generation"]["template"]
+        assert "{recent_cold_opens}" in template
+        assert "Hey there" not in template and "coming right up" not in template

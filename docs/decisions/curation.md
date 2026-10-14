@@ -486,3 +486,26 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
     story cannot leave, which is the episode.
 
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
+
+## Reading what we already had (2026-10-14)
+
+The roundup said "the excerpt we have doesn't establish the challenger's name" about a Tyee
+story on the Quesnel mayor's race (its image file alone is `RonPaullCoraleeOakes.jpg`), and that
+a My Cariboo Now story on a Conservative candidate "doesn't name that candidate". Three causes:
+
+- **The body was the menus.** `_fetch_page_text` returns a page's whole visible text and the
+  roundup prompt reads its first 500 characters, which on a news site is navigation.
+  `_fetch_article_body` now reads `_article_prose()`, the `<p>` paragraphs of eight words or
+  more, and falls back to the whole text only when a page has too little of it.
+  `fetch_page` (the agents' tool) and the candidate-profile reads keep the whole text: a
+  candidate list is not paragraphs.
+- **The election pass never had the URL.** `_research_articles_text` gave title, summary and
+  excerpt only, so the agent searched the headline and read a syndicated copy on another
+  station's site. It now carries each story's URL, the election pass reads
+  `EVENT_ARTICLE_BODY_CHARS` (1500) of each body, and the prompt sends it to the outlet's own
+  page before any copy.
+- **Each pass forgot the last.** A fresh ballot pass started from nothing, so a record sourced on
+  Friday could come back as unestablished on Wednesday. The cached block now rides into the next
+  pass as PRIOR RESEARCH (`PRIOR_BALLOT_RESEARCH_CHARS`, ~1.5K tokens on the Haiku default):
+  carry its findings forward unless superseded, never list someone it sourced as NO RECORD
+  FOUND, and take who is running from the roster, never from it.

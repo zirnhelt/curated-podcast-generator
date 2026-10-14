@@ -447,3 +447,12 @@ onto the queued item.
 - **The fabrication guard covers both shapes.** `_corrections_ground_truth` and
   `strip_unsourced_correction` now treat an uncited "our production team caught…" the way they
   always treated an uncited "a listener flagged…" — the new wording is as inventable as the old.
+
+## The cold open's greeting (2026-10-14)
+
+The cold-open prompt offered example greetings ("Hey there", "Welcome in") and an example closer
+("That and more, coming right up"). The model aired exactly those, five mornings running. The
+examples are gone; `_format_recent_cold_opens()` hands the prompt the past week's greeting and
+closer as RECENT COLD OPENS, never to be reused, and "welcome in" is `hard_banned` so the tell
+scrub catches it if it comes back. Same lesson as the burned-phrase rule: the model copies its
+instructions' register, and an example is an instruction.
