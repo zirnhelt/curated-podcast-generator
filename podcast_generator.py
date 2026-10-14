@@ -950,6 +950,8 @@ CANDIDATE_PROFILE_CHARS = 1500
 # changed (_ballot_cache_reusable).
 BALLOT_RESEARCH_CACHE_FILE = PODCASTS_DIR / "ballot_research_cache.json"
 BALLOT_RESEARCH_MAX_AGE_DAYS = int(os.getenv("PODCAST_BALLOT_RESEARCH_MAX_AGE_DAYS", "7"))
+# The last pass rides into a fresh one as a starting point (~1.5K tokens).
+PRIOR_BALLOT_RESEARCH_CHARS = 6000
 #
 # The deep dive's own pass reads pages too. A read is a plain HTTP GET on no Brave
 # meter: the only cost is the Claude tokens of the page it returns (<=6000 chars).
@@ -1662,18 +1664,55 @@ def _fetch_url_metadata(url):
         return "", "", ""
 
 
-def _fetch_page_text(url: str) -> str:
-    """A page's visible text (scripts, styles and tags stripped), or "" on failure."""
+def _fetch_page_html(url: str) -> str:
+    """A page's raw HTML, or "" on failure."""
     try:
         resp = _get_public(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
         if resp is None:
             return ""
         resp.raise_for_status()
-        text = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', resp.text, flags=re.I | re.S)
-        text = re.sub(r'<[^>]+>', ' ', text)
-        return re.sub(r'\s+', ' ', html_lib.unescape(text)).strip()
+        return resp.text
     except Exception:
         return ""
+
+
+def _html_text(html: str) -> str:
+    """Visible text: scripts, styles and tags stripped, whitespace collapsed."""
+    text = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', html, flags=re.I | re.S)
+    text = re.sub(r'<[^>]+>', ' ', text)
+    return re.sub(r'\s+', ' ', html_lib.unescape(text)).strip()
+
+
+def _fetch_page_text(url: str) -> str:
+    """A page's visible text (scripts, styles and tags stripped), or "" on failure."""
+    html = _fetch_page_html(url)
+    return _html_text(html) if html else ""
+
+
+ARTICLE_PARAGRAPH_MIN_WORDS = 8
+
+
+def _article_prose(html: str) -> str:
+    """The article's own paragraphs: the text of every <p> long enough to be prose.
+
+    A news page's visible text opens with its menus, so its first 500 characters,
+    which is what the roundup prompt sees, were navigation. On 2026-10-14 the
+    show said "the excerpt we have doesn't establish the challenger's name" for
+    a Tyee story whose own image file names her. Menus are <li><a>, prose is <p>.
+    """
+    # ponytail: regex over <p>, not a readability library; no new dependency.
+    paragraphs = (_html_text(p) for p in re.findall(r'<p\b[^>]*>(.*?)</p>', html, re.I | re.S))
+    return " ".join(p for p in paragraphs if len(p.split()) >= ARTICLE_PARAGRAPH_MIN_WORDS)
+
+
+def _fetch_article_text(url: str) -> str:
+    """An article's prose paragraphs, or the page's visible text when it has too
+    few <p> to tell; "" on failure."""
+    html = _fetch_page_html(url)
+    if not html:
+        return ""
+    prose = _article_prose(html)
+    return prose if len(prose) > 200 else _html_text(html)
 
 
 def _fetch_article_body(url, brave_key=None, title=None):
@@ -1688,7 +1727,7 @@ def _fetch_article_body(url, brave_key=None, title=None):
 
     Returns a body string (up to 2000 chars); empty string on total failure.
     """
-    text = _fetch_page_text(url)
+    text = _fetch_article_text(url)
     body = text[:2000] if len(text) > 200 else ""
 
     # Brave enrichment when body is absent or suspiciously thin.  400 chars is
@@ -3651,11 +3690,20 @@ def _standing_assignments(events) -> str:
         for e in events)
 
 
-def _research_articles_text(articles) -> str:
+# The election pass reads its stories at length: a name is usually past the
+# lede, and 500 characters is the lede.
+EVENT_ARTICLE_BODY_CHARS = 1500
+
+
+def _research_articles_text(articles, body_chars: int = 500) -> str:
+    """The articles a research pass starts from, with their URLs so fetch_page
+    can read the outlet's own page. Without them the 2026-10-14 election pass
+    searched the headline and read a syndicated copy on another station's site."""
     return "\n\n".join(
         f"ARTICLE: {a.get('title', '')}\n"
+        f"URL: {a.get('url', '')}\n"
         f"Summary: {a.get('summary', '')[:300]}\n"
-        f"Body excerpt: {(a.get('_body', '') or '')[:500]}"
+        f"Body excerpt: {(a.get('_body', '') or '')[:body_chars]}"
         for a in articles
     )
 
@@ -3761,8 +3809,15 @@ def _research_event_ballot(articles, client, events, pool=None) -> str:
         _RESEARCH_LOG.append({"kind": "cached", "researched": researched.isoformat()})
         return (f"(Ballot researched {_air_day(researched.isoformat())} and unchanged since. "
                 f"Background, not news.)\n{cached['block']}\n\n")
+    prior = ""
     if cached:
         print(f"🗳️  Researching the ballot again: {stale}")
+        if cached.get("block") and cached.get("researched"):
+            # A fresh pass starts from the last one, not from nothing: on
+            # 2026-10-14 the show called unestablished what earlier passes had
+            # sourced, because each pass forgot the one before it.
+            prior = (f"\n\nPRIOR RESEARCH (researched {cached['researched']}):\n"
+                     f"{cached['block'][:PRIOR_BALLOT_RESEARCH_CHARS]}")
 
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     if not brave_key or not client:
@@ -3786,6 +3841,13 @@ def _research_event_ballot(articles, client, events, pool=None) -> str:
         "Never fabricate organization names, person names, or event details — only reference "
         "entities found in the source articles or verified by your web searches.\n\n"
         + _standing_assignments(events) + _BALLOT_SWEEP_INSTRUCTIONS +
+        "Each election article above carries its URL. Where its body excerpt stops "
+        "before naming the people it is about, read that URL with fetch_page before "
+        "searching for the story: the outlet's own page comes before a copy elsewhere. "
+        "PRIOR RESEARCH, when present, is what an earlier pass sourced: carry its "
+        "findings forward with their outlet and date unless today's sources supersede "
+        "them, and never put on the NO RECORD FOUND line someone it sourced. Who is "
+        "running comes from the roster, never from the prior pass.\n\n"
         f"Use web_search for up to {EVENT_RESEARCH_SEARCH_LIMIT} searches (set recent=true "
         "for who is running now) and fetch_page for up to "
         f"{EVENT_PAGE_FETCH_LIMIT} pages. Then respond with:\n\n"
@@ -3795,8 +3857,9 @@ def _research_event_ballot(articles, client, events, pool=None) -> str:
         + _BALLOT_FINDINGS_FORMAT +
         "If your searches turn up nothing useful, respond with exactly: NONE"
     )
-    user_content = (f"Election material in today's episode:\n\n{_research_articles_text(articles)}"
-                    + (f"\n\n{roll_call}" if roll_call else ""))
+    user_content = (f"Election material in today's episode:\n\n"
+                    f"{_research_articles_text(articles, EVENT_ARTICLE_BODY_CHARS)}"
+                    + (f"\n\n{roll_call}" if roll_call else "") + prior)
     tool_executors = {
         "web_search": _budgeted(
             lambda i: _web_search_tool_executor(i, meter="event", window=window),
@@ -5399,6 +5462,39 @@ def _find_welcome_host(script):
     return None
 
 
+COLD_OPEN_LOOKBACK_DAYS = 7
+
+
+def _format_recent_cold_opens(today: str, days: int = COLD_OPEN_LOOKBACK_DAYS) -> str:
+    """The past week's cold-open greetings and closers, for the teaser prompt.
+
+    The prompt once listed example greetings and a closer; the model aired
+    "Hey there, welcome in ... That and more, coming right up" five mornings
+    running (2026-10-10 to 10-14). Showing what already aired, rather than
+    examples to copy, is what "vary it" needs. Purely local; "" when none.
+    """
+    first = (date.fromisoformat(today) - timedelta(days=days)).isoformat()
+    lines = []
+    for path in sorted(PODCASTS_DIR.glob("podcast_script_*.txt"), reverse=True):
+        m = re.match(r'podcast_script_(\d{4}-\d{2}-\d{2})_', path.name)
+        if not m or not first <= m.group(1) < today:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        cold = re.search(r'^\*{0,2}COLD OPEN\*{0,2}\s*\n\*\*(?:RILEY|CASEY):\*\*\s*(.+)$',
+                         text, re.M)
+        if not cold:
+            continue
+        sentences = [s for s in re.split(r'(?<=[.!?])\s+', cold.group(1).strip()) if s]
+        if sentences:
+            lines.append(f"- {_clip(sentences[0], 80)} … {_clip(sentences[-1], 80)}")
+    if not lines:
+        return ""
+    return "RECENT COLD OPENS (greeting … closer):\n" + "\n".join(lines) + "\n\n"
+
+
 def generate_cold_open(script, theme_name):
     """Generate the COLD OPEN teaser after the script is fully drafted and polished.
 
@@ -5427,6 +5523,7 @@ def generate_cold_open(script, theme_name):
         theme_name=theme_name,
         welcome_host_upper=welcome_host,
         finalized_script=script,
+        recent_cold_opens=_format_recent_cold_opens(get_pacific_now().date().isoformat()),
         burned_phrases=format_burned_phrases_for_prompt(),
     )
 
