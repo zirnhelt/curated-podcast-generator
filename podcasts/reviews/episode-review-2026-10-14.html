@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 14, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 14, 2026</h1>
+  <p class="meta">Published October 14, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38532679445">38532679445</a>.</em></p>
+
+<h3>The show was short and the pipeline padded it</h3>
+<p>The first script draft came in at 2230 words against a target of 3400. The pipeline sent it back for up to two expand passes. What shipped was 3237 words, which is 163 words under target, not on it. The draft ran 1170 words short of target, so the expand passes recovered most of the gap but not all of it.</p>
+<p>The expand passes did not add new reporting. The body backfill that would have filled thin articles ran out of budget: Brave body-backfill calls were spent at 12. The remaining thin articles kept their stub bodies, and the pipeline flagged them as possibly cut for sparseness. So the listener got a longer script built partly from articles that had little to say, and some of those may have been dropped anyway.</p>
+
+<h3>Fifty-three roundup stories were cut, and that was the design</h3>
+<p>The roundup pool was larger than one segment could air. The airtime budget (NEWS_ROUNDUP_COUNT) cut 53 stories. Those stories remain in the pool and can resurface on a day that matches them better. Nothing about the cut is a failure. It is the cost of a fixed airtime budget against a larger pool.</p>
+<p>The count sits next to the sparse-body problem. The pipeline had room to air 53 fewer stories than it curated, yet it still had to expand a short draft and still kept thin articles it could not fill. The curated count and the aired count disagree in the direction of more material than airtime, while the script disagrees in the direction of less material than target. Both are true on the same run.</p>
+
+<h3>Citations held on the roundup and slipped on the deep dives</h3>
+<p>All 15 roundup citations matched their sources. On the deep dives, 1 of 3 citations matched. The three deep-dive stories were Hackster items on a package-measuring system, lakebed mapping, and protecting a Raspberry Pi 5 from sudden power loss. The two unmatched citations were the weakest link in an otherwise clean run, and the facts do not say why they failed to match.</p>
+
+<h3>The voice split and the AI-tell check</h3>
+<p>The Casey-to-Riley voice ratio came in at 0.88, and the AI-tell pattern check recorded 0 hits. The check is clean, but a 0.88 ratio means the two hosts sat close to each other in how much they spoke, not that the dialogue was balanced in any stronger sense.</p>
+
+<h3>Audio held, short TTS takes were retried</h3>
+<p>The audio runs 18.8 minutes at 17.2 MB. The video runs 18.8 minutes at 65.2 MB. Two TTS takes came back shorter than their word count predicted. Each was retried once, and both retries were still short. The pipeline kept the longer take in each case, so no text was dropped from the episode. The short takes are a fact about the audio's pacing; the facts do not say whether they affected how the lines sounded.</p>
+
+<h3>Three runs, all green, one still running</h3>
+<p>The primary run started at 1:05 AM Pacific and finished at 1:32 AM Pacific, with no minutes late. Fallback 1 started and finished at 2:05 AM Pacific. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has no finish time yet. Two of the three runs completed, and the first two both succeeded. The generate-script step took 610 seconds, the longest in the run, and the deploy step took 366 seconds. The episode count stands at 259.</p>
+
+<h3>Spend, by service</h3>
+<p>The run used 62,399 Anthropic input tokens. Brave search was called 28 times, Claude 17 times, and Brave answers 4 times. Those numbers measure calls and tokens, not cost, and the facts give no dollar figure. The 12 Brave body-backfill calls that exhausted their budget are part of the 28 search calls.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.88, 3237 words</td></tr>
+<tr><td>Audio</td><td>18.8 min</td></tr>
+<tr><td>Audio size</td><td>17.2 MB</td></tr>
+<tr><td>Citations matched</td><td>15/15 roundup, 1/3 deep dive</td></tr>
+<tr><td>Feed</td><td>259 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>62,399 input tokens, calls ***'brave-search': 28, 'claude': 17, 'brave-answers': 4***</td></tr>
+</tbody>
+</table>
+</body>
+</html>

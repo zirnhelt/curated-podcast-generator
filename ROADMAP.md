@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-12) — 2 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-14) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -54,15 +54,17 @@ close one; it comes back only if the reviews raise it 2 more times._
       failures or add a validation gate that blocks publish if any story lands in the wrong
       temporal position. (signal `degraded:script/roundup-order`; seen in 2 reviews, latest
       2026-10-12)
-- [ ] **Script generation failed in the primary and first fallback run but succeeded in the
-      second fallback.** The Generate episode script step failed after 92 seconds in both the
-      primary run (1:05 AM Pacific, run 36834215592) and Fallback 1 (2:05 AM Pacific, run
-      36840498673), causing both runs to conclude as failures. The same step succeeded in
-      Fallback 2 (3:05 AM Pacific, run 36846937721) in the same duration. The facts do not state
-      what caused the failures or what changed between attempts. Check the error logs from runs
-      36834215592 and 36840498673 to identify whether the breakage was transient (a retry-worthy
-      timeout or rate limit) or a code issue that the third attempt avoided by accident. (signal
-      `run-failed`; seen in 3 reviews, latest 2026-10-11)
+- [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
+      2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
+      an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
+      needed to reach target. This is the second consecutive run where expansion fell far short:
+      on 2026-09-16, expansion produced a final count 426 words below target. The mechanism
+      suggests the expansion prompt or its iteration limit is not aggressive enough to close
+      multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
+      whether it runs for a fixed iteration count rather than until target is met, or whether
+      the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
+      until the shipped script reaches the goal. (signal `short-script`; seen in 2 reviews,
+      latest 2026-10-14)
 
 <!-- reviews:end -->
 
