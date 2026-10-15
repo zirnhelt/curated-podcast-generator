@@ -288,9 +288,18 @@ the limit to watch (~500 upstream plus ~150 here). Setting the repository variab
 The roundup's story count is derived from **airtime, not appetite**. The segment gets
 ~1,100–1,300 words of a 3,400-word script, and every story owes the listener what happened,
 why it matters and the rural angle — `ROUNDUP_MIN_STORY_WORDS` (70) is the floor that takes.
-`NEWS_ROUNDUP_COUNT` (15) is that budget divided by that floor. **A story that cannot be given
+`NEWS_ROUNDUP_COUNT` (18) is that budget divided by that floor. **A story that cannot be given
 its floor is cut, never compressed**, and the prompt states the segment's word target so a
 shorter list produces deeper stories rather than a shorter segment.
+
+**The model writes to the list, not to the target** (2026-10-14). At 15 stories it drafted
+~55–65 words a story, 760–950 words of roundup against the 1,200 floor, while the cap cut
+44–64 stories a day; the expand passes recovered most of it and the polish trimmed it back.
+So the count went to 18 (18 × 70 = 1,260, still inside the budget) and the weekday deep dive
+from 3 sources to 4 (`DEEP_DIVE_COUNT`; Saturday stays 5): more material yields length the
+model keeps, where "write longer" yields length the polish removes. No extra call; a few
+hundred input tokens. The holding guard reserves `NEWS_ROUNDUP_COUNT + DEEP_DIVE_COUNT`
+(it had a literal 3). Saturday's roundup went to 18 as well; its cap was cutting 59 stories.
 
 `NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. It used to bound the
 theme pool alone: `_curate_roundup_pool` returned `protected + kept_fill + bonus` and

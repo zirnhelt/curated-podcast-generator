@@ -1036,16 +1036,25 @@ def _is_prompt_slice_enabled(name: str) -> bool:
 # butter was recalled. Ransomware operators are targeting managers."). Every
 # coherence mechanism below — blocks, cluster adjacency, the no-forced-segue
 # rules — ran on the 15 and was bypassed by the 37.
-NEWS_ROUNDUP_COUNT = 15
+#
+# 18 since 2026-10-14: the model writes ~55-65 words a story, not the 70 the
+# budget assumed, so 15 stories drafted a 760-950-word roundup against its
+# 1,200 floor while the airtime cap cut 44-64 stories a day.
+NEWS_ROUNDUP_COUNT = 18
 
 # Minimum airtime a story must be able to command to be worth airing at all.
 # Below this it cannot carry what happened / why it matters / the rural angle,
 # and it becomes a headline read out for no one's benefit.
 ROUNDUP_MIN_STORY_WORDS = 70
 
+# Weekday deep-dive sources. 4 since 2026-10-14: on 3 the Deep Dive drafted
+# 1,000-1,600 words against its 2,000 floor; a fourth source gives the hosts
+# more to discuss rather than more to say about the same three.
+DEEP_DIVE_COUNT = 4
+
 # Saturday (Cariboo Local Affairs) runs a deeper, longer episode.
-SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
-SATURDAY_NEWS_ROUNDUP_COUNT = 15
+SATURDAY_DEEP_DIVE_COUNT = 5   # vs. DEEP_DIVE_COUNT on weekdays
+SATURDAY_NEWS_ROUNDUP_COUNT = 18
 
 # A deep dive may run short rather than be topped up with material the router
 # deferred to another day — but not to nothing. Below this many eligible
@@ -5220,7 +5229,8 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
                    else _recall_target_date(today_date, event_focus))
     recall_count = 0
     # Never shrink the pool below what the roundup + deep dive need
-    max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
+    max_holds = max(0, len(theme_articles) + len(bonus_articles)
+                    - (NEWS_ROUNDUP_COUNT + DEEP_DIVE_COUNT))
 
     # Top slice of TODAY's pool by the feed's own charter score for TODAY's
     # theme. Ranked rather than thresholded so it still bites when the whole
@@ -6389,7 +6399,7 @@ def categorize_articles_for_deep_dive(articles, theme_day, focus=None):
         return score
 
     remaining.sort(key=theme_relevance, reverse=True)
-    deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if theme_day == 5 else 3
+    deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if theme_day == 5 else DEEP_DIVE_COUNT
 
     # Try Cohere rerank for higher-quality theme alignment; fall back to keyword sort
     reranked = cohere_enrichment.rerank_for_deep_dive(theme_name, remaining, deep_dive_count)
@@ -7469,7 +7479,7 @@ def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
     return query
 
 
-def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
+def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT, focus=None,
                                event_focus=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
@@ -12882,7 +12892,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     consumed_email_ids.extend(i["id"] for i in email_newsletters)
 
                 # Select deep dive from theme articles; rest go to news
-                deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
+                deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else DEEP_DIVE_COUNT
                 deep_dive_articles, news_articles = select_deep_dive_from_feed(
                     theme_articles, today_theme, count=deep_dive_count,
                     focus=today_focus, event_focus=today_event)
