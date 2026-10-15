@@ -1445,6 +1445,16 @@ URGENT_SCORE_THRESHOLD = 85     # _boosted_score at/above this always airs same-
 EMAIL_BODY_MIN_CHARS = 300
 # News articles with less body text than this are treated as sparse; Brave is tried before skipping
 NEWS_BODY_MIN_CHARS = 150
+# Below this a curated roundup story is researched (free page fetch, then one
+# Brave search and a read of the matching coverage) before the script is written.
+# Between MIN and RICH a story used to air on its feed excerpt, and the hosts
+# filled the gap on air: "the excerpt we have doesn't name the Nation" (2026-10-03),
+# "the report doesn't say who is running" (2026-10-07), five such lines on 2026-10-15.
+NEWS_BODY_RICH_CHARS = 400
+# How much of each roundup story's researched body the script prompt sees. It was
+# 500, about the lede: on 2026-10-12 a candidate profile reached the prompt as its
+# four questions and none of the answers. ~3.5K more prompt tokens a script call.
+ROUNDUP_PROMPT_BODY_CHARS = 1200
 # 35 days (was 21) so episode memory spans a full 4-week super cycle and the
 # previous same-focus episode is always recallable for continuity.
 MEMORY_RETENTION_DAYS = 35
@@ -1785,9 +1795,12 @@ def _enrich_articles_with_body(articles, label="", max_articles=None, use_brave=
         if not url:
             continue
         existing = a.get("_body", "") or ""
-        if len(existing) >= 400:  # already richly populated — skip
+        if len(existing) >= NEWS_BODY_RICH_CHARS:  # already richly populated — skip
+            continue
+        if not brave_key and a.get("_fetched"):  # the free fetch already failed once
             continue
         body = _fetch_article_body(url, brave_key=brave_key, title=a.get("title"))
+        a["_fetched"] = True
         if len(body) > len(existing):
             a["_body"] = body
 
@@ -4065,52 +4078,77 @@ def _fill_body_from_excerpt(articles: list) -> None:
             a["_body"] = excerpt
 
 
+def _research_roundup_story(article: dict, brave_key: str) -> bool:
+    """One Brave title search for a thin roundup story, then read the coverage.
+
+    The search snippet is ~200 characters. The matching result's own page is the
+    story, so it is fetched (free) and its prose kept when it is longer. A result
+    counts as the same story when it shares at least half the title's content
+    words. Text from another outlet is marked `_body_via` so the hosts attribute it.
+    Returns True when the body grew.
+    """
+    title = article.get("title", "")
+    results = _brave_search_rate_limit(title, brave_key, count=3)
+    if not results:
+        return False
+    want = _significant_words(title)
+    own_host = urlparse(article.get("url", "")).netloc.lower().removeprefix("www.")
+    best, best_via = article.get("_body", "") or "", None
+    for r in results:
+        desc = r.get("description", "") or ""
+        host = urlparse(r.get("url", "")).netloc.lower().removeprefix("www.")
+        same_story = bool(want) and len(want & _significant_words(r.get("title", ""))) * 2 >= len(want)
+        text = ""
+        if same_story and r.get("url"):
+            # ponytail: one page read per matching result, capped at the body budget.
+            text = _fetch_article_text(r["url"])[:2000]
+        for candidate in (text, desc):
+            if len(candidate) > len(best):
+                best, best_via = candidate, (host if host and host != own_host else None)
+    if len(best) <= len(article.get("_body", "") or ""):
+        return False
+    article["_body"] = best
+    if best_via:
+        article["_body_via"] = best_via
+    return True
+
+
 def _filter_sparse_news_articles(articles: list) -> list:
-    """Remove news articles without sufficient body text after trying enrichment.
+    """Research every curated roundup story before the script is written; cut what
+    still has nothing.
 
-    Articles that can't be enriched are dropped so Claude doesn't broadcast a
-    story it can only describe in a single headline.  Before one is cut it gets
-    two chances at real content: the feed's own `_excerpt`, which is free, then a
-    title-based Brave search charged to the SEARCH budget.
+    The script model has no tools: whatever a story carries here is all it will
+    ever know, and a story aired on its feed excerpt makes the hosts narrate the
+    gap. So each curated story below NEWS_BODY_RICH_CHARS gets, in order: a free
+    fetch of its own page (stories past the first 40 of the pool were never
+    fetched), the feed's `_excerpt`, then one title search charged to the SEARCH
+    budget plus a free read of the matching coverage (`_research_roundup_story`).
+    Only a story still under NEWS_BODY_MIN_CHARS after all that is dropped.
 
-    That search used to call `_brave_search` directly, outside every budget. Body
-    fetching stops at the first 40 articles and the pool runs ~80, so every
-    article past #40 reached this loop with no body and bought its own search —
-    ~30 unmetered calls a night on stories the 15-slot roundup mostly drops, and
-    the reason the podcast spent 40-55 Search requests a day in September 2026
-    against per-run ceilings that add up to 28.
-
-    It runs on the curated roundup (plus ROUNDUP_BACKFILL_SPARES), never on the
-    whole candidate pool: on 2026-09-26 the 12-call budget ran out on stories
-    the airtime cap then cut, and 46 survivors went unsearched.
+    The search used to call `_brave_search` directly, outside every budget, over
+    the whole ~80-article pool: 40-55 Search requests a day in September 2026
+    against per-run ceilings that add up to 28. It runs on the curated roundup
+    (plus ROUNDUP_BACKFILL_SPARES), never on the whole candidate pool: on
+    2026-09-26 the 12-call budget ran out on stories the airtime cap then cut.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     kept, skipped = [], []
     brave_used = False
 
+    _enrich_articles_with_body(articles, label="roundup cut", use_brave=False)
     _fill_body_from_excerpt(articles)
     for a in articles:
-        body = a.get("_body", "") or ""
-        if len(body) >= NEWS_BODY_MIN_CHARS:
-            kept.append(a)
-            continue
-
         title = a.get("title", "")
-        if brave_key and title:
-            results = _brave_search_rate_limit(title, brave_key, count=3)
-            best = max(
-                (r for r in results if len(r.get("description", "")) >= NEWS_BODY_MIN_CHARS),
-                key=lambda r: len(r.get("description", "")),
-                default=None,
-            )
-            if best:
-                a["_body"] = best["description"]
-                brave_used = True
-                print(f"  🔎 Brave-enriched sparse article: \"{title[:60]}\"")
-                kept.append(a)
-                continue
-
-        skipped.append(title)
+        if (brave_key and title
+                and len(a.get("_body", "") or "") < NEWS_BODY_RICH_CHARS
+                and _research_roundup_story(a, brave_key)):
+            brave_used = True
+            print(f"  🔎 Researched roundup story: \"{title[:60]}\" "
+                  f"({len(a['_body'])} chars{', via ' + a['_body_via'] if a.get('_body_via') else ''})")
+        if len(a.get("_body", "") or "") >= NEWS_BODY_MIN_CHARS:
+            kept.append(a)
+        else:
+            skipped.append(title)
 
     if skipped:
         print(f"  ⏭️  Skipping {len(skipped)} sparse article(s) with no retrievable detail:")
@@ -9015,7 +9053,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                       if a.get('_recalled_from') else '')
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
-        body_line = f"\n  Content: {body[:500]}" if body else ""
+        via = a.get('_body_via')
+        label = f"Content (from {via}'s coverage of the same story)" if via else "Content"
+        body_line = f"\n  {label}: {body[:ROUNDUP_PROMPT_BODY_CHARS]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
         return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{recall_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 

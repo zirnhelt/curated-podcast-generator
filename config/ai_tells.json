@@ -152,6 +152,15 @@
         "\\bcarrying (?:a lot of |real |serious )?weight (?:in|there)\\b"
       ],
       "allowance": 0
+    },
+    "source_gap_narration": {
+      "patterns": [
+        "\\b(?:the )?(?:excerpt|snippet|report|article|piece|story|coverage|release|notice|post|item|material|source) (?:we|I) (?:have|read)\\b",
+        "\\b(?:the )?(?:excerpt|snippet|report|article|piece|story|coverage|release|notice) (?:as we have it )?(?:doesn't|does not|didn't) (?:say|name|give|tell|establish|carry|list|specify|mention)\\b",
+        "\\bisn't in (?:the material|what we (?:have|read))\\b",
+        "\\bin what we read\\b"
+      ],
+      "allowance": 0
     }
   },
   "ledger": {
