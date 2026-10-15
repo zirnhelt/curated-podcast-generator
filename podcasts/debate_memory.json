@@ -1,41 +1,4 @@
 {
-  "2026-07-16": {
-    "timestamp": 1784198332.921212,
-    "date": "2026-07-16",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "For Indigenous Nations, is exclusion from data collection the bigger problem, or is inclusion on non-Indigenous terms while losing control over interpretation and application?",
-    "riley_position": "Exclusion is the more urgent problem because missing data actively produces bad downstream outcomes for decades; the real fix is ensuring Indigenous control over research questions through frameworks like OCAP, and Nations should build internal analytical capacity rather than stay out of data collection entirely.",
-    "riley_key_evidence": [
-      "Drug trials excluding populations produce dosing guidelines that don't work for those bodies; land-use surveys skipping territories produce environmental baselines that don't account for actual ecological conditions",
-      "OCAP (Ownership, Control, Access, Possession) makes inclusion conditional on Indigenous control of research design",
-      "FirstVoices language archiving platform built governance into architecture from day one, allowing communities to maintain control over language archives years into the project",
-      "CCATEC's training pipelines toward health, resource management, and land administration roles let Nations train their own epidemiologists and GIS technicians"
-    ],
-    "casey_position": "Inclusion without control is extractive and potentially more harmful than exclusion because data collected by outside institutions gets used to justify policies Nations never requested, and enforcement gaps mean frameworks like OCAP fail when stakes rise and money becomes involved.",
-    "casey_key_evidence": [
-      "Health and land data collected for decades by outside institutions was used to justify residential school-era policies and child-welfare models communities opposed",
-      "Health records and land-use data get pulled into underwriting, resource permitting, and policy modelling where real money creates incentives for outside institutions to retain control",
-      "Secw\u00e9pemc communities have invested in internal capacity but still hit federal and provincial systems that only recognize data formatted through government-controlled channels",
-      "In permitting decisions, Nation-collected baseline data gets treated as one input among several while tie-breaking defaults to consultant reports from government's existing procurement relationships"
-    ],
-    "resolution": "They agreed to disagree on whether the problem is solvable through capacity-building alone, but converged on a concrete next step: the actual research needed is an audit of how many times Nation-collected data was actually weighted equally against consultant data in real permitting decisions under deadline pressure, and they called for listeners to identify signed agreements or confirm the gap persists.",
-    "topics_covered": [
-      "Exclusion versus inclusion as competing harms in Indigenous data sovereignty",
-      "OCAP framework and its enforcement gaps in practice",
-      "FirstVoices as a counterexample of governance-first platform design",
-      "Commercial incentives that undermine Indigenous data control in health and environmental contexts",
-      "Regulatory recognition and legal standing of Nation-collected data in permitting processes",
-      "Internal capacity-building versus structural barriers in government intake systems",
-      "Governance infrastructure as permanent operational funding versus project-based grant cycles"
-    ],
-    "calls_to_action": [
-      "Conduct a funded audit of real permitting decisions in the Cariboo region to document how many times Nation-collected environmental baseline data received equal weight against consultant reports when genuine deadline pressure and money were at stake.",
-      "Any Nation or tribal council should negotiate a formal, named data-sharing agreement with a neighbouring health authority or resource ministry that specifies in advance which technical format and methodology gets automatic standing in decisions, rather than relying on general reconciliation commitments.",
-      "Build data infrastructure that a ministry cannot weigh against external decision-makers in the first place through parallel systems design, following the FirstVoices model of making outside extraction structurally impossible from architecture inception.",
-      "Advocate for standing institutional funding for governance capacity and legal work (data-sharing agreement negotiation, technical standard drafting) as permanent infrastructure like water treatment or road maintenance, rather than as sunset-dated project grants.",
-      "Listeners with knowledge of signed agreements establishing equal admissibility of Nation-collected data in provincial permitting, or confirmation that no such agreements exist, should contact the show at feedback@cariboosignals.ca to ground future analysis in documented outcomes rather than anecdote."
-    ]
-  },
   "2026-07-17": {
     "timestamp": 1784283951.982749,
     "date": "2026-07-17",
@@ -2540,6 +2503,34 @@
       "Parcel-weighing and load-cell recalibration over time",
       "Home server costs versus subscriptions, backup and restore procedures",
       "Community skill retention, documentation and whether a second person can reproduce results"
+    ]
+  },
+  "2026-10-15": {
+    "timestamp": 1792052609.987039,
+    "date": "2026-10-15",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "governance-title",
+    "anchor": "leave-or-stay",
+    "central_question": "Who holds the authority to decide what Indigenous governments' financial records, cultural objects, and services are judged by, and whether sovereignty survives federal funding conditions and clawbacks?",
+    "riley_position": "Indigenous nations should keep their own transparent audit trails and digital records, which preserve sovereignty and let them contest federal findings; sovereignty and federal funding can coexist if the terms are written down and understood.",
+    "riley_key_evidence": [
+      "FSIN disputes ISC's audit decision over $12.4 million, with the legal action being the nation using its own jurisdiction to test the number",
+      "The Kawacatoose tipi cover, taken in 1926 and held at the Smithsonian's National Museum of the American Indian, was returned to Kawacatoose First Nation",
+      "Denisiqi Services Society has run culturally grounded child and family services for T\u015dilhqot'in and Ulkatcho communities for more than twenty years"
+    ],
+    "casey_position": "Records and courts do not resolve who ultimately controls the money and eligibility rules; clawbacks threaten current services, restitution requires institutional decisions rather than tools, and sovereignty claims remain untested until a court rules.",
+    "casey_key_evidence": [
+      "ISC has threatened to claw back all current funding if FSIN does not repay the $12 million flagged in the audit, and the department issuing the audit is the one moving to collect",
+      "The Kawacatoose cover was returned only after a community meeting with Smithsonian representatives, and it took a century, while a scan is not a substitute for return",
+      "The Lebret residential school closure date of June 30, 1998 is solidly sourced, but the 1990s claim for Gordon and Muscowequan remains unverified, and testimony must be checked against records before being repeated as fact"
+    ],
+    "resolution": "The hosts did not reach agreement. Riley maintained that records and nation-held systems let a nation contest findings and that sovereignty can coexist with funding agreements; Casey stressed that the department writing the rules also collects the money, and that the sovereignty question remains open until tested in court. They agreed the key questions to carry forward are who holds the audit trail and who can change reporting terms after funds are released.",
+    "topics_covered": [
+      "The FSIN audit dispute, ISC clawback threats, and who controls eligibility rules",
+      "Data sovereignty, digital audit trails, and vendor lock-in for Indigenous governments",
+      "Repatriation of the Kawacatoose tipi cover and the role of digital cataloguing versus institutional decisions",
+      "Verification of residential school closure dates at Lebret, Gordon, and Muscowequan",
+      "Governance models for Indigenous child and family services, including Denisiqi Services Society and T\u015dilhqot'in title"
     ]
   }
 }

@@ -1,26 +1,4 @@
 {
-  "2026-09-09": {
-    "timestamp": 1788942269.810102,
-    "topics": [
-      "[My Cariboo Now] Environment Canada goes over what type of s",
-      "[My Cariboo Now] RCMP execute drug and weapons bust in the S",
-      "[Williams Lake Tribune] Training exercise at Williams Lake R",
-      "EEVblog 1769 \u2013 Who Needs Three Phases? REPAIR",
-      "[ZDNet] This tiny tool gave my phone thermal vision \u2013 and po",
-      "[Hackaday] Are Desktop PC-ABS Prints Outperformed by Industr",
-      "[Popular Woodworking] The Swiss Precision Planer Gantry: Ret",
-      "[TechCrunch] Google DeepMind alumni are building tools to ac"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-09",
-    "focus": "vehicles-field-gear",
-    "focus_name": "Vehicles & Field Gear"
-  },
   "2026-09-10": {
     "timestamp": 1789050876.524507,
     "topics": [
@@ -712,5 +690,26 @@
     "date": "2026-10-14",
     "focus": "maker-repair",
     "focus_name": "Maker & Repair"
+  },
+  "2026-10-15": {
+    "timestamp": 1792052607.81313,
+    "topics": [
+      "[100 Mile Free Press] South Cariboo Recreation Centre adds $",
+      "[Williams Lake Tribune] MEET THE CANDIDATE: City council can",
+      "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g",
+      "[My Cariboo Now] Thanksgiving Food Drive in Quesnel was a su",
+      "[My Cariboo Now] Health Service Delivery Area that includes ",
+      "[Global News] FSIN launches legal action over Ottawa\u2019s $12.4",
+      "[Eagle Feather News] The Last Generation \u2013 Survivors share s",
+      "[IndigiNews] A century after it was taken, ancestral tipi co"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-15",
+    "focus": "governance-title",
+    "focus_name": "Governance, Title & Treaty"
   }
 }
