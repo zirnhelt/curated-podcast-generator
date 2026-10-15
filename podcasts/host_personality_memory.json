@@ -146,11 +146,6 @@
       },
       {
         "date": "2026-10-12",
-        "clue": "community-trust:~ \u2014 local audience counts as success, not export",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-10-12",
         "clue": "structural-lens:+ \u2014 archive ownership named as the structural question",
         "occurrences": 2
       },
@@ -160,9 +155,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-14",
-        "clue": "tech-optimism:+ \u2014 reframes sonar, supercap board as practical wins",
-        "occurrences": 1
+        "date": "2026-10-15",
+        "clue": "tech-optimism:+ \u2014 Pushes digital audit trails and cataloguing as sovereignty tools",
+        "occurrences": 2
       },
       {
         "date": "2026-10-14",
@@ -295,7 +290,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
       "[Resilience.org] Social capital and community resilience: A ",
       "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
       "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
@@ -304,7 +298,8 @@
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
       "[Canadian Forest Industries] Community knowledge helps guide",
       "[Wildfire Today] Advancing community wildfire adaptation",
-      "[Williams Lake Tribune] New Kamloops facility supports rural"
+      "[Williams Lake Tribune] New Kamloops facility supports rural",
+      "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -454,14 +449,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-14",
-        "clue": "funding-risk:~ \u2014 who pays to keep the depth file current",
+        "date": "2026-10-15",
+        "clue": "evidence-bar:+ \u2014 Insists dates and figures be checked before repeating",
         "occurrences": 2
-      },
-      {
-        "date": "2026-10-14",
-        "clue": "evidence-bar:+ \u2014 insists on checking the unverified 0.5 per cent figure",
-        "occurrences": 1
       },
       {
         "date": "2026-10-14",
