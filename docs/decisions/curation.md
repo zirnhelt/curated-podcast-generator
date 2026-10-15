@@ -518,3 +518,30 @@ a My Cariboo Now story on a Conservative candidate "doesn't name that candidate"
   pass as PRIOR RESEARCH (`PRIOR_BALLOT_RESEARCH_CHARS`, ~1.5K tokens on the Haiku default):
   carry its findings forward unless superseded, never list someone it sourced as NO RECORD
   FOUND, and take who is running from the roster, never from it.
+
+## Research before the roundup is written (2026-10-15)
+
+The script model has no tools, so a roundup story knows only what the pipeline hands it. Three
+things left it short, and the hosts filled the gap on air: "the excerpt we have doesn't name
+the Nation" (2026-10-03), "the report doesn't say who is running" (2026-10-07), four such lines
+on 2026-10-15.
+
+- **The free page fetch stopped at the first 40 of the ~80-article pool.** A curated story past
+  #40 reached the script on its feed excerpt. `_filter_sparse_news_articles` now fetches every
+  curated story's own page first (free; `_fetched` stops a second try on a page that already
+  failed).
+- **Research only fired under 150 characters.** A 200-character excerpt passed as a body. The
+  title search now runs on anything under `NEWS_BODY_RICH_CHARS` (400), still from the SEARCH
+  budget and only on the curated cut plus spares. The search snippet is itself a teaser, so the
+  result that shares at least half the title's content words is read in full (`_get_public`,
+  free). Text from another outlet is marked `_body_via` and the prompt names that outlet, so the
+  hosts don't credit the Tribune's reporting to My Cariboo Now. Only a story still under 150 is cut.
+- **The prompt saw 500 characters of each body**, about the lede: the 2026-10-12 candidate
+  profile arrived as its four questions and none of the answers. `ROUNDUP_PROMPT_BODY_CHARS` is
+  1200, ~3.5K more prompt tokens per script call (under $0.001 on Haiku 5.5, ~$0.007 on Sonnet).
+
+Then the rule: the roundup tells what the Content establishes and never narrates what a source
+leaves out; the polish cuts such lines (rule (y)), and rule 3e no longer teaches "the report
+doesn't give a specific number". The ballot's SOURCED OR UNSAID "unestablished" line is the one
+exception. `soft_patterns.source_gap_narration` counts what still airs (1–4 a day in the
+2026-10-10..15 scripts) without moving Opus escalation.

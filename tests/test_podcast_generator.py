@@ -6267,11 +6267,52 @@ class TestSparseFilterBudget:
             raise AssertionError("searched for an article whose excerpt was enough")
         monkeypatch.setattr(pg, "_brave_search", _no_search)
 
-        excerpt = "A council vote on the new water treatment plant. " * 5
+        excerpt = "A council vote on the new water treatment plant. " * 9
+        assert len(excerpt.strip()) >= pg.NEWS_BODY_RICH_CHARS
         kept, _ = pg._filter_sparse_news_articles(
             [{"title": f"Story {i}", "_excerpt": excerpt} for i in range(4)])
         assert len(kept) == 4
         assert all(a["_body"] == excerpt.strip() for a in kept)
+
+    def test_a_short_excerpt_is_researched_not_aired_as_is(self, monkeypatch):
+        """An excerpt past the drop floor but under RICH is what the hosts used to
+        narrate the gap of ("the excerpt we have doesn't name the Nation")."""
+        import podcast_generator as pg
+        calls = []
+
+        def _search(query, api_key, count=5):
+            calls.append(query)
+            return []
+        monkeypatch.setattr(pg, "_brave_search", _search)
+
+        excerpt = "A council vote on the new water treatment plant. " * 4
+        kept, brave_used = pg._filter_sparse_news_articles(
+            [{"title": "Council votes on water plant", "_excerpt": excerpt}])
+        assert calls == ["Council votes on water plant"]
+        assert kept[0]["_body"] == excerpt.strip() and not brave_used
+
+    def test_research_reads_the_matching_coverage_and_credits_it(self, monkeypatch):
+        """The snippet is a teaser; the same story's page is the research."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_brave_search", lambda q, k, count=5: [
+            {"title": "Unrelated recipe roundup", "url": "https://food.test/a",
+             "description": "short"},
+            {"title": "Xatśūll First Nation terminates Spanish Mountain Gold agreements",
+             "url": "https://www.wltribune.test/story", "description": "short"},
+        ])
+        fetched = []
+
+        def _fetch(url):
+            fetched.append(url)
+            return "Full reporting on the terminated agreements and what comes next. " * 20
+        monkeypatch.setattr(pg, "_fetch_article_text", _fetch)
+
+        article = {"title": "Xatśūll First Nation terminates agreements with Spanish Mountain Gold",
+                   "url": "https://www.mycariboonow.test/x", "_fetched": True}
+        kept, brave_used = pg._filter_sparse_news_articles([article])
+        assert fetched == ["https://www.wltribune.test/story"]
+        assert brave_used and len(kept[0]["_body"]) >= pg.NEWS_BODY_RICH_CHARS
+        assert kept[0]["_body_via"] == "wltribune.test"
 
     def test_title_searches_stop_at_the_search_budget(self, monkeypatch):
         import podcast_generator as pg
