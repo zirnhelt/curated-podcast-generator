@@ -41,19 +41,10 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-14) — 2 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-26..2026-10-15) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **Ten roundup stories remained out of sequence after one correction pass.** On 2026-08-29,
-      the script/roundup-order segment failed to sort correctly on the first attempt. After one
-      repair pass, 10 stories still aired after a later block. The pipeline did not retry. This
-      follows the pattern noted in the already-tracked item
-      roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a
-      prior run. The repair logic is insufficient; either increase retry attempts on sort
-      failures or add a validation gate that blocks publish if any story lands in the wrong
-      temporal position. (signal `degraded:script/roundup-order`; seen in 2 reviews, latest
-      2026-10-12)
 - [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
       2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
       an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
@@ -63,8 +54,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 2 reviews,
-      latest 2026-10-14)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 3 reviews,
+      latest 2026-10-15)
 
 <!-- reviews:end -->
 
