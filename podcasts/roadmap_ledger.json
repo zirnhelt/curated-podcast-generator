@@ -172,16 +172,17 @@
       "detail": "On 2026-08-29, the script/roundup-order segment failed to sort correctly on the first attempt. After one repair pass, 10 stories still aired after a later block. The pipeline did not retry. This follows the pattern noted in the already-tracked item roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a prior run. The repair logic is insufficient; either increase retry attempts on sort failures or add a validation gate that blocks publish if any story lands in the wrong temporal position.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-08-29",
       "seen": [
         "2026-08-29",
         "2026-10-05",
-        "2026-10-12"
+        "2026-10-12",
+        "2026-10-16"
       ],
-      "last_seen": "2026-10-12",
+      "last_seen": "2026-10-16",
       "signal": "degraded:script/roundup-order",
-      "signal_seen": "2026-10-12"
+      "signal_seen": "2026-10-16"
     },
     {
       "id": "gemini-project-spend-cap-blocks-rendering",
@@ -398,11 +399,10 @@
       "title": "Deep dive citations matched at 33% versus roundup at 80%.",
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
-      "status": "retired",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-22",
         "2026-09-23",
         "2026-09-24",
         "2026-09-25",
@@ -411,11 +411,12 @@
         "2026-10-02",
         "2026-10-03",
         "2026-10-07",
-        "2026-10-14"
+        "2026-10-14",
+        "2026-10-16"
       ],
-      "last_seen": "2026-10-14",
+      "last_seen": "2026-10-16",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-10-14"
+      "signal_seen": "2026-10-16"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -620,5 +621,5 @@
       "last_seen": "2026-10-06"
     }
   ],
-  "updated": "2026-10-15"
+  "updated": "2026-10-16"
 }
