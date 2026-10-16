@@ -1,25 +1,4 @@
 {
-  "2026-09-10": {
-    "timestamp": 1789050876.524507,
-    "topics": [
-      "[Williams Lake Tribune] Residential development at Williams ",
-      "[My Cariboo Now] City of Quesnel no longer picking up stray ",
-      "[T\u015dilhqot\u2019in National Government] Hunters Asked Not to Shoot",
-      "[My Cariboo Now] Cariboo fire departments respond to structu",
-      "[Regional News Archives",
-      "[FlowingData] UN votes to support map projection that accura",
-      "[Tom's Hardware] Man uses robot vacuum to covertly record hi",
-      "[The Guardian Global Development] \u2018This is what I have to do"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-10",
-    "focus": "guardians-stewardship",
-    "focus_name": "Guardians & Land Stewardship"
-  },
   "2026-09-11": {
     "timestamp": 1789115262.029102,
     "topics": [
@@ -711,5 +690,26 @@
     "date": "2026-10-15",
     "focus": "governance-title",
     "focus_name": "Governance, Title & Treaty"
+  },
+  "2026-10-16": {
+    "timestamp": 1792138576.984427,
+    "topics": [
+      "[My Cariboo Now] Williams Lake sets new early voter turnout ",
+      "[Williams Lake Tribune] Williams Lake gathers for a movie un",
+      "[Williams Lake Tribune] Williams Lake First Nation celebrate",
+      "[Williams Lake Tribune] Open letter warns of hospital specia",
+      "[The Tyee] First Nations Make Rare Endorsement in Williams L",
+      "[Global News] Leave for B.C. child killer sparks call for ch",
+      "[Fast Company] Half of the world\u2019s population has been expos",
+      "[Wildfire Today] LA faces \u2018critical\u2019 fire danger, electricit"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-16",
+    "focus": "wildlife-conservation",
+    "focus_name": "Wildlife & Conservation"
   }
 }

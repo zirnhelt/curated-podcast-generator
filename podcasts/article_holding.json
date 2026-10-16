@@ -82,7 +82,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-16"
   },
   "https://www.techradar.com/ai-platforms-assistants/ai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world": {
     "article": {
@@ -877,44 +878,6 @@
     "recall": true,
     "status": "recall"
   },
-  "https://eaglefeathernews.com/2026/10/04/the-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools/": {
-    "article": {
-      "id": "https://eaglefeathernews.com/2026/10/04/the-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools/",
-      "url": "https://eaglefeathernews.com/2026/10/04/the-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools/",
-      "title": "[Eagle Feather News] The Last Generation \u2013 Survivors share stories from Canada\u2019s final chapter of residential schools",
-      "content_html": "<img src=\"https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/img-1880.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Feaglefeathernews.com%2F2026%2F10%2F04%2Fthe-last-generation-survivors-share-stories-from-canadas-final-chapter-of-residential-schools%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe last generation of graduates from the Lebret Residential School in 1998 (photo provided by Sonia Pete)",
-      "summary": "The last generation of graduates from the Lebret Residential School in 1998 (photo provided by Sonia Pete)",
-      "_excerpt": "The last generation of graduates from the Lebret Residential School in 1998 (photo provided by Sonia Pete)",
-      "date_published": "2026-10-04T16:54:56+00:00",
-      "authors": [
-        {
-          "name": "Eagle Feather News",
-          "url": "https://www.eaglefeathernews.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 15,
-      "_composite_podcast": 50,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/3254/files/2026/10/img-1880.jpeg",
-      "_boosted_score": 57
-    },
-    "held_date": "2026-10-12",
-    "target_date": "2026-10-15",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
-    "status": "released",
-    "release_date": "2026-10-15"
-  },
   "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/": {
     "article": {
       "id": "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/",
@@ -1075,89 +1038,6 @@
     "recall": true,
     "status": "recall"
   },
-  "https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/": {
-    "article": {
-      "id": "https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/",
-      "url": "https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/",
-      "title": "[IndigiNews] A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation",
-      "content_html": "<img src=\"https://media.indiginews.com/2026/10/PIC-3-tipi-cover-IMG_1192-BrittanyB-1024x683.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Fnews%2Fancestral-tipi-cover-kawacatoose-first-nation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Cree community in Saskatchewan brings home their Ancestor s\u00eepiskw\u00eas\u00eekan's painted fabric from Smithsonian in 'Washington, D.C.'</p>\n<p>The post <a href=\"https://indiginews.com/news/ancestral-tipi-cover-kawacatoose-first-nation/\">A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation\u00a0</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
-      "summary": "Cree community in Saskatchewan brings home their Ancestor s\u00eepiskw\u00eas\u00eekan's painted fabric from Smithsonian in 'Washington, D.C.' The post A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation appeared first on Indiginews .",
-      "_excerpt": "Cree community in Saskatchewan brings home their Ancestor s\u00eepiskw\u00eas\u00eekan's painted fabric from Smithsonian in 'Washington, D.C.' The post A century after it was taken, ancestral tipi cover returns to Kawacatoose First Nation appeared first on Indiginews .",
-      "date_published": "2026-10-08T20:54:18+00:00",
-      "authors": [
-        {
-          "name": "IndigiNews",
-          "url": "https://indiginews.com/"
-        }
-      ],
-      "ai_score": 54,
-      "_quality": 70,
-      "_relevance": 60,
-      "_local": 20,
-      "_theme_score": 82,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 76,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://media.indiginews.com/2026/10/PIC-3-tipi-cover-IMG_1192-BrittanyB-1024x683.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-14T04:10:57.216424+00:00"
-      },
-      "_boosted_score": 54
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-10-15",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
-    "status": "released",
-    "release_date": "2026-10-15"
-  },
-  "https://www.aptnnews.ca/national-news/first-nations-oppose-proposed-one-project-one-year-bill-following-its-first-vote/": {
-    "article": {
-      "id": "https://www.aptnnews.ca/national-news/first-nations-oppose-proposed-one-project-one-year-bill-following-its-first-vote/",
-      "url": "https://www.aptnnews.ca/national-news/first-nations-oppose-proposed-one-project-one-year-bill-following-its-first-vote/",
-      "title": "[APTN News] First Nations oppose proposed \u2018one-project, one-year\u2019 bill following its first vote",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Fnational-news%2Ffirst-nations-oppose-proposed-one-project-one-year-bill-following-its-first-vote%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Several First Nations assemblies located across the country are rejecting the Building Canada Strong Act,...</p>\n<p>The post <a href=\"https://www.aptnnews.ca/national-news/first-nations-oppose-proposed-one-project-one-year-bill-following-its-first-vote/\">First Nations oppose proposed \u2018one-project, one-year\u2019 bill following its first vote</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
-      "summary": "Several First Nations assemblies located across the country are rejecting the Building Canada Strong Act,... The post First Nations oppose proposed \u2018one-project, one-year\u2019 bill following its first vote appeared first on APTN News .",
-      "_excerpt": "Several First Nations assemblies located across the country are rejecting the Building Canada Strong Act,... The post First Nations oppose proposed \u2018one-project, one-year\u2019 bill following its first vote appeared first on APTN News .",
-      "date_published": "2026-10-08T21:53:16+00:00",
-      "authors": [
-        {
-          "name": "APTN News",
-          "url": "https://www.aptnnews.ca"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 73,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-10-09T04:09:41.111718+00:00"
-      },
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-13",
-    "target_date": "2026-10-15",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
-    "status": "released",
-    "release_date": "2026-10-15"
-  },
   "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/": {
     "article": {
       "id": "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/",
@@ -1279,7 +1159,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-16"
   },
   "https://nautil.us/are-right%e2%80%91brained-people-really-more-creative-1285533/": {
     "article": {
@@ -1489,47 +1370,6 @@
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "aired_early"
-  },
-  "https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/": {
-    "article": {
-      "id": "https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/",
-      "url": "https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/",
-      "title": "[APTN News] First Nations child advocate hopes 20 year old case against government is almost over",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Ffacetoface%2Ffirst-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>In an interview with Face to Face, Cindy Blackstock says file has regressed since Mandy Gull-Masty became minister.</p>\n<p>The post <a href=\"https://www.aptnnews.ca/facetoface/first-nations-child-advocate-hopes-20-year-old-case-against-government-is-almost-over/\">First Nations child advocate hopes 20 year old case against government is almost over</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
-      "summary": "In an interview with Face to Face, Cindy Blackstock says file has regressed since Mandy Gull-Masty became minister. The post First Nations child advocate hopes 20 year old case against government is almost over appeared first on APTN News .",
-      "_excerpt": "In an interview with Face to Face, Cindy Blackstock says file has regressed since Mandy Gull-Masty became minister. The post First Nations child advocate hopes 20 year old case against government is almost over appeared first on APTN News .",
-      "date_published": "2026-10-13T23:47:23+00:00",
-      "authors": [
-        {
-          "name": "APTN News",
-          "url": "https://www.aptnnews.ca"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-10-14T04:10:57.216424+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-10-15",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
-    "status": "released",
-    "release_date": "2026-10-15"
   },
   "https://www.nytimes.com/2026/10/13/science/inhabitable-planets-solar-system.html": {
     "article": {
@@ -2114,7 +1954,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-16"
   },
   "https://www.northernminer.com/news/worlds-biggest-manganese-producer-faces-china-cost-hurdle-in-battery-push/1003895707/": {
     "article": {
@@ -2487,6 +2328,130 @@
       "_boosted_score": 84
     },
     "held_date": "2026-10-15",
+    "target_date": "2026-10-17",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://thetyee.ca/News/2026/10/15/First-Nations-Endorsement-Williams-Lake-Mayoral-Race/": {
+    "article": {
+      "id": "https://thetyee.ca/News/2026/10/15/First-Nations-Endorsement-Williams-Lake-Mayoral-Race/",
+      "url": "https://thetyee.ca/News/2026/10/15/First-Nations-Endorsement-Williams-Lake-Mayoral-Race/",
+      "title": "[The Tyee] First Nations Make Rare Endorsement in Williams Lake Mayoral Race",
+      "content_html": "<img src=\"https://thetyee.ca/News/2026/10/14/WillieSellarsSurinderpalRathor.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F10%2F15%2FFirst-Nations-Endorsement-Williams-Lake-Mayoral-Race%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIndigenous governments say Surinderpal Rathor has turned around relationship after previous mayor\u2019s comments \u2018damaged trust.\u2019",
+      "summary": "Indigenous governments say Surinderpal Rathor has turned around relationship after previous mayor\u2019s comments \u2018damaged trust.\u2019",
+      "_excerpt": "Indigenous governments say Surinderpal Rathor has turned around relationship after previous mayor\u2019s comments \u2018damaged trust.\u2019",
+      "date_published": "2026-10-15T07:10:00+00:00",
+      "authors": [
+        {
+          "name": "The Tyee",
+          "url": "https://thetyee.ca"
+        }
+      ],
+      "ai_score": 91,
+      "_quality": 80,
+      "_relevance": 92,
+      "_local": 100,
+      "_theme_score": 83,
+      "_theme_score_raw": 45,
+      "_composite_podcast": 74,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thetyee.ca/News/2026/10/14/WillieSellarsSurinderpalRathor.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-16T04:11:51.479191+00:00"
+      },
+      "_boosted_score": 91
+    },
+    "held_date": "2026-10-16",
+    "target_date": "2026-10-17",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://quesnelobserver.com/2026/10/15/quesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027/": {
+    "article": {
+      "id": "https://quesnelobserver.com/2026/10/15/quesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027/",
+      "url": "https://quesnelobserver.com/2026/10/15/quesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027/",
+      "title": "[Quesnel Cariboo Observer] Quesnel council defers centennial celebration, gold pan projects to 2027",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F15%2Fquesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe report presented by Mayor Ron Paull says those projects will carry over for the next council to consider",
+      "summary": "The report presented by Mayor Ron Paull says those projects will carry over for the next council to consider",
+      "_excerpt": "The report presented by Mayor Ron Paull says those projects will carry over for the next council to consider",
+      "date_published": "2026-10-16T04:03:27.562276+00:00",
+      "authors": [
+        {
+          "name": "Quesnel Cariboo Observer",
+          "url": "https://quesnelobserver.com"
+        }
+      ],
+      "ai_score": 79,
+      "_quality": 55,
+      "_relevance": 80,
+      "_local": 100,
+      "_theme_score": 79,
+      "_theme_score_raw": 43,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-16T04:11:51.479191+00:00"
+      },
+      "_boosted_score": 79
+    },
+    "held_date": "2026-10-16",
+    "target_date": "2026-10-17",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://quesnelobserver.com/2026/10/15/meet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells/": {
+    "article": {
+      "id": "https://quesnelobserver.com/2026/10/15/meet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells/",
+      "url": "https://quesnelobserver.com/2026/10/15/meet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells/",
+      "title": "[Quesnel Cariboo Observer] Meet the Candidates: Elyssia Sasaki seeks council seat for District of Wells",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F15%2Fmeet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n",
+      "summary": "",
+      "_excerpt": "",
+      "date_published": "2026-10-16T04:03:27.562431+00:00",
+      "authors": [
+        {
+          "name": "Quesnel Cariboo Observer",
+          "url": "https://quesnelobserver.com"
+        }
+      ],
+      "ai_score": 76,
+      "_quality": 50,
+      "_relevance": 80,
+      "_local": 90,
+      "_theme_score": 78,
+      "_theme_score_raw": 42,
+      "_composite_podcast": 62,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-16T04:11:51.479191+00:00"
+      },
+      "_boosted_score": 76
+    },
+    "held_date": "2026-10-16",
     "target_date": "2026-10-17",
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",

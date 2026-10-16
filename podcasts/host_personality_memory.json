@@ -95,9 +95,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-18",
-        "clue": "funding-risk:x \u2014 conceded self-insurance undermines utility hardening pressure",
-        "occurrences": 1
+        "date": "2026-10-16",
+        "clue": "funding-risk:x \u2014 concedes sighting log needs funded response, not guaranteed",
+        "occurrences": 2
       },
       {
         "date": "2026-09-20",
@@ -145,11 +145,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-12",
-        "clue": "structural-lens:+ \u2014 archive ownership named as the structural question",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-13",
         "clue": "evidence-bar:x \u2014 concedes budget question is right, not against tool",
         "occurrences": 2
@@ -167,6 +162,11 @@
       {
         "date": "2026-10-14",
         "clue": "pilot-skepticism:~ \u2014 proposes testing one lake before scaling claims",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-16",
+        "clue": "community-trust:~ \u2014 proposes regional ownership of data, shared log",
         "occurrences": 1
       }
     ],
@@ -324,9 +324,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-13",
-        "clue": "rural-context:~ \u2014 Shifted from access-as-barrier to equity-as-measurement-problem for programs",
-        "occurrences": 1
+        "date": "2026-10-16",
+        "clue": "rural-context:~ \u2014 notes small towns can defer while housing deficit cannot",
+        "occurrences": 2
       },
       {
         "date": "2026-05-20",
@@ -419,11 +419,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-12",
-        "clue": "funding-risk:+ \u2014 asks who pays to hold the archive",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-07",
         "clue": "structural-lens:x \u2014 Concedes personal metrics help attentive buyers",
         "occurrences": 1
@@ -447,11 +442,6 @@
         "date": "2026-10-13",
         "clue": "structural-lens:+ \u2014 frames ownership versus operation, rents leaving the land",
         "occurrences": 1
-      },
-      {
-        "date": "2026-10-15",
-        "clue": "evidence-bar:+ \u2014 Insists dates and figures be checked before repeating",
-        "occurrences": 2
       },
       {
         "date": "2026-10-14",
