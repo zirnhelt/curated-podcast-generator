@@ -539,7 +539,7 @@ class TestSignals:
                              ["script/bodies", "again"]],
             "short_script": [2192, 3400],
             "citation_alignment": [12, 15, 1, 3],
-            "quality": [2, 1.4, 3300],
+            "quality": [4, 1.4, 3300],
             "runs": [{"trigger": "Primary", "conclusion": "failure"}],
         })
         assert set(signals) == {BODIES, "short-script", "citations:deep-dive",
@@ -554,6 +554,19 @@ class TestSignals:
         signals = episode_review.run_signals(
             {"short_script": [2517, 3400], "quality": [0, 1.0, 3237]})
         assert signals["short-script"].startswith("shipped 3237 words")
+
+    def test_tell_hits_signal_only_above_the_escalation_threshold(self):
+        # 2026-10-04 and 2026-10-11 each shipped one hit ("ecosystem"; "the headline
+        # only answers one"): idiom the scan counts, not a failure. Hits at or under
+        # the line that sends the polish to Opus are the pipeline working.
+        import podcast_generator
+        assert episode_review.AI_TELL_SIGNAL_ABOVE == podcast_generator.OPUS_QUALITY_HIT_THRESHOLD
+        line = episode_review.AI_TELL_SIGNAL_ABOVE
+        for hits in (0, 1, line):
+            assert "ai-tells-shipped" not in episode_review.run_signals(
+                {"quality": [hits, 1.0, 3300]})
+        assert "ai-tells-shipped" in episode_review.run_signals(
+            {"quality": [line + 1, 1.0, 3300]})
 
     def test_metrics_inside_their_lines_are_not_signals(self):
         signals = episode_review.run_signals({
