@@ -459,6 +459,15 @@ resurrected on one mention.
   `run-failed` — and the schema pins each finding's `signal` to that day's set plus `other`.
   `_match` goes signal, then id, then a `difflib` ratio ≥ 0.72 on the title; a signalled
   finding never title-matches an item under a different signal.
+- **`citations:deep-dive` reads the deep dive the way the hosts use it.** The roundup reads
+  headlines back, so a title match finds its stories; the deep dive argues from its sources
+  and paraphrases them ("Prop 45", "the first big Santa Ana event"), and the same matcher
+  found 25 of 38 hand-labelled October deep-dive sources, with 2 false positives — sources
+  it missed were filed under "Additional sources provided" in the public notes.
+  `match_deep_dive_to_script` reads only the deep-dive section and wants
+  `_DEEP_MATCH_MIN_TOKENS` (3) title-or-summary words in one host turn, each rare there
+  (`_MATCH_RARE_MAX`): 35 of 38, none false. Naming the outlet was tried and left out (one
+  gained, one false). "who" and "which" joined `_MATCH_STOPWORDS`; no October roundup match moved.
 - **`short-script` fires on what shipped, not on the first draft.** It keyed on the
   "Script complete but short" line, so a draft the expand pass carried past target
   (2026-09-28: 2,877 → 3,548) still counted as a sighting and the item could never go quiet.
