@@ -7732,7 +7732,7 @@ _MATCH_STOPWORDS = frozenset("""
 a an the and or but of for to in on at by with from as is are was were be been being
 it its this that these those has have had will would can could should may might must
 do does did not no than then there their they them his her he she you your our we us
-what when where why how after before over under into out up down off about again more
+what when where why how who which after before over under into out up down off about again more
 most some such only own same so too very new news say says said one two three first
 second best top big small make makes made get gets got
 """.split())
@@ -7852,6 +7852,36 @@ def match_articles_to_script(articles, script):
     return results
 
 
+# Deep-dive sources are argued from, not read out: the hosts paraphrase
+# ("Prop 45" for "California's Proposition 45", "the first big Santa Ana event"
+# for "LA faces 'critical' fire danger"), so the title-only roundup matcher
+# found 25 of 38 hand-labelled October sources, with 2 false positives. Title
+# plus summary words, at least this many distinct ones in one host turn, each
+# rare in the deep dive (at most _MATCH_RARE_MAX mentions), found 35 of 38 with
+# none. Naming the outlet was not added: it bought one source and cost one
+# false positive (two stories from the same outlet).
+_DEEP_MATCH_MIN_TOKENS = 3
+
+
+def match_deep_dive_to_script(articles, script):
+    """(article, discussed) pairs for the deep dive, judged on its own section."""
+    if not script:
+        return [(a, True) for a in articles]
+    section = _extract_deep_dive_section(script).lower()
+    turns = _script_turns(section)
+    results = []
+    for article in articles:
+        title = re.sub(r'^[^\[]*\[[^\]]*\]\s*', '', article.get('title', '')).strip()
+        tokens = _content_tokens(f"{title} {article.get('summary') or ''}")
+        counts = {t: len(re.findall(r"\b" + re.escape(t), section)) for t in tokens}
+        rare = [t for t in tokens if 0 < counts[t] <= _MATCH_RARE_MAX]
+        discussed = any(
+            sum(1 for t in rare if re.search(r"\b" + re.escape(t), turn)) >= _DEEP_MATCH_MIN_TOKENS
+            for _, turn in turns)
+        results.append((article, discussed))
+    return results
+
+
 def order_articles_by_script(matched, script, section_text=None):
     """Reorder (article, discussed) pairs to follow the finalized script's
     narration order — first-mention position ascending.
@@ -7908,7 +7938,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     # Match articles against the finalized script (if available)
     news_matched = match_articles_to_script(news_articles, script)
-    deep_matched = match_articles_to_script(deep_dive_articles, script)
+    deep_matched = match_deep_dive_to_script(deep_dive_articles, script)
 
     discussed_news = [a for a, d in news_matched if d]
     discussed_deep = [a for a, d in deep_matched if d]
@@ -8656,7 +8686,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         match_articles_to_script(news_articles, script), script,
         section_text=news_section,
     )
-    deep_matched = match_articles_to_script(deep_dive_articles, script)
+    deep_matched = match_deep_dive_to_script(deep_dive_articles, script)
 
     citations_data = {
         "episode": {

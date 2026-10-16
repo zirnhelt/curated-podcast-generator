@@ -64,6 +64,7 @@ from podcast_generator import (
     _slice_roundup,
     _script_match_position,
     match_articles_to_script,
+    match_deep_dive_to_script,
     order_articles_by_script,
     _stale_framing_alerts,
     format_debate_memory_for_prompt,
@@ -6809,3 +6810,47 @@ class TestRecentColdOpens:
         template = config_loader.load_prompts_config()["cold_open_generation"]["template"]
         assert "{recent_cold_opens}" in template
         assert "Hey there" not in template and "coming right up" not in template
+
+
+class TestMatchDeepDiveToScript:
+    """2026-10-16: the deep dive argued from the Prop 45 and Santa Ana stories,
+    and the title-only matcher marked both undiscussed (1 of 4 sources)."""
+
+    SCRIPT = (
+        "**COLD OPEN**\n\n**RILEY:** Today: wildfire, housing, and a child killer on leave.\n\n"
+        "**DEEP DIVE: Wild Spaces**\n\n"
+        "**CASEY:** Southern California is the live test. Red flag warnings went up for the "
+        "first big Santa Ana event of the season, with gusts forecast through Friday.\n\n"
+        "**RILEY:** Prop 45 is the other half. It's on the November ballot and would amend "
+        "CEQA, the state's landmark environmental review law, for most housing projects.\n\n"
+        "**CASEY:** Who gets to leave when the smoke comes, and who has to call for help?\n"
+    )
+    PROP45 = {"title": "[NYT Business] California’s Proposition 45 Brings the Sprawl Debate Back",
+              "summary": "Among the measures up for a vote in November is one that would amend the "
+                         "state’s landmark environmental law and make it easier to build large "
+                         "housing developments outside cities."}
+    SANTA_ANA = {"title": "[Wildfire Today] LA faces ‘critical’ fire danger, electricity "
+                          "cutoffs ahead of forecast Santa Ana winds",
+                 "summary": "The first fierce dry winds of California’s Santa Ana season are "
+                            "forecast to make landfall on Thursday and Friday."}
+    KILLER = {"title": "[Global News] Leave for B.C. child killer sparks call for change at political level",
+              "summary": "Shane Ertmoed, who is serving a life sentence, was granted a 60-day "
+                         "unescorted temporary absence from prison to take cooking classes."}
+
+    def test_paraphrased_sources_are_discussed(self):
+        matched = dict((a["title"], d) for a, d in match_deep_dive_to_script(
+            [self.PROP45, self.SANTA_ANA], self.SCRIPT))
+        assert all(matched.values())
+        # The roundup's title matcher misses both: the reason this exists.
+        assert not any(d for _, d in match_articles_to_script(
+            [self.PROP45, self.SANTA_ANA], self.SCRIPT))
+
+    def test_common_words_and_cold_open_do_not_count(self):
+        # "leave", "call" and "child killer" appear, but only in passing or in
+        # the cold open, which is not the deep dive.
+        [(_, discussed)] = match_deep_dive_to_script([self.KILLER], self.SCRIPT)
+        assert discussed is False
+
+    def test_no_script_keeps_everything(self):
+        assert match_deep_dive_to_script([self.KILLER], "") == [(self.KILLER, True)]
+
