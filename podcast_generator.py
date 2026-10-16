@@ -914,6 +914,13 @@ BRAVE_SEARCH_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_SEARCH_COOLDOWN_SECS
 BRAVE_DEEP_DIVE_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT", "16"))
 BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOWN_SECS", "0"))
 #
+# Kagi Extract reads a thin roundup story's own page (rendered, clean markdown)
+# before any Brave title search: $4/1000 pages against Brave's $5/1000, and it
+# spends nothing from the Search cap the two repos share. Pages, not requests,
+# are the unit; one request carries up to KAGI_EXTRACT_BATCH. Unset key = off.
+KAGI_EXTRACT_CALL_LIMIT = int(os.getenv("PODCAST_KAGI_EXTRACT_CALL_LIMIT", "10"))  # 0=disabled
+KAGI_EXTRACT_BATCH = 10
+#
 # A themes.json `event_focus` carrying a `research` brief turns the research pass
 # from a judgement call into a roster sweep — one search per candidate per
 # question, where an ordinary day asks 4 in total. The ceiling above moved 10→16
@@ -4065,17 +4072,97 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
 
 
 def _fill_body_from_excerpt(articles: list) -> None:
-    """Give a thin article the feed's own `_excerpt` as its body, in place.
+    """Give a thin article the feed's own `_excerpt` as its body when it is longer.
 
-    Free, and the same kind of snippet a search would return (up to 600 chars):
-    ~55% of items carry one past NEWS_BODY_MIN_CHARS.
+    Free. Usually a snippet (up to 600 chars; ~55% of items carry one past
+    NEWS_BODY_MIN_CHARS), but up to 2000 when super-rss-feed already paid Kagi
+    Extract for the page, which beats a stub from the free fetch.
     """
     for a in articles:
-        if len(a.get("_body", "") or "") >= NEWS_BODY_MIN_CHARS:
+        body = a.get("_body", "") or ""
+        if len(body) >= NEWS_BODY_RICH_CHARS:
             continue
         excerpt = (a.get("_excerpt", "") or "").strip()
-        if len(excerpt) >= NEWS_BODY_MIN_CHARS:
+        if len(excerpt) >= NEWS_BODY_MIN_CHARS and len(excerpt) > len(body):
             a["_body"] = excerpt
+
+
+_KAGI_EXTRACT_STATE = {"pages": 0}
+# Markdown lines that are page chrome, not prose: list items (menus), headings,
+# quotes, table rows, images, rules. Same rule as super-rss-feed's _markdown_body_text.
+_MD_CHROME_LINE_RE = re.compile(r'^(?:[-*+]\s|\d+[.)]\s|#{1,6}\s|>|\||!\[|[-*_]{3,}$)')
+
+
+def _markdown_prose(markdown: str) -> str:
+    """The prose paragraphs of an Extract page: long lines that end a sentence,
+    links reduced to their text. Menus and logos come first on a news page."""
+    kept = []
+    for raw in (markdown or "").splitlines():
+        line = raw.strip()
+        if not line or _MD_CHROME_LINE_RE.match(line):
+            continue
+        line = re.sub(r'!?\[([^\]]*)\]\([^)]*\)', r'\1', line).strip()
+        if len(line) >= 60 and re.search(r'[.!?]["\u201d\u2019)]?(?:\s|$)', line):
+            kept.append(line)
+    return " ".join(kept)
+
+
+def _extract_roundup_stories(articles: list) -> int:
+    """Read each thin roundup story's own page through Kagi Extract; return pages read.
+
+    Runs after the free fetch and the feed excerpt, before any Brave title search,
+    so a story whose own page renders here never spends from the shared Search cap.
+    The page is the story's own, so no `_body_via`. Capped by KAGI_EXTRACT_CALL_LIMIT
+    pages a run; a failed request or a 402 falls back to Brave and degrades.
+    """
+    key = os.getenv("KAGI_API_KEY")
+    if not key or KAGI_EXTRACT_CALL_LIMIT <= 0:
+        return 0
+    left = KAGI_EXTRACT_CALL_LIMIT - _KAGI_EXTRACT_STATE["pages"]
+    thin = [a for a in articles
+            if a.get("url") and len(a.get("_body", "") or "") < NEWS_BODY_RICH_CHARS][:max(left, 0)]
+    if not thin:
+        return 0
+    read = grew = 0
+    failed = False
+    for i in range(0, len(thin), KAGI_EXTRACT_BATCH):
+        batch = thin[i:i + KAGI_EXTRACT_BATCH]
+        # Extract takes https:// only.
+        urls = [re.sub(r"^http://", "https://", a["url"]) for a in batch]
+        _KAGI_EXTRACT_STATE["pages"] += len(batch)
+        try:
+            resp = requests.post(
+                "https://kagi.com/api/v1/extract",
+                headers={"Authorization": f"Bearer {key}"},
+                json={"pages": [{"url": u} for u in urls]},
+                timeout=30,
+            )
+            resp.raise_for_status()
+            data = resp.json().get("data") or []
+        except Exception as e:
+            status = getattr(getattr(e, "response", None), "status_code", None)
+            degrade("script/kagi-extract",
+                    f"Kagi Extract request failed ({status or type(e).__name__}); "
+                    "thin roundup stories fall back to Brave title search")
+            failed = True
+            break
+        by_url = {p.get("url"): p for p in data if isinstance(p, dict) and p.get("url")}
+        for j, (a, url) in enumerate(zip(batch, urls)):
+            page = by_url.get(url) or (data[j] if not by_url and j < len(data) else None)
+            if not isinstance(page, dict) or page.get("error"):
+                continue
+            read += 1
+            text = _markdown_prose(page.get("markdown") or "")[:2000]
+            if len(text) > len(a.get("_body", "") or ""):
+                a["_body"] = text
+                a.pop("_body_via", None)
+                grew += 1
+    if read == 0 and not failed:
+        degrade("script/kagi-extract",
+                f"Kagi Extract returned no page for {len(thin)} thin roundup stories")
+    print(f"  📰 Kagi Extract: {grew}/{len(thin)} thin roundup stories read from their own page "
+          f"(~${len(thin) * 0.004:.3f})")
+    return read
 
 
 def _research_roundup_story(article: dict, brave_key: str) -> bool:
@@ -4121,7 +4208,8 @@ def _filter_sparse_news_articles(articles: list) -> list:
     ever know, and a story aired on its feed excerpt makes the hosts narrate the
     gap. So each curated story below NEWS_BODY_RICH_CHARS gets, in order: a free
     fetch of its own page (stories past the first 40 of the pool were never
-    fetched), the feed's `_excerpt`, then one title search charged to the SEARCH
+    fetched), the feed's `_excerpt`, its own page through Kagi Extract
+    (`_extract_roundup_stories`), then one title search charged to the SEARCH
     budget plus a free read of the matching coverage (`_research_roundup_story`).
     Only a story still under NEWS_BODY_MIN_CHARS after all that is dropped.
 
@@ -4137,6 +4225,7 @@ def _filter_sparse_news_articles(articles: list) -> list:
 
     _enrich_articles_with_body(articles, label="roundup cut", use_brave=False)
     _fill_body_from_excerpt(articles)
+    _extract_roundup_stories(articles)
     for a in articles:
         title = a.get("title", "")
         if (brave_key and title

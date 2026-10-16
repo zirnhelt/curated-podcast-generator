@@ -6260,6 +6260,8 @@ class TestSparseFilterBudget:
         )
         monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
         monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "test-key")
+        monkeypatch.delenv("KAGI_API_KEY", raising=False)
+        monkeypatch.setattr(pg, "_KAGI_EXTRACT_STATE", {"pages": 0})
 
     def test_feed_excerpt_is_used_before_any_search(self, monkeypatch):
         import podcast_generator as pg
@@ -6314,6 +6316,67 @@ class TestSparseFilterBudget:
         assert fetched == ["https://www.wltribune.test/story"]
         assert brave_used and len(kept[0]["_body"]) >= pg.NEWS_BODY_RICH_CHARS
         assert kept[0]["_body_via"] == "wltribune.test"
+
+    def test_long_feed_excerpt_beats_a_stub_from_the_free_fetch(self, monkeypatch):
+        """super-rss-feed's Kagi Extract text arrives as a 2000-char `_excerpt`."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [])
+        excerpt = "The full story from the extracted page, sentence after sentence. " * 30
+        article = {"title": "Story", "_body": "A stub from the page. " * 10, "_excerpt": excerpt}
+        pg._fill_body_from_excerpt([article])
+        assert article["_body"] == excerpt.strip()
+
+    def test_kagi_extract_reads_the_own_page_before_brave(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+
+        def _no_search(*a, **k):
+            raise AssertionError("searched Brave for a story Kagi Extract had read")
+        monkeypatch.setattr(pg, "_brave_search", _no_search)
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+        page = f"![Logo](https://x.test/l.png)\n- [News](https://x.test/n)\n\n{story}\n"
+        posts = []
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": "https://x.test/b", "error": "No data returned"},
+                                 {"url": "https://x.test/a", "markdown": page}]}
+
+        def _post(url, **kw):
+            posts.append(kw["json"])
+            return Resp()
+        monkeypatch.setattr(pg.requests, "post", _post)
+        articles = [{"title": "Fire hall", "url": "http://x.test/a", "_fetched": True},
+                    {"title": "Other", "url": "https://x.test/b", "_fetched": True,
+                     "_excerpt": "A council vote on the new water treatment plant. " * 9}]
+        kept, _ = pg._filter_sparse_news_articles(articles)
+        assert posts == [{"pages": [{"url": "https://x.test/a"}]}]  # one request, https only
+        assert kept[0]["_body"].startswith("The regional district") and "Logo" not in kept[0]["_body"]
+        assert "_body_via" not in kept[0]
+
+    def test_kagi_extract_stops_at_its_page_budget(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        monkeypatch.setattr(pg, "KAGI_EXTRACT_CALL_LIMIT", 3)
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [])
+        sent = []
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": []}
+        monkeypatch.setattr(pg.requests, "post",
+                            lambda url, **kw: sent.extend(kw["json"]["pages"]) or Resp())
+        articles = [{"title": f"S{i}", "url": f"https://x.test/{i}", "_fetched": True}
+                    for i in range(8)]
+        pg._extract_roundup_stories(articles)
+        pg._extract_roundup_stories(articles)
+        assert len(sent) == 3
 
     def test_title_searches_stop_at_the_search_budget(self, monkeypatch):
         import podcast_generator as pg

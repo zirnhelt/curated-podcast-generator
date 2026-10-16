@@ -201,7 +201,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - Hosts never announce blocks, counts, or the running order.
 - **LOCAL ELECTION RACES** is a standing roundup rule: keep each town's race distinct, never borrow a name across races.
 - NO HEADLINE CRAWL. DO NOT MANUFACTURE CONNECTIONS: if the shared thing can't be named plainly, move on.
-- **Research before writing, never narrate the gap.** Every curated story under `NEWS_BODY_RICH_CHARS` is researched in `_filter_sparse_news_articles` (own page, excerpt, one title search plus a read of the matching coverage, credited via `_body_via`); the prompt sees `ROUNDUP_PROMPT_BODY_CHARS` of it. Hosts never say what an excerpt or report leaves out (only the ballot's "unestablished" survives); `source_gap_narration` counts it.
+- **Research before writing, never narrate the gap.** Every curated story under `NEWS_BODY_RICH_CHARS` is researched in `_filter_sparse_news_articles` (own page, excerpt (2000 chars when upstream ran Kagi Extract), the own page through Kagi Extract (`_extract_roundup_stories`, `KAGI_EXTRACT_CALL_LIMIT` pages, before any Brave spend), one title search plus a read of the matching coverage, credited via `_body_via`); the prompt sees `ROUNDUP_PROMPT_BODY_CHARS` of it. Hosts never say what an excerpt or report leaves out (only the ballot's "unestablished" survives); `source_gap_narration` counts it.
 
 **Super-cycles.** Each topical weekday rotates a multi-week focus, calendar-derived (`get_focus_for_day`) and **never announced on air**. Holding (`route_articles_for_focus`) parks off-theme articles for their day within 14 days, flagged `_held_from`.
 - **Never hold a local story.**
