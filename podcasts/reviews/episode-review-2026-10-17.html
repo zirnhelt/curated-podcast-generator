@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 17, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 17, 2026</h1>
+  <p class="meta">Published October 17, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39016086060">39016086060</a>.</em></p>
+
+<h3>The script shipped 11% over target after a short first draft</h3>
+<p>The first draft came in at 2,687 words against a target of 3,400. The pipeline sent it back for up to two expand passes. What shipped was 3,721 words, which is 321 words over the target. The short draft was fixed by expansion, and the expansion overshot.</p>
+<p>The script's voice balance held. The Casey-to-Riley ratio is 0.94, and there were zero AI-tell pattern hits.</p>
+
+<h3>Ten of 24 ballot candidates have no research record</h3>
+<p>The election research step found no record for 10 of the 24 candidates on the ballot: Nicole Berreth, Laura Zimmerman, Greg Jeannotte, Charlene Hays, Whitney Spearing, Nathan Wiebe, Rafiullah Sahibzada, Michael Franklin, Kayla Zaruk, and Ruth Lloyd. The pipeline did not fill those gaps with invented material. It wrote the episode around them.</p>
+<p>This matters for the episode's central question. The debate asks whose account of a candidate's record voters should weight, and what an endorsement or acclamation proves. For ten candidates the pipeline had no record to weigh at all. The five deep dives cover candidates the research did find, so the coverage is uneven by construction.</p>
+
+<h3>Citations matched less often in the deep dives than in the roundup</h3>
+<p>Eleven of 17 roundup citations matched their sources. Only 1 of 5 deep-dive citations matched. The deep-dive sources were all local election coverage, several of them "Meet the Candidates" profiles, so the failure is concentrated in the segment with the most specific claims.</p>
+<p>The roundup pool was far larger than the airtime. Sixty-six stories were cut by the airtime budget (NEWS_ROUNDUP_COUNT). That is by design. A cut story can come back on a day when it fits better. The pool had more material than the episode could carry, and the budget decided which stories aired.</p>
+
+<h3>Four short TTS takes, three still short after retry</h3>
+<p>Four TTS takes came back shorter than their word count predicts. Each was retried once. Three of the retries were still short. In those cases the longer of the two takes was kept, so no content was dropped from the episode. The count of still-short retries does not mean that three segments are missing from the audio. The pipeline kept the longer take each time.</p>
+
+<h3>The run finished on time, and the review is running inside its own fallback</h3>
+<p>The primary run started at 1:05 AM Pacific and finished at 1:32 AM Pacific. It completed successfully with zero minutes late. Fallback 1 was created at 2:05 AM Pacific and finished at 2:06 AM Pacific, also successful. This review is running as Fallback 2, created at 3:05 AM Pacific, and has not finished.</p>
+<p>The primary run needed the full pipeline. The script step took 619 seconds and rendering the audio took 312 seconds. Deploying to GitHub Pages took 326 seconds, longer than the publish step at 109 seconds. The deploy was the second-slowest step after the script.</p>
+<p>The episode is 22.5 minutes of audio, 20.6 MB. The video is 22.5 minutes and 79.4 MB. The RSS feed now lists 262 episodes. The run used 62,663 Anthropic input tokens across 11 Claude calls, 48 Brave Search calls, and 4 Brave Answers calls.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>5 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.94, 3721 words</td></tr>
+<tr><td>Audio</td><td>22.5 min</td></tr>
+<tr><td>Audio size</td><td>20.6 MB</td></tr>
+<tr><td>Citations matched</td><td>11/17 roundup, 1/5 deep dive</td></tr>
+<tr><td>Feed</td><td>262 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>62,663 input tokens, calls ***'brave-search': 48, 'claude': 11, 'brave-answers': 4***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
