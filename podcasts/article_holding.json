@@ -40,51 +40,6 @@
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
   },
-  "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/": {
-    "article": {
-      "id": "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/",
-      "url": "https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/",
-      "title": "[Outside Online] I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous Guides Who Know Them Best",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Fadventure-travel%2Fdestinations%2Fnorth-america%2Fkodiak-island-bear-viewing-alutiiq%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"I Tracked the World's Largest Bears in Alaska with the Indigenous Guides Who Know Them Best\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/09/GettyImages-1181628709.jpg?width=1200\"/></figure>\n<p>Deep in the Kodiak National Wildlife Refuge, an Indigenious-owned lodge offers an intimate look at the world\u2019s largest brown bears alongside the Alutiiq people who have shared the island with them for thousands of years.</p>\n<p>The post <a href=\"https://www.outsideonline.com/adventure-travel/destinations/north-america/kodiak-island-bear-viewing-alutiiq/\">I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous Guides Who Know Them Best</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
-      "summary": "Deep in the Kodiak National Wildlife Refuge, an Indigenious-owned lodge offers an intimate look at the world\u2019s largest brown bears alongside the Alutiiq people who have shared the island with them for thousands of years. The post I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous",
-      "_excerpt": "Deep in the Kodiak National Wildlife Refuge, an Indigenious-owned lodge offers an intimate look at the world\u2019s largest brown bears alongside the Alutiiq people who have shared the island with them for thousands of years. The post I Tracked the World\u2019s Largest Bears in Alaska with the Indigenous Guides Who Know Them Best appeared first on Outside Online .",
-      "date_published": "2026-09-27T16:11:23+00:00",
-      "authors": [
-        {
-          "name": "Outside Online",
-          "url": "https://www.outsideonline.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 71,
-      "_theme_score_raw": 17,
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "saturday",
-        "label": "Cariboo Local Affairs",
-        "shown_at": "2026-10-04T04:07:10.226457+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-10-05",
-    "target_date": "2026-10-16",
-    "target_weekday": 4,
-    "target_focus_slug": "wildlife-conservation",
-    "target_focus_name": "Wildlife & Conservation",
-    "status": "released",
-    "release_date": "2026-10-16"
-  },
   "https://www.techradar.com/ai-platforms-assistants/ai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world": {
     "article": {
       "id": "https://www.techradar.com/ai-platforms-assistants/ai-slop-has-escaped-the-internet-from-event-posters-to-cafe-menus-its-suddenly-everywhere-in-the-real-world",
@@ -676,7 +631,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data": {
     "article": {
@@ -876,7 +832,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/": {
     "article": {
@@ -915,7 +872,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://www.nrdc.org/press-releases/scotus-grapple-climates-costs": {
     "article": {
@@ -1036,7 +994,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/": {
     "article": {
@@ -1115,52 +1074,6 @@
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/": {
-    "article": {
-      "id": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/",
-      "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/",
-      "title": "[Outside Online] \u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet.",
-      "content_html": "<img src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/GettyImages-2168066743.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Foutdoor-adventure%2Fexploration-survival%2Fcabin-creek-hiker-100-foot-fall-six-days%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/GettyImages-2168066743.jpg?width=1200\"/></figure>\n<p>A 72-year-old hiker survived six nights stranded near the Pacific Crest Trail after a 100-foot fall. Here is how she survived and what rescuers learned.</p>\n<p>The post <a href=\"https://www.outsideonline.com/outdoor-adventure/exploration-survival/cabin-creek-hiker-100-foot-fall-six-days/\">\u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet.</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
-      "summary": "A 72-year-old hiker survived six nights stranded near the Pacific Crest Trail after a 100-foot fall. Here is how she survived and what rescuers learned. The post \u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet. appeared first on Outside",
-      "_excerpt": "A 72-year-old hiker survived six nights stranded near the Pacific Crest Trail after a 100-foot fall. Here is how she survived and what rescuers learned. The post \u201cShe Had a Will to Live.\u201d A 72-Year-Old Hiker Survived 6 Nights in the Backcountry After Falling 100 Feet. appeared first on Outside Online .",
-      "date_published": "2026-10-07T19:40:13+00:00",
-      "authors": [
-        {
-          "name": "Outside Online",
-          "url": "https://www.outsideonline.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 80,
-      "_relevance": 62,
-      "_local": 0,
-      "_theme_score": 21,
-      "_theme_score_raw": 1,
-      "_composite_podcast": 26,
-      "_keyword_matches": 0,
-      "_category": "outdoors",
-      "_source_category": "outdoors",
-      "_is_bonus": true,
-      "image": "https://cdn.outsideonline.com/wp-content/uploads/2026/10/GettyImages-2168066743.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-14T04:10:57.216424+00:00"
-      },
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-10-16",
-    "target_weekday": 4,
-    "target_focus_slug": "wildlife-conservation",
-    "target_focus_name": "Wildlife & Conservation",
-    "status": "released",
-    "release_date": "2026-10-16"
   },
   "https://nautil.us/are-right%e2%80%91brained-people-really-more-creative-1285533/": {
     "article": {
@@ -1283,7 +1196,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/": {
     "article": {
@@ -1914,49 +1828,6 @@
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
   },
-  "https://www.smallfarmcanada.ca/news/deer-season-increases-collision-risk-on-canadian-rural-roads/": {
-    "article": {
-      "id": "https://www.smallfarmcanada.ca/news/deer-season-increases-collision-risk-on-canadian-rural-roads/",
-      "url": "https://www.smallfarmcanada.ca/news/deer-season-increases-collision-risk-on-canadian-rural-roads/",
-      "title": "[Small Farm Canada] Deer Season Increases Collision Risk on Canadian Rural Roads",
-      "content_html": "<img src=\"https://www.smallfarmcanada.ca/downloads/5359/download/pexels-sabik-nisam-854249800-24729125-sfc.jpg?cb=e0628362b2a89231f6b96456759c4126\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.smallfarmcanada.ca%2Fnews%2Fdeer-season-increases-collision-risk-on-canadian-rural-roads%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAs deer enter their fall breeding season, rural roads become more hazardous for motorists. Ontario records about 12,000 wildlife collisions annually, with deer responsible for most reported incidents.",
-      "summary": "As deer enter their fall breeding season, rural roads become more hazardous for motorists. Ontario records about 12,000 wildlife collisions annually, with deer responsible for most reported incidents.",
-      "_excerpt": "As deer enter their fall breeding season, rural roads become more hazardous for motorists. Ontario records about 12,000 wildlife collisions annually, with deer responsible for most reported incidents.",
-      "date_published": "2026-10-14T04:00:00+00:00",
-      "authors": [
-        {
-          "name": "Small Farm Canada",
-          "url": "https://www.smallfarmcanada.ca"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 95,
-      "_theme_score_raw": 19,
-      "_composite_podcast": 63,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.smallfarmcanada.ca/downloads/5359/download/pexels-sabik-nisam-854249800-24729125-sfc.jpg?cb=e0628362b2a89231f6b96456759c4126",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 45
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-16",
-    "target_weekday": 4,
-    "target_focus_slug": "wildlife-conservation",
-    "target_focus_name": "Wildlife & Conservation",
-    "status": "released",
-    "release_date": "2026-10-16"
-  },
   "https://www.northernminer.com/news/worlds-biggest-manganese-producer-faces-china-cost-hurdle-in-battery-push/1003895707/": {
     "article": {
       "id": "https://www.northernminer.com/news/worlds-biggest-manganese-producer-faces-china-cost-hurdle-in-battery-push/1003895707/",
@@ -2332,7 +2203,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://thetyee.ca/News/2026/10/15/First-Nations-Endorsement-Williams-Lake-Mayoral-Race/": {
     "article": {
@@ -2374,7 +2246,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://quesnelobserver.com/2026/10/15/quesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027/": {
     "article": {
@@ -2415,7 +2288,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   },
   "https://quesnelobserver.com/2026/10/15/meet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells/": {
     "article": {
@@ -2456,6 +2330,7 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-17"
   }
 }

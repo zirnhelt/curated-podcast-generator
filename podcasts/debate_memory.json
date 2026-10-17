@@ -1,35 +1,4 @@
 {
-  "2026-07-18": {
-    "timestamp": 1784368813.221909,
-    "date": "2026-07-18",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "Can ordinary residents in Cariboo communities actually trace how local decisions get made and find those decision records after the fact?",
-    "riley_position": "The real governance question isn't whether decisions are made, but whether they leave a traceable record that non-insiders can access; formal processes don't automatically mean public legibility, and both incorporated and unincorporated areas struggle with publishing decisions in accessible ways.",
-    "riley_key_evidence": [
-      "Williams Lake has a mayor and six councillors (city of ~10,700 people) with ward-level accountability, but mural approval processes may be buried in PDFs or arts society minutes that residents don't know exist",
-      "Horsefly is unincorporated within the Cariboo Regional District electoral area system, with one director representing a huge geographic area and multiple communities",
-      "BC's regional district system already includes community advisory bodies in some electoral areas \u2014 a tool that could exist for Horsefly but isn't confirmed as active"
-    ],
-    "casey_position": "Incorporation matters structurally because it creates recourse: incorporated residents can show up to council meetings and put objections on public record tied to election cycles, while unincorporated residents have no equivalent lever against a director representing geographically dispersed constituencies.",
-    "casey_key_evidence": [
-      "A Williams Lake resident angry about the mural knows exactly whose name goes on the ballot next election; a Horsefly resident with concerns about the festival stage has no comparable political recourse",
-      "Arts on the Fly runs on solar power at the Horsefly River (a salmon-spawning site) entirely by volunteers with no city hall involvement or formal approval checkpoints",
-      "The regional district director for Horsefly represents dozens of scattered communities competing for limited attention"
-    ],
-    "resolution": "Both hosts agreed that incorporation versus non-incorporation isn't the real dividing line \u2014 the actual test is whether any local institution publishes decisions in a form ordinary residents would actually find and understand. They landed on this being a traceability problem, not an authority problem, and agreed that two concrete fact-finding steps could answer the real questions without either of them guessing.",
-    "topics_covered": [
-      "Formal approval processes vs. volunteer-based decision-making in local governance",
-      "Electoral accountability structures: ward-based (Williams Lake) vs. regional district areas (Horsefly)",
-      "Public access to and legibility of municipal and regional district records",
-      "Provincial regulations (Riparian Areas Protection Regulation, Water Sustainability Act) and their enforcement by regional districts",
-      "Community advisory bodies as a governance tool in BC's unincorporated electoral areas"
-    ],
-    "calls_to_action": [
-      "Someone should file a records request or email the Cariboo Regional District asking two plain questions: (1) Is there a registered advisory body for Horsefly specifically? (2) Where does the Central Cariboo Arts and Culture Society publish its internal approval process for public installations? This costs nothing and actually answers the traceability question.",
-      "A Horsefly resident could raise these questions directly with the regional district director at a public meeting rather than assuming the answers.",
-      "If listeners have corrections about how the regional district's electoral area advisory structure actually works, or know of a local decision that never made it into any public record, they should send it to feedback@cariboosignals.ca."
-    ]
-  },
   "2026-07-19": {
     "timestamp": 1784456144.819178,
     "date": "2026-07-19",
@@ -2528,6 +2497,34 @@
       "Southern California Santa Ana wind preparedness and public versus platform control of emergency alerts",
       "Prop 45 and CEQA reform as a tool for housing growth in the wildland-urban interface",
       "Indigenous-guided knowledge and data ownership in Kodiak bear management and the 100 Mile House bear euthanasia"
+    ]
+  },
+  "2026-10-17": {
+    "timestamp": 1792225090.690373,
+    "date": "2026-10-17",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "leave-or-stay",
+    "central_question": "When a candidate's own record is the clearest evidence, whose account of that record should voters weight, and what does an endorsement, delegation, or acclamation actually prove about a candidate's performance?",
+    "riley_position": "Public records such as endorsements, delegations, council minutes and candidate profiles are concrete, testable evidence that voters should weigh, and incumbents should be asked specific questions about their votes.",
+    "riley_key_evidence": [
+      "Chief Willie Sellars endorsed Rathor, and The Tyee reports Indigenous governments credit him with improving the relationship with the Nation",
+      "Sahibzada appeared on a June 16th council delegation with the Central Cariboo Islamic Centre, a public record of using the input process",
+      "Forseth and LeBourdais were elected by acclamation, and LeBourdais won a by-election with 315 votes against 50 and 27"
+    ],
+    "casey_position": "Endorsements, petitions, delegations and acclamations are references or voices rather than votes or performance, so they should not be treated as proof of a candidate's record until votes and outcomes are checked.",
+    "casey_key_evidence": [
+      "Cobb removed himself from external boards after backlash over social media comments about residential schools, per CFNR's November 2021 report, with no later formal finding in the sources",
+      "Nelson's claim that outsiders signed the safe-use site petition is his remark, not a finding, and the signature list has not been checked",
+      "Forbes is listed as Area 2 trustee on the school board page but seeking re-election in Area 5 per the Tribune, and the discrepancy is unresolved"
+    ],
+    "resolution": "The hosts did not agree on how much an endorsement or delegation should weigh, with Riley treating them as public records and Casey treating them as references rather than receipts. They agreed that incumbents should be asked specific questions about their votes and that the unresolved discrepancies should be checked against primary records.",
+    "topics_covered": [
+      "Endorsements and delegations as evidence of candidate relationships and performance",
+      "Council minutes, votes and the verification of candidate service records",
+      "The Scott Nelson safe-use site petition and its signatories",
+      "Thin or conflicting candidate profiles across Williams Lake, school board and regional races",
+      "Acclamations, by-elections and incumbent accountability"
     ]
   }
 }

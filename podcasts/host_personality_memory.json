@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Microsoft 365 users hit by two major threat camp",
       "[Fast Company] I use AI to save time. So why am I working mo",
       "[TechRadar] The new digital ID apps for age verification in ",
       "[TechRadar] Microsoft, Google took down $66 million cybercri",
@@ -10,7 +9,8 @@
       "[Tom's Hardware] US AI data centers projected to become the ",
       "[TechRadar] Massive data breach sees 220 million traveler re",
       "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
-      "[Williams Lake Tribune] B.C. Greens propose AI data centre m"
+      "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
+      "[Williams Lake Tribune] Students explore science, technology"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -140,11 +140,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-09",
-        "clue": "evidence-bar:+ \u2014 defends dollar figure as a budget-setting tool",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-13",
         "clue": "evidence-bar:x \u2014 concedes budget question is right, not against tool",
         "occurrences": 2
@@ -155,9 +150,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-14",
-        "clue": "community-trust:+ \u2014 skill and record should live in the community",
-        "occurrences": 1
+        "date": "2026-10-17",
+        "clue": "community-trust:+ \u2014 stayers' voices deserve louder weight in decisions",
+        "occurrences": 2
       },
       {
         "date": "2026-10-14",
@@ -424,9 +419,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-11",
-        "clue": "community-trust:~ \u2014 admitted unsure whether regional district can sustain datasets",
-        "occurrences": 1
+        "date": "2026-10-17",
+        "clue": "community-trust:~ \u2014 concedes petitions can dismiss voices, adds nuance",
+        "occurrences": 2
       },
       {
         "date": "2026-10-12",
@@ -446,6 +441,11 @@
       {
         "date": "2026-10-14",
         "clue": "rural-context:x \u2014 concedes stay case depends on community-held skill",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-17",
+        "clue": "evidence-bar:+ \u2014 a delegation or endorsement isn't a vote or receipt",
         "occurrences": 1
       }
     ],

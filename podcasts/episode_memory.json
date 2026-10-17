@@ -1,24 +1,4 @@
 {
-  "2026-09-11": {
-    "timestamp": 1789115262.029102,
-    "topics": [
-      "[Williams Lake Tribune] Black bear euthanized in 100 Mile Ho",
-      "[My Cariboo Now] RCMP arrest four in Quesnel after stolen ve",
-      "[Williams Lake Tribune] UBCM to take province to task for se",
-      "[Williams Lake Tribune] ICBC to replace all 140 intersection",
-      "[Scientific American] El Ni\u00f1o fuels wildfires in Indonesia, ",
-      "[Live for the Outdoors (Country Walking)] \u201cUnbelievable\u201d: Am",
-      "[My East Kootenay Now] Updated: Evacuation order issued for ",
-      "[The Verge] Musicians-turned-detectives are hunting for AI g"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-09-11",
-    "focus": "recreation-access",
-    "focus_name": "Recreation & Backcountry Access"
-  },
   "2026-09-12": {
     "timestamp": 1789201196.961844,
     "topics": [
@@ -711,5 +691,26 @@
     "date": "2026-10-16",
     "focus": "wildlife-conservation",
     "focus_name": "Wildlife & Conservation"
+  },
+  "2026-10-17": {
+    "timestamp": 1792225088.027965,
+    "topics": [
+      "[Williams Lake Tribune] Students explore science, technology",
+      "[Williams Lake Tribune] Prescribed burn to be conducted in S",
+      "[My Cariboo Now] Horse Lake residents get Boil Water Notice",
+      "[Williams Lake Tribune] Tatla Lake grandma sells bread to se",
+      "[The Tyee] First Nations Make Rare Endorsement in Williams L",
+      "[Quesnel Cariboo Observer] Meet the Candidates: Rocky Nenka ",
+      "[My Cariboo Now] Advance voting days in 2026 municipal elect",
+      "[Quesnel Cariboo Observer] Meet the Candidates: Mike Cave se"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-17",
+    "focus": null,
+    "focus_name": null
   }
 }
