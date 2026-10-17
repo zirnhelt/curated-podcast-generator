@@ -144,6 +144,13 @@ class TestRendering:
         assert "83" in html
         assert "Citations matched" not in html
 
+    def test_numbers_table_splits_tokens_from_api_calls(self):
+        html = episode_review.render_numbers_table({
+            "spend": ["62,663", "{'brave-search': 48, 'claude': 11, 'brave-answers': 4}"]})
+        assert "Anthropic input tokens</td><td>62,663" in html
+        assert "63 total: brave-search 48 · claude 11 · brave-answers 4" in html
+        assert "Anthropic spend" not in html
+
     def test_numbers_table_is_empty_without_facts(self):
         assert episode_review.render_numbers_table({}) == ""
 

@@ -29,6 +29,7 @@ like any other source — and updates ROADMAP.md plus podcasts/roadmap_ledger.js
 from __future__ import annotations
 
 import argparse
+import ast
 import json
 import os
 import re
@@ -464,6 +465,18 @@ def render_run_table(runs: list[dict]) -> str:
             f"<tbody>\n{chr(10).join(rows)}\n</tbody>\n</table>")
 
 
+def _format_calls(raw: str) -> str:
+    """`{'brave-search': 48, 'claude': 11}` (a dict repr from the log) -> `59 total: brave-search 48 · claude 11`."""
+    try:
+        counts = ast.literal_eval(raw.strip())
+        if not isinstance(counts, dict) or not counts:
+            return raw
+        parts = sorted(counts.items(), key=lambda kv: -kv[1])
+        return f"{sum(counts.values())} total: " + " · ".join(f"{k} {v}" for k, v in parts)
+    except (ValueError, SyntaxError, TypeError):
+        return raw
+
+
 def render_numbers_table(facts: dict[str, Any]) -> str:
     """Templated locally on purpose — a model that can restate a number can
     also restate it wrong, and these are the load-bearing ones."""
@@ -484,11 +497,14 @@ def render_numbers_table(facts: dict[str, Any]) -> str:
         row("Audio size", "audio_mb", "{} MB"),
         row("Citations matched", "citation_alignment", "{}/{} roundup, {}/{} deep dive"),
         row("Feed", "rss_episodes", "{} episodes"),
-        row("Anthropic spend", "spend", "{} input tokens, calls {}"),
+        row("Anthropic input tokens", "spend", "{0}"),
+        row("API calls", "spend", "{1}"),
         row("Anthropic cost", "spend_usd", "${} at list price (estimate)"),
     ]
+    rows = [(label, _format_calls(value)) if label == "API calls" else (label, value)
+            for label, value in filter(None, rows)]
     body = "\n".join(f"<tr><td>{label}</td><td>{escape(str(value))}</td></tr>"
-                     for label, value in filter(None, rows))
+                     for label, value in rows)
     if not body:
         return ""
     return ("<h3>What shipped</h3>\n<table>\n"
