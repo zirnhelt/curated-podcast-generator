@@ -400,10 +400,9 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-23",
         "2026-09-24",
         "2026-09-25",
         "2026-09-26",
@@ -412,11 +411,12 @@
         "2026-10-03",
         "2026-10-07",
         "2026-10-14",
-        "2026-10-16"
+        "2026-10-16",
+        "2026-10-17"
       ],
-      "last_seen": "2026-10-16",
+      "last_seen": "2026-10-17",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-10-16"
+      "signal_seen": "2026-10-17"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -549,14 +549,15 @@
       "detail": "The pipeline spent its Brave Search deep-dive budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on September 29. Later fact-resolution queries fell back to web snippets or went unanswered. The script then required an expand pass to close a 774-word gap (starting at 2,626 words against a 3,400-word target), but that expansion had to work with degraded research tools. No facts dropped from the episode, but the mechanism shows a constraint: when story complexity demands early lookups, the expand phase runs blind. Increase the per-run budgets for Brave Search and Answers, or implement a two-phase research strategy that reserves lookups for the expansion pass.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-09-29",
       "seen": [
-        "2026-09-29"
+        "2026-09-29",
+        "2026-10-17"
       ],
       "signal": "degraded:script/research",
-      "signal_seen": "2026-09-29",
-      "last_seen": "2026-09-29"
+      "signal_seen": "2026-10-17",
+      "last_seen": "2026-10-17"
     },
     {
       "id": "citation-alignment-roundup-one-source-unmatched",
@@ -621,5 +622,5 @@
       "last_seen": "2026-10-06"
     }
   ],
-  "updated": "2026-10-16"
+  "updated": "2026-10-17"
 }
