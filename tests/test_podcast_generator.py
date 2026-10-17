@@ -838,6 +838,30 @@ class TestLogClaudeUsage:
         assert facts["spend_usd"] == "0.09"
 
 
+class TestServiceSpend:
+    def test_prices_kagi_openai_and_brave_and_emits_one_line(self, monkeypatch):
+        import json
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_api_call_counts", {})
+        monkeypatch.setattr(pg, "_api_input_token_totals", {})
+        monkeypatch.setattr(pg, "_api_cost_by_service", {})
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "tts-1")
+        pg._log_api_call("kagi-extract", "pages", 10)
+        pg._log_api_call("openai-tts", "chars", 4_000_000)
+        pg._log_api_call("brave-search", "results", 7)
+        line = pg._format_spend_line()
+        payload = json.loads(line.split(": ", 1)[1])
+        assert payload["calls"]["kagi-extract"] == 10
+        assert payload["usd"]["kagi-extract"] == 0.04
+        assert payload["usd"]["openai-tts"] == 60.0
+        assert payload["usd"]["brave-search"] == 0.005
+
+    def test_unknown_tts_model_is_uncosted_not_zero_priced_wrongly(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+        assert pg._service_usd("openai-tts", "chars", 1000) == 0.0
+
+
 class TestRefusalRetry:
     """Sonnet 5.5 and Opus 5.5 decline in categories their predecessors don't;
     a decline is a 200 with no text, which downstream reads as an empty answer."""

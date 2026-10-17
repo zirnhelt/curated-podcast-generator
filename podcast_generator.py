@@ -470,12 +470,33 @@ def api_retry(func, max_retries=3, base_delay=2):
                 raise
 
 
+# List prices for the non-Claude services, so the review can say what a night
+# cost and not only how many calls it made. Brave Search is $5/1000 (shared cap
+# with super-rss-feed); Answers is the refit $0.041 a query; Kagi Extract is
+# $0.004 a page, confirmed against Kagi's usage page 2026-10-17 (10 pages =
+# $0.040). OpenAI is per million characters; a model with no row is uncosted.
+# Gemini TTS is parked and uncosted.
+_FLAT_USD_PER_UNIT = {"brave-search": 0.005, "brave-answers": 0.041, "kagi-extract": 0.004}
+_OPENAI_TTS_USD_PER_M_CHARS = {"tts-1": 15.0, "tts-1-hd": 30.0}
+_api_cost_by_service: dict[str, float] = {}
+
+
+def _service_usd(service: str, unit: str, count: int) -> float:
+    if service == "openai-tts":
+        return count * _OPENAI_TTS_USD_PER_M_CHARS.get(OPENAI_TTS_MODEL, 0.0) / 1e6
+    # Kagi bills the page and logs it once per page; Brave bills the call.
+    return _FLAT_USD_PER_UNIT.get(service, 0.0) * (count if unit == "pages" else 1)
+
+
 def _log_api_call(service: str, unit: str, count: int) -> None:
     """Log an API call for cost metering. Always runs; detail gated on PODCAST_DEBUG_AGENT."""
     global _api_call_counts, _api_input_token_totals
-    _api_call_counts[service] = _api_call_counts.get(service, 0) + 1
+    _api_call_counts[service] = _api_call_counts.get(service, 0) + (count if unit == "pages" else 1)
     if unit == "input_tokens":
         _api_input_token_totals[service] = _api_input_token_totals.get(service, 0) + max(count, 0)
+    usd = _service_usd(service, unit, max(count, 0))
+    if usd:
+        _api_cost_by_service[service] = _api_cost_by_service.get(service, 0.0) + usd
     ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     print(f"  [api] {ts} service={service} {unit}={count}")
 
@@ -578,6 +599,25 @@ def _format_daily_cost_summary() -> str:
         f"cache read {t['cache_read']:,}, output {t['output']:,} "
         f"(~{t['thinking_est']:,} thinking, estimated)"
     )
+
+
+def _format_spend_line() -> str:
+    """One machine-readable line per process: tokens, calls and dollars by service.
+
+    Each stage is its own process, so the review sums every line in the job log
+    (`episode_review._SPEND_LINE`); keep the prefix stable. Empty when the stage
+    spent nothing, so a publish-only stage adds no line.
+    """
+    co = cohere_enrichment.usage()
+    calls = dict(_api_call_counts)
+    if co["calls"]:
+        calls["cohere"] = co["calls"]
+    usd = {"anthropic": _api_cost_usd, **_api_cost_by_service, "cohere": co["usd"]}
+    usd = {k: round(v, 4) for k, v in usd.items() if v}
+    if not calls and not usd:
+        return ""
+    return "💰 Spend by service: " + json.dumps(
+        {"input_tokens": _api_input_token_totals.get("claude", 0), "calls": calls, "usd": usd})
 
 
 # Bounded adaptive thinking for the generative calls (the Sonnet roles, now on
@@ -4130,6 +4170,7 @@ def _extract_roundup_stories(articles: list) -> int:
         # Extract takes https:// only.
         urls = [re.sub(r"^http://", "https://", a["url"]) for a in batch]
         _KAGI_EXTRACT_STATE["pages"] += len(batch)
+        _log_api_call("kagi-extract", "pages", len(batch))
         try:
             resp = requests.post(
                 "https://kagi.com/api/v1/extract",
@@ -4161,7 +4202,7 @@ def _extract_roundup_stories(articles: list) -> int:
         degrade("script/kagi-extract",
                 f"Kagi Extract returned no page for {len(thin)} thin roundup stories")
     print(f"  📰 Kagi Extract: {grew}/{len(thin)} thin roundup stories read from their own page "
-          f"(~${len(thin) * 0.004:.3f})")
+          f"(~${len(thin) * _FLAT_USD_PER_UNIT['kagi-extract']:.3f})")
     return read
 
 
@@ -13848,6 +13889,8 @@ def main(argv: list[str] = None) -> None:
         # Runs on the abort paths too — a crashed run still reports which
         # segment died and how far it got.
         write_run_report(args.stage)
+        if spend_line := _format_spend_line():
+            print(spend_line)
 
 
 if __name__ == "__main__":
