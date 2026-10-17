@@ -192,6 +192,9 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           BRAVE_ANSWERS_API_KEY: ${{ secrets.BRAVE_ANSWERS_API_KEY }}
+          # Kagi Extract reads thin roundup stories' own pages before any Brave
+          # title search (_extract_roundup_stories). Absent, that step is skipped.
+          KAGI_API_KEY: ${{ secrets.KAGI_API_KEY }}
           COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
           # On by default: deep-dive rerank, embedding dedup and same-story
           # clustering (cohere_enrichment). Set the repository variable
