@@ -144,6 +144,24 @@ class TestRendering:
         assert "83" in html
         assert "Citations matched" not in html
 
+    def test_numbers_table_splits_tokens_from_api_calls(self):
+        html = episode_review.render_numbers_table({
+            "spend": ["62,663", "{'brave-search': 48, 'claude': 11, 'brave-answers': 4}"]})
+        assert "Anthropic input tokens</td><td>62,663" in html
+        assert "63 total: brave-search 48 · claude 11 · brave-answers 4" in html
+        assert "Anthropic spend" not in html
+
+    def test_spend_lines_from_every_stage_are_summed(self):
+        log = ('💰 Spend by service: {"input_tokens": 100, "calls": {"claude": 2, "kagi-extract": 10},'
+               ' "usd": {"anthropic": 0.5, "kagi-extract": 0.04}}\n'
+               '💰 Spend by service: {"input_tokens": 0, "calls": {"openai-tts": 40},'
+               ' "usd": {"openai-tts": 0.06}}\n')
+        facts = episode_review.scan_log(log)
+        assert facts["spend"][0] == "100"
+        assert facts["spend_usd"] == "0.50"
+        html = episode_review.render_numbers_table(facts)
+        assert "$0.60 at list price: Anthropic $0.500 · OpenAI TTS $0.060 · Kagi Extract $0.040" in html
+
     def test_numbers_table_is_empty_without_facts(self):
         assert episode_review.render_numbers_table({}) == ""
 

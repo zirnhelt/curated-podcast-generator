@@ -29,6 +29,7 @@ like any other source — and updates ROADMAP.md plus podcasts/roadmap_ledger.js
 from __future__ import annotations
 
 import argparse
+import ast
 import json
 import os
 import re
@@ -249,6 +250,14 @@ _MULTI: dict[str, str] = {
     "brave_failures": r"Brave Answers API failed for '([^']+)'(?: \[[^\]]*\])?: (.+)",
 }
 
+# One JSON line per pipeline process (`podcast_generator._format_spend_line`).
+# Stages are separate processes, so the night's spend is the sum of every line.
+_SPEND_LINE = r"💰 Spend by service: (\{.*\})"
+
+_SERVICE_LABELS = {"anthropic": "Anthropic", "brave-search": "Brave Search",
+                   "brave-answers": "Brave Answers", "openai-tts": "OpenAI TTS",
+                   "kagi-extract": "Kagi Extract", "cohere": "Cohere"}
+
 # Things worth counting rather than listing — nine near-identical warnings are
 # one fact, not nine.
 _COUNTS: dict[str, str] = {
@@ -274,6 +283,28 @@ def _strip_command_echo(text: str) -> str:
     kept = [line for line in text.splitlines()
             if _ECHO_COLOR not in line and "##[group]Run " not in line]
     return re.sub(r"^\S*Z ", "", _ANSI.sub("", "\n".join(kept)), flags=re.MULTILINE)
+
+
+def _sum_spend(clean: str, facts: dict[str, Any]) -> None:
+    """Add up every stage's spend line; overrides the single-snapshot `spend` facts."""
+    tokens, calls, usd = 0, {}, {}
+    seen = False
+    for raw in re.findall(_SPEND_LINE, clean):
+        try:
+            line = json.loads(raw)
+        except ValueError:
+            continue
+        seen = True
+        tokens += int(line.get("input_tokens", 0))
+        for key, n in (line.get("calls") or {}).items():
+            calls[key] = calls.get(key, 0) + n
+        for key, v in (line.get("usd") or {}).items():
+            usd[key] = usd.get(key, 0.0) + v
+    if not seen:
+        return
+    facts["spend"] = [f"{tokens:,}", str(calls)]
+    facts["spend_usd"] = f"{usd.get('anthropic', 0.0):.2f}"
+    facts["spend_by_service"] = {k: round(v, 4) for k, v in usd.items()}
 
 
 def scan_log(text: str) -> dict[str, Any]:
@@ -303,6 +334,8 @@ def scan_log(text: str) -> dict[str, Any]:
         count = len(re.findall(pattern, clean))
         if count:
             facts[key] = count
+
+    _sum_spend(clean, facts)
 
     # Warnings the pipeline emitted that no extractor above claimed. These are
     # the unknown unknowns — a new failure mode has no regex until it has
@@ -464,6 +497,26 @@ def render_run_table(runs: list[dict]) -> str:
             f"<tbody>\n{chr(10).join(rows)}\n</tbody>\n</table>")
 
 
+def _format_calls(raw: str) -> str:
+    """`{'brave-search': 48, 'claude': 11}` (a dict repr from the log) -> `59 total: brave-search 48 · claude 11`."""
+    try:
+        counts = ast.literal_eval(raw.strip())
+        if not isinstance(counts, dict) or not counts:
+            return raw
+        parts = sorted(counts.items(), key=lambda kv: -kv[1])
+        return f"{sum(counts.values())} total: " + " · ".join(f"{k} {v}" for k, v in parts)
+    except (ValueError, SyntaxError, TypeError):
+        return raw
+
+
+def _cost_by_service_row(by_service: dict[str, float] | None) -> tuple[str, str] | None:
+    if not by_service:
+        return None
+    parts = [f"{_SERVICE_LABELS.get(k, k)} ${v:.3f}"
+             for k, v in sorted(by_service.items(), key=lambda kv: -kv[1])]
+    return "Total cost", f"${sum(by_service.values()):.2f} at list price: " + " · ".join(parts)
+
+
 def render_numbers_table(facts: dict[str, Any]) -> str:
     """Templated locally on purpose — a model that can restate a number can
     also restate it wrong, and these are the load-bearing ones."""
@@ -484,11 +537,15 @@ def render_numbers_table(facts: dict[str, Any]) -> str:
         row("Audio size", "audio_mb", "{} MB"),
         row("Citations matched", "citation_alignment", "{}/{} roundup, {}/{} deep dive"),
         row("Feed", "rss_episodes", "{} episodes"),
-        row("Anthropic spend", "spend", "{} input tokens, calls {}"),
+        row("Anthropic input tokens", "spend", "{0}"),
+        row("API calls", "spend", "{1}"),
         row("Anthropic cost", "spend_usd", "${} at list price (estimate)"),
+        _cost_by_service_row(facts.get("spend_by_service")),
     ]
+    rows = [(label, _format_calls(value)) if label == "API calls" else (label, value)
+            for label, value in filter(None, rows)]
     body = "\n".join(f"<tr><td>{label}</td><td>{escape(str(value))}</td></tr>"
-                     for label, value in filter(None, rows))
+                     for label, value in rows)
     if not body:
         return ""
     return ("<h3>What shipped</h3>\n<table>\n"
