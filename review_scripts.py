@@ -78,8 +78,8 @@ REVIEW_CRITERIA = """\
 {description}
 
 ## Hosts
-- **Riley** (she/her): {riley_bio}
-- **Casey** (they/them): {casey_bio}
+- **Riley** (she/her): {riley_bio}{riley_voice}
+- **Casey** (they/them): {casey_bio}{casey_voice}
 
 ## Daily Theme Rotation
 Each weekday carries a fixed assigned theme — the show doesn't free-float between topics, and a given date is always reviewed against the theme its weekday owns:
@@ -92,7 +92,7 @@ Each script below is labeled with the theme its date is assigned. Use that label
 
 1. **Mission Alignment** — Does every segment connect to rural BC communities, responsible tech, and the Cariboo region? Is the Indigenous context handled naturally (not forced or ignored)?
 
-2. **Host Voice Differentiation** — Do Riley and Casey sound genuinely distinct? Riley: declarative, evidence-first, optimistic, faster cadence. Casey: blunter, drier, skeptical, shorter turns in debate, willing to hold a position.
+2. **Host Voice Differentiation** — Do Riley and Casey sound genuinely distinct? Riley: declarative, evidence-first, optimistic, faster cadence. Casey: blunter, drier, skeptical, shorter turns in debate, willing to hold a position. Where a host has a voice card above, score them against it too: quote one line that lands a card move and one that drifts from it. Flag a card move repeated until it reads as a tic (the same move in most turns, or every episode), a host voicing a personal anecdote or life of their own, and any card lens that turns into a stance on local politics or candidates.
 
 3. **Banned Pattern Violations** — Flag any of these (quote the line, name the pattern):
    - `I want to [verb]...` / `Let me [verb]...` (announcing intent instead of acting)
@@ -125,6 +125,14 @@ Each script below is labeled with the theme its date is assigned. Use that label
 """
 
 
+def _format_voice_card(host: dict) -> str:
+    """Indented bullets of a host's `voice_style` card, or nothing when unset."""
+    lines = host.get("voice_style", [])
+    if not lines:
+        return ""
+    return "\n  Voice card:" + "".join(f"\n  - {line}" for line in lines)
+
+
 def load_config() -> dict:
     with open(CONFIG_DIR / "podcast.json") as f:
         podcast = json.load(f)
@@ -144,6 +152,8 @@ def load_config() -> dict:
         "description": podcast["description"],
         "riley_bio": hosts["riley"]["full_bio"],
         "casey_bio": hosts["casey"]["full_bio"],
+        "riley_voice": _format_voice_card(hosts["riley"]),
+        "casey_voice": _format_voice_card(hosts["casey"]),
         "themes": themes,
         "themes_overview": themes_overview,
     }

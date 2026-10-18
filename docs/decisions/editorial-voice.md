@@ -491,6 +491,10 @@ The rules the cards follow:
   not his vocabulary, and quotes none of his text. `test_host_voice_cards_carry_no_tells` runs
   every card line through `hard_banned` and the hard pattern families.
 
+The weekly script review (`review_scripts.py`) reads the cards from `hosts.json` and scores
+each host against theirs under Host Voice Differentiation. It flags a card move worn into a tic,
+any personal anecdote, and any lens that turns into a stance on local politics.
+
 Both cards shipped together on 2026-10-18. Holding Casey's until after the 2026-10-24 vote was
 considered and declined by the producer: the card carries no civic positions, so the timing
 does not matter.

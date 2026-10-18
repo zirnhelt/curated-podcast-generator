@@ -389,3 +389,16 @@ class TestEpisodeCommentary:
             raise RuntimeError("x")
         monkeypatch.setattr(rs, "fetch_episode_verdicts", boom)
         assert rs.fetch_verdicts_safely(TODAY) == ({}, "the read failed (RuntimeError)")
+
+
+def test_the_review_scores_hosts_against_their_voice_cards():
+    config = rs.load_config()
+    criteria = rs.REVIEW_CRITERIA.format(**config)
+    for host in ("riley", "casey"):
+        for line in rs.json.load(open(rs.CONFIG_DIR / "hosts.json"))[host].get("voice_style", []):
+            assert f"  - {line}" in criteria
+    assert "voice card above" in criteria
+
+
+def test_a_host_without_a_card_renders_no_card_header():
+    assert rs._format_voice_card({"full_bio": "x"}) == ""
