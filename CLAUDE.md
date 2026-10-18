@@ -237,6 +237,8 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat. The polish gets the research half of the ledger too: it is told to weave in findings the draft left out, and a polish that adds repeats `degrade()`s (`script/aired-check`).
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
 
+**Host voice cards** (`hosts.json` → `voice_style`): style and perspective from a real writer's prose, rendered under each host's SPEECH rules. Never personal traits, civic positions, examples, or the source's own phrasing; a test runs every line through the tell lists.
+
 **Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.
 - **NONE is a first-class answer.**
 - The reply cites its commit lines (`COVERED:`) before it speaks, and unknown capitalised names drop the segment.

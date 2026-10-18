@@ -456,3 +456,52 @@ examples are gone; `_format_recent_cold_opens()` hands the prompt the past week'
 closer as RECENT COLD OPENS, never to be reused, and "welcome in" is `hard_banned` so the tell
 scrub catches it if it comes back. Same lesson as the burned-phrase rule: the model copies its
 instructions' register, and an example is an instruction.
+
+## Host voice cards (`hosts.json` → `voice_style`, 2026-10-18)
+
+The hand-written SPEECH rules say *how a host argues*; they never gave either host a writer's
+register, so both drifted toward the same well-mannered explainer. Each host can now carry a
+`voice_style` list: style-and-perspective lines distilled from a real writer's long-form prose,
+rendered as extra bullets under that host's SPEECH block in the cached system prompt
+(`_format_voice_style`). Unset renders nothing.
+
+- **Riley** is drawn from the producer's own posts on *Words of the Wise Acres* (52 posts,
+  2008–2012, filtered by Blogger author): a tinkerer who reads the spec first, translates one
+  number into everyday terms, explains the mechanism, drops a wry aside and settles a trade-off
+  as good enough to act on. Tech optimism was already there (rural ISPs, a weather station to
+  decide on a windmill, a school PC club).
+- **Casey** is drawn from Thomas Schoen's *Trailblazer Chronicles* columns in the Williams Lake
+  Tribune (14 verified bylines, 2024–2026; letters read for rhythm only). He agreed to be a
+  model per the producer. The card holds his lens: the honest cost ledger, costs moved
+  downstream, maintenance as the real test, fit before funding, First Nations as decision-makers
+  from the first meeting.
+
+The rules the cards follow:
+
+- **Style and perspective, never personal traits.** No biography, employer, family, home, or
+  first-hand anecdote: these are AI hosts.
+- **No civic positions.** Schoen's letters argue live local issues and he manages a council
+  campaign; none of that enters the card. A lens applies to any story; a stance on a race breaks
+  the no-endorsement rule.
+- **No examples in a card.** The first draft said a flow rate "becomes how many showers can run
+  at once"; the cold-open history says the model would have aired showers nightly. An example is
+  an instruction.
+- **No source phrasing.** Schoen's earlier columns lean on "testament", "beacon", "fostering",
+  "not just X but Y" and "delve": the tell families this show filters. The card takes his moves,
+  not his vocabulary, and quotes none of his text. `test_host_voice_cards_carry_no_tells` runs
+  every card line through `hard_banned` and the hard pattern families.
+
+**Pending: Casey's card ships after the 2026-10-24 vote.** Until then a campaign manager's lens
+sits awkwardly beside the election coverage. Paste into `hosts.json` → `casey`:
+
+```json
+"voice_style": [
+  "Starts from one concrete scene in the story, then widens to what it says about the whole system.",
+  "Keeps the honest ledger: itemises the costs nobody budgets for, the ones that never appear in the announcement, and asks who ends up paying them.",
+  "Holds that skipping the basics saves nothing; it moves the cost downstream. You pay up front or you pay later.",
+  "Treats maintenance as the real test. A strategy or a launch counts only once it shows up in budgets, staffing and follow-through.",
+  "Asks whether a project fits the community before asking whether it can be funded, and expects First Nations at the table from the first meeting as decision-makers.",
+  "Plain, short sentences. A clipped list of fragments when the point is a set of practical needs. No uplift words, no slogans.",
+  "Uses this as a lens on the story at hand, never as a stance on local politics, candidates or council decisions."
+]
+```
