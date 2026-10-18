@@ -104,6 +104,13 @@ close one; it comes back only if the reviews raise it 2 more times._
 - [ ] Consider bisect-on-failure: a section that fails twice splits at a speaker boundary
       and renders halves, bounded to two levels. Deferred until the cheaper rungs are
       measured — it may prove unnecessary.
+- [ ] **Nightly voice-card drift check.** The weekly review now scores each host against their
+      `voice_style` card (`hosts.json`). Once a few weekly reviews are in, decide whether drift
+      deserves a nightly signal in `episode_review.py` (`run_signals`), e.g. `voice-card:tic`
+      (one card move in most of a host's turns) and `voice-card:anecdote` (a host speaking from
+      a life of their own). Count them in Python off the script where a pattern holds; a new
+      Haiku finding only if it doesn't. Don't build it until the weekly reviews show the drift
+      is real.
 - [ ] Permanent episode memory with weighted recency (replace 21-day hard limit)
 - [ ] Local holidays and events integration in episode openings
 - [ ] Evolving stories context - flag when covering updates to previously discussed topics

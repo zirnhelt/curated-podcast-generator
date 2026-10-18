@@ -2733,7 +2733,19 @@ def build_cached_system_prompt():
         casey_name=hosts['casey']['name'],
         casey_pronouns=hosts['casey']['pronouns'],
         casey_bio=hosts['casey']['full_bio'],
+        riley_voice=_format_voice_style(hosts['riley']),
+        casey_voice=_format_voice_style(hosts['casey']),
     ) + format_standing_notes_block()
+
+
+def _format_voice_style(host: dict) -> str:
+    """Render a host's `voice_style` lines as extra SPEECH bullets.
+
+    The lines are a style-and-perspective card distilled from a real writer's
+    long-form prose: register and lens only, never biography or civic positions.
+    Empty or missing renders nothing, so the hand-written SPEECH rules stand alone.
+    """
+    return "".join(f"- {line}\n" for line in host.get("voice_style", []))
 
 def select_welcome_host():
     """Randomly select which host opens the show."""

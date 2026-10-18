@@ -94,6 +94,23 @@ class TestPromptsDoNotTeachTheTic:
             "instructions' register:\n  " + "\n  ".join(offenders[:10])
         )
 
+    def test_host_voice_cards_carry_no_tells(self):
+        """voice_style lines render into the cached system prompt, outside
+        prompts.json, so they get the same check plus the hard pattern families."""
+        import re
+
+        tells = config_loader.load_ai_tells_config()
+        regexes = [r"\b" + re.escape(p) + r"\b" for p in tells["hard_banned"]]
+        regexes += [p for family in tells["patterns"].values() for p in family]
+        offenders = [
+            f"{key}: {m.group(0)!r}"
+            for key, host in config_loader.load_hosts_config().items()
+            for line in host.get("voice_style", [])
+            for rx in regexes
+            for m in re.finditer(rx, self._prose(line), re.IGNORECASE)
+        ]
+        assert not offenders, "\n  ".join(offenders)
+
     def test_bespoke_inherits_the_bans(self):
         """generate_bespoke builds its own prompt and used to inherit nothing."""
         import generate_bespoke
