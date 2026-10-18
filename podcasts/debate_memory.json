@@ -1,31 +1,4 @@
 {
-  "2026-07-19": {
-    "timestamp": 1784456144.819178,
-    "date": "2026-07-19",
-    "theme": "Science, Wonder & the Natural World",
-    "focus": "sky-cosmos",
-    "central_question": "Should the Cariboo Regional District leverage its dark skies as a regional asset through policy and programming, and if so, how?",
-    "riley_position": "The Cariboo has comparable dark-sky quality to Jasper without comparable recognition, and can begin capturing this value through modest, cost-neutral municipal lighting retrofits paired with formalized astronomy programming through existing organizations like the Field Naturalists.",
-    "riley_key_evidence": [
-      "Flagstaff, Arizona passed dark-sky ordinances in the 1970s justified primarily on electricity savings from LED retrofits, not stargazing appeal",
-      "Free aurora-alert apps require no subscription and can notify residents of optimal viewing windows",
-      "Winter skies in the Cariboo offer better atmospheric transparency and zero wildfire smoke risk compared to summer"
-    ],
-    "casey_position": "While the sky resource is real, the actual barriers are governance (who enforces standards in unincorporated areas), advocacy (no local institutional voice pushing for this), and climate (increasing summer wildfire smoke undermines tourism viability during peak tourism season).",
-    "casey_key_evidence": [
-      "Municipal lighting retrofits get approved for electricity savings, not aesthetics\u2014nobody rewires 100 Mile House because of Orion's Belt",
-      "Flagstaff's success required Lowell Observatory astronomers showing up to city council meetings repeatedly; no equivalent local stakeholder exists in the Cariboo",
-      "French Bar Creek and Pear Lake fires represent an emerging seasonal pattern where peak aurora activity windows coincide with heavy smoke periods"
-    ],
-    "resolution": "Riley and Casey agreed the actual experiment worth running is a single representative from the Field Naturalists presenting a concrete lighting-fixture proposal to the regional district, with the electricity-savings argument leading and dark-sky benefits as secondary. They also agreed that formalizing informal star-party programming through Scout Island requires just one conversation with no new funding, making it a realistic first test of regional interest.",
-    "topics_covered": [
-      "Dark-sky ordinances and municipal lighting standards as policy vehicles",
-      "Flagstaff, Arizona as a case study in how sky quality gets protected through infrastructure decisions",
-      "Wildfire smoke as an emerging constraint on summer dark-sky tourism",
-      "Winter versus summer viability of aurora and astronomy viewing in the Cariboo",
-      "Role of institutional advocacy in moving local policy agendas"
-    ]
-  },
   "2026-07-20": {
     "timestamp": 1784546488.595675,
     "date": "2026-07-20",
@@ -2525,6 +2498,34 @@
       "The Scott Nelson safe-use site petition and its signatories",
       "Thin or conflicting candidate profiles across Williams Lake, school board and regional races",
       "Acclamations, by-elections and incumbent accountability"
+    ]
+  },
+  "2026-10-18": {
+    "timestamp": 1792312069.357924,
+    "date": "2026-10-18",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "living-world",
+    "anchor": "leave-or-stay",
+    "central_question": "Should long-term environmental and scientific monitoring, whether of soils, human fitness, microplastics, disease vectors, shipping chokepoints, or distant planets, be trusted and acted on before its implications are fully confirmed, and how should such records be funded, governed, and sustained?",
+    "riley_position": "Measured trends, even from a single long-running record, belong in planning and policy now, and early sensing and mechanism-naming should drive action rather than waiting for complete proof.",
+    "riley_key_evidence": [
+      "Thirteen sites in southwestern Germany with up to 24 years of readings show forest soils absorbing about 3 percent more methane per year.",
+      "The Swedish SPAF study followed 427 people born in 1958 from age 16 to 63, finding fitness and muscle endurance decline around age 35.",
+      "WHO figures show dengue cases rose from 6.5 million in 2023 to a record 14.6 million in 2024."
+    ],
+    "casey_position": "Visibility and measurement are not protection; claims should be held to confirmed evidence, sensor and data governance must be audited and independent, and reversible actions should be preferred over irreversible ones.",
+    "casey_key_evidence": [
+      "Microplastic reactivity has been shown in a beaker, but tissue damage and human dose-response links remain unproven.",
+      "Strait of Hormuz flows of 11.6 million barrels per day are about 68 percent of pre-crisis levels, and the IRGC's supertanker mine claim is unconfirmed.",
+      "Mosqitter's 5,000-trap deployment and roughly $5 million funding figures come from secondary coverage, not the company itself."
+    ],
+    "resolution": "They agreed on several points: fund the instruments and long records, put a measured soil sink into the accounts but not into the climate plan, test replacement polymers alongside the originals, and have communities keep raw data while institutions hold methods. They did not resolve who sustains long records past the principal investigator or teacher turnover, and Casey kept the 'superhabitable' label in quotation marks until spectra confirm it.",
+    "topics_covered": [
+      "Soil methane sinks and their role in carbon accounting",
+      "Long-term cohort and monitoring studies and the challenge of sustaining them",
+      "Microplastic surface chemistry, harm evidence, and safer replacement materials",
+      "Sensor networks for disease vectors and shipping chokepoints, including data ownership and audit",
+      "Superhabitable exoplanet candidates and the gap between models and observations"
     ]
   }
 }

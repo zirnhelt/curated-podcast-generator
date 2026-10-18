@@ -80,7 +80,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.theguardian.com/global-development/2026/oct/05/shortages-of-crucial-hiv-medicines-due-to-aid-cuts-are-a-warning-say-experts": {
     "article": {
@@ -120,7 +121,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.nytimes.com/2026/10/05/business/hormuz-saudi-iran-houthis.html": {
     "article": {
@@ -167,7 +169,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.nytimes.com/2026/10/01/business/energy-environment/oil-prices-iran-war-trump.html": {
     "article": {
@@ -215,7 +218,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://blog.adafruit.com/2026/09/29/an-interactive-map-of-every-passenger-rail-line-in-the-world/": {
     "article": {
@@ -255,7 +259,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://nautil.us/from-the-great-sphinxs-raw-materials-a-new-crocodile-species-surfaces-1285592/": {
     "article": {
@@ -296,7 +301,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://dangerousminds.net/history/ambassador-satch-music-genre-valuable-weapon-in-the-cold-war/": {
     "article": {
@@ -380,7 +386,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://wltribune.com/2026/10/07/a-masterclass-in-local-government-politics-2-b-c-veterans-launch-podcast/": {
     "article": {
@@ -466,7 +473,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.techradar.com/vehicle-tech/hybrid-electric-vehicles/tesla-model-y-tops-global-ev-sales-figures-again-but-new-report-reveals-byd-is-closing-fast-with-4-of-the-top-10-models": {
     "article": {
@@ -508,7 +516,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.niemanlab.org/2026/10/two-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina/": {
     "article": {
@@ -591,48 +600,6 @@
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
-  },
-  "https://quesnelobserver.com/2026/10/02/meet-the-candidates-rocky-nenka-seeks-mayors-seat-for-district-of-wells/": {
-    "article": {
-      "id": "https://quesnelobserver.com/2026/10/02/meet-the-candidates-rocky-nenka-seeks-mayors-seat-for-district-of-wells/",
-      "url": "https://quesnelobserver.com/2026/10/02/meet-the-candidates-rocky-nenka-seeks-mayors-seat-for-district-of-wells/",
-      "title": "[Quesnel Cariboo Observer] Meet the Candidates: Rocky Nenka seeks mayor\u2019s seat for District of Wells",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F02%2Fmeet-the-candidates-rocky-nenka-seeks-mayors-seat-for-district-of-wells%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nGeneral voting day across B.C., including Wells, will take place on Oct. 17.",
-      "summary": "General voting day across B.C., including Wells, will take place on Oct. 17.",
-      "_excerpt": "General voting day across B.C., including Wells, will take place on Oct. 17.",
-      "date_published": "2026-10-02T23:00:34+00:00",
-      "authors": [
-        {
-          "name": "Quesnel Cariboo Observer",
-          "url": "https://quesnelobserver.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 56,
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-10-11T04:08:04.556342+00:00"
-      },
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-11",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
   },
   "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data": {
     "article": {
@@ -753,7 +720,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.theatlantic.com/science/2026/10/anthropic-artificial-intelligence-science-biology/688878/?utm_source=feed": {
     "article": {
@@ -794,86 +762,6 @@
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/": {
-    "article": {
-      "id": "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/",
-      "url": "https://wltribune.com/2026/10/11/meet-the-candidates-city-councillor-candidate-nathan-wiebe/",
-      "title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Nathan Wiebe",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F11%2Fmeet-the-candidates-city-councillor-candidate-nathan-wiebe%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nNathan Wiebe is a 2026 councillor candidate for Williams Lake. (Photo submitted) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** I was born and raised in Williams Lake; I have built",
-      "summary": "Nathan Wiebe is a 2026 councillor candidate for Williams Lake. (Photo submitted) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in",
-      "_excerpt": "Nathan Wiebe is a 2026 councillor candidate for Williams Lake. (Photo submitted) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** I was born and raised in Williams Lake; I have built",
-      "date_published": "2026-10-12T04:03:34.731350+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 85,
-      "_quality": 70,
-      "_relevance": 88,
-      "_local": 90,
-      "_theme_score": 28,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 50,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 85
-    },
-    "held_date": "2026-10-12",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
-  },
-  "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/": {
-    "article": {
-      "id": "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/",
-      "url": "https://wltribune.com/2026/10/10/meet-the-candidates-city-councillor-candidate-kayla-zaruk/",
-      "title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Kayla Zaruk",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F10%2Fmeet-the-candidates-city-councillor-candidate-kayla-zaruk%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nKayla Zaruk is a 2026 councillor candidate for Williams Lake. (Facebook) **In advance of this year\u2019s general election on Saturday, Oct. 17 the _Tribune_ asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** My name is Kayla Zaruk. I am an Indigenous woman and have",
-      "summary": "Kayla Zaruk is a 2026 councillor candidate for Williams Lake. (Facebook) **In advance of this year\u2019s general election on Saturday, Oct. 17 the _Tribune_ asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in",
-      "_excerpt": "Kayla Zaruk is a 2026 councillor candidate for Williams Lake. (Facebook) **In advance of this year\u2019s general election on Saturday, Oct. 17 the _Tribune_ asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** My name is Kayla Zaruk. I am an Indigenous woman and have",
-      "date_published": "2026-10-12T04:03:34.731452+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 85,
-      "_quality": 70,
-      "_relevance": 88,
-      "_local": 90,
-      "_theme_score": 23,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 46,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 85
-    },
-    "held_date": "2026-10-12",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
   },
   "https://www.nrdc.org/press-releases/scotus-grapple-climates-costs": {
     "article": {
@@ -955,47 +843,6 @@
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
-  },
-  "https://quesnelobserver.com/2026/10/09/meet-the-candidates-mike-cave-seeks-council-seat-for-city-of-quesnel/": {
-    "article": {
-      "id": "https://quesnelobserver.com/2026/10/09/meet-the-candidates-mike-cave-seeks-council-seat-for-city-of-quesnel/",
-      "url": "https://quesnelobserver.com/2026/10/09/meet-the-candidates-mike-cave-seeks-council-seat-for-city-of-quesnel/",
-      "title": "[Quesnel Cariboo Observer] Meet the Candidates: Mike Cave seeks council seat for City of Quesnel",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F09%2Fmeet-the-candidates-mike-cave-seeks-council-seat-for-city-of-quesnel%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMike Cave is seeking a council seat for City of Quesnel. (Mike Cave submitted) _The Quesnel Cariboo Observer sent the following four questions to all the councillor candidates for the City of Quesnel. Each candidate was given 500 words to answer._ My name is Mike Cave, and I had the privilege of serving on Quesnel City Council from 2008 to 2014\\. I am stepping back into the ring because I love this community and I want to give back and support Quesnel in the best ways I can. I am proud of the solid work we delivered during my first terms, and we are facing many of those exact same industrial",
-      "summary": "Mike Cave is seeking a council seat for City of Quesnel. (Mike Cave submitted) _The Quesnel Cariboo Observer sent the following four questions to all the councillor candidates for the City of Quesnel. Each candidate was given 500 words to answer._ My name is Mike Cave, and I had the privilege of",
-      "_excerpt": "Mike Cave is seeking a council seat for City of Quesnel. (Mike Cave submitted) _The Quesnel Cariboo Observer sent the following four questions to all the councillor candidates for the City of Quesnel. Each candidate was given 500 words to answer._ My name is Mike Cave, and I had the privilege of serving on Quesnel City Council from 2008 to 2014\\. I am stepping back into the ring because I love this community and I want to give back and support Quesnel in the best ways I can. I am proud of the solid work we delivered during my first terms, and we are facing many of those exact same industrial",
-      "date_published": "2026-10-13T04:03:24.202888+00:00",
-      "authors": [
-        {
-          "name": "Quesnel Cariboo Observer",
-          "url": "https://quesnelobserver.com"
-        }
-      ],
-      "ai_score": 74,
-      "_quality": 60,
-      "_relevance": 70,
-      "_local": 100,
-      "_theme_score": 80,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 84,
-      "_keyword_matches": 1,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": false,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-13T04:08:04.510527+00:00"
-      },
-      "_boosted_score": 74
-    },
-    "held_date": "2026-10-13",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
   },
   "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/": {
     "article": {
@@ -1158,47 +1005,6 @@
     "target_focus_name": "Visual Arts & Heritage",
     "status": "held"
   },
-  "https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/": {
-    "article": {
-      "id": "https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/",
-      "url": "https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/",
-      "title": "[My Cariboo Now] Advance voting days in 2026 municipal election a hit in Quesnel",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316691%2Fnews%2Felections%2F2026-municipal-election%2Fadvance-voting-days-in-2026-municipal-election-a-hit-in-quesnel%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"390\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2025/03/vote-poll-election-1140x641-750x420-1.jpg?fit=696%2C390&amp;quality=89&amp;ssl=1\" width=\"696\"/>Voters turned out in droves across the two advance voting days in Quesnel. There is one more advance voting day for the Cariboo Regional District on Oct. 13, and one more advance voting day in Williams Lake on Oct. 14.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316691/news/elections/2026-municipal-election/advance-voting-days-in-2026-municipal-election-a-hit-in-quesnel/\">Advance voting days in 2026 municipal election a hit in Quesnel</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
-      "summary": "Voters turned out in droves across the two advance voting days in Quesnel. There is one more advance voting day for the Cariboo Regional District on Oct. 13, and one more advance voting day in Williams Lake on Oct. 14. The post Advance voting days in 2026 municipal election a hit in Quesnel",
-      "_excerpt": "Voters turned out in droves across the two advance voting days in Quesnel. There is one more advance voting day for the Cariboo Regional District on Oct. 13, and one more advance voting day in Williams Lake on Oct. 14. The post Advance voting days in 2026 municipal election a hit in Quesnel appeared first on My Cariboo Now .",
-      "date_published": "2026-10-13T18:48:39+00:00",
-      "authors": [
-        {
-          "name": "My Cariboo Now",
-          "url": "https://www.mycariboonow.com"
-        }
-      ],
-      "ai_score": 59,
-      "_quality": 60,
-      "_relevance": 45,
-      "_local": 100,
-      "_theme_score": 90,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 84,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-14T04:10:57.216424+00:00"
-      },
-      "_boosted_score": 59
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
-  },
   "https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/": {
     "article": {
       "id": "https://www.mycariboonow.com/316733/news/elections/2026-bc-election/b-c-ndp-pledges-millions-for-clean-energy-and-climate-programs/",
@@ -1328,7 +1134,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.mining.com/air-strike-kills-at-least-72-miners-in-sudan-rights-group-says/": {
     "article": {
@@ -1455,7 +1262,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig": {
     "article": {
@@ -1614,7 +1422,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://boingboing.net/2026/10/14/watch-triumph-of-the-nerds-the-1996-documentary-about-the-rise-of-bill-gates-and-steve-jobs.html": {
     "article": {
@@ -1655,7 +1464,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://blog.adafruit.com/2026/10/14/build-a-10-1-inch-home-assistant-panel-with-an-esp32-p4/": {
     "article": {
@@ -1866,7 +1676,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk/": {
     "article": {
@@ -2075,7 +1886,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://techcrunch.com/2026/10/14/mosqitter-is-turning-its-mosquito-traps-into-an-ai-powered-surveillance-network/": {
     "article": {
@@ -2117,7 +1929,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-18"
   },
   "https://100milefreepress.net/2026/10/14/south-cariboo-recreation-centre-adds-10k-in-accessibility-upgrades/": {
     "article": {
@@ -2161,176 +1974,44 @@
     "target_focus_name": "Recreation & Backcountry Access",
     "status": "aired_early"
   },
-  "https://wltribune.com/2026/10/13/meet-the-candidate-city-council-candidate-sheila-boehm-2/": {
+  "https://www.mycariboonow.com/316801/news/elections/2026-municipal-election/municipal-election-races-underway-across-the-cariboo/": {
     "article": {
-      "id": "https://wltribune.com/2026/10/13/meet-the-candidate-city-council-candidate-sheila-boehm-2/",
-      "url": "https://wltribune.com/2026/10/13/meet-the-candidate-city-council-candidate-sheila-boehm-2/",
-      "title": "[Williams Lake Tribune] MEET THE CANDIDATE: City council candidate Sheila Boehm",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F13%2Fmeet-the-candidate-city-council-candidate-sheila-boehm-2%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSheila Boehm is a 2026 councillor candidate for Williams Lake. (File photo) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** I\u2019ve served two terms as a councillor for the City of",
-      "summary": "Sheila Boehm is a 2026 councillor candidate for Williams Lake. (File photo) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in",
-      "_excerpt": "Sheila Boehm is a 2026 councillor candidate for Williams Lake. (File photo) **In advance of this year\u2019s general election on Saturday, Oct. 17 the Tribune asked city councillor candidates to provide a brief bio in addition: What is the most important topic you believe needs to be addressed in Williams Lake and how would you go about addressing it? How do you view the role of councillor and why do you feel you could fill it?** **Finally what future do you envision for Williams Lake? How will you go about realizing it as a councillor?** I\u2019ve served two terms as a councillor for the City of",
-      "date_published": "2026-10-14T04:03:24.311843+00:00",
+      "id": "https://www.mycariboonow.com/316801/news/elections/2026-municipal-election/municipal-election-races-underway-across-the-cariboo/",
+      "url": "https://www.mycariboonow.com/316801/news/elections/2026-municipal-election/municipal-election-races-underway-across-the-cariboo/",
+      "title": "[My Cariboo Now] Municipal election races underway across the Cariboo",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316801%2Fnews%2Felections%2F2026-municipal-election%2Fmunicipal-election-races-underway-across-the-cariboo%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2026/10/Vote.jpg?fit=696%2C392&amp;quality=89&amp;ssl=1\" width=\"696\"/>The Cariboo Votes tonight, as ballots have begun to be counted for the 2026 Municipal Election.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316801/news/elections/2026-municipal-election/municipal-election-races-underway-across-the-cariboo/\">Municipal election races underway across the Cariboo</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "The Cariboo Votes tonight, as ballots have begun to be counted for the 2026 Municipal Election. The post Municipal election races underway across the Cariboo appeared first on My Cariboo Now .",
+      "_excerpt": "The Cariboo Votes tonight, as ballots have begun to be counted for the 2026 Municipal Election. The post Municipal election races underway across the Cariboo appeared first on My Cariboo Now .",
+      "date_published": "2026-10-18T03:35:01+00:00",
       "authors": [
         {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
         }
       ],
-      "ai_score": 84,
+      "ai_score": 87,
       "_quality": 70,
-      "_relevance": 85,
-      "_local": 95,
-      "_theme_score": 25,
-      "_theme_score_raw": 2,
-      "_composite_podcast": 48,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 84
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
-  },
-  "https://thetyee.ca/News/2026/10/15/First-Nations-Endorsement-Williams-Lake-Mayoral-Race/": {
-    "article": {
-      "id": "https://thetyee.ca/News/2026/10/15/First-Nations-Endorsement-Williams-Lake-Mayoral-Race/",
-      "url": "https://thetyee.ca/News/2026/10/15/First-Nations-Endorsement-Williams-Lake-Mayoral-Race/",
-      "title": "[The Tyee] First Nations Make Rare Endorsement in Williams Lake Mayoral Race",
-      "content_html": "<img src=\"https://thetyee.ca/News/2026/10/14/WillieSellarsSurinderpalRathor.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F10%2F15%2FFirst-Nations-Endorsement-Williams-Lake-Mayoral-Race%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIndigenous governments say Surinderpal Rathor has turned around relationship after previous mayor\u2019s comments \u2018damaged trust.\u2019",
-      "summary": "Indigenous governments say Surinderpal Rathor has turned around relationship after previous mayor\u2019s comments \u2018damaged trust.\u2019",
-      "_excerpt": "Indigenous governments say Surinderpal Rathor has turned around relationship after previous mayor\u2019s comments \u2018damaged trust.\u2019",
-      "date_published": "2026-10-15T07:10:00+00:00",
-      "authors": [
-        {
-          "name": "The Tyee",
-          "url": "https://thetyee.ca"
-        }
-      ],
-      "ai_score": 91,
-      "_quality": 80,
-      "_relevance": 92,
+      "_relevance": 88,
       "_local": 100,
       "_theme_score": 83,
-      "_theme_score_raw": 45,
-      "_composite_podcast": 74,
+      "_theme_score_raw": 58,
+      "_composite_podcast": 86,
       "_keyword_matches": 0,
       "_category": "local",
       "_source_category": "local",
       "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://thetyee.ca/News/2026/10/14/WillieSellarsSurinderpalRathor.jpg",
       "_cross_theme": {
         "day": "monday",
         "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-16T04:11:51.479191+00:00"
+        "shown_at": "2026-10-18T04:08:39.558560+00:00"
       },
-      "_boosted_score": 91
+      "_boosted_score": 87
     },
-    "held_date": "2026-10-16",
-    "target_date": "2026-10-17",
+    "held_date": "2026-10-18",
+    "target_date": "2026-10-24",
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
-  },
-  "https://quesnelobserver.com/2026/10/15/quesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027/": {
-    "article": {
-      "id": "https://quesnelobserver.com/2026/10/15/quesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027/",
-      "url": "https://quesnelobserver.com/2026/10/15/quesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027/",
-      "title": "[Quesnel Cariboo Observer] Quesnel council defers centennial celebration, gold pan projects to 2027",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F15%2Fquesnel-council-defers-centennial-celebration-gold-pan-projects-to-2027%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe report presented by Mayor Ron Paull says those projects will carry over for the next council to consider",
-      "summary": "The report presented by Mayor Ron Paull says those projects will carry over for the next council to consider",
-      "_excerpt": "The report presented by Mayor Ron Paull says those projects will carry over for the next council to consider",
-      "date_published": "2026-10-16T04:03:27.562276+00:00",
-      "authors": [
-        {
-          "name": "Quesnel Cariboo Observer",
-          "url": "https://quesnelobserver.com"
-        }
-      ],
-      "ai_score": 79,
-      "_quality": 55,
-      "_relevance": 80,
-      "_local": 100,
-      "_theme_score": 79,
-      "_theme_score_raw": 43,
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-16T04:11:51.479191+00:00"
-      },
-      "_boosted_score": 79
-    },
-    "held_date": "2026-10-16",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
-  },
-  "https://quesnelobserver.com/2026/10/15/meet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells/": {
-    "article": {
-      "id": "https://quesnelobserver.com/2026/10/15/meet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells/",
-      "url": "https://quesnelobserver.com/2026/10/15/meet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells/",
-      "title": "[Quesnel Cariboo Observer] Meet the Candidates: Elyssia Sasaki seeks council seat for District of Wells",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F15%2Fmeet-the-candidates-elyssia-sasaki-seeks-council-seat-for-district-of-wells%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n",
-      "summary": "",
-      "_excerpt": "",
-      "date_published": "2026-10-16T04:03:27.562431+00:00",
-      "authors": [
-        {
-          "name": "Quesnel Cariboo Observer",
-          "url": "https://quesnelobserver.com"
-        }
-      ],
-      "ai_score": 76,
-      "_quality": 50,
-      "_relevance": 80,
-      "_local": 90,
-      "_theme_score": 78,
-      "_theme_score_raw": 42,
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-16T04:11:51.479191+00:00"
-      },
-      "_boosted_score": 76
-    },
-    "held_date": "2026-10-16",
-    "target_date": "2026-10-17",
-    "target_weekday": 5,
-    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
-    "recall": true,
-    "status": "released",
-    "release_date": "2026-10-17"
+    "status": "recall"
   }
 }

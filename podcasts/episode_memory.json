@@ -1,45 +1,4 @@
 {
-  "2026-09-12": {
-    "timestamp": 1789201196.961844,
-    "topics": [
-      "[Williams Lake Tribune] One airlifted to hospital following ",
-      "[My Cariboo Now] One person in critical condition following ",
-      "[Quesnel Cariboo Observer] Man faces multiple charges after ",
-      "[Quesnel Cariboo Observer] Ottawa to match money raised by R",
-      "[My Cariboo Now] Teresa Wat joins new B.C. political party, ",
-      "[Williams Lake Tribune] Former Williams Lake mayor Walt Cobb",
-      "[My Cariboo Now] South Cariboo realtor running for Mayor",
-      "[100 Mile Free Press] Canim Lake Bulk Water Station opening "
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-12",
-    "focus": null,
-    "focus_name": null
-  },
-  "2026-09-13": {
-    "timestamp": 1789287421.620687,
-    "topics": [
-      "[Williams Lake Tribune] 2 mayor, 15 councillor candidates de",
-      "[Regional News Archives",
-      "[Williams Lake Tribune] Remembering 9/11: Canadians, America",
-      "[ScienceDaily] Who really needs a heart calcium scan?",
-      "[Country Life] How Kew planted an American prairie in the he",
-      "[Vancouver Sun] Opinion: Why Canada&#039;s new pipeline prop",
-      "[ScienceAlert] If Your Parents Live to 100, Does That Mean Y",
-      "[ScienceAlert] Type 1 Diabetes May Actually Be Two Different"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-09-13",
-    "focus": "sky-cosmos",
-    "focus_name": "Sky & Cosmos"
-  },
   "2026-09-14": {
     "timestamp": 1789374371.824372,
     "topics": [
@@ -712,5 +671,26 @@
     "date": "2026-10-17",
     "focus": null,
     "focus_name": null
+  },
+  "2026-10-18": {
+    "timestamp": 1792312066.572911,
+    "topics": [
+      "[100 Mile Free Press] Forest Grove resident demands return o",
+      "[Williams Lake Tribune] Williams Lake Film Club presents Ame",
+      "[My Cariboo Now] Municipal election races underway across th",
+      "[STAT News] Opinion: 50 years ago, my colleagues and I pursu",
+      "[The Guardian Global Development] Shortages of crucial HIV m",
+      "[NYT Business] Burst of Attacks in Gulf Heightens Fears Over",
+      "[WIRED] Microplastics React With Water, a New Study Says. Th",
+      "[TechCrunch] Mosqitter is turning its mosquito traps into an"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-10-18",
+    "focus": "living-world",
+    "focus_name": "The Living World"
   }
 }

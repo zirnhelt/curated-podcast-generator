@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Fast Company] I use AI to save time. So why am I working mo",
       "[TechRadar] The new digital ID apps for age verification in ",
       "[TechRadar] Microsoft, Google took down $66 million cybercri",
       "[Business Insider] Laid-off tech workers from Google, Micros",
@@ -10,7 +9,8 @@
       "[TechRadar] Massive data breach sees 220 million traveler re",
       "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
       "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
-      "[Williams Lake Tribune] Students explore science, technology"
+      "[Williams Lake Tribune] Students explore science, technology",
+      "[TechCrunch] Mosqitter is turning its mosquito traps into an"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -130,11 +130,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-11",
-        "clue": "structural-lens:~ \u2014 proposed regional body hold the dataset long-term",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-09",
         "clue": "structural-lens:x \u2014 concedes register must survive staff turnover, needs institution",
         "occurrences": 2
@@ -150,11 +145,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-17",
-        "clue": "community-trust:+ \u2014 stayers' voices deserve louder weight in decisions",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-14",
         "clue": "pilot-skepticism:~ \u2014 proposes testing one lake before scaling claims",
         "occurrences": 1
@@ -162,6 +152,11 @@
       {
         "date": "2026-10-16",
         "clue": "community-trust:~ \u2014 proposes regional ownership of data, shared log",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-18",
+        "clue": "evidence-bar:+ \u2014 insists mechanism naming justifies engineering now",
         "occurrences": 1
       }
     ],
@@ -429,9 +424,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-12",
-        "clue": "pilot-skepticism:~ \u2014 a count is useful but volunteers end",
-        "occurrences": 1
+        "date": "2026-10-18",
+        "clue": "pilot-skepticism:~ \u2014 notes sensing reveals fragility without fixing it",
+        "occurrences": 2
       },
       {
         "date": "2026-10-13",
@@ -444,8 +439,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-17",
-        "clue": "evidence-bar:+ \u2014 a delegation or endorsement isn't a vote or receipt",
+        "date": "2026-10-18",
+        "clue": "evidence-bar:+ \u2014 demands second lab and tissue work first",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-10-18",
+        "clue": "funding-risk:+ \u2014 asks who keeps long records running",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-18",
+        "clue": "community-trust:x \u2014 concedes community keeps data, vendor keeps dashboard",
         "occurrences": 1
       }
     ],
