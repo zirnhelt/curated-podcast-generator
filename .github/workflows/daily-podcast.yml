@@ -753,7 +753,7 @@ jobs:
           commit_message: 'Episode review - ${{ github.run_id }}'
 
       # super-rss-feed reads episode-reviews.xml into feed-local, but its nightly
-      # runs at 04:00 UTC, six hours before this review exists, so the review
+      # runs at 06:00 UTC, four hours before this review exists, so the review
       # reached the feed beside the NEXT day's episode. Ask it to splice the
       # review in now (its refresh-editorial.yml spends nothing). It reads this
       # feed from Pages, which publishes a minute or more after the push above,
