@@ -491,17 +491,6 @@ The rules the cards follow:
   not his vocabulary, and quotes none of his text. `test_host_voice_cards_carry_no_tells` runs
   every card line through `hard_banned` and the hard pattern families.
 
-**Pending: Casey's card ships after the 2026-10-24 vote.** Until then a campaign manager's lens
-sits awkwardly beside the election coverage. Paste into `hosts.json` → `casey`:
-
-```json
-"voice_style": [
-  "Starts from one concrete scene in the story, then widens to what it says about the whole system.",
-  "Keeps the honest ledger: itemises the costs nobody budgets for, the ones that never appear in the announcement, and asks who ends up paying them.",
-  "Holds that skipping the basics saves nothing; it moves the cost downstream. You pay up front or you pay later.",
-  "Treats maintenance as the real test. A strategy or a launch counts only once it shows up in budgets, staffing and follow-through.",
-  "Asks whether a project fits the community before asking whether it can be funded, and expects First Nations at the table from the first meeting as decision-makers.",
-  "Plain, short sentences. A clipped list of fragments when the point is a set of practical needs. No uplift words, no slogans.",
-  "Uses this as a lens on the story at hand, never as a stance on local politics, candidates or council decisions."
-]
-```
+Both cards shipped together on 2026-10-18. Holding Casey's until after the 2026-10-24 vote was
+considered and declined by the producer: the card carries no civic positions, so the timing
+does not matter.
