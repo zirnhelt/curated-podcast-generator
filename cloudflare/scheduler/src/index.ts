@@ -67,17 +67,21 @@ const FEED_REPO = 'zirnhelt/super-rss-feed';
  * pool that the podcast reads at 08:05 UTC, so its ladder runs first.
  */
 const SCHEDULE: Record<string, Slot> = {
-  // 04:00 UTC — 8:00 PM Pacific the previous evening.
-  '0 4 * * *': {
+  // 06:00 UTC — 11:00 PM Pacific the previous evening. Moved from 04:00 (9 PM)
+  // because evening news missed the run: the 2026-10-17 municipal election
+  // results were out by 9 PM and reached neither the feed nor the next episode.
+  // The run takes ~10 minutes, so 07:00 still has an hour of slack behind it.
+  '0 6 * * *': {
     repo: FEED_REPO,
     workflow: 'generate-feed.yml',
     ref: 'main',
     runSlot: '1',
-    label: 'RSS feed — primary (04:00 UTC)',
+    label: 'RSS feed — primary (06:00 UTC)',
     alertOnFailure: false,
   },
   // 07:00 UTC — backup tick. The workflow's own preflight stands it down if
-  // 04:00 already covered the day, so a double dispatch costs ~20 s, not spend.
+  // 06:00 already covered the day, so a double dispatch costs ~20 s, not spend.
+  // A failed 06:00 run still finishes here by ~07:10, ahead of the podcast's 08:05.
   '0 7 * * *': {
     repo: FEED_REPO,
     workflow: 'generate-feed.yml',

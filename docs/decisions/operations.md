@@ -523,7 +523,7 @@ recurring every night, which is what prompted a weekly agent pass over the open 
 ### The review reaches `feed-local` the morning it is written (2026-10-10)
 
 `super-rss-feed` reads `episode-reviews.xml` into `feed-local.json`, but its nightly runs at
-04:00 UTC and this review lands at about 10:05, so every review reached the reader beside the
+04:00 UTC (06:00 from 2026-10-18) and this review lands at about 10:05, so every review reached the reader beside the
 *next* day's episode. The review job now waits until the review is live on Pages (it publishes
 a minute or more after the gh-pages push), then dispatches that repo's `refresh-editorial.yml`
 with the scheduler PAT, the one token with Actions write on both repos. The refresh spends
