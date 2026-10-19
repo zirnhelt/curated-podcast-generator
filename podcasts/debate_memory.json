@@ -1,31 +1,4 @@
 {
-  "2026-07-20": {
-    "timestamp": 1784546488.595675,
-    "date": "2026-07-20",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "focus": "film-screen",
-    "central_question": "Do cheaper production tools and streaming platforms fundamentally democratize rural filmmaking, or do they simply relocate gatekeeping to algorithms and attention economies?",
-    "riley_position": "Streaming platforms have created new distribution pathways that don't require institutional backing, and rural creators can build regional audiences through owned archives and community channels without needing national algorithmic promotion.",
-    "riley_key_evidence": [
-      "Connor Ratliff built a genuine following doing video essays directly to audience with no broadcaster backing",
-      "IndigiNews ReFocus program trains Indigenous photojournalists who distribute work under their own names on their own terms",
-      "Regional audiences can be reached through community screenings and local channels without national distribution"
-    ],
-    "casey_position": "Attention economy gatekeeping has simply moved from broadcasters to algorithms; rural creators now compete against infinite machine-generated content and broadcaster-backed films with marketing budgets they can't match.",
-    "casey_key_evidence": [
-      "AI-generated songs from Suno flood feeds at volumes no individual human creator can match, drowning out small creators",
-      "Clement Virgo's 'Steal Away' gets algorithmic promotion partly because a broadcaster paid for visibility, not because algorithms are neutral arbiters",
-      "A two-hundred-person regional audience generates nearly zero revenue on streaming platforms that reward scale over specificity"
-    ],
-    "resolution": "They agreed that streaming platforms are useful as free hosting mechanisms but irrelevant as economic engines; the real gap isn't funding or gear but governance\u2014whether communities own and control archives of their own cultural content, and whether training happens collectively rather than individually.",
-    "topics_covered": [
-      "Distribution gatekeeping: broadcast era vs. algorithmic era",
-      "Economic models vs. cultural value in streaming platforms",
-      "Owned vs. platform-dependent archives for local content",
-      "Skill training as infrastructure (IndigiNews model vs. individual gear access)",
-      "Performances in the Park as a concrete test case for documentation"
-    ]
-  },
   "2026-07-21": {
     "timestamp": 1784630659.719428,
     "date": "2026-07-21",
@@ -2526,6 +2499,34 @@
       "Microplastic surface chemistry, harm evidence, and safer replacement materials",
       "Sensor networks for disease vectors and shipping chokepoints, including data ownership and audit",
       "Superhabitable exoplanet candidates and the gap between models and observations"
+    ]
+  },
+  "2026-10-19": {
+    "timestamp": 1792397762.027915,
+    "date": "2026-10-19",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "music-performance",
+    "anchor": "trust-built-or-inherited",
+    "central_question": "Is credibility and authenticity in arts and culture built by the artists and audiences themselves, or can sponsors, founders, and institutions inherit and spend it?",
+    "riley_position": "Credibility is built on the bandstand and in the room through audience experience and conduct; sponsorship doesn't make performances insincere, and durable trust comes from festivals and venues keeping honest records of their work.",
+    "riley_key_evidence": [
+      "PBS and Time document State Department jazz tours through Eastern Europe, the Middle East, South Asia, and decolonized Africa and Asia in the 1950s",
+      "The Living Archive of techno culture opened 3,400 square metres of basement beneath a former East Berlin power station, developed with Tresor founder Dimitri Hegemann",
+      "Williams Lake has about 10,700 people and Quesnel about 9,000; the Cariboo Regional District Library offers digital literacy programs in three communities"
+    ],
+    "casey_position": "Authenticity is a valuable asset that sponsors and founders can spend, and the people doing the unpaid labour, such as sound techs and door volunteers, carry the reputation without being compensated or credited.",
+    "casey_key_evidence": [
+      "The State Department sent Armstrong, Dizzy Gillespie, Duke Ellington, and Dave Brubeck abroad starting in 1955-1956, while the musicians did not choose the itinerary",
+      "Scholarship in Retrospect Journal (2025) reads the tours as a cultural proxy conflict, though this is presented as an argument rather than a finding",
+      "The International Federation of Journalists reports at least 30 journalists detained during Delhi protests, and over 130 million names were reported removed from voter rolls during India's Special Intensive Revision"
+    ],
+    "resolution": "They agreed that both the band's credibility and the sponsor's use of it can be true at once, and that a festival's record is essential for surviving leadership change. They left unresolved whether a visible record of unpaid labour is enough or whether it must be tied to actual payment.",
+    "topics_covered": [
+      "Cold War jazz diplomacy and who controls the narrative of cultural tours",
+      "Authenticity, sponsorship, and whether reputation is built or inherited",
+      "Record-keeping, volunteer labour, and succession in small-town festivals and venues",
+      "Berlin's techno archive and who curates a scene defined by anonymity",
+      "Digital sovereignty for creators: checksums, backups, and footage ownership"
     ]
   }
 }
