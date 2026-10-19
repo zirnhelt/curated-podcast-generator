@@ -5,7 +5,64 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Sun, 18 Oct 2026 10:06:29 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 10:06:06 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, October 19, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-19.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-19.html</guid>
+      <pubDate>Mon, 19 Oct 2026 10:06:06 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39220293431"&gt;39220293431&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;The short draft and the expand passes&lt;/h3&gt;
+&lt;p&gt;The first script draft came in at 2850 words against a target of 3400. The pipeline sent it back for up to two expand passes. What shipped was 3673 words, so the expansion overshot the target by 273 words. The episode is longer than the spec asked for, and the audio reflects it: 21.9 minutes of audio, 20.1 MB.&lt;/p&gt;
+&lt;p&gt;The degradation log lists one failure, in the script step. Kagi Extract returned no page for 4 thin roundup stories. Those stories were still in the script without their source text.&lt;/p&gt;
+
+&lt;h3&gt;Citations that did not match&lt;/h3&gt;
+&lt;p&gt;Citation alignment was uneven. Of 17 roundup citations, 13 matched. Of 4 deep-dive citations, 1 matched. The deep-dive figure is the weaker one: three of the four long segments went to air with citations that did not check out against their sources.&lt;/p&gt;
+&lt;p&gt;The four failed Kagi Extract pages are the likely cause for the roundup side, since thin stories give the matcher less to match against. The facts do not establish that link, so treat it as a suspicion until someone checks which citations were the unmatched ones.&lt;/p&gt;
+
+&lt;h3&gt;Cut stories&lt;/h3&gt;
+&lt;p&gt;The roundup pool had 40 stories cut by the airtime budget. This is by design. The pool is larger than one segment can air, and a cut story can come back on a day when it fits better. The 40 cuts are not 40 missing items from this episode. They are the pool doing what it was built to do.&lt;/p&gt;
+&lt;p&gt;The tension is that 4 of those roundup stories were thin enough that Kagi returned nothing for them, yet they still made the script. The budget cut 40 stories, and the thinnest sources were the ones that got through.&lt;/p&gt;
+
+&lt;h3&gt;Quality and tone&lt;/h3&gt;
+&lt;p&gt;The voice split between the two hosts was 0.93 Casey over Riley. The script tripped the AI-tell pattern check once. Both figures are within what the pipeline is meant to accept, and neither needs action today.&lt;/p&gt;
+
+&lt;h3&gt;The schedule held, with fallbacks&lt;/h3&gt;
+&lt;p&gt;The primary run started at 1:05 AM Pacific and finished at 1:31 AM Pacific. It completed successfully with no lateness. Two fallback runs were scheduled behind it. Fallback 1 started at 2:05 AM Pacific and finished at 2:05 AM Pacific, also successful. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has not finished.&lt;/p&gt;
+&lt;p&gt;The slowest steps were the script generation at 502 seconds and the Pages deploy at 371 seconds. Audio rendering took 283 seconds. The video render and YouTube upload took 131 seconds.&lt;/p&gt;
+
+&lt;h3&gt;Spend and output&lt;/h3&gt;
+&lt;p&gt;The run used 61,831 Anthropic input tokens. API calls split across four services: 11 to Claude, 9 to Brave Search, 4 to Kagi Extract, and 4 to Brave Answers. The video is 75.3 MB at a runtime of 21.9 minutes. The RSS feed now carries 264 episodes.&lt;/p&gt;
+
+&lt;h3&gt;The day's debate&lt;/h3&gt;
+&lt;p&gt;The episode's question was whether credibility and authenticity in arts and culture come from the artists and audiences themselves, or whether sponsors, founders, and institutions can inherit and spend them. The four deep dives covered a music genre turned into a brand asset, a state crackdown on critics, an architecture archive, and an off-grid refrigerator built from fire and salt. Three of the four deep-dive citations failed to match, so the argument rests more on the scripted framing than on the verified sources behind it.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 0.93, 3673 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;21.9 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;20.1 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/17 roundup, 1/4 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;264 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;61,831&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;***'claude': 11, 'brave-search': 9, 'kagi-extract': 4, 'brave-answers': 4***&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, October 18, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-18.html</link>
@@ -1599,66 +1656,6 @@
 &lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/15 roundup, 0/3 deep dive&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;236 episodes&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;91,170 input tokens, calls ***'claude': 12, 'brave-answers': 2***&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, September 19, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-19.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-19.html</guid>
-      <pubDate>Sat, 19 Sep 2026 14:18:14 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35431044874"&gt;35431044874&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;Body text budget exhausted mid-run&lt;/h3&gt;
-
-&lt;p&gt;The pipeline spent its full allocation of 12 API calls to backfill article bodies and ran dry. Sixteen degradations recorded the same failure: remaining thin articles kept stub bodies instead of expanded ones and face culling in subsequent assembly steps. This is a constraint, not a bug. The mechanism worked as designed—the budget held, the pipeline stopped spending, sparse sources stayed sparse.&lt;/p&gt;
-
-&lt;p&gt;The outcome depends on how many of those stub-bodied articles survive the cut. The facts do not report which ones made it to air.&lt;/p&gt;
-
-&lt;h3&gt;Territory metadata conflicts unresolved&lt;/h3&gt;
-
-&lt;p&gt;Two Indigenous nation mentions triggered territory-check failures. A Sinixt reference connected to Redstone conflicted with the map's coverage (Tsilhqotin Nen, Dëndëh). A Syilx reference tied to the Tribune conflicted with coverage zones (K'ómoks, Hulqumiánum Treaty Group, Slaámen gəč̓əl, Tlaáamin, Homalco).&lt;/p&gt;
-
-&lt;p&gt;A third failure flagged 2 sentences that kept an unsupported nation after rewrite was rejected. The pipeline carried them forward unsigned rather than drop them. This trades accuracy markup for narrative continuity.&lt;/p&gt;
-
-&lt;h3&gt;Script came short, expanded, and landed in range&lt;/h3&gt;
-
-&lt;p&gt;The first draft measured 2272 words against a 3400-word target. The system flagged it and sent it back for expansion. The shipped script landed at 3102 words. The shortfall from target (298 words) is within the bounds of normal variation.&lt;/p&gt;
-
-&lt;h3&gt;Citation matching split between segments&lt;/h3&gt;
-
-&lt;p&gt;Roundup citations matched 11 of 15 sources (73%). Deep dive citations matched 3 of 5 (60%). The roundup held stronger alignment; the deep dives ran thinner. No mechanism attempted to backfill the unmatched four.&lt;/p&gt;
-
-&lt;h3&gt;Audio rendering produced minor length variance&lt;/h3&gt;
-
-&lt;p&gt;Two TTS segments came back shorter than word count predicted. One retry succeeded and brought the segment into expected range. The other failed the retry; the pipeline kept the longer of the two takes. Nothing dropped from the episode.&lt;/p&gt;
-
-&lt;h3&gt;Three manual runs plus a late fallback&lt;/h3&gt;
-
-&lt;p&gt;The first three runs triggered manually and completed on time: 8:05 AM, 9:05 AM, and 10:05 AM Pacific. A fourth run, Fallback 2 scheduled for 3:05 AM Pacific, arrived 252 minutes late at 2:17 PM. Status shows in_progress with no conclusion. The earlier runs had all succeeded; the cause of the lateness and current state is absent from the facts.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-19T08:05:05Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-19T09:05:03Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-19T10:05:03Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-19T14:17:40Z&lt;/td&gt;&lt;td&gt;+252 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.9, 3102 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;18.8 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;17.3 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;11/15 roundup, 3/5 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;235 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;136,058 input tokens, calls ***'claude': 18***&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>

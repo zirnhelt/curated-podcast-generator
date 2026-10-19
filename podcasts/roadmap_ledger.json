@@ -400,10 +400,9 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 3,
+      "occurrences": 4,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-24",
         "2026-09-25",
         "2026-09-26",
         "2026-09-27",
@@ -412,11 +411,12 @@
         "2026-10-07",
         "2026-10-14",
         "2026-10-16",
-        "2026-10-17"
+        "2026-10-17",
+        "2026-10-19"
       ],
-      "last_seen": "2026-10-17",
+      "last_seen": "2026-10-19",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-10-17"
+      "signal_seen": "2026-10-19"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -633,7 +633,22 @@
         "2026-10-18"
       ],
       "last_seen": "2026-10-18"
+    },
+    {
+      "id": "thin-roundup-stories-shipped-without-source-text",
+      "title": "Four thin roundup stories reached the script after Kagi Extract returned no source text for them.",
+      "detail": "The degrade row shows Kagi Extract returned no page for 4 thin roundup stories on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were cut by the airtime budget, so the thinnest sources were the ones that passed through. The pipeline should either drop stories whose extraction failed or mark them as unverified before scripting. This is the degradation whose handling the facts show as wrong.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-10-19",
+      "seen": [
+        "2026-10-19"
+      ],
+      "signal": "degraded:script/kagi-extract",
+      "signal_seen": "2026-10-19",
+      "last_seen": "2026-10-19"
     }
   ],
-  "updated": "2026-10-18"
+  "updated": "2026-10-19"
 }

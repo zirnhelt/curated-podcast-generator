@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-24..2026-10-17) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-25..2026-10-19) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -51,8 +51,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 3
-      reviews, latest 2026-10-17)
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 4
+      reviews, latest 2026-10-19)
 
 <!-- reviews:end -->
 
