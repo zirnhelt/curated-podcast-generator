@@ -130,11 +130,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-09",
-        "clue": "structural-lens:x \u2014 concedes register must survive staff turnover, needs institution",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-13",
         "clue": "evidence-bar:x \u2014 concedes budget question is right, not against tool",
         "occurrences": 2
@@ -157,6 +152,16 @@
       {
         "date": "2026-10-18",
         "clue": "evidence-bar:+ \u2014 insists mechanism naming justifies engineering now",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-19",
+        "clue": "community-trust:+ \u2014 insists the sponsor decides venue, not sincerity",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-19",
+        "clue": "evidence-bar:~ \u2014 separates disputed motive from verified detention counts",
         "occurrences": 1
       }
     ],
@@ -384,11 +389,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-09",
-        "clue": "community-trust:+ \u2014 local ranchers and outfitters are the omitted experts",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-22",
         "clue": "evidence-bar:x \u2014 conceded local knowledge needs formal standing",
         "occurrences": 1
@@ -402,11 +402,6 @@
         "date": "2026-09-23",
         "clue": "community-trust:~undocumented-resilience-is-single-point-failure-reframing",
         "occurrences": 1
-      },
-      {
-        "date": "2026-10-04",
-        "clue": "evidence-bar:~ \u2014 Acknowledged small data useful if protocol-protected",
-        "occurrences": 2
       },
       {
         "date": "2026-10-07",
@@ -451,6 +446,11 @@
       {
         "date": "2026-10-18",
         "clue": "community-trust:x \u2014 concedes community keeps data, vendor keeps dashboard",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-19",
+        "clue": "pilot-skepticism:+ \u2014 five-week test is not a permanent budget line",
         "occurrences": 1
       }
     ],

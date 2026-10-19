@@ -1,15 +1,5 @@
 {
   "assigned": {
-    "2026-W34": {
-      "id": "tech-sadness",
-      "question": "Why is everyone in tech so sad?",
-      "dimension": "labour-meaning",
-      "premise": "An emotional recession has settled over knowledge work \u2014 layoffs, AI anxiety, and the collapse of the mission-driven self-image that carried the industry for two decades. The people who were supposed to be building the future increasingly describe their own work as pointless. The open question is what happens to a society when an entire class of workers loses faith in its careers, and whether the trades, the land, and the small-town economies that were told to envy that class have something to say back.",
-      "reading": "https://www.noemamag.com/why-is-everyone-in-tech-so-sad/",
-      "framings": {},
-      "assigned_at": "2026-08-17",
-      "origin": "seeded"
-    },
     "2026-W35": {
       "id": "allowed-to-fix",
       "question": "Who is allowed to fix things?",
@@ -113,6 +103,24 @@
       },
       "assigned_at": "2026-10-12",
       "origin": "seeded"
+    },
+    "2026-W43": {
+      "id": "trust-built-or-inherited",
+      "question": "Is trust something you build, or something you inherit?",
+      "dimension": "trust",
+      "premise": "Institutions arrive in a small community carrying a history they did not personally create \u2014 a ministry, a company, a school district, a newspaper, an AI system. Some of them work hard and are still not believed; some coast on credit earned decades ago. The question is whether trust can actually be rebuilt by conduct, or whether it is mostly inherited and merely spent.",
+      "reading": null,
+      "framings": {
+        "0": "Consider whether a local festival's reputation for authenticity is built each season through volunteer labour and honest programming, or inherited from the founders whose names still draw ticket buyers to the Cariboo.",
+        "1": "Weigh whether a sawmill's new sensor-monitored log line earns back loggers' trust by proving safe and fair, or whether its crews still remember the company that cut shifts after the last boom.",
+        "2": "Test whether a shop-class maker project or a homelab kit a local teen builds for their own dad's ranch shows real technical competence earning belief, or whether the brand on the box does most of the convincing.",
+        "3": "Ask whether a T\u015dilhqot'in-led land monitoring program, delivered by the same governments that once broke treaties, can rebuild credibility through patient consent processes, or whether its legitimacy is simply owed from history.",
+        "4": "Debate whether a provincial wildfire crew's drone and satellite tools earn trust from backcountry outfitters through accurate evacuation calls, or whether campers still judge the agency by how it handled the last burn.",
+        "5": "Examine whether Williams Lake council's new consultation process rebuilds residents' faith through visible follow-through on a contested development, or whether longtime ratepayers judge it by the broken promises of earlier administrations.",
+        "6": "Explore whether a University of Victoria or Quesnel research station's long-term Cariboo grassland or caribou study earns local ranchers' belief through shared fieldwork and honest published results, or whether scientists inherit suspicion from past resource studies that ignored local knowledge."
+      },
+      "assigned_at": "2026-10-19",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -175,6 +183,12 @@
       "dimension": "mobility-belonging",
       "question": "Who gets to leave, and who has to stay?",
       "week": "2026-W42"
+    },
+    {
+      "id": "trust-built-or-inherited",
+      "dimension": "trust",
+      "question": "Is trust something you build, or something you inherit?",
+      "week": "2026-W43"
     }
   ],
   "generated": [

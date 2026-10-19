@@ -1,21 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-09-27",
-      "words": 3390,
-      "counts": {
-        "mostly": 3,
-        "sciencedaily": 2,
-        "potentially": 2,
-        "specifically": 3,
-        "deliberately": 2,
-        "entirely": 2,
-        "physically": 2,
-        "exactly": 2,
-        "precisely": 2
-      }
-    },
-    {
       "date": "2026-09-28",
       "words": 3548,
       "counts": {
@@ -170,8 +155,13 @@
         "partly": 2,
         "roughly": 3
       }
+    },
+    {
+      "date": "2026-10-19",
+      "words": 3673,
+      "counts": {}
     }
   ],
   "burned": {},
-  "updated": "2026-10-18"
+  "updated": "2026-10-19"
 }

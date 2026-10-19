@@ -1,0 +1,434 @@
+{
+  "episode": {
+    "date": "2026-10-19",
+    "formatted_date": "Monday, October 19, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is trust something you build, or something you inherit?</p><p><b>NEWS ROUNDUP:</b> We break down Two of 3 South Cariboo regional district directors keep their seats and Surinderpal Rathor re-elected mayor of Williams Lake, plus 11 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Is credibility and authenticity in arts and culture built by the artists and audiences themselves, or can sponsors, founders, and institutions inherit and spend it? Topics include: Cold War jazz diplomacy and who controls the narrative of cultural tours, Authenticity, sponsorship, and whether reputation is built or inherited, Record-keeping, volunteer labour, and succession in small-town festivals and venues, Berlin's techno archive and who curates a scene defined by anonymity, Digital sovereignty for creators: checksums, backups, and footage ownership.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cln.ca\">Cariboo Regional District Library</a></p><p><b>Sources discussed:</b></p><ul><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/10/17/two-of-3-south-cariboo-regional-district-directors-keep-their-seats/\">[100 Mile Free Press] Two of 3 South Cariboo regional distri...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/17/surinderpal-rathor-re-elected-mayor-of-williams-lake/\">[Williams Lake Tribune] Surinderpal Rathor re-elected mayor ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/10/18/BC-Civic-Elections-Many-Mayors-Ousted/\">[The Tyee] In Kamloops and Across BC, Many Mayors Ousted</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/10/17/coralee-oakes-elected-mayor-of-quesnel-4-councillors-re-elected/\">[Quesnel Cariboo Observer] Coralee Oakes elected mayor of Qu...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/10/17/jillian-merrick-elected-mayor-of-district-of-wells/\">[Quesnel Cariboo Observer] Jillian Merrick elected mayor of ...</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316825/news/elections/2026-municipal-election/cariboo-school-districts-have-elected-their-trustees/\">[My Cariboo Now] Cariboo School Districts have elected their...</a></li><li>Khushi Arora, Local Journalism Initiative (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/11/williams-lake-mustangs-bounce-back-from-kamloops-storm-loss-with-win-over-osoyoos-coyotes/\">[Williams Lake Tribune] Williams Lake Mustangs bounce back f...</a></li><li>Dionne Phillips, Local Journalism Initiative Reporter (IndigiNews): <a href=\"https://indiginews.com/features/family-moves-into-nuxalk-village-site-nusqlst/\">[IndigiNews] Family moves into Nuxalk village site Nusq’lst ...</a></li><li>Jennifer Smith (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/11/canadas-best-pickleball-players-volley-in-vernon/\">[Williams Lake Tribune] Canada’s best pickleball players vol...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/abc-vancouver-election-spending\">[Vancouver Sun] ABC Vancouver vastly outspent rivals on soci...</a></li><li>ArchDaily: <a href=\"https://www.archdaily.com/1187039/promenade-house-studio-gm\">[ArchDaily] Promenade House / studio gm</a></li><li>New Atlas: <a href=\"https://newatlas.com/drones/mit-sando-planning-obstacle-prediction-collisions/\">[New Atlas] MIT’s drone brain neutralizes hazards in disaste...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/10/18/business/china-economy-gdp.html\">[NYT Business] Strong Exports Stabilize China’s Economic Gro...</a></li><li>ArchDaily: <a href=\"https://www.archdaily.com/1186676/living-archive-office-parkscheerbarth\">[ArchDaily] Living Archive / Office ParkScheerbarth</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>John White (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316830/news/national/deaths-injuries-confirmed-at-cfb-wainwright-as-military-notifies-families/\">[My Cariboo Now] Deaths, injuries confirmed at CFB Wainwrigh...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91625215/cleaning-up-ai-mess\">[Fast Company] What happens when people have to jump in to c...</a></li><li>Forbes Innovation: <a href=\"https://www.forbes.com/sites/melissacristinamarquez/2026/10/04/how-brazilian-scientists-are-revealing-the-hidden-threats-facing-sharks/\">[Forbes Innovation] How Brazilian Scientists Are Revealing T...</a></li><li>David Nield (ScienceAlert): <a href=\"https://www.sciencealert.com/new-form-of-superconductor-behavior-discovered-that-weve-never-seen-before\">[ScienceAlert] New Form of Superconductor Behavior Discovere...</a></li><li>Dangerous Minds: <a href=\"https://dangerousminds.net/history/ambassador-satch-music-genre-valuable-weapon-in-the-cold-war/\">[Dangerous Minds] Ambassador Satch: The music genre that bec...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/the-listening-post/2026/10/18/indias-crackdown-on-cockroaches-critics-and-cameras?traffic_source=rss\">[Al Jazeera English] India’s crackdown on cockroaches, criti...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/10/18/off-grid-refrigeration-using-fire-and-salt/\">[Hackaday] Off-Grid Refrigeration Using Fire and Salt</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-19T01:15:57.449870-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3673,
+      "voice_ratio_casey_riley": 0.93,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 4,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 11,
+        "turns": 97,
+        "avg_turn_words": 36.4,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 4
+    },
+    "anchor": {
+      "id": "trust-built-or-inherited",
+      "question": "Is trust something you build, or something you inherit?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[100 Mile Free Press] Two of 3 South Cariboo regional district directors keep their seats",
+          "url": "https://100milefreepress.net/2026/10/17/two-of-3-south-cariboo-regional-district-directors-keep-their-seats/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 69,
+          "date_published": "2026-10-19T06:02:55.715560+00:00",
+          "summary": "Al Richmond is running for re-election as director of the Cariboo Regional District. Two of the three Cariboo Regional District directors from the South Cariboo retained their seats in the 2026 Munici...",
+          "discussed": true,
+          "mention_offset_frac": 0.0163
+        },
+        {
+          "title": "[My Cariboo Now] Cariboo School Districts have elected their trustees",
+          "url": "https://www.mycariboonow.com/316825/news/elections/2026-municipal-election/cariboo-school-districts-have-elected-their-trustees/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 85,
+          "date_published": "2026-10-18T07:46:56+00:00",
+          "summary": "The results for the Cariboo-Chilcotin and Quesnel School Board of Trustees has been finalized. The post Cariboo School Districts have elected their trustees appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.0163
+        },
+        {
+          "title": "[Williams Lake Tribune] Surinderpal Rathor re-elected mayor of Williams Lake",
+          "url": "https://wltribune.com/2026/10/17/surinderpal-rathor-re-elected-mayor-of-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 89,
+          "date_published": "2026-10-19T06:02:55.715211+00:00",
+          "summary": "Incumbent Surinderpal Rathor was at home Saturday, Oct 17 where he anxiously awaited election results. Preliminary results from this year's municipal election in Williams Lake. Official results won't ...",
+          "discussed": true,
+          "mention_offset_frac": 0.0978
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Coralee Oakes elected mayor of Quesnel, 4 councillors re-elected",
+          "url": "https://quesnelobserver.com/2026/10/17/coralee-oakes-elected-mayor-of-quesnel-4-councillors-re-elected/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 81,
+          "date_published": "2026-10-19T06:02:55.715247+00:00",
+          "summary": "Coralee Oakes is elected as the new mayor of Quesnel in the 2026 municipal elections. A familiar face is taking the reins in Quesnel as Coralee Oakes prepares to steer the city into its next chapter. ...",
+          "discussed": true,
+          "mention_offset_frac": 0.1048
+        },
+        {
+          "title": "[ScienceAlert] New Form of Superconductor Behavior Discovered That We've Never Seen Before",
+          "url": "https://www.sciencealert.com/new-form-of-superconductor-behavior-discovered-that-weve-never-seen-before",
+          "source": "ScienceAlert",
+          "author": "David Nield",
+          "ai_score": 47,
+          "date_published": "2026-10-19T02:00:00+00:00",
+          "summary": "It was predicted 20 years ago. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[IndigiNews] Family moves into Nuxalk village site Nusq’lst for the first time in 164 years",
+          "url": "https://indiginews.com/features/family-moves-into-nuxalk-village-site-nusqlst/",
+          "source": "IndigiNews",
+          "author": "Dionne Phillips, Local Journalism Initiative Reporter",
+          "ai_score": 64,
+          "date_published": "2026-10-18T13:28:31+00:00",
+          "summary": "After constructing a cabin on the settlement where their ancestors once lived in the Bella Coola Valley, three generations are reclaiming the area The post Family moves into Nuxalk village site Nusq’l...",
+          "discussed": true,
+          "mention_offset_frac": 0.1316
+        },
+        {
+          "title": "[NYT Business] Strong Exports Stabilize China’s Economic Growth in Official Statistics",
+          "url": "https://www.nytimes.com/2026/10/18/business/china-economy-gdp.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-19T04:21:14+00:00",
+          "summary": "A prolonged housing crash, sluggish consumer spending and plunging investment have left China dependent on exports to keep the economy growing.",
+          "discussed": true,
+          "mention_offset_frac": 0.1428
+        },
+        {
+          "title": "[The Tyee] In Kamloops and Across BC, Many Mayors Ousted",
+          "url": "https://thetyee.ca/News/2026/10/18/BC-Civic-Elections-Many-Mayors-Ousted/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 49,
+          "date_published": "2026-10-18T07:10:00+00:00",
+          "summary": "From Surrey to Prince George, voters booted incumbents, signalling a desire for change.",
+          "discussed": true,
+          "mention_offset_frac": 0.1509
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Jillian Merrick elected mayor of District of Wells",
+          "url": "https://quesnelobserver.com/2026/10/17/jillian-merrick-elected-mayor-of-district-of-wells/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 79,
+          "date_published": "2026-10-19T06:02:55.715345+00:00",
+          "summary": "Jillian Merrick was elected mayor of Wells in the 2026 municipal election. Wells is turning a new page as Jillian Merrick takes the mayor’s chair, leading a council with three new faces. According to ...",
+          "discussed": true,
+          "mention_offset_frac": 0.2944
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Mustangs bounce back from Kamloops Storm loss with win over Osoyoos Coyotes",
+          "url": "https://wltribune.com/2026/10/11/williams-lake-mustangs-bounce-back-from-kamloops-storm-loss-with-win-over-osoyoos-coyotes/",
+          "source": "Williams Lake Tribune",
+          "author": "Khushi Arora, Local Journalism Initiative",
+          "ai_score": 44,
+          "date_published": "2026-10-12T04:03:34.731084+00:00",
+          "summary": "The Williams Lake Mustangs in action during their game against the Kamloops Storm on Oct. 9 at Cariboo Memorial Recreation Complex. (Rebecca Dyok/Williams Lake Tribune) The Williams Lake Mustangs spli...",
+          "discussed": true,
+          "mention_offset_frac": 0.4435
+        },
+        {
+          "title": "[Williams Lake Tribune] Canada’s best pickleball players volley in Vernon",
+          "url": "https://wltribune.com/2026/10/11/canadas-best-pickleball-players-volley-in-vernon/",
+          "source": "Williams Lake Tribune",
+          "author": "Jennifer Smith",
+          "ai_score": 31,
+          "date_published": "2026-10-12T04:03:34.731297+00:00",
+          "summary": "The Okanagan Open takes place in Vernon Oct. 15-18\\. (Vernon Pickleball Association) Some of the best pickleball talent in Canada and the Okanagan will converge in Vernon Oct. 15 to 18 for the inaugur...",
+          "discussed": true,
+          "mention_offset_frac": 0.5824
+        },
+        {
+          "title": "[Vancouver Sun] ABC Vancouver vastly outspent rivals on social media ads in this election",
+          "url": "https://vancouversun.com/news/abc-vancouver-election-spending",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-10-17T17:05:50+00:00",
+          "summary": "Data shows that ABC Vancouver spent more than $62,000 on social media ads, while the Green party spent only $355",
+          "discussed": true,
+          "mention_offset_frac": 0.6349
+        },
+        {
+          "title": "[ArchDaily] Promenade House / studio gm",
+          "url": "https://www.archdaily.com/1187039/promenade-house-studio-gm",
+          "source": "ArchDaily",
+          "author": "",
+          "ai_score": 41,
+          "date_published": "2026-10-18T13:00:00+00:00",
+          "summary": "The Promenade House is a residence conceived from the experience of traversing and discovering the landscape. Situated on the shores of a lake and surrounded by an extensive garden, the house does not...",
+          "discussed": true,
+          "mention_offset_frac": 0.7443
+        },
+        {
+          "title": "[New Atlas] MIT’s drone brain neutralizes hazards in disaster zones",
+          "url": "https://newatlas.com/drones/mit-sando-planning-obstacle-prediction-collisions/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/omar-kardoudi/",
+          "ai_score": 44,
+          "date_published": "2026-10-11T07:00:00+00:00",
+          "summary": "Disaster zones are terrible places to follow a preplanned route. Maps can be incomplete, debris can move, and the next hazard may arrive from any direction at any time. MIT’s new navigation system bui...",
+          "discussed": true,
+          "mention_offset_frac": 0.8806
+        },
+        {
+          "title": "[My Cariboo Now] Deaths, injuries confirmed at CFB Wainwright as military notifies families",
+          "url": "https://www.mycariboonow.com/316830/news/national/deaths-injuries-confirmed-at-cfb-wainwright-as-military-notifies-families/",
+          "source": "My Cariboo Now",
+          "author": "John White",
+          "ai_score": 60,
+          "date_published": "2026-10-18T17:26:20+00:00",
+          "summary": "Several people have died and many others have been injured at Canadian Forces Base Wainwright, the Canadian Armed Forces confirmed in a statement dated Oct. 18. The post Deaths, injuries confirmed at ...",
+          "discussed": false
+        },
+        {
+          "title": "[Fast Company] What happens when people have to jump in to clean up AI’s mess?",
+          "url": "https://www.fastcompany.com/91625215/cleaning-up-ai-mess",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-10-18T09:00:00+00:00",
+          "summary": "Imagine an artificial intelligence system that has performed reliably for months. Its recommendations are almost always right, and the employee reviewing them has learned that close scrutiny rarely ch...",
+          "discussed": false
+        },
+        {
+          "title": "[Forbes Innovation] How Brazilian Scientists Are Revealing The Hidden Threats Facing Sharks",
+          "url": "https://www.forbes.com/sites/melissacristinamarquez/2026/10/04/how-brazilian-scientists-are-revealing-the-hidden-threats-facing-sharks/",
+          "source": "Forbes Innovation",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-10-04T13:19:00+00:00",
+          "summary": "Along Brazil’s coast, the EcoShark project is studying sharks from multiple angles, from satellite tracking and genetics to contaminants, diet and health.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Dangerous Minds] Ambassador Satch: The music genre that became a valuable weapon in the Cold War",
+          "url": "https://dangerousminds.net/history/ambassador-satch-music-genre-valuable-weapon-in-the-cold-war/",
+          "source": "Dangerous Minds",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-06T23:00:00+00:00",
+          "summary": "Freedom comes at a cost.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] India’s crackdown on cockroaches, critics and cameras",
+          "url": "https://www.aljazeera.com/video/the-listening-post/2026/10/18/indias-crackdown-on-cockroaches-critics-and-cameras?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-18T19:31:45+00:00",
+          "summary": "A government at war with its critics - from young protesters to the media.",
+          "discussed": false
+        },
+        {
+          "title": "[ArchDaily] Living Archive / Office ParkScheerbarth",
+          "url": "https://www.archdaily.com/1186676/living-archive-office-parkscheerbarth",
+          "source": "ArchDaily",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-10-18T10:00:00+00:00",
+          "summary": "For the first time, 3,400 square meters of previously unused basement beneath a former East Berlin power station opened to the public. For these spaces, Berlin studio Office ParkScheerbarth developed ...",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Off-Grid Refrigeration Using Fire and Salt",
+          "url": "https://hackaday.com/2026/10/18/off-grid-refrigeration-using-fire-and-salt/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-10-18T23:00:48+00:00",
+          "summary": "Refrigeration has been a challenge for humanity since the start. Ancient civilizations in dry climates like Persia and Egypt could use evaporative cooling on a large scale with specialized architectur...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Is credibility and authenticity in arts and culture built by the artists and audiences themselves, or can sponsors, founders, and institutions inherit and spend it?",
+        "riley_position": "Credibility is built on the bandstand and in the room through audience experience and conduct; sponsorship doesn't make performances insincere, and durable trust comes from festivals and venues keeping honest records of their work.",
+        "riley_key_evidence": [
+          "PBS and Time document State Department jazz tours through Eastern Europe, the Middle East, South Asia, and decolonized Africa and Asia in the 1950s",
+          "The Living Archive of techno culture opened 3,400 square metres of basement beneath a former East Berlin power station, developed with Tresor founder Dimitri Hegemann",
+          "Williams Lake has about 10,700 people and Quesnel about 9,000; the Cariboo Regional District Library offers digital literacy programs in three communities"
+        ],
+        "casey_position": "Authenticity is a valuable asset that sponsors and founders can spend, and the people doing the unpaid labour, such as sound techs and door volunteers, carry the reputation without being compensated or credited.",
+        "casey_key_evidence": [
+          "The State Department sent Armstrong, Dizzy Gillespie, Duke Ellington, and Dave Brubeck abroad starting in 1955-1956, while the musicians did not choose the itinerary",
+          "Scholarship in Retrospect Journal (2025) reads the tours as a cultural proxy conflict, though this is presented as an argument rather than a finding",
+          "The International Federation of Journalists reports at least 30 journalists detained during Delhi protests, and over 130 million names were reported removed from voter rolls during India's Special Intensive Revision"
+        ],
+        "resolution": "They agreed that both the band's credibility and the sponsor's use of it can be true at once, and that a festival's record is essential for surviving leadership change. They left unresolved whether a visible record of unpaid labour is enough or whether it must be tied to actual payment.",
+        "topics_covered": [
+          "Cold War jazz diplomacy and who controls the narrative of cultural tours",
+          "Authenticity, sponsorship, and whether reputation is built or inherited",
+          "Record-keeping, volunteer labour, and succession in small-town festivals and venues",
+          "Berlin's techno archive and who curates a scene defined by anonymity",
+          "Digital sovereignty for creators: checksums, backups, and footage ownership"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 4,
+          "conditions": "overcast",
+          "high": 10,
+          "low": 2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 2,
+          "conditions": "overcast",
+          "high": 9,
+          "low": 1
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 2,
+          "conditions": "overcast",
+          "high": 11,
+          "low": 1
+        },
+        {
+          "name": "Quesnel",
+          "temp": 2,
+          "conditions": "overcast",
+          "high": 11,
+          "low": 1
+        },
+        {
+          "name": "Anahim Lake",
+          "temp": 0,
+          "conditions": "overcast",
+          "high": 8,
+          "low": 0
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Regional District Library",
+      "description": "Public library system serving the Cariboo region with branches in Williams Lake, Quesnel, 100 Mile House and more — free internet access, digital literacy programs, and community gathering spaces",
+      "website": "cln.ca",
+      "psa_angle": "It's BC Library Week. Your Cariboo Regional District Library is more than books — free internet access, digital literacy programs, and community spaces in Williams Lake, Quesnel, 100 Mile House and beyond.",
+      "event_name": "BC Library Week"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nThese analytical threads were identified before generation. Use the findings to ground Riley's and Casey's arguments with real evidence. Develop them as substantive exchanges, not a citation list.\n\nRESEARCH QUESTION: Is the India voter-roll and media crackdown story accurately characterized, and what do the government and critics each say?\n\nFindings: The \"130 million names\" figure is reported consistently across outlets. NPR and AP say authorities removed more than 130 million names from voter rolls, and the Guardian describes the Modi government's position that the Special Intensive Revision (SIR) is a legitimate clean-up of dead and duplicate entries. The Election Commission rejects the claim that the exercise was rigged. The opposition-linked CJP alleges the removals benefited Prime Minister Modi, and critics say the process could disenfranchise millions more. On the media side, the International Federation of Journalists reports at least 30 journalists detained during Delhi protests, and CIVICUS Monitor describes thousands detained and activists and journalists being criminalised. Rahul Gandhi was reported detained by police in New Delhi in early October 2026. The \"cockroach\" protest label comes from AP's coverage. The Al Jazeera framing (\"a government at war with its critics\") is a critical reading. The government's version is that the roll was cleaned of ineligible voters.\n\nSuggested angle: Casey can argue that digital storytelling and creator culture are now the frontline, since content creators are among those detained or blocked, so who gets to tell the story becomes a political fight. Riley can push back that platforms and citizen video are exactly what exposed the deletions in the first place, and that the EC's position deserves airtime. The debate should separate the verified facts (the scale of removals, the detention counts) from the disputed motive, which is where the honest disagreement lives.\n\nRESEARCH QUESTION: How accurate is the \"Ambassador Satch\" framing of jazz as a Cold War cultural weapon?\n\nFindings: The U.S. State Department began sending jazz musicians abroad in 1955–56 as \"jazz ambassadors,\" including Armstrong, Dizzy Gillespie, Duke Ellington, and Dave Brubeck. The Council on Foreign Relations documents Armstrong's 1960 goodwill concert in Leopoldville, Congo. Time and PBS's \"The Jazz Ambassadors\" document the tours through Eastern Europe, the Middle East, South Asia, and newly decolonized Africa and Asia. PBS notes that the musicians, many from segregated backgrounds, faced a painful dilemma about representing American values while racism persisted at home. Some scholarship (Retrospect Journal, 2025) reads the tours as a cultural proxy conflict that used musicians as de facto CIA mouthpieces, with Africa as the stage. Armstrong's 1931 Italy tour, during Mussolini's regime, shows that jazz's global appeal predated the state program.\n\nSuggested angle: Riley can argue that the jazz tours show soft power working. Music crossed the Iron Curtain and gave audiences a humanizing picture of America, and the artists themselves used the stage to push back on segregation. Casey can counter that the artists were recruited into a state messaging project, and the \"freedom\" framing in the summary glosses over the fact that the musicians' authenticity was the asset being spent. The strongest exchange is whether artistic sincerity survives being sponsored by a government.\n\nRESEARCH QUESTION: What is the Berlin \"Living Archive\" techno project, and how does it fit into cultural heritage of club culture?\n\nFindings: ArchDaily confirms that 3,400 square meters of previously unused basement beneath a former East Berlin power station opened to the public for the first time, and that Office ParkScheerbarth developed the concept with Tresor founder Dimitri Hegemann for a permanent Living Archive of techno culture first announced in 2015. The exhibition \"Dancefloors After 1989\" ran for five weeks as a test. The Tag der Clubkultur page describes it as a multimedia exhibition on upheaval, club culture, and the stories behind dance floors during reunification in Berlin and East Germany. Coverage I could verify is limited to these organizers' and architects' accounts, so treat claims about long-term funding or permanence as unconfirmed.\n\nSuggested angle: Riley can present this as a model of digital and physical preservation for subcultures that were never archived by institutions, where the dancefloor itself becomes an archive. Casey can ask who curates a scene that was defined by anonymity and whether an institutionalized, permanent version risks turning an underground counterculture into a heritage product. The tension between preserving a scene and domesticating it is the core question.\n\n(Ballot researched Thursday October 15 and unchanged since. Background, not news.)\nELECTION RESEARCH — 2026 B.C. provincial general election\n\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\n**FINDINGS — Cariboo-Chilcotin**\n\nFiled candidates: Kathryn Askew (BC NDP), Lorne Doerkson (Conservative), Douglas Gook (BC Green). Elections BC's candidate report lists all three (elections.bc.ca, candidate website report, Oct. 2026), and BC Ballot and Studio X News carry the same names.\n\n- **Kathryn Askew (BC NDP).** 100 Mile Free Press (Oct. 1, 2026) reports she is a retired school teacher from Canim Lake, named as the NDP candidate. The BC NDP release names her as its Cariboo-Chilcotin candidate (bcndp.ca, undated in my read) and says she has 32 years in education, including leadership roles with the BC Teachers' Federation and her local union. The release also says that in 2025 she was the NDP candidate for Mission—Matsqui—Abbotsford in the federal election. I did not find her vote share in that race. Stephen Taylor's 2025 results page reports Brad Vis (Conservative) won that riding with 56.7% and Jeff Howe (Liberal) placed second with 36.6% (stephentaylor.ca, 2025 results). No controversy involving Askew was found in the sources read.\n\n- **Lorne Doerkson (Conservative).** Sourced background: MLA for Cariboo-Chilcotin since 2020, first elected as a B.C. Liberal, re-elected in 2024 as a B.C. Conservative (Elections BC results, 2024-10-19). BC Ballot gives the 2024 Conservative margin in the riding as 7,722 votes (bcballot.ca, 2026 candidate page). Carried forward from prior research: Elections BC's 2020 statement of votes shows him at 6,600 votes (51.25%) for the Liberals. The Globe and Mail (Sept. 26, 2026) reports he took over as Conservative leader. Wikipedia describes him as interim leader since 2026.\n  - *Controversy (campaign, 2026):* Vaughn Palmer's Vancouver Sun column (Oct. 7, 2026) says Doerkson told reporters he had made \"no promises at all\" on auto insurance, and Palmer argues he had made four. Palmer writes that Doerkson twice denied making commitments of any kind. This is the columnist's assessment, and the outlet's article was paywalled in my read. Doerkson's response is the denial reported in that column.\n  - *Related party matter (not about Doerkson personally):* The Tyee (Oct. 8, 2026) reports Doerkson fired the party's Victoria-Beacon Hill candidate after social media posts the BC NDP flagged as racist. CityNews (Oct. 14, 2026) reports a Conservative campaign director under fire over social posts will stay on, Doerkson says.\n  - No other controversy involving Doerkson was established in the sources checked.\n\n- **Douglas Gook (BC Green).** Elections BC's candidate report lists him for Cariboo-Chilcotin (2026). The Caledonia Courier (Oct. 2024) reports he had run unsuccessfully as a Green candidate in North Cariboo, now Prince George-Cariboo North, four times, including a 2017 Nechako Lakes bid where he took about nine per cent. My Cariboo Now calls his 2020 bid his fourth time running for the Greens in that riding. Carried forward from prior research: the Elections BC 2020 statement of votes shows him at 707 votes (6.38%) in Cariboo North. The two accounts don't reconcile the count of runs, and the show has not resolved it. CKPG Today (Sept. 13, 2024) announced him as the Green candidate for Nechako Lakes in 2024. His 2024 result in that riding was not established in the sources read. No controversy was established.\n\n**FINDINGS — Prince George-North Cariboo (includes Quesnel)**\n\nFiled candidates: Denice Bardua (BC NDP), Sheldon Clare (Conservative), Randy Thompson (BC Green). The Quesnel Cariboo Observer (Oct. 7, 2026) reports the list was confirmed by Elections BC after nominations closed Oct. 3. CKPG Today (Oct. 3, 2026) and the Prince George Citizen (candidates finalized) list the same three.\n\n- **Denice Bardua (BC NDP).** CKPG Today (Sept. 24, 2024) reports she was announced as the NDP candidate for this riding in 2024. Her campaign site (denicebardua.bcndp.ca) says she has been a Quesnel resident since 1997 and works in education. BCPoliTracker reports she placed second in 2024 with 3,426 votes, or 17.0%, behind the Conservative candidate. Quesnel Cariboo Observer (Oct. 7, 2026) gives 17.03% for 2024. Her 2024 run is the only earlier run established in the sources read. No controversy was established.\n\n- **Sheldon Clare (Conservative, incumbent).** Sourced background: won the riding for the B.C. Conservatives in 2024 (Elections BC results, 2024-10-19). Carried forward from prior research: Quesnel Cariboo Observer (Oct. 7, 2026) reports 11,430 votes, or 56.82%, in 2024. Times Colonist (Jan. 8, 2026, Canadian Press) reports he said he was running for the B.C. Conservative leadership. CFJC Today (Feb. 28, 2026) reports he suspended that bid, citing a leadership application issue where some signatures were not accepted. He said he \"takes full responsibility.\"\n  - *Election-finance penalty (finding):* Elections BC's enforcement notice (dated March 30, 2026) and its April 1, 2026 release (reported by CKPG Today, Apr. 1, 2026, and the Quesnel Cariboo Observer, Apr. 3, 2026) say he was fined $1,500 for accepting anonymous contributions for the 2024 election that exceeded the limit by about $4,000. Elections BC said the investigation found no deliberate attempt to circumvent the law. The Prince George Citizen reported the same penalty. I did not find his response to the penalty in the sources read.\n  - *Allegation (Sept. 2026):* CKPG Today (Sept. 18, 2026) reports that in a party group chat about municipal elections, Clare wrote \"There's a good number that need hanging,\" responding to a post by a Parksville mayoral candidate. Clare's statement says the remark was made in jest, was not meant as a threat, and he apologized to anyone who took offense (CKPG Today, Sept. 18, 2026; Prince George Citizen update). The Prince George Citizen headlined his apology as a formal apology. The BC NDP wrote on X that Doerkson \"had one last chance to drop him. He didn't.\" That is the NDP's claim, and Doerkson's response to it was not found.\n  - *Allegation (undated in snippet):* PressProgress reports residential-school postings attributed to Clare. The article says neither Clare nor the party responded to its requests for comment. The article's date and full text were not confirmed in my read, and the content appears to predate the 2026 campaign.\n\n- **Randy Thompson (BC Green).** BC Greens' candidate page says he ran as the Green candidate in this riding in 2024 and previously served two years on the party's provincial council (bcgreens.ca). Quesnel Cariboo Observer (Oct. 7, 2026) reports he finished fourth in 2024 with just over four per cent. BCPoliTracker gives 866 votes, 4.3%. Prince George Daily News (Oct. 11, 2026) reports the Greens announced him as the candidate. No controversy was established.\n\nThe show has not yet established any earlier provincial election run for Kathryn Askew, Denice Bardua or Randy Thompson.\n\nNO RECORD FOUND: none\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "India Electoral Commission voter list 130 million names removed protests journalists detained",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Louis Armstrong State Department jazz ambassadors Cold War cultural diplomacy tour history",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "\"Dancefloors After 1989\" Tresor Living Archive techno Berlin power station exhibition",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "cached",
+        "researched": "2026-10-15"
+      },
+      {
+        "kind": "question",
+        "query": "Armstrong Mussolini Italy tour 1931 jazz"
+      },
+      {
+        "kind": "question",
+        "query": "Dizzy Gillespie State Department tour 1956 Africa costs"
+      },
+      {
+        "kind": "question",
+        "query": "Living Archive techno culture Berlin basement permanent funding"
+      },
+      {
+        "kind": "question",
+        "query": "Cariboo Regional District Library Williams Lake branch hours"
+      }
+    ]
+  }
+}
