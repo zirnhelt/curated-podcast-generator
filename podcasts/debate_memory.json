@@ -1,31 +1,4 @@
 {
-  "2026-07-21": {
-    "timestamp": 1784630659.719428,
-    "date": "2026-07-21",
-    "theme": "Working Lands & Industry",
-    "focus": "agriculture-ranching",
-    "central_question": "Can regenerative agriculture frameworks avoid repeating the safety-net's failure of rewarding land ownership over active practice, and does the Cariboo have the institutional capacity to verify and implement them?",
-    "riley_position": "Regenerative frameworks can work because they tie payments to documented ongoing practice change rather than passive ownership, and carbon-credit protocols already operating in Alberta prove the model is viable and improving rapidly.",
-    "riley_key_evidence": [
-      "Carbon markets tied to improved grazing management already operating commercially in Alberta and Saskatchewan with verified protocols and registered credits",
-      "Alberta's soil carbon offset protocols use standardized sampling kits that don't require specialized expertise, with regional producer associations training technicians to cover whole districts",
-      "Regenerative framework designs tie premiums to continuous verified management rather than one-time land designation, so premiums stop if practices change"
-    ],
-    "casey_position": "The Cariboo lacks the producer density, extension infrastructure, and institutional capacity to implement verification at scale, and without rigorous ongoing enforcement, regenerative frameworks will simply rebrand the same permitting-compliance failures already visible in old-growth logging and frog relocation.",
-    "casey_key_evidence": [
-      "BC gutted extension agent support years ago and never restored it, leaving ranchers on Crown range without local specialists to advise on soil carbon verification",
-      "The Cariboo doesn't have the member density of Alberta cattle sector to justify shared technician hiring, with ranches scattered 50+ kilometres apart across the Chilcotin",
-      "Existing permitting conditions like frog relocation mitigation get written into permits but verification budgets never follow, creating paper compliance with no actual monitoring"
-    ],
-    "resolution": "They agreed the framework logic is sound and genuinely differs from the safety net's structure, but left as genuinely open the question of whether the Cariboo builds or borrows verification institutions\u2014framing it as a governance problem requiring local decision-making rather than a technology problem.",
-    "topics_covered": [
-      "Old-growth logging and First Nations land stewardship in BC",
-      "Mitigation monitoring failures in industrial permitting (frog relocation case study)",
-      "Capital velocity differences between mining and agriculture sectors",
-      "Regenerative agriculture carbon credits versus safety-net land-value inflation",
-      "Regional institutional capacity constraints for verification infrastructure in the Cariboo"
-    ]
-  },
   "2026-07-22": {
     "timestamp": 1784716989.891479,
     "date": "2026-07-22",
@@ -2527,6 +2500,34 @@
       "Record-keeping, volunteer labour, and succession in small-town festivals and venues",
       "Berlin's techno archive and who curates a scene defined by anonymity",
       "Digital sovereignty for creators: checksums, backups, and footage ownership"
+    ]
+  },
+  "2026-10-20": {
+    "timestamp": 1792484558.896519,
+    "date": "2026-10-20",
+    "theme": "Working Lands & Industry",
+    "focus": "forestry",
+    "anchor": "trust-built-or-inherited",
+    "central_question": "Does a forest-products sector that is shifting toward high-value markets and a 45 million cubic metre harvest target actually serve Cariboo communities, and whose numbers should residents trust while that shift happens?",
+    "riley_position": "Value is moving up the supply chain, and permit reform is the fastest lever a province can pull to convert legal but uncut volume into jobs; published, reconciled harvest data would make any target checkable and rebuild trust.",
+    "riley_key_evidence": [
+      "Hitachi Energy's $479 million transformer pressboard plant in London, Ontario, with about $50 million in public money, shows forest fibre becoming a high-tech input.",
+      "Environmental Reporting BC data show public-land harvest about 22 per cent below the allowable annual cut over 20 years, meaning legal volume already exists to be cut.",
+      "Mass timber is a scaled market, with the Forest Products Association of Canada's Mass Timber Roadmap reporting almost 700 completed buildings."
+    ],
+    "casey_position": "Demand and harvest targets are being framed by parties with a stake in the numbers; without a buyer, a hiring link, and an audited harvest record, a permit fix will not save mill towns, and retraining is only worth it if graduates are still working a year later.",
+    "casey_key_evidence": [
+      "Hitachi's announcement names no B.C. fibre source, so public money in the plant is spent in London while the Cariboo gets no guaranteed demand.",
+      "Mass timber counts differ across sources (the roadmap's pipeline is over 140 projects, the FSC column says over 200), so 'booming' depends on which stage is being counted.",
+      "The Thompson Rivers University Heavy Equipment Operator program, built for workers from the West Fraser 100 Mile Lumber closure, has no reported placement tracking after graduation."
+    ],
+    "resolution": "They did not converge. Riley agreed the hiring link and published reconciliation of allowable cut versus actual harvest are missing and should be added, and Casey agreed the Quesnel council request should carry the reconciliation question. They still disagreed on the bottleneck, with Riley favouring permits and Casey favouring a mill and a buyer, and they agreed the buyer question and the audit question remain unresolved.",
+    "topics_covered": [
+      "Hitachi Energy's pressboard plant and whether B.C. fibre benefits from it",
+      "Mass timber market size and how completed, under-construction and planned projects are counted",
+      "The 45 million cubic metre harvest target and the gap between allowable cut and actual harvest",
+      "Trust in official versus leaked harvest data and the role of independent audit",
+      "Retraining outcomes for displaced workers, including the TRU heavy equipment program and placement tracking"
     ]
   }
 }
