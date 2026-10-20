@@ -41,10 +41,16 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-25..2026-10-19) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-04..2026-10-20) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
+- [ ] **Three instances of AI-tell language patterns passed quality checks and shipped in the
+      final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
+      shipped script. These phrases remained in the audio and RSS feed. The detection system is
+      working, but the pipeline has no gate to reject episodes with pattern hits or halt
+      publication for manual review before shipping. (signal `ai-tells-shipped`; seen in 2
+      reviews, latest 2026-10-20)
 - [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
       section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
       (33%). The gap suggests a different verification pathway or a shortfall in source
