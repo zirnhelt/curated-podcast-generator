@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 20, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 20, 2026</h1>
+  <p class="meta">Published October 20, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39390907505">39390907505</a>.</em></p>
+
+<h3>The script shipped 554 words over target, after two expand passes</h3>
+<p>The first draft came in at 2809 words against a 3400-word target. The pipeline sent it back for up to two expand passes. The script that shipped is 3554 words, which is 154 words over target. The first draft was 591 words short. The expand passes closed that gap and then overshot it.</p>
+<p>The overshoot matters because the target is the only length control the pipeline has. Whatever the expand passes added is the part nobody chose, and the review cannot say from these facts where those extra words sit.</p>
+
+<h3>Thirteen of eighteen roundup citations matched</h3>
+<p>The roundup pool had 18 citations, and 13 of them matched. The five that did not match are the gap to watch. The facts do not say whether those five were dropped, paraphrased past recognition, or attached to claims the source does not support. They also do not say which stories they belonged to.</p>
+<p>All four deep-dive citations matched. The contrast is the finding. The deep dives are the part of the episode with the most sourcing, and they were the part that held. The roundup stories were the part under pressure, and that is where the unmatched citations sit.</p>
+
+<h3>Forty-five roundup stories were cut for airtime</h3>
+<p>The pool is larger than one segment can air. Forty-five stories were dropped by the airtime budget (NEWS_ROUNDUP_COUNT), and the pipeline treats that as the design working. A cut story can come back on a day when it fits better.</p>
+<p>The cut count and the citation gap are separate facts. Forty-five stories were removed before they reached the script. Five citations failed to match among the stories that did reach it. The review does not connect the two, because the facts do not connect them.</p>
+
+<h3>The ratio of Casey to Riley lines came out at 1.24</h3>
+<p>The voice ratio, Casey over Riley, is 1.24. Casey has more lines than Riley, but not by a wide margin. The pipeline recorded one AI-tell pattern hit in the script. The facts do not name the pattern, so the review cannot say whether it was caught and fixed or passed through.</p>
+
+<h3>Every scheduled run finished on time, but the first run did most of the work</h3>
+<p>Three runs were scheduled for this date. The primary run started at 1:05 AM Pacific and finished at 1:38 AM Pacific with a success conclusion. Fallback 1 started at 2:05 AM Pacific and also finished successfully at 2:05 AM Pacific. Fallback 2, started at 3:05 AM Pacific, is the run writing this review and has no finish time yet.</p>
+<p>Both completed runs were zero minutes late. The primary run took the full script generation and rendering path. The facts do not say what Fallback 1 did in its 2:05 AM Pacific slot, or why it finished the moment it began. The review does not guess.</p>
+<p>In the primary run, script generation took 894 seconds, the longest step. Audio rendering took 286 seconds. Deploying to GitHub Pages took 379 seconds, longer than publishing the episode at 113 seconds. The deploy step is the slowest part of the pipeline after script generation, and nothing in the facts explains why.</p>
+
+<h3>The episode runs 21.7 minutes and the video is 75.0 MB</h3>
+<p>The audio is 21.7 minutes long and 19.9 MB. The video is 21.7 minutes long and 75.0 MB. The two runtimes match, which confirms the video and audio carry the same episode. The file sizes differ by a factor of about four because the video carries the picture track. The feed now holds 265 episodes.</p>
+
+<h3>The debate question and the forest-products numbers</h3>
+<p>The episode's question is whether a forest-products sector shifting toward high-value markets, with a 45 million cubic metre harvest target, serves Cariboo communities, and whose numbers residents should trust during that shift. The four deep dives cover mass timber demand, a Conservative harvest promise, retraining for former South Cariboo forestry workers, and a federal and Ontario investment of up to $50 million. All four deep-dive citations matched, so the question rests on sourcing that checked out.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>4 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.24, 3554 words</td></tr>
+<tr><td>Audio</td><td>21.7 min</td></tr>
+<tr><td>Audio size</td><td>19.9 MB</td></tr>
+<tr><td>Citations matched</td><td>13/18 roundup, 4/4 deep dive</td></tr>
+<tr><td>Feed</td><td>265 episodes</td></tr>
+<tr><td>Anthropic input tokens</td><td>66,646</td></tr>
+<tr><td>API calls</td><td>***'kagi-extract': 8, 'brave-search': 6, 'claude': 11, 'brave-answers': 4***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
