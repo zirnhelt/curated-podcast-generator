@@ -716,3 +716,63 @@ class TestSkipIfReviewed:
         monkeypatch.setattr("sys.argv", ["episode_review.py", "--date", "2026-09-23",
                                          "--skip-if-reviewed"])
         assert episode_review.main() == 0
+
+
+class TestMaskedBraces:
+    """The runner masks the multi-line Gemini SA key, whose first and last lines are `{` and `}`."""
+
+    def test_masked_spend_line_still_parses(self):
+        log = ('💰 Spend by service: ***"input_tokens": 100, "calls": ***"claude": 2***,'
+               ' "usd": ***"anthropic": 0.5, "openai-tts": 0.25***, "x": *********\n'
+               "Anthropic input tokens: 100 | API call counts: ***'claude': 2***\n")
+        facts = episode_review.scan_log(log)
+        assert facts["spend_by_service"] == {"anthropic": 0.5, "openai-tts": 0.25}
+        assert "2 total: claude 2" in episode_review.render_numbers_table(facts)
+
+
+class TestVerdictAndActions:
+    RUN_OK = {"trigger": "Primary", "conclusion": "success", "created": "1:05 AM Pacific"}
+
+    def test_levels(self):
+        v = episode_review.verdict
+        assert v({"runs": [{"conclusion": "failure"}]}, {"run-failed": "x"})[0] == "bad"
+        assert v({"runs": [self.RUN_OK]}, {"degraded:script/polish": "x"})[0] == "warn"
+        assert v({"runs": [self.RUN_OK]}, {"ai-tells-shipped": "x"})[0] == "minor"
+        assert v({"runs": [self.RUN_OK]}, {})[0] == "good"
+
+    def test_actions_name_the_segment_and_the_recurrence(self):
+        ledger = {"items": [{"signal": "degraded:script/bodies", "status": "open",
+                             "seen": ["2026-10-18", "2026-10-19"]}]}
+        html = episode_review.render_actions({"degraded:script/bodies": "budget <spent>"}, ledger)
+        assert "<code>script/bodies</code>" in html
+        assert "budget &lt;spent&gt;" in html
+        assert "seen 2 nights" in html
+
+    def test_no_signals_says_so(self):
+        assert "Nothing" in episode_review.render_actions({})
+
+
+class TestPageLayout:
+    FACTS = {"quality": [0, 1.0, 3500], "short_script": [2900, 3400],
+             "citation_alignment": [9, 12, 3, 4], "audio_minutes": 20.5,
+             "spend_by_service": {"anthropic": 0.4}}
+
+    def test_feed_content_has_no_charts_but_the_page_does(self):
+        _t, content, page = episode_review.build_review("2026-10-20", [], self.FACTS, "<p>n</p>")
+        assert "What to do" in content and "class=\"bars\"" not in content
+        assert "class=\"bars\"" in page and "Script length" in page
+        assert "<script" not in page
+
+    def test_trends_need_three_nights(self):
+        history = [{"date": "2026-10-18", "metrics": {"audio_minutes": 19.0}},
+                   {"date": "2026-10-19", "metrics": {"audio_minutes": 21.0}}]
+        assert "Episode length" in episode_review.render_trends(history, {"audio_minutes": 20.5}, "2026-10-20")
+        assert episode_review.render_trends(history[:1], {"audio_minutes": 20.5}, "2026-10-20") == ""
+
+    def test_index_keeps_metrics(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(episode_review, "INDEX_FILE", tmp_path / "index.json")
+        index = episode_review.update_index("2026-10-20", "T", "<p></p>",
+                                            episode_review.review_metrics(self.FACTS))
+        assert index[0]["metrics"] == {"audio_minutes": 20.5, "script_words": 3500, "tell_hits": 0,
+                                       "roundup_cite_pct": 75.0, "deep_dive_cite_pct": 75.0,
+                                       "cost_usd": 0.4}
