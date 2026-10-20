@@ -163,6 +163,15 @@ extra Opus escalation is intended and costed:** `soft_patterns` are reported but
 `total_hits`, which gates `OPUS_QUALITY_HIT_THRESHOLD`. Adding two families to `patterns` took
 Opus escalation from 2/30 episodes to 5/30 before they were moved.
 
+**A vocabulary tic is the jargon use, not the word.** `ai_vocabulary_tics` matched *leverage*
+and *ecosystem* in any form, and every hit that shipped from 2026-09-16 to 10-20 was the plain
+noun ("Next season, that's leverage", "a town living within its own ecosystem"). Each was
+`total_hits` (the `ai-tells-shipped` roadmap signal, the Opus gate) and a line the polish was
+told to rewrite. *Leverage* now counts as the verb (*leverages*, *leveraging*, *leveraged*, or
+*leverage* before a determiner or possessive) and *ecosystem* only as "ecosystem of". Across
+the archive that drops 199 matches, a sample of which were all legitimate nouns; *robust*,
+*streamline* and *tapestry* still count.
+
 ### The prompt was teaching the tic
 
 `genuinely` appeared **44 times in `prompts.json` prose** and 146 times in the scripts;
