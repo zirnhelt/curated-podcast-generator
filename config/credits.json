@@ -12,6 +12,7 @@
     "cover_art": "ChatGPT (OpenAI)",
     "weather_data": "Open-Meteo",
     "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
     "producer": "Erich Zirnhelt",
     "coordination": "Erich Zirnhelt",
     "hosting": "Cloudflare Pages",
@@ -93,6 +94,11 @@
       "keywords": ["brave search"],
       "name": "Brave Search",
       "disclosure": "Brave Search is used to enrich our fact-checking and deep-dive research for each episode"
+    },
+    {
+      "keywords": ["kagi"],
+      "name": "Kagi",
+      "disclosure": "Kagi's Extract API reads some of our news stories' own web pages when the feed carries only a headline"
     },
     {
       "keywords": ["github"],

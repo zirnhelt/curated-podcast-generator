@@ -1013,6 +1013,12 @@ class TestPolishOutcome:
         polished = pg.generate_episode_description([], [], "Working Lands & Industry")
         assert "Script Review Model: claude-sonnet-5-5<br>" in polished
 
+    def test_kagi_is_credited_only_when_its_page_reached_the_script(self):
+        import podcast_generator as pg
+        assert "Kagi" not in pg.generate_episode_description([], [], "Working Lands & Industry")
+        used = pg.generate_episode_description([], [], "Working Lands & Industry", kagi_used=True)
+        assert "Page Extraction: Kagi Extract<br>" in used
+
 
 class TestPolishFallbackBudget:
     def test_fallback_matches_the_batch_budget(self, monkeypatch):
@@ -4780,8 +4786,18 @@ class TestScriptMetadataHeader:
             "theme": "Working Lands & Industry",
             "brave_used": True,
             "weather_used": False,
+            "kagi_used": False,
             "anchor": None,
         }
+
+    def test_round_trips_kagi_used(self, tmp_path, monkeypatch):
+        # Kagi is credited on air only when an Extract page reached the script;
+        # the render stage learns that from the header.
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        path = save_script_to_file("**RILEY:** Hello.\n", "Theme", kagi_used=True)
+        assert read_script_metadata(path)["kagi_used"] is True
 
     def test_round_trips_weather_used(self, tmp_path, monkeypatch):
         # The weather provider is credited on air, and the render stage can only
@@ -4824,6 +4840,7 @@ class TestScriptMetadataHeader:
             "theme": "Legacy Theme",
             "brave_used": False,
             "weather_used": False,
+            "kagi_used": False,
             "anchor": None,
         }
 
@@ -4832,6 +4849,7 @@ class TestScriptMetadataHeader:
             "theme": None,
             "brave_used": False,
             "weather_used": False,
+            "kagi_used": False,
             "anchor": None,
         }
 
@@ -4984,7 +5002,7 @@ class TestAudioStageCrossBoundary:
         captured = {}
 
         def fake_audio(script_text, output_filename, theme_name=None, brave_used=False,
-                       weather_used=False):
+                       weather_used=False, kagi_used=False):
             captured["theme_name"] = theme_name
             captured["brave_used"] = brave_used
             captured["weather_used"] = weather_used
