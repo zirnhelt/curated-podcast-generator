@@ -1,0 +1,180 @@
+# Cariboo Signals Podcast Script - 2026-10-21
+# Theme: Repair Culture & Practical Tech
+# Brave: yes
+# Weather: yes
+# Kagi: no
+# Anchor: Is trust something you build, or something you inherit?
+# Generated: 2026-10-21 01:21:55 PDT
+
+**COLD OPEN**
+**RILEY:** Hey there, good to have you. Today we've got Apple's published iPhone repair prices, where a cover swap is cheap but the inner screen costs more than a new phone. Then Nebraska passing the only farm-data ownership law so far, and Alberta's referendum results, with 76.3 per cent voting to stay in Canada. And the deep dive asks who you trust with your home's records: a teenager's homebuilt server or a store-bought hub with a famous logo. Stick around.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. I'm Riley. It's Wednesday, October 21st, 2026. Today's theme is Repair Culture & Practical Tech. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+**CASEY:** [pause:1000] And I'm Casey. Plenty of gear out here outlives its support window, and plenty doesn't. Horsefly Lake this morning is mainly clear and around 1 degree, with a high of 16 and overcast through the day. 100 Mile House is around 0, Williams Lake around -1 and mainly clear, Quesnel around 1 under overcast, and Alexis Creek around -1, also overcast.
+
+**RILEY:** Over to the news.
+
+**NEWS ROUNDUP**
+**CASEY:** [pause:1200] Ballots dominate today's headlines, with British Columbians voting Saturday, October 24th, and a referendum next door in Alberta. The Williams Lake Tribune lays out where the parties stand on the major issues. Mario Canseco of Research Co. says cost of living has overtaken housing as the top concern this year. In an October 13th poll, the economy and jobs led at 25 per cent, with housing, poverty and homelessness at 23. The NDP is defending ten years in power amid what the article calls historic deficits. We covered the Cariboo-Chilcotin field on Friday: Kathryn Askew for the NDP, Lorne Doerkson for the Conservatives, Douglas Gook for the Greens. In Prince George-North Cariboo, which includes Quesnel, it's Denice Bardua for the NDP, Sheldon Clare for the Conservatives, and Randy Thompson for the Greens, as we said last Thursday.
+
+**RILEY:** Ten years in power means the record is the easiest thing to check.
+
+**CASEY:** [pause:1200] Alberta's referendum, preliminary results. Voters overwhelmingly favoured staying in Canada. The stay-in-Canada option had more than one million votes, or 76.3 per cent. The option to start the constitutional process toward a binding separation referendum had 23.7 per cent. Those counts cover about 40 per cent of voting areas as of late Monday Pacific time, so the final tally can still move. Prime Minister Mark Carney said, "Above all, Albertans chose Canada." Premier Danielle Smith posted that Albertans voted for a stronger Alberta in a united Canada, and she had scheduled an address Tuesday on next steps.
+
+**RILEY:** About 40 per cent of voting areas reporting, so the final numbers will tell us more.
+
+**CASEY:** [pause:1200] Both the NDP and the BC Conservatives are pitching Urgent and Primary Care Centres as relief for emergency rooms, according to the Williams Lake Tribune. David Eby promised a new UPCC in the South Okanagan on October 19th, one of 20 the NDP has announced since October 12th. The Conservatives announced 11 of their own the same day. Eby called UPCC a shorthand, saying some communities want a clinic with a doctor that their municipality champions. The Penticton centre, one of the first in B.C., operates directly under Interior Health, and the article says it's unclear whether the new sites will follow that model.
+
+**RILEY:** [pause:1200] Turning to repair and what it costs, Apple has published prices for in-house iPhone Duo repairs, according to iFixit. The cover layer of the screen can be peeled off and replaced. Inner display damage costs more than a brand-new iPhone 17 to fix. iFixit also flags a $1,499 price for what AppleCare calls other accidental damage, and notes the wording may not match exactly.
+
+**CASEY:** So the cheap fix is the cover, and everything under it is a replacement.
+
+**RILEY:** [pause:1200] In Nebraska, a farm-data ownership law has passed, and it's the only bill of its kind to pass so far, according to Civil Eats, drawing on Agri-Pulse coverage. Farmers are organizing against equipment and seed companies that profit from their data, sometimes using it against them. Iowa, Missouri and Colorado pushed bolder versions. Iowa's measure was attached to a right-to-repair bill, cleared the House, and stalled in the Senate before that session ended.
+
+**CASEY:** [pause:1200] TechRadar reports that Google and Microsoft are facing fresh criticism over their AI data center plans. Critics claim Big Tech is damaging the environment in pursuit of further AI gains.
+
+**RILEY:** [pause:1200] Cities and states across the political spectrum are taking matters into their own hands on autonomous vehicles, frustrated by federal gridlock. The Verge reports the push is happening in the United States, with robotaxi rules being written city by city and state by state.
+
+**CASEY:** [pause:1200] EVgo has announced a 750-kilowatt charging system, which it says could recharge compatible EVs in as little as 10 minutes. The company expects the technology to be fully revealed in 2027. CNET notes the speeds are nearly double the current fastest public chargers in the US and Europe, and cars won't be able to use its top speed for a while.
+
+**RILEY:** Ten minutes sounds great until the nearest fast charger is a long drive.
+
+**CASEY:** [pause:1200] Prusa has released a course on Blender, the free, open-source 3D software. The Prusa Academy course focuses on editing existing STL models from sharing sites, instead of building models from scratch. The pitch is that the editing tools are simple but buried under layers of unrelated features.
+
+**RILEY:** [pause:1200] Now to Al Jazeera English on why former FDLR fighters are returning to Rwanda.
+
+**CASEY:** [pause:1200] Hyperallergic argues that well-resourced museums, foundations and cultural organizations have no excuse for using generative AI for wall labels, press releases and artist statements instead of paying writers. The writer says readers can spot generated text quickly, and the piece opens with a paragraph Claude produced for the purpose.
+
+**RILEY:** Which leaves the small galleries, with no budget for a writer, out of the argument.
+
+**CASEY:** [pause:1200] A guide from Marius Bogdan Lixandru walks through installing FileBrowser Quantum, a self-hosted web file manager, on a Synology NAS using Docker. The fork offers per-user permissions, two-factor login and real-time search across hundreds of thousands of files. The author lists a 512 megabyte memory minimum and says it runs alongside other containers. The guide went up earlier this month.
+
+**RILEY:** [pause:1200] Adafruit's blog carries a Geeky Gadgets walkthrough by Julian Horsey, on moving a working Windows 11 install from an old SATA SSD to a new NVMe drive by cloning the disk instead of reinstalling. The key point is that Windows doesn't live in one partition, so a simple file copy misses parts of the system.
+
+**CASEY:** A clone beats a reinstall, but only if the old drive is still healthy.
+
+**CASEY:** [pause:1200] Also through Adafruit, a build from Techiesms, written up by Geeky Gadgets, turns an ESP32-P4 module into a wall-mounted Home Assistant control panel. The hardware is a 10.1-inch touchscreen at 1200 by 800 pixels, with five touch points and a dual-core 400 megahertz processor.
+
+**RILEY:** [pause:1200] Hackaday covers a video from Dr. Semiconductor showing homemade silicon solar cells made from off-the-shelf chemicals, with a microwave as the kiln. The coating goes on with a spinning platform, like a PC fan. The video found the microwave had to stay under half power, or the silicon melted.
+
+**CASEY:** A working cell in a video isn't a panel still working in January.
+
+**RILEY:** [pause:1200] Hoani Bryson gave the classic Nokia 3310 a second life, with a replacement circuit board built around a Raspberry Pi Pico and a custom game engine. Hackster News reports that the phone's proprietary charging port now feels like an artifact, and the original was known for weeks of battery life on standby.
+
+**CASEY:** A proprietary port is the whole repair fight in one connector.
+
+**RILEY:** [pause:1200] Last one, from Hackaday. Zhiyuan Zhang and colleagues published a study in Science Advances on microbubbles that ultrasound can steer. Their chip-like device grows hydrogen bubbles along a grid of electrodes, and sound pushes each one where it needs to go. The bubbles run 10 to 100 microns, and each size has its own resonant frequency, which is how the system controls one bubble without disturbing the rest. Controlling formation, lifetime and position has been the hard part for years, and this study is an attempt at all three. Tiny actuators with no moving parts, steered by sound.
+
+**CASEY:** From tiny actuators to a local library that teaches people to use the device they're already holding.
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** It's BC Library Week, and your Cariboo Regional District Library is a lot more than books. There are branches across the region, with community spaces where you can sit down and get work done, plus help with the devices in your pocket. Find them at cln dot c-a.
+
+**CASEY:** A patient person showing you the settings is a repair service, and it doesn't come with a warranty clause.
+
+**RILEY:** Which leads straight into the box on the shelf, and whether it earns the trust it asks for.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**RILEY:** [pause:500] Suppose a teenager in a shop class builds a home server that runs a ranch's gate camera and water tank sensors. Then a store-bought hub with a famous logo does the same job. Which one does the family believe, and why? Is trust something you build at the workbench, or something you inherit with the box?
+
+**CASEY:** Build it at the workbench, if the person who built it is still around in January. The box can't answer that.
+
+**RILEY:** The ZDNet writer moved an entire smart home off Google Home in a weekend. The core was open-source Home Assistant, running on a mini-computer that cost under $200. He says it took ten minutes to move everything off Google Home. The rest of the weekend went to a custom dashboard, with Siri replacing Google as the voice assistant.
+
+**CASEY:** Ten minutes to move things is the easy part for someone who already reads configuration files. Everyone else is left with a weekend project they never asked for.
+
+**RILEY:** Then the question is how many people already read them. Apple unveiled HomeView on October 13th. It's a seven-inch square display built around its upgraded Siri, pitched as a central control point for smart home devices. It costs $299, with general availability on November 13th. Wall mounts are extra, starting at $59.95. The $350 figure floated before launch turned out too high.
+
+**CASEY:** Three hundred dollars is half again the price of the mini-computer, but it arrives finished. What matters is what a family gets when the company updates it, or stops.
+
+**RILEY:** A polished first-party hub is what most people will buy, and I won't argue with that. A box you own, running software you can inspect, is the clearest form of practical tech sovereignty available right now. The Home Assistant community is repair culture applied to software. Someone finds a fault, posts the fix, and the next owner doesn't wait for a vendor.
+
+**CASEY:** Someone with the same literacy finds the fault. That's the gap. Open is a benefit for people who can use it. For a family that just wants the gate light on, open means a hobby they never signed up for.
+
+**RILEY:** Open software doesn't require every household to be a programmer. It requires one person on the block who can answer the question and write the fix down. The community raises the floor.
+
+**CASEY:** One person on the block is a single point of failure.
+
+**RILEY:** So is a binder, and a single point of failure with a written fix beats one behind a locked vendor portal.
+
+**CASEY:** Better, sure. It's still a person who can leave. A vendor dashboard keeps running after the staff member quits. The open route can't promise that.
+
+**RILEY:** The dashboard keeps running only while the vendor decides it should. Take this week's repair records. iFixit reports that Apple has published prices for in-house iPhone Duo repairs. The cover layer of the screen can be peeled off and replaced. Inner display damage costs more than a brand-new iPhone 17 to fix. The listed price for other accidental damage is $1,499.
+
+**CASEY:** So the company is honest about the price, and the price says the phone is meant to be replaced. Publishing a number is conduct. It also tells you the repair isn't on the table.
+
+**RILEY:** iFixit notes the AppleCare wording may not match the repair category exactly. Still, a published price is the first thing a person can check before buying. Most companies don't put that in writing at all.
+
+**CASEY:** Writing it down beats silence. But who checks the printed number against a real repair bill in Quesnel? A price on a website is a promise, and big companies revise promises without a press release.
+
+**RILEY:** Then test them. Same logic as the solar video. Hackaday covers Dr. Semiconductor making homemade silicon solar cells from off-the-shelf chemicals, with a microwave as the kiln. The microwave had to stay under half power, or the silicon melted. The builder tells you where it breaks.
+
+**CASEY:** [overlap:-100] Ha. A homebrew cell that works in a video is a demo, not a power system. Who measures its output after five winters?
+
+**RILEY:** The video's value is the materials, not the supply. A cell like that can teach a kid how a junction works. Nobody should wire it into the water pump.
+
+**CASEY:** Teaching is fine. Keep it out of the critical load. Same line for a home server. The gate camera is fine on a homebuilt box. The pump controller needs a fallback when the box goes dark.
+
+**RILEY:** Put it in the context of a place like Horsefly. Power is thin, phone signal isn't guaranteed, and a repair shop can be a long drive. Offline-first gear works when the grid doesn't. A homelab keeps the gate and the lights running without a cloud service, and the local failure mode is smaller.
+
+**CASEY:** It also makes the local person more important. If the server runs in the barn and only the teenager knows the password, the trust sits in one kid. However good the kid is, that's fragile.
+
+**RILEY:** Which is why the documentation has to outlive the kid. The Nebraska farm-data law is the same problem at a larger scale. Farmers organized against equipment and seed companies that profit from their data, and Nebraska's bill passed. Civil Eats, drawing on Agri-Pulse, reports that lawmakers in Iowa, Missouri and Colorado pushed bolder versions.
+
+**CASEY:** Only Nebraska's passed. Iowa's was attached to a right-to-repair bill, cleared the House, and stalled in the Senate. The people holding the herd records are the ones who lose if it stays on paper.
+
+**RILEY:** Swap "farm" for "ranch" and the question is the same. Whose software holds the herd records and the water logs? If the answer is a company's cloud, the rancher is renting their own history.
+
+**CASEY:** Put that on the kitchen table before anybody buys a logo. Who has the export button? If a ranch can't download its calving records in a format that opens without the vendor's app, the vendor owns the herd's memory.
+
+**RILEY:** The Musk episode works as a contrast. He replied on X that Quebec and two Prairie provinces would benefit from separating. The Alberta and Saskatchewan premiers shut it down publicly. Alberta's preliminary referendum results, with about 40 per cent of voting areas reporting Monday night, had 76.3 per cent favouring staying in Canada.
+
+**CASEY:** A single post from one platform owner reached a national argument with no policy change behind it. The premiers answered in public, which is good. But the reach came from a dependency users didn't choose, the same one the smart home raises.
+
+**RILEY:** Which is the case for owning the layer you can own. The premiers didn't need Musk's permission to answer him, and Alberta voters didn't need his platform to decide. They used the ballot box.
+
+**CASEY:** A ballot box has its own accountability. Nobody votes on a firmware update.
+
+**RILEY:** Some companies behave like institutions with a conscience. Most don't, and the box won't say which. The ZDNet writer found Apple's hub tempting. The open route was more work, and it had a log he could read.
+
+**CASEY:** A log he could read because he already reads logs. That doesn't travel to the next owner. Put a sixty-year-old rancher with a new hub in front of an error message, and he calls the dealer, who calls head office.
+
+**RILEY:** Head office is also how the warranty works. A brand is a promise about future support. Competence is what you can check today. For a ranch, that means the outage log, the update history, and whether a neighbour can read the fault without a login.
+
+**CASEY:** For a teenager, the test is harder. A shop-class project looks like competence when the teacher signs it off. It's trust when the rancher calls the kid at 6 a.m. because the tank sensor went quiet overnight.
+
+**RILEY:** Whether the kid answers the phone is a standard a brand can't fake.
+
+**CASEY:** A brand can fake it for a while, with a support line. The kid has no support line, which makes the kid more trustworthy on the ranch. It also makes the kid the single point of failure.
+
+**RILEY:** Back to the binder: wattage, battery capacity, swap dates, kept by the breaker box. It needs one more page now, with the name of the person on call and a copy the next owner can read.
+
+**CASEY:** Add the library. Digital literacy programs there mean a family can learn to read a config file without buying a new box first.
+
+**RILEY:** A library could host a monthly session where the teenager walks the neighbours through the dashboard. That spreads the competence out of one barn.
+
+**CASEY:** A good start, but it leaves the funding question. Who pays for the time, and who's accountable when the sessions stop? The community keeps the knowledge, and the vendor keeps the dashboard.
+
+**RILEY:** A community can own the knowledge and still use commercial hardware. The hardware is a tool. The trouble starts when the tool is also the only record.
+
+**CASEY:** Then the test is simple. Can the record leave the vendor's app? If not, the community has rented its memory.
+
+**RILEY:** Try it on one property. Put the store-bought hub next to a homebuilt Home Assistant server for one winter. Log the outages, the updates, the fixes, and who did them. The Cariboo has enough cold snaps to make the logs meaningful.
+
+**CASEY:** Add a column for the person who answers the phone in January, and one for whether a neighbour could read the fault without the vendor's account. If the homebuilt box fails those two, it's a hobby, not a system.
+
+**RILEY:** Some faults will be hardware, and no logo helps with a failed battery. But the log will show what the family could fix without calling anyone.
+
+**CASEY:** It won't show whether the family trusted the box more after a winter. Plenty of families keep a brand because it's the thing they can explain to their kids.
+
+**RILEY:** Then the next family considering a homebuilt server has a record of what happened instead of a brochure. A brochure is trust you inherit. A log is trust you can check, and it's cheap to keep.
+
+**CASEY:** Cheap if someone keeps it. The logs, the binder and the on-call name all need one person who stays. The box doesn't settle whether trust is built or inherited. The person who keeps the record does.
+
+**RILEY:** So the question for the next ranch is who keeps the record when the teenager leaves for school. If you've run a home server or kept a fault log through a Cariboo winter, send it to feedback at cariboo signals dot c-a. Talk to you tomorrow.
+
+**CASEY:** Keep the binder by the breaker box, with the on-call name on the front and the log beside it. And make sure the next owner can read it without the teenager or the brand in the room.

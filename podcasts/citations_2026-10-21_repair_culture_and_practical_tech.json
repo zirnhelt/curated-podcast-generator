@@ -1,0 +1,435 @@
+{
+  "episode": {
+    "date": "2026-10-21",
+    "formatted_date": "Wednesday, October 21, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is trust something you build, or something you inherit?</p><p><b>NEWS ROUNDUP:</b> We break down Where the parties stand on the major issues heading into the B.C. election and Stay-in-Canada option leads Alberta referendum results, plus 11 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Is trust in home and ranch technology built through open, locally maintained systems that people can repair and read, or inherited from commercial brands and their vendor-controlled platforms? Topics include: Open-source home automation versus branded smart home hubs, Repair costs and manufacturer repair policies (iPhone, iFixit), Farm and ranch data ownership and right-to-repair legislation, Single points of failure and documentation like binders and on-call names, Offline-first resilience and community knowledge sharing in rural areas.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cln.ca\">Cariboo Regional District Library</a></p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/20/where-the-parties-stand-on-the-major-issues-heading-into-the-b-c-election/\">[Williams Lake Tribune] Where the parties stand on the major...</a></li><li>John White (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316868/news/national/stay-in-canada-option-leads-alberta-referendum-results/\">[My Cariboo Now] Stay-in-Canada option leads Alberta referen...</a></li><li>Brennan Phillips (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/20/ndp-conservatives-pitch-dozens-of-urgent-primary-care-centres-as-healthcare-solution/\">[Williams Lake Tribune] NDP, Conservatives pitch dozens of U...</a></li><li>iFixit: <a href=\"https://www.ifixit.com/News/119797/how-the-iphone-duos-crazy-repair-prices-compare\">[iFixit] How the iPhone Duo’s Crazy Repair Prices Compare</a></li><li>Civil Eats: <a href=\"https://civileats.com/2026/10/14/in-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law/\">[Civil Eats] In the Right to Repair Revolt, Nebraska Leads W...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig\">[TechRadar] Google and Microsoft hit by fresh criticism of t...</a></li><li>Layth Mushtaq (Al Jazeera English): <a href=\"https://www.aljazeera.com/news/2026/10/21/why-former-fdlr-fighters-are-returning-to-rwanda?traffic_source=rss\">[Al Jazeera English] Why former FDLR fighters are returning ...</a></li><li>Marius Bogdan Lixandru: <a href=\"https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/\">[Marius Bogdan Lixandru] How to Install FileBrowser Quantum ...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/10/14/how-to-migrate-windows-11-from-an-old-ssd-to-a-new-nvme-ssd-without-reinstalling/\">[Adafruit Blog] How to migrate Windows 11 from an old SSD to...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/10/14/build-a-10-1-inch-home-assistant-panel-with-an-esp32-p4/\">[Adafruit Blog] Build a 10.1-inch Home Assistant panel with ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/10/19/making-photovoltaic-solar-cells-with-a-microwave/\">[Hackaday] Making Photovoltaic Solar Cells with a Microwave</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/giving-the-nokia-3310-a-new-lease-on-life-6f8dfc7beccb\">[Hackster News] Giving the Nokia 3310 a New Lease on Life</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/10/20/using-ultrasound-and-microbubbles-to-make-tiny-devices/\">[Hackaday] Using Ultrasound and Microbubbles to Make Tiny De...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk/\">[Global News] Alberta, Saskatchewan premiers shut down Elon ...</a></li><li>Nieman Lab: <a href=\"https://www.niemanlab.org/2026/10/two-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina/\">[Nieman Lab] Two 23-year-olds used AI to create a daily audi...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/home-and-office/apple-homeview-smart-home-assistant-free-open-source/\">[ZDNet] How I open-sourced my smart home in a weekend – and ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Andrew Hawkins (The Verge): <a href=\"https://www.theverge.com/transportation/1013220/robotaxi-self-driving-car-laws\">[The Verge] Cities want to put the boot on robotaxis</a></li><li>CNET: <a href=\"https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/\">[CNET] EVgo’s Next-Gen 750kW EV Charging System Is Capable o...</a></li><li>Kryštof Kohout (Prusa Blog): <a href=\"https://blog.prusa3d.com/blender-for-3d-printing-the-5-minute-guide-to-direct-mesh-editing_138255/\">[Prusa Blog] Blender for 3D Printing: The 5-Minute Guide to ...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/dear-art-world-we-can-tell-when-youre-using-ai/\">[Hyperallergic] Dear Art World, We Can Tell When You’re Usin...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/went-from-construction-worker-tech-sales-one-year-heres-how-2026-10\">[Business Insider] I broke into tech sales after working in ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-21T01:21:50.932971-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3400,
+      "voice_ratio_casey_riley": 0.76,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 12,
+        "turns": 83,
+        "avg_turn_words": 39.5,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 4
+    },
+    "anchor": {
+      "id": "trust-built-or-inherited",
+      "question": "Is trust something you build, or something you inherit?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CNET] EVgo’s Next-Gen 750kW EV Charging System Is Capable of 10-Minute Recharge",
+          "url": "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/",
+          "source": "CNET",
+          "author": "",
+          "ai_score": 47,
+          "date_published": "2026-09-30T22:16:07+00:00",
+          "summary": "The company estimates its fastest-charging tech yet is coming next year, but it’ll be a while before cars can hit its top speed.",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Where the parties stand on the major issues heading into the B.C. election",
+          "url": "https://wltribune.com/2026/10/20/where-the-parties-stand-on-the-major-issues-heading-into-the-b-c-election/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 81,
+          "date_published": "2026-10-20T23:00:00+00:00",
+          "summary": "Where the parties stand on the major issues heading into the B.C. election | Williams Lake Tribune Where the parties stand on the major issues heading into the B.C. election B.C. provincial party lead...",
+          "discussed": true,
+          "mention_offset_frac": 0.0227
+        },
+        {
+          "title": "[Adafruit Blog] Build a 10.1-inch Home Assistant panel with an ESP32-P4",
+          "url": "https://blog.adafruit.com/2026/10/14/build-a-10-1-inch-home-assistant-panel-with-an-esp32-p4/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-14T20:48:35+00:00",
+          "summary": "Julian Horsey at Geeky Gadgets writes up a build from Techiesms that turns an ESP32-P4 module into a wall-mounted Home Assistant control panel. The hardware is a 10.1-inch TFT LCD with a 1200×800 capa...",
+          "discussed": true,
+          "mention_offset_frac": 0.0556
+        },
+        {
+          "title": "[Hyperallergic] Dear Art World, We Can Tell When You’re Using AI",
+          "url": "https://hyperallergic.com/dear-art-world-we-can-tell-when-youre-using-ai/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-10-20T20:40:08+00:00",
+          "summary": "Institutions, especially well-resourced museums, foundations, and cultural organizations, have no excuse for relying on generative tools instead of paying writers.",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Stay-in-Canada option leads Alberta referendum results",
+          "url": "https://www.mycariboonow.com/316868/news/national/stay-in-canada-option-leads-alberta-referendum-results/",
+          "source": "My Cariboo Now",
+          "author": "John White",
+          "ai_score": 53,
+          "date_published": "2026-10-20T06:58:57+00:00",
+          "summary": "Alberta voters overwhelmingly favoured staying in Canada in preliminary results from Monday’s referendum. The post Stay-in-Canada option leads Alberta referendum results appeared first on My Cariboo N...",
+          "discussed": true,
+          "mention_offset_frac": 0.1383
+        },
+        {
+          "title": "[Williams Lake Tribune] NDP, Conservatives pitch dozens of Urgent Primary Care Centres as healthcare solution",
+          "url": "https://wltribune.com/2026/10/20/ndp-conservatives-pitch-dozens-of-urgent-primary-care-centres-as-healthcare-solution/",
+          "source": "Williams Lake Tribune",
+          "author": "Brennan Phillips",
+          "ai_score": 75,
+          "date_published": "2026-10-20T20:52:32+00:00",
+          "summary": "Both parties claim the UPCC model would reduce pressure on emergency rooms",
+          "discussed": true,
+          "mention_offset_frac": 0.2298
+        },
+        {
+          "title": "[iFixit] How the iPhone Duo’s Crazy Repair Prices Compare",
+          "url": "https://www.ifixit.com/News/119797/how-the-iphone-duos-crazy-repair-prices-compare",
+          "source": "iFixit",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-20T19:10:27+00:00",
+          "summary": "Apple has listed the prices for iPhone Duo repairs, and there’s good news and bad news. The good news is that you will be able to peel off the screen’s…",
+          "discussed": true,
+          "mention_offset_frac": 0.3079
+        },
+        {
+          "title": "[Civil Eats] In the Right to Repair Revolt, Nebraska Leads With Farm-Data Ownership Law",
+          "url": "https://civileats.com/2026/10/14/in-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law/",
+          "source": "Civil Eats",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-14T08:00:02+00:00",
+          "summary": "By Elsa Wenzel • October 14, 2026 Farmers are organizing against equipment and seed companies profiting from their data and using it against them. Similar laws in other states have so far failed. Read...",
+          "discussed": true,
+          "mention_offset_frac": 0.3079
+        },
+        {
+          "title": "[Hackaday] Using Ultrasound and Microbubbles to Make Tiny Devices",
+          "url": "https://hackaday.com/2026/10/20/using-ultrasound-and-microbubbles-to-make-tiny-devices/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-10-21T02:00:33+00:00",
+          "summary": "Although we generally do not look at bubbles in fluids as more than a curiosity – if not an outright annoyance – in certain contexts they can be very useful. …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.4035
+        },
+        {
+          "title": "[TechRadar] Google and Microsoft hit by fresh criticism of their AI data center plans",
+          "url": "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/alex-blake",
+          "ai_score": 53,
+          "date_published": "2026-10-06T00:00:00+00:00",
+          "summary": "Big Tech firms are destroying the environment in a quest for further AI gains, critics claim.",
+          "discussed": true,
+          "mention_offset_frac": 0.4345
+        },
+        {
+          "title": "[Al Jazeera English] Why former FDLR fighters are returning to Rwanda",
+          "url": "https://www.aljazeera.com/news/2026/10/21/why-former-fdlr-fighters-are-returning-to-rwanda?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "Layth Mushtaq",
+          "ai_score": 55,
+          "date_published": "2026-10-21T00:25:43+00:00",
+          "summary": "From the forest to Mutobo, former fighters face the challenge of rebuilding their lives after leaving the armed group.",
+          "discussed": true,
+          "mention_offset_frac": 0.5963
+        },
+        {
+          "title": "[Marius Bogdan Lixandru] How to Install FileBrowser Quantum on Your Synology NAS",
+          "url": "https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/",
+          "source": "Marius Bogdan Lixandru",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-10-11T19:49:57+00:00",
+          "summary": "FileBrowser Quantum is a heavily reworked fork of the classic Filebrowser project, aimed at being the best free self-hosted web file manager available. It provides a modern, responsive web interface f...",
+          "discussed": true,
+          "mention_offset_frac": 0.6679
+        },
+        {
+          "title": "[Adafruit Blog] How to migrate Windows 11 from an old SSD to a new NVMe SSD without reinstalling",
+          "url": "https://blog.adafruit.com/2026/10/14/how-to-migrate-windows-11-from-an-old-ssd-to-a-new-nvme-ssd-without-reinstalling/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-14T21:14:52+00:00",
+          "summary": "Julian Horsey at Geeky Gadgets walks through moving a working Windows 11 install from an older SATA SSD to an NVMe drive by cloning the disk instead of reinstalling. The point he keeps returning to is...",
+          "discussed": true,
+          "mention_offset_frac": 0.7298
+        },
+        {
+          "title": "[Hackaday] Making Photovoltaic Solar Cells with a Microwave",
+          "url": "https://hackaday.com/2026/10/19/making-photovoltaic-solar-cells-with-a-microwave/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-10-20T02:00:38+00:00",
+          "summary": "Although solar panels may seem like a kind of magic, they’re really quite simple devices, in their silicon form featuring nothing but the p-type silicon wafer and an n-type layer …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.8214
+        },
+        {
+          "title": "[Hackster News] Giving the Nokia 3310 a New Lease on Life",
+          "url": "https://www.hackster.io/news/giving-the-nokia-3310-a-new-lease-on-life-6f8dfc7beccb",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 34,
+          "date_published": "2026-10-12T20:34:48+00:00",
+          "summary": "Hoani Bryson gave the classic Nokia 3310 phone new life with a Raspberry Pi Pico-powered replacement PCB and a custom game engine.",
+          "discussed": true,
+          "mention_offset_frac": 0.8585
+        },
+        {
+          "title": "[The Verge] Cities want to put the boot on robotaxis",
+          "url": "https://www.theverge.com/transportation/1013220/robotaxi-self-driving-car-laws",
+          "source": "The Verge",
+          "author": "Andrew Hawkins",
+          "ai_score": 53,
+          "date_published": "2026-10-18T12:00:00+00:00",
+          "summary": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on autonomous vehicles, policy, and road rules, follow Andrew J. Hawkins. The Stepback arrives...",
+          "discussed": false
+        },
+        {
+          "title": "[Prusa Blog] Blender for 3D Printing: The 5-Minute Guide to STL Editing",
+          "url": "https://blog.prusa3d.com/blender-for-3d-printing-the-5-minute-guide-to-direct-mesh-editing_138255/",
+          "source": "Prusa Blog",
+          "author": "Kryštof Kohout",
+          "ai_score": 59,
+          "date_published": "2026-10-20T11:00:56+00:00",
+          "summary": "Whenever my colleagues ask me to edit a 3D model in Blender, they're always surprised when I give them the result just a few minutes later. They often tell me they want to learn to use it too, but it’...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[Global News] Alberta, Saskatchewan premiers shut down Elon Musk’s call for separation",
+          "url": "https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-08T00:03:48+00:00",
+          "summary": "The trillionaire tech businessman said on his social media platform X that Quebec would benefit from independence, as would the two Prairie provinces.",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] I broke into tech sales after working in construction. Here's how I landed a more flexible job with higher earning potential.",
+          "url": "https://www.businessinsider.com/went-from-construction-worker-tech-sales-one-year-heres-how-2026-10",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-10-12T20:32:58+00:00",
+          "summary": "After years in construction, Bryan Ruiz transitioned into tech sales, increasing his earning potential and giving himself a more flexible schedule.",
+          "discussed": false
+        },
+        {
+          "title": "[Nieman Lab] Two 23-year-olds used AI to create a daily audio briefing. It’s now the top news app in Argentina.",
+          "url": "https://www.niemanlab.org/2026/10/two-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina/",
+          "source": "Nieman Lab",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-01T18:13:12+00:00",
+          "summary": "As an engineering student, Valentín Virasoro worked part-time at a car dealership in Cordoba, Argentina. His boss at the dealership had a habit: Every day, he’d send an audio update covering the major...",
+          "discussed": true
+        },
+        {
+          "title": "[ZDNet] How I open-sourced my smart home in a weekend – and ditched Google for Siri",
+          "url": "https://www.zdnet.com/home-and-office/apple-homeview-smart-home-assistant-free-open-source/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-18T11:40:00+00:00",
+          "summary": "For years, my smart home ran on Google Home. When I decided to switch, Apple’s new smart hub was tempting, but Home Assistant hardware and software does so much more.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Is trust in home and ranch technology built through open, locally maintained systems that people can repair and read, or inherited from commercial brands and their vendor-controlled platforms?",
+        "riley_position": "A box you own, running inspectable open-source software like Home Assistant, is the clearest form of practical tech sovereignty, and repair culture applied to software lets communities raise the floor of competence beyond any single vendor.",
+        "riley_key_evidence": [
+          "A ZDNet writer moved an entire smart home off Google Home in a weekend onto open-source Home Assistant running on a mini-computer costing under $200, with ten minutes spent on the actual migration.",
+          "iFixit reported Apple published prices for in-house iPhone repairs, with inner display damage costing more than a new iPhone 17 and listed other accidental damage at $1,499.",
+          "Nebraska passed a farm-data law, while Iowa, Missouri and Colorado pushed bolder versions, with only Nebraska's passing so far."
+        ],
+        "casey_position": "Open systems only help people who already have the literacy to use them, so they create a single point of failure in one person who can leave, while vendor dashboards keep running after staff leave; trust must be kept by a person who maintains the record.",
+        "casey_key_evidence": [
+          "Iowa's farm-data measure was attached as an amendment to a right-to-repair bill, cleared the House, and stalled in the Senate before the session ended.",
+          "Apple's published repair price signals the phone is meant to be replaced rather than repaired, and promises from large companies get revised without a press release.",
+          "A single post from a platform owner reached a national political argument with no policy change, showing how platform dependency sets the terms of public conversation."
+        ],
+        "resolution": "They did not fully converge: Riley accepted that the community can own the knowledge while using commercial hardware, and Casey agreed the practical test is whether the record can leave the vendor's app. They agreed to propose a one-winter side-by-side log comparing a store-bought hub with a homebuilt server, tracking outages, fixes, who did them, and whether a neighbour could read faults without a vendor login.",
+        "topics_covered": [
+          "Open-source home automation versus branded smart home hubs",
+          "Repair costs and manufacturer repair policies (iPhone, iFixit)",
+          "Farm and ranch data ownership and right-to-repair legislation",
+          "Single points of failure and documentation like binders and on-call names",
+          "Offline-first resilience and community knowledge sharing in rural areas"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 1,
+          "conditions": "mainly clear",
+          "high": 16,
+          "low": 1
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 0,
+          "conditions": "clear skies",
+          "high": 14,
+          "low": 0
+        },
+        {
+          "name": "Williams Lake",
+          "temp": -1,
+          "conditions": "mainly clear",
+          "high": 14,
+          "low": -1
+        },
+        {
+          "name": "Quesnel",
+          "temp": 1,
+          "conditions": "overcast",
+          "high": 10,
+          "low": 1
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": -1,
+          "conditions": "overcast",
+          "high": 12,
+          "low": -2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Regional District Library",
+      "description": "Public library system serving the Cariboo region with branches in Williams Lake, Quesnel, 100 Mile House and more — free internet access, digital literacy programs, and community gathering spaces",
+      "website": "cln.ca",
+      "psa_angle": "It's BC Library Week. Your Cariboo Regional District Library is more than books — free internet access, digital literacy programs, and community spaces in Williams Lake, Quesnel, 100 Mile House and beyond.",
+      "event_name": "BC Library Week"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\nThese analytical threads were identified before generation. Use the findings to ground Riley's and Casey's arguments with real evidence. Develop them as substantive exchanges, not a citation list.\n\nRESEARCH QUESTION: Is Apple's new smart home hub a real competitor to the Google Home setup the ZDNet writer left, and how does it compare with the open-source route?\nFindings: Apple unveiled the HomeView at its October 13, 2026 event, a 7-inch square smart display built around its AI-upgraded Siri. Coverage (TechCrunch, The Verge, ABC News) frames it as a central control point for smart home devices that also handles FaceTime, music, video, and photo slideshows, and as a direct challenge to Amazon's Echo Show and Google's Nest Hub. Pre-launch Bloomberg reporting, relayed by The Verge, floated a price around $350. Treat that as a rumor and check the shipped price before using it on air. The ZDNet piece sets this against Home Assistant, which runs on a self-hosted server. Its author says the move took a weekend and a sub-$200 mini-computer.\nSuggested angle: Riley can argue that a $200 box you own, running software you can inspect and modify, is the clearest form of practical tech sovereignty, and that the Home Assistant community shows how repair culture applies to software. Casey can counter that the weekend-project path assumes technical literacy most households lack, and that a polished first-party hub is what most people will actually buy. The sharpest exchange is whether \"open\" is a practical benefit for ordinary users or a hobbyist privilege, and what happens to people who bought into a platform that a company can change or discontinue.\n\nRESEARCH QUESTION: Does the Argentine AI audio-news app's success hold up, and what are its scale and limits?\nFindings: The app is Lisa AI, built by Valentín Virasoro and co-founder Iván Schahovskoy Hoferek in Buenos Aires. Cherry Creek News reports it launched in August and became one of the most-downloaded news apps in the country within days. Nieman Lab and LatAm Journalism Review report that it is the top app in the News and Magazines categories on the Argentine App Store and one of the top 100 most-downloaded apps overall, with about 70% of downloaders actively using it. These figures come from the founder, not from independent app-store data, so they should be presented as company claims. Similarweb's ranking page is a usable independent cross-check.\nSuggested angle: Riley can present this as a small-team, practical use of AI that turns a repetitive task (a dealership owner's daily audio roundup) into a product, which fits the theme of building useful tools rather than waiting for big platforms. Casey can raise the sourcing question: an AI summary of other outlets' reporting depends on the reporting that feeds it, and the founders' engagement numbers are self-reported. Both can agree that the 70% engagement figure is the detail worth testing.\n\nRESEARCH QUESTION: How much did Musk's separatism post actually move the Canadian political debate?\nFindings: Musk's comments were replies on X. He first responded to a post that Parti Québécois premier-designate Paul St-Pierre Plamondon said his independence dream \"will be realized one day\" with \"Good. Quebec should separate.\" He later said Quebec, Alberta, and Saskatchewan would all benefit from separating. Saskatchewan Premier Scott Moe replied on X with a single word, \"No.\" Alberta Premier Danielle Smith said her government, caucus, and party support Alberta staying in Canada. Prime Minister Carney and Conservative leader Pierre Poilievre both responded, with Poilievre saying \"Canadians control their own destiny.\" CBC analysis treats the posts as possibly trolling, possibly part of a larger effort. Polls in Saskatchewan have shown some increase in secession support, per The Globe and Mail.\nSuggested angle: This is the off-theme piece, so use it as a contrast. Casey can use it to show how a platform owner's reply can reach a national political debate with no policy change behind it, which is the same dependency the smart home segment raises. Riley can argue that the premiers' quick, public pushback shows that institutions and local voters are not swayed by a billionaire's posts. Both should avoid treating the polling movement as settled.\n\n(Ballot researched Thursday October 15 and unchanged since. Background, not news.)\nELECTION RESEARCH — 2026 B.C. provincial general election\n\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\n**FINDINGS — Cariboo-Chilcotin**\n\nFiled candidates: Kathryn Askew (BC NDP), Lorne Doerkson (Conservative), Douglas Gook (BC Green). Elections BC's candidate report lists all three (elections.bc.ca, candidate website report, Oct. 2026), and BC Ballot and Studio X News carry the same names.\n\n- **Kathryn Askew (BC NDP).** 100 Mile Free Press (Oct. 1, 2026) reports she is a retired school teacher from Canim Lake, named as the NDP candidate. The BC NDP release names her as its Cariboo-Chilcotin candidate (bcndp.ca, undated in my read) and says she has 32 years in education, including leadership roles with the BC Teachers' Federation and her local union. The release also says that in 2025 she was the NDP candidate for Mission—Matsqui—Abbotsford in the federal election. I did not find her vote share in that race. Stephen Taylor's 2025 results page reports Brad Vis (Conservative) won that riding with 56.7% and Jeff Howe (Liberal) placed second with 36.6% (stephentaylor.ca, 2025 results). No controversy involving Askew was found in the sources read.\n\n- **Lorne Doerkson (Conservative).** Sourced background: MLA for Cariboo-Chilcotin since 2020, first elected as a B.C. Liberal, re-elected in 2024 as a B.C. Conservative (Elections BC results, 2024-10-19). BC Ballot gives the 2024 Conservative margin in the riding as 7,722 votes (bcballot.ca, 2026 candidate page). Carried forward from prior research: Elections BC's 2020 statement of votes shows him at 6,600 votes (51.25%) for the Liberals. The Globe and Mail (Sept. 26, 2026) reports he took over as Conservative leader. Wikipedia describes him as interim leader since 2026.\n  - *Controversy (campaign, 2026):* Vaughn Palmer's Vancouver Sun column (Oct. 7, 2026) says Doerkson told reporters he had made \"no promises at all\" on auto insurance, and Palmer argues he had made four. Palmer writes that Doerkson twice denied making commitments of any kind. This is the columnist's assessment, and the outlet's article was paywalled in my read. Doerkson's response is the denial reported in that column.\n  - *Related party matter (not about Doerkson personally):* The Tyee (Oct. 8, 2026) reports Doerkson fired the party's Victoria-Beacon Hill candidate after social media posts the BC NDP flagged as racist. CityNews (Oct. 14, 2026) reports a Conservative campaign director under fire over social posts will stay on, Doerkson says.\n  - No other controversy involving Doerkson was established in the sources checked.\n\n- **Douglas Gook (BC Green).** Elections BC's candidate report lists him for Cariboo-Chilcotin (2026). The Caledonia Courier (Oct. 2024) reports he had run unsuccessfully as a Green candidate in North Cariboo, now Prince George-Cariboo North, four times, including a 2017 Nechako Lakes bid where he took about nine per cent. My Cariboo Now calls his 2020 bid his fourth time running for the Greens in that riding. Carried forward from prior research: the Elections BC 2020 statement of votes shows him at 707 votes (6.38%) in Cariboo North. The two accounts don't reconcile the count of runs, and the show has not resolved it. CKPG Today (Sept. 13, 2024) announced him as the Green candidate for Nechako Lakes in 2024. His 2024 result in that riding was not established in the sources read. No controversy was established.\n\n**FINDINGS — Prince George-North Cariboo (includes Quesnel)**\n\nFiled candidates: Denice Bardua (BC NDP), Sheldon Clare (Conservative), Randy Thompson (BC Green). The Quesnel Cariboo Observer (Oct. 7, 2026) reports the list was confirmed by Elections BC after nominations closed Oct. 3. CKPG Today (Oct. 3, 2026) and the Prince George Citizen (candidates finalized) list the same three.\n\n- **Denice Bardua (BC NDP).** CKPG Today (Sept. 24, 2024) reports she was announced as the NDP candidate for this riding in 2024. Her campaign site (denicebardua.bcndp.ca) says she has been a Quesnel resident since 1997 and works in education. BCPoliTracker reports she placed second in 2024 with 3,426 votes, or 17.0%, behind the Conservative candidate. Quesnel Cariboo Observer (Oct. 7, 2026) gives 17.03% for 2024. Her 2024 run is the only earlier run established in the sources read. No controversy was established.\n\n- **Sheldon Clare (Conservative, incumbent).** Sourced background: won the riding for the B.C. Conservatives in 2024 (Elections BC results, 2024-10-19). Carried forward from prior research: Quesnel Cariboo Observer (Oct. 7, 2026) reports 11,430 votes, or 56.82%, in 2024. Times Colonist (Jan. 8, 2026, Canadian Press) reports he said he was running for the B.C. Conservative leadership. CFJC Today (Feb. 28, 2026) reports he suspended that bid, citing a leadership application issue where some signatures were not accepted. He said he \"takes full responsibility.\"\n  - *Election-finance penalty (finding):* Elections BC's enforcement notice (dated March 30, 2026) and its April 1, 2026 release (reported by CKPG Today, Apr. 1, 2026, and the Quesnel Cariboo Observer, Apr. 3, 2026) say he was fined $1,500 for accepting anonymous contributions for the 2024 election that exceeded the limit by about $4,000. Elections BC said the investigation found no deliberate attempt to circumvent the law. The Prince George Citizen reported the same penalty. I did not find his response to the penalty in the sources read.\n  - *Allegation (Sept. 2026):* CKPG Today (Sept. 18, 2026) reports that in a party group chat about municipal elections, Clare wrote \"There's a good number that need hanging,\" responding to a post by a Parksville mayoral candidate. Clare's statement says the remark was made in jest, was not meant as a threat, and he apologized to anyone who took offense (CKPG Today, Sept. 18, 2026; Prince George Citizen update). The Prince George Citizen headlined his apology as a formal apology. The BC NDP wrote on X that Doerkson \"had one last chance to drop him. He didn't.\" That is the NDP's claim, and Doerkson's response to it was not found.\n  - *Allegation (undated in snippet):* PressProgress reports residential-school postings attributed to Clare. The article says neither Clare nor the party responded to its requests for comment. The article's date and full text were not confirmed in my read, and the content appears to predate the 2026 campaign.\n\n- **Randy Thompson (BC Green).** BC Greens' candidate page says he ran as the Green candidate in this riding in 2024 and previously served two years on the party's provincial council (bcgreens.ca). Quesnel Cariboo Observer (Oct. 7, 2026) reports he finished fourth in 2024 with just over four per cent. BCPoliTracker gives 866 votes, 4.3%. Prince George Daily News (Oct. 11, 2026) reports the Greens announced him as the candidate. No controversy was established.\n\nThe show has not yet established any earlier provincial election run for Kathryn Askew, Denice Bardua or Randy Thompson.\n\nNO RECORD FOUND: none\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Apple home hub smart display launch Home Assistant competition",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Musk X post Quebec Alberta Saskatchewan independence premiers respond",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Virasoro AI audio briefing app Argentina news app top downloads",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "cached",
+        "researched": "2026-10-15"
+      },
+      {
+        "kind": "question",
+        "query": "Apple HomeView hub price"
+      },
+      {
+        "kind": "question",
+        "query": "iPhone 17 display repair cost Apple published prices iFixit"
+      },
+      {
+        "kind": "question",
+        "query": "Iowa right to repair farm data bill Senate 2026"
+      },
+      {
+        "kind": "question",
+        "query": "EVgo 750 kW charging system 10 minutes"
+      }
+    ]
+  }
+}

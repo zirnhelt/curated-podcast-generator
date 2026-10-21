@@ -83,7 +83,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/": {
     "article": {
@@ -125,7 +126,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data": {
     "article": {
@@ -325,7 +327,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/": {
     "article": {
@@ -696,7 +699,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams": {
     "article": {
@@ -773,7 +777,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://blog.adafruit.com/2026/10/14/build-a-10-1-inch-home-assistant-panel-with-an-esp32-p4/": {
     "article": {
@@ -813,7 +818,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://civileats.com/2026/10/14/in-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law/": {
     "article": {
@@ -853,7 +859,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.wired.com/story/climate-change-is-getting-worse-el-nino-looms/": {
     "article": {
@@ -986,7 +993,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.nytimes.com/2026/10/14/well/live/humans-lifespan-limits-potential.html": {
     "article": {
@@ -1032,49 +1040,6 @@
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://www.woodbusiness.ca/mass-timber-is-booming-what-does-that-mean-for-canadas-forests/": {
-    "article": {
-      "id": "https://www.woodbusiness.ca/mass-timber-is-booming-what-does-that-mean-for-canadas-forests/",
-      "url": "https://www.woodbusiness.ca/mass-timber-is-booming-what-does-that-mean-for-canadas-forests/",
-      "title": "[Canadian Forest Industries] Mass timber is booming. What does that mean for Canada\u2019s forests?",
-      "content_html": "<img src=\"https://www.woodbusiness.ca/wp-content/uploads/2026/10/Monika-Patel-FSC-Headshot-420x315.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.woodbusiness.ca%2Fmass-timber-is-booming-what-does-that-mean-for-canadas-forests%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCanada\u2019s mass timber is having its moment. More than<span class=\"ellipsis\">\u2026</span>",
-      "summary": "Canada\u2019s mass timber is having its moment. More than \u2026",
-      "_excerpt": "Canada\u2019s mass timber is having its moment. More than \u2026",
-      "date_published": "2026-10-14T16:44:41+00:00",
-      "authors": [
-        {
-          "name": "Canadian Forest Industries",
-          "url": "https://www.woodbusiness.ca"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 55,
-      "_relevance": 80,
-      "_local": 20,
-      "_theme_score": 81,
-      "_theme_score_raw": 9,
-      "_composite_podcast": 57,
-      "_keyword_matches": 0,
-      "_category": "design",
-      "_source_category": "design",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.woodbusiness.ca/wp-content/uploads/2026/10/Monika-Patel-FSC-Headshot-420x315.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 63
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-20",
-    "target_weekday": 1,
-    "target_focus_slug": "forestry",
-    "target_focus_name": "Forestry & Timber",
-    "status": "released",
-    "release_date": "2026-10-20"
   },
   "https://krebsonsecurity.com/2026/10/u-k-sanctions-cryptomus-for-ru-money-laundering/": {
     "article": {
@@ -1414,7 +1379,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://wltribune.com/2026/10/11/williams-lake-mustangs-bounce-back-from-kamloops-storm-loss-with-win-over-osoyoos-coyotes/": {
     "article": {
@@ -1634,7 +1600,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://farmonaut.com/case-study/sugarcane-irrigation-scheduling-satellite-case-study": {
     "article": {
@@ -1791,7 +1758,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.theverge.com/science/1013954/fossil-fuel-power-infrastructure-data-centers-report": {
     "article": {
@@ -1996,7 +1964,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.neowin.net/news/google-is-partnering-with-flo-to-elevate-womens-health/?utm_source=rss": {
     "article": {
@@ -2147,7 +2116,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-21"
   },
   "https://www.cnet.com/tech/mobile/smartphone-shipments-q3-2026-counterpoint-research/": {
     "article": {
@@ -2224,6 +2194,436 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://newatlas.com/technology/lab-brains-read-braille-direct-dog-biohybrid-computing/": {
+    "article": {
+      "id": "https://newatlas.com/technology/lab-brains-read-braille-direct-dog-biohybrid-computing/",
+      "url": "https://newatlas.com/technology/lab-brains-read-braille-direct-dog-biohybrid-computing/",
+      "title": "[New Atlas] Lab-grown brains can now read Braille and guide robot dogs",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Ftechnology%2Flab-brains-read-braille-direct-dog-biohybrid-computing%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Human brain cells are becoming useful components of computing technology\" src=\"https://assets.newatlas.com/dims4/default/db7f014/2147483647/strip/true/crop/6000x4800+0+0/resize/1200x960!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2F58%2F15%2F2a2359b843c2a624efaa278b42fd%2Fpastel-retro-pop-art-engraving-human-brain-with-eye-glasses-illustration-in-side-view-isolated-on-pastel-pink-bg.jpg\"/><p>Guided by millions of years of evolution, our own brain cells know a thing or two about moving through a chaotic world where learning the right move is a matter of life and death.</p><p><a href=\"https://newatlas.com/technology/lab-brains-read-braille-direct-dog-biohybrid-computing/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://newatlas.com/technology/\">Technology</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/biohybrid/\" rel=\"tag\">biohybrid</a>, <a href=\"https://newatlas.com/tag/organoid/\" rel=\"tag\">organoid</a>, <a href=\"https://newatlas.com/tag/brain-machine-interface/\" rel=\"tag\">Brain Machine Interface</a>, <a href=\"https://newatlas.com/tag/future-robot/\" rel=\"tag\">Future Robot</a>, <a href=\"https://newatlas.com/tag/neurons/\" rel=\"tag\">neurons</a></p></p>",
+      "summary": "Guided by millions of years of evolution, our own brain cells know a thing or two about moving through a chaotic world where learning the right move is a matter of life and death. Continue Reading Category: Technology Tags: biohybrid , organoid , Brain Machine Interface , Future Robot , neurons",
+      "_excerpt": "Guided by millions of years of evolution, our own brain cells know a thing or two about moving through a chaotic world where learning the right move is a matter of life and death. Continue Reading Category: Technology Tags: biohybrid , organoid , Brain Machine Interface , Future Robot , neurons",
+      "date_published": "2026-10-20T06:02:00+00:00",
+      "authors": [
+        {
+          "name": "New Atlas",
+          "url": "https://newatlas.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 95,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 81,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-10-25",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.aptnnews.ca/national-news/mother-of-first-nation-woman-who-couldnt-get-medical-transport-and-died-seeks-reform/": {
+    "article": {
+      "id": "https://www.aptnnews.ca/national-news/mother-of-first-nation-woman-who-couldnt-get-medical-transport-and-died-seeks-reform/",
+      "url": "https://www.aptnnews.ca/national-news/mother-of-first-nation-woman-who-couldnt-get-medical-transport-and-died-seeks-reform/",
+      "title": "[APTN News] Mother of First Nation woman who couldn\u2019t get medical transport and died seeks reform",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Fnational-news%2Fmother-of-first-nation-woman-who-couldnt-get-medical-transport-and-died-seeks-reform%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>If only. It\u2019s a phrase that plays over and over again in Eva Mamakwa\u2019s mind....</p>\n<p>The post <a href=\"https://www.aptnnews.ca/national-news/mother-of-first-nation-woman-who-couldnt-get-medical-transport-and-died-seeks-reform/\">Mother of First Nation woman who couldn\u2019t get medical transport and died seeks reform</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
+      "summary": "If only. It\u2019s a phrase that plays over and over again in Eva Mamakwa\u2019s mind.... The post Mother of First Nation woman who couldn\u2019t get medical transport and died seeks reform appeared first on APTN News .",
+      "_excerpt": "If only. It\u2019s a phrase that plays over and over again in Eva Mamakwa\u2019s mind.... The post Mother of First Nation woman who couldn\u2019t get medical transport and died seeks reform appeared first on APTN News .",
+      "date_published": "2026-10-20T22:16:36+00:00",
+      "authors": [
+        {
+          "name": "APTN News",
+          "url": "https://www.aptnnews.ca"
+        }
+      ],
+      "ai_score": 53,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 95,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 81,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 53
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-10-22",
+    "target_weekday": 3,
+    "target_focus_slug": "language-culture",
+    "target_focus_name": "Language & Culture",
+    "status": "held"
+  },
+  "https://www.sciencedaily.com/releases/2026/10/261019093442.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/10/261019093442.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261019093442.htm",
+      "title": "[ScienceDaily] Astronomers uncover new secrets of the Universe\u2019s first five minutes",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261019093442.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nScientists have achieved a major breakthrough in understanding the Universe\u2019s earliest moments, measuring the amount of helium formed in the first five minutes after the Big Bang with unprecedented precision. Using one of the world\u2019s most powerful telescopes, an international team studied 15 remarkably pristine galaxies that act as cosmic time capsules, preserving clues from nearly 13.8 billion years ago.",
+      "summary": "Scientists have achieved a major breakthrough in understanding the Universe\u2019s earliest moments, measuring the amount of helium formed in the first five minutes after the Big Bang with unprecedented precision. Using one of the world\u2019s most powerful telescopes, an international team studied 15",
+      "_excerpt": "Scientists have achieved a major breakthrough in understanding the Universe\u2019s earliest moments, measuring the amount of helium formed in the first five minutes after the Big Bang with unprecedented precision. Using one of the world\u2019s most powerful telescopes, an international team studied 15 remarkably pristine galaxies that act as cosmic time capsules, preserving clues from nearly 13.8 billion years ago.",
+      "date_published": "2026-10-20T12:34:15+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 44,
+      "_quality": 68,
+      "_relevance": 50,
+      "_local": 0,
+      "_theme_score": 91,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 80,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 44
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.sciencedaily.com/releases/2026/10/261018205053.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/10/261018205053.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261018205053.htm",
+      "title": "[ScienceDaily] Scientists reach the ultimate quantum limit on a surface",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261018205053.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nScientists have achieved a quantum breakthrough by creating an ultra-clean surface where individual molecules can maintain their delicate quantum properties at the fundamental limit. The discovery could unlock unprecedented control over molecules and help drive the next generation of quantum technologies.",
+      "summary": "Scientists have achieved a quantum breakthrough by creating an ultra-clean surface where individual molecules can maintain their delicate quantum properties at the fundamental limit. The discovery could unlock unprecedented control over molecules and help drive the next generation of quantum",
+      "_excerpt": "Scientists have achieved a quantum breakthrough by creating an ultra-clean surface where individual molecules can maintain their delicate quantum properties at the fundamental limit. The discovery could unlock unprecedented control over molecules and help drive the next generation of quantum technologies.",
+      "date_published": "2026-10-20T03:02:41+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 91,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 77,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_boosted_score": 50
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.aptnnews.ca/national-news/first-nations-shortchanged-ballots-in-alberta-referendum-calling-for-change-in-future-votes/": {
+    "article": {
+      "id": "https://www.aptnnews.ca/national-news/first-nations-shortchanged-ballots-in-alberta-referendum-calling-for-change-in-future-votes/",
+      "url": "https://www.aptnnews.ca/national-news/first-nations-shortchanged-ballots-in-alberta-referendum-calling-for-change-in-future-votes/",
+      "title": "[APTN News] First Nations shortchanged ballots in Alberta referendum, calling for change in future votes",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Fnational-news%2Ffirst-nations-shortchanged-ballots-in-alberta-referendum-calling-for-change-in-future-votes%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Samson Cree Nation, Siksika among nations reporting not enough ballots for all voters.</p>\n<p>The post <a href=\"https://www.aptnnews.ca/national-news/first-nations-shortchanged-ballots-in-alberta-referendum-calling-for-change-in-future-votes/\">First Nations shortchanged ballots in Alberta referendum, calling for change in future votes</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
+      "summary": "Samson Cree Nation, Siksika among nations reporting not enough ballots for all voters. The post First Nations shortchanged ballots in Alberta referendum, calling for change in future votes appeared first on APTN News .",
+      "_excerpt": "Samson Cree Nation, Siksika among nations reporting not enough ballots for all voters. The post First Nations shortchanged ballots in Alberta referendum, calling for change in future votes appeared first on APTN News .",
+      "date_published": "2026-10-20T18:01:18+00:00",
+      "authors": [
+        {
+          "name": "APTN News",
+          "url": "https://www.aptnnews.ca"
+        }
+      ],
+      "ai_score": 45,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 91,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 77,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_boosted_score": 45
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-10-22",
+    "target_weekday": 3,
+    "target_focus_slug": "language-culture",
+    "target_focus_name": "Language & Culture",
+    "status": "held"
+  },
+  "https://www.niemanlab.org/2026/10/two-out-of-five-americans-are-regularly-getting-their-news-on-facebook/": {
+    "article": {
+      "id": "https://www.niemanlab.org/2026/10/two-out-of-five-americans-are-regularly-getting-their-news-on-facebook/",
+      "url": "https://www.niemanlab.org/2026/10/two-out-of-five-americans-are-regularly-getting-their-news-on-facebook/",
+      "title": "[Nieman Lab] Two out of five Americans regularly get their news on Facebook",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.niemanlab.org%2F2026%2F10%2Ftwo-out-of-five-americans-are-regularly-getting-their-news-on-facebook%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDespite what my Facebook feed looks like, the platform\u2019s not just for AI fruit videos and birthday posts. According to data from the Pew Research Center published Monday, 40% of adults in the United States regularly get their news from Facebook. That\u2019s up from 36% in 2020, signaling the continued stability of the platform as...",
+      "summary": "Despite what my Facebook feed looks like, the platform\u2019s not just for AI fruit videos and birthday posts. According to data from the Pew Research Center published Monday, 40% of adults in the United States regularly get their news from Facebook. That\u2019s up from 36% in 2020, signaling the continued",
+      "_excerpt": "Despite what my Facebook feed looks like, the platform\u2019s not just for AI fruit videos and birthday posts. According to data from the Pew Research Center published Monday, 40% of adults in the United States regularly get their news from Facebook. That\u2019s up from 36% in 2020, signaling the continued stability of the platform as...",
+      "date_published": "2026-10-20T19:07:52+00:00",
+      "authors": [
+        {
+          "name": "Nieman Lab",
+          "url": "https://www.niemanlab.org"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 86,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 75,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/": {
+    "article": {
+      "id": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/",
+      "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/",
+      "title": "[Outside Online] I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Foutdoor-adventure%2Fexploration-survival%2Fmoab-240-kubala%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like.\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/Aaron2.jpg?width=1200\"/></figure>\n<p>Trail runner Aaron Kubala was out in front at the Moab 240 when a dangerous storm transformed the race into a survival situation. Kubala explains what it was like to endure severe cold, deadly winds, and falling trees. </p>\n<p>The post <a href=\"https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/\">I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like.</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
+      "summary": "Trail runner Aaron Kubala was out in front at the Moab 240 when a dangerous storm transformed the race into a survival situation. Kubala explains what it was like to endure severe cold, deadly winds, and falling trees. The post I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was",
+      "_excerpt": "Trail runner Aaron Kubala was out in front at the Moab 240 when a dangerous storm transformed the race into a survival situation. Kubala explains what it was like to endure severe cold, deadly winds, and falling trees. The post I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like. appeared first on Outside Online .",
+      "date_published": "2026-10-20T19:55:36+00:00",
+      "authors": [
+        {
+          "name": "Outside Online",
+          "url": "https://www.outsideonline.com"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 76,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 67,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 57
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-10-23",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "held"
+  },
+  "https://hyperallergic.com/v-a-museum-staff-set-to-strike-across-all-four-london-sites/": {
+    "article": {
+      "id": "https://hyperallergic.com/v-a-museum-staff-set-to-strike-across-all-four-london-sites/",
+      "url": "https://hyperallergic.com/v-a-museum-staff-set-to-strike-across-all-four-london-sites/",
+      "title": "[Hyperallergic] V&A Museum Staff Set to Strike Across All Four London Sites",
+      "content_html": "<img src=\"https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/10/55550088825_f5499ffc93_k.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhyperallergic.com%2Fv-a-museum-staff-set-to-strike-across-all-four-london-sites%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAllegations of \u201cAmazon-style\u201d working conditions and calls for pay raises prompted unionized workers to authorize yet another strike at the UK museum network.",
+      "summary": "Allegations of \u201cAmazon-style\u201d working conditions and calls for pay raises prompted unionized workers to authorize yet another strike at the UK museum network.",
+      "_excerpt": "Allegations of \u201cAmazon-style\u201d working conditions and calls for pay raises prompted unionized workers to authorize yet another strike at the UK museum network.",
+      "date_published": "2026-10-20T19:27:24+00:00",
+      "authors": [
+        {
+          "name": "Hyperallergic",
+          "url": "https://hyperallergic.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 86,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/10/55550088825_f5499ffc93_k.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 60
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-10-26",
+    "target_weekday": 0,
+    "target_focus_slug": "visual-arts-heritage",
+    "target_focus_name": "Visual Arts & Heritage",
+    "status": "held"
+  },
+  "https://arstechnica.com/security/2026/10/the-internet-goes-on-high-alert-after-discovery-of-8-compromised-tls-certs/": {
+    "article": {
+      "id": "https://arstechnica.com/security/2026/10/the-internet-goes-on-high-alert-after-discovery-of-8-compromised-tls-certs/",
+      "url": "https://arstechnica.com/security/2026/10/the-internet-goes-on-high-alert-after-discovery-of-8-compromised-tls-certs/",
+      "title": "[Ars Technica Technology Lab] The Internet goes on high alert after discovery of 8 compromised TLS certs",
+      "content_html": "<img src=\"https://cdn.arstechnica.net/wp-content/uploads/2026/07/broken-encryption-lock-500x500.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Farstechnica.com%2Fsecurity%2F2026%2F10%2Fthe-internet-goes-on-high-alert-after-discovery-of-8-compromised-tls-certs%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIntermediate certs allow anyone to mint web credentials for any Internet server.",
+      "summary": "Intermediate certs allow anyone to mint web credentials for any Internet server.",
+      "_excerpt": "Intermediate certs allow anyone to mint web credentials for any Internet server.",
+      "date_published": "2026-10-20T19:47:35+00:00",
+      "authors": [
+        {
+          "name": "Ars Technica Technology Lab",
+          "url": "https://arstechnica.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 81,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 58,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/broken-encryption-lock-500x500.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 60
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/": {
+    "article": {
+      "id": "https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/",
+      "url": "https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/",
+      "title": "[Canadian Architect] City of Toronto and DIALOG announce Western Beaches Public Realm Plan",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fcanadianarchitect.com%2Fdialog-and-city-of-toronto-announce-western-beaches-public-realm-plan%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe City of Toronto, in collaboration with DIALOG, has recently announced their Western Beaches Public Realm Plan, a long-term vision for revitalizing one of Toronto\u2019s waterfront park systems, from Ontario Place to the Humber River. For this project, Two Row Architect served as the Indigenous design and engagement consultant. The proposed plan looks beyond individual\u2026",
+      "summary": "The City of Toronto, in collaboration with DIALOG, has recently announced their Western Beaches Public Realm Plan, a long-term vision for revitalizing one of Toronto\u2019s waterfront park systems, from Ontario Place to the Humber River. For this project, Two Row Architect served as the Indigenous",
+      "_excerpt": "The City of Toronto, in collaboration with DIALOG, has recently announced their Western Beaches Public Realm Plan, a long-term vision for revitalizing one of Toronto\u2019s waterfront park systems, from Ontario Place to the Humber River. For this project, Two Row Architect served as the Indigenous design and engagement consultant. The proposed plan looks beyond individual\u2026",
+      "date_published": "2026-10-13T14:00:44+00:00",
+      "authors": [
+        {
+          "name": "Canadian Architect",
+          "url": "https://www.canadianarchitect.com"
+        }
+      ],
+      "ai_score": 41,
+      "_quality": 55,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 59,
+      "_theme_score_raw": 2,
+      "_composite_podcast": 55,
+      "_keyword_matches": 0,
+      "_category": "design",
+      "_source_category": "design",
+      "_is_bonus": true,
+      "_boosted_score": 41
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-10-23",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "held"
+  },
+  "https://hyperallergic.com/jonathan-nez-on-indigenous-perseverance/": {
+    "article": {
+      "id": "https://hyperallergic.com/jonathan-nez-on-indigenous-perseverance/",
+      "url": "https://hyperallergic.com/jonathan-nez-on-indigenous-perseverance/",
+      "title": "[Hyperallergic] Jonathan Nez on Indigenous Perseverance",
+      "content_html": "<img src=\"https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/10/Jonathan-Nez-Headshot-3--7--2.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhyperallergic.com%2Fjonathan-nez-on-indigenous-perseverance%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe former Navajo Nation president running for Congress in Arizona speaks to Hyperallergic about his upbringing, how Din\u00e9 culture shapes his political thinking, and the importance of historical memory.",
+      "summary": "The former Navajo Nation president running for Congress in Arizona speaks to Hyperallergic about his upbringing, how Din\u00e9 culture shapes his political thinking, and the importance of historical memory.",
+      "_excerpt": "The former Navajo Nation president running for Congress in Arizona speaks to Hyperallergic about his upbringing, how Din\u00e9 culture shapes his political thinking, and the importance of historical memory.",
+      "date_published": "2026-10-13T15:59:52+00:00",
+      "authors": [
+        {
+          "name": "Hyperallergic",
+          "url": "https://hyperallergic.com"
+        }
+      ],
+      "ai_score": 46,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 81,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 54,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/10/Jonathan-Nez-Headshot-3--7--2.jpg",
+      "_boosted_score": 46
+    },
+    "held_date": "2026-10-21",
+    "target_date": "2026-10-22",
+    "target_weekday": 3,
+    "target_focus_slug": "language-culture",
+    "target_focus_name": "Language & Culture",
     "status": "held"
   }
 }
