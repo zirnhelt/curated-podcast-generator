@@ -354,3 +354,35 @@ class TestScoreScriptConfigWiring:
         q = pg.score_script(_script(("RILEY", "That is a genuinely surprising number.")))
         assert q["pattern_hits"]["hard_banned"] == 1
         assert q["total_hits"] == 0
+
+
+class TestVocabularyTicsAreTheVerbNotTheNoun:
+    """2026-09-16 to 10-20: every ai_vocabulary_tics hit that shipped was the
+    noun ("that's leverage", "its own ecosystem"), each one sent to the polish
+    to be rewritten. The tic is the verb and the jargon "ecosystem of"."""
+
+    @staticmethod
+    def _hits(text: str) -> int:
+        import re
+        pats = config_loader.load_ai_tells_config()["patterns"]["ai_vocabulary_tics"]
+        return sum(len(re.findall(p, text, re.I)) for p in pats)
+
+    @pytest.mark.parametrize("line", [
+        "Next season, that's leverage.",
+        "The leverage model is doing its job.",
+        "A region like this has leverage it isn't using.",
+        "Helping a town live within its own ecosystem.",
+        "Smoke changes how the forest ecosystem recovers.",
+    ])
+    def test_nouns_from_aired_scripts_pass(self, line: str) -> None:
+        assert self._hits(line) == 0
+
+    @pytest.mark.parametrize("line", [
+        "We can leverage our data to do more.",
+        "They are leveraging the network.",
+        "It leverages existing towers.",
+        "A full ecosystem of accessories.",
+        "Let's delve into it.",
+    ])
+    def test_the_tics_still_count(self, line: str) -> None:
+        assert self._hits(line) == 1

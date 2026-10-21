@@ -8615,7 +8615,7 @@ _FALLBACK_TELL_PATTERNS = {
         r"\bwe'll be honest about what we (?:don't|do not) know\b",
     ],
     "ai_vocabulary_tics": [
-        r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\b",
+        r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:es|ing|ed)|leverage(?=\s+(?:the|our|their|its|this|these|those|your|his|her|my|a|an|existing|local)\b)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem(?=\s+of\b))\b",
     ],
     "serves_as_dodge": [
         r"\bserves as\b", r"\bstands as\b", r"\b(?:marks|represents) (?:a|an|the)\b",
