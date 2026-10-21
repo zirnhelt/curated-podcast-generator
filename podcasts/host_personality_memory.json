@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] The new digital ID apps for age verification in ",
-      "[TechRadar] Microsoft, Google took down $66 million cybercri",
       "[Business Insider] Laid-off tech workers from Google, Micros",
       "[TechRadar] Pre-capture is the best wildlife photography tri",
       "[Tom's Hardware] US AI data centers projected to become the ",
@@ -10,7 +8,9 @@
       "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
       "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
       "[Williams Lake Tribune] Students explore science, technology",
-      "[TechCrunch] Mosqitter is turning its mosquito traps into an"
+      "[TechCrunch] Mosqitter is turning its mosquito traps into an",
+      "[Business Insider] I broke into tech sales after working in ",
+      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -150,11 +150,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-20",
-        "clue": "community-trust:+ \u2014 Audit trail seen as how mills regain belief",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-19",
         "clue": "evidence-bar:~ \u2014 separates disputed motive from verified detention counts",
         "occurrences": 1
@@ -162,6 +157,11 @@
       {
         "date": "2026-10-20",
         "clue": "permit-queue:+ \u2014 Insists permits are the lever Province can move",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-21",
+        "clue": "structural-lens:~ \u2014 owning the layer only matters if record exports",
         "occurrences": 1
       }
     ],
@@ -441,6 +441,16 @@
       {
         "date": "2026-10-19",
         "clue": "pilot-skepticism:+ \u2014 five-week test is not a permanent budget line",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-21",
+        "clue": "evidence-bar:+ \u2014 demos aren't power systems; measure after winters",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-21",
+        "clue": "community-trust:~ \u2014 trust in one kid is fragile",
         "occurrences": 1
       }
     ],

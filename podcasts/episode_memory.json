@@ -1,24 +1,4 @@
 {
-  "2026-09-15": {
-    "timestamp": 1789460831.596351,
-    "topics": [
-      "[Williams Lake Tribune] 14 candidates filed for School Distr",
-      "[100 Mile Free Press] 10 candidates for councillor, 2 for ma",
-      "[My Cariboo Now] Former Williams Lake Mayor wants his old jo",
-      "[Quesnel Cariboo Observer] 3 mayor, 18 council candidates in",
-      "[My Cariboo Now] Donegal Wilson is the 7th MLA to join new B",
-      "[RealAgriculture] Will the Ranchers First Initiative actuall",
-      "[The Guardian Global Development] \u2018Carbon fever\u2019 threatens h",
-      "[My East Kootenay Now] Columbia Basin farms turn to solar po"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-15",
-    "focus": "agriculture-ranching",
-    "focus_name": "Agriculture & Ranching"
-  },
   "2026-09-16": {
     "timestamp": 1789550857.70355,
     "topics": [
@@ -711,5 +691,26 @@
     "date": "2026-10-20",
     "focus": "forestry",
     "focus_name": "Forestry & Timber"
+  },
+  "2026-10-21": {
+    "timestamp": 1792570915.657294,
+    "topics": [
+      "[Williams Lake Tribune] Where the parties stand on the major",
+      "[My Cariboo Now] Stay-in-Canada option leads Alberta referen",
+      "[Williams Lake Tribune] NDP, Conservatives pitch dozens of U",
+      "[iFixit] How the iPhone Duo\u2019s Crazy Repair Prices Compare",
+      "[Civil Eats] In the Right to Repair Revolt, Nebraska Leads W",
+      "[Global News] Alberta, Saskatchewan premiers shut down Elon ",
+      "[Business Insider] I broke into tech sales after working in ",
+      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-10-21",
+    "focus": "homestead-offgrid",
+    "focus_name": "Homestead & Off-Grid Tech"
   }
 }
