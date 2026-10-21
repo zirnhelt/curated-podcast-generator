@@ -1056,6 +1056,11 @@ SIGNAL_QUIET_DAYS = int(os.getenv("ROADMAP_SIGNAL_QUIET_DAYS", "3"))
 # imbalance; the 1.13 that opened a roadmap item is two people talking.
 CITATION_FLOOR = 0.5
 VOICE_RATIO_BAND = (0.8, 1.25)
+# Shipped tell hits that are a signal: more than the count that sends the polish
+# to Opus (podcast_generator.OPUS_QUALITY_HIT_THRESHOLD; a test pins the two
+# together). One or two hits are the scan counting idiom, 28 of 40 scripts
+# 2026-09-01..10-11 had at least one, so the item could not stay closed.
+AI_TELL_SIGNAL_ABOVE = 3
 _CLOSED_SHOWN = 25
 
 _FINDING_SCHEMA = {
@@ -1136,7 +1141,7 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
     quality = facts.get("quality")
     if isinstance(quality, list) and len(quality) == 3:
         hits, ratio = quality[0], quality[1]
-        if hits:
+        if hits > AI_TELL_SIGNAL_ABOVE:
             signals["ai-tells-shipped"] = f"{hits} AI-tell pattern hit(s) in the shipped script"
         if not VOICE_RATIO_BAND[0] <= ratio <= VOICE_RATIO_BAND[1]:
             signals["voice-ratio"] = f"Casey/Riley voice ratio {ratio}"
