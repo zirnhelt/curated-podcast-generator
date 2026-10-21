@@ -742,6 +742,18 @@ class TestMaskedBraces:
         assert facts["spend_by_service"] == {"anthropic": 0.5, "openai-tts": 0.25}
         assert "2 total: claude 2" in episode_review.render_numbers_table(facts)
 
+    def test_folded_closing_braces_from_a_real_log(self):
+        """2026-10-21: the masker folded the closing `}}` into one `***`."""
+        log = ('2026-10-21T08:21:57.7785162Z 💰 Spend by service: ***"input_tokens": 64627, "calls": '
+               '***"brave-search": 9, "claude": 11, "cohere": 5***, "usd": ***"anthropic": 0.1683, '
+               '"brave-search": 0.045, "cohere": 0.003***\n'
+               '2026-10-21T08:26:16.3728955Z 💰 Spend by service: ***"input_tokens": 0, "calls": '
+               '***"openai-tts": 89***, "usd": ***"openai-tts": 0.2929***\n')
+        facts = episode_review.scan_log(log)
+        assert facts["spend_by_service"] == {"anthropic": 0.1683, "brave-search": 0.045,
+                                             "cohere": 0.003, "openai-tts": 0.2929}
+        assert facts["spend"][0] == "64,627"
+
 
 class TestVerdictAndActions:
     RUN_OK = {"trigger": "Primary", "conclusion": "success", "created": "1:05 AM Pacific"}
