@@ -171,18 +171,19 @@
       "title": "Ten roundup stories remained out of sequence after one correction pass.",
       "detail": "On 2026-08-29, the script/roundup-order segment failed to sort correctly on the first attempt. After one repair pass, 10 stories still aired after a later block. The pipeline did not retry. This follows the pattern noted in the already-tracked item roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a prior run. The repair logic is insufficient; either increase retry attempts on sort failures or add a validation gate that blocks publish if any story lands in the wrong temporal position.",
       "source": "review",
-      "status": "retired",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-08-29",
       "seen": [
         "2026-08-29",
         "2026-10-05",
         "2026-10-12",
-        "2026-10-16"
+        "2026-10-16",
+        "2026-10-21"
       ],
-      "last_seen": "2026-10-16",
+      "last_seen": "2026-10-21",
       "signal": "degraded:script/roundup-order",
-      "signal_seen": "2026-10-16"
+      "signal_seen": "2026-10-21"
     },
     {
       "id": "gemini-project-spend-cap-blocks-rendering",
@@ -614,8 +615,8 @@
       "title": "One deep dive source has no backing URL in the pipeline record.",
       "detail": "The deep dive matched only 2 of 3 citations on October 6, compared to 14 of 15 for the roundup. No source URL appears in the facts for the third deep dive story. The pipeline may have failed to retrieve the URL or generated the story from a headline without one. This splits the data integrity problem: roundup sources are traceable; deep dive sources are not.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-10-06",
       "seen": [
         "2026-10-06"
@@ -640,16 +641,17 @@
       "title": "Four thin roundup stories reached the script after Kagi Extract returned no source text for them.",
       "detail": "The degrade row shows Kagi Extract returned no page for 4 thin roundup stories on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were cut by the airtime budget, so the thinnest sources were the ones that passed through. The pipeline should either drop stories whose extraction failed or mark them as unverified before scripting. This is the degradation whose handling the facts show as wrong.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-10-19",
       "seen": [
-        "2026-10-19"
+        "2026-10-19",
+        "2026-10-21"
       ],
       "signal": "degraded:script/kagi-extract",
-      "signal_seen": "2026-10-19",
-      "last_seen": "2026-10-19"
+      "signal_seen": "2026-10-21",
+      "last_seen": "2026-10-21"
     }
   ],
-  "updated": "2026-10-20"
+  "updated": "2026-10-21"
 }

@@ -41,10 +41,19 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-04..2026-10-20) — 2 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-21) — 4 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
+- [ ] **Ten roundup stories remained out of sequence after one correction pass.** On 2026-08-29,
+      the script/roundup-order segment failed to sort correctly on the first attempt. After one
+      repair pass, 10 stories still aired after a later block. The pipeline did not retry. This
+      follows the pattern noted in the already-tracked item
+      roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a
+      prior run. The repair logic is insufficient; either increase retry attempts on sort
+      failures or add a validation gate that blocks publish if any story lands in the wrong
+      temporal position. (signal `degraded:script/roundup-order`; seen in 2 reviews, latest
+      2026-10-21)
 - [ ] **Three instances of AI-tell language patterns passed quality checks and shipped in the
       final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
       shipped script. These phrases remained in the audio and RSS feed. The detection system is
@@ -59,6 +68,13 @@ close one; it comes back only if the reviews raise it 2 more times._
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
       degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 4
       reviews, latest 2026-10-19)
+- [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
+      for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
+      on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were
+      cut by the airtime budget, so the thinnest sources were the ones that passed through. The
+      pipeline should either drop stories whose extraction failed or mark them as unverified
+      before scripting. This is the degradation whose handling the facts show as wrong. (signal
+      `degraded:script/kagi-extract`; seen in 2 reviews, latest 2026-10-21)
 
 <!-- reviews:end -->
 
