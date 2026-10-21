@@ -4261,6 +4261,25 @@ class TestCheckRoundupOrder:
         violations = check_roundup_order(script, articles)
         assert [v["block"] for v in violations] == ["local"]
 
+    def test_a_shared_outlet_does_not_place_the_kicker_early(self):
+        """2026-10-21: the Hackaday kicker aired last, but its outlet name
+        first appeared in the Hackaday tail story's turn, so a theme story
+        aired before the kicker read as aired after it."""
+        articles = [
+            {"title": "[Hackster News] Giving the Nokia 3310 a New Lease on Life",
+             "authors": [{"name": "Hackster News"}], "_roundup_block": "theme_adjacent"},
+            {"title": "[Hackaday] Making Photovoltaic Solar Cells with a Microwave",
+             "authors": [{"name": "Hackaday"}], "_roundup_block": "theme"},
+            {"title": "[Hackaday] Using Ultrasound and Microbubbles to Make Tiny Devices",
+             "authors": [{"name": "Hackaday"}], "_roundup_block": "kicker"},
+        ]
+        script = _ROUNDUP_SCRIPT.format(
+            first="Hackaday covers homemade solar cells baked in a microwave.",
+            second="Hackster News says the Nokia 3310 got a second life.",
+            third="Last one: ultrasound steers microbubbles in a tiny device.",
+        )
+        assert check_roundup_order(script, articles) == []
+
     def test_missing_roundup_section_is_a_no_op(self):
         assert check_roundup_order("**WELCOME**\n\n**CASEY:** Hi.", _order_articles()) == []
 
@@ -6398,6 +6417,44 @@ class TestSparseFilterBudget:
         assert posts == [{"pages": [{"url": "https://x.test/a"}]}]  # one request, https only
         assert kept[0]["_body"].startswith("The regional district") and "Logo" not in kept[0]["_body"]
         assert "_body_via" not in kept[0]
+
+    def test_kagi_extract_pages_the_sites_refuse_do_not_degrade(self, monkeypatch, capsys):
+        """2026-10-19 and -21: four refused pages is an ordinary night."""
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(name))
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": f"https://x.test/{i}", "error": "No data returned"}
+                                 for i in range(4)]}
+        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
+        articles = [{"title": f"S{i}", "url": f"https://x.test/{i}"} for i in range(4)]
+        assert pg._extract_roundup_stories(articles) == 0
+        assert rows == []
+        assert "4× page error: No data returned" in capsys.readouterr().out
+
+    def test_kagi_extract_reply_that_matches_no_url_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": "https://x.test/0/", "markdown": "text"}]}
+        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
+        articles = [{"title": "S0", "url": "https://x.test/0"},
+                    {"title": "S1", "url": "https://x.test/1"}]
+        pg._extract_roundup_stories(articles)
+        assert rows == ["Kagi Extract reply matched no page for 2 of 2 URLs sent"]
 
     def test_kagi_extract_stops_at_its_page_budget(self, monkeypatch):
         import podcast_generator as pg

@@ -4168,6 +4168,11 @@ def _extract_roundup_stories(articles: list) -> int:
     so a story whose own page renders here never spends from the shared Search cap.
     The page is the story's own, so no `_body_via`. Capped by KAGI_EXTRACT_CALL_LIMIT
     pages a run; a failed request or a 402 falls back to Brave and degrades.
+    A page the site refuses is the designed Brave path, not a degradation: about
+    half of them miss (paywalls, bot walls), so four misses in a row is an
+    ordinary night (2026-10-19, -21); the reasons are logged. What degrades is a
+    reply that can't be matched to the pages sent. An account-level refusal
+    arrives as an HTTP error and degrades above.
     """
     key = os.getenv("KAGI_API_KEY")
     if not key or KAGI_EXTRACT_CALL_LIMIT <= 0:
@@ -4177,8 +4182,8 @@ def _extract_roundup_stories(articles: list) -> int:
             if a.get("url") and len(a.get("_body", "") or "") < NEWS_BODY_RICH_CHARS][:max(left, 0)]
     if not thin:
         return 0
-    read = grew = 0
-    failed = False
+    read = grew = unmatched = 0
+    errors: list = []
     for i in range(0, len(thin), KAGI_EXTRACT_BATCH):
         batch = thin[i:i + KAGI_EXTRACT_BATCH]
         # Extract takes https:// only.
@@ -4199,12 +4204,15 @@ def _extract_roundup_stories(articles: list) -> int:
             degrade("script/kagi-extract",
                     f"Kagi Extract request failed ({status or type(e).__name__}); "
                     "thin roundup stories fall back to Brave title search")
-            failed = True
             break
         by_url = {p.get("url"): p for p in data if isinstance(p, dict) and p.get("url")}
         for j, (a, url) in enumerate(zip(batch, urls)):
             page = by_url.get(url) or (data[j] if not by_url and j < len(data) else None)
-            if not isinstance(page, dict) or page.get("error"):
+            if not isinstance(page, dict):
+                unmatched += 1
+                continue
+            if page.get("error"):
+                errors.append(str(page["error"])[:80])
                 continue
             read += 1
             text = _markdown_prose(page.get("markdown") or "")[:2000]
@@ -4213,11 +4221,13 @@ def _extract_roundup_stories(articles: list) -> int:
                 a.pop("_body_via", None)
                 grew += 1
                 _KAGI_EXTRACT_STATE["used"] = True
-    if read == 0 and not failed:
-        degrade("script/kagi-extract",
-                f"Kagi Extract returned no page for {len(thin)} thin roundup stories")
     print(f"  📰 Kagi Extract: {grew}/{len(thin)} thin roundup stories read from their own page "
           f"(~${len(thin) * _FLAT_USD_PER_UNIT['kagi-extract']:.3f})")
+    for reason, n in Counter(errors).most_common():
+        print(f"     {n}× page error: {reason}")
+    if unmatched:
+        degrade("script/kagi-extract",
+                f"Kagi Extract reply matched no page for {unmatched} of {len(thin)} URLs sent")
     return read
 
 
@@ -7083,13 +7093,18 @@ def _slice_roundup(script: str) -> tuple:
             "\n".join(lines[end:]))
 
 
-def _article_first_mention(article: dict, turns: list) -> int | None:
+def _article_first_mention(article: dict, turns: list,
+                           match_source: bool = True) -> int | None:
     """Index of the first roundup turn that covers this article, or None.
 
     Matches on the outlet name or on two content words from the headline —
     one word alone ('mining' on a mining day) collides across stories.
+    `match_source=False` when another story in the pool shares the outlet: on
+    2026-10-21 the Hackaday kicker, aired last, "first aired" at the earlier
+    Hackaday solar-cell turn, and two reorder passes chased a misorder that
+    wasn't there.
     """
-    source = _article_source_name(article).lower()
+    source = _article_source_name(article).lower() if match_source else ""
     title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
     title_words = _significant_words(title)
     for i, turn in enumerate(turns):
@@ -7122,6 +7137,7 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
     if not turns:
         return []
 
+    outlets = Counter(_article_source_name(a).lower() for a in ordered_articles)
     placed = []
     for a in ordered_articles:
         # Every story is order-checked, bonus picks included: they now carry a
@@ -7129,7 +7145,8 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
         # regional), and the rank comparison below already expects the tail and
         # the kicker to air late. Skipping them used to hide a bonus story that
         # opened the show ahead of the local block.
-        pos = _article_first_mention(a, turns)
+        pos = _article_first_mention(
+            a, turns, match_source=outlets[_article_source_name(a).lower()] == 1)
         if pos is not None:
             placed.append((pos, a))
 

@@ -361,6 +361,13 @@ order: 2 violations before, 2 after. The second pass appends `roundup_reorder.re
 naming each story `check_roundup_order` still finds out of place with its required position.
 About $0.002 on the days it fires; the miss had been seen three times in six weeks.
 
+**An outlet name places a story only when no other story in the pool shares the outlet**
+(`_article_first_mention`, `match_source`). On 2026-10-21 the Hackaday kicker aired last
+("Last one, from Hackaday…"), but the order check placed it at the earlier Hackaday solar-cell
+turn, so the on-theme Nokia story behind it read as aired after the kicker. Two Sonnet reorder
+passes (~$0.07) returned the roundup unchanged, because it was already in order, and
+`script/roundup-order` degraded. A shared outlet now places by headline words alone.
+
 **Blocks decide what airs together; `_sequence_roundup` decides the order inside one.** The
 discipline clustering above ran on the tail alone — `local` and `theme` were sorted by
 place-name density and keyword density respectively, neither of which says anything about what
@@ -545,3 +552,10 @@ leaves out; the polish cuts such lines (rule (y)), and rule 3e no longer teaches
 doesn't give a specific number". The ballot's SOURCED OR UNSAID "unestablished" line is the one
 exception. `soft_patterns.source_gap_narration` counts what still airs (1–4 a day in the
 2026-10-10..15 scripts) without moving Opus escalation.
+
+**A page Kagi Extract can't read is the designed Brave path, not a degradation** (2026-10-21).
+In its first five nights `_extract_roundup_stories` read 2/5, 3/4, 0/4, 6/8 and 0/4 pages (NYT,
+The Atlantic and Civil Eats are among the misses), and Brave researched every miss. The old
+`read == 0` row fired on two of those nights and reached the roadmap as a fault. Per-page error
+reasons are now logged; `script/kagi-extract` degrades on a failed request or on a reply that
+matches none of the URLs sent, which would mean the API contract moved.
