@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 18, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 18, 2026</h1>
+  <p class="meta">Published October 18, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39110140984">39110140984</a>.</em></p>
+
+<h3>The short draft that the pipeline sent back twice</h3>
+<p>The first script draft came in at 2694 words against a target of 3400. The pipeline did not ship it. It sent the draft back for expansion, up to two passes, and what shipped was 3423 words. That is 23 words over target, so the expand passes did their job, but the gap is the story: the generator's first attempt ran about 21 percent short and needed the retry loop to reach length.</p>
+<p>The voice split held at 0.87, Casey over Riley, and the AI-tell pattern check recorded zero hits. Neither of those numbers was at risk on this run.</p>
+
+<h3>Two takes came back short from TTS</h3>
+<p>Two text-to-speech takes returned shorter than their word counts predicted. Each was retried once. One retry still came back short. For that segment the pipeline kept the longer of the two takes, so no content was dropped from the episode. The audio ran 22.3 minutes at 20.5 MB.</p>
+<p>The short-take count is two and the still-short retry count is one. The second number does not mean one segment is missing from the audio. It means one segment is the one where the retry did not produce a full-length take, and the longer take was used in its place. Whether that take is complete is not something the run measured.</p>
+
+<h3>The roundup cut 68 stories and the citations did not fully hold</h3>
+<p>The roundup pool was larger than one segment could air. The airtime budget, set by NEWS_ROUNDUP_COUNT, cut 68 stories. The pipeline treats that as expected: the pool is deliberately oversized, and a cut story can air on a day where it fits better.</p>
+<p>The cuts left a visible tension in the citations. Of 18 roundup citations, 14 matched the aired content. Of four deep-dive citations, three matched. So four citations did not align: one in the roundup and one in the deep dive. The facts do not say which citations failed or why, and this review does not guess.</p>
+
+<h3>What the deep dives covered</h3>
+<p>The four deep dives were drawn from the Gulf attacks coverage in the NYT Business feed, a WIRED piece on microplastics reacting with water, a TechCrunch story on Mosqitter's AI-powered mosquito traps, and an NYT Top Stories piece on worlds more habitable than Earth. The episode's debate question asks whether long-term environmental and scientific monitoring should be trusted and acted on before its implications are confirmed, and how such records should be funded, governed, and sustained. The four deep dives are a loose fit for that question, which is a matter of editorial choice, not a pipeline failure.</p>
+
+<h3>Runs and spend</h3>
+<p>The primary run started at 1:05 AM Pacific, zero minutes late, and finished at 1:53 AM Pacific with a success conclusion. Fallback 1 started at 2:05 AM Pacific and finished at 2:06 AM Pacific, also a success. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has no finish time yet. Its conclusion is null. The fallback runs were scheduled as backups, and their successful completion does not by itself show that the primary's output was replaced.</p>
+<p>The slowest step was Deploy to GitHub Pages at 1092 seconds, followed by Checkout repository at 776 seconds and Generate episode script at 491 seconds. Script generation alone consumed 57,310 Anthropic input tokens. The service call counts were brave-search 8, kagi-extract 4, claude 10, and brave-answers 4. The video is 79.3 MB at 22.3 minutes, and the RSS feed now lists 263 episodes.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>4 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.87, 3423 words</td></tr>
+<tr><td>Audio</td><td>22.3 min</td></tr>
+<tr><td>Audio size</td><td>20.5 MB</td></tr>
+<tr><td>Citations matched</td><td>14/18 roundup, 3/4 deep dive</td></tr>
+<tr><td>Feed</td><td>263 episodes</td></tr>
+<tr><td>Anthropic input tokens</td><td>57,310</td></tr>
+<tr><td>API calls</td><td>***'brave-search': 8, 'kagi-extract': 4, 'claude': 10, 'brave-answers': 4***</td></tr>
+</tbody>
+</table>
+</body>
+</html>

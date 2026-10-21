@@ -15,20 +15,31 @@ from typing import Any
 
 CONFIG_DIR = Path(__file__).parent / "config"
 
-# One switch for every Sonnet call in the show. The workflows pass the
-# CLAUDE_SONNET_MODEL repository variable through, so moving the whole show to
-# another Sonnet (or back) is a settings change, not a commit. An unset variable
-# arrives as "", hence `or` rather than a getenv default.
-SONNET_MODEL = os.getenv("CLAUDE_SONNET_MODEL") or "claude-sonnet-5"
+# One switch for every Haiku call in the show. Haiku 5.5 replaced Haiku 4.5 on
+# 2026-10-08 at a tenth of the price ($0.10/$0.50 per MTok). It thinks unless
+# told not to, so its small calls pass thinking=thinking_off(model).
+HAIKU_MODEL = os.getenv("CLAUDE_HAIKU_MODEL") or "claude-haiku-5-5"
+
+# One switch for every Sonnet role in the show (script, polish, cold open,
+# research, anchor, weekly review). The workflows pass the CLAUDE_SONNET_MODEL
+# repository variable through, so moving the whole show to another model (or
+# back) is a settings change, not a commit. An unset variable arrives as "",
+# hence `or` rather than a getenv default. The roles keep the name but default
+# to Haiku 5.5 since 2026-10-08, at a twentieth of Sonnet 5's price; the Opus
+# polish escalation stays the quality backstop. Set the variable to
+# claude-sonnet-5 to move them back.
+SONNET_MODEL = os.getenv("CLAUDE_SONNET_MODEL") or HAIKU_MODEL
 
 
 def thinking_off(model: str) -> dict:
     """The lowest thinking setting `model` accepts, for small structured calls.
 
-    Sonnet 5 takes {"type": "disabled"}. Sonnet 5.5 answers that with a 400 and
-    offers {"type": "between_tools"} instead: no extended thinking, effort `high`
-    or below, and no other field inside `thinking`. Only Sonnet 5.5 accepts
-    between_tools, so the choice has to follow the model, never be hard-coded.
+    Sonnet 5 and Haiku 5.5 take {"type": "disabled"} (Haiku 5.5 only at effort
+    `high` or below; its default is `medium`). Sonnet 5.5 answers that with a
+    400 and offers {"type": "between_tools"} instead: no extended thinking,
+    effort `high` or below, and no other field inside `thinking`. Only Sonnet
+    5.5 accepts between_tools, so the choice has to follow the model, never be
+    hard-coded.
     """
     if model.startswith("claude-sonnet-5-5"):
         return {"type": "between_tools"}
@@ -48,9 +59,9 @@ def json_output_config(schema: dict) -> dict:
     fallbacks stay — a constrained response is still a response that can fail
     to arrive.
 
-    Deliberately carries no `effort` key. Most callers are Haiku calls made
-    through client.messages.create rather than create_message, and Haiku 4.5
-    rejects effort; a caller that wants both passes one merged dict.
+    Deliberately carries no `effort` key: most callers are small Haiku calls
+    made through client.messages.create with thinking off, where the default
+    effort is right. A caller that wants both passes one merged dict.
 
     Every object node is stamped `additionalProperties: false` on the way
     through, because the API rejects the schema outright without it and the

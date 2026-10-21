@@ -26,12 +26,11 @@ from pathlib import Path
 
 import requests
 
-from config_loader import message_text
+from config_loader import HAIKU_MODEL, message_text, thinking_off
 
 PODCASTS_DIR = Path("podcasts")
 CACHE_FILE = PODCASTS_DIR / "twit_inspiration.json"
 CONFIG_FILE = Path("config/twit_sources.json")
-HAIKU_MODEL = "claude-haiku-4-5"
 MAX_BODY_CHARS = 4000
 CACHE_VERSION = 1
 
@@ -190,7 +189,8 @@ def extract_inspiration(episode: dict, page_body: str, client) -> dict | None:
     try:
         response = client.messages.create(
             model=HAIKU_MODEL,
-            max_tokens=400,
+            thinking=thinking_off(HAIKU_MODEL),
+            max_tokens=500,
             system=_SYSTEM,
             messages=[{"role": "user", "content": prompt}],
         )

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 11, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 11, 2026</h1>
+  <p class="meta">Published October 11, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38127132745">38127132745</a>.</em></p>
+
+<h3>The primary run failed at 1:30 AM Pacific</h3>
+<p>The primary run, triggered at 1:05 AM Pacific by the Cloudflare scheduler, ran to completion and returned a failure conclusion. It started on time, with zero minutes of lateness, and finished at 1:30 AM Pacific. The facts record the outcome and the timestamps but do not record which step failed or why, so this review cannot name the cause. The run's log at the URL below is where that detail lives: <code>https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38123593506</code>.</p>
+
+<h3>The first fallback produced the day's episode</h3>
+<p>Fallback 1 fired at 2:05 AM Pacific, also through the Cloudflare scheduler, and succeeded. It was created and finished at 2:05 AM Pacific, so the run took no measurable time at the resolution the facts provide, and it started with zero minutes of lateness. The primary's failure at 1:30 AM is what made this the episode's path. Had the fallback not existed or also failed, the facts show no other output for the day.</p>
+
+<h3>The second fallback is this review's own run</h3>
+<p>Fallback 2 was scheduled for 3:05 AM Pacific and is the run producing this document. It was created on time, with zero minutes late, and has no finish time or conclusion yet. The facts record its status as running this review, so the review cannot report on its outcome. Its URL is <code>https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38130708411</code>.</p>
+
+<h3>Three runs, one scheduler, a fixed ladder</h3>
+<p>The schedule is a primary at 1:05 AM followed by fallbacks at two-hour-minus-a-few-minutes intervals, 2:05 AM and 3:05 AM Pacific. Each rung fired exactly on time. The pipeline does not appear to have been held up by scheduling; the sequence reached the success state through the second rung. The facts say nothing about why the primary failed, so the schedule's correctness is established only for timing, not for the reason the first attempt did not produce output.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+</body>
+</html>

@@ -167,6 +167,16 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
     keeps `EVENT_RESEARCH_SEARCH_LIMIT` (8→12) for follow-ups and gets `fetch_page`
     (`EVENT_PAGE_FETCH_LIMIT`, 6), because a candidate list is a page and a snippet is 200
     characters.
+  - **The profiles were in the feed; the research read directory sites.** The week of
+    2026-10-05 the Tribune ran a Meet the Candidates profile for most of the council field.
+    None reached the 2026-10-10 deep dive: upstream story dedup read the templated headlines
+    as one story (fixed in `super-rss-feed`), and the roll call only knows what search
+    returns, so Whitney Spearing's record came from ZoomInfo. `_candidate_profiles` now
+    looks through everything the feed sent that day (not just what curation kept) for a
+    headline naming a running candidate and reads the page directly, no search, ahead of
+    the agent. The same run spent most of its follow-ups on Sheldon Clare's provincial file
+    while eight local names stayed under NO RECORD FOUND; the sweep instructions now put
+    local names first.
   - **Names-only was too strict.** `roster.records` carries short lines a named outlet
     published on a date (an occupation, a prior office, an acclamation, a withdrawal). They
     render as SOURCED BACKGROUND with that attribution. The candidates' own platform notes
@@ -195,6 +205,21 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
     search to this campaign (Brave `freshness`), so a 2024 race page stops reading as this
     year's field. The deep dive keeps the ordinary day's pass. Only the day's own event
     (Saturday) still shares that pass, because there the ballot is the deep dive.
+  - **Then it researched the same ballot every weekday** (to 2026-10-06). Nominations closed
+    Oct 3 with `candidates` still empty in config, so each weekday the pass rediscovered the
+    whole field from scratch (four roll-call searches, the agent's follow-ups, up to six page
+    reads, a Sonnet loop) and handed the writer the same vote counts and biographies as new.
+    Doerkson's 13,714 aired on four of five days. Once nominations close, the last
+    **complete** pass (its `NO RECORD FOUND` line says none) is reused from
+    `podcasts/ballot_research_cache.json`, headed with the day it was researched
+    (`_ballot_cache_reusable`). It is researched again when it is
+    `BALLOT_RESEARCH_MAX_AGE_DAYS` (7) old, when the event's roster or brief in config
+    changes, or when an election story that brought the event in reads like the field moved
+    (`_ROSTER_CHANGE_RE`: withdraws, resigns, steps down, acclaimed, nominated, replaced).
+    That regex is broad on purpose: a false hit costs one day's research, a miss airs
+    someone who is no longer running. Over 2026-09-22 to 10-06 it fired once (09-23, the
+    interim-leader story). A failed or empty pass never overwrites the cache. Saturday's
+    shared pass is not cached: there the ballot is the deep dive and the field is the news.
 
 - **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
   "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
@@ -263,9 +288,18 @@ the limit to watch (~500 upstream plus ~150 here). Setting the repository variab
 The roundup's story count is derived from **airtime, not appetite**. The segment gets
 ~1,100–1,300 words of a 3,400-word script, and every story owes the listener what happened,
 why it matters and the rural angle — `ROUNDUP_MIN_STORY_WORDS` (70) is the floor that takes.
-`NEWS_ROUNDUP_COUNT` (15) is that budget divided by that floor. **A story that cannot be given
+`NEWS_ROUNDUP_COUNT` (18) is that budget divided by that floor. **A story that cannot be given
 its floor is cut, never compressed**, and the prompt states the segment's word target so a
 shorter list produces deeper stories rather than a shorter segment.
+
+**The model writes to the list, not to the target** (2026-10-14). At 15 stories it drafted
+~55–65 words a story, 760–950 words of roundup against the 1,200 floor, while the cap cut
+44–64 stories a day; the expand passes recovered most of it and the polish trimmed it back.
+So the count went to 18 (18 × 70 = 1,260, still inside the budget) and the weekday deep dive
+from 3 sources to 4 (`DEEP_DIVE_COUNT`; Saturday stays 5): more material yields length the
+model keeps, where "write longer" yields length the polish removes. No extra call; a few
+hundred input tokens. The holding guard reserves `NEWS_ROUNDUP_COUNT + DEEP_DIVE_COUNT`
+(it had a literal 3). Saturday's roundup went to 18 as well; its cap was cutting 59 stories.
 
 `NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. It used to bound the
 theme pool alone: `_curate_roundup_pool` returned `protected + kept_fill + bonus` and
@@ -319,6 +353,20 @@ so the cap alone let the day's identity be decided by whatever the feed happened
 A cluster is kept adjacent so the back half plays as a mini-arc; past three it stops being an arc
 and becomes what the episode is about. The overflow is dropped, never compressed — dropped
 articles never reach citations, so dedup lets them resurface on a better-matched day.
+
+**A roundup the model mis-orders gets two repair passes** (`repair_roundup_until_ordered`,
+`ROUNDUP_REPAIR_PASSES`). On 2026-10-12 two `civic_affairs` stories on Doerkson aired between
+theme stories, and the single reorder call (Haiku 5.5 since 2026-10-08) returned the same
+order: 2 violations before, 2 after. The second pass appends `roundup_reorder.retry_note`,
+naming each story `check_roundup_order` still finds out of place with its required position.
+About $0.002 on the days it fires; the miss had been seen three times in six weeks.
+
+**An outlet name places a story only when no other story in the pool shares the outlet**
+(`_article_first_mention`, `match_source`). On 2026-10-21 the Hackaday kicker aired last
+("Last one, from Hackaday…"), but the order check placed it at the earlier Hackaday solar-cell
+turn, so the on-theme Nokia story behind it read as aired after the kicker. Two Sonnet reorder
+passes (~$0.07) returned the roundup unchanged, because it was already in order, and
+`script/roundup-order` degraded. A shared outlet now places by headline words alone.
 
 **Blocks decide what airs together; `_sequence_roundup` decides the order inside one.** The
 discipline clustering above ran on the tail alone — `local` and `theme` were sorted by
@@ -454,3 +502,60 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
     story cannot leave, which is the episode.
 
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
+
+## Reading what we already had (2026-10-14)
+
+The roundup said "the excerpt we have doesn't establish the challenger's name" about a Tyee
+story on the Quesnel mayor's race (its image file alone is `RonPaullCoraleeOakes.jpg`), and that
+a My Cariboo Now story on a Conservative candidate "doesn't name that candidate". Three causes:
+
+- **The body was the menus.** `_fetch_page_text` returns a page's whole visible text and the
+  roundup prompt reads its first 500 characters, which on a news site is navigation.
+  `_fetch_article_body` now reads `_article_prose()`, the `<p>` paragraphs of eight words or
+  more, and falls back to the whole text only when a page has too little of it.
+  `fetch_page` (the agents' tool) and the candidate-profile reads keep the whole text: a
+  candidate list is not paragraphs.
+- **The election pass never had the URL.** `_research_articles_text` gave title, summary and
+  excerpt only, so the agent searched the headline and read a syndicated copy on another
+  station's site. It now carries each story's URL, the election pass reads
+  `EVENT_ARTICLE_BODY_CHARS` (1500) of each body, and the prompt sends it to the outlet's own
+  page before any copy.
+- **Each pass forgot the last.** A fresh ballot pass started from nothing, so a record sourced on
+  Friday could come back as unestablished on Wednesday. The cached block now rides into the next
+  pass as PRIOR RESEARCH (`PRIOR_BALLOT_RESEARCH_CHARS`, ~1.5K tokens on the Haiku default):
+  carry its findings forward unless superseded, never list someone it sourced as NO RECORD
+  FOUND, and take who is running from the roster, never from it.
+
+## Research before the roundup is written (2026-10-15)
+
+The script model has no tools, so a roundup story knows only what the pipeline hands it. Three
+things left it short, and the hosts filled the gap on air: "the excerpt we have doesn't name
+the Nation" (2026-10-03), "the report doesn't say who is running" (2026-10-07), four such lines
+on 2026-10-15.
+
+- **The free page fetch stopped at the first 40 of the ~80-article pool.** A curated story past
+  #40 reached the script on its feed excerpt. `_filter_sparse_news_articles` now fetches every
+  curated story's own page first (free; `_fetched` stops a second try on a page that already
+  failed).
+- **Research only fired under 150 characters.** A 200-character excerpt passed as a body. The
+  title search now runs on anything under `NEWS_BODY_RICH_CHARS` (400), still from the SEARCH
+  budget and only on the curated cut plus spares. The search snippet is itself a teaser, so the
+  result that shares at least half the title's content words is read in full (`_get_public`,
+  free). Text from another outlet is marked `_body_via` and the prompt names that outlet, so the
+  hosts don't credit the Tribune's reporting to My Cariboo Now. Only a story still under 150 is cut.
+- **The prompt saw 500 characters of each body**, about the lede: the 2026-10-12 candidate
+  profile arrived as its four questions and none of the answers. `ROUNDUP_PROMPT_BODY_CHARS` is
+  1200, ~3.5K more prompt tokens per script call (under $0.001 on Haiku 5.5, ~$0.007 on Sonnet).
+
+Then the rule: the roundup tells what the Content establishes and never narrates what a source
+leaves out; the polish cuts such lines (rule (y)), and rule 3e no longer teaches "the report
+doesn't give a specific number". The ballot's SOURCED OR UNSAID "unestablished" line is the one
+exception. `soft_patterns.source_gap_narration` counts what still airs (1–4 a day in the
+2026-10-10..15 scripts) without moving Opus escalation.
+
+**A page Kagi Extract can't read is the designed Brave path, not a degradation** (2026-10-21).
+In its first five nights `_extract_roundup_stories` read 2/5, 3/4, 0/4, 6/8 and 0/4 pages (NYT,
+The Atlantic and Civil Eats are among the misses), and Brave researched every miss. The old
+`read == 0` row fired on two of those nights and reached the roadmap as a fault. Per-page error
+reasons are now logged; `script/kagi-extract` degrades on a failed request or on a reply that
+matches none of the URLs sent, which would mean the API contract moved.

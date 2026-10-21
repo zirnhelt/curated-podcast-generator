@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 6, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 6, 2026</h1>
+  <p class="meta">Published October 6, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37433806918">37433806918</a>.</em></p>
+
+<h3>Cohere embedding failed three times; pipeline fell back to keyword ranking</h3>
+
+<p>The script generation step encountered a <code>ModuleNotFoundError</code> in the Cohere embedding service. This broke three distinct tasks: evolving-story detection, same-story clustering, and deep-dive reranking. The pipeline had fallbacks in place. It abandoned Cohere for keyword-based methods on the first two and kept the keyword ranking on the third without attempting a rerank.</p>
+
+<p>The three deep dives that shipped came from this degraded path. Without Cohere's semantic matching, the selection reflects keyword overlap rather than thematic coherence. The debate question — metrics for measuring success in working-lands industries — aligns loosely with one source (the Farming 4.0 piece) and tightly with none.</p>
+
+<h3>Citation alignment fractured in the deep dive</h3>
+
+<p>The roundup matched 14 of 15 citations. The deep dive matched only 2 of 3. No source URL appears in the facts for the third deep dive story; the pipeline may have failed to retrieve it, or it may have been generated from a headline without a backing URL at all.</p>
+
+<p>The mismatch splits by segment type. Roundup sources are traceable; deep dive sources are not. This is worth flagging as a data integrity problem independent of the Cohere failure.</p>
+
+<h3>Territory check hit its lookup ceiling</h3>
+
+<p>The territory-check segment ran eight cross-reference lookups and exhausted its per-run budget. It flagged two named nations (Nlaka'pamux and Tsilhqot'in) as mismatched against the territory map, rejected a rewrite that would have fixed one of them, and skipped checking "Ballot" entirely when it hit the limit.</p>
+
+<p>Two sentences kept an unsupported nation despite the rewrite rejection. The pipeline chose to ship the script rather than halt on a territory mismatch — a choice baked into the design, but one worth noting when a territory check is incomplete.</p>
+
+<h3>Script missed its target; expand pass fell short</h3>
+
+<p>The first draft arrived at 3,117 words against a target of 3,400. The script went back for expansion. The shipped version — 3,084 words — is 316 words under target and 33 words shorter than the first draft. The expand pass made the script smaller.</p>
+
+<p>This is a reversal. Either the expansion was rejected and reverted, or the second pass involved cuts that outweighed additions. The final word count shipped despite the shortfall.</p>
+
+<h3>Audio and video rendered cleanly at 18.7 minutes</h3>
+
+<p>Render audio consumed 387 seconds. Render video consumed 108 seconds. Both produced files at expected ratios: 17.2 MB audio and 64.6 MB video for the same 18.7-minute runtime. No degradation flagged.</p>
+
+<h3>Feed integrity issue in R2 sync</h3>
+
+<p>The publish-to-R2 step found one object referenced in the podcast feed but missing from cloud storage and unrecoverable from disk. This object will return a 404 to feed crawlers. The run completed and published despite the missing asset.</p>
+
+<h3>Run timing and retry behavior</h3>
+
+<p>The primary run started at 1:05 AM and finished at 1:31 AM. Fallback 1 ran at 2:05 AM and finished immediately — it appears to have been a dry-run or health check rather than a full generation. Fallback 2, which generated this review, started at 3:05 AM.</p>
+
+<p>Three scheduler invocations, all on time, suggest the pipeline is set to retry every hour if the primary fails. Neither the primary nor Fallback 1 status explains why a second fallback was needed.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.94, 3084 words</td></tr>
+<tr><td>Audio</td><td>18.7 min</td></tr>
+<tr><td>Audio size</td><td>17.2 MB</td></tr>
+<tr><td>Citations matched</td><td>14/15 roundup, 2/3 deep dive</td></tr>
+<tr><td>Feed</td><td>251 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>49,656 input tokens, calls ***'brave-search': 13, 'claude': 13, 'brave-answers': 6***</td></tr>
+</tbody>
+</table>
+</body>
+</html>

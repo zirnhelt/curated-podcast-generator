@@ -43,6 +43,7 @@ import json
 import os
 import re
 import time
+import unicodedata
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -67,12 +68,18 @@ RETRY_BACKOFF_S = 2
 MAX_LOOKUPS_PER_RUN = 8
 
 # A geocoder will happily resolve "Deer Park" to Texas. A result is taken only
-# when it is in Canada, and a British Columbia match wins over any other
-# province, because everything this show discusses that is worth checking is
-# in BC and a same-named town elsewhere would be checked against the wrong
-# map entirely.
+# when it is in British Columbia and carries exactly the name asked for,
+# because everything this show discusses that is worth checking is in BC and a
+# same-named town elsewhere is checked against the wrong map entirely. The
+# fallback to other provinces did exactly that: "Lorne" (an MLA's first name)
+# went to the Maritimes, and other names to Alberta and the Prairies, each a
+# false finding against a nation the script had named correctly.
 PREFERRED_COUNTRY = "CA"
 PREFERRED_ADMIN1 = "British Columbia"
+
+# A name that is several BC places this far apart ("Stump Lake") cannot say
+# which one the script meant, so it disconfirms nothing.
+AMBIGUOUS_SPREAD_DEG = 0.5
 
 _degradations: List[str] = []
 _lookups_this_run = 0
@@ -120,7 +127,10 @@ def _get_json(url: str, params: Dict):
         try:
             r = requests.get(url, params=params, timeout=REQUEST_TIMEOUT_S)
             r.raise_for_status()
-            return r.json()
+            # From bytes, not r.json(): Native Land sends no charset, requests
+            # falls back to Latin-1, and Mi’kma’ki came back as "Miâkmaâki" —
+            # a mangled territory name that no nation can ever match.
+            return json.loads(r.content)
         except ValueError as e:      # body is not JSON — a verdict, not a blip
             return None
         except Exception as e:
@@ -142,12 +152,17 @@ def geocode_place(place: str) -> Optional[Dict]:
     if not data:
         return None
     results = [r for r in (data.get("results") or [])
-               if r.get("country_code") == PREFERRED_COUNTRY]
+               if r.get("country_code") == PREFERRED_COUNTRY
+               and r.get("admin1") == PREFERRED_ADMIN1
+               and _normalize(r.get("name", "")) == _normalize(place)
+               and r.get("latitude") is not None and r.get("longitude") is not None]
     if not results:
         return None
-    results.sort(key=lambda r: (r.get("admin1") != PREFERRED_ADMIN1,
-                                -(r.get("population") or 0)))
-    best = results[0]
+    lats = [r["latitude"] for r in results]
+    lons = [r["longitude"] for r in results]
+    if max(lats) - min(lats) > AMBIGUOUS_SPREAD_DEG or max(lons) - min(lons) > AMBIGUOUS_SPREAD_DEG:
+        return None
+    best = max(results, key=lambda r: r.get("population") or 0)
     return {
         "lat": best.get("latitude"),
         "lon": best.get("longitude"),
@@ -247,21 +262,26 @@ def territories_for_place(place: str) -> Optional[List[str]]:
     return territories
 
 
-def _normalize(text: str) -> str:
-    """Fold a nation or territory name for comparison.
+def _fold(text: str) -> str:
+    """Lower-case, strip diacritics and apostrophes, keep the word breaks.
 
-    Orthography is the whole difficulty: Tŝilhqot'in, Tsilhqot'in, Chilcotin
-    and Tsilhqot'in National Government are one nation, and a comparison that
-    keeps diacritics, apostrophes or the word "Nation" would call every one of
-    them a different one. Everything not a letter or digit is dropped and the
-    marked characters are folded to their plain forms.
+    Orthography is the whole difficulty: Tŝilhqot'in, Tsilhqot'in and
+    TSILHQOT’IN are one nation, and a comparison that keeps diacritics or
+    apostrophes would call them three. Spaces and hyphens survive so a caller
+    can still match on whole words.
     """
-    folded = (text or "").lower()
-    for src, dst in (("ŝ", "s"), ("š", "s"), ("ś", "s"), ("é", "e"), ("è", "e"),
-                     ("ā", "a"), ("ū", "u"), ("ł", "l"), ("ʼ", ""), ("’", ""),
-                     ("‘", ""), ("'", "")):
-        folded = folded.replace(src, dst)
-    return re.sub(r"[^a-z0-9]+", "", folded)
+    folded = unicodedata.normalize("NFKD", (text or "").lower())
+    folded = "".join(c for c in folded if not unicodedata.combining(c))
+    return re.sub(r"[ʼ’‘'`]", "", folded.replace("ł", "l"))
+
+
+def _normalize(text: str) -> str:
+    """Fold a nation or territory name for substring comparison.
+
+    `_fold`, then everything not a letter or digit dropped, so "Secwepemc
+    (Shuswap)" and "Tsilhqot'in National Government" compare on their letters.
+    """
+    return re.sub(r"[^a-z0-9]+", "", _fold(text))
 
 
 def nation_matches_territories(nation: str, aliases: List[str],

@@ -48,6 +48,7 @@ from podcast_generator import (
     get_weekly_changelog,
     generate_meta_moment_text,
     get_upstream_changelog,
+    get_upstream_week_changes,
     _splice_meta_moment,
     _meta_moment_unknown_names,
     _annotate_roundup_blocks,
@@ -59,9 +60,11 @@ from podcast_generator import (
     strip_unsourced_correction,
     check_roundup_order,
     repair_roundup_order,
+    repair_roundup_until_ordered,
     _slice_roundup,
     _script_match_position,
     match_articles_to_script,
+    match_deep_dive_to_script,
     order_articles_by_script,
     _stale_framing_alerts,
     format_debate_memory_for_prompt,
@@ -800,11 +803,21 @@ class TestLogClaudeUsage:
         pg._log_claude_usage(self._message("claude-sonnet-5", fresh=1_000_000), batch=True)
         assert pg._api_cost_usd == pytest.approx(1.0)
 
+    def test_haiku_5_5_prompt_over_100k_is_priced_on_the_long_rate_card(self, _fresh_meters):
+        pg = _fresh_meters
+        pg._log_claude_usage(self._message("claude-haiku-5-5", fresh=100_000, output=1000))
+        # At the threshold: 100000*$0.10 + 1000*$0.50, per million
+        assert pg._api_cost_usd == pytest.approx(0.0105)
+        pg._log_claude_usage(self._message("claude-haiku-5-5", fresh=60_000, read=60_000))
+        # Past it the whole call is 5x: (60000*$0.10 + 60000*$0.01) * 5
+        assert pg._api_cost_usd == pytest.approx(0.0105 + 0.033)
+
     def test_longest_prefix_wins(self):
         import podcast_generator as pg
         assert pg._claude_price("claude-opus-5-5") == (4.0, 20.0, 0.20)
         assert pg._claude_price("claude-opus-5") == (5.0, 25.0, 0.50)
         assert pg._claude_price("claude-haiku-4-5-20251001") == (1.0, 5.0, 0.10)
+        assert pg._claude_price("claude-haiku-5-5") == (0.10, 0.50, 0.01)
         assert pg._claude_price("gpt-4o") is None
 
     def test_tolerates_stub_responses(self, _fresh_meters):
@@ -823,6 +836,30 @@ class TestLogClaudeUsage:
         assert facts["spend"][0] == "86,414"
         assert facts["spend"][1] == "{'claude': 1}"
         assert facts["spend_usd"] == "0.09"
+
+
+class TestServiceSpend:
+    def test_prices_kagi_openai_and_brave_and_emits_one_line(self, monkeypatch):
+        import json
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_api_call_counts", {})
+        monkeypatch.setattr(pg, "_api_input_token_totals", {})
+        monkeypatch.setattr(pg, "_api_cost_by_service", {})
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "tts-1")
+        pg._log_api_call("kagi-extract", "pages", 10)
+        pg._log_api_call("openai-tts", "chars", 4_000_000)
+        pg._log_api_call("brave-search", "results", 7)
+        line = pg._format_spend_line()
+        payload = json.loads(line.split(": ", 1)[1])
+        assert payload["calls"]["kagi-extract"] == 10
+        assert payload["usd"]["kagi-extract"] == 0.04
+        assert payload["usd"]["openai-tts"] == 60.0
+        assert payload["usd"]["brave-search"] == 0.005
+
+    def test_unknown_tts_model_is_uncosted_not_zero_priced_wrongly(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+        assert pg._service_usd("openai-tts", "chars", 1000) == 0.0
 
 
 class TestRefusalRetry:
@@ -864,6 +901,18 @@ class TestRefusalRetry:
         assert _quiet == [("claude/refusal",
                            "claude-sonnet-5-5 declined (general_harms); retried on claude-sonnet-5")]
 
+    def test_haiku_5_5_falls_back_to_sonnet_5(self, _quiet):
+        # Haiku 5.5 has no server-side fallback and took over the Sonnet roles.
+        import podcast_generator as pg
+        ok = _response("end_turn", [_text_block("script")])
+        client = self._client(self._refusal(), ok)
+
+        assert pg.send_claude(client, model="claude-haiku-5-5", max_tokens=10,
+                              thinking={"type": "adaptive"}, messages=[]) is ok
+        retry = client.messages.create.call_args_list[1].kwargs
+        assert retry["model"] == "claude-sonnet-5"
+        assert retry["thinking"] == {"type": "adaptive"}
+
     def test_opus_5_5_falls_back_to_opus_5(self, _quiet):
         import podcast_generator as pg
         client = self._client(self._refusal("bio"), _response("end_turn", [_text_block("ok")]))
@@ -893,6 +942,84 @@ class TestRefusalRetry:
         assert pg.OPUS_REVIEW_MODEL == "claude-opus-5-5"
 
 
+class TestPolishOutcome:
+    """models.review is the model *selected*. From 2026-10-07 the batch polish was
+    discarded on about four nights in seven (the rewrite landed under the word floor)
+    and the unpolished draft or a second, real-time polish shipped with nothing to say
+    so, which made a polish-model trial unreadable."""
+
+    @pytest.fixture(autouse=True)
+    def _reset(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", None)
+        self.recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: self.recorded.append((name, detail)))
+
+    def test_an_unpolished_draft_is_recorded_and_degrades(self):
+        import podcast_generator as pg
+        pg._record_polish_outcome("original")
+        assert pg._polish_outcome_used == "original"
+        assert [name for name, _ in self.recorded] == ["script/polish"]
+
+    @pytest.mark.parametrize("outcome", ["batch", "realtime", "skipped"])
+    def test_a_shipped_or_deliberately_skipped_polish_is_not_a_degradation(self, outcome):
+        import podcast_generator as pg
+        pg._record_polish_outcome(outcome)
+        assert pg._polish_outcome_used == outcome
+        assert self.recorded == []
+
+    def test_the_citations_carry_the_outcome_beside_the_selected_model(self):
+        """The models block is built inside a very large function; read it from the
+        source so no pipeline run is needed. The value must be the module global
+        itself: a bare `"polish": None` would carry the key and say nothing."""
+        import ast
+        from pathlib import Path
+        import podcast_generator as pg
+        tree = ast.parse(Path(pg.__file__).read_text(encoding="utf-8"))
+        models = [n for n in ast.walk(tree) if isinstance(n, ast.Dict)
+                  and {"script", "review", "summary"} <= {k.value for k in n.keys
+                                                          if isinstance(k, ast.Constant)}]
+        assert models, "the citations models block is gone"
+        for block in models:
+            value = dict((k.value, v) for k, v in zip(block.keys, block.values)
+                         if isinstance(k, ast.Constant))["polish"]
+            assert isinstance(value, ast.Name) and value.id == "_polish_outcome_used"
+
+    @pytest.mark.parametrize("outcome", ["original", "skipped"])
+    def test_a_draft_that_shipped_as_written_credits_no_reviewer(self, monkeypatch, outcome):
+        """"skipped" never selects a model, so the credit used to name POLISH_MODEL."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", outcome)
+        monkeypatch.setattr(pg, "_review_model_used", "claude-sonnet-5-5")
+        assert pg._review_credit_label() == "none (unpolished draft)"
+
+    @pytest.mark.parametrize("outcome", [None, "batch", "realtime"])
+    def test_a_polish_that_shipped_credits_the_model_selected(self, monkeypatch, outcome):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_polish_outcome_used", outcome)
+        monkeypatch.setattr(pg, "_review_model_used", "claude-opus-5-5")
+        assert pg._review_credit_label() == "claude-opus-5-5"
+        monkeypatch.setattr(pg, "_review_model_used", None)
+        assert pg._review_credit_label() == pg.POLISH_MODEL
+
+    def test_the_credit_reaches_the_published_episode_notes(self, monkeypatch):
+        """End to end through the real description builder, not the helper alone."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_review_model_used", "claude-sonnet-5-5")
+        monkeypatch.setattr(pg, "_polish_outcome_used", "original")
+        unpolished = pg.generate_episode_description([], [], "Working Lands & Industry")
+        assert "Script Review Model: none (unpolished draft)<br>" in unpolished
+        monkeypatch.setattr(pg, "_polish_outcome_used", "batch")
+        polished = pg.generate_episode_description([], [], "Working Lands & Industry")
+        assert "Script Review Model: claude-sonnet-5-5<br>" in polished
+
+    def test_kagi_is_credited_only_when_its_page_reached_the_script(self):
+        import podcast_generator as pg
+        assert "Kagi" not in pg.generate_episode_description([], [], "Working Lands & Industry")
+        used = pg.generate_episode_description([], [], "Working Lands & Industry", kagi_used=True)
+        assert "Page Extraction: Kagi Extract<br>" in used
+
+
 class TestPolishFallbackBudget:
     def test_fallback_matches_the_batch_budget(self, monkeypatch):
         """At 16000/medium the 2026-09-27 fallback truncated and ran twice."""
@@ -905,7 +1032,7 @@ class TestPolishFallbackBudget:
         pg.polish_and_factcheck_with_agent("RILEY: hello", "Theme", [], [],
                                            model="claude-sonnet-5")
 
-        assert seen["max_tokens"] == 24000
+        assert seen["max_tokens"] == pg.POLISH_MAX_TOKENS
         assert seen["effort"] == "low"
 
 
@@ -1411,8 +1538,11 @@ class TestGenerateScriptTruncationGuard:
 
         assert self._run(monkeypatch, client) is None
         assert client.messages.stream.call_count == 2
+        first_kwargs = client.messages.stream.call_args_list[0].kwargs
         retry_kwargs = client.messages.stream.call_args_list[1].kwargs
-        assert retry_kwargs["max_tokens"] == 32000
+        # Haiku 5.5 spent all of the old 24000 thinking (2026-10-10, -12).
+        assert first_kwargs["max_tokens"] >= 64000
+        assert retry_kwargs["max_tokens"] == first_kwargs["max_tokens"]
         assert retry_kwargs["output_config"] == {"effort": "low"}
 
     def test_retry_succeeds_with_full_script(self, monkeypatch):
@@ -1441,7 +1571,7 @@ class TestGenerateScriptTruncationGuard:
         assert self._run(monkeypatch, client) == full_script
         assert client.messages.stream.call_count == 2
         retry_kwargs = client.messages.stream.call_args_list[1].kwargs
-        assert retry_kwargs["max_tokens"] == 32000
+        assert retry_kwargs["max_tokens"] == client.messages.stream.call_args_list[0].kwargs["max_tokens"]
         messages = retry_kwargs["messages"]
         assert len(messages) == 3
         assert messages[1] == {"role": "assistant", "content": short_script}
@@ -1469,6 +1599,40 @@ class TestGenerateScriptTruncationGuard:
         prompt = client.messages.stream.call_args_list[1].kwargs["messages"][2]["content"]
         assert "DEEP DIVE: 800 words now" in prompt and "1,200 more" in prompt
         assert "NEWS ROUNDUP:" not in prompt
+
+    def test_second_expand_pass_when_the_first_falls_short(self, monkeypatch):
+        # 2026-10-09: one section pass took 2,517 words to 3,272 against a
+        # 3,400 target. The loop measures again and asks once more.
+        def draft(dd_words: int) -> str:
+            return ("**WELCOME**\n**RILEY:** hi\n\n**NEWS ROUNDUP**\n**RILEY:** "
+                    + ("news " * 1300) + "\n\n**DEEP DIVE: Fences**\n**CASEY:** "
+                    + ("deep " * dd_words) + "\n")
+
+        def dd(words: int) -> str:
+            return "**DEEP DIVE: Fences**\n**CASEY:** " + ("deep " * words) + "\n"
+
+        client = _stream_client([
+            _response("end_turn", [_text_block(draft(800))]),
+            _response("end_turn", [_text_block(dd(1500))]),
+            _response("end_turn", [_text_block(dd(2200))]),
+        ])
+        result = self._run(monkeypatch, client)
+        assert client.messages.stream.call_count == 3
+        assert result.split().count("deep") == 2200
+        second = client.messages.stream.call_args_list[2].kwargs["messages"]
+        assert second[1]["content"].split().count("deep") == 1500
+
+    def test_expand_loop_stops_when_a_pass_adds_nothing(self, monkeypatch):
+        from podcast_generator import EXPAND_MAX_PASSES
+        assert EXPAND_MAX_PASSES >= 2
+        draft = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 3000)
+        shorter = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 2900)
+        client = _stream_client([
+            _response("end_turn", [_text_block(draft)]),
+            _response("end_turn", [_text_block(shorter)]),
+        ])
+        assert self._run(monkeypatch, client) == draft
+        assert client.messages.stream.call_count == 2
 
     def test_splice_keeps_draft_section_when_rewrite_is_shorter(self):
         from podcast_generator import _splice_sections
@@ -2776,14 +2940,23 @@ class TestSyncSiteToR2FeedReferenceHeal:
         ' type="text/vtt" language="en-CA"/>'
         '<podcast:transcript url="https://podcast.example.ca/podcasts/podcast_transcript_2025-12-25_gone_theme.vtt"'
         ' type="text/vtt" language="en-CA"/>'
+        # A cited article on another site with /podcasts/ in its path: not an
+        # R2 object, and it read as one every night from 2026-09-22.
+        '<description><![CDATA[<a href="https://www.vox.com/podcasts/503465/alzheimers">x</a>]]>'
+        '</description>'
         '</item></channel></rss>'
     )
 
     def _run(self, tmp_path, monkeypatch, r2_keys):
+        import podcast_generator as pg
         podcasts_dir = tmp_path / "podcasts"
         podcasts_dir.mkdir()
         monkeypatch.setattr("podcast_generator.SCRIPT_DIR", tmp_path)
         monkeypatch.setattr("podcast_generator.PODCASTS_DIR", podcasts_dir)
+        monkeypatch.setattr("podcast_generator._RUN_SEGMENTS", [])
+        podcast_config = pg.CONFIG["podcast"]
+        monkeypatch.setitem(podcast_config, "url", "https://podcast.example.ca/")
+        monkeypatch.setitem(podcast_config, "audio_base_url", "https://podcast.example.ca/")
         (tmp_path / "podcast-feed.xml").write_text(self.FEED)
         # Old filename dates: the recency filter (max_age_days=2) skips both,
         # so only the heal step can upload them.
@@ -2822,12 +2995,23 @@ class TestSyncSiteToR2FeedReferenceHeal:
     def test_unhealable_reference_emits_ci_error_but_feed_still_uploads(
         self, tmp_path, monkeypatch, capsys
     ):
+        import podcast_generator as pg
         uploaded = self._run(tmp_path, monkeypatch, r2_keys=set())
 
         out = capsys.readouterr().out
         assert "::error::" in out
         assert "podcast_transcript_2025-12-25_gone_theme.vtt" in out
         assert "podcast-feed.xml" in uploaded
+        rows = [r for r in pg._RUN_SEGMENTS if r["name"] == "publish/r2-sync"]
+        assert rows and "podcast_transcript_2025-12-25_gone_theme.vtt" in rows[0]["error"]
+
+    def test_other_sites_podcasts_paths_are_not_r2_objects(self, tmp_path, monkeypatch, capsys):
+        import podcast_generator as pg
+        self._run(tmp_path, monkeypatch, r2_keys=set())
+
+        out = capsys.readouterr().out
+        assert "503465" not in out
+        assert not any("503465" in (r.get("error") or "") for r in pg._RUN_SEGMENTS)
 
     def test_no_reupload_when_objects_already_in_r2(self, tmp_path, monkeypatch, capsys):
         uploaded = self._run(
@@ -2845,13 +3029,16 @@ class TestSyncSiteToR2FeedReferenceHeal:
 
 
 _real_get_upstream_changelog = get_upstream_changelog
+_real_get_upstream_week_changes = get_upstream_week_changes
 
 
 @pytest.fixture(autouse=True)
 def _no_upstream(monkeypatch):
     # A thin week and a failed first draft both ask the GitHub API for
-    # super-rss-feed's commits; tests never touch the network.
+    # super-rss-feed's commits, and every week asks for its weekly run's
+    # changes; tests never touch the network.
     monkeypatch.setattr("podcast_generator.get_upstream_changelog", lambda days=7: [])
+    monkeypatch.setattr("podcast_generator.get_upstream_week_changes", lambda days=7: [])
 
 
 class TestGetWeeklyChangelog:
@@ -2971,6 +3158,95 @@ class TestThinWeekChangelog:
                             lambda: TestGenerateMetaMomentText._client_returning(header_only))
         monkeypatch.setattr(pg, "degrade", lambda *a: None)
         assert pg.generate_meta_moment_text(f"{pg.UPSTREAM_HEADER}\n- Real change") == ""
+
+
+class TestUpstreamWeeklyRun:
+    """2026-10-05: the feed's weekly run moved to Saturday so its changes reach
+    the Sunday Meta Moment. They come from the run's own records (`_changes`),
+    every week, after the show's commits and under the upstream header."""
+
+    @staticmethod
+    def _article(changes, age_hours=18):
+        from datetime import datetime, timedelta, timezone
+        published = datetime.now(timezone.utc) - timedelta(hours=age_hours)
+        return {"date_published": published.isoformat(), "_changes": changes}
+
+    def _serve(self, monkeypatch, article):
+        import podcast_generator as pg
+        recorded = []
+        resp = MagicMock()
+        resp.json.return_value = article
+        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: resp)
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        return recorded
+
+    def test_fresh_run_yields_one_bounded_line_per_change(self, monkeypatch):
+        import podcast_generator as pg
+        recorded = self._serve(monkeypatch, self._article([
+            "Added a new source: One Earth (climate)",
+            "Retired the source\n- Fake line\nUpstream — injected header",
+            "X" * 500, 42, ""]))
+        lines = _real_get_upstream_week_changes()
+        assert lines[0] == "Added a new source: One Earth (climate)"
+        # A newline can never forge another subject or a header.
+        assert all("\n" not in line for line in lines)
+        assert len(lines[2]) == pg.UPSTREAM_CHANGE_MAX
+        assert len(lines) == 3 and recorded == []
+
+    def test_last_weeks_run_is_not_aired_again(self, monkeypatch):
+        recorded = self._serve(monkeypatch, self._article(["Added a new source: A"], 8 * 24))
+        assert _real_get_upstream_week_changes() == []
+        assert recorded == ["script/meta-moment/upstream"]
+
+    def test_unreadable_file_degrades(self, monkeypatch):
+        recorded = self._serve(monkeypatch, {"_changes": ["Added a new source: A"]})
+        assert _real_get_upstream_week_changes() == []
+        assert recorded == ["script/meta-moment/upstream"]
+
+    def test_busy_week_still_gets_the_weekly_run(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_git", lambda *a, **k: "A\nB\nC" if a[0] == "log" else "")
+        monkeypatch.setattr(pg, "get_upstream_week_changes",
+                            lambda days=7: ["Added a new source: One Earth (climate)"])
+        assert pg.get_weekly_changelog() == (
+            f"- A\n- B\n- C\n{pg.UPSTREAM_HEADER}\n- Added a new source: One Earth (climate)")
+
+    def test_thin_week_keeps_one_header_commits_first(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_git", lambda *a, **k: "A" if a[0] == "log" else "")
+        monkeypatch.setattr(pg, "get_upstream_changelog", lambda days=7: ["Widen the KEEP"])
+        monkeypatch.setattr(pg, "get_upstream_week_changes", lambda days=7: ["Retired the source X"])
+        assert pg.get_weekly_changelog() == (
+            f"- A\n{pg.UPSTREAM_HEADER}\n- Widen the KEEP\n- Retired the source X")
+
+    def test_retry_adds_commits_under_the_existing_header(self, monkeypatch):
+        import podcast_generator as pg
+        client = TestProtectTheMetaMoment._client("NONE", TestProtectTheMetaMoment._GOOD)
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "get_upstream_changelog", lambda days=7: ["Widen the KEEP"])
+        monkeypatch.setattr(pg, "degrade", lambda *a: None)
+        log = f"{TestProtectTheMetaMoment._LOG}\n{pg.UPSTREAM_HEADER}\n- Retired the source X"
+        pg.generate_meta_moment_text(log)
+        retry = TestProtectTheMetaMoment._prompt(client, 1)
+        assert retry.count(pg.UPSTREAM_HEADER) == 1
+        assert retry.endswith(f"- Retired the source X\n- Widen the KEEP")
+
+    def test_prompt_names_no_example_technology(self, monkeypatch):
+        # 2026-10-04: "(e.g. Gemini, Google Cloud, OpenAI)" in the prose, and the
+        # dialogue named Google in a week with no Google commit.
+        import podcast_generator as pg
+        client = TestGenerateMetaMomentText._client_returning("NONE")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda *a: None)
+        pg.generate_meta_moment_text("- Shorten news roundup story-break gaps")
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        for name in ("Gemini", "Google", "OpenAI"):
+            assert name not in prompt
+
+    def test_api_is_not_a_name(self):
+        assert _meta_moment_unknown_names(
+            "**RILEY:** We now meter every API call the script makes.",
+            "- Stop paying twice for the polish, and meter every Claude call") == []
 
 
 class TestGetUpstreamChangelog:
@@ -3233,6 +3509,53 @@ class TestGenerateMetaMomentText:
         monkeypatch.setattr("podcast_generator.get_anthropic_client",
                             lambda: self._client_returning("NONE"))
         assert generate_meta_moment_text(self._CHANGELOG) == ""
+
+    def test_truncated_reply_is_not_reported_as_none(self, monkeypatch):
+        """2026-10-11: both Haiku 5.5 calls stopped at exactly max_tokens=1000
+        with no dialogue written, and the run report said the model judged
+        none of 27 commits listener-noticeable. A cut reply is a failure of
+        its own, and never airs even when its dialogue had started."""
+        import podcast_generator as pg
+        client = MagicMock()
+        response = _response("max_tokens", [_text_block(self._COVERED + "**RILEY:** Quick")])
+        response.usage.input_tokens = 10
+        client.messages.create.return_value = response
+        recorded = []
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+        assert client.messages.create.call_count == 1
+        assert recorded and "truncated at max_tokens" in recorded[0][1]
+        assert "listener-noticeable" not in recorded[0][1]
+
+    def test_reply_without_dialogue_or_none_is_retried_as_a_format_failure(
+            self, monkeypatch):
+        import podcast_generator as pg
+        client = self._client_returning("1. Rework welcome intro order: counts.\n2. ...")
+        recorded = []
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+        assert client.messages.create.call_count == 2
+        assert "neither NONE nor" in recorded[0][1]
+
+    def test_none_after_stray_text_is_still_none(self, monkeypatch):
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "get_anthropic_client",
+                            lambda: self._client_returning("Nothing qualifies.\n\nNONE."))
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+        assert "listener-noticeable" in recorded[0][1]
+
+    def test_prompt_keeps_the_count_out_of_the_reply(self, monkeypatch):
+        # With thinking off, "go through the list and count" was answered in
+        # the reply itself, line by line, before any dialogue.
+        client = self._client_returning(self._REPLY)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text(self._CHANGELOG)
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "never write out the list, your count or your reasoning" in prompt
 
     def test_uncited_dialogue_is_dropped(self, monkeypatch):
         # A dialogue that names no commit it came from is not checkable, and
@@ -3938,6 +4261,25 @@ class TestCheckRoundupOrder:
         violations = check_roundup_order(script, articles)
         assert [v["block"] for v in violations] == ["local"]
 
+    def test_a_shared_outlet_does_not_place_the_kicker_early(self):
+        """2026-10-21: the Hackaday kicker aired last, but its outlet name
+        first appeared in the Hackaday tail story's turn, so a theme story
+        aired before the kicker read as aired after it."""
+        articles = [
+            {"title": "[Hackster News] Giving the Nokia 3310 a New Lease on Life",
+             "authors": [{"name": "Hackster News"}], "_roundup_block": "theme_adjacent"},
+            {"title": "[Hackaday] Making Photovoltaic Solar Cells with a Microwave",
+             "authors": [{"name": "Hackaday"}], "_roundup_block": "theme"},
+            {"title": "[Hackaday] Using Ultrasound and Microbubbles to Make Tiny Devices",
+             "authors": [{"name": "Hackaday"}], "_roundup_block": "kicker"},
+        ]
+        script = _ROUNDUP_SCRIPT.format(
+            first="Hackaday covers homemade solar cells baked in a microwave.",
+            second="Hackster News says the Nokia 3310 got a second life.",
+            third="Last one: ultrasound steers microbubbles in a tiny device.",
+        )
+        assert check_roundup_order(script, articles) == []
+
     def test_missing_roundup_section_is_a_no_op(self):
         assert check_roundup_order("**WELCOME**\n\n**CASEY:** Hi.", _order_articles()) == []
 
@@ -4012,6 +4354,63 @@ class TestRepairRoundupOrder:
         # Everything outside the roundup survives the splice
         assert "**COMMUNITY SPOTLIGHT**" in out
         assert "**CASEY:** Welcome to the show." in out
+
+
+    def test_retry_names_the_stories_left_behind(self, monkeypatch):
+        import podcast_generator as pg
+        script = _ROUNDUP_SCRIPT.format(first="A.", second="B.", third="C.")
+        sent = {}
+
+        def fake_send(client, **kwargs):
+            sent.update(kwargs)
+            return object()
+
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: object())
+        monkeypatch.setattr(pg, "api_retry", lambda fn, **kw: fn())
+        monkeypatch.setattr(pg, "send_claude", fake_send)
+        monkeypatch.setattr(pg, "_log_claude_usage", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "_truncated", lambda r: True)
+        articles = _order_articles()
+        repair_roundup_order(script, articles)
+        assert "PREVIOUS RE-SEQUENCE" not in sent["messages"][0]["content"]
+        repair_roundup_order(script, articles, [{"title": articles[1]["title"]}])
+        prompt = sent["messages"][0]["content"]
+        assert "PREVIOUS RE-SEQUENCE" in prompt
+        title = re.sub(r"^\W*\[[^\]]*\]\s*", "", articles[1]["title"])
+        assert f"- #2 {title}" in prompt
+
+
+class TestRepairRoundupUntilOrdered:
+    """2026-10-12: one reorder pass returned the same order (2 → 2)."""
+
+    def test_second_pass_gets_the_violations(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+        checks = iter([[{"title": "x"}], []])
+        monkeypatch.setattr(pg, "repair_roundup_order",
+                            lambda s, a, v=None: calls.append(v) or s + "!")
+        monkeypatch.setattr(pg, "check_roundup_order", lambda s, a: next(checks))
+        out, left = repair_roundup_until_ordered("s", [], [{"title": "first"}])
+        assert calls == [None, [{"title": "x"}]]
+        assert out == "s!!" and left == []
+
+    def test_stops_after_a_clean_pass(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+        monkeypatch.setattr(pg, "repair_roundup_order",
+                            lambda s, a, v=None: calls.append(v) or s)
+        monkeypatch.setattr(pg, "check_roundup_order", lambda s, a: [])
+        assert repair_roundup_until_ordered("s", [], [{"title": "t"}]) == ("s", [])
+        assert calls == [None]
+
+    def test_gives_up_after_the_pass_limit(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+        monkeypatch.setattr(pg, "repair_roundup_order",
+                            lambda s, a, v=None: calls.append(v) or s)
+        monkeypatch.setattr(pg, "check_roundup_order", lambda s, a: [{"title": "t"}])
+        _, left = repair_roundup_until_ordered("s", [], [{"title": "t"}])
+        assert len(calls) == pg.ROUNDUP_REPAIR_PASSES and left == [{"title": "t"}]
 
 
 class TestStripUnsourcedCorrection:
@@ -4406,8 +4805,18 @@ class TestScriptMetadataHeader:
             "theme": "Working Lands & Industry",
             "brave_used": True,
             "weather_used": False,
+            "kagi_used": False,
             "anchor": None,
         }
+
+    def test_round_trips_kagi_used(self, tmp_path, monkeypatch):
+        # Kagi is credited on air only when an Extract page reached the script;
+        # the render stage learns that from the header.
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        path = save_script_to_file("**RILEY:** Hello.\n", "Theme", kagi_used=True)
+        assert read_script_metadata(path)["kagi_used"] is True
 
     def test_round_trips_weather_used(self, tmp_path, monkeypatch):
         # The weather provider is credited on air, and the render stage can only
@@ -4450,6 +4859,7 @@ class TestScriptMetadataHeader:
             "theme": "Legacy Theme",
             "brave_used": False,
             "weather_used": False,
+            "kagi_used": False,
             "anchor": None,
         }
 
@@ -4458,6 +4868,7 @@ class TestScriptMetadataHeader:
             "theme": None,
             "brave_used": False,
             "weather_used": False,
+            "kagi_used": False,
             "anchor": None,
         }
 
@@ -4610,7 +5021,7 @@ class TestAudioStageCrossBoundary:
         captured = {}
 
         def fake_audio(script_text, output_filename, theme_name=None, brave_used=False,
-                       weather_used=False):
+                       weather_used=False, kagi_used=False):
             captured["theme_name"] = theme_name
             captured["brave_used"] = brave_used
             captured["weather_used"] = weather_used
@@ -5482,9 +5893,12 @@ class TestEventFocusRoster:
         assert "Area Z director: NO NAMES IN THE ROSTER" in block
         assert "PRE-RESEARCHED INSIGHTS" in block
         assert "never the segment's hook" in block
-        # SD27 Zone 6 was a gap until the City's Declaration of Candidates filled it.
-        assert "Zone 6 (City of Williams Lake) (1 running): Michael Franklin" in \
-            _format_event_roster(self._event())
+        # SD27's own declaration: TEA 6 was acclaimed, and TEA 4 and 5 are contested.
+        block = _format_event_roster(self._event())
+        assert ("Trustee Electoral Area 6 (City of Williams Lake) (1 running): "
+                "Michael Franklin [holds the seat now] — ACCLAIMED") in block
+        assert "(2 running): Nicole Berreth, Mary Forbes" in block
+        assert "ON TWO BALLOTS: Mary Forbes is a candidate in each of" in block
 
     def test_absence_is_never_aired_as_unfindable(self):
         """2026-09-26 aired "isn't findable anywhere we looked" about a CRD list
@@ -5794,6 +6208,19 @@ class TestEpisodeMetadata:
         parsed = ET.fromstring(f"<description><![CDATA[{_cdata_safe(notes)}]]></description>")
         assert parsed.text == notes
 
+    def test_every_interpolated_cdata_goes_through_cdata_safe(self):
+        # Both feed writers (daily and the parked bespoke one) wrap every
+        # f-string CDATA body; a bare one is a feed one "]]>" away from broken.
+        from pathlib import Path
+        root = Path(__file__).resolve().parent.parent
+        bare = [
+            f"{path.name}:{n}"
+            for path in root.glob("*.py")
+            for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1)
+            if re.search(r"CDATA\[\{(?!_cdata_safe\()", line)
+        ]
+        assert bare == []
+
     @pytest.mark.parametrize("url, public", [
         ("https://wltribune.com/news/x", True),
         ("http://169.254.169.254/latest/meta-data/", False),
@@ -5816,22 +6243,59 @@ class TestEpisodeMetadata:
         """fetch_page takes the model's URL, and its text is saved to the public citations."""
         import podcast_generator as pg
 
-        class Redirected:
-            url = "http://169.254.169.254/latest/meta-data/"
-            text = "secret"
+        dns = {"news.test": "93.184.216.34", "cdn.test": "93.184.216.35",
+               "rebind.test": "169.254.169.254", "lan.test": "192.168.1.10"}
+
+        def getaddrinfo(host, *a, **k):
+            if host not in dns:
+                raise pg.socket.gaierror("no such host")
+            return [(None, None, None, "", (dns[host], 0))]
+
+        class Resp:
+            text = "page text"
+            cookies = {}
+
+            def __init__(self, url, location=None):
+                self.url, self.is_redirect = url, location is not None
+                self.headers = {"location": location} if location else {}
 
             def raise_for_status(self):
                 pass
 
-        calls = []
-        monkeypatch.setattr(pg.requests, "get", lambda url, **k: calls.append(url) or Redirected())
-        assert pg._fetch_page_text("http://169.254.169.254/latest/meta-data/") == ""
+            def close(self):
+                pass
+
+        calls, routes = [], {}
+
+        def get(url, **k):
+            assert k.get("allow_redirects") is False
+            calls.append(url)
+            return routes.get(url, Resp(url))
+
+        monkeypatch.setattr(pg.socket, "getaddrinfo", getaddrinfo)
+        monkeypatch.setattr(pg.requests, "get", get)
+
+        # Private by literal, by DNS, or unresolvable: never requested.
+        for url in ("http://169.254.169.254/latest/meta-data/", "http://rebind.test/latest/meta-data/",
+                    "https://lan.test/admin", "https://nxdomain.test/"):
+            assert pg._fetch_page_text(url) == ""
         assert pg._fetch_article_author("http://127.0.0.1/admin") == ""
         assert pg._fetch_url_metadata("http://localhost/") == ("", "", "")
         assert calls == []
-        # A public URL that redirects inward is fetched but never read.
-        assert pg._fetch_page_text("https://news.test/a") == ""
-        assert calls == ["https://news.test/a"]
+
+        # A redirect hop into a private address is never requested.
+        for hop in ("http://169.254.169.254/latest/meta-data/", "http://rebind.test/x", "https://lan.test/r"):
+            routes["https://news.test/a"] = Resp("https://news.test/a", location=hop)
+            assert pg._fetch_page_text("https://news.test/a") == ""
+        assert set(calls) == {"https://news.test/a"}
+
+        # A public chain is followed hop by hop, and a loop gives up.
+        calls.clear()
+        routes["https://news.test/a"] = Resp("https://news.test/a", location="https://cdn.test/a")
+        assert pg._fetch_page_text("https://news.test/a") == "page text"
+        assert calls == ["https://news.test/a", "https://cdn.test/a"]
+        routes["https://news.test/loop"] = Resp("https://news.test/loop", location="/loop")
+        assert pg._get_public("https://news.test/loop") is None
 
 
 class TestSparseFilterBudget:
@@ -5857,6 +6321,8 @@ class TestSparseFilterBudget:
         )
         monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
         monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "test-key")
+        monkeypatch.delenv("KAGI_API_KEY", raising=False)
+        monkeypatch.setattr(pg, "_KAGI_EXTRACT_STATE", {"pages": 0})
 
     def test_feed_excerpt_is_used_before_any_search(self, monkeypatch):
         import podcast_generator as pg
@@ -5865,11 +6331,151 @@ class TestSparseFilterBudget:
             raise AssertionError("searched for an article whose excerpt was enough")
         monkeypatch.setattr(pg, "_brave_search", _no_search)
 
-        excerpt = "A council vote on the new water treatment plant. " * 5
+        excerpt = "A council vote on the new water treatment plant. " * 9
+        assert len(excerpt.strip()) >= pg.NEWS_BODY_RICH_CHARS
         kept, _ = pg._filter_sparse_news_articles(
             [{"title": f"Story {i}", "_excerpt": excerpt} for i in range(4)])
         assert len(kept) == 4
         assert all(a["_body"] == excerpt.strip() for a in kept)
+
+    def test_a_short_excerpt_is_researched_not_aired_as_is(self, monkeypatch):
+        """An excerpt past the drop floor but under RICH is what the hosts used to
+        narrate the gap of ("the excerpt we have doesn't name the Nation")."""
+        import podcast_generator as pg
+        calls = []
+
+        def _search(query, api_key, count=5):
+            calls.append(query)
+            return []
+        monkeypatch.setattr(pg, "_brave_search", _search)
+
+        excerpt = "A council vote on the new water treatment plant. " * 4
+        kept, brave_used = pg._filter_sparse_news_articles(
+            [{"title": "Council votes on water plant", "_excerpt": excerpt}])
+        assert calls == ["Council votes on water plant"]
+        assert kept[0]["_body"] == excerpt.strip() and not brave_used
+
+    def test_research_reads_the_matching_coverage_and_credits_it(self, monkeypatch):
+        """The snippet is a teaser; the same story's page is the research."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_brave_search", lambda q, k, count=5: [
+            {"title": "Unrelated recipe roundup", "url": "https://food.test/a",
+             "description": "short"},
+            {"title": "Xatśūll First Nation terminates Spanish Mountain Gold agreements",
+             "url": "https://www.wltribune.test/story", "description": "short"},
+        ])
+        fetched = []
+
+        def _fetch(url):
+            fetched.append(url)
+            return "Full reporting on the terminated agreements and what comes next. " * 20
+        monkeypatch.setattr(pg, "_fetch_article_text", _fetch)
+
+        article = {"title": "Xatśūll First Nation terminates agreements with Spanish Mountain Gold",
+                   "url": "https://www.mycariboonow.test/x", "_fetched": True}
+        kept, brave_used = pg._filter_sparse_news_articles([article])
+        assert fetched == ["https://www.wltribune.test/story"]
+        assert brave_used and len(kept[0]["_body"]) >= pg.NEWS_BODY_RICH_CHARS
+        assert kept[0]["_body_via"] == "wltribune.test"
+
+    def test_long_feed_excerpt_beats_a_stub_from_the_free_fetch(self, monkeypatch):
+        """super-rss-feed's Kagi Extract text arrives as a 2000-char `_excerpt`."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [])
+        excerpt = "The full story from the extracted page, sentence after sentence. " * 30
+        article = {"title": "Story", "_body": "A stub from the page. " * 10, "_excerpt": excerpt}
+        pg._fill_body_from_excerpt([article])
+        assert article["_body"] == excerpt.strip()
+
+    def test_kagi_extract_reads_the_own_page_before_brave(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+
+        def _no_search(*a, **k):
+            raise AssertionError("searched Brave for a story Kagi Extract had read")
+        monkeypatch.setattr(pg, "_brave_search", _no_search)
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+        page = f"![Logo](https://x.test/l.png)\n- [News](https://x.test/n)\n\n{story}\n"
+        posts = []
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": "https://x.test/b", "error": "No data returned"},
+                                 {"url": "https://x.test/a", "markdown": page}]}
+
+        def _post(url, **kw):
+            posts.append(kw["json"])
+            return Resp()
+        monkeypatch.setattr(pg.requests, "post", _post)
+        articles = [{"title": "Fire hall", "url": "http://x.test/a", "_fetched": True},
+                    {"title": "Other", "url": "https://x.test/b", "_fetched": True,
+                     "_excerpt": "A council vote on the new water treatment plant. " * 9}]
+        kept, _ = pg._filter_sparse_news_articles(articles)
+        assert posts == [{"pages": [{"url": "https://x.test/a"}]}]  # one request, https only
+        assert kept[0]["_body"].startswith("The regional district") and "Logo" not in kept[0]["_body"]
+        assert "_body_via" not in kept[0]
+
+    def test_kagi_extract_pages_the_sites_refuse_do_not_degrade(self, monkeypatch, capsys):
+        """2026-10-19 and -21: four refused pages is an ordinary night."""
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(name))
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": f"https://x.test/{i}", "error": "No data returned"}
+                                 for i in range(4)]}
+        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
+        articles = [{"title": f"S{i}", "url": f"https://x.test/{i}"} for i in range(4)]
+        assert pg._extract_roundup_stories(articles) == 0
+        assert rows == []
+        assert "4× page error: No data returned" in capsys.readouterr().out
+
+    def test_kagi_extract_reply_that_matches_no_url_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": "https://x.test/0/", "markdown": "text"}]}
+        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
+        articles = [{"title": "S0", "url": "https://x.test/0"},
+                    {"title": "S1", "url": "https://x.test/1"}]
+        pg._extract_roundup_stories(articles)
+        assert rows == ["Kagi Extract reply matched no page for 2 of 2 URLs sent"]
+
+    def test_kagi_extract_stops_at_its_page_budget(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        monkeypatch.setattr(pg, "KAGI_EXTRACT_CALL_LIMIT", 3)
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [])
+        sent = []
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": []}
+        monkeypatch.setattr(pg.requests, "post",
+                            lambda url, **kw: sent.extend(kw["json"]["pages"]) or Resp())
+        articles = [{"title": f"S{i}", "url": f"https://x.test/{i}", "_fetched": True}
+                    for i in range(8)]
+        pg._extract_roundup_stories(articles)
+        pg._extract_roundup_stories(articles)
+        assert len(sent) == 3
 
     def test_title_searches_stop_at_the_search_budget(self, monkeypatch):
         import podcast_generator as pg
@@ -5907,7 +6513,7 @@ class TestSparseFilterBudget:
         def _no_search(*a, **k):
             raise AssertionError("searched a pre-curation candidate")
         monkeypatch.setattr(pg, "_brave_search", _no_search)
-        monkeypatch.setattr(pg, "_fetch_page_text", lambda url: "")
+        monkeypatch.setattr(pg, "_fetch_article_text", lambda url: "")
 
         articles = [{"title": f"Thin {i}", "url": f"https://x.test/{i}"} for i in range(5)]
         pg._enrich_articles_with_body(articles, max_articles=40, use_brave=False)
@@ -5944,6 +6550,32 @@ class TestScriptQuestionAnswers:
         out = pg._resolve_script_questions_with_brave("script", "key", object())
         assert asked == queries[:pg.SCRIPT_QUESTION_LIMIT]
         assert out.count("Answer: An answer.") == pg.SCRIPT_QUESTION_LIMIT
+
+    def test_cut_off_detection_degrades_instead_of_going_silent(self, monkeypatch):
+        """2026-10-09..12: Haiku 5.5 filled max_tokens=300 mid-string every night
+        and the except printed one line; four episodes polished with no answers."""
+        import podcast_generator as pg
+
+        seen = {}
+
+        class _Client:
+            class messages:
+                @staticmethod
+                def create(**kw):
+                    seen.update(kw)
+        monkeypatch.setattr(pg, "api_retry", lambda fn: (fn(), type("R", (), {"usage": None})())[1])
+        monkeypatch.setattr(pg, "message_text", lambda r: '{"queries": ["Tesla Semi battery wei')
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+
+        assert pg._resolve_script_questions_with_brave("script", "key", _Client()) == ""
+        assert [name for name, _ in recorded] == ["script/fact-questions"]
+        assert seen["max_tokens"] >= 1000
+        assert f"at most {pg.SCRIPT_QUESTION_LIMIT}" in seen["messages"][0]["content"]
+
+    def test_question_limit_fits_the_answers_budget(self):
+        import podcast_generator as pg
+        assert pg.SCRIPT_QUESTION_LIMIT <= pg.BRAVE_ANSWERS_CALL_LIMIT
 
     def test_detection_reads_the_deep_dive(self, monkeypatch):
         """Detection read script[:5000] until 2026-10-02; the deep dive, where
@@ -6080,3 +6712,307 @@ class TestProtectTheMetaMoment:
         wf = (Path(__file__).parent.parent / ".github/workflows/daily-podcast.yml").read_text()
         assert not re.search(r"git fetch[^\n]*--depth", wf)
         assert "Check the Sunday Meta Moment aired" in wf
+
+
+class TestAiredLedger:
+    """The past week's spoken lines that today's material would repeat.
+
+    2026-10-06 aired Doerkson's 2024 vote count and Askew's biography for the
+    third and fourth time that week: the all-week election pass hands the
+    writer the same ballot records every day, and nothing told it they had aired.
+    """
+
+    PRIOR = (
+        "# Cariboo Signals Podcast Script - {day}\n\n"
+        "**WELCOME**\n\n"
+        "**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest "
+        "tech news and ideas that impact our rural communities.\n\n"
+        "**NEWS ROUNDUP**\n\n"
+        "**RILEY:** [pause:1200] Doerkson won in 2024 by 7,722 votes, 13,714 to 5,992.\n\n"
+        "**CASEY:** She volunteers with the Hawkins Lake Volunteer Fire Department, "
+        "the Forest Grove Legion and the Canim Lake Community Club.\n\n"
+        "**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands**\n\n"
+        "**RILEY:** Seed growers in Saskatoon are watching the move to one site closely.\n"
+    )
+
+    @pytest.fixture
+    def podcasts(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+
+        def write(day, text=None):
+            (tmp_path / f"podcast_script_{day}_working_lands.txt").write_text(
+                text or self.PRIOR.format(day=day), encoding="utf-8")
+        return write
+
+    RESEARCH = ("2024 win: BC Ballot, citing Elections BC, says he won by 7,722 votes. "
+                "He had 13,714 votes (69.6%) against NDP's Michael Moses with 5,992.")
+
+    def test_lists_an_aired_fact_the_research_restates(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-03")
+
+        block = pg.format_aired_ledger_for_prompt(self.RESEARCH, "2026-10-06")
+
+        assert "ALREADY ON AIR THIS WEEK" in block
+        assert '- Saturday October 3: "Doerkson won in 2024 by 7,722 votes, 13,714 to 5,992."' in block
+        assert "Welcome to Cariboo Signals" not in block   # boilerplate by design
+        assert "Hawkins Lake" not in block                 # not in today's material
+
+    def test_reads_only_the_lookback_window(self, podcasts):
+        import podcast_generator as pg
+        for day in ("2026-09-28", "2026-10-06", "2026-10-07"):
+            podcasts(day)   # 8 days back, today's own draft, tomorrow
+
+        assert pg.format_aired_ledger_for_prompt(self.RESEARCH, "2026-10-06") == ""
+
+    def test_lists_a_fact_once_at_its_latest_airing(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-02")
+        podcasts("2026-10-04")
+
+        block = pg.format_aired_ledger_for_prompt(self.RESEARCH, "2026-10-06")
+
+        assert block.count("7,722") == 1
+        assert "Sunday October 4" in block
+
+    def test_empty_when_nothing_repeats(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-03")
+
+        assert pg.format_aired_ledger_for_prompt(
+            "Ottawa announced a $1 billion Food-Link Fund for food terminals.", "2026-10-06") == ""
+
+    def test_finds_the_drafts_restated_lines(self, podcasts):
+        import podcast_generator as pg
+        podcasts("2026-10-03")
+        draft = (
+            "**NEWS ROUNDUP**\n\n"
+            "**CASEY:** BC Ballot gives his 2024 result as 13,714 votes, about 69.6 percent.\n\n"
+            "**RILEY:** She also volunteers with the Hawkins Lake fire department, "
+            "the Forest Grove Legion and the Canim Lake Community Club.\n\n"
+            "**CASEY:** Ottawa announced a $1 billion Food-Link Fund for food terminals.\n"
+        )
+
+        repeats = pg.find_aired_repeats(draft, "2026-10-06")
+
+        assert [(new[:20], day) for new, day, _ in repeats] == [
+            ("BC Ballot gives his ", "2026-10-03"),
+            ("She also volunteers ", "2026-10-03"),
+        ]
+
+    def test_numbered_places_are_not_figures(self):
+        import podcast_generator as pg
+        a = pg._aired_tokens("In 108 Mile Ranch, a feature on the cultural centre.")
+        b = pg._aired_tokens("The 100 Mile Free Press says 108 Mile Ranch raised money on Highway 97.")
+
+        assert not any(t.startswith("#") for t in a | b)
+        assert not pg._echoes(a, b)
+
+    def test_sentences_do_not_split_inside_initialisms(self):
+        import podcast_generator as pg
+        draft = ("**NEWS ROUNDUP**\n\n**RILEY:** He was first elected as a B.C. Liberal "
+                 "in Cariboo-Chilcotin. He was re-elected in 2024 as a Conservative.\n")
+
+        assert pg._aired_sentences(draft) == [
+            "He was first elected as a B.C. Liberal in Cariboo-Chilcotin.",
+            "He was re-elected in 2024 as a Conservative.",
+        ]
+
+    def test_polish_prompt_carries_the_drafts_repeats(self, podcasts, monkeypatch):
+        import podcast_generator as pg
+        from datetime import datetime
+        podcasts("2026-10-03")
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 10, 6, 1, 0))
+        draft = "**NEWS ROUNDUP**\n\n**CASEY:** He took 13,714 votes in 2024, about 69.6 percent.\n"
+
+        addendum = pg._aired_repeats_addendum(draft)
+
+        assert "REPEATS FROM EARLIER EPISODES" in addendum
+        assert "aired Saturday October 3" in addendum
+        assert pg._aired_repeats_addendum("**NEWS ROUNDUP**\n\n**CASEY:** Nothing aired.\n") == ""
+
+    def test_generation_prompt_carries_the_ledger(self, podcasts, monkeypatch):
+        import podcast_generator as pg
+        from datetime import datetime
+        podcasts("2026-10-03")
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 10, 6, 1, 0))
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+
+        pg.generate_podcast_script([], [], "Working Lands & Industry", {}, {},
+                                   brave_context=self.RESEARCH)
+
+        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        assert "ALREADY ON AIR THIS WEEK" in sent
+        assert "13,714 to 5,992" in sent
+
+    def test_polish_prompt_keeps_aired_research_out(self, podcasts, monkeypatch):
+        """2026-10-10: the draft left last Saturday's bios out, and the polish wove
+        them back in from the research block (2 repeated lines became 18)."""
+        import podcast_generator as pg
+        from datetime import datetime
+        podcasts("2026-10-03")
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 10, 6, 1, 0))
+        draft = "**NEWS ROUNDUP**\n\n**CASEY:** Nothing aired.\n"
+
+        addendum = pg._aired_repeats_addendum(draft, self.RESEARCH)
+
+        assert "ALREADY ON AIR THIS WEEK" in addendum
+        assert "13,714 to 5,992" in addendum
+        assert "REPEATS FROM EARLIER EPISODES" not in addendum
+        for key in ("polish_and_factcheck", "agentic_polish_and_factcheck"):
+            prompt = str(pg.CONFIG["prompts"][key])
+            assert "unless it appears under ALREADY ON AIR THIS WEEK" in prompt
+
+
+class TestCandidateProfiles:
+    """2026-10-10: the Tribune profiled most of the council field that week and
+    the research cited directory sites instead. The roll call reads them."""
+
+    EVENTS = [{"roster": {"races": [
+        {"race": "Council", "candidates": ["Ruth Lloyd", "Greg Jeannotte", "Gone Person"],
+         "withdrawn": ["Gone Person"]}]}}]
+    POOL = [
+        {"title": "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor candidate Ruth Lloyd",
+         "url": "https://wltribune.com/2026/10/07/meet-ruth-lloyd/", "date_published": "2026-10-07T04:00:00"},
+        {"title": "Unrelated story", "url": "https://example.com/x"},
+        {"title": "Gone Person drops out", "url": "https://example.com/gone"},
+    ]
+
+    def test_reads_the_profile_of_a_running_candidate(self, monkeypatch):
+        import podcast_generator as pg
+        fetched = []
+        monkeypatch.setattr(pg, "_fetch_page_text",
+                            lambda url: fetched.append(url) or "Menu Home Ruth Lloyd says housing comes first.")
+        monkeypatch.setattr(pg, "_public_http_url", lambda url: True)
+
+        blocks = pg._candidate_profiles(self.EVENTS, self.POOL)
+
+        assert fetched == ["https://wltribune.com/2026/10/07/meet-ruth-lloyd/"]
+        assert len(blocks) == 1
+        assert "Ruth Lloyd says housing comes first." in blocks[0]
+        assert "2026-10-07" in blocks[0]
+
+    def test_no_pool_no_fetch(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_fetch_page_text", lambda url: pytest.fail("fetched"))
+        assert pg._candidate_profiles(self.EVENTS, None) == []
+
+
+def test_production_disclosure_covers_infrastructure_vendors():
+    """A story about GitHub or Cloudflare gets the on-air disclosure: both run the show."""
+    import podcast_generator as pg
+    articles = [
+        {'title': 'GitHub rebuilds its Git infrastructure for agent-scale development', 'summary': ''},
+        {'title': 'Cloudflare outage takes sites offline', 'summary': ''},
+    ]
+    names = {name for name, _ in pg._detect_production_company_mentions(articles, pg.CONFIG['credits'])}
+    assert {'GitHub', 'Cloudflare'} <= names
+
+
+class TestArticleProse:
+    """2026-10-14: the roundup's 500-character body was the page's menus, so the
+    show said a Tyee excerpt didn't name the challenger its second paragraph named."""
+
+    PAGE = ("<html><nav><ul><li><a>News</a></li><li><a>Sports</a></li><li><a>Opinion"
+            "</a></li></ul></nav><script>var x = 1;</script><article>"
+            "<p>By Staff</p>"
+            "<p>Incumbent Ron Paull faced calls to resign after a book was distributed.</p>"
+            "<p>Former MLA Coralee Oakes is challenging him for the mayor&#8217;s chair "
+            "in Quesnel this fall.</p></article><footer><p>Subscribe</p></footer></html>")
+
+    def test_prose_skips_menus_and_short_paragraphs(self):
+        import podcast_generator as pg
+        prose = pg._article_prose(self.PAGE)
+        assert prose.startswith("Incumbent Ron Paull")
+        assert "Coralee Oakes" in prose and "mayor’s" in prose
+        assert "Sports" not in prose and "By Staff" not in prose and "var x" not in prose
+
+    def test_article_body_prefers_prose(self, monkeypatch):
+        import podcast_generator as pg
+        page = self.PAGE.replace("</article>", "<p>" + "Council met on Tuesday. " * 12 + "</p></article>")
+        monkeypatch.setattr(pg, "_fetch_page_html", lambda url: page)
+        assert pg._fetch_article_body("https://news.test/a").startswith("Incumbent Ron Paull")
+
+    def test_a_page_without_prose_falls_back_to_its_text(self, monkeypatch):
+        import podcast_generator as pg
+        page = "<div>" + "Candidate list Area F acclaimed " * 20 + "</div>"
+        monkeypatch.setattr(pg, "_fetch_page_html", lambda url: page)
+        assert pg._fetch_article_text("https://news.test/a").startswith("Candidate list")
+
+
+class TestRecentColdOpens:
+    """"Hey there, welcome in ... That and more, coming right up" aired five
+    mornings running: the prompt's examples were copied, not varied."""
+
+    def _write(self, d, day, line):
+        (d / f"podcast_script_{day}_theme.txt").write_text(
+            f"# Theme: x\n\n**COLD OPEN**\n**RILEY:** {line}\n\n**WELCOME**\n", encoding="utf-8")
+
+    def test_lists_the_past_week_greeting_and_closer(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        self._write(tmp_path, "2026-10-13", "Hey there, welcome in. Today we've got orcas. That and more, coming right up.")
+        self._write(tmp_path, "2026-10-01", "Too old. Not listed.")
+        self._write(tmp_path, "2026-10-14", "Today itself. Not listed.")
+        out = pg._format_recent_cold_opens("2026-10-14")
+        assert "Hey there, welcome in. … That and more, coming right up." in out
+        assert "Too old" not in out and "Today itself" not in out
+
+    def test_empty_when_nothing_aired(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        assert pg._format_recent_cold_opens("2026-10-14") == ""
+
+    def test_the_prompt_takes_the_list_and_no_longer_offers_examples(self):
+        import config_loader
+        template = config_loader.load_prompts_config()["cold_open_generation"]["template"]
+        assert "{recent_cold_opens}" in template
+        assert "Hey there" not in template and "coming right up" not in template
+
+
+class TestMatchDeepDiveToScript:
+    """2026-10-16: the deep dive argued from the Prop 45 and Santa Ana stories,
+    and the title-only matcher marked both undiscussed (1 of 4 sources)."""
+
+    SCRIPT = (
+        "**COLD OPEN**\n\n**RILEY:** Today: wildfire, housing, and a child killer on leave.\n\n"
+        "**DEEP DIVE: Wild Spaces**\n\n"
+        "**CASEY:** Southern California is the live test. Red flag warnings went up for the "
+        "first big Santa Ana event of the season, with gusts forecast through Friday.\n\n"
+        "**RILEY:** Prop 45 is the other half. It's on the November ballot and would amend "
+        "CEQA, the state's landmark environmental review law, for most housing projects.\n\n"
+        "**CASEY:** Who gets to leave when the smoke comes, and who has to call for help?\n"
+    )
+    PROP45 = {"title": "[NYT Business] California’s Proposition 45 Brings the Sprawl Debate Back",
+              "summary": "Among the measures up for a vote in November is one that would amend the "
+                         "state’s landmark environmental law and make it easier to build large "
+                         "housing developments outside cities."}
+    SANTA_ANA = {"title": "[Wildfire Today] LA faces ‘critical’ fire danger, electricity "
+                          "cutoffs ahead of forecast Santa Ana winds",
+                 "summary": "The first fierce dry winds of California’s Santa Ana season are "
+                            "forecast to make landfall on Thursday and Friday."}
+    KILLER = {"title": "[Global News] Leave for B.C. child killer sparks call for change at political level",
+              "summary": "Shane Ertmoed, who is serving a life sentence, was granted a 60-day "
+                         "unescorted temporary absence from prison to take cooking classes."}
+
+    def test_paraphrased_sources_are_discussed(self):
+        matched = dict((a["title"], d) for a, d in match_deep_dive_to_script(
+            [self.PROP45, self.SANTA_ANA], self.SCRIPT))
+        assert all(matched.values())
+        # The roundup's title matcher misses both: the reason this exists.
+        assert not any(d for _, d in match_articles_to_script(
+            [self.PROP45, self.SANTA_ANA], self.SCRIPT))
+
+    def test_common_words_and_cold_open_do_not_count(self):
+        # "leave", "call" and "child killer" appear, but only in passing or in
+        # the cold open, which is not the deep dive.
+        [(_, discussed)] = match_deep_dive_to_script([self.KILLER], self.SCRIPT)
+        assert discussed is False
+
+    def test_no_script_keeps_everything(self):
+        assert match_deep_dive_to_script([self.KILLER], "") == [(self.KILLER, True)]
+

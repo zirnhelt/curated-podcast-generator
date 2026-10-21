@@ -140,3 +140,17 @@ def _isolate_youtube_ledger(tmp_path, monkeypatch):
     import youtube_upload
 
     monkeypatch.setattr(youtube_upload, "LEDGER_PATH", tmp_path / "youtube_uploads.json")
+
+
+@pytest.fixture(autouse=True)
+def _isolate_ballot_cache(tmp_path, monkeypatch):
+    """Redirect the ballot research cache to an *empty* tmp file for every test.
+
+    _research_event_ballot() writes it after every fresh pass, and
+    podcasts/ballot_research_cache.json is live state CI commits daily. Empty, so
+    a test asking for a pass gets one instead of production's last ballot.
+    """
+    import podcast_generator
+
+    monkeypatch.setattr(podcast_generator, "BALLOT_RESEARCH_CACHE_FILE",
+                        tmp_path / "ballot_research_cache.json")

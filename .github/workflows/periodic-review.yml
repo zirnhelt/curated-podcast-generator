@@ -2,7 +2,9 @@ name: Periodic Script Review
 
 on:
   schedule:
-    # Every Sunday at 2:00 AM Pacific (09:00 UTC summer / 10:00 UTC winter)
+    # Scheduled for Sunday 2:00 AM Pacific (09:00 UTC summer / 10:00 UTC winter), but
+    # GitHub has started it at 14:47 and 15:33 UTC on recent Sundays: read the report
+    # in the afternoon.
     - cron: '0 9 * * 0'
   workflow_dispatch:
     inputs:
@@ -15,8 +17,12 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   # Every Sonnet call follows this repository variable (Settings → Secrets and
-  # variables → Actions → Variables). Unset means claude-sonnet-5 (config_loader).
+  # variables → Actions → Variables). Unset means claude-haiku-5-5 (config_loader).
   CLAUDE_SONNET_MODEL: ${{ vars.CLAUDE_SONNET_MODEL }}
+  # The weekly script reviewer alone. Set it to a fixed model (e.g.
+  # claude-sonnet-5-5, ~$0.50/month) so the grades stay comparable when the
+  # script writer changes. Unset means CLAUDE_SONNET_MODEL.
+  CLAUDE_REVIEW_MODEL: ${{ vars.CLAUDE_REVIEW_MODEL }}
 
 permissions:
   contents: write
@@ -56,6 +62,9 @@ jobs:
       - name: Run script review
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # The verdict table reads super-rss-feed's public feedback files, about 29 requests.
+          # Unauthenticated, a shared runner IP gets 60 an hour for everyone on it.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DAYS_TO_REVIEW: ${{ steps.params.outputs.days }}
         run: |
           python review_scripts.py --days "$DAYS_TO_REVIEW" --output file

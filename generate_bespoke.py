@@ -1146,13 +1146,14 @@ def generate_bespoke_rss_feed(base_url):
     if _trace_cfg:
         lines += _build_trace_channel_xml(_trace_cfg, _podcast_cfg.get("author", ""))
 
+    from podcast_generator import _cdata_safe  # ponytail: reuse the daily feed's guard; bespoke is parked
     for ep in episodes[:20]:
         lines += [
             "<item>",
             f"<title>{saxutils.escape(ep['title'][:255])}</title>",
             f"<pubDate>{ep['pub_date']}</pubDate>",
-            f"<description><![CDATA[{ep['description']}]]></description>",
-            f"<itunes:summary><![CDATA[{ep['description']}]]></itunes:summary>",
+            f"<description><![CDATA[{_cdata_safe(ep['description'])}]]></description>",
+            f"<itunes:summary><![CDATA[{_cdata_safe(ep['description'])}]]></itunes:summary>",
             f'<enclosure url="{saxutils.escape(ep["audio_url"])}" length="{ep["file_size"]}" type="audio/mpeg"/>',
             f"<guid isPermaLink=\"false\">{saxutils.escape(ep['guid'])}</guid>",
             f"<itunes:duration>{ep['duration']}</itunes:duration>",

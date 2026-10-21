@@ -30,7 +30,7 @@ import httpx
 from collections import Counter
 from functools import lru_cache
 from itertools import groupby
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 try:
     from twit_harvest import load_relevant_inspiration as _load_twit_inspiration
@@ -39,6 +39,7 @@ except ImportError:
 
 # Import configuration loader
 from config_loader import (
+    HAIKU_MODEL,
     SONNET_MODEL,
     thinking_off,
     load_podcast_config,
@@ -439,7 +440,7 @@ def check_api_budget() -> None:
         return
     try:
         client.messages.create(
-            model=SUMMARY_MODEL, max_tokens=1,
+            model=SUMMARY_MODEL, max_tokens=1, thinking=thinking_off(SUMMARY_MODEL),
             messages=[{"role": "user", "content": "ok"}],
         )
     except Exception as e:
@@ -469,26 +470,51 @@ def api_retry(func, max_retries=3, base_delay=2):
                 raise
 
 
+# List prices for the non-Claude services, so the review can say what a night
+# cost and not only how many calls it made. Brave Search is $5/1000 (shared cap
+# with super-rss-feed); Answers is the refit $0.041 a query; Kagi Extract is
+# $0.004 a page, confirmed against Kagi's usage page 2026-10-17 (10 pages =
+# $0.040). OpenAI is per million characters; a model with no row is uncosted.
+# Gemini TTS is parked and uncosted.
+_FLAT_USD_PER_UNIT = {"brave-search": 0.005, "brave-answers": 0.041, "kagi-extract": 0.004}
+_OPENAI_TTS_USD_PER_M_CHARS = {"tts-1": 15.0, "tts-1-hd": 30.0}
+_api_cost_by_service: dict[str, float] = {}
+
+
+def _service_usd(service: str, unit: str, count: int) -> float:
+    if service == "openai-tts":
+        return count * _OPENAI_TTS_USD_PER_M_CHARS.get(OPENAI_TTS_MODEL, 0.0) / 1e6
+    # Kagi bills the page and logs it once per page; Brave bills the call.
+    return _FLAT_USD_PER_UNIT.get(service, 0.0) * (count if unit == "pages" else 1)
+
+
 def _log_api_call(service: str, unit: str, count: int) -> None:
     """Log an API call for cost metering. Always runs; detail gated on PODCAST_DEBUG_AGENT."""
     global _api_call_counts, _api_input_token_totals
-    _api_call_counts[service] = _api_call_counts.get(service, 0) + 1
+    _api_call_counts[service] = _api_call_counts.get(service, 0) + (count if unit == "pages" else 1)
     if unit == "input_tokens":
         _api_input_token_totals[service] = _api_input_token_totals.get(service, 0) + max(count, 0)
+    usd = _service_usd(service, unit, max(count, 0))
+    if usd:
+        _api_cost_by_service[service] = _api_cost_by_service.get(service, 0.0) + usd
     ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     print(f"  [api] {ts} service={service} {unit}={count}")
 
 
 # USD per million tokens (input, output, cache read), first-party list prices
-# checked 2026-09-30. Cache writes are 1.25x input (5-minute TTL — the only one
+# checked 2026-10-08. Cache writes are 1.25x input (5-minute TTL — the only one
 # this pipeline uses); the Batch API halves every line. Longest prefix wins, so
 # claude-opus-5-5 is not priced as claude-opus-5.
 _CLAUDE_PRICES = {
     "claude-haiku-4-5": (1.0, 5.0, 0.10),
+    "claude-haiku-5-5": (0.10, 0.50, 0.01),
     "claude-sonnet-5": (2.0, 10.0, 0.20),
     "claude-opus-5": (5.0, 25.0, 0.50),
     "claude-opus-5-5": (4.0, 20.0, 0.20),
 }
+# Haiku 5.5 bills a call whose prompt (fresh + cached) passes 100K tokens on a
+# second rate card, 5x the first: (prompt threshold, multiplier).
+_LONG_PROMPT_RATES = {"claude-haiku-5-5": (100_000, 5.0)}
 _api_usage_totals = {"cache_write": 0, "cache_read": 0, "output": 0, "thinking_est": 0}
 _api_cost_usd = 0.0
 
@@ -543,6 +569,9 @@ def _log_claude_usage(response, batch: bool = False) -> None:
     if price:
         p_in, p_out, p_read = price
         usd = (fresh * p_in + written * p_in * 1.25 + read * p_read + output * p_out) / 1e6
+        for prefix, (threshold, multiplier) in _LONG_PROMPT_RATES.items():
+            if model.startswith(prefix) and fresh + written + read > threshold:
+                usd *= multiplier
         if batch:
             usd /= 2
         _api_cost_usd += usd
@@ -572,10 +601,34 @@ def _format_daily_cost_summary() -> str:
     )
 
 
-# Bounded adaptive thinking for the Sonnet-5/Opus generative calls. Env-tunable:
-# "low" is cheapest, "high" is Sonnet-5's default. Do NOT use on Haiku calls —
-# Haiku 4.5 rejects the effort parameter.
+def _format_spend_line() -> str:
+    """One machine-readable line per process: tokens, calls and dollars by service.
+
+    Each stage is its own process, so the review sums every line in the job log
+    (`episode_review._SPEND_LINE`); keep the prefix stable. Empty when the stage
+    spent nothing, so a publish-only stage adds no line.
+    """
+    co = cohere_enrichment.usage()
+    calls = dict(_api_call_counts)
+    if co["calls"]:
+        calls["cohere"] = co["calls"]
+    usd = {"anthropic": _api_cost_usd, **_api_cost_by_service, "cohere": co["usd"]}
+    usd = {k: round(v, 4) for k, v in usd.items() if v}
+    if not calls and not usd:
+        return ""
+    return "💰 Spend by service: " + json.dumps(
+        {"input_tokens": _api_input_token_totals.get("claude", 0), "calls": calls, "usd": usd})
+
+
+# Bounded adaptive thinking for the generative calls (the Sonnet roles, now on
+# Haiku 5.5 by default, and Opus). Env-tunable: "low" is cheapest; "medium" is
+# Haiku 5.5's and Opus 5.5's own default, and Sonnet 5's is "high".
 THINKING_EFFORT = os.getenv("CLAUDE_THINKING_EFFORT", "medium")
+
+# The polish rewrites the whole script. On Haiku 5.5 at low effort it used
+# 18,418 of the old 24000 (2026-10-12), too close to truncation; a truncated
+# batch polish is discarded and paid for again on the real-time path.
+POLISH_MAX_TOKENS = 64000
 
 def create_message(client, stream=False, **kwargs):
     """client.messages.create/stream with adaptive thinking + bounded effort.
@@ -599,10 +652,13 @@ def create_message(client, stream=False, **kwargs):
 # health news every week. The API's server-side `fallbacks` option does not
 # retry general_harms on Sonnet 5.5, so this retry is ours, and it covers every
 # category. The predecessor cannot read the newer model's thinking blocks; the
-# API drops them unbilled, which is fine for a one-off retry.
+# API drops them unbilled, which is fine for a one-off retry. Haiku 5.5 has no
+# server-side fallback at all and took over the Sonnet roles from Sonnet 5, so
+# that is where its declines go.
 _REFUSAL_FALLBACK = {
     "claude-sonnet-5-5": "claude-sonnet-5",
     "claude-opus-5-5": "claude-opus-5",
+    "claude-haiku-5-5": "claude-sonnet-5",
 }
 
 
@@ -714,9 +770,11 @@ def _truncated(response) -> bool:
 # MIN_SCRIPT_WORDS is the hard publish floor (~19 min) — below this the episode
 # is unpublishably short and the run aborts rather than shipping it.
 # TARGET_SCRIPT_WORDS (~22-23 min) triggers the expand retry: any script under
-# it gets one length-feedback rewrite before the publish floor is checked.
+# it gets up to EXPAND_MAX_PASSES length-feedback rewrites before the publish
+# floor is checked.
 MIN_SCRIPT_WORDS = 2800
 TARGET_SCRIPT_WORDS = 3400
+EXPAND_MAX_PASSES = 2
 
 # Per-section floors the expand retry measures against. A whole-script "make it
 # longer" rewrite recovered ~400 words on Sonnet 5 and ~300 on Sonnet 5.5
@@ -767,18 +825,19 @@ def get_podcast_feed_url(weekday):
 
 # Claude model selection (override via environment variables)
 # Cost hierarchy (cheapest to most expensive): Haiku → Sonnet → Opus.
-# Opus 5.5 is $4/$20 per MTok against Sonnet's $2/$10 — 2x, still a real
-# premium: keep the escalation gated on select_review_model rather than making
-# it the default. Every Sonnet role follows CLAUDE_SONNET_MODEL (config_loader)
-# unless its own variable overrides it.
+# Opus 5.5 is $4/$20 per MTok against Haiku 5.5's $0.10/$0.50 — 40x: keep the
+# escalation gated on select_review_model rather than making it the default.
+# Every Sonnet role follows CLAUDE_SONNET_MODEL (config_loader, Haiku 5.5 when
+# unset) unless its own variable overrides it; every Haiku role follows
+# CLAUDE_HAIKU_MODEL.
 # Model IDs carry no date suffix; the bare ID is the complete identifier.
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL") or SONNET_MODEL
 POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL") or SONNET_MODEL
 OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL") or "claude-opus-5-5"
-SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5")
+SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL") or HAIKU_MODEL
 # Rewrites only the handful of sentences that kept a hard-banned phrase, never
 # the script — cheapest model is the right one for a few hundred tokens.
-SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL", "claude-haiku-4-5")
+SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL") or HAIKU_MODEL
 COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL") or SONNET_MODEL
 
 # OpenAI TTS model. tts-1/tts-1-hd are the legacy pair and the only ones that
@@ -895,6 +954,13 @@ BRAVE_SEARCH_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_SEARCH_COOLDOWN_SECS
 BRAVE_DEEP_DIVE_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT", "16"))
 BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOWN_SECS", "0"))
 #
+# Kagi Extract reads a thin roundup story's own page (rendered, clean markdown)
+# before any Brave title search: $4/1000 pages against Brave's $5/1000, and it
+# spends nothing from the Search cap the two repos share. Pages, not requests,
+# are the unit; one request carries up to KAGI_EXTRACT_BATCH. Unset key = off.
+KAGI_EXTRACT_CALL_LIMIT = int(os.getenv("PODCAST_KAGI_EXTRACT_CALL_LIMIT", "10"))  # 0=disabled
+KAGI_EXTRACT_BATCH = 10
+#
 # A themes.json `event_focus` carrying a `research` brief turns the research pass
 # from a judgement call into a roster sweep — one search per candidate per
 # question, where an ordinary day asks 4 in total. The ceiling above moved 10→16
@@ -919,6 +985,20 @@ EVENT_PAGE_FETCH_LIMIT = int(os.getenv("PODCAST_EVENT_PAGE_FETCH_LIMIT", "6"))
 # Results per roll-call search (was 3). Same price per request; a Saturday's ~27
 # searches add ~9k input tokens to the research loop, mostly read from cache.
 EVENT_ROLL_CALL_RESULTS = 6
+# A candidate profile the feed already carries is read in full before the agent
+# starts: a free page fetch, no Brave call. Characters kept per profile.
+CANDIDATE_PROFILE_CHARS = 1500
+#
+# The weekday election pass researched the whole ballot again every day the vote
+# reached the episode, and handed the writer the same records as new: 2026-10-06
+# re-aired a vote count four days running. Once nominations close, the field and
+# the records behind it stand still, so the last complete pass is reused until it
+# is this old, the roster or brief in config changes, or a story says the field
+# changed (_ballot_cache_reusable).
+BALLOT_RESEARCH_CACHE_FILE = PODCASTS_DIR / "ballot_research_cache.json"
+BALLOT_RESEARCH_MAX_AGE_DAYS = int(os.getenv("PODCAST_BALLOT_RESEARCH_MAX_AGE_DAYS", "7"))
+# The last pass rides into a fresh one as a starting point (~1.5K tokens).
+PRIOR_BALLOT_RESEARCH_CHARS = 6000
 #
 # The deep dive's own pass reads pages too. A read is a plain HTTP GET on no Brave
 # meter: the only cost is the Claude tokens of the page it returns (<=6000 chars).
@@ -949,16 +1029,21 @@ EVENT_UNFOUND_DEGRADE_SHARE = 1 / 3
 # credit — every call logs the usage block Brave returns, so refit this off a
 # measured month the way _SPEECH_RATE_FITS was refitted from the sidecars,
 # rather than off appetite.
-BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"))  # 0=disabled
+#
+# Refit 2026-10-12 off the measured months: September 77 queries for $3.11,
+# October 1-8 43 queries for $1.82 — about $0.041 a query, ~90% of it input
+# tokens (~7K a query). The $5 credit buys ~120 queries a month, so 4 a run
+# lasts the month; October's pace under 8 would have spent it by about the 22nd.
+BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "4"))  # 0=disabled
 #
 # September 2026 spent ~65 Answers queries against ~2,750 Search: the only
 # caller that asked Answers first was _resolve_script_questions_with_brave, capped
 # at 3, and the research agent almost never picked mode="answer". So 5 of the 8
 # slots a run could not be reached and the credit went unused while Search ran
 # short. Fact resolution now asks up to 5, and the tool description makes
-# "answer" the default for direct factual questions. Tokens are still the
-# unmeasured half of the price: refit off the logged `brave-answers tokens=`.
-SCRIPT_QUESTION_LIMIT = 5
+# "answer" the default for direct factual questions. Matches the run's Answers
+# budget since the 2026-10-12 refit.
+SCRIPT_QUESTION_LIMIT = 4
 # How much script question detection reads (see _script_question_excerpt).
 SCRIPT_QUESTION_SCAN_CHARS = 24000
 DEEP_DIVE_INJECT_DISCIPLINE_TAGS = os.getenv("PODCAST_DEEP_DIVE_INJECT_DISCIPLINE_TAGS", "0") == "1"
@@ -998,16 +1083,25 @@ def _is_prompt_slice_enabled(name: str) -> bool:
 # butter was recalled. Ransomware operators are targeting managers."). Every
 # coherence mechanism below — blocks, cluster adjacency, the no-forced-segue
 # rules — ran on the 15 and was bypassed by the 37.
-NEWS_ROUNDUP_COUNT = 15
+#
+# 18 since 2026-10-14: the model writes ~55-65 words a story, not the 70 the
+# budget assumed, so 15 stories drafted a 760-950-word roundup against its
+# 1,200 floor while the airtime cap cut 44-64 stories a day.
+NEWS_ROUNDUP_COUNT = 18
 
 # Minimum airtime a story must be able to command to be worth airing at all.
 # Below this it cannot carry what happened / why it matters / the rural angle,
 # and it becomes a headline read out for no one's benefit.
 ROUNDUP_MIN_STORY_WORDS = 70
 
+# Weekday deep-dive sources. 4 since 2026-10-14: on 3 the Deep Dive drafted
+# 1,000-1,600 words against its 2,000 floor; a fourth source gives the hosts
+# more to discuss rather than more to say about the same three.
+DEEP_DIVE_COUNT = 4
+
 # Saturday (Cariboo Local Affairs) runs a deeper, longer episode.
-SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
-SATURDAY_NEWS_ROUNDUP_COUNT = 15
+SATURDAY_DEEP_DIVE_COUNT = 5   # vs. DEEP_DIVE_COUNT on weekdays
+SATURDAY_NEWS_ROUNDUP_COUNT = 18
 
 # A deep dive may run short rather than be topped up with material the router
 # deferred to another day — but not to nothing. Below this many eligible
@@ -1043,8 +1137,39 @@ ROUNDUP_BACKFILL_SPARES = 5
 _api_call_counts = {}
 _api_input_token_totals = {}
 _review_model_used = None
+# How the polish pass actually ended: "batch", "realtime", "skipped" (the clean-draft
+# fast path) or "original" (every attempt was rejected or failed, so the unpolished
+# draft shipped). _review_model_used only records the model that was *selected*: from
+# 2026-10-07 the batch polish was discarded on about four nights in seven and nothing
+# said so, which made a polish-model trial unreadable.
+_polish_outcome_used = None
 # Pre-polish quality score set in main() before the polish call; read by select_review_model.
 _raw_quality_score = None
+
+
+def _record_polish_outcome(outcome: str) -> None:
+    """Remember how the polish ended for the citations, and say so when it did not.
+
+    "original" means the unpolished draft ships. The polish is an improvement pass and
+    is allowed to fail, but not silently: this used to leave a green run, an unchanged
+    credit and no trace beyond one stdout line.
+    """
+    global _polish_outcome_used
+    _polish_outcome_used = outcome
+    if outcome == "original":
+        degrade("script/polish",
+                f"polish did not ship — the unpolished draft aired "
+                f"(selected {_review_model_used or POLISH_MODEL}; see the batch and "
+                f"real-time lines above)")
+
+
+def _review_credit_label() -> str:
+    """The credits name what edited the script. A draft that shipped as written
+    ("original", or "skipped" on the clean-draft fast path, where no model is even
+    selected) had no reviewer, so naming POLISH_MODEL there would be wrong."""
+    if _polish_outcome_used in ("original", "skipped"):
+        return "none (unpolished draft)"
+    return _review_model_used or POLISH_MODEL
 
 
 def select_review_model(deep_dive_articles):
@@ -1331,6 +1456,8 @@ HOLDING_FILE = PODCASTS_DIR / "article_holding.json"
 # by its rate, not by a human noticing it first.
 PHRASE_LEDGER_FILE = PODCASTS_DIR / "phrase_ledger.json"
 HOLD_MAX_DAYS = 14              # max days an article may wait for its focus day
+# Repeated lines the polish may add over the draft before script/aired-check degrades.
+AIRED_POLISH_SLACK = 2
 AIRED_EARLY_RETENTION_DAYS = 30 # how long the aired-early callback ledger keeps entries
 HOLD_MIN_FOCUS_HITS = 2         # focus-keyword hits required before holding
 # An article the feed scores at or above this against TODAY's charter is never
@@ -1365,6 +1492,16 @@ URGENT_SCORE_THRESHOLD = 85     # _boosted_score at/above this always airs same-
 EMAIL_BODY_MIN_CHARS = 300
 # News articles with less body text than this are treated as sparse; Brave is tried before skipping
 NEWS_BODY_MIN_CHARS = 150
+# Below this a curated roundup story is researched (free page fetch, then one
+# Brave search and a read of the matching coverage) before the script is written.
+# Between MIN and RICH a story used to air on its feed excerpt, and the hosts
+# filled the gap on air: "the excerpt we have doesn't name the Nation" (2026-10-03),
+# "the report doesn't say who is running" (2026-10-07), five such lines on 2026-10-15.
+NEWS_BODY_RICH_CHARS = 400
+# How much of each roundup story's researched body the script prompt sees. It was
+# 500, about the lede: on 2026-10-12 a candidate profile reached the prompt as its
+# four questions and none of the answers. ~3.5K more prompt tokens a script call.
+ROUNDUP_PROMPT_BODY_CHARS = 1200
 # 35 days (was 21) so episode memory spans a full 4-week super cycle and the
 # previous same-focus episode is always recallable for continuity.
 MEMORY_RETENTION_DAYS = 35
@@ -1505,18 +1642,52 @@ def _public_http_url(url) -> bool:
     return address is None or address.is_global
 
 
+MAX_REDIRECTS = 5
+
+
+def _resolves_public(host: str) -> bool:
+    """True if every address ``host`` resolves to is global. Fails closed."""
+    try:
+        infos = socket.getaddrinfo(host, None, proto=socket.IPPROTO_TCP)
+        addresses = {ipaddress.ip_address(info[4][0].split("%")[0]) for info in infos}
+    except (OSError, UnicodeError, ValueError):
+        return False
+    return bool(addresses) and all(a.is_global for a in addresses)
+
+
+def _get_public(url: str, **kwargs) -> "requests.Response | None":
+    """``requests.get`` for a feed- or model-supplied URL, or None if any hop is not public.
+
+    Each hop must pass ``_public_http_url`` and resolve only to global addresses
+    before it is requested, so neither a public name pointing at a private
+    address nor a redirect through one is fetched. Redirects are followed here
+    (cookies carried, at most ``MAX_REDIRECTS``) so each hop is checked.
+    """
+    # ponytail: resolve-and-check, not resolve-and-pin. requests resolves again, so a
+    # DNS answer that changes between the two lookups still gets through (operations.md).
+    cookies = requests.cookies.RequestsCookieJar()
+    for _ in range(MAX_REDIRECTS + 1):
+        if not _public_http_url(url) or not _resolves_public(urlparse(url).hostname):
+            return None
+        resp = requests.get(url, allow_redirects=False, cookies=cookies, **kwargs)
+        if not getattr(resp, "is_redirect", False):
+            return resp if _public_http_url(getattr(resp, "url", url)) else None
+        cookies.update(resp.cookies)
+        url = urljoin(url, resp.headers["location"])
+        resp.close()
+    return None
+
+
 def _fetch_article_author(url):
     """Best-effort fetch of article author from HTML meta tags.
 
     Returns author name string or empty string on any failure.
     """
-    if not _public_http_url(url):
-        return ""
     try:
-        resp = requests.get(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
-        resp.raise_for_status()
-        if not _public_http_url(getattr(resp, "url", url)):
+        resp = _get_public(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
             return ""
+        resp.raise_for_status()
         return _extract_author_from_html(resp.text)
     except Exception:
         return ""
@@ -1527,13 +1698,11 @@ def _fetch_url_metadata(url):
 
     Returns (title, description, author) strings; any may be empty on failure.
     """
-    if not _public_http_url(url):
-        return "", "", ""
     try:
-        resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
-        resp.raise_for_status()
-        if not _public_http_url(getattr(resp, "url", url)):
+        resp = _get_public(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
             return "", "", ""
+        resp.raise_for_status()
         html = resp.text
 
         title = ""
@@ -1561,20 +1730,55 @@ def _fetch_url_metadata(url):
         return "", "", ""
 
 
-def _fetch_page_text(url: str) -> str:
-    """A page's visible text (scripts, styles and tags stripped), or "" on failure."""
-    if not _public_http_url(url):
-        return ""
+def _fetch_page_html(url: str) -> str:
+    """A page's raw HTML, or "" on failure."""
     try:
-        resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
-        resp.raise_for_status()
-        if not _public_http_url(getattr(resp, "url", url)):
+        resp = _get_public(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
             return ""
-        text = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', resp.text, flags=re.I | re.S)
-        text = re.sub(r'<[^>]+>', ' ', text)
-        return re.sub(r'\s+', ' ', html_lib.unescape(text)).strip()
+        resp.raise_for_status()
+        return resp.text
     except Exception:
         return ""
+
+
+def _html_text(html: str) -> str:
+    """Visible text: scripts, styles and tags stripped, whitespace collapsed."""
+    text = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', html, flags=re.I | re.S)
+    text = re.sub(r'<[^>]+>', ' ', text)
+    return re.sub(r'\s+', ' ', html_lib.unescape(text)).strip()
+
+
+def _fetch_page_text(url: str) -> str:
+    """A page's visible text (scripts, styles and tags stripped), or "" on failure."""
+    html = _fetch_page_html(url)
+    return _html_text(html) if html else ""
+
+
+ARTICLE_PARAGRAPH_MIN_WORDS = 8
+
+
+def _article_prose(html: str) -> str:
+    """The article's own paragraphs: the text of every <p> long enough to be prose.
+
+    A news page's visible text opens with its menus, so its first 500 characters,
+    which is what the roundup prompt sees, were navigation. On 2026-10-14 the
+    show said "the excerpt we have doesn't establish the challenger's name" for
+    a Tyee story whose own image file names her. Menus are <li><a>, prose is <p>.
+    """
+    # ponytail: regex over <p>, not a readability library; no new dependency.
+    paragraphs = (_html_text(p) for p in re.findall(r'<p\b[^>]*>(.*?)</p>', html, re.I | re.S))
+    return " ".join(p for p in paragraphs if len(p.split()) >= ARTICLE_PARAGRAPH_MIN_WORDS)
+
+
+def _fetch_article_text(url: str) -> str:
+    """An article's prose paragraphs, or the page's visible text when it has too
+    few <p> to tell; "" on failure."""
+    html = _fetch_page_html(url)
+    if not html:
+        return ""
+    prose = _article_prose(html)
+    return prose if len(prose) > 200 else _html_text(html)
 
 
 def _fetch_article_body(url, brave_key=None, title=None):
@@ -1589,7 +1793,7 @@ def _fetch_article_body(url, brave_key=None, title=None):
 
     Returns a body string (up to 2000 chars); empty string on total failure.
     """
-    text = _fetch_page_text(url)
+    text = _fetch_article_text(url)
     body = text[:2000] if len(text) > 200 else ""
 
     # Brave enrichment when body is absent or suspiciously thin.  400 chars is
@@ -1638,9 +1842,12 @@ def _enrich_articles_with_body(articles, label="", max_articles=None, use_brave=
         if not url:
             continue
         existing = a.get("_body", "") or ""
-        if len(existing) >= 400:  # already richly populated — skip
+        if len(existing) >= NEWS_BODY_RICH_CHARS:  # already richly populated — skip
+            continue
+        if not brave_key and a.get("_fetched"):  # the free fetch already failed once
             continue
         body = _fetch_article_body(url, brave_key=brave_key, title=a.get("title"))
+        a["_fetched"] = True
         if len(body) > len(existing):
             a["_body"] = body
 
@@ -1699,6 +1906,7 @@ def _claude_theme_match(text: str, themes_config: dict) -> tuple:
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=10,
             messages=[{"role": "user", "content": prompt}]
         ))
@@ -2525,7 +2733,19 @@ def build_cached_system_prompt():
         casey_name=hosts['casey']['name'],
         casey_pronouns=hosts['casey']['pronouns'],
         casey_bio=hosts['casey']['full_bio'],
+        riley_voice=_format_voice_style(hosts['riley']),
+        casey_voice=_format_voice_style(hosts['casey']),
     ) + format_standing_notes_block()
+
+
+def _format_voice_style(host: dict) -> str:
+    """Render a host's `voice_style` lines as extra SPEECH bullets.
+
+    The lines are a style-and-perspective card distilled from a real writer's
+    long-form prose: register and lens only, never biography or civic positions.
+    Empty or missing renders nothing, so the hand-written SPEECH rules stand alone.
+    """
+    return "".join(f"- {line}\n" for line in host.get("voice_style", []))
 
 def select_welcome_host():
     """Randomly select which host opens the show."""
@@ -2855,6 +3075,7 @@ def _assess_deep_dive_for_enrichment(deep_dive_articles, theme_name, client):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=300,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output({
@@ -3423,7 +3644,41 @@ def _event_sweep_queries(event) -> list:
     return [q for q in queries if q]
 
 
-def _run_event_sweep(events, brave_key) -> str:
+def _candidate_profiles(events, pool) -> list[str]:
+    """Pages in the day's feed whose headline names a running candidate, read in full.
+
+    2026-10-10: the Tribune ran a Meet the Candidates profile for most of the
+    council field that week, and the research cited six-year-old snippets and
+    directory sites instead, because the roll call only knows what search
+    returns. The feed had the pages; this reads them. One page per candidate,
+    fetched directly, so it costs no search.
+    """
+    running = {n for e in events for r in ((e.get("roster") or {}).get("races") or [])
+               for n in _running(r)}
+    blocks, seen = [], set()
+    for name in sorted(running):
+        pattern = re.compile(rf"\b{re.escape(name)}\b", re.I)
+        art = next((a for a in pool or []
+                    if pattern.search(a.get("title") or "")
+                    and _public_http_url(a.get("url") or "")
+                    and a.get("url") not in seen), None)
+        if not art:
+            continue
+        seen.add(art["url"])
+        text = _fetch_page_text(art["url"])
+        last = name.split()[-1]
+        at = text.find(last)
+        excerpt = text[max(0, at - 200):][:CANDIDATE_PROFILE_CHARS] if at >= 0 else ""
+        if not excerpt:
+            continue
+        _RESEARCH_LOG.append({"kind": "profile", "candidate": name, "url": art["url"]})
+        blocks.append(f"  - {name}: {art.get('title', '')} "
+                      f"({(art.get('date_published') or '')[:10]})\n"
+                      f"    Source: {art['url']}\n    {excerpt}")
+    return blocks
+
+
+def _run_event_sweep(events, brave_key, pool=None) -> str:
     """Run the ballot roll call in Python and return it as a results block.
 
     Deterministic on purpose: the agent rationed eight searches across twenty
@@ -3452,6 +3707,11 @@ def _run_event_sweep(events, brave_key) -> str:
                 lines.append(f"  - {h['title']}\n    {h['description'][:300]}\n    Source: {h['url']}")
         if lines:
             sections.append(f"ROLL-CALL SEARCHES — {event.get('name', 'event')}:\n" + "\n".join(lines))
+    profiles = _candidate_profiles(events, pool)
+    if profiles:
+        print(f"    🗳️  {len(profiles)} candidate profile(s) read from the day's feed")
+        sections.append("CANDIDATE PROFILES (the outlet's own article on that candidate, "
+                        "read in full):\n" + "\n".join(profiles))
     return "\n\n".join(sections)
 
 
@@ -3490,7 +3750,10 @@ _BALLOT_SWEEP_INSTRUCTIONS = (
     "Where a race has no names, finding who filed comes before any other search, and a "
     "candidate list or declaration page is worth reading with fetch_page rather than "
     "guessing from a snippet. Check the date on every page: a result from an earlier "
-    "election is that election's record, not this one's field.\n\n"
+    "election is that election's record, not this one's field. Where CANDIDATE PROFILES "
+    "carries a person, that article is their record for this campaign: cite it by outlet "
+    "and date before any snippet. Local races come first; follow-ups on a provincial "
+    "candidate wait until every local name with no record has had one.\n\n"
 )
 _BALLOT_FINDINGS_FORMAT = (
     "One FINDINGS block per race naming each candidate with what the sources establish, "
@@ -3508,11 +3771,20 @@ def _standing_assignments(events) -> str:
         for e in events)
 
 
-def _research_articles_text(articles) -> str:
+# The election pass reads its stories at length: a name is usually past the
+# lede, and 500 characters is the lede.
+EVENT_ARTICLE_BODY_CHARS = 1500
+
+
+def _research_articles_text(articles, body_chars: int = 500) -> str:
+    """The articles a research pass starts from, with their URLs so fetch_page
+    can read the outlet's own page. Without them the 2026-10-14 election pass
+    searched the headline and read a syndicated copy on another station's site."""
     return "\n\n".join(
         f"ARTICLE: {a.get('title', '')}\n"
+        f"URL: {a.get('url', '')}\n"
         f"Summary: {a.get('summary', '')[:300]}\n"
-        f"Body excerpt: {(a.get('_body', '') or '')[:500]}"
+        f"Body excerpt: {(a.get('_body', '') or '')[:body_chars]}"
         for a in articles
     )
 
@@ -3539,16 +3811,97 @@ def _event_articles(events, articles) -> list:
                                   keywords)]
 
 
-def _research_event_ballot(articles, client, events) -> str:
+# A story that says the field itself changed. A reused ballot would then air
+# someone who is no longer running, so any of these forces a fresh pass. Broad
+# on purpose: a false hit costs one day's research, a miss costs a wrong name.
+_ROSTER_CHANGE_RE = re.compile(
+    r"\b(?:withdr[ae]w\w*|drop(?:s|ped|ping)? out|pull(?:s|ed|ing)? out|"
+    r"step(?:s|ped|ping)? (?:down|aside)|resign\w*|disqualif\w*|acclaim\w*|"
+    r"nominat\w*|new candidate|replac\w*)\b",
+    re.I)
+
+
+def _ballot_basis(events) -> list:
+    """What a ballot pass was researched against: each event's brief and roster.
+    An edit to either in config is a reason to research again."""
+    return sorted(([e.get("name", ""), e.get("research", ""), e.get("roster") or {}]
+                   for e in events), key=lambda b: b[0])
+
+
+def _ballot_complete(result: str) -> bool:
+    """The pass sourced everyone it named: its NO RECORD FOUND line says none.
+    A missing line is format drift, not a clean sweep."""
+    m = _NO_RECORD_RE.search(result or "")
+    return bool(m) and m.group(1).strip().rstrip(".").lower() in ("", "none")
+
+
+def _ballot_cache_reusable(cached: dict, events, articles, today: date) -> str:
+    """Why the cached pass cannot stand in for today's, or "" when it can."""
+    if not cached.get("block") or not cached.get("complete"):
+        return "no complete pass on file"
+    if cached.get("basis") != _ballot_basis(events):
+        return "the roster or brief in config changed"
+    try:
+        researched = date.fromisoformat(cached.get("researched", ""))
+    except ValueError:
+        return "no research date on file"
+    if (today - researched).days >= BALLOT_RESEARCH_MAX_AGE_DAYS:
+        return f"last researched {researched}, {BALLOT_RESEARCH_MAX_AGE_DAYS}-day limit"
+    for event in events:
+        closed = ((event.get("roster") or {}).get("nominations_closed") or "")
+        if closed and researched.isoformat() <= closed:
+            return f"researched before nominations closed ({closed})"
+    for a in articles or []:
+        if _ROSTER_CHANGE_RE.search(f"{a.get('title', '')} {a.get('summary', '')}"):
+            return f"a story may change the field: {a.get('title', '')[:80]}"
+    return ""
+
+
+def _save_ballot_cache(result: str, events, today: date) -> None:
+    with segment("script/ballot-cache", critical=False):
+        _atomic_write_json(BALLOT_RESEARCH_CACHE_FILE, {
+            "researched": today.isoformat(),
+            "complete": _ballot_complete(result),
+            "basis": _ballot_basis(events),
+            "block": result,
+        })
+
+
+def _research_event_ballot(articles, client, events, pool=None) -> str:
     """The ballot sweep for an all-week event, in a pass of its own.
 
     The Python roll call runs first; the agent follows up on the election meter
     with results-only search (EVENT_SEARCH_TOOL — every claim needs a URL) and
     page reads, each held to its allowance. Returns an ELECTION RESEARCH block,
     or "" when there is nothing to sweep or nothing came back.
+
+    Once nominations close, the last complete pass is reused instead
+    (_ballot_cache_reusable), marked with the day it was researched.
     """
+    if not events:
+        return ""
+    today = get_pacific_now().date()
+    cached = load_memory(BALLOT_RESEARCH_CACHE_FILE)
+    cached = cached if isinstance(cached, dict) else {}
+    stale = _ballot_cache_reusable(cached, events, articles, today)
+    if not stale:
+        researched = date.fromisoformat(cached["researched"])
+        print(f"🗳️  Reusing the ballot researched {researched}: nothing has changed the field since")
+        _RESEARCH_LOG.append({"kind": "cached", "researched": researched.isoformat()})
+        return (f"(Ballot researched {_air_day(researched.isoformat())} and unchanged since. "
+                f"Background, not news.)\n{cached['block']}\n\n")
+    prior = ""
+    if cached:
+        print(f"🗳️  Researching the ballot again: {stale}")
+        if cached.get("block") and cached.get("researched"):
+            # A fresh pass starts from the last one, not from nothing: on
+            # 2026-10-14 the show called unestablished what earlier passes had
+            # sourced, because each pass forgot the one before it.
+            prior = (f"\n\nPRIOR RESEARCH (researched {cached['researched']}):\n"
+                     f"{cached['block'][:PRIOR_BALLOT_RESEARCH_CHARS]}")
+
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
-    if not brave_key or not client or not events:
+    if not brave_key or not client:
         return ""
     if _brave_walled("search"):
         # Answers is no substitute here: the ballot is SOURCED OR UNSAID and an
@@ -3561,7 +3914,7 @@ def _research_event_ballot(articles, client, events) -> str:
     names = "; ".join(e.get("name", "election") for e in events)
     print(f"🗳️  Researching the ballot (agentic): {names}")
     window = next((w for w in (_campaign_window(e) for e in events) if w), None)
-    roll_call = _run_event_sweep(events, brave_key)
+    roll_call = _run_event_sweep(events, brave_key, pool)
     system_prompt = (
         "You are preparing election research for a daily podcast. Today's episode carries "
         "material on the election below. Your job is the ballot, not the day's deep dive, "
@@ -3569,6 +3922,13 @@ def _research_event_ballot(articles, client, events) -> str:
         "Never fabricate organization names, person names, or event details — only reference "
         "entities found in the source articles or verified by your web searches.\n\n"
         + _standing_assignments(events) + _BALLOT_SWEEP_INSTRUCTIONS +
+        "Each election article above carries its URL. Where its body excerpt stops "
+        "before naming the people it is about, read that URL with fetch_page before "
+        "searching for the story: the outlet's own page comes before a copy elsewhere. "
+        "PRIOR RESEARCH, when present, is what an earlier pass sourced: carry its "
+        "findings forward with their outlet and date unless today's sources supersede "
+        "them, and never put on the NO RECORD FOUND line someone it sourced. Who is "
+        "running comes from the roster, never from the prior pass.\n\n"
         f"Use web_search for up to {EVENT_RESEARCH_SEARCH_LIMIT} searches (set recent=true "
         "for who is running now) and fetch_page for up to "
         f"{EVENT_PAGE_FETCH_LIMIT} pages. Then respond with:\n\n"
@@ -3578,8 +3938,9 @@ def _research_event_ballot(articles, client, events) -> str:
         + _BALLOT_FINDINGS_FORMAT +
         "If your searches turn up nothing useful, respond with exactly: NONE"
     )
-    user_content = (f"Election material in today's episode:\n\n{_research_articles_text(articles)}"
-                    + (f"\n\n{roll_call}" if roll_call else ""))
+    user_content = (f"Election material in today's episode:\n\n"
+                    f"{_research_articles_text(articles, EVENT_ARTICLE_BODY_CHARS)}"
+                    + (f"\n\n{roll_call}" if roll_call else "") + prior)
     tool_executors = {
         "web_search": _budgeted(
             lambda i: _web_search_tool_executor(i, meter="event", window=window),
@@ -3604,12 +3965,13 @@ def _research_event_ballot(articles, client, events) -> str:
                 "the hosts had the roster and no records")
         return ""
     _check_unfound(result, events)
+    _save_ballot_cache(result, events, today)
     print("  ✅ Election research gathered")
     return result + "\n\n"
 
 
 def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_focus=None,
-                                  events=None):
+                                  events=None, pool=None):
     """Agentic pre-generation research pass for the deep dive.
 
     Gives Claude the deep dive articles plus a web_search tool and lets it
@@ -3672,7 +4034,7 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
     assignments = _standing_assignments(events)
     searches = EVENT_RESEARCH_SEARCH_LIMIT if events else 4
     fetches = EVENT_PAGE_FETCH_LIMIT if events else TOPIC_PAGE_FETCH_LIMIT
-    roll_call = _run_event_sweep(events, brave_key) if events else ""
+    roll_call = _run_event_sweep(events, brave_key, pool) if events else ""
 
     system_prompt = (
         f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
@@ -3727,7 +4089,9 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
         user_content=user_content,
         tools=tools, tool_executors=tool_executors,
         max_iterations=searches + fetches + 1,
-        max_tokens=12000 if events else 6000,
+        # Doubled for Haiku 5.5: the 2026-10-10 ballot pass truncated at 12000
+        # and wrote its findings on the low-effort retry.
+        max_tokens=24000 if events else 12000,
     )
 
     if result is None:
@@ -3760,65 +4124,186 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
 
 
 def _fill_body_from_excerpt(articles: list) -> None:
-    """Give a thin article the feed's own `_excerpt` as its body, in place.
+    """Give a thin article the feed's own `_excerpt` as its body when it is longer.
 
-    Free, and the same kind of snippet a search would return (up to 600 chars):
-    ~55% of items carry one past NEWS_BODY_MIN_CHARS.
+    Free. Usually a snippet (up to 600 chars; ~55% of items carry one past
+    NEWS_BODY_MIN_CHARS), but up to 2000 when super-rss-feed already paid Kagi
+    Extract for the page, which beats a stub from the free fetch.
     """
     for a in articles:
-        if len(a.get("_body", "") or "") >= NEWS_BODY_MIN_CHARS:
+        body = a.get("_body", "") or ""
+        if len(body) >= NEWS_BODY_RICH_CHARS:
             continue
         excerpt = (a.get("_excerpt", "") or "").strip()
-        if len(excerpt) >= NEWS_BODY_MIN_CHARS:
+        if len(excerpt) >= NEWS_BODY_MIN_CHARS and len(excerpt) > len(body):
             a["_body"] = excerpt
 
 
+# "used" is set once an Extract page becomes a story body: the credits name Kagi
+# only on a day its text reached the script, not on a day it was merely asked.
+_KAGI_EXTRACT_STATE = {"pages": 0, "used": False}
+# Markdown lines that are page chrome, not prose: list items (menus), headings,
+# quotes, table rows, images, rules. Same rule as super-rss-feed's _markdown_body_text.
+_MD_CHROME_LINE_RE = re.compile(r'^(?:[-*+]\s|\d+[.)]\s|#{1,6}\s|>|\||!\[|[-*_]{3,}$)')
+
+
+def _markdown_prose(markdown: str) -> str:
+    """The prose paragraphs of an Extract page: long lines that end a sentence,
+    links reduced to their text. Menus and logos come first on a news page."""
+    kept = []
+    for raw in (markdown or "").splitlines():
+        line = raw.strip()
+        if not line or _MD_CHROME_LINE_RE.match(line):
+            continue
+        line = re.sub(r'!?\[([^\]]*)\]\([^)]*\)', r'\1', line).strip()
+        if len(line) >= 60 and re.search(r'[.!?]["\u201d\u2019)]?(?:\s|$)', line):
+            kept.append(line)
+    return " ".join(kept)
+
+
+def _extract_roundup_stories(articles: list) -> int:
+    """Read each thin roundup story's own page through Kagi Extract; return pages read.
+
+    Runs after the free fetch and the feed excerpt, before any Brave title search,
+    so a story whose own page renders here never spends from the shared Search cap.
+    The page is the story's own, so no `_body_via`. Capped by KAGI_EXTRACT_CALL_LIMIT
+    pages a run; a failed request or a 402 falls back to Brave and degrades.
+    A page the site refuses is the designed Brave path, not a degradation: about
+    half of them miss (paywalls, bot walls), so four misses in a row is an
+    ordinary night (2026-10-19, -21); the reasons are logged. What degrades is a
+    reply that can't be matched to the pages sent. An account-level refusal
+    arrives as an HTTP error and degrades above.
+    """
+    key = os.getenv("KAGI_API_KEY")
+    if not key or KAGI_EXTRACT_CALL_LIMIT <= 0:
+        return 0
+    left = KAGI_EXTRACT_CALL_LIMIT - _KAGI_EXTRACT_STATE["pages"]
+    thin = [a for a in articles
+            if a.get("url") and len(a.get("_body", "") or "") < NEWS_BODY_RICH_CHARS][:max(left, 0)]
+    if not thin:
+        return 0
+    read = grew = unmatched = 0
+    errors: list = []
+    for i in range(0, len(thin), KAGI_EXTRACT_BATCH):
+        batch = thin[i:i + KAGI_EXTRACT_BATCH]
+        # Extract takes https:// only.
+        urls = [re.sub(r"^http://", "https://", a["url"]) for a in batch]
+        _KAGI_EXTRACT_STATE["pages"] += len(batch)
+        _log_api_call("kagi-extract", "pages", len(batch))
+        try:
+            resp = requests.post(
+                "https://kagi.com/api/v1/extract",
+                headers={"Authorization": f"Bearer {key}"},
+                json={"pages": [{"url": u} for u in urls]},
+                timeout=30,
+            )
+            resp.raise_for_status()
+            data = resp.json().get("data") or []
+        except Exception as e:
+            status = getattr(getattr(e, "response", None), "status_code", None)
+            degrade("script/kagi-extract",
+                    f"Kagi Extract request failed ({status or type(e).__name__}); "
+                    "thin roundup stories fall back to Brave title search")
+            break
+        by_url = {p.get("url"): p for p in data if isinstance(p, dict) and p.get("url")}
+        for j, (a, url) in enumerate(zip(batch, urls)):
+            page = by_url.get(url) or (data[j] if not by_url and j < len(data) else None)
+            if not isinstance(page, dict):
+                unmatched += 1
+                continue
+            if page.get("error"):
+                errors.append(str(page["error"])[:80])
+                continue
+            read += 1
+            text = _markdown_prose(page.get("markdown") or "")[:2000]
+            if len(text) > len(a.get("_body", "") or ""):
+                a["_body"] = text
+                a.pop("_body_via", None)
+                grew += 1
+                _KAGI_EXTRACT_STATE["used"] = True
+    print(f"  📰 Kagi Extract: {grew}/{len(thin)} thin roundup stories read from their own page "
+          f"(~${len(thin) * _FLAT_USD_PER_UNIT['kagi-extract']:.3f})")
+    for reason, n in Counter(errors).most_common():
+        print(f"     {n}× page error: {reason}")
+    if unmatched:
+        degrade("script/kagi-extract",
+                f"Kagi Extract reply matched no page for {unmatched} of {len(thin)} URLs sent")
+    return read
+
+
+def _research_roundup_story(article: dict, brave_key: str) -> bool:
+    """One Brave title search for a thin roundup story, then read the coverage.
+
+    The search snippet is ~200 characters. The matching result's own page is the
+    story, so it is fetched (free) and its prose kept when it is longer. A result
+    counts as the same story when it shares at least half the title's content
+    words. Text from another outlet is marked `_body_via` so the hosts attribute it.
+    Returns True when the body grew.
+    """
+    title = article.get("title", "")
+    results = _brave_search_rate_limit(title, brave_key, count=3)
+    if not results:
+        return False
+    want = _significant_words(title)
+    own_host = urlparse(article.get("url", "")).netloc.lower().removeprefix("www.")
+    best, best_via = article.get("_body", "") or "", None
+    for r in results:
+        desc = r.get("description", "") or ""
+        host = urlparse(r.get("url", "")).netloc.lower().removeprefix("www.")
+        same_story = bool(want) and len(want & _significant_words(r.get("title", ""))) * 2 >= len(want)
+        text = ""
+        if same_story and r.get("url"):
+            # ponytail: one page read per matching result, capped at the body budget.
+            text = _fetch_article_text(r["url"])[:2000]
+        for candidate in (text, desc):
+            if len(candidate) > len(best):
+                best, best_via = candidate, (host if host and host != own_host else None)
+    if len(best) <= len(article.get("_body", "") or ""):
+        return False
+    article["_body"] = best
+    if best_via:
+        article["_body_via"] = best_via
+    return True
+
+
 def _filter_sparse_news_articles(articles: list) -> list:
-    """Remove news articles without sufficient body text after trying enrichment.
+    """Research every curated roundup story before the script is written; cut what
+    still has nothing.
 
-    Articles that can't be enriched are dropped so Claude doesn't broadcast a
-    story it can only describe in a single headline.  Before one is cut it gets
-    two chances at real content: the feed's own `_excerpt`, which is free, then a
-    title-based Brave search charged to the SEARCH budget.
+    The script model has no tools: whatever a story carries here is all it will
+    ever know, and a story aired on its feed excerpt makes the hosts narrate the
+    gap. So each curated story below NEWS_BODY_RICH_CHARS gets, in order: a free
+    fetch of its own page (stories past the first 40 of the pool were never
+    fetched), the feed's `_excerpt`, its own page through Kagi Extract
+    (`_extract_roundup_stories`), then one title search charged to the SEARCH
+    budget plus a free read of the matching coverage (`_research_roundup_story`).
+    Only a story still under NEWS_BODY_MIN_CHARS after all that is dropped.
 
-    That search used to call `_brave_search` directly, outside every budget. Body
-    fetching stops at the first 40 articles and the pool runs ~80, so every
-    article past #40 reached this loop with no body and bought its own search —
-    ~30 unmetered calls a night on stories the 15-slot roundup mostly drops, and
-    the reason the podcast spent 40-55 Search requests a day in September 2026
-    against per-run ceilings that add up to 28.
-
-    It runs on the curated roundup (plus ROUNDUP_BACKFILL_SPARES), never on the
-    whole candidate pool: on 2026-09-26 the 12-call budget ran out on stories
-    the airtime cap then cut, and 46 survivors went unsearched.
+    The search used to call `_brave_search` directly, outside every budget, over
+    the whole ~80-article pool: 40-55 Search requests a day in September 2026
+    against per-run ceilings that add up to 28. It runs on the curated roundup
+    (plus ROUNDUP_BACKFILL_SPARES), never on the whole candidate pool: on
+    2026-09-26 the 12-call budget ran out on stories the airtime cap then cut.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     kept, skipped = [], []
     brave_used = False
 
+    _enrich_articles_with_body(articles, label="roundup cut", use_brave=False)
     _fill_body_from_excerpt(articles)
+    _extract_roundup_stories(articles)
     for a in articles:
-        body = a.get("_body", "") or ""
-        if len(body) >= NEWS_BODY_MIN_CHARS:
-            kept.append(a)
-            continue
-
         title = a.get("title", "")
-        if brave_key and title:
-            results = _brave_search_rate_limit(title, brave_key, count=3)
-            best = max(
-                (r for r in results if len(r.get("description", "")) >= NEWS_BODY_MIN_CHARS),
-                key=lambda r: len(r.get("description", "")),
-                default=None,
-            )
-            if best:
-                a["_body"] = best["description"]
-                brave_used = True
-                print(f"  🔎 Brave-enriched sparse article: \"{title[:60]}\"")
-                kept.append(a)
-                continue
-
-        skipped.append(title)
+        if (brave_key and title
+                and len(a.get("_body", "") or "") < NEWS_BODY_RICH_CHARS
+                and _research_roundup_story(a, brave_key)):
+            brave_used = True
+            print(f"  🔎 Researched roundup story: \"{title[:60]}\" "
+                  f"({len(a['_body'])} chars{', via ' + a['_body_via'] if a.get('_body_via') else ''})")
+        if len(a.get("_body", "") or "") >= NEWS_BODY_MIN_CHARS:
+            kept.append(a)
+        else:
+            skipped.append(title)
 
     if skipped:
         print(f"  ⏭️  Skipping {len(skipped)} sparse article(s) with no retrievable detail:")
@@ -4008,16 +4493,21 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         "asked by one host but NOT answered within the dialogue — e.g. 'How much does it weigh?', "
         "'What does that cost?', 'How far is that?'. Ignore rhetorical questions and questions "
         "that are clearly answered later in the same exchange.\n\n"
-        "Give concise, web-searchable search queries that would find each answer "
-        "(e.g. \"Tesla Semi second battery weight kg\"). Return an empty list if there "
-        "are no unanswered factual questions.\n\n"
+        f"Give at most {SCRIPT_QUESTION_LIMIT} concise, web-searchable search queries that "
+        "would find each answer (e.g. \"Tesla Semi second battery weight kg\"), most "
+        "important first. Return an empty list if there are no unanswered factual "
+        "questions.\n\n"
         f"SCRIPT:\n{_script_question_excerpt(script)}"
     )
 
     try:
         resp = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5",
-            max_tokens=300,
+            model=HAIKU_MODEL,
+            thinking=thinking_off(HAIKU_MODEL),
+            # 300 cut the JSON mid-string on every Haiku 5.5 run 2026-10-09..12
+            # ("Unterminated string ... char 711"): its tokenizer counts ~30%
+            # more tokens and it listed more queries than the slice keeps.
+            max_tokens=1000,
             messages=[{"role": "user", "content": detect_prompt}],
             output_config=_json_output({
                 "type": "object",
@@ -4032,7 +4522,13 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         if not queries or not isinstance(queries, list):
             return ""
     except Exception as e:
+        _abort_if_billing_wall(e)
         print(f"  ⚠️ Question detection skipped: {e}")
+        # Silent until 2026-10-12: four nights of polish ran without a single
+        # fact answer and neither the episode review nor the roadmap saw it.
+        degrade("script/fact-questions",
+                f"question detection failed ({type(e).__name__}) — polish ran "
+                f"without Brave fact answers")
         return ""
 
     results = []
@@ -4152,7 +4648,8 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
-        + format_standing_notes_block(for_factcheck=True)
+        + format_standing_notes_block(for_factcheck=True) \
+        + _aired_repeats_addendum(script, research_insights)
 
     review_model = model or select_review_model(deep_dive_articles)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
@@ -4167,7 +4664,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         tools=tools, tool_executors=tool_executors,
         # Same budget and effort as the batch request it stands in for. At
         # 16000/medium the rewrite truncated and was paid for twice (2026-09-27).
-        max_iterations=4, max_tokens=24000, effort="low",
+        max_iterations=4, max_tokens=POLISH_MAX_TOKENS, effort="low",
     )
 
     if result and _polish_valid(script, result):
@@ -4221,7 +4718,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
-        + format_standing_notes_block(for_factcheck=True)
+        + format_standing_notes_block(for_factcheck=True) \
+        + _aired_repeats_addendum(script, research_insights)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)
@@ -4248,7 +4746,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                         # be inspected and retried like the real-time path.
                         # Low effort leaves the budget for output instead of
                         # thinking, same tradeoff as the script-gen retry.
-                        "max_tokens": 24000,
+                        "max_tokens": POLISH_MAX_TOKENS,
                         "thinking": {"type": "adaptive"},
                         "output_config": {"effort": "low"},
                         "messages": [{"role": "user", "content": pf_prompt}]
@@ -4258,6 +4756,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                     "custom_id": "debate-summary",
                     "params": {
                         "model": SUMMARY_MODEL,
+                        "thinking": thinking_off(SUMMARY_MODEL),
                         "max_tokens": 1000,
                         "messages": [{"role": "user", "content": debate_prompt}],
                         "output_config": _json_output(_debate_summary_schema(False)),
@@ -4923,7 +5422,8 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
                    else _recall_target_date(today_date, event_focus))
     recall_count = 0
     # Never shrink the pool below what the roundup + deep dive need
-    max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
+    max_holds = max(0, len(theme_articles) + len(bonus_articles)
+                    - (NEWS_ROUNDUP_COUNT + DEEP_DIVE_COUNT))
 
     # Top slice of TODAY's pool by the feed's own charter score for TODAY's
     # theme. Ranked rather than thresholded so it still bites when the whole
@@ -5165,6 +5665,39 @@ def _find_welcome_host(script):
     return None
 
 
+COLD_OPEN_LOOKBACK_DAYS = 7
+
+
+def _format_recent_cold_opens(today: str, days: int = COLD_OPEN_LOOKBACK_DAYS) -> str:
+    """The past week's cold-open greetings and closers, for the teaser prompt.
+
+    The prompt once listed example greetings and a closer; the model aired
+    "Hey there, welcome in ... That and more, coming right up" five mornings
+    running (2026-10-10 to 10-14). Showing what already aired, rather than
+    examples to copy, is what "vary it" needs. Purely local; "" when none.
+    """
+    first = (date.fromisoformat(today) - timedelta(days=days)).isoformat()
+    lines = []
+    for path in sorted(PODCASTS_DIR.glob("podcast_script_*.txt"), reverse=True):
+        m = re.match(r'podcast_script_(\d{4}-\d{2}-\d{2})_', path.name)
+        if not m or not first <= m.group(1) < today:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        cold = re.search(r'^\*{0,2}COLD OPEN\*{0,2}\s*\n\*\*(?:RILEY|CASEY):\*\*\s*(.+)$',
+                         text, re.M)
+        if not cold:
+            continue
+        sentences = [s for s in re.split(r'(?<=[.!?])\s+', cold.group(1).strip()) if s]
+        if sentences:
+            lines.append(f"- {_clip(sentences[0], 80)} … {_clip(sentences[-1], 80)}")
+    if not lines:
+        return ""
+    return "RECENT COLD OPENS (greeting … closer):\n" + "\n".join(lines) + "\n\n"
+
+
 def generate_cold_open(script, theme_name):
     """Generate the COLD OPEN teaser after the script is fully drafted and polished.
 
@@ -5193,6 +5726,7 @@ def generate_cold_open(script, theme_name):
         theme_name=theme_name,
         welcome_host_upper=welcome_host,
         finalized_script=script,
+        recent_cold_opens=_format_recent_cold_opens(get_pacific_now().date().isoformat()),
         burned_phrases=format_burned_phrases_for_prompt(),
     )
 
@@ -5251,6 +5785,7 @@ def extract_debate_summary(script, theme_name):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output(_debate_summary_schema(True)),
@@ -5336,6 +5871,7 @@ def extract_personality_clues(script):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
+            thinking=thinking_off(SUMMARY_MODEL),
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output({
@@ -5515,6 +6051,170 @@ def format_prior_coverage_for_prompt(deep_dive_articles, episode_memory, debate_
     for match_date, prior, title in matches[:5]:
         context += f"- \"{title}\" overlaps with [{match_date}] {prior}\n"
     return context + "\n"
+
+
+# Already-aired guard. The topic guard above works on titles; this one works on
+# the sentences the hosts actually said. The all-week election pass hands the
+# writer the same ballot records every day, and 2026-10-06 aired a 2024 vote
+# count and a candidate biography that had aired on three of the four days before.
+# A sentence boundary, but not inside "B.C." or "St.".
+_AIRED_SENTENCE_SPLIT_RE = re.compile(
+    r'(?<![A-Z]\.[A-Z]\.)(?<!\b[A-Z][a-z]\.)(?<=[.!?])\s+(?=["\'A-Z])')
+_AIRED_TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z'’\-]+|\d[\d,.]*\d|\d")
+# "108 Mile Ranch" and "Highway 97" are places, not figures.
+_AIRED_PLACE_NUMBER_RE = re.compile(r'\b\d+(?=\s+Mile\b)|(?<=\bHighway)\s+\d+\b')
+_AIRED_STOPWORDS = _PRIOR_COVERAGE_STOPWORDS | frozenset(
+    "also just only very much like here know think yeah really because today "
+    "today's that's it's we're we'll they're there's what's report reports "
+    "reported reporting according".split())
+
+
+def _aired_tokens(text: str) -> set[str]:
+    """Content words, plus figures as '#13714'. Years and single digits are not
+    figures worth matching on."""
+    tokens = set()
+    for raw in _AIRED_TOKEN_RE.findall(_AIRED_PLACE_NUMBER_RE.sub('', text)):
+        if raw[0].isdigit():
+            figure = raw.replace(',', '').rstrip('.')
+            if len(figure) > 1 and not re.fullmatch(r'(?:19|20)\d\d', figure):
+                tokens.add('#' + figure)
+            continue
+        word = raw.lower().replace('’', "'").removesuffix("'s")
+        if len(word) > 3 and word not in _AIRED_STOPWORDS:
+            tokens.add(word)
+    return tokens
+
+
+def _specific_figure(token: str) -> bool:
+    """13,714 or 69.6, not 100 or 32: a figure two sentences only share by
+    repeating the same fact."""
+    if not token.startswith('#'):
+        return False
+    digits = re.sub(r'\D', '', token)
+    return len(digits) >= 3 and ('.' in token or not token.endswith('00'))
+
+
+def _echoes(a: set[str], b: set[str]) -> bool:
+    """Do two token sets state the same thing? A shared specific figure plus
+    one more word, or half the shorter sentence's words (at least five)."""
+    shared = a & b
+    if len(shared) >= 2 and any(_specific_figure(t) for t in shared):
+        return True
+    return len(shared) >= 5 and len(shared) >= 0.5 * min(len(a), len(b))
+
+
+def _aired_sentences(script: str) -> list[str]:
+    """Spoken sentences of the News Roundup and Deep Dive. The welcome, weather,
+    land acknowledgment and spotlight repeat by design and are left out."""
+    sentences = []
+    for name, (start, end) in _script_sections(script).items():
+        if name not in ("NEWS ROUNDUP", "DEEP DIVE"):
+            continue
+        for line in script[start:end].splitlines():
+            if not _SPEAKER_TAG_RE.match(line):
+                continue
+            spoken = re.sub(r'\[[^\]]*\]', '', _SPEAKER_TAG_RE.sub('', line)).strip()
+            sentences += [s.strip() for s in _AIRED_SENTENCE_SPLIT_RE.split(spoken)
+                          if len(s.split()) >= 6]
+    return sentences
+
+
+def _recent_aired(today: str, days: int) -> list[tuple[str, str, set[str]]]:
+    """(air date, sentence, tokens) from the scripts of the `days` before
+    `today`, newest first. A missing or unreadable day is skipped."""
+    first = (date.fromisoformat(today) - timedelta(days=days)).isoformat()
+    aired = []
+    for path in sorted(PODCASTS_DIR.glob("podcast_script_*.txt"), reverse=True):
+        m = re.match(r'podcast_script_(\d{4}-\d{2}-\d{2})_', path.name)
+        if not m or not first <= m.group(1) < today:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        aired += [(m.group(1), s, toks) for s in _aired_sentences(text)
+                  if len(toks := _aired_tokens(s)) >= 4]
+    return aired
+
+
+def _air_day(date_key: str) -> str:
+    d = date.fromisoformat(date_key)
+    return f"{d:%A} {d:%B} {d.day}"
+
+
+def _clip(sentence: str, limit: int = 240) -> str:
+    return sentence if len(sentence) <= limit else sentence[:limit].rsplit(' ', 1)[0] + '…'
+
+
+def format_aired_ledger_for_prompt(material: str, today: str) -> str:
+    """The past week's sentences that today's material would have the hosts say
+    again, for the script prompt. Purely local; "" when nothing repeats.
+
+    `material` is everything the writer is handed: articles and the research
+    block. It is read in three-sentence windows because the research block
+    states one fact across sentences ("won by 7,722 votes. He had 13,714").
+    """
+    cfg = CONFIG['prompts'].get('aired_ledger') or {}
+    if not cfg.get('generation_template'):
+        return ""
+    pieces = [p.strip() for p in re.split(r'\n|(?<=[.!?])\s+', material) if len(p.split()) >= 3]
+    windows = [_aired_tokens(' '.join(pieces[i:i + 3])) for i in range(len(pieces))]
+    kept: list[tuple[str, str, set[str]]] = []
+    for day, sentence, toks in _recent_aired(today, cfg.get('lookback_days', 7)):
+        if any(_echoes(toks, k[2]) for k in kept):
+            continue  # an older airing of a line already listed
+        if any(_echoes(toks, w) for w in windows):
+            kept.append((day, sentence, toks))
+        if len(kept) >= cfg.get('max_lines', 30):
+            break
+    if not kept:
+        return ""
+    print(f"  🔁 Already-aired ledger: {len(kept)} line(s) from the past week")
+    lines = "\n".join(f'- {_air_day(day)}: "{_clip(s)}"' for day, s, _ in sorted(kept))
+    return cfg['generation_template'].format(lines=lines)
+
+
+def find_aired_repeats(script: str, today: str) -> list[tuple[str, str, str]]:
+    """(draft sentence, air date, earlier sentence) for each Roundup or Deep
+    Dive sentence of `script` that restates one from the past week."""
+    cfg = CONFIG['prompts'].get('aired_ledger') or {}
+    aired = _recent_aired(today, cfg.get('lookback_days', 7))
+    repeats = []
+    for sentence in _aired_sentences(script):
+        toks = _aired_tokens(sentence)
+        if len(toks) < 4:
+            continue
+        hit = next(((day, s) for day, s, t in aired if _echoes(toks, t)), None)
+        if hit:
+            repeats.append((sentence, *hit))
+    return repeats
+
+
+def _aired_repeats_addendum(script: str, research: str | None = None) -> str:
+    """Polish-prompt addendum naming the draft's lines that restate the past
+    week, plus the research findings that already aired. Never fails the
+    polish: on error it is just absent.
+
+    The polish is told to weave in research findings the draft left out, and the
+    draft left them out because the ledger said they had aired: 2026-10-10 went
+    from 2 repeated lines in the draft to 18 after polish. The research half of
+    the ledger tells the polish which findings stay out."""
+    cfg = CONFIG['prompts'].get('aired_ledger') or {}
+    if not cfg.get('polish_template'):
+        return ""
+    today = get_pacific_now().strftime("%Y-%m-%d")
+    repeats, ledger = [], ""
+    with segment("script/aired-repeats", critical=False):
+        repeats = find_aired_repeats(script, today)
+        if research:
+            ledger = format_aired_ledger_for_prompt(research, today)
+    addendum = "\n\n" + ledger.strip() if ledger else ""
+    if not repeats:
+        return addendum
+    print(f"  🔁 {len(repeats)} draft line(s) restate the past week — sent to polish")
+    lines = "\n".join(f'- "{_clip(new)}" (aired {_air_day(day)} as "{_clip(old, 160)}")'
+                      for new, day, old in repeats[:cfg.get('max_lines', 30)])
+    return addendum + "\n\n" + cfg['polish_template'].format(lines=lines)
 
 
 def format_cta_history_for_prompt(cta_memory, today_theme):
@@ -5892,7 +6592,7 @@ def categorize_articles_for_deep_dive(articles, theme_day, focus=None):
         return score
 
     remaining.sort(key=theme_relevance, reverse=True)
-    deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if theme_day == 5 else 3
+    deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if theme_day == 5 else DEEP_DIVE_COUNT
 
     # Try Cohere rerank for higher-quality theme alignment; fall back to keyword sort
     reranked = cohere_enrichment.rerank_for_deep_dive(theme_name, remaining, deep_dive_count)
@@ -6002,6 +6702,10 @@ ROUNDUP_TAIL_RANK = 2
 
 # The kicker closes the roundup, so it ranks after the tail.
 ROUNDUP_KICKER_RANK = 3
+
+# Reorder calls before a mis-ordered roundup ships anyway; the second names the
+# stories the first left behind.
+ROUNDUP_REPAIR_PASSES = 2
 
 # Theme slots the pool cap reserves when the local block alone would fill the
 # segment. Local leads the show, but a themed episode with no theme stories in
@@ -6389,13 +7093,18 @@ def _slice_roundup(script: str) -> tuple:
             "\n".join(lines[end:]))
 
 
-def _article_first_mention(article: dict, turns: list) -> int | None:
+def _article_first_mention(article: dict, turns: list,
+                           match_source: bool = True) -> int | None:
     """Index of the first roundup turn that covers this article, or None.
 
     Matches on the outlet name or on two content words from the headline —
     one word alone ('mining' on a mining day) collides across stories.
+    `match_source=False` when another story in the pool shares the outlet: on
+    2026-10-21 the Hackaday kicker, aired last, "first aired" at the earlier
+    Hackaday solar-cell turn, and two reorder passes chased a misorder that
+    wasn't there.
     """
-    source = _article_source_name(article).lower()
+    source = _article_source_name(article).lower() if match_source else ""
     title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
     title_words = _significant_words(title)
     for i, turn in enumerate(turns):
@@ -6428,6 +7137,7 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
     if not turns:
         return []
 
+    outlets = Counter(_article_source_name(a).lower() for a in ordered_articles)
     placed = []
     for a in ordered_articles:
         # Every story is order-checked, bonus picks included: they now carry a
@@ -6435,7 +7145,8 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
         # regional), and the rank comparison below already expects the tail and
         # the kicker to air late. Skipping them used to hide a bonus story that
         # opened the show ahead of the local block.
-        pos = _article_first_mention(a, turns)
+        pos = _article_first_mention(
+            a, turns, match_source=outlets[_article_source_name(a).lower()] == 1)
         if pos is not None:
             placed.append((pos, a))
 
@@ -6469,12 +7180,17 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
     return violations
 
 
-def repair_roundup_order(script: str, ordered_articles: list) -> str:
+def repair_roundup_order(script: str, ordered_articles: list,
+                         violations: list | None = None) -> str:
     """Re-sequence a roundup that ignored block order, rewriting only its bridges.
 
     Sends the roundup section alone (~1,200-1,500 words), not the whole script —
     the Deep Dive and spotlight have nothing to do with the defect. Returns the
     script unchanged on any failure: a mis-ordered episode still ships.
+
+    `violations` (from `check_roundup_order` after a failed pass) names the
+    stories the last pass left behind a later block, so the retry is told
+    exactly which ones to move.
     """
     client = get_anthropic_client()
     template = CONFIG['prompts'].get('roundup_reorder', {}).get('template')
@@ -6509,6 +7225,14 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
     prompt = _safe_template_substitute(
         template, required_order=required, roundup=body,
     )
+    retry_note = CONFIG['prompts']['roundup_reorder'].get('retry_note')
+    if violations and retry_note:
+        listed = {a.get('title', ''): i for i, a in enumerate(ordered_articles, start=1)}
+        displaced = "\n".join(
+            f"- #{listed.get(v['title'], '?')} "
+            + re.sub(r'^\W*\[[^\]]*\]\s*', '', v['title'])
+            for v in violations)
+        prompt += _safe_template_substitute(retry_note, displaced=displaced)
 
     # Thinking off: a reorder needs no reasoning, and Sonnet thinks by default
     # into the same 4000 tokens the roundup has to fit in. 2026-09-26 truncated
@@ -6535,6 +7259,19 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
         print("  ⚠️  Roundup reorder came back short, keeping original order")
         return script
     return f"{before}\n{reordered}\n{after}" if after else f"{before}\n{reordered}"
+
+
+def repair_roundup_until_ordered(script: str, ordered_articles: list,
+                                 violations: list) -> tuple[str, list]:
+    """Up to ROUNDUP_REPAIR_PASSES reorder calls; returns the script and what is
+    still out of order. The first pass gets the plain prompt; later passes name
+    the stories the last one left behind (2026-10-12: one pass, 2 → 2)."""
+    for n in range(ROUNDUP_REPAIR_PASSES):
+        script = repair_roundup_order(script, ordered_articles, violations if n else None)
+        violations = check_roundup_order(script, ordered_articles)
+        if not violations:
+            break
+    return script, violations
 
 
 def _keyword_hit_count(text: str, keywords) -> int:
@@ -6797,6 +7534,17 @@ def _format_event_roster(event_focus) -> str:
         "\n\nSOURCED BACKGROUND — published by the named outlet on the date given; the "
         "hosts may state each line with that attribution:\n" + "\n".join(record_lines)
         if record_lines else "")
+    # Mary Forbes filed for CRD Area E director and SD27 TEA 5 trustee. Without
+    # this the "never move a name between races" rule reads it as an error.
+    seats: dict[str, list[str]] = {}
+    for race in roster.get('races', []):
+        for c in race.get('candidates', []):
+            if c and c not in (race.get('withdrawn') or []):
+                seats.setdefault(c, []).append(race.get('race', ''))
+    for person, in_races in seats.items():
+        if len(in_races) > 1:
+            background += (f"\n\nON TWO BALLOTS: {person} is a candidate in each of "
+                           f"{' and '.join(in_races)}. Both are real; say so once.")
 
     if still_open:
         head = (f" Nominations are open until {closed_text}: the list below is who the "
@@ -6931,7 +7679,7 @@ def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
     return query
 
 
-def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
+def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT, focus=None,
                                event_focus=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
@@ -7146,7 +7894,7 @@ _MATCH_STOPWORDS = frozenset("""
 a an the and or but of for to in on at by with from as is are was were be been being
 it its this that these those has have had will would can could should may might must
 do does did not no than then there their they them his her he she you your our we us
-what when where why how after before over under into out up down off about again more
+what when where why how who which after before over under into out up down off about again more
 most some such only own same so too very new news say says said one two three first
 second best top big small make makes made get gets got
 """.split())
@@ -7266,6 +8014,36 @@ def match_articles_to_script(articles, script):
     return results
 
 
+# Deep-dive sources are argued from, not read out: the hosts paraphrase
+# ("Prop 45" for "California's Proposition 45", "the first big Santa Ana event"
+# for "LA faces 'critical' fire danger"), so the title-only roundup matcher
+# found 25 of 38 hand-labelled October sources, with 2 false positives. Title
+# plus summary words, at least this many distinct ones in one host turn, each
+# rare in the deep dive (at most _MATCH_RARE_MAX mentions), found 35 of 38 with
+# none. Naming the outlet was not added: it bought one source and cost one
+# false positive (two stories from the same outlet).
+_DEEP_MATCH_MIN_TOKENS = 3
+
+
+def match_deep_dive_to_script(articles, script):
+    """(article, discussed) pairs for the deep dive, judged on its own section."""
+    if not script:
+        return [(a, True) for a in articles]
+    section = _extract_deep_dive_section(script).lower()
+    turns = _script_turns(section)
+    results = []
+    for article in articles:
+        title = re.sub(r'^[^\[]*\[[^\]]*\]\s*', '', article.get('title', '')).strip()
+        tokens = _content_tokens(f"{title} {article.get('summary') or ''}")
+        counts = {t: len(re.findall(r"\b" + re.escape(t), section)) for t in tokens}
+        rare = [t for t in tokens if 0 < counts[t] <= _MATCH_RARE_MAX]
+        discussed = any(
+            sum(1 for t in rare if re.search(r"\b" + re.escape(t), turn)) >= _DEEP_MATCH_MIN_TOKENS
+            for _, turn in turns)
+        results.append((article, discussed))
+    return results
+
+
 def order_articles_by_script(matched, script, section_text=None):
     """Reorder (article, discussed) pairs to follow the finalized script's
     narration order — first-mention position ascending.
@@ -7308,7 +8086,7 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False, anchor=None):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False, anchor=None, kagi_used=False):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
@@ -7322,7 +8100,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     # Match articles against the finalized script (if available)
     news_matched = match_articles_to_script(news_articles, script)
-    deep_matched = match_articles_to_script(deep_dive_articles, script)
+    deep_matched = match_deep_dive_to_script(deep_dive_articles, script)
 
     discussed_news = [a for a, d in news_matched if d]
     discussed_deep = [a for a, d in deep_matched if d]
@@ -7439,11 +8217,13 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     # Build HTML credits block
     credits = CONFIG['credits']['structured']
-    review_model_label = _review_model_used or POLISH_MODEL
+    # Credits name what actually did the work: an unpolished draft has no reviewer.
+    review_model_label = _review_credit_label()
     tts_label = get_tts_credit()
     brave_credit = "Web Search: Brave Search API<br>"
     weather_credit = f"Weather Data: {credits['weather_data']}<br>" if weather_used else ""
     cohere_credit = f"Content Enrichment: {credits['content_enrichment']}<br>" if cohere_used else ""
+    kagi_credit = f"Page Extraction: {credits['page_extraction']}<br>" if kagi_used else ""
     credits_html = (
         "<p><b>Credits</b><br>"
         f"Theme Song: {credits['theme_song']}<br>"
@@ -7453,6 +8233,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
         f"{brave_credit}"
         f"{weather_credit}"
         f"{cohere_credit}"
+        f"{kagi_credit}"
         f"Cover Art: {credits['cover_art']}<br>"
         f"Automation: {credits['automation']}<br>"
         f"Hosting: {credits['hosting']}<br>"
@@ -7763,6 +8544,7 @@ def scrub_hard_banned(script_text, hits):
     try:
         response = api_retry(lambda: client.messages.create(
             model=SCRUB_MODEL,
+            thinking=thinking_off(SCRUB_MODEL),
             max_tokens=1500,
             messages=[{"role": "user", "content": prompt}],
             # An object wrapping the array, not a bare array: the count check
@@ -7850,7 +8632,7 @@ _FALLBACK_TELL_PATTERNS = {
         r"\bwe'll be honest about what we (?:don't|do not) know\b",
     ],
     "ai_vocabulary_tics": [
-        r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\b",
+        r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:es|ing|ed)|leverage(?=\s+(?:the|our|their|its|this|these|those|your|his|her|my|a|an|existing|local)\b)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem(?=\s+of\b))\b",
     ],
     "serves_as_dodge": [
         r"\bserves as\b", r"\bstands as\b", r"\b(?:marks|represents) (?:a|an|the)\b",
@@ -8032,7 +8814,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -8052,7 +8834,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     episode_description = generate_episode_description(
         news_articles, deep_dive_articles, theme_name, script=script,
         debate_summary=debate_summary, psa_info=psa_info, brave_used=brave_used,
-        weather_used=weather_used, cohere_used=cohere_used, anchor=anchor
+        weather_used=weather_used, cohere_used=cohere_used, anchor=anchor,
+        kagi_used=kagi_used,
     )
 
     # Match articles against script, then reorder the roundup to follow the
@@ -8068,7 +8851,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         match_articles_to_script(news_articles, script), script,
         section_text=news_section,
     )
-    deep_matched = match_articles_to_script(deep_dive_articles, script)
+    deep_matched = match_deep_dive_to_script(deep_dive_articles, script)
 
     citations_data = {
         "episode": {
@@ -8081,6 +8864,9 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
             "models": {
                 "script": SCRIPT_MODEL,
                 "review": _review_model_used or POLISH_MODEL,
+                # What happened to the polish: batch | realtime | skipped | original.
+                # "review" is the model selected, not proof its text shipped.
+                "polish": _polish_outcome_used,
                 "summary": SUMMARY_MODEL,
             },
             **({"quality": quality} if quality else {}),
@@ -8462,7 +9248,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                       if a.get('_recalled_from') else '')
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
-        body_line = f"\n  Content: {body[:500]}" if body else ""
+        via = a.get('_body_via')
+        label = f"Content (from {via}'s coverage of the same story)" if via else "Content"
+        body_line = f"\n  {label}: {body[:ROUNDUP_PROMPT_BODY_CHARS]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
         return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{recall_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
@@ -8639,6 +9427,15 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
     if brave_context:
         memory_context += brave_context
 
+    # What of today's material already aired this week, so it is recalled
+    # rather than restated. Dynamic prompt only: it changes daily.
+    aired_ledger = ""
+    with segment("script/aired-ledger", critical=False):
+        aired_ledger = format_aired_ledger_for_prompt(
+            "\n".join((news_text, deep_dive_text, brave_context or "")),
+            get_pacific_now().strftime("%Y-%m-%d"))
+    memory_context += aired_ledger
+
     # Add holiday context if today is a special holiday that should be acknowledged in opening/closing
     if psa_info and psa_info.get('event_name') and psa_info.get('source') == 'event':
         event_name = psa_info['event_name']
@@ -8786,9 +9583,13 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         # minute later. The episode reviews record that retry on 28 of 29 days
         # 2026-09-01..29: the write premium costs ~$0.02 and the read saves
         # ~$0.06. Revisit if first drafts start landing on target.
+        # 24000 was Sonnet's budget. Haiku 5.5 thinks at medium by default and
+        # spent all 24000 thinking on every night checked (2026-10-10, -12), so
+        # each aired script was the low-effort retry below. Streaming carries
+        # 64000; on Haiku the extra headroom costs about $0.02 a night.
         request = {
             "model": SCRIPT_MODEL,
-            "max_tokens": 24000,
+            "max_tokens": 64000,
             "messages": [{"role": "user", "content": [
                 {"type": "text", "text": user_prompt,
                  "cache_control": {"type": "ephemeral"}},
@@ -8801,13 +9602,13 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         _log_claude_usage(response)
 
         if _truncated(response):
-            # Thinking ate the shared budget. Retry once with more headroom
-            # and low thinking effort so the full script fits.
-            print("⚠️ Script truncated at max_tokens — retrying with larger budget, low thinking effort...")
+            # Thinking ate the shared budget. Retry once at low thinking effort
+            # so the full script fits.
+            print("⚠️ Script truncated at max_tokens — retrying with low thinking effort...")
             response = api_retry(lambda: create_message(
                 client, stream=True,
                 output_config={"effort": "low"},
-                **{**request, "max_tokens": 32000},
+                **request,
             ))
             _log_claude_usage(response)
             if _truncated(response):
@@ -8820,12 +9621,17 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
             print(f"❌ Script generation returned empty text (stop_reason={stop}).")
             return None
         word_count = len(script.split())
-        if word_count < TARGET_SCRIPT_WORDS:
-            # The model can finish naturally (stop_reason=end_turn) well under
-            # the ~5,000-6,500 word target (2026-07-07: 1,984 words; 2026-07-08:
-            # 2,212 words → a 14-minute episode), which the truncation guard
-            # above doesn't catch. Retry once with the short draft and explicit
-            # length feedback; the prompt prefix is read from cache.
+        # The model can finish naturally (stop_reason=end_turn) well under
+        # the ~5,000-6,500 word target (2026-07-07: 1,984 words; 2026-07-08:
+        # 2,212 words → a 14-minute episode), which the truncation guard
+        # above doesn't catch. Retry with the short draft and explicit length
+        # feedback; the prompt prefix is read from cache. One pass recovers
+        # about three quarters of the ask (2026-10-09: 2,517 → 3,272 against
+        # 3,400), so a second pass measures again; a pass that adds nothing
+        # ends the loop.
+        for _ in range(EXPAND_MAX_PASSES):
+            if word_count >= TARGET_SCRIPT_WORDS:
+                break
             print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
             short = _short_sections(script)
             if short:
@@ -8842,7 +9648,6 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                     word_count=word_count, burned_phrases=burned_phrases)
             retry_request = {
                 **request,
-                "max_tokens": 32000,
                 "messages": request["messages"] + [
                     {"role": "assistant", "content": script},
                     {"role": "user", "content": expand_prompt},
@@ -8854,11 +9659,14 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                 print("❌ Script expansion retry truncated at max_tokens.")
                 return None
             if short:
-                script = _splice_sections(script, message_text(response), list(short))
+                expanded = _splice_sections(script, message_text(response), list(short))
             else:
-                script = message_text(response)
-            word_count = len(script.split())
-            print(f"   After expand retry: {word_count} words")
+                expanded = message_text(response)
+            expanded_count = len(expanded.split())
+            print(f"   After expand retry: {expanded_count} words")
+            if expanded_count <= word_count:
+                break  # a shorter "expansion" is worse than the draft
+            script, word_count = expanded, expanded_count
         if word_count < MIN_SCRIPT_WORDS:
             print(f"❌ Script too short ({word_count} words < {MIN_SCRIPT_WORDS} minimum) — refusing to publish a truncated episode.")
             return None
@@ -9579,7 +10387,8 @@ def _generate_host_line(context: str, host: str) -> str:
     )
     try:
         response = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5",
+            model=HAIKU_MODEL,
+            thinking=thinking_off(HAIKU_MODEL),
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
         ))
@@ -9626,6 +10435,9 @@ UPSTREAM_GENERATION_PATHS = ("super_rss_curator_json.py", "config", "feeds.opml"
 META_MOMENT_SPARSE_BELOW = 3
 UPSTREAM_HEADER = ("Upstream — the article feed that finds and scores stories before "
                    "the show picks from them:")
+# super-rss-feed's weekly run (Saturdays) records what its agents changed here.
+UPSTREAM_WEEKLY_FILE = "weekly-state-article.json"
+UPSTREAM_CHANGE_MAX = 200
 
 
 def _changelog_subjects(lines: list) -> list:
@@ -9673,11 +10485,52 @@ def get_upstream_changelog(days: int = 7) -> list:
     return _changelog_subjects([s for _, s in sorted(commits.values())])
 
 
+def get_upstream_week_changes(days: int = 7) -> list:
+    """super-rss-feed's weekly run: the changes its agents applied, if it ran in the last N days.
+
+    Every Saturday that run adds, repairs and retires sources and moves its
+    tuning knobs. Its commits name a job ("Weekly calibration agent run"), so
+    `get_upstream_changelog` skips them; the run's report job writes what they
+    changed to `_changes`, one plain line each, from the agents' own records.
+    Older than the week means last Sunday already had it, or the run failed.
+    """
+    headers = {"Accept": "application/vnd.github.raw+json"}
+    token = os.getenv("GH_TOKEN") or os.getenv("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    try:
+        resp = requests.get(
+            f"https://api.github.com/repos/{UPSTREAM_REPO}/contents/{UPSTREAM_WEEKLY_FILE}",
+            headers=headers, timeout=15)
+        resp.raise_for_status()
+        article = resp.json()
+        published = datetime.fromisoformat(article.get("date_published") or "")
+        if published.tzinfo is None:
+            published = published.replace(tzinfo=timezone.utc)
+    except (requests.RequestException, ValueError, AttributeError) as exc:
+        degrade("script/meta-moment/upstream",
+                f"upstream weekly changes unavailable ({type(exc).__name__}) — the "
+                "segment is built without the feed's weekly run")
+        return []
+    age = datetime.now(timezone.utc) - published
+    if age > timedelta(days=days):
+        degrade("script/meta-moment/upstream",
+                f"the feed's weekly run last reported {age.days} days ago — the segment "
+                "is built without it (super-rss-feed → Weekly Quality & Reporting)")
+        return []
+    # Feed titles in these lines are chosen by publishers: one line each, bounded.
+    raw = article.get("_changes")
+    changes = [" ".join(c.split())[:UPSTREAM_CHANGE_MAX]
+               for c in (raw if isinstance(raw, list) else []) if isinstance(c, str)]
+    return _changelog_subjects([c for c in changes if c])
+
+
 def get_weekly_changelog(days: int = 7) -> str:
     """Commit subjects touching generator-shaping files in the last N days, for the Sunday Meta Moment.
 
-    A thin week gets super-rss-feed's changes under `UPSTREAM_HEADER`; only
-    `- ` lines are subjects, so the header is framing, never a citable change.
+    Every week gets super-rss-feed's weekly-run changes under `UPSTREAM_HEADER`,
+    and a thin week its commits too; only `- ` lines are subjects, so the header
+    is framing, never a citable change. The upstream block is always last.
     """
     since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
     # A shallow clone answers `git log --since` with its one boundary commit and
@@ -9695,12 +10548,18 @@ def get_weekly_changelog(days: int = 7) -> str:
     authored = [line.rpartition("\t") for line in log.splitlines()]
     lines = [f"- {s}" for s in _changelog_subjects(
         [subject for author, _, subject in authored if "[bot]" not in author])]
+    upstream = []
     if len(lines) < META_MOMENT_SPARSE_BELOW:
         upstream = get_upstream_changelog(days)
         if upstream:
             print(f"   🔁 Meta Moment: thin week ({len(lines)} show commit(s)) — "
                   f"adding {len(upstream)} upstream")
-            lines += [UPSTREAM_HEADER] + [f"- {s}" for s in upstream]
+    weekly = get_upstream_week_changes(days)
+    if weekly:
+        print(f"   🔁 Meta Moment: adding {len(weekly)} change(s) from the feed's weekly run")
+    upstream += [s for s in weekly if s not in upstream]
+    if upstream:
+        lines += [UPSTREAM_HEADER] + [f"- {s}" for s in upstream]
     return "\n".join(lines)
 
 
@@ -9710,12 +10569,13 @@ def get_weekly_changelog(days: int = 7) -> str:
 # words English capitalizes mid-sentence. Anything else is invention: on
 # 2026-08-30 the hosts credited a "weekly inspiration harvest" with airing a
 # Ktunaxa Nation story, and neither the harvest nor the story appeared anywhere
-# in that week's eleven commit subjects.
+# in that week's eleven commit subjects. "API" is an acronym, not a name: on
+# 2026-10-04 the last draft was dropped for "API" and "Google's".
 _META_MOMENT_KNOWN_WORDS = frozenset({
     "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
     "january", "february", "march", "april", "may", "june", "july", "august",
     "september", "october", "november", "december",
-    "i'm", "i've", "i'll", "i'd", "ok", "okay", "ai", "bc", "canada",
+    "i'm", "i've", "i'll", "i'd", "ok", "okay", "ai", "api", "bc", "canada",
 })
 
 _META_MOMENT_WORD_RE = re.compile(r"[^\W\d_]+(?:'[^\W\d_]+)*")
@@ -9790,45 +10650,98 @@ def _territory_nation_vocabulary():
             for n in cfg.get('nations', []) if n.get('name')]
 
 
+def _fold_sentence(sentence: str) -> str:
+    """Fold a sentence for whole-word nation matching: possessives off, word
+    breaks kept, whitespace collapsed."""
+    text = re.sub(r"['’]s\b", "", sentence)
+    return re.sub(r"\s+", " ", native_land._fold(text))
+
+
+def _word_re(phrase: str) -> str:
+    """A folded phrase as a whole word: a hyphen joins, it does not separate, so
+    "Cariboo-Chilcotin" (the riding) never contains "Chilcotin" (the people)."""
+    return rf"(?<![\w-]){re.escape(phrase)}(?![\w-])"
+
+
 def _nations_named_in(sentence: str) -> list:
     """Nations this sentence names, as (display, aliases) pairs.
 
-    Matched on the folded form so Tŝilhqot'in, Tsilhqot'in and Chilcotin are
-    one nation rather than three — the orthography is exactly what a naive
-    string comparison gets wrong.
+    Whole words on the folded form, so Tŝilhqot'in, Tsilhqot'in and TSILHQOT’IN
+    are one nation and "Cariboo-Chilcotin" names none. A name in `place_aliases`
+    is also a place, a common word or a surname (Chilcotin, Okanagan, Thompson,
+    Carrier, Squamish, Haida Gwaii): it names the people only when a
+    `name_suffixes` word or "people" follows it, and is blanked out otherwise
+    before anything is matched. "Lorne Doerkson for Cariboo-Chilcotin" and
+    "Randy Thompson for the Greens" were read as naming Tŝilhqot'in and
+    Nlaka'pamux on four episodes between 2026-09-22 and 2026-10-09.
     """
-    folded = native_land._normalize(sentence)
+    cfg = load_indigenous_nations() or {}
+    suffixes = [native_land._fold(x) for x in cfg.get('name_suffixes', [])] + ['people', 'peoples']
+    qualifier = r"\s+(?:" + "|".join(re.escape(x) for x in sorted(suffixes, key=len, reverse=True)) + ")"
+    text = _fold_sentence(sentence)
+    for place in sorted((native_land._fold(p) for p in cfg.get('place_aliases', [])),
+                        key=len, reverse=True):
+        text = re.sub(_word_re(place) + rf"(?!{qualifier}(?![\w-]))", " | ", text)
     found = []
     for display, aliases in _territory_nation_vocabulary():
         for candidate in [display] + list(aliases):
-            token = native_land._normalize(candidate)
-            if len(token) >= 5 and token in folded:
+            token = native_land._fold(candidate)
+            if len(native_land._normalize(candidate)) >= 5 and re.search(_word_re(token), text):
                 found.append((display, aliases))
                 break
     return found
 
 
-def _territory_place_candidates(sentence: str, nation_words: set) -> list:
-    """Capitalized tokens in the sentence that might be place names.
+def _territory_place_candidates(sentence: str, nation_phrases: set) -> list:
+    """Capitalized phrases in the sentence that might be place names.
 
-    Deliberately over-generous: the geocoder is the gazetteer, and a candidate
-    that is not a Canadian place resolves to nothing, is cached as unresolved
-    and costs one lookup once, ever. Sentence-initial tokens are dropped for
-    the reason `_meta_moment_unknown_names` drops them — they are capitalized
-    by grammar and prove nothing.
+    A phrase, never a lone word out of one: "Lorne Doerkson" is a single
+    candidate that geocodes to nothing, where "Lorne" alone resolved to the
+    Maritimes and was checked against the Mi'kmaq map. A phrase containing a
+    nation name ("Okanagan Nation Alliance", "Randy Thompson") is dropped whole
+    rather than split, so no first name is left behind to geocode. The geocoder
+    is still the gazetteer: a phrase that is not a Canadian place resolves to
+    nothing and is cached as unresolved. Sentence-initial tokens are dropped for
+    the reason `_meta_moment_unknown_names` drops them — they are capitalized by
+    grammar and prove nothing.
     """
     body = re.sub(r"\*\*[A-Za-z]+:\*\*", "", sentence)
     body = re.sub(r"\[(?:pause|overlap):[^\]]*\]", "", body)
-    tokens = _TERRITORY_WORD_RE.findall(body)
-    out = []
-    for token in tokens[1:]:
+    phrases, current, prev_end = [], [], None
+    for m in list(_TERRITORY_WORD_RE.finditer(body))[1:]:
+        if current and body[prev_end:m.start()].strip():
+            phrases.append(current)
+            current = []
+        token = m.group()
         stem = re.sub(r"['’]s$", "", token)
-        low = stem.lower()
-        if len(stem) < 4 or low in _TERRITORY_NON_PLACES or low in nation_words:
+        current.append(stem)
+        prev_end = m.end()
+        if stem != token:              # a possessive closes the phrase
+            phrases.append(current)
+            current = []
+    if current:
+        phrases.append(current)
+
+    out = []
+    for phrase in phrases:
+        folded = " ".join(native_land._fold(t) for t in phrase)
+        if any(re.search(_word_re(n), folded) for n in nation_phrases):
             continue
-        if stem not in out:
-            out.append(stem)
+        segment = []
+        for token in phrase + [None]:    # stop words split; None flushes
+            if token is not None and native_land._fold(token) not in _TERRITORY_NON_PLACES:
+                segment.append(token)
+                continue
+            candidate = " ".join(segment)
+            segment = []
+            if len(candidate) >= 4 and candidate not in out:
+                out.append(candidate)
     return out
+
+
+def _is_local_place(place: str, local_places: set) -> bool:
+    """On `local_places`, or a whole-word part of one ("Mile House")."""
+    return any(f" {place.lower()} " in f" {p} " for p in local_places)
 
 
 def check_territory_claims(script_text: str) -> list:
@@ -9847,10 +10760,8 @@ def check_territory_claims(script_text: str) -> list:
         return []
 
     local_places = {p.lower() for p in CONFIG['podcast'].get('local_places', [])}
-    nation_words = set()
-    for display, aliases in _territory_nation_vocabulary():
-        for candidate in [display] + list(aliases):
-            nation_words.update(w.lower() for w in candidate.split())
+    nation_phrases = {native_land._fold(c) for display, aliases in _territory_nation_vocabulary()
+                      for c in [display] + list(aliases)}
 
     findings = []
     seen = set()
@@ -9864,11 +10775,11 @@ def check_territory_claims(script_text: str) -> list:
             named = _nations_named_in(sentence)
             if not named:
                 continue
-            places = _territory_place_candidates(sentence, nation_words)
+            places = _territory_place_candidates(sentence, nation_phrases)
             # Every place in the sentence is somewhere the show is from: this
             # is the acknowledgment or ordinary local coverage, not a borrowed
             # nation name.
-            offsite = [p for p in places if p.lower() not in local_places]
+            offsite = [p for p in places if not _is_local_place(p, local_places)]
             if not offsite:
                 continue
             for place in offsite:
@@ -9951,6 +10862,7 @@ def scrub_territory_claims(script_text: str, findings: list) -> str:
     try:
         response = api_retry(lambda: client.messages.create(
             model=SCRUB_MODEL,
+            thinking=thinking_off(SCRUB_MODEL),
             max_tokens=1500,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output({
@@ -9976,14 +10888,15 @@ def scrub_territory_claims(script_text: str, findings: list) -> str:
     for original, replacement in zip(sentences, rewrites):
         replacement = str(replacement).strip()
         wrong = {f['nation'] for f in by_sentence[original]}
-        aliases = {a for f in by_sentence[original]
-                   for d, al in _territory_nation_vocabulary() if d == f['nation']
-                   for a in [d] + list(al)}
-        folded = native_land._normalize(replacement)
+        # Every alias as a whole word, with no place masking: stricter than
+        # detection on purpose, so a rewrite that swaps Tŝilhqot'in for a bare
+        # "Chilcotin" is refused, while "Cariboo-Chilcotin" (the riding) may stay.
+        folded = _fold_sentence(replacement)
         still_there = any(
             len(native_land._normalize(a)) >= 5
-            and native_land._normalize(a) in folded
-            for a in aliases
+            and re.search(_word_re(native_land._fold(a)), folded)
+            for d, al in _territory_nation_vocabulary() if d in wrong
+            for a in [d] + list(al)
         )
         if not replacement or still_there or original not in script_text:
             skipped.append(original)
@@ -10109,10 +11022,14 @@ def generate_meta_moment_text(changelog: str) -> str:
     # failed call already had api_retry's retries.
     first = detail
     retry_log = changelog
-    if UPSTREAM_HEADER not in changelog and kind != "error":
-        upstream = get_upstream_changelog()
+    if kind != "error":
+        # A busy week's list carries the weekly run's changes but not the
+        # upstream commits; the upstream block is last, so new lines join it.
+        listed = set(changelog.splitlines())
+        upstream = [s for s in get_upstream_changelog() if f"- {s}" not in listed]
         if upstream:
-            retry_log += f"\n{UPSTREAM_HEADER}\n" + "\n".join(f"- {s}" for s in upstream)
+            retry_log += ("" if UPSTREAM_HEADER in changelog else f"\n{UPSTREAM_HEADER}")
+            retry_log += "\n" + "\n".join(f"- {s}" for s in upstream)
     if kind == "guard" or retry_log != changelog:
         feedback = (f"A first draft of this segment was refused: {detail}. Cite only lines "
                     "copied from the list, and name nothing that is not in it.\n\n"
@@ -10159,17 +11076,23 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
     upstream_note = (
         "Lines under the Upstream heading changed the article feed that finds and scores "
         "stories before the show picks from them, not the show itself. Describe them as "
-        "changes to which stories reach the show, and never name the feed or its files. "
+        "changes to which stories reach the show. Never name that feed or its files; a news "
+        "source one of those lines adds or drops may be named. "
         "Prefer the show's own changes when both qualify.\n\n"
         if UPSTREAM_HEADER in changelog else ""
     )
+    # No example technologies in the prose: "(e.g. Gemini, Google Cloud, OpenAI)"
+    # sat here until 2026-10-04, when the retry named Google in a week whose
+    # commits never did, and the guard dropped the segment.
     prompt = (
         "Write the 'Meta Moment' segment for the Cariboo Signals podcast: a dialogue "
         "between co-hosts Riley and Casey recapping what the team tweaked about the show "
         "itself this past week. Translate the raw commit list below into plain language a "
         "listener would care about — no jargon, filenames, or hashes.\n\n"
-        "FIRST, decide whether there is a segment here at all. Go through the list and "
-        "count the entries with a consequence a listener could notice while listening. A "
+        "FIRST, decide whether there is a segment here at all, silently: never write out "
+        "the list, your count or your reasoning. Your whole reply is either NONE or the "
+        "COVERED lines and the dialogue. Count the entries with a consequence a listener "
+        "could notice while listening. A "
         "change counts when it alters what the show picks, what order it airs things in, "
         "what the hosts say, or how the show sounds. It does not count when it only "
         "changes logging, retries, budgets, credentials or file layout — nothing a "
@@ -10186,8 +11109,8 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
         "given that much is cut, not compressed into a one-line mention — skip the rest of "
         "the list without apologizing for it.\n\n"
         "Name the actual technology when a commit names one — a model, provider, or tool "
-        "(e.g. Gemini, Google Cloud, OpenAI) — rather than paraphrasing it into something "
-        "vaguer. The tech is part of what changed, so say it plainly, without turning the "
+        "— rather than paraphrasing it into something vaguer, and only the one that line "
+        "names. The tech is part of what changed, so say it plainly, without turning the "
         "line into a spec sheet. And if the change is a fallback, or otherwise not "
         "guaranteed to hold every episode, say that too — describing it as certain when "
         "it isn't is its own kind of invention.\n\n"
@@ -10235,11 +11158,13 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
     )
     try:
         response = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5",
+            model=HAIKU_MODEL,
+            thinking=thinking_off(HAIKU_MODEL),
             # Sized for the 320-400 word target plus speaker markers and the
-            # COVERED lines above them; the old 450 capped the segment below its
-            # own word floor once it was widened.
-            max_tokens=1000,
+            # COVERED lines above them. 1000 was enough for Haiku 4.5; Haiku 5.5
+            # spends ~30% more tokens on the same text, and on 2026-10-11 both
+            # calls stopped at exactly 1000 with no dialogue written.
+            max_tokens=2500,
             messages=[{"role": "user", "content": prompt}],
         ))
         _log_claude_usage(response)
@@ -10250,16 +11175,27 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
         print(f"  ⚠️  Meta Moment generation failed: {exc}")
         return "", "error", f"generation failed ({type(exc).__name__})"
 
+    # A reply cut at the cap is never aired, even with dialogue in it: the
+    # segment would stop mid-sentence. Until 2026-10-11 it was read as NONE.
+    if getattr(response, "stop_reason", None) == "max_tokens":
+        print(f"  ⚠️  Meta Moment reply hit max_tokens; it began: {raw[:300]!r}")
+        return "", "error", (f"reply truncated at max_tokens ({len(raw)} chars, no "
+                             "complete dialogue)")
+
     start = raw.find("**RILEY:**")
     if start == -1:
-        # NONE, or a reply with no dialogue in it — both mean no segment. A quiet
-        # week is a legitimate answer and this is not an error, but it is still a
-        # Sunday that aired without its Sunday segment, and until 2026-09-06 the
-        # only trace of that decision was one line in the job log. "Was that by
-        # design?" is a question the run report should have already answered.
-        print("   🔇 Meta Moment: no listener-noticeable change in the list")
-        return "", "none", (f"model judged none of the week's {len(subjects)} commit(s) "
-                            "listener-noticeable")
+        lines = [line for line in raw.splitlines() if line.strip()]
+        if lines and re.fullmatch(r"\W*NONE\W*", lines[-1], re.I):
+            # A quiet week is a legitimate answer and not an error, but it is
+            # still a Sunday without its Sunday segment, and until 2026-09-06 the
+            # only trace was one line in the job log. The run report says so.
+            print("   🔇 Meta Moment: no listener-noticeable change in the list")
+            return "", "none", (f"model judged none of the week's {len(subjects)} "
+                                "commit(s) listener-noticeable")
+        # Neither NONE nor dialogue: a format failure, worth the retry with its
+        # reason, and never reported as the model's verdict on the week.
+        print(f"  ⚠️  Meta Moment reply had no dialogue; it began: {raw[:300]!r}")
+        return "", "guard", "the reply was neither NONE nor a **RILEY:**/**CASEY:** dialogue"
 
     dialogue = raw[start:]
     if not _meta_moment_covered(raw[:start], subjects):
@@ -10283,7 +11219,7 @@ def _append_comparison_log(entry):
 
 
 def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False,
-                               weather_used=False):
+                               weather_used=False, kagi_used=False):
     """Convert script to audio with music interludes and theme-aware ambient transitions."""
     global _tts_provider_used
     print("📊 Generating audio with music interludes...")
@@ -10564,9 +11500,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
             # Spoken credits (brief, before outro)
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Credits"})
+            _research_tools = [n for n, used in (("Brave Search", brave_used),
+                                                 ("Kagi", kagi_used)) if used]
             brave_spoken = (
-                " Today's episode included additional web research via Brave Search."
-                if brave_used else ""
+                f" Today's episode included additional web research via {' and '.join(_research_tools)}."
+                if _research_tools else ""
             )
             _credits_cfg = CONFIG['credits']
             _pc_cfg = CONFIG['podcast']
@@ -11034,12 +11972,22 @@ def sync_site_to_r2(max_age_days: float = 2.0):
     feed_path = base_dir / "podcast-feed.xml"
     if feed_path.exists():
         feed_xml = feed_path.read_text(encoding="utf-8")
+        # Only the show's own URLs name R2 objects. The show notes link to other
+        # sites, some with /podcasts/ in the path: a cited vox.com/podcasts/...
+        # article read as a missing object every night from 2026-09-22 while R2
+        # was complete.
+        podcast_config = CONFIG["podcast"]
+        own_bases = "|".join(
+            re.escape(base.rstrip("/") + "/")
+            for base in {podcast_config["url"],
+                         podcast_config.get("audio_base_url", podcast_config["url"])}
+        )
         referenced = {
             saxutils.unescape(m)
-            for m in re.findall(r'(?:url|href)="[^"]*?/(podcasts/[^"?]+)"', feed_xml)
+            for m in re.findall(rf'(?:url|href)="(?:{own_bases})(podcasts/[^"?]+)"', feed_xml)
         }
         healed = 0
-        unresolved = 0
+        unresolved: list[str] = []
         for r2_key in sorted(referenced):
             try:
                 r2.head_object(Bucket=bucket, Key=r2_key)
@@ -11050,17 +11998,21 @@ def sync_site_to_r2(max_age_days: float = 2.0):
             if local_file.exists() and _upload(str(local_file), r2_key):
                 healed += 1
             else:
-                unresolved += 1
+                unresolved.append(r2_key)
                 print(f"::error::podcast-feed.xml references {r2_key} but it is neither "
                       "in R2 nor healable from disk — crawlers will 404 (Apple falls back "
                       "to auto-generated transcripts)")
         print(f"   Feed reference check: {len(referenced)} object(s) verified, {healed} healed"
-              + (f", {unresolved} UNRESOLVED" if unresolved else ""))
+              + (f", {len(unresolved)} UNRESOLVED" if unresolved else ""))
         if unresolved:
+            # Named in the row, not just counted: the review reads degrade rows,
+            # and "one object" was all it could say for twelve nights.
+            shown = ", ".join(unresolved[:3])
+            more = f" (+{len(unresolved) - 3} more)" if len(unresolved) > 3 else ""
             degrade(
                 "publish/r2-sync",
-                f"{unresolved} object(s) referenced by podcast-feed.xml are missing "
-                "from R2 and unhealable from disk — crawlers will 404",
+                f"{len(unresolved)} object(s) referenced by podcast-feed.xml are missing "
+                f"from R2 and unhealable from disk — crawlers will 404: {shown}{more}",
             )
 
     # Site assets — always upload; they are regenerated each run. Uploaded
@@ -11687,14 +12639,14 @@ def generate_podcast_rss_feed():
 
 def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
                         anchor_question: str | None = None,
-                        weather_used: bool = False) -> str | None:
+                        weather_used: bool = False, kagi_used: bool = False) -> str | None:
     """Save the generated script to a file.
 
     The header carries the metadata the audio stage needs, since it runs as a
     separate process and cannot inherit locals: the theme (which the feed can
     override, so it is not always what get_theme_for_day() returns), whether
-    Brave research was used and whether the weather check aired (each gates a
-    provider in the spoken credits), and this week's anchor question (which is
+    Brave research was used, whether a Kagi Extract page reached the script, and
+    whether the weather check aired (each gates a provider in the spoken credits), and this week's anchor question (which is
     named on air, so the publish stage puts it in the episode description).
     """
     if not script:
@@ -11713,6 +12665,7 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
             f"# Theme: {theme_name}\n",
             f"# Brave: {'yes' if brave_used else 'no'}\n",
             f"# Weather: {'yes' if weather_used else 'no'}\n",
+            f"# Kagi: {'yes' if kagi_used else 'no'}\n",
             # Whitespace-collapsed: the header parser reads one line per key, so
             # a question carrying a newline would silently truncate the header.
             (f"# Anchor: {' '.join(anchor_question.split())}\n" if anchor_question else ""),
@@ -11732,13 +12685,14 @@ def read_script_metadata(script_path) -> dict:
     """Parse the `# Key: value` header written by save_script_to_file().
 
     Returns {"theme": str | None, "brave_used": bool, "weather_used": bool,
-    "anchor": str | None}. Scripts written before the header carried `# Brave:`
-    or `# Weather:` degrade to False, scripts predating `# Anchor:` degrade to
+    "kagi_used": bool, "anchor": str | None}. Scripts written before the header
+    carried `# Brave:`, `# Weather:` or `# Kagi:` degrade to False, scripts predating `# Anchor:` degrade to
     anchor=None, and any script without a `# Theme:` line degrades to
     theme=None — all of which the downstream callers already tolerate.
     """
     metadata: dict = {
-        "theme": None, "brave_used": False, "weather_used": False, "anchor": None,
+        "theme": None, "brave_used": False, "weather_used": False, "kagi_used": False,
+        "anchor": None,
     }
     try:
         with open(script_path, "r", encoding="utf-8") as fh:
@@ -11754,6 +12708,8 @@ def read_script_metadata(script_path) -> dict:
                     metadata["brave_used"] = value.lower() in ("yes", "true", "1")
                 elif key == "weather":
                     metadata["weather_used"] = value.lower() in ("yes", "true", "1")
+                elif key == "kagi":
+                    metadata["kagi_used"] = value.lower() in ("yes", "true", "1")
                 elif key == "anchor" and value:
                     metadata["anchor"] = value
     except OSError as exc:
@@ -11854,6 +12810,7 @@ def _recover_orphaned_episodes(lookback_days=3):
                     theme_name=metadata["theme"],  # None falls back gracefully
                     brave_used=metadata["brave_used"],
                     weather_used=metadata["weather_used"],
+                    kagi_used=metadata["kagi_used"],
                 )
                 if result:
                     print(f"   ✅ Recovery succeeded: {audio_path.name}")
@@ -12177,7 +13134,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     consumed_email_ids.extend(i["id"] for i in email_newsletters)
 
                 # Select deep dive from theme articles; rest go to news
-                deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
+                deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else DEEP_DIVE_COUNT
                 deep_dive_articles, news_articles = select_deep_dive_from_feed(
                     theme_articles, today_theme, count=deep_dive_count,
                     focus=today_focus, event_focus=today_event)
@@ -12282,6 +13239,9 @@ def run_script_stage() -> tuple[str, str] | None:
         # Elections the episode should sweep: the day's own event, plus any
         # all-week one (the provincial vote) whose material reached the episode.
         _episode_articles = list(deep_dive_articles) + list(news_articles)
+        # Candidate profiles are looked up in everything the feed sent today,
+        # not just what curation kept.
+        _profile_pool = _episode_articles + list(theme_articles) + list(bonus_articles)
         research_events = _events_in_play(
             get_research_events(today_weekday, pacific_now.date()), _episode_articles)
         extra_events = [e for e in research_events if not e.get('_own_day')]
@@ -12291,7 +13251,8 @@ def run_script_stage() -> tuple[str, str] | None:
             brave_client = get_anthropic_client()
             brave_context = research_deep_dive_with_agent(
                 deep_dive_articles, today_theme, brave_client,
-                event_focus=today_event, events=research_events) if brave_client else ""
+                event_focus=today_event, events=research_events,
+                pool=_profile_pool) if brave_client else ""
         # An all-week election that rode in on a roundup story gets its own pass,
         # so the deep dive above kept the ordinary day's research (2026-10-02).
         _ballot_events = _ballot_pass_events(research_events)
@@ -12299,7 +13260,7 @@ def run_script_stage() -> tuple[str, str] | None:
             with segment("script/election-research", critical=False):
                 ballot_context = _research_event_ballot(
                     _event_articles(_ballot_events, _episode_articles),
-                    get_anthropic_client(), _ballot_events)
+                    get_anthropic_client(), _ballot_events, pool=_profile_pool)
         brave_context += ballot_context
         brave_used = _sparse_brave_used or bool(brave_context)
 
@@ -12417,6 +13378,10 @@ def run_script_stage() -> tuple[str, str] | None:
         anchor_block_for_polish = format_anchor_for_prompt(
             today_anchor, today_weekday, today_theme
         )
+        _aired_draft = 0
+        with segment("script/aired-draft", critical=False):
+            _aired_draft = len(find_aired_repeats(script, date_key)) if script else 0
+        _polish_outcome = "original"  # the fallback; set before the block (segment rule)
         with segment("script/polish", critical=False):
             # Post-processing: polish + fact-check + debate summary.
             # One chain, not three independent ifs: the fast-path branch below
@@ -12427,6 +13392,7 @@ def run_script_stage() -> tuple[str, str] | None:
             # Optional fast-path: skip rewrite when the script is already clean.
             if PODCAST_SKIP_CLEAN_POLISH and _raw_quality_score.get("total_hits", 999) <= CLEAN_POLISH_MAX_HITS:
                 print("✨ Skipping polish: clean script fast-path enabled")
+                _polish_outcome = "skipped"
             # Try batch API first (50% cost discount), fall back to the agentic
             # real-time polish+factcheck loop (which resolves unanswered factual
             # questions itself via web_search, only when it decides it needs to).
@@ -12448,31 +13414,52 @@ def run_script_stage() -> tuple[str, str] | None:
                 )
                 if batch_script:
                     script = batch_script
+                    _polish_outcome = "batch"
                 else:
                     # Batch polish failed — fall back to the agentic real-time loop
                     print("⚠️ Batch polish failed, falling back to agentic polish+factcheck...")
+                    _unpolished = script
                     script = polish_and_factcheck_with_agent(
                         script, today_theme, news_articles, deep_dive_articles,
                         research_insights=brave_context,
                         corrections=email_corrections,
                         anchor_block=anchor_block_for_polish,
                     )
+                    # It hands back the very object it was given when it gives up.
+                    if script is not _unpolished:
+                        _polish_outcome = "realtime"
 
                 if batch_debate:
                     debate_summary = batch_debate
 
             elif script:
                 # Real-time path (batch disabled) — agentic polish+factcheck loop
+                _unpolished = script
                 script = polish_and_factcheck_with_agent(
                     script, today_theme, news_articles, deep_dive_articles,
                     research_insights=brave_context,
                     corrections=email_corrections,
                     anchor_block=anchor_block_for_polish,
                 )
+                if script is not _unpolished:
+                    _polish_outcome = "realtime"
+
+        _record_polish_outcome(_polish_outcome)
 
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
+
+        with segment("script/aired-check", critical=False):
+            # What the ledger and the polish addendum let through. A polish that
+            # adds repeats is the failure, not the count itself.
+            _aired_after = len(find_aired_repeats(script, date_key))
+            print(f"🔁 {_aired_after} line(s) still restate the past week after polish "
+                  f"({_aired_draft} in the draft)")
+            if _aired_after > _aired_draft + AIRED_POLISH_SLACK:
+                degrade("script/aired-check",
+                        f"polish raised the past week's repeated lines from "
+                        f"{_aired_draft} to {_aired_after}")
 
         with segment("script/correction-guard", critical=False):
             # Last line of defence against an invented on-air correction — both
@@ -12496,12 +13483,12 @@ def run_script_stage() -> tuple[str, str] | None:
                       f"{_worst['title'][:70]!r} at turn {_worst['position']} "
                       f"behind a rank-{_worst['blocked_by_rank']} story at turn "
                       f"{_worst['blocked_by_position']}; repairing...")
-                script = repair_roundup_order(script, news_articles)
-                _violations = check_roundup_order(script, news_articles)
+                script, _violations = repair_roundup_until_ordered(
+                    script, news_articles, _violations)
                 if _violations:
                     degrade("script/roundup-order",
                             f"{len(_violations)} story(ies) still aired after a later "
-                            f"block after one repair pass")
+                            f"block after {ROUNDUP_REPAIR_PASSES} repair passes")
                 else:
                     print("✅ Roundup re-sequenced into block order")
 
@@ -12571,6 +13558,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 brave_used=brave_used,
                 weather_used=bool(weather_data),
                 cohere_used=cohere_enrichment.was_used(),
+                kagi_used=_KAGI_EXTRACT_STATE.get("used", False),
                 weather_data=weather_data,
                 anchor=today_anchor,
                 research={"block": brave_context, "log": list(_RESEARCH_LOG)},
@@ -12617,6 +13605,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 script, today_theme, brave_used=brave_used,
                 anchor_question=today_anchor.get("question") if today_anchor else None,
                 weather_used=bool(weather_data),
+                kagi_used=_KAGI_EXTRACT_STATE.get("used", False),
             )
 
         # Each state file gets its own segment. These were one unbroken run of
@@ -12762,6 +13751,7 @@ def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
             audio_file = generate_audio_from_script(
                 script, audio_filename, theme_name=today_theme,
                 brave_used=brave_used, weather_used=weather_used,
+                kagi_used=metadata["kagi_used"],
             )
 
         if audio_file:
@@ -12944,6 +13934,8 @@ def main(argv: list[str] = None) -> None:
         # Runs on the abort paths too — a crashed run still reports which
         # segment died and how far it got.
         write_run_report(args.stage)
+        if spend_line := _format_spend_line():
+            print(spend_line)
 
 
 if __name__ == "__main__":

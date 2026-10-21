@@ -171,13 +171,19 @@
       "title": "Ten roundup stories remained out of sequence after one correction pass.",
       "detail": "On 2026-08-29, the script/roundup-order segment failed to sort correctly on the first attempt. After one repair pass, 10 stories still aired after a later block. The pipeline did not retry. This follows the pattern noted in the already-tracked item roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a prior run. The repair logic is insufficient; either increase retry attempts on sort failures or add a validation gate that blocks publish if any story lands in the wrong temporal position.",
       "source": "review",
-      "status": "retired",
-      "occurrences": 0,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-08-29",
       "seen": [
-        "2026-08-29"
+        "2026-08-29",
+        "2026-10-05",
+        "2026-10-12",
+        "2026-10-16",
+        "2026-10-21"
       ],
-      "last_seen": "2026-08-29"
+      "last_seen": "2026-10-21",
+      "signal": "degraded:script/roundup-order",
+      "signal_seen": "2026-10-21"
     },
     {
       "id": "gemini-project-spend-cap-blocks-rendering",
@@ -248,7 +254,7 @@
       "detail": "The voice_ratio_casey_over_riley measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear whether this represents acceptable variance or systematic drift. Establish a target voice ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios outside a defined band. If this ratio persists across future runs, adjust the host distribution weights in the synthesis prompt.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -256,11 +262,12 @@
         "2026-09-13",
         "2026-09-17",
         "2026-09-20",
-        "2026-09-21"
+        "2026-09-21",
+        "2026-10-10"
       ],
-      "last_seen": "2026-09-21",
+      "last_seen": "2026-10-10",
       "signal": "voice-ratio",
-      "signal_seen": "2026-09-21"
+      "signal_seen": "2026-10-10"
     },
     {
       "id": "gemini-multi-speaker-section-timeout-pattern",
@@ -294,10 +301,9 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-09-01",
       "seen": [
-        "2026-09-18",
         "2026-09-19",
         "2026-09-20",
         "2026-09-21",
@@ -306,11 +312,12 @@
         "2026-09-24",
         "2026-09-25",
         "2026-09-26",
-        "2026-09-27"
+        "2026-09-27",
+        "2026-10-14"
       ],
-      "last_seen": "2026-09-27",
+      "last_seen": "2026-10-14",
       "signal": "degraded:script/bodies",
-      "signal_seen": "2026-09-27"
+      "signal_seen": "2026-10-14"
     },
     {
       "id": "gemini-tts-multi-speaker-news-section-http-500",
@@ -344,8 +351,8 @@
       "title": "Three instances of AI-tell language patterns passed quality checks and shipped in the final episode.",
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
-      "status": "retired",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -356,11 +363,12 @@
         "2026-09-15",
         "2026-09-16",
         "2026-09-18",
-        "2026-10-04"
+        "2026-10-04",
+        "2026-10-20"
       ],
-      "last_seen": "2026-10-04",
+      "last_seen": "2026-10-20",
       "signal": "ai-tells-shipped",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-20"
     },
     {
       "id": "manual-dispatch-and-fallback-both-incomplete",
@@ -394,23 +402,23 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 4,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-19",
-        "2026-09-20",
-        "2026-09-22",
-        "2026-09-23",
-        "2026-09-24",
         "2026-09-25",
         "2026-09-26",
         "2026-09-27",
         "2026-10-02",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-07",
+        "2026-10-14",
+        "2026-10-16",
+        "2026-10-17",
+        "2026-10-19"
       ],
-      "last_seen": "2026-10-03",
+      "last_seen": "2026-10-19",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-19"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -444,24 +452,24 @@
       "title": "Script expansion closed only 3 percent of the gap to the target word count.",
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
-      "status": "open",
-      "occurrences": 15,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-14",
-        "2026-09-15",
-        "2026-09-16",
-        "2026-09-17",
-        "2026-09-21",
-        "2026-09-23",
-        "2026-09-24",
-        "2026-09-25",
         "2026-09-26",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15"
       ],
-      "last_seen": "2026-10-02",
+      "last_seen": "2026-10-15",
       "signal": "short-script",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-15"
     },
     {
       "id": "roundup-article-drop-without-stated-cause",
@@ -481,55 +489,56 @@
       "title": "One object referenced in the podcast feed is missing from R2 storage and will cause 404 errors.",
       "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
       "source": "review",
-      "status": "open",
-      "occurrences": 9,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-22",
       "seen": [
-        "2026-09-22",
-        "2026-09-23",
         "2026-09-24",
         "2026-09-25",
         "2026-09-27",
         "2026-09-28",
         "2026-09-29",
         "2026-10-02",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07"
       ],
-      "last_seen": "2026-10-03",
+      "last_seen": "2026-10-07",
       "signal": "degraded:publish/r2-sync",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-07"
     },
     {
       "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
       "title": "Two sentences with unsupported Indigenous nation references remained in the script after territory-check rewrites failed.",
       "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
       "source": "review",
-      "status": "open",
-      "occurrences": 10,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-19",
       "seen": [
-        "2026-09-19",
-        "2026-09-20",
-        "2026-09-21",
         "2026-09-22",
         "2026-09-23",
         "2026-09-26",
         "2026-09-27",
         "2026-09-29",
         "2026-10-02",
-        "2026-10-03"
+        "2026-10-03",
+        "2026-10-06",
+        "2026-10-09",
+        "2026-10-10"
       ],
-      "last_seen": "2026-10-03",
+      "last_seen": "2026-10-10",
       "signal": "degraded:script/territory-check",
-      "signal_seen": "2026-10-04"
+      "signal_seen": "2026-10-10"
     },
     {
       "id": "fallback-runs-execute-despite-primary-success",
       "title": "Fallback runs executed despite the primary run completing successfully.",
       "detail": "The primary run at 1:05 AM Pacific completed successfully and published the episode. Two fallback runs at 2:05 AM and 3:05 AM both succeeded in under 10 seconds each, suggesting they were checking rather than generating. The pipeline ran all three despite the first succeeding, consuming unnecessary API calls and compute. The scheduler or trigger logic should prevent fallback launches when a primary run has already finished with a success status.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-28",
       "seen": [
         "2026-09-28"
@@ -542,22 +551,23 @@
       "detail": "The pipeline spent its Brave Search deep-dive budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on September 29. Later fact-resolution queries fell back to web snippets or went unanswered. The script then required an expand pass to close a 774-word gap (starting at 2,626 words against a 3,400-word target), but that expansion had to work with degraded research tools. No facts dropped from the episode, but the mechanism shows a constraint: when story complexity demands early lookups, the expand phase runs blind. Increase the per-run budgets for Brave Search and Answers, or implement a two-phase research strategy that reserves lookups for the expansion pass.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-09-29",
       "seen": [
-        "2026-09-29"
+        "2026-09-29",
+        "2026-10-17"
       ],
       "signal": "degraded:script/research",
-      "signal_seen": "2026-09-29",
-      "last_seen": "2026-09-29"
+      "signal_seen": "2026-10-17",
+      "last_seen": "2026-10-17"
     },
     {
       "id": "citation-alignment-roundup-one-source-unmatched",
       "title": "Roundup citations matched at 93 percent (14 of 15), with one source unmatched to queried material.",
       "detail": "On September 29, the citation alignment check found 14 of 15 roundup citations matched to source material, while all 3 deep-dive citations matched. One citation—likely from the research phase—could not be traced back to a queried source or snippet. The episode shipped with it intact. One unmatched citation per 15 is below the threshold for a pattern, but check whether this source came from a fallback to web snippets after research budget exhaustion (which occurred on this run) and whether snippet-sourced citations align at a lower rate than queried sources.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-29",
       "seen": [
         "2026-09-29"
@@ -569,32 +579,79 @@
       "title": "Script generation failed in the primary and first fallback run but succeeded in the second fallback.",
       "detail": "The Generate episode script step failed after 92 seconds in both the primary run (1:05 AM Pacific, run 36834215592) and Fallback 1 (2:05 AM Pacific, run 36840498673), causing both runs to conclude as failures. The same step succeeded in Fallback 2 (3:05 AM Pacific, run 36846937721) in the same duration. The facts do not state what caused the failures or what changed between attempts. Check the error logs from runs 36834215592 and 36840498673 to identify whether the breakage was transient (a retry-worthy timeout or rate limit) or a code issue that the third attempt avoided by accident.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-10-01",
       "seen": [
-        "2026-10-01"
+        "2026-10-01",
+        "2026-10-08",
+        "2026-10-11"
       ],
       "signal": "run-failed",
-      "signal_seen": "2026-10-04",
-      "last_seen": "2026-10-01"
+      "signal_seen": "2026-10-11",
+      "last_seen": "2026-10-11"
     },
     {
       "id": "cohere-embedding-module-missing",
       "title": "Cohere embedding module is unavailable, blocking story clustering and evolution detection.",
       "detail": "On 2026-10-03, script generation encountered ModuleNotFoundError twice: once during evolving-story detection, once during same-story clustering. The pipeline fell back to baseline logic both times and completed the run. The listener hears no gaps, but the script lost its ability to detect when a story mutates across sources or when multiple outlets cover the same event. Restore the Cohere module or replace the embedding layer with an alternative that can detect story evolution and same-story clustering without external dependencies.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-10-03",
       "seen": [
         "2026-10-03",
-        "2026-10-04"
+        "2026-10-04",
+        "2026-10-05",
+        "2026-10-07",
+        "2026-10-08"
       ],
       "signal": "degraded:script/cohere",
-      "signal_seen": "2026-10-04",
-      "last_seen": "2026-10-04"
+      "signal_seen": "2026-10-08",
+      "last_seen": "2026-10-08"
+    },
+    {
+      "id": "deep-dive-citation-source-url-missing",
+      "title": "One deep dive source has no backing URL in the pipeline record.",
+      "detail": "The deep dive matched only 2 of 3 citations on October 6, compared to 14 of 15 for the roundup. No source URL appears in the facts for the third deep dive story. The pipeline may have failed to retrieve the URL or generated the story from a headline without one. This splits the data integrity problem: roundup sources are traceable; deep dive sources are not.",
+      "source": "review",
+      "status": "retired",
+      "occurrences": 0,
+      "first_seen": "2026-10-06",
+      "seen": [
+        "2026-10-06"
+      ],
+      "last_seen": "2026-10-06"
+    },
+    {
+      "id": "short-first-draft-needed-expansion-retries",
+      "title": "The first script draft ran 21 percent short and needed expansion retries to reach length.",
+      "detail": "The first draft came in at 2694 words against a 3400-word target, and the pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is already tracked as script expansion undershooting its target, so the new evidence here is that the first generation pass itself is consistently short, not only the expansion. Closing this would mean checking whether the initial generation prompt states the word target strongly enough, so fewer episodes depend on the retry loop.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-10-18",
+      "seen": [
+        "2026-10-18"
+      ],
+      "last_seen": "2026-10-18"
+    },
+    {
+      "id": "thin-roundup-stories-shipped-without-source-text",
+      "title": "Four thin roundup stories reached the script after Kagi Extract returned no source text for them.",
+      "detail": "The degrade row shows Kagi Extract returned no page for 4 thin roundup stories on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were cut by the airtime budget, so the thinnest sources were the ones that passed through. The pipeline should either drop stories whose extraction failed or mark them as unverified before scripting. This is the degradation whose handling the facts show as wrong.",
+      "source": "review",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-10-19",
+      "seen": [
+        "2026-10-19",
+        "2026-10-21"
+      ],
+      "signal": "degraded:script/kagi-extract",
+      "signal_seen": "2026-10-21",
+      "last_seen": "2026-10-21"
     }
   ],
-  "updated": "2026-10-04"
+  "updated": "2026-10-21"
 }

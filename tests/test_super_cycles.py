@@ -157,7 +157,12 @@ def holding_env(tmp_path, monkeypatch):
     return tmp_path
 
 
-def _filler_pool(n=20):
+def _filler_pool(n: int | None = None):
+    # Two over what the roundup and deep dive need, so the holding guard
+    # (max_holds) leaves room to hold; sized from the constants so raising
+    # either count doesn't silently turn holding off in these tests.
+    if n is None:
+        n = pg.NEWS_ROUNDUP_COUNT + pg.DEEP_DIVE_COUNT + 2
     return [
         _article(f"Williams Lake council briefs part {i}", f"filler-{i}", kw=2)
         for i in range(n)
@@ -218,6 +223,21 @@ class TestArticleHolding:
             _filler_pool(5) + [mining], [], saturday, "Cariboo Local Affairs", None
         )
         # Pool below roundup+deep-dive budget: article airs today instead
+        assert any(a["url"] == "mining-url" for a in theme)
+        assert "mining-url" not in pg.load_memory(pg.HOLDING_FILE)
+
+    def test_pool_exactly_at_budget_holds_nothing(self, holding_env):
+        # The guard reserves the roundup plus the weekday deep dive. It used a
+        # literal 3 for the deep dive; DEEP_DIVE_COUNT is 4 since 2026-10-14.
+        saturday, _ = _find_saturday_before_focus("mining-energy")
+        mining = _article(
+            "Copper mine expansion clears exploration drilling permit",
+            "mining-url", kw=0, boosted=50,
+        )
+        budget = pg.NEWS_ROUNDUP_COUNT + pg.DEEP_DIVE_COUNT
+        theme, _ = pg.route_articles_for_focus(
+            _filler_pool(budget - 1) + [mining], [], saturday, "Cariboo Local Affairs", None
+        )
         assert any(a["url"] == "mining-url" for a in theme)
         assert "mining-url" not in pg.load_memory(pg.HOLDING_FILE)
 
@@ -1071,9 +1091,9 @@ class TestEventResearchSweep:
         capture["reply"] = ("PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n...\n"
                             "NO RECORD FOUND: Ruth Lloyd; Charlene Hays; Cianna O'Connor; "
                             "Billie Sheridan; Nathan Wiebe; Kayla Zaruk; Greg Jeannotte; "
-                            "Mary Forbes")
+                            "Mary Forbes; Laura Zimmerman")
         assert self._run(event)
-        assert any("no record for 8 of 21" in d for d in capture["degraded"])
+        assert any("no record for 9 of 24" in d for d in capture["degraded"])
 
     def test_a_mostly_sourced_result_does_not_degrade(self, capture):
         event = get_event_focus_for_day(5, date(2026, 9, 26))
@@ -1206,6 +1226,109 @@ class TestEventResearchSweep:
         seg = src.index('with segment("script/election-research", critical=False):')
         ballot = src.index("ballot_context = _research_event_ballot(")
         assert deep < seg < ballot
+
+    # --- The weekday pass reuses a settled ballot (2026-10-06) -------------
+    # The pass researched the whole ballot again every weekday and handed the
+    # writer the same records as new; a vote count aired four days running.
+
+    BALLOT = ("ELECTION RESEARCH — 2026 B.C. provincial general election\n"
+              "- Lorne Doerkson won in 2024 with 13,714 votes (BC Ballot, 2026-10-05).\n"
+              "NO RECORD FOUND: none")
+
+    POLL = [{"title": "B.C. Conservatives hold 5 point lead over NDP, says election poll",
+             "summary": "A new poll as voters firm up their choices."}]
+
+    def _ballot_on(self, monkeypatch, day, events=None, articles=None):
+        from datetime import datetime
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime.combine(day, datetime.min.time()))
+        return pg._research_event_ballot(articles if articles is not None else self.POLL,
+                                         object(), events or self._weekday_events())
+
+    def test_a_settled_ballot_is_reused_without_a_search(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        first = self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        assert searched > 0 and "13,714" in first
+
+        monkeypatch.setattr(pg, "_RESEARCH_LOG", [])
+        monkeypatch.delenv("BRAVE_SEARCH_API_KEY")
+        again = self._ballot_on(monkeypatch, date(2026, 10, 8))
+
+        assert len(capture["queries"]) == searched
+        assert "Ballot researched Tuesday October 6 and unchanged since" in again
+        assert "13,714" in again
+        assert pg._RESEARCH_LOG == [{"kind": "cached", "researched": "2026-10-06"}]
+
+    def test_the_field_is_researched_daily_until_nominations_close(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 3))   # closing day itself
+        searched = len(capture["queries"])
+        self._ballot_on(monkeypatch, date(2026, 10, 5))
+        assert len(capture["queries"]) > searched
+
+    def test_a_week_old_ballot_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        self._ballot_on(monkeypatch, date(2026, 10, 6 + pg.BALLOT_RESEARCH_MAX_AGE_DAYS))
+        assert len(capture["queries"]) > searched
+
+    def test_a_roster_edit_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        events = self._weekday_events()
+        self._ballot_on(monkeypatch, date(2026, 10, 6), events)
+        searched = len(capture["queries"])
+        edited = [{**e, "roster": {**e["roster"], "races": [
+            {**e["roster"]["races"][0], "withdrawn": ["Douglas Gook"]}] + e["roster"]["races"][1:]}}
+            for e in events]
+        self._ballot_on(monkeypatch, date(2026, 10, 7), edited)
+        assert len(capture["queries"]) > searched
+
+    def test_an_incomplete_ballot_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT.replace("NO RECORD FOUND: none",
+                                               "NO RECORD FOUND: Douglas Gook")
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        self._ballot_on(monkeypatch, date(2026, 10, 7))
+        assert len(capture["queries"]) > searched
+
+    def test_a_story_that_changes_the_field_is_researched_again(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        searched = len(capture["queries"])
+        story = {"title": "Green candidate withdraws from Cariboo-Chilcotin race", "summary": ""}
+        self._ballot_on(monkeypatch, date(2026, 10, 7), articles=[story])
+        assert len(capture["queries"]) > searched
+
+    def test_a_failed_pass_leaves_the_cache_alone(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        capture["reply"] = "NONE"
+        self._ballot_on(monkeypatch, date(2026, 10, 13))   # stale: researched, came back empty
+        assert pg.load_memory(pg.BALLOT_RESEARCH_CACHE_FILE)["researched"] == "2026-10-06"
+
+    # --- A fresh pass starts from the last one (2026-10-14) ----------------
+    # The show called unestablished what earlier passes had sourced, and the
+    # pass read a syndicated copy because it was never given the story's URL.
+
+    def test_a_fresh_pass_is_handed_the_prior_one(self, capture, monkeypatch):
+        capture["reply"] = self.BALLOT.replace("NO RECORD FOUND: none",
+                                               "NO RECORD FOUND: Douglas Gook")
+        self._ballot_on(monkeypatch, date(2026, 10, 6))
+        assert "PRIOR RESEARCH" not in capture["user"]
+        self._ballot_on(monkeypatch, date(2026, 10, 7))
+        assert "PRIOR RESEARCH (researched 2026-10-06)" in capture["user"]
+        assert "13,714" in capture["user"]
+        assert "never put on the NO RECORD FOUND line" in capture["system"]
+
+    def test_the_pass_gets_each_story_url_and_a_longer_body(self, capture, monkeypatch):
+        story = {"title": "Can a former BC Liberal unseat Quesnel's mayor?",
+                 "url": "https://thetyee.example/quesnel", "summary": "Incumbent Ron Paull",
+                 "_body": "x" * 400 + " Coralee Oakes is running " + "y" * 3000}
+        self._ballot_on(monkeypatch, date(2026, 10, 6), articles=[story])
+        assert "URL: https://thetyee.example/quesnel" in capture["user"]
+        assert "Coralee Oakes" in capture["user"]
+        assert "the outlet's own page comes before a copy elsewhere" in capture["system"]
 
     def test_the_sweep_fits_under_the_deep_dive_meter(self):
         """`_resolve_script_questions_with_brave` runs after the research pass on

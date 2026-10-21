@@ -234,6 +234,7 @@ class TestModelSwitch:
         from config_loader import thinking_off
         assert thinking_off("claude-sonnet-5") == {"type": "disabled"}
         assert thinking_off("claude-sonnet-5-5") == {"type": "between_tools"}
+        assert thinking_off("claude-haiku-5-5") == {"type": "disabled"}
 
     def test_an_empty_variable_means_the_default(self, monkeypatch):
         """GitHub passes an unset repository variable as an empty string."""
@@ -241,7 +242,7 @@ class TestModelSwitch:
         import config_loader
         monkeypatch.setenv("CLAUDE_SONNET_MODEL", "")
         try:
-            assert importlib.reload(config_loader).SONNET_MODEL == "claude-sonnet-5"
+            assert importlib.reload(config_loader).SONNET_MODEL == "claude-haiku-5-5"
             monkeypatch.setenv("CLAUDE_SONNET_MODEL", "claude-sonnet-5-5")
             assert importlib.reload(config_loader).SONNET_MODEL == "claude-sonnet-5-5"
         finally:

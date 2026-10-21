@@ -1,191 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-09-13",
-      "words": 3065,
-      "counts": {
-        "clearly": 2,
-        "exactly": 2,
-        "directly": 2
-      }
-    },
-    {
-      "date": "2026-09-14",
-      "words": 2995,
-      "counts": {
-        "quietly": 2,
-        "automatically": 2,
-        "differently": 2,
-        "basically": 2,
-        "honestly": 2,
-        "entirely": 2
-      }
-    },
-    {
-      "date": "2026-09-15",
-      "words": 2921,
-      "counts": {
-        "locally": 2,
-        "exactly": 3,
-        "entirely": 2,
-        "publicly": 2
-      }
-    },
-    {
-      "date": "2026-09-16",
-      "words": 2974,
-      "counts": {
-        "exactly": 4,
-        "publicly": 2,
-        "quietly": 4,
-        "entirely": 4,
-        "specifically": 3,
-        "mostly": 2
-      }
-    },
-    {
-      "date": "2026-09-17",
-      "words": 2943,
-      "counts": {
-        "entirely": 2,
-        "quietly": 2,
-        "barely": 2,
-        "directly": 2,
-        "exactly": 2
-      }
-    },
-    {
-      "date": "2026-09-18",
-      "words": 3049,
-      "counts": {
-        "directly": 2,
-        "possibly": 2,
-        "usually": 2,
-        "structurally": 2
-      }
-    },
-    {
-      "date": "2026-09-19",
-      "words": 3102,
-      "counts": {
-        "publicly": 3,
-        "exactly": 2,
-        "locally": 2,
-        "plainly": 2
-      }
-    },
-    {
-      "date": "2026-09-20",
-      "words": 3246,
-      "counts": {
-        "mainly": 2,
-        "partly": 2,
-        "usually": 4,
-        "quietly": 2
-      }
-    },
-    {
-      "date": "2026-09-21",
-      "words": 3055,
-      "counts": {
-        "partly": 2,
-        "entirely": 2
-      }
-    },
-    {
-      "date": "2026-09-22",
-      "words": 2924,
-      "counts": {
-        "nearly": 2,
-        "finally": 2,
-        "exactly": 2
-      }
-    },
-    {
-      "date": "2026-09-23",
-      "words": 2866,
-      "counts": {
-        "literally": 2,
-        "usually": 2,
-        "physically": 2,
-        "exactly": 3
-      }
-    },
-    {
-      "date": "2026-09-24",
-      "words": 2997,
-      "counts": {
-        "barely": 3,
-        "directly": 2,
-        "entirely": 2,
-        "historically": 2
-      }
-    },
-    {
-      "date": "2026-09-25",
-      "words": 3141,
-      "counts": {
-        "mostly": 2,
-        "reliably": 2,
-        "unusually": 2,
-        "exactly": 2,
-        "continuously": 2,
-        "eventually": 2,
-        "reportedly": 2
-      }
-    },
-    {
-      "date": "2026-09-26",
-      "words": 3272,
-      "counts": {
-        "roughly": 3,
-        "plainly": 3,
-        "reportedly": 2,
-        "publicly": 2
-      }
-    },
-    {
-      "date": "2026-09-27",
-      "words": 3390,
-      "counts": {
-        "mostly": 3,
-        "sciencedaily": 2,
-        "potentially": 2,
-        "specifically": 3,
-        "deliberately": 2,
-        "entirely": 2,
-        "physically": 2,
-        "exactly": 2,
-        "precisely": 2
-      }
-    },
-    {
-      "date": "2026-09-28",
-      "words": 3548,
-      "counts": {
-        "partly": 2,
-        "roughly": 2,
-        "directly": 3,
-        "publicly": 2,
-        "specifically": 2,
-        "entirely": 4,
-        "usually": 2,
-        "exactly": 2,
-        "mostly": 2
-      }
-    },
-    {
-      "date": "2026-09-29",
-      "words": 3192,
-      "counts": {
-        "entirely": 5,
-        "directly": 3,
-        "exactly": 3,
-        "simply": 2,
-        "structurally": 2
-      }
-    },
-    {
       "date": "2026-09-30",
       "words": 3177,
       "counts": {
@@ -218,8 +33,125 @@
         "usually": 2,
         "reportedly": 5
       }
+    },
+    {
+      "date": "2026-10-05",
+      "words": 3184,
+      "counts": {}
+    },
+    {
+      "date": "2026-10-06",
+      "words": 3084,
+      "counts": {
+        "really": 2,
+        "partly": 2
+      }
+    },
+    {
+      "date": "2026-10-07",
+      "words": 2913,
+      "counts": {}
+    },
+    {
+      "date": "2026-10-08",
+      "words": 2981,
+      "counts": {}
+    },
+    {
+      "date": "2026-10-09",
+      "words": 3237,
+      "counts": {
+        "usually": 2
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "words": 3681,
+      "counts": {
+        "partly": 2,
+        "directly": 2
+      }
+    },
+    {
+      "date": "2026-10-11",
+      "words": 3024,
+      "counts": {
+        "directly": 2,
+        "roughly": 2
+      }
+    },
+    {
+      "date": "2026-10-12",
+      "words": 3513,
+      "counts": {
+        "publicly": 2
+      }
+    },
+    {
+      "date": "2026-10-13",
+      "words": 2935,
+      "counts": {
+        "likely": 3
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "words": 3237,
+      "counts": {
+        "costly": 2,
+        "cleanly": 2
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "words": 3117,
+      "counts": {}
+    },
+    {
+      "date": "2026-10-16",
+      "words": 3412,
+      "counts": {
+        "usually": 3
+      }
+    },
+    {
+      "date": "2026-10-17",
+      "words": 3721,
+      "counts": {
+        "mainly": 2,
+        "likely": 2
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "words": 3657,
+      "counts": {
+        "partly": 2,
+        "roughly": 3
+      }
+    },
+    {
+      "date": "2026-10-19",
+      "words": 3673,
+      "counts": {}
+    },
+    {
+      "date": "2026-10-20",
+      "words": 3554,
+      "counts": {
+        "nearly": 3,
+        "roughly": 3
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "words": 3400,
+      "counts": {
+        "mainly": 2,
+        "exactly": 2
+      }
     }
   ],
   "burned": {},
-  "updated": "2026-10-04"
+  "updated": "2026-10-21"
 }

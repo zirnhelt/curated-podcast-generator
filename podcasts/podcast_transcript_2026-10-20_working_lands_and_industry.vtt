@@ -1,0 +1,250 @@
+WEBVTT
+
+00:00:00.522 --> 00:00:20.554
+<v Casey>Hey there, glad you could make it. Today on the show, the Lac La Hache arena has been shut down over rotting log columns, and we've got the Hitachi transformer plant turning wood fibre into grid insulation. Plus the big question in the Deep Dive: whose forest numbers do you trust when the 45 million cubic metre target gets argued over? Let's get into it.
+
+00:00:34.029 --> 00:00:52.437
+<v Casey>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that affect our rural communities. I'm Casey. It's Tuesday, October 20th, 2026, and today's theme is Working Lands and Industry. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+00:00:53.437 --> 00:01:18.709
+<v Riley>And I'm Riley. Forests, ranches, mills and mines, and the technology changing who earns from them. Out at Horsefly Lake this morning it's around zero and partly cloudy, with a high of 12 and overcast skies through the day. Across the Cariboo, 100 Mile House is around zero and clear, Williams Lake is minus one under overcast, Quesnel is minus one and clear, and Tatla Lake is around zero and overcast.
+
+00:01:18.909 --> 00:01:19.645
+<v Casey>On to the news.
+
+00:01:21.045 --> 00:01:26.365
+<v Casey>A lot of today's news lands in our own backyard, and the provincial election sits on top of much of it.
+
+00:01:27.862 --> 00:02:03.804
+<v Riley>The Lac La Hache Community Club has closed its arena for the 2026 to 2027 season because of structural damage. An employee's perimeter check found rot in seven of the 12 support columns along the west wall. An assessment by Octo Engineering, a Williams Lake firm, came back on October 15th showing severe deterioration in the log columns, and the early report puts eight columns in that category. Public and routine staff access has been restricted. The club is getting quotes for repairs, and a community meeting has been called on the building's future.
+
+00:02:04.254 --> 00:02:08.062
+<v Casey>Log columns in a building that age need someone who knows wood to look at them.
+
+00:02:09.520 --> 00:02:22.968
+<v Riley>On the ballot, we gave the Cariboo-Chilcotin field on Friday, and the Prince George-North Cariboo field last Thursday. That's Askew, Doerkson and Gook in one, Bardua, Clare and Thompson in the other. Voting is October 24th.
+
+00:02:24.448 --> 00:02:57.942
+<v Casey>The B.C. Conservatives released a fully costed platform on Sunday. It projects the deficit falling from $13.7 billion this year to $10.8 billion by 2029. That depends on economic growth of 2.5 per cent this year, 2.8 per cent next year, and 3.2 per cent in 2029. UBC Okanagan economist Ross Hickey calls that growth unlikely, and gives a cautiously optimistic forecast of about one per cent a year. The Bank of Canada has national growth at 0.7 per cent this year. Leader Lorne Doerkson says the party will get there by supercharging the economy.
+
+00:02:58.392 --> 00:03:00.600
+<v Riley>Those growth numbers are the whole platform.
+
+00:03:02.055 --> 00:03:15.687
+<v Casey>Granville's Coffee in Quesnel had a good weekend. Owner Ted Martindale received the small business award at the Business Excellence Awards at the Seniors Centre on Saturday, October 17th. The headline calls it a BC Chamber of Commerce award.
+
+00:03:17.160 --> 00:03:47.296
+<v Riley>Mining in a very different place now. Sudan's wartime gold rush is creating an environmental crisis. According to a Sudan Tribune report carried by Mining.com, hundreds of thousands of civilians displaced by the war are expanding artisanal gold mining in the River Nile and Northern states. Miners are using mercury and cyanide. The report says the work threatens drinking water, farmland and public health. An estimated two to five million people depend on the largely unregulated sector.
+
+00:03:47.746 --> 00:03:50.282
+<v Casey>Same gold, no rules, and the people downstream pay.
+
+00:03:51.855 --> 00:04:17.583
+<v Riley>Security researcher Quentin Kaiser has disclosed a flaw called WPSplinter. The Register reports it sits in Broadcom's implementation of Wi-Fi Protected Setup, and that millions of routers worldwide may be exposed. An attacker can send crafted messages that corrupt the router's memory and allow remote code execution. The gap is very old and still open. The hard part is protecting devices people rarely update.
+
+00:04:19.157 --> 00:04:42.589
+<v Casey>Scientists are testing fire-spotting satellites, AI tools and ancient land practices to protect permafrost and the carbon it holds. MIT Technology Review followed researchers with the Alaska Fire Science Consortium through the burn scar of the 2021 Yankovich Road Fire, near the University of Alaska Fairbanks. That fire ran through black spruce and birch, and the area is now an interpretive walking trail.
+
+00:04:43.039 --> 00:04:48.127
+<v Riley>The satellite part is the piece that transfers to our forests. The permafrost part doesn't.
+
+00:04:49.731 --> 00:05:17.987
+<v Riley>Researchers at the University of Colorado Anschutz and two Swedish universities examined 28 people whose taste problems lasted more than a year after COVID-19. Eight had clearly abnormal taste scores. Eleven struggled with specific flavours, especially sweet, bitter and umami, while salty and sour held up. The study in Chemical Senses found disruptions in the molecular signals inside taste buds, along with physical changes in their structure.
+
+00:05:19.527 --> 00:05:41.815
+<v Casey>Scientific American's Science Quickly covered a study in Aging Cell that examined ovarian tissue from 28 postmenopausal women aged 50 to 75. The researchers tracked nearly 6,000 protein groups and found the ovaries keep changing for decades after reproduction stops. The same episode covered new research on honeybee stingers and on why microplastics may be harmful.
+
+00:05:42.265 --> 00:05:45.297
+<v Riley>The microplastics finding is the one people will carry around.
+
+00:05:47.120 --> 00:06:07.976
+<v Riley>Robot vacuums can build floor maps, log cleaning histories, and some carry microphones or cameras. Engadget reports that cloud connections can route that data through manufacturers' servers, and what happens to it varies by model. Not every connected vacuum is recording everything, the piece says, but buyers should know where the information goes.
+
+00:06:08.426 --> 00:06:12.090
+<v Casey>So the floor plan of your house is now a line in somebody's database.
+
+00:06:13.802 --> 00:06:33.642
+<v Casey>High-speed video has captured how a honeybee's stinger pumps venom. New Atlas reports that two flexible valves work like miniature pistons. Researchers have known about the venom sac since 1910, but nobody had seen the mechanism in action. Fiorella Ramirez-Esquivel of Macquarie University says engineers may borrow the design for new micropumps.
+
+00:06:35.140 --> 00:06:48.060
+<v Riley>Lifehacker says a treadmill isn't physically easier than running outside, because the physics match. What changes is boredom. You have nothing to look at but the numbers, and that makes the same effort feel harder.
+
+00:06:49.462 --> 00:07:08.326
+<v Casey>WindBorne Systems, a Redwood City startup, has won a U.S. Air Force contract worth up to $49 million for data from its weather balloons. TechCrunch reports the company has about 700 balloons aloft. The Air Force pays only as it orders data for specific regions and times, and so far it has ordered $1.7 million.
+
+00:07:09.857 --> 00:07:28.889
+<v Riley>Among 12-to-17-year-olds, girls have been more likely to vape than boys since 2021. A letter in JAMA Pediatrics uses youth data from the PATH study covering 2014 through 2024. It finds the gap is widest among older teens. For decades, the pattern ran the other way.
+
+00:07:29.339 --> 00:07:33.339
+<v Casey>Nicotine targeting a different group than the one the marketing used to chase.
+
+00:07:34.979 --> 00:07:45.491
+<v Casey>The Tyee's headline asks why extreme ideas are still a BC Conservative problem. Its summary says interim leader Lorne Doerkson has fired two candidates, and critics say he needs to do more.
+
+00:07:45.941 --> 00:07:49.245
+<v Riley>Two firings is a number. The question is what counts as enough.
+
+00:07:51.065 --> 00:08:24.063
+<v Riley>This one is US policy, so we aren't weighing in on it, but the mechanism is worth watching. Quartz reports that the Trump administration agreed to pay offshore wind developers nearly $4 billion to cancel leases. Interior refunded what companies had paid, dollar for dollar, and the companies promised to invest the same amount in gas and other energy projects. Interior calls them settlements of legal claims. Nine states sued on September 22nd to unwind some of the deals, including those with Invenergy and Bluepoint Wind.
+
+00:08:25.513 --> 00:09:00.367
+<v Casey>Bell has declined to give Standing Buffalo Dakota Nation a consultation on its AI data centre under construction near Regina, Saskatchewan. The First Nation asked for more detail about the project. In a three-page letter, Bell's Dan Rink, president of AI Infrastructure and Strategy at Bell AI Fabric, points out that under Saskatchewan's policy, the province decides whether consultation is required and with which communities. Bell says it has carried out the consultation the province asked for. The First Nation says its Elders and technical experts are preparing to assess the project under its own review process.
+
+00:09:00.817 --> 00:09:04.785
+<v Riley>Who decides who gets a seat at the table is the question under the data centre.
+
+00:09:06.184 --> 00:09:22.960
+<v Casey>The Williams Lake Stampede Association is a nonprofit, and it runs the world-famous Williams Lake Stampede every Canada Day weekend. Pulling off an event that size in a city of about 10,700 takes a long planning cycle and a lot of people. The details are at williamslakestampede.com.
+
+00:09:23.605 --> 00:09:29.461
+<v Riley>A local nonprofit carrying a weekend that big is exactly the kind of institution worth backing.
+
+00:09:29.641 --> 00:09:30.529
+<v Casey>Now to the forests.
+
+00:09:31.929 --> 00:10:01.807
+<v Riley>Three stories this week point the same direction. A transformer plant in London, Ontario, is turning wood fibre into electrical insulation. Mass timber keeps climbing. And the provincial harvest target is back at 45 million cubic metres a year. The value is moving up the chain. The question is who holds it when it arrives, and whose numbers a town should believe while it moves. Does a mill earn back a community's trust by publishing its numbers, or does the community just remember the last layoff?
+
+00:10:02.111 --> 00:10:13.895
+<v Casey>Start with the plant, since nobody in a mill town predicted it. Hitachi Energy's project is $479 million. Public money in the package is about $50 million, roughly a tenth. Hitachi carries the rest.
+
+00:10:14.486 --> 00:10:47.436
+<v Riley>The leverage model is doing its job. Pressboard is a wood-fibre material inside nearly every high-voltage transformer, and this would be Canada's first electrical-grade pressboard factory. The federal money is $20 million from the Strategic Response Fund and $10 million from the Investments in Forest Industry Transformation program. Ontario adds up to $20 million from the Invest Ontario Fund. Forest-industry money is pulling a grid supplier into a wood-fibre supply chain, and that shifts who buys our fibre.
+
+00:10:48.018 --> 00:11:05.722
+<v Casey>Who buys it is the point. Hitachi frames the plant around data centres, green energy and industrial growth. None of the announcement says a single tonne of fibre comes from a B.C. mill. If the wood comes from Ontario, a B.C. forest economy is supplying a factory it will never visit, and the public money is spent in London.
+
+00:11:06.371 --> 00:11:20.523
+<v Riley>The fibre question is open. But a Cariboo mill that wanted into this chain would be selling into the grid, not into housing. Different customer, different price, and a steadier order book than lumber gives you when housing starts stall.
+
+00:11:21.110 --> 00:11:34.806
+<v Casey>Different customer, same tree. Ask a mill manager where the fibre comes from before you ask about jobs. A mill in 100 Mile House that can't prove its wood supply doesn't get a seat at a supplier table in Ontario, no matter what the grid needs.
+
+00:11:35.306 --> 00:11:40.474
+<v Riley>Then ask the second question too. Who gets the jobs, London or 100 Mile House?
+
+00:11:40.773 --> 00:11:49.325
+<v Casey>London, because the plant sits there. The Cariboo gets fibre demand only if somebody in Victoria or Ottawa builds the link. Nothing in the sources does that.
+
+00:11:49.912 --> 00:12:01.432
+<v Riley>Not yet. A transformer plant shows forest products becoming high-tech inputs. That changes what a sawmill's waste is worth. Sawdust and chips used to be the residue. This is a product line.
+
+00:12:02.033 --> 00:12:13.937
+<v Casey>Residue has a price now. It also means the mill that used to throw chips into a burner is competing with an electrical supply chain for the same fibre. Who wins that in a town where the mill is the only employer?
+
+00:12:14.272 --> 00:12:24.928
+<v Riley>Whoever can deliver consistent volume at a known grade. That's a supply-planning problem, and it's solvable. The mills that survive the next decade will be the ones that can give a buyer a contract.
+
+00:12:25.504 --> 00:12:45.824
+<v Casey>Solvable for a mill that still exists. Now mass timber. The FSC Canada column says more than 700 projects are complete, 40 per cent of them finished in the last five years, with more than 200 under construction or planned. The column is written by the head of a forest certifier. Read those figures the way you'd read a brochure from a certifier.
+
+00:12:46.478 --> 00:13:12.318
+<v Riley>The completed count holds up. The Forest Products Association of Canada's Mass Timber Roadmap says almost 700 buildings are complete. A federal map covers more than 750 completed or under construction from 2007 to 2022. Forty per cent of 700 is roughly 280 buildings in five years. That's a market that scaled, and a sawmill can plan around a market that scaled.
+
+00:13:12.873 --> 00:13:30.393
+<v Casey>Fine for the finished ones. The roadmap puts the pipeline at more than 140. The column says more than 200. Completed is a building. Under construction is a crane on site. Planned is a drawing somebody paid an architect to produce. Three different things sit under one word, and the word is "booming."
+
+00:13:30.946 --> 00:13:42.386
+<v Riley>Pipelines shrink when projects don't get financed. Completed buildings don't shrink. The number to track is buildings actually drawing down lumber, and none of these sources publishes it.
+
+00:13:43.035 --> 00:13:55.147
+<v Casey>Then who gets to call it booming? The people counting the pipeline have a stake in the answer. And if demand arrives faster than the forest can carry it, what gives? Demand sets the pace. A public comment period doesn't.
+
+00:13:55.775 --> 00:14:07.903
+<v Riley>True, a comment period doesn't set demand. But demand that outruns supply is a pricing signal, and the mill gets paid for it. A shortage makes the harvest look like a shortfall, and that pushes the target up.
+
+00:14:08.452 --> 00:14:34.060
+<v Casey>Which brings us to 45 million. The B.C. Conservative platform commits to raising the provincial harvest to at least 45 million cubic metres a year, alongside faster permitting, lower permit costs and more forest-sector support. The NDP government's mandate letter to the forests minister used the same figure: "enable harvest of 45 million cubic metres per year, while fulfilling our commitment to protect old growth." Same number, two parties.
+
+00:14:34.711 --> 00:14:52.831
+<v Riley>Forty-five million is the easiest number in forestry to put on a slide. Both sides agree on it, so the fight is over the route. My route runs through permits, because that's the lever a government can move in a single budget year. Faster approvals, lower permit costs, fewer months waiting in a queue.
+
+00:14:53.366 --> 00:15:17.038
+<v Casey>The harvest record doesn't match the slide. Environmental Reporting BC data show public-land harvest ran about 22 per cent below the allowable annual cut over the past 20 years. The average cut was about 77 million cubic metres. The average harvest was about 60 million. The reporting says the province cut just under 30 million last year, roughly half the level the sector was historically cut.
+
+00:15:17.538 --> 00:15:32.178
+<v Riley>So the gap sits under the ceiling. The allowable annual cut is the calculated limit. The harvest is what actually gets cut beneath it. You don't need a new forest to close that gap. You need faster approvals on volume that's already permitted.
+
+00:15:32.865 --> 00:15:47.785
+<v Casey>Legal volume that went uncut for two decades isn't a permit problem. The permits existed. A permit doesn't build a sawmill, a marketing contract or a crew. Markets, labour and mill capacity sit behind that number, and the permit only reaches the forest. Ask Quesnel.
+
+00:15:48.361 --> 00:15:55.361
+<v Riley>Both bottlenecks exist. Fix the cheap one first, because it moves in one budget year. The mill takes capital and years.
+
+00:15:55.882 --> 00:16:13.442
+<v Casey>Cheap for the province. Expensive for a town waiting on a mill. And the leaked report, cited by the Ancient Forest Alliance and Business in Vancouver, argues the harvest is overestimated. If that's true, the 22 per cent gap is smaller than it looks, and the 45 is harder to reach from a smaller base.
+
+00:16:13.942 --> 00:16:26.734
+<v Riley>Then argue from the published Environmental Reporting BC series, not from a leak. A leak is a claim. It becomes a number only when someone audits it. If nobody trusts the allowable cut, neither party's target stands on anything.
+
+00:16:27.402 --> 00:16:42.994
+<v Casey>That's the trust question underneath all of this. The allowable cut is the number the province inherited. Mills, councils and workers have planned around it for decades. The leaked report is new, and it hasn't been checked in public. Whose number do you believe when the two disagree?
+
+00:16:43.328 --> 00:16:58.120
+<v Riley>The official one, until it's shown to be wrong. Publish the allowable cut next to the actual harvest every year, with the reconciliation attached. Make the gap visible. That makes any target checkable, whether it's 45 million or 60.
+
+00:16:58.745 --> 00:17:08.745
+<v Casey>Publishing the gap is cheap. The mill isn't. And a reconciliation published by the same ministry that set the target is the institution grading its own homework. Who checks the checker?
+
+00:17:09.245 --> 00:17:18.765
+<v Riley>An outside audit, then. The B.C. Auditor General can examine forest data. I'd rather argue about an audit with a methodology than about a leak with a headline.
+
+00:17:19.370 --> 00:17:39.426
+<v Casey>I'd rather argue about whether the methodology is public. The Vancouver Sun piece says the Conservative platform appears to address more of the issues the province's key industry group has been asking for than the NDP's promises do. An industry group getting its asks is no surprise. What matters is whether those asks come with a timeline and a budget line.
+
+00:17:40.035 --> 00:17:51.875
+<v Riley>Two things, and neither is a new program. Publish the allowable cut beside the harvest, every year. And require that any retraining seat paid for out of forestry layoffs links to a hiring pipeline.
+
+00:17:52.439 --> 00:18:23.973
+<v Casey>Which is where the Cariboo lands. The Thompson Rivers University Heavy Equipment Operator program is free and funded through the Ministry of Social Development and Poverty Reduction. It was built for workers hit by the closure of West Fraser's 100 Mile Lumber. Over two and a half months, students ran machines at a 100 Mile United Concrete gravel pit on Jewel Road. Kyla Miller, TRU's 100 Mile House community coordinator, says the program helps people move from logging into industries "actually out there making money, such as mining."
+
+00:18:24.613 --> 00:18:36.957
+<v Riley>The skill is portable. An excavator doesn't know whether it's pulling gravel or clearing a cutblock. The wage moves to another industry, and the operator moves with it. That's the best outcome a layoff can have.
+
+00:18:37.620 --> 00:18:50.420
+<v Casey>A gravel pit isn't a mill, and it isn't a forest. Same machine, different employer. The employer decides who's still on payroll in year five. Who hires these students at the end of the course? Does anyone track where graduates land?
+
+00:18:50.695 --> 00:19:07.383
+<v Riley>Employment outcomes aren't available yet, since the program only just wrapped. Students did leave with 10 certifications and are due job-search help. The program needs a hiring link, not only a certificate. The province can build that without rewriting the Forest Act.
+
+00:19:08.032 --> 00:19:18.168
+<v Casey>The hiring link is still missing from what's been reported. I'd make the ministry own the outcome. If it pays for the training, it should answer for who is still working a year later.
+
+00:19:18.723 --> 00:19:28.259
+<v Riley>Agreed it's missing. But a hiring link is a commitment between a school and an employer. A permit queue is a regulation. You fix them with different tools.
+
+00:19:28.835 --> 00:19:38.971
+<v Casey>Retraining with an employer on the other end is a different bet than a certificate alone. The test is whether the worker in 100 Mile House is still working in the spring.
+
+00:19:39.247 --> 00:19:43.663
+<v Riley>Then pick the spring. Check the cohort in six months, not in the press release.
+
+00:19:44.173 --> 00:19:55.165
+<v Casey>And ask the same of the councils. Quesnel's forestry request is headed to the Premier, as we reported on September 24th. What volume do their councils expect, and where does that number come from?
+
+00:19:55.463 --> 00:20:06.855
+<v Riley>That request should carry the reconciliation question, not only the volume ask. A council that asks for 45 million without the cut-by-cut record is asking for a target it can't check.
+
+00:20:07.395 --> 00:20:19.627
+<v Casey>Agreed. We still disagree on the bottleneck. You think the permit queue is the lever. I think the mill decides whether there's a town left to permit for. A town that lost its mill doesn't need a faster permit. It needs a buyer.
+
+00:20:20.127 --> 00:20:28.911
+<v Riley>The permit queue is the one a province can move this year. I'd rather win the thing I can win first, and a published audit trail is how a mill earns belief back.
+
+00:20:29.568 --> 00:20:38.960
+<v Casey>And neither party's platform names a buyer for the 45 million. The Hitachi plant has one, a grid supplier with a long order book. Our forests don't have an equivalent.
+
+00:20:39.509 --> 00:20:45.605
+<v Riley>Whether a grid supplier would buy B.C. fibre at volume, the articles don't say. That's the open question.
+
+00:20:46.237 --> 00:20:55.917
+<v Casey>It stays open. Who's still working in the spring, who buys the volume, and whose number holds when the audit comes. I'd want all three before anybody's target counts as a plan.
+
+00:20:56.482 --> 00:21:04.978
+<v Riley>Pick one and check it. Start with the cohort in 100 Mile House, and write to feedback at cariboo signals dot c-a if you hear how they're doing.
+
+00:21:05.286 --> 00:21:07.766
+<v Casey>We'll read what comes in. Thanks for listening.
+
+00:21:08.059 --> 00:21:10.867
+<v Riley>Bring a scraper. Quesnel's clear and minus one.

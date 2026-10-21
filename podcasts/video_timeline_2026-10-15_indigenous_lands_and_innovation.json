@@ -1,0 +1,442 @@
+{
+  "turns": [
+    {
+      "speaker": "riley",
+      "section": "preamble",
+      "start_ms": 658,
+      "dur_ms": 27872
+    },
+    {
+      "speaker": "riley",
+      "section": "welcome",
+      "start_ms": 42005,
+      "dur_ms": 19976
+    },
+    {
+      "speaker": "casey",
+      "section": "welcome",
+      "start_ms": 62981,
+      "dur_ms": 25528
+    },
+    {
+      "speaker": "riley",
+      "section": "welcome",
+      "start_ms": 88709,
+      "dur_ms": 808
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 90917,
+      "dur_ms": 34598
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 125965,
+      "dur_ms": 4240
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 131819,
+      "dur_ms": 16360
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 148629,
+      "dur_ms": 3848
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 154041,
+      "dur_ms": 21656
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 177121,
+      "dur_ms": 16984
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 195506,
+      "dur_ms": 23544
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 219500,
+      "dur_ms": 6840
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 227831,
+      "dur_ms": 27576
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 256967,
+      "dur_ms": 28448
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 286934,
+      "dur_ms": 23360
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 311728,
+      "dur_ms": 24624
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 336802,
+      "dur_ms": 5800
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 344037,
+      "dur_ms": 29648
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 375234,
+      "dur_ms": 20520
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 397171,
+      "dur_ms": 23728
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 421349,
+      "dur_ms": 4936
+    },
+    {
+      "speaker": "riley",
+      "section": "news",
+      "start_ms": 427782,
+      "dur_ms": 22176
+    },
+    {
+      "speaker": "casey",
+      "section": "news",
+      "start_ms": 450408,
+      "dur_ms": 7792
+    },
+    {
+      "speaker": "riley",
+      "section": "spotlight",
+      "start_ms": 459600,
+      "dur_ms": 19424
+    },
+    {
+      "speaker": "casey",
+      "section": "spotlight",
+      "start_ms": 479372,
+      "dur_ms": 3296
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 484068,
+      "dur_ms": 21104
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 505769,
+      "dur_ms": 25744
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 532084,
+      "dur_ms": 18200
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 550800,
+      "dur_ms": 17056
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 568206,
+      "dur_ms": 2304
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 570769,
+      "dur_ms": 12328
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 583725,
+      "dur_ms": 15992
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 600257,
+      "dur_ms": 9544
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 610311,
+      "dur_ms": 9416
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 620330,
+      "dur_ms": 14016
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 634881,
+      "dur_ms": 5744
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 640916,
+      "dur_ms": 18456
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 659971,
+      "dur_ms": 19408
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 679904,
+      "dur_ms": 18240
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 698767,
+      "dur_ms": 13616
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 713021,
+      "dur_ms": 6168
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 719704,
+      "dur_ms": 4880
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 725484,
+      "dur_ms": 27416
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 753507,
+      "dur_ms": 9888
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 763905,
+      "dur_ms": 14472
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 778986,
+      "dur_ms": 11984
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 791485,
+      "dur_ms": 7736
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 799742,
+      "dur_ms": 10488
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 810875,
+      "dur_ms": 7456
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 818942,
+      "dur_ms": 8488
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 827960,
+      "dur_ms": 6400
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 834898,
+      "dur_ms": 34030
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 869592,
+      "dur_ms": 16856
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 887135,
+      "dur_ms": 10928
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 898681,
+      "dur_ms": 11008
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 910200,
+      "dur_ms": 7464
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 918308,
+      "dur_ms": 8624
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 927616,
+      "dur_ms": 13256
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 941463,
+      "dur_ms": 14416
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 956457,
+      "dur_ms": 12808
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 969881,
+      "dur_ms": 19888
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 990318,
+      "dur_ms": 15240
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 1005865,
+      "dur_ms": 11088
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 1017539,
+      "dur_ms": 9840
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 1028054,
+      "dur_ms": 20112
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 1048753,
+      "dur_ms": 11784
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 1061140,
+      "dur_ms": 11656
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 1073348,
+      "dur_ms": 7912
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 1081800,
+      "dur_ms": 14016
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 1096111,
+      "dur_ms": 3904
+    },
+    {
+      "speaker": "riley",
+      "section": "deep",
+      "start_ms": 1100329,
+      "dur_ms": 1480
+    },
+    {
+      "speaker": "casey",
+      "section": "deep",
+      "start_ms": 1102409,
+      "dur_ms": 10104
+    },
+    {
+      "speaker": "riley",
+      "section": "credits",
+      "start_ms": 1113113,
+      "dur_ms": 18480
+    }
+  ]
+}

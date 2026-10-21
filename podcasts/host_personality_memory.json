@@ -1,16 +1,16 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Microsoft 365 users hit by two major threat camp",
-      "[Fast Company] I use AI to save time. So why am I working mo",
-      "[TechRadar] The new digital ID apps for age verification in ",
-      "[TechRadar] Microsoft, Google took down $66 million cybercri",
       "[Business Insider] Laid-off tech workers from Google, Micros",
       "[TechRadar] Pre-capture is the best wildlife photography tri",
       "[Tom's Hardware] US AI data centers projected to become the ",
       "[TechRadar] Massive data breach sees 220 million traveler re",
       "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
-      "[Williams Lake Tribune] B.C. Greens propose AI data centre m"
+      "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
+      "[Williams Lake Tribune] Students explore science, technology",
+      "[TechCrunch] Mosqitter is turning its mosquito traps into an",
+      "[Business Insider] I broke into tech sales after working in ",
+      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -24,11 +24,6 @@
       "concedes when evidence is compelling"
     ],
     "personality_clues": [
-      {
-        "date": "2026-04-16",
-        "clue": "structural-lens: x \u2014 Accepted Casey's point about temporal asymmetry between building and extraction.",
-        "occurrences": 1
-      },
       {
         "date": "2026-04-27",
         "clue": "structural-lens: + \u2014 Deepened platform-harm analysis; systematized algorithmic suppression of community content",
@@ -70,11 +65,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-02",
-        "clue": "community-trust:~ \u2014 Acknowledges local repair shops as informal infrastructure without funding",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-18",
         "clue": "tech-optimism:- \u2014 Conceded forest management fixes app cannot solve.",
         "occurrences": 1
@@ -90,16 +80,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-27",
-        "clue": "tech-optimism:+ \u2014 Nations building fluency systems without waiting",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-08-30",
-        "clue": "evidence-bar:~ \u2014 acknowledged both complexity and improbability readings possible",
-        "occurrences": 1
-      },
-      {
         "date": "2026-10-04",
         "clue": "community-trust:x \u2014 Conceded relationship must come first",
         "occurrences": 2
@@ -110,24 +90,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-30",
-        "clue": "evidence-bar:+ \u2014 Demands testable claims, actual experiments over speculation",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-13",
         "clue": "pilot-skepticism:- \u2014 mitigation tech exists, engineering can reduce harm",
         "occurrences": 1
       },
       {
-        "date": "2026-09-16",
-        "clue": "community-trust:+ \u2014 shifted toward local inventory over legal filing",
+        "date": "2026-10-16",
+        "clue": "funding-risk:x \u2014 concedes sighting log needs funded response, not guaranteed",
         "occurrences": 2
-      },
-      {
-        "date": "2026-09-18",
-        "clue": "funding-risk:x \u2014 conceded self-insurance undermines utility hardening pressure",
-        "occurrences": 1
       },
       {
         "date": "2026-09-20",
@@ -155,23 +125,43 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-02",
-        "clue": "evidence-bar:x \u2014 conceded lack of published data on team capacity",
+        "date": "2026-10-06",
+        "clue": "rural-context:x \u2014 Conceded that consent measurement remains genuinely difficult",
         "occurrences": 2
       },
       {
-        "date": "2026-09-29",
-        "clue": "rural-context:x \u2014 Conceded majors also lose hiring wars",
+        "date": "2026-10-15",
+        "clue": "tech-optimism:+ \u2014 Pushes digital audit trails and cataloguing as sovereignty tools",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-10-14",
+        "clue": "pilot-skepticism:~ \u2014 proposes testing one lake before scaling claims",
         "occurrences": 1
       },
       {
-        "date": "2026-10-03",
-        "clue": "structural-lens:~ \u2014 Conceded thin newsroom limits Tribune's coverage capacity",
+        "date": "2026-10-16",
+        "clue": "community-trust:~ \u2014 proposes regional ownership of data, shared log",
         "occurrences": 1
       },
       {
-        "date": "2026-10-04",
-        "clue": "structural-lens:+ \u2014 Emphasized institutional succession over individual enthusiasm",
+        "date": "2026-10-18",
+        "clue": "evidence-bar:+ \u2014 insists mechanism naming justifies engineering now",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-19",
+        "clue": "evidence-bar:~ \u2014 separates disputed motive from verified detention counts",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-20",
+        "clue": "permit-queue:+ \u2014 Insists permits are the lever Province can move",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-21",
+        "clue": "structural-lens:~ \u2014 owning the layer only matters if record exports",
         "occurrences": 1
       }
     ],
@@ -295,16 +285,16 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Williams Lake Tribune] Community volunteers create meaningf",
-      "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
-      "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
       "[Resilience.org] Social capital and community resilience: A ",
       "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
       "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
       "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
       "[My Cariboo Now] Cops for Cancer riders to make community st",
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
-      "[Canadian Forest Industries] Community knowledge helps guide"
+      "[Canadian Forest Industries] Community knowledge helps guide",
+      "[Wildfire Today] Advancing community wildfire adaptation",
+      "[Williams Lake Tribune] New Kamloops facility supports rural",
+      "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -319,11 +309,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-02",
-        "clue": "community-trust: x \u2014 Acknowledged genuine shift in explicit data sovereignty negotiations among First Nations",
-        "occurrences": 1
-      },
-      {
         "date": "2026-04-16",
         "clue": "pilot-skepticism: ~ \u2014 Deepened concern from extraction risk to intergenerational governance responsibility.",
         "occurrences": 1
@@ -334,9 +319,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-13",
-        "clue": "rural-context:~ \u2014 Shifted from access-as-barrier to equity-as-measurement-problem for programs",
-        "occurrences": 1
+        "date": "2026-10-16",
+        "clue": "rural-context:~ \u2014 notes small towns can defer while housing deficit cannot",
+        "occurrences": 2
       },
       {
         "date": "2026-05-20",
@@ -399,28 +384,8 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-06",
-        "clue": "rural-context:+ \u2014 emphasized frontline communities bear different order of harm than distant urban centers",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-04",
         "clue": "pilot-skepticism:x \u2014 Granted one season beats zero baseline",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-09-17",
-        "clue": "community-trust:x \u2014 concedes drafting-stage architecture matters, shifts focus to staffing",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-09-18",
-        "clue": "community-trust:+ \u2014 escalated from consultation critique to co-decision demand",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-09-25",
-        "clue": "community-trust:~ \u2014 acknowledged murals trigger formal attention eventually",
         "occurrences": 2
       },
       {
@@ -439,28 +404,53 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-27",
-        "clue": "structural-lens:+ \u2014 sharpened focus on institutional responsibility persistence",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-10-04",
-        "clue": "evidence-bar:~ \u2014 Acknowledged small data useful if protocol-protected",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-09-30",
-        "clue": "pilot-skepticism:~ \u2014 Concedes cheaper tools matter, but adds maintenance complexity cost",
+        "date": "2026-10-07",
+        "clue": "structural-lens:x \u2014 Concedes personal metrics help attentive buyers",
         "occurrences": 1
       },
       {
-        "date": "2026-10-02",
-        "clue": "pilot-skepticism:+ \u2014 pressed for long-term audits beyond phase sequels",
+        "date": "2026-10-12",
+        "clue": "tech-optimism:+ \u2014 platforms are new gatekeepers with unpublished rules",
         "occurrences": 1
       },
       {
-        "date": "2026-10-02",
-        "clue": "funding-risk:+ \u2014 highlighted retirement and institutional knowledge loss risk",
+        "date": "2026-10-18",
+        "clue": "pilot-skepticism:~ \u2014 notes sensing reveals fragility without fixing it",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-10-13",
+        "clue": "structural-lens:+ \u2014 frames ownership versus operation, rents leaving the land",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-14",
+        "clue": "rural-context:x \u2014 concedes stay case depends on community-held skill",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-20",
+        "clue": "funding-risk:+ \u2014 Ministry should own outcomes if it funds retraining",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-10-18",
+        "clue": "community-trust:x \u2014 concedes community keeps data, vendor keeps dashboard",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-19",
+        "clue": "pilot-skepticism:+ \u2014 five-week test is not a permanent budget line",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-21",
+        "clue": "evidence-bar:+ \u2014 demos aren't power systems; measure after winters",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-21",
+        "clue": "community-trust:~ \u2014 trust in one kid is fragile",
         "occurrences": 1
       }
     ],

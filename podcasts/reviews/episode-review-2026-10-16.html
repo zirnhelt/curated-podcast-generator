@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 16, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 16, 2026</h1>
+  <p class="meta">Published October 16, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38871365504">38871365504</a>.</em></p>
+
+<h3>The script came in short and was padded, not the other way round</h3>
+<p>The first draft of the script ran 3,129 words against a target of 3,400. The pipeline sent it back for up to two expand passes. What shipped was 3,412 words, which clears the target by 12. The padding was done by the same machinery that wrote the first draft, so the number that reached the listener is not evidence that the first draft was complete.</p>
+<p>Two things in the quality block are worth reading against that. The AI-tell pattern check found 0 hits in the shipped script. The voice ratio of Casey to Riley came in at 0.84. Neither number says anything about whether the expand passes added substance or only length.</p>
+
+<h3>Six stories aired out of order after two repair passes failed to fix it</h3>
+<p>The roundup order degraded. Six stories still aired after a later block, even after 2 repair passes. The pipeline did not drop them or re-cut the segment. It let them run in the wrong place and logged the degradation. A listener hears a story from the wrong part of the day's sequence, and nothing in the audio signals that.</p>
+<p>The same segment is where the citation numbers are weakest for the deep dives. Roundup citations matched 16 of 17. Deep dive citations matched 1 of 4. The roundup count is a strong match. The deep-dive count means three of the four deep dives have a citation the pipeline could not align to its source, which is a larger gap than anything the roundup shows.</p>
+
+<h3>The roundup pool is much bigger than the airtime</h3>
+<p>The pipeline dropped 59 stories from the roundup pool to fit the airtime budget set by NEWS_ROUNDUP_COUNT. That is the design: the pool is meant to exceed what one segment can carry, and a cut story can come back on a day where it fits better. The 59 are not failures. They are the cost of a fixed airtime, and the pipeline will not show which of them a listener would have wanted.</p>
+<p>The four deep dives drew on different sources: Global News, Fast Company, Wildfire Today and NYT Business. They covered a parole decision in British Columbia, heat exposure, Los Angeles fire danger, and California's Proposition 45. The debate question the episode was built around asks who bears the cost of protecting people from wildfire and extreme heat, and whether faster housing review and public ownership of warnings and wildlife data make communities safer or mostly favor developers. Only one of the four deep-dive citations matched, so the sourcing behind that question is the thinnest part of the episode.</p>
+
+<h3>Three runs, all on time, one still running</h3>
+<p>The primary run started at 1:05 AM Pacific and finished at 1:30 AM Pacific. It completed with success and was 0 minutes late. Fallback 1 started and finished at 2:05 AM Pacific, also successful, also 0 minutes late. Fallback 2, at 3:05 AM Pacific, is the run writing this review and has not finished. The fallbacks did not fire because the primary failed. They were scheduled, and the primary succeeded.</p>
+<p>The slowest step was script generation at 534 seconds, followed by GitHub Pages deployment at 350 seconds and audio rendering at 266 seconds. Checkout took 75 seconds, publishing 90 seconds, and the video render and YouTube upload 132 seconds. Every step concluded successfully.</p>
+
+<h3>The output is 20.7 minutes of audio and 71.7 MB of video</h3>
+<p>The audio runs 20.7 minutes and is 18.9 MB. The video is 71.7 MB and also runs 20.7 minutes. The RSS feed now lists 261 episodes. The script consumed 62,718 Anthropic input tokens across 11 Claude calls. The service breakdown shows 12 Brave search calls and 4 Brave answers calls. The input-token figure is a count of tokens and says nothing about cost.</p>
+<p>The 3,412-word script at 20.7 minutes is the number to hold against the 3,400-word target and the 3,129-word first draft. The audio length is what the listener gets. The gap between the first draft and the shipped script is what the pipeline had to do to reach it.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>4 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.84, 3412 words</td></tr>
+<tr><td>Audio</td><td>20.7 min</td></tr>
+<tr><td>Audio size</td><td>18.9 MB</td></tr>
+<tr><td>Citations matched</td><td>16/17 roundup, 1/4 deep dive</td></tr>
+<tr><td>Feed</td><td>261 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>62,718 input tokens, calls ***'brave-search': 12, 'claude': 11, 'brave-answers': 4***</td></tr>
+</tbody>
+</table>
+</body>
+</html>

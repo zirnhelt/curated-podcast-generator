@@ -60,6 +60,13 @@ class TestScanLog:
         assert len(facts["brave_failures"]) == 3
         assert len(facts["clusters"]) == 3
 
+    def test_answers_failure_with_the_payload_keys_still_matches(self):
+        """The print gained "[keys]" between the query and the error; the pattern
+        matched nothing for as long as it did not allow for it."""
+        log = "  Brave Answers API failed for 'meshtastic 2.8' [model,stream]: 400 Client Error\n"
+        facts = episode_review.scan_log(log)
+        assert facts["brave_failures"] == [["meshtastic 2.8", "400 Client Error"]]
+
 
 class TestFalsehoodGuards:
     def test_echoed_workflow_source_is_not_a_warning(self, facts):
@@ -136,6 +143,24 @@ class TestRendering:
         html = episode_review.render_numbers_table({"articles_loaded": 83})
         assert "83" in html
         assert "Citations matched" not in html
+
+    def test_numbers_table_splits_tokens_from_api_calls(self):
+        html = episode_review.render_numbers_table({
+            "spend": ["62,663", "{'brave-search': 48, 'claude': 11, 'brave-answers': 4}"]})
+        assert "Anthropic input tokens</td><td>62,663" in html
+        assert "63 total: brave-search 48 · claude 11 · brave-answers 4" in html
+        assert "Anthropic spend" not in html
+
+    def test_spend_lines_from_every_stage_are_summed(self):
+        log = ('💰 Spend by service: {"input_tokens": 100, "calls": {"claude": 2, "kagi-extract": 10},'
+               ' "usd": {"anthropic": 0.5, "kagi-extract": 0.04}}\n'
+               '💰 Spend by service: {"input_tokens": 0, "calls": {"openai-tts": 40},'
+               ' "usd": {"openai-tts": 0.06}}\n')
+        facts = episode_review.scan_log(log)
+        assert facts["spend"][0] == "100"
+        assert facts["spend_usd"] == "0.50"
+        html = episode_review.render_numbers_table(facts)
+        assert "$0.60 at list price: Anthropic $0.500 · OpenAI TTS $0.060 · Kagi Extract $0.040" in html
 
     def test_numbers_table_is_empty_without_facts(self):
         assert episode_review.render_numbers_table({}) == ""
@@ -289,6 +314,11 @@ def roadmap(tmp_path):
     return episode_review.ROADMAP_FILE
 
 
+# Longer than ROADMAP_WRAP, as four of the six open items were on 2026-10-09.
+LONG_TITLE = ("Two sentences with unsupported Indigenous nation references remained in the "
+              "script after territory-check rewrites failed.")
+
+
 def _finding(id_="thing-is-broken", title="A third thing is broken.", detail="Evidence.",
              signal="other"):
     return {"id": id_, "title": title, "detail": detail, "signal": signal}
@@ -318,6 +348,21 @@ class TestParseSection:
 
     def test_no_markers_is_no_items_rather_than_an_error(self):
         assert episode_review.parse_section("# Roadmap\n- [ ] **A.** B\n") == []
+
+    def test_a_title_the_render_wrapped_is_read_back_whole(self):
+        """The render wraps at ROADMAP_WRAP, so a long title's closing ** sits on
+        a continuation line. Four of six open items on 2026-10-09 never parsed."""
+        ledger = _ledger(_finding(title=LONG_TITLE), dates=("2026-08-20", "2026-08-21"))
+        section = episode_review.render_section(ledger["items"])
+        assert LONG_TITLE not in section  # the render really did wrap it
+        assert [i["title"] for i in episode_review.parse_section(section)] == [LONG_TITLE]
+
+    def test_a_wrapped_title_does_not_leak_into_the_item_above(self):
+        ledger = _ledger(_finding(), _finding(id_="long", title=LONG_TITLE),
+                         dates=("2026-08-20", "2026-08-21"))
+        first = episode_review.parse_section(episode_review.render_section(ledger["items"]))[0]
+        assert first["detail"].startswith("Evidence.")
+        assert "territory" not in first["detail"]
 
 
 class TestApplySection:
@@ -428,6 +473,23 @@ class TestHarvestChecked:
         assert episode_review.harvest_checked(ledger, text) == ["The second thing was broken."]
         assert ledger["items"][1]["status"] == "done"
 
+    def test_checking_a_wrapped_title_closes_it(self):
+        ledger = _ledger(_finding(title=LONG_TITLE), dates=("2026-08-20", "2026-08-21"))
+        text = episode_review.render_section(ledger["items"]).replace("- [ ] **", "- [x] **")
+        assert episode_review.harvest_checked(ledger, text) == [LONG_TITLE]
+        assert ledger["items"][0]["status"] == "done"
+
+    def test_a_wrapped_title_with_odd_whitespace_is_still_the_same_item(self):
+        """The wrap folds a double space at the break into one; matching the
+        ledger exactly would seed a duplicate manual item that never retires."""
+        title = LONG_TITLE.replace("script after", "script  after")
+        ledger = _ledger(_finding(title=title), dates=("2026-08-20", "2026-08-21"))
+        text = episode_review.render_section(ledger["items"])
+        assert [i["title"] for i in episode_review.parse_section(text)] != [title]
+        assert len(episode_review.seed_ledger(ledger, text, "2026-08-22")["items"]) == 1
+        checked = text.replace("- [ ] **", "- [x] **")
+        assert episode_review.harvest_checked(ledger, checked) == [title]
+
     def test_a_closed_item_leaves_the_section(self, roadmap):
         text = roadmap.read_text("utf-8")
         ledger = episode_review.seed_ledger({"items": []}, text, "2026-08-23")
@@ -495,12 +557,34 @@ class TestSignals:
                              ["script/bodies", "again"]],
             "short_script": [2192, 3400],
             "citation_alignment": [12, 15, 1, 3],
-            "quality": [2, 1.4, 3300],
+            "quality": [4, 1.4, 3300],
             "runs": [{"trigger": "Primary", "conclusion": "failure"}],
         })
         assert set(signals) == {BODIES, "short-script", "citations:deep-dive",
                                 "ai-tells-shipped", "voice-ratio", "run-failed"}
         assert "12 calls" in signals[BODIES]
+
+    def test_short_draft_that_shipped_at_target_is_not_a_signal(self):
+        # 2026-09-28: first draft 2,877, shipped 3,548. The expand pass did
+        # its job; only a short *shipped* script keeps short-script open.
+        assert "short-script" not in episode_review.run_signals(
+            {"short_script": [2877, 3400], "quality": [0, 1.0, 3548]})
+        signals = episode_review.run_signals(
+            {"short_script": [2517, 3400], "quality": [0, 1.0, 3237]})
+        assert signals["short-script"].startswith("shipped 3237 words")
+
+    def test_tell_hits_signal_only_above_the_escalation_threshold(self):
+        # 2026-10-04 and 2026-10-11 each shipped one hit ("ecosystem"; "the headline
+        # only answers one"): idiom the scan counts, not a failure. Hits at or under
+        # the line that sends the polish to Opus are the pipeline working.
+        import podcast_generator
+        assert episode_review.AI_TELL_SIGNAL_ABOVE == podcast_generator.OPUS_QUALITY_HIT_THRESHOLD
+        line = episode_review.AI_TELL_SIGNAL_ABOVE
+        for hits in (0, 1, line):
+            assert "ai-tells-shipped" not in episode_review.run_signals(
+                {"quality": [hits, 1.0, 3300]})
+        assert "ai-tells-shipped" in episode_review.run_signals(
+            {"quality": [line + 1, 1.0, 3300]})
 
     def test_metrics_inside_their_lines_are_not_signals(self):
         signals = episode_review.run_signals({
@@ -645,3 +729,63 @@ class TestSkipIfReviewed:
         monkeypatch.setattr("sys.argv", ["episode_review.py", "--date", "2026-09-23",
                                          "--skip-if-reviewed"])
         assert episode_review.main() == 0
+
+
+class TestMaskedBraces:
+    """The runner masks the multi-line Gemini SA key, whose first and last lines are `{` and `}`."""
+
+    def test_masked_spend_line_still_parses(self):
+        log = ('💰 Spend by service: ***"input_tokens": 100, "calls": ***"claude": 2***,'
+               ' "usd": ***"anthropic": 0.5, "openai-tts": 0.25***, "x": *********\n'
+               "Anthropic input tokens: 100 | API call counts: ***'claude': 2***\n")
+        facts = episode_review.scan_log(log)
+        assert facts["spend_by_service"] == {"anthropic": 0.5, "openai-tts": 0.25}
+        assert "2 total: claude 2" in episode_review.render_numbers_table(facts)
+
+
+class TestVerdictAndActions:
+    RUN_OK = {"trigger": "Primary", "conclusion": "success", "created": "1:05 AM Pacific"}
+
+    def test_levels(self):
+        v = episode_review.verdict
+        assert v({"runs": [{"conclusion": "failure"}]}, {"run-failed": "x"})[0] == "bad"
+        assert v({"runs": [self.RUN_OK]}, {"degraded:script/polish": "x"})[0] == "warn"
+        assert v({"runs": [self.RUN_OK]}, {"ai-tells-shipped": "x"})[0] == "minor"
+        assert v({"runs": [self.RUN_OK]}, {})[0] == "good"
+
+    def test_actions_name_the_segment_and_the_recurrence(self):
+        ledger = {"items": [{"signal": "degraded:script/bodies", "status": "open",
+                             "seen": ["2026-10-18", "2026-10-19"]}]}
+        html = episode_review.render_actions({"degraded:script/bodies": "budget <spent>"}, ledger)
+        assert "<code>script/bodies</code>" in html
+        assert "budget &lt;spent&gt;" in html
+        assert "seen 2 nights" in html
+
+    def test_no_signals_says_so(self):
+        assert "Nothing" in episode_review.render_actions({})
+
+
+class TestPageLayout:
+    FACTS = {"quality": [0, 1.0, 3500], "short_script": [2900, 3400],
+             "citation_alignment": [9, 12, 3, 4], "audio_minutes": 20.5,
+             "spend_by_service": {"anthropic": 0.4}}
+
+    def test_feed_content_has_no_charts_but_the_page_does(self):
+        _t, content, page = episode_review.build_review("2026-10-20", [], self.FACTS, "<p>n</p>")
+        assert "What to do" in content and "class=\"bars\"" not in content
+        assert "class=\"bars\"" in page and "Script length" in page
+        assert "<script" not in page
+
+    def test_trends_need_three_nights(self):
+        history = [{"date": "2026-10-18", "metrics": {"audio_minutes": 19.0}},
+                   {"date": "2026-10-19", "metrics": {"audio_minutes": 21.0}}]
+        assert "Episode length" in episode_review.render_trends(history, {"audio_minutes": 20.5}, "2026-10-20")
+        assert episode_review.render_trends(history[:1], {"audio_minutes": 20.5}, "2026-10-20") == ""
+
+    def test_index_keeps_metrics(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(episode_review, "INDEX_FILE", tmp_path / "index.json")
+        index = episode_review.update_index("2026-10-20", "T", "<p></p>",
+                                            episode_review.review_metrics(self.FACTS))
+        assert index[0]["metrics"] == {"audio_minutes": 20.5, "script_words": 3500, "tell_hits": 0,
+                                       "roundup_cite_pct": 75.0, "deep_dive_cite_pct": 75.0,
+                                       "cost_usd": 0.4}

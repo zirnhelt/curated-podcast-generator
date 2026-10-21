@@ -179,7 +179,7 @@ timeout fell back to the real-time polish, which at 16000 tokens and medium effo
 ran a second time, and **a cancelled batch still bills every request that finished before the
 cancel** (6 of the 12). That was about $5–6 of the month, close to a fifth. The timeout is now
 20 minutes (the script step's `timeout-minutes` went to 45 to hold it), and the fallback runs at
-the batch's own budget: 24000 tokens, low effort.
+the batch's own budget: `POLISH_MAX_TOKENS` (64000 since 2026-10-12), low effort.
 
 ### Model moves (Opus 5.5, Sonnet 5.5)
 
@@ -346,12 +346,12 @@ asks for the headroom.
 **Answers is never reached from the speculative path.** A synthesized prose answer is the wrong
 instrument for thin-body backfill and the expensive one to run over 40 pre-curation candidates,
 so only the demand-driven callers ask it. Its budget counts **every request sent**, not each
-query answered — a shape probe is metered like an answer — and the default of 8 comes to ~250
-queries and ~$0.99 in query fees on a normal month, ~750 and ~$2.98 on a month full of
-triple-cron days. **The token half of that price is unmeasured, and it is the whole headroom
-left in the credit**, so every call logs the `usage` block Brave returns
-(`_log_api_call("brave-answers", …)`); refit the limit off a measured month the way
-`_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
+query answered — a shape probe is metered like an answer. Measured (September: 77 queries for
+$3.11; October 1–8: 43 for $1.82) a query costs about $0.041, ~90% of it input tokens, so the
+$5 credit buys ~120 queries a month and the default is **4 a run** (it was 8 until 2026-10-12,
+which at October's pace would have spent the credit by about the 22nd). Every call logs the
+`usage` block Brave returns (`_log_api_call("brave-answers", …)`); refit the limit off a
+measured month the way `_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
 
 **Backfill runs after curation, not before** (2026-09-27). The 2026-09-26 review flagged the
 12-call body-backfill budget: it ran over up to 40 pre-curation candidates, the airtime cap
@@ -443,6 +443,11 @@ resurrected on one mention.
   hand-written items became the ledger's first entries on first run rather than being
   duplicated by a second list underneath them. It also means no id is ever written into the
   markdown — an item is matched back by its title.
+  **Until 2026-10-09 it was only the inverse for short titles.** The render wraps at
+  `ROADMAP_WRAP`, and the parser matched `**title**` one line at a time, so any title whose
+  closing `**` wrapped onto a continuation line was never read back: checking its box closed
+  nothing, and the next night's render unchecked it. Four of the six open items were like
+  that. The parser now rejoins an item's box line with its indented lines before matching.
 - **Findings are keyed on signals, because ids and titles both drift.** The model coins the
   id, and the same finding came back as `credit-balance-preflight` and
   `credit-balance-not-usage-limit` in testing. Title matching was the fallback, and titles
@@ -450,10 +455,26 @@ resurrected on one mention.
   budget ("48 roundup articles", "55 roundup articles", "recurring"), five for deep-dive
   citations and seven for script expansion, 24 open in all. `run_signals` reads stable keys off the facts —
   `degraded:<segment>` for each `degrade()` row, `short-script`, `citations:<segment>` below
-  `CITATION_FLOOR`, `ai-tells-shipped`, `voice-ratio` outside `VOICE_RATIO_BAND`,
+  `CITATION_FLOOR`, `ai-tells-shipped` (above `AI_TELL_SIGNAL_ABOVE`, the Opus escalation line), `voice-ratio` outside `VOICE_RATIO_BAND`,
   `run-failed` — and the schema pins each finding's `signal` to that day's set plus `other`.
   `_match` goes signal, then id, then a `difflib` ratio ≥ 0.72 on the title; a signalled
   finding never title-matches an item under a different signal.
+- **`citations:deep-dive` reads the deep dive the way the hosts use it.** The roundup reads
+  headlines back, so a title match finds its stories; the deep dive argues from its sources
+  and paraphrases them ("Prop 45", "the first big Santa Ana event"), and the same matcher
+  found 25 of 38 hand-labelled October deep-dive sources, with 2 false positives — sources
+  it missed were filed under "Additional sources provided" in the public notes.
+  `match_deep_dive_to_script` reads only the deep-dive section and wants
+  `_DEEP_MATCH_MIN_TOKENS` (3) title-or-summary words in one host turn, each rare there
+  (`_MATCH_RARE_MAX`): 35 of 38, none false. Naming the outlet was tried and left out (one
+  gained, one false). "who" and "which" joined `_MATCH_STOPWORDS`; no October roundup match moved.
+- **`short-script` fires on what shipped, not on the first draft.** It keyed on the
+  "Script complete but short" line, so a draft the expand pass carried past target
+  (2026-09-28: 2,877 → 3,548) still counted as a sighting and the item could never go quiet.
+  It now needs `quality.script_words` under the target too. The same review (20 sightings to
+  2026-10-09) showed one section pass recovering about three quarters of its ask (2,517 →
+  3,272), so the expand retry runs up to `EXPAND_MAX_PASSES` (2) and stops on a pass that adds
+  nothing. On Haiku 5.5 the second pass is about $0.002 a run that needs it.
 - **The first sighting's wording is kept for the life of the item.** A detail rewritten
   nightly is a daily diff on a file nobody asked to change. For the same reason the block is
   in ledger order rather than sorted by recurrence, and its header dates the *reviews that
@@ -484,6 +505,31 @@ resurrected on one mention.
 The `review` job stages `ROADMAP.md` and the ledger alongside the review — a stage that writes
 a tracked file that no step stages sits permanently dirty and breaks the next rebase.
 
+**Two roadmap items were the check's own bugs (2026-10-08).** Both sat open for days, each
+recurring every night, which is what prompted a weekly agent pass over the open items:
+- `degraded:script/cohere` (5 sightings): `cohere` was in `requirements.txt` but never in
+  `requirements-lock.txt`, which is what every workflow installs, so turning `USE_COHERE` on
+  on 2026-10-03 produced a nightly `ModuleNotFoundError`. `tests/test_requirements_lock.py`
+  (ported from `super-rss-feed`) now fails when a requirement is missing from the lock or
+  outside its specifier.
+- `degraded:publish/r2-sync` (12 sightings): the feed-reference check matched every
+  `url=`/`href=` with `/podcasts/` in its path, so a cited `vox.com/podcasts/...` article in
+  the 2026-09-22 show notes read as a missing R2 object every night. Only the show's own
+  `url` / `audio_base_url` name R2 objects now, and the degrade row names the unresolved keys
+  instead of counting them. The review had said "restore the object to R2": the narrative
+  describes symptoms well and diagnoses them badly, so the fix starts from the signal and the
+  log, never the review's suggested remedy.
+
+### The review reaches `feed-local` the morning it is written (2026-10-10)
+
+`super-rss-feed` reads `episode-reviews.xml` into `feed-local.json`, but its nightly runs at
+04:00 UTC (06:00 from 2026-10-18) and this review lands at about 10:05, so every review reached the reader beside the
+*next* day's episode. The review job now waits until the review is live on Pages (it publishes
+a minute or more after the gh-pages push), then dispatches that repo's `refresh-editorial.yml`
+with the scheduler PAT, the one token with Actions write on both repos. The refresh spends
+nothing. The step is `continue-on-error`: a miss costs only the same-morning copy, because the
+nightly still picks the review up.
+
 ## Third-party text in the episode notes, and fetches of outside URLs (2026-10-03)
 
 The episode description is HTML inside a CDATA section of the public RSS feed, and it quoted
@@ -500,3 +546,114 @@ metadata lookups (feed links) and `_fetch_page_text`, which serves the research 
 `fetch_page` tool with a URL the model chose. What those reads return is saved in the public
 citations JSON, so a loopback, private or link-local (cloud metadata) address is refused, and so is
 a redirect that lands on one. It checks the literal host only; DNS is not resolved.
+
+**2026-10-04: the fetches go through `_get_public`, and the bespoke feed through `_cdata_safe`.**
+`_get_public` resolves each hop's hostname and refuses it unless every address is global (an
+unresolvable name too), and follows redirects by hand (at most five, cookies carried), so a hop into
+a private address is never requested rather than requested and then not read. On GitHub-hosted
+runners this buys little today (nothing listens on the runner's private addresses, and Azure's
+metadata service needs a `Metadata: true` header these fetches never send); it was built because the
+reads are published, `fetch_page`'s URL is the model's choice and so steerable by any page it read
+earlier, it cost about 30 lines and no dependency, and a self-hosted runner on a home network would
+turn the gap into a way to publish a LAN admin page. It checks but does not pin: `requests` resolves
+again, so a rebinding DNS server with a zero TTL can still slip between the two lookups. Behind a
+proxy that does its own DNS, a name the runner cannot resolve is refused. `super-rss-feed` has the
+same guard as `sanitize.get_public`.
+
+The parked bespoke feed's two CDATA bodies now go through `_cdata_safe` too. Every value
+interpolated into that description was already `saxutils.escape`d, which turns `>` into `&gt;`, so
+`]]>` could not reach it; the wrap keeps the invariant uniform, and a test fails on any f-string
+CDATA in the repo that is not wrapped.
+
+## Haiku 5.5 for every Haiku and Sonnet role (2026-10-08)
+
+Haiku 5.5 costs $0.10 / $0.50 per million tokens for prompts up to 100K: a tenth of
+Haiku 4.5 and a twentieth of Sonnet 5. In September Sonnet 5 script writing and polish
+were about $15 of the show's $21. Every Haiku call moved to it (`HAIKU_MODEL`), and so
+did every Sonnet role, by changing what an unset `CLAUDE_SONNET_MODEL` means. The roles
+kept their name so the repository variable and the per-role overrides still work.
+There was no trial: the producer accepted a few odd episodes as the price of learning
+the model.
+
+What protects quality:
+
+- **The Opus polish escalation is unchanged.** If Haiku drafts trip more tells,
+  `select_review_model` sends polish to Opus more often. That is the backstop working,
+  and it costs far less than a Sonnet draft every day. Watch the escalation rate.
+- **Declines retry on Sonnet 5.** Haiku 5.5 runs safety classifiers that Haiku 4.5 did
+  not, and it has no server-side fallback. The show reads crime, election and health
+  news, so `send_claude` retries a decline once on `claude-sonnet-5` and `degrade()`s.
+  Haiku calls made directly through `client.messages.create` get no retry. A decline
+  there reads as an empty reply, and each caller's existing fallback handles it.
+- **Thinking stays off on small calls.** Haiku 5.5 thinks by default and thinking
+  shares `max_tokens`, so every Haiku call passes `thinking_off(model)`.
+
+To move the Sonnet roles back: set the `CLAUDE_SONNET_MODEL` repository variable to
+`claude-sonnet-5`, or set `CLAUDE_SCRIPT_MODEL` alone to move only the script writer.
+The same text counts as about 30% more tokens on Haiku 5.5's tokenizer, so token
+totals in the run log jumped that day without the workload changing.
+
+**What the first four nights showed (2026-10-12).** Two of the protections above did not
+hold. The escalation never fired: Haiku drafts scored 0–1 pre-polish tells, under the >3
+threshold, so 0 of 4 episodes reached Opus (Sonnet 5: 17 of 85). And the token budgets were
+still sized for Sonnet:
+
+- **Fact questions** (`_resolve_script_questions_with_brave`) cut its JSON at
+  `max_tokens=300` every night, and its `except` only printed. No Answers query ran from
+  10-09 to 10-12. It now has 1000 tokens, asks for at most `SCRIPT_QUESTION_LIMIT`, and
+  `degrade()`s as `script/fact-questions`.
+- **The script** spent all 24000 tokens thinking at Haiku's default `medium` effort, so
+  every aired draft was the low-effort retry. It now has 64000, as do its retries.
+- **Polish** used 18,418 of 24000 at low effort, so `POLISH_MAX_TOKENS` is 64000 on both
+  paths. **The research agent** truncated at 12000 on the 10-10 ballot pass and was doubled.
+
+`BRAVE_ANSWERS_CALL_LIMIT` was refit from 8 to 4 off the measured months (about $0.041 a
+query, mostly input tokens) so the $5 Answers credit lasts the month.
+
+**The polish now says how it ended (2026-10-13).** `models.review` in the citations is the model
+`select_review_model` *chose*, not proof its text aired. From 2026-10-07 the batch polish was
+discarded on about four nights in seven (the rewrite landed under `MIN_SCRIPT_WORDS` in
+`_polish_valid`), after which a second, real-time polish was paid for or the unpolished draft
+shipped, with no degrade row and a credit naming a model that never edited the script. Three
+changes, none of which alters what airs:
+
+- **`episode.models.polish`** is `batch`, `realtime`, `skipped` (the clean-draft fast path) or
+  `original`. A polish-model trial groups episodes by (model, outcome), never by model alone.
+- **`original` calls `degrade('script/polish')`**, so it reaches the job summary, the nightly review's
+  facts and the roadmap as `degraded:script/polish`. The credit then reads
+  `Script Review Model: none (unpolished draft)` instead of naming a model; so does `skipped`,
+  where no model was selected at all (`_review_credit_label`). A discarded polish `degrade()`s every
+  night it happens, so `degraded:script/polish` will sit on the roadmap while the pattern lasts: the
+  cause is known (the rewrite lands under `MIN_SCRIPT_WORDS`), and the item is the trial's scoreboard.
+- **The weekly reviewer records its own model** (`*Reviewed by: …*`). `CLAUDE_REVIEW_MODEL` pins it;
+  until 2026-10-13 it followed `CLAUDE_SONNET_MODEL`, which changed to Haiku 5.5 on 2026-10-08, so
+  the grades on either side of that date came from different graders.
+
+**The weekly review also prints the reader's own verdicts, by polish arm** (2026-10-14).
+Story-choice ratings cannot grade a polish model, because the polish never changes which stories
+air; the reader's keep / meh / skip on each episode can (`review.html` in `super-rss-feed`,
+"How was the episode?", saved as `rating: 'episode'` rows in its `feedback/` files). The report
+opens with a table built in Python, not by the model (`verdict_table`): the last 28 days of
+verdicts joined by date to each episode's citations and grouped by `models.review` and
+`models.polish` (`original` is the unpolished draft; `not recorded` is every episode before
+2026-10-14). It sits first because the issue body keeps the first 65,000 characters, so a cut
+takes the long model report, never the table. It reads the feed repo's files over the GitHub
+contents API, one request per save date (the step passes `GH_TOKEN`: unauthenticated, a shared
+runner IP gets 60 an hour). A failed read does not stop the others, and is counted; finding no
+file at all in the window is reported too, because the reader reviews articles most days, so
+"no episode verdicts" would otherwise hide a changed repo, path or token. A failure building the
+table is one line in the report, never a failed review.
+
+What the table can and cannot say. The arms of a polish trial differ in `models.review`; the
+outcome splits each arm into nights the polish shipped (`batch`, `realtime`) and nights the draft
+aired unpolished (`original`), so read the `batch`/`realtime` rows against each other. Count the
+**Rated** column, not Episodes: at 7 rated per arm only about a 5-keep gap shows (1 against 6, or
+2 against 7); at 14 per arm about 6 (6 against 12 is p = 0.046, 7 against 11 is p = 0.24); a row
+with fewer than about 5 rated is an anecdote. Rows pool by review model and outcome only, so the
+report warns when the window holds more than one script model. `models.review` is the model
+selected for the polish: a Haiku refusal retried on the fallback model (a `claude/refusal` row),
+and other calls that use `POLISH_MODEL` (the roundup-order repair), are not separated in `models`.
+
+`CLAUDE_REVIEW_MODEL` is also read by `episode_review.py` (the nightly review, and the roadmap
+distiller through `ROADMAP_MODEL`). It is passed only to `periodic-review.yml`; passing it to
+`daily-podcast.yml` would move both off Haiku.

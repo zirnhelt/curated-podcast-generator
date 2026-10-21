@@ -34,7 +34,7 @@ on the two ladders where a late trigger costs the day.
 
 | Cron (UTC) | Repo | Workflow | `run_slot` | Alerts |
 |---|---|---|---|---|
-| `0 4 * * *` | super-rss-feed | `generate-feed.yml` | 1 | — |
+| `0 6 * * *` | super-rss-feed | `generate-feed.yml` | 1 | — |
 | `0 7 * * *` | super-rss-feed | `generate-feed.yml` | 2 | yes |
 | `5 8 * * *` | curated-podcast-generator | `daily-podcast.yml` | 1 | — |
 | `5 9 * * *` | curated-podcast-generator | `daily-podcast.yml` | 2 | — |
@@ -43,6 +43,12 @@ on the two ladders where a late trigger costs the day.
 Ordering is causal: super-rss-feed publishes the scored article pool the podcast
 reads at 08:05 UTC, so its ladder runs first. BC is permanent UTC-7, so none of
 these shift with the seasons.
+
+The feed's first rung is 06:00 UTC (11 PM Pacific), not earlier, so the evening's
+news makes the run: at 04:00 (9 PM) the 2026-10-17 municipal election results
+missed both the feed and the next morning's episode. The run takes about ten
+minutes, so the 07:00 backup still has an hour behind it and finishes well before
+08:05.
 
 **The ladders are not redundant with this Worker.** They were always doing two
 jobs, and only one of them was "the trigger did not fire". The other is "the

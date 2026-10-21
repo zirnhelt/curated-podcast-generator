@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 13, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 13, 2026</h1>
+  <p class="meta">Published October 13, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38366919269">38366919269</a>.</em></p>
+
+<h3>Four short TTS takes, one kept at full length</h3>
+<p>The most consequential thing in this run is not a failure but a fallback. Four TTS takes came back shorter than their word count predicts. Each was retried once. Of those retries, four were still short. The pipeline kept the longer of the two takes for each, so nothing is dropped from the episode.</p>
+<p>The tradeoff is that a short take is evidence the audio may not match the script. Keeping the longer take preserves the content but does not verify that every word was spoken. The facts do not say whether the four still-short segments are truncated, only that the longer take was kept.</p>
+
+<h3>The script came in under target and was expanded</h3>
+<p>The first draft ran 2,923 words against a target of 3,400. The pipeline sent it back for up to two expand passes. The shipped script is 2,935 words, which is 465 words short of the 3,400 target. The expand passes added 12 words over the first draft. The episode ran 17.6 minutes of audio at 16.1 MB.</p>
+<p>The gap between the target and the shipped length is the number to watch. The expand passes recovered almost none of the shortfall, so the length target is not being met by this mechanism.</p>
+
+<h3>Citations: 11 of 15 roundup, 2 of 3 deep dive</h3>
+<p>Eleven of 15 roundup citations matched. Two of 3 deep-dive citations matched. The unmatched citations are the ones a listener or maintainer would need to check by hand. The three deep dives were Small Farm Canada on light and nutrient use, Quartz on grocery staples and El Niño, and Country Life on sheep farming and architecture.</p>
+<p>The roundup pool was far larger than the airtime. Of the stories curated, 47 were dropped by the airtime budget (NEWS_ROUNDUP_COUNT). That is by design. A dropped story can resurface on a day when it fits better. But it means the 15 roundup citations are a small slice of what the pipeline read, and the citation ratio describes only the aired slice.</p>
+
+<h3>Ratio of voices and the AI-tell check</h3>
+<p>The voice ratio of Casey over Riley is 0.85, so the two hosts are close to balanced in speaking share. The AI-tell pattern check recorded zero hits.</p>
+
+<h3>Runs and spend</h3>
+<p>The primary run started at 1:05 AM Pacific and finished at 1:27 AM Pacific with a success conclusion. Fallback 1 started and finished at 2:05 AM Pacific, also a success. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has not finished. Both completed runs were zero minutes late.</p>
+<p>The Anthropic input was 58,919 tokens. API calls were 8 to brave-search, 10 to claude, and 4 to brave-answers. The slowest step was script generation at 456 seconds, followed by GitHub Pages deploy at 341 seconds and audio rendering at 248 seconds.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.85, 2935 words</td></tr>
+<tr><td>Audio</td><td>17.6 min</td></tr>
+<tr><td>Audio size</td><td>16.1 MB</td></tr>
+<tr><td>Citations matched</td><td>11/15 roundup, 2/3 deep dive</td></tr>
+<tr><td>Feed</td><td>258 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>58,919 input tokens, calls ***'brave-search': 8, 'claude': 10, 'brave-answers': 4***</td></tr>
+</tbody>
+</table>
+</body>
+</html>

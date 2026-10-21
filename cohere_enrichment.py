@@ -34,6 +34,21 @@ _degradations: List[str] = []
 # Enrichment" credit names Cohere only when Cohere actually did something.
 _used = False
 
+# List prices (USD) for the two models in use: embed-english-v3.0 per million
+# input tokens, rerank-english-v3.0 per 1,000 searches (one search = up to 100
+# documents). Metered here because this module cannot import the pipeline's
+# `_log_api_call` without a cycle; the pipeline reads `usage()` instead.
+EMBED_USD_PER_M_TOKENS = 0.10
+RERANK_USD_PER_SEARCH = 0.002
+_usage = {"calls": 0, "embed_tokens": 0, "rerank_searches": 0}
+
+
+def usage() -> dict:
+    """Calls made and list-price dollars spent so far this process."""
+    usd = (_usage["embed_tokens"] * EMBED_USD_PER_M_TOKENS / 1e6
+           + _usage["rerank_searches"] * RERANK_USD_PER_SEARCH)
+    return {"calls": _usage["calls"], "usd": usd}
+
 
 def drain_degradations() -> List[str]:
     """Hand the caller every degradation recorded since the last drain."""
@@ -83,6 +98,12 @@ def _embed(texts, purpose: str = "embedding"):
                 embedding_types=["float"],
             )
             vectors.extend(resp.embeddings.float_)
+            batch = texts[start:start + EMBED_BATCH_SIZE]
+            billed = getattr(getattr(getattr(resp, "meta", None), "billed_units", None),
+                             "input_tokens", None)
+            _usage["calls"] += 1
+            _usage["embed_tokens"] += (int(billed) if isinstance(billed, (int, float))
+                                       else sum(len(t) for t in batch) // 4)
         _used = True
         return vectors
     except Exception as exc:
@@ -221,6 +242,8 @@ def rerank_for_deep_dive(theme_name, articles, top_n, query=None):
             top_n=top_n,
         )
         reranked = [articles[r.index] for r in resp.results]
+        _usage["calls"] += 1
+        _usage["rerank_searches"] += -(-len(docs) // 100)
         _used = True
         print(f"  🎯 Cohere rerank: selected {len(reranked)} deep-dive articles for '{theme_name}'")
         for a in reranked:

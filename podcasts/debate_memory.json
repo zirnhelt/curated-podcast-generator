@@ -1,456 +1,4 @@
 {
-  "2026-07-06": {
-    "timestamp": 1783340353.363835,
-    "date": "2026-07-06",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How can small rural arts organizations sustainably preserve twenty years of cultural history without institutional resources or ongoing funding?",
-    "riley_position": "Digital tools have made archiving affordable enough for volunteer organizations to implement basic systems immediately; a single coordinated effort tied to a milestone event could establish practices that spread peer-to-peer across the region without new funding.",
-    "riley_key_evidence": [
-      "Cloud storage, AI-assisted transcription, and automated photo tagging have reduced archival costs from requiring a full-time archivist to a few volunteer hours monthly",
-      "Internet Archive provides free hosting for community media with no ongoing cost to organizations",
-      "Central Cariboo Arts & Culture Society could create a standardized template once and share it across the region's arts organizations"
-    ],
-    "casey_position": "Technical solutions don't address the real problems: governance decisions, continuity risks, organizational bandwidth limitations, and the coordination failures that plague small nonprofit partnerships.",
-    "casey_key_evidence": [
-      "Mukurtu's success required purpose-built design with sovereignty as a core requirement from inception, not bolted-on tools",
-      "Twenty years of volunteer festival records exist in fragmented formats across different people; completeness cannot be assumed",
-      "Coordination between separate volunteer boards with competing priorities consistently fails at the second meeting when unpaid work is revealed"
-    ],
-    "resolution": "Casey conceded that a backup with known risks beats no backup, and agreed that a shared regional template approach differs meaningfully from traditional grant-based models. They agreed the real question is whether local organizations actually have bandwidth to implement even a simple solution, and suggested posing this directly to the community.",
-    "topics_covered": [
-      "Digital archival tools and their declining costs",
-      "Sovereignty and community control of cultural records (Mukurtu example)",
-      "Organizational coordination failures in nonprofit sectors",
-      "Peer-to-peer knowledge transfer models (Christmas bird count analogy)",
-      "Timing archival efforts to natural milestones (anniversary events)"
-    ]
-  },
-  "2026-07-07": {
-    "timestamp": 1783431567.780847,
-    "date": "2026-07-07",
-    "theme": "Working Lands & Industry",
-    "central_question": "Can member-owned mutual insurance pools and permanent institutional funding structures help small producers survive climate-driven wildfire costs, or will consolidation pressure inevitably favor larger operators regardless of policy interventions?",
-    "riley_position": "Wildfire risk is now a structural operating cost across resource industries, and smaller producers can survive it through member-owned mutual insurance pools and permanent institutional capacity\u2014models that Prairie provinces have already proven viable, though they require long-term institution-building rather than one-off grants.",
-    "riley_key_evidence": [
-      "Gibraltar Mine has budgeted air quality monitoring, helicopter contracts, and revised schedules as permanent operating costs",
-      "Central Chilcotin Rehabilitation's Nation-owned forestry venture internalizes fire risk mitigation into baseline operating contracts",
-      "Prairie hail insurance mutuals successfully spread agricultural risk across membership bases and took decades to build but are now durable"
-    ],
-    "casey_position": "Structural consolidation pressure from climate costs is inevitable and will eliminate smaller producers before institution-building solutions can scale; even member-owned mutuals require permanent staff and actuarial capacity that thin-population regions cannot sustainably support, and multi-year timelines don't help ranchers facing immediate fire season threats.",
-    "casey_key_evidence": [
-      "Cariboo Regional District has 65,000 people across enormous land base with insufficient membership density for viable mutual modeling",
-      "U.S. rangeland consolidation is already documented and measurable, with insurers declining renewal after repeat wildfire claims",
-      "Agricultural extension services in the region are already cut to the bone, leaving no institutional capacity to run ongoing actuarial work"
-    ],
-    "resolution": "They agreed that permanent institutional funding structures (mutuals, producer association-hosted functions) are theoretically necessary but genuinely uncertain in practice; they disagreed on timeline feasibility and whether the Cariboo has sufficient producer density to capitalize a mutual, and closed by inviting listener feedback on whether regional producers have already attempted such models.",
-    "topics_covered": [
-      "Asymmetry in climate cost absorption between large capital-backed operators and small independent producers",
-      "Member-owned mutual insurance as alternative to grant-cycle dependency and consolidation pressure",
-      "Institutional capacity and governance requirements for risk-pooling versus one-off resilience projects",
-      "Tenure structure incentives and whether Crown forest licensees should bear more wildfire suppression cost",
-      "Producer self-capitalization versus government funding for cooperative risk institutions"
-    ]
-  },
-  "2026-07-08": {
-    "timestamp": 1783507100.506718,
-    "date": "2026-07-08",
-    "theme": "Repair Culture & Practical Tech",
-    "central_question": "Is repair culture and durable tech a viable solution for rural resilience, or merely a lifestyle choice for the already-affluent?",
-    "riley_position": "Repairability isn't inherently expensive\u2014it's a market failure caused by lack of scale and regulatory pressure. Multiple levers exist outside grant cycles: co-purchasing, DIY design, procurement policy, and open-source tools can shift incentives without waiting for manufacturers to voluntarily change.",
-    "riley_key_evidence": [
-      "Fairphone and Framework proved market demand exists; scale is what's missing, not feasibility",
-      "Hackaday sailing kit uses off-the-shelf hardware and requires only an afternoon and basic skills",
-      "EU right-to-repair rules forced manufacturers to change without relying on market generosity"
-    ],
-    "casey_position": "Repairable tech costs significantly more upfront than disposable alternatives, and knowledge/capacity gaps prevent rural residents from actually using repair solutions. The real structural barriers aren't solved by procurement policy or library programs\u2014they require either funding or someone volunteering unpaid labor.",
-    "casey_key_evidence": [
-      "Jackery power station, rugged smartphone, and flip phone all cost substantially more than disposable versions",
-      "Cariboo Regional District (65,000 people) lacks volume to move manufacturer production lines",
-      "Most people don't think 'I could build this'\u2014knowledge gap prevents adoption of DIY solutions"
-    ],
-    "resolution": "They agreed to disagree on affordability but converged on concrete, low-cost levers: provincial procurement policy, small-scale library pilots (one session, one branch), and pushing MLA representatives on equipment standards. Casey insisted on pilot testing before claiming scalability; Riley acknowledged the affordability question remains unresolved by any single lever.",
-    "topics_covered": [
-      "Premium pricing of durable/repairable tech vs. disposable alternatives",
-      "Regional co-purchasing as a volume strategy for rural areas",
-      "DIY/open-design solutions as manufacturer-independent repair approaches",
-      "Library programs and repair caf\u00e9s as community knowledge infrastructure",
-      "Open-source AI models running on older hardware as repair-culture infrastructure",
-      "Provincial procurement policy as a lever to shift manufacturer incentives"
-    ]
-  },
-  "2026-07-09": {
-    "timestamp": 1783597360.960518,
-    "date": "2026-07-09",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Does the term 'coproduced' in Indigenous data and land management projects guarantee genuine partnership and control, or does it mask arrangements that still favor outside institutions?",
-    "riley_position": "Coproduction can represent genuine partnership if Indigenous Nations control the underlying data and access from the beginning, making it a fundamentally different legal instrument than top-down impositions, with real leverage implications for future governance.",
-    "riley_key_evidence": [
-      "Permafrost Pathways project describes participants as transforming spatial data into a tool for empowerment, suggesting Indigenous partners shape what gets tracked from the start",
-      "Osoyoos Indian Band is exercising existing land management authority independently by restoring the Nk'Mip fire area with their own species selection, regardless of reconciliation agreement outcomes",
-      "If a Nation's dataset becomes the legal reference regulators must consult before approving development, funding relationships flip from charity to leverage that doesn't evaporate when grant cycles end"
-    ],
-    "casey_position": "The term 'coproduced' obscures persistent control problems: outside institutions still own servers, publications, and decide which versions get cited in regulatory decisions, and there is no enforcement mechanism to make engagement-first the default across jurisdictions.",
-    "casey_key_evidence": [
-      "The Esquimalt and Nanaimo Railway land grant from 140 years ago without First Nations consent is still the document being argued over in active title claims today",
-      "Aamjiwnaang First Nation had to publicly demand engagement-first sequencing on a pipeline the same week Osoyoos reconciliation talks claimed to adopt it, showing the model hasn't become standard practice",
-      "OCAP (Ownership, Control, Access, Possession) questions about data\u2014who hosts it, who queries it in five years, who can revoke access\u2014remain unresolved by the word 'coproduced' alone"
-    ],
-    "resolution": "They agreed that genuine control requires Nations holding access decisions now while projects are new, and that the concrete test is not the word 'coproduced' but who can revoke access and control what happens to data in future years. Both acknowledged they were working from public materials and that ground-truth arrangements may differ.",
-    "topics_covered": [
-      "Data sovereignty and the OCAP framework (Ownership, Control, Access, Possession) in coproduced research",
-      "Sequencing of consultation: engagement before decisions are locked versus comment periods after the fact",
-      "Historical land grabs (Esquimalt and Nanaimo Railway) and their ongoing legal consequences",
-      "Indigenous Nations exercising existing authority independently versus waiting for formal governance agreements",
-      "Funding mechanisms and accountability when data might be used to challenge the same government ministry that funded it"
-    ],
-    "calls_to_action": [
-      "Any Cariboo Nation considering a coproduced dataset with a university or provincial ministry should negotiate a written data-hosting and access agreement before sensors go in the ground or researchers arrive.",
-      "Communities should raise directly at band council meetings or regional forestry tables: before sensors are deployed, who signs off on what happens to this data in year six when current decision-makers are no longer around to remember what was promised?",
-      "Anyone part of a Cariboo Nation or community organization working through a data agreement, or with corrections on how this episode characterized things, should contact feedback at cariboosignals.ca to share ground-truth experiences with data negotiations."
-    ]
-  },
-  "2026-07-10": {
-    "timestamp": 1783697903.804784,
-    "date": "2026-07-10",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "How can wild spaces and public land be protected from extraction and development pressure while remaining accessible to recreationalists and communities, and what governance model\u2014federal appointee-driven or title-based\u2014actually delivers durable protection?",
-    "riley_position": "Regulatory frameworks and legal structures already exist to protect wild spaces; the real problem is institutional accountability for maintaining those protections over time rather than concentrating decision-making power in a single appointed official. Design choices like co-decision clauses can make protections durable without requiring complete governance overhauls.",
-    "riley_key_evidence": [
-      "Stevan Pearce's appointment to the BLM (overseeing 245 million acres) represents concentrated discretion that rotates with election cycles, unlike title-based governance",
-      "Courts and public comment periods constrain even industry-friendly appointees from unilaterally weakening protections",
-      "Narrower legislative asks (like co-decision language in new designations) clear legislatures more often than sweeping overhauls"
-    ],
-    "casey_position": "Current regulatory protections are fundamentally weaker than they appear because they can be unilaterally downgraded by cabinet order, and extraction pressure erodes protection at the edges over time. Title-based governance with nations as decision-makers is structurally superior because it survives political cycles and doesn't depend on a single appointee's priorities.",
-    "casey_key_evidence": [
-      "Wildlife management areas are provincial designations that can be redrawn by cabinet order whenever priorities shift, unlike Aboriginal title",
-      "Osisko's gold drilling is actively extending zones deeper at the Cariboo project in real time, showing extraction pressure doesn't wait for perfect governance",
-      "Protection erodes slowly at the edges until permitted extraction becomes active haul roads, at which point change accelerates"
-    ],
-    "resolution": "The debate shifted toward concrete implementation rather than governance philosophy: both agreed that the missing piece isn't legal tools but ongoing institutional accountability for maintenance and updates. They converged on asking specifically how Cariboo designations handle updates six months or two years after initial announcement, and who actually owns that responsibility.",
-    "topics_covered": [
-      "How concentrated appointee authority (BLM model) compares to title-based distributed governance (T\u015dilhqot'in model)",
-      "The difference between regulatory protection on paper versus durable protection that survives political cycles",
-      "Active extraction pressure as a real-time phenomenon (Osisko drilling, seabed mining) versus hypothetical future risks",
-      "Structural safeguards that could make designations harder to downgrade (co-decision clauses requiring bilateral agreement for future changes)",
-      "Information and signage infrastructure as the gap between written titles/designations and ground-level knowledge for actual land users"
-    ],
-    "calls_to_action": [
-      "Write to the Ministry of Forests or bring a question to Cariboo Regional District board meetings asking specifically whether new wildlife management area designations include co-decision language with relevant nations for any future downgrade, not just initial announcement.",
-      "If you have a concrete example of how a specific Cariboo designation actually handles ongoing accountability\u2014whether through T\u015dilhqot'in National Government, Williams Lake First Nation, Xat\u015b\u016bll, or another nation with a working answer\u2014send it to cariboo signals dot c-a.",
-      "Propose updated trailhead panels and recreation site postings that note title areas alongside standard provincial boundaries, making the durable authority relationships visible to people actually using the landscapes."
-    ]
-  },
-  "2026-07-11": {
-    "timestamp": 1783763764.907397,
-    "date": "2026-07-11",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "When crises cross multiple jurisdictions in rural areas, how can local communities ensure they have a voice in decisions that affect them, and who should be responsible for closing information and institutional gaps?",
-    "riley_position": "Existing volunteer institutions like Search and Rescue already have the trust and training to serve as information nodes; the solution isn't new funding but formalizing relationships that already work informally and adopting proven low-tech models like mesh-radio networks.",
-    "riley_key_evidence": [
-      "Ontario restructured wildfire response after 2023 with real-time data-sharing agreements that cut translation lag from hours to near-real-time",
-      "Rural U.S. counties use mesh-radio repeater networks maintained by volunteer fire departments that don't require ongoing grants or cell coverage",
-      "Central Cariboo Search and Rescue already functions as an informal last-mile information network during emergencies"
-    ],
-    "casey_position": "Simply formalizing existing volunteer capacity masks a deeper structural failure: rural governance institutions are quietly relying on unpaid labour to cover gaps they should solve deliberately, and person-dependent arrangements don't survive leadership transitions.",
-    "casey_key_evidence": [
-      "The regional district lacks communication capacity to localize fast-moving smoke advisories for every hamlet in real time",
-      "Horsefly's festival permitting depends on institutional memory of informal relationships that would be lost if current organizers stepped away",
-      "Provincial bargaining processes like the nurses' mediation don't have mechanisms to surface what outcomes mean specifically for a town of 10,000 versus a city of a million"
-    ],
-    "resolution": "Both agreed that the underlying problem is whether institutions build durable structures or rely on volunteers to fill gaps informally. They converged on the idea that 'built deliberately' doesn't require new bureaucracy\u2014sometimes just documenting what already works (like formalizing SAR relationships, publishing festival checklists) would solve continuity problems before they start.",
-    "topics_covered": [
-      "Fragmented emergency alert systems across wildfire, health authority, and municipal jurisdictions",
-      "Unincorporated community governance and informal permitting relationships",
-      "Institutional reliance on unpaid volunteer labour for essential services",
-      "Provincial policy outcomes landing differently in rural vs. urban contexts",
-      "Low-tech infrastructure solutions (mesh radio networks) vs. grant-dependent models"
-    ]
-  },
-  "2026-07-12": {
-    "timestamp": 1783851113.517887,
-    "date": "2026-07-12",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "Can a low-cost, volunteer-based monitoring system detect early ecological shifts in Cariboo salmon runs before they become established problems, and what structural design would be required to make it work?",
-    "riley_position": "Early ecological signals already exist in community observations; the problem is designing data collection systems that survive personnel turnover by removing human bottlenecks through automatic reporting rather than sustained volunteer attention.",
-    "riley_key_evidence": [
-      "Temperature loggers clipped to bridge pilings cost minimal money and can run unattended for months",
-      "Mesh networks or satellite uplinks could solve connectivity gaps in areas without cell service",
-      "Salmon in the Classroom program already tracks phenology year-over-year; existing infrastructure could be leveraged"
-    ],
-    "casey_position": "Volunteer-based systems consistently fail when key individuals leave; the real bottleneck isn't funding or sensor cost but ensuring data survives and reaches decision-makers, and this requires institutional continuity that small pilots fundamentally lack.",
-    "casey_key_evidence": [
-      "Large clinical datasets held by institutions with sustained funding were necessary to distinguish two distinct forms of depression",
-      "LIGO succeeded only because it had decades of federal budget backing, not volunteer goodwill",
-      "Half the Cariboo backcountry lacks cell coverage, making automatic reporting impossible in priority monitoring zones"
-    ],
-    "resolution": "Both agreed on a specific testable pilot (one logger, one season, one river) but only if outreach to First Nations happens first to address data sovereignty and existing knowledge claims, acknowledging that the technology question and relationship question are inseparable.",
-    "topics_covered": [
-      "Detection lag in ecological monitoring (fisheries and invasive species examples)",
-      "Signal literacy versus signal detection (knowing what observations mean)",
-      "Institutional continuity versus volunteer sustainability in citizen science",
-      "Infrastructure design to remove human bottlenecks",
-      "Indigenous data sovereignty and existing community knowledge"
-    ]
-  },
-  "2026-07-13": {
-    "timestamp": 1783942520.460722,
-    "date": "2026-07-13",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Does cheaper digital production tools actually change who tells stories in rural communities, or do they just widen the gap between infinitely reproducible digital content and irreplaceable physical art?",
-    "riley_position": "Cheaper mocap technology removes real barriers to entry for rural creators, enabling filmmakers in smaller towns to produce visually ambitious work without flying in technicians or renting expensive gear from major cities.",
-    "riley_key_evidence": [
-      "Single-camera mocap technology reduces production costs from six figures and travel requirements to a laptop and tripod",
-      "School District 27 and the college media programs historically hit gear costs as a barrier, which this tool removes",
-      "Physical events like Performances in the Park demonstrate that live, non-algorithmic experiences aren't losing ground to digital content"
-    ],
-    "casey_position": "Cheaper tools don't address the actual constraints rural creators face: coordination, bandwidth, and available hours to do the work; moreover, cheaper digital tools risk producing high-volume, low-meaning content while physical art remains irreplaceable once destroyed.",
-    "casey_key_evidence": [
-      "Sand sculpture vandalism in Parksville demonstrates that physical art has no undo button or backup file, unlike digital renders",
-      "No local Cariboo filmmakers have actually adopted the mocap technology yet despite its availability, suggesting the tool isn't the real bottleneck",
-      "CBC Arts review of live-action Moana called it 'slop from the trough,' showing cheaper tools enable quantity without guaranteeing quality or originality"
-    ],
-    "resolution": "Riley and Casey agreed that the central variable isn't the tool itself but whether there's sustainable economic reason for local creators to continue past the first project, and that the real structural gap is whether arts organizations treat documentation as a core job rather than an afterthought. They agreed to test whether one volunteer with a phone documenting Performances in the Park each week could solve the documentation problem.",
-    "topics_covered": [
-      "Motion capture technology democratization and its actual barriers to local adoption",
-      "Physical versus digital art and their different preservation risks",
-      "Documentation as a structural responsibility for arts organizations",
-      "Economic sustainability for rural creators versus tool cost reduction",
-      "Quality and originality as separate from accessibility to production tools"
-    ]
-  },
-  "2026-07-14": {
-    "timestamp": 1784024441.645579,
-    "date": "2026-07-14",
-    "theme": "Working Lands & Industry",
-    "central_question": "When capital consolidates ownership of working lands and resource operations, does ownership structure matter more than the technology or operations sitting on top of it?",
-    "riley_position": "Ownership structure matters significantly, but the real leverage lies in legally-binding agreements tied to permits and Aboriginal title rather than in ownership type alone. Existing tools like BC's Land Owner Transparency Registry could solve farmland speculation problems by simply connecting two already-existing systems.",
-    "riley_key_evidence": [
-      "Impact Benefit Agreements negotiated with First Nations survive corporate takeovers because they're attached to regulatory permits and Nations, not shareholder registers",
-      "BC's Land Owner Transparency Registry already exists and could be cross-referenced against ALR parcel data without new legislation",
-      "Codelco (state-owned) prioritizes profitability over production, showing public ownership alone doesn't guarantee community accountability"
-    ],
-    "casey_position": "Ownership structure fundamentally matters because it determines who decision-makers answer to and what they optimize for. Corporate consolidation allows distant boards to renegotiate local commitments, and farmland speculative buying lacks any meaningful protection despite the false confidence of the Agricultural Land Reserve.",
-    "casey_key_evidence": [
-      "The ALR restricts land use but not ownership, allowing billionaires to acquire and hold farmland as appreciating assets rather than productive operations",
-      "Corporate takeovers (like Genesis acquiring Vault) renegotiate community benefit agreements and environmental commitments once ownership changes",
-      "Bunker Hill in Idaho shows environmental cleanup obligations don't transfer cleanly when ownership changes, leaving taxpayers covering the difference"
-    ],
-    "resolution": "They agreed to disagree on whether ownership type alone solves the problem, but converged on two specific, concrete next steps: (1) flagging agricultural land purchases above a size threshold using the existing Land Owner Transparency Registry, and (2) relying on Nation-negotiated agreements tied to permits for mining operations. Neither solution is currently implemented.",
-    "topics_covered": [
-      "Farmland speculation and the gap between Agricultural Land Reserve policy and actual ownership protection",
-      "Mining sector consolidation (Genesis-Vault deal) and corporate accountability for environmental/community commitments",
-      "Impact Benefit Agreements as a mechanism that survives ownership changes",
-      "Comparison of public vs. private ownership structures and accountability mechanisms",
-      "Policy solutions: Land Owner Transparency Registry cross-referencing and title-based agreements"
-    ]
-  },
-  "2026-07-16": {
-    "timestamp": 1784198332.921212,
-    "date": "2026-07-16",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "For Indigenous Nations, is exclusion from data collection the bigger problem, or is inclusion on non-Indigenous terms while losing control over interpretation and application?",
-    "riley_position": "Exclusion is the more urgent problem because missing data actively produces bad downstream outcomes for decades; the real fix is ensuring Indigenous control over research questions through frameworks like OCAP, and Nations should build internal analytical capacity rather than stay out of data collection entirely.",
-    "riley_key_evidence": [
-      "Drug trials excluding populations produce dosing guidelines that don't work for those bodies; land-use surveys skipping territories produce environmental baselines that don't account for actual ecological conditions",
-      "OCAP (Ownership, Control, Access, Possession) makes inclusion conditional on Indigenous control of research design",
-      "FirstVoices language archiving platform built governance into architecture from day one, allowing communities to maintain control over language archives years into the project",
-      "CCATEC's training pipelines toward health, resource management, and land administration roles let Nations train their own epidemiologists and GIS technicians"
-    ],
-    "casey_position": "Inclusion without control is extractive and potentially more harmful than exclusion because data collected by outside institutions gets used to justify policies Nations never requested, and enforcement gaps mean frameworks like OCAP fail when stakes rise and money becomes involved.",
-    "casey_key_evidence": [
-      "Health and land data collected for decades by outside institutions was used to justify residential school-era policies and child-welfare models communities opposed",
-      "Health records and land-use data get pulled into underwriting, resource permitting, and policy modelling where real money creates incentives for outside institutions to retain control",
-      "Secw\u00e9pemc communities have invested in internal capacity but still hit federal and provincial systems that only recognize data formatted through government-controlled channels",
-      "In permitting decisions, Nation-collected baseline data gets treated as one input among several while tie-breaking defaults to consultant reports from government's existing procurement relationships"
-    ],
-    "resolution": "They agreed to disagree on whether the problem is solvable through capacity-building alone, but converged on a concrete next step: the actual research needed is an audit of how many times Nation-collected data was actually weighted equally against consultant data in real permitting decisions under deadline pressure, and they called for listeners to identify signed agreements or confirm the gap persists.",
-    "topics_covered": [
-      "Exclusion versus inclusion as competing harms in Indigenous data sovereignty",
-      "OCAP framework and its enforcement gaps in practice",
-      "FirstVoices as a counterexample of governance-first platform design",
-      "Commercial incentives that undermine Indigenous data control in health and environmental contexts",
-      "Regulatory recognition and legal standing of Nation-collected data in permitting processes",
-      "Internal capacity-building versus structural barriers in government intake systems",
-      "Governance infrastructure as permanent operational funding versus project-based grant cycles"
-    ],
-    "calls_to_action": [
-      "Conduct a funded audit of real permitting decisions in the Cariboo region to document how many times Nation-collected environmental baseline data received equal weight against consultant reports when genuine deadline pressure and money were at stake.",
-      "Any Nation or tribal council should negotiate a formal, named data-sharing agreement with a neighbouring health authority or resource ministry that specifies in advance which technical format and methodology gets automatic standing in decisions, rather than relying on general reconciliation commitments.",
-      "Build data infrastructure that a ministry cannot weigh against external decision-makers in the first place through parallel systems design, following the FirstVoices model of making outside extraction structurally impossible from architecture inception.",
-      "Advocate for standing institutional funding for governance capacity and legal work (data-sharing agreement negotiation, technical standard drafting) as permanent infrastructure like water treatment or road maintenance, rather than as sunset-dated project grants.",
-      "Listeners with knowledge of signed agreements establishing equal admissibility of Nation-collected data in provincial permitting, or confirmation that no such agreements exist, should contact the show at feedback@cariboosignals.ca to ground future analysis in documented outcomes rather than anecdote."
-    ]
-  },
-  "2026-07-17": {
-    "timestamp": 1784283951.982749,
-    "date": "2026-07-17",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Should the Cariboo actively promote its lesser-known wild spaces and outdoor destinations, or keep them quiet to protect them from overuse and preserve their character?",
-    "riley_position": "Visibility paired with proper infrastructure and consent-based promotion is better than silence, which doesn't actually protect places and leaves people without safety information. The region should build governance relationships with Nations before promoting sites, using models already proven in environmental assessment.",
-    "riley_key_evidence": [
-      "Satellite communicators now allow real-time emergency location and rescue coordination that didn't exist years ago, fundamentally changing safety outcomes in remote terrain",
-      "The Simpcw First Nation consent agreement on copper mine assessment demonstrates that Nations can hold authority over how their territory is assessed and promoted",
-      "Parks that tried hiding trail conditions and access information still saw visitation surge anyway, but without the safety messaging that could have accompanied visibility"
-    ],
-    "casey_position": "Visibility without matching infrastructure investment overwhelms rescue and support capacity, and voluntary promotion frameworks will fail when tourism revenue incentives kick in. Solitude and remoteness have genuine therapeutic value for some users that gets destroyed by marketing.",
-    "casey_key_evidence": [
-      "Moab and Squamish both saw rescue call volumes outpace team capacity within a couple seasons of media coverage, without proportional funding increases to match",
-      "Quesnel Search and Rescue receiving equipment donations does not solve the real problem of call volume throughput and volunteer capacity",
-      "No formal consent relationship currently exists between recreation promoters (tourism boards, AllTrails, apps) and Nations whose territory they're promoting \u2014 voluntary check-ins historically fail once budget season arrives"
-    ],
-    "resolution": "Riley and Casey converged on the position that silence is not a viable strategy and visibility without infrastructure is worse than either extreme alone. They agreed the core gap is lack of formal consent processes between recreation promoters and Nations, but disagreed on whether voluntary frameworks can survive institutional incentive structures. Casey challenged Riley to provide a real-world example of a tourism board or trail society that successfully consulted with a Nation before promotion.",
-    "topics_covered": [
-      "Role of satellite technology and communicators in enabling both safety and exposure of remote locations",
-      "Rescue capacity and infrastructure investment as a prerequisite to increased visibility",
-      "Consent-based governance models and Nation authority over territory promotion decisions",
-      "Tension between therapeutic solitude/remoteness value and tourism marketing incentives",
-      "Difference between voluntary consultation and binding governance frameworks"
-    ],
-    "calls_to_action": [
-      "A regional tourism board or trail society could commit to a working rule: contact the Nation whose territory a site sits on before actively promoting a new or lesser-known location \u2014 a single phone call and email, the same step already required for environmental assessments.",
-      "If you're part of a group that's tried something like this (a trail society, tourism board, or recreation club that actually checked in with a Nation before promoting a site), submit feedback at cariboosignals.ca describing how it went.",
-      "If you've got a favourite wild place you're proud to share or quietly protective of, send feedback to cariboosignals.ca about your experience with that choice."
-    ]
-  },
-  "2026-07-18": {
-    "timestamp": 1784368813.221909,
-    "date": "2026-07-18",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "Can ordinary residents in Cariboo communities actually trace how local decisions get made and find those decision records after the fact?",
-    "riley_position": "The real governance question isn't whether decisions are made, but whether they leave a traceable record that non-insiders can access; formal processes don't automatically mean public legibility, and both incorporated and unincorporated areas struggle with publishing decisions in accessible ways.",
-    "riley_key_evidence": [
-      "Williams Lake has a mayor and six councillors (city of ~10,700 people) with ward-level accountability, but mural approval processes may be buried in PDFs or arts society minutes that residents don't know exist",
-      "Horsefly is unincorporated within the Cariboo Regional District electoral area system, with one director representing a huge geographic area and multiple communities",
-      "BC's regional district system already includes community advisory bodies in some electoral areas \u2014 a tool that could exist for Horsefly but isn't confirmed as active"
-    ],
-    "casey_position": "Incorporation matters structurally because it creates recourse: incorporated residents can show up to council meetings and put objections on public record tied to election cycles, while unincorporated residents have no equivalent lever against a director representing geographically dispersed constituencies.",
-    "casey_key_evidence": [
-      "A Williams Lake resident angry about the mural knows exactly whose name goes on the ballot next election; a Horsefly resident with concerns about the festival stage has no comparable political recourse",
-      "Arts on the Fly runs on solar power at the Horsefly River (a salmon-spawning site) entirely by volunteers with no city hall involvement or formal approval checkpoints",
-      "The regional district director for Horsefly represents dozens of scattered communities competing for limited attention"
-    ],
-    "resolution": "Both hosts agreed that incorporation versus non-incorporation isn't the real dividing line \u2014 the actual test is whether any local institution publishes decisions in a form ordinary residents would actually find and understand. They landed on this being a traceability problem, not an authority problem, and agreed that two concrete fact-finding steps could answer the real questions without either of them guessing.",
-    "topics_covered": [
-      "Formal approval processes vs. volunteer-based decision-making in local governance",
-      "Electoral accountability structures: ward-based (Williams Lake) vs. regional district areas (Horsefly)",
-      "Public access to and legibility of municipal and regional district records",
-      "Provincial regulations (Riparian Areas Protection Regulation, Water Sustainability Act) and their enforcement by regional districts",
-      "Community advisory bodies as a governance tool in BC's unincorporated electoral areas"
-    ],
-    "calls_to_action": [
-      "Someone should file a records request or email the Cariboo Regional District asking two plain questions: (1) Is there a registered advisory body for Horsefly specifically? (2) Where does the Central Cariboo Arts and Culture Society publish its internal approval process for public installations? This costs nothing and actually answers the traceability question.",
-      "A Horsefly resident could raise these questions directly with the regional district director at a public meeting rather than assuming the answers.",
-      "If listeners have corrections about how the regional district's electoral area advisory structure actually works, or know of a local decision that never made it into any public record, they should send it to feedback@cariboosignals.ca."
-    ]
-  },
-  "2026-07-19": {
-    "timestamp": 1784456144.819178,
-    "date": "2026-07-19",
-    "theme": "Science, Wonder & the Natural World",
-    "focus": "sky-cosmos",
-    "central_question": "Should the Cariboo Regional District leverage its dark skies as a regional asset through policy and programming, and if so, how?",
-    "riley_position": "The Cariboo has comparable dark-sky quality to Jasper without comparable recognition, and can begin capturing this value through modest, cost-neutral municipal lighting retrofits paired with formalized astronomy programming through existing organizations like the Field Naturalists.",
-    "riley_key_evidence": [
-      "Flagstaff, Arizona passed dark-sky ordinances in the 1970s justified primarily on electricity savings from LED retrofits, not stargazing appeal",
-      "Free aurora-alert apps require no subscription and can notify residents of optimal viewing windows",
-      "Winter skies in the Cariboo offer better atmospheric transparency and zero wildfire smoke risk compared to summer"
-    ],
-    "casey_position": "While the sky resource is real, the actual barriers are governance (who enforces standards in unincorporated areas), advocacy (no local institutional voice pushing for this), and climate (increasing summer wildfire smoke undermines tourism viability during peak tourism season).",
-    "casey_key_evidence": [
-      "Municipal lighting retrofits get approved for electricity savings, not aesthetics\u2014nobody rewires 100 Mile House because of Orion's Belt",
-      "Flagstaff's success required Lowell Observatory astronomers showing up to city council meetings repeatedly; no equivalent local stakeholder exists in the Cariboo",
-      "French Bar Creek and Pear Lake fires represent an emerging seasonal pattern where peak aurora activity windows coincide with heavy smoke periods"
-    ],
-    "resolution": "Riley and Casey agreed the actual experiment worth running is a single representative from the Field Naturalists presenting a concrete lighting-fixture proposal to the regional district, with the electricity-savings argument leading and dark-sky benefits as secondary. They also agreed that formalizing informal star-party programming through Scout Island requires just one conversation with no new funding, making it a realistic first test of regional interest.",
-    "topics_covered": [
-      "Dark-sky ordinances and municipal lighting standards as policy vehicles",
-      "Flagstaff, Arizona as a case study in how sky quality gets protected through infrastructure decisions",
-      "Wildfire smoke as an emerging constraint on summer dark-sky tourism",
-      "Winter versus summer viability of aurora and astronomy viewing in the Cariboo",
-      "Role of institutional advocacy in moving local policy agendas"
-    ]
-  },
-  "2026-07-20": {
-    "timestamp": 1784546488.595675,
-    "date": "2026-07-20",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "focus": "film-screen",
-    "central_question": "Do cheaper production tools and streaming platforms fundamentally democratize rural filmmaking, or do they simply relocate gatekeeping to algorithms and attention economies?",
-    "riley_position": "Streaming platforms have created new distribution pathways that don't require institutional backing, and rural creators can build regional audiences through owned archives and community channels without needing national algorithmic promotion.",
-    "riley_key_evidence": [
-      "Connor Ratliff built a genuine following doing video essays directly to audience with no broadcaster backing",
-      "IndigiNews ReFocus program trains Indigenous photojournalists who distribute work under their own names on their own terms",
-      "Regional audiences can be reached through community screenings and local channels without national distribution"
-    ],
-    "casey_position": "Attention economy gatekeeping has simply moved from broadcasters to algorithms; rural creators now compete against infinite machine-generated content and broadcaster-backed films with marketing budgets they can't match.",
-    "casey_key_evidence": [
-      "AI-generated songs from Suno flood feeds at volumes no individual human creator can match, drowning out small creators",
-      "Clement Virgo's 'Steal Away' gets algorithmic promotion partly because a broadcaster paid for visibility, not because algorithms are neutral arbiters",
-      "A two-hundred-person regional audience generates nearly zero revenue on streaming platforms that reward scale over specificity"
-    ],
-    "resolution": "They agreed that streaming platforms are useful as free hosting mechanisms but irrelevant as economic engines; the real gap isn't funding or gear but governance\u2014whether communities own and control archives of their own cultural content, and whether training happens collectively rather than individually.",
-    "topics_covered": [
-      "Distribution gatekeeping: broadcast era vs. algorithmic era",
-      "Economic models vs. cultural value in streaming platforms",
-      "Owned vs. platform-dependent archives for local content",
-      "Skill training as infrastructure (IndigiNews model vs. individual gear access)",
-      "Performances in the Park as a concrete test case for documentation"
-    ]
-  },
-  "2026-07-21": {
-    "timestamp": 1784630659.719428,
-    "date": "2026-07-21",
-    "theme": "Working Lands & Industry",
-    "focus": "agriculture-ranching",
-    "central_question": "Can regenerative agriculture frameworks avoid repeating the safety-net's failure of rewarding land ownership over active practice, and does the Cariboo have the institutional capacity to verify and implement them?",
-    "riley_position": "Regenerative frameworks can work because they tie payments to documented ongoing practice change rather than passive ownership, and carbon-credit protocols already operating in Alberta prove the model is viable and improving rapidly.",
-    "riley_key_evidence": [
-      "Carbon markets tied to improved grazing management already operating commercially in Alberta and Saskatchewan with verified protocols and registered credits",
-      "Alberta's soil carbon offset protocols use standardized sampling kits that don't require specialized expertise, with regional producer associations training technicians to cover whole districts",
-      "Regenerative framework designs tie premiums to continuous verified management rather than one-time land designation, so premiums stop if practices change"
-    ],
-    "casey_position": "The Cariboo lacks the producer density, extension infrastructure, and institutional capacity to implement verification at scale, and without rigorous ongoing enforcement, regenerative frameworks will simply rebrand the same permitting-compliance failures already visible in old-growth logging and frog relocation.",
-    "casey_key_evidence": [
-      "BC gutted extension agent support years ago and never restored it, leaving ranchers on Crown range without local specialists to advise on soil carbon verification",
-      "The Cariboo doesn't have the member density of Alberta cattle sector to justify shared technician hiring, with ranches scattered 50+ kilometres apart across the Chilcotin",
-      "Existing permitting conditions like frog relocation mitigation get written into permits but verification budgets never follow, creating paper compliance with no actual monitoring"
-    ],
-    "resolution": "They agreed the framework logic is sound and genuinely differs from the safety net's structure, but left as genuinely open the question of whether the Cariboo builds or borrows verification institutions\u2014framing it as a governance problem requiring local decision-making rather than a technology problem.",
-    "topics_covered": [
-      "Old-growth logging and First Nations land stewardship in BC",
-      "Mitigation monitoring failures in industrial permitting (frog relocation case study)",
-      "Capital velocity differences between mining and agriculture sectors",
-      "Regenerative agriculture carbon credits versus safety-net land-value inflation",
-      "Regional institutional capacity constraints for verification infrastructure in the Cariboo"
-    ]
-  },
-  "2026-07-22": {
-    "timestamp": 1784716989.891479,
-    "date": "2026-07-22",
-    "theme": "Repair Culture & Practical Tech",
-    "focus": "maker-repair",
-    "central_question": "Who should have the legal right to modify and repair devices after purchase, and what legal mechanisms would enable rural communities to exercise that right?",
-    "riley_position": "Legal frameworks need to shift from manufacturer-only control toward platforms designed for ongoing community modification; manufacturers like Valve demonstrate this is viable business strategy, and formal regulatory exemption processes exist but haven't been tested by rural stakeholders.",
-    "riley_key_evidence": [
-      "Valve's Steam Machine community case designs show modification culture can thrive when manufacturers permit it by design choice",
-      "Ukraine's weapons manufacturers use continuous modification cycles as a functional platform strategy rather than one-time redesigns",
-      "Canadian Copyright Board and CIPO already have existing exemption processes for anti-circumvention rules that rural groups could petition"
-    ],
-    "casey_position": "The real gap is legal, not technical or financial; even with repair skills present, anti-circumvention laws and manufacturer digital locks create barriers that informal community networks cannot overcome, and no test case has forced regulatory clarity in Canada.",
-    "casey_key_evidence": [
-      "John Deere tractors lock diagnostic software behind dealer-only access, forcing ranchers into costly dealer service despite legal right-to-repair victories",
-      "Canadian anti-circumvention provisions mirror the DMCA structure, with no tested exemptions specifically for rural equipment modification",
-      "Counterfeit retro computer boards demonstrate that even with community verification forums, sourcing trust remains an unresolved gap for remote repairs"
-    ],
-    "resolution": "Riley and Casey converged on the concrete ask: a regional institution (Cariboo Regional District or producer association) with legal standing must file a formal exemption request with the Copyright Board, documenting specific harm from a named piece of equipment to force regulatory clarity. They agreed that until someone becomes that test case, workarounds remain unofficial and precarious.",
-    "topics_covered": [
-      "Distinction between repair (restoring original function) and modification (changing intended function) under law",
-      "Digital locks and anti-circumvention legislation as barriers to rural equipment maintenance",
-      "Informal community networks (forums, volunteer verification) as temporary solutions to structural legal gaps",
-      "Manufacturer design philosophy (Valve vs. LG) as deliberate choice, not accident or generosity",
-      "Agricultural co-ops and regional institutions as potential legal applicants for copyright exemptions"
-    ]
-  },
   "2026-07-24": {
     "timestamp": 1784889580.870172,
     "date": "2026-07-24",
@@ -2503,6 +2051,484 @@
       "Data security, secrecy, and zero-knowledge proofs in dual-use quantum cryptography",
       "Indigenous long-baseline observation and the importance of community consent before deploying monitoring technology",
       "Institutional continuity and succession planning as keys to sustainable citizen science projects"
+    ]
+  },
+  "2026-10-05": {
+    "timestamp": 1791191742.488713,
+    "date": "2026-10-05",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "words-journalism",
+    "anchor": "actually-measuring",
+    "central_question": "Should arts and cultural organizations rely primarily on quantitative metrics like attendance counts to measure value and success, or should they prioritize qualitative community input and contextual understanding?",
+    "riley_position": "Quantitative counts provide necessary, objective, and checkable baseline measures that funders and skeptics require to allocate resources fairly, though they should be supplemented with other inputs like subscriptions, editorial impact, and audience voices.",
+    "riley_key_evidence": [
+      "A ticket count is 'the one number everybody can read the same way' and provides a floor for comparison across applications and years",
+      "Podcasts and web stories with repeat listener data show 'attention' better than one-off tickets",
+      "Raw audio of audience answers, published in full, creates an auditable record that 'the ones who care most' can verify"
+    ],
+    "casey_position": "Quantitative metrics become distorting ends rather than means, incentivizing organizations to optimize for countable outputs rather than meaningful community outcomes, and obscuring the actual value that emerges from sustained local presence and relationship.",
+    "casey_key_evidence": [
+      "The Toy Run headline reported '31 motorcycles' while ignoring what toys did in living rooms; 'the number survives and the thing it was for drops out'",
+      "The Lancet study shows engagement metrics targeting young people's screen time led to documented health harms because dashboards 'counted time on screen, and time on screen became the goal'",
+      "A local paper's real value\u2014watching officials and affecting policy\u2014'produces no number at all' and 'a story that never gets written because an official knew someone was watching doesn't show up in anyone's analytics'"
+    ],
+    "resolution": "Riley and Casey agree counts will not disappear and disagree on whether they stay as a floor versus becoming a ceiling, but agree to pilot a Williams Lake experiment placing audience-generated questions alongside ticket counts on grant reports, with follow-up assessment of whether the audio answers change how organizations operate.",
+    "topics_covered": [
+      "The distortion of metrics when counts become funding targets",
+      "Quantifiable versus unmeasurable value in journalism and cultural programming",
+      "How digital platforms' engagement metrics differ from analog measurement problems",
+      "Longevity and sustained presence as undervalued measures in annual grant cycles",
+      "Trust and familiarity as forms of accountability in small communities",
+      "Information design and how charts can legitimize questionable data",
+      "Participatory measurement: letting communities define what gets counted"
+    ]
+  },
+  "2026-10-06": {
+    "timestamp": 1791274549.972298,
+    "date": "2026-10-06",
+    "theme": "Working Lands & Industry",
+    "focus": "tourism-outdoor-economy",
+    "anchor": "actually-measuring",
+    "central_question": "What metrics should be used to measure success and sustainability in working-lands industries, and do current numbers hide more than they reveal?",
+    "riley_position": "Single headline metrics (like cut volume or visitor numbers) are useful tools that enforce limits and drive accountability, but they should be paired with additional measurements like jobs per thousand cubic metres or repeat guest ratios to capture what matters beyond the primary figure.",
+    "riley_key_evidence": [
+      "64 billion dollars in stalled or blocked AI data centre projects shows developers pay a price for ignoring communities, and standardized community benefits agreements make projects bankable",
+      "Allowable annual cut volume is auditable and enforceable, providing a hard cap that forces a limit on harvest within forest sustainability",
+      "Guest ranches can afford to keep working herds when earning tourism revenue, pairing bookings with repeat guests and local hires reveals whether the operation remains genuinely productive"
+    ],
+    "casey_position": "Metrics become reductive proxies that obscure what they were meant to measure; once a number runs the budget, people optimize for the number itself rather than the underlying outcome it represented, creating drift between reported success and actual community benefit.",
+    "casey_key_evidence": [
+      "The 170 billion dollar data centre figure is actually 'announced investment' from press releases with a 108 billion dollar spread depending on the source, lumping temporary 'stalled' projects with permanently 'blocked' ones",
+      "Cubic metres harvested don't capture fibre quality, employment per operation, or whether mills stay open\u2014mills keep closing while harvest volumes are met on paper",
+      "Farmonaut's definition of sustainable farming centered on 'uptime of the factory that builds the sensor' rather than soil health, yield, or farm income, exemplifying how vendor metrics displace actual outcomes"
+    ],
+    "resolution": "Riley and Casey agreed that publishing multiple numbers instead of single metrics is necessary, and proposed a small experiment: asking all candidates in Cariboo-Chilcotin and Prince George-North Cariboo at campaign forums what number should accompany cut volume, booking counts, and other working-lands measures. They acknowledged neither has evidence to settle whether better numbers change what people actually do versus what they report.",
+    "topics_covered": [
+      "AI data centre siting and community consent frameworks in Massachusetts and Pennsylvania",
+      "Forestry metrics and the drift between harvest volume caps and mill employment in the Cariboo",
+      "Agricultural technology ownership and data capture in precision farming",
+      "Tourism measurement at heritage ranches and the risk of working landscapes becoming themed hotels",
+      "First Nations-led forestry operations and stewardship-based permit terms"
+    ]
+  },
+  "2026-10-07": {
+    "timestamp": 1791360742.429353,
+    "date": "2026-10-07",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "vehicles-field-gear",
+    "anchor": "actually-measuring",
+    "central_question": "How should rural communities measure equipment repairability and reliability beyond standardized spec sheets and online review scores?",
+    "riley_position": "People should track practical repairability metrics like downtime, repair time, local repair expertise, and network dependency, sharing this data through community logs to build better local decision-making tools that account for regional failure patterns.",
+    "riley_key_evidence": [
+      "iFixit's Apple Watch teardown shows no repairability improvement despite generations of iterations, revealing that headline scores can miss meaningful data",
+      "Commercial fleets already track hours down, dollars spent, and days to fix in detailed logs that provide actionable insights",
+      "Search and rescue teams and racing communities maintain real field failure databases from actual use under local conditions that beat magazine reviews"
+    ],
+    "casey_position": "While better personal metrics help attentive buyers, most people still purchase based on headlines and star ratings, so community logging efforts will struggle with maintenance and adoption unless embedded in existing institutional practices like volunteer organizations.",
+    "casey_key_evidence": [
+      "Repair metrics can drift into false proxies\u2014fast courier delivery makes days-to-fix look good while machines still fail repeatedly",
+      "Community sheets depend on a single maintainer while benefiting many readers, creating an unsustainable incentive gap",
+      "Most rural programs die when the enthusiast maintaining them moves away, suggesting standalone logging systems lack institutional resilience"
+    ],
+    "resolution": "They agreed to pilot a small experiment: a shared community spreadsheet tracking equipment failures, downtime, and repair time for local ranchers and backcountry users, with four columns, to test whether neighbors will actually contribute data and whether the practice survives beyond early adoption.",
+    "topics_covered": [
+      "Limitations of spec sheets and online review scores for rural equipment decisions",
+      "Proxy metrics and how they can drift from measuring actual reliability to measuring repair speed",
+      "Local expertise and institutional knowledge versus centralized data sources",
+      "Network dependency and the cable-unplugged test for equipment resilience",
+      "Institutional sustainability of community-maintained repair logs and failure databases"
+    ]
+  },
+  "2026-10-08": {
+    "timestamp": 1791455016.880588,
+    "date": "2026-10-08",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "guardians-stewardship",
+    "anchor": "actually-measuring",
+    "central_question": "Who should define and measure Indigenous consultation, consent, and stewardship on development projects affecting Indigenous lands?",
+    "riley_position": "Measurement and quantification are necessary tools for accountability, but the metrics must be redesigned to capture meaningful outcomes like Indigenous-led decision-making, data ownership, and actual project outcomes rather than just procedural counts of meetings and letters.",
+    "riley_key_evidence": [
+      "The Kimberley study showed a clear number: fewer large destructive fires over a decade of Indigenous-led burning, demonstrating that counted outcomes can point at the right thing",
+      "The 2014 Tsilhqot'in title decision accepted the Nation's own evidence of sustained occupation and maps as the measure, which changed the legal standard in B.C.",
+      "Tools like satellite monitoring, community-run sensors, and guardian patrol logs allow Nations to build measurable records in weeks rather than decades if they hold the data under their own terms"
+    ],
+    "casey_position": "The current system counts procedural compliance rather than meaningful consent or actual protection of Indigenous rights and territories; the gap between consultation metrics (letters sent, meetings attended) and real decision-making power (whether a Nation's no stops a project) reveals that numbers filed in government records often stand in for actual consent.",
+    "casey_key_evidence": [
+      "Kebaowek First Nation suspended consultations on a nuclear waste proposal and said other parties failed, yet the government's file kept the consultation count unchanged, showing records mask failed processes",
+      "Grassy Narrows has won litigation arguments for decades but continues fighting new industrial projects, demonstrating that winning counts doesn't mean the river or territory is actually protected",
+      "The Tsilhqot'in had to litigate for twenty-five years to establish their own yardstick as the legal standard, illustrating the timeline problem: territories cannot wait a quarter century between proposal and answer"
+    ],
+    "resolution": "Riley and Casey agree the test is practical: whether a paused project on a Nation's say-so actually sticks, and they invite listeners to identify Cariboo-region proposals with Nation-written conditions to track what happens to them, leaving the core question of who truly holds measurement power still open.",
+    "topics_covered": [
+      "The Valar Atomics Project Beehive proposal in Utah and the absence of documented tribal consultation in public records",
+      "The gap between procedural consultation metrics (meetings, letters) and meaningful consent (whether a Nation's refusal can stop a project)",
+      "How Indigenous-led practices like traditional burning, hunting, and harvesting serve as both stewardship and measures of presence on the land",
+      "Data ownership, sovereignty, and whether Nation-collected evidence gets weighted equally against consultant data in permitting decisions",
+      "Governance and control of what gets counted: which Nations hold the pen to define success on their own territories"
+    ]
+  },
+  "2026-10-09": {
+    "timestamp": 1791534299.268944,
+    "date": "2026-10-09",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildfire-resilience",
+    "anchor": "actually-measuring",
+    "central_question": "Should wildfire impacts be measured and planned for using aggregate economic and ecological models, or do these models systematically miss local human costs, recovery, and community context that should be built into planning?",
+    "riley_position": "Aggregate models like the SFU wildfire cost estimate are useful planning tools that give councils concrete numbers; their gaps should be fixed by adding missing lines and standardized tools with local input, not by discarding the framework.",
+    "riley_key_evidence": [
+      "SFU model (Kou-Giesbrecht, Environmental Research) puts Canadian wildfire costs above $2 trillion over the 21st century, with about $43 billion annually by century's end under a realistic worst case of 3-4 degrees of warming.",
+      "Recreation losses are valued using established economic methods such as travel costs and visitor willingness-to-pay surveys, and the model's total is a conservative floor.",
+      "A 2024 Auk study analyzing two decades of California banding data shows long-term monitoring is how the field matures and detects patterns a single fire season would hide."
+    ],
+    "casey_position": "Aggregate figures and standard templates systematically exclude the people who bear the costs, the recovery process, and local knowledge, so measurement and planning must be redesigned to capture those losses and involve affected communities.",
+    "casey_key_evidence": [
+      "The SFU model excludes health impacts, evacuations, infrastructure loss, and singular extreme events such as the 2023 season that forced more than 200 communities to evacuate; hectare counts measure area burned, not recovery.",
+      "The 2024 Auk study found acute fine-particle exposure reduced bird capture rates while chronic exposure had a positive effect, showing a proxy can reverse direction depending on timescale.",
+      "Edgeley's editorial argues community wildfire adaptation underperforms because it downplays local context; Burnett and Edgeley (2025) and a 2024 Fire paper question whether standard community archetypes remain useful for planning."
+    ],
+    "resolution": "They did not fully resolve the disagreement, but converged on concrete steps: publish both burn area and recovery metrics, build required local-input fields into standard tools, and create a per-fire loss register housed in the regional district's standing reporting. Casey remained skeptical that such a register would survive an election, while Riley remained confident an institutional home could sustain it.",
+    "topics_covered": [
+      "Economic valuation of wildfire costs and what the SFU model includes and excludes",
+      "Ecological measurement: hectares burned versus recovery, and bird banding data on smoke effects",
+      "Standardized community wildfire planning templates versus local input and context",
+      "Local human costs such as evacuations, mental health, and infrastructure loss in Cariboo communities",
+      "Institutional design for a durable community loss register"
+    ]
+  },
+  "2026-10-10": {
+    "timestamp": 1791620236.241713,
+    "date": "2026-10-10",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "actually-measuring",
+    "central_question": "What do local election and governance metrics (early votes, acclamations, candidate counts, forum attendance, budgets, ridership) actually measure, and do they still track the civic participation they claim to represent?",
+    "riley_position": "Riley argues that imperfect proxies like ballot counts, acclamations, and budgets are still useful, measurable, and enforceable, and that the fix for drift is to publish clearer records rather than abandon measurement.",
+    "riley_key_evidence": [
+      "Williams Lake logged 541 early votes this week, more than the early count at the last municipal election four years ago, and 100 Mile House had 255 people vote on its one early day.",
+      "Steve Forseth in Area D and Maureen LeBourdais in Area F were elected by acclamation, and under the rules a seat with a filed name counts as filled.",
+      "Elections BC issued a notice dated March 30th imposing a $1,500 administrative penalty on Sheldon Clare for accepting anonymous contributions above the limit in his 2024 campaign."
+    ],
+    "casey_position": "Casey argues that the metrics have drifted from their original purpose: ballots cast are not participation, acclamations and filed nominations are not informed representation, and once a count becomes the goal it stops measuring what it was meant to.",
+    "casey_key_evidence": [
+      "Acclamation measures the absence of a second filed name, and nobody checks whether residents knew who was sitting on the board.",
+      "The Prince George Citizen puts the amount over the limit in Clare's 2024 campaign at $4,007.75, while the official Elections BC penalty is $1,500, showing two different measures of the same donations.",
+      "Lorne Doerkson's proposed raise of the basic personal income tax threshold from $13,216 to $32,000 can be counted in a budget, but the count says nothing about rent or whether seasonal jobs last."
+    ],
+    "resolution": "Riley and Casey did not agree on whether the proxies are useful, but they agreed that nobody has clearly asked which number is supposed to be the goal. They converged on the need for specific public records, such as a Regional District comment log and clearer candidate histories, while Casey remained skeptical that the measurement would survive thin local newsroom staffing.",
+    "topics_covered": [
+      "Early voting and ballot counts as measures of engagement",
+      "Acclamations, candidate nominations, and representation in the Regional District",
+      "Mayoral and council candidate records, including unresolved complaints and lawsuits",
+      "Provincial and Regional District races, including Doerkson's tax proposal and Clare's campaign finance penalty",
+      "Free transit on election day and the proposal to publish comment logs, minutes, and attendance records"
+    ]
+  },
+  "2026-10-11": {
+    "timestamp": 1791706710.047298,
+    "date": "2026-10-11",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "sky-cosmos",
+    "anchor": "actually-measuring",
+    "central_question": "Should scientific and technical measurements (telescope milestones, geocenter estimates, planetary atmospheres, rocket success, dark-sky counts) be reported with explicit labels about what they measure, what models they depend on, and what they stand for?",
+    "riley_position": "Revisions and early milestones are the normal path of sharper measurement; progress should be counted step by step, and proxies are acceptable as long as the process of revision is visible.",
+    "riley_key_evidence": [
+      "Roman launched August 30th from Kennedy Space Center on a Falcon Heavy, and its first test image was starlight on the Wide Field Instrument, an optics check rather than a science result.",
+      "A 2026 analysis reported in ScienceDaily and Phys.org finds the annual Earth center-of-mass motion is about half of previous estimates, a refinement of a known effect rather than a new one.",
+      "Starship Flight 14 reached orbit and deployed 26 Starlink V3 satellites at roughly 170 miles despite one of six Raptor engines shutting down early."
+    ],
+    "casey_position": "Stand-ins such as models, proxies, and sampling methods must be labeled and published alongside results, and headlines should report only what was actually measured.",
+    "casey_key_evidence": [
+      "The Kottke post quotes a piece saying Roman 'may deliver' planet images, and 'may' is a forecast rather than a result.",
+      "The GPS and satellite orbit reference point for Earth's center moved by about a factor of two, and users of that reference may not know it began as a model.",
+      "A clear August night can be hidden by smoke, so a dark-sky reading needs its smoke days labeled to avoid misattributing the cause."
+    ],
+    "resolution": "They agreed that revisions are part of honest measurement and that sampling methods should be printed alongside figures, but they did not settle who should own long-term protocols; Casey accepted a regional body holding the log only as a possible fix and both admitted the Chilcotin protocol question remains unanswered.",
+    "topics_covered": [
+      "Roman Space Telescope commissioning and the distinction between optics checks and science results",
+      "Revisions to Earth's center-of-mass estimates and the role of models in geodesy and GPS",
+      "Webb's atmospheric detection on HD 3167 b and the inferred nature of exoplanet atmospheres",
+      "Starship Flight 14 orbital success, engine shutdown, and the metrics used to judge test flights",
+      "Dark-sky and aurora counting in the Cariboo, smoke labeling, and long-term local data stewardship"
+    ]
+  },
+  "2026-10-12": {
+    "timestamp": 1791793759.939923,
+    "date": "2026-10-12",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "film-screen",
+    "anchor": "leave-or-stay",
+    "central_question": "When a talented kid leaves a small town, is that a loss for the town or a success for the kid, and what does the town owe the people who stay?",
+    "riley_position": "Leaving can be a success for the individual and digital tools make distribution possible from anywhere, so a town's creative economy can be built on local institutions, training pipelines, and reach beyond the town.",
+    "riley_key_evidence": [
+      "Nunavut's Department of Culture and Heritage has run a Language Implementation Fund and Inuktut Affairs unit for more than a decade, following a $200,000 addition for Inuktut film, television and digital media in 2013.",
+      "In July 2025, Nunavut News reported rediscovered animation by roughly thirteen Inuit filmmakers from about half a century ago, including Aoudla Pudlat, Pitaloosie Saila and Kanayuk Pootoogook.",
+      "Nyla Innuksuk, who grew up in Iqaluit, is a director, writer and VR creator and CEO of Mixtape VR, and imagineNATIVE and TIFF have featured Indigenous filmmakers from the circumpolar region."
+    ],
+    "casey_position": "Export success hides a loss for the town, since the audience and archive can leave with the talent, and the town should measure what its own residents can see and keep rather than what it exports.",
+    "casey_key_evidence": [
+      "The Inuit Language Protection Act's commissioner argues Inuktut advertising pays off, but the department also offers businesses a $5,000 grant to comply, so the market argument has a subsidy underneath it.",
+      "The 2013 $200,000 line is small for a film industry, and the article gives no figures on how much reaches filmmakers versus administration or whether training graduates stayed in the field.",
+      "Rediscovered Inuit films were lost because nobody kept prints, masters or rights paperwork, making it an archive problem, and small-town counts of local screenings have no funding or institution to hold them long term."
+    ],
+    "resolution": "They agreed the archive and the audience are the key structural issues and that nobody currently pays to hold a town's film data, and proposed a cheap experiment of one locally screened film per season with a published, method-labelled count. They still disagreed on whether the export is a success, with Riley seeing it as a success for the person who left and Casey seeing a loss nobody can see.",
+    "topics_covered": [
+      "Inuit Language Protection Act and language rights in signage and commerce",
+      "Archives, lost films and rights ownership in the Iqaluit animation rediscovery",
+      "Digital distribution versus gatekeeping by platforms and festivals",
+      "Audience measurement and whether small towns should count local viewers rather than exports",
+      "Identity, local artists and copyright in cultural products like tattoo designs"
+    ]
+  },
+  "2026-10-13": {
+    "timestamp": 1791879288.924184,
+    "date": "2026-10-13",
+    "theme": "Working Lands & Industry",
+    "focus": "agriculture-ranching",
+    "anchor": "leave-or-stay",
+    "central_question": "When a global commodity shock hits, who absorbs the loss and who stays on the land to make the next crop work, and can technology and local institutions protect working-lands producers?",
+    "riley_position": "Technology, aggregation through cooperatives and food hubs, and structured contracts can blunt supply shocks and spread access to tools, and local training can turn the technology into a local career path.",
+    "riley_key_evidence": [
+      "Quartz and CNN name coffee, cocoa, rice, sugar, and palm oil as products likely to rise in price due to El Ni\u00f1o",
+      "A Barcelona rooftop greenhouse study (ICTA-UAB, Agronomy for Sustainable Development) across eleven tomato cycles from 2015 to 2023 found sunlight and stage-specific nutrient timing matter more than fixed recipes",
+      "Cooperatives have used collective buying and shared storage for decades to get better terms for smallholders"
+    ],
+    "casey_position": "The benefits of these shocks and technologies flow to owners, buyers, and capital rather than to the farmers and workers who carry the risk, and the real question is who stays to run the systems and who owns the data and land.",
+    "casey_key_evidence": [
+      "A Guardian bank scenario projects commodity price shocks of 10 to 50 percent, with the most exposed crops rising 50 to 100 percent or more and lasting into 2028, though the bank is unnamed",
+      "When deteriorated greenhouse panels were replaced in 2023, yields rose over 56 percent, suggesting maintenance rather than fertilizer tinkering drove the gain",
+      "Argentina's Milei government removed the block on foreign land and resource ownership, with protesters warning of water and soil loss"
+    ],
+    "resolution": "They did not fully agree. They concurred that the small operator needs a say in contract terms and that the data-ownership question matters, but they disagreed on whether these tools actually help small operators, and both left open whether Cariboo food hubs can survive past their grant years.",
+    "topics_covered": [
+      "Commodity price shocks and who absorbs losses in the supply chain",
+      "Cooperatives, aggregators, and access to hedging and insurance for smallholders",
+      "Barcelona rooftop greenhouse study and the limits of technology claims",
+      "Foreign land ownership in Argentina and implications for Cariboo ranchers",
+      "Food hubs, food banks, and the year-five sustainability test for local food systems"
+    ]
+  },
+  "2026-10-14": {
+    "timestamp": 1791965858.816672,
+    "date": "2026-10-14",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "maker-repair",
+    "anchor": "leave-or-stay",
+    "central_question": "Does self-built, self-maintained technology give a Cariboo household a real reason to stay, or is it a costly way to stay connected to somebody else's city?",
+    "riley_position": "Self-reliant gear, when its skills and documentation stay in the community, gives households a practical reason to stay; the failures are fixable problems of documentation and staffing rather than proof the approach is a trap.",
+    "riley_key_evidence": [
+      "The Ping2 sonar has a 100 metre range, 25 degree beam and 115 kHz transducer, with a housing rated to 300 metres in the technical guide and ArduPilot documentation.",
+      "The Geekworm supercapacitor board gives roughly 10 to 45 seconds of backup power for a clean shutdown, and an INA219 current monitor logs voltage, current and power over I2C.",
+      "A UNIHIKER K10 with a time-of-flight sensor and HX711 load cell lets a rural seller price parcels at home, saving trips into town."
+    ],
+    "casey_position": "Self-reliant gear only gives a real reason to stay when the skill, record and upkeep remain local; otherwise parts, subscriptions and know-how keep the household tied to another city, and the upkeep that decides longevity is rarely documented.",
+    "casey_key_evidence": [
+      "At 100 metres a 25 degree beam covers roughly a 40 metre footprint, so depth readings are averages over a patch rather than points, and the 0.5 per cent resolution figure was not confirmed.",
+      "Forum consensus holds that there is no reliable software-only fix for root filesystem corruption from hard power cuts on an SD card, pointing toward a UPS or SSD instead.",
+      "Shop-class students often leave for school after training, and the write-up gives no population figure for remote workers, so the claim that people drive for connection remains unverified."
+    ],
+    "resolution": "They agreed the answer depends on whether the skill and method stay in the community: Riley argued the leave case is fixable, and Casey agreed the record is valuable but insisted on the test of whether someone who didn't build the gear can reproduce the calibration, leaving the question open pending a one-lake trial.",
+    "topics_covered": [
+      "Sonar accuracy, beam footprint and calibration against known depths",
+      "Power-loss protection for Raspberry Pi and home servers, including UPS and SSD options",
+      "Parcel-weighing and load-cell recalibration over time",
+      "Home server costs versus subscriptions, backup and restore procedures",
+      "Community skill retention, documentation and whether a second person can reproduce results"
+    ]
+  },
+  "2026-10-15": {
+    "timestamp": 1792052609.987039,
+    "date": "2026-10-15",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "governance-title",
+    "anchor": "leave-or-stay",
+    "central_question": "Who holds the authority to decide what Indigenous governments' financial records, cultural objects, and services are judged by, and whether sovereignty survives federal funding conditions and clawbacks?",
+    "riley_position": "Indigenous nations should keep their own transparent audit trails and digital records, which preserve sovereignty and let them contest federal findings; sovereignty and federal funding can coexist if the terms are written down and understood.",
+    "riley_key_evidence": [
+      "FSIN disputes ISC's audit decision over $12.4 million, with the legal action being the nation using its own jurisdiction to test the number",
+      "The Kawacatoose tipi cover, taken in 1926 and held at the Smithsonian's National Museum of the American Indian, was returned to Kawacatoose First Nation",
+      "Denisiqi Services Society has run culturally grounded child and family services for T\u015dilhqot'in and Ulkatcho communities for more than twenty years"
+    ],
+    "casey_position": "Records and courts do not resolve who ultimately controls the money and eligibility rules; clawbacks threaten current services, restitution requires institutional decisions rather than tools, and sovereignty claims remain untested until a court rules.",
+    "casey_key_evidence": [
+      "ISC has threatened to claw back all current funding if FSIN does not repay the $12 million flagged in the audit, and the department issuing the audit is the one moving to collect",
+      "The Kawacatoose cover was returned only after a community meeting with Smithsonian representatives, and it took a century, while a scan is not a substitute for return",
+      "The Lebret residential school closure date of June 30, 1998 is solidly sourced, but the 1990s claim for Gordon and Muscowequan remains unverified, and testimony must be checked against records before being repeated as fact"
+    ],
+    "resolution": "The hosts did not reach agreement. Riley maintained that records and nation-held systems let a nation contest findings and that sovereignty can coexist with funding agreements; Casey stressed that the department writing the rules also collects the money, and that the sovereignty question remains open until tested in court. They agreed the key questions to carry forward are who holds the audit trail and who can change reporting terms after funds are released.",
+    "topics_covered": [
+      "The FSIN audit dispute, ISC clawback threats, and who controls eligibility rules",
+      "Data sovereignty, digital audit trails, and vendor lock-in for Indigenous governments",
+      "Repatriation of the Kawacatoose tipi cover and the role of digital cataloguing versus institutional decisions",
+      "Verification of residential school closure dates at Lebret, Gordon, and Muscowequan",
+      "Governance models for Indigenous child and family services, including Denisiqi Services Society and T\u015dilhqot'in title"
+    ]
+  },
+  "2026-10-16": {
+    "timestamp": 1792138579.907859,
+    "date": "2026-10-16",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildlife-conservation",
+    "anchor": "leave-or-stay",
+    "central_question": "Who bears the cost and responsibility of protecting people from wildfire and extreme heat, and does faster housing review (Prop 45) and public ownership of warnings and wildlife data make communities safer or simply favor developers?",
+    "riley_position": "Mapping exposure, funding transport and shelter, and publicly owning warning channels and sighting data are solvable planning problems, and faster CEQA review with required fire-hardening plans can reduce pressure to build in fire-prone land.",
+    "riley_key_evidence": [
+      "Science Advances found the count of people exposed to wildfire and extreme heat on the same days rose by 287 million between 2000 and 2019.",
+      "A Science Advances Western US study from 2006 to 2020 mapped co-exposure to extreme heat, burn zones, and smoke at census-tract level.",
+      "Prop 45 would amend CEQA with deadlines for environmental review and lawsuit resolution, and CEQA lawsuits have pushed building toward cheaper wildland-urban interface land."
+    ],
+    "casey_position": "The exposure rise may reflect more people in hot, fire-prone places rather than hazard change alone, mapping does not ensure people can evacuate, and faster review risks benefiting developers while weakening specific, enforced fire-risk conditions.",
+    "casey_key_evidence": [
+      "Same-day overlap is modeled exposure, not a health outcome, and the split between hazard change and population growth decides whether this is a climate or settlement story.",
+      "Pro-housing groups California YIMBY and SPUR withheld support for Prop 45 over sprawl and environmental risk, and the summary describes deadlines without describing waivers of conditions.",
+      "Phone platforms set their own rules for emergency messages, and those rules have not been published, so warnings depend on company terms."
+    ],
+    "resolution": "They did not resolve the Prop 45 disagreement and agreed only that a deadline sets how fast the answer arrives, not where housing goes. They agreed on a cheap local test: count how many past bear sightings had a named person assigned to respond, and that public ownership of the sighting log and warning channel should be written down.",
+    "topics_covered": [
+      "Census-tract wildfire and heat exposure mapping and whether it reflects hazard change or population growth",
+      "Evacuation planning for small communities, including shelter, transport, and warning channels",
+      "Southern California Santa Ana wind preparedness and public versus platform control of emergency alerts",
+      "Prop 45 and CEQA reform as a tool for housing growth in the wildland-urban interface",
+      "Indigenous-guided knowledge and data ownership in Kodiak bear management and the 100 Mile House bear euthanasia"
+    ]
+  },
+  "2026-10-17": {
+    "timestamp": 1792225090.690373,
+    "date": "2026-10-17",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "leave-or-stay",
+    "central_question": "When a candidate's own record is the clearest evidence, whose account of that record should voters weight, and what does an endorsement, delegation, or acclamation actually prove about a candidate's performance?",
+    "riley_position": "Public records such as endorsements, delegations, council minutes and candidate profiles are concrete, testable evidence that voters should weigh, and incumbents should be asked specific questions about their votes.",
+    "riley_key_evidence": [
+      "Chief Willie Sellars endorsed Rathor, and The Tyee reports Indigenous governments credit him with improving the relationship with the Nation",
+      "Sahibzada appeared on a June 16th council delegation with the Central Cariboo Islamic Centre, a public record of using the input process",
+      "Forseth and LeBourdais were elected by acclamation, and LeBourdais won a by-election with 315 votes against 50 and 27"
+    ],
+    "casey_position": "Endorsements, petitions, delegations and acclamations are references or voices rather than votes or performance, so they should not be treated as proof of a candidate's record until votes and outcomes are checked.",
+    "casey_key_evidence": [
+      "Cobb removed himself from external boards after backlash over social media comments about residential schools, per CFNR's November 2021 report, with no later formal finding in the sources",
+      "Nelson's claim that outsiders signed the safe-use site petition is his remark, not a finding, and the signature list has not been checked",
+      "Forbes is listed as Area 2 trustee on the school board page but seeking re-election in Area 5 per the Tribune, and the discrepancy is unresolved"
+    ],
+    "resolution": "The hosts did not agree on how much an endorsement or delegation should weigh, with Riley treating them as public records and Casey treating them as references rather than receipts. They agreed that incumbents should be asked specific questions about their votes and that the unresolved discrepancies should be checked against primary records.",
+    "topics_covered": [
+      "Endorsements and delegations as evidence of candidate relationships and performance",
+      "Council minutes, votes and the verification of candidate service records",
+      "The Scott Nelson safe-use site petition and its signatories",
+      "Thin or conflicting candidate profiles across Williams Lake, school board and regional races",
+      "Acclamations, by-elections and incumbent accountability"
+    ]
+  },
+  "2026-10-18": {
+    "timestamp": 1792312069.357924,
+    "date": "2026-10-18",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "living-world",
+    "anchor": "leave-or-stay",
+    "central_question": "Should long-term environmental and scientific monitoring, whether of soils, human fitness, microplastics, disease vectors, shipping chokepoints, or distant planets, be trusted and acted on before its implications are fully confirmed, and how should such records be funded, governed, and sustained?",
+    "riley_position": "Measured trends, even from a single long-running record, belong in planning and policy now, and early sensing and mechanism-naming should drive action rather than waiting for complete proof.",
+    "riley_key_evidence": [
+      "Thirteen sites in southwestern Germany with up to 24 years of readings show forest soils absorbing about 3 percent more methane per year.",
+      "The Swedish SPAF study followed 427 people born in 1958 from age 16 to 63, finding fitness and muscle endurance decline around age 35.",
+      "WHO figures show dengue cases rose from 6.5 million in 2023 to a record 14.6 million in 2024."
+    ],
+    "casey_position": "Visibility and measurement are not protection; claims should be held to confirmed evidence, sensor and data governance must be audited and independent, and reversible actions should be preferred over irreversible ones.",
+    "casey_key_evidence": [
+      "Microplastic reactivity has been shown in a beaker, but tissue damage and human dose-response links remain unproven.",
+      "Strait of Hormuz flows of 11.6 million barrels per day are about 68 percent of pre-crisis levels, and the IRGC's supertanker mine claim is unconfirmed.",
+      "Mosqitter's 5,000-trap deployment and roughly $5 million funding figures come from secondary coverage, not the company itself."
+    ],
+    "resolution": "They agreed on several points: fund the instruments and long records, put a measured soil sink into the accounts but not into the climate plan, test replacement polymers alongside the originals, and have communities keep raw data while institutions hold methods. They did not resolve who sustains long records past the principal investigator or teacher turnover, and Casey kept the 'superhabitable' label in quotation marks until spectra confirm it.",
+    "topics_covered": [
+      "Soil methane sinks and their role in carbon accounting",
+      "Long-term cohort and monitoring studies and the challenge of sustaining them",
+      "Microplastic surface chemistry, harm evidence, and safer replacement materials",
+      "Sensor networks for disease vectors and shipping chokepoints, including data ownership and audit",
+      "Superhabitable exoplanet candidates and the gap between models and observations"
+    ]
+  },
+  "2026-10-19": {
+    "timestamp": 1792397762.027915,
+    "date": "2026-10-19",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "music-performance",
+    "anchor": "trust-built-or-inherited",
+    "central_question": "Is credibility and authenticity in arts and culture built by the artists and audiences themselves, or can sponsors, founders, and institutions inherit and spend it?",
+    "riley_position": "Credibility is built on the bandstand and in the room through audience experience and conduct; sponsorship doesn't make performances insincere, and durable trust comes from festivals and venues keeping honest records of their work.",
+    "riley_key_evidence": [
+      "PBS and Time document State Department jazz tours through Eastern Europe, the Middle East, South Asia, and decolonized Africa and Asia in the 1950s",
+      "The Living Archive of techno culture opened 3,400 square metres of basement beneath a former East Berlin power station, developed with Tresor founder Dimitri Hegemann",
+      "Williams Lake has about 10,700 people and Quesnel about 9,000; the Cariboo Regional District Library offers digital literacy programs in three communities"
+    ],
+    "casey_position": "Authenticity is a valuable asset that sponsors and founders can spend, and the people doing the unpaid labour, such as sound techs and door volunteers, carry the reputation without being compensated or credited.",
+    "casey_key_evidence": [
+      "The State Department sent Armstrong, Dizzy Gillespie, Duke Ellington, and Dave Brubeck abroad starting in 1955-1956, while the musicians did not choose the itinerary",
+      "Scholarship in Retrospect Journal (2025) reads the tours as a cultural proxy conflict, though this is presented as an argument rather than a finding",
+      "The International Federation of Journalists reports at least 30 journalists detained during Delhi protests, and over 130 million names were reported removed from voter rolls during India's Special Intensive Revision"
+    ],
+    "resolution": "They agreed that both the band's credibility and the sponsor's use of it can be true at once, and that a festival's record is essential for surviving leadership change. They left unresolved whether a visible record of unpaid labour is enough or whether it must be tied to actual payment.",
+    "topics_covered": [
+      "Cold War jazz diplomacy and who controls the narrative of cultural tours",
+      "Authenticity, sponsorship, and whether reputation is built or inherited",
+      "Record-keeping, volunteer labour, and succession in small-town festivals and venues",
+      "Berlin's techno archive and who curates a scene defined by anonymity",
+      "Digital sovereignty for creators: checksums, backups, and footage ownership"
+    ]
+  },
+  "2026-10-20": {
+    "timestamp": 1792484558.896519,
+    "date": "2026-10-20",
+    "theme": "Working Lands & Industry",
+    "focus": "forestry",
+    "anchor": "trust-built-or-inherited",
+    "central_question": "Does a forest-products sector that is shifting toward high-value markets and a 45 million cubic metre harvest target actually serve Cariboo communities, and whose numbers should residents trust while that shift happens?",
+    "riley_position": "Value is moving up the supply chain, and permit reform is the fastest lever a province can pull to convert legal but uncut volume into jobs; published, reconciled harvest data would make any target checkable and rebuild trust.",
+    "riley_key_evidence": [
+      "Hitachi Energy's $479 million transformer pressboard plant in London, Ontario, with about $50 million in public money, shows forest fibre becoming a high-tech input.",
+      "Environmental Reporting BC data show public-land harvest about 22 per cent below the allowable annual cut over 20 years, meaning legal volume already exists to be cut.",
+      "Mass timber is a scaled market, with the Forest Products Association of Canada's Mass Timber Roadmap reporting almost 700 completed buildings."
+    ],
+    "casey_position": "Demand and harvest targets are being framed by parties with a stake in the numbers; without a buyer, a hiring link, and an audited harvest record, a permit fix will not save mill towns, and retraining is only worth it if graduates are still working a year later.",
+    "casey_key_evidence": [
+      "Hitachi's announcement names no B.C. fibre source, so public money in the plant is spent in London while the Cariboo gets no guaranteed demand.",
+      "Mass timber counts differ across sources (the roadmap's pipeline is over 140 projects, the FSC column says over 200), so 'booming' depends on which stage is being counted.",
+      "The Thompson Rivers University Heavy Equipment Operator program, built for workers from the West Fraser 100 Mile Lumber closure, has no reported placement tracking after graduation."
+    ],
+    "resolution": "They did not converge. Riley agreed the hiring link and published reconciliation of allowable cut versus actual harvest are missing and should be added, and Casey agreed the Quesnel council request should carry the reconciliation question. They still disagreed on the bottleneck, with Riley favouring permits and Casey favouring a mill and a buyer, and they agreed the buyer question and the audit question remain unresolved.",
+    "topics_covered": [
+      "Hitachi Energy's pressboard plant and whether B.C. fibre benefits from it",
+      "Mass timber market size and how completed, under-construction and planned projects are counted",
+      "The 45 million cubic metre harvest target and the gap between allowable cut and actual harvest",
+      "Trust in official versus leaked harvest data and the role of independent audit",
+      "Retraining outcomes for displaced workers, including the TRU heavy equipment program and placement tracking"
+    ]
+  },
+  "2026-10-21": {
+    "timestamp": 1792570917.76566,
+    "date": "2026-10-21",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "homestead-offgrid",
+    "anchor": "trust-built-or-inherited",
+    "central_question": "Is trust in home and ranch technology built through open, locally maintained systems that people can repair and read, or inherited from commercial brands and their vendor-controlled platforms?",
+    "riley_position": "A box you own, running inspectable open-source software like Home Assistant, is the clearest form of practical tech sovereignty, and repair culture applied to software lets communities raise the floor of competence beyond any single vendor.",
+    "riley_key_evidence": [
+      "A ZDNet writer moved an entire smart home off Google Home in a weekend onto open-source Home Assistant running on a mini-computer costing under $200, with ten minutes spent on the actual migration.",
+      "iFixit reported Apple published prices for in-house iPhone repairs, with inner display damage costing more than a new iPhone 17 and listed other accidental damage at $1,499.",
+      "Nebraska passed a farm-data law, while Iowa, Missouri and Colorado pushed bolder versions, with only Nebraska's passing so far."
+    ],
+    "casey_position": "Open systems only help people who already have the literacy to use them, so they create a single point of failure in one person who can leave, while vendor dashboards keep running after staff leave; trust must be kept by a person who maintains the record.",
+    "casey_key_evidence": [
+      "Iowa's farm-data measure was attached as an amendment to a right-to-repair bill, cleared the House, and stalled in the Senate before the session ended.",
+      "Apple's published repair price signals the phone is meant to be replaced rather than repaired, and promises from large companies get revised without a press release.",
+      "A single post from a platform owner reached a national political argument with no policy change, showing how platform dependency sets the terms of public conversation."
+    ],
+    "resolution": "They did not fully converge: Riley accepted that the community can own the knowledge while using commercial hardware, and Casey agreed the practical test is whether the record can leave the vendor's app. They agreed to propose a one-winter side-by-side log comparing a store-bought hub with a homebuilt server, tracking outages, fixes, who did them, and whether a neighbour could read faults without a vendor login.",
+    "topics_covered": [
+      "Open-source home automation versus branded smart home hubs",
+      "Repair costs and manufacturer repair policies (iPhone, iFixit)",
+      "Farm and ranch data ownership and right-to-repair legislation",
+      "Single points of failure and documentation like binders and on-call names",
+      "Offline-first resilience and community knowledge sharing in rural areas"
     ]
   }
 }

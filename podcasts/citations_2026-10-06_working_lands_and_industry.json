@@ -1,0 +1,450 @@
+{
+  "episode": {
+    "date": "2026-10-06",
+    "formatted_date": "Tuesday, October 06, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>THIS WEEK WE'RE ASKING:</b> What are we actually measuring?</p><p><b>NEWS ROUNDUP:</b> We break down Meet the Candidates: Tony Goulet seeks re-election as councillor for City of Quesnel and B.C. Conservatives hold 5 point lead over NDP, says election poll, plus 12 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> What metrics should be used to measure success and sustainability in working-lands industries, and do current numbers hide more than they reveal? Topics include: AI data centre siting and community consent frameworks in Massachusetts and Pennsylvania, Forestry metrics and the drift between harvest volume caps and mill employment in the Cariboo, Agricultural technology ownership and data capture in precision farming, Tourism measurement at heritage ranches and the risk of working landscapes becoming themed hotels, First Nations-led forestry operations and stewardship-based permit terms.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://habitatcariboo.org\">Habitat for Humanity Cariboo</a></p><p><b>Sources discussed:</b></p><ul><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/\">[Quesnel Cariboo Observer] Meet the Candidates: Tony Goulet ...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316582/news/elections/2026-bc-election/b-c-conservatives-hold-5-point-lead-over-ndp-says-election-poll/\">[My Cariboo Now] B.C. Conservatives hold 5 point lead over N...</a></li><li>Khushi Arora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/05/quesnel-writers-day-returns-for-the-fourth-year-with-free-workshops/\">[Williams Lake Tribune] Quesnel Writer’s Day returns for the...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316576/news/elections/2026-bc-election/b-c-ndp-plans-to-resume-seven-paused-long-term-care-projects-if-re-elected/\">[My Cariboo Now] B.C. NDP plans to resume seven paused long-...</a></li><li>Patrick Davies (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/05/lorne-doerkson-pledges-to-create-50m-fund-to-address-emergency-room-closures/\">[Williams Lake Tribune] Lorne Doerkson pledges to create $50...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316579/news/elections/2026-bc-election/the-b-c-greens-are-proposing-new-taxes-on-extreme-wealth-as-provincial-parties-sharpen-their-focus-on-high-income-earners/\">[My Cariboo Now] The B.C. Greens are proposing new taxes on ...</a></li><li>RealAgriculture: <a href=\"https://www.realagriculture.com/2026/10/aafc-launches-1-billion-food-link-fund-to-expand-food-terminals-and-create-local-food-hubs/\">[RealAgriculture] AAFC launches $1 billion Food-Link Fund to...</a></li><li>Cecilia Jamasmie (The Northern Miner): <a href=\"https://www.northernminer.com/news/world-bank-back-1-4b-for-chiles-copper-giant/1003895433/\">[The Northern Miner] World Bank backs $1.4B for Chile’s copp...</a></li><li>RealAgriculture: <a href=\"https://www.realagriculture.com/2026/10/aafc-seed-increase-unit-move-from-indian-head-to-saskatoon-set-to-be-implemented-over-two-seasons/\">[RealAgriculture] AAFC Seed Increase Unit move from Indian H...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/tech/cloud-repatriation-enterprise-cost-optimization/\">[ZDNet] Companies are ditching the cloud to save millions – ...</a></li><li>Zack Whittaker (TechCrunch): <a href=\"https://techcrunch.com/2026/10/05/hackers-steal-8-million-citizens-records-from-danish-government-database/\">[TechCrunch] Hackers steal 8 million citizens’ records from ...</a></li><li>Robert Hart (The Verge): <a href=\"https://www.theverge.com/ai-artificial-intelligence/1004933/ai-math-openai-breakthrough-solution\">[The Verge] All the drama around AI&amp;#8217;s takeover of math...</a></li><li>Mining.com: <a href=\"https://www.mining.com/millennial-potash-targets-2029-production-as-us-backed-gabon-project-advances/\">[Mining.com] Millennial Potash targets 2029 production as US...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/10/05/building-a-cheap-dexterous-robot-hand/\">[Hackaday] Building a Cheap, Dexterous Robot Hand</a></li><li>Jennifer Smith (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/05/options-being-considered-for-b-c-s-historic-okeefe-ranch/\">[Williams Lake Tribune] Options being considered for B.C.’s ...</a></li><li>farmonaut.com: <a href=\"https://farmonaut.com/blogs/farming-4-0-why-the-future-of-sustainable-farming-is-forged-in-factories\">[farmonaut.com] Farming 4.0: Why the Future of Sustainable F...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Noah Smith (Noahpinion): <a href=\"https://www.noahpinion.blog/p/roundup-89-it-isnt-x-its-y\">[Noahpinion] Roundup #89: It isn’t X, it’s Y</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91612143/ai-data-centers-local-communities\">[Fast Company] The $170 billion lesson data center developer...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-06T01:15:45.511996-07:00",
+    "models": {
+      "script": "claude-sonnet-5-5",
+      "review": "claude-sonnet-5-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3084,
+      "voice_ratio_casey_riley": 0.94,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 6,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 24,
+        "turns": 84,
+        "avg_turn_words": 35.3,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "actually-measuring",
+      "question": "What are we actually measuring?"
+    },
+    "audio_file_size": 17992365,
+    "audio_duration": "18:44"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] Meet the Candidates: Tony Goulet seeks re-election as councillor for City of Quesnel",
+          "url": "https://quesnelobserver.com/2026/10/05/meet-the-candidates-tony-goulet-seeks-re-election-as-councillor-for-city-of-quesnel/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "none",
+          "ai_score": 85,
+          "date_published": "2026-10-05T21:44:16+00:00",
+          "summary": "General voting day across B.C., including Quesnel, will take place on Oct. 17.",
+          "discussed": true,
+          "mention_offset_frac": 0.0144
+        },
+        {
+          "title": "[My Cariboo Now] B.C. Conservatives hold 5 point lead over NDP, says election poll",
+          "url": "https://www.mycariboonow.com/316582/news/elections/2026-bc-election/b-c-conservatives-hold-5-point-lead-over-ndp-says-election-poll/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-10-06T02:24:10+00:00",
+          "summary": "B.C. Conservatives hold a five-point lead over the NDP as voters firm up their choices, according to a new poll. The post B.C. Conservatives hold 5 point lead over NDP, says election poll appeared fir...",
+          "discussed": true,
+          "mention_offset_frac": 0.0743
+        },
+        {
+          "title": "[Williams Lake Tribune] Quesnel Writer’s Day returns for the fourth year with free workshops",
+          "url": "https://wltribune.com/2026/10/05/quesnel-writers-day-returns-for-the-fourth-year-with-free-workshops/",
+          "source": "Williams Lake Tribune",
+          "author": "Khushi Arora",
+          "ai_score": 84,
+          "date_published": "2026-10-05T20:30:00+00:00",
+          "summary": "## Quesnel Writer’s Day returns for the fourth year with free workshops Published 1:30 pm Monday, October 5, 2026 **By Khushi Arora** 1/2 Winners of the Quesnel Writer's Day writing contest hold their...",
+          "discussed": true,
+          "mention_offset_frac": 0.1338
+        },
+        {
+          "title": "[My Cariboo Now] B.C. NDP plans to resume seven paused long-term care projects if re-elected",
+          "url": "https://www.mycariboonow.com/316576/news/elections/2026-bc-election/b-c-ndp-plans-to-resume-seven-paused-long-term-care-projects-if-re-elected/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 77,
+          "date_published": "2026-10-06T02:10:36+00:00",
+          "summary": "The B.C. NDP is promising to restart seven delayed long-term care projects and expand health-care supports for seniors. The post B.C. NDP plans to resume seven paused long-term care projects if re-ele...",
+          "discussed": true,
+          "mention_offset_frac": 0.1846
+        },
+        {
+          "title": "[Mining.com] Millennial Potash targets 2029 production as US-backed Gabon project advances",
+          "url": "https://www.mining.com/millennial-potash-targets-2029-production-as-us-backed-gabon-project-advances/",
+          "source": "Mining.com",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-10-05T13:00:00+00:00",
+          "summary": "\"I don't want to replace Canadian potash,\" CEO said. \"Actually, I want to replace Russian potash.\"",
+          "discussed": true,
+          "mention_offset_frac": 0.1897
+        },
+        {
+          "title": "[Williams Lake Tribune] Lorne Doerkson pledges to create $50M fund to address emergency room closures",
+          "url": "https://wltribune.com/2026/10/05/lorne-doerkson-pledges-to-create-50m-fund-to-address-emergency-room-closures/",
+          "source": "Williams Lake Tribune",
+          "author": "Patrick Davies",
+          "ai_score": 94,
+          "date_published": "2026-10-06T04:03:10.948603+00:00",
+          "summary": "## Lorne Doerkson pledges to create $50M fund to address emergency room closures Published 3:28 pm Monday, October 5, 2026 **By Patrick Davies** 1/4 Conservative Party of B.C. interim leader Lorne Doe...",
+          "discussed": true,
+          "mention_offset_frac": 0.2703
+        },
+        {
+          "title": "[My Cariboo Now] The B.C. Greens are proposing new taxes on extreme wealth as provincial parties sharpen their focus on high-income earners.",
+          "url": "https://www.mycariboonow.com/316579/news/elections/2026-bc-election/the-b-c-greens-are-proposing-new-taxes-on-extreme-wealth-as-provincial-parties-sharpen-their-focus-on-high-income-earners/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 75,
+          "date_published": "2026-10-06T02:17:58+00:00",
+          "summary": "The B.C. Greens are proposing new taxes on extreme wealth as provincial parties sharpen their focus on high-income earners. The post The B.C. Greens are proposing new taxes on extreme wealth as provin...",
+          "discussed": true,
+          "mention_offset_frac": 0.3962
+        },
+        {
+          "title": "[RealAgriculture] AAFC launches $1 billion Food-Link Fund to expand food terminals and create local food hubs",
+          "url": "https://www.realagriculture.com/2026/10/aafc-launches-1-billion-food-link-fund-to-expand-food-terminals-and-create-local-food-hubs/",
+          "source": "RealAgriculture",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-05T19:01:49+00:00",
+          "summary": "As part of the National Food Security Strategy, Heath MacDonald, Minister of Agriculture and Agri-Food, and Gregor Robertson, Minister of Housing and Infrastructure, today announced the upcoming launc...",
+          "discussed": true,
+          "mention_offset_frac": 0.534
+        },
+        {
+          "title": "[Noahpinion] Roundup #89: It isn’t X, it’s Y",
+          "url": "https://www.noahpinion.blog/p/roundup-89-it-isnt-x-its-y",
+          "source": "Noahpinion",
+          "author": "Noah Smith",
+          "ai_score": 58,
+          "date_published": "2026-10-01T06:14:51+00:00",
+          "summary": "AI risk; Reindustrialization; The rent crisis; AI and jobs; Mass deportation; Chinese investment; Cyber risk",
+          "discussed": false
+        },
+        {
+          "title": "[The Northern Miner] World Bank backs $1.4B for Chile’s copper giant",
+          "url": "https://www.northernminer.com/news/world-bank-back-1-4b-for-chiles-copper-giant/1003895433/",
+          "source": "The Northern Miner",
+          "author": "Cecilia Jamasmie",
+          "ai_score": 57,
+          "date_published": "2026-10-05T20:00:00+00:00",
+          "summary": "The World Bank Group is holding up a financing structure used by Chile’s state-owned Codelco as a model for mineral-rich countries seeking to attract long-term private capital while reducing mining’s....",
+          "discussed": true,
+          "mention_offset_frac": 0.6099
+        },
+        {
+          "title": "[RealAgriculture] AAFC Seed Increase Unit move from Indian Head to Saskatoon set to be implemented over two seasons",
+          "url": "https://www.realagriculture.com/2026/10/aafc-seed-increase-unit-move-from-indian-head-to-saskatoon-set-to-be-implemented-over-two-seasons/",
+          "source": "RealAgriculture",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-10-05T20:45:34+00:00",
+          "summary": "Agriculture and Agri-Food Canada (AAFC) confirmed last week that the Seed Increase Unit (SIU) will operate out of both the Indian Head Research Farm and Saskatoon Research and Development Centre in 20...",
+          "discussed": true,
+          "mention_offset_frac": 0.6748
+        },
+        {
+          "title": "[ZDNet] Companies are ditching the cloud to save millions – should you? One factor matters most",
+          "url": "https://www.zdnet.com/tech/cloud-repatriation-enterprise-cost-optimization/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-10-05T17:17:40+00:00",
+          "summary": "Enterprise leaders explain why so many companies are suddenly pushing to move their workloads off cloud.",
+          "discussed": true,
+          "mention_offset_frac": 0.7138
+        },
+        {
+          "title": "[TechCrunch] Hackers steal 8 million citizens’ records from Danish government database",
+          "url": "https://techcrunch.com/2026/10/05/hackers-steal-8-million-citizens-records-from-danish-government-database/",
+          "source": "TechCrunch",
+          "author": "Zack Whittaker",
+          "ai_score": 62,
+          "date_published": "2026-10-05T14:58:42+00:00",
+          "summary": "The Danish government said the breach of names, addresses, and state-issued ID numbers affects 8 million people, including people living abroad and the deceased.",
+          "discussed": true,
+          "mention_offset_frac": 0.7637
+        },
+        {
+          "title": "[The Verge] All the drama around AI&#8217;s takeover of mathematics",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1004933/ai-math-openai-breakthrough-solution",
+          "source": "The Verge",
+          "author": "Robert Hart",
+          "ai_score": 58,
+          "date_published": "2026-10-05T19:28:59+00:00",
+          "summary": "This past year, OpenAI, Anthropic, and other labs have announced breakthroughs on numerous long-standing mathematical problems, in some cases pushing well beyond what researchers expected current syst...",
+          "discussed": true,
+          "mention_offset_frac": 0.8366
+        },
+        {
+          "title": "[Hackaday] Building a Cheap, Dexterous Robot Hand",
+          "url": "https://hackaday.com/2026/10/05/building-a-cheap-dexterous-robot-hand/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-10-05T15:30:41+00:00",
+          "summary": "Most of the time, assuming nothing’s gone wrong with them, we take our hands so much for granted that it’s easy to forget what remarkable pieces of engineering they are: …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.929
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[Fast Company] The $170 billion lesson data center developers keep learning the hard way",
+          "url": "https://www.fastcompany.com/91612143/ai-data-centers-local-communities",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-09-28T12:00:00+00:00",
+          "summary": "Maura Healey, the governor of Massachusetts, recently laid down a new rule on the contentious question of whether to build data centers in her state: “Unless a community says yes to a data center, we ...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Options being considered for B.C.’s Historic O’Keefe Ranch",
+          "url": "https://wltribune.com/2026/10/05/options-being-considered-for-b-c-s-historic-okeefe-ranch/",
+          "source": "Williams Lake Tribune",
+          "author": "Jennifer Smith",
+          "ai_score": 62,
+          "date_published": "2026-10-05T19:03:00+00:00",
+          "summary": "## Options being considered for B.C.’s Historic O’Keefe Ranch Published 12:03 pm Monday, October 5, 2026 **By Jennifer Smith** 1/2 A rainbow is captured over the O'Keefe Ranch Mansion recently by a vo...",
+          "discussed": true
+        },
+        {
+          "title": "[farmonaut.com] Farming 4.0: Why the Future of Sustainable Farming Is Forged in Factories",
+          "url": "https://farmonaut.com/blogs/farming-4-0-why-the-future-of-sustainable-farming-is-forged-in-factories",
+          "source": "farmonaut.com",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-05T17:14:34+00:00",
+          "summary": "Farming 4.0: Why the Future of Sustainable Farming Is Forged in Factories agritech-factory-manufacturing-it-ot-convergence Do you recall the times when landscaping your garden depended solely on the w...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "What metrics should be used to measure success and sustainability in working-lands industries, and do current numbers hide more than they reveal?",
+        "riley_position": "Single headline metrics (like cut volume or visitor numbers) are useful tools that enforce limits and drive accountability, but they should be paired with additional measurements like jobs per thousand cubic metres or repeat guest ratios to capture what matters beyond the primary figure.",
+        "riley_key_evidence": [
+          "64 billion dollars in stalled or blocked AI data centre projects shows developers pay a price for ignoring communities, and standardized community benefits agreements make projects bankable",
+          "Allowable annual cut volume is auditable and enforceable, providing a hard cap that forces a limit on harvest within forest sustainability",
+          "Guest ranches can afford to keep working herds when earning tourism revenue, pairing bookings with repeat guests and local hires reveals whether the operation remains genuinely productive"
+        ],
+        "casey_position": "Metrics become reductive proxies that obscure what they were meant to measure; once a number runs the budget, people optimize for the number itself rather than the underlying outcome it represented, creating drift between reported success and actual community benefit.",
+        "casey_key_evidence": [
+          "The 170 billion dollar data centre figure is actually 'announced investment' from press releases with a 108 billion dollar spread depending on the source, lumping temporary 'stalled' projects with permanently 'blocked' ones",
+          "Cubic metres harvested don't capture fibre quality, employment per operation, or whether mills stay open—mills keep closing while harvest volumes are met on paper",
+          "Farmonaut's definition of sustainable farming centered on 'uptime of the factory that builds the sensor' rather than soil health, yield, or farm income, exemplifying how vendor metrics displace actual outcomes"
+        ],
+        "resolution": "Riley and Casey agreed that publishing multiple numbers instead of single metrics is necessary, and proposed a small experiment: asking all candidates in Cariboo-Chilcotin and Prince George-North Cariboo at campaign forums what number should accompany cut volume, booking counts, and other working-lands measures. They acknowledged neither has evidence to settle whether better numbers change what people actually do versus what they report.",
+        "topics_covered": [
+          "AI data centre siting and community consent frameworks in Massachusetts and Pennsylvania",
+          "Forestry metrics and the drift between harvest volume caps and mill employment in the Cariboo",
+          "Agricultural technology ownership and data capture in precision farming",
+          "Tourism measurement at heritage ranches and the risk of working landscapes becoming themed hotels",
+          "First Nations-led forestry operations and stewardship-based permit terms"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 7,
+          "conditions": "overcast",
+          "high": 16,
+          "low": 6
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 6,
+          "conditions": "partly cloudy",
+          "high": 15,
+          "low": 5
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 6,
+          "conditions": "partly cloudy",
+          "high": 18,
+          "low": 5
+        },
+        {
+          "name": "Quesnel",
+          "temp": 7,
+          "conditions": "overcast",
+          "high": 16,
+          "low": 6
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 4,
+          "conditions": "partly cloudy",
+          "high": 16,
+          "low": 4
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Habitat for Humanity Cariboo",
+      "description": "Builds affordable homes for Cariboo families in need; ReStore diverts building materials from landfill while funding housing projects",
+      "website": "habitatcariboo.org",
+      "psa_angle": "It's World Habitat Day. Habitat for Humanity Cariboo builds affordable homes right here — and their ReStore diverts building materials from landfill while funding housing. Volunteer at habitatcariboo.org.",
+      "event_name": "World Habitat Day"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Where does the \"$170 billion\" figure come from, and what exactly did Healey and Shapiro require?\nFindings:\n- The figure comes from a Carbon Direct white paper. Carbon Direct is an energy and climate solutions company. The paper covers 46 AI data center projects in 20 states, from Jan 1, 2024 to May 15, 2026. It counts projects that were blocked, withdrawn, or stalled by community opposition. Fast Company and Route Fifty both reported it.\n- The number is soft. KuCoin's summary put the range at $137–172 billion. An earlier Data Center Watch tally counted $64 billion, made up of $18 billion blocked and $46 billion delayed. \"Announced investment\" is not the same as capital actually lost.\n- A search answer (not independently confirmed) says Healey signed an executive order on Sept 8, 2026. It applies to data centers drawing more than 25 MW at peak. It requires local approval through a state-standardized community benefits agreement. Developers must bring their own clean energy or pay into a ratepayer protection fund. NDAs are banned.\n- The same answer says Shapiro requires early, transparent engagement with residents so they can influence major design decisions. That is a softer requirement than Healey's veto.\nSuggested angle: Riley can argue that community consent is a design input that makes projects bankable. Casey can question the headline number: it is a developer-side estimate of announced investment, and it lumps \"stalled\" in with \"blocked.\" Casey can also ask whether a local veto will push projects onto rural working lands and into small towns that have less leverage. The two can then debate whether \"community says yes\" means real consent or just a better-packaged benefits deal.\n\nRESEARCH QUESTION: How do the three articles connect on working lands?\nFindings: No research was needed here. The O'Keefe Ranch article is about a historic ranch in B.C. weighing options for its future. The Farmonaut piece is a vendor's promotional framing of precision-ag manufacturing and IT/OT convergence. Treat Farmonaut's claims as marketing, not independent evidence.\nSuggested angle: Riley can pitch tech-enabled farming and industrial reuse of rural land as an upside. Casey can ask who captures the value and who carries the land-use cost. The same trust gap that blocks data centers also applies to ag-tech and to heritage ranches choosing between industrial and community uses.\n\nELECTION RESEARCH — 2026 B.C. provincial general election\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\nThe three My Cariboo Now articles supplied today (a poll, an NDP long-term care pledge and a Green wealth-tax proposal) carry no candidate names for either riding. The names below come from the roll-call sources. The sources for each claim are named in the lines that follow.\n\n**FINDINGS: Cariboo-Chilcotin**\n- **Lorne Doerkson (Conservative, incumbent)**\n  - Elections BC results (2024-10-19) show he has been MLA since 2020. He was first elected as a B.C. Liberal and was re-elected in 2024 as a B.C. Conservative.\n  - 2020 win: Elections BC's 2020 statement of votes gives him 6,600 votes, or 51.25%. NDP's Scott Andrews had 4,180 (32.46%). The margin was 2,420 votes, by my arithmetic from those two figures.\n  - 2024 win: BC Ballot (updated 2026-10-05), citing Elections BC, says he won by 7,722 votes. He had 13,714 votes (69.6%) against NDP's Michael Moses with 5,992 (30.4%).\n  - He is now the B.C. Conservatives' interim leader. The 100 Mile Free Press (2026-10-01) calls him interim leader and incumbent MLA. AM 1150 says he took over less than two days before the election call. The Globe and Mail (2026-09-26) carried a piece on him taking the reins.\n  - I found no controversy for him in these sources.\n- **Kathryn Askew (BC NDP)**\n  - The 100 Mile Free Press (Williams Lake Tribune staff, 2026-10-01) describes her as a retired school teacher from Canim Lake.\n  - It says she has 32 years in education. She held leadership roles with the BC Teachers' Federation and her local union, including local president and bargaining chair. She has a national award for innovative teaching.\n  - She volunteers with the Hawkins Lake Volunteer Fire Department, the Forest Grove Legion and the Canim Lake Community Club.\n  - BC Ballot (2026-10-05) lists no previous run on record for her. I found no controversy.\n- **Douglas Gook (BC Green)**\n  - BC Ballot (2026-10-05) lists five previous runs. I did not confirm the year and margin of each.\n  - Caledonia Courier (2024) says he previously ran unsuccessfully as a Green in the North Cariboo riding, now Prince George-Cariboo North, four times. That count includes a 2017 bid in Nechako Lakes, where he got nine percent.\n  - The Williams Lake Tribune also reports the 2017 Nechako Lakes run and nine percent.\n  - CKPG Today (2024-09-13) announced him as the Green candidate in Nechako Lakes for the October 19, 2024 election. His opponents there were Conservative leader John Rustad and NDP candidate Murphy Abraham. I did not find that result.\n  - I found no controversy.\n\n**FINDINGS: Prince George-North Cariboo**\n- **Sheldon Clare (Conservative, incumbent)**\n  - Elections BC results (2024-10-19) show he won the riding for the Conservatives in 2024.\n  - BC Ballot (2026-10-04) gives the 2024 result: Clare 11,430 votes (56.8%), Coralee Oakes (Independent) 4,394 (21.8%), Denice Bardua (NDP) 3,426 (17.0%), Randy Thompson (Green) 866 (4.3%). It says he won by 7,036 votes. It lists 2024 as his first win on record.\n  - He ran for the B.C. Conservative leadership and withdrew. CFJC Today (2026-02-28) reports that he and Steve Kooner announced they were withdrawing on Friday. The CTV and Times Colonist coverage reports his entry into that race and his stated aim of stopping former provincial Liberals from regaining control of the party.\n  - My Cariboo Now ran a piece titled \"Conservative candidate Sheldon Clare clears the air on the past 48 hours\", dated September (the year appeared cut off in the snippet). I could not open it. I can't say what the controversy was, so the show shouldn't characterize it.\n- **Denice Bardua (BC NDP)**\n  - CKPG Today (2026-10-03) spells the first name \"Denise\". BC Ballot and Elections BC-based listings use \"Denice\", so confirm the spelling before air.\n  - BC Ballot lists one previous run: 2024, NDP, third place with 3,426 votes (17.0%). That was a loss.\n  - I found no controversy.\n- **Randy Thompson (BC Green)**\n  - BC Ballot lists one previous run: 2024, Green, fourth place with 866 votes (4.3%). That was a loss.\n  - I found no controversy.\n\nThe show has not established other prior offices for Askew, Bardua or Thompson.\n\nNO RECORD FOUND: none\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Healey \"Unless a community says yes to a data center\" Shapiro data center community requirement",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "46 AI data center projects blocked withdrawn stalled 20 states $170 billion community opposition",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo-Chilcotin candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Prince George-North Cariboo candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Lorne Doerkson\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Sheldon Clare\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "page",
+        "url": "https://bcballot.ca/ridings/prince-george-north-cariboo/"
+      },
+      {
+        "kind": "page",
+        "url": "https://ckpgtoday.ca/2026/10/03/prince-george-area-candidates-announced-for-2026-provincial-election/"
+      },
+      {
+        "kind": "page",
+        "url": "https://100milefreepress.net/2026/10/01/retired-school-teacher-named-bc-ndp-candidate-for-cariboo-chilcoin/"
+      },
+      {
+        "kind": "page",
+        "url": "https://bcballot.ca/ridings/cariboo-chilcotin/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook Green Party Cariboo candidate previous elections",
+        "pass": "event"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mycariboonow.com/316427/news/politics/conservative-candidate-sheldon-clare-clears-the-air-on-the-past-48-hours/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Cariboo-Chilcotin 2020 election results Doerkson Donna Barnett Liberal margin",
+        "pass": "event"
+      },
+      {
+        "kind": "question",
+        "query": "B.C. Historic O'Keefe Ranch future options plans 2026"
+      },
+      {
+        "kind": "question",
+        "query": "Massachusetts Governor Maura Healey data center community benefits agreement details"
+      },
+      {
+        "kind": "question",
+        "query": "Pennsylvania Josh Shapiro data center early engagement policy"
+      },
+      {
+        "kind": "question",
+        "query": "Canada Food-Link Fund 1 billion infrastructure details producer costs"
+      },
+      {
+        "kind": "question",
+        "query": "B.C. NDP seven paused long-term care projects locations"
+      }
+    ]
+  }
+}

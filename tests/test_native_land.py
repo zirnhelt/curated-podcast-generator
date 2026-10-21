@@ -146,6 +146,106 @@ class TestTerritoryClaims:
         assert asked == []
 
 
+class TestNotEveryCapitalIsANationOrAPlace:
+    """2026-09-22 to 2026-10-09: four episodes flagged "Tŝilhqot'in named in
+    connection with Lorne", from election coverage that named no nation at all.
+    "Cariboo-Chilcotin" is a riding, not the people, and "Lorne" is the MLA's
+    first name, which geocoded to the Maritimes and was checked against the
+    Mi'kmaq map. The scrub then tried to delete a nation from the sentence.
+    """
+
+    ELECTION = ("**RILEY:** Our Tuesday rundown covered Cariboo-Chilcotin, with "
+                "Lorne Doerkson for the Conservatives, Kathryn Askew for the NDP, "
+                "and Douglas Gook for the Greens.")
+
+    def _record(self, monkeypatch):
+        asked = []
+        monkeypatch.setattr(native_land, "territories_for_place",
+                            lambda p: asked.append(p) or ["Mi’kma’ki", "Wabanaki"])
+        return asked
+
+    def test_the_aired_election_sentence_names_no_nation(self, monkeypatch):
+        asked = self._record(monkeypatch)
+        assert pg._nations_named_in(self.ELECTION) == []
+        assert pg.check_territory_claims(self.ELECTION) == []
+        assert asked == []
+
+    def test_a_surname_that_is_an_alias_names_no_one(self):
+        """Randy Thompson is a Green candidate, not the Nlaka'pamux."""
+        assert pg._nations_named_in(
+            "**RILEY:** And Randy Thompson for the Greens.") == []
+
+    def test_a_region_named_for_its_people_is_still_a_region(self):
+        """The 2026-10-09 script said plainly it would not guess at the nation."""
+        sentence = ("**RILEY:** Global News reports on an Indigenous cultural burn "
+                    "in the grasslands west of Osoyoos, in the Okanagan.")
+        assert pg._nations_named_in(sentence) == []
+
+    def test_a_place_alias_with_a_people_word_names_the_people(self):
+        named = pg._nations_named_in(
+            "**CASEY:** The Okanagan Nation Alliance led the burn near Osoyoos.")
+        assert [d for d, _ in named] == ["Syilx"]
+        assert [d for d, _ in pg._nations_named_in(
+            "**CASEY:** The Squamish Nation runs the site.")] == ["Squamish"]
+
+    def test_a_place_containing_a_nation_name_does_not_name_it(self):
+        assert pg._nations_named_in(
+            "**CASEY:** The ferry to Haida Gwaii leaves from Prince Rupert.") == []
+        assert [d for d, _ in pg._nations_named_in(
+            "**CASEY:** The Haida have managed those waters for millennia.")] == ["Haida"]
+
+    def test_possessives_and_orthography_still_name_the_nation(self):
+        for s in ("Whether Tŝilhqot'in's title extends there is the question.",
+                  "Whether TSILHQOT’IN title extends there is the question.",
+                  "The St'át'imc and Statimc spellings are one people."):
+            assert pg._nations_named_in(s), s
+
+    def test_a_person_is_one_phrase_not_a_first_name(self, monkeypatch):
+        places = pg._territory_place_candidates(
+            "**RILEY:** Tŝilhqot'in leaders met Lorne Doerkson in Castlegar.",
+            {"tsilhqotin"})
+        assert places == ["Lorne Doerkson", "Castlegar"]
+
+    def test_a_phrase_holding_a_nation_name_is_dropped_whole(self):
+        """Splitting "Randy Thompson" would leave "Randy" to geocode."""
+        places = pg._territory_place_candidates(
+            "**RILEY:** Sinixt elders and Randy Thompson met near Okanagan Nation "
+            "Alliance offices in Castlegar's Deer Park.",
+            {"sinixt", "thompson", "okanagan nation alliance"})
+        assert places == ["Castlegar", "Deer Park"]
+
+    def test_part_of_a_local_place_is_local(self, monkeypatch):
+        asked = self._record(monkeypatch)
+        pg.check_territory_claims(
+            "**CASEY:** The Secwépemc burn near 100 Mile House went well.")
+        assert asked == []
+
+    def test_the_scrub_accepts_a_rewrite_that_keeps_the_riding_name(self, monkeypatch):
+        """Only the people's name has to go; "Cariboo-Chilcotin" can stay."""
+        original = ("**RILEY:** Tŝilhqot'in voices on the Castlegar burn, and the "
+                    "Cariboo-Chilcotin race.")
+        rewrite = "**RILEY:** Local voices on the Castlegar burn, and the Cariboo-Chilcotin race."
+
+        class _Resp:
+            content = []
+            usage = None
+
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: object())
+        monkeypatch.setattr(pg, "api_retry", lambda f: _Resp())
+        monkeypatch.setattr(pg, "_log_claude_usage", lambda r: None)
+        monkeypatch.setattr(pg, "message_text",
+                            lambda r: json.dumps({"rewrites": [rewrite]}))
+        finding = {"sentence": original, "nation": "Tŝilhqot'in", "place": "Castlegar",
+                   "territories": CASTLEGAR_TERRITORIES}
+        assert pg.scrub_territory_claims(original, [finding]) == rewrite
+
+        # A bare alias is still the people: swapping one in is refused.
+        swapped = "**RILEY:** Chilcotin voices on the Castlegar burn, and the Cariboo-Chilcotin race."
+        monkeypatch.setattr(pg, "message_text",
+                            lambda r: json.dumps({"rewrites": [swapped]}))
+        assert pg.scrub_territory_claims(original, [finding]) == original
+
+
 class TestLookupBudget:
     def test_unresolved_places_are_cached_so_they_cost_one_lookup_ever(
             self, monkeypatch, tmp_path):
@@ -174,6 +274,58 @@ class TestLookupBudget:
         native_land._lookups_this_run = native_land.MAX_LOOKUPS_PER_RUN
         assert native_land.territories_for_place("Castlegar") is None
         assert any("ceiling" in d for d in native_land.drain_degradations())
+
+
+class TestResponseDecoding:
+    def test_a_charsetless_body_is_read_as_utf8(self, monkeypatch):
+        """requests falls back to Latin-1 without a charset; Mi’kma’ki came back
+        as "Miâkmaâki", and a mangled name can never match a nation."""
+        body = json.dumps([{"properties": {"Name": "Mi’kma’ki"}},
+                           {"properties": {"Name": "Tŝilhqot’in"}}],
+                          ensure_ascii=False).encode("utf-8")
+
+        class _Resp:
+            content = body
+
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return json.loads(body.decode("latin-1"))
+
+        monkeypatch.setattr(native_land.requests, "get", lambda *a, **k: _Resp())
+        names = native_land._territory_names(native_land._get_json("u", {}))
+        assert names == ["Mi’kma’ki", "Tŝilhqot’in"]
+        assert native_land.nation_matches_territories("Tŝilhqot'in", [], names)
+
+
+class TestGeocoding:
+    @staticmethod
+    def _results(monkeypatch, results):
+        monkeypatch.setattr(native_land, "_get_json", lambda url, params: {"results": results})
+
+    @staticmethod
+    def _r(name, admin1, lat, lon, pop=0):
+        return {"name": name, "admin1": admin1, "country_code": "CA",
+                "latitude": lat, "longitude": lon, "population": pop}
+
+    def test_a_bc_place_resolves(self, monkeypatch):
+        self._results(monkeypatch, [self._r("Castlegar", "British Columbia", 49.32, -117.66, 8000)])
+        assert native_land.geocode_place("Castlegar")["lat"] == 49.32
+
+    def test_a_same_named_place_outside_bc_is_not_taken(self, monkeypatch):
+        """'Lorne' resolved to the Maritimes and was checked against Mi'kma'ki."""
+        self._results(monkeypatch, [self._r("Lorne", "New Brunswick", 47.9, -66.1, 500)])
+        assert native_land.geocode_place("Lorne") is None
+
+    def test_a_partial_name_match_is_not_taken(self, monkeypatch):
+        self._results(monkeypatch, [self._r("Lorne Creek", "British Columbia", 54.6, -128.4)])
+        assert native_land.geocode_place("Lorne") is None
+
+    def test_a_name_that_is_several_bc_places_is_ambiguous(self, monkeypatch):
+        self._results(monkeypatch, [self._r("Stump Lake", "British Columbia", 50.37, -120.35, 50),
+                                    self._r("Stump Lake", "British Columbia", 53.1, -123.9)])
+        assert native_land.geocode_place("Stump Lake") is None
 
 
 class TestResponseParsing:

@@ -29,6 +29,7 @@ like any other source — and updates ROADMAP.md plus podcasts/roadmap_ledger.js
 from __future__ import annotations
 
 import argparse
+import ast
 import json
 import os
 import re
@@ -43,12 +44,14 @@ from xml.sax.saxutils import escape
 import requests
 
 from config_loader import (
+    HAIKU_MODEL,
     atomic_write_json,
     atomic_write_text,
     format_static_tell_block,
     json_output_config,
     load_prompts_config,
     message_text,
+    thinking_off,
 )
 
 API_ROOT = "https://api.github.com"
@@ -62,7 +65,7 @@ INDEX_FILE = REVIEWS_DIR / "index.json"
 FEED_FILE = Path("episode-reviews.xml")
 FEED_LIMIT = 30
 
-REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL", "claude-haiku-4-5")
+REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL") or HAIKU_MODEL
 REVIEW_MAX_TOKENS = 2200
 
 # Where the day's runs come from, by UTC hour (BC is permanent UTC-7). The
@@ -242,8 +245,18 @@ _MULTI: dict[str, str] = {
     "deep_dive": r"- \[kw=\d+[^\]]*\] (.+)",
     "degradations": r"##\[warning\]Degraded '([^']+)': (.+)",
     "canary_failures": r"Gemini TTS canary failed on (.+?): (.+)",
-    "brave_failures": r"Brave Answers API failed for '([^']+)': (.+)",
+    # The print carries the payload's keys between the query and the error since
+    # 2026-09; without the optional bracket this matched nothing.
+    "brave_failures": r"Brave Answers API failed for '([^']+)'(?: \[[^\]]*\])?: (.+)",
 }
+
+# One JSON line per pipeline process (`podcast_generator._format_spend_line`).
+# Stages are separate processes, so the night's spend is the sum of every line.
+_SPEND_LINE = r"💰 Spend by service: (\{.*\})"
+
+_SERVICE_LABELS = {"anthropic": "Anthropic", "brave-search": "Brave Search",
+                   "brave-answers": "Brave Answers", "openai-tts": "OpenAI TTS",
+                   "kagi-extract": "Kagi Extract", "cohere": "Cohere"}
 
 # Things worth counting rather than listing — nine near-identical warnings are
 # one fact, not nine.
@@ -272,6 +285,42 @@ def _strip_command_echo(text: str) -> str:
     return re.sub(r"^\S*Z ", "", _ANSI.sub("", "\n".join(kept)), flags=re.MULTILINE)
 
 
+# The runner masks every line of every secret, and the Gemini service-account
+# key is multi-line JSON whose first and last lines are a bare `{` and `}`. So
+# every brace in the log reads `***`, the spend line never parsed, and the cost
+# row went missing from every review from 1835b6f on.
+_MASK = re.compile(r"\*\*\*")
+_SPEND_LINES = re.compile(r"^.*(?:Spend by service|API call counts).*$", re.MULTILINE)
+
+
+def _unmask_braces(line: str) -> str:
+    """Put a masked `{`/`}` back: an opening one is followed by a key's quote."""
+    line = line.replace("******", "{}")
+    return _MASK.sub(lambda m: "{" if line[m.end():m.end() + 1] in ("\"", "'") else "}", line)
+
+
+def _sum_spend(clean: str, facts: dict[str, Any]) -> None:
+    """Add up every stage's spend line; overrides the single-snapshot `spend` facts."""
+    tokens, calls, usd = 0, {}, {}
+    seen = False
+    for raw in re.findall(_SPEND_LINE, clean):
+        try:
+            line = json.loads(raw)
+        except ValueError:
+            continue
+        seen = True
+        tokens += int(line.get("input_tokens", 0))
+        for key, n in (line.get("calls") or {}).items():
+            calls[key] = calls.get(key, 0) + n
+        for key, v in (line.get("usd") or {}).items():
+            usd[key] = usd.get(key, 0.0) + v
+    if not seen:
+        return
+    facts["spend"] = [f"{tokens:,}", str(calls)]
+    facts["spend_usd"] = f"{usd.get('anthropic', 0.0):.2f}"
+    facts["spend_by_service"] = {k: round(v, 4) for k, v in usd.items()}
+
+
 def scan_log(text: str) -> dict[str, Any]:
     """Pull structured facts out of the job log.
 
@@ -280,7 +329,7 @@ def scan_log(text: str) -> dict[str, Any]:
     paragraph, an exception is no review at all.
     """
     facts: dict[str, Any] = {}
-    clean = _strip_command_echo(text)
+    clean = _SPEND_LINES.sub(lambda m: _unmask_braces(m.group()), _strip_command_echo(text))
 
     for key, (pattern, casts) in _SINGLE.items():
         m = re.search(pattern, clean)
@@ -299,6 +348,8 @@ def scan_log(text: str) -> dict[str, Any]:
         count = len(re.findall(pattern, clean))
         if count:
             facts[key] = count
+
+    _sum_spend(clean, facts)
 
     # Warnings the pipeline emitted that no extractor above claimed. These are
     # the unknown unknowns — a new failure mode has no regex until it has
@@ -356,8 +407,8 @@ _MEANS: dict[str, str] = {
                          "kept, so nothing is dropped from the episode."),
     "brave_enriched": ("articles whose body was too thin to script from, topped up from Brave "
                        "search results."),
-    "short_script": ("the first draft came in under target and was sent back for one expand pass. "
-                     "quality.script_words is what shipped."),
+    "short_script": ("the first draft came in under target and was sent back for up to two "
+                     "expand passes. quality.script_words is what shipped."),
     # Raised as a lost-articles problem on five nights before this was here.
     "roundup_dropped": ("stories cut from the roundup pool by the airtime budget "
                         "(NEWS_ROUNDUP_COUNT). By design: the pool is larger than one segment "
@@ -407,6 +458,7 @@ def generate_narrative(facts: dict[str, Any]) -> str:
     try:
         resp = client.messages.create(
             model=REVIEW_MODEL,
+            thinking=thinking_off(REVIEW_MODEL),
             max_tokens=REVIEW_MAX_TOKENS,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -459,6 +511,26 @@ def render_run_table(runs: list[dict]) -> str:
             f"<tbody>\n{chr(10).join(rows)}\n</tbody>\n</table>")
 
 
+def _format_calls(raw: str) -> str:
+    """`{'brave-search': 48, 'claude': 11}` (a dict repr from the log) -> `59 total: brave-search 48 · claude 11`."""
+    try:
+        counts = ast.literal_eval(raw.strip())
+        if not isinstance(counts, dict) or not counts:
+            return raw
+        parts = sorted(counts.items(), key=lambda kv: -kv[1])
+        return f"{sum(counts.values())} total: " + " · ".join(f"{k} {v}" for k, v in parts)
+    except (ValueError, SyntaxError, TypeError):
+        return raw
+
+
+def _cost_by_service_row(by_service: dict[str, float] | None) -> tuple[str, str] | None:
+    if not by_service:
+        return None
+    parts = [f"{_SERVICE_LABELS.get(k, k)} ${v:.3f}"
+             for k, v in sorted(by_service.items(), key=lambda kv: -kv[1])]
+    return "Total cost", f"${sum(by_service.values()):.2f} at list price: " + " · ".join(parts)
+
+
 def render_numbers_table(facts: dict[str, Any]) -> str:
     """Templated locally on purpose — a model that can restate a number can
     also restate it wrong, and these are the load-bearing ones."""
@@ -479,16 +551,280 @@ def render_numbers_table(facts: dict[str, Any]) -> str:
         row("Audio size", "audio_mb", "{} MB"),
         row("Citations matched", "citation_alignment", "{}/{} roundup, {}/{} deep dive"),
         row("Feed", "rss_episodes", "{} episodes"),
-        row("Anthropic spend", "spend", "{} input tokens, calls {}"),
+        row("Anthropic input tokens", "spend", "{0}"),
+        row("API calls", "spend", "{1}"),
         row("Anthropic cost", "spend_usd", "${} at list price (estimate)"),
+        _cost_by_service_row(facts.get("spend_by_service")),
     ]
+    rows = [(label, _format_calls(value)) if label == "API calls" else (label, value)
+            for label, value in filter(None, rows)]
     body = "\n".join(f"<tr><td>{label}</td><td>{escape(str(value))}</td></tr>"
-                     for label, value in filter(None, rows))
+                     for label, value in rows)
     if not body:
         return ""
     return ("<h3>What shipped</h3>\n<table>\n"
             "<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n"
             f"<tbody>\n{body}\n</tbody>\n</table>")
+
+
+# ---------------------------------------------------------------------------
+# Verdict, actions, charts
+# ---------------------------------------------------------------------------
+#
+# The narrative answered "what happened" in eight sections and never "so what
+# do I do": the 2026-10-20 review spent its first heading on a word count it
+# got wrong and said "the facts do not say" six times. The top of the page is
+# now Python — a verdict, the things to act on (one per signal, the same keys
+# the roadmap counts), and charts — and the narrative is the detail under it.
+# Charts are inline SVG built here: no script, nothing fetched, and every
+# number is drawn from the facts rather than restated by a model.
+
+# Signals that are worth a look but never make the night "needs attention".
+_MINOR_SIGNALS = {"ai-tells-shipped", "voice-ratio"}
+
+# What to do about each signal: where to look, in one line. A degrade() row
+# gets the generic line with its segment named.
+_ACTIONS: dict[str, str] = {
+    "run-failed": "Open the failed run's log. A later rung shipping does not make it a non-event: "
+                  "it spent a retry window.",
+    "short-script": "Read the expand passes in the script stage log. Target and floor are "
+                    "<code>TARGET_SCRIPT_WORDS</code> / <code>MIN_SCRIPT_WORDS</code> in "
+                    "<code>podcast_generator.py</code>.",
+    "citations:roundup": "Open the day's citations JSON and find the roundup stories the script "
+                         "paraphrased past matching, or never aired.",
+    "citations:deep-dive": "Open the day's citations JSON and check which deep-dive sources the "
+                           "script failed to use.",
+    "ai-tells-shipped": "Find the phrase in the script. If it recurs, add it to "
+                        "<code>config/ai_tells.json</code>.",
+    "voice-ratio": "One host carried the episode. Check the turn split in the script.",
+}
+
+_STATUS = {  # level → (icon, label); colour comes from the CSS class
+    "good": ("✓", "Shipped clean"),
+    "minor": ("●", "Shipped, minor notes"),
+    "warn": ("▲", "Shipped, needs a look"),
+    "bad": ("✕", "No episode"),
+}
+
+
+def verdict(facts: dict[str, Any], signals: dict[str, str]) -> tuple[str, str]:
+    """(level, one-line summary) for the banner."""
+    runs = facts.get("runs") or []
+    shipped = "audio_minutes" in facts or any(r.get("conclusion") == "success" for r in runs)
+    if not shipped:
+        return "bad", "No run produced an episode today."
+    major = [k for k in signals if k not in _MINOR_SIGNALS]
+    if major:
+        n = len(major)
+        return "warn", f"{n} thing{'s' if n != 1 else ''} to look at before tomorrow's run."
+    if signals:
+        return "minor", "Nothing broke. A couple of quality notes below."
+    return "good", "Nothing broke and nothing fell back."
+
+
+def _ledger_note(signal: str, ledger: dict | None) -> str:
+    for item in (ledger or {}).get("items", []):
+        if item.get("signal") == signal and item.get("status") in ("open", "pending"):
+            n = len(item.get("seen") or [])
+            where = "on the roadmap" if item["status"] == "open" else "pending for the roadmap"
+            return f" <span class=\"recur\">Recurring: {where}, seen {n} night{'s' if n != 1 else ''}.</span>"
+    return ""
+
+
+def render_actions(signals: dict[str, str], ledger: dict | None = None) -> str:
+    if not signals:
+        return "<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>"
+    order = sorted(signals, key=lambda k: (k in _MINOR_SIGNALS, k))
+    items = []
+    for key in order:
+        if key.startswith("degraded:"):
+            seg = key.split(":", 1)[1]
+            todo = (f"<code>{escape(seg)}</code> fell back. Search the run log for "
+                    f"<code>Degraded '{escape(seg)}'</code> and decide whether the fallback is "
+                    "acceptable or the cause needs fixing.")
+        else:
+            todo = _ACTIONS.get(key, "Investigate.")
+        items.append(f"<li><strong>{todo}</strong><br><span class=\"evidence\">"
+                     f"{escape(signals[key])}</span>{_ledger_note(key, ledger)}</li>")
+    return "<h2>What to do</h2>\n<ol class=\"actions\">\n" + "\n".join(items) + "\n</ol>"
+
+
+def _attr(text: str) -> str:
+    return escape(text, {'"': "&quot;"})
+
+
+def _hbar(rows: list[tuple[str, float, str]], *, floor: tuple[float, str] | None = None,
+          max_value: float | None = None) -> str:
+    """Horizontal bars: (label, value, value text). One hue; the value printed at the bar end.
+
+    HTML rather than SVG: a scaled SVG shrinks its text with it, and on a phone
+    the labels came out at 6px.
+    """
+    rows = [r for r in rows if r[1] is not None and r[1] >= 0]
+    if not rows:
+        return ""
+    top = max_value or max(v for _, v, _ in rows) or 1
+    # The longest bar takes 75% of the track; the rest holds its value text.
+    scale = 75 / top
+    ref = (f'<span class="ref" style="left:{scale * floor[0]:.1f}%"></span>' if floor else "")
+    out = [f'<div class="row" title="{_attr(label)}: {_attr(text)}"><span class="lbl">{escape(label)}</span>'
+           f'<span class="track">{ref}<span class="bar" style="width:{max(1.0, scale * min(v, top)):.1f}%">'
+           f'</span><span class="val">{escape(text)}</span></span></div>'
+           for label, v, text in rows]
+    if floor:
+        out.append(f'<div class="row"><span></span><span class="track"><span class="note" '
+                   f'style="margin-left:{scale * floor[0]:.1f}%">┆ {escape(floor[1])}</span></span></div>')
+    return '<div class="bars">' + "".join(out) + "</div>"
+
+
+def _length_chart(facts: dict[str, Any]) -> str:
+    """Shipped words against the target, with the first draft marked when it came in short."""
+    quality = facts.get("quality")
+    if not (isinstance(quality, list) and len(quality) == 3):
+        return ""
+    shipped = quality[2]
+    short = facts.get("short_script")
+    draft, target = (short if isinstance(short, list) and len(short) == 2 else (None, None))
+    top = max(v for v in (shipped, draft, target) if v) * 1.1
+    pct = lambda v: f"{100 * v / top:.1f}%"  # noqa: E731
+    marks = ""
+    if target:
+        marks += (f'<span class="tick" style="left:{pct(target)}" title="Target: {target:,} words"></span>'
+                  f'<span class="tag" style="left:{pct(target)}">target {target:,}</span>')
+    if draft:
+        marks += (f'<span class="dot" style="left:{pct(draft)}" title="First draft: {draft:,} words"></span>'
+                  f'<span class="tag up" style="left:{pct(draft)}">first draft {draft:,}</span>')
+    return (f'<div class="length"><div class="lbl">Shipped {shipped:,} words</div>'
+            f'<div class="track"><span class="bar" style="width:{pct(shipped)}" '
+            f'title="Shipped: {shipped:,} words"></span>{marks}</div></div>')
+
+
+def render_charts(facts: dict[str, Any]) -> str:
+    figures: list[tuple[str, str, str]] = []  # (title, caption, svg)
+
+    figures.append(("Script length", "Words the listener heard, against the target. The dot is "
+                    "the first draft when it came in short and was sent back to expand.",
+                    _length_chart(facts)))
+
+    cites = facts.get("citation_alignment")
+    if isinstance(cites, list) and len(cites) == 4:
+        rows = [(name, 100 * m / t, f"{m}/{t} ({100 * m / t:.0f}%)")
+                for name, m, t in (("Roundup", cites[0], cites[1]), ("Deep dive", cites[2], cites[3])) if t]
+        figures.append(("Citations that match the script",
+                        "Below the line, the roadmap starts counting it.",
+                        _hbar(rows, max_value=100, floor=(100 * CITATION_FLOOR, f"{CITATION_FLOOR:.0%} floor"))))
+
+    funnel = [("Loaded from feed", facts.get("articles_loaded")),
+              ("Kept after dedup", facts.get("dedup_filtered")),
+              ("Aired in roundup", (facts.get("roundup_pool") or [None])[0]),
+              ("Cut for airtime", facts.get("roundup_dropped")),
+              ("Deep dive sources", facts.get("deep_dive_count"))]
+    figures.append(("Where the stories went", "Cuts for airtime are by design: the pool is "
+                    "larger than one segment.",
+                    _hbar([(l, v, f"{v}") for l, v in funnel if isinstance(v, int)])))
+
+    steps = facts.get("slow_steps") or []
+    figures.append(("Where the time went", "Steps over a minute, in the run that shipped.",
+                    _hbar([(s["name"][:28], s["seconds"] / 60, f"{s['seconds'] / 60:.1f} min")
+                           for s in steps if s.get("seconds")])))
+
+    by_service = facts.get("spend_by_service") or {}
+    if by_service:
+        figures.append(("Spend by service", f"${sum(by_service.values()):.2f} at list price.",
+                        _hbar([(_SERVICE_LABELS.get(k, k), v, f"${v:.3f}")
+                               for k, v in sorted(by_service.items(), key=lambda kv: -kv[1])])))
+
+    blocks = [f'<figure><figcaption><strong>{escape(t)}</strong> {escape(c)}</figcaption>{svg}</figure>'
+              for t, c, svg in figures if svg]
+    return ("<h2>The night in charts</h2>\n<div class=\"grid\">\n" + "\n".join(blocks) + "\n</div>"
+            if blocks else "")
+
+
+def review_metrics(facts: dict[str, Any]) -> dict[str, float]:
+    """The handful of numbers worth a trend line; saved with each index entry."""
+    m: dict[str, float] = {}
+    if isinstance(facts.get("audio_minutes"), float):
+        m["audio_minutes"] = facts["audio_minutes"]
+    quality = facts.get("quality")
+    if isinstance(quality, list) and len(quality) == 3:
+        m["script_words"], m["tell_hits"] = quality[2], quality[0]
+    cites = facts.get("citation_alignment")
+    if isinstance(cites, list) and len(cites) == 4:
+        if cites[1]:
+            m["roundup_cite_pct"] = round(100 * cites[0] / cites[1], 1)
+        if cites[3]:
+            m["deep_dive_cite_pct"] = round(100 * cites[2] / cites[3], 1)
+    if facts.get("spend_by_service"):
+        m["cost_usd"] = round(sum(facts["spend_by_service"].values()), 3)
+    return m
+
+
+_TRENDS = [("audio_minutes", "Episode length", "{:.1f} min"),
+           ("script_words", "Script words", "{:,.0f}"),
+           ("roundup_cite_pct", "Roundup citations matched", "{:.0f}%"),
+           ("deep_dive_cite_pct", "Deep-dive citations matched", "{:.0f}%"),
+           ("tell_hits", "AI-tell hits shipped", "{:.0f}"),
+           ("cost_usd", "Cost (list price)", "${:.2f}")]
+
+
+def _sparkline(points: list[tuple[str, float]], fmt: str) -> str:
+    width, height, pad = 260, 56, 6
+    values = [v for _, v in points]
+    lo, hi = min(values), max(values)
+    span = (hi - lo) or 1
+    step = (width - 2 * pad) / (len(points) - 1)
+    xy = [(pad + i * step, height - pad - (height - 2 * pad) * (v - lo) / span) for i, (_, v) in enumerate(points)]
+    path = " ".join(f"{'M' if i == 0 else 'L'}{x:.1f},{y:.1f}" for i, (x, y) in enumerate(xy))
+    hits = "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" class="hit"><title>{escape(d)}: '
+                   f'{escape(fmt.format(v))}</title></circle>' for (x, y), (d, v) in zip(xy, points))
+    lx, ly = xy[-1]
+    return (f'<svg class="spark" viewBox="0 0 {width} {height}" role="img" aria-label="'
+            f'{len(points)} nights, {_attr(fmt.format(lo))} to {_attr(fmt.format(hi))}">'
+            f'<path d="{path}" class="line"/><circle cx="{lx:.1f}" cy="{ly:.1f}" r="4" class="today"/>'
+            f'{hits}</svg>')
+
+
+def render_trends(history: list[dict], today: dict[str, float], date: str) -> str:
+    """Small multiples over the reviews in the index, today last."""
+    nights = sorted(((e["date"], e.get("metrics") or {}) for e in history if e.get("date") != date))
+    nights.append((date, today))
+    tiles = []
+    for key, label, fmt in _TRENDS:
+        points = [(d, m[key]) for d, m in nights if isinstance(m.get(key), (int, float))]
+        if len(points) < 3:
+            continue
+        tiles.append(f'<div class="trend"><div class="trend-head"><span>{escape(label)}</span>'
+                     f'<strong>{escape(fmt.format(points[-1][1]))}</strong></div>'
+                     f'{_sparkline(points, fmt)}<div class="note">{escape(points[0][0][5:])} → '
+                     f'{escape(points[-1][0][5:])} · range {escape(fmt.format(min(v for _, v in points)))}'
+                     f'–{escape(fmt.format(max(v for _, v in points)))}</div></div>')
+    if not tiles:
+        return ""
+    return ("<h2>Last 30 nights</h2>\n<p class=\"note\">Today is the dot at the right end. "
+            "Hover a point for its night.</p>\n<div class=\"trends\">\n" + "\n".join(tiles) + "\n</div>")
+
+
+def render_kpis(facts: dict[str, Any], runs: list[dict]) -> str:
+    tiles: list[tuple[str, str, str]] = []
+    if facts.get("audio_minutes") is not None:
+        tiles.append(("Episode", f"{facts['audio_minutes']} min", "audio runtime"))
+    quality = facts.get("quality")
+    if isinstance(quality, list) and len(quality) == 3:
+        tiles.append(("Script", f"{quality[2]:,}", "words shipped"))
+    cites = facts.get("citation_alignment")
+    if isinstance(cites, list) and len(cites) == 4:
+        tiles.append(("Citations", f"{cites[0]}/{cites[1]} · {cites[2]}/{cites[3]}", "roundup · deep dive"))
+    if facts.get("spend_by_service"):
+        tiles.append(("Cost", f"${sum(facts['spend_by_service'].values()):.2f}", "list price, all services"))
+    shipped = next((r for r in runs if r.get("conclusion") == "success"), None)
+    if shipped and shipped.get("finished"):
+        tiles.append(("Done at", shipped["finished"].replace(" Pacific", ""),
+                      shipped["trigger"].split(" (")[0].split(" —")[0] + " rung"))
+    if not tiles:
+        return ""
+    return "<div class=\"kpis\">" + "".join(
+        f'<div class="kpi"><span>{escape(k)}</span><strong>{escape(v)}</strong><small>{escape(s)}</small></div>'
+        for k, v, s in tiles) + "</div>"
 
 
 PAGE = """<!DOCTYPE html>
@@ -498,15 +834,66 @@ PAGE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <style>
-    body {{ font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }}
-    h1 {{ border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }}
-    h3 {{ margin-top: 1.5rem; font-size: 1.1rem; color: #444; }}
-    table {{ border-collapse: collapse; width: 100%; margin: 0.5rem 0; }}
-    th, td {{ border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }}
-    th {{ background: #f5f5f5; }}
-    .meta {{ color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }}
-    a {{ color: #0066cc; }}
-    code {{ background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }}
+    :root {{ --bg: #fcfcfb; --ink: #0b0b0b; --muted: #52514e; --rule: #e1e0d9; --axis: #c3c2b7;
+             --panel: #f4f3ef; --series: #2a78d6; --link: #1c5cab;
+             --good: #0ca30c; --minor: #2a78d6; --warn: #fab219; --bad: #d03b3b; color-scheme: light; }}
+    @media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) {{
+             --bg: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --rule: #2c2c2a; --axis: #383835;
+             --panel: #242423; --series: #3987e5; --link: #86b6ef; color-scheme: dark; }} }}
+    :root[data-theme="dark"] {{ --bg: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --rule: #2c2c2a;
+             --axis: #383835; --panel: #242423; --series: #3987e5; --link: #86b6ef; color-scheme: dark; }}
+    body {{ font-family: system-ui, sans-serif; max-width: 880px; margin: 2rem auto; padding: 0 16px;
+            line-height: 1.55; color: var(--ink); background: var(--bg); }}
+    h1 {{ font-size: 1.5rem; margin-bottom: 0.25rem; }}
+    h2 {{ font-size: 1.15rem; margin-top: 2.25rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem; }}
+    h3 {{ margin-top: 1.4rem; font-size: 1.02rem; }}
+    a {{ color: var(--link); }}
+    code {{ background: var(--panel); padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.9em; }}
+    .meta, .note, .evidence {{ color: var(--muted); font-size: 0.88rem; }}
+    .verdict {{ display: flex; gap: 0.8rem; align-items: center; padding: 0.8rem 1rem; margin: 1.2rem 0;
+                border-radius: 8px; background: var(--panel); border-left: 6px solid var(--lvl); }}
+    .verdict .icon {{ font-size: 1.4rem; color: var(--lvl); width: 1.4rem; text-align: center; }}
+    .verdict strong {{ display: block; }}
+    .lvl-good {{ --lvl: var(--good); }} .lvl-minor {{ --lvl: var(--minor); }}
+    .lvl-warn {{ --lvl: var(--warn); }} .lvl-bad {{ --lvl: var(--bad); }}
+    .kpis {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }}
+    .kpi {{ background: var(--panel); border-radius: 8px; padding: 0.6rem 0.8rem; }}
+    .kpi span, .kpi small {{ display: block; color: var(--muted); font-size: 0.8rem; }}
+    .kpi strong {{ font-size: 1.3rem; font-variant-numeric: tabular-nums; }}
+    .actions li {{ margin-bottom: 0.7rem; }} .actions strong {{ font-weight: 600; }}
+    .recur {{ color: var(--bad); font-size: 0.85rem; }}
+    .grid {{ display: grid; gap: 1.2rem; }}
+    figure {{ margin: 0; }} figcaption {{ font-size: 0.9rem; color: var(--muted); margin-bottom: 0.3rem; }}
+    figcaption strong {{ color: var(--ink); }}
+    .bars {{ display: grid; gap: 6px; }}
+    .row {{ display: grid; grid-template-columns: minmax(90px, 30%) 1fr; gap: 10px; align-items: center;
+            font-size: 0.85rem; }}
+    .row .lbl {{ text-align: right; }}
+    .track {{ position: relative; display: flex; align-items: center; gap: 6px; min-height: 18px; }}
+    .track .bar {{ display: block; height: 16px; background: var(--series); border-radius: 0 4px 4px 0; flex: none; }}
+    .track .val {{ font-variant-numeric: tabular-nums; white-space: nowrap; }}
+    .track .ref {{ position: absolute; top: -3px; bottom: -3px; border-left: 1px dashed var(--axis); }}
+    .length {{ font-size: 0.85rem; }} .length .track {{ margin: 22px 0 22px; }}
+    .length .bar {{ height: 18px; }}
+    .length .tick {{ position: absolute; top: -4px; bottom: -4px; border-left: 2px solid var(--ink); }}
+    .length .dot {{ position: absolute; width: 10px; height: 10px; margin-left: -7px; border-radius: 50%;
+                    background: var(--bg); border: 2px solid var(--ink); }}
+    .length .tag {{ position: absolute; top: 22px; transform: translateX(-50%); white-space: nowrap;
+                    color: var(--muted); font-size: 0.78rem; }}
+    .length .tag.up {{ top: -20px; }}
+    .trends {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }}
+    .trend {{ background: var(--panel); border-radius: 8px; padding: 0.6rem 0.8rem; }}
+    .trend-head {{ display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted); }}
+    .trend-head strong {{ color: var(--ink); font-variant-numeric: tabular-nums; }}
+    svg.spark {{ width: 100%; height: 56px; display: block; margin: 0.3rem 0; }}
+    svg .line {{ fill: none; stroke: var(--series); stroke-width: 2; stroke-linejoin: round; }}
+    svg .today {{ fill: var(--series); stroke: var(--panel); stroke-width: 2; }}
+    svg .hit {{ fill: transparent; }} svg .hit:hover {{ fill: var(--series); fill-opacity: 0.25; }}
+    table {{ border-collapse: collapse; width: 100%; margin: 0.5rem 0; font-size: 0.92rem; }}
+    th, td {{ border-bottom: 1px solid var(--rule); padding: 0.35rem 0.6rem; text-align: left; vertical-align: top; }}
+    th {{ color: var(--muted); font-weight: 600; }}
+    .table-wrap {{ overflow-x: auto; }}
+    details {{ margin-top: 2rem; }} summary {{ cursor: pointer; font-weight: 600; }}
   </style>
 </head>
 <body>
@@ -518,8 +905,14 @@ PAGE = """<!DOCTYPE html>
 """
 
 
-def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str) -> tuple[str, str, str]:
-    """Return (title, content_html, page_html)."""
+def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str,
+                 history: list[dict] | None = None,
+                 ledger: dict | None = None) -> tuple[str, str, str]:
+    """Return (title, content_html, page_html).
+
+    content_html goes into the RSS feed, which super-rss-feed reads as text, so
+    it carries the verdict, the actions and the prose but no charts.
+    """
     theme = facts.get("theme_feed") or facts.get("theme_configured") or ""
     # The day's theme makes each title distinct: a templated "Cariboo Signals,
     # <date>" title shares its term set with yesterday's, and super-rss-feed's
@@ -527,17 +920,29 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
     title = f"Episode Review — {theme or 'Cariboo Signals'}, {_human_date(date)}"
     generated = next((r for r in runs if r.get("conclusion") == "success"), None)
 
-    parts = ["What the pipeline did, what broke, and what it chose when something broke."]
+    parts = []
     if theme:
         parts.append(f"Theme: {escape(theme)}.")
     if generated and generated.get("url"):
         parts.append(f'Run <a href="{escape(generated["url"])}">{generated["run_id"]}</a>.')
-    lede = f"<p><em>{' '.join(parts)}</em></p>"
+    lede = f"<p class=\"meta\">{' '.join(parts)}</p>" if parts else ""
 
-    content = "\n\n".join(part for part in [
-        lede, narrative, render_run_table(runs), render_numbers_table(facts)] if part)
+    signals = run_signals({**facts, "runs": runs})
+    level, summary = verdict({**facts, "runs": runs}, signals)
+    icon, label = _STATUS[level]
+    banner = (f'<div class="verdict lvl-{level}"><span class="icon" aria-hidden="true">{icon}</span>'
+              f'<div><strong>{label}</strong>{escape(summary)}</div></div>')
+    actions = render_actions(signals, ledger)
+    detail = f"<h2>What happened</h2>\n{narrative}" if narrative else ""
+    tables = "\n\n".join(t for t in [render_run_table(runs), render_numbers_table(facts)] if t)
+
+    content = "\n\n".join(p for p in [lede, banner, actions, detail, tables] if p)
+    page_body = "\n\n".join(p for p in [
+        lede, banner, render_kpis(facts, runs), actions, render_charts(facts),
+        render_trends(history or [], review_metrics(facts), date), detail,
+        f"<details><summary>Raw numbers</summary>\n{tables}\n</details>" if tables else ""] if p)
     page = PAGE.format(title=escape(title), published=_human_date(date),
-                       site=SITE_URL, content=content)
+                       site=SITE_URL, content=page_body)
     return title, content, page
 
 
@@ -549,21 +954,28 @@ def _human_date(date: str) -> str:
 # Index + RSS
 # ---------------------------------------------------------------------------
 
-def update_index(date: str, title: str, content: str) -> list[dict]:
+def load_index() -> list[dict]:
+    if not INDEX_FILE.exists():
+        return []
+    try:
+        return json.loads(INDEX_FILE.read_text("utf-8"))
+    except json.JSONDecodeError:
+        print("  ⚠️  reviews index unreadable — rebuilding from this review alone")
+        return []
+
+
+def update_index(date: str, title: str, content: str,
+                 metrics: dict[str, float] | None = None) -> list[dict]:
     """Record this review in the index, replacing any entry for the same date."""
-    index = []
-    if INDEX_FILE.exists():
-        try:
-            index = json.loads(INDEX_FILE.read_text("utf-8"))
-        except json.JSONDecodeError:
-            print("  ⚠️  reviews index unreadable — rebuilding from this review alone")
-    index = [e for e in index if e.get("date") != date]
+    index = [e for e in load_index() if e.get("date") != date]
     index.append({
         "date": date,
         "title": title,
         "url": f"{SITE_URL}/podcasts/reviews/episode-review-{date}.html",
         "content_html": content,
         "published": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        # The trend charts read these; the index is the only history the review keeps.
+        "metrics": metrics or {},
     })
     index.sort(key=lambda e: e["date"], reverse=True)
     atomic_write_json(INDEX_FILE, index[:FEED_LIMIT], ensure_ascii=False)
@@ -644,6 +1056,11 @@ SIGNAL_QUIET_DAYS = int(os.getenv("ROADMAP_SIGNAL_QUIET_DAYS", "3"))
 # imbalance; the 1.13 that opened a roadmap item is two people talking.
 CITATION_FLOOR = 0.5
 VOICE_RATIO_BAND = (0.8, 1.25)
+# Shipped tell hits that are a signal: more than the count that sends the polish
+# to Opus (podcast_generator.OPUS_QUALITY_HIT_THRESHOLD; a test pins the two
+# together). One or two hits are the scan counting idiom, 28 of 40 scripts
+# 2026-09-01..10-11 had at least one, so the item could not stay closed.
+AI_TELL_SIGNAL_ABOVE = 3
 _CLOSED_SHOWN = 25
 
 _FINDING_SCHEMA = {
@@ -706,9 +1123,15 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
     for entry in facts.get("degradations", []):
         if isinstance(entry, list) and len(entry) == 2:
             signals.setdefault(f"degraded:{entry[0]}", f"degrade() row: {entry[1][:160]}")
+    # A short first draft that the expand pass brought to target is the
+    # pipeline working (2026-09-28: 2,877 → 3,548 shipped). The listener hears
+    # what shipped, so that is what keeps the item open.
     short = facts.get("short_script")
-    if isinstance(short, list) and len(short) == 2:
-        signals["short-script"] = f"first draft {short[0]} words against a {short[1]}-word target"
+    quality = facts.get("quality")
+    shipped = quality[2] if isinstance(quality, list) and len(quality) == 3 else None
+    if isinstance(short, list) and len(short) == 2 and (shipped is None or shipped < short[1]):
+        signals["short-script"] = (f"shipped {shipped if shipped is not None else '?'} words "
+                                   f"against a {short[1]}-word target (first draft {short[0]})")
     cites = facts.get("citation_alignment")
     if isinstance(cites, list) and len(cites) == 4:
         for name, matched, total in (("roundup", cites[0], cites[1]),
@@ -718,7 +1141,7 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
     quality = facts.get("quality")
     if isinstance(quality, list) and len(quality) == 3:
         hits, ratio = quality[0], quality[1]
-        if hits:
+        if hits > AI_TELL_SIGNAL_ABOVE:
             signals["ai-tells-shipped"] = f"{hits} AI-tell pattern hit(s) in the shipped script"
         if not VOICE_RATIO_BAND[0] <= ratio <= VOICE_RATIO_BAND[1]:
             signals["voice-ratio"] = f"Casey/Riley voice ratio {ratio}"
@@ -749,6 +1172,7 @@ def load_ledger() -> dict:
 # The managed section: parse and render
 # ---------------------------------------------------------------------------
 
+_ITEM_BOX = re.compile(r"^- \[[ xX]\] ")
 _ITEM_START = re.compile(r"^- \[( |x|X)\] \*\*(.+?)\*\*[ ]?(.*)$")
 
 
@@ -759,23 +1183,38 @@ def parse_section(text: str) -> list[dict]:
     into the markdown: an item is matched back by its title. It runs on the
     hand-written section too, which is how the existing roadmap items seed the
     ledger instead of being competed with by a second list.
+
+    An item is its box line plus the indented lines under it, rejoined before
+    the title is matched. `_render_item` wraps at ROADMAP_WRAP, so a long
+    title's closing `**` lands on a continuation line; matched line by line,
+    four of the six open items on 2026-10-09 never parsed, and checking their
+    boxes closed nothing.
     """
     body = _section_body(text)
     if body is None:
         return []
-    items: list[dict] = []
+    paragraphs: list[str] = []
     for line in body.splitlines():
-        match = _ITEM_START.match(line)
+        if _ITEM_BOX.match(line):
+            paragraphs.append(line.strip())
+        elif paragraphs and line.startswith("  ") and line.strip():
+            paragraphs[-1] += " " + line.strip()
+    items: list[dict] = []
+    for paragraph in paragraphs:
+        match = _ITEM_START.match(paragraph)
         if match:
             checked, title, rest = match.groups()
-            items.append({"title": title.strip(),
-                          "detail_lines": [rest.strip()] if rest.strip() else [],
+            items.append({"title": title.strip(), "detail": rest.strip(),
                           "done": checked.lower() == "x"})
-        elif items and line.startswith("  ") and line.strip():
-            items[-1]["detail_lines"].append(line.strip())
-    for item in items:
-        item["detail"] = " ".join(item.pop("detail_lines")).strip()
     return items
+
+
+def _title_key(title: str) -> str:
+    """A title as the file can give it back. The render's wrap folds a double
+    space, tab or newline at the break into the one space parse_section rejoins
+    with, so an exact match would seed a wrapped title a second time, as a
+    manual item that never retires."""
+    return " ".join(title.split())
 
 
 def _section_body(text: str) -> str | None:
@@ -851,9 +1290,9 @@ def seed_ledger(ledger: dict, text: str, date: str) -> dict:
     edit instead of a replacement. They are marked `source: "manual"`, which
     exempts them from retirement.
     """
-    known = {i["title"] for i in ledger["items"]}
+    known = {_title_key(i["title"]) for i in ledger["items"]}
     for parsed in parse_section(text):
-        if parsed["title"] in known:
+        if _title_key(parsed["title"]) in known:
             continue
         ledger["items"].append({
             "id": _slug(parsed["title"]),
@@ -878,10 +1317,10 @@ def harvest_checked(ledger: dict, text: str) -> list[str]:
     ROADMAP_MIN_OCCURRENCES more sightings, and one that was actually fixed
     never does.
     """
-    checked = {i["title"] for i in parse_section(text) if i["done"]}
+    checked = {_title_key(i["title"]) for i in parse_section(text) if i["done"]}
     closed = []
     for item in ledger["items"]:
-        if item["title"] in checked and item.get("status") != "done":
+        if _title_key(item["title"]) in checked and item.get("status") != "done":
             item["status"] = "done"
             item["occurrences"] = 0
             closed.append(item["title"])
@@ -1052,6 +1491,7 @@ def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         resp = client.messages.create(
             model=ROADMAP_MODEL,
+            thinking=thinking_off(ROADMAP_MODEL),
             max_tokens=ROADMAP_MAX_TOKENS,
             messages=[{"role": "user", "content": prompt}],
             output_config=json_output_config(_finding_schema(signals)),
@@ -1185,12 +1625,13 @@ def main() -> int:
         return 1
 
     narrative = "" if args.no_llm else generate_narrative(facts)
-    title, content, page = build_review(date, runs, facts, narrative)
+    title, content, page = build_review(date, runs, facts, narrative,
+                                        history=load_index(), ledger=load_ledger())
 
     REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
     page_path = REVIEWS_DIR / f"episode-review-{date}.html"
     atomic_write_text(page_path, page)
-    index = update_index(date, title, content)
+    index = update_index(date, title, content, review_metrics(facts))
     atomic_write_text(FEED_FILE, build_feed(index))
 
     print(f"✅ {page_path}")

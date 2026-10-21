@@ -41,53 +41,40 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-14..2026-10-04) — 5 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-21) — 4 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
+- [ ] **Ten roundup stories remained out of sequence after one correction pass.** On 2026-08-29,
+      the script/roundup-order segment failed to sort correctly on the first attempt. After one
+      repair pass, 10 stories still aired after a later block. The pipeline did not retry. This
+      follows the pattern noted in the already-tracked item
+      roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a
+      prior run. The repair logic is insufficient; either increase retry attempts on sort
+      failures or add a validation gate that blocks publish if any story lands in the wrong
+      temporal position. (signal `degraded:script/roundup-order`; seen in 2 reviews, latest
+      2026-10-21)
+- [ ] **Three instances of AI-tell language patterns passed quality checks and shipped in the
+      final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
+      shipped script. These phrases remained in the audio and RSS feed. The detection system is
+      working, but the pipeline has no gate to reject episodes with pattern hits or halt
+      publication for manual review before shipping. (signal `ai-tells-shipped`; seen in 2
+      reviews, latest 2026-10-20)
 - [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
       section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
       (33%). The gap suggests a different verification pathway or a shortfall in source
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 2
-      reviews, latest 2026-10-03)
-- [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
-      2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
-      an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
-      needed to reach target. This is the second consecutive run where expansion fell far short:
-      on 2026-09-16, expansion produced a final count 426 words below target. The mechanism
-      suggests the expansion prompt or its iteration limit is not aggressive enough to close
-      multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
-      whether it runs for a fixed iteration count rather than until target is met, or whether
-      the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 15 reviews,
-      latest 2026-10-02)
-- [ ] **One object referenced in the podcast feed is missing from R2 storage and will cause 404
-      errors.** On September 22, a single file present in podcast-feed.xml could not be found in
-      R2 and could not be rebuilt from disk. The pipeline completed and published successfully
-      despite this mismatch, leaving crawlers to encounter a 404 when following the RSS
-      reference. Identify which object is missing, restore it to R2, or remove the reference
-      from the feed XML before the next publish cycle. (signal `degraded:publish/r2-sync`; seen
-      in 9 reviews, latest 2026-10-03)
-- [ ] **Two sentences with unsupported Indigenous nation references remained in the script after
-      territory-check rewrites failed.** On September 22, the territory-check system flagged two
-      sentences claiming Tsilhqot'in nation in contexts the territory map covers as other
-      nations. The system attempted rewrites and rejected them. The two sentences shipped in the
-      final episode anyway, carrying geographic claims the validation layer could not support.
-      Log which sentences triggered the rewrite rejection, and decide whether to cut them,
-      override the territory map data, or implement a mandatory-cut rule when rewrites fail.
-      (signal `degraded:script/territory-check`; seen in 10 reviews, latest 2026-10-03)
-- [ ] **Cohere embedding module is unavailable, blocking story clustering and evolution
-      detection.** On 2026-10-03, script generation encountered ModuleNotFoundError twice: once
-      during evolving-story detection, once during same-story clustering. The pipeline fell back
-      to baseline logic both times and completed the run. The listener hears no gaps, but the
-      script lost its ability to detect when a story mutates across sources or when multiple
-      outlets cover the same event. Restore the Cohere module or replace the embedding layer
-      with an alternative that can detect story evolution and same-story clustering without
-      external dependencies. (signal `degraded:script/cohere`; seen in 2 reviews, latest
-      2026-10-04)
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 4
+      reviews, latest 2026-10-19)
+- [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
+      for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
+      on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were
+      cut by the airtime budget, so the thinnest sources were the ones that passed through. The
+      pipeline should either drop stories whose extraction failed or mark them as unverified
+      before scripting. This is the degradation whose handling the facts show as wrong. (signal
+      `degraded:script/kagi-extract`; seen in 2 reviews, latest 2026-10-21)
 
 <!-- reviews:end -->
 
@@ -139,6 +126,13 @@ close one; it comes back only if the reviews raise it 2 more times._
 - [ ] Consider bisect-on-failure: a section that fails twice splits at a speaker boundary
       and renders halves, bounded to two levels. Deferred until the cheaper rungs are
       measured — it may prove unnecessary.
+- [ ] **Nightly voice-card drift check.** The weekly review now scores each host against their
+      `voice_style` card (`hosts.json`). Once a few weekly reviews are in, decide whether drift
+      deserves a nightly signal in `episode_review.py` (`run_signals`), e.g. `voice-card:tic`
+      (one card move in most of a host's turns) and `voice-card:anecdote` (a host speaking from
+      a life of their own). Count them in Python off the script where a pattern holds; a new
+      Haiku finding only if it doesn't. Don't build it until the weekly reviews show the drift
+      is real.
 - [ ] Permanent episode memory with weighted recency (replace 21-day hard limit)
 - [ ] Local holidays and events integration in episode openings
 - [ ] Evolving stories context - flag when covering updates to previously discussed topics

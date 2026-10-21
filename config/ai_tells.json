@@ -24,7 +24,8 @@
     "this evening's show",
     "rest of your night",
     "rest of your evening",
-    "good evening"
+    "good evening",
+    "welcome in"
   ],
   "patterns": {
     "i_want_to_announcements": [
@@ -64,7 +65,7 @@
       "\\bwe'll be honest about what we (?:don't|do not) know\\b"
     ],
     "ai_vocabulary_tics": [
-      "\\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\\b"
+      "\\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:es|ing|ed)|leverage(?=\\s+(?:the|our|their|its|this|these|those|your|his|her|my|a|an|existing|local)\\b)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem(?=\\s+of\\b))\\b"
     ],
     "serves_as_dodge": [
       "\\bserves as\\b",
@@ -149,6 +150,15 @@
       "patterns": [
         "\\b(?:is|are) (?:carrying|doing) a lot of (?:weight|work)\\b",
         "\\bcarrying (?:a lot of |real |serious )?weight (?:in|there)\\b"
+      ],
+      "allowance": 0
+    },
+    "source_gap_narration": {
+      "patterns": [
+        "\\b(?:the )?(?:excerpt|snippet|report|article|piece|story|coverage|release|notice|post|item|material|source) (?:we|I) (?:have|read)\\b",
+        "\\b(?:the )?(?:excerpt|snippet|report|article|piece|story|coverage|release|notice) (?:as we have it )?(?:doesn't|does not|didn't) (?:say|name|give|tell|establish|carry|list|specify|mention)\\b",
+        "\\bisn't in (?:the material|what we (?:have|read))\\b",
+        "\\bin what we read\\b"
       ],
       "allowance": 0
     }

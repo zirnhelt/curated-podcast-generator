@@ -2,6 +2,8 @@
   "_comment": "Nations the show is capable of naming on air, and the vocabulary the territory check needs to recognise one. The list does not have to be complete — an unlisted nation is simply not checked, and `name_suffixes` catches the '<X> First Nation' shape the list will always miss. Adding a name here only makes it checkable; it never puts it in a script.",
   "acknowledgment_nations": ["Secwépemc", "Tŝilhqot'in", "Dakelh"],
   "name_suffixes": ["First Nation", "First Nations", "Indian Band", "Tribal Council", "Nation"],
+  "_place_aliases": "Names in `nations` that are also a place, a common word or a surname. One names the people only when a `name_suffixes` word or 'people' follows it ('Okanagan Nation Alliance', 'Squamish Nation'); otherwise it is read as the place. 'Cariboo-Chilcotin' (the riding) and 'Randy Thompson' were read as naming Tŝilhqot'in and Nlaka'pamux until this list existed. Adding a name here can only make the check name fewer nations.",
+  "place_aliases": ["Chilcotin", "Shuswap", "Soda Creek", "Carrier", "Nazko", "Lakes", "Arrow Lakes", "Kootenai", "Okanagan", "Thompson", "Kanaka Bar", "Lillooet", "Bella Coola", "Haida Gwaii", "Bella Bella", "Kitamaat", "Nootka", "Beaver", "Squamish", "Cowichan"],
   "nations": [
     {"name": "Secwépemc", "aliases": ["Secwepemc", "Shuswap", "Secwepemcúl'ecw", "T'exelc", "Esk'etemc", "Xatśūll", "Williams Lake First Nation", "Soda Creek"]},
     {"name": "Tŝilhqot'in", "aliases": ["Tsilhqot'in", "Chilcotin", "Tsilhqot'in National Government", "Xeni Gwet'in", "Tl'etinqox", "Yunesit'in", "Tsi Deldel", "Toosey", "Ulkatcho"]},

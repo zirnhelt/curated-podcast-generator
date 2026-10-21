@@ -94,6 +94,23 @@ class TestPromptsDoNotTeachTheTic:
             "instructions' register:\n  " + "\n  ".join(offenders[:10])
         )
 
+    def test_host_voice_cards_carry_no_tells(self):
+        """voice_style lines render into the cached system prompt, outside
+        prompts.json, so they get the same check plus the hard pattern families."""
+        import re
+
+        tells = config_loader.load_ai_tells_config()
+        regexes = [r"\b" + re.escape(p) + r"\b" for p in tells["hard_banned"]]
+        regexes += [p for family in tells["patterns"].values() for p in family]
+        offenders = [
+            f"{key}: {m.group(0)!r}"
+            for key, host in config_loader.load_hosts_config().items()
+            for line in host.get("voice_style", [])
+            for rx in regexes
+            for m in re.finditer(rx, self._prose(line), re.IGNORECASE)
+        ]
+        assert not offenders, "\n  ".join(offenders)
+
     def test_bespoke_inherits_the_bans(self):
         """generate_bespoke builds its own prompt and used to inherit nothing."""
         import generate_bespoke
@@ -337,3 +354,35 @@ class TestScoreScriptConfigWiring:
         q = pg.score_script(_script(("RILEY", "That is a genuinely surprising number.")))
         assert q["pattern_hits"]["hard_banned"] == 1
         assert q["total_hits"] == 0
+
+
+class TestVocabularyTicsAreTheVerbNotTheNoun:
+    """2026-09-16 to 10-20: every ai_vocabulary_tics hit that shipped was the
+    noun ("that's leverage", "its own ecosystem"), each one sent to the polish
+    to be rewritten. The tic is the verb and the jargon "ecosystem of"."""
+
+    @staticmethod
+    def _hits(text: str) -> int:
+        import re
+        pats = config_loader.load_ai_tells_config()["patterns"]["ai_vocabulary_tics"]
+        return sum(len(re.findall(p, text, re.I)) for p in pats)
+
+    @pytest.mark.parametrize("line", [
+        "Next season, that's leverage.",
+        "The leverage model is doing its job.",
+        "A region like this has leverage it isn't using.",
+        "Helping a town live within its own ecosystem.",
+        "Smoke changes how the forest ecosystem recovers.",
+    ])
+    def test_nouns_from_aired_scripts_pass(self, line: str) -> None:
+        assert self._hits(line) == 0
+
+    @pytest.mark.parametrize("line", [
+        "We can leverage our data to do more.",
+        "They are leveraging the network.",
+        "It leverages existing towers.",
+        "A full ecosystem of accessories.",
+        "Let's delve into it.",
+    ])
+    def test_the_tics_still_count(self, line: str) -> None:
+        assert self._hits(line) == 1

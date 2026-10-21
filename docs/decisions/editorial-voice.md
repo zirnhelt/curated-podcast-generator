@@ -111,6 +111,34 @@ scope attached gets used out of scope.
   a FeatureCollection, and any other shape reads as "no answer", which produces no
   finding. Confirm it against a real response before trusting the row it writes.
 
+**The check accused the election coverage four times (2026-09-22 to 2026-10-09).** Every
+review in that stretch carried "Tŝilhqot'in named in connection with Lorne, which the map
+covers as Mi'kma'ki, Wabanaki", from sentences like "Cariboo-Chilcotin, with Lorne Doerkson
+for the Conservatives". No nation was named. Four faults stacked:
+
+- **Detection was substring on letters only**, so "Cariboo-Chilcotin" (the riding) contained
+  "Chilcotin" (an alias), "Randy Thompson" named the Nlaka'pamux, and "in the Okanagan" named
+  the Syilx in a sentence that said it would not guess at the nation. Matching is now whole
+  words on `_fold` (diacritics and apostrophes off, hyphens kept as part of a word), and the
+  names in `place_aliases` (Chilcotin, Okanagan, Thompson, Carrier, Squamish, Haida Gwaii…)
+  name the people only when a `name_suffixes` word or "people" follows; otherwise they are
+  blanked out first. The scrub's "still there" test is whole words too, so a rewrite may keep
+  "Cariboo-Chilcotin", but it skips the place masking: a rewrite that swaps Tŝilhqot'in for a
+  bare "Chilcotin" is still refused.
+- **Places were single words.** "Lorne" was geocoded on its own. Candidates are now runs of
+  capitalized words ("Lorne Doerkson", "Deer Park Mountain"), split only at stop words, and a
+  run holding a nation name is dropped whole so no first name is left behind.
+- **The geocoder fell back to other provinces**: "Lorne" went to the Maritimes and other names
+  to Alberta and the Prairies. It now takes only an exact-name BC match, and a name that is
+  several BC places more than `AMBIGUOUS_SPREAD_DEG` apart ("Stump Lake") is no answer.
+- **`native_land_cache.json` was never committed**, so "one lookup ever" was one lookup per
+  night, and names spent the 8-lookup ceiling before real places were reached. It rides the
+  script commit now.
+
+The responses were also mojibake ("Miâkmaâki", "KâÃ³moks"): Native Land sends no charset and
+`r.json()` decoded Latin-1, which would make a correct `Tŝilhqot’in` territory unmatchable.
+`_get_json` parses the bytes.
+
 **Opinion columns and crime incidents are filtered upstream, not here** —
 `super-rss-feed`'s `podcast_content_exclusion()`, whose scope is the podcast pool alone
 (the reader still gets the local RCMP story in `feed-local.json`). Articles already sitting
@@ -134,6 +162,15 @@ must never be able to fail a run. **A new pattern family goes in `soft_patterns`
 extra Opus escalation is intended and costed:** `soft_patterns` are reported but excluded from
 `total_hits`, which gates `OPUS_QUALITY_HIT_THRESHOLD`. Adding two families to `patterns` took
 Opus escalation from 2/30 episodes to 5/30 before they were moved.
+
+**A vocabulary tic is the jargon use, not the word.** `ai_vocabulary_tics` matched *leverage*
+and *ecosystem* in any form, and every hit that shipped from 2026-09-16 to 10-20 was the plain
+noun ("Next season, that's leverage", "a town living within its own ecosystem"). Each was
+`total_hits` (the `ai-tells-shipped` roadmap signal, the Opus gate) and a line the polish was
+told to rewrite. *Leverage* now counts as the verb (*leverages*, *leveraging*, *leveraged*, or
+*leverage* before a determiner or possessive) and *ecosystem* only as "ecosystem of". Across
+the archive that drops 199 matches, a sample of which were all legitimate nouns; *robust*,
+*streamline* and *tapestry* still count.
 
 ### The prompt was teaching the tic
 
@@ -212,6 +249,45 @@ finished paragraph is a fingerprint on its own. The system prompt's `**RHYTHM**`
 for what the show should sound like — short turns, one flat unhedged statement, a disagreement
 allowed to not resolve — and `score_rhythm` measures exactly those, reporting `over_budget`
 into `episode.quality`. It is advisory: nothing blocks on it.
+
+### Already aired: the week's own lines (`format_aired_ledger_for_prompt`, `find_aired_repeats`)
+
+On 2026-10-06 the roundup gave Lorne Doerkson's 2024 result (13,714 votes), Kathryn Askew's
+32 years in education and her volunteer list, and Sheldon Clare's 2024 win. Each had aired on
+two to four of the five days before, close to word for word. The cause was upstream of the
+writer: the all-week election pass (`_research_event_ballot`) researches the whole ballot again
+every day an article carries the election's vocabulary, and hands the writer the same records
+as fresh background. The topic guard (`format_prior_coverage_for_prompt`) compares titles, so
+it could not see a repeat that came in through the research block.
+
+The ask was to put the past week's scripts in the prompt cache. Two reasons it went the other way:
+
+- **The cache does not carry from one day to the next.** A 5-minute (or 1-hour) TTL only pays
+  off inside a run, for the expand retry. Seven scripts are about 28k tokens, about $0.07 a run
+  on the generation call alone (roughly 10% more on the show's monthly spend), sent fresh every day.
+- **The model copies what it is shown.** Twenty thousand words of the show's own dialogue in the
+  prompt is the strongest register cue it could get (see *The prompt was teaching the tic*).
+
+What runs instead, with no API call: the News Roundup and Deep Dive sentences of the last
+`lookback_days` scripts are matched against everything the writer is handed (articles plus
+research, read in three-sentence windows because the research block splits one fact across
+sentences). Matches go into the dynamic prompt as `ALREADY ON AIR THIS WEEK`, dated and listed
+once, at most `max_lines`. Two sentences state the same thing when they share a specific figure
+(three or more digits, not round, not a year; "108 Mile" and "Highway 97" are places) plus one
+more word, or half the shorter one's content words (at least five). Over September and October
+2026 the ledger stayed under about 500 tokens a day.
+
+The draft is then checked against the same week, and its repeats go to both polish paths as
+`REPEATS FROM EARLIER EPISODES`; `script/aired-check` logs how many survive. Both templates say
+a candidate's name is never a repeat, because the roster rule (name everyone running) wins over
+brevity. The welcome, weather, land acknowledgment and spotlight are left out: they repeat by design.
+
+On 2026-10-10 the draft carried 2 repeated lines and the polished script 18. The polish prompt
+tells the model to weave in any research finding the draft left out, and the draft had left
+last Saturday's candidate records out because the ledger said they had aired. The polish only
+saw the draft's own two repeats. Both polish paths now get the research half of the ledger as
+well (`_aired_repeats_addendum(script, research)`), the weave-in line excepts it, and
+`script/aired-check` degrades when the polish adds more than `AIRED_POLISH_SLACK` repeats.
 
 ## The Sunday Meta Moment (`get_weekly_changelog`, `generate_meta_moment_text`)
 
@@ -313,10 +389,38 @@ list") had been in the prompt the whole time.
     it is worth a look.
   - The deepen fetch names `origin main` and carries a timeout: fetching every branch
     through a proxy stalled for over a minute, and the script stage has a 35-minute cap.
+- **Every week hears from the feed's weekly run (2026-10-05).** `super-rss-feed`'s weekly
+  agents add, heal and retire sources and move its tuning knobs, and their commits name a
+  job ("Weekly calibration agent run"), so the thin-week path never carried them. That run
+  moved from Sunday 13:00 UTC to Saturday so it lands before the Sunday script, and its
+  report job writes the applied changes to `weekly-state-article.json` → `_changes`, one
+  plain line each, built from the agents' records rather than the report's model-written
+  narrative. `get_upstream_week_changes` reads that file from the GitHub API every Sunday
+  and appends the lines under `UPSTREAM_HEADER` (after the thin-week commits, when there
+  are any). Only a file under 7 days old counts: older means last Sunday already had it,
+  or the run failed, and either way it `degrade()`s under `script/meta-moment/upstream`
+  rather than airing a week twice. Feed titles in those lines are chosen by publishers, so
+  each is collapsed to one line and capped. The retry no longer assumes a header means the
+  upstream commits are already in: it adds any that are missing beneath the block.
+- **A truncated reply is not a NONE (2026-10-11).** The first Sunday on Haiku 5.5 went red
+  with "model judged none of the week's 27 commit(s) listener-noticeable", but both calls
+  had stopped at exactly `max_tokens=1000` — a real NONE costs two tokens. Haiku 5.5 spends
+  ~30% more tokens on the same text, and with thinking off it most likely answered "go
+  through the list and count" in the reply itself before reaching any dialogue (the reply
+  was not logged, so that half is inference). Any reply without `**RILEY:**` was read as
+  NONE. Now: the cap is 2500 (~$0.001 a Sunday); `stop_reason == "max_tokens"` is its own
+  error and never airs, even with dialogue started; only a reply ending in NONE is a NONE,
+  and anything else is a format failure that gets the guard retry; both print the reply's
+  head to the job log. The prompt says the decision is made silently.
 - **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
   hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
   week with no transcript commit; it now appears only when a commit earns it. The prompt
   teaching the tic is the same failure `genuinely` documented above.
+  - **Example names count too.** "Name the actual technology … (e.g. Gemini, Google Cloud,
+    OpenAI)" sat in the prompt until 2026-10-04, when the retry draft named Google in a
+    week whose commits never did and the guard dropped the segment (the run went
+    red). The examples are gone. The same draft was also dropped for "API", which is an
+    acronym, not a name, and is now in `_META_MOMENT_KNOWN_WORDS` with "AI" and "BC".
 - The last turn hands off **in general terms** — the Meta Moment is spliced ahead of the
   community spotlight and has not been told what follows it. On 2026-08-30 it previewed a
   deep-dive story two segments away, and invented that too.
@@ -352,3 +456,54 @@ onto the queued item.
 - **The fabrication guard covers both shapes.** `_corrections_ground_truth` and
   `strip_unsourced_correction` now treat an uncited "our production team caught…" the way they
   always treated an uncited "a listener flagged…" — the new wording is as inventable as the old.
+
+## The cold open's greeting (2026-10-14)
+
+The cold-open prompt offered example greetings ("Hey there", "Welcome in") and an example closer
+("That and more, coming right up"). The model aired exactly those, five mornings running. The
+examples are gone; `_format_recent_cold_opens()` hands the prompt the past week's greeting and
+closer as RECENT COLD OPENS, never to be reused, and "welcome in" is `hard_banned` so the tell
+scrub catches it if it comes back. Same lesson as the burned-phrase rule: the model copies its
+instructions' register, and an example is an instruction.
+
+## Host voice cards (`hosts.json` → `voice_style`, 2026-10-18)
+
+The hand-written SPEECH rules say *how a host argues*; they never gave either host a writer's
+register, so both drifted toward the same well-mannered explainer. Each host can now carry a
+`voice_style` list: style-and-perspective lines distilled from a real writer's long-form prose,
+rendered as extra bullets under that host's SPEECH block in the cached system prompt
+(`_format_voice_style`). Unset renders nothing.
+
+- **Riley** is drawn from the producer's own posts on *Words of the Wise Acres* (52 posts,
+  2008–2012, filtered by Blogger author): a tinkerer who reads the spec first, translates one
+  number into everyday terms, explains the mechanism, drops a wry aside and settles a trade-off
+  as good enough to act on. Tech optimism was already there (rural ISPs, a weather station to
+  decide on a windmill, a school PC club).
+- **Casey** is drawn from Thomas Schoen's *Trailblazer Chronicles* columns in the Williams Lake
+  Tribune (14 verified bylines, 2024–2026; letters read for rhythm only). He agreed to be a
+  model per the producer. The card holds his lens: the honest cost ledger, costs moved
+  downstream, maintenance as the real test, fit before funding, First Nations as decision-makers
+  from the first meeting.
+
+The rules the cards follow:
+
+- **Style and perspective, never personal traits.** No biography, employer, family, home, or
+  first-hand anecdote: these are AI hosts.
+- **No civic positions.** Schoen's letters argue live local issues and he manages a council
+  campaign; none of that enters the card. A lens applies to any story; a stance on a race breaks
+  the no-endorsement rule.
+- **No examples in a card.** The first draft said a flow rate "becomes how many showers can run
+  at once"; the cold-open history says the model would have aired showers nightly. An example is
+  an instruction.
+- **No source phrasing.** Schoen's earlier columns lean on "testament", "beacon", "fostering",
+  "not just X but Y" and "delve": the tell families this show filters. The card takes his moves,
+  not his vocabulary, and quotes none of his text. `test_host_voice_cards_carry_no_tells` runs
+  every card line through `hard_banned` and the hard pattern families.
+
+The weekly script review (`review_scripts.py`) reads the cards from `hosts.json` and scores
+each host against theirs under Host Voice Differentiation. It flags a card move worn into a tic,
+any personal anecdote, and any lens that turns into a stance on local politics.
+
+Both cards shipped together on 2026-10-18. Holding Casey's until after the 2026-10-24 vote was
+considered and declined by the producer: the card carries no civic positions, so the timing
+does not matter.

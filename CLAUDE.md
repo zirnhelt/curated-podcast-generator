@@ -79,7 +79,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 2. Pull scored articles from sibling repo `super-rss-feed` (`feed-podcast-{dayname}.json` from its GitHub Pages URL)
 3. Deduplicate against the last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings)
 4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their day); select roundup stories and deep-dive articles
-5. Claude writes the two-host script, then polishes it. Scripts under `TARGET_SCRIPT_WORDS` get one expand retry; under `MIN_SCRIPT_WORDS` after that the run aborts. Target runtime 22–25+ min
+5. Claude writes the two-host script, then polishes it (a discarded polish airs the draft and `degrade()`s `script/polish`; the outcome is `episode.models.polish`). Scripts under `TARGET_SCRIPT_WORDS` get up to `EXPAND_MAX_PASSES` (2) expand passes; under `MIN_SCRIPT_WORDS` after that the run aborts. The script call, its retries and the polish carry `max_tokens` 64000. About 19–20 min ships (167 words a minute), against the 22 min the prompts still say
 6. Write citations JSON and every memory/state file; save the script to `podcasts/podcast_script_{date}_{theme}.txt` — **end of the script stage**; the workflow commits here
 7. OpenAI TTS renders each speaker turn in parallel
 8. pydub assembles: cold open (before the music) → intro → welcome → interval → news roundup → interval → deep dive → outro
@@ -129,12 +129,12 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 
 **Atomic writes.** Every memory/state/feed write goes through `config_loader.atomic_write_text` / `atomic_write_json`. The loaders read a truncated JSON as `{}`, so a non-atomic write silently loses history.
 
-**Third-party text and URLs.** Episode notes are HTML in a public feed: feed titles, bylines and model summaries go in `html.escape`d, links only when `_public_http_url` passes, and CDATA through `_cdata_safe`. Every fetch of a feed- or model-supplied URL checks `_public_http_url` before the request and on `resp.url`.
+**Third-party text and URLs.** Episode notes are HTML in a public feed: feed titles, bylines and model summaries go in `html.escape`d, links only when `_public_http_url` passes, and every CDATA body (bespoke feed included) through `_cdata_safe`. Every fetch of a feed- or model-supplied URL goes through `_get_public`, never a bare `requests.get`: each hop is checked by name and by resolved address.
 
 **Brave spend.** Two plans, two meters: Search ($5/1000, capped) and Answers (monthly credit).
 - **The Search cap is shared with `super-rss-feed`** — one key serves both repos. Read Brave's per-key usage export before trusting any estimate.
 - A 402 closes that meter for the run (`_trip_brave_wall`); a spent meter is a reason to ask the other one, not to give up.
-- Four per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_EVENT_CALL_LIMIT` (the election roll call and the weekday election pass), `BRAVE_ANSWERS_CALL_LIMIT`. **Only the three rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
+- Four per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_EVENT_CALL_LIMIT` (the election roll call and the weekday election pass), `BRAVE_ANSWERS_CALL_LIMIT` (4 a run, refit 2026-10-12 off $0.041 a query). **Only the three rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
 - **A research pass's allowance is enforced in code** (`_budgeted`), never by the prompt or `max_iterations` alone: parallel tool calls walk past both. Fact resolution reads the deep dive first (`_script_question_excerpt`), never a prefix of the script.
 - With both meters closed, skip the research pass rather than report "no research warranted".
 - Paid body backfill runs on the curated roundup plus `ROUNDUP_BACKFILL_SPARES`, never the pre-curation pool. Direct factual lookups default to Answers; Search is for context and anything attributed to an outlet.
@@ -142,6 +142,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 **Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box.
 - **Findings are keyed on signals** read off the facts (`run_signals`: `degraded:<segment>`, `short-script`, `citations:*`, …), never on the model's id or title, and an item closes itself once its signal has been absent `SIGNAL_QUIET_DAYS`. A new failure mode worth tracking gets a signal, not a looser title match.
 - Only tool-written items retire. The review's run labels must follow the schedule (`_trigger_label`); a stale label was the most-sighted roadmap item for three weeks.
+- Once the review is live on Pages, the review job dispatches `super-rss-feed`'s `refresh-editorial.yml` (scheduler PAT), so it reaches `feed-local` that morning rather than with the next nightly.
 
 ### Configuration (`config_loader.py`)
 
@@ -165,11 +166,11 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 | `disciplines.json` | Topic taxonomy for roundup grouping |
 | `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only) |
 
-**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`, `youtube_uploads.json`.
+**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`, `youtube_uploads.json`, `ballot_research_cache.json`.
 
 ### Curation — see [docs/decisions/curation.md](docs/decisions/curation.md)
 
-**Themes** (weekday 0=Mon): Arts, Culture & Digital Storytelling · Working Lands & Industry · Gear, Gadgets & Practical Tech · Indigenous Lands & Innovation · Wild Spaces & Outdoor Life · **Cariboo Local Affairs** (Sat, longer, 15 articles) · Science, Wonder & the Natural World.
+**Themes** (weekday 0=Mon): Arts, Culture & Digital Storytelling · Working Lands & Industry · Gear, Gadgets & Practical Tech · Indigenous Lands & Innovation · Wild Spaces & Outdoor Life · **Cariboo Local Affairs** (Sat, longer: 18 roundup stories + a 5-source deep dive; weekdays 18 + 4) · Science, Wonder & the Natural World.
 
 **Saturday is geographic** (`geographic: true`): every candidate is local, so a place-name hit is a constant, not a signal.
 - `_build_theme_subject_keywords` strips places and ranks on civic vocabulary.
@@ -181,9 +182,11 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - Name every race and name people, not roles. Report a previous run's outcome, **loss included**.
 - Everything is bounded by **SOURCED OR UNSAID**: a claim comes from the day's articles or the research block, and an unestablished record is said to be unestablished.
 - `event_focus.roster` settles **who is running**, plus `records`: dated lines from a named outlet, rendered as SOURCED BACKGROUND. A race with no names renders as `NO NAMES IN THE ROSTER`. **Never air a gap as "unfindable" or "not public"**: fill the race in the day its list is public.
-- The research pass runs a **Python roll call first** (`_run_event_sweep`: one search per race and per running candidate), then the agent follows up with `fetch_page`. More than a third of the ballot under `NO RECORD FOUND` `degrade()`s. Queries and the research block are saved in the citations JSON under `research`.
+- The research pass runs a **Python roll call first** (`_run_event_sweep`: one search per race and per running candidate), then the agent follows up with `fetch_page`. A page in the day's feed whose headline names a running candidate is read in full first (`_candidate_profiles`, no search); local names come before provincial follow-ups. More than a third of the ballot under `NO RECORD FOUND` `degrade()`s. Queries and the research block are saved in the citations JSON under `research`.
 - **All-week events** (`podcast.json` → `all_week_events`: the 2026 B.C. provincial vote, Oct 24) are swept and lensed on any day an episode article carries their vocabulary (`_events_in_play`). They never steer selection.
 - **An all-week event gets its own research pass** (`_research_event_ballot`: election meter, results-only search, `recent` for this campaign). It never takes the deep dive's pass; only the day's own event shares that one.
+- **Once nominations close, the weekday ballot pass reuses its last complete research** (`podcasts/ballot_research_cache.json`) until it is `BALLOT_RESEARCH_MAX_AGE_DAYS` old, the roster or brief changes, or an election story reads like the field moved (`_ROSTER_CHANGE_RE`). Saturday's shared pass is never cached.
+- **A fresh ballot pass is handed the last one** (PRIOR RESEARCH) and each election story's URL and first 1500 characters: never call unestablished what an earlier pass sourced. Article bodies are `<p>` prose (`_article_prose`), never the page's menus.
 - `docs/wl-2026-election-candidates.md` and the JSON must carry the same names (a test enforces it).
 - An election story airs the day it breaks and is also booked back (`status: 'recall'`) for the next civic episode, tagged `_recalled_from` so the hosts say they covered it.
 - The event vocabulary is never folded into `_build_theme_subject_keywords`: "campaign" and "ballot" would admit US politics.
@@ -198,6 +201,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - Hosts never announce blocks, counts, or the running order.
 - **LOCAL ELECTION RACES** is a standing roundup rule: keep each town's race distinct, never borrow a name across races.
 - NO HEADLINE CRAWL. DO NOT MANUFACTURE CONNECTIONS: if the shared thing can't be named plainly, move on.
+- **Research before writing, never narrate the gap.** Every curated story under `NEWS_BODY_RICH_CHARS` is researched in `_filter_sparse_news_articles` (own page, excerpt (2000 chars when upstream ran Kagi Extract), the own page through Kagi Extract (`_extract_roundup_stories`, `KAGI_EXTRACT_CALL_LIMIT` pages, before any Brave spend), one title search plus a read of the matching coverage, credited via `_body_via`); the prompt sees `ROUNDUP_PROMPT_BODY_CHARS` of it. Hosts never say what an excerpt or report leaves out (only the ballot's "unestablished" survives); `source_gap_narration` counts it.
 
 **Super-cycles.** Each topical weekday rotates a multi-week focus, calendar-derived (`get_focus_for_day`) and **never announced on air**. Holding (`route_articles_for_focus`) parks off-theme articles for their day within 14 days, flagged `_held_from`.
 - **Never hold a local story.**
@@ -219,6 +223,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 **Naming a nation.** The three house nations describe the Cariboo and nowhere else. Name a nation only for its own territory, and only when a source names it. **Naming the wrong people is worse than naming none.**
 - `script/territory-check` (`native_land.py`) only ever disconfirms. A crowd-sourced map may remove a claim; it must never supply one.
+- **Detection is whole words, places are whole phrases, and only an unambiguous BC place can disconfirm.** A name in `place_aliases` (Chilcotin, Okanagan, Thompson…) names the people only with a suffix ("Nation", "people"); "Cariboo-Chilcotin" names no one. `podcasts/native_land_cache.json` rides the script commit.
 - The land acknowledgment is exempt by construction (`local_places`).
 - `NATIVE_LAND_API_KEY` is a secret; degradation rows record only the exception type.
 
@@ -228,7 +233,11 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The phrase ledger burns spiking adverbs only; multi-word tics go in `hard_banned` by hand.
 - The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
 - `script/tell-scrub` runs after the cold open.
+- **The cold open gets no example greeting or closer**; it gets the past week's (`_format_recent_cold_opens`) as ones not to reuse.
+- **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat. The polish gets the research half of the ledger too: it is told to weave in findings the draft left out, and a polish that adds repeats `degrade()`s (`script/aired-check`).
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
+
+**Host voice cards** (`hosts.json` → `voice_style`): style and perspective from a real writer's prose, rendered under each host's SPEECH rules. Never personal traits, civic positions, examples, or the source's own phrasing; a test runs every line through the tell lists.
 
 **Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.
 - **NONE is a first-class answer.**
@@ -236,6 +245,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - Every Sunday without the segment `degrade()`s, whatever the reason.
 - Nothing listener-facing goes into that prompt unconditionally.
 - A thin week (under `META_MOMENT_SPARSE_BELOW` show commits) folds in `super-rss-feed`'s human commits under `UPSTREAM_HEADER`; only `- ` lines are citable subjects.
+- Every week also folds in `super-rss-feed`'s Saturday weekly run (`get_upstream_week_changes`: `weekly-state-article.json` → `_changes`), only while it is under 7 days old. **No example names in the prompt prose**: the hosts said "Google" because the prompt did.
 - **Never `git fetch --depth` over the full checkout**: a shallow repo answers `git log --since` with one commit and no error.
 - **Protect the segment; never force it.** A NONE or a guard drop gets one retry, with upstream changes and the refusal reason (`script/meta-moment/retry`); a failed call degrades; the splice falls back to the deep dive; and a Sunday that ships without it turns the run red (last step, after deploy).
 
@@ -275,9 +285,9 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 Treat API budget as a first-class constraint on every change.
 
-- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for polish escalation (`select_review_model`): thin deep-dive sourcing (<3 articles) or more than `OPUS_QUALITY_HIT_THRESHOLD` (3) pre-polish tell hits. In practice the hit count is what fires it (about 1 day in 5).
-- **Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking=thinking_off(model)` (`config_loader`), never a literal: Sonnet 5 takes `{"type": "disabled"}`, Sonnet 5.5 rejects it with a 400 and takes `between_tools`, and Opus 5.5 can't turn thinking off at all. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
-- **One switch for Sonnet.** Every Sonnet role follows `CLAUDE_SONNET_MODEL` (a repository variable both workflows pass through; unset means `claude-sonnet-5`); a per-role `CLAUDE_*_MODEL` still overrides it. Opus escalation is `claude-opus-5-5`.
+- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for polish escalation (`select_review_model`): thin deep-dive sourcing (<3 articles) or more than `OPUS_QUALITY_HIT_THRESHOLD` (3) pre-polish tell hits. The hit count fired it about 1 day in 5 on Sonnet 5 drafts and 0 of 4 on Haiku 5.5 drafts (0–1 hits); revisit after the polish trial, not before (Opus overrides `CLAUDE_POLISH_MODEL`).
+- **Haiku 5.5, Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking=thinking_off(model)` (`config_loader`), never a literal: Haiku 5.5 and Sonnet 5 take `{"type": "disabled"}`, Sonnet 5.5 rejects it with a 400 and takes `between_tools`, and Opus 5.5 can't turn thinking off at all. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
+- **One switch for Sonnet, one for Haiku.** Every Sonnet role follows `CLAUDE_SONNET_MODEL` (a repository variable both workflows pass through; **unset means `claude-haiku-5-5`** since 2026-10-08, see [operations.md](docs/decisions/operations.md)); every Haiku role follows `CLAUDE_HAIKU_MODEL` (`config_loader.HAIKU_MODEL`, default `claude-haiku-5-5`). A per-role `CLAUDE_*_MODEL` still overrides either: `CLAUDE_SCRIPT_MODEL` and `CLAUDE_POLISH_MODEL` (daily-podcast.yml), `CLAUDE_REVIEW_MODEL` (the weekly script reviewer, periodic-review.yml only: `episode_review.py` reads it too, so never pass it to daily-podcast.yml). Opus escalation is `claude-opus-5-5`; a Haiku 5.5 decline retries on `claude-sonnet-5` (`_REFUSAL_FALLBACK`).
 - **A refusal is retried once on the model it replaced** (`send_claude`, `_REFUSAL_FALLBACK`) and always `degrade()`s as `claude/refusal`. Every Sonnet or Opus call goes through `send_claude` or `create_message`, never a bare `client.messages.create`.
 - **Prompt compression is mandatory.** Strip filler and redundant context before sending.
 - **Cache aggressively.** Use Anthropic `cache_control` headers for large static context reused across calls.
@@ -287,10 +297,12 @@ Treat API budget as a first-class constraint on every change.
 - **Fail fast on runaway cost.** Unexpectedly large token counts should raise, not proceed.
 - **Review diffs for cost regressions.** Call out any prompt/pipeline change that increases per-run token usage.
 
-**Anthropic prices** (USD per million tokens, first-party API, checked 2026-09-30; refresh from the pricing page before any cost decision):
+**Anthropic prices** (USD per million tokens, first-party API, checked 2026-10-08; refresh from the pricing page before any cost decision):
 
 | Model | Input | Output | Cache read |
 |-------|-------|--------|------------|
+| Haiku 5.5 (prompt ≤ 100K tokens) | $0.10 | $0.50 | $0.01 |
+| Haiku 5.5 (prompt > 100K) | $0.50 | $2.50 | $0.05 |
 | Haiku 4.5 | $1 | $5 | $0.10 |
 | Sonnet 5 / 5.5 | $2 | $10 | $0.20 |
 | Sonnet 4.5 | $3 | $15 | $0.30 |
@@ -305,6 +317,7 @@ Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API ha
 - Idempotent scripts where possible
 - Refactor existing files rather than creating new ones
 - Keep dependencies minimal — check `requirements.txt` before adding anything
+- Every workflow installs `requirements-lock.txt`. Edit `requirements.txt`, then regenerate the lock (Python 3.11); `tests/test_requirements_lock.py` fails until you do
 
 ## Decision records
 

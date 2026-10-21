@@ -16,7 +16,7 @@
   // wrangler replaces the deployed crons wholesale with this array.
   "triggers": {
     "crons": [
-      "0 4 * * *",
+      "0 6 * * *",
       "0 7 * * *",
       "5 8 * * *",
       "5 9 * * *",

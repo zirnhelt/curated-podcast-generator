@@ -1,25 +1,5 @@
 {
   "assigned": {
-    "2026-W33": {
-      "id": "owe-those-after",
-      "question": "What do we owe the people who come after us?",
-      "dimension": "legacy-time",
-      "premise": "Almost every decision in a resource region is really a decision about time \u2014 a cutblock, a tailings pond, a municipal debt, an archive nobody funds, a language with four fluent speakers left. Some traditions formalise the obligation across generations; most institutions discount it to nearly zero. The question is what a duty to people who cannot yet object actually requires, and who is willing to pay for it now.",
-      "reading": null,
-      "framings": {},
-      "assigned_at": "2026-08-12",
-      "origin": "seeded"
-    },
-    "2026-W34": {
-      "id": "tech-sadness",
-      "question": "Why is everyone in tech so sad?",
-      "dimension": "labour-meaning",
-      "premise": "An emotional recession has settled over knowledge work \u2014 layoffs, AI anxiety, and the collapse of the mission-driven self-image that carried the industry for two decades. The people who were supposed to be building the future increasingly describe their own work as pointless. The open question is what happens to a society when an entire class of workers loses faith in its careers, and whether the trades, the land, and the small-town economies that were told to envy that class have something to say back.",
-      "reading": "https://www.noemamag.com/why-is-everyone-in-tech-so-sad/",
-      "framings": {},
-      "assigned_at": "2026-08-17",
-      "origin": "seeded"
-    },
     "2026-W35": {
       "id": "allowed-to-fix",
       "question": "Who is allowed to fix things?",
@@ -87,6 +67,60 @@
       },
       "assigned_at": "2026-09-28",
       "origin": "seeded"
+    },
+    "2026-W41": {
+      "id": "actually-measuring",
+      "question": "What are we actually measuring?",
+      "dimension": "measurement",
+      "premise": "Timber volume is not forest health. Test scores are not learning. Attendance is not participation. Engagement is not attention. Every institution runs on a number that stands in for something it cannot count directly, and over time the proxy quietly becomes the goal. The question is what each of our numbers was originally supposed to be about, and how far it has drifted.",
+      "reading": null,
+      "framings": {
+        "0": "When a festival or gallery grant is judged by ticket counts and tourism dollars, what gets lost that a Williams Lake audience would actually value, and should arts funders keep counting at all?",
+        "1": "Allowable annual cut and cubic metres harvested drive Cariboo forestry policy, yet mill closures continue, so ask what those volumes never captured about fibre quality, jobs, and whether the forest is healthy.",
+        "2": "Spec sheets and star ratings sell the gear, but on a ranch with spotty signal and a tight budget, what should we measure instead to know a gadget or homelab build is worth owning?",
+        "3": "Count of fluent speakers and signed agreements are how language revitalization and governance get reported, so ask what T\u015dilhqot'in, Secw\u00e9pemc, and Dakelh communities would count instead to know their stewardship is working.",
+        "4": "Hectares burned and evacuation numbers define each wildfire season, but what do they hide about backcountry recovery, ranch and trail losses, and who actually carries the cost of a bad year?",
+        "5": "Council and school board reports lean on permits issued, enrolment, and attendance, so ask which local numbers in Williams Lake, Quesnel, or 100 Mile House have drifted furthest from the everyday life they claim to track.",
+        "6": "Species counts, snowpack readings, and salmon returns anchor Cariboo science stories, yet each is a stand-in, so ask what researchers truly cannot count directly and whether we are ever tempted to treat the proxy as the ecosystem."
+      },
+      "assigned_at": "2026-10-05",
+      "origin": "seeded"
+    },
+    "2026-W42": {
+      "id": "leave-or-stay",
+      "question": "Who gets to leave, and who has to stay?",
+      "dimension": "mobility-belonging",
+      "premise": "Movement is unevenly distributed. Some people leave for school and choose whether to return; some commute two weeks in, two weeks out; some are evacuated and come back to nothing; some cannot leave because of family, a mortgage, a herd, or a territory that is the whole point. The question is how a place should think about the people who go, the people who arrive, and the people for whom leaving was never really an option.",
+      "reading": null,
+      "framings": {
+        "0": "Frame Monday's arts stories around the festival organizer who books touring acts and the local painter who stayed, asking whether a creative economy in a small Cariboo town should be judged by the talent it exports or the audiences it keeps at home.",
+        "1": "Frame Tuesday's working-lands coverage around the ranch or sawmill that automates with remote monitoring, asking whether new tech keeps young workers in the Cariboo or simply lets fewer people run the operation while the rest commute out.",
+        "2": "Frame Wednesday's gear coverage around the homelab built by a rural resident for remote work or a small business, asking whether self-reliant tech gives isolated households a real reason to stay or just a costly way to stay connected to elsewhere.",
+        "3": "Frame Thursday's Indigenous lands coverage around a T\u015dilhqot'in or Secw\u00e9pemc youth returning from the city to teach language through a digital archive, asking whether return on cultural terms is a form of leaving or a form of staying faithful.",
+        "4": "Frame Friday's wild spaces coverage around the wildfire evacuee who came back to a burned homestead and the crews now using drones to map the backcountry, asking who bears the cost when a landscape's recovery depends on people who cannot afford to leave.",
+        "5": "Frame Saturday's local affairs coverage around a Williams Lake council vote on a housing or school closure, asking whether decisions made for families who must stay should weigh more heavily than the views of residents who can simply move away.",
+        "6": "Frame Sunday's science coverage around a research team tracking caribou or salmon across the Chilcotin, asking whether the animals and ecosystems that cannot leave should shape civic life in the Cariboo as much as the people who choose to go."
+      },
+      "assigned_at": "2026-10-12",
+      "origin": "seeded"
+    },
+    "2026-W43": {
+      "id": "trust-built-or-inherited",
+      "question": "Is trust something you build, or something you inherit?",
+      "dimension": "trust",
+      "premise": "Institutions arrive in a small community carrying a history they did not personally create \u2014 a ministry, a company, a school district, a newspaper, an AI system. Some of them work hard and are still not believed; some coast on credit earned decades ago. The question is whether trust can actually be rebuilt by conduct, or whether it is mostly inherited and merely spent.",
+      "reading": null,
+      "framings": {
+        "0": "Consider whether a local festival's reputation for authenticity is built each season through volunteer labour and honest programming, or inherited from the founders whose names still draw ticket buyers to the Cariboo.",
+        "1": "Weigh whether a sawmill's new sensor-monitored log line earns back loggers' trust by proving safe and fair, or whether its crews still remember the company that cut shifts after the last boom.",
+        "2": "Test whether a shop-class maker project or a homelab kit a local teen builds for their own dad's ranch shows real technical competence earning belief, or whether the brand on the box does most of the convincing.",
+        "3": "Ask whether a T\u015dilhqot'in-led land monitoring program, delivered by the same governments that once broke treaties, can rebuild credibility through patient consent processes, or whether its legitimacy is simply owed from history.",
+        "4": "Debate whether a provincial wildfire crew's drone and satellite tools earn trust from backcountry outfitters through accurate evacuation calls, or whether campers still judge the agency by how it handled the last burn.",
+        "5": "Examine whether Williams Lake council's new consultation process rebuilds residents' faith through visible follow-through on a contested development, or whether longtime ratepayers judge it by the broken promises of earlier administrations.",
+        "6": "Explore whether a University of Victoria or Quesnel research station's long-term Cariboo grassland or caribou study earns local ranchers' belief through shared fieldwork and honest published results, or whether scientists inherit suspicion from past resource studies that ignored local knowledge."
+      },
+      "assigned_at": "2026-10-19",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -137,7 +171,68 @@
       "dimension": "scale",
       "question": "When is small genuinely better, and when is it just an excuse?",
       "week": "2026-W40"
+    },
+    {
+      "id": "actually-measuring",
+      "dimension": "measurement",
+      "question": "What are we actually measuring?",
+      "week": "2026-W41"
+    },
+    {
+      "id": "leave-or-stay",
+      "dimension": "mobility-belonging",
+      "question": "Who gets to leave, and who has to stay?",
+      "week": "2026-W42"
+    },
+    {
+      "id": "trust-built-or-inherited",
+      "dimension": "trust",
+      "question": "Is trust something you build, or something you inherit?",
+      "week": "2026-W43"
     }
   ],
-  "generated": []
+  "generated": [
+    {
+      "id": "who-counts-as-local",
+      "question": "Who gets to call themselves local?",
+      "dimension": "belonging-membership",
+      "premise": "Small places run on a quiet sorting of who belongs, and the rules are never written down. Length of residence, family name, land ownership, showing up to the work, and simply staying through bad winters all compete as claims. Newcomers often carry the energy and money that keep a town alive, while old-timers carry the history and the right to feel crowded out. It is hard to say whether belonging is something you inherit, something you earn, or something a place decides for itself.",
+      "origin": "generated"
+    },
+    {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?",
+      "dimension": "harmony-honesty",
+      "premise": "In a place where you will meet the same people at the post office, the rink, and the funeral for decades, every disagreement carries a long tail. Swallowing a complaint can protect a neighbour, a working relationship, or a fragile committee. It can also let a bad practice, a quiet injustice, or a dangerous shortcut carry on for years. Whether silence is a form of care or a form of cowardice often only becomes clear in hindsight, and sometimes not even then.",
+      "origin": "generated"
+    },
+    {
+      "id": "fairness-of-who-gets-help",
+      "question": "Is it fair to help the people who are already helping?",
+      "dimension": "reciprocity-fairness",
+      "premise": "Rural life runs on favours, volunteer hours, and informal credit, and those who give the most tend to be the first called on and the first looked after. That keeps the web of obligation alive and rewards real contribution. It also leaves out the person who is new, shy, sick, or simply unable to give back. We disagree about whether help is a debt repaid or a gift that should reach people regardless of what they have put in.",
+      "origin": "generated"
+    },
+    {
+      "id": "the-right-to-be-left-alone",
+      "question": "How much should neighbours know about each other?",
+      "dimension": "privacy-visibility",
+      "premise": "Everyone notices whose truck is in the yard, whose lights are on late, and whose marriage is struggling. That watchfulness is also what gets a stranded driver found, a failing elder checked on, and a theft noticed. But it is the same attention that fuels gossip, judgment, and the feeling of never being able to start over. Where care ends and surveillance begins depends on who is looking and what they intend to do with what they see.",
+      "origin": "generated"
+    },
+    {
+      "id": "staying-versus-leaving",
+      "question": "Is staying put a virtue or a failure of nerve?",
+      "dimension": "rootedness-mobility",
+      "premise": "Some people stay because the land, the family, and the work are the point, and holding a place together takes someone willing to hold still. Others stay because leaving was frightening, expensive, or never seriously imagined. Those who go often send back money, ideas, and a wider view, though they also take young talent and leave thinner communities behind. It is hard to know from the outside whether a given decision to stay or go is courage, habit, or fear.",
+      "origin": "generated"
+    },
+    {
+      "id": "risk-and-who-carries-it",
+      "question": "Who should carry the risk when something goes wrong?",
+      "dimension": "risk-responsibility",
+      "premise": "Out where help is hours away, a bad road, a late fire season, a failed crop, or a backcountry mistake lands on someone, and the question of who is responsible gets tangled fast. Individuals are expected to look after themselves, yet institutions, employers, landowners, and whole towns end up absorbing the cost. Pushing risk onto the person closest to it preserves freedom and keeps decisions local. Spreading it out is gentler and fairer, but it can make everyone more careless and more dependent. We disagree about where the line sits between your problem and ours.",
+      "origin": "generated"
+    }
+  ]
 }
