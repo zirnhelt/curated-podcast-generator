@@ -4274,6 +4274,35 @@ class TestCheckRoundupOrder:
         assert f"{before}\n{body}\n{after}" == script.rstrip("\n")
 
 
+
+    def test_shared_outlet_is_placed_by_headline(self):
+        """2026-10-21: two Hackaday stories. The kicker (microbubbles) aired
+        last, but the outlet name put it at the solar-cell turn, ahead of a
+        theme story, and a correct roundup was repaired twice and degraded."""
+        articles = [
+            {"title": "Making Photovoltaic Solar Cells with a Microwave",
+             "authors": [{"name": "Hackaday"}], "_roundup_block": "theme"},
+            {"title": "Giving the Nokia 3310 a New Lease on Life",
+             "authors": [{"name": "Hackster News"}], "_roundup_block": "theme_adjacent"},
+            {"title": "Using Ultrasound and Microbubbles to Make Tiny Devices",
+             "authors": [{"name": "Hackaday"}], "_roundup_block": "kicker"},
+        ]
+        script = _ROUNDUP_SCRIPT.format(
+            first="Hackaday covers homemade photovoltaic solar cells baked in a microwave.",
+            second="Hackster News says the Nokia 3310 got a new lease on life.",
+            third="Last one, from Hackaday: ultrasound steers microbubbles in tiny devices.",
+        )
+        assert check_roundup_order(script, articles) == []
+
+    def test_unique_outlet_still_matches_by_name(self):
+        articles = _order_articles()
+        script = _ROUNDUP_SCRIPT.format(
+            first="Williams Lake Tribune has the fire update.",
+            second="The Northern Miner on power and mining.",
+            third="WIRED on genetic data.",
+        )
+        assert check_roundup_order(script, articles) == []
+
 class TestRepairRoundupOrder:
     def test_returns_script_unchanged_without_a_client(self, monkeypatch):
         import podcast_generator as pg

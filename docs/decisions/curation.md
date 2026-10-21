@@ -361,6 +361,13 @@ order: 2 violations before, 2 after. The second pass appends `roundup_reorder.re
 naming each story `check_roundup_order` still finds out of place with its required position.
 About $0.002 on the days it fires; the miss had been seen three times in six weeks.
 
+**An outlet name places a story only when no other story shares the outlet**
+(`_article_first_mention(shared_outlet=)`). With 18 stories, two from one outlet is routine
+(2026-10-21: two Adafruit, two Hackaday, two Tribune). The name used to win over the headline,
+so Hackaday's kicker was placed at Hackaday's earlier solar-cell turn, a correct roundup failed
+the check, both repair passes returned it unchanged (two Sonnet calls, ~$0.07), and the run
+degraded. A shared outlet now defers to the headline words and falls back to the name.
+
 **Blocks decide what airs together; `_sequence_roundup` decides the order inside one.** The
 discipline clustering above ran on the tail alone — `local` and `theme` were sorted by
 place-name density and keyword density respectively, neither of which says anything about what

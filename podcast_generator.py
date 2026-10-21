@@ -7083,22 +7083,32 @@ def _slice_roundup(script: str) -> tuple:
             "\n".join(lines[end:]))
 
 
-def _article_first_mention(article: dict, turns: list) -> int | None:
+def _article_first_mention(article: dict, turns: list,
+                           shared_outlet: bool = False) -> int | None:
     """Index of the first roundup turn that covers this article, or None.
 
     Matches on the outlet name or on two content words from the headline —
     one word alone ('mining' on a mining day) collides across stories.
+
+    With `shared_outlet` (another story in the roundup comes from the same
+    outlet), the name says nothing about which story a turn covers: on
+    2026-10-21 the kicker, Hackaday's microbubbles, was placed at Hackaday's
+    solar-cell turn two stories early, and a correct roundup was "repaired"
+    twice and degraded. The headline decides first; the name only if it can't.
     """
     source = _article_source_name(article).lower()
     title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
     title_words = _significant_words(title)
+    by_name = None
     for i, turn in enumerate(turns):
-        lowered = turn.lower()
-        if source and len(source) > 3 and source in lowered:
+        named = bool(source) and len(source) > 3 and source in turn.lower()
+        if named and not shared_outlet:
             return i
         if len(title_words & _significant_words(turn)) >= 2:
             return i
-    return None
+        if named and by_name is None:
+            by_name = i
+    return by_name
 
 
 def check_roundup_order(script: str, ordered_articles: list) -> list:
@@ -7122,6 +7132,7 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
     if not turns:
         return []
 
+    outlets = Counter(_article_source_name(a).lower() for a in ordered_articles)
     placed = []
     for a in ordered_articles:
         # Every story is order-checked, bonus picks included: they now carry a
@@ -7129,7 +7140,8 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
         # regional), and the rank comparison below already expects the tail and
         # the kicker to air late. Skipping them used to hide a bonus story that
         # opened the show ahead of the local block.
-        pos = _article_first_mention(a, turns)
+        pos = _article_first_mention(
+            a, turns, shared_outlet=outlets[_article_source_name(a).lower()] > 1)
         if pos is not None:
             placed.append((pos, a))
 
