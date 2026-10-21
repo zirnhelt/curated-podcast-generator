@@ -294,9 +294,14 @@ _SPEND_LINES = re.compile(r"^.*(?:Spend by service|API call counts).*$", re.MULT
 
 
 def _unmask_braces(line: str) -> str:
-    """Put a masked `{`/`}` back: an opening one is followed by a key's quote."""
+    """Put a masked `{`/`}` back: an opening one is followed by a key's quote.
+
+    The masker folds a run of closing braces into one `***` (2026-10-21's line
+    ended `0.003***` for `0.003}}`), so the line is closed up to balance.
+    """
     line = line.replace("******", "{}")
-    return _MASK.sub(lambda m: "{" if line[m.end():m.end() + 1] in ("\"", "'") else "}", line)
+    line = _MASK.sub(lambda m: "{" if line[m.end():m.end() + 1] in ("\"", "'") else "}", line)
+    return line + "}" * max(0, line.count("{") - line.count("}"))
 
 
 def _sum_spend(clean: str, facts: dict[str, Any]) -> None:
