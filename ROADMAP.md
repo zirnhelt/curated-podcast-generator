@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-21) — 4 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-22) — 3 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -52,22 +52,14 @@ close one; it comes back only if the reviews raise it 2 more times._
       roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a
       prior run. The repair logic is insufficient; either increase retry attempts on sort
       failures or add a validation gate that blocks publish if any story lands in the wrong
-      temporal position. (signal `degraded:script/roundup-order`; seen in 2 reviews, latest
-      2026-10-21)
+      temporal position. (signal `degraded:script/roundup-order`; seen in 3 reviews, latest
+      2026-10-22)
 - [ ] **Three instances of AI-tell language patterns passed quality checks and shipped in the
       final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
       shipped script. These phrases remained in the audio and RSS feed. The detection system is
       working, but the pipeline has no gate to reject episodes with pattern hits or halt
       publication for manual review before shipping. (signal `ai-tells-shipped`; seen in 2
       reviews, latest 2026-10-20)
-- [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
-      section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
-      (33%). The gap suggests a different verification pathway or a shortfall in source
-      retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
-      proceeded despite this disparity. Audit the deep dive citation matching logic and the
-      Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 4
-      reviews, latest 2026-10-19)
 - [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
       for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
       on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were
