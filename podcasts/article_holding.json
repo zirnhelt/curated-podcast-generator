@@ -45,90 +45,6 @@
     "target_focus_name": "Writing, Journalism & Podcasting",
     "status": "aired_early"
   },
-  "https://www.niemanlab.org/2026/10/two-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina/": {
-    "article": {
-      "id": "https://www.niemanlab.org/2026/10/two-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina/",
-      "url": "https://www.niemanlab.org/2026/10/two-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina/",
-      "title": "[Nieman Lab] Two 23-year-olds used AI to create a daily audio briefing. It\u2019s now the top news app in Argentina.",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.niemanlab.org%2F2026%2F10%2Ftwo-23-year-olds-used-ai-to-create-a-daily-audio-briefing-its-now-the-top-news-app-in-argentina%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAs an engineering student, Valent\u00edn Virasoro worked part-time at a car dealership in Cordoba, Argentina. His boss at the dealership had a habit: Every day, he\u2019d send an audio update covering the major stories in the automotive industry. Virasoro left the job in February to pursue a career in tech. But the idea of informative...",
-      "summary": "As an engineering student, Valent\u00edn Virasoro worked part-time at a car dealership in Cordoba, Argentina. His boss at the dealership had a habit: Every day, he\u2019d send an audio update covering the major stories in the automotive industry. Virasoro left the job in February to pursue a career in tech.",
-      "_excerpt": "As an engineering student, Valent\u00edn Virasoro worked part-time at a car dealership in Cordoba, Argentina. His boss at the dealership had a habit: Every day, he\u2019d send an audio update covering the major stories in the automotive industry. Virasoro left the job in February to pursue a career in tech. But the idea of informative...",
-      "date_published": "2026-10-01T18:13:12+00:00",
-      "authors": [
-        {
-          "name": "Nieman Lab",
-          "url": "https://www.niemanlab.org"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 60,
-      "_theme_score_raw": 13,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-10-06T04:08:52.870645+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-08",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
-  "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/": {
-    "article": {
-      "id": "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/",
-      "url": "https://www.cnet.com/home/electric-vehicles/evgo-next-gen-750kw-ev-charging-system-10-minute-recharge/",
-      "title": "[CNET] EVgo\u2019s Next-Gen 750kW EV Charging System Is Capable of 10-Minute Recharge",
-      "content_html": "<img src=\"https://www.cnet.com/wp-content/uploads/sites/2/evgo-construction-1909-og.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cnet.com%2Fhome%2Felectric-vehicles%2Fevgo-next-gen-750kw-ev-charging-system-10-minute-recharge%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe company estimates its fastest-charging tech yet is coming next year, but it\u2019ll be a while before cars can hit its top speed.",
-      "summary": "The company estimates its fastest-charging tech yet is coming next year, but it\u2019ll be a while before cars can hit its top speed.",
-      "_excerpt": "The company estimates its fastest-charging tech yet is coming next year, but it\u2019ll be a while before cars can hit its top speed.",
-      "date_published": "2026-09-30T22:16:07+00:00",
-      "authors": [
-        {
-          "name": "CNET",
-          "url": "https://www.cnet.com"
-        }
-      ],
-      "ai_score": 47,
-      "_quality": 48,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 7,
-      "_theme_score_raw": 18,
-      "_composite_podcast": 4,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.cnet.com/wp-content/uploads/sites/2/evgo-construction-1909-og.jpeg",
-      "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-10-08T04:10:57.717271+00:00"
-      },
-      "_boosted_score": 47
-    },
-    "held_date": "2026-10-10",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
   "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data": {
     "article": {
       "id": "https://www.theverge.com/science/1009379/nasa-800gb-artemis-ii-data",
@@ -293,42 +209,6 @@
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/": {
-    "article": {
-      "id": "https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/",
-      "url": "https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/",
-      "title": "[Marius Bogdan Lixandru] How to Install FileBrowser Quantum on Your Synology NAS",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fmariushosting.com%2Fhow-to-install-filebrowser-quantum-on-your-synology-nas%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFileBrowser Quantum is a heavily reworked fork of the classic Filebrowser project, aimed at being the best free self-hosted web file manager available. It provides a modern, responsive web interface for browsing, uploading, editing, previewing, and sharing files on your own NAS server, with support for multiple sources, real-time indexed search, thumbnails for office documents ... <a class=\"read-more\" href=\"https://mariushosting.com/how-to-install-filebrowser-quantum-on-your-synology-nas/\" title=\"How to Install FileBrowser Quantum on Your Synology NAS\">Read more about How to Install FileBrowser Quantum on Your Synology NAS</a>",
-      "summary": "FileBrowser Quantum is a heavily reworked fork of the classic Filebrowser project, aimed at being the best free self-hosted web file manager available. It provides a modern, responsive web interface for browsing, uploading, editing, previewing, and sharing files on your own NAS server, with support",
-      "_excerpt": "FileBrowser Quantum is a heavily reworked fork of the classic Filebrowser project, aimed at being the best free self-hosted web file manager available. It provides a modern, responsive web interface for browsing, uploading, editing, previewing, and sharing files on your own NAS server, with support for multiple sources, real-time indexed search, thumbnails for office documents ... Read more about How to Install FileBrowser Quantum on Your Synology NAS",
-      "date_published": "2026-10-11T19:49:57+00:00",
-      "authors": [
-        {
-          "name": "Marius Bogdan Lixandru",
-          "url": "https://mariushosting.com"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 55,
-      "_relevance": 75,
-      "_local": 0,
-      "_theme_score": 16,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 25,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_boosted_score": 56
-    },
-    "held_date": "2026-10-12",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
   },
   "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/": {
     "article": {
@@ -659,49 +539,6 @@
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
   },
-  "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig": {
-    "article": {
-      "id": "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig",
-      "url": "https://www.techradar.com/computing/google-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig",
-      "title": "[TechRadar] Google and Microsoft hit by fresh criticism of their AI data center plans",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/SDj9iGeTf2hdogWtK4UFWM-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fcomputing%2Fgoogle-ai-data-center-project-accused-of-destroying-300-hectares-of-finnish-forest-as-critics-brand-microsofts-nature-inspired-designs-for-20-facilities-as-lipstick-on-a-pig\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBig Tech firms are destroying the environment in a quest for further AI gains, critics claim.",
-      "summary": "Big Tech firms are destroying the environment in a quest for further AI gains, critics claim.",
-      "_excerpt": "Big Tech firms are destroying the environment in a quest for further AI gains, critics claim.",
-      "date_published": "2026-10-06T00:00:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 49,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/SDj9iGeTf2hdogWtK4UFWM-1920-80.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-13T04:08:04.510527+00:00"
-      },
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
   "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams": {
     "article": {
       "id": "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams",
@@ -738,129 +575,6 @@
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
     "status": "held"
-  },
-  "https://blog.adafruit.com/2026/10/14/how-to-migrate-windows-11-from-an-old-ssd-to-a-new-nvme-ssd-without-reinstalling/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/10/14/how-to-migrate-windows-11-from-an-old-ssd-to-a-new-nvme-ssd-without-reinstalling/",
-      "url": "https://blog.adafruit.com/2026/10/14/how-to-migrate-windows-11-from-an-old-ssd-to-a-new-nvme-ssd-without-reinstalling/",
-      "title": "[Adafruit Blog] How to migrate Windows 11 from an old SSD to a new NVMe SSD without reinstalling",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F10%2F14%2Fhow-to-migrate-windows-11-from-an-old-ssd-to-a-new-nvme-ssd-without-reinstalling%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nJulian Horsey at Geeky Gadgets walks through moving a working Windows 11 install from an older SATA SSD to an NVMe drive by cloning the disk instead of reinstalling. The point he keeps returning to is that Windows does not live in one partition. The EFI System Partition and the Windows Recovery Environment have to [\u2026]",
-      "summary": "Julian Horsey at Geeky Gadgets walks through moving a working Windows 11 install from an older SATA SSD to an NVMe drive by cloning the disk instead of reinstalling. The point he keeps returning to is that Windows does not live in one partition. The EFI System Partition and the Windows Recovery",
-      "_excerpt": "Julian Horsey at Geeky Gadgets walks through moving a working Windows 11 install from an older SATA SSD to an NVMe drive by cloning the disk instead of reinstalling. The point he keeps returning to is that Windows does not live in one partition. The EFI System Partition and the Windows Recovery Environment have to [\u2026]",
-      "date_published": "2026-10-14T21:14:52+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 87,
-      "_theme_score_raw": 11,
-      "_composite_podcast": 76,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
-  "https://blog.adafruit.com/2026/10/14/build-a-10-1-inch-home-assistant-panel-with-an-esp32-p4/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/10/14/build-a-10-1-inch-home-assistant-panel-with-an-esp32-p4/",
-      "url": "https://blog.adafruit.com/2026/10/14/build-a-10-1-inch-home-assistant-panel-with-an-esp32-p4/",
-      "title": "[Adafruit Blog] Build a 10.1-inch Home Assistant panel with an ESP32-P4",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F10%2F14%2Fbuild-a-10-1-inch-home-assistant-panel-with-an-esp32-p4%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nJulian Horsey at Geeky Gadgets writes up a build from Techiesms that turns an ESP32-P4 module into a wall-mounted Home Assistant control panel. The hardware is a 10.1-inch TFT LCD with a 1200\u00d7800 capacitive touchscreen that handles up to five touch points. The ESP32-P4 behind it has a dual-core 400 MHz processor, 16 MB of [\u2026]",
-      "summary": "Julian Horsey at Geeky Gadgets writes up a build from Techiesms that turns an ESP32-P4 module into a wall-mounted Home Assistant control panel. The hardware is a 10.1-inch TFT LCD with a 1200\u00d7800 capacitive touchscreen that handles up to five touch points. The ESP32-P4 behind it has a dual-core 400",
-      "_excerpt": "Julian Horsey at Geeky Gadgets writes up a build from Techiesms that turns an ESP32-P4 module into a wall-mounted Home Assistant control panel. The hardware is a 10.1-inch TFT LCD with a 1200\u00d7800 capacitive touchscreen that handles up to five touch points. The ESP32-P4 behind it has a dual-core 400 MHz processor, 16 MB of [\u2026]",
-      "date_published": "2026-10-14T20:48:35+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 50,
-      "_relevance": 75,
-      "_local": 0,
-      "_theme_score": 92,
-      "_theme_score_raw": 15,
-      "_composite_podcast": 73,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
-  "https://civileats.com/2026/10/14/in-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law/": {
-    "article": {
-      "id": "https://civileats.com/2026/10/14/in-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law/",
-      "url": "https://civileats.com/2026/10/14/in-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law/",
-      "title": "[Civil Eats] In the Right to Repair Revolt, Nebraska Leads With Farm-Data Ownership\u00a0Law",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fcivileats.com%2F2026%2F10%2F14%2Fin-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div class=\"rss-custom-item\" style=\"font-family:sans-serif;line-height:1.3;\"><img alt=\"A farmer inputs data into the yield monitor in the cab of a combine during the soybean harvest near Northland, Minnesota. (Photo by: Richard Hamilton Smith/Design Pics Editorial/Universal Images Group via Getty Images)\" src=\"https://civileats.com/wp-content/uploads/2026/10/261014-does-nebraskas-farm-data-ownership-law-maek-start-broader-fight-hero-700x467.jpg\" style=\"height:auto;margin-bottom:12px;display:block;\"/><span style=\"font-style:italic;color:#555555;font-size:14px;display:block;margin-bottom:4px;\">By Elsa Wenzel \u2022 October 14, 2026</span><span style=\"font-size:16px;color:#222222;display:block;margin-bottom:8px;\">Farmers are organizing against equipment and seed companies profiting from their data and using it against them. Similar laws in other states have so far failed.</span><span style=\"display:block;\"><a href=\"https://civileats.com/2026/10/14/in-the-right-to-repair-revolt-nebraska-leads-with-farm-data-ownership-law/\" style=\"font-weight:bold;text-decoration:underline;color:#111111;\">Read the full article \u2192</a></span></div>",
-      "summary": "By Elsa Wenzel \u2022 October 14, 2026 Farmers are organizing against equipment and seed companies profiting from their data and using it against them. Similar laws in other states have so far failed. Read the full article \u2192",
-      "_excerpt": "By Elsa Wenzel \u2022 October 14, 2026 Farmers are organizing against equipment and seed companies profiting from their data and using it against them. Similar laws in other states have so far failed. Read the full article \u2192",
-      "date_published": "2026-10-14T08:00:02+00:00",
-      "authors": [
-        {
-          "name": "Civil Eats",
-          "url": "https://civileats.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 81,
-      "_theme_score_raw": 9,
-      "_composite_podcast": 72,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
   },
   "https://www.wired.com/story/climate-change-is-getting-worse-el-nino-looms/": {
     "article": {
@@ -952,49 +666,6 @@
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk/": {
-    "article": {
-      "id": "https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk/",
-      "url": "https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk/",
-      "title": "[Global News] Alberta, Saskatchewan premiers shut down Elon Musk\u2019s call for separation",
-      "content_html": "<img src=\"https://globalnews.ca/wp-content/uploads/2025/05/f7606d8acb66aae42b38f6bf2cc607d227fa7ba3f6ed30e94c1bbc51ade65715_36f369.jpg?quality=65&amp;strip=all\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fglobalnews.ca%2Fnews%2F12092032%2Falberta-saskatchewan-separatism-elon-musk%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe trillionaire tech businessman said on his social media platform X that Quebec would benefit from independence, as would the two Prairie provinces.",
-      "summary": "The trillionaire tech businessman said on his social media platform X that Quebec would benefit from independence, as would the two Prairie provinces.",
-      "_excerpt": "The trillionaire tech businessman said on his social media platform X that Quebec would benefit from independence, as would the two Prairie provinces.",
-      "date_published": "2026-10-08T00:03:48+00:00",
-      "authors": [
-        {
-          "name": "Global News",
-          "url": "https://globalnews.ca"
-        }
-      ],
-      "ai_score": 50,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 89,
-      "_theme_score_raw": 13,
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://globalnews.ca/wp-content/uploads/2025/05/f7606d8acb66aae42b38f6bf2cc607d227fa7ba3f6ed30e94c1bbc51ade65715_36f369.jpg?quality=65&strip=all",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 50
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
   },
   "https://www.nytimes.com/2026/10/14/well/live/humans-lifespan-limits-potential.html": {
     "article": {
@@ -1342,46 +1013,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://www.theverge.com/transportation/1013220/robotaxi-self-driving-car-laws": {
-    "article": {
-      "id": "https://www.theverge.com/transportation/1013220/robotaxi-self-driving-car-laws",
-      "url": "https://www.theverge.com/transportation/1013220/robotaxi-self-driving-car-laws",
-      "title": "[The Verge] Cities want to put the boot on robotaxis",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theverge.com%2Ftransportation%2F1013220%2Frobotaxi-self-driving-car-laws\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on autonomous vehicles, policy, and road rules, follow Andrew J. Hawkins. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here. How it started The first state to pass a law [\u2026]",
-      "summary": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on autonomous vehicles, policy, and road rules, follow Andrew J. Hawkins. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here. How it started The first",
-      "_excerpt": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on autonomous vehicles, policy, and road rules, follow Andrew J. Hawkins. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here. How it started The first state to pass a law [\u2026]",
-      "date_published": "2026-10-18T12:00:00+00:00",
-      "authors": [
-        {
-          "name": "The Verge",
-          "url": "https://www.theverge.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 23,
-      "_composite_podcast": 73,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News",
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-19",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
   "https://wltribune.com/2026/10/11/williams-lake-mustangs-bounce-back-from-kamloops-storm-loss-with-win-over-osoyoos-coyotes/": {
     "article": {
       "id": "https://wltribune.com/2026/10/11/williams-lake-mustangs-bounce-back-from-kamloops-storm-loss-with-win-over-osoyoos-coyotes/",
@@ -1565,44 +1196,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://www.zdnet.com/home-and-office/apple-homeview-smart-home-assistant-free-open-source/": {
-    "article": {
-      "id": "https://www.zdnet.com/home-and-office/apple-homeview-smart-home-assistant-free-open-source/",
-      "url": "https://www.zdnet.com/home-and-office/apple-homeview-smart-home-assistant-free-open-source/",
-      "title": "[ZDNet] How I open-sourced my smart home in a weekend \u2013 and ditched Google for Siri",
-      "content_html": "<img src=\"https://www.zdnet.com/wp-content/uploads/sites/3/homeassistantbox-Screenshot-2026-10-16-113616.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.zdnet.com%2Fhome-and-office%2Fapple-homeview-smart-home-assistant-free-open-source%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFor years, my smart home ran on Google Home. When I decided to switch, Apple\u2019s new smart hub was tempting, but Home Assistant hardware and software does so much more.",
-      "summary": "For years, my smart home ran on Google Home. When I decided to switch, Apple\u2019s new smart hub was tempting, but Home Assistant hardware and software does so much more.",
-      "_excerpt": "For years, my smart home ran on Google Home. When I decided to switch, Apple\u2019s new smart hub was tempting, but Home Assistant hardware and software does so much more.",
-      "date_published": "2026-10-18T11:40:00+00:00",
-      "authors": [
-        {
-          "name": "ZDNet",
-          "url": "https://www.zdnet.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 60,
-      "_relevance": 80,
-      "_local": 0,
-      "_theme_score": 73,
-      "_theme_score_raw": 16,
-      "_composite_podcast": 48,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.zdnet.com/wp-content/uploads/sites/3/homeassistantbox-Screenshot-2026-10-16-113616.jpg",
-      "_boosted_score": 60
-    },
-    "held_date": "2026-10-19",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
   "https://farmonaut.com/case-study/sugarcane-irrigation-scheduling-satellite-case-study": {
     "article": {
       "id": "https://farmonaut.com/case-study/sugarcane-irrigation-scheduling-satellite-case-study",
@@ -1719,48 +1312,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://hackaday.com/2026/10/19/making-photovoltaic-solar-cells-with-a-microwave/": {
-    "article": {
-      "id": "https://hackaday.com/2026/10/19/making-photovoltaic-solar-cells-with-a-microwave/",
-      "url": "https://hackaday.com/2026/10/19/making-photovoltaic-solar-cells-with-a-microwave/",
-      "title": "[Hackaday] Making Photovoltaic Solar Cells with a Microwave",
-      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/10/diy_solar_cell_dr.semiconductor_youtube.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F10%2F19%2Fmaking-photovoltaic-solar-cells-with-a-microwave%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"426\" src=\"https://hackaday.com/wp-content/uploads/2026/10/diy_solar_cell_dr.semiconductor_youtube.jpg?w=800\" style=\"margin:0 auto;margin-bottom:15px;\" width=\"800\"/></div>Although solar panels may seem like a kind of magic, they\u2019re really quite simple devices, in their silicon form featuring nothing but the p-type silicon wafer and an n-type layer <a class=\"read-more\" href=\"https://hackaday.com/2026/10/19/making-photovoltaic-solar-cells-with-a-microwave/\">\u2026read more</a>",
-      "summary": "Although solar panels may seem like a kind of magic, they\u2019re really quite simple devices, in their silicon form featuring nothing but the p-type silicon wafer and an n-type layer \u2026read more",
-      "_excerpt": "Although solar panels may seem like a kind of magic, they\u2019re really quite simple devices, in their silicon form featuring nothing but the p-type silicon wafer and an n-type layer \u2026read more",
-      "date_published": "2026-10-20T02:00:38+00:00",
-      "authors": [
-        {
-          "name": "Hackaday",
-          "url": "https://hackaday.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 91,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 77,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://hackaday.com/wp-content/uploads/2026/10/diy_solar_cell_dr.semiconductor_youtube.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-20T06:09:22.263362+00:00"
-      },
-      "_boosted_score": 57
-    },
-    "held_date": "2026-10-20",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
-  },
   "https://www.theverge.com/science/1013954/fossil-fuel-power-infrastructure-data-centers-report": {
     "article": {
       "id": "https://www.theverge.com/science/1013954/fossil-fuel-power-infrastructure-data-centers-report",
@@ -1844,7 +1395,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-22"
   },
   "https://hyperallergic.com/hundreds-protest-in-colombia-after-far-right-president-removes-works-from-national-museum/": {
     "article": {
@@ -1928,44 +1480,6 @@
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
-  },
-  "https://www.businessinsider.com/went-from-construction-worker-tech-sales-one-year-heres-how-2026-10": {
-    "article": {
-      "id": "https://www.businessinsider.com/went-from-construction-worker-tech-sales-one-year-heres-how-2026-10",
-      "url": "https://www.businessinsider.com/went-from-construction-worker-tech-sales-one-year-heres-how-2026-10",
-      "title": "[Business Insider] I broke into tech sales after working in construction. Here's how I landed a more flexible job with higher earning potential.",
-      "content_html": "<img src=\"https://i.insider.com/6acd054b7bf24b4467e6a4c4?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Fwent-from-construction-worker-tech-sales-one-year-heres-how-2026-10\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAfter years in construction, Bryan Ruiz transitioned into tech sales, increasing his earning potential and giving himself a more flexible schedule.",
-      "summary": "After years in construction, Bryan Ruiz transitioned into tech sales, increasing his earning potential and giving himself a more flexible schedule.",
-      "_excerpt": "After years in construction, Bryan Ruiz transitioned into tech sales, increasing his earning potential and giving himself a more flexible schedule.",
-      "date_published": "2026-10-12T20:32:58+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 57,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6acd054b7bf24b4467e6a4c4?format=jpeg",
-      "_boosted_score": 45
-    },
-    "held_date": "2026-10-20",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
   },
   "https://www.neowin.net/news/google-is-partnering-with-flo-to-elevate-womens-health/?utm_source=rss": {
     "article": {
@@ -2080,44 +1594,6 @@
     "target_focus_slug": "recreation-access",
     "target_focus_name": "Recreation & Backcountry Access",
     "status": "held"
-  },
-  "https://www.hackster.io/news/giving-the-nokia-3310-a-new-lease-on-life-6f8dfc7beccb": {
-    "article": {
-      "id": "https://www.hackster.io/news/giving-the-nokia-3310-a-new-lease-on-life-6f8dfc7beccb",
-      "url": "https://www.hackster.io/news/giving-the-nokia-3310-a-new-lease-on-life-6f8dfc7beccb",
-      "title": "[Hackster News] Giving the Nokia 3310 a New Lease on Life",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/2010122/_CF2H6eWskI.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Fgiving-the-nokia-3310-a-new-lease-on-life-6f8dfc7beccb\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHoani Bryson gave the classic Nokia 3310 phone new life with a Raspberry Pi Pico-powered replacement PCB and a custom game engine.",
-      "summary": "Hoani Bryson gave the classic Nokia 3310 phone new life with a Raspberry Pi Pico-powered replacement PCB and a custom game engine.",
-      "_excerpt": "Hoani Bryson gave the classic Nokia 3310 phone new life with a Raspberry Pi Pico-powered replacement PCB and a custom game engine.",
-      "date_published": "2026-10-12T20:34:48+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 34,
-      "_quality": 50,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 82,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 49,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/2010122/_CF2H6eWskI.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_boosted_score": 34
-    },
-    "held_date": "2026-10-20",
-    "target_date": "2026-10-21",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-10-21"
   },
   "https://www.cnet.com/tech/mobile/smartphone-shipments-q3-2026-counterpoint-research/": {
     "article": {
@@ -2274,7 +1750,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-22"
   },
   "https://www.sciencedaily.com/releases/2026/10/261019093442.htm": {
     "article": {
@@ -2384,7 +1861,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-22"
   },
   "https://www.niemanlab.org/2026/10/two-out-of-five-americans-are-regularly-getting-their-news-on-facebook/": {
     "article": {
@@ -2624,6 +2102,341 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
+    "status": "released",
+    "release_date": "2026-10-22"
+  },
+  "https://quesnelobserver.com/2026/10/21/west-fraser-forest-operations-map-3505-invitation-to-comment/": {
+    "article": {
+      "id": "https://quesnelobserver.com/2026/10/21/west-fraser-forest-operations-map-3505-invitation-to-comment/",
+      "url": "https://quesnelobserver.com/2026/10/21/west-fraser-forest-operations-map-3505-invitation-to-comment/",
+      "title": "[Quesnel Cariboo Observer] West Fraser \u2013 Forest Operations Map #3505, Invitation to Comment",
+      "content_html": "<img src=\"https://quesnelobserver.com/wp-content/uploads/sites/18/2026/10/43058326_web1_240117-LDN-PublicNotice-PublicReview-WEstFraserMills_1.jpg?w=1024\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F21%2Fwest-fraser-forest-operations-map-3505-invitation-to-comment%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>The public is invited to review and comment on <strong>West Fraser\u2019s Forest Operations Map (FOM) #3505</strong>. The FOM shows proposed road construction and cut block development under West Fraser\u2019s Forest Stewardship Plan (FSP) within Forest Development Units in the Quesnel Natural Resource District (DQU) and Tree Farm Licence 52 (TFL52). This FOM will be valid for a period of 3 years beginning <strong>November 28, 2026</strong>. During the validity period, West Fraser may apply for Cutting Permits containing cutblocks and Road Permits to construct roads shown on the FOM.</p>",
+      "summary": "The public is invited to review and comment on West Fraser\u2019s Forest Operations Map (FOM) #3505 . The FOM shows proposed road construction and cut block development under West Fraser\u2019s Forest Stewardship Plan (FSP) within Forest Development Units in the Quesnel Natural Resource District (DQU) and",
+      "_excerpt": "The public is invited to review and comment on West Fraser\u2019s Forest Operations Map (FOM) #3505 . The FOM shows proposed road construction and cut block development under West Fraser\u2019s Forest Stewardship Plan (FSP) within Forest Development Units in the Quesnel Natural Resource District (DQU) and Tree Farm Licence 52 (TFL52). This FOM will be valid for a period of 3 years beginning November 28, 2026 . During the validity period, West Fraser may apply for Cutting Permits containing cutblocks and Road Permits to construct roads shown on the FOM.",
+      "date_published": "2026-10-21T20:40:00+00:00",
+      "authors": [
+        {
+          "name": "Quesnel Cariboo Observer",
+          "url": "https://quesnelobserver.com"
+        }
+      ],
+      "ai_score": 78,
+      "_quality": 60,
+      "_relevance": 80,
+      "_local": 90,
+      "_theme_score": 0,
+      "_theme_score_raw": 0,
+      "_composite_podcast": 26,
+      "_keyword_matches": 1,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "image": "https://quesnelobserver.com/wp-content/uploads/sites/18/2026/10/43058326_web1_240117-LDN-PublicNotice-PublicReview-WEstFraserMills_1.jpg?w=1024",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-10-22T06:10:42.268654+00:00"
+      },
+      "_boosted_score": 78,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-10-29",
+    "target_weekday": 3,
+    "target_focus_slug": "economic-development",
+    "target_focus_name": "Economic Development",
+    "status": "aired_early"
+  },
+  "https://wltribune.com/2026/10/21/jobs-growth-workforce-challenges-of-cariboos-mining-sector-discussed-in-williams-lake/": {
+    "article": {
+      "id": "https://wltribune.com/2026/10/21/jobs-growth-workforce-challenges-of-cariboos-mining-sector-discussed-in-williams-lake/",
+      "url": "https://wltribune.com/2026/10/21/jobs-growth-workforce-challenges-of-cariboos-mining-sector-discussed-in-williams-lake/",
+      "title": "[Williams Lake Tribune] Jobs, growth, workforce challenges of Cariboo\u2019s mining sector discussed in Williams Lake",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F21%2Fjobs-growth-workforce-challenges-of-cariboos-mining-sector-discussed-in-williams-lake%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Mining Association BC hosted a luncheon in collaboration with BC Chambers of Commerce at Chances Signal Point Gaming in Williams Lake on Oct. 14. Michael Goehring, MABC president and CEO shared the achievements, impacts and challenges in the mining industry during the luncheon on Oct. 14. Ainsley Wooding, Trekors Metal\u2019s director of corporate affairs outlined the company\u2019s growth during the luncheon on Oct. 14. Jason Mcleery of SMS Equipment, Tamara Garreau, Executive director, Williams Lake &amp; District Chamber of Commerce, Michael Goehring, MABC president and CEO, Vanessa Riplinger,",
+      "summary": "The Mining Association BC hosted a luncheon in collaboration with BC Chambers of Commerce at Chances Signal Point Gaming in Williams Lake on Oct. 14. Michael Goehring, MABC president and CEO shared the achievements, impacts and challenges in the mining industry during the luncheon on Oct. 14.",
+      "_excerpt": "The Mining Association BC hosted a luncheon in collaboration with BC Chambers of Commerce at Chances Signal Point Gaming in Williams Lake on Oct. 14. Michael Goehring, MABC president and CEO shared the achievements, impacts and challenges in the mining industry during the luncheon on Oct. 14. Ainsley Wooding, Trekors Metal\u2019s director of corporate affairs outlined the company\u2019s growth during the luncheon on Oct. 14. Jason Mcleery of SMS Equipment, Tamara Garreau, Executive director, Williams Lake & District Chamber of Commerce, Michael Goehring, MABC president and CEO, Vanessa Riplinger, president of Williams Lake & District Chamber of Commerce and Ainsley Wooding, Trekors Metal\u2019s director of corporate affairs at a luncheon discussing the Cariboo's mining future in the Cariboo. During the luncheon, Gibraltar mine general manager Darren Mawhinney highlighted the mine\u2019s local connections. Jason McCleery of SMS equipment during a luncheon on the Cariboo's mining future in Williams Lake. Approximately 25-30 people attended the luncheon hosted by the Mining Association BC and BC Chambers of Commerce at Chances Signal Point Gaming in Williams Lake on Oct. 14. Mining\u2019s role in supporting Cariboo jobs and businesses, and what it will take to sustain the industry, were the focus of a recent discussion in Williams Lake. A luncheon hosted by the Mining Association of B.C.(MABC) in partnership with the Williams Lake & District of Commerce as part of its BC Chambers Mining Roadshow, took place on Oct.14, at Chances Signal Point Gaming. The BC Chambers Mining Roadshow is MABC\u2019s series of visits to communities, working with local chambers of commerce to discuss mining\u2019s economic impact and future opportunities. The luncheon included presentations from mining industry representatives and supplier representatives outlining opportunities for Cariboo workers and businesses. Michael Goehring, MABC president and CEO said he was pleased to return to Williams Lake after several years and",
+      "date_published": "2026-10-22T06:02:37.570458+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 84,
+      "_quality": 80,
+      "_relevance": 80,
+      "_local": 100,
+      "_theme_score": 80,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 87,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-22T06:10:42.268654+00:00"
+      },
+      "_boosted_score": 84,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-10-27",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "aired_early"
+  },
+  "https://www.sciencealert.com/one-quarter-of-data-centers-are-located-in-water-stressed-areas-study-shows": {
+    "article": {
+      "id": "https://www.sciencealert.com/one-quarter-of-data-centers-are-located-in-water-stressed-areas-study-shows",
+      "url": "https://www.sciencealert.com/one-quarter-of-data-centers-are-located-in-water-stressed-areas-study-shows",
+      "title": "[ScienceAlert] One-Quarter of Data Centers Are Located in Water-Stressed Areas, Study Shows",
+      "content_html": "<img src=\"https://www.sciencealert.com/images/2026/10/WaterDrop.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fone-quarter-of-data-centers-are-located-in-water-stressed-areas-study-shows\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"A water drop and ripples\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/10/WaterDrop-1200x675.jpg\" style=\"float:left;margin:0 15px 15px 0;\" width=\"1200\"/>And it could get much worse.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&amp;utm_medium=feed&amp;utm_campaign=rss_feed_promo\" rel=\"noopener noreferrer\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.</a></p>",
+      "summary": "And it could get much worse. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "_excerpt": "And it could get much worse. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "date_published": "2026-10-21T22:00:00+00:00",
+      "authors": [
+        {
+          "name": "ScienceAlert",
+          "url": "https://www.sciencealert.com"
+        }
+      ],
+      "ai_score": 51,
+      "_quality": 75,
+      "_relevance": 60,
+      "_local": 0,
+      "_theme_score": 93,
+      "_theme_score_raw": 17,
+      "_composite_podcast": 75,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "image": "https://www.sciencealert.com/images/2026/10/WaterDrop.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-22T06:10:42.268654+00:00"
+      },
+      "_boosted_score": 51
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://100milefreepress.net/2026/10/21/2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal/": {
+    "article": {
+      "id": "https://100milefreepress.net/2026/10/21/2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal/",
+      "url": "https://100milefreepress.net/2026/10/21/2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal/",
+      "title": "[100 Mile Free Press] 2026 Starry Nights fundraiser sets million dollar, multi-year goal",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F10%2F21%2F2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe South Cariboo Health Foundation is looking to renovate the hospital's laboratory",
+      "summary": "The South Cariboo Health Foundation is looking to renovate the hospital's laboratory",
+      "_excerpt": "The South Cariboo Health Foundation is looking to renovate the hospital's laboratory",
+      "date_published": "2026-10-22T06:02:37.571298+00:00",
+      "authors": [
+        {
+          "name": "100 Mile Free Press",
+          "url": "https://100milefreepress.net"
+        }
+      ],
+      "ai_score": 78,
+      "_quality": 60,
+      "_relevance": 80,
+      "_local": 90,
+      "_theme_score": 84,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-22T06:10:42.268654+00:00"
+      },
+      "_boosted_score": 78,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "aired_early"
+  },
+  "https://newatlas.com/fitness/men-long-term-steroids-heart/": {
+    "article": {
+      "id": "https://newatlas.com/fitness/men-long-term-steroids-heart/",
+      "url": "https://newatlas.com/fitness/men-long-term-steroids-heart/",
+      "title": "[New Atlas] Decade-long gym steroids study shows just what happens to men's hearts",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Ffitness%2Fmen-long-term-steroids-heart%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Long-term study shows new impact of weight-training steroids \u2013 but also that quitting can reverse the damage\" src=\"https://assets.newatlas.com/dims4/default/b005170/2147483647/strip/true/crop/5472x3648+0+0/resize/1440x960!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2Fb1%2F26%2F9adcd8574d85baf47f793f62eeff%2Fdepositphotos-588849720-xl.jpg\"/><p>One of the first long-term studies that followed weight-training middle-aged men for nearly a decade has found that consistent use of anabolic-androgenic steroids (AAS) leads to the thickening of the heart\u2019s left ventricular wall, which increasingly reduces the organ's ability to function. However, this damage was reversed over time after people quit the drugs.</p><p><a href=\"https://newatlas.com/fitness/men-long-term-steroids-heart/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://refractor.io/fitness/\">Fitness &amp; Exercise</a>, <a href=\"https://refractor.io/health-wellbeing/\">Wellness and Healthy Living</a>, <a href=\"https://refractor.io/medical/\">Body and Mind</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/anabolic-androgenic-steroids/\" rel=\"tag\">Anabolic-androgenic steroids (AAS)</a>, <a href=\"https://newatlas.com/tag/weight/\" rel=\"tag\">Weight</a>, <a href=\"https://newatlas.com/tag/fitness/\" rel=\"tag\">Fitness</a>, <a href=\"https://newatlas.com/tag/home-gym/\" rel=\"tag\">Home Gym</a>, <a href=\"https://newatlas.com/tag/drugs/\" rel=\"tag\">Drugs</a>, <a href=\"https://newatlas.com/tag/muscle/\" rel=\"tag\">Muscle</a>, <a href=\"https://newatlas.com/tag/heart/\" rel=\"tag\">Heart</a>, <a href=\"https://newatlas.com/tag/heart-health/\" rel=\"tag\">Heart health</a></p></p>",
+      "summary": "One of the first long-term studies that followed weight-training middle-aged men for nearly a decade has found that consistent use of anabolic-androgenic steroids (AAS) leads to the thickening of the heart\u2019s left ventricular wall, which increasingly reduces the organ's ability to function. However,",
+      "_excerpt": "One of the first long-term studies that followed weight-training middle-aged men for nearly a decade has found that consistent use of anabolic-androgenic steroids (AAS) leads to the thickening of the heart\u2019s left ventricular wall, which increasingly reduces the organ's ability to function. However, this damage was reversed over time after people quit the drugs. Continue Reading Category: Fitness & Exercise , Wellness and Healthy Living , Body and Mind Tags: Anabolic-androgenic steroids (AAS) , Weight , Fitness , Home Gym , Drugs , Muscle , Heart , Heart health",
+      "date_published": "2026-10-14T14:05:04+00:00",
+      "authors": [
+        {
+          "name": "New Atlas",
+          "url": "https://newatlas.com"
+        }
+      ],
+      "ai_score": 47,
+      "_quality": 70,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 86,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 67,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-22T06:10:42.268654+00:00"
+      },
+      "_boosted_score": 47
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://thetyee.ca/News/2026/10/22/BC-Parties-Flood-Fire-Prevention/": {
+    "article": {
+      "id": "https://thetyee.ca/News/2026/10/22/BC-Parties-Flood-Fire-Prevention/",
+      "url": "https://thetyee.ca/News/2026/10/22/BC-Parties-Flood-Fire-Prevention/",
+      "title": "[The Tyee] BC\u2019s Parties Have Little to Say on Flood and Fire Prevention",
+      "content_html": "<img src=\"https://thetyee.ca/News/2026/10/21/ForestFireNight.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F10%2F22%2FBC-Parties-Flood-Fire-Prevention%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDespite wildfires, floods and heat domes, campaigns have made few commitments on mitigating future disasters.",
+      "summary": "Despite wildfires, floods and heat domes, campaigns have made few commitments on mitigating future disasters.",
+      "_excerpt": "Despite wildfires, floods and heat domes, campaigns have made few commitments on mitigating future disasters.",
+      "date_published": "2026-10-22T07:20:00+00:00",
+      "authors": [
+        {
+          "name": "The Tyee",
+          "url": "https://thetyee.ca"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 67,
+      "_relevance": 55,
+      "_local": 45,
+      "_theme_score": 84,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 64,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thetyee.ca/News/2026/10/21/ForestFireNight.jpg",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-10-22T06:10:42.268654+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-10-30",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.statnews.com/2026/10/14/biotech-news-fda-adcomm-member-ties-to-industry-under-scrutiny/?utm_campaign=rss": {
+    "article": {
+      "id": "https://www.statnews.com/2026/10/14/biotech-news-fda-adcomm-member-ties-to-industry-under-scrutiny/?utm_campaign=rss",
+      "url": "https://www.statnews.com/2026/10/14/biotech-news-fda-adcomm-member-ties-to-industry-under-scrutiny/?utm_campaign=rss",
+      "title": "[STAT News] STAT+: FDA adcomm members\u2019 ties to industry under scrutiny",
+      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2025/08/AdobeStock_1536396837_Editorial_Use_Only-645x645.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F10%2F14%2Fbiotech-news-fda-adcomm-member-ties-to-industry-under-scrutiny%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nNew research found that nearly 40% of FDA advisory meetings held over a recent 20-year period included either a patient or consumer rep with active ties to an advocacy group\u2026",
+      "summary": "New research found that nearly 40% of FDA advisory meetings held over a recent 20-year period included either a patient or consumer rep with active ties to an advocacy group\u2026",
+      "_excerpt": "New research found that nearly 40% of FDA advisory meetings held over a recent 20-year period included either a patient or consumer rep with active ties to an advocacy group\u2026",
+      "date_published": "2026-10-14T14:12:14+00:00",
+      "authors": [
+        {
+          "name": "STAT News",
+          "url": "https://www.statnews.com"
+        }
+      ],
+      "ai_score": 37,
+      "_quality": 72,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 84,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 62,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.statnews.com/wp-content/uploads/2025/08/AdobeStock_1536396837_Editorial_Use_Only-645x645.jpeg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-10-22T06:10:42.268654+00:00"
+      },
+      "_boosted_score": 37
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.sciencealert.com/theres-another-cat-parasite-that-can-infect-humans-a-huge-study-reveals-how-common-it-is": {
+    "article": {
+      "id": "https://www.sciencealert.com/theres-another-cat-parasite-that-can-infect-humans-a-huge-study-reveals-how-common-it-is",
+      "url": "https://www.sciencealert.com/theres-another-cat-parasite-that-can-infect-humans-a-huge-study-reveals-how-common-it-is",
+      "title": "[ScienceAlert] There's Another Cat Parasite That Can Infect Humans. A Huge Study Reveals How Common It Is.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Ftheres-another-cat-parasite-that-can-infect-humans-a-huge-study-reveals-how-common-it-is\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"There's Another Cat Parasite That Can Infect Humans. A Huge Study Reveals How Common It Is.\" class=\"attachment-full size-full\" height=\"1440\" src=\"https://www.sciencealert.com/images/2026/10/cat-closeup.jpg\" width=\"2560\"/><figcaption>(Netrebina Elena/Moment RF/Getty Images)</figcaption></figure>\n<p><img alt=\"There's Another Cat Parasite That Can Infect Humans. A Huge Study Reveals How Common It Is.\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/10/cat-closeup-1200x675.jpg\" style=\"float:left;margin:0 15px 15px 0;\" width=\"1200\"/>Move over, toxoplasmosis.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&amp;utm_medium=feed&amp;utm_campaign=rss_feed_promo\" rel=\"noopener noreferrer\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.</a></p>",
+      "summary": "(Netrebina Elena/Moment RF/Getty Images) Move over, toxoplasmosis. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "_excerpt": "(Netrebina Elena/Moment RF/Getty Images) Move over, toxoplasmosis. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "date_published": "2026-10-17T02:00:00+00:00",
+      "authors": [
+        {
+          "name": "ScienceAlert",
+          "url": "https://www.sciencealert.com"
+        }
+      ],
+      "ai_score": 52,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 42,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 45,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-10-21T06:10:35.133304+00:00"
+      },
+      "_boosted_score": 52
+    },
+    "held_date": "2026-10-22",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   }
 }

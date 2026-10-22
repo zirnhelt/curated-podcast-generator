@@ -1,45 +1,4 @@
 {
-  "2026-09-16": {
-    "timestamp": 1789550857.70355,
-    "topics": [
-      "[My Cariboo Now] Barkerville enjoys \u201cgood season\u201d despite sl",
-      "[Williams Lake Tribune] Children and youth race zucchinis ca",
-      "[My Cariboo Now] Two hunters sentenced for Wildlife Act viol",
-      "[Quesnel Cariboo Observer] Prince George RCMP investigating ",
-      "[My Cariboo Now] Former attorneys general voice support for ",
-      "[XDA Developers] I printed custom fan ducts for my PC case a",
-      "[Hackster News] Firehat Brings Back IEEE 1394 FireWire for D",
-      "[MakeUseOf] Finally, someone to ask why your Pixel is acting"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-16",
-    "focus": "maker-repair",
-    "focus_name": "Maker & Repair"
-  },
-  "2026-09-17": {
-    "timestamp": 1789633442.403247,
-    "topics": [
-      "[Williams Lake Tribune] Williams Lake Log Loader competition",
-      "[My Cariboo Now] Accused in drug bust in Williams Lake to go",
-      "[Williams Lake Tribune] Smoke, flames expected during prescr",
-      "[My Cariboo Now] Fire damages a hotel in Quesnel",
-      "[100 Mile Free Press] CARIBOO OUTDOORS: A day on the water",
-      "[APTN News] \u2018It\u2019s not a home\u2019: T\u0142\u0131\u0328ch\u01eb mother says daughters",
-      "[Williams Lake Tribune] B.C. Rail Corridor Alliance presses ",
-      "[ScienceDaily] Scientists turn seawater into fresh water wit"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-17",
-    "focus": "governance-title",
-    "focus_name": "Governance, Title & Treaty"
-  },
   "2026-09-18": {
     "timestamp": 1789719592.377866,
     "topics": [
@@ -712,5 +671,26 @@
     "date": "2026-10-21",
     "focus": "homestead-offgrid",
     "focus_name": "Homestead & Off-Grid Tech"
+  },
+  "2026-10-22": {
+    "timestamp": 1792658055.402289,
+    "topics": [
+      "[BC Wildfire Service] Prescribed burn planned near Esler Roa",
+      "[Williams Lake Tribune] Jobs, growth, workforce challenges o",
+      "[100 Mile Free Press] 2026 Starry Nights fundraiser sets mil",
+      "[Williams Lake Tribune] 5th annual Williams Lake First Natio",
+      "[Quesnel Cariboo Observer] West Fraser \u2013 Forest Operations M",
+      "[Canadian Forest Industries] Cultural shrub planting support",
+      "[APTN News] Yukon, Canada, ask for dismissal of $150M mining",
+      "[IndigiNews] My ancestors showed me how to grieve"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-22",
+    "focus": "language-culture",
+    "focus_name": "Language & Culture"
   }
 }
