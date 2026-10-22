@@ -6387,6 +6387,32 @@ class TestSparseFilterBudget:
         pg._fill_body_from_excerpt([article])
         assert article["_body"] == excerpt.strip()
 
+    def test_kagi_news_body_is_used_as_is(self, monkeypatch):
+        """A Kite cluster's `_excerpt` is a researched multi-outlet body: nothing is spent on it."""
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "brave-key")
+
+        def _spent(*a, **k):
+            raise AssertionError("spent a fetch on a Kagi News body")
+        for name in ("_fetch_article_body", "_fetch_article_text", "_brave_search"):
+            monkeypatch.setattr(pg, name, _spent)
+        monkeypatch.setattr(pg.requests, "post", _spent)
+        excerpt = "USDA will publish a regional cash-cattle report on Oct. 26 (usda.gov). " * 10
+        item = {"title": "USDA adds cattle price report", "url": "https://x.test/a",
+                "_excerpt": excerpt, "_kite_sources": 9}
+        pg._use_kite_body(item)
+        kept, brave_used = pg._filter_sparse_news_articles([item])
+        assert kept[0]["_body"] == excerpt.strip() and not brave_used
+        assert "_body_via" not in kept[0]
+        assert pg._kite_body_used(kept, [])
+
+    def test_an_ordinary_item_is_not_a_kagi_news_body(self):
+        import podcast_generator as pg
+        item = {"title": "Story", "_excerpt": "A long excerpt. " * 40, "_kite_sources": 0}
+        pg._use_kite_body(item)
+        assert "_body" not in item and not pg._kite_body_used([item])
+
     def test_kagi_extract_reads_the_own_page_before_brave(self, monkeypatch):
         import podcast_generator as pg
         monkeypatch.setenv("KAGI_API_KEY", "kagi-key")

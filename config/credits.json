@@ -13,6 +13,7 @@
     "weather_data": "Open-Meteo",
     "content_enrichment": "Cohere",
     "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
     "producer": "Erich Zirnhelt",
     "coordination": "Erich Zirnhelt",
     "hosting": "Cloudflare Pages",
