@@ -4123,6 +4123,25 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
     return result + "\n\n"
 
 
+def _use_kite_body(article: dict) -> None:
+    """A Kagi News cluster's `_excerpt` is its body, already researched.
+
+    Upstream it is Kite's summary and talking points across `_kite_sources`
+    outlets, each claim followed by its outlet in parentheses. Set as `_body`
+    at load, it is past NEWS_BODY_RICH_CHARS, so no free fetch, Kagi Extract or
+    Brave call is spent on it, and a single outlet's page never replaces it.
+    """
+    excerpt = (article.get("_excerpt", "") or "").strip()
+    if article.get("_kite_sources") and len(excerpt) >= NEWS_BODY_MIN_CHARS:
+        article["_body"] = excerpt
+
+
+def _kite_body_used(*article_lists: list) -> bool:
+    """True when a Kagi News body reached the script: its licence (CC BY-NC) wants credit."""
+    return any(a.get("_kite_sources") and a.get("_body")
+               for articles in article_lists for a in articles or [])
+
+
 def _fill_body_from_excerpt(articles: list) -> None:
     """Give a thin article the feed's own `_excerpt` as its body when it is longer.
 
@@ -6432,6 +6451,7 @@ def _assert_feed_fresh(items: list, feed_url: str) -> None:
 FEED_CONTRACT_ITEM_FIELDS = (
     "id", "url", "title", "summary", "date_published", "authors", "ai_score",
     "_excerpt", "_is_bonus", "_keyword_matches", "_theme_score", "_theme_score_raw",
+    "_kite_sources",
 )
 FEED_CONTRACT_FEED_FIELDS = ("theme", "theme_description")  # under `_podcast`
 
@@ -6502,6 +6522,7 @@ def fetch_podcast_feed(weekday):
             # Carry over feed-provided metadata
             item['_keyword_matches'] = item.get('_keyword_matches', 0)
             item['_boosted_score'] = item.get('_boosted_score', item.get('ai_score', 0))
+            _use_kite_body(item)
 
             if item.get('_is_bonus', False):
                 bonus_articles.append(item)
@@ -8086,7 +8107,7 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False, anchor=None, kagi_used=False):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False, anchor=None, kagi_used=False, kagi_news_used=False):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
@@ -8224,6 +8245,8 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     weather_credit = f"Weather Data: {credits['weather_data']}<br>" if weather_used else ""
     cohere_credit = f"Content Enrichment: {credits['content_enrichment']}<br>" if cohere_used else ""
     kagi_credit = f"Page Extraction: {credits['page_extraction']}<br>" if kagi_used else ""
+    if kagi_news_used:
+        kagi_credit += f"News Summaries: {credits['news_summaries']}<br>"
     credits_html = (
         "<p><b>Credits</b><br>"
         f"Theme Song: {credits['theme_song']}<br>"
@@ -8814,7 +8837,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -8835,7 +8858,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         news_articles, deep_dive_articles, theme_name, script=script,
         debate_summary=debate_summary, psa_info=psa_info, brave_used=brave_used,
         weather_used=weather_used, cohere_used=cohere_used, anchor=anchor,
-        kagi_used=kagi_used,
+        kagi_used=kagi_used, kagi_news_used=kagi_news_used,
     )
 
     # Match articles against script, then reorder the roundup to follow the
@@ -9250,6 +9273,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         body = a.get('_body', '')
         via = a.get('_body_via')
         label = f"Content (from {via}'s coverage of the same story)" if via else "Content"
+        if a.get('_kite_sources') and not via:
+            label = (f"Content (summary of {a['_kite_sources']} outlets' coverage; the outlet "
+                     f"behind each claim is in parentheses: credit that outlet)")
         body_line = f"\n  {label}: {body[:ROUNDUP_PROMPT_BODY_CHARS]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
         return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{recall_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
@@ -12645,7 +12671,7 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
     The header carries the metadata the audio stage needs, since it runs as a
     separate process and cannot inherit locals: the theme (which the feed can
     override, so it is not always what get_theme_for_day() returns), whether
-    Brave research was used, whether a Kagi Extract page reached the script, and
+    Brave research was used, whether a Kagi Extract page or Kagi News body reached the script, and
     whether the weather check aired (each gates a provider in the spoken credits), and this week's anchor question (which is
     named on air, so the publish stage puts it in the episode description).
     """
@@ -13559,6 +13585,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 weather_used=bool(weather_data),
                 cohere_used=cohere_enrichment.was_used(),
                 kagi_used=_KAGI_EXTRACT_STATE.get("used", False),
+                kagi_news_used=_kite_body_used(news_articles, deep_dive_articles),
                 weather_data=weather_data,
                 anchor=today_anchor,
                 research={"block": brave_context, "log": list(_RESEARCH_LOG)},
@@ -13605,7 +13632,9 @@ def run_script_stage() -> tuple[str, str] | None:
                 script, today_theme, brave_used=brave_used,
                 anchor_question=today_anchor.get("question") if today_anchor else None,
                 weather_used=bool(weather_data),
-                kagi_used=_KAGI_EXTRACT_STATE.get("used", False),
+                # The spoken credit says "Kagi" for either product.
+                kagi_used=(_KAGI_EXTRACT_STATE.get("used", False)
+                           or _kite_body_used(news_articles, deep_dive_articles)),
             )
 
         # Each state file gets its own segment. These were one unbroken run of
