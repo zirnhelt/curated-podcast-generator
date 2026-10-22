@@ -4280,6 +4280,28 @@ class TestCheckRoundupOrder:
         )
         assert check_roundup_order(script, articles) == []
 
+    def test_a_nation_named_in_passing_does_not_place_a_story_early(self):
+        """2026-10-22: the Esler Road burn turn named Williams Lake First
+        Nation, so the pumpkin-patch story (and an unaired APTN story) "first
+        aired" there, ahead of the local block, and six misorders were chased."""
+        articles = [
+            {"title": "[BC Wildfire Service] Prescribed burn planned near Esler Road",
+             "authors": [{"name": "BC Wildfire Service"}], "_roundup_block": "local"},
+            {"title": "[Williams Lake Tribune] Mining sector jobs and workforce discussed",
+             "authors": [{"name": "Williams Lake Tribune"}], "_roundup_block": "local"},
+            {"title": "[Williams Lake Tribune] Williams Lake First Nation pumpkin patch biggest yet",
+             "authors": [{"name": "Williams Lake Tribune"}], "_roundup_block": "theme"},
+            {"title": "[APTN News] Mother of First Nation woman seeks medical transport reform",
+             "authors": [{"name": "APTN News"}], "_roundup_block": "theme"},
+        ]
+        script = _ROUNDUP_SCRIPT.format(
+            first="A prescribed burn is planned near Esler Road, with Williams "
+                  "Lake First Nation.",
+            second="The mining sector luncheon talked jobs and workforce.",
+            third="Williams Lake First Nation's pumpkin patch was its biggest yet.",
+        )
+        assert check_roundup_order(script, articles) == []
+
     def test_missing_roundup_section_is_a_no_op(self):
         assert check_roundup_order("**WELCOME**\n\n**CASEY:** Hi.", _order_articles()) == []
 

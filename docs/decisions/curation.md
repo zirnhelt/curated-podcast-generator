@@ -368,6 +368,13 @@ turn, so the on-theme Nokia story behind it read as aired after the kicker. Two 
 passes (~$0.07) returned the roundup unchanged, because it was already in order, and
 `script/roundup-order` degraded. A shared outlet now places by headline words alone.
 
+**Headline words place a story at its best turn, and "First Nation(s)" is one word**
+(`_roundup_match_words`). On 2026-10-22 (an Indigenous-lands day) the Esler Road burn turn named
+Williams Lake First Nation, so the first turn sharing two headline words was that one for the
+pumpkin-patch story and for an APTN story that never aired: six phantom misorders, two Sonnet
+passes (~$0.07), a degrade. Across October's scripts the change moved 28 placements, each
+from a wrong turn (often the roundup's opening preview line) to the story's own.
+
 **Blocks decide what airs together; `_sequence_roundup` decides the order inside one.** The
 discipline clustering above ran on the tail alone — `local` and `theme` were sorted by
 place-name density and keyword density respectively, neither of which says anything about what

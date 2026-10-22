@@ -7114,12 +7114,25 @@ def _slice_roundup(script: str) -> tuple:
             "\n".join(lines[end:]))
 
 
+# "First Nation(s)" is one name, not two content words. Counted as two, it
+# placed every story that names a nation at the first turn naming any nation.
+_FIRST_NATION_RE = re.compile(r"\bfirst\s+nations?\b", re.IGNORECASE)
+
+
+def _roundup_match_words(text: str) -> set:
+    return _significant_words(_FIRST_NATION_RE.sub("firstnation", text))
+
+
 def _article_first_mention(article: dict, turns: list,
                            match_source: bool = True) -> int | None:
-    """Index of the first roundup turn that covers this article, or None.
+    """Index of the roundup turn that covers this article, or None.
 
-    Matches on the outlet name or on two content words from the headline —
-    one word alone ('mining' on a mining day) collides across stories.
+    Matches on the outlet name (its first turn) or on the turn sharing the most
+    content words with the headline, at least two — one word alone ('mining' on
+    a mining day) collides across stories. Best turn, not first: on 2026-10-22
+    the pumpkin-patch story "aired" at the Esler Road burn turn, which named
+    Williams Lake First Nation, and two reorder passes chased six misorders
+    that weren't there.
     `match_source=False` when another story in the pool shares the outlet: on
     2026-10-21 the Hackaday kicker, aired last, "first aired" at the earlier
     Hackaday solar-cell turn, and two reorder passes chased a misorder that
@@ -7127,14 +7140,17 @@ def _article_first_mention(article: dict, turns: list,
     """
     source = _article_source_name(article).lower() if match_source else ""
     title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
-    title_words = _significant_words(title)
+    title_words = _roundup_match_words(title)
+    by_source = None
+    if source and len(source) > 3:
+        by_source = next((i for i, t in enumerate(turns) if source in t.lower()), None)
+    by_title, best = None, 1
     for i, turn in enumerate(turns):
-        lowered = turn.lower()
-        if source and len(source) > 3 and source in lowered:
-            return i
-        if len(title_words & _significant_words(turn)) >= 2:
-            return i
-    return None
+        shared = len(title_words & _roundup_match_words(turn))
+        if shared > best:
+            by_title, best = i, shared
+    found = [i for i in (by_source, by_title) if i is not None]
+    return min(found) if found else None
 
 
 def check_roundup_order(script: str, ordered_articles: list) -> list:
