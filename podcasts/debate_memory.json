@@ -1,31 +1,4 @@
 {
-  "2026-07-24": {
-    "timestamp": 1784889580.870172,
-    "date": "2026-07-24",
-    "theme": "Wild Spaces & Outdoor Life",
-    "focus": "wildlife-conservation",
-    "central_question": "Can real-time wildlife and environmental monitoring technology effectively close the gap between understanding ecological problems and acting on them fast enough to protect animals and fish populations?",
-    "riley_position": "Better monitoring technology provides genuine diagnostic value that enables more informed decision-making, even if it doesn't directly solve underlying problems like climate change or habitat loss. Real-time data shared across decision-makers can improve response times and outcomes.",
-    "riley_key_evidence": [
-      "Peace region caribou recovery used GPS collar telemetry and maternal penning to bring a herd from dozens to several times that number",
-      "Real-time temperature loggers on the Fraser can transmit hourly data instead of requiring weeks to retrieve, enabling mid-run responses rather than post-facto analysis",
-      "Orca behavior documentation shows that enough monitoring eyes over time can catch previously unknown behaviors"
-    ],
-    "casey_position": "Monitoring technology is diagnostic, not curative, and the critical gap isn't data collection but the authority and speed to act on that data. Climate-driven problems (winter ticks, river temperatures) and jurisdictional bottlenecks (overlapping DFO/First Nations authority) often cannot be solved by better information.",
-    "casey_key_evidence": [
-      "Caribou herds around Cariboo Mountains, Wells Gray, and Barkerville may be past recovery\u2014at some point honesty requires calling it 'management of a remnant population' rather than 'recovery'",
-      "Winter ticks killing moose are a climate problem showing up as parasites, and no provincial wildlife branch can engineer a colder winter",
-      "Even with improved temperature data, federal DFO emergency closure authority moves slower than heat spikes, making instrumentation that measures a problem faster than anyone can respond to it"
-    ],
-    "resolution": "Riley and Casey agree to hold the orca behavior question as genuinely open rather than resolved, and they converge on a concrete structural ask: public, real-time water temperature data on Fraser tributaries shared simultaneously across all decision-makers (DFO, Nations, local fisheries offices) rather than locked in separate systems. They acknowledge technology improves diagnosis without necessarily enabling cure, particularly for climate-driven problems where the underlying cause remains beyond control.",
-    "topics_covered": [
-      "Caribou habitat fragmentation and current population bottlenecks in the Cariboo Mountains",
-      "Winter tick populations as a climate-driven threat to moose populations",
-      "Fraser River salmon run temperatures and jurisdiction gaps between DFO and First Nations fisheries authority",
-      "Real-time monitoring technology capabilities and their limits in wildlife management",
-      "The gap between data collection and decision-making authority in environmental protection"
-    ]
-  },
   "2026-07-26": {
     "timestamp": 1785061649.299248,
     "date": "2026-07-26",
@@ -2542,6 +2515,34 @@
       "AI",
       "infrastructure",
       "funding"
+    ]
+  },
+  "2026-10-23": {
+    "timestamp": 1792743655.223187,
+    "date": "2026-10-23",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "recreation-access",
+    "anchor": "trust-built-or-inherited",
+    "central_question": "Who holds responsibility for outdoor safety decisions (race start dates, hunting trips, emergency systems, road closures) and whether the people making those calls have the information and accountability to keep people safe.",
+    "riley_position": "Riley argues that real-time tools like live tracking, sensors, alerts, and public logs can reduce risk, and that organizers, officials, and the province should be pressed to make decisions transparent and write closure and response rules into permits and contracts.",
+    "riley_key_evidence": [
+      "Organizers tracked Moab 240 runners live, which let them account for about 70 people after the storm hit with no serious injuries reported",
+      "B.C. RCMP Next Generation 9-1-1 rollout begins October 26 in Surrey and Courtenay, with Prince George going live October 29 serving about 40 northern communities, including an automated callback for dropped calls",
+      "Eastern Maar helped shape the Twelve Apostles visitor centre in Port Campbell National Park, with Indigenous decision-makers involved before construction"
+    ],
+    "casey_position": "Casey argues that tools and rules are not enough on their own, since the timeline of decisions, funding, staffing, and long-term ownership of logs and systems are what determine whether safety measures survive and work when they matter.",
+    "casey_key_evidence": [
+      "The Moab 240 coverage does not say when the forecast first flagged the storm or whether the start was locked in before conditions were checked, and Kubala was hospitalized with rhabdomyolysis after about twelve hours in rain",
+      "Three hunter emergencies near Steamboat Springs in fourteen hours on October 14 and 15, where experienced local hunters were overconfident and relied on memory rather than current conditions",
+      "Casey notes that a backcountry dropped 9-1-1 call is the case announcements leave out, and that a log or callback means little without staffing and funding to maintain it in year five"
+    ],
+    "resolution": "They did not fully agree. Riley accepted Casey's point that logs and contracts need named owners and funding, and Casey accepted a one-road, one-season test of a public closure log, but Casey remained skeptical that goodwill sustains such logs and the two left the question of who pays for them open, with both committing to pursue the closure log through the province.",
+    "topics_covered": [
+      "Race director duty and timing of weather-related cancellations at the Moab 240",
+      "Emergency response systems and the Next Generation 9-1-1 rollout in B.C.",
+      "Hunting safety, real-time sensors, and the limits of local knowledge",
+      "Road access, closure logs, and the tension between emergency access and development in the Columbia Valley and Cariboo",
+      "Public accountability, funding, and long-term maintenance of safety tools and logs"
     ]
   }
 }

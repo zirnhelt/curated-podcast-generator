@@ -1,25 +1,4 @@
 {
-  "2026-09-18": {
-    "timestamp": 1789719592.377866,
-    "topics": [
-      "[My Cariboo Now] Police in 100 Mile House respond to road ra",
-      "[My Cariboo Now] Quesnel is getting ready to take back the n",
-      "[Williams Lake Tribune] DOERKSON: Natural resource sector cr",
-      "[My Cariboo Now] B.C. Conservative leader unveils new critic",
-      "[Williams Lake Tribune] Apple Pie Society recognizes Cariboo",
-      "[BC Wildfire Service] Prescribed Burn planned for Deer Park ",
-      "[Wildfire Today] Track US states\u2019 new wildfire laws for util",
-      "[The Atlantic] El Ni\u00f1o Has Become a Doom Loop"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-09-18",
-    "focus": "wildfire-resilience",
-    "focus_name": "Wildfire & Climate Resilience"
-  },
   "2026-09-19": {
     "timestamp": 1789805797.620518,
     "topics": [
@@ -692,5 +671,26 @@
     "date": "2026-10-22",
     "focus": "language-culture",
     "focus_name": "Language & Culture"
+  },
+  "2026-10-23": {
+    "timestamp": 1792743652.254298,
+    "topics": [
+      "[Williams Lake Tribune] Symbol of hope, respect and peace fo",
+      "[My Cariboo Now] More than 15,000 Cariboo residents vote ear",
+      "[Williams Lake Tribune] Quesnel RCMP officer unable to wear ",
+      "[My Cariboo Now] B.C. RCMP to begin phased rollout of Next G",
+      "[Quesnel Cariboo Observer] Creativity takes wing at Quesnel\u2019",
+      "[My East Kootenay Now] McInnis seeks another term in Columbi",
+      "[Popular Mechanics] A Tragic Death at Six Flags Has Exposed ",
+      "[Williams Lake Tribune] Conservatives remain ahead in polls "
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-23",
+    "focus": "recreation-access",
+    "focus_name": "Recreation & Backcountry Access"
   }
 }
