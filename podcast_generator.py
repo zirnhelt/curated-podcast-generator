@@ -8822,13 +8822,17 @@ def score_script(script_text):
     # that is about to be fixed.
     hits["hard_banned"] = len(find_hard_banned(script_text))
 
-    # Voice length ratio (Casey avg / Riley avg) in Deep Dive only
+    # Voice length ratio (Casey avg / Riley avg) in Deep Dive only, plus Casey's
+    # share of every Deep Dive word: the ratio leans by design (Casey's turns
+    # run shorter), so only the share says whether one host carried it.
     voice_ratio = None
+    casey_share = None
     dd_start = script_text.find("**DEEP DIVE:")
     if dd_start >= 0:
         deep = script_text[dd_start:]
         chunks = _re.split(r'\*\*(RILEY|CASEY):\*\*', deep)
         riley_words, casey_words = [], []
+        totals = {"RILEY": 0, "CASEY": 0}
         speaker = None
         for chunk in chunks:
             if chunk in ("RILEY", "CASEY"):
@@ -8837,8 +8841,11 @@ def score_script(script_text):
                 # Strip pacing tags and count words
                 clean = _re.sub(r'\[(?:pause|overlap):[^\]]+\]', '', chunk)
                 wc = len(clean.split())
+                totals[speaker] += wc
                 if wc > 8:
                     (riley_words if speaker == "RILEY" else casey_words).append(wc)
+        if sum(totals.values()):
+            casey_share = round(100 * totals["CASEY"] / sum(totals.values()))
         if riley_words and casey_words:
             riley_avg = sum(riley_words) / len(riley_words)
             casey_avg = sum(casey_words) / len(casey_words)
@@ -8847,6 +8854,7 @@ def score_script(script_text):
     return {
         "word_count": len(script_text.split()),
         "voice_ratio_casey_riley": voice_ratio,
+        "casey_share_deep_dive_pct": casey_share,
         "pattern_hits": hits,
         "total_hits": total,
         "rhythm": score_rhythm(script_text),
@@ -13590,6 +13598,8 @@ def run_script_stage() -> tuple[str, str] | None:
             print(f"   Total pattern hits: {script_quality['total_hits']}  |  "
                   f"Voice ratio Casey/Riley: {script_quality['voice_ratio_casey_riley']}  |  "
                   f"Words: {script_quality['word_count']}")
+            if script_quality.get('casey_share_deep_dive_pct') is not None:
+                print(f"   Deep dive words Casey: {script_quality['casey_share_deep_dive_pct']}%")
 
         with segment("script/citations", critical=False):
             # Generate citations *after* script is finalized so they align with

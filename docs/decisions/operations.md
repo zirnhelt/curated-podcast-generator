@@ -455,7 +455,7 @@ resurrected on one mention.
   budget ("48 roundup articles", "55 roundup articles", "recurring"), five for deep-dive
   citations and seven for script expansion, 24 open in all. `run_signals` reads stable keys off the facts —
   `degraded:<segment>` for each `degrade()` row, `short-script`, `citations:<segment>` below
-  `CITATION_FLOOR`, `ai-tells-shipped` (above `AI_TELL_SIGNAL_ABOVE`, the Opus escalation line), `voice-ratio` outside `VOICE_RATIO_BAND`,
+  `CITATION_FLOOR`, `ai-tells-shipped` (above `AI_TELL_SIGNAL_ABOVE`, the Opus escalation line), `voice-ratio` (Casey's share of the deep dive's words outside `VOICE_SHARE_BAND`),
   `run-failed` — and the schema pins each finding's `signal` to that day's set plus `other`.
   `_match` goes signal, then id, then a `difflib` ratio ≥ 0.72 on the title; a signalled
   finding never title-matches an item under a different signal.
@@ -468,6 +468,12 @@ resurrected on one mention.
   `_DEEP_MATCH_MIN_TOKENS` (3) title-or-summary words in one host turn, each rare there
   (`_MATCH_RARE_MAX`): 35 of 38, none false. Naming the outlet was tried and left out (one
   gained, one false). "who" and "which" joined `_MATCH_STOPWORDS`; no October roundup match moved.
+- **`voice-ratio` reads who spoke, not how long a turn runs.** The Casey/Riley voice ratio
+  compares average deep-dive turn length, and the persona gives Casey the shorter turns, so the
+  symmetric (0.8, 1.25) band fired 11 nights in 60 (0.68–0.79 low, one 1.26) with Casey on
+  39–54% of the deep dive's words every time: no night where one host carried it. The signal
+  now keys on that share (`Deep dive words Casey: N%`, `VOICE_SHARE_BAND` 35–65, zero
+  firings over the same 60 nights); the ratio stays in the numbers table.
 - **`short-script` fires on what shipped, not on the first draft.** It keyed on the
   "Script complete but short" line, so a draft the expand pass carried past target
   (2026-09-28: 2,877 → 3,548) still counted as a sighting and the item could never go quiet.

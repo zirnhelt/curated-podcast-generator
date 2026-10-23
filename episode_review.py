@@ -225,6 +225,7 @@ _SINGLE: dict[str, tuple[str, list[type]]] = {
     "short_script": (r"Script complete but short \((\d+) words < (\d+) target\)", [int, int]),
     "quality": (r"Total pattern hits: (\d+)\s+\|\s+Voice ratio Casey/Riley: ([\d.]+)\s+\|\s+Words: (\d+)",
                 [int, float, int]),
+    "casey_deep_dive_word_pct": (r"Deep dive words Casey: (\d+)%", [int]),
     "citation_alignment": (r"Citation alignment: (\d+)/(\d+) news, (\d+)/(\d+) deep-dive", [int, int, int, int]),
     "anchor": (r"❓ This week's question: (.+)", [str]),
     "debate_question": (r"Debate question: (.+)", [str]),
@@ -552,6 +553,7 @@ def render_numbers_table(facts: dict[str, Any]) -> str:
         row("Roundup pool", "roundup_pool", "{} stories — {}"),
         row("Deep dive", "deep_dive_count", "{} articles"),
         row("Script", "quality", "{} pattern hit(s), voice ratio {}, {} words"),
+        row("Deep dive split", "casey_deep_dive_word_pct", "Casey {}% of the words"),
         row("Audio", "audio_minutes", "{} min"),
         row("Audio size", "audio_mb", "{} MB"),
         row("Citations matched", "citation_alignment", "{}/{} roundup, {}/{} deep dive"),
@@ -1057,10 +1059,13 @@ _SEEN_KEPT = 10
 # not one: a problem that skips a night has not been fixed.
 SIGNAL_QUIET_DAYS = int(os.getenv("ROADMAP_SIGNAL_QUIET_DAYS", "3"))
 # Where a metric becomes a signal. Below half the articles reaching the script
-# is a matching problem; a quarter either way on the voice ratio is a host
-# imbalance; the 1.13 that opened a roadmap item is two people talking.
+# is a matching problem. A host imbalance is Casey's share of the deep dive's
+# words outside this band (one host near twice the other), never the voice
+# ratio: that compares average turn length, and the persona gives Casey the
+# shorter turns. The ratio band (0.8, 1.25) fired 11 nights in 60, every one
+# with Casey on 39-54% of the words.
 CITATION_FLOOR = 0.5
-VOICE_RATIO_BAND = (0.8, 1.25)
+VOICE_SHARE_BAND = (35, 65)
 # Shipped tell hits that are a signal: more than the count that sends the polish
 # to Opus (podcast_generator.OPUS_QUALITY_HIT_THRESHOLD; a test pins the two
 # together). One or two hits are the scan counting idiom, 28 of 40 scripts
@@ -1145,11 +1150,12 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
                 signals[f"citations:{name}"] = f"{matched}/{total} {name} citations matched the script"
     quality = facts.get("quality")
     if isinstance(quality, list) and len(quality) == 3:
-        hits, ratio = quality[0], quality[1]
+        hits = quality[0]
         if hits > AI_TELL_SIGNAL_ABOVE:
             signals["ai-tells-shipped"] = f"{hits} AI-tell pattern hit(s) in the shipped script"
-        if not VOICE_RATIO_BAND[0] <= ratio <= VOICE_RATIO_BAND[1]:
-            signals["voice-ratio"] = f"Casey/Riley voice ratio {ratio}"
+    share = facts.get("casey_deep_dive_word_pct")
+    if isinstance(share, int) and not VOICE_SHARE_BAND[0] <= share <= VOICE_SHARE_BAND[1]:
+        signals["voice-ratio"] = f"Casey spoke {share}% of the deep dive's words"
     failed = [r["trigger"] for r in facts.get("runs", []) if r.get("conclusion") == "failure"]
     if failed:
         signals["run-failed"] = "failed: " + ", ".join(failed)

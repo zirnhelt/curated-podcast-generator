@@ -558,11 +558,27 @@ class TestSignals:
             "short_script": [2192, 3400],
             "citation_alignment": [12, 15, 1, 3],
             "quality": [4, 1.4, 3300],
+            "casey_deep_dive_word_pct": 70,
             "runs": [{"trigger": "Primary", "conclusion": "failure"}],
         })
         assert set(signals) == {BODIES, "short-script", "citations:deep-dive",
                                 "ai-tells-shipped", "voice-ratio", "run-failed"}
         assert "12 calls" in signals[BODIES]
+
+    def test_casey_s_shorter_turns_are_not_a_host_imbalance(self):
+        # 2026-10-23: voice ratio 0.78 (Casey's turns shorter, as the persona
+        # asks) with Casey on 42% of the deep dive's words. The ratio band
+        # fired 11 nights in 60 on splits like this; none was lopsided.
+        facts = {"quality": [1, 0.78, 3400], "casey_deep_dive_word_pct": 42}
+        assert "voice-ratio" not in episode_review.run_signals(facts)
+        facts["casey_deep_dive_word_pct"] = 30
+        assert "voice-ratio" in episode_review.run_signals(facts)
+
+    def test_the_share_is_read_off_the_run_log(self):
+        facts = episode_review.scan_log(
+            "   Total pattern hits: 1  |  Voice ratio Casey/Riley: 0.78  |  Words: 3400\n"
+            "   Deep dive words Casey: 42%\n")
+        assert facts["casey_deep_dive_word_pct"] == 42
 
     def test_short_draft_that_shipped_at_target_is_not_a_signal(self):
         # 2026-09-28: first draft 2,877, shipped 3,548. The expand pass did
