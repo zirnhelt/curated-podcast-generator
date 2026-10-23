@@ -1,0 +1,447 @@
+{
+  "episode": {
+    "date": "2026-10-23",
+    "formatted_date": "Friday, October 23, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is trust something you build, or something you inherit?</p><p><b>NEWS ROUNDUP:</b> We break down More than 15,000 Cariboo residents vote early in the provincial election and Quesnel RCMP officer unable to wear duty belt denied disability benefits, plus 10 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Who holds responsibility for outdoor safety decisions (race start dates, hunting trips, emergency systems, road closures) and whether the people making those calls have the information and accountability to keep people safe. Topics include: Race director duty and timing of weather-related cancellations at the Moab 240, Emergency response systems and the Next Generation 9-1-1 rollout in B.C., Hunting safety, real-time sensors, and the limits of local knowledge, Road access, closure logs, and the tension between emergency access and development in the Columbia Valley and Cariboo, Public accountability, funding, and long-term maintenance of safety tools and logs.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://conservationsociety.ca\">Cariboo Chilcotin Conservation Society</a></p><p><b>Sources discussed:</b></p><ul><li>George Henderson (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316913/news/politics/more-than-15000-cariboo-residents-vote-early-in-the-provincial-election/\">[My Cariboo Now] More than 15,000 Cariboo residents vote ear...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/22/quesnel-rcmp-officer-unable-to-wear-duty-belt-denied-disability-benefits/\">[Williams Lake Tribune] Quesnel RCMP officer unable to wear ...</a></li><li>Kate Brown (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316936/news/rcmp/b-c-rcmp-to-begin-phased-rollout-of-next-generation-9-1-1-system/\">[My Cariboo Now] B.C. RCMP to begin phased rollout of Next G...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/10/22/creativity-takes-wing-at-quesnels-mural/\">[Quesnel Cariboo Observer] Creativity takes wing at Quesnel’...</a></li><li>Christina Yao (Dezeen): <a href=\"https://www.dezeen.com/2026/10/12/grimshaw-visitor-centre-twelve-apostles-australia/\">[Dezeen] Grimshaw completes rammed-earth visitor centre for ...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/raven-chacons-echoes-on-park-avenue/\">[Hyperallergic] Raven Chacon’s Echoes on Park Avenue</a></li><li>Canadian Architect: <a href=\"https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/\">[Canadian Architect] City of Toronto and DIALOG announce Wes...</a></li><li>thehackernews.com: <a href=\"https://thehackernews.com/2026/10/litellm-compromised-in-supply-chain.html\">[thehackernews.com] Attackers compromise AI gateway LiteLLM ...</a></li><li>scitechdaily.com: <a href=\"https://scitechdaily.com/stanford-scientists-discover-a-remarkable-way-to-rescue-dying-corals-in-just-seven-weeks/\">[scitechdaily.com] Stanford team revives bleached corals thr...</a></li><li>AP (thehindu.com): <a href=\"https://www.thehindu.com/news/international/carney-says-trumps-tariffs-hurt-americans-as-us-embassy-alleges-canadian-interference/article71610297.ece\">[thehindu.com] Cleveland-Cliffs announces Hamilton layoffs a...</a></li><li>CleanTechnica: <a href=\"https://cleantechnica.com/2026/10/22/what-the-battery-show-told-us-about-the-next-chapter-of-electrification/\">[CleanTechnica] What The Battery Show Told Us About the Next...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/computing/cpus/ive-been-living-with-nvidias-rtx-spark-for-a-week-on-surface-laptop-ultra-its-not-a-macbook-pro-killer-but-something-much-weirder-and-wildly-powerful\">[Toms Guide] I’ve been living with Nvidia’s RTX Spark for a ...</a></li><li>Kate Brown (My East Kootenay Now): <a href=\"https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/\">[My East Kootenay Now] McInnis seeks another term in Columbi...</a></li><li>Frederick Dreier (Outside Online): <a href=\"https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/\">[Outside Online] I Was Leading the Moab 240 When Extreme Wea...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/22/symbol-of-hope-respect-and-peace-for-generations-to-come-unveiled-in-williams-lake/\">[Williams Lake Tribune] Symbol of hope, respect and peace fo...</a></li><li>Santana Dreaver (IndigiNews): <a href=\"https://indiginews.com/features/first-nation-ghost-net-cleanup-interior-rivers/\">[IndigiNews] ‘Gratifying and humbling’: First Nation leads g...</a></li><li>Wildfire Today: <a href=\"https://wildfiretoday.com/indonesias-wildfires-impact-air-quality-for-much-of-region/\">[Wildfire Today] Indonesia’s wildfires impact air quality fo...</a></li><li>Ella Cobb (Outside Online): <a href=\"https://www.outsideonline.com/outdoor-adventure/exploration-survival/steamboat-snowstorm-hunter-rescues/\">[Outside Online] Three Mountain Emergencies in 14 Hours Reve...</a></li><li>koaa.com: <a href=\"https://www.koaa.com/science-and-tech/climate-change/un-report-calls-out-us-emissions-says-world-can-no-longer-avoid-overshooting-key-climate-target\">[koaa.com] U.S. emissions rise worsens global warming outloo...</a></li><li>commondreams.org: <a href=\"https://www.commondreams.org/news/trump-fema-states\">[commondreams.org] FEMA chief tells states to prepare for di...</a></li><li>Popular Mechanics: <a href=\"https://www.popularmechanics.com/science/a74136257/six-flags-goliath-roller-coaster-safety-regulation/\">[Popular Mechanics] A Tragic Death at Six Flags Has Exposed ...</a></li><li>Brendan Shykora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/22/conservatives-remain-ahead-in-polls-as-b-c-election-day-nears/\">[Williams Lake Tribune] Conservatives remain ahead in polls ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-23T01:20:36.698700-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3515,
+      "voice_ratio_casey_riley": 0.78,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 2,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 20,
+        "turns": 89,
+        "avg_turn_words": 38.1,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 4
+    },
+    "anchor": {
+      "id": "trust-built-or-inherited",
+      "question": "Is trust something you build, or something you inherit?"
+    },
+    "audio_file_size": 20605101,
+    "audio_duration": "21:27"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Symbol of hope, respect and peace for generations to come unveiled in Williams Lake",
+          "url": "https://wltribune.com/2026/10/22/symbol-of-hope-respect-and-peace-for-generations-to-come-unveiled-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 85,
+          "date_published": "2026-10-23T06:03:11.955657+00:00",
+          "summary": "A Rotary Peace Pole featuring six different languages including Tsilhqot’in, Carrier, Metis, Secwepemc, English and French has been installed in Williams Lake. A dedication ceremony was held for a pea...",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] More than 15,000 Cariboo residents vote early in the provincial election",
+          "url": "https://www.mycariboonow.com/316913/news/politics/more-than-15000-cariboo-residents-vote-early-in-the-provincial-election/",
+          "source": "My Cariboo Now",
+          "author": "George Henderson",
+          "ai_score": 86,
+          "date_published": "2026-10-22T20:46:30+00:00",
+          "summary": "Early voting is now done for the upcoming provincial election. The post More than 15,000 Cariboo residents vote early in the provincial election appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.0688
+        },
+        {
+          "title": "[Outside Online] Three Mountain Emergencies in 14 Hours Reveal the Perils of Early Snow",
+          "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/steamboat-snowstorm-hunter-rescues/",
+          "source": "Outside Online",
+          "author": "Ella Cobb",
+          "ai_score": 53,
+          "date_published": "2026-10-22T17:47:46+00:00",
+          "summary": "One group's frightening experience near Steamboat Springs unfolded as search-and-rescue crews responded to three hunter emergencies in just 14 hours. The post Three Mountain Emergencies in 14 Hours Re...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Quesnel RCMP officer unable to wear duty belt denied disability benefits",
+          "url": "https://wltribune.com/2026/10/22/quesnel-rcmp-officer-unable-to-wear-duty-belt-denied-disability-benefits/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 83,
+          "date_published": "2026-10-22T20:52:09+00:00",
+          "summary": "The Veterans Review and Appeal Board upheld a 2019 Veterans Affairs decision to deny disability benefits to a 50-year-old RCMP officer after a severe abdominal injury required surgery. The officer, wh...",
+          "discussed": true,
+          "mention_offset_frac": 0.155
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Creativity takes wing at Quesnel’s mural",
+          "url": "https://quesnelobserver.com/2026/10/22/creativity-takes-wing-at-quesnels-mural/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 76,
+          "date_published": "2026-10-23T06:03:11.956124+00:00",
+          "summary": "A towering eagle now spreads its wings across a grey wall at Eagle Home Building in Quesnel, adding colour and a new artistic feature to the community. Local artist Keith […]",
+          "discussed": true,
+          "mention_offset_frac": 0.155
+        },
+        {
+          "title": "[My Cariboo Now] B.C. RCMP to begin phased rollout of Next Generation 9-1-1 system",
+          "url": "https://www.mycariboonow.com/316936/news/rcmp/b-c-rcmp-to-begin-phased-rollout-of-next-generation-9-1-1-system/",
+          "source": "My Cariboo Now",
+          "author": "Kate Brown",
+          "ai_score": 73,
+          "date_published": "2026-10-23T03:44:37+00:00",
+          "summary": "B.C. residents will continue to access emergency services the same way as police dispatch centres transition to a new digital 9-1-1 system beginning Oct. 26. The post B.C. RCMP to begin phased rollout...",
+          "discussed": true,
+          "mention_offset_frac": 0.2103
+        },
+        {
+          "title": "[Dezeen] Grimshaw completes rammed-earth visitor centre for Twelve Apostles in Australia",
+          "url": "https://www.dezeen.com/2026/10/12/grimshaw-visitor-centre-twelve-apostles-australia/",
+          "source": "Dezeen",
+          "author": "Christina Yao",
+          "ai_score": 45,
+          "date_published": "2026-10-12T10:30:37+00:00",
+          "summary": "Architecture studio Grimshaw and landscape architect Aspect Studios have completed a visitor experience centre for one of Australia's most-visited natural landmarks, the Twelve Apostles in Victoria. L...",
+          "discussed": true,
+          "mention_offset_frac": 0.2214
+        },
+        {
+          "title": "[scitechdaily.com] Stanford team revives bleached corals through brief clone contact",
+          "url": "https://scitechdaily.com/stanford-scientists-discover-a-remarkable-way-to-rescue-dying-corals-in-just-seven-weeks/",
+          "source": "scitechdaily.com",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-21T15:54:36+00:00",
+          "summary": "Stanford researchers report that bleached coral fragments fully recovered within seven weeks in laboratory tests after brief contact with healthy, genetically identical clones, according to a study pu...",
+          "discussed": true,
+          "mention_offset_frac": 0.3503
+        },
+        {
+          "title": "[koaa.com] U.S. emissions rise worsens global warming outlook, UN report says",
+          "url": "https://www.koaa.com/science-and-tech/climate-change/un-report-calls-out-us-emissions-says-world-can-no-longer-avoid-overshooting-key-climate-target",
+          "source": "koaa.com",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-21T20:06:33+00:00",
+          "summary": "The United Nations Environment Programme’s (UNEP) 2026 emissions assessment says U.S. greenhouse-gas emissions rose by 133 million tonnes of carbon dioxide equivalent in 2025, the largest increase amo...",
+          "discussed": false
+        },
+        {
+          "title": "[Hyperallergic] Raven Chacon’s Echoes on Park Avenue",
+          "url": "https://hyperallergic.com/raven-chacons-echoes-on-park-avenue/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-10-12T10:00:00+00:00",
+          "summary": "The Pulitzer Prize-winning Diné artist on latest projects, art in NYC for Indigenous Peoples’ Day, and a Felix Gonzalez-Torres show misses the mark.",
+          "discussed": true,
+          "mention_offset_frac": 0.562
+        },
+        {
+          "title": "[Canadian Architect] City of Toronto and DIALOG announce Western Beaches Public Realm Plan",
+          "url": "https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/",
+          "source": "Canadian Architect",
+          "author": "",
+          "ai_score": 41,
+          "date_published": "2026-10-13T14:00:44+00:00",
+          "summary": "The City of Toronto, in collaboration with DIALOG, has recently announced their Western Beaches Public Realm Plan, a long-term vision for revitalizing one of Toronto’s waterfront park systems, from On...",
+          "discussed": true,
+          "mention_offset_frac": 0.6492
+        },
+        {
+          "title": "[thehackernews.com] Attackers compromise AI gateway LiteLLM 1.107.0 to steal credentials",
+          "url": "https://thehackernews.com/2026/10/litellm-compromised-in-supply-chain.html",
+          "source": "thehackernews.com",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-10-21T18:01:57+00:00",
+          "summary": "Attackers released a malicious version of LiteLLM, an open-source gateway for connecting to AI models, distributing version 1.107.0 through the Python Package Index (PyPI) and Docker images on Oct. 21...",
+          "discussed": true,
+          "mention_offset_frac": 0.7044
+        },
+        {
+          "title": "[thehindu.com] Cleveland-Cliffs announces Hamilton layoffs as Canada, Ontario unveil aid",
+          "url": "https://www.thehindu.com/news/international/carney-says-trumps-tariffs-hurt-americans-as-us-embassy-alleges-canadian-interference/article71610297.ece",
+          "source": "thehindu.com",
+          "author": "AP",
+          "ai_score": 55,
+          "date_published": "2026-10-22T06:17:16+00:00",
+          "summary": "U.S.-owned steelmaker Cleveland-Cliffs announced layoffs at its Hamilton, Ontario, plant as Prime Minister Mark Carney and Ontario Premier Doug Ford unveiled a C$8.7 billion support package for steel,...",
+          "discussed": true,
+          "mention_offset_frac": 0.8276
+        },
+        {
+          "title": "[CleanTechnica] What The Battery Show Told Us About the Next Chapter of Electrification",
+          "url": "https://cleantechnica.com/2026/10/22/what-the-battery-show-told-us-about-the-next-chapter-of-electrification/",
+          "source": "CleanTechnica",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-23T03:57:17+00:00",
+          "summary": "The Battery Show North America 2026 in Detroit, Michigan wasn’t about the next breakthrough. It was about who can deliver. Each fall you can learn a lot about the battery industry by walking through t...",
+          "discussed": true,
+          "mention_offset_frac": 0.8802
+        },
+        {
+          "title": "[Toms Guide] I’ve been living with Nvidia’s RTX Spark for a week — it’s not a MacBook Pro killer but something much weirder and wildly powerful",
+          "url": "https://www.tomsguide.com/computing/cpus/ive-been-living-with-nvidias-rtx-spark-for-a-week-on-surface-laptop-ultra-its-not-a-macbook-pro-killer-but-something-much-weirder-and-wildly-powerful",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/jason-england",
+          "ai_score": 46,
+          "date_published": "2026-10-15T12:00:00+00:00",
+          "summary": "I lived with Nvidia’s RTX Spark for a week. From self-healing game code to autonomous local agents, here is why it’s not a Mac killer — it’s the future.",
+          "discussed": true,
+          "mention_offset_frac": 0.9643
+        },
+        {
+          "title": "[IndigiNews] ‘Gratifying and humbling’: First Nation leads ghost net cleanup from Interior ‘B.C.’ rivers",
+          "url": "https://indiginews.com/features/first-nation-ghost-net-cleanup-interior-rivers/",
+          "source": "IndigiNews",
+          "author": "Santana Dreaver",
+          "ai_score": 67,
+          "date_published": "2026-10-22T16:15:00+00:00",
+          "summary": "For two decades, TLKemchEEN has facilitated the annual cleanup of the Fraser and Thompson rivers to support salmon and other aquatic life The post ‘Gratifying and humbling’: First Nation leads ghost n...",
+          "discussed": false
+        },
+        {
+          "title": "[Wildfire Today] Indonesia’s wildfires impact air quality for much of region",
+          "url": "https://wildfiretoday.com/indonesias-wildfires-impact-air-quality-for-much-of-region/",
+          "source": "Wildfire Today",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-23T04:37:34+00:00",
+          "summary": "Wildfires burning in Indonesia’s peatlands, forests, and agricultural land since July caused the country to produce the world’s highest levels of emissions for September. Now a month later, the fires ...",
+          "discussed": false
+        },
+        {
+          "title": "[commondreams.org] FEMA chief tells states to prepare for disasters without federal aid",
+          "url": "https://www.commondreams.org/news/trump-fema-states",
+          "source": "commondreams.org",
+          "author": "https://www.facebook.com/32109457015",
+          "ai_score": 50,
+          "date_published": "2026-10-21T15:27:54+00:00",
+          "summary": "Federal Emergency Management Agency (FEMA) Administrator Cameron Hamilton told state emergency officials that states should maintain financial reserves and response capacity to manage disasters withou...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[My East Kootenay Now] McInnis seeks another term in Columbia River-Revelstoke",
+          "url": "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/",
+          "source": "My East Kootenay Now",
+          "author": "Kate Brown",
+          "ai_score": 53,
+          "date_published": "2026-10-06T06:54:27+00:00",
+          "summary": "Scott McInnis is asking Columbia River-Revelstoke voters for another term in the B.C. legislature, saying rural health care, transportation and backcountry access will remain among his priorities if r...",
+          "discussed": true
+        },
+        {
+          "title": "[Popular Mechanics] A Tragic Death at Six Flags Has Exposed a Terrifying Truth: Roller Coasters Have a Hidden Safety Loophole",
+          "url": "https://www.popularmechanics.com/science/a74136257/six-flags-goliath-roller-coaster-safety-regulation/",
+          "source": "Popular Mechanics",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-15T16:14:57+00:00",
+          "summary": "After a fatal incident in Georgia, questions are mounting about amusement park regulations, state inspections, and federal oversight.",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Conservatives remain ahead in polls as B.C. election day nears",
+          "url": "https://wltribune.com/2026/10/22/conservatives-remain-ahead-in-polls-as-b-c-election-day-nears/",
+          "source": "Williams Lake Tribune",
+          "author": "Brendan Shykora",
+          "ai_score": 74,
+          "date_published": "2026-10-23T00:00:00+00:00",
+          "summary": "Conservatives remain ahead in polls as B.C. election day nears | Williams Lake Tribune Conservatives remain ahead in polls as B.C. election day nears B.C. Conservative leader Lorne Doerkson (left) and...",
+          "discussed": false
+        },
+        {
+          "title": "[Outside Online] I Was Leading the Moab 240 When Extreme Weather Hit. Here’s What It Was Like.",
+          "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/",
+          "source": "Outside Online",
+          "author": "Frederick Dreier",
+          "ai_score": 57,
+          "date_published": "2026-10-20T19:55:36+00:00",
+          "summary": "Trail runner Aaron Kubala was out in front at the Moab 240 when a dangerous storm transformed the race into a survival situation. Kubala explains what it was like to endure severe cold, deadly winds, ...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Who holds responsibility for outdoor safety decisions (race start dates, hunting trips, emergency systems, road closures) and whether the people making those calls have the information and accountability to keep people safe.",
+        "riley_position": "Riley argues that real-time tools like live tracking, sensors, alerts, and public logs can reduce risk, and that organizers, officials, and the province should be pressed to make decisions transparent and write closure and response rules into permits and contracts.",
+        "riley_key_evidence": [
+          "Organizers tracked Moab 240 runners live, which let them account for about 70 people after the storm hit with no serious injuries reported",
+          "B.C. RCMP Next Generation 9-1-1 rollout begins October 26 in Surrey and Courtenay, with Prince George going live October 29 serving about 40 northern communities, including an automated callback for dropped calls",
+          "Eastern Maar helped shape the Twelve Apostles visitor centre in Port Campbell National Park, with Indigenous decision-makers involved before construction"
+        ],
+        "casey_position": "Casey argues that tools and rules are not enough on their own, since the timeline of decisions, funding, staffing, and long-term ownership of logs and systems are what determine whether safety measures survive and work when they matter.",
+        "casey_key_evidence": [
+          "The Moab 240 coverage does not say when the forecast first flagged the storm or whether the start was locked in before conditions were checked, and Kubala was hospitalized with rhabdomyolysis after about twelve hours in rain",
+          "Three hunter emergencies near Steamboat Springs in fourteen hours on October 14 and 15, where experienced local hunters were overconfident and relied on memory rather than current conditions",
+          "Casey notes that a backcountry dropped 9-1-1 call is the case announcements leave out, and that a log or callback means little without staffing and funding to maintain it in year five"
+        ],
+        "resolution": "They did not fully agree. Riley accepted Casey's point that logs and contracts need named owners and funding, and Casey accepted a one-road, one-season test of a public closure log, but Casey remained skeptical that goodwill sustains such logs and the two left the question of who pays for them open, with both committing to pursue the closure log through the province.",
+        "topics_covered": [
+          "Race director duty and timing of weather-related cancellations at the Moab 240",
+          "Emergency response systems and the Next Generation 9-1-1 rollout in B.C.",
+          "Hunting safety, real-time sensors, and the limits of local knowledge",
+          "Road access, closure logs, and the tension between emergency access and development in the Columbia Valley and Cariboo",
+          "Public accountability, funding, and long-term maintenance of safety tools and logs"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": -1,
+          "conditions": "clear skies",
+          "high": 7,
+          "low": -2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": -3,
+          "conditions": "clear skies",
+          "high": 4,
+          "low": -3
+        },
+        {
+          "name": "Williams Lake",
+          "temp": -1,
+          "conditions": "mainly clear",
+          "high": 7,
+          "low": -1
+        },
+        {
+          "name": "Quesnel",
+          "temp": -1,
+          "conditions": "foggy",
+          "high": 6,
+          "low": -1
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": -2,
+          "conditions": "foggy",
+          "high": 6,
+          "low": -2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Chilcotin Conservation Society",
+      "description": "Environmental education nonprofit — Water Wise, Waste Wise, Skates for All, and school field programs since 1996",
+      "website": "conservationsociety.ca",
+      "psa_angle": "It's Waste Reduction Week. The Conservation Society's Waste Wise program works with schools and businesses across School District 27 to reduce waste in the Cariboo.",
+      "event_name": "Waste Reduction Week"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\nThese analytical threads were identified before generation. Use the findings to ground Riley's and Casey's arguments with real evidence. Develop them as substantive exchanges, not a citation list. Cite naturally.\n\nRESEARCH QUESTION: What happened at the 2026 Moab 240, and how does it test the limits of race-day weather forecasting and organizer decision-making in wild terrain?\nFindings: The Moab 240 (a 241.8-mile ultramarathon in Utah) was called off on Sunday, October 11, 2026, after Tropical Storm Rachel's remnants brought flash flooding, high winds, sleet and falling trees into the La Sals. About 70 runners and volunteers were stranded overnight near the Bridger Jack aid station, and all were accounted for, with no serious injuries reported. Evacuation used ATVs and helicopters. Organizer Destination Trail said \"Weather has other plans\" and that runner safety had to come first. Aaron Kubala, 31, was leading the men's race about 35 miles from the finish when conditions turned, and he was later hospitalized with rhabdomyolysis. Sources: Weather.com (Oct. 12, 2026), Moab Sun News (Oct. 11, 2026), The Guardian (Oct. 12, 2026), ABC News, Denver Gazette (Oct. 12, 2026), Outside Online.\nSuggested angle: Riley can argue this is a success story for modern forecasting and tracking. Live GPS tracking let organizers see where runners were, and a coordinated helicopter and ATV rescue got everyone out with no serious injuries. Casey can push back that the event was scheduled into a known storm system and that the real failure was upstream, in how remote aid stations and course access were planned for a race this long. Riley's counter is that cancellation is itself the safety tool. Casey's rebuttal is to ask whether a 70-person overnight strand means the margin for error was never there. The Kubala injury gives both a human-cost thread. Ultra endurance pushes the body past normal limits, so the question becomes who bears the risk, the athlete or the organizer. This maps well onto the broader \"wild spaces\" theme: the wilderness does not negotiate with schedules.\n\nRESEARCH QUESTION: Does the Columbia River-Revelstoke riding's backcountry access and rural transportation debate reflect a broader tension in B.C.'s 2026 election?\nFindings: Scott McInnis, the Conservative incumbent first elected in 2024, is running again. He says rural health care, transportation and backcountry access remain priorities. The riding runs along the Columbia Valley through Kimberley, Invermere, Canal Flats, Radium Hot Springs, Golden and Revelstoke. The main candidates are McInnis (BC Conservatives), Andrea Dunlop (BC NDP) and Rana Nelson (BC Green). Local coverage has centered on Trans-Canada Highway upgrades and how expansion might affect access to Revelstoke neighbourhoods such as Johnson Heights. Advance polling turnout was reported at 28% of registered voters. Province-wide, the Conservatives led the NDP by roughly 3 to 6 points in the final polls, according to Angus Reid and Mainstreet, with the NDP still within striking distance. Sources: My East Kootenay Now, Revelstoke Review (Oct. 22, 2026), Revelstoke Mountaineer, e-KNOW, Williams Lake Tribune (Oct. 22, 2026).\nSuggested angle: Casey can argue that \"backcountry access\" is a convenient campaign phrase that hides a real trade-off: roads and highway expansion open wild land to more visitors and development, which can erode the very wilderness being promoted. Riley can respond that rural residents need reliable roads and health care, and that access for recreation and emergency response is a practical public good, not just a tourism pitch. The local data point of 28% advance-poll turnout, with Highway 1 and Johnson Heights in the background, gives the two a concrete place to argue about who pays for access and who decides it.\n\n(Ballot researched Thursday October 22 and unchanged since. Background, not news.)\nELECTION RESEARCH — 2026 B.C. provincial general election\n\nBackground for the roundup's election stories and any race the hosts mention. It is not the deep dive's subject.\n\n**FINDINGS — Cariboo-Chilcotin**\n\nOn the ballot: Kathryn Askew (BC NDP), Lorne Doerkson (Conservative), Douglas Gook (BC Green).\n\n- **Kathryn Askew (BC NDP).** 100 Mile Free Press (Oct. 1, 2026) reports she is a retired school teacher from Canim Lake and the NDP candidate. The BC NDP release names her as its Cariboo-Chilcotin candidate and says she has 32 years in education, including leadership roles with the BC Teachers' Federation and her local union (bcndp.ca, undated in the copy read). The same release says that in 2025 she was the NDP candidate for Mission—Matsqui—Abbotsford in the federal election. Brad Vis (Conservative) won that riding with 56.7% and Jeff Howe (Liberal) placed second with 36.6% (stephentaylor.ca, 2025 results). Askew's own vote share in that race is not established: the Fraser Valley Current results page I opened carried no figures, and a pre-nomination Mission City Record piece names a different NDP candidate for the riding, so the show has not confirmed her 2025 result. No controversy involving Askew was found.\n\n- **Lorne Doerkson (Conservative).** Sourced background: MLA for Cariboo-Chilcotin since 2020, first elected as a B.C. Liberal; re-elected in 2024 as a B.C. Conservative (Elections BC results, 2024-10-19). BC Ballot gives the 2024 Conservative margin in the riding as 7,722 votes (bcballot.ca, 2026 candidate page). Carried forward from prior research, Elections BC's 2020 statement of votes shows him at 6,600 votes (51.25%) for the Liberals. The Globe and Mail (Sept. 26, 2026, carried forward) reports he took over as Conservative leader; Victoria News (Sept. 23, 2026) reports he is interim leader and says he would remain leader if elected premier.\n  - *Controversy (campaign, 2026, allegation by a columnist):* Vaughn Palmer's Vancouver Sun column (Oct. 7, 2026, carried forward; paywalled in the copy read) says Doerkson told reporters he had made \"no promises at all\" on auto insurance, and Palmer argues he had made four. Palmer writes that Doerkson twice denied making commitments of any kind. Doerkson's response, as reported in that column, is the denial. This is the columnist's assessment, not a finding.\n  - *Related party matter (not about Doerkson personally):* The Tyee (Oct. 8, 2026, carried forward) reports Doerkson fired the party's Victoria-Beacon Hill candidate after social media posts the BC NDP flagged as racist. CityNews (Oct. 14, 2026, carried forward) reports a Conservative campaign director under fire over social posts will stay on, Doerkson says.\n\n- **Douglas Gook (BC Green).** Elections BC's candidate report and BC Green's candidate page list him for Cariboo-Chilcotin in 2026 (bcgreens.ca, 2026). Prior runs, as carried forward: the Caledonia Courier (Oct. 2024) reports he ran unsuccessfully four times as a Green candidate in North Cariboo, including a 2017 Nechako Lakes bid where he took about nine per cent. My Cariboo Now calls his 2020 bid his fourth run for the Greens in that riding. The two accounts do not reconcile the count of runs, and the show has not resolved it. The Elections BC 2020 statement of votes (carried forward) shows him at 707 votes (6.38%) in Cariboo North. CKPG Today (Sept. 13, 2024) announced him as the Green candidate for Nechako Lakes in 2024; his 2024 result is not established in the sources read. No controversy was established.\n\n**FINDINGS — Prince George-North Cariboo (includes Quesnel)**\n\nOn the ballot: Denice Bardua (BC NDP), Sheldon Clare (Conservative), Randy Thompson (BC Green). The Quesnel Cariboo Observer (Oct. 7, 2026) reports the list was confirmed by Elections BC after nominations closed Oct. 3; CKPG Today (Oct. 3, 2026) lists the same three.\n\n- **Denice Bardua (BC NDP).** CKPG Today (Sept. 24, 2024) reports she was announced as the NDP candidate in 2024. Her campaign site says she has been a Quesnel resident since 1997 and works in education (denicebardua.bcndp.ca). Her 2024 run: second place with 3,426 votes, 17.03%, behind independent Coralee Oakes (4,394 votes, 21.84%) and ahead of Conservative candidate Sheldon Clare's riding total... see note below (Elections BC, Statement of Votes, 43rd Provincial General Election, Oct. 19, 2024). The Quesnel Cariboo Observer (Oct. 7, 2026) gives the same 17.03%. No controversy was established.\n  - Note: the Elections BC statement lists Clare first with 11,430 votes (56.82%); Bardua is second among the other candidates behind Oakes. Her 2024 run is the only earlier run established in the sources read.\n\n- **Sheldon Clare (Conservative, incumbent).** Sourced background: won the riding for the B.C. Conservatives in 2024 (Elections BC results, 2024-10-19). Elections BC's 2024 statement of votes (Oct. 19, 2024) shows him at 11,430 votes, 56.82%. Quesnel Cariboo Observer (Oct. 7, 2026, carried forward) reports the same figure.\n  - *Leadership bid (2026):* Times Colonist (Jan. 8, 2026, Canadian Press, carried forward) reports he said he was running for the B.C. Conservative leadership. CKPG Today (Jan. 20, 2026) reports he formally launched the bid. CFJC Today (Feb. 28, 2026, carried forward) reports he suspended it, citing a leadership application issue in which some signatures were not accepted; he said he \"takes full responsibility.\"\n  - *Election-finance penalty (finding):* Elections BC's enforcement notice (dated March 30, 2026) and its April 1, 2026 release, as reported by CKPG Today (Apr. 1, 2026) and the Quesnel Cariboo Observer (Apr. 3, 2026), say he was fined $1,500 for accepting anonymous contributions for the 2024 election that exceeded the limit by about $4,000. Elections BC said the investigation found no deliberate attempt to circumvent the law. The Prince George Citizen reported the same penalty. His response to the penalty was not found in the sources read.\n  - *Allegation (Sept. 2026):* CKPG Today (Sept. 18, 2026, carried forward) reports that in a party group chat about municipal elections, Clare wrote \"There's a good number that need hanging,\" responding to a post by a Parksville mayoral candidate. Clare's statement, as reported in the same coverage, says the remark was made in jest, was not meant as a threat, and he apologized to anyone who took offense. The Prince George Citizen headlined the apology as formal. The BC NDP criticized the remark on X (carried forward; full wording not read). This is an allegation with a response, not a finding.\n\n- **Randy Thompson (BC Green).** CKPG Today (Oct. 20, 2026) reports this is his second run for public office, as the B.C. Green candidate in the riding, and that he is focusing on health care and forestry (ckpgtoday.ca, Oct. 20, 2026). His first run: the BC Greens' candidate page says he ran as the BC Green candidate in Prince George-North Cariboo in the 2024 provincial election, and that he served two years on the party's provincial council (bcgreens.ca, 2026). Elections BC's 2024 statement of votes shows him fourth with 866 votes, 4.31%. The Prince George Citizen (2026) gives 4.3%, fourth place. My Prince George Now's election-night count (848, 4.30%) is superseded by the official statement. No controversy was established.\n\nWhere the show has not established a record, in one sentence: the show has not yet established Askew's 2025 federal vote share or Gook's 2024 Nechako Lakes result.\n\nNO RECORD FOUND: none\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Moab 240 race called off storm flash flood Destination Trail",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Columbia River-Revelstoke backcountry access BC candidates 2026 election",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Moab 240 ultramarathon weather cancellation runners rhabdomyolysis Kubala",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "cached",
+        "researched": "2026-10-22"
+      },
+      {
+        "kind": "question",
+        "query": "Routt County Search and Rescue Korin Pusillo elk hunt October 2026"
+      },
+      {
+        "kind": "question",
+        "query": "Moab 240 2026 cancellation Tropical Storm Rachel Bridger Jack aid station"
+      },
+      {
+        "kind": "question",
+        "query": "Aaron Kubala Moab 240 rhabdomyolysis Outside"
+      },
+      {
+        "kind": "question",
+        "query": "Eastern Maar Twelve Apostles visitor centre 3,300 square metres Grimshaw"
+      }
+    ]
+  }
+}
