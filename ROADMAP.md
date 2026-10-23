@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-22) — 3 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-23) — 4 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -54,12 +54,21 @@ close one; it comes back only if the reviews raise it 2 more times._
       failures or add a validation gate that blocks publish if any story lands in the wrong
       temporal position. (signal `degraded:script/roundup-order`; seen in 3 reviews, latest
       2026-10-22)
-- [ ] **Three instances of AI-tell language patterns passed quality checks and shipped in the
-      final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
-      shipped script. These phrases remained in the audio and RSS feed. The detection system is
-      working, but the pipeline has no gate to reject episodes with pattern hits or halt
-      publication for manual review before shipping. (signal `ai-tells-shipped`; seen in 2
-      reviews, latest 2026-10-20)
+- [ ] **Casey's speaking time exceeds Riley's by 13 percent.** The voice_ratio_casey_over_riley
+      measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear
+      whether this represents acceptable variance or systematic drift. Establish a target voice
+      ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios
+      outside a defined band. If this ratio persists across future runs, adjust the host
+      distribution weights in the synthesis prompt. (signal `voice-ratio`; seen in 2 reviews,
+      latest 2026-10-23)
+- [ ] **The first script draft ran 21 percent short and needed expansion retries to reach
+      length.** The first draft came in at 2694 words against a 3400-word target, and the
+      pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is
+      already tracked as script expansion undershooting its target, so the new evidence here is
+      that the first generation pass itself is consistently short, not only the expansion.
+      Closing this would mean checking whether the initial generation prompt states the word
+      target strongly enough, so fewer episodes depend on the retry loop. (seen in 2 reviews,
+      latest 2026-10-23)
 - [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
       for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
       on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were

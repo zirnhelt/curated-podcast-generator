@@ -254,8 +254,8 @@
       "title": "Casey's speaking time exceeds Riley's by 13 percent.",
       "detail": "The voice_ratio_casey_over_riley measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear whether this represents acceptable variance or systematic drift. Establish a target voice ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios outside a defined band. If this ratio persists across future runs, adjust the host distribution weights in the synthesis prompt.",
       "source": "review",
-      "status": "retired",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -264,11 +264,12 @@
         "2026-09-17",
         "2026-09-20",
         "2026-09-21",
-        "2026-10-10"
+        "2026-10-10",
+        "2026-10-23"
       ],
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-10-23",
       "signal": "voice-ratio",
-      "signal_seen": "2026-10-10"
+      "signal_seen": "2026-10-23"
     },
     {
       "id": "gemini-multi-speaker-section-timeout-pattern",
@@ -352,8 +353,8 @@
       "title": "Three instances of AI-tell language patterns passed quality checks and shipped in the final episode.",
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
@@ -629,13 +630,14 @@
       "title": "The first script draft ran 21 percent short and needed expansion retries to reach length.",
       "detail": "The first draft came in at 2694 words against a 3400-word target, and the pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is already tracked as script expansion undershooting its target, so the new evidence here is that the first generation pass itself is consistently short, not only the expansion. Closing this would mean checking whether the initial generation prompt states the word target strongly enough, so fewer episodes depend on the retry loop.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-10-18",
       "seen": [
-        "2026-10-18"
+        "2026-10-18",
+        "2026-10-23"
       ],
-      "last_seen": "2026-10-18"
+      "last_seen": "2026-10-23"
     },
     {
       "id": "thin-roundup-stories-shipped-without-source-text",
@@ -684,5 +686,5 @@
       "last_seen": "2026-10-22"
     }
   ],
-  "updated": "2026-10-22"
+  "updated": "2026-10-23"
 }
