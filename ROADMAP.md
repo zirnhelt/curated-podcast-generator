@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-23) — 4 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-08-29..2026-10-24) — 4 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -61,21 +61,25 @@ close one; it comes back only if the reviews raise it 2 more times._
       outside a defined band. If this ratio persists across future runs, adjust the host
       distribution weights in the synthesis prompt. (signal `voice-ratio`; seen in 2 reviews,
       latest 2026-10-23)
+- [ ] **Research budgets exhausted before script generation completed, forcing expansion to
+      proceed without full lookup capability.** The pipeline spent its Brave Search deep-dive
+      budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on
+      September 29. Later fact-resolution queries fell back to web snippets or went unanswered.
+      The script then required an expand pass to close a 774-word gap (starting at 2,626 words
+      against a 3,400-word target), but that expansion had to work with degraded research tools.
+      No facts dropped from the episode, but the mechanism shows a constraint: when story
+      complexity demands early lookups, the expand phase runs blind. Increase the per-run
+      budgets for Brave Search and Answers, or implement a two-phase research strategy that
+      reserves lookups for the expansion pass. (signal `degraded:script/research`; seen in 2
+      reviews, latest 2026-10-24)
 - [ ] **The first script draft ran 21 percent short and needed expansion retries to reach
       length.** The first draft came in at 2694 words against a 3400-word target, and the
       pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is
       already tracked as script expansion undershooting its target, so the new evidence here is
       that the first generation pass itself is consistently short, not only the expansion.
       Closing this would mean checking whether the initial generation prompt states the word
-      target strongly enough, so fewer episodes depend on the retry loop. (seen in 2 reviews,
-      latest 2026-10-23)
-- [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
-      for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
-      on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were
-      cut by the airtime budget, so the thinnest sources were the ones that passed through. The
-      pipeline should either drop stories whose extraction failed or mark them as unverified
-      before scripting. This is the degradation whose handling the facts show as wrong. (signal
-      `degraded:script/kagi-extract`; seen in 2 reviews, latest 2026-10-21)
+      target strongly enough, so fewer episodes depend on the retry loop. (seen in 3 reviews,
+      latest 2026-10-24)
 
 <!-- reviews:end -->
 
