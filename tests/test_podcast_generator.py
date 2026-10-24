@@ -1747,6 +1747,20 @@ class TestGenerateScriptRoundupPool:
         )
         return client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
 
+    def test_kite_context_reaches_the_deep_dive_prompt(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        deep = {"title": "Grenade range linked to fatal fire", "url": "https://k.test/a",
+                "_kite_sources": 6, "_body": "Military police identified the range. " * 10,
+                "_kite_context": "Timeline: 22 October 2026: Range named as origin (thestar.com)"}
+        pg.generate_podcast_script([], [deep], "Working Lands & Industry", {}, {})
+        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        assert "Timeline: 22 October 2026: Range named as origin (thestar.com)" in sent
+
     def test_dropped_bonus_articles_never_reach_the_prompt(self, monkeypatch, tmp_path):
         kept_bonus = {"title": "Kept bonus story", "url": "https://b0.com",
                       "_is_bonus": True, "_boosted_score": 50}
@@ -6428,6 +6442,25 @@ class TestSparseFilterBudget:
         assert kept[0]["_body"] == excerpt.strip() and not brave_used
         assert "_body_via" not in kept[0]
         assert pg._kite_body_used(kept, [])
+
+    def test_kite_context_line_keeps_whole_lines_within_the_budget(self):
+        import podcast_generator as pg
+        item = {"_kite_sources": 4, "_kite_context": (
+            "Where: Wainwright, Alberta, Canada\n"
+            "Perspective: Bryan Farrell, brother of a fallen soldier: holds the military "
+            "responsible. (Toronto Star)\n"
+            "Timeline: 17 October 2026: " + "fire spread " * 40 + "(cbsnews.com)\n"
+            "Background: In 2023 a cold front drove the Adams Lake fire. (theglobeandmail.com)")}
+        line = pg._kite_context_line(item, pg.ROUNDUP_PROMPT_CONTEXT_CHARS)
+        assert "Where: Wainwright" in line and "(Toronto Star)" in line
+        assert "Timeline:" not in line  # too long for the roundup budget: skipped whole
+        assert "Background: In 2023" in line
+        assert "Timeline:" in pg._kite_context_line(item, pg.DEEP_DIVE_PROMPT_CONTEXT_CHARS)
+
+    def test_an_ordinary_item_has_no_kite_context_line(self):
+        import podcast_generator as pg
+        assert pg._kite_context_line({"_kite_sources": 0, "_kite_context": "Where: X"}, 400) == ""
+        assert pg._kite_context_line({"_kite_sources": 3}, 400) == ""
 
     def test_an_ordinary_item_is_not_a_kagi_news_body(self):
         import podcast_generator as pg
