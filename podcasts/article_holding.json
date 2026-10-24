@@ -170,43 +170,6 @@
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
   },
-  "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/": {
-    "article": {
-      "id": "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/",
-      "url": "https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/",
-      "title": "[My East Kootenay Now] McInnis seeks another term in Columbia River-Revelstoke",
-      "content_html": "<img src=\"https://www.myeastkootenaynow.com/wp-content/uploads/2026/10/820458177_1418843367105775_6594706782618702607_n-e1791306476764.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.myeastkootenaynow.com%2F58558%2Fnews%2Felections%2F2026-bc-election%2Fmcinnis-seeks-another-term-in-columbia-river-revelstoke%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://www.myeastkootenaynow.com/wp-content/uploads/2026/10/820458177_1418843367105775_6594706782618702607_n-e1791306476764-1024x577.jpg\" width=\"696\"/>Scott McInnis is asking Columbia River-Revelstoke voters for another term in the B.C. legislature, saying rural health care, transportation and backcountry access will remain among his priorities if re-elected.</p>\n<p>The post <a href=\"https://www.myeastkootenaynow.com/58558/news/elections/2026-bc-election/mcinnis-seeks-another-term-in-columbia-river-revelstoke/\">McInnis seeks another term in Columbia River-Revelstoke</a> appeared first on <a href=\"https://www.myeastkootenaynow.com\">My East Kootenay Now</a>.</p>",
-      "summary": "Scott McInnis is asking Columbia River-Revelstoke voters for another term in the B.C. legislature, saying rural health care, transportation and backcountry access will remain among his priorities if re-elected. The post McInnis seeks another term in Columbia River-Revelstoke appeared first on My",
-      "_excerpt": "Scott McInnis is asking Columbia River-Revelstoke voters for another term in the B.C. legislature, saying rural health care, transportation and backcountry access will remain among his priorities if re-elected. The post McInnis seeks another term in Columbia River-Revelstoke appeared first on My East Kootenay Now .",
-      "date_published": "2026-10-06T06:54:27+00:00",
-      "authors": [
-        {
-          "name": "My East Kootenay Now",
-          "url": "https://www.myeastkootenaynow.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 80,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 64,
-      "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
-      "_is_bonus": true,
-      "image": "https://www.myeastkootenaynow.com/wp-content/uploads/2026/10/820458177_1418843367105775_6594706782618702607_n-e1791306476764.jpg",
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-13",
-    "target_date": "2026-10-23",
-    "target_weekday": 4,
-    "target_focus_slug": "recreation-access",
-    "target_focus_name": "Recreation & Backcountry Access",
-    "status": "released",
-    "release_date": "2026-10-23"
-  },
   "https://www.statnews.com/2026/10/05/health-news-could-we-one-day-vaccinate-against-every-cancer/?utm_campaign=rss": {
     "article": {
       "id": "https://www.statnews.com/2026/10/05/health-news-could-we-one-day-vaccinate-against-every-cancer/?utm_campaign=rss",
@@ -751,7 +714,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   },
   "https://wltribune.com/2026/10/17/surinderpal-rathor-re-elected-mayor-of-williams-lake/": {
     "article": {
@@ -790,7 +754,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   },
   "https://www.mycariboonow.com/316825/news/elections/2026-municipal-election/cariboo-school-districts-have-elected-their-trustees/": {
     "article": {
@@ -825,7 +790,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   },
   "https://quesnelobserver.com/2026/10/17/coralee-oakes-elected-mayor-of-quesnel-4-councillors-re-elected/": {
     "article": {
@@ -860,7 +826,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   },
   "https://100milefreepress.net/2026/10/17/two-of-3-south-cariboo-regional-district-directors-keep-their-seats/": {
     "article": {
@@ -895,7 +862,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   },
   "https://www.sciencedaily.com/releases/2026/10/261018084644.htm": {
     "article": {
@@ -1000,7 +968,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   },
   "https://thetyee.ca/News/2026/10/18/BC-Civic-Elections-Many-Mayors-Ousted/": {
     "article": {
@@ -1037,7 +1006,8 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   },
   "https://techcrunch.com/2026/10/11/warner-bros-netflix-paramount-acquisition-timeline-wbd/": {
     "article": {
@@ -1359,81 +1329,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://www.dezeen.com/2026/10/12/grimshaw-visitor-centre-twelve-apostles-australia/": {
-    "article": {
-      "id": "https://www.dezeen.com/2026/10/12/grimshaw-visitor-centre-twelve-apostles-australia/",
-      "url": "https://www.dezeen.com/2026/10/12/grimshaw-visitor-centre-twelve-apostles-australia/",
-      "title": "[Dezeen] Grimshaw completes rammed-earth visitor centre for Twelve Apostles in Australia",
-      "content_html": "<img src=\"http://static.dezeen.com/uploads/2026/10/twelve-apostles-visitor-centre-victoria-australia-architecture-exterior_dezeen_2364_sq-411x411.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.dezeen.com%2F2026%2F10%2F12%2Fgrimshaw-visitor-centre-twelve-apostles-australia%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Architecture studio Grimshaw and landscape architect Aspect Studios have completed a visitor experience centre for one of Australia's most-visited natural landmarks, the Twelve Apostles in Victoria. Located at the top of the site in Port Campbell National Park, the 3,300-square-metre visitor centre is designed by Grimshaw and Aspect Studios with rammed-earth walls intended to resemble</p>\n<p>The post <a href=\"https://www.dezeen.com/2026/10/12/grimshaw-visitor-centre-twelve-apostles-australia/\">Grimshaw completes rammed-earth visitor centre for Twelve Apostles in Australia</a> appeared first on <a href=\"https://www.dezeen.com\">Dezeen</a>.</p>",
-      "summary": "Architecture studio Grimshaw and landscape architect Aspect Studios have completed a visitor experience centre for one of Australia's most-visited natural landmarks, the Twelve Apostles in Victoria. Located at the top of the site in Port Campbell National Park, the 3,300-square-metre visitor centre",
-      "_excerpt": "Architecture studio Grimshaw and landscape architect Aspect Studios have completed a visitor experience centre for one of Australia's most-visited natural landmarks, the Twelve Apostles in Victoria. Located at the top of the site in Port Campbell National Park, the 3,300-square-metre visitor centre is designed by Grimshaw and Aspect Studios with rammed-earth walls intended to resemble The post Grimshaw completes rammed-earth visitor centre for Twelve Apostles in Australia appeared first on Dezeen .",
-      "date_published": "2026-10-12T10:30:37+00:00",
-      "authors": [
-        {
-          "name": "Dezeen",
-          "url": "https://www.dezeen.com"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 45,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 69,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 55,
-      "_keyword_matches": 0,
-      "_category": "design",
-      "_source_category": "design",
-      "_is_bonus": true,
-      "image": "http://static.dezeen.com/uploads/2026/10/twelve-apostles-visitor-centre-victoria-australia-architecture-exterior_dezeen_2364_sq-411x411.jpg",
-      "_boosted_score": 45
-    },
-    "held_date": "2026-10-20",
-    "target_date": "2026-10-23",
-    "target_weekday": 4,
-    "target_focus_slug": "recreation-access",
-    "target_focus_name": "Recreation & Backcountry Access",
-    "status": "released",
-    "release_date": "2026-10-23"
-  },
-  "https://hyperallergic.com/raven-chacons-echoes-on-park-avenue/": {
-    "article": {
-      "id": "https://hyperallergic.com/raven-chacons-echoes-on-park-avenue/",
-      "url": "https://hyperallergic.com/raven-chacons-echoes-on-park-avenue/",
-      "title": "[Hyperallergic] Raven Chacon\u2019s Echoes on Park Avenue",
-      "content_html": "<img src=\"https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/10/chacon-1.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhyperallergic.com%2Fraven-chacons-echoes-on-park-avenue%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Pulitzer Prize-winning Din\u00e9 artist on latest projects, art in NYC for Indigenous Peoples\u2019 Day, and a Felix Gonzalez-Torres show misses the mark.",
-      "summary": "The Pulitzer Prize-winning Din\u00e9 artist on latest projects, art in NYC for Indigenous Peoples\u2019 Day, and a Felix Gonzalez-Torres show misses the mark.",
-      "_excerpt": "The Pulitzer Prize-winning Din\u00e9 artist on latest projects, art in NYC for Indigenous Peoples\u2019 Day, and a Felix Gonzalez-Torres show misses the mark.",
-      "date_published": "2026-10-12T10:00:00+00:00",
-      "authors": [
-        {
-          "name": "Hyperallergic",
-          "url": "https://hyperallergic.com"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 60,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 50,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/10/chacon-1.jpg",
-      "_boosted_score": 45
-    },
-    "held_date": "2026-10-20",
-    "target_date": "2026-10-23",
-    "target_weekday": 4,
-    "target_focus_slug": "recreation-access",
-    "target_focus_name": "Recreation & Backcountry Access",
-    "status": "released",
-    "release_date": "2026-10-23"
-  },
   "https://www.cnet.com/tech/mobile/smartphone-shipments-q3-2026-counterpoint-research/": {
     "article": {
       "id": "https://www.cnet.com/tech/mobile/smartphone-shipments-q3-2026-counterpoint-research/",
@@ -1666,51 +1561,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/": {
-    "article": {
-      "id": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/",
-      "url": "https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/",
-      "title": "[Outside Online] I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like.",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Foutdoor-adventure%2Fexploration-survival%2Fmoab-240-kubala%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like.\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/10/Aaron2.jpg?width=1200\"/></figure>\n<p>Trail runner Aaron Kubala was out in front at the Moab 240 when a dangerous storm transformed the race into a survival situation. Kubala explains what it was like to endure severe cold, deadly winds, and falling trees. </p>\n<p>The post <a href=\"https://www.outsideonline.com/outdoor-adventure/exploration-survival/moab-240-kubala/\">I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like.</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
-      "summary": "Trail runner Aaron Kubala was out in front at the Moab 240 when a dangerous storm transformed the race into a survival situation. Kubala explains what it was like to endure severe cold, deadly winds, and falling trees. The post I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was",
-      "_excerpt": "Trail runner Aaron Kubala was out in front at the Moab 240 when a dangerous storm transformed the race into a survival situation. Kubala explains what it was like to endure severe cold, deadly winds, and falling trees. The post I Was Leading the Moab 240 When Extreme Weather Hit. Here\u2019s What It Was Like. appeared first on Outside Online .",
-      "date_published": "2026-10-20T19:55:36+00:00",
-      "authors": [
-        {
-          "name": "Outside Online",
-          "url": "https://www.outsideonline.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 76,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-21T06:10:35.133304+00:00"
-      },
-      "_boosted_score": 57
-    },
-    "held_date": "2026-10-21",
-    "target_date": "2026-10-23",
-    "target_weekday": 4,
-    "target_focus_slug": "recreation-access",
-    "target_focus_name": "Recreation & Backcountry Access",
-    "status": "released",
-    "release_date": "2026-10-23"
-  },
   "https://hyperallergic.com/v-a-museum-staff-set-to-strike-across-all-four-london-sites/": {
     "article": {
       "id": "https://hyperallergic.com/v-a-museum-staff-set-to-strike-across-all-four-london-sites/",
@@ -1794,42 +1644,6 @@
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
-  },
-  "https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/": {
-    "article": {
-      "id": "https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/",
-      "url": "https://canadianarchitect.com/dialog-and-city-of-toronto-announce-western-beaches-public-realm-plan/",
-      "title": "[Canadian Architect] City of Toronto and DIALOG announce Western Beaches Public Realm Plan",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fcanadianarchitect.com%2Fdialog-and-city-of-toronto-announce-western-beaches-public-realm-plan%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe City of Toronto, in collaboration with DIALOG, has recently announced their Western Beaches Public Realm Plan, a long-term vision for revitalizing one of Toronto\u2019s waterfront park systems, from Ontario Place to the Humber River. For this project, Two Row Architect served as the Indigenous design and engagement consultant. The proposed plan looks beyond individual\u2026",
-      "summary": "The City of Toronto, in collaboration with DIALOG, has recently announced their Western Beaches Public Realm Plan, a long-term vision for revitalizing one of Toronto\u2019s waterfront park systems, from Ontario Place to the Humber River. For this project, Two Row Architect served as the Indigenous",
-      "_excerpt": "The City of Toronto, in collaboration with DIALOG, has recently announced their Western Beaches Public Realm Plan, a long-term vision for revitalizing one of Toronto\u2019s waterfront park systems, from Ontario Place to the Humber River. For this project, Two Row Architect served as the Indigenous design and engagement consultant. The proposed plan looks beyond individual\u2026",
-      "date_published": "2026-10-13T14:00:44+00:00",
-      "authors": [
-        {
-          "name": "Canadian Architect",
-          "url": "https://www.canadianarchitect.com"
-        }
-      ],
-      "ai_score": 41,
-      "_quality": 55,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 59,
-      "_theme_score_raw": 2,
-      "_composite_podcast": 55,
-      "_keyword_matches": 0,
-      "_category": "design",
-      "_source_category": "design",
-      "_is_bonus": true,
-      "_boosted_score": 41
-    },
-    "held_date": "2026-10-21",
-    "target_date": "2026-10-23",
-    "target_weekday": 4,
-    "target_focus_slug": "recreation-access",
-    "target_focus_name": "Recreation & Backcountry Access",
-    "status": "released",
-    "release_date": "2026-10-23"
   },
   "https://quesnelobserver.com/2026/10/21/west-fraser-forest-operations-map-3505-invitation-to-comment/": {
     "article": {
@@ -2209,6 +2023,7 @@
     "target_weekday": 5,
     "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
     "recall": true,
-    "status": "recall"
+    "status": "released",
+    "release_date": "2026-10-24"
   }
 }

@@ -25,16 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-27",
-        "clue": "structural-lens: + \u2014 Deepened platform-harm analysis; systematized algorithmic suppression of community content",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-06-04",
-        "clue": "funding-risk:~ \u2014 Acknowledged 'solvable in principle' gap; tension between theory and execution",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-23",
         "clue": "tech-optimism:-[signal] \u2014 Conceded venture-driven collapse undermined mission narrative",
         "occurrences": 2
@@ -167,6 +157,21 @@
       {
         "date": "2026-10-23",
         "clue": "community-trust:+ \u2014 insists organizers' tracking and calls showed accountability",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-24",
+        "clue": "community-trust:+ Trust comes from seeing results on the street",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-24",
+        "clue": "evidence-bar:x Conceded Casey's point on the petition allegation",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-24",
+        "clue": "structural-lens:~ Acknowledged conflict-of-interest disclosure is only a first step",
         "occurrences": 1
       }
     ],
@@ -314,11 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-16",
-        "clue": "pilot-skepticism: ~ \u2014 Deepened concern from extraction risk to intergenerational governance responsibility.",
-        "occurrences": 1
-      },
-      {
         "date": "2026-04-27",
         "clue": "pilot-skepticism: x \u2014 Conceded Local 58 outlier exists; strengthened 'owned infrastructure' position instead",
         "occurrences": 1
@@ -451,6 +451,21 @@
       {
         "date": "2026-10-21",
         "clue": "community-trust:~ \u2014 trust in one kid is fragile",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-24",
+        "clue": "evidence-bar:+ Insists the record, not the margin, proves trust",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-24",
+        "clue": "community-trust:~ Familiarity cuts both ways, enabling or hiding failures",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-24",
+        "clue": "structural-lens:+ Public record needs posting, not just existence",
         "occurrences": 1
       }
     ],

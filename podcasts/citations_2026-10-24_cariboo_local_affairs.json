@@ -1,0 +1,679 @@
+{
+  "episode": {
+    "date": "2026-10-24",
+    "formatted_date": "Saturday, October 24, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is trust something you build, or something you inherit?</p><p><b>NEWS ROUNDUP:</b> We break down Conservatives remain ahead in polls as B.C. election day nears and Rolf Zeis Memorial Arena closed due to severe structural damage, plus 6 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When voters re-elect someone to local office, is that trust earned from their record in the job, or inherited from a name and history? Topics include: Electoral results and incumbency in Williams Lake (Rathor vs. Cobb, Nelson petition allegations), Newsroom conflict of interest when a Tribune staff reporter wins a council seat, Acclaimed seats, newcomers and returning councillors (Ryll, French, Moses) judged by their council records, Lac La Hache arena closure, report access, and who bears repair costs, Provincial riding races (Cariboo-Chilcotin, Prince George-North Cariboo) and the case for judging candidates on record.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://wlwomenscentre.org\">Williams Lake Women's Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Brendan Shykora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/22/conservatives-remain-ahead-in-polls-as-b-c-election-day-nears/\">[Williams Lake Tribune] Conservatives remain ahead in polls ...</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/10/23/rolf-zeis-memorial-arena-closed-due-to-severe-structural-damage/\">[100 Mile Free Press] Rolf Zeis Memorial Arena closed due to...</a></li><li>CleanTechnica: <a href=\"https://cleantechnica.com/2026/10/23/florida-farmers-are-making-the-move-to-regenerative-agriculture/\">[CleanTechnica] Florida Farmers Are Making The Move To Regen...</a></li><li>Josiah Spyker (My East Kootenay Now): <a href=\"https://www.myeastkootenaynow.com/58865/news/municipal-news/city-of-cranbrook/covenant-released-on-former-tembec-lands/\">[My East Kootenay Now] Covenant released on former Tembec la...</a></li><li>ft.com: <a href=\"https://www.ft.com/content/b34502b6-38dc-4a46-a8e7-d9131726cd31\">[ft.com] Meta posts first free-cash-flow shortfall in at lea...</a></li><li>euronews.com: <a href=\"https://www.euronews.com/2026/10/22/barclays-to-cut-5000-jobs-as-it-turns-to-ai-to-improve-efficiency\">[euronews.com] Barclays plans 5,000 job cuts as AI push targ...</a></li><li>New Atlas: <a href=\"https://newatlas.com/electronics/biohybrid-mesh-harvester/\">[New Atlas] Bio-hybrid harvester generates electricity from ...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/10/23/business/ai-jobs-layoffs-congress.html\">[NYT Business] Fearing Mass A.I. Layoffs, Some in Congress E...</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/10/17/two-of-3-south-cariboo-regional-district-directors-keep-their-seats/\">[100 Mile Free Press] Two of 3 South Cariboo regional distri...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/10/17/jillian-merrick-elected-mayor-of-district-of-wells/\">[Quesnel Cariboo Observer] Jillian Merrick elected mayor of ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/10/23/eby-explains-b-c-election-call-makes-his-last-pitch-to-voters-in-sit-down-interview/\">[Williams Lake Tribune] Eby explains B.C. election call, mak...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/10/18/BC-Civic-Elections-Many-Mayors-Ousted/\">[The Tyee] In Kamloops and Across BC, Many Mayors Ousted</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316825/news/elections/2026-municipal-election/cariboo-school-districts-have-elected-their-trustees/\">[My Cariboo Now] Cariboo School Districts have elected their...</a></li><li>Brittany Webster (Regional News Archives - Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/23/bald-range-wildfire-victims-bc-spca-plead-for-more-pet-friendly-housing/\">[Regional News Archives - Williams Lake Tribune] Bald Range ...</a></li><li>Brian Kahn (WIRED): <a href=\"https://www.wired.com/story/leap-second-is-abolished-bipm-says/\">[WIRED] The Leap Second Is No More</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/a-touchscreen-you-can-wear-93673733aef2\">[Hackster News] A Touchscreen You Can Wear</a></li><li>David Nield (ScienceAlert): <a href=\"https://www.sciencealert.com/were-a-step-closer-to-quantum-computers-that-can-correct-their-own-mistakes\">[ScienceAlert] We're a Step Closer to Quantum Computers That...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/10/261022081302.htm\">[ScienceDaily] A tiny defect in a crystal reveals a big quan...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/ai-layoffs-job-market-prediction-goldman-sachs-2026-10\">[Business Insider] Goldman Sachs sees AI-fueled layoffs disp...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/10/24/us/archdiocese-new-york-sexual-abuse-settlement.html\">[NYT Top Stories] New York Archdiocese Close to Settling Sex...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/10/17/surinderpal-rathor-re-elected-mayor-of-williams-lake/\">[Williams Lake Tribune] Surinderpal Rathor re-elected mayor ...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/10/17/coralee-oakes-elected-mayor-of-quesnel-4-councillors-re-elected/\">[Quesnel Cariboo Observer] Coralee Oakes elected mayor of Qu...</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/316801/news/elections/2026-municipal-election/municipal-election-races-underway-across-the-cariboo/\">[My Cariboo Now] Municipal election races underway across th...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-24T01:19:45.987372-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3575,
+      "voice_ratio_casey_riley": 0.92,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 4,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 10,
+        "turns": 90,
+        "avg_turn_words": 38.3,
+        "antithesis_hits": 1,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 5
+    },
+    "anchor": {
+      "id": "trust-built-or-inherited",
+      "question": "Is trust something you build, or something you inherit?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Eby explains B.C. election call, makes his last pitch to voters in sit-down interview",
+          "url": "https://wltribune.com/2026/10/23/eby-explains-b-c-election-call-makes-his-last-pitch-to-voters-in-sit-down-interview/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 61,
+          "date_published": "2026-10-24T00:30:00+00:00",
+          "summary": "Eby explains B.C. election call, makes his last pitch to voters in sit-down interview | Williams Lake Tribune Eby explains B.C. election call, makes his last pitch to voters in sit-down interview NDP ...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Conservatives remain ahead in polls as B.C. election day nears",
+          "url": "https://wltribune.com/2026/10/22/conservatives-remain-ahead-in-polls-as-b-c-election-day-nears/",
+          "source": "Williams Lake Tribune",
+          "author": "Brendan Shykora",
+          "ai_score": 74,
+          "date_published": "2026-10-23T00:00:00+00:00",
+          "summary": "Conservatives remain ahead in polls as B.C. election day nears | Williams Lake Tribune Conservatives remain ahead in polls as B.C. election day nears B.C. Conservative leader Lorne Doerkson (left) and...",
+          "discussed": true,
+          "mention_offset_frac": 0.0043
+        },
+        {
+          "title": "[ScienceDaily] A tiny defect in a crystal reveals a big quantum surprise",
+          "url": "https://www.sciencedaily.com/releases/2026/10/261022081302.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-23T10:22:55+00:00",
+          "summary": "Researchers have solved a long-standing challenge in understanding how tiny defects in materials like diamond and silicon carbide behave when exposed to light. Their new computational method revealed ...",
+          "discussed": false
+        },
+        {
+          "title": "[euronews.com] Barclays plans 5,000 job cuts as AI push targets costs",
+          "url": "https://www.euronews.com/2026/10/22/barclays-to-cut-5000-jobs-as-it-turns-to-ai-to-improve-efficiency",
+          "source": "euronews.com",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-10-22T10:14:25+00:00",
+          "summary": "Barclays plans to cut about 5,000 jobs, roughly 5% of its global workforce, by the end of 2026 as it expands its use of technology, including artificial intelligence, to reduce costs. The bank had alr...",
+          "discussed": true,
+          "mention_offset_frac": 0.1388
+        },
+        {
+          "title": "[100 Mile Free Press] Rolf Zeis Memorial Arena closed due to severe structural damage",
+          "url": "https://100milefreepress.net/2026/10/23/rolf-zeis-memorial-arena-closed-due-to-severe-structural-damage/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 40,
+          "date_published": "2026-10-24T06:03:15.616517+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.2789
+        },
+        {
+          "title": "[CleanTechnica] Florida Farmers Are Making The Move To Regenerative Agriculture",
+          "url": "https://cleantechnica.com/2026/10/23/florida-farmers-are-making-the-move-to-regenerative-agriculture/",
+          "source": "CleanTechnica",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-10-23T16:34:42+00:00",
+          "summary": "As the supervisor of dune plantings at our coastal Florida community, I was keenly aware of the rare February 2026 freeze. Plants that generally resist drought, wind, and salt were burnt by the 26°F t...",
+          "discussed": true,
+          "mention_offset_frac": 0.4159
+        },
+        {
+          "title": "[My East Kootenay Now] Covenant released on former Tembec lands",
+          "url": "https://www.myeastkootenaynow.com/58865/news/municipal-news/city-of-cranbrook/covenant-released-on-former-tembec-lands/",
+          "source": "My East Kootenay Now",
+          "author": "Josiah Spyker",
+          "ai_score": 45,
+          "date_published": "2026-10-16T21:22:00+00:00",
+          "summary": "Cranbrook council has ended the covenant on the former Tembec lands. The post Covenant released on former Tembec lands appeared first on My East Kootenay Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.5094
+        },
+        {
+          "title": "[Hackster News] A Touchscreen You Can Wear",
+          "url": "https://www.hackster.io/news/a-touchscreen-you-can-wear-93673733aef2",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-10-23T14:46:39+00:00",
+          "summary": "NUS researchers built a display out of electronic fibers, creating the world's first washing-machine-safe touchscreen woven into a shirt.",
+          "discussed": false
+        },
+        {
+          "title": "[ft.com] Meta posts first free-cash-flow shortfall in at least a decade as AI spending climbs",
+          "url": "https://www.ft.com/content/b34502b6-38dc-4a46-a8e7-d9131726cd31",
+          "source": "ft.com",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-22T13:40:22+00:00",
+          "summary": "Meta reported $64.6 billion in third-quarter revenue, up 26% from a year earlier, but recorded its first quarterly free-cash-flow shortfall in at least a decade as it spent heavily on artificial intel...",
+          "discussed": true,
+          "mention_offset_frac": 0.6563
+        },
+        {
+          "title": "[NYT Business] Fearing Mass A.I. Layoffs, Some in Congress Eye Ways to Aid Workers",
+          "url": "https://www.nytimes.com/2026/10/23/business/ai-jobs-layoffs-congress.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-24T01:51:01+00:00",
+          "summary": "A bill to bolster the nation’s unemployment insurance program reflects the concern — and the risks — in Washington.",
+          "discussed": true,
+          "mention_offset_frac": 0.8002
+        },
+        {
+          "title": "[New Atlas] Bio-hybrid harvester generates electricity from human cells",
+          "url": "https://newatlas.com/electronics/biohybrid-mesh-harvester/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/etiido-uko/",
+          "ai_score": 58,
+          "date_published": "2026-10-23T22:03:00+00:00",
+          "summary": "One reason we don't yet have powerful cyborgs roaming our streets is the batteries needed to power the electromechanical side. They are bulky and prone to running out of juice. Interestingly, the biol...",
+          "discussed": true,
+          "mention_offset_frac": 0.8084
+        },
+        {
+          "title": "[Business Insider] Goldman Sachs sees AI-fueled layoffs displacing nearly 10% of workers",
+          "url": "https://www.businessinsider.com/ai-layoffs-job-market-prediction-goldman-sachs-2026-10",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-10-23T17:26:48+00:00",
+          "summary": "Goldman Sachs said a recession could accelerate companies' adoption of AI and deepen AI-related job losses.",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] In Kamloops and Across BC, Many Mayors Ousted",
+          "url": "https://thetyee.ca/News/2026/10/18/BC-Civic-Elections-Many-Mayors-Ousted/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 49,
+          "date_published": "2026-10-18T07:10:00+00:00",
+          "summary": "From Surrey to Prince George, voters booted incumbents, signalling a desire for change.",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Cariboo School Districts have elected their trustees",
+          "url": "https://www.mycariboonow.com/316825/news/elections/2026-municipal-election/cariboo-school-districts-have-elected-their-trustees/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 85,
+          "date_published": "2026-10-18T07:46:56+00:00",
+          "summary": "The results for the Cariboo-Chilcotin and Quesnel School Board of Trustees has been finalized. The post Cariboo School Districts have elected their trustees appeared first on My Cariboo Now .",
+          "discussed": false
+        },
+        {
+          "title": "[Regional News Archives - Williams Lake Tribune] Bald Range wildfire victims, BC SPCA plead for more pet-friendly housing",
+          "url": "https://wltribune.com/2026/10/23/bald-range-wildfire-victims-bc-spca-plead-for-more-pet-friendly-housing/",
+          "source": "Regional News Archives - Williams Lake Tribune",
+          "author": "Brittany Webster",
+          "ai_score": 76,
+          "date_published": "2026-10-23T19:30:00+00:00",
+          "summary": "About 150 structures were destroyed by the Bald Range wildfire",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] The Leap Second Is No More",
+          "url": "https://www.wired.com/story/leap-second-is-abolished-bipm-says/",
+          "source": "WIRED",
+          "author": "Brian Kahn",
+          "ai_score": 48,
+          "date_published": "2026-10-16T21:31:35+00:00",
+          "summary": "The metric might not mean much to laypeople, but leap seconds have been a source of contention in the timekeeping community for years. Now, they’re dead.",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] We're a Step Closer to Quantum Computers That Can Correct Their Own Mistakes",
+          "url": "https://www.sciencealert.com/were-a-step-closer-to-quantum-computers-that-can-correct-their-own-mistakes",
+          "source": "ScienceAlert",
+          "author": "David Nield",
+          "ai_score": 60,
+          "date_published": "2026-10-23T11:00:00+00:00",
+          "summary": "Bring order out of chaos. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] New York Archdiocese Close to Settling Sexual Abuse Claims for Over $800 Million",
+          "url": "https://www.nytimes.com/2026/10/24/us/archdiocese-new-york-sexual-abuse-settlement.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-10-24T04:12:17+00:00",
+          "summary": "The Roman Catholic archdiocese might now avoid bankruptcy by reaching a settlement with 1,300 people who said they had been abused by clergy members and lay leaders.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[100 Mile Free Press] Two of 3 South Cariboo regional district directors keep their seats",
+          "url": "https://100milefreepress.net/2026/10/17/two-of-3-south-cariboo-regional-district-directors-keep-their-seats/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 69,
+          "date_published": "2026-10-19T06:02:55.715560+00:00",
+          "summary": "Al Richmond is running for re-election as director of the Cariboo Regional District. Two of the three Cariboo Regional District directors from the South Cariboo retained their seats in the 2026 Munici...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Surinderpal Rathor re-elected mayor of Williams Lake",
+          "url": "https://wltribune.com/2026/10/17/surinderpal-rathor-re-elected-mayor-of-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 89,
+          "date_published": "2026-10-19T06:02:55.715211+00:00",
+          "summary": "Incumbent Surinderpal Rathor was at home Saturday, Oct 17 where he anxiously awaited election results. Preliminary results from this year's municipal election in Williams Lake. Official results won't ...",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Coralee Oakes elected mayor of Quesnel, 4 councillors re-elected",
+          "url": "https://quesnelobserver.com/2026/10/17/coralee-oakes-elected-mayor-of-quesnel-4-councillors-re-elected/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 81,
+          "date_published": "2026-10-19T06:02:55.715247+00:00",
+          "summary": "Coralee Oakes is elected as the new mayor of Quesnel in the 2026 municipal elections. A familiar face is taking the reins in Quesnel as Coralee Oakes prepares to steer the city into its next chapter. ...",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Jillian Merrick elected mayor of District of Wells",
+          "url": "https://quesnelobserver.com/2026/10/17/jillian-merrick-elected-mayor-of-district-of-wells/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 79,
+          "date_published": "2026-10-19T06:02:55.715345+00:00",
+          "summary": "Jillian Merrick was elected mayor of Wells in the 2026 municipal election. Wells is turning a new page as Jillian Merrick takes the mayor’s chair, leading a council with three new faces. According to ...",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Municipal election races underway across the Cariboo",
+          "url": "https://www.mycariboonow.com/316801/news/elections/2026-municipal-election/municipal-election-races-underway-across-the-cariboo/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 87,
+          "date_published": "2026-10-18T03:35:01+00:00",
+          "summary": "The Cariboo Votes tonight, as ballots have begun to be counted for the 2026 Municipal Election. The post Municipal election races underway across the Cariboo appeared first on My Cariboo Now .",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "When voters re-elect someone to local office, is that trust earned from their record in the job, or inherited from a name and history?",
+        "riley_position": "Voters' choices in Williams Lake reflect a legitimate, checkable test of record: the most recent results count, and voters can read council minutes and track candidates' votes to judge whether trust is earned.",
+        "riley_key_evidence": [
+          "Walt Cobb won in 2018 with 60.4 percent (1,843 to 1,177) but finished third with 24.2 percent in 2022 and lost to Rathor again in 2026",
+          "Chilliwack Progress reported a civil petition filed June 25, 2025 against Scott Nelson alleging forged documents and up to $15 million unaccounted for, which Nelson denies",
+          "Lac La Hache arena: the club closed the building on the 17th with a public notice after the Octo engineering report landed on the 15th"
+        ],
+        "casey_position": "Long service or a past win is not evidence of current trust; the actual record (votes, budgets, minutes) must be examined, and allegations, acclamations, and reputation are not substitutes for documented performance.",
+        "casey_key_evidence": [
+          "Rathor sat on council for more than twenty years before taking the chair in 2022, but the available material does not show his current-term votes, budgets or projects",
+          "Cobb's 2018 win is described as inheritance while his 2022 and 2026 results are what was spent; his career includes councillor, mayor, and B.C. Liberal MLA roles",
+          "Three seats (Area D, Area F, SD27 Trustee Area 6) were filled by acclamation, meaning voters got no ballot and the only check is the record"
+        ],
+        "resolution": "The hosts did not fully reconcile their views; Riley argued the voter can be held responsible through the record and the most recent results, while Casey insisted that posted, readable minutes and documented votes are what turn trust into something provable, and closed by urging listeners to check one council vote's minutes against campaign claims.",
+        "topics_covered": [
+          "Electoral results and incumbency in Williams Lake (Rathor vs. Cobb, Nelson petition allegations)",
+          "Newsroom conflict of interest when a Tribune staff reporter wins a council seat",
+          "Acclaimed seats, newcomers and returning councillors (Ryll, French, Moses) judged by their council records",
+          "Lac La Hache arena closure, report access, and who bears repair costs",
+          "Provincial riding races (Cariboo-Chilcotin, Prince George-North Cariboo) and the case for judging candidates on record"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 1,
+          "conditions": "overcast",
+          "high": 7,
+          "low": 0
+        },
+        {
+          "name": "100 Mile House",
+          "temp": -2,
+          "conditions": "overcast",
+          "high": 5,
+          "low": -2
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 0,
+          "conditions": "foggy",
+          "high": 8,
+          "low": 0
+        },
+        {
+          "name": "Quesnel",
+          "temp": -1,
+          "conditions": "overcast",
+          "high": 8,
+          "low": -1
+        },
+        {
+          "name": "Redstone",
+          "temp": -2,
+          "conditions": "slight snowfall",
+          "high": 2,
+          "low": -2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Williams Lake Women's Centre",
+      "description": "Provides crisis support, advocacy, and community programming for women and families in the Williams Lake area",
+      "website": "wlwomenscentre.org",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: What is the full electoral record of Williams Lake mayor Surinderpal Rathor and challenger Walt Cobb, and what does the \"trilogy\" of contests show?\nFindings:\n- 2018: Cobb won re-election over Rathor, 1,843 votes (60.4%) to 1,177. Williams Lake Tribune, 2018-10-21.\n- 2022: Rathor unseated Cobb in a four-way race. Preliminary totals were Rathor 1,091, Jason Ryll 898, Cobb 773, Kerry Cook 427. Williams Lake Tribune preliminary results, 2022. CFJC Today gave the shares as Rathor 34.1%, Ryll 28.1%, Cobb 24.2%, Cook 13.4% (2022-10-15).\n- 2026: Rathor won a second term with 2,116 votes, beating Cobb by more than 1,000 (My Cariboo Now, 2026). CFJC Today (2026-10-17) put Rathor at nearly 67%. The Williams Lake Tribune (2026-10-17) reported 3,182 ballots cast and called the result preliminary, with official results due Oct. 21.\nSuggested angle: Riley can argue that a repeat contest with the same two names, and an incumbent who has won two of three, shows voters rewarding continuity. Casey can point out that Cobb's own record includes a 2018 win, and that the 2026 margin is a single-election result. Neither point needs more than these outlet dates.\n\nRESEARCH QUESTION: What is the reported status of the civil suit involving Williams Lake councillor Scott Nelson?\nFindings: The Chilliwack Progress (2025-08-27, by Ruth Lloyd) reported that Nelson and his wife Twila Smigelsky are respondents in a civil petition filed June 25, 2025 by lawyers for Dr. Mark Lambiotte Inc. and associated parties. The petition alleges forged documents, misappropriated company assets and unaccounted proceeds, with the claim that up to $15 million was not accounted for. The article states that none of the accusations have been proven in court. Nelson's lawyer, Patrick Sullivan, called the allegations \"fundamentally wrong\" and \"all speculation.\" The article also reports a consent order in early August 2025 restraining the transfer of assets. The Progress headline gives Nelson's position as denying all allegations. I found no later ruling in the sources I read.\nSuggested angle: This is an allegation in a civil petition, not a finding. Casey can press on how a councillor's business dispute bears on public trust. Riley can argue that a court has not ruled and that the councillor's denial deserves equal weight. Note also that the article's byline is Ruth Lloyd, who is on the Williams Lake council ballot. Hosts should disclose that connection if they cite the article.\n\nRESEARCH QUESTION: What are the 2024 provincial results and prior runs for the Cariboo-Chilcotin and Prince George-North Cariboo candidates?\nFindings:\n- Cariboo-Chilcotin, 2024: Lorne Doerkson (Conservative) won by 7,722 votes (bcballot.ca results summary, 2026). A Penticton Western News count from 2024-10-20 gave Doerkson 70.09% to Michael Moses (NDP) at 29.91%. Global News (2024) gave the riding's 2020 result as Doerkson 51.25%, and says he was elected \"with BC United\" in 2020. The roster-sourced line says first elected as a B.C. Liberal, so the party label differs across sources.\n- Prince George-North Cariboo, 2024: Sheldon Clare (Conservative) won 11,430 votes (56.82%). Coralee Oakes (Independent) had 4,394 (21.8%). Denice Bardua (NDP) finished third. Randy Thompson (Green) finished fourth with 4.3%. Sources: Quesnel Cariboo Observer (2026-10-07), BCPoliTracker, Prince George Citizen.\nSuggested angle: Riley can argue that large 2024 margins make the seats predictable and that voters can judge incumbents on record. Casey can argue that the margins also show how little these riding contests have been contested. The 2026 contests will test that.\n\nRESEARCH QUESTION: Did Michael Moses run for the B.C. NDP in Cariboo-Chilcotin in 2024?\nFindings: Yes. The Williams Lake Tribune (2024-05-21) reported the BC NDP nominated \"a Williams Lake city councillor\" for Cariboo-Chilcotin, naming Michael Moses, then in his first council term. The BC NDP release, CFJC Today (2024-09-13) and the Williams Lake Tribune's 2024 candidate profile (2024-10-03) all identify him the same way. The Terrace Standard (2024-10-20) reported that Doerkson won. Moses's 2026 council candidacy and his 2024 provincial run are both on record in the sources.\nSuggested angle: The show can present this as the same person with two runs in different races, both sourced. Riley can argue that a candidate's party record is a fair test. Casey can ask whether a loss in a provincial race tells voters anything about a municipal council seat.\n\nFINDINGS — CITY OF WILLIAMS LAKE, MAYOR\n- Surinderpal Rathor (incumbent): Williams Lake Tribune (2026-10-17) reports him re-elected for a second term. He was elected mayor in 2022 after more than 20 years on council (WLT, 2026-10-17). The city's directory says he is the first Indo-Canadian mayor of Williams Lake (williamslake.ca). His 2022 and 2026 results are in the trilogy above. I found no controversy or ethics finding in the sources I read.\n- Walt Cobb: Wikipedia says he was a BC Liberal MLA for Cariboo South from 2001 to 2005. The FPAC page (undated) says he was a councillor from 1980 to 1990 and mayor for two terms between 1990 and 1996. The Williams Lake Tribune (2024-era profile, undated in snippet) says he was mayor in 2017 when the city was evacuated for wildfires. Cobb lost in 2022 (CFJC, 2022-10-15) and 2026 (WLT, 2026-10-17). He won in 2018 (WLT, 2018-10-21). I found no controversy in the sources I read.\n\nFINDINGS — CITY OF WILLIAMS LAKE, COUNCIL\nCaveat: the six council winners named in the sources are Scott Nelson, Michael Moses, Jason Ryll, Paul French, Ruth Lloyd and Nathan Wiebe (My Cariboo Now and CFJC Today, 2026-10-17; WLT, 2026-10-17). The sources I read did not name Sheila Boehm among the winners. I did not find her result stated.\n- Sheila Boehm (incumbent per roster): A chiropractor and two-term SD27 trustee, per WLT's candidate profile (2026-10-13). Her own website says she was \"re-elected as a Councilor\" (drsheilachiro.com, undated). The sources I read do not confirm the council result for 2026.\n- Michael Moses (incumbent per roster): Re-elected (CFJC Today, 2026-10-17; MCN). First-term councillor since 2022 (Terrace Standard, 2024-10-20). 2024 NDP candidate in Cariboo-Chilcotin, lost to Doerkson (see above).\n- Scott Nelson (incumbent per roster): Re-elected, with the most votes in the council race at 1,795 (MCN, 2026). Civil suit in 2025, allegation only (see above). He denies the allegations (Chilliwack Progress, 2025-08-27).\n- Jason Ryll: Two-term councillor 2014 to 2022 (CFJC Today, 2026-10-17). He ran for mayor in 2022 and finished second with 898 votes, 28.1% (WLT and CFJC, 2022). Re-elected to council in 2026 (CFJC, WLT).\n- Paul French: Served on council from 1993 to 2008 (CFJC Today, 2026-10-17). He is a past president of the Williams Lake and District Chamber of Commerce (chamber board page, undated) and first vice-president of USW Local 1-2017 (CBC, date from URL 2019). Elected in 2026 (CFJC, WLT).\n- Ruth Lloyd: Williams Lake Tribune staff member since 2021 (WLT staff profile). Named a newcomer candidate (WLT, 2026-09-12). Elected in 2026 per CFJC and WLT. I found no earlier electoral record. Note she is a Tribune journalist and a candidate.\n- Nathan Wiebe: Named a newcomer candidate (WLT, 2026-09-12). Elected in 2026 per CFJC and WLT. No earlier electoral record found.\n- Greg Jeannotte: Named a newcomer candidate (WLT, 2026-09-12). No electoral record found.\n- Charlene Hays: Named a newcomer candidate (WLT, 2026-09-12). No electoral record found.\n- Cianna O'Connor: Named a newcomer candidate (WLT, 2026-09-12). Presented on overdose awareness to council (city newsflash, 2024-10-08). No electoral record found.\n- Rafiullah Sahibzada: Named a newcomer candidate (WLT, 2026-09-12). Described as chair of a local Muslim association (Penticton Herald, undated). No electoral record found.\n- Billie Sheridan: Announced intent to run (WLT, 2026-06-04), which the Tribune described as possibly the first openly transgender person on council. Named a newcomer candidate (WLT, 2026-09-12). No electoral record found.\n- Whitney Spearing: Named a newcomer candidate (WLT, 2026-09-12). Work described as natural resources coordinator for the Williams Lake Indian Band (My Cariboo Now, undated). No electoral record found.\n- Kayla Zaruk: Named a newcomer candidate (WLT, 2026-09-12). Work described as a board member and executive director roles (CMHA Cariboo Chilcotin board page). No electoral record found.\n- Jared Wardlaw-Gimbel: Withdrew by the Sept. 18 deadline (WLT, 2026-09-23). Not a candidate in the 2026 race.\n\nFINDINGS — CRD AREA D (acclaimed)\n- Steve Forseth (incumbent): Elected by acclamation for the 2026 term (WLT, 2026-09-15). Named in the WLT (2026-10-20) incumbent story. Sources describe him as CRD director and new first vice-president of the North Central Local Government Association (WLT, undated) and as NCLGA president (WLT, undated). No controversy found. No ballot for this seat.\n\nFINDINGS — CRD AREA E\n- Melynda Neufeld (incumbent): Area E director since 2022, and CRD vice-chair since November 2023 (WLT, 2026-09-15). Re-elected with 180 votes (52.5%) over Mary Forbes, 163 votes (WLT, 2026-10-20). Her 2022 result is not established in the sources I read.\n- Mary Forbes: Sitting SD27 trustee and board vice-chair (SD27 board page, 2026-10-11, roster-sourced). Lost the CRD Area E race to Neufeld (WLT, 2026-10-20). She won the SD27 trustee seat (see below). Prior CRD runs not established.\n\nFINDINGS — CRD AREA F (acclaimed)\n- Maureen LeBourdais (incumbent): Elected by acclamation for the 2026 term (WLT, 2026-09-15). The WLT (undated) profile says she ran in a CRD Area F by-election. The result is not stated in the snippet I read. No controversy found.\n\nFINDINGS — SCHOOL DISTRICT 27, TRUSTEE AREA 4\n- Melissa Coates (incumbent): Won a June 7, 2025 by-election, per The Tyee (2025-06-12). Re-elected in 2026 with 83 votes against Laura Zimmerman's 21 (My Cariboo Now, 2026-10-18 or later). The Tyee (2025-06-12) reports she co-founded the Concerned Parents and Caregivers of Williams Lake group. That article's allegations concern school bullying and are not about Coates.\n- Laura Zimmerman: Named as challenger (WLT, 2026-09-14). No electoral record found.\n\nFINDINGS — SCHOOL DISTRICT 27, TRUSTEE AREA 5\n- Mary Forbes: Re-elected to Zone 5 with 280 votes (64.1%), defeating Nicole Berreth, 157 votes (WLT, 2026-10-18; MCN). Her Area E result is covered above. A discrepancy to note: the SD27 page cited in SOURCED BACKGROUND labels her Trustee Electoral Area 2. The roster and the results say Area 5 and Zone 5.\n- Nicole Berreth: Got 157 votes in Zone 5 (WLT, 2026-10-18). No other electoral record found.\n- Allan Saunders: Named as a candidate for Area 5 by the 100 Mile Free Press (2026-09-14), and listed as a trustee candidate on the Elections BC campaign-financing registration (2026-10-17). He is not on the confirmed ballot list. The show should not present him as running. Producers should check this before air.\n\nFINDINGS — SCHOOL DISTRICT 27, TRUSTEE AREA 6 (acclaimed)\n- Michael Franklin (incumbent): Acclaimed in Zone 6 (WLT, 2026-10-18). No prior electoral record beyond this found. Other Michael Franklin results in searches are different people, not established as this one.\n\nFINDINGS — PROVINCIAL, CARIBOO-CHILCOTIN\nNames from the sources: Lorne Doerkson (Conservative), Kathryn Askew (NDP; My Cariboo Now photo caption spells it \"Askey\"), Douglas Gook (BC Green). Source: My Cariboo Now (2026-10-22); WLT (2026-10-15); BC Green candidate page.\n- Lorne Doerkson: MLA since 2020 (roster). Re-elected in 2024 with a 7,722-vote margin (bcballot.ca). Interim leader of the B.C. Conservatives and Leader of the Opposition, per Wikipedia (2026). Times Colonist (2026) describes stepping in as leader on the eve of the election. BIV (undated) carried a column by Sharma on whether his premiership could be challenged in court. The column is commentary, not a finding.\n- Kathryn Askew: Prior runs not established. Former teacher and BCTF leader (My Cariboo Now, 2026-10-22, her own bio).\n- Douglas Gook: Prior runs not established. BC Green candidate page (bcgreens.ca, undated).\n\nFINDINGS — PROVINCIAL, PRINCE GEORGE-NORTH CARIBOO\nNames from the sources: Sheldon Clare (Conservative), Denice Bardua (NDP; My Cariboo Now spells it \"Denise\"), Randy Thompson (Green). Source: Quesnel Cariboo Observer (2026-10-07); My Cariboo Now (2026-10-21).\n- Sheldon Clare (incumbent): Won in 2024 with 11,430 votes (56.82%) (Quesnel Cariboo Observer, 2026-10-07). His own statement (My Cariboo Now, 2026-10-21) says he taught at CNC since 1993, was House Leader and an Environment critic, and sponsored a private member's bill, M237. Times Colonist (2026-01-08) reported he was running for B.C. Conservative leadership. The outcome of that bid is not established in the sources I read. I found no controversy in the sources I read.\n- Denice Bardua: 2024 NDP candidate, finished third (Prince George Citizen, undated). Current work and union background per her own statement (My Cariboo Now, 2026-10-21).\n- Randy Thompson: Ran for the Greens in 2024 and finished fourth with 4.3% (Prince George Citizen, undated). Second run per CKPG Today (2026-10-20). Served two years on the BC Greens provincial council (Prince George Daily News, 2026-10-11).\n\nNO RECORD FOUND: Laura Zimmerman; Nicole Berreth; Greg Jeannotte; Charlene Hays; Cianna O'Connor; Rafiullah Sahibzada; Billie Sheridan; Whitney Spearing; Nathan Wiebe; Kayla Zaruk; Ruth Lloyd; Michael Franklin; Steve Forseth (prior run results not established); Melynda Neufeld (2022 result not established); Mary Forbes (prior CRD run results not established); Maureen LeBourdais (by-election result not established); Kathryn Askew; Douglas Gook; Allan Saunders (not on the confirmed ballot; no record established)\n\n",
+    "log": [
+      {
+        "kind": "roll-call",
+        "query": "Williams Lake mayor election 2026 Rathor Cobb",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Williams Lake city council candidates 2026",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo Regional District Area D director 2026 election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo Regional District Area E director 2026 Neufeld Forbes",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo Regional District Area F director 2026 election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "School District 27 trustee Area 4 2026 Coates Zimmerman",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "School District 27 trustee Area 5 2026 Berreth Forbes",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "School District 27 trustee Area 6 Williams Lake 2026",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Surinderpal Rathor\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Walt Cobb\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Sheila Boehm\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Michael Moses\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Scott Nelson\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Jason Ryll\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Paul French\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Ruth Lloyd\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Whitney Spearing\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Greg Jeannotte\" Williams Lake",
+        "results": 3
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Rafiullah Sahibzada\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Charlene Hays\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Cianna O'Connor\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Billie Sheridan\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Nathan Wiebe\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Kayla Zaruk\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Steve Forseth\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Melynda Neufeld\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Mary Forbes\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Maureen LeBourdais\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Melissa Coates\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Laura Zimmerman\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Nicole Berreth\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Michael Franklin\" Williams Lake",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Cariboo-Chilcotin candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "Prince George-North Cariboo candidates 2026 B.C. election",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Lorne Doerkson\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "roll-call",
+        "query": "\"Sheldon Clare\" B.C. election 2026",
+        "results": 6
+      },
+      {
+        "kind": "profile",
+        "candidate": "Surinderpal Rathor",
+        "url": "https://wltribune.com/2026/10/17/surinderpal-rathor-re-elected-mayor-of-williams-lake/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Walt Cobb Surinderpal Rathor mayor election votes 2022 2018 Williams Lake results",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "page",
+        "url": "https://theprogress.com/2025/08/27/lawsuit-accuses-williams-lake-politician-of-forging-docs-misusing-funds/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Jason Ryll Williams Lake mayor 2022 election result Rathor votes",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mycariboonow.com/316914/news/elections/2026-bc-election/here-are-the-provincial-candidates-for-the-cariboo-chilcotin/"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mycariboonow.com/316877/news/elections/2026-bc-election/meet-the-provincial-candidates-for-prince-george-north-cariboo-mla/"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Randy Thompson Prince George-North Cariboo 2026 candidate BC Greens OR Liberal OR Conservative previous run",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Cariboo-Chilcotin 2024 election results Doerkson votes margin Conservative NDP",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Douglas Gook Cariboo-Chilcotin BC Green candidate 2026 Kathryn Askey NDP",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Sheldon Clare 2024 election Prince George-North Cariboo results votes margin",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Denice Bardua BC NDP Prince George-North Cariboo candidate 2024 OR 2026 previous campaign",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Michael Moses NDP candidate Cariboo-Chilcotin 2024 Williams Lake councillor",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Mary Forbes Williams Lake school trustee Cariboo Regional District Area E 2022 election candidate",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Allan Saunders School District 27 trustee Area 5 2026 Williams Lake",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "question",
+        "query": "Walt Cobb Williams Lake mayor 2026 election results"
+      },
+      {
+        "kind": "question",
+        "query": "Williams Lake council 2026 election total votes Surinderpal Rathor"
+      },
+      {
+        "kind": "question",
+        "query": "Lac La Hache Rolf Zeis arena Octo Engineering report repair cost"
+      },
+      {
+        "kind": "question",
+        "query": "Scott Nelson civil petition Chilliwack 2025 ruling"
+      }
+    ]
+  }
+}
