@@ -1117,13 +1117,6 @@ DEEP_DIVE_ELIGIBLE_FLOOR = 2
 # "trail".
 DEEP_DIVE_RERANK_POOL = 12
 
-# Focus-keyword hits (as `_keyword_hit_count` counts them: a multi-word keyword
-# counts once per word) an article needs to join the focus deep-dive pool. At 1,
-# one coincidental word was enough: on 2026-10-23 "amusement park" and "campaign
-# trail" put a Six Flags death and a provincial poll story into the Recreation &
-# Backcountry Access deep dive, and rerank only reorders the pool it is handed.
-FOCUS_DEEP_DIVE_MIN_HITS = 2
-
 # No single off-theme discipline cluster may take more than this many roundup
 # slots. The tail is supposed to play as mini-arcs; on 2026-08-22 a seven-story
 # US pharma and health-policy run took nearly half a Cariboo Local Affairs
@@ -7847,8 +7840,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         for a in candidates:
             a['_focus_matches'] = _focus_hit_count(a, focus_keywords)
         focus_strong = sorted(
-            (a for a in candidates
-             if a.get('_focus_matches', 0) >= FOCUS_DEEP_DIVE_MIN_HITS),
+            (a for a in candidates if a.get('_focus_matches', 0) > 0),
             key=lambda a: (a.get('_focus_matches', 0), a.get('_keyword_matches', 0),
                            a.get('_boosted_score', a.get('ai_score', 0))),
             reverse=True,
