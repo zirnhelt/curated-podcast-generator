@@ -207,6 +207,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - **Never hold a local story.**
 - Route both the theme and bonus buckets. A slot matches on its theme **or** focus keywords.
 - Keyword sets that **gate** a decision are strict (`_build_strict_theme_keywords`); description prose is for ranking only.
+- A focus keyword is a phrase when the bare word has another common sense (`park`, `trail`, `space`): one hit admits an article to the deep-dive pool, and rerank cannot drop it.
 - `_no_deep_dive` is honoured by `select_deep_dive_from_feed`.
 - A released article is re-labelled for its new day (`_relabel_for_day`), and its stale theme scores are dropped, not rewritten. A story imported for today must not be droppable by the run that imported it.
 - The export decision reads the feed's **raw** charter score (`_theme_score_raw`), never the percentile.

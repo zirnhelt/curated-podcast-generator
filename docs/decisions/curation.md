@@ -451,6 +451,21 @@ there is no thread, and the hosts just move on.
 Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Friday runs a 3-week cycle, all other cycled days 4-week. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.
 
 - **Selection:** the deep dive prefers focus-matching articles; a thin focus week (<3 matches) degrades to plain theme selection (logged `focus_fallback`). The focus lens is appended to the theme lens in the script prompt.
+- **A focus keyword is a phrase when the bare word has another common sense** (2026-10-24).
+  One focus hit admits an article to the focus pool, and rerank only reorders that pool, so a
+  coincidental word is a deep-dive slot. On 2026-10-23 "amusement **park**" and "campaign
+  **trail**" put a Six Flags death and a provincial poll story into the Recreation &
+  Backcountry Access deep dive; the script used neither. (Rerank was the fix for the same
+  "campaign trail" collision on 10-02; it cannot drop what the gate admitted.) The sweep
+  replaced the bare words that real feed and citation text showed misfiring: `park`,
+  `trail`, `stage` and `band` ("Coldwater Indian Band"), `guardian` (every "originally
+  published by the Guardian" footer), `space` ("interior spaces"), `planet` ("people and the
+  planet"), `carbon`, `greenhouse` ("greenhouse-gas"), `radio`, `truck`, `generator`,
+  `power station`, and others. Words that misfired once but caught more real stories than
+  wrong ones (`library`, `reporter`, `workshop`, `restoration`, `fossil`) stayed: check a
+  swap against the stories it loses, not only the ones it drops.
+  Requiring two focus hits was tried and rejected: on the live feeds almost no focus reached
+  `DEEP_DIVE_COUNT` articles at 2, so the focus would have stopped steering anything.
 - **Subtlety:** the focus is deliberately unannounced on air — it shapes selection and emphasis only. Hosts name and acknowledge the weekday theme, never a rotating sub-theme; every focus-derived prompt block carries a do-not-announce instruction.
 - **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming day within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on that day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their day arrives. Holding never shrinks the pool below the roundup + deep-dive budget, and **never holds a local story** — local news is the most time-sensitive material in the pool and geography is orthogonal to the rotation (`_is_local_article`, shared with the roundup's `local` block).
   - **Both buckets are routed.** The hold loop used to iterate `theme_articles` alone — the one bucket that by definition holds nothing off-theme. Off-theme material arrives in `bonus_articles`: 72 of it against 8 theme articles on 2026-08-17, so nothing was ever eligible and Monday's roundup aired a PLA-brittleness piece that scored two hits on Wednesday's Maker & Repair focus keywords — enough for the old focus-only matcher, which never saw it.
