@@ -1,23 +1,4 @@
 {
-  "2026-09-19": {
-    "timestamp": 1789805797.620518,
-    "topics": [
-      "[Williams Lake Tribune] Williams Lake Legion cuts ribbon to ",
-      "[Williams Lake Tribune] Okanagan councillor guilty: \u2018Used co",
-      "[Williams Lake Tribune] B.C. Rail Corridor Alliance presses ",
-      "[My Cariboo Now] UPDATE: Highway 97 south of Quesnel now ope",
-      "[My Cariboo Now] Trial date scheduled for accused in large d",
-      "[Williams Lake Tribune] 2 mayor, 15 councillor candidates de",
-      "[Williams Lake Tribune] 14 candidates filed for School Distr",
-      "[Quesnel Cariboo Observer] 3 mayor, 18 council candidates in"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-09-19",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-09-20": {
     "timestamp": 1789892148.456627,
     "topics": [
@@ -692,5 +673,27 @@
     "date": "2026-10-23",
     "focus": "recreation-access",
     "focus_name": "Recreation & Backcountry Access"
+  },
+  "2026-10-24": {
+    "timestamp": 1792829991.139169,
+    "topics": [
+      "[Williams Lake Tribune] Conservatives remain ahead in polls ",
+      "[Williams Lake Tribune] Eby explains B.C. election call, mak",
+      "[The Tyee] In Kamloops and Across BC, Many Mayors Ousted",
+      "[My Cariboo Now] Cariboo School Districts have elected their",
+      "[Regional News Archives",
+      "[100 Mile Free Press] Two of 3 South Cariboo regional distri",
+      "[Williams Lake Tribune] Surinderpal Rathor re-elected mayor ",
+      "[Quesnel Cariboo Observer] Coralee Oakes elected mayor of Qu"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-24",
+    "focus": null,
+    "focus_name": null
   }
 }
