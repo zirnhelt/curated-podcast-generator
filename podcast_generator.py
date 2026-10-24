@@ -1502,6 +1502,12 @@ NEWS_BODY_RICH_CHARS = 400
 # 500, about the lede: on 2026-10-12 a candidate profile reached the prompt as its
 # four questions and none of the answers. ~3.5K more prompt tokens a script call.
 ROUNDUP_PROMPT_BODY_CHARS = 1200
+# A Kagi News cluster's research beyond its body (`_kite_context`: "Where:",
+# "Perspective:", "Quote:", "Timeline:", "Background:" lines, up to 1500 chars
+# upstream). A roundup story gets ~70 words of air, so it sees the first lines
+# only (place, a named voice); the deep dive sees all of it.
+ROUNDUP_PROMPT_CONTEXT_CHARS = 400
+DEEP_DIVE_PROMPT_CONTEXT_CHARS = 1500
 # 35 days (was 21) so episode memory spans a full 4-week super cycle and the
 # previous same-focus episode is always recallable for continuity.
 MEMORY_RETENTION_DAYS = 35
@@ -4136,6 +4142,28 @@ def _use_kite_body(article: dict) -> None:
         article["_body"] = excerpt
 
 
+def _kite_context_line(article: dict, max_chars: int) -> str:
+    """The prompt line for a Kite cluster's `_kite_context`, whole lines up to max_chars.
+
+    Every line names its outlet or speaker, so it is sourced material the hosts
+    attribute like the body. '' for an ordinary article.
+    """
+    if not article.get("_kite_sources"):
+        return ""
+    kept, used = [], 0
+    for line in (article.get("_kite_context") or "").splitlines():
+        line = line.strip()
+        if not line or used + len(line) + 1 > max_chars:
+            continue
+        kept.append(line)
+        used += len(line) + 1
+    if not kept:
+        return ""
+    joined = "\n    ".join(kept)
+    return (f"\n  Research (Kagi News, same outlets; credit the outlet or speaker "
+            f"named in each line):\n    {joined}")
+
+
 def _kite_body_used(*article_lists: list) -> bool:
     """True when a Kagi News body reached the script: its licence (CC BY-NC) wants credit."""
     return any(a.get("_kite_sources") and a.get("_body")
@@ -6451,7 +6479,7 @@ def _assert_feed_fresh(items: list, feed_url: str) -> None:
 FEED_CONTRACT_ITEM_FIELDS = (
     "id", "url", "title", "summary", "date_published", "authors", "ai_score",
     "_excerpt", "_is_bonus", "_keyword_matches", "_theme_score", "_theme_score_raw",
-    "_kite_sources",
+    "_kite_sources", "_kite_context",
 )
 FEED_CONTRACT_FEED_FIELDS = ("theme", "theme_description")  # under `_podcast`
 
@@ -9293,6 +9321,8 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
             label = (f"Content (summary of {a['_kite_sources']} outlets' coverage; the outlet "
                      f"behind each claim is in parentheses: credit that outlet)")
         body_line = f"\n  {label}: {body[:ROUNDUP_PROMPT_BODY_CHARS]}" if body else ""
+        if body and not via:
+            body_line += _kite_context_line(a, ROUNDUP_PROMPT_CONTEXT_CHARS)
         pub_tag = _format_pub_date_tag(a)
         return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{recall_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
@@ -9358,6 +9388,7 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:1000]}" if body else ""
+        body_line += _kite_context_line(a, DEEP_DIVE_PROMPT_CONTEXT_CHARS)
         pub_tag = _format_pub_date_tag(a)
         return f"- [{source}] {title}{jurisdiction_tag}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
 
