@@ -1348,6 +1348,39 @@
         "https://thenextweb.com/news/zuckerberg-muse-launch-safety-concerns-nyt",
         "https://research.meta.ai/blog/muse-wonder"
       ]
+    },
+    "TWiT-1653-893-863461": {
+      "title": "IM 893: It All Comes Back to Cats - From Academic Papers to 1.2 Million Startup Ideas",
+      "pub_date": "Wed, 21 Oct 2026 18:32:11 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/893",
+      "harvested_at": "2026-10-25T10:57:04.520546+00:00",
+      "question": "Should open-weight frontier AI models be released publicly, given their potential for misuse in cyberattacks and AI-designed viruses versus the benefits of broad access and independent scrutiny?",
+      "perspectives": [
+        "Open-weight releases like Muse Spark Open democratize capability, enable independent safety research, and avoid concentrating power in a few corporate gatekeepers.",
+        "Releasing the most capable open-weight models lowers barriers for attackers, and recent agentic cyberattacks and AI-designed virus research show the downside risk is real."
+      ],
+      "open_questions": [
+        "Where should the capability threshold sit above which weights should not be released, and who decides that line?",
+        "If Anthropic pitches its own safety bill while Musk and Anthropic compete on AI philanthropy, do industry-authored safety rules protect the public or primarily shape competitive advantage?",
+        "Does a privacy-focused rural audience gain more from on-device assistants and open models than they risk from the security gaps highlighted by the TLS certificate compromise?"
+      ],
+      "topics": [
+        "Muse Spark Open open-weight model (Meta)",
+        "Anthropic's proposed AI safety bill and S-1 filing",
+        "First large-scale agentic cyberattack on OpenCode AI"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/",
+        "https://finance.yahoo.com/markets/article/metas-muse-ai-agent-hits-109-million-downloads-as-chatgpt-slides-25-153532560.html",
+        "https://bfl.ai/blog/flux-3-image-klein",
+        "https://research.meta.ai/blog/muse-spark-open",
+        "https://cryptobriefing.com/nick-cammarata-neural-networks-interpretable/"
+      ]
     }
   }
 }
