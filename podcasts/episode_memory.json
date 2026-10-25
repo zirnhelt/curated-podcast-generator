@@ -695,5 +695,27 @@
     "date": "2026-10-24",
     "focus": null,
     "focus_name": null
+  },
+  "2026-10-25": {
+    "timestamp": 1792916114.793648,
+    "topics": [
+      "[Williams Lake Tribune] School District 27 preliminary elect",
+      "[New Atlas] Lab-grown brains can now read Braille and guide ",
+      "[zmescience.com] Protein evidence identifies Chinese fossils",
+      "[NRDC] SCOTUS to Grapple with Climate\u2019s Costs",
+      "[STAT News] Could we one day vaccinate against every cancer?",
+      "[WIRED] Earth\u2019s Condition Is \u2018Serious and Getting Worse\u2019 as ",
+      "[Al Jazeera English] Australia top court rules against coal ",
+      "[The Verge] The fossil fuel comeback is here"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-25",
+    "focus": "earth-systems",
+    "focus_name": "Earth Systems & Climate Science"
   }
 }

@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-08-23",
-        "clue": "tech-optimism:-[signal] \u2014 Conceded venture-driven collapse undermined mission narrative",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-24",
         "clue": "structural-lens:+[signal] \u2014 Regulation as necessary, not sufficient condition.",
         "occurrences": 1
@@ -135,9 +130,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-18",
-        "clue": "evidence-bar:+ \u2014 insists mechanism naming justifies engineering now",
-        "occurrences": 1
+        "date": "2026-10-25",
+        "clue": "evidence-bar:+ \u2014 defends sixteen-indicator panel as catching real shifts",
+        "occurrences": 2
       },
       {
         "date": "2026-10-19",
@@ -172,6 +167,11 @@
       {
         "date": "2026-10-24",
         "clue": "structural-lens:~ Acknowledged conflict-of-interest disclosure is only a first step",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-25",
+        "clue": "structural-lens:x \u2014 concedes local knowledge must set the question",
         "occurrences": 1
       }
     ],
@@ -319,16 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-27",
-        "clue": "pilot-skepticism: x \u2014 Conceded Local 58 outlier exists; strengthened 'owned infrastructure' position instead",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-16",
-        "clue": "rural-context:~ \u2014 notes small towns can defer while housing deficit cannot",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-20",
         "clue": "tech-optimism:- \u2014 Consistently named accessibility floor where optimism breaks down",
         "occurrences": 1
@@ -466,6 +456,16 @@
       {
         "date": "2026-10-24",
         "clue": "structural-lens:+ Public record needs posting, not just existence",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-25",
+        "clue": "evidence-bar:~ \u2014 44 per cent share depends on chosen indicators",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-25",
+        "clue": "community-trust:+ \u2014 trust rests on repeated walking, not publication alone",
         "occurrences": 1
       }
     ],
