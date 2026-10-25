@@ -775,6 +775,11 @@ def _truncated(response) -> bool:
 MIN_SCRIPT_WORDS = 2800
 TARGET_SCRIPT_WORDS = 3400
 EXPAND_MAX_PASSES = 2
+# The polish takes 4-14% off a draft (2026-10-22: 3,705 -> 3,183; 10-25:
+# 3,545 -> 3,371), so the expand loop aims past TARGET_SCRIPT_WORDS by this
+# share and the shipped script lands on the target.
+EXPAND_POLISH_ALLOWANCE = 0.06
+EXPAND_TRIGGER_WORDS = round(TARGET_SCRIPT_WORDS * (1 + EXPAND_POLISH_ALLOWANCE))
 
 # Per-section floors the expand retry measures against. A whole-script "make it
 # longer" rewrite recovered ~400 words on Sonnet 5 and ~300 on Sonnet 5.5
@@ -9711,9 +9716,14 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         # 3,400), so a second pass measures again; a pass that adds nothing
         # ends the loop.
         for _ in range(EXPAND_MAX_PASSES):
-            if word_count >= TARGET_SCRIPT_WORDS:
+            if word_count >= EXPAND_TRIGGER_WORDS:
                 break
-            print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
+            # Under target is the review's short_script fact; between target and
+            # the trigger the draft is only short of what the polish will take.
+            under = (f"{word_count} words < {TARGET_SCRIPT_WORDS} target"
+                     if word_count < TARGET_SCRIPT_WORDS else
+                     f"{word_count} words, under the {EXPAND_TRIGGER_WORDS} the polish trim leaves at target")
+            print(f"⚠️ Script complete but short ({under}) — retrying with length feedback...")
             short = _short_sections(script)
             if short:
                 shortfalls = "\n".join(

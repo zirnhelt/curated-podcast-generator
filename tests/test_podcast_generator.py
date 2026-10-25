@@ -1546,7 +1546,7 @@ class TestGenerateScriptTruncationGuard:
         assert retry_kwargs["output_config"] == {"effort": "low"}
 
     def test_retry_succeeds_with_full_script(self, monkeypatch):
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([
             _response("max_tokens", [_text_block("partial script")]),
             _response("end_turn", [_text_block(full_script)]),
@@ -1562,7 +1562,7 @@ class TestGenerateScriptTruncationGuard:
         from podcast_generator import TARGET_SCRIPT_WORDS
         short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
         assert len(short_script.split()) < TARGET_SCRIPT_WORDS
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([
             _response("end_turn", [_text_block(short_script)]),
             _response("end_turn", [_text_block(full_script)]),
@@ -1586,7 +1586,7 @@ class TestGenerateScriptTruncationGuard:
         spotlight = "**COMMUNITY SPOTLIGHT**\n**CASEY:** spotlight words here\n\n"
         draft = ("**WELCOME**\n**RILEY:** hi\n\n" + roundup + spotlight
                  + "**DEEP DIVE: Fences**\n**CASEY:** " + ("thin " * 800) + "\n")
-        rewrite = "**DEEP DIVE: Fences**\n**CASEY:** " + ("deep " * 2200) + "\n"
+        rewrite = "**DEEP DIVE: Fences**\n**CASEY:** " + ("deep " * 2500) + "\n"
         client = _stream_client([
             _response("end_turn", [_text_block(draft)]),
             _response("end_turn", [_text_block(rewrite)]),
@@ -1594,7 +1594,7 @@ class TestGenerateScriptTruncationGuard:
 
         result = self._run(monkeypatch, client)
         assert result is not None
-        assert "thin" not in result.split() and result.split().count("deep") == 2200
+        assert "thin" not in result.split() and result.split().count("deep") == 2500
         assert result.startswith("**WELCOME**") and roundup + spotlight in result
         prompt = client.messages.stream.call_args_list[1].kwargs["messages"][2]["content"]
         assert "DEEP DIVE: 800 words now" in prompt and "1,200 more" in prompt
@@ -1622,6 +1622,24 @@ class TestGenerateScriptTruncationGuard:
         second = client.messages.stream.call_args_list[2].kwargs["messages"]
         assert second[1]["content"].split().count("deep") == 1500
 
+    def test_expand_aims_past_target_to_cover_the_polish_trim(self, monkeypatch):
+        # 2026-10-25: the expand pass stopped at 3,545 words (over 3,400); the
+        # polish trimmed 5% and 3,371 shipped. A draft the polish would take
+        # under target gets another pass, aimed past the target.
+        from podcast_generator import TARGET_SCRIPT_WORDS
+        def script(dd_words: int) -> str:
+            return ("**WELCOME**\n**RILEY:** hi\n\n**NEWS ROUNDUP**\n**RILEY:** "
+                    + ("news " * 1300) + "\n\n**DEEP DIVE: Fences**\n**CASEY:** "
+                    + ("deep " * dd_words) + "\n")
+        first, second = script(2100), script(2400)
+        assert TARGET_SCRIPT_WORDS <= len(first.split()) < TARGET_SCRIPT_WORDS * 1.05
+        client = _stream_client([
+            _response("end_turn", [_text_block(first)]),
+            _response("end_turn", [_text_block(second)]),
+        ])
+        assert self._run(monkeypatch, client) == second
+        assert client.messages.stream.call_count == 2
+
     def test_expand_loop_stops_when_a_pass_adds_nothing(self, monkeypatch):
         from podcast_generator import EXPAND_MAX_PASSES
         assert EXPAND_MAX_PASSES >= 2
@@ -1645,7 +1663,7 @@ class TestGenerateScriptTruncationGuard:
         # resend the first message byte-identical, breakpoint included, or the
         # cached prefix is a 1.25x write that nothing reads.
         short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([
             _response("end_turn", [_text_block(short_script)]),
             _response("end_turn", [_text_block(full_script)]),
@@ -1677,7 +1695,7 @@ class TestGenerateScriptTruncationGuard:
         assert client.messages.stream.call_count == 2
 
     def test_accepts_normal_length_script(self, monkeypatch):
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
 
         assert self._run(monkeypatch, client) == full_script
@@ -1709,7 +1727,7 @@ class TestGenerateScriptCorrectionsGroundTruth:
         import podcast_generator as pg
         monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         pg.generate_podcast_script([], [], "Working Lands & Industry", {}, {}, **kwargs)
@@ -1739,7 +1757,7 @@ class TestGenerateScriptRoundupPool:
         import podcast_generator as pg
         monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         pg.generate_podcast_script(
@@ -1751,7 +1769,7 @@ class TestGenerateScriptRoundupPool:
         import podcast_generator as pg
         monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         deep = {"title": "Grenade range linked to fatal fire", "url": "https://k.test/a",
@@ -6919,7 +6937,7 @@ class TestAiredLedger:
         podcasts("2026-10-03")
         monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
         monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 10, 6, 1, 0))
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
 
