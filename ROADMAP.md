@@ -41,17 +41,10 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-04..2026-10-25) — 4 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-29..2026-10-26) — 3 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **Casey's speaking time exceeds Riley's by 13 percent.** The voice_ratio_casey_over_riley
-      measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear
-      whether this represents acceptable variance or systematic drift. Establish a target voice
-      ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios
-      outside a defined band. If this ratio persists across future runs, adjust the host
-      distribution weights in the synthesis prompt. (signal `voice-ratio`; seen in 2 reviews,
-      latest 2026-10-23)
 - [ ] **Script expansion closed only 3 percent of the gap to the target word count.** On
       2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering
       an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were
@@ -61,8 +54,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 2 reviews,
-      latest 2026-10-25)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 3 reviews,
+      latest 2026-10-26)
 - [ ] **Research budgets exhausted before script generation completed, forcing expansion to
       proceed without full lookup capability.** The pipeline spent its Brave Search deep-dive
       budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on
