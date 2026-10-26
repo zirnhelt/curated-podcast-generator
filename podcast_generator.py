@@ -4623,6 +4623,23 @@ def _polish_valid(original: str, polished: str) -> bool:
             and len(polished.split()) >= MIN_SCRIPT_WORDS)
 
 
+def _polish_length_addendum(script: str) -> str:
+    """Polish-prompt addendum giving the draft's word count and the floor.
+
+    The prompt said "do not shorten" in words and the polish cut 4-14% anyway,
+    taking drafts the expand loop had brought past target back under it
+    (2026-10-26: 3,659 -> 3,272). The floor is the target, or the draft itself
+    when the expand loop could not reach it: the polish never adds the shortfall.
+    """
+    template = CONFIG['prompts'].get('polish_length_floor', {}).get('template')
+    if not template or not script:
+        return ""
+    draft_words = len(script.split())
+    floor_words = min(draft_words, TARGET_SCRIPT_WORDS)
+    return _safe_template_substitute(template, draft_words=f"{draft_words:,}",
+                                     floor_words=f"{floor_words:,}")
+
+
 def _corrections_ground_truth(corrections: list | None) -> str:
     """State the ground-truth fact of how many real corrections exist, and whose.
 
@@ -4701,7 +4718,8 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
         + format_standing_notes_block(for_factcheck=True) \
-        + _aired_repeats_addendum(script, research_insights)
+        + _aired_repeats_addendum(script, research_insights) \
+        + _polish_length_addendum(script)
 
     review_model = model or select_review_model(deep_dive_articles)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
@@ -4771,7 +4789,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
         + format_standing_notes_block(for_factcheck=True) \
-        + _aired_repeats_addendum(script, research_insights)
+        + _aired_repeats_addendum(script, research_insights) \
+        + _polish_length_addendum(script)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)

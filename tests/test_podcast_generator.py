@@ -1930,6 +1930,40 @@ class TestSubmitPostProcessingBatchCorrectionsGroundTruth:
         assert "CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in content
 
 
+class TestPolishLengthFloor:
+    """2026-10-26: the expand loop brought the draft to 3,659 words and the
+    polish cut it to 3,272 against a prompt that said "do not shorten" in
+    words only. The polish now gets the draft's count and the floor."""
+
+    def test_floor_is_the_target_when_the_draft_reached_it(self):
+        import podcast_generator as pg
+        addendum = pg._polish_length_addendum("word " * 3659)
+
+        assert "3,659 words" in addendum
+        assert f"at least {pg.TARGET_SCRIPT_WORDS:,}" in addendum
+
+    def test_floor_is_the_draft_when_the_expand_fell_short(self):
+        import podcast_generator as pg
+        addendum = pg._polish_length_addendum("word " * 3100)
+
+        assert "at least 3,100" in addendum
+
+    def test_batch_polish_prompt_carries_it(self, monkeypatch):
+        import podcast_generator as pg
+        client = MagicMock()
+        client.messages.batches.create.return_value = MagicMock(id="batch_1")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        script = "**RILEY:** hello\n**CASEY:** hi\n" * 50
+        pg.submit_post_processing_batch(
+            script, "Working Lands & Industry", [], [],
+            additional_research="", research_insights="",
+        )
+        requests = {r["custom_id"]: r for r in client.messages.batches.create.call_args.kwargs["requests"]}
+        content = requests["polish-and-factcheck"]["params"]["messages"][0]["content"]
+
+        assert f"the draft above is {len(script.split())} words" in content
+
+
 class TestPolishAnchorThreading:
     """The polish pass had zero visibility into the week's anchor question —
     format_anchor_for_prompt() was only ever called at generation time. The
