@@ -481,6 +481,11 @@ resurrected on one mention.
   2026-10-09) showed one section pass recovering about three quarters of its ask (2,517 →
   3,272), so the expand retry runs up to `EXPAND_MAX_PASSES` (2) and stops on a pass that adds
   nothing. On Haiku 5.5 the second pass is about $0.002 a run that needs it.
+- **The polish is given the draft's word count and a floor** (`polish_length_floor`,
+  `_polish_length_addendum`). After the expand pass reached target, the polish still cut 4–14%
+  (2026-10-26: 3,659 → 3,272, no aired repeats to remove) against a prompt that already said
+  "do not shorten". `EXPAND_POLISH_ALLOWANCE` (6%) covered the small trims only. The floor is
+  the target, or the draft itself when the expand loop fell short.
 - **The first sighting's wording is kept for the life of the item.** A detail rewritten
   nightly is a daily diff on a file nobody asked to change. For the same reason the block is
   in ledger order rather than sorted by recurrence, and its header dates the *reviews that

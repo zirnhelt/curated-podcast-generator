@@ -372,7 +372,9 @@ class TestEpisodeCommentary:
     def test_main_reads_the_verdicts_once_and_hands_them_to_both(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         reads = []
-        verdicts = {"2026-10-18": _commented("2026-10-18", "skip", note="Wrong mayor named.")}
+        # main() reads the real clock: a pinned date aged out of the 7-day window on 2026-10-26.
+        yesterday = (rs.datetime.utcnow().date() - rs.timedelta(days=1)).isoformat()
+        verdicts = {yesterday: _commented(yesterday, "skip", note="Wrong mayor named.")}
         monkeypatch.setattr(rs, "fetch_verdicts_safely", lambda today: reads.append(today) or (verdicts, None))
         seen = {}
         monkeypatch.setattr(rs, "run_review", lambda days, notes: seen.setdefault("notes", notes) and "REPORT")
