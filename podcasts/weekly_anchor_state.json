@@ -1,15 +1,5 @@
 {
   "assigned": {
-    "2026-W35": {
-      "id": "allowed-to-fix",
-      "question": "Who is allowed to fix things?",
-      "dimension": "expertise-authority",
-      "premise": "Fixing something requires permission as often as it requires skill \u2014 a warranty, a licence, a certification, a proprietary diagnostic tool, a professional body, a funding body that recognises only certain credentials. Rural places have always repaired what cities replace, and are now told they may not. The question is where the line between gatekeeping and genuine competence actually falls, and who gets to draw it.",
-      "reading": null,
-      "framings": {},
-      "assigned_at": "2026-08-24",
-      "origin": "seeded"
-    },
     "2026-W36": {
       "id": "self-sufficient-or-connected",
       "question": "Is it better to be self-sufficient or well-connected?",
@@ -121,6 +111,24 @@
       },
       "assigned_at": "2026-10-19",
       "origin": "seeded"
+    },
+    "2026-W44": {
+      "id": "who-counts-as-local",
+      "question": "Who gets to call themselves local?",
+      "dimension": "belonging-membership",
+      "premise": "Small places run on a quiet sorting of who belongs, and the rules are never written down. Length of residence, family name, land ownership, showing up to the work, and simply staying through bad winters all compete as claims. Newcomers often carry the energy and money that keep a town alive, while old-timers carry the history and the right to feel crowded out. It is hard to say whether belonging is something you inherit, something you earn, or something a place decides for itself.",
+      "reading": null,
+      "framings": {
+        "0": "Frame the question through the Cariboo arts scene: when a festival or gallery opening draws new artists and money, do the founding volunteers who kept the lights on get to say who counts as local?",
+        "1": "Frame the question through the mill, ranch, and mine crews: does a worker who relocated for a job after the 2008 slowdown earn local standing the same way a family that has run the same operation for three generations does?",
+        "2": "Frame the question through the home-built gear and shop tools Cariboo people actually rely on: does a newcomer who fixes the community's radio repeater or cell booster become local faster than someone born here who never shows up?",
+        "3": "Frame the question through T\u015dilhqot'in, Secw\u00e9pemc, and Dakelh governance and language programs: where local belonging rests on ancestry, treaty, and land stewardship, what role should non-Indigenous residents of the same territory hold in deciding it?",
+        "4": "Frame the question through backcountry access fights and wildfire crews in the Chilcotin: do recreational users who volunteer on trail or fire work build a claim to the land that hunters, trappers, and guides who have used it for decades can dispute?",
+        "5": "Frame the question through a specific council or school board decision in Williams Lake, Quesnel, or 100 Mile House: should a rezoning or housing vote weigh the voice of long-term residents more heavily than people who just moved in to work?",
+        "6": "Frame the question through local ecology and science projects, such as salmon counts or caribou surveys in the Cariboo: does a researcher who spends years monitoring a watershed earn a local voice in decisions about it, or only the people who live beside it every day?"
+      },
+      "assigned_at": "2026-10-26",
+      "origin": "generated"
     }
   },
   "used": [
@@ -189,6 +197,12 @@
       "dimension": "trust",
       "question": "Is trust something you build, or something you inherit?",
       "week": "2026-W43"
+    },
+    {
+      "id": "who-counts-as-local",
+      "dimension": "belonging-membership",
+      "question": "Who gets to call themselves local?",
+      "week": "2026-W44"
     }
   ],
   "generated": [

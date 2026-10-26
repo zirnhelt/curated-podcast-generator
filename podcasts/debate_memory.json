@@ -1,31 +1,4 @@
 {
-  "2026-07-27": {
-    "timestamp": 1785152786.222548,
-    "date": "2026-07-27",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "focus": "music-performance",
-    "central_question": "Should small arts organizations in rural areas prioritize platform-native vertical video distribution, or invest in community-owned digital archives with clips as secondary marketing?",
-    "riley_position": "Vertical video is a necessary distribution tool that reaches new audiences; the key is treating it as a door to the work, not the work itself, while maintaining independent archives as the durable master record.",
-    "riley_key_evidence": [
-      "HubSpot report showing vertical short-form is the most-used and successful content format in marketing",
-      "Tod Maffin's model of consistent weekly output on controlled platforms building genuine, durable reach over years",
-      "Netflix expanding vertical video formats because audiences have already moved to that consumption pattern"
-    ],
-    "casey_position": "Platform-dependent distribution restructures artistic production around algorithmic incentives and creates preservation risk; community-owned master recordings should be the primary goal, with platform clips as optional secondary exports only.",
-    "casey_key_evidence": [
-      "Most viral impressions evaporate without converting to ticket sales or audience building\u2014vertical video builds impressions, not durable audiences",
-      "Commercial pop songwriting has restructured itself around algorithmic skip windows and streaming metrics, showing how platform pressure reshapes creative work itself",
-      "Rural creators face a cold-start problem that cheaper tools don't solve\u2014established credibility still matters more than format accessibility"
-    ],
-    "resolution": "They reached partial agreement: own the full-length recording first as the durable asset, treat vertical clips as disposable secondary marketing, and recommend a testable one-camera experiment for the Arts Centre without waiting for permission or funding. Casey conceded the packaging framing but insisted the preservation problem must be solved before discovery, while Riley acknowledged organizational discipline is critical to preventing metrics-driven mission drift.",
-    "topics_covered": [
-      "Platform homogenization vs. format as neutral distribution tool",
-      "Cold-start problem for rural artists without established credibility",
-      "Preservation vs. discovery in digital archives",
-      "How algorithmic pressure reshapes creative output (songwriting, performance structure)",
-      "Community-owned infrastructure as alternative to platform dependency"
-    ]
-  },
   "2026-07-28": {
     "timestamp": 1785236178.455595,
     "date": "2026-07-28",
@@ -2566,6 +2539,34 @@
       "US fossil fuel buildout and electricity demand from data centres",
       "Glacier and landslide hazards in Alaska and monitoring continuity in the Cariboo",
       "Denisovan fossil research and community trust in science"
+    ]
+  },
+  "2026-10-26": {
+    "timestamp": 1793002579.083408,
+    "date": "2026-10-26",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "visual-arts-heritage",
+    "anchor": "who-counts-as-local",
+    "central_question": "Who gets to decide who counts as local in Cariboo arts, culture, and storytelling, and how should written rules, records, and access be governed?",
+    "riley_position": "Riley argues that local claims rest on birth, childhood, and community ties, that infrastructure like publishers is part of the local story, and that written, public rules and archives make arts communities fair and resilient.",
+    "riley_key_evidence": [
+      "Tommy's Race was written by someone born and raised in Horsefly, and the whole book comes from one school sports day east of Williams Lake",
+      "The Quesnel & District Community Arts Council has been an umbrella for arts, heritage, and culture since 1973, and a criteria page is an afternoon's work",
+      "Amy Sherald and Victor 'Marka27' Qui\u00f1onez saw museums move to censor their work, per Mother Jones, and digital publishing offers a second door"
+    ],
+    "casey_position": "Casey contends that local claims are contested and shaped by who holds money, power, and records, that unwritten gatekeeping excludes newcomers, and that cultural infrastructure and archives are fragile and can be controlled by others.",
+    "casey_key_evidence": [
+      "The author lives in Kamloops, the illustrator is in Montreal, and Caitlin Press published the book, so local in subject differs from local in the paycheque",
+      "Federal courts ordered the NEH to reverse grant cancellations, but the administration appealed and no retroactive money has returned, and Artforum reports the proposed budget eliminated the NEA",
+      "Azerbaijani prosecutors requested 12-year and 11-year sentences against Imran Aliyev and Elgiz Gahraman, with CPJ reporting at least 13 journalists arrested on donor-funding allegations"
+    ],
+    "resolution": "They did not fully agree. Riley conceded that the binder-versus-website distinction matters and that the newcomer question is real, while Casey conceded that the publisher and courts can be real levers and that Baku and Quesnel are not directly comparable. They agreed on two checkable tests: whether membership and grant rules are readable by new artists before openings, and where the Quesnel show photographs are stored.",
+    "topics_covered": [
+      "Defining local identity versus residence and publishing infrastructure in the Tommy's Race book",
+      "Transparency and membership rules in the Quesnel & District Community Arts Council",
+      "Censorship of artworks in the 1980s and 2020s and the fragility of small artist-run spaces",
+      "Federal arts funding cuts, court rulings, and digital distribution as an alternative",
+      "Heritage archives, record-keeping, and the risks of journalism under foreign-funding laws in Azerbaijan"
     ]
   }
 }
