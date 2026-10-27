@@ -71,9 +71,10 @@ cut, not stretched. A gap stays unsaid, never papered over. A correction is made
 - **Short and strong beats full and thin, within a floor.** A lighter feed or a shorter
   episode is better than padding, but every category ships something and the episode stays
   a show, not a bulletin.
-- **Quality first, proven before paid for.** The show is worth paying for, but a costlier
-  model earns its place in a trial, not on faith. Every dollar should reach the listener's
-  ear or the reader's screen, and none should go on calls made just in case.
+- **Quality first where the listener hears it.** The script and polish run on Sonnet 5.5;
+  everything upstream stays cheapest-first. A move further up earns its place in a trial,
+  not on faith. Every dollar should reach the listener's ear or the reader's screen, and
+  none should go on calls made just in case.
 
 ## Where the values live in code
 
@@ -110,7 +111,7 @@ Where the answers pulled against the code, and what was decided.
 | Answer | Was | Now |
 |--------|-----|-----|
 | 22 short and strong | Feed filled `min_slots` regardless of the floor; the show made 2 expand passes and aborted under 2,800 words | **Softened, both.** `min_slots` halved, rounded up, so no category ships empty (ai-tech 5→3, local 3→2). One expand pass; abort floor 2,400 words (~14 min) |
-| 24 quality first | Script and polish on Haiku 5.5 since 2026-10-08 | **One-week trial** of Sonnet 5 on script and polish (`CLAUDE_SCRIPT_MODEL`, `CLAUDE_POLISH_MODEL` repo variables), about +$4, judged on episode verdicts and the weekly review |
+| 24 quality first | Looked like Haiku 5.5 on script and polish (the `CLAUDE_SONNET_MODEL` default since 2026-10-08) | **Already in place.** `CLAUDE_SCRIPT_MODEL` and `CLAUDE_POLISH_MODEL` were set to `claude-sonnet-5-5`, so the show's words were never on Haiku. No trial needed; a further step up (e.g. Opus) would get one |
 | 19 prominent corrections | The roundup's final beat | **Kept at the end.** The prompt already demands subject, wrong detail, air date and correct detail; answer 19 now reads "specific, not ceremonial" |
 | 23 serendipity | No slot | **Both.** Feed: one wildcard a day on top of the slots, the highest `q_gate` (≥ 55, p90) that the interest profile missed (relevance under 40, or never deep-scored). Show: the kicker comes from the better half of the standalones, the one the day's charter fits least |
 | 20 only with new facts | A recalled election story always aired | Its prompt tag now says to leave it out when nothing has moved |
@@ -147,5 +148,5 @@ Widen it only after the ratings show it's needed.
 | 21 | When in doubt | Leave it out |
 | 22 | Full-thin vs short-strong | Short and strong, then softened to keep a floor |
 | 23 | Serendipity | Yes, a deliberate slot, in both |
-| 24 | Cost vs quality | Quality first, proven by a one-week trial |
+| 24 | Cost vs quality | Quality first where the listener hears it (Sonnet 5.5 on script and polish) |
 | 25 | The one rule | Never mislead the listener |
