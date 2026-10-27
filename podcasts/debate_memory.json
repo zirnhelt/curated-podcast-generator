@@ -1,31 +1,4 @@
 {
-  "2026-07-28": {
-    "timestamp": 1785236178.455595,
-    "date": "2026-07-28",
-    "theme": "Working Lands & Industry",
-    "focus": "forestry",
-    "central_question": "Does the B.C. Agricultural Land Reserve proposal to allow food processors on marginal soil represent smart land use policy, or does it replicate the forestry sector's failed experiment with temporary salvage cutting that became permanent industrial consolidation?",
-    "riley_position": "The ALR proposal includes meaningful guardrails\u2014a six-week public engagement period, soil-class thresholds, and made-in-B.C. sourcing requirements\u2014that distinguish it from the unmonitored forest tenure system and at least preserve deliberation in decision-making.",
-    "riley_key_evidence": [
-      "The ALR proposal includes a six-week public engagement window before finalization, unlike forest tenure renewals which happen with essentially no public comment period",
-      "The proposal has explicit guardrails: Class 5-7 soil classification threshold and 5% made-in-B.C. sourcing requirement",
-      "Forest tenure policy defaults to automatic re-tender to existing major licensees (Canfor, West Fraser, Tolko) without deliberation steps"
-    ],
-    "casey_position": "Guardrails only hold if nobody has incentive to lean on them; once the principle that 'marginal land justifies industrial use' is established, the definition of marginal becomes contestable, replicating forestry's pattern of mission creep and consolidation over decades.",
-    "casey_key_evidence": [
-      "Forest salvage wood was framed as one-time/transitional but annual allowable cuts built around salvage volume became permanent, leading to mill closures in Quesnel and Williams Lake",
-      "BC Farms and Food warned that land can already be pulled from the ALR through existing exclusion processes, and the BC Chamber of Commerce has lobbied for exactly this change since 2024",
-      "Canadian cattle herd has shrunk for decades; record beef prices reflect scarcity after producer consolidation, not market success for remaining operations"
-    ],
-    "resolution": "Riley and Casey agreed to disagree productively: they acknowledged the ALR process has more deliberation built in than forest tenure (a real structural advantage), but agreed the key test will be whether the province treats tenure reallocations as transparent public decisions rather than routine administrative paperwork, and whether it establishes community/Nation-held agreements as a formal first right of consideration on returned volume.",
-    "topics_covered": [
-      "B.C. Agricultural Land Reserve policy and marginal soil industrial processing",
-      "Forest tenure consolidation following mountain pine beetle salvage operations",
-      "Structural gaps in provincial decision-making transparency between ALR and forest licensing",
-      "Central Chilcotin Rehabilitation's Nation-held tenure model as alternative to standard industrial licensing",
-      "Cattle market consolidation and price dynamics masking structural herd decline"
-    ]
-  },
   "2026-07-29": {
     "timestamp": 1785322775.637059,
     "date": "2026-07-29",
@@ -2567,6 +2540,34 @@
       "Censorship of artworks in the 1980s and 2020s and the fragility of small artist-run spaces",
       "Federal arts funding cuts, court rulings, and digital distribution as an alternative",
       "Heritage archives, record-keeping, and the risks of journalism under foreign-funding laws in Azerbaijan"
+    ]
+  },
+  "2026-10-27": {
+    "timestamp": 1793088926.67007,
+    "date": "2026-10-27",
+    "theme": "Working Lands & Industry",
+    "focus": "mining-energy",
+    "anchor": "who-counts-as-local",
+    "central_question": "Who actually holds control and benefit from mining and processing ventures, and does local standing (crews, ranch families, Indigenous claims) translate into a real say in outcomes?",
+    "riley_position": "Money and control flow mainly to whoever holds the paper, and written rules such as bonds, rosters, contract export rights, and transparent permitting can fix ownership problems and reward long-term local workers.",
+    "riley_key_evidence": [
+      "China's equity share of approved mining investment under Argentina's RIGI regime is about 9.2 percent, roughly one share in eleven",
+      "At Los Azules, Chinese indirect interest falls to about 1.8 percent because Rio Tinto's Nuton holds a stake in McEwen Copper",
+      "Chile signed a bilateral rare earth accord with the United States in March, and Codelco and ENAMI have discussed smelting synergies since late 2024"
+    ],
+    "casey_position": "Control over terms of processing and sale matters more than formal ownership, and local standing, reclamation liability, and data control are tested only when ownership changes, so the written rules are not enough on their own.",
+    "casey_key_evidence": [
+      "Argentina Lithium agreed a $100 million deal in which Lanshen could earn up to 30 percent of ALESA, and minority stakes plus offtake contracts still set terms",
+      "A Global Energy Monitor study flags refining rather than mining as the constraint on Chile's rare earth ambitions, and processing costs are the hurdle",
+      "The Mount Polley tailings spill into Quesnel Lake still has open cleanup questions a decade later, and reclamation bonds must survive a change of owner"
+    ],
+    "resolution": "They did not reach agreement: Riley thinks written rules such as bonds and contracts come first and are better than nothing, while Casey wants a copy rather than a promise and says the ownership change is the real test. They agreed the open question to check is who holds liability when a mine or refinery changes hands and whether the bond is sized for the mine or for the press release.",
+    "topics_covered": [
+      "Foreign equity and control in Argentina's lithium and mining projects",
+      "Chile's rare earth refining bottleneck and US cooperation",
+      "Local standing of mine crews, ranch families, and Indigenous claims",
+      "Permitting, the proposed repeal of Indigenous-rights law, and court risk",
+      "Reclamation bonding and the Mount Polley tailings legacy"
     ]
   }
 }

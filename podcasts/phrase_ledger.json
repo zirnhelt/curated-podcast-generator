@@ -1,14 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-10-06",
-      "words": 3084,
-      "counts": {
-        "really": 2,
-        "partly": 2
-      }
-    },
-    {
       "date": "2026-10-07",
       "words": 2913,
       "counts": {}
@@ -147,8 +139,15 @@
       "counts": {
         "archdaily": 2
       }
+    },
+    {
+      "date": "2026-10-27",
+      "words": 3955,
+      "counts": {
+        "partly": 2
+      }
     }
   ],
   "burned": {},
-  "updated": "2026-10-26"
+  "updated": "2026-10-27"
 }
