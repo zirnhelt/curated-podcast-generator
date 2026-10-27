@@ -2940,8 +2940,10 @@ class TestGeneratePodcastRssFeedTranscriptTags:
         generate_podcast_rss_feed()
 
         feed = (tmp_path / "podcast-feed.xml").read_text()
-        assert 'url="https://podcast.cariboosignals.ca/podcasts/podcast_transcript_2026-01-01_test_theme.vtt" type="text/vtt" language="en-CA"' in feed
-        assert 'url="https://podcast.cariboosignals.ca/podcasts/podcast_transcript_2026-01-01_test_theme.html" type="text/html" language="en-CA"' in feed
+        assert 'url="https://podcast.cariboosignals.ca/podcasts/podcast_transcript_2026-01-01_test_theme.vtt" type="text/vtt" language="en-us"' in feed
+        assert 'url="https://podcast.cariboosignals.ca/podcasts/podcast_transcript_2026-01-01_test_theme.html" type="text/html" language="en-us"' in feed
+        channel_lang = re.search(r"<language>([^<]*)</language>", feed).group(1)
+        assert feed.count(f'language="{channel_lang}"/>') == 2
 
     def test_transcript_tags_absent_when_files_missing(self, tmp_path, monkeypatch):
         monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)

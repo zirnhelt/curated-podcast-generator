@@ -12704,6 +12704,10 @@ def generate_podcast_rss_feed():
     if trace_cfg:
         rss_lines += _build_trace_channel_xml(trace_cfg, podcast_config["author"])
 
+    # The transcript's language follows the channel's: a mismatch (en-CA vs
+    # en-us) is a plausible reason Apple discards a provided transcript.
+    transcript_lang = saxutils.escape(podcast_config["language"], {chr(34): "&quot;"})
+
     # Add episodes with detailed descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])
@@ -12725,10 +12729,10 @@ def generate_podcast_rss_feed():
         ]
         if episode.get('vtt_transcript_url'):
             escaped_vtt_url = saxutils.escape(episode['vtt_transcript_url'], {chr(34): "&quot;"})
-            item_lines.append(f'<podcast:transcript url="{escaped_vtt_url}" type="text/vtt" language="en-CA"/>')
+            item_lines.append(f'<podcast:transcript url="{escaped_vtt_url}" type="text/vtt" language="{transcript_lang}"/>')
         if episode.get('transcript_url'):
             escaped_transcript_url = saxutils.escape(episode['transcript_url'], {chr(34): "&quot;"})
-            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" language="en-CA"/>')
+            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" language="{transcript_lang}"/>')
         if episode.get('chapters_url'):
             escaped_chapters_url = saxutils.escape(episode['chapters_url'], {chr(34): "&quot;"})
             item_lines.append(f'<podcast:chapters url="{escaped_chapters_url}" type="application/json+chapters"/>')
