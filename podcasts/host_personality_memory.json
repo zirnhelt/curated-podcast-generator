@@ -75,11 +75,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-16",
-        "clue": "funding-risk:x \u2014 concedes sighting log needs funded response, not guaranteed",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-20",
         "clue": "tech-optimism:x \u2014 conceded wonder insufficient without distribution pathway",
         "occurrences": 1
@@ -118,11 +113,6 @@
         "date": "2026-10-14",
         "clue": "pilot-skepticism:~ \u2014 proposes testing one lake before scaling claims",
         "occurrences": 1
-      },
-      {
-        "date": "2026-10-26",
-        "clue": "community-trust:~ \u2014 accepts publisher as part of local story",
-        "occurrences": 2
       },
       {
         "date": "2026-10-25",
@@ -172,6 +162,11 @@
       {
         "date": "2026-10-26",
         "clue": "funding-risk:+ \u2014 doubles down on written rules and filing cabinets",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-27",
+        "clue": "structural-lens:+ \u2014 insists control and ownership are distinct claims",
         "occurrences": 1
       }
     ],
@@ -319,11 +314,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-06-20",
-        "clue": "structural-lens:- \u2014 Shifted from 'province not listening' to 'province decided small cities unworthy'\u2014harder attribution",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-14",
         "clue": "structural-lens: + \u2014 Shifted from tech-access to records-access as core problem.",
         "occurrences": 2
@@ -430,11 +420,6 @@
       },
       {
         "date": "2026-10-26",
-        "clue": "evidence-bar:+ \u2014 facts don't pick one reading for us",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-10-26",
         "clue": "community-trust:~ \u2014 local in subject versus local in paycheque",
         "occurrences": 2
       },
@@ -466,6 +451,16 @@
       {
         "date": "2026-10-26",
         "clue": "funding-risk:~ \u2014 notes courts reversed cancellations but money never returned",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-27",
+        "clue": "rural-context:+ \u2014 presses that newcomer and ranch claims differ",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-27",
+        "clue": "community-trust:- \u2014 doubts written rules alone will settle belonging",
         "occurrences": 1
       }
     ],
