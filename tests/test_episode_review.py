@@ -632,6 +632,15 @@ class TestSignals:
         episode_review.merge_findings(ledger, [_finding(signal=BODIES)], "2026-08-21")
         assert len(ledger["items"]) == 1 and ledger["items"][0]["signal"] == BODIES
 
+    def test_a_finding_without_the_signal_is_not_a_sighting_of_it(self):
+        """2026-10-27: no short-script signal, but a finding reusing the item's
+        id logged a sighting, and the roadmap showed it as seen that night."""
+        ledger = _ledger(_finding(signal="short-script"), dates=("2026-10-25", "2026-10-26"))
+        episode_review.merge_findings(ledger, [_finding()], "2026-10-27")
+        item = ledger["items"][0]
+        assert len(ledger["items"]) == 1
+        assert item["last_seen"] == "2026-10-26" and "2026-10-27" not in item["seen"]
+
     def test_an_item_closes_when_its_signal_goes_quiet(self):
         ledger = _ledger(_finding(signal=BODIES), dates=("2026-09-19", "2026-09-20"))
         assert episode_review.retire_stale(ledger, "2026-09-22", {}) == []
