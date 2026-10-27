@@ -7,6 +7,9 @@ It holds the **standing rules**. The incidents and reasoning behind them live in
 Read the linked file before changing the code it describes. When you add a rule, keep it
 here as one or two lines and put the story in the decision file, not here.
 
+The values behind both curators (this show and `super-rss-feed`) are in
+[`docs/MANIFESTO.md`](docs/MANIFESTO.md): read it before changing what gets selected or how the hosts sound.
+
 ## Role and Style
 
 Direct, technical, efficient. No fluff. No apologies. Get straight to the technical solution. Explain the "why" behind significant architectural decisions briefly before writing code.
@@ -79,7 +82,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 2. Pull scored articles from sibling repo `super-rss-feed` (`feed-podcast-{dayname}.json` from its GitHub Pages URL)
 3. Deduplicate against the last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings)
 4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their day); select roundup stories and deep-dive articles
-5. Claude storyboards the roundup and deep dive (`storyboard_script`), writes the two-host script to that plan, then polishes it (a discarded polish airs the draft and `degrade()`s `script/polish`; the outcome is `episode.models.polish`). Scripts under `TARGET_SCRIPT_WORDS` get up to `EXPAND_MAX_PASSES` (2) expand passes; under `MIN_SCRIPT_WORDS` after that the run aborts. The script call, its retries and the polish carry `max_tokens` 64000. About 19–20 min ships (167 words a minute), against the 22 min the prompts still say
+5. Claude storyboards the roundup and deep dive (`storyboard_script`), writes the two-host script to that plan, then polishes it (a discarded polish airs the draft and `degrade()`s `script/polish`; the outcome is `episode.models.polish`). Scripts under `TARGET_SCRIPT_WORDS` get up to `EXPAND_MAX_PASSES` (1) expand pass; under `MIN_SCRIPT_WORDS` after that the run aborts. The script call, its retries and the polish carry `max_tokens` 64000. About 19–20 min ships (167 words a minute), against the 22 min the prompts still say
 6. Write citations JSON and every memory/state file; save the script to `podcasts/podcast_script_{date}_{theme}.txt` — **end of the script stage**; the workflow commits here
 7. OpenAI TTS renders each speaker turn in parallel
 8. pydub assembles: cold open (before the music) → intro → welcome → interval → news roundup → interval → deep dive → outro
@@ -195,6 +198,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 **News roundup.** The story count comes from airtime (`NEWS_ROUNDUP_COUNT`, ~70 words each), not appetite. A story that can't get its floor is cut, never compressed.
 - `NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. `all_articles` is the curated pool; never concatenate the pre-curation `bonus_articles` back in.
 - Blocks air in order: `local` → `theme` / `theme_adjacent` → discipline groups → `standalone` → `kicker`. No discipline cluster takes more than `ROUNDUP_CLUSTER_MAX` (3) slots outside the arc blocks.
+- The kicker is the wildcard: from the better half of the standalones, the lowest `_theme_score_raw`.
 - `_sequence_roundup` is a chain, not a regroup (the block's lead never moves), and runs at both consumers.
 - `_infer_discipline` counts word-boundary hits, never substrings.
 - `script/curate` degrades when the theme block is thin. **Read that as a scoring problem, not a supply problem.**
@@ -330,4 +334,5 @@ Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API ha
 | [editorial-voice.md](docs/decisions/editorial-voice.md) | Weekly anchor, naming nations, AI tells and the phrase ledger, the Meta Moment, inbound mail |
 | [openai-tts.md](docs/decisions/openai-tts.md) | The nightly TTS provider, speech-rate fits, per-take checks |
 | [gemini-tts.md](docs/decisions/gemini-tts.md) | Gemini multi-speaker TTS — parked, with its exit criterion |
+| [MANIFESTO.md](docs/MANIFESTO.md) | The editor's values for both curators, and where they pull against today's rules |
 | [2026-02-16-multi-feed-model.md](docs/decisions/2026-02-16-multi-feed-model.md) | The move to seven themed upstream feeds |

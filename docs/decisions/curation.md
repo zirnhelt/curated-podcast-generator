@@ -344,6 +344,13 @@ be read out at a sentence apiece; one of them given real airtime is worth more t
 mentioned. It reserves its slot before the tail spends the budget, and yields it when the
 protected arc alone fills the segment.
 
+**The kicker is also the show's wildcard (2026-10-27).** The manifesto asks for a
+deliberate surprise slot. Standalones already have no theme hits, so the kicker was
+off-theme by construction, but "strongest standalone" picked whatever the feed scored
+highest, and that score leans toward the day. It now comes from the better half of the
+standalones, choosing the one with the lowest `_theme_score_raw` (the strongest on a
+tie). The upper half keeps a weak story from winning on distance alone.
+
 **No single discipline cluster may take more than `ROUNDUP_CLUSTER_MAX` (3) slots**, and that
 holds whether or not the pool is over the cap. On 2026-08-22 the Cariboo Local Affairs roundup
 sat exactly at its cap of 15 and still ran a seven-story US pharma and health-policy cluster
