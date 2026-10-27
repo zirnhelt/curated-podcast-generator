@@ -77,7 +77,9 @@ def test_duplicates_of_standing_or_declined_notes_are_dropped():
 def test_a_run_records_every_email_and_writes_the_proposals(paths, monkeypatch):
     _queue(paths / "email_queue.json", [
         {"id": "e1", "type": "correction", "subject": "Geography",
-         "received_at": "2026-09-26T10:00:00Z", "body_text": "Quesnel is north of Williams Lake."},
+         # main() reads the real clock: a pinned 2026-09-26 left the 30-day window on 2026-10-27.
+         "received_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+         "body_text": "Quesnel is north of Williams Lake."},
     ])
     (paths / "standing_notes.txt").write_text("# header\n", encoding="utf-8")
     monkeypatch.setattr(sn, "call_haiku", lambda p: [

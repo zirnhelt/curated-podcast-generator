@@ -1379,6 +1379,11 @@ def merge_findings(ledger: dict, findings: list[dict], date: str) -> dict:
     for finding in findings[:ROADMAP_MAX_FINDINGS]:
         signal = _finding_signal(finding)
         item = _match(ledger, finding)
+        if item is not None and item.get("signal") and not signal:
+            # The facts decide whether a signalled item recurred, not the model's
+            # wording: 2026-10-27 shipped 3,955 words with no short-script signal,
+            # yet a finding reusing the item's id logged a sighting.
+            continue
         if item is None:
             item = {
                 "id": _slug(finding["id"]) or _slug(finding["title"]),
