@@ -8920,7 +8920,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False, storyboard=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -9051,6 +9051,9 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     # episode so a gap on air can be traced to the query that missed it.
     if research and (research.get("block") or research.get("log")):
         citations_data["research"] = research
+    # The plan the script was told to follow, to read against what aired.
+    if storyboard:
+        citations_data["storyboard"] = storyboard
 
     # Save citations file
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
@@ -9279,6 +9282,141 @@ def _splice_sections(script: str, rewrite: str, names: list[str]) -> str:
             replacement = rewrite[ns:ne].rstrip() + ('\n\n' if oe < len(script) else '\n')
             script = script[:os_] + replacement + script[oe:]
     return script
+
+
+# The storyboard plans the roundup's bridges and the deep dive's beats before a
+# line of dialogue is written: a single pass had to pick the question, order the
+# evidence and write 3,400 words at once, and the deep dive wandered (2026-10-19:
+# jazz diplomacy → Cariboo halls → a Berlin archive → Indian voter rolls, no
+# spine). The plan rides in the script prompt; the script still owns the words.
+STORYBOARD_ENABLED = os.getenv("PODCAST_STORYBOARD", "1") != "0"
+STORYBOARD_MODEL = os.getenv("CLAUDE_STORYBOARD_MODEL") or SCRIPT_MODEL
+STORYBOARD_MAX_TOKENS = 16000  # adaptive thinking shares it with the plan
+# The citations record what the script was told to follow; set per run.
+_storyboard_used: dict | None = None
+
+_STORYBOARD_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "roundup": {
+            "type": "object",
+            "properties": {
+                "opening_frame": {"type": "string"},
+                "stories": {"type": "array", "items": {
+                    "type": "object",
+                    "properties": {
+                        "n": {"type": "integer"},
+                        "point": {"type": "string"},
+                        "bridge_to_next": {"type": "string"},
+                    },
+                    "required": ["n", "point", "bridge_to_next"],
+                }},
+                "handoff": {"type": "string"},
+            },
+            "required": ["opening_frame", "stories", "handoff"],
+        },
+        "deep_dive": {
+            "type": "object",
+            "properties": {
+                "central_question": {"type": "string"},
+                "riley_holds": {"type": "string"},
+                "casey_holds": {"type": "string"},
+                "beats": {"type": "array", "items": {
+                    "type": "object",
+                    "properties": {
+                        "claim": {"type": "string"},
+                        "evidence": {"type": "string"},
+                        "pushback": {"type": "string"},
+                        "leads_to_next": {"type": "string"},
+                    },
+                    "required": ["claim", "evidence", "pushback", "leads_to_next"],
+                }},
+                "set_aside": {"type": "array", "items": {"type": "string"}},
+                "cariboo_beat": {"type": "string"},
+                "landing": {"type": "string"},
+            },
+            "required": ["central_question", "riley_holds", "casey_holds", "beats",
+                         "set_aside", "cariboo_beat", "landing"],
+        },
+    },
+    "required": ["roundup", "deep_dive"],
+}
+
+
+def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text: str,
+                      theme_name: str, theme_lens: str, anchor_block: str,
+                      debate_history: str, weekday: str) -> dict | None:
+    """Plan both main segments in one structured call; None when it can't.
+
+    The roundup's order is fixed upstream, so its plan is a point and a bridge
+    per story. The deep dive's plan is the part that matters: one question and
+    beats that each say why the next one follows.
+    """
+    client = get_anthropic_client()
+    if not client:
+        return None
+    hosts = CONFIG['hosts']
+    prompt = CONFIG['prompts']['script_storyboard']['template'].format(
+        weekday=weekday, theme_name=theme_name, theme_lens=theme_lens,
+        anchor_block=anchor_block, debate_history=debate_history,
+        riley_style=hosts['riley']['debate_style'],
+        casey_style=hosts['casey']['debate_style'],
+        story_count=len(roundup_articles), numbered_news=numbered_news,
+        deep_dive_text=deep_dive_text,
+    )
+    output_config = {"effort": THINKING_EFFORT, **_json_output(_STORYBOARD_SCHEMA)}
+    try:
+        response = api_retry(lambda: create_message(
+            client, model=STORYBOARD_MODEL, max_tokens=STORYBOARD_MAX_TOKENS,
+            messages=[{"role": "user", "content": prompt}],
+            output_config=output_config,
+        ))
+    except Exception as e:
+        _abort_if_billing_wall(e)  # the caller's fallback is to write unplanned
+        raise
+    _log_claude_usage(response)
+    if _truncated(response):
+        degrade("script/storyboard", "storyboard truncated at max_tokens; script ran unplanned")
+        return None
+    plan = json.loads(message_text(response))
+    planned = [s.get("n") for s in plan["roundup"]["stories"]]
+    if planned != list(range(1, len(roundup_articles) + 1)):
+        degrade("script/storyboard",
+                f"roundup plan covers {planned} of {len(roundup_articles)} stories in order")
+    if len(plan["deep_dive"]["beats"]) < 2:
+        degrade("script/storyboard",
+                f"deep dive plan has {len(plan['deep_dive']['beats'])} beat(s)")
+    return plan
+
+
+def format_storyboard_for_prompt(plan: dict | None, roundup_articles: list) -> str:
+    """The plan as a prompt block the script follows; empty without a plan."""
+    if not plan:
+        return ""
+    rd, dd = plan["roundup"], plan["deep_dive"]
+    lines = ["STORYBOARD — planned before writing. Follow its order, its bridges and "
+             "its beats. It is the shape of the conversation, not lines to read: "
+             "never say any of it on air as structure, and write every line fresh.",
+             "", "NEWS ROUNDUP", f"Opening frame: {rd['opening_frame']}"]
+    for s in rd["stories"]:
+        n = s.get("n")
+        if not isinstance(n, int) or not 1 <= n <= len(roundup_articles):
+            continue
+        lines.append(f"{n}. {roundup_articles[n - 1].get('title', '')} — {s['point']}")
+        lines.append(f"   → {s['bridge_to_next']}")
+    lines += [f"Hand-off: {rd['handoff']}", "", "DEEP DIVE",
+              f"Central question: {dd['central_question']}",
+              f"Riley holds: {dd['riley_holds']}",
+              f"Casey holds: {dd['casey_holds']}"]
+    for i, b in enumerate(dd["beats"], 1):
+        lines += [f"Beat {i}: {b['claim']}",
+                  f"  Evidence: {b['evidence']}",
+                  f"  Pushback: {b['pushback']}",
+                  f"  → next, because: {b['leads_to_next']}"]
+    if dd["set_aside"]:
+        lines.append("Set aside (not part of the deep dive): " + "; ".join(dd["set_aside"]))
+    lines += [f"Cariboo beat: {dd['cariboo_beat']}", f"Landing: {dd['landing']}"]
+    return "\n".join(lines) + "\n"
 
 
 def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None, event_focus=None, extra_events=None):
@@ -9627,6 +9765,25 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
     # The show's own measured overuse. Dynamic prompt only — it changes daily and
     # caching it would defeat the cache every morning.
     burned_phrases = format_burned_phrases_for_prompt()
+    theme_lens = _build_theme_lens(theme_name, focus=focus, event_focus=event_focus,
+                                   extra_events=extra_events)
+
+    global _storyboard_used
+    _storyboard_used, storyboard = None, ""  # the fallback; set before the block
+    if STORYBOARD_ENABLED and (roundup_articles or deep_dive_articles):
+        with segment("script/storyboard", critical=False):
+            numbered_news = "\n".join(
+                f"{i}. ({_prompt_block(a).replace('_', ' ')}) {_format_news_article(a)[2:]}"
+                for i, a in enumerate(roundup_articles, 1))
+            _storyboard_used = storyboard_script(
+                roundup_articles, numbered_news, deep_dive_text, theme_name, theme_lens,
+                anchor_block,
+                format_debate_memory_for_prompt(debate_memory, theme_name, today_focus=focus)
+                if debate_memory else "",
+                weekday)
+            storyboard = format_storyboard_for_prompt(_storyboard_used, roundup_articles)
+        if not storyboard:
+            degrade("script/storyboard", "no storyboard; the script was written unplanned")
 
     if system_prompt and 'script_generation_user' in prompts:
         # New path: static system prompt + dynamic user prompt (cached together for the expand retry)
@@ -9639,10 +9796,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
             other_host_upper=other_host_name.upper(),
             other_host_name=other_host_name,
             theme_name=theme_name,
-            theme_lens=_build_theme_lens(theme_name, focus=focus,
-                                         event_focus=event_focus,
-                                         extra_events=extra_events),
+            theme_lens=theme_lens,
             anchor_block=anchor_block,
+            storyboard=storyboard,
             burned_phrases=burned_phrases,
             news_text=news_text,
             deep_dive_text=deep_dive_text,
@@ -12713,6 +12869,10 @@ def generate_podcast_rss_feed():
     if trace_cfg:
         rss_lines += _build_trace_channel_xml(trace_cfg, podcast_config["author"])
 
+    # The transcript's language follows the channel's: a mismatch (en-CA vs
+    # en-us) is a plausible reason Apple discards a provided transcript.
+    transcript_lang = saxutils.escape(podcast_config["language"], {chr(34): "&quot;"})
+
     # Add episodes with detailed descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])
@@ -12734,10 +12894,10 @@ def generate_podcast_rss_feed():
         ]
         if episode.get('vtt_transcript_url'):
             escaped_vtt_url = saxutils.escape(episode['vtt_transcript_url'], {chr(34): "&quot;"})
-            item_lines.append(f'<podcast:transcript url="{escaped_vtt_url}" type="text/vtt" language="en-CA"/>')
+            item_lines.append(f'<podcast:transcript url="{escaped_vtt_url}" type="text/vtt" language="{transcript_lang}"/>')
         if episode.get('transcript_url'):
             escaped_transcript_url = saxutils.escape(episode['transcript_url'], {chr(34): "&quot;"})
-            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" language="en-CA"/>')
+            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" language="{transcript_lang}"/>')
         if episode.get('chapters_url'):
             escaped_chapters_url = saxutils.escape(episode['chapters_url'], {chr(34): "&quot;"})
             item_lines.append(f'<podcast:chapters url="{escaped_chapters_url}" type="application/json+chapters"/>')
@@ -13684,6 +13844,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 weather_data=weather_data,
                 anchor=today_anchor,
                 research={"block": brave_context, "log": list(_RESEARCH_LOG)},
+                storyboard=_storyboard_used,
             )
 
         with segment("script/day-specific-inserts", critical=False):
