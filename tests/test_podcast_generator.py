@@ -1600,9 +1600,28 @@ class TestGenerateScriptTruncationGuard:
         assert "DEEP DIVE: 800 words now" in prompt and "1,200 more" in prompt
         assert "NEWS ROUNDUP:" not in prompt
 
+    def test_one_expand_pass_then_a_short_day_ships_short(self, monkeypatch):
+        # 2026-10-27, docs/MANIFESTO.md: short and strong beats full and thin.
+        # One pass, and a script over the floor ships even under target.
+        draft = ("**WELCOME**\n**RILEY:** hi\n\n**NEWS ROUNDUP**\n**RILEY:** "
+                 + ("news " * 1300) + "\n\n**DEEP DIVE: Fences**\n**CASEY:** "
+                 + ("deep " * 800) + "\n")
+        client = _stream_client([
+            _response("end_turn", [_text_block(draft)]),
+            _response("end_turn", [_text_block(
+                "**DEEP DIVE: Fences**\n**CASEY:** " + ("deep " * 1500) + "\n")]),
+        ])
+        result = self._run(monkeypatch, client)
+        assert client.messages.stream.call_count == 2
+        assert result.split().count("deep") == 1500
+
     def test_second_expand_pass_when_the_first_falls_short(self, monkeypatch):
         # 2026-10-09: one section pass took 2,517 words to 3,272 against a
-        # 3,400 target. The loop measures again and asks once more.
+        # 3,400 target. The loop measures again and asks once more, when
+        # EXPAND_MAX_PASSES allows it (1 since 2026-10-27).
+        import podcast_generator
+        monkeypatch.setattr(podcast_generator, "EXPAND_MAX_PASSES", 2)
+
         def draft(dd_words: int) -> str:
             return ("**WELCOME**\n**RILEY:** hi\n\n**NEWS ROUNDUP**\n**RILEY:** "
                     + ("news " * 1300) + "\n\n**DEEP DIVE: Fences**\n**CASEY:** "
@@ -1641,8 +1660,8 @@ class TestGenerateScriptTruncationGuard:
         assert client.messages.stream.call_count == 2
 
     def test_expand_loop_stops_when_a_pass_adds_nothing(self, monkeypatch):
-        from podcast_generator import EXPAND_MAX_PASSES
-        assert EXPAND_MAX_PASSES >= 2
+        import podcast_generator
+        monkeypatch.setattr(podcast_generator, "EXPAND_MAX_PASSES", 2)
         draft = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 3000)
         shorter = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 2900)
         client = _stream_client([
@@ -3903,6 +3922,21 @@ class TestAnnotateRoundupBlocks:
         ]
         assert ordered[0]["title"] == "Bakery reopens after a long renovation"
         assert ordered[-1]["title"] == "Celebrity fashion week highlights"
+
+    def test_kicker_is_the_strong_standalone_furthest_from_the_theme(self):
+        """docs/MANIFESTO.md: the kicker is the show's wildcard. From the better
+        half of the standalones it takes the one the charter fits least."""
+        articles = [
+            {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
+             "_boosted_score": 80, "_theme_score_raw": 40},
+            {"title": "Bakery reopens after a long renovation", "url": "https://s2.com",
+             "_boosted_score": 70, "_theme_score_raw": 5},
+            {"title": "Ferry timetable changes", "url": "https://s3.com",
+             "_boosted_score": 20, "_theme_score_raw": 0},
+        ]
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert ordered[-1]["_roundup_block"] == "kicker"
+        assert ordered[-1]["title"] == "Bakery reopens after a long renovation"
 
     def test_out_of_jurisdiction_us_politics_with_no_tie_is_dropped(self):
         """2026-09-16: a Kennedy Center naming dispute, a Pentagon report on

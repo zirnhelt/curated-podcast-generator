@@ -767,14 +767,15 @@ def _truncated(response) -> bool:
 # 2,212 words shipped 14:07; 2026-07-04: 3,423 words shipped 26:00). The show's
 # broadcast minimum is 22 minutes, ideal ~25.
 #
-# MIN_SCRIPT_WORDS is the hard publish floor (~19 min) — below this the episode
-# is unpublishably short and the run aborts rather than shipping it.
-# TARGET_SCRIPT_WORDS (~22-23 min) triggers the expand retry: any script under
-# it gets up to EXPAND_MAX_PASSES length-feedback rewrites before the publish
-# floor is checked.
-MIN_SCRIPT_WORDS = 2800
+# MIN_SCRIPT_WORDS is the hard publish floor (~14 min at 167 wpm) — below this
+# the episode is unpublishably short and the run aborts rather than shipping it.
+# TARGET_SCRIPT_WORDS (~20 min) triggers the expand retry: any script under it
+# gets up to EXPAND_MAX_PASSES length-feedback rewrites before the publish floor
+# is checked. Both were softened on 2026-10-27 (2800 → 2400, 2 passes → 1):
+# docs/MANIFESTO.md, "short and strong beats full and thin".
+MIN_SCRIPT_WORDS = 2400
 TARGET_SCRIPT_WORDS = 3400
-EXPAND_MAX_PASSES = 2
+EXPAND_MAX_PASSES = 1
 # The polish takes 4-14% off a draft (2026-10-22: 3,705 -> 3,183; 10-25:
 # 3,545 -> 3,371), so the expand loop aims past TARGET_SCRIPT_WORDS by this
 # share and the shipped script lands on the target.
@@ -6951,9 +6952,15 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
     # them out at a sentence apiece. One of them given real airtime is worth
     # more than ten of them mentioned, and a deliberate closer is what turns
     # cutting the other nine into an edit rather than a shortfall.
+    # It is also the show's wildcard (docs/MANIFESTO.md, "leave room to be
+    # surprised"): from the better half of the standalones, the one the day's
+    # charter fits least (`_theme_score_raw`), the strongest on a tie.
     kicker = []
     if standalone:
-        kicker = [standalone.pop(0)]
+        upper_half = standalone[:(len(standalone) + 1) // 2]
+        pick = min(upper_half, key=lambda a: a.get('_theme_score_raw') or 0)
+        standalone.remove(pick)
+        kicker = [pick]
         kicker[0]['_roundup_block'] = 'kicker'
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
@@ -9343,7 +9350,8 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                       f'("we mentioned this on Tuesday") and lead with what has '
                       f'CHANGED since: a new name in the race, a deadline passed, '
                       f'a position stated. Never re-read the original story as '
-                      f'though it were new]'
+                      f'though it were new. If nothing in it has moved since, '
+                      f'leave it out]'
                       if a.get('_recalled_from') else '')
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
@@ -9380,7 +9388,8 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                     f"the subject matter itself. {_NEVER_ANNOUNCE}")
         if block == 'kicker':
             return (f"◆ THE LAST WORD (1) — the final story of the roundup and "
-                    f"the note the segment goes out on. Give it a proper telling, "
+                    f"the note the segment goes out on, picked because it sits "
+                    f"furthest from today's theme. Give it a proper telling, "
                     f"not a mention: what happened, why it lands, and a reason "
                     f"it's the one worth ending on. Reach it on an ordinary "
                     f"pivot — never announce it as a closer, a lighter note, or "
@@ -9732,8 +9741,8 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         # above doesn't catch. Retry with the short draft and explicit length
         # feedback; the prompt prefix is read from cache. One pass recovers
         # about three quarters of the ask (2026-10-09: 2,517 → 3,272 against
-        # 3,400), so a second pass measures again; a pass that adds nothing
-        # ends the loop.
+        # 3,400). A second pass was dropped on 2026-10-27: what one pass can't
+        # find, the day doesn't have. A pass that adds nothing ends the loop.
         for _ in range(EXPAND_MAX_PASSES):
             if word_count >= EXPAND_TRIGGER_WORDS:
                 break

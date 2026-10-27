@@ -59,8 +59,8 @@ cut, not stretched. A gap stays unsaid, never papered over. A correction is made
 - **The paper that was there is the authority**, unless it is reprinting someone
   else's syndicated copy. Then credit the original, and don't treat the local masthead
   as proof the story happened locally.
-- **Corrections are prominent and specific.** Trust is the product: say what was wrong,
-  what is right, and when it aired.
+- **Corrections are specific, not ceremonial.** They close the roundup, and they name
+  what was wrong, what is right, and when it aired. A vague correction is worse than none.
 - **Come back to a story only with new facts.** A developing story is welcome when
   something has changed. Repeating it isn't continuity, it's a failure.
 
@@ -68,51 +68,57 @@ cut, not stretched. A gap stays unsaid, never papered over. A correction is made
 
 - **When in doubt, leave it out.** Precision over recall. The ratings can't flag a story
   the listener already sat through.
-- **Short and strong beats full and thin.** A lighter feed or a shorter episode is better
-  than padding.
-- **Quality first, with no wasted spend.** The show is worth paying for. Every dollar
-  should reach the listener's ear or the reader's screen, and none should go on calls made
-  just in case.
+- **Short and strong beats full and thin, within a floor.** A lighter feed or a shorter
+  episode is better than padding, but every category ships something and the episode stays
+  a show, not a bulletin.
+- **Quality first, proven before paid for.** The show is worth paying for, but a costlier
+  model earns its place in a trial, not on faith. Every dollar should reach the listener's
+  ear or the reader's screen, and none should go on calls made just in case.
 
-## Prompt blocks
+## Where the values live in code
 
-Compressed versions for the prompts, kept free of the burned and banned phrases in
-`config/ai_tells.json`. **Not wired in yet**: adding them is a prompt change and must be
-costed and reviewed like one.
-
-**Curator (feed scoring / quality gate):**
-
-```
-EDITOR'S VALUES: Interesting is enough; a story need not be important or actionable.
-Prefer close to far: a true Cariboo story beats a big world story. Distant crime, disaster
-and tragedy with no local link: reject. A risk warning needs a concrete incident, finding
-or policy AND a local or theme link. Launches, funding and model releases: reject unless
-tied to the day's theme. Community events: keep; sports: reject. When unsure, reject.
-```
-
-**Show (script system prompt):**
+**The show** carries them as `SHOW VALUES` in the cached script system prompt
+(`config/prompts.json` → `script_generation_system`), kept free of the phrases in
+`config/ai_tells.json`:
 
 ```
-SHOW VALUES: Never mislead. If a story can't be told from its sources, it isn't told.
-Lead with what is being fixed, built or protected. Technology: let the evidence set the
-tone. Indigenous stories: lead with self-determination and achievement. The hosts are
-warm and they disagree on substance; they may weigh stakes and costs, never endorse.
-Humour is dry and earned. Return to a past story only with a new fact.
+SHOW VALUES: Never mislead the listener; if a story can't be told from its sources, leave
+it out. Where a story holds something being fixed, built or protected, give that its due.
+On technology, let the evidence set the tone, neither booster nor skeptic. Indigenous
+stories lead with self-determination and achievement. The hosts are warm with each other
+and disagree on substance; they may weigh stakes and costs, and never endorse. Humour is
+dry and earned. Come back to a past story only with a new fact.
 ```
 
-## Where this disagrees with today's code
+**The feed** gets no values paragraph: its gate already says the same things through
+its own levers, and a new paragraph would change `GATE_RUBRIC_ID` and re-gate the whole
+cache to repeat them.
 
-These answers pull against rules already in place. Each one needs a decision before it
-reaches code. Until then, the existing rule stands.
+| Value | Feed lever |
+|-------|-----------|
+| Close beats far | `w_local` (0.20), `local_signals`, the `local` feed |
+| Distant bad news stays out | `standing_preferences.txt` → "Bad news without local relevance" |
+| Alarm needs an anchor | `standing_preferences.txt` → "Doomsaying and catastrophizing" |
+| Launches are not news | `GATE_REJECT_RUBRIC` → "Fluffy AI/tech" (ai-tech and homelab only) |
+| Community life yes, sports no | `GATE_REJECT_RUBRIC` → Sports, and its KEEP for community events |
+| Leave room to be surprised | The wildcard (below) |
 
-| Answer | Current behaviour | Tension |
-|--------|-------------------|---------|
-| 22 short and strong | `super-rss-feed` fills `min_slots` regardless of the floor; the show expands a short script and aborts under `MIN_SCRIPT_WORDS` (2800) | Both systems pad by design |
-| 24 quality first | Both `CLAUDE.md` files call cost "a hard constraint"; Sonnet roles default to Haiku 5.5 since 2026-10-08 | Quality first could justify putting Sonnet back on the script |
-| 20 only with new facts | Election stories are booked back (`status: 'recall'`) for the next civic episode | A recall without a new fact is a repeat |
-| 23 serendipity slot | No slot exists; the review batch's 2 `in_feed` canaries are the nearest thing | Would be new curation logic |
-| 19 prominent corrections | Corrections air as the roundup's final beat | Last place isn't prominent |
-| 5 close beats far | News has a protected world lane (`world_slots`, 4) | Probably fine as a floor, but worth stating |
+## Decisions (2026-10-27)
+
+Where the answers pulled against the code, and what was decided.
+
+| Answer | Was | Now |
+|--------|-----|-----|
+| 22 short and strong | Feed filled `min_slots` regardless of the floor; the show made 2 expand passes and aborted under 2,800 words | **Softened, both.** `min_slots` halved, rounded up, so no category ships empty (ai-tech 5→3, local 3→2). One expand pass; abort floor 2,400 words (~14 min) |
+| 24 quality first | Script and polish on Haiku 5.5 since 2026-10-08 | **One-week trial** of Sonnet 5 on script and polish (`CLAUDE_SCRIPT_MODEL`, `CLAUDE_POLISH_MODEL` repo variables), about +$4, judged on episode verdicts and the weekly review |
+| 19 prominent corrections | The roundup's final beat | **Kept at the end.** The prompt already demands subject, wrong detail, air date and correct detail; answer 19 now reads "specific, not ceremonial" |
+| 23 serendipity | No slot | **Both.** Feed: one wildcard a day on top of the slots, the highest `q_gate` (≥ 55, p90) that the interest profile missed (relevance under 40, or never deep-scored). Show: the kicker comes from the better half of the standalones, the one the day's charter fits least |
+| 20 only with new facts | A recalled election story always aired | Its prompt tag now says to leave it out when nothing has moved |
+| 5 close beats far | News keeps a world lane (`world_slots`, 4) | Kept: a floor for world events, not a preference over local |
+
+**Still open:** answer 9 ("launches are never news") is enforced only on ai-tech and
+homelab. The gate leaves funding and merger news under `[news]` to the score on purpose.
+Widen it only after the ratings show it's needed.
 
 ## Answer key (2026-10-27)
 
@@ -136,10 +142,10 @@ reaches code. Until then, the existing rule stands.
 | 16 | Hosts have opinions? | Yes, on stakes and implications |
 | 17 | Thin source | Cut |
 | 18 | Local vs national authority | Local, unless syndicated |
-| 19 | Corrections | Prominent |
+| 19 | Corrections | Prominent, then settled as specific, at the roundup's end |
 | 20 | Developing stories | Only with new facts |
 | 21 | When in doubt | Leave it out |
-| 22 | Full-thin vs short-strong | Short and strong |
-| 23 | Serendipity | Yes, a deliberate slot |
-| 24 | Cost vs quality | Quality first |
+| 22 | Full-thin vs short-strong | Short and strong, then softened to keep a floor |
+| 23 | Serendipity | Yes, a deliberate slot, in both |
+| 24 | Cost vs quality | Quality first, proven by a one-week trial |
 | 25 | The one rule | Never mislead the listener |
