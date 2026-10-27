@@ -455,10 +455,9 @@
       "detail": "On 2026-09-17, the first draft arrived at 2,802 words against a 3,400-word target, triggering an expand pass. The shipped script landed at 2,896 words—a gain of 94 words when 598 were needed to reach target. This is the second consecutive run where expansion fell far short: on 2026-09-16, expansion produced a final count 426 words below target. The mechanism suggests the expansion prompt or its iteration limit is not aggressive enough to close multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling, whether it runs for a fixed iteration count rather than until target is met, or whether the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs until the shipped script reaches the goal.",
       "source": "review",
       "status": "open",
-      "occurrences": 3,
+      "occurrences": 4,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-10-06",
         "2026-10-07",
         "2026-10-08",
         "2026-10-09",
@@ -467,9 +466,10 @@
         "2026-10-15",
         "2026-10-22",
         "2026-10-25",
-        "2026-10-26"
+        "2026-10-26",
+        "2026-10-27"
       ],
-      "last_seen": "2026-10-26",
+      "last_seen": "2026-10-27",
       "signal": "short-script",
       "signal_seen": "2026-10-26"
     },
@@ -552,8 +552,8 @@
       "title": "Research budgets exhausted before script generation completed, forcing expansion to proceed without full lookup capability.",
       "detail": "The pipeline spent its Brave Search deep-dive budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on September 29. Later fact-resolution queries fell back to web snippets or went unanswered. The script then required an expand pass to close a 774-word gap (starting at 2,626 words against a 3,400-word target), but that expansion had to work with degraded research tools. No facts dropped from the episode, but the mechanism shows a constraint: when story complexity demands early lookups, the expand phase runs blind. Increase the per-run budgets for Brave Search and Answers, or implement a two-phase research strategy that reserves lookups for the expansion pass.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-09-29",
       "seen": [
         "2026-09-29",
@@ -718,5 +718,5 @@
       "last_seen": "2026-10-25"
     }
   ],
-  "updated": "2026-10-26"
+  "updated": "2026-10-27"
 }

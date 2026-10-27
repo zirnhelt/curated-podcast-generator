@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-29..2026-10-26) — 3 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-10-07..2026-10-27) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -54,19 +54,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (signal `short-script`; seen in 3 reviews,
-      latest 2026-10-26)
-- [ ] **Research budgets exhausted before script generation completed, forcing expansion to
-      proceed without full lookup capability.** The pipeline spent its Brave Search deep-dive
-      budget (16 calls) and Brave Answers budget (8 calls) before scripting finished on
-      September 29. Later fact-resolution queries fell back to web snippets or went unanswered.
-      The script then required an expand pass to close a 774-word gap (starting at 2,626 words
-      against a 3,400-word target), but that expansion had to work with degraded research tools.
-      No facts dropped from the episode, but the mechanism shows a constraint: when story
-      complexity demands early lookups, the expand phase runs blind. Increase the per-run
-      budgets for Brave Search and Answers, or implement a two-phase research strategy that
-      reserves lookups for the expansion pass. (signal `degraded:script/research`; seen in 2
-      reviews, latest 2026-10-24)
+      until the shipped script reaches the goal. (signal `short-script`; seen in 4 reviews,
+      latest 2026-10-27)
 - [ ] **The first script draft ran 21 percent short and needed expansion retries to reach
       length.** The first draft came in at 2694 words against a 3400-word target, and the
       pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is
