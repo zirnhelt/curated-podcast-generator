@@ -7,6 +7,9 @@ It holds the **standing rules**. The incidents and reasoning behind them live in
 Read the linked file before changing the code it describes. When you add a rule, keep it
 here as one or two lines and put the story in the decision file, not here.
 
+The values behind both curators (this show and `super-rss-feed`) are in
+[`docs/MANIFESTO.md`](docs/MANIFESTO.md): read it before changing what gets selected or how the hosts sound.
+
 ## Role and Style
 
 Direct, technical, efficient. No fluff. No apologies. Get straight to the technical solution. Explain the "why" behind significant architectural decisions briefly before writing code.
@@ -329,4 +332,5 @@ Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API ha
 | [editorial-voice.md](docs/decisions/editorial-voice.md) | Weekly anchor, naming nations, AI tells and the phrase ledger, the Meta Moment, inbound mail |
 | [openai-tts.md](docs/decisions/openai-tts.md) | The nightly TTS provider, speech-rate fits, per-take checks |
 | [gemini-tts.md](docs/decisions/gemini-tts.md) | Gemini multi-speaker TTS — parked, with its exit criterion |
+| [MANIFESTO.md](docs/MANIFESTO.md) | The editor's values for both curators, and where they pull against today's rules |
 | [2026-02-16-multi-feed-model.md](docs/decisions/2026-02-16-multi-feed-model.md) | The move to seven themed upstream feeds |
