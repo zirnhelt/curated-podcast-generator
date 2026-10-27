@@ -1745,6 +1745,101 @@ class TestGenerateScriptCorrectionsGroundTruth:
         assert "CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in sent
 
 
+class TestScriptStoryboard:
+    """The storyboard plans the roundup's bridges and the deep dive's beats in
+    one structured call before the script; the script prompt carries the plan.
+
+    2026-10-19's deep dive went jazz diplomacy → Cariboo halls → a Berlin archive
+    → Indian voter rolls with nothing tying one stop to the next.
+    """
+
+    STORIES = [{"title": f"Story {i}", "url": f"https://s{i}.test", "_roundup_block": "local",
+                "_body": "Council voted. " * 20} for i in range(2)]
+    DEEP = {"title": "Deep source", "url": "https://d.test", "_body": "Evidence. " * 30}
+
+    def _plan(self, stories=(1, 2)):
+        return {
+            "roundup": {"opening_frame": "A council-heavy day.",
+                        "stories": [{"n": n, "point": f"point {n}", "bridge_to_next": "clean pivot"}
+                                    for n in stories],
+                        "handoff": "who maintains the network"},
+            "deep_dive": {"central_question": "Who owns the last mile?",
+                          "riley_holds": "Co-ops can.", "casey_holds": "Not without a budget line.",
+                          "beats": [{"claim": f"claim {i}", "evidence": "e (CBC)",
+                                     "pushback": "p", "leads_to_next": "because"} for i in range(4)],
+                          "set_aside": ["Berlin archive"], "cariboo_beat": "beat 3, Horsefly",
+                          "landing": "who holds the binder"},
+        }
+
+    def _run(self, monkeypatch, tmp_path, planner):
+        import podcast_generator as pg
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        monkeypatch.setattr(pg, "_RUN_SEGMENTS", [])
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+        client.messages.create.side_effect = planner
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        pg.generate_podcast_script(list(self.STORIES), [dict(self.DEEP)],
+                                   "Working Lands & Industry", {}, {})
+        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        rows = [r for r in pg._RUN_SEGMENTS if r["name"] == "script/storyboard"]
+        return client, sent, rows
+
+    def test_plan_reaches_the_script_prompt(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        plan = self._plan()
+        client, sent, rows = self._run(
+            monkeypatch, tmp_path,
+            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+
+        planner_prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 0", planner_prompt, re.M)
+        assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 1", planner_prompt, re.M)
+        assert "Central question: Who owns the last mile?" in sent
+        assert re.search(r"^1\. Story \d — point 1$", sent, re.M)
+        assert re.search(r"^2\. Story \d — point 2$", sent, re.M)
+        assert "Set aside (not part of the deep dive): Berlin archive" in sent
+        assert rows and rows[0]["status"] == "ok"
+        assert pg._storyboard_used == plan
+
+    def test_failed_plan_writes_the_script_unplanned_and_degrades(self, monkeypatch, tmp_path):
+        def boom(**kw):
+            raise RuntimeError("overloaded")
+        _, sent, rows = self._run(monkeypatch, tmp_path, boom)
+
+        assert "STORYBOARD" not in sent
+        assert "{storyboard}" not in sent
+        assert rows and rows[0]["status"] == "degraded"
+
+    def test_a_roundup_plan_that_skips_a_story_degrades(self, monkeypatch, tmp_path):
+        plan = self._plan(stories=(2,))
+        _, sent, rows = self._run(
+            monkeypatch, tmp_path,
+            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+
+        assert "Central question" in sent  # the plan still rides
+        assert rows and rows[0]["status"] == "degraded"
+        assert "[2] of 2" in rows[0]["error"]
+
+    def test_switch_off_skips_the_call(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "STORYBOARD_ENABLED", False)
+        client, sent, _ = self._run(monkeypatch, tmp_path, lambda **kw: None)
+
+        assert not client.messages.create.called
+        assert "STORYBOARD" not in sent
+
+    def test_citations_keep_the_plan(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        plan = self._plan()
+        pg.generate_citations_file([], [], "Working Lands & Industry", storyboard=plan)
+
+        saved = json.loads(next(tmp_path.glob("citations_*.json")).read_text())
+        assert saved["storyboard"] == plan
+
+
 class TestGenerateScriptRoundupPool:
     """The prompt must carry the curated pool and nothing more.
 

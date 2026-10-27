@@ -507,3 +507,37 @@ any personal anecdote, and any lens that turns into a stance on local politics.
 Both cards shipped together on 2026-10-18. Holding Casey's until after the 2026-10-24 vote was
 considered and declined by the producer: the card carries no civic positions, so the timing
 does not matter.
+
+## The storyboard (`storyboard_script`, `config/prompts.json` → `script_storyboard`, 2026-10-27)
+
+The script call used to pick the deep dive's question, order its evidence and write 3,400 words
+in one pass. The system prompt already said "commit to ONE central question before writing a
+single line of dialogue", but nothing held the model to it, and the segment wandered. 2026-10-19's
+deep dive went from State Department jazz tours to Cariboo music halls to a Berlin techno archive
+to Indian voter rolls, each stop reached by a bare pivot. The producer read the episodes as bumpy
+and circuitous.
+
+One structured call now plans both main segments before the script is written:
+
+- **Roundup:** an opening frame, then per story (in the fixed order `_sequence_roundup` set) the
+  one point it lands and the bridge to the next. A bridge names the shared thing, or says
+  "clean pivot": the plan cannot reorder, drop or invent a link, so it adds no new way to break
+  the roundup rules.
+- **Deep dive:** one central question, each host's starting stance, 4–7 beats (claim, evidence
+  with its outlet, pushback with new information, and why the next beat follows), what is set
+  aside, the Cariboo beat and the landing. `leads_to_next` is the piece aimed at the wander: a
+  jump with no stated reason is a beat that does not belong.
+
+The plan rides at the end of the dynamic user prompt as a `STORYBOARD` block (never the cached
+system prompt; it changes daily). The script still writes every line. The polish does not see the
+plan: start with the draft and see whether flow survives the polish before adding it there.
+
+- **Fails soft.** `script/storyboard` is `critical=False`; no plan, a truncated plan, a roundup
+  plan that misses or reorders a story, or fewer than two beats all `degrade()`. A billing wall
+  still aborts (`_abort_if_billing_wall`). `PODCAST_STORYBOARD=0` turns it off.
+- **Model:** `CLAUDE_STORYBOARD_MODEL`, else the script model, so the plan and the words come
+  from the same model. Adaptive thinking at `THINKING_EFFORT`, `max_tokens` 16000.
+- **Cost:** about 12K input and 3–6K output tokens on Haiku 5.5, under a cent a run. The
+  script prompt grows by the plan, about 1.5K tokens.
+- **Review:** the plan is saved in the citations JSON under `storyboard`, to read against what
+  aired.

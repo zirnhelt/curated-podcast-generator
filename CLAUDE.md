@@ -79,7 +79,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 2. Pull scored articles from sibling repo `super-rss-feed` (`feed-podcast-{dayname}.json` from its GitHub Pages URL)
 3. Deduplicate against the last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings)
 4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their day); select roundup stories and deep-dive articles
-5. Claude writes the two-host script, then polishes it (a discarded polish airs the draft and `degrade()`s `script/polish`; the outcome is `episode.models.polish`). Scripts under `TARGET_SCRIPT_WORDS` get up to `EXPAND_MAX_PASSES` (2) expand passes; under `MIN_SCRIPT_WORDS` after that the run aborts. The script call, its retries and the polish carry `max_tokens` 64000. About 19–20 min ships (167 words a minute), against the 22 min the prompts still say
+5. Claude storyboards the roundup and deep dive (`storyboard_script`), writes the two-host script to that plan, then polishes it (a discarded polish airs the draft and `degrade()`s `script/polish`; the outcome is `episode.models.polish`). Scripts under `TARGET_SCRIPT_WORDS` get up to `EXPAND_MAX_PASSES` (2) expand passes; under `MIN_SCRIPT_WORDS` after that the run aborts. The script call, its retries and the polish carry `max_tokens` 64000. About 19–20 min ships (167 words a minute), against the 22 min the prompts still say
 6. Write citations JSON and every memory/state file; save the script to `podcasts/podcast_script_{date}_{theme}.txt` — **end of the script stage**; the workflow commits here
 7. OpenAI TTS renders each speaker turn in parallel
 8. pydub assembles: cold open (before the music) → intro → welcome → interval → news roundup → interval → deep dive → outro
@@ -235,6 +235,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
 - `script/tell-scrub` runs after the cold open.
 - **The cold open gets no example greeting or closer**; it gets the past week's (`_format_recent_cold_opens`) as ones not to reuse.
+- **Storyboard before script** (`storyboard_script`): one structured call plans each roundup story's point and bridge (fixed order; "clean pivot" when nothing is shared) and the deep dive's question, stances and beats, each saying why the next follows. It rides in the dynamic prompt, never the cached one; a missing or partial plan `degrade()`s and the script runs unplanned.
 - **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat. The polish gets the research half of the ledger too: it is told to weave in findings the draft left out, and a polish that adds repeats `degrade()`s (`script/aired-check`).
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
 
