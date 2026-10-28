@@ -131,48 +131,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "aired_early"
   },
-  "https://www.mining.com/air-strike-kills-at-least-72-miners-in-sudan-rights-group-says/": {
-    "article": {
-      "id": "https://www.mining.com/air-strike-kills-at-least-72-miners-in-sudan-rights-group-says/",
-      "url": "https://www.mining.com/air-strike-kills-at-least-72-miners-in-sudan-rights-group-says/",
-      "title": "[Mining.com] Air strike kills at least 72 miners in Sudan, rights group says",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mining.com%2Fair-strike-kills-at-least-72-miners-in-sudan-rights-group-says%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nLocated near Sudan\u2019s disputed border with Egypt, Jabal al-Uqaydat is a mountainous, traditional gold-mining region.",
-      "summary": "Located near Sudan\u2019s disputed border with Egypt, Jabal al-Uqaydat is a mountainous, traditional gold-mining region.",
-      "_excerpt": "Located near Sudan\u2019s disputed border with Egypt, Jabal al-Uqaydat is a mountainous, traditional gold-mining region.",
-      "date_published": "2026-10-13T15:24:06+00:00",
-      "authors": [
-        {
-          "name": "Mining.com",
-          "url": "https://www.mining.com"
-        }
-      ],
-      "ai_score": 46,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 7,
-      "_composite_podcast": 60,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-14T04:10:57.216424+00:00"
-      },
-      "_boosted_score": 46
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-10-27",
-    "target_weekday": 1,
-    "target_focus_slug": "mining-energy",
-    "target_focus_name": "Mining & Energy",
-    "status": "released",
-    "release_date": "2026-10-27"
-  },
   "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams": {
     "article": {
       "id": "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams",
@@ -208,7 +166,8 @@
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-28"
   },
   "https://krebsonsecurity.com/2026/10/u-k-sanctions-cryptomus-for-ru-money-laundering/": {
     "article": {
@@ -248,14 +207,15 @@
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-28"
   },
   "https://www.sciencedaily.com/releases/2026/10/261018084644.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/10/261018084644.htm",
       "url": "https://www.sciencedaily.com/releases/2026/10/261018084644.htm",
       "title": "[ScienceDaily] Physicists create a bizarre new quantum state called a fractional fermi sea",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261018084644.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPhysicists have discovered a strange new state of quantum matter in which ultracold atoms defy familiar organizational rules, forming a highly excited yet surprisingly orderly configuration called a \"fractional Fermi sea.\" The discovery challenges established quantum theories and hints at exotic quasiparticles that scientists have dubbed potential \"super-Fermions.\"",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261018084644.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPhysicists have discovered a strange new state of quantum matter in which ultracold atoms defy familiar organizational rules, forming a highly excited yet surprisingly orderly configuration called a \"fractional Fermi sea.\" The discovery challenges established quantum theories and hints at exotic quasiparticles that scientists have dubbed potential \"super-Fermions.\"",
       "summary": "Physicists have discovered a strange new state of quantum matter in which ultracold atoms defy familiar organizational rules, forming a highly excited yet surprisingly orderly configuration called a \"fractional Fermi sea.\" The discovery challenges established quantum theories and hints at exotic",
       "_excerpt": "Physicists have discovered a strange new state of quantum matter in which ultracold atoms defy familiar organizational rules, forming a highly excited yet surprisingly orderly configuration called a \"fractional Fermi sea.\" The discovery challenges established quantum theories and hints at exotic quasiparticles that scientists have dubbed potential \"super-Fermions.\"",
       "date_published": "2026-10-18T13:37:21+00:00",
@@ -267,18 +227,20 @@
       ],
       "ai_score": 48,
       "_quality": 75,
-      "_relevance": 55,
+      "_relevance": 0,
       "_local": 0,
-      "_theme_score": 87,
-      "_theme_score_raw": 24,
-      "_composite_podcast": 74,
+      "_theme_score": 52,
+      "_theme_score_raw": 8,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 56,
       "_keyword_matches": 0,
       "_category": "science",
       "_source_category": "science",
       "_is_bonus": true,
       "_boosted_score": 48
     },
-    "held_date": "2026-10-19",
+    "held_date": "2026-10-28",
     "target_date": "2026-11-01",
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
@@ -1044,51 +1006,6 @@
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
     "status": "held"
-  },
-  "https://agrifocusafrica.com/2026/10/22/uganda-targets-10000-tractors-in-five-year-push-to-modernise-agriculture/": {
-    "article": {
-      "id": "https://agrifocusafrica.com/2026/10/22/uganda-targets-10000-tractors-in-five-year-push-to-modernise-agriculture/",
-      "url": "https://agrifocusafrica.com/2026/10/22/uganda-targets-10000-tractors-in-five-year-push-to-modernise-agriculture/",
-      "title": "[agrifocusafrica.com] Uganda targets 10,000 tractors in five-year mechanization push",
-      "content_html": "<img src=\"https://kagiproxy.com/img/ApfTDFNZe7lncOvjlfxAb23zxlLA6pc5lx4BKLVD-sddVBbQWGSaXVtHS59loOmCxLddxwGxRPPVLPESl4k8cIkKcQ2q-1qmyveADJl3_i5bfm_7SWrWoDKrazqqc4mYZAkfeY8w6uA\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fagrifocusafrica.com%2F2026%2F10%2F22%2Fuganda-targets-10000-tractors-in-five-year-push-to-modernise-agriculture%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nUganda plans to deploy 10,000 tractors over five years to expand mechanized farming, Agriculture Minister Frank Tumwebaze told Parliament on Oct. 21. The strategy proposes 21 mechanization centers and a cost-sharing model involving the government, commercial farmers and producer groups. Tumwebaze said dependence on manual labor and unpredictable weather constrain productivity, while machinery could help farmers cultivate more land and support value-added production.\n\nKubota and autonomy-software company Agtonomy are extending a pilot to automate orchard work such as spraying, mowing and underplant cultivation. In the United States, drone-treated acreage grew to 16.4 million acres in 2025. Equipment makers have also introduced higher-capacity grain conveyors designed to reduce harvest handling time.",
-      "summary": "Uganda plans to deploy 10,000 tractors over five years to expand mechanized farming, Agriculture Minister Frank Tumwebaze told Parliament on Oct. 21. The strategy proposes 21 mechanization centers and a cost-sharing model involving the government, commercial farmers and producer groups. Tumwebaze",
-      "_excerpt": "Uganda plans to deploy 10,000 tractors over five years to expand mechanized farming, Agriculture Minister Frank Tumwebaze told Parliament on Oct. 21. The strategy proposes 21 mechanization centers and a cost-sharing model involving the government, commercial farmers and producer groups. Tumwebaze said dependence on manual labor and unpredictable weather constrain productivity, while machinery could help farmers cultivate more land and support value-added production (agrifocusafrica.com). Kubota and autonomy-software company Agtonomy are extending a pilot to automate orchard work such as spraying, mowing and underplant cultivation (agdaily.com). In the United States, drone-treated acreage grew to 16.4 million acres in 2025. Equipment makers have also introduced higher-capacity grain conveyors designed to reduce harvest handling time (northernag.net, farmtario.com). Existing capacity: Since 2018, Uganda says it has deployed 1,080 tractors and 1,350 walk-behind tractors and trained 2,036 tractor operators and technicians (agrifocusafrica.com). Drone growth: U.S. drone-treated acreage rose 59% from 10.3 million acres in 2024 to 16.4 million in 2025, compared with 3.7 million acres in 2023 (northernag.net). Grain handling: Ontario-based Walinga says its new Agri-Belt conveyor can move grain and fertilizer at 10,000 bushels an hour; the 45-foot unit uses a standard 37-horsepower gasoline engine (farmtario.com). Harvest equipment: AGI says its LCX4 conveyor can handle up to 9,000 bushels an hour using a 60-horsepower tractor and comes in lengths from 68 to 108 feet (americanagnetwork.com).",
-      "date_published": "2026-10-22T05:46:08+00:00",
-      "authors": [
-        {
-          "name": "agrifocusafrica.com",
-          "url": "https://agrifocusafrica.com"
-        }
-      ],
-      "ai_score": 59,
-      "_quality": 62,
-      "_relevance": 78,
-      "_local": 0,
-      "_theme_score": 63,
-      "_theme_score_raw": 9,
-      "_kite_sources": 14,
-      "_kite_context": "",
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "homestead",
-      "_source_category": "homestead",
-      "_is_bonus": true,
-      "image": "https://kagiproxy.com/img/ApfTDFNZe7lncOvjlfxAb23zxlLA6pc5lx4BKLVD-sddVBbQWGSaXVtHS59loOmCxLddxwGxRPPVLPESl4k8cIkKcQ2q-1qmyveADJl3_i5bfm_7SWrWoDKrazqqc4mYZAkfeY8w6uA",
-      "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-10-23T06:12:40.756563+00:00"
-      },
-      "_boosted_score": 59,
-      "_body": "Uganda plans to deploy 10,000 tractors over five years to expand mechanized farming, Agriculture Minister Frank Tumwebaze told Parliament on Oct. 21. The strategy proposes 21 mechanization centers and a cost-sharing model involving the government, commercial farmers and producer groups. Tumwebaze said dependence on manual labor and unpredictable weather constrain productivity, while machinery could help farmers cultivate more land and support value-added production (agrifocusafrica.com). Kubota and autonomy-software company Agtonomy are extending a pilot to automate orchard work such as spraying, mowing and underplant cultivation (agdaily.com). In the United States, drone-treated acreage grew to 16.4 million acres in 2025. Equipment makers have also introduced higher-capacity grain conveyors designed to reduce harvest handling time (northernag.net, farmtario.com). Existing capacity: Since 2018, Uganda says it has deployed 1,080 tractors and 1,350 walk-behind tractors and trained 2,036 tractor operators and technicians (agrifocusafrica.com). Drone growth: U.S. drone-treated acreage rose 59% from 10.3 million acres in 2024 to 16.4 million in 2025, compared with 3.7 million acres in 2023 (northernag.net). Grain handling: Ontario-based Walinga says its new Agri-Belt conveyor can move grain and fertilizer at 10,000 bushels an hour; the 45-foot unit uses a standard 37-horsepower gasoline engine (farmtario.com). Harvest equipment: AGI says its LCX4 conveyor can handle up to 9,000 bushels an hour using a 60-horsepower tractor and comes in lengths from 68 to 108 feet (americanagnetwork.com)."
-    },
-    "held_date": "2026-10-26",
-    "target_date": "2026-10-27",
-    "target_weekday": 1,
-    "target_focus_slug": "mining-energy",
-    "target_focus_name": "Mining & Energy",
-    "status": "released",
-    "release_date": "2026-10-27"
   },
   "https://www.mycariboonow.com/316951/news/emergency-services/fire/cariboo-fire-centre-to-conduct-prescribed-burn/": {
     "article": {

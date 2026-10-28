@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Business Insider] Laid-off tech workers from Google, Micros",
-      "[TechRadar] Pre-capture is the best wildlife photography tri",
       "[Tom's Hardware] US AI data centers projected to become the ",
       "[TechRadar] Massive data breach sees 220 million traveler re",
       "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
@@ -10,7 +8,9 @@
       "[Williams Lake Tribune] Students explore science, technology",
       "[TechCrunch] Mosqitter is turning its mosquito traps into an",
       "[Business Insider] I broke into tech sales after working in ",
-      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi"
+      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
+      "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
+      "[TechRadar] These social media posts promise big online disc"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -45,9 +45,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-18",
-        "clue": "tech-optimism:- \u2014 Conceded forest management fixes app cannot solve.",
-        "occurrences": 1
+        "date": "2026-10-28",
+        "clue": "tech-optimism:- \u2014 concedes update and chip-check are harder for households",
+        "occurrences": 2
       },
       {
         "date": "2026-08-21",
@@ -167,6 +167,11 @@
       {
         "date": "2026-10-27",
         "clue": "structural-lens:+ \u2014 insists control and ownership are distinct claims",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-28",
+        "clue": "evidence-bar:x \u2014 concedes sanction gap is a disclosure problem, not finding",
         "occurrences": 1
       }
     ],
@@ -314,11 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-08-14",
-        "clue": "structural-lens: + \u2014 Shifted from tech-access to records-access as core problem.",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-12",
         "clue": "pilot-skepticism: + \u2014 elevated concern about grant-dependent monitoring infrastructure failure patterns",
         "occurrences": 1
@@ -444,9 +444,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-25",
-        "clue": "community-trust:+ \u2014 trust rests on repeated walking, not publication alone",
-        "occurrences": 1
+        "date": "2026-10-28",
+        "clue": "community-trust:+ \u2014 doubts rural households can check chips or updates",
+        "occurrences": 2
       },
       {
         "date": "2026-10-26",
@@ -461,6 +461,11 @@
       {
         "date": "2026-10-27",
         "clue": "community-trust:- \u2014 doubts written rules alone will settle belonging",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-28",
+        "clue": "structural-lens:~ \u2014 notes platform incentives differ from household incentives",
         "occurrences": 1
       }
     ],

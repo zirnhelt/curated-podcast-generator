@@ -1,25 +1,4 @@
 {
-  "2026-09-22": {
-    "timestamp": 1790065652.187991,
-    "topics": [
-      "[Williams Lake Tribune] Quesnel man whose life \u2018was off the ",
-      "[My Cariboo Now] Man sentenced in connection with serious in",
-      "[Williams Lake Tribune] Investigation continues into wildfir",
-      "[Williams Lake Tribune] B.C. Conservatives appoint Lorne Doe",
-      "[Tom's Hardware] Modders halve FSR 4 render times on AMD\u2019s P",
-      "[My Cariboo Now] Construction underway on new commercial veh",
-      "[TechRadar] Microsoft, Google took down $66 million cybercri",
-      "[Vox] Scientists are finally starting to figure out Alzheime"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-09-22",
-    "focus": "forestry",
-    "focus_name": "Forestry & Timber"
-  },
   "2026-09-23": {
     "timestamp": 1790152005.489054,
     "topics": [
@@ -720,5 +699,26 @@
     "date": "2026-10-27",
     "focus": "mining-energy",
     "focus_name": "Mining & Energy"
+  },
+  "2026-10-28": {
+    "timestamp": 1793175327.555732,
+    "topics": [
+      "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
+      "[MacRumors] iPhone Duo Teardowns Reveal Two Batteries and Mo",
+      "[macobserver.com] Apple issues iPhone Duo hinge guidance as ",
+      "[Yellowhead Institute] The Narrow National Interest: Sacrifi",
+      "[Country Life] 'Buildings are living, breathing things \u2014 we ",
+      "[The Verge] The FCC is beginning to block gadgets with \u2018fore",
+      "[TechRadar] These social media posts promise big online disc",
+      "[Krebs on Security] U.K. Sanctions Cryptomus for RU Money La"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-28",
+    "focus": "digital-life-security",
+    "focus_name": "Digital Life & Security"
   }
 }

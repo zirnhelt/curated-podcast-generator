@@ -1,0 +1,581 @@
+{
+  "episode": {
+    "date": "2026-10-28",
+    "formatted_date": "Wednesday, October 28, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who gets to call themselves local?</p><p><b>NEWS ROUNDUP:</b> We break down iFixit awards the iPhone Duo the highest repair score yet for a foldable and The Narrow National Interest: Sacrificing Reconciliation &amp; Climate to “Build Canada Strong”, plus 8 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should blocked devices and sanctioned platforms be named publicly by default, and what must be printed on products or notices so households can check them without regulator help? Topics include: FCC Covered List rule and HiSilicon chip blocking scope, Repair, used devices, and replacement parts under the new rule, Discount ad lures and infostealer risks, Cryptomus renaming, sanctions, and public disclosure gaps, iPhone Duo security updates, repair costs, and parts availability.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> New Focus Society</p><p><b>Sources discussed:</b></p><ul><li>TechRadar: <a href=\"https://www.techradar.com/phones/iphone/ifixit-tears-down-the-iphone-duo-and-awards-it-the-highest-repair-score-yet-for-a-foldable-but-replacing-the-inner-screen-and-hinge-takes-a-lot-of-work\">[TechRadar] iFixit awards the iPhone Duo the highest repair ...</a></li><li>Yellowhead Institute: <a href=\"https://yellowheadinstitute.org/2026/the-narrow-national-interest-sacrificing-reconciliation-climate-to-build-canada-strong/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=the-narrow-national-interest-sacrificing-reconciliation-climate-to-build-canada-strong\">[Yellowhead Institute] The Narrow National Interest: Sacrifi...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/tech-industry/data-centers/amazon-bows-to-local-backlash-over-ai-data-centers-scraps-plans-to-build-four-new-facilities-in-northern-virginia-site-to-be-repurposed-for-mixed-use-and-residential-development\">[Tom's Hardware] Amazon bows to local backlash over AI data ...</a></li><li>Jakub Kočí (Prusa Blog): <a href=\"https://blog.prusa3d.com/ht-hotend-is-out-plus-we-offer-new-materials-and-hightemp-sheets-for-core-one-l_138625/\">[Prusa Blog] 400°C HT Hotend is out! Plus: New Materials and...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/10/26/a-wakeboarding-winch-build-log/\">[Adafruit Blog] A wakeboarding winch build log</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/10/26/keybytes-a-truly-modular-keyboard/\">[Adafruit Blog] keybytes: a truly modular keyboard</a></li><li>Boone Ashworth (WIRED): <a href=\"https://www.wired.com/story/some-iphone-duo-models-are-breaking-ifixits-teardown-might-explain-why/\">[WIRED] Some iPhone Duo Models Are Breaking. iFixit’s Teardo...</a></li><li>MIT Technology Review: <a href=\"https://www.technologyreview.com/2026/10/22/1146109/designing-an-ai-serving-harness-built-to-last/\">[MIT Technology Review] Designing an AI serving harness buil...</a></li><li>Terrence O&amp;#x27;Brien (The Verge): <a href=\"https://www.theverge.com/tech/1018233/ifixit-iphone-duo-teardown-repairability-hinge\">[The Verge] iFixit&amp;#8217;s look inside the iPhone Duo may ex...</a></li><li>iFixit: <a href=\"https://www.ifixit.com/News/119895/iphone-duo-teardown\">[iFixit] iPhone Duo Teardown: The Most Repairable Foldable H...</a></li><li>Sean Hollister (The Verge): <a href=\"https://www.theverge.com/policy/1017016/fcc-block-foreign-surveillance-chips-hivision-huawei-loophole\">[The Verge] The FCC is beginning to block gadgets with ‘fore...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams\">[TechRadar] These social media posts promise big online disc...</a></li><li>Krebs on Security: <a href=\"https://krebsonsecurity.com/2026/10/u-k-sanctions-cryptomus-for-ru-money-laundering/\">[Krebs on Security] U.K. Sanctions Cryptomus for RU Money La...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>MacRumors: <a href=\"https://www.macrumors.com/2026/10/24/iphone-duo-teardown-videos/\">[MacRumors] iPhone Duo Teardowns Reveal Two Batteries and Mo...</a></li><li>macobserver.com: <a href=\"https://www.macobserver.com/news/apple-drops-iphone-duo-support-docs-for-hinge-and-screen-issues/\">[macobserver.com] Apple issues iPhone Duo hinge guidance as ...</a></li><li>Country Life: <a href=\"https://www.countrylife.co.uk/property/buildings-are-living-breathing-things-we-have-to-make-them-fit-for-people-and-the-planet-passivhaus-ideas-are-transforming-the-ancient-city-of-oxford\">[Country Life] 'Buildings are living, breathing things — we ...</a></li><li>MIT News: <a href=\"https://news.mit.edu/2026/origami-based-construction-method-yields-lightweight-load-bearing-structures-architecture-1027\">[MIT News] Origami-based construction method yields lightwei...</a></li><li>MIT News: <a href=\"https://news.mit.edu/2026/design-software-reimagines-everyday-objects-as-self-aware-devices-1022\">[MIT News] This design software reimagines everyday objects ...</a></li><li>Lily Hay Newman (WIRED): <a href=\"https://www.wired.com/story/ai-guardrails-arent-stopping-criminal-hackers/\">[WIRED] AI Guardrails Aren’t Stopping Criminal Hackers</a></li><li>tribune.com.pk: <a href=\"https://tribune.com.pk/story/2636689/openai-resumes-frontier-ai-training-after-security-overhaul-discloses-flaw-in-widely-used-software\">[tribune.com.pk] OpenAI resumes advanced AI training offline...</a></li><li>Grace Bernard (Dwell): <a href=\"https://www.dwell.com/article/cabin-sande-helen-and-hard-architects-robotic-fabrication-home-building-fe15999a\">[Dwell] Entire Trees—Roots and All—Were Used to Build This C...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/10/25/nyregion/30-year-old-angst.html\">[NYT Top Stories] Can’t Afford a Home. Can’t Afford a Baby. ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-10-28T01:15:15.596477-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3529,
+      "voice_ratio_casey_riley": 1.4,
+      "casey_share_deep_dive_pct": 57,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 3,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 6,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 3,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 26,
+        "turns": 98,
+        "avg_turn_words": 34.6,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 4
+    },
+    "anchor": {
+      "id": "who-counts-as-local",
+      "question": "Who gets to call themselves local?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Country Life] 'Buildings are living, breathing things — we have to make them fit for people and the planet': Passivhaus ideas are transforming the ancient city of Oxford",
+          "url": "https://www.countrylife.co.uk/property/buildings-are-living-breathing-things-we-have-to-make-them-fit-for-people-and-the-planet-passivhaus-ideas-are-transforming-the-ancient-city-of-oxford",
+          "source": "Country Life",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-10-23T06:00:00+00:00",
+          "summary": "A low-carbon student-housing development by Oxford’s oldest academic society offers lessons in how historic buildings can be made sustainable. Russell Higham reports.",
+          "discussed": false
+        },
+        {
+          "title": "[tribune.com.pk] OpenAI resumes advanced AI training offline after security failures",
+          "url": "https://tribune.com.pk/story/2636689/openai-resumes-frontier-ai-training-after-security-overhaul-discloses-flaw-in-widely-used-software",
+          "source": "tribune.com.pk",
+          "author": "https://tribune.com.pk/author/3233/reuters-2",
+          "ai_score": 59,
+          "date_published": "2026-10-24T08:11:36+00:00",
+          "summary": "OpenAI resumed training its most advanced AI models on Oct. 1 after an 11-day pause, keeping them off the live internet and using a cached, simulated web instead. The pause followed a Sept. 20 inciden...",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Some iPhone Duo Models Are Breaking. iFixit’s Teardown Might Explain Why",
+          "url": "https://www.wired.com/story/some-iphone-duo-models-are-breaking-ifixits-teardown-might-explain-why/",
+          "source": "WIRED",
+          "author": "Boone Ashworth",
+          "ai_score": 55,
+          "date_published": "2026-10-26T13:00:00+00:00",
+          "summary": "Apple confirmed a “small number” of iPhone Duo units have an issue impacting the inner display.",
+          "discussed": true,
+          "mention_offset_frac": 0.0169
+        },
+        {
+          "title": "[iFixit] iPhone Duo Teardown: The Most Repairable Foldable Has a Huge Screen Problem",
+          "url": "https://www.ifixit.com/News/119895/iphone-duo-teardown",
+          "source": "iFixit",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-10-25T21:38:06+00:00",
+          "summary": "Apple’s folding iPhone finally made it to our teardown table. Some owners’ screens didn’t make it through setup. After fifteen years of patents and rumors, the iPhone Duo is here,…",
+          "discussed": true,
+          "mention_offset_frac": 0.0204
+        },
+        {
+          "title": "[macobserver.com] Apple issues iPhone Duo hinge guidance as repairs and software gaps emerge",
+          "url": "https://www.macobserver.com/news/apple-drops-iphone-duo-support-docs-for-hinge-and-screen-issues/",
+          "source": "macobserver.com",
+          "author": "https://www.facebook.com/TechhAkko/",
+          "ai_score": 26,
+          "date_published": "2026-10-25T01:32:36+00:00",
+          "summary": "Apple has published troubleshooting guidance for hinge and display problems on its iPhone Duo, the company’s first foldable phone, as owners report screen failures and early teardowns show that repair...",
+          "discussed": false
+        },
+        {
+          "title": "[MacRumors] iPhone Duo Teardowns Reveal Two Batteries and More",
+          "url": "https://www.macrumors.com/2026/10/24/iphone-duo-teardown-videos/",
+          "source": "MacRumors",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-10-24T15:02:56+00:00",
+          "summary": "The first iPhone Duo teardown videos have been shared by YouTube channels REWA Technology and Phone Repair Guru , providing us with a look inside the device. iPhone Duo has two battery cells that can ...",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] AI Guardrails Aren’t Stopping Criminal Hackers",
+          "url": "https://www.wired.com/story/ai-guardrails-arent-stopping-criminal-hackers/",
+          "source": "WIRED",
+          "author": "Lily Hay Newman",
+          "ai_score": 60,
+          "date_published": "2026-10-21T14:00:00+00:00",
+          "summary": "Hackers around the world are all-in on using agentic AI to wage attacks—and manipulating tools like Anthropic’s Claude to help them carry out their crimes.",
+          "discussed": false
+        },
+        {
+          "title": "[MIT News] This design software reimagines everyday objects as self-aware devices",
+          "url": "https://news.mit.edu/2026/design-software-reimagines-everyday-objects-as-self-aware-devices-1022",
+          "source": "MIT News",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-10-22T20:45:00+00:00",
+          "summary": "“X-Hinges” helps design and 3D print items like lamps and gloves with an interactive twist: automatically embedded sensors that perceive and adaptively respond to human contact.",
+          "discussed": false
+        },
+        {
+          "title": "[Yellowhead Institute] The Narrow National Interest: Sacrificing Reconciliation & Climate to “Build Canada Strong”",
+          "url": "https://yellowheadinstitute.org/2026/the-narrow-national-interest-sacrificing-reconciliation-climate-to-build-canada-strong/?utm_source=rss&utm_medium=rss&utm_campaign=the-narrow-national-interest-sacrificing-reconciliation-climate-to-build-canada-strong",
+          "source": "Yellowhead Institute",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-10-27T08:22:42+00:00",
+          "summary": "In this Brief, Janna Wale and Michaela McGuire examine how the election of a Conservative government in BC, Bill C-39, and a legacy of broken promises is clearly demonstrating to Indigenous people tha...",
+          "discussed": true,
+          "mention_offset_frac": 0.1705
+        },
+        {
+          "title": "[Tom's Hardware] Amazon bows to local backlash over AI data centers, scraps plans to build four new facilities in Northern Virginia",
+          "url": "https://www.tomshardware.com/tech-industry/data-centers/amazon-bows-to-local-backlash-over-ai-data-centers-scraps-plans-to-build-four-new-facilities-in-northern-virginia-site-to-be-repurposed-for-mixed-use-and-residential-development",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/oliver-haslam",
+          "ai_score": 60,
+          "date_published": "2026-10-23T13:36:50+00:00",
+          "summary": "Amazon has ditched its plans to build four new data centers in Loudoun County, Northern Virginia, following an outcry from local residents and officials. The land will now be repurposed for mixed and ...",
+          "discussed": true,
+          "mention_offset_frac": 0.2473
+        },
+        {
+          "title": "[Adafruit Blog] A wakeboarding winch build log",
+          "url": "https://blog.adafruit.com/2026/10/26/a-wakeboarding-winch-build-log/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-26T21:28:53+00:00",
+          "summary": "Gal, writing at Mare & Gal Electronics, documented an electric drum winch built to tow a wakeboarder. The 12 kW motor and the 24S10P battery pack, about 100 V charged, were pulled from a scrapped Awak...",
+          "discussed": true,
+          "mention_offset_frac": 0.2473
+        },
+        {
+          "title": "[Prusa Blog] 400°C HT Hotend is out! Plus: New Materials and HighTemp Sheets for CORE One+/L+.",
+          "url": "https://blog.prusa3d.com/ht-hotend-is-out-plus-we-offer-new-materials-and-hightemp-sheets-for-core-one-l_138625/",
+          "source": "Prusa Blog",
+          "author": "Jakub Kočí",
+          "ai_score": 58,
+          "date_published": "2026-10-21T10:00:25+00:00",
+          "summary": "The HT Hotend unlocks 400 °C printing on the CORE One+/L+ without the $10,000 price tag of traditional industrial machines. To support this, we’re launching new HighTemp sheets for CORE One+/L+ and we...",
+          "discussed": true,
+          "mention_offset_frac": 0.2941
+        },
+        {
+          "title": "[Adafruit Blog] keybytes: a truly modular keyboard",
+          "url": "https://blog.adafruit.com/2026/10/26/keybytes-a-truly-modular-keyboard/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-26T20:48:22+00:00",
+          "summary": "Nathan, @NotARoomba on GitHub, designed Keybytes, a keyboard where each key is its own board. Everything was designed in KiCad. There are two board types, both 1u at 19.05mm x 19.05mm. The Keybit hold...",
+          "discussed": true,
+          "mention_offset_frac": 0.7658
+        },
+        {
+          "title": "[MIT Technology Review] Designing an AI serving harness built to last",
+          "url": "https://www.technologyreview.com/2026/10/22/1146109/designing-an-ai-serving-harness-built-to-last/",
+          "source": "MIT Technology Review",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-22T21:17:29+00:00",
+          "summary": "The next competitive advantage in enterprise AI has less to do with which model you choose than with what you build around it. That’s an important shift. For the past several years, much of the AI con...",
+          "discussed": true,
+          "mention_offset_frac": 0.8869
+        },
+        {
+          "title": "[TechRadar] iFixit awards the iPhone Duo the highest repair score yet for a foldable",
+          "url": "https://www.techradar.com/phones/iphone/ifixit-tears-down-the-iphone-duo-and-awards-it-the-highest-repair-score-yet-for-a-foldable-but-replacing-the-inner-screen-and-hinge-takes-a-lot-of-work",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/david-nield",
+          "ai_score": 53,
+          "date_published": "2026-10-25T21:50:34+00:00",
+          "summary": "iFixit has uploaded a detailed teardown video of the iPhone Duo, if you want a really close look at Apple's new foldable.",
+          "discussed": true,
+          "mention_offset_frac": 0.9262
+        },
+        {
+          "title": "[The Verge] iFixit&#8217;s look inside the iPhone Duo may explain those broken screens and hinges",
+          "url": "https://www.theverge.com/tech/1018233/ifixit-iphone-duo-teardown-repairability-hinge",
+          "source": "The Verge",
+          "author": "Terrence O&#x27;Brien",
+          "ai_score": 49,
+          "date_published": "2026-10-25T21:40:27+00:00",
+          "summary": "As is tradition, iFixit has torn open the latest iPhone and laid its parts bare on a table. It found some interesting details about how Apple might be hiding the crease on the Duo's folding screen and...",
+          "discussed": true,
+          "mention_offset_frac": 0.9262
+        },
+        {
+          "title": "[MIT News] Origami-based construction method yields lightweight, load-bearing structures on architectural scales",
+          "url": "https://news.mit.edu/2026/origami-based-construction-method-yields-lightweight-load-bearing-structures-architecture-1027",
+          "source": "MIT News",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-10-27T04:00:00+00:00",
+          "summary": "The modular approach could be used to erect emergency shelters or fabricate aerospace components more quickly and with less material than some techniques.",
+          "discussed": false
+        },
+        {
+          "title": "[Dwell] Entire Trees—Roots and All—Were Used to Build This Coastal Norwegian Home",
+          "url": "https://www.dwell.com/article/cabin-sande-helen-and-hard-architects-robotic-fabrication-home-building-fe15999a",
+          "source": "Dwell",
+          "author": "Grace Bernard",
+          "ai_score": 58,
+          "date_published": "2026-10-21T16:37:01+00:00",
+          "summary": "Helen & Hard Architects digitally scanned spruce trees to precision mill them into structural elements that resemble their original forms.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[The Verge] The FCC is beginning to block gadgets with ‘foreign surveillance chips’",
+          "url": "https://www.theverge.com/policy/1017016/fcc-block-foreign-surveillance-chips-hivision-huawei-loophole",
+          "source": "The Verge",
+          "author": "Sean Hollister",
+          "ai_score": 65,
+          "date_published": "2026-10-22T20:23:48+00:00",
+          "summary": "On October 13th, Brendan Carr's FCC gave itself a new power - it can block gadgets for containing any computer chip made by any company on its list of potential threats to national security. Today, it...",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] These social media posts promise big online discounts on Lego, Calvin Klein and more — but really they're just phishing scams",
+          "url": "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/sead-fadilpai",
+          "ai_score": 53,
+          "date_published": "2026-10-05T15:10:00+00:00",
+          "summary": "There's an elaborate scheme making rounds on Facebook and TikTok to get people to websites laden with infostealers.",
+          "discussed": true
+        },
+        {
+          "title": "[Krebs on Security] U.K. Sanctions Cryptomus for RU Money Laundering",
+          "url": "https://krebsonsecurity.com/2026/10/u-k-sanctions-cryptomus-for-ru-money-laundering/",
+          "source": "Krebs on Security",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-14T14:22:49+00:00",
+          "summary": "The United Kingdom has issued economic sanctions against Cryptomus, a chameleonic cryptocurrency platform that experts say serves as a major conduit for payments related to ransomware, narcotics, dark...",
+          "discussed": true
+        },
+        {
+          "title": "[NYT Top Stories] Can’t Afford a Home. Can’t Afford a Baby. Can’t Afford Life. This Is 30.",
+          "url": "https://www.nytimes.com/2026/10/25/nyregion/30-year-old-angst.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-25T12:56:13+00:00",
+          "summary": "They’re trying to build middle-class lives in New York. But many 30-year-olds in the city feel worse off than their parents. Is it average adult angst? Or something more enduring?",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Should blocked devices and sanctioned platforms be named publicly by default, and what must be printed on products or notices so households can check them without regulator help?",
+        "riley_position": "Public, component-level naming (chip part numbers, renamed companies, update sources) before sale is the practical fix, letting repair shops and owners check products against a list rather than trusting unverifiable claims.",
+        "riley_key_evidence": [
+          "The FCC named the HiVision Hi3516CV610 chip, which a repair shop can read off a board and compare to a list.",
+          "Krebs's investigation of Cryptomus dated to December 2024 and was public before the October 2026 UK sanctions, showing evidence was available.",
+          "Researchers jailbroke the iPhone Duo within hours of launch and patched via iOS 27.2, presented as the trust model working."
+        ],
+        "casey_position": "Naming alone does not protect households: rules govern new authorizations and leave used devices and repairs unclear, the checkable signals arrive too late, and owners still must trust somebody.",
+        "casey_key_evidence": [
+          "Sources say the FCC rule bars new authorizations but do not say what happens to devices already on the market, and The Verge reports the agency has not named the blocked gadgets.",
+          "Cryptomus was publicly linked to Certa Payments and Xeltox well before the freeze, and households cannot wait two years to learn who they pay.",
+          "iFixit reports out-of-warranty Duo screen damage costs $999 and replacement parts were not yet in the self-service store, leaving owners with a manual but no part."
+        ],
+        "resolution": "They did not reach agreement. They agreed that a chip name, renamed-company record, and parts list are useful starting points, but left open whether naming should be the default and what must be printed on boxes or notices.",
+        "topics_covered": [
+          "FCC Covered List rule and HiSilicon chip blocking scope",
+          "Repair, used devices, and replacement parts under the new rule",
+          "Discount ad lures and infostealer risks",
+          "Cryptomus renaming, sanctions, and public disclosure gaps",
+          "iPhone Duo security updates, repair costs, and parts availability"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": -1,
+          "conditions": "slight snowfall",
+          "high": 3,
+          "low": -2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": -3,
+          "conditions": "moderate snowfall",
+          "high": -2,
+          "low": -3
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 0,
+          "conditions": "slight snowfall",
+          "high": 1,
+          "low": -2
+        },
+        {
+          "name": "Quesnel",
+          "temp": -2,
+          "conditions": "overcast",
+          "high": 4,
+          "low": -3
+        },
+        {
+          "name": "Anahim Lake",
+          "temp": -3,
+          "conditions": "overcast",
+          "high": -1,
+          "low": -4
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "New Focus Society",
+      "description": "Quesnel nonprofit providing inclusive childcare and immigrant settlement services — supporting local families and newcomers in building roots in the North Cariboo",
+      "website": "",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nThese analytical threads were identified before generation. Use the findings to ground Riley's and Casey's arguments with real evidence. Develop them as substantive exchanges, not a citation list.\n\nRESEARCH QUESTION: How broad is the FCC's new \"component part\" authority, and what does its first enforcement action actually cover?\n\nFindings: The FCC's rule took effect October 13, 2026 and bars new equipment authorizations for products containing \"logic-bearing hardware components\" made by Covered List entities. Per Cooley's summary of the July 2026 order, that definition covers \"nearly all hardware capable of performing digital processing functions,\" including devices, modules, integrated circuits and other physical components. It excludes software and firmware \"at this time.\" Lerman Senter notes the ban currently applies only to hardware. GMA Labs reports that Covered List producers must recertify every product change. The FCC's first enforcement action, announced October 22, blocked two devices, a dashboard camera and a wireless video transmitter. Both used a HiSilicon chip, which the FCC describes as a Huawei subsidiary. Inside Global Tech reports that HiSilicon markets the chip as \"designed for the surveillance market\" with \"detection algorithms for human faces.\" The Verge's \"HiVision\" naming appears in secondary coverage as the Hi3516CV610 smart vision chip. Commenters in the FCC docket urged going further, to cover wireless chipsets, trusted platform modules, and cryptographic elements. Coverage also mentions a separate network-equipment rule with a March 2027 date and a March 2028 programme review, which is a related but distinct track.\nSuggested angle: Riley can argue this is a targeted, transparent national-security tool. It acts on named companies and named chips, it has a stated rationale (facial-recognition surveillance), and it closes a real loophole where banned brands could be sold inside \"clean\" products. Casey can press on scope. A definition that reaches \"nearly all\" digital hardware, with a rule that is hardware-only and applies to new authorizations, raises questions about what happens to replacement modules, aftermarket parts, and product revisions. Those are the points where repair culture meets this policy. Flag clearly that any repair-specific impact is an analytical question the sources do not yet answer. Neither side should claim the FCC has restricted repair. The sourced facts are the scope, the timing, and the two-device first action.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "FCC blocks devices foreign surveillance chips Hikvision HiSilicon first enforcement October 2026",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "FCC equipment authorization covered list chips ban criticism repair impact small businesses",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "question",
+        "query": "Cryptomus sanctions UK October 2026 asset freeze"
+      },
+      {
+        "kind": "question",
+        "query": "Apple iPhone Duo out-of-warranty inner display replacement price"
+      },
+      {
+        "kind": "question",
+        "query": "FCC Covered List HiSilicon Hi3516CV610 blocked devices list"
+      },
+      {
+        "kind": "question",
+        "query": "iFixit iPhone Duo repairability score teardown"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A news day where a brand-new foldable phone and a stack of maker projects share the page with a few serious security stories.",
+      "stories": [
+        {
+          "n": 1,
+          "point": "iFixit has uploaded a detailed teardown video of Apple's new iPhone Duo foldable.",
+          "bridge_to_next": "the same phone"
+        },
+        {
+          "n": 2,
+          "point": "Two YouTube channels have shown inside the iPhone Duo, finding two removable battery cells with a combined capacity of 4,883 mAh, and Apple has published an iPhone Duo repair manual.",
+          "bridge_to_next": "Apple's own repair manual, mentioned here, is the subject of the next story"
+        },
+        {
+          "n": 3,
+          "point": "Apple has published troubleshooting guidance for hinge and display problems on the iPhone Duo, telling owners to check for trapped dust and remove cases or screen protectors before a technician may need to replace the inner display assembly.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "point": "A Yellowhead Institute brief argues that the election of a Conservative government in BC, Bill C-39, and a legacy of broken promises show Indigenous people that the new priorities are economic growth at all costs.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 5,
+          "point": "A low-carbon student-housing development by Oxford's oldest academic society offers lessons in making historic buildings sustainable using Passivhaus ideas.",
+          "bridge_to_next": "both stories are about how buildings get made"
+        },
+        {
+          "n": 6,
+          "point": "MIT researchers have developed an origami-based construction method that builds lightweight, load-bearing shells from modular units folded out of flat sheets, with no interior support columns.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 7,
+          "point": "MIT and Tianjin University researchers have released X-Hinges software that helps design and 3D print items like lamps and gloves with embedded sensors that respond to human contact.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 8,
+          "point": "Amazon has dropped plans for four new data centers in Loudoun County, Northern Virginia, after an outcry from local residents and officials, and the land will be repurposed for mixed use.",
+          "bridge_to_next": "both stories are about AI infrastructure"
+        },
+        {
+          "n": 9,
+          "point": "CrowdStrike researchers found four criminal groups running attacks with agentic AI between May and August, several of them using versions of Anthropic's Claude, and all of them left their AI infrastructure openly accessible on web servers.",
+          "bridge_to_next": "both stories are about AI companies' safeguards failing in practice"
+        },
+        {
+          "n": 10,
+          "point": "OpenAI resumed training its most advanced models on October 1 after an 11-day pause, keeping them off the live internet, following a September 20 incident in which an internal model exploited a misconfigured DNS resolver.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "point": "Prusa has released a 400 degree HT Hotend for its CORE One+ and L+ printers that can be swapped in under a minute and avoids the cost of traditional industrial machines.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 12,
+          "point": "Helen and Hard Architects digitally scanned spruce trees and milled them into structural elements shaped like their original forms for a coastal Norwegian house.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "point": "A builder documented an electric drum winch for towing a wakeboarder, using a motor and battery pack pulled from a scrapped board, with the whole build costing about 700 EUR.",
+          "bridge_to_next": "both are home-built projects shared through Adafruit's blog"
+        },
+        {
+          "n": 14,
+          "point": "Nathan designed Keybytes, a modular keyboard in which each key is its own small circuit board, and released the project under an MIT license.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "point": "Apple has confirmed that a small number of iPhone Duo units have an issue affecting the inner display, and it tells affected owners to contact AppleCare for a replacement.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 16,
+          "point": "An MIT Technology Review piece argues that the next advantage in enterprise AI depends less on which model a company picks than on the serving harness built around it.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "point": "iFixit gave the iPhone Duo a 5 out of 10 repairability score, the best it has given any foldable, and found that the display's matte nano-texture cover helps mask the crease.",
+          "bridge_to_next": "iFixit, the source of both stories"
+        },
+        {
+          "n": 18,
+          "point": "Owners' iPhone Duo screens have failed during setup, and out-of-warranty screen damage will cost $999, according to iFixit's teardown.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Today's thread is who a household is supposed to trust to say what is safe: the maker, the regulator, the platform, or the company's own word, and what owners are left holding when that source goes quiet."
+    },
+    "deep_dive": {
+      "central_question": "If a regulator will not say which gadgets it has blocked, and a payment firm can rename itself after sanctions, how is a household supposed to tell what it can safely trust?",
+      "riley_holds": "A block or sanction is real protection, and the trust problem is one of naming and disclosure that can be fixed without giving up the protection.",
+      "casey_holds": "Any named authority, whether regulator, platform or maker, becomes a blind spot when the list stays closed or the name changes, so households are left trusting words they cannot check.",
+      "beats": [
+        {
+          "claim": "The FCC has used a new power to block gadgets for containing chips from listed companies, and it has done so for the first time on two gadgets it says contain foreign surveillance chips.",
+          "evidence": "The Verge reports that Brendan Carr's FCC gained the power on October 13 and first used it to block two gadgets, without saying which gadgets they are, and it named the chip as a HiVision Hi3516CV610 UHD Smart Vision SoC.",
+          "pushback": "Riley: The chip is named publicly, so a household or a repair shop can check the parts it owns against that name, and a rule that works by component can protect people faster than waiting for each product to be investigated.",
+          "leads_to_next": "If blocked products are not named, owners must simply trust the agency's word, and the same problem shows up where the trust signal is an advert rather than a regulator."
+        },
+        {
+          "claim": "Discount posts on Facebook and TikTok for brands such as Lego and Calvin Klein are being used to lure people to websites loaded with infostealers, so the bargain itself is the trust signal being exploited.",
+          "evidence": "TechRadar reports an elaborate scheme circulating on Facebook and TikTok that sends people to sites laden with infostealers, with the offers framed as big online discounts.",
+          "pushback": "Casey: A scheme that is circulating on the platform itself means the ad is the vector, so reporting it after the fact cannot be the protection, because the household has already clicked.",
+          "leads_to_next": "If an advert cannot be trusted to show who it comes from, the next question is whether a company's own statement about itself can be trusted, which is where the sanctions case sits."
+        },
+        {
+          "claim": "A payment platform's denial of its own identity can be contradicted by records, and the sanctions that followed took nearly two years of public investigation to arrive.",
+          "evidence": "Krebs on Security reports that on October 8 the UK sanctioned Cryptomus, previously known as Certa Payments and Xeltox Enterprises, freezing its assets at UK banks; a Heleket support agent on Telegram claimed it was not affiliated with Cryptomus, despite the evidence, and Krebs's investigation dates to December 2024.",
+          "pushback": "Riley: The sanctions show the system working, because a public investigation was usable evidence and governments did act on it, cutting bad payment routes off from British banks.",
+          "leads_to_next": "Naming and renaming trouble a household's trust in a company, and the same gap appears in the update that a maker releases to protect owners."
+        },
+        {
+          "claim": "Security fixes for the iPhone Duo arrive through the maker's update, so the owner's safety depends on a patch that is not yet on the phone.",
+          "evidence": "Researchers jailbroke the iPhone Duo within hours of its launch on October 23 but said they would not release a tool for consumers, and the upcoming iOS 27.2 update fixes most of the bugs they used, per macobserver.com and reddit.com as summarized.",
+          "pushback": "Riley: A maker that patches quickly and keeps the exploit away from the public is the trust model working as intended, and households benefit from that restraint.",
+          "leads_to_next": "The beat ends the chain: each trusted source asks the owner to take its word, and the landing has to decide what should be named and checked."
+        }
+      ],
+      "set_aside": [
+        "iPhone Duo hinge, display and battery repair details, since repairability as design ethics was already argued in a recent debate",
+        "Amazon's dropped Loudoun County data centers, which concern local land rather than digital security",
+        "WIRED's report on criminal groups using agentic AI, which is about attackers' tools rather than household trust",
+        "OpenAI's training pause, which concerns lab security rather than what households can check",
+        "Yellowhead Institute's brief on reconciliation and BC politics",
+        "MIT origami shelters and X-Hinges design software",
+        "Passivhaus student housing in Oxford",
+        "Prusa's 400 degree hotend",
+        "Helen and Hard's spruce-column house in Norway",
+        "Gal's wakeboarding winch build",
+        "Keybytes modular keyboard",
+        "MIT Technology Review's piece on enterprise AI serving harnesses",
+        "NYT piece on thirty-year-olds and affordability"
+      ],
+      "cariboo_beat": "In the fourth beat, a household in Wells or Williams Lake reading an iPhone Duo update notice has to decide whether to trust it, and no one at a nearby counter is positioned to confirm it; the question of who a small-town household relies on to say what is safe lands right there.",
+      "landing": "The two hosts hold open whether a blocked gadget or a sanctioned platform should be named publicly by default, and what a household would need printed on the box or on a notice to check it, without settling whether naming protects owners more than it exposes what they should not be trusting."
+    }
+  }
+}
