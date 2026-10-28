@@ -529,8 +529,7 @@ One structured call now plans both main segments before the script is written:
   jump with no stated reason is a beat that does not belong.
 
 The plan rides at the end of the dynamic user prompt as a `STORYBOARD` block (never the cached
-system prompt; it changes daily). The script still writes every line. The polish does not see the
-plan: start with the draft and see whether flow survives the polish before adding it there.
+system prompt; it changes daily). The script still writes every line.
 
 - **Fails soft.** `script/storyboard` is `critical=False`; no plan, a truncated plan, a roundup
   plan that misses or reorders a story, or fewer than two beats all `degrade()`. A billing wall
@@ -541,3 +540,41 @@ plan: start with the draft and see whether flow survives the polish before addin
   script prompt grows by the plan, about 1.5K tokens.
 - **Review:** the plan is saved in the citations JSON under `storyboard`, to read against what
   aired.
+
+### The polish sees the chain (2026-10-27)
+
+The polish is told to weave in research findings the draft left out and to add a counterpoint
+wherever a claim goes unchallenged. Either can open a stop the plan set aside, which is the wander
+the storyboard exists to stop. Both polish paths now get `_storyboard_polish_addendum`
+(`config/prompts.json` → `storyboard_polish`): the central question, each beat's claim and
+`leads_to_next`, the set-aside list and the landing. A weave-in or a counterpoint must serve the
+question and sit inside a beat. Where the draft departed from the plan and the departure holds
+together, the draft wins.
+
+Evidence, pushback and the roundup's bridges are left out on purpose. The full plan would make the
+polish a second writer, rewriting the draft back toward the plan. The roundup gets one rule
+instead: when the rhythm check cuts reactions, a line that bridges into the next story stays.
+
+The same pass brought the polish prompts in line with `docs/MANIFESTO.md`:
+
+- **No quotas that make theatre.** "At least 2 moments of levity" became humour that is dry and
+  earned, one light moment where there is none, never a joke for its own sake. "At least 3-4
+  point/counterpoint exchanges" is gone: a counterpoint carries new information, and a
+  disagreement airs when it shows the listener something. "Sharpen the contrast" became restoring
+  how each host argues (Riley from what has worked, Casey from what has failed), not how much
+  they disagree.
+- **No stock phrasing to copy.** The personal-thinking-history rule offered three replacement
+  openers, one of them a `worth_gerund` tell the same prompt bans two lines later. The fact-check
+  suggested "studies suggest" and "as publicly reported" as hedges: a vague attribution for a
+  source the show doesn't have misleads the listener. Both are gone.
+- **No promises the feed can't keep.** The leadership-race example said the result would follow
+  in the episode notes; episode notes don't change after publication.
+- **One length rule.** "Maintain or slightly expand" and a second "don't cut substantially" are
+  replaced by a pointer to the LENGTH FLOOR addendum, which carries the numbers.
+- **The local-election rule is the rule, not the incident.** The 2026-09-15 story with its names
+  lives in `curation.md`; the prompt keeps the race-pairing rule and gains "name a winner only
+  when the sources state the result", which matters now the vote is in.
+
+The batch and agentic copies had drifted (the agentic one had lost the echoed-farewell check).
+`test_the_two_polish_prompts_share_their_rules` now holds them line for line, apart from the
+path-specific lines: the air date, unanswered-question research and where the sources sit.

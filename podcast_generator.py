@@ -4641,6 +4641,26 @@ def _polish_length_addendum(script: str) -> str:
                                      floor_words=f"{floor_words:,}")
 
 
+def _storyboard_polish_addendum(plan: dict | None) -> str:
+    """Polish-prompt addendum: the deep dive's question and beat chain.
+
+    The polish weaves in research findings and adds counterpoints, and either
+    can open a stop the storyboard left out: the wander the plan exists to stop.
+    Claims and reasons only; the full plan would turn the polish into a second
+    writer. Empty without a usable plan.
+    """
+    template = CONFIG['prompts'].get('storyboard_polish', {}).get('template')
+    dd = (plan or {}).get('deep_dive') or {}
+    if not template or not dd.get('central_question') or not dd.get('beats'):
+        return ""
+    beats = "\n".join(f"Beat {i}: {b.get('claim', '')}\n  → next, because: {b.get('leads_to_next', '')}"
+                      for i, b in enumerate(dd['beats'], 1))
+    return "\n\n" + _safe_template_substitute(
+        template, central_question=dd['central_question'], beats=beats,
+        set_aside="; ".join(dd.get('set_aside') or []) or "(nothing)",
+        landing=dd.get('landing', ''))
+
+
 def _corrections_ground_truth(corrections: list | None) -> str:
     """State the ground-truth fact of how many real corrections exist, and whose.
 
@@ -4679,7 +4699,7 @@ def _corrections_ground_truth(corrections: list | None) -> str:
 
 def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive_articles,
                                      research_insights=None, model=None, corrections=None,
-                                     anchor_block=None):
+                                     anchor_block=None, storyboard=None):
     """Agentic polish + fact-check pass — real-time fallback for post-processing.
 
     Gives Claude the script, verified sources, and research insights directly
@@ -4720,6 +4740,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
         + format_standing_notes_block(for_factcheck=True) \
         + _aired_repeats_addendum(script, research_insights) \
+        + _storyboard_polish_addendum(storyboard) \
         + _polish_length_addendum(script)
 
     review_model = model or select_review_model(deep_dive_articles)
@@ -4748,7 +4769,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
 
 def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
                                    additional_research=None, research_insights=None,
-                                   corrections=None, anchor_block=None):
+                                   corrections=None, anchor_block=None, storyboard=None):
     """Submit polish+factcheck and debate summary as a Message Batch.
 
     Returns the batch object (with batch.id for polling) or None on error.
@@ -4791,6 +4812,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
         + format_standing_notes_block(for_factcheck=True) \
         + _aired_repeats_addendum(script, research_insights) \
+        + _storyboard_polish_addendum(storyboard) \
         + _polish_length_addendum(script)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
@@ -4931,7 +4953,7 @@ def collect_batch_results(batch_id):
 
 def run_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
                                additional_research=None, research_insights=None,
-                               corrections=None, anchor_block=None):
+                               corrections=None, anchor_block=None, storyboard=None):
     """Submit, poll, and collect post-processing batch results.
 
     Returns (polished_script, debate_summary) or falls back to real-time
@@ -4941,7 +4963,8 @@ def run_post_processing_batch(script, theme_name, news_articles, deep_dive_artic
                                           additional_research=additional_research,
                                           research_insights=research_insights,
                                           corrections=corrections,
-                                          anchor_block=anchor_block)
+                                          anchor_block=anchor_block,
+                                          storyboard=storyboard)
     if not batch:
         return None, None
 
@@ -13690,6 +13713,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     research_insights=brave_context,
                     corrections=email_corrections,
                     anchor_block=anchor_block_for_polish,
+                    storyboard=_storyboard_used,
                 )
                 if batch_script:
                     script = batch_script
@@ -13703,6 +13727,7 @@ def run_script_stage() -> tuple[str, str] | None:
                         research_insights=brave_context,
                         corrections=email_corrections,
                         anchor_block=anchor_block_for_polish,
+                        storyboard=_storyboard_used,
                     )
                     # It hands back the very object it was given when it gives up.
                     if script is not _unpolished:
@@ -13719,6 +13744,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     research_insights=brave_context,
                     corrections=email_corrections,
                     anchor_block=anchor_block_for_polish,
+                    storyboard=_storyboard_used,
                 )
                 if script is not _unpolished:
                     _polish_outcome = "realtime"

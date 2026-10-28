@@ -239,7 +239,8 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
 - `script/tell-scrub` runs after the cold open.
 - **The cold open gets no example greeting or closer**; it gets the past week's (`_format_recent_cold_opens`) as ones not to reuse.
-- **Storyboard before script** (`storyboard_script`): one structured call plans each roundup story's point and bridge (fixed order; "clean pivot" when nothing is shared) and the deep dive's question, stances and beats, each saying why the next follows. It rides in the dynamic prompt, never the cached one; a missing or partial plan `degrade()`s and the script runs unplanned.
+- **Storyboard before script** (`storyboard_script`): one structured call plans each roundup story's point and bridge (fixed order; "clean pivot" when nothing is shared) and the deep dive's question, stances and beats, each saying why the next follows. It rides in the dynamic prompt, never the cached one; a missing or partial plan `degrade()`s and the script runs unplanned. The polish gets the deep dive's question and beat chain only (`_storyboard_polish_addendum`), never the full plan.
+- **The two polish prompts share their rules line for line** (a test enforces it); change both or neither.
 - **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat. The polish gets the research half of the ledger too: it is told to weave in findings the draft left out, and a polish that adds repeats `degrade()`s (`script/aired-check`).
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
 
