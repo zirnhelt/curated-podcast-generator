@@ -68,6 +68,17 @@ close one; it comes back only if the reviews raise it 2 more times._
 <!-- reviews:end -->
 
 ## Short-term
+- [ ] **Review the 2,400-word floor (from 2026-11-10).** `MIN_SCRIPT_WORDS` dropped from
+      2,800 with one expand pass instead of two ([MANIFESTO.md](docs/MANIFESTO.md),
+      decision 22). Read two weeks of episode verdicts and the `quality.script_words` facts:
+      if the short days drew `meh`/`skip`, raise the floor back toward 2,800.
+- [ ] **Review the feed wildcard's bar (from 2026-11-24).** Four weeks of the `wildcard`
+      review stratum in `super-rss-feed`'s audit. Mostly `bad`: raise `WILDCARD_MIN_Q_GATE`
+      (55). Mostly `good`/`interesting`: leave it, or add a second slot.
+- [ ] **Decide manifesto answer 9 for news.** "Launches are not news" is enforced only on
+      ai-tech and homelab (`GATE_REJECT_RUBRIC`, fluffy AI/tech). Funding and merger stories
+      under `[news]` are left to the score on purpose. Widen it only if ratings show them
+      getting through.
 - [ ] **Run the Gemini prompt-shape probe** — `TTS Eval` workflow with `probe_gemini: true`
       (or `python evaluate_tts.py --probe-gemini`). The retry ladder's rung ordering is
       currently an untested hypothesis: it assumes `finishReason: OTHER` is a rejection of

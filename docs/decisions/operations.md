@@ -481,6 +481,10 @@ resurrected on one mention.
   2026-10-09) showed one section pass recovering about three quarters of its ask (2,517 →
   3,272), so the expand retry runs up to `EXPAND_MAX_PASSES` (2) and stops on a pass that adds
   nothing. On Haiku 5.5 the second pass is about $0.002 a run that needs it.
+- **`short-script` fires only under `SHORT_EPISODE_WORDS` (2,800) since 2026-10-27.** The
+  manifesto made a thin day shipping short the design (one expand pass, a 2,400-word floor),
+  so under target is no longer a problem by itself. The old publish floor is the line where
+  a short episode still is one.
 - **The polish is given the draft's word count and a floor** (`polish_length_floor`,
   `_polish_length_addendum`). After the expand pass reached target, the polish still cut 4–14%
   (2026-10-26: 3,659 → 3,272, no aired repeats to remove) against a prompt that already said

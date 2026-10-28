@@ -557,7 +557,7 @@ class TestSignals:
                              ["script/bodies", "again"]],
             "short_script": [2192, 3400],
             "citation_alignment": [12, 15, 1, 3],
-            "quality": [4, 1.4, 3300],
+            "quality": [4, 1.4, 2700],
             "casey_deep_dive_word_pct": 70,
             "runs": [{"trigger": "Primary", "conclusion": "failure"}],
         })
@@ -586,8 +586,14 @@ class TestSignals:
         assert "short-script" not in episode_review.run_signals(
             {"short_script": [2877, 3400], "quality": [0, 1.0, 3548]})
         signals = episode_review.run_signals(
+            {"short_script": [2117, 3400], "quality": [0, 1.0, 2650]})
+        assert signals["short-script"].startswith("shipped 2650 words")
+
+    def test_a_thin_day_shipping_under_target_is_not_a_signal(self):
+        # docs/MANIFESTO.md (2026-10-27): short and strong beats full and thin.
+        # Under target but over SHORT_EPISODE_WORDS is the design, not a problem.
+        assert "short-script" not in episode_review.run_signals(
             {"short_script": [2517, 3400], "quality": [0, 1.0, 3237]})
-        assert signals["short-script"].startswith("shipped 3237 words")
 
     def test_tell_hits_signal_only_above_the_escalation_threshold(self):
         # 2026-10-04 and 2026-10-11 each shipped one hit ("ecosystem"; "the headline
