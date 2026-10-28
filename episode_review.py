@@ -227,6 +227,8 @@ _SINGLE: dict[str, tuple[str, list[type]]] = {
                 [int, float, int]),
     "casey_deep_dive_word_pct": (r"Deep dive words Casey: (\d+)%", [int]),
     "citation_alignment": (r"Citation alignment: (\d+)/(\d+) news, (\d+)/(\d+) deep-dive", [int, int, int, int]),
+    "roundup_shape": (r"🧭 Roundup shape: local available (\d+), aired (\d+), opened local (yes|no); "
+                      r"split subjects: (.+?); deep dive Cariboo: (yes|no)", [int, int, str, str, str]),
     "anchor": (r"❓ This week's question: (.+)", [str]),
     "debate_question": (r"Debate question: (.+)", [str]),
     "psa": (r"🏘️  Community Spotlight: (.+)", [str]),
@@ -391,6 +393,8 @@ _FIELDS: dict[str, list[str]] = {
     "quality": ["ai_tell_pattern_hits", "voice_ratio_casey_over_riley", "script_words"],
     "citation_alignment": ["roundup_citations_matched", "roundup_citations_total",
                            "deep_dive_citations_matched", "deep_dive_citations_total"],
+    "roundup_shape": ["local_stories_available", "local_stories_aired", "roundup_opened_local",
+                      "split_subjects", "deep_dive_cariboo"],
     "spend": ["anthropic_input_tokens", "api_calls_by_service"],
     "video": ["video_size_mb", "video_minutes"],
     "clusters": ["cluster_key", "canonical_title", "duplicates_suppressed"],
@@ -1164,6 +1168,18 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
     share = facts.get("casey_deep_dive_word_pct")
     if isinstance(share, int) and not VOICE_SHARE_BAND[0] <= share <= VOICE_SHARE_BAND[1]:
         signals["voice-ratio"] = f"Casey spoke {share}% of the deep dive's words"
+    # The episode's shape, from `roundup_shape_line`: local news leads, one
+    # subject airs in one place, the deep dive reaches the Cariboo.
+    shape = facts.get("roundup_shape")
+    if isinstance(shape, list) and len(shape) == 5:
+        available, aired, opened, split, dd_local = shape
+        if available and (not aired or opened == "no"):
+            signals["no-local-roundup"] = (f"{available} local stor(ies) in the pool, {aired} "
+                                           f"aired, roundup opened local: {opened}")
+        if split != "none":
+            signals["split-topic"] = f"one subject aired in separate places: {split}"
+        if dd_local == "no":
+            signals["deep-dive-non-local"] = "the deep dive had no Cariboo story or angle"
     failed = [r["trigger"] for r in facts.get("runs", []) if r.get("conclusion") == "failure"]
     if failed:
         signals["run-failed"] = "failed: " + ", ".join(failed)

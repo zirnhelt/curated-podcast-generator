@@ -1816,8 +1816,8 @@ class TestScriptStoryboard:
         assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 0", planner_prompt, re.M)
         assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 1", planner_prompt, re.M)
         assert "Central question: Who owns the last mile?" in sent
-        assert re.search(r"^1\. Story \d — point 1$", sent, re.M)
-        assert re.search(r"^2\. Story \d — point 2$", sent, re.M)
+        assert re.search(r"^- Story \d — point 1$", sent, re.M)
+        assert re.search(r"^- Story \d — point 2$", sent, re.M)
         assert "Set aside (not part of the deep dive): Berlin archive" in sent
         assert rows and rows[0]["status"] == "ok"
         assert pg._storyboard_used == plan
@@ -7342,3 +7342,214 @@ class TestMatchDeepDiveToScript:
     def test_no_script_keeps_everything(self):
         assert match_deep_dive_to_script([self.KILLER], "") == [(self.KILLER, True)]
 
+
+
+class TestSameSubjectAndKicker:
+    """2026-10-28 aired six iPhone Duo stories as six slots, three first and
+    three last. Same-subject detection is a shared headline word pair."""
+
+    IPHONE = [
+        "[TechRadar] iFixit awards the iPhone Duo the highest repair score yet for a foldable",
+        "[MacRumors] iPhone Duo Teardowns Reveal Two Batteries and More",
+        "[macobserver.com] Apple issues iPhone Duo hinge guidance as repairs and software gaps emerge",
+        "[WIRED] Some iPhone Duo Models Are Breaking. iFixit’s Teardown Might Explain Why",
+        "[The Verge] iFixit&#8217;s look inside the iPhone Duo may explain those broken screens",
+        "[iFixit] iPhone Duo Teardown: The Most Repairable Foldable Has a Huge Screen Problem",
+    ]
+
+    def test_every_iphone_headline_shares_a_subject(self):
+        import podcast_generator as pg
+        keys = [pg._title_subject_keys({"title": t}) for t in self.IPHONE]
+        assert all("iphone duo" in k for k in keys)
+
+    def test_place_names_and_generic_pairs_are_not_a_subject(self):
+        import podcast_generator as pg
+        a = {"title": "[Tribune] Williams Lake council approves budget"}
+        b = {"title": "[Tribune] Williams Lake rodeo grounds reopen"}
+        c = {"title": "Climate change hits the coast"}
+        d = {"title": "Climate change and the grain harvest"}
+        assert not pg._shares_subject(a, b)
+        assert not pg._shares_subject(c, d)
+
+    def test_kicker_never_repeats_an_earlier_subject(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_infer_discipline", lambda a, cfg: (None, None))
+        theme = {"title": "[iFixit] iPhone Duo Teardown finds two batteries",
+                 "url": "https://t", "_keyword_matches": 2}
+        repeat = {"title": "[The Verge] iPhone Duo screens crack during setup",
+                  "url": "https://r", "_is_bonus": True, "_theme_score_raw": 1, "ai_score": 90}
+        other = {"title": "[Dwell] Whole trees hold up a Norwegian house",
+                 "url": "https://o", "_is_bonus": True, "_theme_score_raw": 20, "ai_score": 80}
+        pool, _ = pg._annotate_roundup_blocks([theme, repeat, other], "Repair Culture & Practical Tech")
+        kicker = [a for a in pool if a["_roundup_block"] == "kicker"]
+        assert [a["url"] for a in kicker] == ["https://o"]
+
+
+class TestApplyStoryboardOrder:
+    """The storyboard may regroup same-subject stories and fold same-story
+    reports; local news still opens the show."""
+
+    def _arts(self):
+        return [
+            {"title": "Williams Lake council farewells", "_roundup_block": "local"},
+            {"title": "iPhone Duo teardown", "_roundup_block": "theme"},
+            {"title": "Prusa hotend", "_roundup_block": "theme"},
+            {"title": "iPhone Duo screens crack", "_roundup_block": "standalone"},
+            {"title": "Norwegian tree house", "_roundup_block": "kicker"},
+        ]
+
+    def _plan(self, groups):
+        return {"roundup": {"stories": [{"n": g[0], "merge_with": g[1:], "point": "p",
+                                         "bridge_to_next": "b"} for g in groups]}}
+
+    def test_a_split_subject_is_folded_and_relabelled(self):
+        import podcast_generator as pg
+        arts = self._arts()
+        out = pg.apply_storyboard_order(self._plan([[1], [2, 4], [3], [5]]), arts)
+        assert [a["title"] for a in out] == [
+            "Williams Lake council farewells", "iPhone Duo teardown", "iPhone Duo screens crack",
+            "Prusa hotend", "Norwegian tree house"]
+        assert out[2]["_merged_into"] == "iPhone Duo teardown"
+        assert out[2]["_roundup_block"] == "theme"
+        assert out[4]["_roundup_block"] == "kicker"
+
+    def test_a_story_moved_up_takes_the_block_it_lands_in(self):
+        import podcast_generator as pg
+        out = pg.apply_storyboard_order(self._plan([[1], [2], [4], [3], [5]]), self._arts())
+        assert [a["_roundup_block"] for a in out] == ["local", "theme", "theme", "theme", "kicker"]
+
+    def test_local_behind_non_local_keeps_the_draft_and_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_RUN_SEGMENTS", [])
+        seen = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: seen.append((name, detail)))
+        arts = self._arts()
+        out = pg.apply_storyboard_order(self._plan([[2], [1], [3], [4], [5]]), arts)
+        assert out == arts and "_merged_into" not in arts[1]
+        assert seen and "local story moved" in seen[0][1]
+
+    def test_a_dropped_story_keeps_the_draft(self, monkeypatch):
+        import podcast_generator as pg
+        seen = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: seen.append(detail))
+        arts = self._arts()
+        assert pg.apply_storyboard_order(self._plan([[1], [2], [3], [5]]), arts) == arts
+        assert "covers" in seen[0]
+
+    def test_folded_story_renders_under_its_lead(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        stories = [{"title": "[iFixit] iPhone Duo teardown", "url": "https://a",
+                    "_keyword_matches": 2, "_body": "Two batteries. " * 20},
+                   {"title": "[WIRED] iPhone Duo screens crack", "url": "https://b",
+                    "_keyword_matches": 2, "_body": "Cracks. " * 20}]
+        plan = TestScriptStoryboard()._plan(stories=(1,))
+        plan["roundup"]["stories"][0]["merge_with"] = [2]
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+        client.messages.create.side_effect = (
+            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        pg.generate_podcast_script(stories, [], "Repair Culture & Practical Tech", {}, {})
+        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        assert "↳ SAME STORY as the one above" in sent
+        assert "Same story, also told by: [WIRED] iPhone Duo screens crack" in sent
+
+
+class TestCaribooDeepDivePick:
+    """2026-10-28's deep dive stitched an FCC chip ban, ad scams, a crypto
+    sanction and an NYT essay. The pick keeps one story a Cariboo household
+    could act on, told by several outlets."""
+
+    CANDS = [
+        {"title": "[The Verge] The FCC blocks gadgets with foreign chips", "url": "https://fcc"},
+        {"title": "[iFixit] iPhone Duo repair costs $999 for a screen", "url": "https://ifx"},
+        {"title": "[WIRED] iPhone Duo screens are cracking", "url": "https://wired"},
+        {"title": "[Krebs] UK sanctions Cryptomus", "url": "https://krebs"},
+    ]
+
+    def _client(self, payload):
+        client = MagicMock()
+        client.messages.create.return_value = _response("end_turn", [_text_block(json.dumps(payload))])
+        return client
+
+    def test_lead_plus_same_story_plus_aired_local_context(self, monkeypatch):
+        import podcast_generator as pg
+        recent = [{"title": "[My Cariboo Now] Rogers outage cuts Quesnel off", "url": "https://r",
+                   "_recalled_from": "Thursday"}]
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: self._client(
+            {"passes": [2, 3], "lead": 2, "same_story": [3, 2, 9], "local_context": 1,
+             "cariboo_angle": "A cracked screen costs a Quesnel family a week's groceries."}))
+        dd = pg.pick_cariboo_deep_dive([dict(a) for a in self.CANDS], 4, "Repair",
+                                       anchor_question="Who gets to call themselves local?",
+                                       recent_local=recent)
+        assert [a["url"] for a in dd] == ["https://ifx", "https://wired", "https://r"]
+        assert dd[0]["_cariboo_angle"].startswith("A cracked screen")
+        assert dd[2]["_recalled_from"] == "Thursday"
+
+    def test_nothing_passes_returns_none_and_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        seen = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: seen.append(name))
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: self._client(
+            {"passes": [], "lead": 0, "same_story": [], "local_context": 0, "cariboo_angle": ""}))
+        assert pg.pick_cariboo_deep_dive([dict(a) for a in self.CANDS], 4, "Repair") is None
+        assert seen == ["script/deep-dive-local"]
+
+    def test_a_local_bonus_story_can_win_the_deep_dive(self, monkeypatch):
+        import podcast_generator as pg
+        captured = {}
+
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+            captured["pool"] = [a["url"] for a in pool]
+            return [pool[-1]]
+        monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        local = {"title": "[Williams Lake Tribune] Rogers outage cuts the Cariboo off",
+                 "url": "https://local", "_is_bonus": True}
+        dd, news = pg.select_deep_dive_from_feed(theme, "Repair Culture & Practical Tech",
+                                                 count=4, local_extras=[local])
+        assert "https://local" in captured["pool"]
+        assert [a["url"] for a in dd] == ["https://local"]
+        assert len(news) == len(theme)
+
+    def test_the_geographic_day_is_never_picked(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "pick_cariboo_deep_dive",
+                            lambda *a, **k: pytest.fail("picked on the geographic day"))
+        arts = [{"title": f"[Williams Lake Tribune] Council budget vote {i}", "url": f"https://{i}",
+                 "_keyword_matches": 1} for i in range(5)]
+        pg.select_deep_dive_from_feed(arts, "Cariboo Local Affairs", count=4)
+
+    def test_recent_local_roundup_reads_last_weeks_local_stories(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        from datetime import date
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        cit = {"segments": {"news_roundup": {"articles": [
+            {"title": "[My Cariboo Now] Rogers outage cuts Quesnel off", "url": "https://r",
+             "source": "My Cariboo Now"},
+            {"title": "[WIRED] iPhone Duo screens crack", "url": "https://w", "source": "WIRED"}]}}}
+        (tmp_path / "citations_2026-10-22_x.json").write_text(json.dumps(cit))
+        (tmp_path / "citations_2026-10-10_x.json").write_text(json.dumps(cit))
+        got = pg.recent_local_roundup(date(2026, 10, 28))
+        assert [(a["url"], a["_recalled_from"]) for a in got] == [("https://r", "Thursday")]
+
+
+class TestRoundupShapeLine:
+    """The review said 'Shipped clean' on 2026-10-28; the shape line gives it
+    no-local-roundup, split-topic and deep-dive-non-local."""
+
+    def test_split_subject_no_local_lead_no_cariboo_deep_dive(self):
+        import podcast_generator as pg
+        roundup = [{"title": "[iFixit] iPhone Duo teardown finds batteries", "_roundup_block": "theme"},
+                   {"title": "[Prusa Blog] Prusa ships a hotter hotend", "_roundup_block": "theme"},
+                   {"title": "[WIRED] iPhone Duo screens crack early", "_roundup_block": "theme"}]
+        script = ("**NEWS ROUNDUP**\n\n"
+                  "**RILEY:** iFixit tore down the iPhone Duo and found batteries inside.\n\n"
+                  "**CASEY:** Prusa ships a hotter hotend for its printers.\n\n"
+                  "**RILEY:** WIRED says iPhone Duo screens crack early.\n\n"
+                  "**DEEP DIVE: X**\n\n**CASEY:** hi\n")
+        line = pg.roundup_shape_line(script, roundup, [{"title": "[The Verge] FCC chip ban"}], 3)
+        assert line == ("🧭 Roundup shape: local available 3, aired 0, opened local no; "
+                        "split subjects: iphone duo; deep dive Cariboo: no")
