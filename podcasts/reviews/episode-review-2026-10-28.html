@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, October 28, 2026</title>
+  <style>
+    :root { --bg: #fcfcfb; --ink: #0b0b0b; --muted: #52514e; --rule: #e1e0d9; --axis: #c3c2b7;
+             --panel: #f4f3ef; --series: #2a78d6; --link: #1c5cab;
+             --good: #0ca30c; --minor: #2a78d6; --warn: #fab219; --bad: #d03b3b; color-scheme: light; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+             --bg: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --rule: #2c2c2a; --axis: #383835;
+             --panel: #242423; --series: #3987e5; --link: #86b6ef; color-scheme: dark; } }
+    :root[data-theme="dark"] { --bg: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --rule: #2c2c2a;
+             --axis: #383835; --panel: #242423; --series: #3987e5; --link: #86b6ef; color-scheme: dark; }
+    body { font-family: system-ui, sans-serif; max-width: 880px; margin: 2rem auto; padding: 0 16px;
+            line-height: 1.55; color: var(--ink); background: var(--bg); }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.15rem; margin-top: 2.25rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem; }
+    h3 { margin-top: 1.4rem; font-size: 1.02rem; }
+    a { color: var(--link); }
+    code { background: var(--panel); padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.9em; }
+    .meta, .note, .evidence { color: var(--muted); font-size: 0.88rem; }
+    .verdict { display: flex; gap: 0.8rem; align-items: center; padding: 0.8rem 1rem; margin: 1.2rem 0;
+                border-radius: 8px; background: var(--panel); border-left: 6px solid var(--lvl); }
+    .verdict .icon { font-size: 1.4rem; color: var(--lvl); width: 1.4rem; text-align: center; }
+    .verdict strong { display: block; }
+    .lvl-good { --lvl: var(--good); } .lvl-minor { --lvl: var(--minor); }
+    .lvl-warn { --lvl: var(--warn); } .lvl-bad { --lvl: var(--bad); }
+    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+    .kpi { background: var(--panel); border-radius: 8px; padding: 0.6rem 0.8rem; }
+    .kpi span, .kpi small { display: block; color: var(--muted); font-size: 0.8rem; }
+    .kpi strong { font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+    .actions li { margin-bottom: 0.7rem; } .actions strong { font-weight: 600; }
+    .recur { color: var(--bad); font-size: 0.85rem; }
+    .grid { display: grid; gap: 1.2rem; }
+    figure { margin: 0; } figcaption { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.3rem; }
+    figcaption strong { color: var(--ink); }
+    .bars { display: grid; gap: 6px; }
+    .row { display: grid; grid-template-columns: minmax(90px, 30%) 1fr; gap: 10px; align-items: center;
+            font-size: 0.85rem; }
+    .row .lbl { text-align: right; }
+    .track { position: relative; display: flex; align-items: center; gap: 6px; min-height: 18px; }
+    .track .bar { display: block; height: 16px; background: var(--series); border-radius: 0 4px 4px 0; flex: none; }
+    .track .val { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .track .ref { position: absolute; top: -3px; bottom: -3px; border-left: 1px dashed var(--axis); }
+    .length { font-size: 0.85rem; } .length .track { margin: 22px 0 22px; }
+    .length .bar { height: 18px; }
+    .length .tick { position: absolute; top: -4px; bottom: -4px; border-left: 2px solid var(--ink); }
+    .length .dot { position: absolute; width: 10px; height: 10px; margin-left: -7px; border-radius: 50%;
+                    background: var(--bg); border: 2px solid var(--ink); }
+    .length .tag { position: absolute; top: 22px; transform: translateX(-50%); white-space: nowrap;
+                    color: var(--muted); font-size: 0.78rem; }
+    .length .tag.up { top: -20px; }
+    .trends { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .trend { background: var(--panel); border-radius: 8px; padding: 0.6rem 0.8rem; }
+    .trend-head { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted); }
+    .trend-head strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+    svg.spark { width: 100%; height: 56px; display: block; margin: 0.3rem 0; }
+    svg .line { fill: none; stroke: var(--series); stroke-width: 2; stroke-linejoin: round; }
+    svg .today { fill: var(--series); stroke: var(--panel); stroke-width: 2; }
+    svg .hit { fill: transparent; } svg .hit:hover { fill: var(--series); fill-opacity: 0.25; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; font-size: 0.92rem; }
+    th, td { border-bottom: 1px solid var(--rule); padding: 0.35rem 0.6rem; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
+    .table-wrap { overflow-x: auto; }
+    details { margin-top: 2rem; } summary { cursor: pointer; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, October 28, 2026</h1>
+  <p class="meta">Published October 28, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p class="meta">Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/40654323854">40654323854</a>.</p>
+
+<div class="verdict lvl-good"><span class="icon" aria-hidden="true">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>
+
+<div class="kpis"><div class="kpi"><span>Episode</span><strong>21.0 min</strong><small>audio runtime</small></div><div class="kpi"><span>Script</span><strong>3,529</strong><small>words shipped</small></div><div class="kpi"><span>Citations</span><strong>10/18 · 3/4</strong><small>roundup · deep dive</small></div><div class="kpi"><span>Done at</span><strong>1:34 AM</strong><small>Primary rung</small></div></div>
+
+<h2>What to do</h2>
+<p>Nothing. The run needs no follow-up.</p>
+
+<h2>The night in charts</h2>
+<div class="grid">
+<figure><figcaption><strong>Script length</strong> Words the listener heard, against the target. The dot is the first draft when it came in short and was sent back to expand.</figcaption><div class="length"><div class="lbl">Shipped 3,529 words</div><div class="track"><span class="bar" style="width:90.9%" title="Shipped: 3,529 words"></span><span class="tick" style="left:87.6%" title="Target: 3,400 words"></span><span class="tag" style="left:87.6%">target 3,400</span><span class="dot" style="left:65.3%" title="First draft: 2,536 words"></span><span class="tag up" style="left:65.3%">first draft 2,536</span></div></div></figure>
+<figure><figcaption><strong>Citations that match the script</strong> Below the line, the roadmap starts counting it.</figcaption><div class="bars"><div class="row" title="Roundup: 10/18 (56%)"><span class="lbl">Roundup</span><span class="track"><span class="ref" style="left:37.5%"></span><span class="bar" style="width:41.7%"></span><span class="val">10/18 (56%)</span></span></div><div class="row" title="Deep dive: 3/4 (75%)"><span class="lbl">Deep dive</span><span class="track"><span class="ref" style="left:37.5%"></span><span class="bar" style="width:56.2%"></span><span class="val">3/4 (75%)</span></span></div><div class="row"><span></span><span class="track"><span class="note" style="margin-left:37.5%">┆ 50% floor</span></span></div></div></figure>
+<figure><figcaption><strong>Where the stories went</strong> Cuts for airtime are by design: the pool is larger than one segment.</figcaption><div class="bars"><div class="row" title="Cut for airtime: 23"><span class="lbl">Cut for airtime</span><span class="track"><span class="bar" style="width:75.0%"></span><span class="val">23</span></span></div><div class="row" title="Deep dive sources: 4"><span class="lbl">Deep dive sources</span><span class="track"><span class="bar" style="width:13.0%"></span><span class="val">4</span></span></div></div></figure>
+<figure><figcaption><strong>Where the time went</strong> Steps over a minute, in the run that shipped.</figcaption><div class="bars"><div class="row" title="Checkout repository: 1.7 min"><span class="lbl">Checkout repository</span><span class="track"><span class="bar" style="width:14.6%"></span><span class="val">1.7 min</span></span></div><div class="row" title="Generate episode script: 7.5 min"><span class="lbl">Generate episode script</span><span class="track"><span class="bar" style="width:65.5%"></span><span class="val">7.5 min</span></span></div><div class="row" title="Render episode audio: 5.3 min"><span class="lbl">Render episode audio</span><span class="track"><span class="bar" style="width:46.4%"></span><span class="val">5.3 min</span></span></div><div class="row" title="Publish episode: 2.8 min"><span class="lbl">Publish episode</span><span class="track"><span class="bar" style="width:24.7%"></span><span class="val">2.8 min</span></span></div><div class="row" title="Deploy to GitHub Pages: 8.6 min"><span class="lbl">Deploy to GitHub Pages</span><span class="track"><span class="bar" style="width:75.0%"></span><span class="val">8.6 min</span></span></div><div class="row" title="Render video and upload to Y: 2.0 min"><span class="lbl">Render video and upload to Y</span><span class="track"><span class="bar" style="width:17.8%"></span><span class="val">2.0 min</span></span></div></div></figure>
+</div>
+
+<h2>Last 30 nights</h2>
+<p class="note">Today is the dot at the right end. Hover a point for its night.</p>
+<div class="trends">
+<div class="trend"><div class="trend-head"><span>Episode length</span><strong>21.0 min</strong></div><svg class="spark" viewBox="0 0 260 56" role="img" aria-label="27 nights, 16.9 min to 24.3 min"><path d="M6.0,21.5 L15.5,30.4 L25.1,47.6 L34.6,28.6 L44.2,42.3 L53.7,41.1 L63.2,39.3 L72.8,50.0 L82.3,36.3 L91.8,17.9 L101.4,26.8 L110.9,45.8 L120.5,38.7 L130.0,36.9 L139.5,27.4 L149.1,16.7 L158.6,17.9 L168.2,20.3 L177.7,21.5 L187.2,29.8 L196.8,33.9 L206.3,22.6 L215.8,21.5 L225.4,17.3 L234.9,32.8 L244.5,6.0 L254.0,25.6" class="line"/><circle cx="254.0" cy="25.6" r="4" class="today"/><circle cx="6.0" cy="21.5" r="7" class="hit"><title>2026-09-28: 21.7 min</title></circle><circle cx="15.5" cy="30.4" r="7" class="hit"><title>2026-09-29: 20.2 min</title></circle><circle cx="25.1" cy="47.6" r="7" class="hit"><title>2026-10-02: 17.3 min</title></circle><circle cx="34.6" cy="28.6" r="7" class="hit"><title>2026-10-03: 20.5 min</title></circle><circle cx="44.2" cy="42.3" r="7" class="hit"><title>2026-10-04: 18.2 min</title></circle><circle cx="53.7" cy="41.1" r="7" class="hit"><title>2026-10-05: 18.4 min</title></circle><circle cx="63.2" cy="39.3" r="7" class="hit"><title>2026-10-06: 18.7 min</title></circle><circle cx="72.8" cy="50.0" r="7" class="hit"><title>2026-10-07: 16.9 min</title></circle><circle cx="82.3" cy="36.3" r="7" class="hit"><title>2026-10-09: 19.2 min</title></circle><circle cx="91.8" cy="17.9" r="7" class="hit"><title>2026-10-10: 22.3 min</title></circle><circle cx="101.4" cy="26.8" r="7" class="hit"><title>2026-10-12: 20.8 min</title></circle><circle cx="110.9" cy="45.8" r="7" class="hit"><title>2026-10-13: 17.6 min</title></circle><circle cx="120.5" cy="38.7" r="7" class="hit"><title>2026-10-14: 18.8 min</title></circle><circle cx="130.0" cy="36.9" r="7" class="hit"><title>2026-10-15: 19.1 min</title></circle><circle cx="139.5" cy="27.4" r="7" class="hit"><title>2026-10-16: 20.7 min</title></circle><circle cx="149.1" cy="16.7" r="7" class="hit"><title>2026-10-17: 22.5 min</title></circle><circle cx="158.6" cy="17.9" r="7" class="hit"><title>2026-10-18: 22.3 min</title></circle><circle cx="168.2" cy="20.3" r="7" class="hit"><title>2026-10-19: 21.9 min</title></circle><circle cx="177.7" cy="21.5" r="7" class="hit"><title>2026-10-20: 21.7 min</title></circle><circle cx="187.2" cy="29.8" r="7" class="hit"><title>2026-10-21: 20.3 min</title></circle><circle cx="196.8" cy="33.9" r="7" class="hit"><title>2026-10-22: 19.6 min</title></circle><circle cx="206.3" cy="22.6" r="7" class="hit"><title>2026-10-23: 21.5 min</title></circle><circle cx="215.8" cy="21.5" r="7" class="hit"><title>2026-10-24: 21.7 min</title></circle><circle cx="225.4" cy="17.3" r="7" class="hit"><title>2026-10-25: 22.4 min</title></circle><circle cx="234.9" cy="32.8" r="7" class="hit"><title>2026-10-26: 19.8 min</title></circle><circle cx="244.5" cy="6.0" r="7" class="hit"><title>2026-10-27: 24.3 min</title></circle><circle cx="254.0" cy="25.6" r="7" class="hit"><title>2026-10-28: 21.0 min</title></circle></svg><div class="note">09-28 → 10-28 · range 16.9 min–24.3 min</div></div>
+<div class="trend"><div class="trend-head"><span>Script words</span><strong>3,529</strong></div><svg class="spark" viewBox="0 0 260 56" role="img" aria-label="27 nights, 2,910 to 3,955"><path d="M6.0,23.1 L15.5,38.1 L25.1,50.0 L34.6,30.3 L44.2,48.1 L53.7,38.5 L63.2,42.7 L72.8,49.9 L82.3,36.2 L91.8,17.5 L101.4,24.6 L110.9,48.9 L120.5,36.2 L130.0,42.6 L139.5,28.9 L149.1,15.9 L158.6,28.4 L168.2,17.9 L177.7,22.9 L187.2,29.4 L196.8,38.5 L206.3,24.5 L215.8,22.0 L225.4,30.6 L234.9,34.8 L244.5,6.0 L254.0,23.9" class="line"/><circle cx="254.0" cy="23.9" r="4" class="today"/><circle cx="6.0" cy="23.1" r="7" class="hit"><title>2026-09-28: 3,548</title></circle><circle cx="15.5" cy="38.1" r="7" class="hit"><title>2026-09-29: 3,192</title></circle><circle cx="25.1" cy="50.0" r="7" class="hit"><title>2026-10-02: 2,910</title></circle><circle cx="34.6" cy="30.3" r="7" class="hit"><title>2026-10-03: 3,378</title></circle><circle cx="44.2" cy="48.1" r="7" class="hit"><title>2026-10-04: 2,955</title></circle><circle cx="53.7" cy="38.5" r="7" class="hit"><title>2026-10-05: 3,184</title></circle><circle cx="63.2" cy="42.7" r="7" class="hit"><title>2026-10-06: 3,084</title></circle><circle cx="72.8" cy="49.9" r="7" class="hit"><title>2026-10-07: 2,913</title></circle><circle cx="82.3" cy="36.2" r="7" class="hit"><title>2026-10-09: 3,237</title></circle><circle cx="91.8" cy="17.5" r="7" class="hit"><title>2026-10-10: 3,681</title></circle><circle cx="101.4" cy="24.6" r="7" class="hit"><title>2026-10-12: 3,513</title></circle><circle cx="110.9" cy="48.9" r="7" class="hit"><title>2026-10-13: 2,935</title></circle><circle cx="120.5" cy="36.2" r="7" class="hit"><title>2026-10-14: 3,237</title></circle><circle cx="130.0" cy="42.6" r="7" class="hit"><title>2026-10-15: 3,085</title></circle><circle cx="139.5" cy="28.9" r="7" class="hit"><title>2026-10-16: 3,412</title></circle><circle cx="149.1" cy="15.9" r="7" class="hit"><title>2026-10-17: 3,721</title></circle><circle cx="158.6" cy="28.4" r="7" class="hit"><title>2026-10-18: 3,423</title></circle><circle cx="168.2" cy="17.9" r="7" class="hit"><title>2026-10-19: 3,673</title></circle><circle cx="177.7" cy="22.9" r="7" class="hit"><title>2026-10-20: 3,554</title></circle><circle cx="187.2" cy="29.4" r="7" class="hit"><title>2026-10-21: 3,400</title></circle><circle cx="196.8" cy="38.5" r="7" class="hit"><title>2026-10-22: 3,183</title></circle><circle cx="206.3" cy="24.5" r="7" class="hit"><title>2026-10-23: 3,515</title></circle><circle cx="215.8" cy="22.0" r="7" class="hit"><title>2026-10-24: 3,575</title></circle><circle cx="225.4" cy="30.6" r="7" class="hit"><title>2026-10-25: 3,371</title></circle><circle cx="234.9" cy="34.8" r="7" class="hit"><title>2026-10-26: 3,272</title></circle><circle cx="244.5" cy="6.0" r="7" class="hit"><title>2026-10-27: 3,955</title></circle><circle cx="254.0" cy="23.9" r="7" class="hit"><title>2026-10-28: 3,529</title></circle></svg><div class="note">09-28 → 10-28 · range 2,910–3,955</div></div>
+<div class="trend"><div class="trend-head"><span>Roundup citations matched</span><strong>56%</strong></div><svg class="spark" viewBox="0 0 260 56" role="img" aria-label="27 nights, 44% to 100%"><path d="M6.0,11.3 L15.5,11.3 L25.1,6.0 L34.6,11.6 L44.2,27.1 L53.7,6.0 L63.2,11.3 L72.8,6.0 L82.3,6.0 L91.8,32.4 L101.4,17.3 L110.9,27.1 L120.5,6.0 L130.0,21.8 L139.5,10.7 L149.1,33.9 L158.6,23.6 L168.2,24.6 L177.7,28.0 L187.2,24.6 L196.8,14.8 L206.3,32.4 L215.8,50.0 L225.4,50.0 L234.9,23.6 L244.5,36.8 L254.0,41.1" class="line"/><circle cx="254.0" cy="41.1" r="4" class="today"/><circle cx="6.0" cy="11.3" r="7" class="hit"><title>2026-09-28: 93%</title></circle><circle cx="15.5" cy="11.3" r="7" class="hit"><title>2026-09-29: 93%</title></circle><circle cx="25.1" cy="6.0" r="7" class="hit"><title>2026-10-02: 100%</title></circle><circle cx="34.6" cy="11.6" r="7" class="hit"><title>2026-10-03: 93%</title></circle><circle cx="44.2" cy="27.1" r="7" class="hit"><title>2026-10-04: 73%</title></circle><circle cx="53.7" cy="6.0" r="7" class="hit"><title>2026-10-05: 100%</title></circle><circle cx="63.2" cy="11.3" r="7" class="hit"><title>2026-10-06: 93%</title></circle><circle cx="72.8" cy="6.0" r="7" class="hit"><title>2026-10-07: 100%</title></circle><circle cx="82.3" cy="6.0" r="7" class="hit"><title>2026-10-09: 100%</title></circle><circle cx="91.8" cy="32.4" r="7" class="hit"><title>2026-10-10: 67%</title></circle><circle cx="101.4" cy="17.3" r="7" class="hit"><title>2026-10-12: 86%</title></circle><circle cx="110.9" cy="27.1" r="7" class="hit"><title>2026-10-13: 73%</title></circle><circle cx="120.5" cy="6.0" r="7" class="hit"><title>2026-10-14: 100%</title></circle><circle cx="130.0" cy="21.8" r="7" class="hit"><title>2026-10-15: 80%</title></circle><circle cx="139.5" cy="10.7" r="7" class="hit"><title>2026-10-16: 94%</title></circle><circle cx="149.1" cy="33.9" r="7" class="hit"><title>2026-10-17: 65%</title></circle><circle cx="158.6" cy="23.6" r="7" class="hit"><title>2026-10-18: 78%</title></circle><circle cx="168.2" cy="24.6" r="7" class="hit"><title>2026-10-19: 76%</title></circle><circle cx="177.7" cy="28.0" r="7" class="hit"><title>2026-10-20: 72%</title></circle><circle cx="187.2" cy="24.6" r="7" class="hit"><title>2026-10-21: 76%</title></circle><circle cx="196.8" cy="14.8" r="7" class="hit"><title>2026-10-22: 89%</title></circle><circle cx="206.3" cy="32.4" r="7" class="hit"><title>2026-10-23: 67%</title></circle><circle cx="215.8" cy="50.0" r="7" class="hit"><title>2026-10-24: 44%</title></circle><circle cx="225.4" cy="50.0" r="7" class="hit"><title>2026-10-25: 44%</title></circle><circle cx="234.9" cy="23.6" r="7" class="hit"><title>2026-10-26: 78%</title></circle><circle cx="244.5" cy="36.8" r="7" class="hit"><title>2026-10-27: 61%</title></circle><circle cx="254.0" cy="41.1" r="7" class="hit"><title>2026-10-28: 56%</title></circle></svg><div class="note">09-28 → 10-28 · range 44%–100%</div></div>
+<div class="trend"><div class="trend-head"><span>Deep-dive citations matched</span><strong>75%</strong></div><svg class="spark" viewBox="0 0 260 56" role="img" aria-label="27 nights, 0% to 100%"><path d="M6.0,20.7 L15.5,6.0 L25.1,50.0 L34.6,32.4 L44.2,35.3 L53.7,6.0 L63.2,20.7 L72.8,35.3 L82.3,20.7 L91.8,6.0 L101.4,20.7 L110.9,20.7 L120.5,35.3 L130.0,20.7 L139.5,39.0 L149.1,41.2 L158.6,17.0 L168.2,39.0 L177.7,6.0 L187.2,17.0 L196.8,17.0 L206.3,28.0 L215.8,32.4 L225.4,28.0 L234.9,17.0 L244.5,17.0 L254.0,17.0" class="line"/><circle cx="254.0" cy="17.0" r="4" class="today"/><circle cx="6.0" cy="20.7" r="7" class="hit"><title>2026-09-28: 67%</title></circle><circle cx="15.5" cy="6.0" r="7" class="hit"><title>2026-09-29: 100%</title></circle><circle cx="25.1" cy="50.0" r="7" class="hit"><title>2026-10-02: 0%</title></circle><circle cx="34.6" cy="32.4" r="7" class="hit"><title>2026-10-03: 40%</title></circle><circle cx="44.2" cy="35.3" r="7" class="hit"><title>2026-10-04: 33%</title></circle><circle cx="53.7" cy="6.0" r="7" class="hit"><title>2026-10-05: 100%</title></circle><circle cx="63.2" cy="20.7" r="7" class="hit"><title>2026-10-06: 67%</title></circle><circle cx="72.8" cy="35.3" r="7" class="hit"><title>2026-10-07: 33%</title></circle><circle cx="82.3" cy="20.7" r="7" class="hit"><title>2026-10-09: 67%</title></circle><circle cx="91.8" cy="6.0" r="7" class="hit"><title>2026-10-10: 100%</title></circle><circle cx="101.4" cy="20.7" r="7" class="hit"><title>2026-10-12: 67%</title></circle><circle cx="110.9" cy="20.7" r="7" class="hit"><title>2026-10-13: 67%</title></circle><circle cx="120.5" cy="35.3" r="7" class="hit"><title>2026-10-14: 33%</title></circle><circle cx="130.0" cy="20.7" r="7" class="hit"><title>2026-10-15: 67%</title></circle><circle cx="139.5" cy="39.0" r="7" class="hit"><title>2026-10-16: 25%</title></circle><circle cx="149.1" cy="41.2" r="7" class="hit"><title>2026-10-17: 20%</title></circle><circle cx="158.6" cy="17.0" r="7" class="hit"><title>2026-10-18: 75%</title></circle><circle cx="168.2" cy="39.0" r="7" class="hit"><title>2026-10-19: 25%</title></circle><circle cx="177.7" cy="6.0" r="7" class="hit"><title>2026-10-20: 100%</title></circle><circle cx="187.2" cy="17.0" r="7" class="hit"><title>2026-10-21: 75%</title></circle><circle cx="196.8" cy="17.0" r="7" class="hit"><title>2026-10-22: 75%</title></circle><circle cx="206.3" cy="28.0" r="7" class="hit"><title>2026-10-23: 50%</title></circle><circle cx="215.8" cy="32.4" r="7" class="hit"><title>2026-10-24: 40%</title></circle><circle cx="225.4" cy="28.0" r="7" class="hit"><title>2026-10-25: 50%</title></circle><circle cx="234.9" cy="17.0" r="7" class="hit"><title>2026-10-26: 75%</title></circle><circle cx="244.5" cy="17.0" r="7" class="hit"><title>2026-10-27: 75%</title></circle><circle cx="254.0" cy="17.0" r="7" class="hit"><title>2026-10-28: 75%</title></circle></svg><div class="note">09-28 → 10-28 · range 0%–100%</div></div>
+<div class="trend"><div class="trend-head"><span>AI-tell hits shipped</span><strong>3</strong></div><svg class="spark" viewBox="0 0 260 56" role="img" aria-label="27 nights, 0 to 5"><path d="M6.0,6.0 L15.5,41.2 L25.1,50.0 L34.6,50.0 L44.2,41.2 L53.7,41.2 L63.2,41.2 L72.8,41.2 L82.3,50.0 L91.8,50.0 L101.4,50.0 L110.9,50.0 L120.5,50.0 L130.0,50.0 L139.5,50.0 L149.1,50.0 L158.6,50.0 L168.2,41.2 L177.7,41.2 L187.2,50.0 L196.8,41.2 L206.3,50.0 L215.8,41.2 L225.4,41.2 L234.9,41.2 L244.5,32.4 L254.0,23.6" class="line"/><circle cx="254.0" cy="23.6" r="4" class="today"/><circle cx="6.0" cy="6.0" r="7" class="hit"><title>2026-09-28: 5</title></circle><circle cx="15.5" cy="41.2" r="7" class="hit"><title>2026-09-29: 1</title></circle><circle cx="25.1" cy="50.0" r="7" class="hit"><title>2026-10-02: 0</title></circle><circle cx="34.6" cy="50.0" r="7" class="hit"><title>2026-10-03: 0</title></circle><circle cx="44.2" cy="41.2" r="7" class="hit"><title>2026-10-04: 1</title></circle><circle cx="53.7" cy="41.2" r="7" class="hit"><title>2026-10-05: 1</title></circle><circle cx="63.2" cy="41.2" r="7" class="hit"><title>2026-10-06: 1</title></circle><circle cx="72.8" cy="41.2" r="7" class="hit"><title>2026-10-07: 1</title></circle><circle cx="82.3" cy="50.0" r="7" class="hit"><title>2026-10-09: 0</title></circle><circle cx="91.8" cy="50.0" r="7" class="hit"><title>2026-10-10: 0</title></circle><circle cx="101.4" cy="50.0" r="7" class="hit"><title>2026-10-12: 0</title></circle><circle cx="110.9" cy="50.0" r="7" class="hit"><title>2026-10-13: 0</title></circle><circle cx="120.5" cy="50.0" r="7" class="hit"><title>2026-10-14: 0</title></circle><circle cx="130.0" cy="50.0" r="7" class="hit"><title>2026-10-15: 0</title></circle><circle cx="139.5" cy="50.0" r="7" class="hit"><title>2026-10-16: 0</title></circle><circle cx="149.1" cy="50.0" r="7" class="hit"><title>2026-10-17: 0</title></circle><circle cx="158.6" cy="50.0" r="7" class="hit"><title>2026-10-18: 0</title></circle><circle cx="168.2" cy="41.2" r="7" class="hit"><title>2026-10-19: 1</title></circle><circle cx="177.7" cy="41.2" r="7" class="hit"><title>2026-10-20: 1</title></circle><circle cx="187.2" cy="50.0" r="7" class="hit"><title>2026-10-21: 0</title></circle><circle cx="196.8" cy="41.2" r="7" class="hit"><title>2026-10-22: 1</title></circle><circle cx="206.3" cy="50.0" r="7" class="hit"><title>2026-10-23: 0</title></circle><circle cx="215.8" cy="41.2" r="7" class="hit"><title>2026-10-24: 1</title></circle><circle cx="225.4" cy="41.2" r="7" class="hit"><title>2026-10-25: 1</title></circle><circle cx="234.9" cy="41.2" r="7" class="hit"><title>2026-10-26: 1</title></circle><circle cx="244.5" cy="32.4" r="7" class="hit"><title>2026-10-27: 2</title></circle><circle cx="254.0" cy="23.6" r="7" class="hit"><title>2026-10-28: 3</title></circle></svg><div class="note">09-28 → 10-28 · range 0–5</div></div>
+</div>
+
+<h2>What happened</h2>
+<h3>Two of three runs did not need a fallback, and the third is this review</h3>
+<p>The primary run started at 1:05 AM Pacific, on time, and completed successfully, finishing at 1:34 AM Pacific. Fallback 1 at 2:05 AM Pacific also completed successfully with no delay. Fallback 2 at 3:05 AM Pacific is the run producing this review and is still in progress. The scheduler chain fired as designed, but the primary run was the only one whose output was needed.</p>
+
+<h3>The script shipped 1,000 words over target after one expand pass</h3>
+<p>The first draft came in at 2,536 words against a target of 3,400, so it was sent back for one expand pass. The shipped script is 3,529 words, which is above target, not under it. The expand pass overshot the target by 129 words, so the length control is loose in the upward direction as well as the downward one. The editorial review does not treat this as a failure, but the one-pass rule is what let it land above target.</p>
+<p><em>Change: consider a second length check after the expand pass in the script generator, so the output lands closer to the 3,400-word target.</em></p>
+
+<h3>Ten of eighteen roundup citations matched, and the deep dives matched three of four</h3>
+<p>Ten of the 18 roundup citations were matched to their source, and three of the four deep-dive citations were matched. The unmatched citations were not caught by the pipeline and carry no verified attribution in tonight's script. Of the 23 stories cut from the roundup pool by the airtime budget, that cut is by design, and the stories remain in the pool for a later day.</p>
+<p><em>Change: inspect the eight unmatched roundup citations and the one unmatched deep-dive citation to see whether the matcher or the source attribution is the cause.</em></p>
+
+<h3>Casey carried 57 percent of the deep-dive words, and the AI-tell check flagged three hits</h3>
+<p>Casey's share of the deep-dive words was 57 percent, and the voice ratio of Casey to Riley was 1.4. The ratio is the one the show's voice settings aim for, but the deep-dive word share sits well above half. The AI-tell pattern check flagged three hits in the script. Both results are within the pipeline's acceptance thresholds and are listed here so the maintainer can see the balance of the two voices tonight.</p>
+
+<details><summary>Raw numbers</summary>
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>4 articles</td></tr>
+<tr><td>Script</td><td>3 pattern hit(s), voice ratio 1.4, 3529 words</td></tr>
+<tr><td>Deep dive split</td><td>Casey 57% of the words</td></tr>
+<tr><td>Audio</td><td>21.0 min</td></tr>
+<tr><td>Audio size</td><td>19.2 MB</td></tr>
+<tr><td>Citations matched</td><td>10/18 roundup, 3/4 deep dive</td></tr>
+<tr><td>Feed</td><td>273 episodes</td></tr>
+<tr><td>Anthropic input tokens</td><td>73,761</td></tr>
+<tr><td>API calls</td><td>20 total: claude 10 · brave-search 4 · brave-answers 4 · kagi-extract 2</td></tr>
+</tbody>
+</table>
+</details>
+</body>
+</html>
