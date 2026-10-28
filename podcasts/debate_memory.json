@@ -1,31 +1,4 @@
 {
-  "2026-07-29": {
-    "timestamp": 1785322775.637059,
-    "date": "2026-07-29",
-    "theme": "Repair Culture & Practical Tech",
-    "focus": "homestead-offgrid",
-    "central_question": "When building off-grid power systems, is resilience better achieved through open, repairable components or by accepting manufacturer lock-in and hoping supply chains hold?",
-    "riley_position": "Open-source design patterns like Meshtastic create import-ban-proof systems by eliminating single chokepoints, and this philosophy can transfer to power systems through documentation and monitoring practices that don't depend on any single vendor.",
-    "riley_key_evidence": [
-      "Meshtastic's waterproof mesh radio nodes use generic parts from multiple suppliers, making them immune to import restrictions on any single manufacturer",
-      "Off-grid systems in the Cariboo have historically relied on salvaged and adapted parts (old alternators, decommissioned RV inverters), proving informal used-parts economies already work",
-      "Screenshotting monitoring dashboards and keeping paper logbooks costs nothing but time and outlives any single owner or installer"
-    ],
-    "casey_position": "The inverter market is genuinely consolidated among a handful of manufacturers (Victron, Outback, Schneider), so an import ban removes affordable competition rather than breaking open chokepoints; real durability requires formal accountability structures, not just Saturday projects.",
-    "casey_key_evidence": [
-      "Import bans protecting three domestic inverter makers from cheaper competitors consolidate chokepoints instead of breaking them open, the opposite of healthy competition",
-      "Xat\u015b\u016bll First Nation's community-maintained digital infrastructure required formal accountability to the community over time, not casual neighbor coordination",
-      "Some 'smart' inverters require manufacturer server accounts to report your own battery voltage, creating lock-in that offline-first design can prevent"
-    ],
-    "resolution": "They converged on a practical filter both could endorse: before any purchase, ask whether a device works without subscriptions, accounts, or factory repair dependency\u2014and whether neighbors can diagnose failures with a multimeter and printed manual. Riley acknowledged Casey's distinction between a weekend project and durable institutional capacity; Casey acknowledged both scales can coexist without negating each other.",
-    "topics_covered": [
-      "US inverter import ban and its effect on Canadian off-grid homestead costs",
-      "Open-source mesh networks (Meshtastic) as an import-ban-resistant alternative for rural connectivity",
-      "Documentation and knowledge transfer as repair-culture solutions (wiring diagrams, monitoring logs)",
-      "Offline-first device design versus cloud-dependent 'smart' systems",
-      "Distinction between informal community problem-solving and formally accountable capacity-building institutions"
-    ]
-  },
   "2026-07-30": {
     "timestamp": 1785418340.976337,
     "date": "2026-07-30",
@@ -2568,6 +2541,34 @@
       "Local standing of mine crews, ranch families, and Indigenous claims",
       "Permitting, the proposed repeal of Indigenous-rights law, and court risk",
       "Reclamation bonding and the Mount Polley tailings legacy"
+    ]
+  },
+  "2026-10-28": {
+    "timestamp": 1793175330.320231,
+    "date": "2026-10-28",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "digital-life-security",
+    "anchor": "who-counts-as-local",
+    "central_question": "Should blocked devices and sanctioned platforms be named publicly by default, and what must be printed on products or notices so households can check them without regulator help?",
+    "riley_position": "Public, component-level naming (chip part numbers, renamed companies, update sources) before sale is the practical fix, letting repair shops and owners check products against a list rather than trusting unverifiable claims.",
+    "riley_key_evidence": [
+      "The FCC named the HiVision Hi3516CV610 chip, which a repair shop can read off a board and compare to a list.",
+      "Krebs's investigation of Cryptomus dated to December 2024 and was public before the October 2026 UK sanctions, showing evidence was available.",
+      "Researchers jailbroke the iPhone Duo within hours of launch and patched via iOS 27.2, presented as the trust model working."
+    ],
+    "casey_position": "Naming alone does not protect households: rules govern new authorizations and leave used devices and repairs unclear, the checkable signals arrive too late, and owners still must trust somebody.",
+    "casey_key_evidence": [
+      "Sources say the FCC rule bars new authorizations but do not say what happens to devices already on the market, and The Verge reports the agency has not named the blocked gadgets.",
+      "Cryptomus was publicly linked to Certa Payments and Xeltox well before the freeze, and households cannot wait two years to learn who they pay.",
+      "iFixit reports out-of-warranty Duo screen damage costs $999 and replacement parts were not yet in the self-service store, leaving owners with a manual but no part."
+    ],
+    "resolution": "They did not reach agreement. They agreed that a chip name, renamed-company record, and parts list are useful starting points, but left open whether naming should be the default and what must be printed on boxes or notices.",
+    "topics_covered": [
+      "FCC Covered List rule and HiSilicon chip blocking scope",
+      "Repair, used devices, and replacement parts under the new rule",
+      "Discount ad lures and infostealer risks",
+      "Cryptomus renaming, sanctions, and public disclosure gaps",
+      "iPhone Duo security updates, repair costs, and parts availability"
     ]
   }
 }
