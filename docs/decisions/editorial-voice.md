@@ -504,6 +504,13 @@ The weekly script review (`review_scripts.py`) reads the cards from `hosts.json`
 each host against theirs under Host Voice Differentiation. It flags a card move worn into a tic,
 any personal anecdote, and any lens that turns into a stance on local politics.
 
+Three of its dimensions were brought in line with the manifesto on 2026-10-27. Mission
+Alignment and Rural Cariboo Lens used to require a local tie in every segment and capped a
+deep dive with no Cariboo name in its last third at 3. That graded the manufactured connection
+the script prompts ban, so a forced local tie now scores below none. Humour lost its "at least
+3 light moments" quota. Dimension 13, Show Values, scores the manifesto's show values and
+whether the wildcard kicker earned its place.
+
 Both cards shipped together on 2026-10-18. Holding Casey's until after the 2026-10-24 vote was
 considered and declined by the producer: the card carries no civic positions, so the timing
 does not matter.

@@ -413,8 +413,9 @@ _MEANS: dict[str, str] = {
                          "kept, so nothing is dropped from the episode."),
     "brave_enriched": ("articles whose body was too thin to script from, topped up from Brave "
                        "search results."),
-    "short_script": ("the first draft came in under target and was sent back for up to two "
-                     "expand passes. quality.script_words is what shipped."),
+    "short_script": ("the first draft came in under target and was sent back for one expand "
+                     "pass. quality.script_words is what shipped. A thin day shipping under "
+                     "target is intended; it is a problem only under SHORT_EPISODE_WORDS."),
     # Raised as a lost-articles problem on five nights before this was here.
     "roundup_dropped": ("stories cut from the roundup pool by the airtime budget "
                         "(NEWS_ROUNDUP_COUNT). By design: the pool is larger than one segment "
@@ -1071,6 +1072,11 @@ VOICE_SHARE_BAND = (35, 65)
 # together). One or two hits are the scan counting idiom, 28 of 40 scripts
 # 2026-09-01..10-11 had at least one, so the item could not stay closed.
 AI_TELL_SIGNAL_ABOVE = 3
+# A shipped script under this is a short episode (~17 min at 167 wpm): the old
+# publish floor. Between it and TARGET_SCRIPT_WORDS a short day is the design
+# since 2026-10-27 (docs/MANIFESTO.md, "short and strong beats full and thin"),
+# and flagging it would keep a roadmap item open over intended behaviour.
+SHORT_EPISODE_WORDS = 2800
 _CLOSED_SHOWN = 25
 
 _FINDING_SCHEMA = {
@@ -1135,11 +1141,13 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
             signals.setdefault(f"degraded:{entry[0]}", f"degrade() row: {entry[1][:160]}")
     # A short first draft that the expand pass brought to target is the
     # pipeline working (2026-09-28: 2,877 → 3,548 shipped). The listener hears
-    # what shipped, so that is what keeps the item open.
+    # what shipped, so that is what keeps the item open, and only below
+    # SHORT_EPISODE_WORDS: a thin day shipping short is intended.
     short = facts.get("short_script")
     quality = facts.get("quality")
     shipped = quality[2] if isinstance(quality, list) and len(quality) == 3 else None
-    if isinstance(short, list) and len(short) == 2 and (shipped is None or shipped < short[1]):
+    if (isinstance(short, list) and len(short) == 2
+            and (shipped is None or shipped < SHORT_EPISODE_WORDS)):
         signals["short-script"] = (f"shipped {shipped if shipped is not None else '?'} words "
                                    f"against a {short[1]}-word target (first draft {short[0]})")
     cites = facts.get("citation_alignment")

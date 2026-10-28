@@ -91,6 +91,11 @@ and disagree on substance; they may weigh stakes and costs, and never endorse. H
 dry and earned. Come back to a past story only with a new fact.
 ```
 
+**The weekly script review** (`review_scripts.py`) grades against them: dimension 13, Show
+Values. Its local-lens and humour dimensions no longer reward a forced Cariboo tie or a joke
+quota. The nightly roadmap's `short-script` signal fires only under 2,800 shipped words, so a
+thin day shipping short is not logged as a problem.
+
 **The feed** gets no values paragraph: its gate already says the same things through
 its own levers, and a new paragraph would change `GATE_RUBRIC_ID` and re-gate the whole
 cache to repeat them.
