@@ -692,8 +692,8 @@
       "title": "Most roundup citations failed to match the source material the script was built from.",
       "detail": "On 2026-10-25, only 8 of 18 roundup citations matched and 2 of 4 deep-dive citations matched, so 10 roundup citations did not align to the queried sources. The script stage accepted an expanded script of 3371 words without a grounding check that would catch unmatched citations. Closing this means having the citation-matching step reject or flag unmatched citations before the expand passes run, so that expansion adds grounded material rather than filler.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-10-25",
       "seen": [
         "2026-10-25"
@@ -707,8 +707,8 @@
       "title": "The script stage invented names absent from the week's commit context, forcing a failed draft.",
       "detail": "The first script draft for the 2026-10-25 episode named Meta and Moment in the dialogue, neither of which appears in the week's commits, so the draft failed and the retry aired with upstream changes. The listener hears a regenerated script and the only record of the discarded draft is the degradation entry. The facts do not establish why the names appeared, but the script step's commit context is the first place to check, and the discarded draft should be logged in full.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-10-25",
       "seen": [
         "2026-10-25"
@@ -716,7 +716,20 @@
       "signal": "degraded:script/meta-moment/retry",
       "signal_seen": "2026-10-25",
       "last_seen": "2026-10-25"
+    },
+    {
+      "id": "script-length-overshoots-target-after-single-expand-pass",
+      "title": "The expand pass overshoots the script target with no second length check.",
+      "detail": "The first draft came in at 2536 words against a 3400-word target and was sent back for one expand pass, but the shipped script is 3529 words, 129 words over target. The length control is loose in both directions, and the one-pass rule is what lets the output land above target. A second length check after the expand pass in the script generator would bring the shipped length closer to the target.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-10-28",
+      "seen": [
+        "2026-10-28"
+      ],
+      "last_seen": "2026-10-28"
     }
   ],
-  "updated": "2026-10-27"
+  "updated": "2026-10-28"
 }
