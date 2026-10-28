@@ -2078,6 +2078,68 @@ class TestPolishLengthFloor:
         assert f"the draft above is {len(script.split())} words" in content
 
 
+class TestPolishStoryboard:
+    """The polish weaves in research and adds counterpoints, and either can open
+    a stop the storyboard left out. It gets the deep dive's question and beat
+    chain, not the whole plan."""
+
+    PLAN = TestScriptStoryboard._plan(None)
+
+    def test_addendum_carries_the_chain_and_nothing_else(self):
+        import podcast_generator as pg
+        addendum = pg._storyboard_polish_addendum(self.PLAN)
+
+        assert "Central question: Who owns the last mile?" in addendum
+        assert "Beat 4: claim 3" in addendum
+        assert "→ next, because: because" in addendum
+        assert "Set aside: Berlin archive" in addendum
+        assert "Landing: who holds the binder" in addendum
+        # Evidence, pushback and the roundup are the draft's to carry.
+        assert "e (CBC)" not in addendum and "clean pivot" not in addendum
+
+    def test_no_plan_no_addendum(self):
+        import podcast_generator as pg
+        assert pg._storyboard_polish_addendum(None) == ""
+        assert pg._storyboard_polish_addendum({"deep_dive": {"central_question": "q", "beats": []}}) == ""
+
+    def test_both_polish_paths_carry_it(self, monkeypatch):
+        import podcast_generator as pg
+        client = MagicMock()
+        client.messages.batches.create.return_value = MagicMock(id="batch_1")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        script = "**RILEY:** hello\n**CASEY:** hi\n" * 600
+        pg.submit_post_processing_batch(script, "Theme", [], [], additional_research="",
+                                        research_insights="", storyboard=self.PLAN)
+        requests = {r["custom_id"]: r for r in client.messages.batches.create.call_args.kwargs["requests"]}
+        batch = requests["polish-and-factcheck"]["params"]["messages"][0]["content"]
+
+        captured = {}
+        monkeypatch.setattr(pg, "_run_agentic_loop", lambda *a, user_content, **k:
+                            captured.setdefault("content", user_content))
+        pg.polish_and_factcheck_with_agent(script, "Theme", [], [], storyboard=self.PLAN)
+
+        for content in (batch, captured["content"]):
+            assert "DEEP DIVE PLAN" in content
+            # The plan comes before the length floor, which stays last.
+            assert content.index("DEEP DIVE PLAN") < content.index("LENGTH FLOOR")
+
+    def test_the_two_polish_prompts_share_their_rules(self):
+        """The batch and agentic copies had drifted: the agentic one lost the
+        echoed-farewell check. Only the path-specific lines may differ."""
+        prompts = load_prompts_config()
+        path_specific = ("- STALE EVENT CHECK:", "  (q) ", "After polishing, review ONLY")
+
+        def rules(text):
+            body = re.split(r"\n(?:SCRIPT:|Return the complete polished)", text[text.index("## TASK 1"):])[0]
+            body = re.sub(r"## RESEARCHING UNANSWERED QUESTIONS.*?(?=## POLISHING RULES)", "", body, flags=re.S)
+            body = re.sub(r"VERIFIED SOURCE MATERIAL \(the only.*?(?=FACT-CHECK RULES)", "", body, flags=re.S)
+            return [line for line in body.splitlines()
+                    if line.strip() and not line.startswith(path_specific)]
+
+        assert rules(prompts["polish_and_factcheck"]["template"]) == \
+            rules(prompts["agentic_polish_and_factcheck"]["system_template"])
+
+
 class TestPolishAnchorThreading:
     """The polish pass had zero visibility into the week's anchor question —
     format_anchor_for_prompt() was only ever called at generation time. The
