@@ -5967,7 +5967,9 @@ def extract_personality_clues(script):
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
             thinking=thinking_off(SUMMARY_MODEL),
-            max_tokens=200,
+            # Four clues of ~140 chars as JSON are ~550 chars; at 200 tokens Haiku
+            # 5.5 cut them mid-string (2026-10-22 char 485, 2026-10-29 char 547).
+            max_tokens=600,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output({
                 "type": "object",
@@ -5980,6 +5982,8 @@ def extract_personality_clues(script):
             }),
         ))
         _log_claude_usage(response)
+        if _truncated(response):
+            raise ValueError("reply truncated at max_tokens")
         result = json.loads(message_text(response))
         return {k: v for k, v in result.items() if isinstance(v, list)}
     except Exception as e:

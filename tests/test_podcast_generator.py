@@ -5643,6 +5643,18 @@ class TestScriptStageAnthropicFallbacksHonourBillingWall:
         assert clean_segments[-1]["name"] == "script/persist-host-memory"
         assert clean_segments[-1]["status"] == "degraded"
 
+    def test_personality_clues_room_for_four_clues_and_truncation_named(self, monkeypatch, clean_segments):
+        """2026-10-22 and 10-29: a 200-token cap cut four clues mid-string, and the
+        degrade row read as a JSON bug ("Unterminated string")."""
+        client = MagicMock()
+        client.messages.create.return_value = MagicMock(
+            stop_reason="max_tokens", content=[MagicMock(type="text", text='{"riley": ["x')])
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with segment("script/persist-host-memory", critical=False):
+            assert extract_personality_clues("**DEEP DIVE**\nSome debate text.") == {}
+        assert client.messages.create.call_args.kwargs["max_tokens"] >= 600
+        assert "max_tokens" in clean_segments[-1]["error"]
+
 
 class TestSegment:
     """Segment isolation: which phases are allowed to fail, and what gets recorded."""
