@@ -131,85 +131,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "aired_early"
   },
-  "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams": {
-    "article": {
-      "id": "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams",
-      "url": "https://www.techradar.com/pro/security/these-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams",
-      "title": "[TechRadar] These social media posts promise big online discounts on Lego, Calvin Klein and more \u2014 but really they're just phishing scams",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/HamXBgURVeMtS8ULECqnyn-1920-80.png\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fsecurity%2Fthese-social-media-posts-promise-big-online-discounts-on-lego-calvin-klein-and-more-but-really-theyre-just-phishing-scams\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThere's an elaborate scheme making rounds on Facebook and TikTok to get people to websites laden with infostealers.",
-      "summary": "There's an elaborate scheme making rounds on Facebook and TikTok to get people to websites laden with infostealers.",
-      "_excerpt": "There's an elaborate scheme making rounds on Facebook and TikTok to get people to websites laden with infostealers.",
-      "date_published": "2026-10-05T15:10:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 49,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/HamXBgURVeMtS8ULECqnyn-1920-80.png",
-      "_boosted_score": 53
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-10-28",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-10-28"
-  },
-  "https://krebsonsecurity.com/2026/10/u-k-sanctions-cryptomus-for-ru-money-laundering/": {
-    "article": {
-      "id": "https://krebsonsecurity.com/2026/10/u-k-sanctions-cryptomus-for-ru-money-laundering/",
-      "url": "https://krebsonsecurity.com/2026/10/u-k-sanctions-cryptomus-for-ru-money-laundering/",
-      "title": "[Krebs on Security] U.K. Sanctions Cryptomus for RU Money Laundering",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fkrebsonsecurity.com%2F2026%2F10%2Fu-k-sanctions-cryptomus-for-ru-money-laundering%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe United Kingdom has issued economic sanctions against Cryptomus, a chameleonic cryptocurrency platform that experts say serves as a major conduit for payments related to ransomware, narcotics, darknet markets, fraud and cybercrime services that are helping Russia circumvent existing financial restrictions.",
-      "summary": "The United Kingdom has issued economic sanctions against Cryptomus, a chameleonic cryptocurrency platform that experts say serves as a major conduit for payments related to ransomware, narcotics, darknet markets, fraud and cybercrime services that are helping Russia circumvent existing financial",
-      "_excerpt": "The United Kingdom has issued economic sanctions against Cryptomus, a chameleonic cryptocurrency platform that experts say serves as a major conduit for payments related to ransomware, narcotics, darknet markets, fraud and cybercrime services that are helping Russia circumvent existing financial restrictions.",
-      "date_published": "2026-10-14T14:22:49+00:00",
-      "authors": [
-        {
-          "name": "Krebs on Security",
-          "url": "https://krebsonsecurity.com"
-        }
-      ],
-      "ai_score": 50,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 60,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 57,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-15T04:10:53.679644+00:00"
-      },
-      "_boosted_score": 50
-    },
-    "held_date": "2026-10-15",
-    "target_date": "2026-10-28",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-10-28"
-  },
   "https://www.sciencedaily.com/releases/2026/10/261018084644.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/10/261018084644.htm",
@@ -670,48 +591,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://quesnelobserver.com/2026/10/21/west-fraser-forest-operations-map-3505-invitation-to-comment/": {
-    "article": {
-      "id": "https://quesnelobserver.com/2026/10/21/west-fraser-forest-operations-map-3505-invitation-to-comment/",
-      "url": "https://quesnelobserver.com/2026/10/21/west-fraser-forest-operations-map-3505-invitation-to-comment/",
-      "title": "[Quesnel Cariboo Observer] West Fraser \u2013 Forest Operations Map #3505, Invitation to Comment",
-      "content_html": "<img src=\"https://quesnelobserver.com/wp-content/uploads/sites/18/2026/10/43058326_web1_240117-LDN-PublicNotice-PublicReview-WEstFraserMills_1.jpg?w=1024\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fquesnelobserver.com%2F2026%2F10%2F21%2Fwest-fraser-forest-operations-map-3505-invitation-to-comment%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>The public is invited to review and comment on <strong>West Fraser\u2019s Forest Operations Map (FOM) #3505</strong>. The FOM shows proposed road construction and cut block development under West Fraser\u2019s Forest Stewardship Plan (FSP) within Forest Development Units in the Quesnel Natural Resource District (DQU) and Tree Farm Licence 52 (TFL52). This FOM will be valid for a period of 3 years beginning <strong>November 28, 2026</strong>. During the validity period, West Fraser may apply for Cutting Permits containing cutblocks and Road Permits to construct roads shown on the FOM.</p>",
-      "summary": "The public is invited to review and comment on West Fraser\u2019s Forest Operations Map (FOM) #3505 . The FOM shows proposed road construction and cut block development under West Fraser\u2019s Forest Stewardship Plan (FSP) within Forest Development Units in the Quesnel Natural Resource District (DQU) and",
-      "_excerpt": "The public is invited to review and comment on West Fraser\u2019s Forest Operations Map (FOM) #3505 . The FOM shows proposed road construction and cut block development under West Fraser\u2019s Forest Stewardship Plan (FSP) within Forest Development Units in the Quesnel Natural Resource District (DQU) and Tree Farm Licence 52 (TFL52). This FOM will be valid for a period of 3 years beginning November 28, 2026 . During the validity period, West Fraser may apply for Cutting Permits containing cutblocks and Road Permits to construct roads shown on the FOM.",
-      "date_published": "2026-10-21T20:40:00+00:00",
-      "authors": [
-        {
-          "name": "Quesnel Cariboo Observer",
-          "url": "https://quesnelobserver.com"
-        }
-      ],
-      "ai_score": 78,
-      "_quality": 60,
-      "_relevance": 80,
-      "_local": 90,
-      "_theme_score": 0,
-      "_theme_score_raw": 0,
-      "_composite_podcast": 26,
-      "_keyword_matches": 1,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": false,
-      "image": "https://quesnelobserver.com/wp-content/uploads/sites/18/2026/10/43058326_web1_240117-LDN-PublicNotice-PublicReview-WEstFraserMills_1.jpg?w=1024",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-10-22T06:10:42.268654+00:00"
-      },
-      "_boosted_score": 78,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-10-22",
-    "target_date": "2026-10-29",
-    "target_weekday": 3,
-    "target_focus_slug": "economic-development",
-    "target_focus_name": "Economic Development",
-    "status": "aired_early"
-  },
   "https://www.sciencealert.com/one-quarter-of-data-centers-are-located-in-water-stressed-areas-study-shows": {
     "article": {
       "id": "https://www.sciencealert.com/one-quarter-of-data-centers-are-located-in-water-stressed-areas-study-shows",
@@ -1080,7 +959,8 @@
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
     "target_focus_name": "Economic Development",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-10-29"
   },
   "https://cleantechnica.com/2026/10/21/canada-changing-climate-report-2026-predicts-end-of-glaciers-by-2100/": {
     "article": {
@@ -1156,6 +1036,284 @@
     "target_weekday": 2,
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
+    "status": "held"
+  },
+  "https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html": {
+    "article": {
+      "id": "https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html",
+      "url": "https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html",
+      "title": "[Boing Boing] Glasgow museum pulls its mummies, citing lack of consent from the dead",
+      "content_html": "<img src=\"https://i0.wp.com/boingboing.net/wp-content/uploads/2026/10/fountain-pen-kelvingrove-mummies-removed.jpg?fit=1200%2C409&amp;quality=60&amp;ssl=1\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fboingboing.net%2F2026%2F10%2F23%2Ffountain-pen-kelvingrove-mummies-removed.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<a href=\"https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html\" rel=\"nofollow\" title=\"Glasgow museum pulls its mummies, citing lack of consent from the dead\"><img alt=\"Image: Zhi Yong Lee, CC BY 2.0, via Wikimedia Commons\" class=\"webfeedsFeaturedVisual wp-post-image\" height=\"409\" src=\"https://i0.wp.com/boingboing.net/wp-content/uploads/2026/10/fountain-pen-kelvingrove-mummies-removed.jpg?fit=1200%2C409&amp;quality=60&amp;ssl=1\" style=\"display:block;margin:auto;margin-bottom:5px;\" width=\"1200\"/></a><p class=\"wp-block-paragraph\">People hoping to see mummies at the Kelvingrove Art Gallery and Museum in Glasgow, Scotland, were instead treated to a small sign that said, \"We have removed human remains from this display as a mark of respect.\"</p>\n<p class=\"wp-block-paragraph\">The museum had removed the remains of an ancient Egyptian priest, a mummified hand, a mummified head and a mummified foot. \u2014 <a class=\"read-more\" href=\"https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html\">Read the rest </a></p>\n<p>The post <a href=\"https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html\">Glasgow museum pulls its mummies, citing lack of consent from the dead</a> appeared first on <a href=\"https://boingboing.net\">Boing Boing</a>.</p>",
+      "summary": "People hoping to see mummies at the Kelvingrove Art Gallery and Museum in Glasgow, Scotland, were instead treated to a small sign that said, \"We have removed human remains from this display as a mark of respect.\" The museum had removed the remains of an ancient Egyptian priest, a mummified hand, a",
+      "_excerpt": "People hoping to see mummies at the Kelvingrove Art Gallery and Museum in Glasgow, Scotland, were instead treated to a small sign that said, \"We have removed human remains from this display as a mark of respect.\" The museum had removed the remains of an ancient Egyptian priest, a mummified hand, a mummified head and a mummified foot. \u2014 Read the rest The post Glasgow museum pulls its mummies, citing lack of consent from the dead appeared first on Boing Boing .",
+      "date_published": "2026-10-23T18:28:17+00:00",
+      "authors": [
+        {
+          "name": "Boing Boing",
+          "url": "https://boingboing.net/"
+        }
+      ],
+      "ai_score": 28,
+      "_quality": 58,
+      "_relevance": 30,
+      "_local": 0,
+      "_theme_score": 86,
+      "_theme_score_raw": 12,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 71,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "https://i0.wp.com/boingboing.net/wp-content/uploads/2026/10/fountain-pen-kelvingrove-mummies-removed.jpg?fit=1200%2C409&quality=60&ssl=1",
+      "_boosted_score": 28
+    },
+    "held_date": "2026-10-29",
+    "target_date": "2026-11-02",
+    "target_weekday": 0,
+    "target_focus_slug": "words-journalism",
+    "target_focus_name": "Writing, Journalism & Podcasting",
+    "status": "held"
+  },
+  "https://100milefreepress.net/2026/10/26/wildfire-recovery-supports-still-available-for-clinton-and-area-residents/": {
+    "article": {
+      "id": "https://100milefreepress.net/2026/10/26/wildfire-recovery-supports-still-available-for-clinton-and-area-residents/",
+      "url": "https://100milefreepress.net/2026/10/26/wildfire-recovery-supports-still-available-for-clinton-and-area-residents/",
+      "title": "[100 Mile Free Press] Wildfire recovery supports still available for Clinton and area residents",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F10%2F26%2Fwildfire-recovery-supports-still-available-for-clinton-and-area-residents%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResidents impacted by Big Bar Complex wildfires can still get support, access recovery services",
+      "summary": "Residents impacted by Big Bar Complex wildfires can still get support, access recovery services",
+      "_excerpt": "Residents impacted by Big Bar Complex wildfires can still get support, access recovery services",
+      "date_published": "2026-10-27T06:03:02.458021+00:00",
+      "authors": [
+        {
+          "name": "100 Mile Free Press",
+          "url": "https://100milefreepress.net"
+        }
+      ],
+      "ai_score": 78,
+      "_quality": 65,
+      "_relevance": 80,
+      "_local": 85,
+      "_theme_score": 84,
+      "_theme_score_raw": 10,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_boosted_score": 78,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-10-29",
+    "target_date": "2026-10-30",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://www.abc.net.au/news/2026-10-28/lancet-study-counts-three-million-climate-change-related-deaths/107315006": {
+    "article": {
+      "id": "https://www.abc.net.au/news/2026-10-28/lancet-study-counts-three-million-climate-change-related-deaths/107315006",
+      "url": "https://www.abc.net.au/news/2026-10-28/lancet-study-counts-three-million-climate-change-related-deaths/107315006",
+      "title": "[abc.net.au] Lancet researchers urge health emergency declaration as climate losses mount",
+      "content_html": "<img src=\"https://kagiproxy.com/img/u7Q4GbDHxu_QGKQTYkouJiEMxZnYd4pH32JgR8Wayg83wPBJiHgGIEAuuXtPi41rwUqBliRFc_iOvxO8Glrzkn4a12T0z1XZgV8iCv7gvh5gFf86fHeFmcgK8NDj07dIvc-NCioWIU4SxNf1T5ybg8P-4zGpIXk\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.abc.net.au%2Fnews%2F2026-10-28%2Flancet-study-counts-three-million-climate-change-related-deaths%2F107315006\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHeat-related disruption cost the world an estimated $1.07 trillion in lost worker productivity in 2025, while extreme drought affected about 52% of global land for at least a month, according to the 2026 Lancet Countdown report. The report\u2019s 146 researchers from 30 countries urged governments to treat climate change as a global health emergency and coordinate a sustained response.\n\nExtreme rainfall affected 17.2% of global land each year from 2016 to 2025, up from 14.8% in the preceding decade, and the researchers linked shifting groundwater conditions to risks for food security and sanitation. Southeast Asia and Africa suffered the largest productivity-related economic losses, equivalent to 3.9% and 3.2% of gross domestic product, respectively.\n\nClean-energy investment reached $2.1 trillion in 2025, nearly twice fossil-fuel investment, but fossil fuels still supplied more than 80% of global energy. The report calls for governments to consider health in climate decisions and direct climate and health funding to vulnerable countries. Researchers are expected to press the issue at the COP31 climate conference in Antalya, T\u00fcrkiye, scheduled for Nov. 9-20.",
+      "summary": "Heat-related disruption cost the world an estimated $1.07 trillion in lost worker productivity in 2025, while extreme drought affected about 52% of global land for at least a month, according to the 2026 Lancet Countdown report. The report\u2019s 146 researchers from 30 countries urged governments to",
+      "_excerpt": "Heat-related disruption cost the world an estimated $1.07 trillion in lost worker productivity in 2025, while extreme drought affected about 52% of global land for at least a month, according to the 2026 Lancet Countdown report (abc.net.au, abc.com.py, elpais.com). The report\u2019s 146 researchers from 30 countries urged governments to treat climate change as a global health emergency and coordinate a sustained response (straitstimes.com, insideclimatenews.org). Extreme rainfall affected 17.2% of global land each year from 2016 to 2025, up from 14.8% in the preceding decade, and the researchers linked shifting groundwater conditions to risks for food security and sanitation (abc.com.py, rte.ie). Southeast Asia and Africa suffered the largest productivity-related economic losses, equivalent to 3.9% and 3.2% of gross domestic product, respectively (straitstimes.com, ndtv.com). Clean-energy investment reached $2.1 trillion in 2025, nearly twice fossil-fuel investment, but fossil fuels still supplied more than 80% of global energy (rte.ie, abc.net.au). The report calls for governments to consider health in climate decisions and direct climate and health funding to vulnerable countries. Researchers are expected to press the issue at the COP31 climate conference in Antalya, T\u00fcrkiye, scheduled for Nov. 9-20 (sciencealert.com, lemonde.fr, franceinfo.fr). Drought acceleration: The area affected by extreme drought expanded more than 700% faster in the decade after the Paris Agreement took effect than in the previous decade (abc.com.py). Health preparedness: Only 56 of the World Health Organization\u2019s 194 member states had adapted health systems to climate risks, while 75 countries had early-warning systems for extreme weather (abc.com.py, straitstimes.com). Research funding gap: Climate-related medical research funding reached $316 million in 2024 after rising sevenfold, but 84% went to researchers in wealthy countries (straitstimes.com, insideclimatenews.org).",
+      "date_published": "2026-10-28T01:52:40+00:00",
+      "authors": [
+        {
+          "name": "abc.net.au",
+          "url": "https://www.abc.net.au"
+        }
+      ],
+      "ai_score": 47,
+      "_quality": 70,
+      "_relevance": 55,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_kite_sources": 20,
+      "_kite_context": "Perspective: Jeni Miller, executive director of the Global Climate and Health Alliance, said healthcare resilience cannot compensate for unchecked warming and argued that cutting the drivers of climate change is essential to protecting health (insideclimatenews.org). (Inside Climate News)\nPerspective: Diana Picon Manyari, international climate senior director at Health Care Without Harm, called for health professionals to have a seat at COP31 and said climate-health financing commitments remain difficult to access (insideclimatenews.org). (Inside Climate News)\nPerspective: Professor Paul Beggs, a Macquarie University climate-health expert, said Australia\u2019s role as COP president should bring progress on emissions cuts and pointed to deaths from heatwaves and bushfire smoke in Australia as evidence that no region is immune (ABC News Australia)\nQuote: \"The rate of increase in many climate-related health threats is accelerating, while heat deaths linked to climate change have reached a record-high, and the economic toll is battering vulnerable sectors and communities the hardest.\" (Marina Romanello, executive director of the Lancet Countdown, ScienceAlert)\nTimeline: 2016: The Paris Agreement entered into force as climate-health risks were tracked (abc.net.au, euronews.com).\nTimeline: 2025: Extreme drought affected about 52% of global land for at least one month (abc.net.au, rte.ie).\nTimeline: 9 November 2026: COP31 is scheduled to open in Antalya, T\u00fcrkiye (lemonde.fr).",
+      "_composite_podcast": 68,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "image": "https://kagiproxy.com/img/u7Q4GbDHxu_QGKQTYkouJiEMxZnYd4pH32JgR8Wayg83wPBJiHgGIEAuuXtPi41rwUqBliRFc_iOvxO8Glrzkn4a12T0z1XZgV8iCv7gvh5gFf86fHeFmcgK8NDj07dIvc-NCioWIU4SxNf1T5ybg8P-4zGpIXk",
+      "_boosted_score": 47,
+      "_body": "Heat-related disruption cost the world an estimated $1.07 trillion in lost worker productivity in 2025, while extreme drought affected about 52% of global land for at least a month, according to the 2026 Lancet Countdown report (abc.net.au, abc.com.py, elpais.com). The report\u2019s 146 researchers from 30 countries urged governments to treat climate change as a global health emergency and coordinate a sustained response (straitstimes.com, insideclimatenews.org). Extreme rainfall affected 17.2% of global land each year from 2016 to 2025, up from 14.8% in the preceding decade, and the researchers linked shifting groundwater conditions to risks for food security and sanitation (abc.com.py, rte.ie). Southeast Asia and Africa suffered the largest productivity-related economic losses, equivalent to 3.9% and 3.2% of gross domestic product, respectively (straitstimes.com, ndtv.com). Clean-energy investment reached $2.1 trillion in 2025, nearly twice fossil-fuel investment, but fossil fuels still supplied more than 80% of global energy (rte.ie, abc.net.au). The report calls for governments to consider health in climate decisions and direct climate and health funding to vulnerable countries. Researchers are expected to press the issue at the COP31 climate conference in Antalya, T\u00fcrkiye, scheduled for Nov. 9-20 (sciencealert.com, lemonde.fr, franceinfo.fr). Drought acceleration: The area affected by extreme drought expanded more than 700% faster in the decade after the Paris Agreement took effect than in the previous decade (abc.com.py). Health preparedness: Only 56 of the World Health Organization\u2019s 194 member states had adapted health systems to climate risks, while 75 countries had early-warning systems for extreme weather (abc.com.py, straitstimes.com). Research funding gap: Climate-related medical research funding reached $316 million in 2024 after rising sevenfold, but 84% went to researchers in wealthy countries (straitstimes.com, insideclimatenews.org)."
+    },
+    "held_date": "2026-10-29",
+    "target_date": "2026-10-30",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream": {
+    "article": {
+      "id": "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream",
+      "url": "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream",
+      "title": "[The Verge] Foreign gadget bans: all the news about the FCC\u2019s clampdown on Chinese tech",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theverge.com%2Fpolicy%2F1019851%2Ffcc-foreign-gadget-ban-drone-robot-roomba-storystream\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWhat do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They\u2019re the first consumer gadgets that are facing de facto import bans because of the US government\u2019s xenophobic stance \u2014 and they might not be the last. Originally, the US government was just worried [\u2026]",
+      "summary": "What do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They\u2019re the first consumer gadgets that are facing de facto import bans because of the US government\u2019s xenophobic stance \u2014 and they might not be the last. Originally, the US",
+      "_excerpt": "What do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They\u2019re the first consumer gadgets that are facing de facto import bans because of the US government\u2019s xenophobic stance \u2014 and they might not be the last. Originally, the US government was just worried [\u2026]",
+      "date_published": "2026-10-28T19:37:31+00:00",
+      "authors": [
+        {
+          "name": "The Verge",
+          "url": "https://www.theverge.com"
+        }
+      ],
+      "ai_score": 65,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 68,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News",
+      "_boosted_score": 65
+    },
+    "held_date": "2026-10-29",
+    "target_date": "2026-11-04",
+    "target_weekday": 2,
+    "target_focus_slug": "vehicles-field-gear",
+    "target_focus_name": "Vehicles & Field Gear",
+    "status": "held"
+  },
+  "https://cpj.org/2026/10/turkish-reporter-ismail-ari-arrested-again-on-suspicion-of-spreading-disinformation/": {
+    "article": {
+      "id": "https://cpj.org/2026/10/turkish-reporter-ismail-ari-arrested-again-on-suspicion-of-spreading-disinformation/",
+      "url": "https://cpj.org/2026/10/turkish-reporter-ismail-ari-arrested-again-on-suspicion-of-spreading-disinformation/",
+      "title": "[Committee to Protect Journalists] Turkish reporter \u0130smail Ar\u0131 arrested again on suspicion of spreading \u2018disinformation\u2019",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fcpj.org%2F2026%2F10%2Fturkish-reporter-ismail-ari-arrested-again-on-suspicion-of-spreading-disinformation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIstanbul, October 22, 2026\u2014Turkish authorities must immediately free \u0130smail Ar\u0131, the latest journalist to be arrested in a relentless crackdown on independent media this year, and abolish the disinformation law that has supercharged these repressive tactics, the Committee to Protect Journalists said Thursday.\u00a0 \u201c\u0130smail Ar\u0131 has already spent more than two months in jail this...",
+      "summary": "Istanbul, October 22, 2026\u2014Turkish authorities must immediately free \u0130smail Ar\u0131, the latest journalist to be arrested in a relentless crackdown on independent media this year, and abolish the disinformation law that has supercharged these repressive tactics, the Committee to Protect Journalists",
+      "_excerpt": "Istanbul, October 22, 2026\u2014Turkish authorities must immediately free \u0130smail Ar\u0131, the latest journalist to be arrested in a relentless crackdown on independent media this year, and abolish the disinformation law that has supercharged these repressive tactics, the Committee to Protect Journalists said Thursday. \u201c\u0130smail Ar\u0131 has already spent more than two months in jail this...",
+      "date_published": "2026-10-22T16:44:17+00:00",
+      "authors": [
+        {
+          "name": "Committee to Protect Journalists",
+          "url": "https://cpj.org"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 69,
+      "_theme_score_raw": 5,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 64,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "friday",
+        "label": "Wild Spaces & Outdoor Life",
+        "shown_at": "2026-10-23T06:12:40.756563+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-10-29",
+    "target_date": "2026-11-02",
+    "target_weekday": 0,
+    "target_focus_slug": "words-journalism",
+    "target_focus_name": "Writing, Journalism & Podcasting",
+    "status": "held"
+  },
+  "https://vancouversun.com/health/bc-doctor-takes-canadas-nature-prescriptions-global-at-biodiversity-summit": {
+    "article": {
+      "id": "https://vancouversun.com/health/bc-doctor-takes-canadas-nature-prescriptions-global-at-biodiversity-summit",
+      "url": "https://vancouversun.com/health/bc-doctor-takes-canadas-nature-prescriptions-global-at-biodiversity-summit",
+      "title": "[Vancouver Sun] B.C. doctor takes Canada&#039;s nature prescriptions global at biodiversity summit",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fvancouversun.com%2Fhealth%2Fbc-doctor-takes-canadas-nature-prescriptions-global-at-biodiversity-summit\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nVancouver family physician Melissa Lem launched an international alliance to prescribe nature at COP17 this week in Armenia",
+      "summary": "Vancouver family physician Melissa Lem launched an international alliance to prescribe nature at COP17 this week in Armenia",
+      "_excerpt": "Vancouver family physician Melissa Lem launched an international alliance to prescribe nature at COP17 this week in Armenia",
+      "date_published": "2026-10-23T18:50:01+00:00",
+      "authors": [
+        {
+          "name": "Vancouver Sun",
+          "url": "https://vancouversun.com/news/bc-wildfires-new-evacuation-orders-issued-south-chilcotin"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 84,
+      "_theme_score_raw": 10,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 57,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_boosted_score": 50
+    },
+    "held_date": "2026-10-29",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.vox.com/future-perfect/507074/ebola-spread-rapid-congo": {
+    "article": {
+      "id": "https://www.vox.com/future-perfect/507074/ebola-spread-rapid-congo",
+      "url": "https://www.vox.com/future-perfect/507074/ebola-spread-rapid-congo",
+      "title": "[Vox] This chart shows just how rapidly Ebola is spreading",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.vox.com%2Ffuture-perfect%2F507074%2Febola-spread-rapid-congo\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Ebola virus is spreading at an unprecedented rate this year.\u00a0 In the first five months since the outbreak began in the Democratic Republic of Congo (DRC), the World Health Organization (WHO) has reported 9,415 confirmed cases and 4,536 deaths in the country. While the virus has remained relatively contained by the DRC\u2019s borders, case [\u2026]",
+      "summary": "The Ebola virus is spreading at an unprecedented rate this year. In the first five months since the outbreak began in the Democratic Republic of Congo (DRC), the World Health Organization (WHO) has reported 9,415 confirmed cases and 4,536 deaths in the country. While the virus has remained",
+      "_excerpt": "The Ebola virus is spreading at an unprecedented rate this year. In the first five months since the outbreak began in the Democratic Republic of Congo (DRC), the World Health Organization (WHO) has reported 9,415 confirmed cases and 4,536 deaths in the country. While the virus has remained relatively contained by the DRC\u2019s borders, case [\u2026]",
+      "date_published": "2026-10-21T10:00:00+00:00",
+      "authors": [
+        {
+          "name": "Vox",
+          "url": "https://www.vox.com"
+        }
+      ],
+      "ai_score": 31,
+      "_quality": 65,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 8,
+      "_theme_score_raw": 2,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 20,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_boosted_score": 31
+    },
+    "held_date": "2026-10-29",
+    "target_date": "2026-11-01",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   }
 }
