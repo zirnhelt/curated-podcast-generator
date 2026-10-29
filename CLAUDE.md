@@ -143,7 +143,7 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 - Paid body backfill runs on the curated roundup plus `ROUNDUP_BACKFILL_SPARES`, never the pre-curation pool. Direct factual lookups default to Answers; Search is for context and anything attributed to an outlet.
 
 **Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box.
-- **Findings are keyed on signals** read off the facts (`run_signals`: `degraded:<segment>`, `short-script`, `citations:*`, …), never on the model's id or title, and an item closes itself once its signal has been absent `SIGNAL_QUIET_DAYS`. A new failure mode worth tracking gets a signal, not a looser title match.
+- **Findings are keyed on signals** read off the facts (`run_signals`: `degraded:<segment>`, `short-script`, `citations:*`, `no-local-roundup`, `split-topic`, `deep-dive-non-local` (from `roundup_shape_line`), …), never on the model's id or title, and an item closes itself once its signal has been absent `SIGNAL_QUIET_DAYS`. A new failure mode worth tracking gets a signal, not a looser title match.
 - Only tool-written items retire. The review's run labels must follow the schedule (`_trigger_label`); a stale label was the most-sighted roadmap item for three weeks.
 - Once the review is live on Pages, the review job dispatches `super-rss-feed`'s `refresh-editorial.yml` (scheduler PAT), so it reaches `feed-local` that morning rather than with the next nightly.
 
@@ -198,7 +198,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 **News roundup.** The story count comes from airtime (`NEWS_ROUNDUP_COUNT`, ~70 words each), not appetite. A story that can't get its floor is cut, never compressed.
 - `NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. `all_articles` is the curated pool; never concatenate the pre-curation `bonus_articles` back in.
 - Blocks air in order: `local` → `theme` / `theme_adjacent` → discipline groups → `standalone` → `kicker`. No discipline cluster takes more than `ROUNDUP_CLUSTER_MAX` (3) slots outside the arc blocks.
-- The kicker is the wildcard: from the better half of the standalones, the lowest `_theme_score_raw`.
+- The kicker is the wildcard: from the better half of the standalones that share no subject with another roundup story (`_shares_subject`, a headline word pair), the lowest `_theme_score_raw`. None qualifies, no kicker.
 - `_sequence_roundup` is a chain, not a regroup (the block's lead never moves), and runs at both consumers.
 - `_infer_discipline` counts word-boundary hits, never substrings.
 - `script/curate` degrades when the theme block is thin. **Read that as a scoring problem, not a supply problem.**
@@ -239,7 +239,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
 - `script/tell-scrub` runs after the cold open.
 - **The cold open gets no example greeting or closer**; it gets the past week's (`_format_recent_cold_opens`) as ones not to reuse.
-- **Storyboard before script** (`storyboard_script`): one structured call plans each roundup story's point and bridge (fixed order; "clean pivot" when nothing is shared) and the deep dive's question, stances and beats, each saying why the next follows. It rides in the dynamic prompt, never the cached one; a missing or partial plan `degrade()`s and the script runs unplanned. The polish gets the deep dive's question and beat chain only (`_storyboard_polish_addendum`), never the full plan.
+- **Storyboard before script** (`storyboard_script`): one structured call plans the roundup's airing order and each story's point and bridge ("clean pivot" when nothing is shared) and the deep dive's question, stances and beats, each saying why the next follows. It may move same-subject stories together and fold same-story reports into one (`merge_with`, `_merged_into`); `apply_storyboard_order` keeps local first, relabels a moved story to the block it lands in, and airs the draft order on an invalid plan. It rides in the dynamic prompt, never the cached one; a missing or partial plan `degrade()`s and the script runs unplanned. The polish gets the deep dive's question and beat chain only (`_storyboard_polish_addendum`), never the full plan.
 - **The two polish prompts share their rules line for line** (a test enforces it); change both or neither.
 - **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat. The polish gets the research half of the ledger too: it is told to weave in findings the draft left out, and a polish that adds repeats `degrade()`s (`script/aired-check`).
 - **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
@@ -280,6 +280,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 
 - **Cohere** (`cohere_enrichment.py`, `USE_COHERE`, on in the script step; the repo variable set to `0` turns it off): evolving-story detection, intra-batch clustering, and the live deep-dive rerank. Every public function returns `None` when disabled or failed; callers fall back, and a failure is a `script/cohere` row (`drain_degradations`).
   - **Rerank reorders, never admits**: it picks from the head (`DEEP_DIVE_RERANK_POOL`) of the rule-ranked list, never on the geographic day, and its query is the theme and focus, never the weekly anchor.
+- **The Cariboo bar** (`pick_cariboo_deep_dive`, one Haiku call, topical days only): from the rule-ranked head plus fresh local bonus stories, the first story a Cariboo household could act on, then other outlets' reports of the same story, never a neighbouring one. The anchor only breaks a tie. An aired local story from the past week (`recent_local_roundup`) may ride along as its Cariboo connection, tagged `_recalled_from`. Nothing passes: `script/deep-dive-local` degrades and the rule pick airs.
   - The credit follows `was_used()`, not the switch. Embed is batched at 96 texts and read from `embeddings.float_`.
 - **Bespoke episodes** (`generate_bespoke.py`) are **parked**: one episode (March 2026). The code and workflow stay because `seed-content` still triggers it when 3+ content seeds share a tag.
 - **PSA selection** (`psa_selector.py`): 7-day lookahead for awareness dates; otherwise round-robin, 28 days between repeats per org.

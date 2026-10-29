@@ -6817,6 +6817,49 @@ def _roundup_block_rank(block: str) -> int:
     return ROUNDUP_BLOCK_RANK.get(block, ROUNDUP_TAIL_RANK)
 
 
+# Word pairs too common to name one subject: two stories sharing one are not
+# about the same thing.
+_GENERIC_SUBJECT_PAIRS = frozenset({
+    'first nation', 'first nations', 'climate change', 'united states',
+    'artificial intelligence', 'british columbia', 'new york', 'last year',
+    'this year', 'next year', 'per cent',
+})
+# Plus the short function words `_PRIOR_COVERAGE_STOPWORDS` leaves to its length cut.
+_SUBJECT_STOPWORDS = _PRIOR_COVERAGE_STOPWORDS | frozenset({
+    'the', 'and', 'for', 'with', 'its', 'are', 'has', 'how', 'why', 'who', 'new',
+    'now', 'out', 'can', 'may', 'was', 'but', 'not', 'all', 'our', 'you', 'his',
+    'her', 'off', 'get', 'got', 'yet', 'say', 'says', 'one', 'two', 'too', 'via',
+})
+
+
+def _title_subject_keys(article: dict) -> set:
+    """Adjacent content-word pairs in a headline, for same-subject detection.
+
+    Six iPhone Duo stories aired as separate roundup slots on 2026-10-28, three
+    at the top and three at the end: no discipline matched a phone and Cohere's
+    0.85 same-story bar separates six angles on one product. Every headline
+    shared "iphone duo". Place names are left out — two Williams Lake stories
+    are two stories.
+    """
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', html_lib.unescape(article.get('title', ''))).lower()
+    words = re.findall(r"[a-z0-9][a-z0-9'’]*", title)
+    places = {p.lower() for p in CONFIG['podcast'].get('local_places', [])}
+    keys = set()
+    for a, b in zip(words, words[1:]):
+        if (len(a) < 3 or len(b) < 3
+                or a in _SUBJECT_STOPWORDS or b in _SUBJECT_STOPWORDS):
+            continue
+        pair = f"{a} {b}"
+        if pair in _GENERIC_SUBJECT_PAIRS or pair in places or a in places or b in places:
+            continue
+        keys.add(pair)
+    return keys
+
+
+def _shares_subject(a: dict, b: dict) -> bool:
+    return bool(_title_subject_keys(a) & _title_subject_keys(b))
+
+
 def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
     """Order News Roundup articles into labeled coherence blocks.
 
@@ -6978,9 +7021,13 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
     # It is also the show's wildcard (docs/MANIFESTO.md, "leave room to be
     # surprised"): from the better half of the standalones, the one the day's
     # charter fits least (`_theme_score_raw`), the strongest on a tie.
+    # The last word never repeats a subject the roundup already covered: a
+    # closer on the story the segment opened with is a bookend, not a wildcard.
     kicker = []
-    if standalone:
-        upper_half = standalone[:(len(standalone) + 1) // 2]
+    fresh = [a for a in standalone
+             if not any(_shares_subject(a, b) for b in articles if b is not a)]
+    if fresh:
+        upper_half = fresh[:(len(fresh) + 1) // 2]
         pick = min(upper_half, key=lambda a: a.get('_theme_score_raw') or 0)
         standalone.remove(pick)
         kicker = [pick]
@@ -7233,6 +7280,43 @@ def _article_first_mention(article: dict, turns: list,
             by_title, best = i, shared
     found = [i for i in (by_source, by_title) if i is not None]
     return min(found) if found else None
+
+
+def roundup_shape_line(script: str, roundup: list, deep_dive: list,
+                       local_available: int) -> str:
+    """One log line the episode review reads its shape signals from.
+
+    Taken from the script as it aired (first mention of each story), not from
+    the pool's order: on 2026-10-28 the review said "Shipped clean" for an
+    episode with no local news, one subject opening and closing the roundup, and
+    a deep dive with no Cariboo tie.
+    """
+    _, body, _ = _slice_roundup(script)
+    turns = [l for l in (body or "").splitlines() if _SPEAKER_TURN_RE.match(l.strip())]
+    outlets = Counter(_article_source_name(a).lower() for a in roundup)
+    placed = sorted(
+        ((pos, a) for a in roundup
+         if (pos := _article_first_mention(
+             a, turns, match_source=outlets[_article_source_name(a).lower()] == 1)) is not None),
+        key=lambda pair: pair[0])
+    aired_local = sum(1 for a in roundup if a.get('_roundup_block') == 'local')
+    opened_local = bool(placed) and (placed[0][1].get('_roundup_block') == 'local'
+                                     or _is_local_article(placed[0][1]))
+    keys = {id(a): _title_subject_keys(a) for _, a in placed}
+    split = set()
+    for key in {k for ks in keys.values() for k in ks}:
+        spots = [pos for pos, a in placed if key in keys[id(a)]]
+        if len(spots) < 2:
+            continue
+        if any(min(spots) < pos < max(spots) and pos not in spots
+               for pos, a in placed if key not in keys[id(a)]):
+            split.add(key)
+    dd_local = any(a.get('_cariboo_angle') or a.get('_recalled_from') or _is_local_article(a)
+                   for a in deep_dive)
+    return (f"🧭 Roundup shape: local available {local_available}, aired {aired_local}, "
+            f"opened local {'yes' if opened_local else 'no'}; split subjects: "
+            f"{', '.join(sorted(split)) or 'none'}; deep dive Cariboo: "
+            f"{'yes' if dd_local else 'no'}")
 
 
 def check_roundup_order(script: str, ordered_articles: list) -> list:
@@ -7798,8 +7882,143 @@ def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
     return query
 
 
+# The deep dive's Cariboo bar. Theme rules rank the candidates; one Haiku call
+# then keeps only stories a Cariboo household could act on and builds the deep
+# dive from one story told by several outlets. On 2026-10-28 the rules picked an
+# FCC chip ban, Lego ad scams, a crypto sanction and an NYT piece on
+# thirty-somethings, and the script stitched them into a "trust" debate no one in
+# the Cariboo needed. Under $0.001 a run. PODCAST_DEEP_DIVE_PICK=0 turns it off.
+DEEP_DIVE_PICK_ENABLED = os.getenv("PODCAST_DEEP_DIVE_PICK", "1") != "0"
+DEEP_DIVE_PICK_POOL = 15
+DEEP_DIVE_PICK_SUMMARY_CHARS = 240
+RECENT_LOCAL_DAYS = 7
+
+_DEEP_DIVE_PICK_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "passes": {"type": "array", "items": {"type": "integer"}},
+        "lead": {"type": "integer"},
+        "same_story": {"type": "array", "items": {"type": "integer"}},
+        "cariboo_angle": {"type": "string"},
+        "local_context": {"type": "integer"},
+    },
+    "required": ["passes", "lead", "same_story", "cariboo_angle", "local_context"],
+    "additionalProperties": False,
+}
+
+
+def recent_local_roundup(today: date, days: int = RECENT_LOCAL_DAYS) -> list:
+    """Local roundup stories from the past `days` episodes, newest first.
+
+    A deep dive may bring one back as its Cariboo connection: the Rogers outage
+    aired as a roundup item on 2026-10-22 and was the obvious deep dive for the
+    next week's Practical Tech day. Each copy carries `_recalled_from` (weekday).
+    """
+    found = []
+    for path in glob.glob(str(PODCASTS_DIR / "citations_*.json")):
+        m = re.match(r"citations_(\d{4}-\d{2}-\d{2})_", os.path.basename(path))
+        if not m:
+            continue
+        aired = date.fromisoformat(m.group(1))
+        if not 0 < (today - aired).days <= days:
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                articles = json.load(f)["segments"]["news_roundup"]["articles"]
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+        for a in articles:
+            if isinstance(a, dict) and a.get('url') and _is_local_article(a):
+                found.append((aired, {**a, '_recalled_from': aired.strftime('%A')}))
+    found.sort(key=lambda pair: pair[0], reverse=True)
+    return [a for _, a in found]
+
+
+def _pick_line(i: int, a: dict) -> str:
+    title = html_lib.unescape(a.get('title', ''))
+    summary = (a.get('summary') or a.get('_excerpt') or '')[:DEEP_DIVE_PICK_SUMMARY_CHARS]
+    tag = f"({a['_recalled_from']}) " if a.get('_recalled_from') else ""
+    return f"{i}. {tag}{title} — {summary}"
+
+
+def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
+                           anchor_question: str | None = None,
+                           recent_local: list | None = None) -> list | None:
+    """The deep dive as one Cariboo-relevant story and its other reports, or None.
+
+    `candidates` arrive best theme fit first; the lead is the first that passes
+    the Cariboo bar unless a later one is clearly stronger, and the weekly
+    anchor only breaks a tie. The rest of the deep dive is other outlets'
+    reports of the same story, never a neighbouring one. A recently aired local
+    story that bears on the lead rides along tagged `_recalled_from`. None when
+    nothing passes or the call fails; the caller keeps the rule-ranked pick.
+    """
+    client = get_anthropic_client()
+    if not client or not candidates:
+        return None
+    recent_local = (recent_local or [])[:10]
+    prompt = (
+        "Choose the deep dive for Cariboo Signals, a daily show for households in the "
+        "Cariboo-Chilcotin of interior British Columbia: small towns, ranches, First "
+        "Nations communities, long drives, wildfire country. "
+        f"Today's theme: {theme_name}.\n\nCANDIDATES (best theme fit first):\n"
+        + "\n".join(_pick_line(i, a) for i, a in enumerate(candidates, 1))
+        + ("\n\nLOCAL STORIES AIRED THIS WEEK:\n"
+           + "\n".join(_pick_line(i, a) for i, a in enumerate(recent_local, 1))
+           if recent_local else "")
+        + "\n\npasses: the candidates a Cariboo household could act on, decide with, or "
+        "would feel directly within a year. A story about a national regulator, a foreign "
+        "company or a market passes only when the material shows a consequence a rural BC "
+        "household meets: a price, a part, a service, a rule they follow, a job. Being "
+        "interesting is not enough.\n"
+        "lead: from passes, the first-listed, unless a later one is clearly stronger for "
+        "this audience"
+        + (f". When two are close, prefer the one that speaks to this week's question: "
+           f"{anchor_question}" if anchor_question else "")
+        + ". 0 when nothing passes.\n"
+        f"same_story: up to {count - 1} other candidates reporting the same event, product "
+        "or decision as the lead. Not the same field or theme: the same story.\n"
+        "cariboo_angle: one sentence on what the lead means for a Cariboo household, built "
+        "only from the material.\n"
+        "local_context: the number of an aired local story that bears directly on the "
+        "lead's subject, or 0."
+    )
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=HAIKU_MODEL, thinking=thinking_off(HAIKU_MODEL), max_tokens=1000,
+            messages=[{"role": "user", "content": prompt}],
+            output_config=_json_output(_DEEP_DIVE_PICK_SCHEMA),
+        ))
+        _log_claude_usage(response)
+        pick = json.loads(message_text(response))
+    except Exception as e:
+        _abort_if_billing_wall(e)
+        degrade("script/deep-dive-local",
+                f"Cariboo pick failed ({type(e).__name__}); rule-ranked deep dive aired")
+        return None
+    lead = pick.get("lead")
+    if not isinstance(lead, int) or not 1 <= lead <= len(candidates):
+        degrade("script/deep-dive-local",
+                f"no candidate of {len(candidates)} passed the Cariboo bar; "
+                f"rule-ranked deep dive aired")
+        return None
+    chosen = [lead] + [i for i in pick.get("same_story") or []
+                       if isinstance(i, int) and 1 <= i <= len(candidates) and i != lead]
+    deep_dive = [candidates[i - 1] for i in dict.fromkeys(chosen)][:count]
+    angle = (pick.get("cariboo_angle") or "").strip()
+    if angle:
+        deep_dive[0]['_cariboo_angle'] = angle
+    ctx = pick.get("local_context")
+    if isinstance(ctx, int) and 1 <= ctx <= len(recent_local):
+        deep_dive.append(recent_local[ctx - 1])
+    print(f"  🏡 Cariboo pick: {deep_dive[0].get('title', '')[:80]} "
+          f"(+{len(deep_dive) - 1} report(s) or aired context)")
+    return deep_dive
+
+
 def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT, focus=None,
-                               event_focus=None):
+                               event_focus=None, anchor_question=None, local_extras=None,
+                               recent_local=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
     The feed already sorts articles by boosted score (theme relevance).
@@ -7822,6 +8041,11 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
     Articles flagged `_no_deep_dive` by the router air today but do not anchor
     the debate, unless fewer than DEEP_DIVE_ELIGIBLE_FLOOR articles are left
     without the flag.
+
+    On a topical day the rule-ranked head, plus `local_extras` (fresh local
+    stories from the bonus bucket), goes through `pick_cariboo_deep_dive`: one
+    story a Cariboo household could act on, told by several outlets, with an
+    aired local story from `recent_local` as its connection when one bears on it.
     """
     # `_no_deep_dive` articles air today but do not anchor the debate: an urgent
     # off-theme story, or a local one whose subject belongs to another day. They
@@ -7970,6 +8194,20 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
             query=_deep_dive_rerank_query(theme_name, focus))
         if reranked:
             deep_dive = reranked
+
+    # The Cariboo bar, on every topical day: the rules above rank theme fit, the
+    # pick keeps what a Cariboo household could act on. Fresh local stories from
+    # the bonus bucket compete too; the geographic day is local by construction.
+    if DEEP_DIVE_PICK_ENABLED and subject_deep_dive is None:
+        ranked = list(deep_dive) + [a for a in (rerank_pool or candidates)
+                                    if a not in deep_dive]
+        pool = ranked[:DEEP_DIVE_PICK_POOL]
+        pool += [a for a in (local_extras or []) if a not in pool]
+        picked = pick_cariboo_deep_dive(pool, count, theme_name,
+                                        anchor_question=anchor_question,
+                                        recent_local=recent_local)
+        if picked:
+            deep_dive = picked
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
     news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
@@ -9329,10 +9567,11 @@ _STORYBOARD_SCHEMA = {
                     "type": "object",
                     "properties": {
                         "n": {"type": "integer"},
+                        "merge_with": {"type": "array", "items": {"type": "integer"}},
                         "point": {"type": "string"},
                         "bridge_to_next": {"type": "string"},
                     },
-                    "required": ["n", "point", "bridge_to_next"],
+                    "required": ["n", "merge_with", "point", "bridge_to_next"],
                 }},
                 "handoff": {"type": "string"},
             },
@@ -9371,9 +9610,10 @@ def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text
                       debate_history: str, weekday: str) -> dict | None:
     """Plan both main segments in one structured call; None when it can't.
 
-    The roundup's order is fixed upstream, so its plan is a point and a bridge
-    per story. The deep dive's plan is the part that matters: one question and
-    beats that each say why the next one follows.
+    The roundup's plan is an airing order, a point and a bridge per story. The
+    order upstream is a draft: the storyboard moves same-subject stories together
+    and folds same-story reports into one (`apply_storyboard_order`). The deep
+    dive's plan is one question and beats that each say why the next one follows.
     """
     client = get_anthropic_client()
     if not client:
@@ -9402,18 +9642,89 @@ def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text
         degrade("script/storyboard", "storyboard truncated at max_tokens; script ran unplanned")
         return None
     plan = json.loads(message_text(response))
-    planned = [s.get("n") for s in plan["roundup"]["stories"]]
-    if planned != list(range(1, len(roundup_articles) + 1)):
-        degrade("script/storyboard",
-                f"roundup plan covers {planned} of {len(roundup_articles)} stories in order")
     if len(plan["deep_dive"]["beats"]) < 2:
         degrade("script/storyboard",
                 f"deep dive plan has {len(plan['deep_dive']['beats'])} beat(s)")
     return plan
 
 
+def _storyboard_groups(plan: dict, count: int) -> tuple[list | None, str]:
+    """The plan's airing order as lists of story numbers, lead first.
+
+    Returns (None, reason) unless every number from 1 to `count` appears exactly
+    once, as a story or inside a `merge_with`: a dropped story would silently
+    leave the roundup.
+    """
+    groups = []
+    for s in plan.get("roundup", {}).get("stories", []):
+        ids = [s.get("n"), *(s.get("merge_with") or [])]
+        if not all(isinstance(i, int) and 1 <= i <= count for i in ids):
+            return None, f"story numbers out of range: {ids}"
+        groups.append(ids)
+    seen = sorted(i for g in groups for i in g)
+    if seen != list(range(1, count + 1)):
+        return None, f"plan covers {seen} of {count} stories"
+    return groups, ""
+
+
+def apply_storyboard_order(plan: dict | None, roundup_articles: list) -> list:
+    """Reorder the roundup the way the storyboard planned it.
+
+    The storyboard may move same-subject stories together and fold same-story
+    reports into one (2026-10-28 aired six iPhone Duo stories as separate slots,
+    three first and three last, because the plan was told the order was fixed).
+    Local news still opens the show: a plan that puts a local story after a
+    non-local one is rejected and the draft order airs. A story moved out of its
+    block takes the block of the stories it now sits among, so the rank-based
+    order check (`check_roundup_order`) measures the order the script was told to
+    follow. A folded story carries `_merged_into` and its lead's block.
+
+    Returns the draft order unchanged, with a `script/storyboard` degradation,
+    when the plan is missing or invalid.
+    """
+    if not plan:
+        return roundup_articles
+    groups, reason = _storyboard_groups(plan, len(roundup_articles))
+    if groups is None:
+        degrade("script/storyboard", f"roundup order not applied: {reason}")
+        return roundup_articles
+    members = [[roundup_articles[i - 1] for i in g] for g in groups]
+    local = [any(a.get('_roundup_block') == 'local' for a in m) for m in members]
+    if any(local[i] and not local[i - 1] for i in range(1, len(local))):
+        degrade("script/storyboard", "roundup order not applied: a local story moved "
+                "behind a non-local one")
+        return roundup_articles
+    blocks = ['local' if loc else m[0].get('_roundup_block', 'standalone')
+              for loc, m in zip(local, members)]
+    ranks = [_roundup_block_rank(b) for b in blocks]
+    # A group ranked above something that now airs after it takes the block of
+    # the lowest-ranked group after it. Never 'local': locals all lead.
+    final = list(blocks)
+    for i in range(len(blocks)):
+        later = ranks[i + 1:]
+        if later and ranks[i] > min(later):
+            final[i] = blocks[i + 1 + later.index(min(later))]
+    ordered = []
+    for block, group in zip(final, members):
+        lead = group[0]
+        for a in group:
+            a['_roundup_block'] = block
+            if a is not lead:
+                a['_merged_into'] = lead.get('title', '')
+        ordered.extend(group)
+    merged = sum(len(g) - 1 for g in groups)
+    moved = sum(1 for a, b in zip(ordered, roundup_articles) if a is not b)
+    if merged or moved:
+        print(f"🗂️  Storyboard regrouped the roundup: {moved} moved, {merged} folded "
+              f"into another story ({len(groups)} stories air)")
+    return ordered
+
+
 def format_storyboard_for_prompt(plan: dict | None, roundup_articles: list) -> str:
-    """The plan as a prompt block the script follows; empty without a plan."""
+    """The plan as a prompt block the script follows; empty without a plan.
+
+    `roundup_articles` is the draft order the plan's numbers refer to.
+    """
     if not plan:
         return ""
     rd, dd = plan["roundup"], plan["deep_dive"]
@@ -9425,7 +9736,11 @@ def format_storyboard_for_prompt(plan: dict | None, roundup_articles: list) -> s
         n = s.get("n")
         if not isinstance(n, int) or not 1 <= n <= len(roundup_articles):
             continue
-        lines.append(f"{n}. {roundup_articles[n - 1].get('title', '')} — {s['point']}")
+        lines.append(f"- {roundup_articles[n - 1].get('title', '')} — {s['point']}")
+        folded = [roundup_articles[m - 1].get('title', '') for m in s.get("merge_with") or []
+                  if isinstance(m, int) and 1 <= m <= len(roundup_articles)]
+        if folded:
+            lines.append("   Same story, also told by: " + "; ".join(folded))
         lines.append(f"   → {s['bridge_to_next']}")
     lines += [f"Hand-off: {rd['handoff']}", "", "DEEP DIVE",
               f"Central question: {dd['central_question']}",
@@ -9563,7 +9878,6 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
     # Format news articles under their block headers. Three sections: the two
     # arc blocks lead, everything else — clusters, standalones and bonus picks —
     # folds into one tail, with cluster members left adjacent inside it.
-    _sections = []
 
     def _prompt_block(a):
         """Map a `_roundup_block` to its prompt section."""
@@ -9576,11 +9890,26 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
             return 'kicker'
         return 'also_worth_noting'
 
-    for _block, _members in groupby(roundup_articles, key=_prompt_block):
-        _members = list(_members)
-        _articles_text = "\n".join(_format_news_article(a) for a in _members)
-        _sections.append(f"{_roundup_block_header(_block, len(_members))}\n{_articles_text}")
-    news_text = "\n\n".join(_sections)
+    def _render_news_text(articles):
+        """The roundup under its block headers; a folded story sits under its lead."""
+        sections = []
+        for block, members in groupby(articles, key=_prompt_block):
+            members = list(members)
+            lines = []
+            for a in members:
+                line = _format_news_article(a)
+                if a.get('_merged_into'):
+                    line = ("  ↳ SAME STORY as the one above, another outlet's report: "
+                            "tell them as one story and credit both outlets\n  "
+                            + line.replace("\n", "\n  "))
+                lines.append(line)
+            leads = sum(1 for a in members if not a.get('_merged_into'))
+            sections.append(f"{_roundup_block_header(block, leads)}\n" + "\n".join(lines))
+        return "\n\n".join(sections)
+
+    for a in roundup_articles:
+        a.pop('_merged_into', None)
+    news_text = _render_news_text(roundup_articles)
 
     def _format_deep_dive_article(a):
         source = a.get('authors', [{}])[0].get('name', 'Unknown')
@@ -9588,11 +9917,17 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         summary = a.get('summary', '')[:300]
         score = a.get('_boosted_score', a.get('ai_score', 0))
         jurisdiction_tag = us_policy_framing_tag(a)
+        # An aired local story brought back as the deep dive's Cariboo connection.
+        recall_tag = (f" [AIRED IN THE ROUNDUP ON {a['_recalled_from'].upper()}: say we "
+                      f"covered it, and use it to bring the question home, never as "
+                      f"new news]" if a.get('_recalled_from') else "")
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:1000]}" if body else ""
         body_line += _kite_context_line(a, DEEP_DIVE_PROMPT_CONTEXT_CHARS)
+        if a.get('_cariboo_angle'):
+            body_line += f"\n  Why it matters here: {a['_cariboo_angle']}"
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{jurisdiction_tag}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
+        return f"- [{source}] {title}{jurisdiction_tag}{recall_tag}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
 
     deep_dive_text = "\n".join([_format_deep_dive_article(a) for a in deep_dive_articles])
 
@@ -9805,6 +10140,8 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                 if debate_memory else "",
                 weekday)
             storyboard = format_storyboard_for_prompt(_storyboard_used, roundup_articles)
+            roundup_articles = apply_storyboard_order(_storyboard_used, roundup_articles)
+            news_text = _render_news_text(roundup_articles)
         if not storyboard:
             degrade("script/storyboard", "no storyboard; the script was written unplanned")
 
@@ -13238,6 +13575,9 @@ def run_script_stage() -> tuple[str, str] | None:
         # and the focus. Nothing on the reuse path above needs it, and every
         # consumer below lives in this branch.
         today_anchor = None
+        # Local stories the day's pool offered after dedup, for the review's
+        # no-local-roundup signal (`roundup_shape_line`).
+        local_available = 0
 
         with segment("script/budget-preflight"):
             # Everything below this line costs money — seed rating, the feed's
@@ -13437,9 +13777,16 @@ def run_script_stage() -> tuple[str, str] | None:
 
                 # Select deep dive from theme articles; rest go to news
                 deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else DEEP_DIVE_COUNT
+                local_available = sum(1 for a in theme_articles + bonus_articles
+                                      if _is_local_article(a))
                 deep_dive_articles, news_articles = select_deep_dive_from_feed(
                     theme_articles, today_theme, count=deep_dive_count,
-                    focus=today_focus, event_focus=today_event)
+                    focus=today_focus, event_focus=today_event,
+                    anchor_question=(today_anchor or {}).get('question'),
+                    local_extras=[a for a in bonus_articles if _is_local_article(a)],
+                    recent_local=recent_local_roundup(pacific_now.date()))
+                _dd_urls = {a.get('url', '') for a in deep_dive_articles}
+                bonus_articles = [a for a in bonus_articles if a.get('url', '') not in _dd_urls]
 
                 # Track which seeded articles landed in the deep dive
                 for a in deep_dive_articles:
@@ -13796,6 +14143,9 @@ def run_script_stage() -> tuple[str, str] | None:
                             f"block after {ROUNDUP_REPAIR_PASSES} repair passes")
                 else:
                     print("✅ Roundup re-sequenced into block order")
+
+        with segment("script/roundup-shape", critical=False):
+            print(roundup_shape_line(script, news_articles, deep_dive_articles, local_available))
 
         with segment("script/cold-open", critical=False):
             # Generate the cold open last, now that the News Roundup and Deep

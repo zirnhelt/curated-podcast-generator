@@ -832,3 +832,15 @@ class TestPageLayout:
         assert index[0]["metrics"] == {"audio_minutes": 20.5, "script_words": 3500, "tell_hits": 0,
                                        "roundup_cite_pct": 75.0, "deep_dive_cite_pct": 75.0,
                                        "cost_usd": 0.4}
+
+
+def test_roundup_shape_signals():
+    import episode_review as er
+    line = ("🧭 Roundup shape: local available 3, aired 0, opened local no; "
+            "split subjects: iphone duo; deep dive Cariboo: no")
+    shape = [3, 0, "no", "iphone duo", "no"]
+    assert er.scan_log(line).get("roundup_shape") == shape
+    signals = er.run_signals({"roundup_shape": shape})
+    assert set(signals) >= {"no-local-roundup", "split-topic", "deep-dive-non-local"}
+    clean = er.run_signals({"roundup_shape": [2, 2, "yes", "none", "yes"]})
+    assert not {"no-local-roundup", "split-topic", "deep-dive-non-local"} & set(clean)

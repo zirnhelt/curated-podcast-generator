@@ -526,10 +526,9 @@ and circuitous.
 
 One structured call now plans both main segments before the script is written:
 
-- **Roundup:** an opening frame, then per story (in the fixed order `_sequence_roundup` set) the
-  one point it lands and the bridge to the next. A bridge names the shared thing, or says
-  "clean pivot": the plan cannot reorder, drop or invent a link, so it adds no new way to break
-  the roundup rules.
+- **Roundup:** an opening frame, then per story the one point it lands and the bridge to the
+  next. A bridge names the shared thing, or says "clean pivot". (The order was fixed until
+  2026-10-28; see "The storyboard regroups the roundup" below.)
 - **Deep dive:** one central question, each host's starting stance, 4–7 beats (claim, evidence
   with its outlet, pushback with new information, and why the next beat follows), what is set
   aside, the Cariboo beat and the landing. `leads_to_next` is the piece aimed at the wander: a
@@ -585,3 +584,29 @@ The same pass brought the polish prompts in line with `docs/MANIFESTO.md`:
 The batch and agentic copies had drifted (the agentic one had lost the echoed-farewell check).
 `test_the_two_polish_prompts_share_their_rules` now holds them line for line, apart from the
 path-specific lines: the air date, unanswered-question research and where the sources sit.
+
+### The storyboard regroups the roundup (2026-10-28)
+
+Told the order was fixed, the plan bridged around a split instead of fixing it. On 2026-10-28
+six iPhone Duo stories (iFixit, WIRED, The Verge, MacRumors, TechRadar, Mac Observer) aired as
+six slots, three opening the roundup and three closing it: every story landed in one `theme`
+block, no discipline matched a phone, and Cohere's 0.85 same-story bar separates six angles on
+one product. The plan's bridges read "clean pivot" across the gap.
+
+The plan now sets the airing order. It may move a same-subject story up beside the first, fold
+same-story reports into one with `merge_with`, and must keep every close-to-home story first and
+the kicker off any subject an earlier story covered; at most 3 stories on one subject air in a
+row. `apply_storyboard_order` applies it after checking that every story appears exactly once
+and no local story follows a non-local one; otherwise the draft order airs and
+`script/storyboard` degrades. A moved story takes the block of the lowest-ranked story after it,
+so the rank-based order check measures the order the script was told to follow and never
+"repairs" it back. A folded story carries `_merged_into` and renders under its lead as the same
+story from another outlet.
+
+The producer chose the storyboard over a deterministic Python grouping. Planning a roundup is a
+judgement call; the cost is that a degraded storyboard airs the draft order, split subjects
+included. The review's `split-topic` signal (`roundup_shape_line`) catches that day.
+
+Folding shortens the roundup: six iPhone slots become one story, about 350 words less on a day
+like 10-28. The expand pass and `MIN_SCRIPT_WORDS` already govern a short draft.
+

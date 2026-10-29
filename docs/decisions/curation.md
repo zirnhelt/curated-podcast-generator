@@ -588,3 +588,42 @@ The Atlantic and Civil Eats are among the misses), and Brave researched every mi
 `read == 0` row fired on two of those nights and reached the roadmap as a fault. Per-page error
 reasons are now logged; `script/kagi-extract` degrades on a failed request or on a reply that
 matches none of the URLs sent, which would mean the API contract moved.
+
+## Local leads, one subject in one place, a Cariboo deep dive (2026-10-28)
+
+The 2026-10-28 Practical Tech episode broke three standing commitments at once and the
+review called it clean:
+
+- **No local news.** Every local story in the Wednesday feed had aired that week, and the
+  feed's theme-fit floor kept eight fresh Cariboo stories out. The fix is upstream
+  (`super-rss-feed` → `select_local_lane`); this side already leads with the `local` block
+  and protects it from the pool cap.
+- **One subject opened and closed the roundup.** See editorial-voice.md, "The storyboard
+  regroups the roundup". The kicker is now chosen only among standalones that share no
+  headline word pair with another roundup story (`_title_subject_keys`: adjacent content
+  words, place names and generic pairs such as "climate change" excluded). When the better
+  half of the remaining standalones is empty, there is no kicker.
+- **A deep dive no one in the Cariboo needed.** The rules ranked theme and focus fit only, and
+  the stitched sources (an FCC chip ban, Lego ad scams, a crypto sanction, an NYT essay) became
+  a "trust" debate. 2026-10-27's (Chile, Sudan, Argentina mining) was as far away, but sounded
+  closer on Working Lands day. `pick_cariboo_deep_dive` now takes the rule-ranked head
+  (`DEEP_DIVE_PICK_POOL`, 15) plus fresh local bonus stories and makes one Haiku call: which
+  candidates a Cariboo household could act on, the first of those as lead (the weekly anchor
+  only breaks a tie), and other outlets' reports of the same story, never a neighbouring one.
+  An aired local story from the past week (`recent_local_roundup`) may ride along as the
+  Cariboo connection, tagged `_recalled_from` so the hosts say they covered it. The Rogers
+  outage (aired 10-22) is the case: one severed cable, Northern BC offline, the obvious
+  Practical Tech deep dive a week later. Skipped on the geographic day. Nothing passes, or the
+  call fails: `script/deep-dive-local` degrades and the rule pick airs.
+
+**Cost.** The pick is one Haiku 5.5 call of about 3K input and 300 output tokens, under
+$0.001 a run. A one-story deep dive can carry fewer than `OPUS_REVIEW_ARTICLE_THRESHOLD` (3)
+articles, which escalates the polish to Opus 5.5 (about 2x the Sonnet 5.5 polish). Watch the
+escalation rate for a week before deciding whether a researched single-story deep dive should
+still count as thin.
+
+**Review signals.** `roundup_shape_line` prints, from the script as aired, how many local
+stories the pool offered and aired, whether the roundup opened local, which subjects aired in
+separate places, and whether the deep dive reached the Cariboo. `episode_review.run_signals`
+turns those into `no-local-roundup`, `split-topic` and `deep-dive-non-local`.
+
