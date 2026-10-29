@@ -1,17 +1,4 @@
 {
-  "2026-07-30": {
-    "timestamp": 1785418340.976337,
-    "date": "2026-07-30",
-    "theme": "Indigenous Lands & Innovation",
-    "focus": "language-culture",
-    "central_question": "Deep dive on Indigenous Lands & Innovation",
-    "topics_covered": [
-      "data sovereignty",
-      "AI",
-      "infrastructure",
-      "funding"
-    ]
-  },
   "2026-07-31": {
     "timestamp": 1785495424.803182,
     "date": "2026-07-31",
@@ -2569,6 +2556,34 @@
       "Discount ad lures and infostealer risks",
       "Cryptomus renaming, sanctions, and public disclosure gaps",
       "iPhone Duo security updates, repair costs, and parts availability"
+    ]
+  },
+  "2026-10-29": {
+    "timestamp": 1793262806.110795,
+    "date": "2026-10-29",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "economic-development",
+    "anchor": "who-counts-as-local",
+    "central_question": "Who should decide who belongs under a First Nation's government and who holds final authority over membership and land as the Indian Act is reviewed, including whether a non-Indigenous neighbour should have a formal role?",
+    "riley_position": "Riley argues that Nations should move toward self-government with the capacity they already have, that a written rights base must be in any replacement law, and that a Nation's final say on membership and land should be enforceable, with neighbours at most holding an advisory role.",
+    "riley_key_evidence": [
+      "Chief Nelson Nepinak said Nations have highly educated young people and staff already doing work Indigenous Services Canada does, a claim that can be checked against program delivery and payroll.",
+      "Tsleil-Waututh Nation's analysis found 93 per cent of lands in the Burrard Inlet catchment affected by cumulative impacts from colonial development, backed by a 2025 peer-reviewed study and over fifteen years of work with Arcadis.",
+      "Na-Cho Ny\u00e4k Dun in the Yukon says any potential buyer of the Eagle mine must reach an agreement with the Nation before a sale can proceed."
+    ],
+    "casey_position": "Casey argues that capacity does not answer who should decide membership, that the reform could shift power to outside approval queues, that co-development language is not a transfer of authority, and that a neighbour should not hold a deciding role but the Nation needs a written final word and enforceable standing before any neighbour gets a seat.",
+    "casey_key_evidence": [
+      "The 1969 White Paper by Jean Chr\u00e9tien proposed dismantling the Indian Act and was withdrawn in 1971 after First Nations opposition, showing abolition was once on the table.",
+      "Ottawa has held the pen on Indian Act governance since 1876, and the new process only says Ottawa will work with provinces and territories too, without naming who holds the pen at the end.",
+      "Bill C-39 was written without First Nations at the table according to the Chiefs of Ontario and others, and critics say it cuts against the Crown's duty to consult and the UN Declaration Act."
+    ],
+    "resolution": "The debate ended in partial agreement: both agreed that Nations need enforceable standing and a written final say, but remained apart on whether a non-Indigenous neighbour should get an advisory seat, and the question was left open for listeners.",
+    "topics_covered": [
+      "Indian Act reform, abolition, and the 1969 White Paper precedent",
+      "Capacity versus authority in First Nations self-government and membership",
+      "Bill C-39 and fast-tracked infrastructure approvals versus the duty to consult",
+      "Tsleil-Waututh data sovereignty and cumulative impact mapping",
+      "Eagle mine sale conditions and the Williams Lake First Nation and Thompson Rivers University agreement"
     ]
   }
 }
