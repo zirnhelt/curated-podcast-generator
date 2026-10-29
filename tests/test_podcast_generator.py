@@ -7448,6 +7448,47 @@ class TestApplyStoryboardOrder:
         assert pg.apply_storyboard_order(self._plan([[1], [2], [3], [5]]), arts) == arts
         assert "covers" in seen[0]
 
+    def _kicker_plan(self, order, repeats):
+        plan = self._plan([[n] for n in order])
+        for s in plan["roundup"]["stories"]:
+            s["bridge_to_next"] = f"from {s['n']}"
+        plan["roundup"]["stories"][-1]["bridge_to_next"] = "handoff"
+        plan["roundup"]["kicker_repeats"] = repeats
+        return plan
+
+    def test_a_kicker_repeating_an_earlier_subject_moves_beside_it(self):
+        # 2026-10-29: the B.C. election result closed the roundup after the
+        # new premier's minister pick, and the plan left it there.
+        import podcast_generator as pg
+        arts = self._arts()
+        plan = self._kicker_plan([1, 2, 3, 4, 5], repeats=2)
+        pg._unbookend_kicker(plan, arts)
+        stories = plan["roundup"]["stories"]
+        assert [s["n"] for s in stories] == [1, 2, 5, 3, 4]
+        assert [s["bridge_to_next"] for s in stories] == [
+            "from 1", "same subject, next angle", "from 2", "from 3", "handoff"]
+        out = pg.apply_storyboard_order(plan, arts)
+        assert out[2]["title"] == "Norwegian tree house"
+        assert out[2]["_roundup_block"] != "kicker"
+
+    def test_a_kicker_repeating_a_local_story_still_airs_after_every_local(self):
+        import podcast_generator as pg
+        arts = self._arts()
+        arts[1]["_roundup_block"] = "local"
+        plan = self._kicker_plan([1, 2, 3, 4, 5], repeats=1)
+        pg._unbookend_kicker(plan, arts)
+        stories = plan["roundup"]["stories"]
+        assert [s["n"] for s in stories] == [1, 2, 5, 3, 4]
+        assert stories[1]["bridge_to_next"] == "clean pivot"
+        assert pg.apply_storyboard_order(plan, arts)[:2] == arts[:2]
+
+    def test_a_fresh_or_adjacent_kicker_stays_last(self):
+        import podcast_generator as pg
+        for repeats in (0, 4):
+            plan = self._kicker_plan([1, 2, 3, 4, 5], repeats=repeats)
+            pg._unbookend_kicker(plan, self._arts())
+            assert [s["n"] for s in plan["roundup"]["stories"]] == [1, 2, 3, 4, 5]
+
     def test_folded_story_renders_under_its_lead(self, monkeypatch, tmp_path):
         import podcast_generator as pg
         monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")

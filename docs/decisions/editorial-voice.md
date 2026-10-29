@@ -610,3 +610,20 @@ included. The review's `split-topic` signal (`roundup_shape_line`) catches that 
 Folding shortens the roundup: six iPhone slots become one story, about 350 words less on a day
 like 10-28. The expand pass and `MIN_SCRIPT_WORDS` already govern a short draft.
 
+### The kicker is moved off a repeated subject in code (2026-10-29)
+
+The roundup closed on the Vancouver Sun's B.C. election result (Eby resigns, Doerkson takes a
+supermajority) after My Cariboo Now's Declaration Act story and The Tyee's piece on Doerkson's
+minister pick had already aired. The prompt already said the kicker never repeats a covered
+subject; the plan left it last anyway, with "clean pivot" bridges. `_shares_subject` missed it in
+the draft too: the three headlines share no word pair, only a name in a summary.
+
+The plan now has to name the story the kicker repeats (`kicker_repeats`, required, 0 for none),
+judged by who and what a story is about rather than its wording. `_unbookend_kicker` acts on it
+right after the plan is parsed, so the prompt block, `apply_storyboard_order` and the citations
+all carry the corrected order: the kicker moves up behind that story (after the last local story
+when the twin is local), the old second-last story takes the handoff, and the kicker relabels to
+the block it lands in. A kicker already beside its twin, or folded in, is left alone. When the
+plan names no repeat, nothing moves: the model's judgement is still the detector; the code only
+stops it being ignored.
+

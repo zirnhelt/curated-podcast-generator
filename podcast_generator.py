@@ -9578,8 +9578,9 @@ _STORYBOARD_SCHEMA = {
                     "required": ["n", "merge_with", "point", "bridge_to_next"],
                 }},
                 "handoff": {"type": "string"},
+                "kicker_repeats": {"type": "integer"},
             },
-            "required": ["opening_frame", "stories", "handoff"],
+            "required": ["opening_frame", "stories", "handoff", "kicker_repeats"],
         },
         "deep_dive": {
             "type": "object",
@@ -9649,6 +9650,7 @@ def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text
     if len(plan["deep_dive"]["beats"]) < 2:
         degrade("script/storyboard",
                 f"deep dive plan has {len(plan['deep_dive']['beats'])} beat(s)")
+    _unbookend_kicker(plan, roundup_articles)
     return plan
 
 
@@ -9669,6 +9671,46 @@ def _storyboard_groups(plan: dict, count: int) -> tuple[list | None, str]:
     if seen != list(range(1, count + 1)):
         return None, f"plan covers {seen} of {count} stories"
     return groups, ""
+
+
+def _unbookend_kicker(plan: dict, roundup_articles: list) -> None:
+    """Move a kicker the plan says repeats an earlier story up beside that story.
+
+    2026-10-29 closed on B.C.'s election result after two stories on the new
+    premier: the prompt told the plan to fold that kicker in, the plan left it
+    last, and the headlines share no word pair for `_shares_subject` to catch.
+    The plan names the repeat (`kicker_repeats`); this does the move, in the
+    plan itself, so the prompt block and `apply_storyboard_order` agree. Never
+    in among the local stories, which all lead.
+    """
+    rd = plan.get("roundup", {})
+    stories, n = rd.get("stories") or [], rd.get("kicker_repeats")
+    if not stories or not isinstance(n, int) or not 1 <= n <= len(roundup_articles):
+        return
+    last = stories[-1]
+    k = last.get("n")
+    if (last.get("merge_with") or not isinstance(k, int) or not 1 <= k <= len(roundup_articles)
+            or k == n or roundup_articles[k - 1].get('_roundup_block') != 'kicker'):
+        return
+    ids = [[s.get("n"), *(s.get("merge_with") or [])] for s in stories[:-1]]
+    target = next((i for i, g in enumerate(ids) if n in g), None)
+    if target is None or target == len(ids) - 1:
+        return  # unknown, or already beside its twin
+    is_local = [any(isinstance(j, int) and 1 <= j <= len(roundup_articles)
+                    and roundup_articles[j - 1].get('_roundup_block') == 'local' for j in g)
+                for g in ids]
+    at = max(target + 1, next((i for i, loc in enumerate(is_local) if not loc), len(ids)))
+    if at == len(ids):
+        return
+    stories.pop()
+    # The story that led into the kicker now closes; the kicker hands on to
+    # whatever followed the story it now sits behind.
+    stories[-1]["bridge_to_next"], last["bridge_to_next"] = (
+        last["bridge_to_next"], stories[at - 1]["bridge_to_next"])
+    stories[at - 1]["bridge_to_next"] = ("same subject, next angle" if at - 1 == target
+                                         else "clean pivot")
+    stories.insert(at, last)
+    print(f"🗂️  Storyboard: the kicker repeats story {n}'s subject; moved up beside it")
 
 
 def apply_storyboard_order(plan: dict | None, roundup_articles: list) -> list:
