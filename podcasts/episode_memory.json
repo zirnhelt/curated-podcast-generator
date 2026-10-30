@@ -1,24 +1,4 @@
 {
-  "2026-09-25": {
-    "timestamp": 1790324085.786203,
-    "topics": [
-      "[Williams Lake Tribune] West Fraser, Stswecem\u2019c Xget\u2019tem Fir",
-      "[My Cariboo Now] Quesnel Fire Department forced to breach bu",
-      "[Williams Lake Tribune] 100 Mile RCMP officer assaulted by \u2018",
-      "[My Cariboo Now] From backbencher to brink of power: John Ru",
-      "[The Tyee] After a Wildfire, a Kootenay Artist Seeks Safe Ke",
-      "[TechRadar] Pre-capture is the best wildlife photography tri",
-      "[Mother Jones] A Bookseller Confronts a Mysterious Company H",
-      "[Williams Lake Tribune] Former rodeo rider Doerkson seeks to"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-09-25",
-    "focus": "wildlife-conservation",
-    "focus_name": "Wildlife & Conservation"
-  },
   "2026-09-26": {
     "timestamp": 1790410618.899168,
     "topics": [
@@ -699,5 +679,26 @@
     "date": "2026-10-29",
     "focus": "economic-development",
     "focus_name": "Economic Development"
+  },
+  "2026-10-30": {
+    "timestamp": 1793348183.461675,
+    "topics": [
+      "[My Cariboo Now] Temporary shutdown at Quesnel River Pulp wi",
+      "[100 Mile Free Press] Evening of Song to feature South Carib",
+      "[Quesnel Cariboo Observer] Quesnel Chamber announces Busines",
+      "[Vox] Wild animals can&#8217;t vote. Here&#8217;s where they",
+      "[Neuroscience News] Genetic Blueprint of Personality Reveale",
+      "[My Cariboo Now] Wildfire rehabilitation projects planned in",
+      "[100 Mile Free Press] Wildfire recovery supports still avail",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-10-30",
+    "focus": "wildfire-resilience",
+    "focus_name": "Wildfire & Climate Resilience"
   }
 }

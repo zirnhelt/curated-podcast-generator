@@ -1,31 +1,4 @@
 {
-  "2026-07-31": {
-    "timestamp": 1785495424.803182,
-    "date": "2026-07-31",
-    "theme": "Wild Spaces & Outdoor Life",
-    "focus": "recreation-access",
-    "central_question": "How do wildfire-driven highway closures expose structural gaps in regional access infrastructure, and what actionable steps can communities take to address single-corridor vulnerability?",
-    "riley_position": "The problem is partly a data and forecasting gap; better predictive modeling and real-time routing can improve outcomes even without new infrastructure, and regional districts should formally document their single-corridor exposure through provincial resolutions to force long-term planning conversations.",
-    "riley_key_evidence": [
-      "Riley Creek fire re-ignited and spread from 72 to 1,150 hectares\u2014a flare-up predictable via publicly accessible satellite thermal imaging and BC Wildfire hotspot data",
-      "Highway 1 closed at multiple points, Highway 3 closed east of Hope, and Highway 24 absorbed overflow traffic from province-wide corridor squeeze",
-      "Regional districts can submit resolutions to the Union of BC Municipalities to shape provincial priorities over successive budget cycles"
-    ],
-    "casey_position": "Better data doesn't solve the core problem\u2014communities like 70 Mile House with evacuation orders and single roads out face genuine life-safety constraints, and process accountability matters as much as infrastructure; skipping review cycles (as with the Lake Mead data center) normalizes cuts to public input on landscape access.",
-    "casey_key_evidence": [
-      "Fraser Canyon had both major routes closed simultaneously with expanding evacuation orders near Boston Bar",
-      "Lake Mead BLM approved an 86-acre data center with 167 megawatts peak demand and diesel backup near a drought-stressed reservoir by skipping environmental review under a federal executive order",
-      "Places like 100 Mile House and plateau communities have less route redundancy than Williams Lake or Quesnel and are least likely to get attention without deliberate data submission"
-    ],
-    "resolution": "Riley and Casey converged on a concrete near-term action: regional districts should document single-corridor exposure this fall using current fire season data and submit it to the province via UBCM resolutions\u2014not a funding fix, but naming the structural gap while evidence is fresh. Casey remained skeptical about whether it would actually be submitted versus merely discussed.",
-    "topics_covered": [
-      "Wildfire-driven highway closures and corridor bottlenecks in BC Interior",
-      "Single-corridor vulnerability for both recreation access and emergency evacuation",
-      "Predictive modeling and real-time data tools for traffic forecasting",
-      "Process accountability and public input in land-use decisions (Lake Mead data center case)",
-      "Regional district advocacy mechanisms and provincial budget prioritization"
-    ]
-  },
   "2026-08-01": {
     "timestamp": 1785579604.403514,
     "date": "2026-08-01",
@@ -2584,6 +2557,34 @@
       "Bill C-39 and fast-tracked infrastructure approvals versus the duty to consult",
       "Tsleil-Waututh data sovereignty and cumulative impact mapping",
       "Eagle mine sale conditions and the Williams Lake First Nation and Thompson Rivers University agreement"
+    ]
+  },
+  "2026-10-30": {
+    "timestamp": 1793348185.811741,
+    "date": "2026-10-30",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildfire-resilience",
+    "anchor": "who-counts-as-local",
+    "central_question": "Who should own the risk of post-fire slope failure after containment is declared, and should that responsibility run on a funded, deadlined schedule like the fire line?",
+    "riley_position": "The burned-slope hazard should be written into existing recovery plans with a named owner, and monitoring and maintenance should be folded into programs that already have staff and offices rather than waiting for new structures.",
+    "riley_key_evidence": [
+      "UK Burnham plan allocates \u00a345 million to fire crews and \u00a325 million to landscape work including peatland restoration and farmland fireproofing",
+      "Central Chilcotin Rehabilitation's Palmer Project and Pressy Lake pilot have completed about 1,000 hectares of risk reduction work",
+      "My Cariboo Now reported over $5 million in wildfire risk reduction projects, including $902,900 for hand treatments in Puntzi, Redstone and Alexis Creek"
+    ],
+    "casey_position": "Post-fire slope risk needs a named owner with a deadline and a budget line that survives election cycles, because folding the hazard into general recovery programs means nobody actually owns it.",
+    "casey_key_evidence": [
+      "Clinton's Resiliency Centre closed and recovery support is reduced to Monday drop-in hours at the Clinton Library through November",
+      "Lancet Countdown reports extreme rainfall affected 17.2 per cent of global land annually from 2016 to 2025, up from 14.8 per cent in the prior decade",
+      "Clinton fire exceeded 66,000 hectares and Pear Lake fire reached 164,740 hectares, with Pear Lake only being held rather than contained"
+    ],
+    "resolution": "They did not reach agreement on structure: Riley favors writing the hazard into existing programs now and fixing structure next cycle, while Casey wants a dedicated named owner with a deadline. They agreed that monitoring needs a maintenance line, that cost figures for slope work are unknown, and that the real test is what gets funded.",
+    "topics_covered": [
+      "Post-fire slope failure after containment and who owns the risk",
+      "UK Burnham plan funding structure for crews versus landscape restoration",
+      "Climate trends in extreme rainfall and drought and their relevance to local planning",
+      "Weakening US forecasting capacity and the local warning and response gap",
+      "Cariboo Chilcotin rehabilitation projects, funding, and the scale of burned area"
     ]
   }
 }
