@@ -5,7 +5,55 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Thu, 29 Oct 2026 10:06:06 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Oct 2026 10:05:57 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, October 30, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-30.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-30.html</guid>
+      <pubDate>Fri, 30 Oct 2026 10:05:57 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/41024117899"&gt;41024117899&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class="verdict lvl-good"&gt;&lt;span class="icon" aria-hidden="true"&gt;✓&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped clean&lt;/strong&gt;Nothing broke and nothing fell back.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;p&gt;Nothing. The run needs no follow-up.&lt;/p&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Two deep dives and a short episode, with a roundup cut by the airtime budget&lt;/h3&gt;
+&lt;p&gt;The episode shipped with &lt;code&gt;deep_dive_count&lt;/code&gt; at 2, both on the wildfire recovery thread: one from My Cariboo Now on rehabilitation projects planned in the Chilcotin, one from the 100 Mile Free Press on recovery supports still open to Cariboo residents. The debate question was whether responsibility for post-fire slope failure after containment should sit with a funded, deadlined schedule like the fire line. &lt;code&gt;casey_deep_dive_word_pct&lt;/code&gt; was 49, and the voice ratio, Casey over Riley, was 0.94.&lt;/p&gt;
+&lt;p&gt;The first script draft came in at 2518 words against a target of 3400, so it went back for one expand pass. What shipped was 3931 words, above target. That is the reverse of the usual pattern: the thin first draft was the problem, and the expand pass fixed it. &lt;code&gt;roundup_dropped&lt;/code&gt; recorded 36 stories cut from the roundup pool by the airtime budget (NEWS_ROUNDUP_COUNT). The pool was larger than one segment can carry, so those stories stay available for a later day.&lt;/p&gt;
+&lt;p&gt;Citation alignment on the roundup was 16 of 18 matched. On the deep dives it was 1 of 2. The deep-dive shortfall is the one to check: the single unmatched citation is on a segment that carries the debate, so a source attribution may be off in the part listeners will weigh most.&lt;/p&gt;
+
+&lt;h3&gt;Two short TTS takes, one still short after retry&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;tts_short_segments&lt;/code&gt; recorded 2 takes that came back shorter than their word count predicts. Each was retried once. One retry remained short, and the longer of the two takes was kept, so no script content was dropped from the episode. The two short takes were the only audio warnings this run, and no other warnings were raised.&lt;/p&gt;
+&lt;p&gt;The retry logic is doing its job here. If short takes become a regular occurrence, the place to look is the TTS segment-length check in the render step rather than the script, since the script length was on target.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;2 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.94, 3931 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive split&lt;/td&gt;&lt;td&gt;Casey 49% of the words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;24.0 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;22.0 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;16/18 roundup, 1/2 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;275 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;86,973&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;29 total: claude 13 · brave-search 7 · kagi-extract 5 · brave-answers 4&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, October 29, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-29.html</link>
@@ -1566,23 +1614,6 @@
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;3 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, September 30, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-30.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-30.html</guid>
-      <pubDate>Wed, 30 Sep 2026 10:07:46 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>
