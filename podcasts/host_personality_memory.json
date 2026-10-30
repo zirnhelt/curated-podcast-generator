@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Tom's Hardware] US AI data centers projected to become the ",
       "[TechRadar] Massive data breach sees 220 million traveler re",
       "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
       "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
@@ -10,7 +9,8 @@
       "[Business Insider] I broke into tech sales after working in ",
       "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
       "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
-      "[TechRadar] These social media posts promise big online disc"
+      "[TechRadar] These social media posts promise big online disc",
+      "AI"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -24,16 +24,6 @@
       "concedes when evidence is compelling"
     ],
     "personality_clues": [
-      {
-        "date": "2026-08-09",
-        "clue": "tech-optimism:[x] Conceded Casey's point on EV advice oversimplifying household math \u2014 now leads with problems instead of solutions",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-08-09",
-        "clue": "evidence-bar:[~] Added genuine complexity: acknowledged null results matter equally to positive findings, shifts from solution-focused framing",
-        "occurrences": 1
-      },
       {
         "date": "2026-08-17",
         "clue": "tech-optimism:~ \u2014 Conceded that mission-driven narrative collapsed under financial reality",
@@ -165,13 +155,23 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-27",
-        "clue": "structural-lens:+ \u2014 insists control and ownership are distinct claims",
-        "occurrences": 1
+        "date": "2026-10-30",
+        "clue": "structural-lens:+ \u2014 insists a named owner must be assigned to slopes",
+        "occurrences": 2
       },
       {
         "date": "2026-10-28",
         "clue": "evidence-bar:x \u2014 concedes sanction gap is a disclosure problem, not finding",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-30",
+        "clue": "funding-risk:x \u2014 concedes UK landscape line is not yet proven",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-30",
+        "clue": "community-trust:~ \u2014 praises Palmer's local Indigenous-led delivery model",
         "occurrences": 1
       }
     ],
@@ -319,16 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-06-12",
-        "clue": "pilot-skepticism: + \u2014 elevated concern about grant-dependent monitoring infrastructure failure patterns",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-06-24",
-        "clue": "pilot-skepticism:~[signal] \u2014 Conceded cooperative model validity, added population math.",
-        "occurrences": 1
-      },
-      {
         "date": "2026-08-23",
         "clue": "structural-lens:+[signal] \u2014 Escalated from individual funding to systemic collapse patterns",
         "occurrences": 2
@@ -464,8 +454,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-28",
-        "clue": "structural-lens:~ \u2014 notes platform incentives differ from household incentives",
+        "date": "2026-10-30",
+        "clue": "structural-lens:~ \u2014 doubts general recovery programs will own the slope",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-10-30",
+        "clue": "evidence-bar:+ \u2014 demands named owner and deadline before trusting plans",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-30",
+        "clue": "funding-risk:+ \u2014 presses who keeps monitoring and maintenance funded later",
         "occurrences": 1
       }
     ],
