@@ -283,6 +283,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - **The Cariboo bar** (`pick_cariboo_deep_dive`, one Haiku call, topical days only): from the rule-ranked head plus fresh local bonus stories, the first story a Cariboo household could act on, then other outlets' reports of the same story, never a neighbouring one. The anchor only breaks a tie. An aired local story from the past week (`recent_local_roundup`) may ride along as its Cariboo connection, tagged `_recalled_from`. Nothing passes: `script/deep-dive-local` degrades and the rule pick airs.
   - The credit follows `was_used()`, not the switch. Embed is batched at 96 texts and read from `embeddings.float_`.
 - **Bespoke episodes** (`generate_bespoke.py`) are **parked**: one episode (March 2026). The code and workflow stay because `seed-content` still triggers it when 3+ content seeds share a tag.
+- **Producer-pinned deep dive** (`seed.py url … --deep-dive --date YYYY-MM-DD`, `--title` for a link whose page names no article): every pinned seed due that day is the deep dive, past focus, rerank, the Cariboo bar and the substance swap. A seed already in the feed pins the feed's copy (`_merge_seed_articles`), so its body survives.
 - **PSA selection** (`psa_selector.py`): 7-day lookahead for awareness dates; otherwise round-robin, 28 days between repeats per org.
 
 ### Sibling repository

@@ -7626,3 +7626,67 @@ class TestRoundupShapeLine:
         line = pg.roundup_shape_line(script, roundup, [{"title": "[The Verge] FCC chip ban"}], 3)
         assert line == ("🧭 Roundup shape: local available 3, aired 0, opened local no; "
                         "split subjects: iphone duo; deep dive Cariboo: no")
+
+
+class TestProducerPinnedDeepDive:
+    """A `deep_dive` seed is the deep dive on its date, past every ranking."""
+
+    def _seed(self, **kw):
+        base = {"id": "abc12345", "type": "url", "url": "https://example.com/el-nino",
+                "title": "[Outlet] El Niño story", "note": "angle", "priority": "high",
+                "deep_dive": True, "air_date": "2026-11-01", "best_theme_day": 6}
+        base.update(kw)
+        return base
+
+    def test_dated_seed_waits_for_its_date(self):
+        import podcast_generator as pg
+        seed = self._seed()
+        assert not pg._seed_due(seed, 5, "2026-10-31")  # high priority alone no longer jumps it
+        assert pg._seed_due(seed, 6, "2026-11-01")
+        assert pg._seed_due(seed, 0, "2026-11-02")       # a missed day airs at the next run
+
+    def test_undated_seed_keeps_old_rules(self):
+        import podcast_generator as pg
+        assert pg._seed_due({"priority": "high", "best_theme_day": 3}, 1, "2026-11-01")
+        assert not pg._seed_due({"priority": "normal", "best_theme_day": 3}, 1, "2026-11-01")
+        assert pg._seed_due({"priority": "normal"}, 1, "2026-11-01")
+
+    def test_stored_title_skips_the_fetch(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_fetch_url_metadata",
+                            lambda url: pytest.fail("fetched despite a stored title"))
+        a = pg.build_seed_article(self._seed())
+        assert a["title"] == "[Outlet] El Niño story"
+        assert a["_pin_deep_dive"] is True
+
+    def test_seed_in_feed_pins_the_feed_copy(self):
+        import podcast_generator as pg
+        seed_article = {"url": "https://example.com/el-nino", "_is_seeded": True,
+                        "_seed_id": "abc12345", "_seed_note": "", "_pin_deep_dive": True}
+        feed_copy = {"url": "https://example.com/el-nino", "_body": "x" * 3000, "_kite_sources": 4}
+        other = {"url": "https://example.com/other"}
+        theme, bonus = pg._merge_seed_articles([seed_article], [other], [feed_copy])
+        assert bonus == []
+        assert theme[0] is feed_copy and theme[1] is other
+        assert feed_copy["_pin_deep_dive"] and feed_copy["_seed_id"] == "abc12345"
+        assert feed_copy["_body"] == "x" * 3000
+
+    def test_pinned_articles_are_the_deep_dive(self):
+        import podcast_generator as pg
+        pinned = [{"url": f"https://example.com/p{i}", "title": f"El Niño {i}",
+                   "_pin_deep_dive": True} for i in range(5)]
+        rest = [{"url": f"https://example.com/r{i}", "title": f"Other {i}",
+                 "_keyword_matches": 5, "_boosted_score": 99} for i in range(6)]
+        dd, news = pg.select_deep_dive_from_feed(rest[:3] + pinned + rest[3:],
+                                                 "Science, Wonder & the Natural World", count=4)
+        assert dd == pinned
+        assert news == rest
+
+    def test_pinned_thin_article_is_not_swapped(self):
+        import podcast_generator as pg
+        pinned = {"url": "https://example.com/p", "title": "El Niño", "_body": "",
+                  "_pin_deep_dive": True}
+        rich = {"url": "https://example.com/r", "title": "science study", "_body": "y" * 5000,
+                "_keyword_matches": 3}
+        dd, news = pg._ensure_deep_dive_substance([pinned], [rich], theme_keywords=["science"])
+        assert dd == [pinned] and news == [rich]
