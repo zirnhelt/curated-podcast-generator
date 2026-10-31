@@ -1,31 +1,4 @@
 {
-  "2026-08-01": {
-    "timestamp": 1785579604.403514,
-    "date": "2026-08-01",
-    "theme": "Cariboo Local Affairs",
-    "focus": null,
-    "central_question": "Should Forest Grove's failed fire hall funding referendum be solved by changing the ballot structure, removing local voting authority, or redesigning how capital asks are funded across low-population service areas?",
-    "riley_position": "The assent-vote model itself is flawed for low-population areas because it forces binary all-or-nothing choices on communities whose tax base is too small to shoulder disproportionately large capital liabilities that serve a much wider region. The fix is to offer tiered ballot options (full renovation vs. minimum repairs vs. deferred maintenance) rather than removing local voting power.",
-    "riley_key_evidence": [
-      "Forest Grove's fire hall serves well beyond its 60-house assessment zone, including highway accidents and mutual aid reaching toward Quesnel",
-      "121 total ballots cast with 66 no, 55 yes\u2014a structurally unbeatable threshold in a community that size",
-      "Barriere succeeded by securing provincial/regional grant commitments first, then asking locals to top up\u2014a sequencing advantage Forest Grove lacked"
-    ],
-    "casey_position": "The real problem is that recurring hazards like fire infrastructure and smoke exposure require standing mechanisms (reserve funds, maintenance schedules in budget cycles) rather than binary referendums. Moving decision-making to the regional board trades one accountability problem for a worse one, but the ballot question itself needs to be fundamentally reframed.",
-    "casey_key_evidence": [
-      "150 Mile House hit the same referendum wall as Forest Grove, suggesting a systemic pattern, not isolated tax aversion",
-      "121 ballots likely represents majority turnout of eligible voters\u2014this was active rejection, not apathy",
-      "Recurring conditions like orange air-quality warnings need durable infrastructure responses, not repeated advisory language"
-    ],
-    "resolution": "They converged on the core insight: the ballot format doesn't match the problem shape. Riley proposed tiered-option ballots as a testable pilot; Casey agreed this is more honest than binary voting and reframes accountability. They jointly recommended Forest Grove residents push the CRD board directly to redesign the ballot structure for the next capital cycle, making this a concrete, achievable ask rather than abstract policy reform.",
-    "topics_covered": [
-      "Forest Grove fire hall referendum failure (121 ballots, 66-55 split) and its governance implications",
-      "Misalignment between service area tax base and population served by emergency infrastructure",
-      "Tiered ballot options vs. binary yes/no referendum design",
-      "Regional cost-sharing models and sequencing of funding asks (Barriere comparison)",
-      "Recurring vs. discrete hazards and the inadequacy of one-time capital votes for cumulative problems like fire risk and air quality"
-    ]
-  },
   "2026-08-02": {
     "timestamp": 1785665941.112003,
     "date": "2026-08-02",
@@ -2585,6 +2558,33 @@
       "Climate trends in extreme rainfall and drought and their relevance to local planning",
       "Weakening US forecasting capacity and the local warning and response gap",
       "Cariboo Chilcotin rehabilitation projects, funding, and the scale of burned area"
+    ]
+  },
+  "2026-10-31": {
+    "timestamp": 1793434558.672443,
+    "date": "2026-10-31",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "who-counts-as-local",
+    "central_question": "Who counts as 'local' when land-use and resource decisions are made in the Cariboo, and do formal notice and consultation processes actually reach and empower those people?",
+    "riley_position": "Local participation can be made to work through better tools: a searchable map with automatic alerts, planned staffing for comment responses, earlier partnership with First Nations, and written rules for ties and student input. Faster federal timelines under Bill C-39 can provide planning certainty for projects.",
+    "riley_key_evidence": [
+      "West Fraser's Forest Operations Map 3505 runs three years from November 28th, 2026, and the comment window is the only point for outside objection.",
+      "The 100 Mile House Natural Resource District and BC Wildfire Service are building a 120-hectare fuel break with the Stswecem'c Xgat'tem First Nation beside the Enterprise Forest Service Road.",
+      "Lytton's 45-45 mayoral tie was settled by random draw after a judicial recount among 198 registered voters, and the incoming mayor is reviewing the elections bylaw."
+    ],
+    "casey_position": "Formal notice systems reach only people already looking for them, and capacity, maintenance, and consent are repeatedly underfunded or deferred. Fixed federal deadlines under Bill C-39 would make decisions faster without making them fairer, and informal civic standing should not become a recorded ranking.",
+    "casey_key_evidence": [
+      "The Observer has run similar notices for at least seven other West Fraser maps in 2025 and 2026, yet there is no evidence a trapper in the Quesnel district read this one.",
+      "Bill C-39 would cap federal environmental assessments at one year and fold permits into a single ministerial decision, while the Assembly of Manitoba Chiefs warns consultation could be limited by fixed deadlines.",
+      "Dairyland Power Co-op cancelled the 625 MW Nemadji Trail Energy Center in Superior, Wisconsin, after years of community objection, showing pressure can work without a permit deadline (single unverified source)."
+    ],
+    "resolution": "They did not reach agreement. Riley conceded that the Cariboo evidence on faster local consultation was lacking and that the Superior case rests on one source; Casey conceded she had no numerical case that local consultation is faster. They agreed on concrete tests for councils and districts: publish deferred project lists, a staffed comment log, and a fuel-break maintenance schedule visible in budgets.",
+    "topics_covered": [
+      "West Fraser forest operations map notice process and public comment windows",
+      "Staffing, capacity, and maintenance funding for local government and fuel-break projects",
+      "Federal Bill C-39 and the tension between speed and Indigenous consultation",
+      "Local standing versus stake, including volunteers, students, and municipal tie-breaking rules"
     ]
   }
 }
