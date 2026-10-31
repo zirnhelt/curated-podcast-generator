@@ -210,6 +210,15 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
         print(f"  Run manually: python generate_bespoke.py --tag {tag_lower}")
 
 
+def _iso_date(value: str) -> str:
+    """argparse type: a YYYY-MM-DD date, returned unchanged."""
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"not a YYYY-MM-DD date: {value!r}") from exc
+    return value
+
+
 def cmd_url(args) -> None:
     try:
         _validate_url(args.url)
@@ -221,7 +230,7 @@ def cmd_url(args) -> None:
         "id": uuid.uuid4().hex[:8],
         "type": "url",
         "url": args.url,
-        "title": None,
+        "title": args.title,
         "note": args.note,
         "added_at": datetime.now(timezone.utc).isoformat(),
         "priority": args.priority,
@@ -230,9 +239,15 @@ def cmd_url(args) -> None:
         "status": "pending",
         "used_on": None,
     }
+    if args.deep_dive:
+        seed["deep_dive"] = True
+    if args.date:
+        seed["air_date"] = args.date
     data["seeds"].append(seed)
     _save_seeds(data)
     print(f"Added URL seed [{seed['id']}]: {args.url}")
+    if args.deep_dive:
+        print("  Pinned to the deep dive" + (f" on {args.date}" if args.date else " of the next episode"))
     if args.note:
         print(f"  Note: {args.note}")
     if args.theme:
@@ -336,6 +351,12 @@ def main():
                        help=f"Target theme hint (e.g. 'Resilient Rural Futures'). Options: {', '.join(THEMES)}")
     p_url.add_argument("--tag", default=None,
                        help="Bespoke topic tag (e.g. 'billionaires'). When 3+ seeds share a tag, a bespoke episode is auto-generated.")
+    p_url.add_argument("--deep-dive", action="store_true",
+                       help="Pin to the deep dive: every pinned seed due that day is the deep dive, past ranking")
+    p_url.add_argument("--date", default=None, type=_iso_date,
+                       help="Air no earlier than this Pacific date (YYYY-MM-DD)")
+    p_url.add_argument("--title", default=None,
+                       help="Headline, for a URL whose page won't give one (e.g. a Google News link)")
 
     # thought command
     p_thought = sub.add_parser("thought", help="Log a thought or question for further exploration")

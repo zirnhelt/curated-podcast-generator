@@ -2041,6 +2041,45 @@ def rate_pending_seeds(pending_seeds):
             print(f"  ⚠️  Could not persist seed ratings: {e}")
 
 
+def _seed_due(seed: dict, today_weekday: int, today_iso: str) -> bool:
+    """Whether a URL seed may join today's run.
+
+    A dated seed (`air_date`, Pacific YYYY-MM-DD) waits for its date and then
+    airs at the next run. Otherwise high-priority and unrated seeds are always
+    due, and the rest wait for their theme day.
+    """
+    if seed.get("air_date"):
+        return seed["air_date"] <= today_iso
+    return (seed.get("priority") == "high"
+            or seed.get("best_theme_day") is None
+            or seed.get("best_theme_day") == today_weekday)
+
+
+def _merge_seed_articles(seed_articles: list, theme_articles: list,
+                         bonus_articles: list) -> tuple[list, list]:
+    """Prepend seed articles to the theme pool; return (theme, bonus).
+
+    A seed whose URL the feed already carries marks the feed's copy instead
+    (seed id, note, pin), so its body and Kagi News research survive; a copy
+    in the bonus bucket moves to the theme pool, where the deep dive draws.
+    """
+    by_url = {a.get("url", ""): a for a in theme_articles + bonus_articles}
+    fresh = []
+    for seed_article in seed_articles:
+        existing = by_url.get(seed_article["url"])
+        if existing is None:
+            fresh.append(seed_article)
+            continue
+        for key in ("_is_seeded", "_seed_id", "_seed_note", "_pin_deep_dive"):
+            if key in seed_article:
+                existing[key] = seed_article[key]
+        if existing in bonus_articles:
+            bonus_articles = [a for a in bonus_articles if a is not existing]
+            fresh.append(existing)
+        print(f"    🔗 Seed [{seed_article['_seed_id']}] is in today's feed — using the feed's copy")
+    return fresh + theme_articles, bonus_articles
+
+
 def build_seed_article(seed):
     """Convert a URL seed into a synthetic article dict for the pipeline.
 
@@ -2051,8 +2090,12 @@ def build_seed_article(seed):
     """
     url = seed["url"]
 
-    # Reuse metadata cached during theme rating (same run) when available
-    if "_title" in seed and "_desc" in seed:
+    # Reuse metadata cached during theme rating (same run) when available.
+    # A stored title is the producer's: it covers links (Google News) whose
+    # page names no article, and the deep dive's body fetch searches on it.
+    if seed.get("title"):
+        title, desc, author = seed["title"], seed.get("_desc", ""), seed.get("_author", "")
+    elif "_title" in seed and "_desc" in seed:
         title, desc = seed["_title"], seed["_desc"]
         author = seed.get("_author", "")
     else:
@@ -2086,6 +2129,8 @@ def build_seed_article(seed):
         "_seed_id": seed["id"],
         "_seed_note": note,
     }
+    if seed.get("deep_dive"):
+        article["_pin_deep_dive"] = True
 
     theme_label = seed.get("best_theme_name") or "unrated"
     status = "high-priority" if is_high else "normal"
@@ -4410,7 +4455,11 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
     then read by nothing, so a substance swap was free to promote back into the
     deep dive exactly what the router kept out of it.
     """
-    thin = [a for a in deep_dive_articles if len(a.get('_body', '') or '') < NEWS_BODY_MIN_CHARS]
+    # A producer-pinned article is never swapped out; the research pass
+    # and SPARSE SOURCE NOTE carry a thin one.
+    thin = [a for a in deep_dive_articles
+            if len(a.get('_body', '') or '') < NEWS_BODY_MIN_CHARS
+            and not a.get('_pin_deep_dive')]
     if not thin:
         return deep_dive_articles, news_articles
 
@@ -8028,6 +8077,8 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
     The feed already sorts articles by boosted score (theme relevance).
     Articles with _keyword_matches > 0 are strongly on-theme.
     Top `count` theme articles become the deep dive; the rest go to news.
+    A producer pin (`_pin_deep_dive`, from a `deep_dive` seed) overrides all of
+    it: the pinned articles are the deep dive, however many, and nothing ranks.
 
     When a super-cycle *focus* is active and enough articles match it, the
     deep dive is drawn from focus-matching articles first; a thin focus week
@@ -8051,6 +8102,14 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
     story a Cariboo household could act on, told by several outlets, with an
     aired local story from `recent_local` as its connection when one bears on it.
     """
+    pinned = [a for a in theme_articles if a.get('_pin_deep_dive')]
+    if pinned:
+        # The producer chose this deep dive. Focus, rerank and the Cariboo bar
+        # rank candidates; they don't second-guess an editor.
+        print(f"Deep dive: {len(pinned)} producer-pinned article(s) for '{theme_name}'")
+        for a in pinned:
+            print(f"  📌 {a.get('title', '')[:70]}")
+        return pinned, [a for a in theme_articles if not a.get('_pin_deep_dive')]
     # `_no_deep_dive` articles air today but do not anchor the debate: an urgent
     # off-theme story, or a local one whose subject belongs to another day. They
     # are held back rather than excluded — a day thin enough to fall below
@@ -13699,9 +13758,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 if url_seeds:
                     eligible_url_seeds = [
                         s for s in url_seeds
-                        if s.get("priority") == "high"
-                        or s.get("best_theme_day") is None
-                        or s.get("best_theme_day") == today_weekday
+                        if _seed_due(s, today_weekday, pacific_now.date().isoformat())
                     ]
                     eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
                     seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
@@ -13806,14 +13863,13 @@ def run_script_stage() -> tuple[str, str] | None:
                 if url_seeds:
                     eligible_url_seeds = [
                         s for s in url_seeds
-                        if s.get("priority") == "high"
-                        or s.get("best_theme_day") is None
-                        or s.get("best_theme_day") == today_weekday
+                        if _seed_due(s, today_weekday, pacific_now.date().isoformat())
                     ]
                     eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
                     seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
                     # Prepend seeds so select_deep_dive_from_feed sees them first
-                    theme_articles = seed_articles + theme_articles
+                    theme_articles, bonus_articles = _merge_seed_articles(
+                        seed_articles, theme_articles, bonus_articles)
 
                 # Inject email newsletter URLs into the article pool (curated feed path).
                 # URL-only newsletters get Brave enrichment so Claude has real article content.
