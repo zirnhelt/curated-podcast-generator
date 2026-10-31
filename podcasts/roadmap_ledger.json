@@ -730,7 +730,22 @@
         "2026-10-28"
       ],
       "last_seen": "2026-10-28"
+    },
+    {
+      "id": "storyboard-truncated-at-max-tokens-script-unplanned",
+      "title": "The storyboard step truncates at max_tokens, so the script is written with no storyboard.",
+      "detail": "Tonight the storyboard step was truncated at max_tokens and the pipeline fell back to writing the script unplanned, recorded as a degradation in script/storyboard. The first draft then came in at 3088 words against a 3400 target and needed an expand pass, which overshot to 3662. The fix belongs in the storyboard step's max_tokens setting, since that is the step that failed, and the run should record whether the storyboard completes at the raised limit on the next nights it runs.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-10-31",
+      "seen": [
+        "2026-10-31"
+      ],
+      "signal": "degraded:script/storyboard",
+      "signal_seen": "2026-10-31",
+      "last_seen": "2026-10-31"
     }
   ],
-  "updated": "2026-10-30"
+  "updated": "2026-10-31"
 }
