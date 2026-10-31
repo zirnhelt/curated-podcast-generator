@@ -1831,6 +1831,26 @@ class TestScriptStoryboard:
         assert "{storyboard}" not in sent
         assert rows and rows[0]["status"] == "degraded"
 
+    def test_budget_leaves_room_past_a_saturday_think(self, monkeypatch, tmp_path):
+        """2026-10-31: Haiku thought 15.4K tokens on Saturday's plan and 16000 cut
+        the JSON off. The cap must clear that think plus a ~3K plan with half again to spare."""
+        plan = self._plan()
+        client, _, rows = self._run(
+            monkeypatch, tmp_path,
+            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+
+        assert client.messages.create.call_args.kwargs["max_tokens"] >= 1.5 * (15_419 + 3_000)
+        assert rows and rows[0]["status"] == "ok"
+
+    def test_a_truncated_plan_degrades_and_runs_unplanned(self, monkeypatch, tmp_path):
+        _, sent, rows = self._run(
+            monkeypatch, tmp_path,
+            lambda **kw: _response("max_tokens", [_text_block('{"roundup": {')]))
+
+        assert "STORYBOARD" not in sent
+        assert rows and rows[0]["status"] == "degraded"
+        assert "max_tokens" in rows[0]["error"]
+
     def test_a_roundup_plan_that_skips_a_story_degrades(self, monkeypatch, tmp_path):
         plan = self._plan(stories=(2,))
         _, sent, rows = self._run(
