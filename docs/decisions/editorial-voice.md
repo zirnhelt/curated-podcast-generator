@@ -540,8 +540,8 @@ system prompt; it changes daily). The script still writes every line.
 - **Fails soft.** `script/storyboard` is `critical=False`; no plan, a truncated plan, a roundup
   plan that misses or reorders a story, or fewer than two beats all `degrade()`. A billing wall
   still aborts (`_abort_if_billing_wall`). `PODCAST_STORYBOARD=0` turns it off.
-- **Model:** `CLAUDE_STORYBOARD_MODEL`, else the script model, so the plan and the words come
-  from the same model. Adaptive thinking at `THINKING_EFFORT`, `max_tokens` 32000 (16000 until 2026-10-31, see below).
+- **Model:** `CLAUDE_STORYBOARD_MODEL`, else the script model. The workflow sets it to
+  `claude-sonnet-5-5` since 2026-10-31 (see below); the plan and the words no longer share a model. Adaptive thinking at `THINKING_EFFORT`, `max_tokens` 32000 (16000 until 2026-10-31, see below).
 - **Cost:** about 12–19K input and 3–16K output tokens on Haiku 5.5 (most of it thinking), about a cent a run. The
   script prompt grows by the plan, about 1.5K tokens.
 - **Review:** the plan is saved in the citations JSON under `storyboard`, to read against what
@@ -637,3 +637,18 @@ headroom on an ordinary day. It is now 32000. The cap only bills what is used: o
 extra room costs about $0.003 on a day that needs it, against a wasted $0.01 call and an unplanned
 script on a day that doesn't get it. With `CLAUDE_STORYBOARD_MODEL` or the script model on Sonnet,
 the same headroom is up to $0.16. The truncation check (`_truncated`) and its degrade stay.
+
+### The storyboard moves to Sonnet 5.5 (2026-10-31)
+
+The producer moved the storyboard to Sonnet 5.5 while the script and polish stay on Haiku 5.5. The
+storyboard is the one call that does the editorial reasoning (the deep dive's question, the beat
+chain, the roundup's bridges), and it is small: about 19K tokens in and a 3K plan out, against the
+script's ~53K out. Sonnet there costs about $0.10–0.15 a run with adaptive thinking (~$3–4.50 a
+month, 15–20% on the podcast key), where moving the script would cost several times that. The
+earlier reason for one model ("the plan and the words come from the same model") does not hold:
+the script follows the plan, it does not have to have reasoned it.
+
+`daily-podcast.yml` defaults `CLAUDE_STORYBOARD_MODEL` to `claude-sonnet-5-5`; the repository
+variable overrides it, and `claude-haiku-5-5` rolls back. A Sonnet 5.5 decline retries on Sonnet 5
+(`_REFUSAL_FALLBACK`). Read the plans in the citations JSON (`storyboard`) for a week against the
+Haiku ones from 2026-10-27 to 2026-10-31 before keeping it.

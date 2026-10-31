@@ -53,6 +53,10 @@ env:
   # claude-sonnet-5-5, ~$1.70/month in the batch). Opus escalation still
   # overrides it. Unset means CLAUDE_SONNET_MODEL.
   CLAUDE_POLISH_MODEL: ${{ vars.CLAUDE_POLISH_MODEL }}
+  # The storyboard alone: the one call that picks the deep dive's question and
+  # chains its beats. Sonnet 5.5 by default since 2026-10-31 (~$0.10-0.15 a run,
+  # ~$3-4.50/month); set the variable to claude-haiku-5-5 to roll back.
+  CLAUDE_STORYBOARD_MODEL: ${{ vars.CLAUDE_STORYBOARD_MODEL || 'claude-sonnet-5-5' }}
 
 permissions:
   contents: write
