@@ -25,21 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-08-17",
-        "clue": "tech-optimism:~ \u2014 Conceded that mission-driven narrative collapsed under financial reality",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-14",
-        "clue": "pilot-skepticism: + \u2014 Peace caribou recovery cited as counter-example, not hypothetical.",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-28",
-        "clue": "tech-optimism:- \u2014 concedes update and chip-check are harder for households",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-21",
         "clue": "pilot-skepticism:+ \u2014 Explicitly named 'pilot program' language as hollow messaging.",
         "occurrences": 1
@@ -173,6 +158,21 @@
         "date": "2026-10-30",
         "clue": "community-trust:~ \u2014 praises Palmer's local Indigenous-led delivery model",
         "occurrences": 1
+      },
+      {
+        "date": "2026-10-31",
+        "clue": "structural-lens:+ Pushes for proactive alerts and budgeted replacement reserves",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-31",
+        "clue": "community-trust:x Concedes Casey's point on Lytton's random draw",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-31",
+        "clue": "evidence-bar:~ Admits no proof local consultation is safer",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -295,7 +295,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Resilience.org] Social capital and community resilience: A ",
       "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
       "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
       "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
@@ -304,7 +303,8 @@
       "[Canadian Forest Industries] Community knowledge helps guide",
       "[Wildfire Today] Advancing community wildfire adaptation",
       "[Williams Lake Tribune] New Kamloops facility supports rural",
-      "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g"
+      "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g",
+      "[100 Mile Free Press] Interlakes community buys fire departm"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -318,21 +318,6 @@
       "demands full picture \u2014 not just press releases"
     ],
     "personality_clues": [
-      {
-        "date": "2026-08-23",
-        "clue": "structural-lens:+[signal] \u2014 Escalated from individual funding to systemic collapse patterns",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-07-24",
-        "clue": "pilot-skepticism:- \u2014 Moved from dismissing pilots to proposing testable tributary temperature setup",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-07-12",
-        "clue": "Indigenous-tech:~ \u2014 introduced legitimate data-ownership question as upstream design issue",
-        "occurrences": 2
-      },
       {
         "date": "2026-08-09",
         "clue": "structural-lens:[+] Reinforced institutional skepticism \u2014 pushed for explicit accountability checkpoints rather than trusting informal translation happens",
@@ -466,6 +451,21 @@
       {
         "date": "2026-10-30",
         "clue": "funding-risk:+ \u2014 presses who keeps monitoring and maintenance funded later",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-31",
+        "clue": "evidence-bar:+ Demands published deferred lists and staffed comment logs",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-31",
+        "clue": "community-trust:~ Says volunteer standing should stay separate from votes",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-10-31",
+        "clue": "structural-lens:x Concedes stake differs from standing for students",
         "occurrences": 1
       }
     ],
