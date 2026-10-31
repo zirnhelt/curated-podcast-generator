@@ -541,8 +541,8 @@ system prompt; it changes daily). The script still writes every line.
   plan that misses or reorders a story, or fewer than two beats all `degrade()`. A billing wall
   still aborts (`_abort_if_billing_wall`). `PODCAST_STORYBOARD=0` turns it off.
 - **Model:** `CLAUDE_STORYBOARD_MODEL`, else the script model, so the plan and the words come
-  from the same model. Adaptive thinking at `THINKING_EFFORT`, `max_tokens` 16000.
-- **Cost:** about 12K input and 3–6K output tokens on Haiku 5.5, under a cent a run. The
+  from the same model. Adaptive thinking at `THINKING_EFFORT`, `max_tokens` 32000 (16000 until 2026-10-31, see below).
+- **Cost:** about 12–19K input and 3–16K output tokens on Haiku 5.5 (most of it thinking), about a cent a run. The
   script prompt grows by the plan, about 1.5K tokens.
 - **Review:** the plan is saved in the citations JSON under `storyboard`, to read against what
   aired.
@@ -627,3 +627,13 @@ the block it lands in. A kicker already beside its twin, or folded in, is left a
 plan names no repeat, nothing moves: the model's judgement is still the detector; the code only
 stops it being ignored.
 
+
+### The storyboard ran out of room on a Saturday (2026-10-31)
+
+Haiku 5.5 thought 15.4K tokens on Saturday's plan (18 roundup stories, five deep-dive sources,
+19K input) and the 16000 cap cut the JSON off: `script/storyboard` degraded and the script ran
+unplanned. The weekday before had thought 10.9K of a 13.6K reply, so the cap had about 15%
+headroom on an ordinary day. It is now 32000. The cap only bills what is used: on Haiku 5.5 the
+extra room costs about $0.003 on a day that needs it, against a wasted $0.01 call and an unplanned
+script on a day that doesn't get it. With `CLAUDE_STORYBOARD_MODEL` or the script model on Sonnet,
+the same headroom is up to $0.16. The truncation check (`_truncated`) and its degrade stay.

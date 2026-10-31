@@ -9556,7 +9556,10 @@ def _splice_sections(script: str, rewrite: str, names: list[str]) -> str:
 # spine). The plan rides in the script prompt; the script still owns the words.
 STORYBOARD_ENABLED = os.getenv("PODCAST_STORYBOARD", "1") != "0"
 STORYBOARD_MODEL = os.getenv("CLAUDE_STORYBOARD_MODEL") or SCRIPT_MODEL
-STORYBOARD_MAX_TOKENS = 16000  # adaptive thinking shares it with the plan
+# Adaptive thinking shares it with the plan (~3K tokens). Haiku 5.5 thought 10.9K
+# tokens on 2026-10-30 and 15.4K on Saturday 2026-10-31 (18 stories + 5 sources),
+# which cut the plan off at 16000 and the script ran unplanned.
+STORYBOARD_MAX_TOKENS = 32000
 # The citations record what the script was told to follow; set per run.
 _storyboard_used: dict | None = None
 
