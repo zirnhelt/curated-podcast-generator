@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-10-18..2026-10-24) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-10-18..2026-11-01) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -53,6 +53,14 @@ close one; it comes back only if the reviews raise it 2 more times._
       Closing this would mean checking whether the initial generation prompt states the word
       target strongly enough, so fewer episodes depend on the retry loop. (seen in 3 reviews,
       latest 2026-10-24)
+- [ ] **The storyboard step truncates at max_tokens, so the script is written with no
+      storyboard.** Tonight the storyboard step was truncated at max_tokens and the pipeline
+      fell back to writing the script unplanned, recorded as a degradation in script/storyboard.
+      The first draft then came in at 3088 words against a 3400 target and needed an expand
+      pass, which overshot to 3662. The fix belongs in the storyboard step's max_tokens setting,
+      since that is the step that failed, and the run should record whether the storyboard
+      completes at the raised limit on the next nights it runs. (signal
+      `degraded:script/storyboard`; seen in 2 reviews, latest 2026-11-01)
 
 <!-- reviews:end -->
 
