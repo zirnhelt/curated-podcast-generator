@@ -10,6 +10,28 @@ here as one or two lines and put the story in the decision file, not here.
 The values behind both curators (this show and `super-rss-feed`) are in
 [`docs/MANIFESTO.md`](docs/MANIFESTO.md): read it before changing what gets selected or how the hosts sound.
 
+> **⚠️ Never read `podcast_generator.py` whole.** It is ~14.8K lines (~710 KB, ~180K tokens): one
+> full Read fills most of a session's context. Use `grep -n "^def name"` to find a function, then
+> Read with `offset`/`limit` for that range. Line numbers drift; grep before trusting the index below.
+>
+> | Lines (approx.) | Section | Landmarks |
+> |---|---|---|
+> | 1–180 | Imports, constants, exit codes, `_cdata_safe` | |
+> | 180–1575 | Segments, money preflight, Claude calls, TTS credit | `segment`, `degrade`, `write_run_report`, `check_api_budget`, `send_claude` |
+> | 1575–2930 | Content seeds, page fetch, cached system prompt | `load_content_seeds`, `build_cached_system_prompt` |
+> | 2930–3395 | Brave Search / Answers wrappers | `_brave_search` |
+> | 3395–4525 | Agentic tool loop, election roll call, ballot research, roundup body research | `_run_event_sweep`, `_research_event_ballot`, `_filter_sparse_news_articles` |
+> | 4525–5320 | Batch API helpers, polish and fact-check | `polish_and_factcheck_with_agent` |
+> | 5320–6650 | Memory files, super-cycle holding, aired ledger, roundup echoes | `update_episode_memory`, `route_articles_for_focus`, `find_roundup_echoes` |
+> | 6650–8725 | Feed fetch, roundup curation and sequencing, deep-dive selection | `fetch_podcast_feed`, `_sequence_roundup`, `pick_cariboo_deep_dive`, `select_deep_dive_from_feed` |
+> | 8725–9720 | Phrase ledger, script scoring, citations | `load_phrase_ledger`, `score_script`, `generate_citations_file` |
+> | 9720–10485 | Storyboard and script writing | `storyboard_script`, `apply_storyboard_order`, `generate_podcast_script` |
+> | 10485–11375 | Pacing, segment parsing, OpenAI TTS | `parse_script_into_segments`, `generate_tts_for_segment` |
+> | 11375–12000 | Meta Moment, territory check | `generate_meta_moment_text`, `scrub_territory_claims` |
+> | 12000–12940 | Audio assembly, R2 | `generate_audio_from_script`, `sync_site_to_r2` |
+> | 12940–13630 | Transcripts, RSS, script file | `generate_podcast_rss_feed`, `save_script_to_file` |
+> | 13630–14768 | Stage entry points and CLI | `run_script_stage`, `run_render_stage`, `run_publish_stage`, `main` |
+
 ## Role and Style
 
 Direct, technical, efficient. No fluff. No apologies. Get straight to the technical solution. Explain the "why" behind significant architectural decisions briefly before writing code.
@@ -50,11 +72,17 @@ python -m pytest tests/test_psa_selector.py::TestPSASelector::test_round_robin -
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 # ffmpeg must be installed (apt install ffmpeg / brew install ffmpeg)
-python podcast_generator.py                    # both stages (default)
 
-# Run one stage at a time
+# ⚠️ The bare command defaults to --stage all: script + render + PUBLISH (feeds,
+# index.html, R2 sync with whatever R2 credentials are set). Never run it to "try" a change.
+python podcast_generator.py                    # = --stage all, publishes
+
+# Generate without publishing: script, then render. Both still spend API money, and
+# the script stage rewrites the podcasts/ memory files (revert them; don't commit).
 python podcast_generator.py --stage script     # curate + write script, no TTS spend
 python podcast_generator.py --stage render     # TTS + assembly only, no publishing
+
+# Run one stage at a time
 python podcast_generator.py --stage publish    # transcript, feeds, index.html, R2 sync
 python podcast_generator.py --stage recover    # re-render past episodes missing audio
 python podcast_generator.py --stage audio      # recover + render + publish (back-compat)
@@ -64,7 +92,8 @@ python podcast_generator.py --stage render --date 2026-07-24
 python podcast_generator.py --stage publish --date 2026-07-24
 python podcast_generator.py --stage audio --script podcasts/podcast_script_2026-07-24_theme.txt
 
-# See the per-segment status table locally (CI writes it to the job summary)
+# See the per-segment status table locally (CI writes it to the job summary).
+# This is a real publish (R2 sync included): unset the R2 credentials first.
 GITHUB_STEP_SUMMARY=/tmp/summary.md python podcast_generator.py --stage publish
 
 # Preview the weekly anchor schedule without spending or writing state

@@ -1,6 +1,9 @@
 name: Security Audit
 
-# Runs on code changes pushed to main and on manual trigger.
+# Runs on code changes pushed to main, on every PR to main, and on manual trigger.
+# The PR trigger has no paths filter on purpose: a key pasted into a .md or .sh file
+# is exactly the change a code-only filter would wave through, and a required check
+# that never starts blocks the merge.
 on:
   push:
     branches: [main]
@@ -9,6 +12,8 @@ on:
       - 'requirements.txt'
       - '.github/workflows/**.yml'
       - '**.html'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 env:
@@ -31,6 +36,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          # Depth 2 brings the parent: on a PR the checkout is the merge commit, so
+          # HEAD^1 is main and HEAD^1..HEAD is exactly what the PR adds. On a push to
+          # main it is the commit (or merge) that just landed.
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
@@ -88,6 +98,39 @@ jobs:
             echo "::error::Potential hardcoded secrets detected — review output above"
             exit 1
           fi
+
+      # ── 3b. Diff scan: every added line, every file type ─────────────────────
+      # Step 3 scans the whole tree but only .py/.yml/.json, and drops any line with
+      # a '#'. This step reads only what the change adds, in any file, with no
+      # comment filter, plus the one PII invariant a diff can break: a new
+      # from_address in email_queue.json must be masked (x***@domain) or "producer".
+      - name: Diff scan (secrets in any added line; unmasked senders)
+        run: |
+          if ! git rev-parse -q --verify HEAD^1 >/dev/null; then
+            echo "No parent commit to diff against; skipping"; exit 0
+          fi
+          ADDED=$(git diff --no-color --unified=0 HEAD^1 HEAD -- . ':(exclude).github/workflows/security-audit.yml' \
+            | grep -E '^\+' | grep -vE '^\+\+\+ ' || true)
+          FAIL=0
+          for pat in '(^|[^A-Za-z0-9])sk-[A-Za-z0-9_-]{20,}' 'AKIA[A-Z0-9]{16}' 'gh[pousr]_[A-Za-z0-9]{36}' \
+                     'github_pat_[A-Za-z0-9_]{40,}' '-----BEGIN [A-Z ]*PRIVATE KEY-----'; do
+            if printf '%s\n' "$ADDED" | grep -E -- "$pat" >/dev/null; then
+              echo "FAIL: added line matches $pat"; FAIL=1
+            fi
+          done
+          BAD=$(git diff --no-color --unified=0 HEAD^1 HEAD -- podcasts/email_queue.json \
+            | grep -E '^\+' | grep -oE '"from_address": "[^"]*"' \
+            | grep -vE '": "(.\*\*\*@[^"]+|producer|\[redacted\])"$' || true)
+          if [ -n "$BAD" ]; then
+            echo "FAIL: email_queue.json gains an unmasked from_address ($(printf '%s\n' "$BAD" | wc -l) line(s))"
+            FAIL=1
+          fi
+          if [ "$FAIL" -ne 0 ]; then
+            # Matches are not echoed: the log of a public repo is public too.
+            echo "::error::Diff scan failed: run 'git diff HEAD^1 HEAD' locally to find the line"
+            exit 1
+          fi
+          echo "PASS: no secret patterns or unmasked senders in added lines"
 
       # ── 4. XSS guard: ensure escHtml() wraps all RSS data in HTML templates ──
       - name: XSS guard (escHtml usage in HTML files)
@@ -241,6 +284,7 @@ jobs:
           echo "  1. pip-audit     — CVE scan on dependencies"
           echo "  2. bandit        — Python static security analysis"
           echo "  3. Secrets scan  — hardcoded credential patterns"
+          echo "  3b.Diff scan     — secrets in any added line; senders masked"
           echo "  4. XSS guard     — escHtml() coverage in HTML"
           echo "  5. PII guard     — email_queue.json not deployed; sender masked"
           echo "  5b.CSP guard     — script-src uses sha256 hashes, not unsafe-inline"

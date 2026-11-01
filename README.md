@@ -300,7 +300,8 @@ pip install -r requirements.txt
 export ANTHROPIC_API_KEY='your-key'
 export OPENAI_API_KEY='your-key'
 
-# Run daily show (weekday, weekend, or bespoke — all use the same entry point)
+# Run the daily show. The default is --stage all, which PUBLISHES (feeds, index.html,
+# R2 sync). To generate without publishing: --stage script, then --stage render.
 python podcast_generator.py
 
 # Run bespoke (optionally set BRAVE_SEARCH_API_KEY for source expansion)
