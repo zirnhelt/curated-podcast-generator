@@ -6133,6 +6133,20 @@ class TestSequenceRoundup:
         monkeypatch.setitem(pg.CONFIG, "disciplines", {})
         assert [a["title"] for a in _sequence_roundup(articles)] == ["A", "B", "C"]
 
+    def test_same_discipline_runs_contiguously_inside_a_group(self, monkeypatch):
+        """2026-11-01, storyboard down: one group pulled in strength order aired
+        an ice story, a Mars rock, then two more ice stories. Within a group the
+        lead's discipline comes first and each other discipline stays together."""
+        articles = [
+            _seq_article("Fire one", "theme", "wildfire"),
+            _seq_article("Outage one", "theme", "power outage"),
+            _seq_article("Fire two", "theme", "wildfire"),
+            _seq_article("Outage two", "theme", "bc hydro"),
+        ]
+        assert self._sequence(articles, monkeypatch) == [
+            "Fire one", "Fire two", "Outage one", "Outage two",
+        ]
+
     def test_cluster_adjacent_preserves_every_member(self):
         members = [_seq_article(f"S{i}", "local", "wildfire" if i % 2 else "charity")
                    for i in range(6)]

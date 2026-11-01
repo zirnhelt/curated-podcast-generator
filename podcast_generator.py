@@ -7122,15 +7122,25 @@ def _cluster_adjacent(members: list, disciplines_config: dict) -> list:
     # Inferred once per article rather than once per comparison: this runs on
     # every block of every episode and _infer_discipline is a regex sweep over
     # the whole taxonomy.
-    remaining = [(a, _infer_discipline(a, disciplines_config)[0]) for a in members]
+    #
+    # Two levels: the lead's own discipline first, then each other discipline of
+    # its group as a contiguous run (in the order they first appear). Pulling the
+    # group in strength order alone aired, on 2026-11-01 with the storyboard down,
+    # "ice age cancelled → Mars meteorite → Tibet ice cores → ice-age ocean":
+    # one group, but the rock split the three ice stories.
+    remaining = [(a, *_infer_discipline(a, disciplines_config)) for a in members]
     ordered = []
     while remaining:
-        lead, group = remaining.pop(0)
+        lead, group, disc = remaining.pop(0)
         ordered.append(lead)
         if not group:
             continue
-        ordered.extend(a for a, g in remaining if g == group)
-        remaining = [pair for pair in remaining if pair[1] != group]
+        siblings = [t for t in remaining if t[1] == group]
+        remaining = [t for t in remaining if t[1] != group]
+        runs = {disc: []}
+        for t in siblings:
+            runs.setdefault(t[2], []).append(t[0])
+        ordered.extend(a for run in runs.values() for a in run)
     return ordered
 
 
