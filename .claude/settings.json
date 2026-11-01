@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest *)",
+      "Bash(python weekly_anchor.py --preview *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git checkout -- podcasts/*)"
+    ],
+    "ask": [
+      "Bash(python podcast_generator.py *)",
+      "Bash(python3 podcast_generator.py *)",
+      "Bash(python seed.py *)",
+      "Bash(git push --force *)",
+      "Edit(podcasts/*.json)",
+      "Write(podcasts/*.json)",
+      "Edit(config/standing_notes.txt)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/state-leak-check.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
