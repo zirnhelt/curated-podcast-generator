@@ -9696,8 +9696,9 @@ def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text
     )
     output_config = {"effort": THINKING_EFFORT, **_json_output(_STORYBOARD_SCHEMA)}
     try:
+        # Streamed: the SDK refuses a non-streaming call above ~21K max_tokens.
         response = api_retry(lambda: create_message(
-            client, model=STORYBOARD_MODEL, max_tokens=STORYBOARD_MAX_TOKENS,
+            client, stream=True, model=STORYBOARD_MODEL, max_tokens=STORYBOARD_MAX_TOKENS,
             messages=[{"role": "user", "content": prompt}],
             output_config=output_config,
         ))

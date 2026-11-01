@@ -1797,11 +1797,29 @@ class TestScriptStoryboard:
         monkeypatch.setattr(pg, "_RUN_SEGMENTS", [])
         full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
-        client.messages.create.side_effect = planner
+        script_cm = client.messages.stream.return_value
+        client.planner_calls = []
+
+        def stream(**kw):
+            # The storyboard's prompt is plain text; the script's is content blocks.
+            if not isinstance(kw["messages"][0]["content"], str):
+                return script_cm
+            client.planner_calls.append(kw)
+            result = planner(**kw)
+            stream_obj = MagicMock()
+            stream_obj.get_final_message.return_value = result
+            cm = MagicMock()
+            cm.__enter__.return_value = stream_obj
+            cm.__exit__.return_value = False
+            return cm
+
+        client.messages.stream.side_effect = stream
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         pg.generate_podcast_script(list(self.STORIES), [dict(self.DEEP)],
                                    "Working Lands & Industry", {}, {})
-        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        sent = [c for c in client.messages.stream.call_args_list
+                if not isinstance(c.kwargs["messages"][0]["content"], str)
+                ][-1].kwargs["messages"][0]["content"][0]["text"]
         rows = [r for r in pg._RUN_SEGMENTS if r["name"] == "script/storyboard"]
         return client, sent, rows
 
@@ -1812,7 +1830,7 @@ class TestScriptStoryboard:
             monkeypatch, tmp_path,
             lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
 
-        planner_prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        planner_prompt = client.planner_calls[0]["messages"][0]["content"]
         assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 0", planner_prompt, re.M)
         assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 1", planner_prompt, re.M)
         assert "Central question: Who owns the last mile?" in sent
@@ -1839,7 +1857,21 @@ class TestScriptStoryboard:
             monkeypatch, tmp_path,
             lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
 
-        assert client.messages.create.call_args.kwargs["max_tokens"] >= 1.5 * (15_419 + 3_000)
+        assert client.planner_calls[0]["max_tokens"] >= 1.5 * (15_419 + 3_000)
+        assert rows and rows[0]["status"] == "ok"
+
+    def test_the_plan_is_streamed(self, monkeypatch, tmp_path):
+        """2026-11-01: the 32000 cap made the SDK refuse a non-streaming call
+        ("Streaming is required for operations that may take longer than 10
+        minutes") before any request left, so the script ran unplanned. The SDK
+        refuses above ~21,333 tokens; the call must go through messages.stream."""
+        plan = self._plan()
+        client, _, rows = self._run(
+            monkeypatch, tmp_path,
+            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+
+        assert len(client.planner_calls) == 1
+        assert not client.messages.create.called
         assert rows and rows[0]["status"] == "ok"
 
     def test_a_truncated_plan_degrades_and_runs_unplanned(self, monkeypatch, tmp_path):
@@ -1866,7 +1898,7 @@ class TestScriptStoryboard:
         monkeypatch.setattr(pg, "STORYBOARD_ENABLED", False)
         client, sent, _ = self._run(monkeypatch, tmp_path, lambda **kw: None)
 
-        assert not client.messages.create.called
+        assert not client.planner_calls
         assert "STORYBOARD" not in sent
 
     def test_citations_keep_the_plan(self, monkeypatch, tmp_path):
@@ -7521,8 +7553,14 @@ class TestApplyStoryboardOrder:
         plan["roundup"]["stories"][0]["merge_with"] = [2]
         full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
-        client.messages.create.side_effect = (
-            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        script_cm = client.messages.stream.return_value
+        plan_cm = MagicMock()
+        plan_cm.__enter__.return_value.get_final_message.return_value = _response(
+            "end_turn", [_text_block(json.dumps(plan))])
+        plan_cm.__exit__.return_value = False
+        # The storyboard's prompt is plain text; the script's is content blocks.
+        client.messages.stream.side_effect = lambda **kw: (
+            plan_cm if isinstance(kw["messages"][0]["content"], str) else script_cm)
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         pg.generate_podcast_script(stories, [], "Repair Culture & Practical Tech", {}, {})
         sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
