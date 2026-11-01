@@ -22,7 +22,16 @@
             "nebula",
             "pulsar",
             "black hole",
-            "exoplanet"
+            "exoplanet",
+            "planetary",
+            "dwarf planet",
+            "Mars",
+            "meteorite",
+            "comet",
+            "asteroid",
+            "telescope",
+            "observatory",
+            "Pluto"
           ]
         },
         "physics": {
@@ -188,7 +197,10 @@
             "forever chemical",
             "emissions",
             "drought",
-            "flood"
+            "flood",
+            "ice age",
+            "ice core",
+            "glacial"
           ]
         },
         "archaeology_anthropology": {
@@ -209,7 +221,8 @@
             "tomb",
             "mummy",
             "ancient Rome",
-            "ancient Egypt"
+            "ancient Egypt",
+            "mummies"
           ]
         }
       }

@@ -645,6 +645,27 @@ def _stream_client(responses):
     return client
 
 
+def _planner_script_client(planner, script_resp):
+    """Client for generate_podcast_script: the storyboard and the script both
+    stream (the planner's budget is past STREAM_ABOVE_MAX_TOKENS), so one
+    messages.stream mock routes on the planner's JSON schema. Returns the client
+    and the planner and script calls' kwargs, in order."""
+    client, planner_calls, script_calls = MagicMock(), [], []
+
+    def stream(**kw):
+        if "format" in (kw.get("output_config") or {}):
+            planner_calls.append(kw)
+            resp = planner(**kw)
+        else:
+            script_calls.append(kw)
+            resp = script_resp
+        cm = MagicMock()
+        cm.__enter__.return_value.get_final_message.return_value = resp
+        return cm
+    client.messages.stream.side_effect = stream
+    return client, planner_calls, script_calls
+
+
 class TestRunAgenticLoop:
     def test_returns_text_with_no_tool_use(self):
         client = _stream_client([_response("end_turn", [_text_block("final script")])])
@@ -1481,6 +1502,16 @@ class TestCreateMessage:
         assert client.messages.stream.call_count == 1
         client.messages.create.assert_not_called()
 
+    def test_large_budget_streams_even_when_not_asked(self):
+        """2026-11-01: the storyboard's 32000 on Sonnet 5.5 hit the SDK's
+        'streaming is required' ValueError and never reached the API."""
+        from podcast_generator import create_message, STREAM_ABOVE_MAX_TOKENS
+        client = _stream_client([_response("end_turn", [_text_block("hi")])])
+        create_message(client, model="m", max_tokens=STREAM_ABOVE_MAX_TOKENS + 1,
+                       messages=[])
+        assert client.messages.stream.call_count == 1
+        client.messages.create.assert_not_called()
+
 
 class TestTruncationGuards:
     """Guards added after the 2026-07-06 episode shipped a script truncated
@@ -1796,12 +1827,12 @@ class TestScriptStoryboard:
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
         monkeypatch.setattr(pg, "_RUN_SEGMENTS", [])
         full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
-        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
-        client.messages.create.side_effect = planner
+        client, self.planner_calls, script_calls = _planner_script_client(
+            planner, _response("end_turn", [_text_block(full_script)]))
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         pg.generate_podcast_script(list(self.STORIES), [dict(self.DEEP)],
                                    "Working Lands & Industry", {}, {})
-        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        sent = script_calls[-1]["messages"][0]["content"][0]["text"]
         rows = [r for r in pg._RUN_SEGMENTS if r["name"] == "script/storyboard"]
         return client, sent, rows
 
@@ -1812,7 +1843,7 @@ class TestScriptStoryboard:
             monkeypatch, tmp_path,
             lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
 
-        planner_prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        planner_prompt = self.planner_calls[-1]["messages"][0]["content"]
         assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 0", planner_prompt, re.M)
         assert re.search(r"^[12]\. \([a-z ]+\) \[Unknown\] Story 1", planner_prompt, re.M)
         assert "Central question: Who owns the last mile?" in sent
@@ -1839,7 +1870,7 @@ class TestScriptStoryboard:
             monkeypatch, tmp_path,
             lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
 
-        assert client.messages.create.call_args.kwargs["max_tokens"] >= 1.5 * (15_419 + 3_000)
+        assert self.planner_calls[-1]["max_tokens"] >= 1.5 * (15_419 + 3_000)
         assert rows and rows[0]["status"] == "ok"
 
     def test_a_truncated_plan_degrades_and_runs_unplanned(self, monkeypatch, tmp_path):
@@ -6133,6 +6164,20 @@ class TestSequenceRoundup:
         monkeypatch.setitem(pg.CONFIG, "disciplines", {})
         assert [a["title"] for a in _sequence_roundup(articles)] == ["A", "B", "C"]
 
+    def test_same_discipline_runs_contiguously_inside_a_group(self, monkeypatch):
+        """2026-11-01, storyboard down: one group pulled in strength order aired
+        an ice story, a Mars rock, then two more ice stories. Within a group the
+        lead's discipline comes first and each other discipline stays together."""
+        articles = [
+            _seq_article("Fire one", "theme", "wildfire"),
+            _seq_article("Outage one", "theme", "power outage"),
+            _seq_article("Fire two", "theme", "wildfire"),
+            _seq_article("Outage two", "theme", "bc hydro"),
+        ]
+        assert self._sequence(articles, monkeypatch) == [
+            "Fire one", "Fire two", "Outage one", "Outage two",
+        ]
+
     def test_cluster_adjacent_preserves_every_member(self):
         members = [_seq_article(f"S{i}", "local", "wildfire" if i % 2 else "charity")
                    for i in range(6)]
@@ -7226,6 +7271,52 @@ class TestAiredLedger:
             assert "unless it appears under ALREADY ON AIR THIS WEEK" in prompt
 
 
+class TestRoundupEchoes:
+    """2026-11-01: the deep dive retold the dementia study, the Cow Moose award
+    and Helen Sandy's exhibit figure for figure, minutes after the roundup told
+    them. The producer wants a callback, not a second telling."""
+
+    SCRIPT = (
+        "**NEWS ROUNDUP**\n\n"
+        "**CASEY:** [pause:1200] A study in General Psychiatry followed 87,577 adults "
+        "who wore wrist devices measuring light.\n\n"
+        "**RILEY:** Council approved the new arena budget on Tuesday night.\n\n"
+        "**DEEP DIVE: CARIBOO CONNECTIONS - Science**\n\n"
+        "**CASEY:** Researchers followed 87,577 adults who wore wrist devices that "
+        "measured light. That kind of record is what El Nino forecasters lack.\n\n"
+        "**RILEY:** The light study we mentioned up top makes the same point about records.\n"
+    )
+
+    def test_a_retold_roundup_line_is_found_and_a_callback_is_not(self):
+        import podcast_generator as pg
+        echoes = pg.find_roundup_echoes(self.SCRIPT)
+        assert [dd for dd, _ in echoes] == [
+            "Researchers followed 87,577 adults who wore wrist devices that measured light."]
+        assert "General Psychiatry" in echoes[0][1]
+
+    def test_roundup_lines_alone_are_never_echoes(self):
+        import podcast_generator as pg
+        roundup_only = self.SCRIPT.split("**DEEP DIVE")[0]
+        assert pg.find_roundup_echoes(roundup_only) == []
+
+    def test_polish_addendum_asks_for_a_callback(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        addendum = pg._aired_repeats_addendum(self.SCRIPT)
+        assert "RETOLD FROM TODAY'S ROUNDUP" in addendum
+        assert "87,577 adults who wore wrist devices that measured light" in addendum
+
+    def test_prompts_ask_for_a_callback_not_a_retelling(self):
+        """Rule (u) used to ban "from earlier in the show" and say to restate the
+        fact itself, which is a retelling by instruction."""
+        import podcast_generator as pg
+        for key in ("script_generation_system", "polish_and_factcheck",
+                    "agentic_polish_and_factcheck"):
+            prompt = str(pg.CONFIG["prompts"][key])
+            assert "state the fact itself" not in prompt
+            assert "we mentioned up top" in prompt
+
+
 class TestCandidateProfiles:
     """2026-10-10: the Tribune profiled most of the council field that week and
     the research cited directory sites instead. The roll call reads them."""
@@ -7520,12 +7611,12 @@ class TestApplyStoryboardOrder:
         plan = TestScriptStoryboard()._plan(stories=(1,))
         plan["roundup"]["stories"][0]["merge_with"] = [2]
         full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3700)
-        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
-        client.messages.create.side_effect = (
-            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        client, _, script_calls = _planner_script_client(
+            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]),
+            _response("end_turn", [_text_block(full_script)]))
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
         pg.generate_podcast_script(stories, [], "Repair Culture & Practical Tech", {}, {})
-        sent = client.messages.stream.call_args.kwargs["messages"][0]["content"][0]["text"]
+        sent = script_calls[-1]["messages"][0]["content"][0]["text"]
         assert "↳ SAME STORY as the one above" in sent
         assert "Same story, also told by: [WIRED] iPhone Duo screens crack" in sent
 
