@@ -1,23 +1,4 @@
 {
-  "2026-09-26": {
-    "timestamp": 1790410618.899168,
-    "topics": [
-      "[Williams Lake Tribune] UBCM backs Williams Lake call for in",
-      "[Williams Lake Tribune] Williams Lake Stampeders out of 2026",
-      "[Williams Lake Tribune] Manpreet Singh from India: Part of t",
-      "[My Cariboo Now] The Thanksgiving Food Drive is underway in ",
-      "[Quesnel Cariboo Observer] Quesnel residents warned to stay ",
-      "[My Cariboo Now] Overlapping B.C. elections will be bad for ",
-      "[Williams Lake Tribune] Nominations close Oct. 1 for 29th an",
-      "[My Cariboo Now] Former B.C. Green leader Andrew Weaver runn"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-09-26",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-09-27": {
     "timestamp": 1790497588.721334,
     "topics": [
@@ -722,5 +703,26 @@
     "date": "2026-10-31",
     "focus": null,
     "focus_name": null
+  },
+  "2026-11-01": {
+    "timestamp": 1793520966.296985,
+    "topics": [
+      "[Williams Lake Tribune] Pile burning throughout the Chilcoti",
+      "[Williams Lake Tribune] Downtown Trick r Treat returns in Wi",
+      "[My Cariboo Now] Ottawa designates Roberts Bank Terminal 2 e",
+      "[100 Mile Free Press] Traditional salmon fishing documented ",
+      "[Williams Lake Tribune] Cow Moose Sign Project founder honou",
+      "https://www.stuff.co.nz/nz-news/361052613/very-strong-el-nin",
+      "Record-breaking high tides spark chaos \u2013 and kayak commutes ",
+      "Super El Ni\u00f1o could kill 870,000 people around the world, wa"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-01",
+    "focus": "discovery-health",
+    "focus_name": "Discovery, Health & How Science Works"
   }
 }

@@ -1,31 +1,4 @@
 {
-  "2026-08-02": {
-    "timestamp": 1785665941.112003,
-    "date": "2026-08-02",
-    "theme": "Science, Wonder & the Natural World",
-    "focus": "earth-systems",
-    "central_question": "How should we build monitoring systems for slow-moving environmental threats like groundwater depletion, and what prevents us from detecting problems until they become crises?",
-    "riley_position": "Existing data held by Indigenous nations and government agencies could be repurposed to create groundwater early-warning systems without building new infrastructure; the constraint is governance and relationships, not technology.",
-    "riley_key_evidence": [
-      "Xat\u015b\u016bll First Nation already monitors river flow and temperature near Soda Creek for salmon management, which could serve as a proxy for aquifer health if data were shared",
-      "ALMA's reuse of astronomical archives for SETI found millions of previously unsearched stars, demonstrating how existing infrastructure can reveal overlooked signals",
-      "Surrey battery research overturned a decades-old assumption about water in sodium vanadium oxide electrodes, showing how untested assumptions hide in plain sight"
-    ],
-    "casey_position": "We systematically build monitoring only for acute threats (fires, spills) that demand immediate attention, while chronic threats (groundwater decline) compound quietly for years because they lack urgency and press visibility; this is a structural failure worth naming.",
-    "casey_key_evidence": [
-      "The diesel spill near Williams Lake had fast, precise public reporting because spill protocols are established; groundwater monitoring has no equivalent standing system",
-      "SETI's fifty-year reliance on the 'waterhole' frequency band is a cautionary example of methodology becoming entrenched without proof it covers the meaningful search space",
-      "Cariboo Regional District lacks continuous, publicly updated groundwater maps despite having real-time fire perimeter data"
-    ],
-    "resolution": "The speakers reached substantive agreement: the real constraint is establishing governance habits and relationships that prompt data-sharing before crisis hits, not technological barriers. Casey added a crucial caveat that new battery research is years from deployment and shouldn't replicate previous overpromising cycles.",
-    "topics_covered": [
-      "Monitoring infrastructure gaps for groundwater versus fire management",
-      "How assumptions become invisible until deliberately re-tested (SETI methodology, battery chemistry)",
-      "Data-sharing between Indigenous nations and regional governments as a governance question",
-      "The difference between 'we haven't found anything' and 'there's nothing there'",
-      "Building proactive rather than reactive decision-making structures"
-    ]
-  },
   "2026-08-03": {
     "timestamp": 1785757935.201358,
     "date": "2026-08-03",
@@ -2585,6 +2558,34 @@
       "Staffing, capacity, and maintenance funding for local government and fuel-break projects",
       "Federal Bill C-39 and the tension between speed and Indigenous consultation",
       "Local standing versus stake, including volunteers, students, and municipal tie-breaking rules"
+    ]
+  },
+  "2026-11-01": {
+    "timestamp": 1793520968.439817,
+    "date": "2026-11-01",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "discovery-health",
+    "anchor": "who-counts-as-local",
+    "central_question": "Does long-term, documented field observation of a place earn its keepers a meaningful say in decisions about that place, or does decision authority belong to the people who live beside it?",
+    "riley_position": "Twenty years of repeated observation is rare and earns a voice; a credible record should carry weight in decisions because it provides the baseline and lead time planners need, even if the record-holder should not be the one who decides.",
+    "riley_key_evidence": [
+      "NOAA's Climate Prediction Center put the chance of strong-to-very-strong El Ni\u00f1o through January to March 2027 above 83 per cent, with an earlier 63 per cent chance of sea surface temperatures passing 2.0 degrees.",
+      "Lonnie Thompson's Guliya Plateau ice cores drilled in 1992 and 2015 showed matching oxygen isotope patterns, demonstrating reproducibility through return visits.",
+      "The Climate Impact Lab's model draws on more than 24,000 regional temperature-mortality relationships and is useful for ranking where heat response is needed first."
+    ],
+    "casey_position": "Monitors bring evidence to the room but should not set the agenda or answer for outcomes; local people who bear the costs should decide, and claims built on headline figures or unclear custody of records should be challenged.",
+    "casey_key_evidence": [
+      "The University of Chicago estimate moved from about 451,000 excess heat deaths to roughly 857,000 total, with coverage rounding to 870,000 or nearly 900,000, and the work had not been peer-reviewed.",
+      "Researchers followed 87,577 adults wearing wrist light devices over a median of 8.1 years, with 741 dementia cases; the association (16 per cent lower risk above 1,000 lux) does not prove daylight prevents dementia.",
+      "Helen Sandy spent twenty years photographing Indigenous fishing camps in Farwell Canyon, and the Teghaza meteorite study's claims rest on a custody chain no one publishes."
+    ],
+    "resolution": "They did not fully agree: Riley would give the record-holder a seat at the table while Casey would keep record-holders from setting the agenda, and Casey explicitly asked to leave that point open. They converged on the practical step of writing down custody and the list of who was consulted for a chosen local record.",
+    "topics_covered": [
+      "Credibility of long-term observational records versus who bears decision costs",
+      "El Ni\u00f1o forecasting, regional impacts, and headline overstatement",
+      "Peer review and disclosure in the heat-mortality estimate",
+      "Custody and standing of local monitoring records (Cow Moose Sign Project, Helen Sandy photographs, fossil and meteorite provenance)",
+      "Dementia and daylight exposure association in wrist-device data"
     ]
   }
 }
