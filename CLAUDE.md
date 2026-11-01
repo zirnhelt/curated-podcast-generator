@@ -32,6 +32,8 @@ Mark shortcuts with `# ponytail:` comments naming the simpler path chosen. Safet
 4. Implement the solution.
 5. Summarize changes, highlighting any new dependencies or breaking changes.
 
+**Every PR body follows [`.github/pull_request_template.md`](.github/pull_request_template.md)**, all sections in order, "None" where one doesn't apply. That includes PRs opened from a commit message and PRs whose description you update later.
+
 ## Commands
 
 ```bash
