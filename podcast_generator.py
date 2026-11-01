@@ -667,6 +667,14 @@ def _refusal_category(response) -> str:
     return category if isinstance(category, str) else "unspecified"
 
 
+# The SDK refuses a non-streaming request whose max_tokens implies a run over
+# 10 minutes (~21K tokens on Sonnet) before sending anything. The storyboard's
+# cap went 16000 -> 32000 for Haiku on 2026-10-31, the workflow runs it on
+# Sonnet 5.5, and the next morning's plan died on that ValueError, unsent.
+# Any budget above this streams, whatever the caller asked for.
+STREAM_ABOVE_MAX_TOKENS = 16000
+
+
 def send_claude(client, stream=False, **kwargs):
     """One Claude call, streamed or not, with the refusal retry above.
 
@@ -674,6 +682,8 @@ def send_claude(client, stream=False, **kwargs):
     this it reads downstream as an empty answer: a skipped cold open, an
     unpolished script, or no episode. Every decline is degrade()d, retried or not.
     """
+    stream = stream or kwargs.get("max_tokens", 0) > STREAM_ABOVE_MAX_TOKENS
+
     def send(params):
         if stream:
             with client.messages.stream(**params) as s:
