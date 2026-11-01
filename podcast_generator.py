@@ -1472,6 +1472,9 @@ HOLDING_FILE = PODCASTS_DIR / "article_holding.json"
 # by its rate, not by a human noticing it first.
 PHRASE_LEDGER_FILE = PODCASTS_DIR / "phrase_ledger.json"
 HOLD_MAX_DAYS = 14              # max days an article may wait for its focus day
+# Deep dive lines that may still restate the roundup after polish before
+# script/roundup-echo degrades. A shared figure in a callback can trip _echoes.
+ROUNDUP_ECHO_SLACK = 1
 # Repeated lines the polish may add over the draft before script/aired-check degrades.
 AIRED_POLISH_SLACK = 2
 AIRED_EARLY_RETENTION_DAYS = 30 # how long the aired-early callback ledger keeps entries
@@ -6261,12 +6264,13 @@ def _echoes(a: set[str], b: set[str]) -> bool:
     return len(shared) >= 5 and len(shared) >= 0.5 * min(len(a), len(b))
 
 
-def _aired_sentences(script: str) -> list[str]:
+def _aired_sentences(script: str,
+                     sections: tuple[str, ...] = ("NEWS ROUNDUP", "DEEP DIVE")) -> list[str]:
     """Spoken sentences of the News Roundup and Deep Dive. The welcome, weather,
     land acknowledgment and spotlight repeat by design and are left out."""
     sentences = []
     for name, (start, end) in _script_sections(script).items():
-        if name not in ("NEWS ROUNDUP", "DEEP DIVE"):
+        if name not in sections:
             continue
         for line in script[start:end].splitlines():
             if not _SPEAKER_TAG_RE.match(line):
@@ -6348,6 +6352,28 @@ def find_aired_repeats(script: str, today: str) -> list[tuple[str, str, str]]:
     return repeats
 
 
+def find_roundup_echoes(script: str) -> list[tuple[str, str]]:
+    """(deep dive sentence, roundup sentence) for each Deep Dive sentence that
+    retells a story the same episode's News Roundup already told.
+
+    2026-11-01's deep dive had its own sources on El Niño and reached into the
+    roundup for its Cariboo beats, then told the dementia study (87,577 adults,
+    741 cases, 8.1 years), the Cow Moose award and Helen Sandy's exhibit over
+    again, figure for figure. A callback is enough; a retelling is airtime spent twice.
+    """
+    roundup = [(s, t) for s in _aired_sentences(script, ("NEWS ROUNDUP",))
+               if len(t := _aired_tokens(s)) >= 4]
+    echoes = []
+    for sentence in _aired_sentences(script, ("DEEP DIVE",)):
+        toks = _aired_tokens(sentence)
+        if len(toks) < 4:
+            continue
+        hit = next((r for r, t in roundup if _echoes(toks, t)), None)
+        if hit:
+            echoes.append((sentence, hit))
+    return echoes
+
+
 def _aired_repeats_addendum(script: str, research: str | None = None) -> str:
     """Polish-prompt addendum naming the draft's lines that restate the past
     week, plus the research findings that already aired. Never fails the
@@ -6361,12 +6387,18 @@ def _aired_repeats_addendum(script: str, research: str | None = None) -> str:
     if not cfg.get('polish_template'):
         return ""
     today = get_pacific_now().strftime("%Y-%m-%d")
-    repeats, ledger = [], ""
+    repeats, ledger, echoes = [], "", []
     with segment("script/aired-repeats", critical=False):
         repeats = find_aired_repeats(script, today)
         if research:
             ledger = format_aired_ledger_for_prompt(research, today)
+        echoes = find_roundup_echoes(script)
     addendum = "\n\n" + ledger.strip() if ledger else ""
+    if echoes and cfg.get('roundup_echo_template'):
+        print(f"  🔁 {len(echoes)} deep dive line(s) retell the roundup — sent to polish")
+        lines = "\n".join(f'- "{_clip(dd)}" (roundup: "{_clip(ru, 160)}")'
+                          for dd, ru in echoes[:cfg.get('max_lines', 30)])
+        addendum += "\n\n" + cfg['roundup_echo_template'].format(lines=lines)
     if not repeats:
         return addendum
     print(f"  🔁 {len(repeats)} draft line(s) restate the past week — sent to polish")
@@ -14237,6 +14269,13 @@ def run_script_stage() -> tuple[str, str] | None:
                 degrade("script/aired-check",
                         f"polish raised the past week's repeated lines from "
                         f"{_aired_draft} to {_aired_after}")
+            # The same check inside the episode: the polish was handed every
+            # deep dive line that retells the roundup and told to cut it to a callback.
+            _echoes_after = find_roundup_echoes(script)
+            if len(_echoes_after) > ROUNDUP_ECHO_SLACK:
+                degrade("script/roundup-echo",
+                        f"{len(_echoes_after)} deep dive line(s) still retell the roundup "
+                        f"after polish, e.g. \"{_clip(_echoes_after[0][0], 120)}\"")
 
         with segment("script/correction-guard", critical=False):
             # Last line of defence against an invented on-air correction — both

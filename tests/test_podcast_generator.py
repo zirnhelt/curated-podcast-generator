@@ -7271,6 +7271,52 @@ class TestAiredLedger:
             assert "unless it appears under ALREADY ON AIR THIS WEEK" in prompt
 
 
+class TestRoundupEchoes:
+    """2026-11-01: the deep dive retold the dementia study, the Cow Moose award
+    and Helen Sandy's exhibit figure for figure, minutes after the roundup told
+    them. The producer wants a callback, not a second telling."""
+
+    SCRIPT = (
+        "**NEWS ROUNDUP**\n\n"
+        "**CASEY:** [pause:1200] A study in General Psychiatry followed 87,577 adults "
+        "who wore wrist devices measuring light.\n\n"
+        "**RILEY:** Council approved the new arena budget on Tuesday night.\n\n"
+        "**DEEP DIVE: CARIBOO CONNECTIONS - Science**\n\n"
+        "**CASEY:** Researchers followed 87,577 adults who wore wrist devices that "
+        "measured light. That kind of record is what El Nino forecasters lack.\n\n"
+        "**RILEY:** The light study we mentioned up top makes the same point about records.\n"
+    )
+
+    def test_a_retold_roundup_line_is_found_and_a_callback_is_not(self):
+        import podcast_generator as pg
+        echoes = pg.find_roundup_echoes(self.SCRIPT)
+        assert [dd for dd, _ in echoes] == [
+            "Researchers followed 87,577 adults who wore wrist devices that measured light."]
+        assert "General Psychiatry" in echoes[0][1]
+
+    def test_roundup_lines_alone_are_never_echoes(self):
+        import podcast_generator as pg
+        roundup_only = self.SCRIPT.split("**DEEP DIVE")[0]
+        assert pg.find_roundup_echoes(roundup_only) == []
+
+    def test_polish_addendum_asks_for_a_callback(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        addendum = pg._aired_repeats_addendum(self.SCRIPT)
+        assert "RETOLD FROM TODAY'S ROUNDUP" in addendum
+        assert "87,577 adults who wore wrist devices that measured light" in addendum
+
+    def test_prompts_ask_for_a_callback_not_a_retelling(self):
+        """Rule (u) used to ban "from earlier in the show" and say to restate the
+        fact itself, which is a retelling by instruction."""
+        import podcast_generator as pg
+        for key in ("script_generation_system", "polish_and_factcheck",
+                    "agentic_polish_and_factcheck"):
+            prompt = str(pg.CONFIG["prompts"][key])
+            assert "state the fact itself" not in prompt
+            assert "we mentioned up top" in prompt
+
+
 class TestCandidateProfiles:
     """2026-10-10: the Tribune profiled most of the council field that week and
     the research cited directory sites instead. The roll call reads them."""
