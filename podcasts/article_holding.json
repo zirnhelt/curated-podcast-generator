@@ -45,51 +45,6 @@
     "target_focus_name": "Writing, Journalism & Podcasting",
     "status": "aired_early"
   },
-  "https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/": {
-    "article": {
-      "id": "https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/",
-      "url": "https://wltribune.com/2026/10/13/b-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth/",
-      "title": "[Williams Lake Tribune] B.C. southern resident orca census counts 76 in 2nd year population growth",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F10%2F13%2Fb-c-southern-resident-orca-census-counts-76-in-2nd-year-population-growth%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSouthern resident killer whale K36 breaches during an encounter with Center for Whale Research team members Aug. 13\\. (Center for Whale Research) The plight of the endangered southern resident killer whales remains in the balance despite a rise in their population. The annual photographic census of the killer whales, conducted by Washington-based Center for Whale Research, found that as of July 1, there were 76 living individuals, up two from last year\u2019s 74. During the census period, four calves were born, with only two surviving. \u201cJ64 survived for less than a month, while L129 was only",
-      "summary": "Southern resident killer whale K36 breaches during an encounter with Center for Whale Research team members Aug. 13\\. (Center for Whale Research) The plight of the endangered southern resident killer whales remains in the balance despite a rise in their population. The annual photographic census of",
-      "_excerpt": "Southern resident killer whale K36 breaches during an encounter with Center for Whale Research team members Aug. 13\\. (Center for Whale Research) The plight of the endangered southern resident killer whales remains in the balance despite a rise in their population. The annual photographic census of the killer whales, conducted by Washington-based Center for Whale Research, found that as of July 1, there were 76 living individuals, up two from last year\u2019s 74. During the census period, four calves were born, with only two surviving. \u201cJ64 survived for less than a month, while L129 was only",
-      "date_published": "2026-10-13T23:30:00+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 82,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 72,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-14T04:10:57.216424+00:00"
-      },
-      "_boosted_score": 65,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-10-14",
-    "target_date": "2026-11-01",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "aired_early"
-  },
   "https://www.sciencedaily.com/releases/2026/10/261018084644.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/10/261018084644.htm",
@@ -125,7 +80,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://beingpatient.com/can-lowering-cholesterol-prevent-or-treat-alzheimers/": {
     "article": {
@@ -160,7 +116,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://techcrunch.com/2026/10/11/warner-bros-netflix-paramount-acquisition-timeline-wbd/": {
     "article": {
@@ -196,7 +153,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://farmonaut.com/case-study/sugarcane-irrigation-scheduling-satellite-case-study": {
     "article": {
@@ -232,7 +190,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sciencedaily.com/releases/2026/10/261018205037.htm": {
     "article": {
@@ -272,7 +231,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://hackaday.com/2026/10/12/darpa-lift-challenge-won-by-helicopter/": {
     "article": {
@@ -313,7 +273,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.neowin.net/news/google-is-partnering-with-flo-to-elevate-womens-health/?utm_source=rss": {
     "article": {
@@ -354,7 +315,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.cnet.com/tech/mobile/smartphone-shipments-q3-2026-counterpoint-research/": {
     "article": {
@@ -391,7 +353,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sciencedaily.com/releases/2026/10/261019093442.htm": {
     "article": {
@@ -431,7 +394,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sciencedaily.com/releases/2026/10/261018205053.htm": {
     "article": {
@@ -466,7 +430,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.niemanlab.org/2026/10/two-out-of-five-americans-are-regularly-getting-their-news-on-facebook/": {
     "article": {
@@ -506,7 +471,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://arstechnica.com/security/2026/10/the-internet-goes-on-high-alert-after-discovery-of-8-compromised-tls-certs/": {
     "article": {
@@ -548,7 +514,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sciencealert.com/one-quarter-of-data-centers-are-located-in-water-stressed-areas-study-shows": {
     "article": {
@@ -591,49 +558,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
-  },
-  "https://100milefreepress.net/2026/10/21/2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal/": {
-    "article": {
-      "id": "https://100milefreepress.net/2026/10/21/2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal/",
-      "url": "https://100milefreepress.net/2026/10/21/2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal/",
-      "title": "[100 Mile Free Press] 2026 Starry Nights fundraiser sets million dollar, multi-year goal",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F10%2F21%2F2026-starry-nights-fundraiser-sets-million-dollar-multi-year-goal%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe South Cariboo Health Foundation is looking to renovate the hospital's laboratory",
-      "summary": "The South Cariboo Health Foundation is looking to renovate the hospital's laboratory",
-      "_excerpt": "The South Cariboo Health Foundation is looking to renovate the hospital's laboratory",
-      "date_published": "2026-10-22T06:02:37.571298+00:00",
-      "authors": [
-        {
-          "name": "100 Mile Free Press",
-          "url": "https://100milefreepress.net"
-        }
-      ],
-      "ai_score": 78,
-      "_quality": 60,
-      "_relevance": 80,
-      "_local": 90,
-      "_theme_score": 84,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 69,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-10-22T06:10:42.268654+00:00"
-      },
-      "_boosted_score": 78,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-10-22",
-    "target_date": "2026-11-01",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "aired_early"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://newatlas.com/fitness/men-long-term-steroids-heart/": {
     "article": {
@@ -673,7 +599,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.statnews.com/2026/10/14/biotech-news-fda-adcomm-member-ties-to-industry-under-scrutiny/?utm_campaign=rss": {
     "article": {
@@ -715,7 +642,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sciencealert.com/theres-another-cat-parasite-that-can-infect-humans-a-huge-study-reveals-how-common-it-is": {
     "article": {
@@ -755,7 +683,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.outsideonline.com/outdoor-adventure/environment/montana-black-bears-euthanized/": {
     "article": {
@@ -999,7 +928,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.vox.com/future-perfect/507074/ebola-spread-rapid-congo": {
     "article": {
@@ -1040,7 +970,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://civileats.com/2026/10/29/in-puerto-rico-new-models-avoid-imports-and-industrial-food/": {
     "article": {
@@ -1164,7 +1095,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sciencedaily.com/releases/2026/10/261026225610.htm": {
     "article": {
@@ -1201,44 +1133,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
-  },
-  "https://www.aptnnews.ca/national-news/federal-government-says-lack-of-housing-on-first-nations-strictly-a-funding-issue/": {
-    "article": {
-      "id": "https://www.aptnnews.ca/national-news/federal-government-says-lack-of-housing-on-first-nations-strictly-a-funding-issue/",
-      "url": "https://www.aptnnews.ca/national-news/federal-government-says-lack-of-housing-on-first-nations-strictly-a-funding-issue/",
-      "title": "[APTN News] Federal government says lack of housing on First Nations \u2018strictly\u2019 a funding issue",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Fnational-news%2Ffederal-government-says-lack-of-housing-on-first-nations-strictly-a-funding-issue%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>During the final hour of a two-day hearing at the Federal Court of Appeal, lawyers...</p>\n<p>The post <a href=\"https://www.aptnnews.ca/national-news/federal-government-says-lack-of-housing-on-first-nations-strictly-a-funding-issue/\">Federal government says lack of housing on First Nations \u2018strictly\u2019 a funding issue</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
-      "summary": "During the final hour of a two-day hearing at the Federal Court of Appeal, lawyers... The post Federal government says lack of housing on First Nations \u2018strictly\u2019 a funding issue appeared first on APTN News .",
-      "_excerpt": "During the final hour of a two-day hearing at the Federal Court of Appeal, lawyers... The post Federal government says lack of housing on First Nations \u2018strictly\u2019 a funding issue appeared first on APTN News .",
-      "date_published": "2026-10-29T22:26:55+00:00",
-      "authors": [
-        {
-          "name": "APTN News",
-          "url": "https://www.aptnnews.ca"
-        }
-      ],
-      "ai_score": 43,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 12,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 64,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_boosted_score": 43
-    },
-    "held_date": "2026-10-30",
-    "target_date": "2026-11-05",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sci.news/biology/comets-life-ingredients-early-earth-15162.html": {
     "article": {
@@ -1277,7 +1173,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://100milefreepress.net/2026/10/29/evening-of-song-to-feature-south-cariboo-musicians-on-music-creator-day/": {
     "article": {
@@ -1364,7 +1261,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.sciencedaily.com/releases/2026/10/261028232707.htm": {
     "article": {
@@ -1401,7 +1299,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://blog.adafruit.com/2026/10/26/coffee-edition-a-newspaper-my-printer-prints-while-i-sleep/": {
     "article": {
@@ -1481,7 +1380,8 @@
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-01"
   },
   "https://www.lorameshdevices.com/blog/meshtastic/this-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html": {
     "article": {
