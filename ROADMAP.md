@@ -1,7 +1,7 @@
 # Cariboo Signals Podcast - Roadmap
 
 ## Current State
-- Daily generation at 5 AM Pacific via GitHub Actions
+- Daily generation from 1:05 AM Pacific (Cloudflare Worker ladder; GitHub cron backstop at 4:05)
 - Fetches scored articles from RSS feed system
 - Two AI hosts: Riley (tech systems) and Casey (community development)
 - 7 rotating weekly themes
@@ -15,7 +15,7 @@
 - Three rotation layers: daily theme, super-cycle focus, and a weekly anchor question all seven
   deep dives circle (`weekly_anchor.py`; preview with `python weekly_anchor.py --preview 12`)
 - Deduplication against last 7 days of episodes
-- Episode memory for continuity (21-day window)
+- Episode memory for continuity (35-day window)
 - Citations system tracks sources per episode
 - Indigenous territory acknowledgment in descriptions
 - RSS feed with proper XML escaping
@@ -130,7 +130,7 @@ close one; it comes back only if the reviews raise it 2 more times._
       a life of their own). Count them in Python off the script where a pattern holds; a new
       Haiku finding only if it doesn't. Don't build it until the weekly reviews show the drift
       is real.
-- [ ] Permanent episode memory with weighted recency (replace 21-day hard limit)
+- [ ] Permanent episode memory with weighted recency (replace 35-day hard limit)
 - [ ] Local holidays and events integration in episode openings
 - [ ] Evolving stories context - flag when covering updates to previously discussed topics
 - [ ] Better theme-to-article matching (currently just takes top 4 scored articles)

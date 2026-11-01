@@ -11,6 +11,7 @@ import pytest
 import json
 import re
 import sys
+from pathlib import Path
 
 from podcast_generator import (
     derive_episode_sidecar_path,
@@ -7781,3 +7782,26 @@ class TestProducerPinnedDeepDive:
                 "_keyword_matches": 3}
         dd, news = pg._ensure_deep_dive_substance([pinned], [rich], theme_keywords=["science"])
         assert dd == [pinned] and news == [rich]
+
+
+# CLAUDE.md names functions, constants and fields in backticks; a rename that
+# misses it leaves every later session reasoning from a name that is gone.
+_CLAUDE_MD_NON_CODE = {
+    "superfeed",  # an Anthropic API key's name in the cost baseline, not a code symbol
+}
+
+
+def test_claude_md_identifiers_exist_in_repo() -> None:
+    root = Path(__file__).resolve().parent.parent
+    names = set(re.findall(r"`([A-Za-z_][A-Za-z0-9_]{3,})(?:\(\))?`",
+                           (root / "CLAUDE.md").read_text())) - _CLAUDE_MD_NON_CODE
+    # ponytail: the podcasts/ data dir is skipped; no rule names a symbol only found there.
+    skip = {"podcasts", ".git", "venv", ".claude"}
+    suffixes = {".py", ".json", ".yml", ".yaml", ".md", ".js", ".toml", ".txt", ".sh"}
+    corpus = "\n".join(
+        p.read_text(errors="ignore") for p in root.rglob("*")
+        if p.is_file() and p.suffix in suffixes and p.name != "CLAUDE.md"
+        and not skip & set(p.relative_to(root).parts)
+    )
+    missing = sorted(n for n in names if not re.search(rf"\b{re.escape(n)}\b", corpus))
+    assert not missing, f"CLAUDE.md names identifiers the repo no longer has: {missing}"
