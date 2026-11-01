@@ -2987,6 +2987,21 @@ class TestScriptToVttTranscript:
         assert vtt.endswith(
             "00:01:04.600 --> 00:01:13.600\n<v Riley>Scripts by Claude &amp; voices by OpenAI TTS.")
 
+    def test_overlapping_turns_are_trimmed_to_the_next_cue(self):
+        # [overlap:] crosstalk overlaps in the audio; the captions must not.
+        timeline = [
+            {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
+            {"speaker": "casey", "section": "welcome", "start_ms": 30000, "dur_ms": 3500},
+            {"speaker": "riley", "section": "news", "start_ms": 40000, "dur_ms": 5000},
+            {"speaker": "casey", "section": "deep", "start_ms": 60000, "dur_ms": 4000},
+        ]
+        vtt = script_to_vtt_transcript(self.SCRIPT, timeline=timeline)
+        assert "00:00:27.400 --> 00:00:30.000\n<v Riley>Welcome to the show everyone" in vtt
+        assert "00:00:30.000 --> 00:00:33.500\n<v Casey>Great to be here" in vtt
+        times = [(_vtt_ts_ms(a), _vtt_ts_ms(b)) for a, b in
+                 re.findall(r"(\d\d:\d\d:\d\d\.\d\d\d) --> (\d\d:\d\d:\d\d\.\d\d\d)", vtt)]
+        assert all(e <= n for (_, e), (n, _) in zip(times, times[1:]))
+
     def test_credits_turn_without_text_adds_no_cue(self):
         timeline = [
             {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
