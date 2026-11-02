@@ -13,13 +13,11 @@ on:
       - '*.mp3'
       - '*.png'
       - '**/*.md'
+  # No paths filter on PRs: once `pytest` is required on main, a required
+  # check that never starts (a docs-only PR) blocks the merge forever. A docs PR
+  # can also break the suite: test_claude_md_identifiers_exist_in_repo reads
+  # CLAUDE.md and .claude/rules/.
   pull_request:
-    paths-ignore:
-      - 'podcasts/**'
-      - '*.xml'
-      - '*.mp3'
-      - '*.png'
-      - '**/*.md'
   workflow_dispatch:
 
 concurrency:
