@@ -2973,6 +2973,46 @@ class TestScriptToVttTranscript:
         assert "00:00:40.000 --> 00:00:45.000\n<v Riley>First story" in vtt
         assert "00:01:00.000 --> 00:01:04.000\n<v Casey>Our deep dive" in vtt
 
+    def test_spoken_credits_get_the_final_cue(self):
+        # Apple discards a transcript that leaves a segment of the audio
+        # uncaptioned; the credits text rides on its timeline turn.
+        timeline = [
+            {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
+            {"speaker": "casey", "section": "welcome", "start_ms": 30700, "dur_ms": 3500},
+            {"speaker": "riley", "section": "news", "start_ms": 40000, "dur_ms": 5000},
+            {"speaker": "casey", "section": "deep", "start_ms": 60000, "dur_ms": 4000},
+            {"speaker": None, "section": "credits", "start_ms": 64600, "dur_ms": 9000,
+             "text": "Scripts by Claude & voices by OpenAI TTS."},
+        ]
+        vtt = script_to_vtt_transcript(self.SCRIPT, timeline=timeline)
+        assert vtt.endswith(
+            "00:01:04.600 --> 00:01:13.600\n<v Riley>Scripts by Claude &amp; voices by OpenAI TTS.")
+
+    def test_overlapping_turns_are_trimmed_to_the_next_cue(self):
+        # [overlap:] crosstalk overlaps in the audio; the captions must not.
+        timeline = [
+            {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
+            {"speaker": "casey", "section": "welcome", "start_ms": 30000, "dur_ms": 3500},
+            {"speaker": "riley", "section": "news", "start_ms": 40000, "dur_ms": 5000},
+            {"speaker": "casey", "section": "deep", "start_ms": 60000, "dur_ms": 4000},
+        ]
+        vtt = script_to_vtt_transcript(self.SCRIPT, timeline=timeline)
+        assert "00:00:27.400 --> 00:00:30.000\n<v Riley>Welcome to the show everyone" in vtt
+        assert "00:00:30.000 --> 00:00:33.500\n<v Casey>Great to be here" in vtt
+        times = [(_vtt_ts_ms(a), _vtt_ts_ms(b)) for a, b in
+                 re.findall(r"(\d\d:\d\d:\d\d\.\d\d\d) --> (\d\d:\d\d:\d\d\.\d\d\d)", vtt)]
+        assert all(e <= n for (_, e), (n, _) in zip(times, times[1:]))
+
+    def test_credits_turn_without_text_adds_no_cue(self):
+        timeline = [
+            {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
+            {"speaker": "casey", "section": "welcome", "start_ms": 30700, "dur_ms": 3500},
+            {"speaker": "riley", "section": "news", "start_ms": 40000, "dur_ms": 5000},
+            {"speaker": "casey", "section": "deep", "start_ms": 60000, "dur_ms": 4000},
+            {"speaker": "riley", "section": "credits", "start_ms": 64600, "dur_ms": 9000},
+        ]
+        assert script_to_vtt_transcript(self.SCRIPT, timeline=timeline).count("-->") == 4
+
     def test_tts_only_labels_pair_after_short_turn_filter(self):
         script = "\n".join([
             "**RILEY:** Welcome to the show everyone, glad you could join.",

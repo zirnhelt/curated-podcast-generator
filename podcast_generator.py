@@ -12365,6 +12365,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     "section": "credits",
                     "start_ms": len(combined) - len(credits_audio),
                     "dur_ms": len(credits_audio),
+                    # The VTT needs the spoken words: they come from render-time
+                    # state (weather, Brave) the publish stage can't rebuild, and
+                    # Apple discards a transcript that skips a segment of the audio.
+                    "text": _build_credits_text(),
                 })
                 print("  ✅ Added spoken credits")
             except Exception as ce:
@@ -12836,6 +12840,33 @@ def sync_site_to_r2(max_age_days: float = 2.0):
         )
 
 
+def _vtt_ts_to_ms(ts: str) -> int:
+    h, m, rest = ts.split(':')
+    sec, milli = rest.split('.')
+    return ((int(h) * 60 + int(m)) * 60 + int(sec)) * 1000 + int(milli)
+
+
+def _trim_vtt_overlaps(cues: list[str]) -> list[str]:
+    """End each cue no later than the next one starts.
+
+    [overlap:] crosstalk makes adjacent turns overlap in the audio. WebVTT
+    allows overlapping cues, but Apple's checker is strict and undocumented, and
+    a rejected file silently falls back to auto-transcription, so one caption
+    on screen at a time is the safe shape.
+    """
+    out = []
+    for i, cue in enumerate(cues):
+        head, _, body = cue.partition('\n')
+        start, _, end = head.partition(' --> ')
+        if i + 1 < len(cues):
+            nxt = _vtt_ts_to_ms(cues[i + 1].partition(' --> ')[0])
+            s_ms, e_ms = _vtt_ts_to_ms(start), _vtt_ts_to_ms(end)
+            if e_ms > nxt > s_ms:
+                end = _ms_to_vtt_ts(nxt)
+        out.append(f"{start} --> {end}\n{body}")
+    return out
+
+
 def _ms_to_vtt_ts(ms):
     """Convert milliseconds to WebVTT timestamp HH:MM:SS.mmm."""
     h, ms = divmod(ms, 3600000)
@@ -12916,6 +12947,13 @@ def _vtt_cues_from_timeline(script_content: str, turns: list) -> list | None:
                 cues += _vtt_span_cues(P, T)
         else:
             cues += _vtt_span_cues(P, T)
+    # Spoken credits are config-generated, never in the script; the render
+    # stage records their text on the turn. Apple rejects a transcript that
+    # leaves part of the audio uncaptioned, so they get a cue when known.
+    for t in turns:
+        if t.get('section') in ('credits', 'Credits') and t.get('text'):
+            cues.append(_vtt_cue(t['start_ms'], t['start_ms'] + t['dur_ms'],
+                                 t.get('speaker') or 'riley', t['text']))
     return cues
 
 
@@ -12965,7 +13003,7 @@ def script_to_vtt_transcript(script_content, intro_offset_ms=25000,
             print(f"⚠️  Timeline-anchored VTT failed ({e}) — using estimates")
             cues = None
         if cues:
-            return "WEBVTT\n\n" + "\n\n".join(cues)
+            return "WEBVTT\n\n" + "\n\n".join(_trim_vtt_overlaps(cues))
 
     WORDS_PER_MS = _VTT_WORDS_PER_MS
     cues = []
@@ -13020,7 +13058,7 @@ def script_to_vtt_transcript(script_content, intro_offset_ms=25000,
         f"{_ms_to_vtt_ts(int(start * scale))} --> {_ms_to_vtt_ts(int(end * scale))}\n<v {speaker}>{text}"
         for start, end, speaker, text in cues
     ]
-    return "WEBVTT\n\n" + "\n\n".join(rendered)
+    return "WEBVTT\n\n" + "\n\n".join(_trim_vtt_overlaps(rendered))
 
 
 def script_to_friendly_transcript(script_content):
