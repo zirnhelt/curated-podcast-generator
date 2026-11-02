@@ -7791,10 +7791,15 @@ _CLAUDE_MD_NON_CODE = {
 }
 
 
+def _claude_instruction_files(root: Path) -> list[Path]:
+    """CLAUDE.md plus the path-scoped rule files it was split into."""
+    return [root / "CLAUDE.md", *sorted((root / ".claude" / "rules").glob("*.md"))]
+
+
 def test_claude_md_identifiers_exist_in_repo() -> None:
     root = Path(__file__).resolve().parent.parent
-    names = set(re.findall(r"`([A-Za-z_][A-Za-z0-9_]{3,})(?:\(\))?`",
-                           (root / "CLAUDE.md").read_text())) - _CLAUDE_MD_NON_CODE
+    text = "\n".join(p.read_text() for p in _claude_instruction_files(root))
+    names = set(re.findall(r"`([A-Za-z_][A-Za-z0-9_]{3,})(?:\(\))?`", text)) - _CLAUDE_MD_NON_CODE
     # ponytail: the podcasts/ data dir is skipped; no rule names a symbol only found there.
     skip = {"podcasts", ".git", "venv", ".claude"}
     suffixes = {".py", ".json", ".yml", ".yaml", ".md", ".js", ".toml", ".txt", ".sh"}
@@ -7805,3 +7810,18 @@ def test_claude_md_identifiers_exist_in_repo() -> None:
     )
     missing = sorted(n for n in names if not re.search(rf"\b{re.escape(n)}\b", corpus))
     assert not missing, f"CLAUDE.md names identifiers the repo no longer has: {missing}"
+
+
+def test_claude_rule_files_load_for_files_that_exist() -> None:
+    """A rule file whose `paths` match nothing never loads: a rename silently drops its rules."""
+    root = Path(__file__).resolve().parent.parent
+    rules = sorted((root / ".claude" / "rules").glob("*.md"))
+    assert rules, "CLAUDE.md points at .claude/rules/, which is empty"
+    for rule in rules:
+        head = rule.read_text().split("---")[1]
+        patterns = re.findall(r'^\s*-\s*"([^"]+)"', head, flags=re.M)
+        assert patterns, f"{rule.name} has no paths: frontmatter, so it loads every session"
+        dead = [p for p in patterns if not any(root.glob(p))]
+        assert not dead, f"{rule.name} paths match no file: {dead}"
+        assert f"`{rule.name}`" in (root / "CLAUDE.md").read_text(), \
+            f"{rule.name} is missing from CLAUDE.md's 'Where the rules live' table"

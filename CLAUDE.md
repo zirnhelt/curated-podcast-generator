@@ -2,10 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-It holds the **standing rules**. The incidents and reasoning behind them live in
-[`docs/decisions/`](docs/decisions/), one file per area, linked from each section below.
-Read the linked file before changing the code it describes. When you add a rule, keep it
-here as one or two lines and put the story in the decision file, not here.
+It holds the rules **every** session needs. The detailed standing rules for each area live in
+[`.claude/rules/`](.claude/rules/), and Claude Code loads each one when you read or edit a file it
+covers (table at the end). The incidents and reasoning behind the rules live in
+[`docs/decisions/`](docs/decisions/), one file per area: read the linked file before changing the
+code it describes. When you add a rule, keep it to one or two lines in the matching rule file and
+put the story in the decision file, not here.
 
 The values behind both curators (this show and `super-rss-feed`) are in
 [`docs/MANIFESTO.md`](docs/MANIFESTO.md): read it before changing what gets selected or how the hosts sound.
@@ -100,7 +102,7 @@ GITHUB_STEP_SUMMARY=/tmp/summary.md python podcast_generator.py --stage publish
 python weekly_anchor.py --preview 12
 ```
 
-Tests require no API keys — `tests/conftest.py` installs lightweight stubs for `anthropic`, `openai`, `pydub` and `cohere` at import time. CI runs the suite on every push and PR (`.github/workflows/tests.yml`).
+Tests require no API keys — `tests/conftest.py` installs lightweight stubs for `anthropic`, `openai`, `pydub` and `cohere` at import time. CI runs the suite on every push and PR (`.github/workflows/tests.yml`). In cloud sessions a SessionStart hook (`.claude/hooks/install-test-deps.sh`) installs the lock file and pytest when they're missing (about 25 s on a fresh container, 0.15 s after).
 
 **State-file isolation:** the live memory/state JSON files in `podcasts/` are production data committed daily by CI — code under test that persists state will rewrite them in place. An autouse fixture in `tests/conftest.py` already redirects `psa_selector.PSA_STATE_FILE` to a tmp copy; any new test (or code path) that touches a `podcasts/` state file must get the same treatment (monkeypatch the path/`PODCASTS_DIR` into `tmp_path`). After any local test run, check `git status` — a modified state file is test leakage to be reverted (`git checkout -- podcasts/<file>`), never committed.
 
@@ -113,19 +115,13 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 2. Pull scored articles from sibling repo `super-rss-feed` (`feed-podcast-{dayname}.json` from its GitHub Pages URL)
 3. Deduplicate against the last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings)
 4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their day); select roundup stories and deep-dive articles
-5. Claude storyboards the roundup and deep dive (`storyboard_script`), writes the two-host script to that plan, then polishes it (a discarded polish airs the draft and `degrade()`s `script/polish`; the outcome is `episode.models.polish`). Scripts under `TARGET_SCRIPT_WORDS` get up to `EXPAND_MAX_PASSES` (1) expand pass; under `MIN_SCRIPT_WORDS` after that the run aborts. The script call, its retries and the polish carry `max_tokens` 64000. About 19–20 min ships (167 words a minute), against the 22 min the prompts still say
+5. Claude storyboards the roundup and deep dive (`storyboard_script`), writes the two-host script to that plan, then polishes it (a discarded polish airs the draft and `degrade()`s `script/polish`; the outcome is `episode.models.polish`). Length rules: `.claude/rules/operations.md`.
 6. Write citations JSON and every memory/state file; save the script to `podcasts/podcast_script_{date}_{theme}.txt` — **end of the script stage**; the workflow commits here
 7. OpenAI TTS renders each speaker turn in parallel
 8. pydub assembles: cold open (before the music) → intro → welcome → interval → news roundup → interval → deep dive → outro
 9. Transcript + RSS entry, commit, deploy to `gh-pages`
 
-### Operations — see [docs/decisions/operations.md](docs/decisions/operations.md)
-
-**Scheduling.** A Cloudflare Worker (`cloudflare/scheduler/`, shared with `super-rss-feed`) dispatches the 1:05 / 2:05 / 3:05 AM Pacific ladder with a `run_slot` input; GitHub's cron is best-effort and a late run misses the listener's morning.
-- The Worker **starts** runs; `check-episode` alone decides whether one is needed. Never add a second "did today ship?" check.
-- Keep the one GitHub cron (`5 11 * * *`) as the backstop for the Worker being down. Don't remove it; don't add ladder slots back.
-- Anything that needs to know which rung it is on reads `inputs.run_slot`, never `github.event.schedule`.
-- Deploy the Worker with **Actions → Deploy Cloudflare Scheduler**; there is no local wrangler path.
+### Stages and exit codes — rules in `.claude/rules/operations.md`
 
 **Stages** (`--stage`) are separate processes with a commit between them, because they fail differently: `script` is where the API spend lives, `render` is where the runner dies, `publish` fails on credentials and network.
 
@@ -140,13 +136,6 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 
 - Values that must cross the stage boundary ride in the script file's `#` header (`# Theme:`, `# Brave:`, `# Weather:`, `# Anchor:`), read back by `read_script_metadata`. Audio paths come from the script's own filename (`_episode_paths`); never recompute the theme.
 
-**Segments.** Every phase runs in `with segment(name, critical=...)`.
-- `critical=True` (default) propagates; pass `exit_code=` to turn it into a process exit status.
-- `critical=False` swallows the exception. **Pre-assign the block's outputs to their fallback before the `with`.**
-- `SystemExit` always passes through. Each memory/state-file write gets its own segment.
-
-**`degrade(name, detail)`.** When you add a fallback, add a `degrade()` call — a silent fallback is the failure this exists to catch. `run_publish_stage` derives exit 78 from these records. Modules that cannot import `degrade()` without a cycle (`gemini_tts`, `weekly_anchor`, `native_land`) append to their own `_degradations` list, which the pipeline drains; a new fallback there must append too. `write_run_report()` runs from a `finally`, so a crashed run still reports.
-
 **Exit codes**
 
 | Code | Meaning |
@@ -157,180 +146,28 @@ Tests require no API keys — `tests/conftest.py` installs lightweight stubs for
 | 78 | `EXIT_PUBLISH_DEGRADED` — audio is safe, a publish surface failed |
 | 79 | `EXIT_CREDITS_EXHAUSTED` — a provider is out of credits; the run goes **red**, because only a human can top it up |
 
-**Money preflight** (`check_api_budget`, `_check_tts_budget`). Recognise billing walls by their **credit wording, never the status code** (`_billing_wall()`): Gemini uses the same 429 for an ordinary rate limit. TTS is preflighted in the script stage, before the day's state is spent. OpenAI is the universal fallback, so its health alone answers "can this day ship?"; the primary is probed only when OpenAI is walled, and the run aborts only when nothing left can render. A wall can also arrive mid-run: any `except` around a Claude call that falls back must call `_abort_if_billing_wall(e)` first.
+### Rules every session needs
 
-**Commits.** Every workflow commits through the `./.github/actions/commit-push` composite action, never an inline `git add`/`commit`/`push`. Its `--autostash` rebase is load-bearing. **If a stage writes a tracked file, some step must stage it.**
+The full rule, and the story behind it, is in the rule file and decision record named in brackets.
 
-**Atomic writes.** Every memory/state/feed write goes through `config_loader.atomic_write_text` / `atomic_write_json`. The loaders read a truncated JSON as `{}`, so a non-atomic write silently loses history.
-
-**Third-party text and URLs.** Episode notes are HTML in a public feed: feed titles, bylines and model summaries go in `html.escape`d, links only when `_public_http_url` passes, and every CDATA body (bespoke feed included) through `_cdata_safe`. Every fetch of a feed- or model-supplied URL goes through `_get_public`, never a bare `requests.get`: each hop is checked by name and by resolved address.
-
-**Brave spend.** Two plans, two meters: Search ($5/1000, capped) and Answers (monthly credit).
-- **The Search cap is shared with `super-rss-feed`** — one key serves both repos. Read Brave's per-key usage export before trusting any estimate.
-- A 402 closes that meter for the run (`_trip_brave_wall`); a spent meter is a reason to ask the other one, not to give up.
-- Four per-run budgets: `BRAVE_SEARCH_CALL_LIMIT` (speculative body backfill), `BRAVE_DEEP_DIVE_CALL_LIMIT` (demand-driven research), `BRAVE_EVENT_CALL_LIMIT` (the election roll call and the weekday election pass), `BRAVE_ANSWERS_CALL_LIMIT` (4 a run, refit 2026-10-12 off $0.041 a query). **Only the three rate-limit wrappers may call `_brave_search`** (a test enforces it). Answers is never called from the speculative path.
-- **A research pass's allowance is enforced in code** (`_budgeted`), never by the prompt or `max_iterations` alone: parallel tool calls walk past both. Fact resolution reads the deep dive first (`_script_question_excerpt`), never a prefix of the script.
-- With both meters closed, skip the research pass rather than report "no research warranted".
-- Paid body backfill runs on the curated roundup plus `ROUNDUP_BACKFILL_SPARES`, never the pre-curation pool. Direct factual lookups default to Answers; Search is for context and anything attributed to an outlet.
-
-**Daily review → roadmap** (`episode_review.py`). One Haiku call a night turns the review into candidate findings; dedup, counting and rendering are Python. An item reaches `ROADMAP.md` on its `ROADMAP_MIN_OCCURRENCES`th sighting. The tool owns only the block between `<!-- reviews:begin -->` and `<!-- reviews:end -->`; a human closes an item by checking its box.
-- **Findings are keyed on signals** read off the facts (`run_signals`: `degraded:<segment>`, `short-script`, `citations:*`, `no-local-roundup`, `split-topic`, `deep-dive-non-local` (from `roundup_shape_line`), …), never on the model's id or title, and an item closes itself once its signal has been absent `SIGNAL_QUIET_DAYS`. A new failure mode worth tracking gets a signal, not a looser title match.
-- Only tool-written items retire. The review's run labels must follow the schedule (`_trigger_label`); a stale label was the most-sighted roadmap item for three weeks.
-- Once the review is live on Pages, the review job dispatches `super-rss-feed`'s `refresh-editorial.yml` (scheduler PAT), so it reaches `feed-local` that morning rather than with the next nightly.
-
-### Configuration (`config_loader.py`)
-
-All content lives in `config/` JSON files, loaded through LRU-cached loaders. No hard-coded strings.
-
-| File | Purpose |
-|------|---------|
-| `podcast.json` | Title, RSS metadata, `local_places`, TRACE accountability scores, `all_week_events` |
-| `hosts.json` | Riley & Casey — bios, voices, personalities, debate stances |
-| `themes.json` | 7 daily themes, keywords, lenses, `event_focus` (the election) |
-| `super_cycles.json` | Multi-week focus rotations within each daily theme |
-| `weekly_anchors.json` | Seeded pool of weekly anchor questions |
-| `ai_tells.json` | Hard-banned phrases, `score_script` pattern families, phrase-ledger tuning, rhythm budget |
-| `prompts.json` | All Claude prompt templates |
-| `pronunciations.json` | Name → spoken alias, applied in order before synthesis; a longer name must precede any name it contains |
-| `standing_notes.txt` | **The producer's** standing rules and facts, one per line, in the cached script system prompt and both fact-check prompts. Edited by hand or by merging a weekly proposal PR |
-| `interests.txt` | Article relevance rubric |
-| `blocklist.json` | Excluded domains and keywords; `email_producer_senders` |
-| `credits.json` | Spoken and written credits |
-| `psa_organizations.json` | Community org roster + weekday assignments |
-| `disciplines.json` | Topic taxonomy for roundup grouping |
-| `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only) |
-
-**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`, `youtube_uploads.json`, `ballot_research_cache.json`.
-
-### Curation — see [docs/decisions/curation.md](docs/decisions/curation.md)
-
-**Themes** (weekday 0=Mon): Arts, Culture & Digital Storytelling · Working Lands & Industry · Gear, Gadgets & Practical Tech · Indigenous Lands & Innovation · Wild Spaces & Outdoor Life · **Cariboo Local Affairs** (Sat, longer: 18 roundup stories + a 5-source deep dive; weekdays 18 + 4) · Science, Wonder & the Natural World.
-
-**Saturday is geographic** (`geographic: true`): every candidate is local, so a place-name hit is a constant, not a signal.
-- `_build_theme_subject_keywords` strips places and ranks on civic vocabulary.
-- `home_places` (Williams Lake, the CRD and its electoral areas, SD27) outranks neighbour towns. It is an **ordering rule, not an exclusion**.
-- A geographic day is never a routing target for held articles.
-
-**`event_focus`** is a date-bounded civic event: the Williams Lake 2026 local election, window to Oct 24.
-- **It is named on air.** No endorsements: report the races and the candidates' stated positions, never rank them.
-- Name every race and name people, not roles. Report a previous run's outcome, **loss included**.
-- Everything is bounded by **SOURCED OR UNSAID**: a claim comes from the day's articles or the research block, and an unestablished record is said to be unestablished.
-- `event_focus.roster` settles **who is running**, plus `records`: dated lines from a named outlet, rendered as SOURCED BACKGROUND. A race with no names renders as `NO NAMES IN THE ROSTER`. **Never air a gap as "unfindable" or "not public"**: fill the race in the day its list is public.
-- The research pass runs a **Python roll call first** (`_run_event_sweep`: one search per race and per running candidate), then the agent follows up with `fetch_page`. A page in the day's feed whose headline names a running candidate is read in full first (`_candidate_profiles`, no search); local names come before provincial follow-ups. More than a third of the ballot under `NO RECORD FOUND` `degrade()`s. Queries and the research block are saved in the citations JSON under `research`.
-- **All-week events** (`podcast.json` → `all_week_events`: the 2026 B.C. provincial vote, Oct 24) are swept and lensed on any day an episode article carries their vocabulary (`_events_in_play`). They never steer selection.
-- **An all-week event gets its own research pass** (`_research_event_ballot`: election meter, results-only search, `recent` for this campaign). It never takes the deep dive's pass; only the day's own event shares that one.
-- **Once nominations close, the weekday ballot pass reuses its last complete research** (`podcasts/ballot_research_cache.json`) until it is `BALLOT_RESEARCH_MAX_AGE_DAYS` old, the roster or brief changes, or an election story reads like the field moved (`_ROSTER_CHANGE_RE`). Saturday's shared pass is never cached.
-- **A fresh ballot pass is handed the last one** (PRIOR RESEARCH) and each election story's URL and first 1500 characters: never call unestablished what an earlier pass sourced. Article bodies are `<p>` prose (`_article_prose`), never the page's menus.
-- `docs/wl-2026-election-candidates.md` and the JSON must carry the same names (a test enforces it).
-- An election story airs the day it breaks and is also booked back (`status: 'recall'`) for the next civic episode, tagged `_recalled_from` so the hosts say they covered it.
-- The event vocabulary is never folded into `_build_theme_subject_keywords`: "campaign" and "ballot" would admit US politics.
-- **When a Saturday deep dive looks wrong, check the upstream theme score in `super-rss-feed` before touching the ranking.**
-
-**News roundup.** The story count comes from airtime (`NEWS_ROUNDUP_COUNT`, ~70 words each), not appetite. A story that can't get its floor is cut, never compressed.
-- `NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. `all_articles` is the curated pool; never concatenate the pre-curation `bonus_articles` back in.
-- Blocks air in order: `local` → `theme` / `theme_adjacent` → discipline groups → `standalone` → `kicker`. No discipline cluster takes more than `ROUNDUP_CLUSTER_MAX` (3) slots outside the arc blocks.
-- The kicker is the wildcard: from the better half of the standalones that share no subject with another roundup story (`_shares_subject`, a headline word pair), the lowest `_theme_score_raw`. None qualifies, no kicker.
-- `_sequence_roundup` is a chain, not a regroup (the block's lead never moves), and runs at both consumers.
-- `_infer_discipline` counts word-boundary hits, never substrings.
-- `script/curate` degrades when the theme block is thin. **Read that as a scoring problem, not a supply problem.**
-- Hosts never announce blocks, counts, or the running order.
-- **LOCAL ELECTION RACES** is a standing roundup rule: keep each town's race distinct, never borrow a name across races.
-- NO HEADLINE CRAWL. DO NOT MANUFACTURE CONNECTIONS: if the shared thing can't be named plainly, move on.
-- **Research before writing, never narrate the gap.** Every curated story under `NEWS_BODY_RICH_CHARS` is researched in `_filter_sparse_news_articles` (own page, excerpt (2000 chars when upstream ran Kagi Extract), the own page through Kagi Extract (`_extract_roundup_stories`, `KAGI_EXTRACT_CALL_LIMIT` pages, before any Brave spend), one title search plus a read of the matching coverage, credited via `_body_via`). A **Kagi News** cluster (`_kite_sources` > 0) arrives researched: `_use_kite_body` makes its `_excerpt` (summary + talking points, each claim's outlet in parentheses) the `_body` at load, so nothing is spent on it and no single outlet's page replaces it; a day one airs credits Kagi News (CC BY-NC). The prompt sees `ROUNDUP_PROMPT_BODY_CHARS` of it. Its `_kite_context` (perspectives, quote, timeline, background, each line naming its outlet) follows as a Research line, whole lines only: `ROUNDUP_PROMPT_CONTEXT_CHARS` in the roundup, `DEEP_DIVE_PROMPT_CONTEXT_CHARS` in the deep dive (`_kite_context_line`). Hosts never say what an excerpt or report leaves out (only the ballot's "unestablished" survives); `source_gap_narration` counts it.
-
-**Super-cycles.** Each topical weekday rotates a multi-week focus, calendar-derived (`get_focus_for_day`) and **never announced on air**. Holding (`route_articles_for_focus`) parks off-theme articles for their day within 14 days, flagged `_held_from`.
-- **Never hold a local story.**
-- Route both the theme and bonus buckets. A slot matches on its theme **or** focus keywords.
-- Keyword sets that **gate** a decision are strict (`_build_strict_theme_keywords`); description prose is for ranking only.
-- A focus keyword is a phrase when the bare word has another common sense (`park`, `trail`, `space`): one hit admits an article to the deep-dive pool, and rerank cannot drop it.
-- `_no_deep_dive` is honoured by `select_deep_dive_from_feed`.
-- A released article is re-labelled for its new day (`_relabel_for_day`), and its stale theme scores are dropped, not rewritten. A story imported for today must not be droppable by the run that imported it.
-- The export decision reads the feed's **raw** charter score (`_theme_score_raw`), never the percentile.
-
-**Opinion and crime are filtered upstream** (`super-rss-feed` → `podcast_content_exclusion()`). When one reaches an episode, read that repo's `config/podcast_schedule.json` → `excluded_content` before touching anything here.
-
-### Editorial voice — see [docs/decisions/editorial-voice.md](docs/decisions/editorial-voice.md)
-
-**Weekly anchor** (`weekly_anchor.py`) — one open question per ISO week, **named on air**, circled by all seven deep dives.
-- It is pinned in `weekly_anchor_state.json` on the week's first run; every later run reads it back.
-- No repetition by **dimension** (26-week cooldown) as well as by id.
-- It frames, never selects.
-- The prompt's escape hatch (drop the anchor when the material doesn't reach it) is load-bearing, and tested.
-
-**Naming a nation.** The three house nations describe the Cariboo and nowhere else. Name a nation only for its own territory, and only when a source names it. **Naming the wrong people is worse than naming none.**
-- `script/territory-check` (`native_land.py`) only ever disconfirms. A crowd-sourced map may remove a claim; it must never supply one.
-- **Detection is whole words, places are whole phrases, and only an unambiguous BC place can disconfirm.** A name in `place_aliases` (Chilcotin, Okanagan, Thompson…) names the people only with a suffix ("Nation", "people"); "Cariboo-Chilcotin" names no one. `podcasts/native_land_cache.json` rides the script commit.
-- The land acknowledgment is exempt by construction (`local_places`).
-- `NATIVE_LAND_API_KEY` is a secret; degradation rows record only the exception type.
-
-**AI tells** (`config/ai_tells.json`, `podcasts/phrase_ledger.json`).
-- A new pattern family goes in `soft_patterns` unless the extra Opus escalation is intended and costed.
-- **Never use a burned phrase in prompt prose** (a test enforces it). The model copies its instructions' register.
-- The phrase ledger burns spiking adverbs only; multi-word tics go in `hard_banned` by hand.
-- The burned-phrases block goes into the dynamic user prompt, never the cached system prompt.
-- `script/tell-scrub` runs after the cold open.
-- **The cold open gets no example greeting or closer**; it gets the past week's (`_format_recent_cold_opens`) as ones not to reuse.
-- **Storyboard before script** (`storyboard_script`): one structured call plans the roundup's airing order and each story's point and bridge ("clean pivot" when nothing is shared) and the deep dive's question, stances and beats, each saying why the next follows. It may move same-subject stories together and fold same-story reports into one (`merge_with`, `_merged_into`); `apply_storyboard_order` keeps local first, relabels a moved story to the block it lands in, and airs the draft order on an invalid plan. A kicker on an earlier story's subject is moved beside it in code (`kicker_repeats`, `_unbookend_kicker`): the prompt alone let it close the show. It rides in the dynamic prompt, never the cached one; a missing or partial plan `degrade()`s and the script runs unplanned. The polish gets the deep dive's question and beat chain only (`_storyboard_polish_addendum`), never the full plan.
-- **The two polish prompts share their rules line for line** (a test enforces it); change both or neither.
-- **Already aired** (`config/prompts.json` → `aired_ledger`): the past week's Roundup and Deep Dive lines that today's material restates go into the dynamic prompt, and the draft's repeats go to polish. Python matching, never whole past scripts in the prompt. A candidate's name is never a repeat. The polish gets the research half of the ledger too: it is told to weave in findings the draft left out, and a polish that adds repeats `degrade()`s (`script/aired-check`).
-- **A roundup story in the deep dive gets a callback, never a retelling.** `find_roundup_echoes` (same `_echoes` matcher) hands the draft's deep dive lines that restate the roundup to both polishes (`roundup_echo_template`); more than `ROUNDUP_ECHO_SLACK` left after polish `degrade()`s `script/roundup-echo`. Rule (u) asks for "we mentioned up top", not "state the fact itself".
-- **TIME OF DAY:** listeners hear the show in the morning. Never "tonight's episode".
-
-**Host voice cards** (`hosts.json` → `voice_style`): style and perspective from a real writer's prose, rendered under each host's SPEECH rules. Never personal traits, civic positions, examples, or the source's own phrasing; a test runs every line through the tell lists.
-
-**Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.
-- **NONE is a first-class answer.**
-- The reply cites its commit lines (`COVERED:`) before it speaks, and unknown capitalised names drop the segment.
-- Every Sunday without the segment `degrade()`s, whatever the reason.
-- Nothing listener-facing goes into that prompt unconditionally.
-- A thin week (under `META_MOMENT_SPARSE_BELOW` show commits) folds in `super-rss-feed`'s human commits under `UPSTREAM_HEADER`; only `- ` lines are citable subjects.
-- Every week also folds in `super-rss-feed`'s Saturday weekly run (`get_upstream_week_changes`: `weekly-state-article.json` → `_changes`), only while it is under 7 days old. **No example names in the prompt prose**: the hosts said "Google" because the prompt did.
-- **Never `git fetch --depth` over the full checkout**: a shallow repo answers `git log --since` with one commit and no error.
-- **Protect the segment; never force it.** A NONE or a guard drop gets one retry, with upstream changes and the refusal reason (`script/meta-moment/retry`); a failed call degrades; the splice falls back to the deep dive; and a Sunday that ships without it turns the run red (last step, after deploy).
-
-**Inbound mail** (`email_ingest.py`). `podcasts/email_queue.json` is public: senders are masked and contact details redacted at ingest.
-- "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address.
-- The block header stays `LISTENER CORRECTIONS`; attribution is per item.
-- A correction airs as the final beat of the next roundup (`docs/corrections-policy.md`).
-- **A correction that should outlive its episode becomes a standing note.** Every Sunday `standing_notes.py` (in `periodic-review.yml`) reads the correction and feedback emails no run has seen, makes one Haiku call, and opens a PR adding proposed lines to `config/standing_notes.txt`. Merge adopts; close declines for good. Email text is untrusted, so it is quoted as data and nothing reaches a prompt without a merged PR. One proposal PR at a time.
-
-### TTS — see [docs/decisions/openai-tts.md](docs/decisions/openai-tts.md)
-
-**OpenAI `tts-1` is the nightly provider**: `nova` (Riley) + `echo` (Casey), per-turn, in parallel. `OPENAI_TTS_MODEL` selects the model. The steerable `gpt-4o-mini-tts` was tried and reverted: no `speed`, and the acoustic scene resampled mid-turn.
-- `_SPEECH_RATE_FITS` is keyed by model. Refit it from the transcript sidecars, never by assumption.
-- Every take is checked for duration (`_expected_speech_ms`, retry below 0.80) and amplitude (`_is_silent_take`). **A turn that won't render is cut, never shipped as silence**, and the cut is `degrade()`d.
-- **Roundup grouping** (`turn_gap_ms`): a reaction sits closer to the story it answers than to the next one — reactions capped at `NEWS_REACTION_GAP_MAX_MS`, story intros floored at `NEWS_STORY_GAP_MS` (higher when the same voice continues). A tag only raises a story break.
-- **Never filter turns by length**: the prompt asks for "Right." / "How so?" backchannels. Chunks of one turn join with `TTS_CHUNK_GAP_MS`, and never split inside an initialism.
-- Credits name every provider that actually rendered audio (`_compose_tts_credit`). `get_active_tts_provider()` is the routing answer and must not be used for a credit.
-
-**Gemini multi-speaker TTS is parked** — [docs/decisions/gemini-tts.md](docs/decisions/gemini-tts.md) holds its exit criterion and 45 KB of history.
-- The code, tests and TTS Eval workflow stay, and `tts_provider=gemini` still dispatches.
-- Don't tune, refit or extend it while parked.
-- **Never put prior dialogue into a TTS prompt.**
-
-### Smaller subsystems
-
-- **Cohere** (`cohere_enrichment.py`, `USE_COHERE`, on in the script step; the repo variable set to `0` turns it off): evolving-story detection, intra-batch clustering, and the live deep-dive rerank. Every public function returns `None` when disabled or failed; callers fall back, and a failure is a `script/cohere` row (`drain_degradations`).
-  - **Rerank reorders, never admits**: it picks from the head (`DEEP_DIVE_RERANK_POOL`) of the rule-ranked list, never on the geographic day, and its query is the theme and focus, never the weekly anchor.
-- **The Cariboo bar** (`pick_cariboo_deep_dive`, one Haiku call, topical days only): from the rule-ranked head plus fresh local bonus stories, the first story a Cariboo household could act on, then other outlets' reports of the same story, never a neighbouring one. The anchor only breaks a tie. An aired local story from the past week (`recent_local_roundup`) may ride along as its Cariboo connection, tagged `_recalled_from`. Nothing passes: `script/deep-dive-local` degrades and the rule pick airs.
-  - The credit follows `was_used()`, not the switch. Embed is batched at 96 texts and read from `embeddings.float_`.
-- **Bespoke episodes** (`generate_bespoke.py`) are **parked**: one episode (March 2026). The code and workflow stay because `seed-content` still triggers it when 3+ content seeds share a tag.
-- **Producer-pinned deep dive** (`seed.py url … --deep-dive --date YYYY-MM-DD`, `--title` for a link whose page names no article): every pinned seed due that day is the deep dive, past focus, rerank, the Cariboo bar and the substance swap. A seed already in the feed pins the feed's copy (`_merge_seed_articles`), so its body survives.
-- **PSA selection** (`psa_selector.py`): 7-day lookahead for awareness dates; otherwise round-robin, 28 days between repeats per org.
-
-### Sibling repository
-
-`super-rss-feed` scores the articles and publishes `feed-podcast-{dayname}.json`; it must deploy before this pipeline runs. This repo reads its underscore fields (`_is_bonus`, `_keyword_matches`, `_theme_score`, `_theme_score_raw`, `_excerpt`, …) — see `SIBLING_REPOS.md`. **A claim in this file about `super-rss-feed` is not a change in that repo**: read its config before trusting one.
+- A test or local run that rewrites a `podcasts/` state file is leakage: revert it, never commit it (above).
+- Every memory/state/feed write goes through `atomic_write_json` / `atomic_write_text` (operations).
+- Every fallback calls `degrade()`; a `critical=False` segment pre-assigns its outputs (operations).
+- Workflows commit only through `./.github/actions/commit-push` (operations).
+- Third-party text is `html.escape`d; every fetch of a feed- or model-supplied URL goes through `_get_public` (operations).
+- On air, everything is SOURCED OR UNSAID; elections get no endorsements (curation).
+- Name a nation only for its own territory and only when a source names it. Naming the wrong people is worse than naming none (editorial-voice).
+- Never use a burned phrase in prompt prose (editorial-voice).
+- Never hold a local story (curation).
+- Billing walls are recognised by credit wording; an `except` that falls back calls `_abort_if_billing_wall` first (operations).
+- Every Sonnet or Opus call goes through `send_claude` or `create_message`; a small or structured call passes `thinking=thinking_off(model)` (api-cost).
+- Never `git fetch --depth` over the full checkout (editorial-voice).
 
 ## API Cost Discipline
 
 Treat API budget as a first-class constraint on every change.
 
-- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for polish escalation (`select_review_model`): thin deep-dive sourcing (<3 articles) or more than `OPUS_QUALITY_HIT_THRESHOLD` (3) pre-polish tell hits. The hit count fired it about 1 day in 5 on Sonnet 5 drafts and 0 of 4 on Haiku 5.5 drafts (0–1 hits); revisit after the polish trial, not before (Opus overrides `CLAUDE_POLISH_MODEL`).
-- **Haiku 5.5, Sonnet 5 and Opus 5 think when `thinking` is omitted, and thinking shares `max_tokens` with the answer.** A small-budget or structured call must pass `thinking=thinking_off(model)` (`config_loader`), never a literal: Haiku 5.5 and Sonnet 5 take `{"type": "disabled"}`, Sonnet 5.5 rejects it with a 400 and takes `between_tools`, and Opus 5.5 can't turn thinking off at all. Otherwise it returns no text: the weekly anchor framings and the weekly script review both failed this way for months.
-- **One switch for Sonnet, one for Haiku.** Every Sonnet role follows `CLAUDE_SONNET_MODEL` (a repository variable both workflows pass through; **unset means `claude-haiku-5-5`** since 2026-10-08, see [operations.md](docs/decisions/operations.md)); every Haiku role follows `CLAUDE_HAIKU_MODEL` (`config_loader.HAIKU_MODEL`, default `claude-haiku-5-5`). A per-role `CLAUDE_*_MODEL` still overrides either: `CLAUDE_SCRIPT_MODEL`, `CLAUDE_POLISH_MODEL` and `CLAUDE_STORYBOARD_MODEL` (daily-podcast.yml; the storyboard defaults to `claude-sonnet-5-5` there), `CLAUDE_REVIEW_MODEL` (the weekly script reviewer, periodic-review.yml only: `episode_review.py` reads it too, so never pass it to daily-podcast.yml). Opus escalation is `claude-opus-5-5`; a Haiku 5.5 decline retries on `claude-sonnet-5` (`_REFUSAL_FALLBACK`).
-- **A budget over `STREAM_ABOVE_MAX_TOKENS` (16000) streams**, forced in `send_claude`: the SDK refuses a non-streaming call it estimates at over 10 minutes (~21K on Sonnet) before sending it. The storyboard's 32000 died that way on 2026-11-01.
-- **A refusal is retried once on the model it replaced** (`send_claude`, `_REFUSAL_FALLBACK`) and always `degrade()`s as `claude/refusal`. Every Sonnet or Opus call goes through `send_claude` or `create_message`, never a bare `client.messages.create`.
+- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Model routing, the refusal fallback, streaming and the price table are in `.claude/rules/api-cost.md`.
 - **Prompt compression is mandatory.** Strip filler and redundant context before sending.
 - **Cache aggressively.** Use Anthropic `cache_control` headers for large static context reused across calls.
 - **Batch where possible.** Combine small tasks into one API call instead of N round-trips.
@@ -338,20 +175,6 @@ Treat API budget as a first-class constraint on every change.
 - **Log token usage.** Every Claude response goes through `_log_claude_usage(response)` (every token class, a thinking estimate, list-price $). No silent spending.
 - **Fail fast on runaway cost.** Unexpectedly large token counts should raise, not proceed.
 - **Review diffs for cost regressions.** Call out any prompt/pipeline change that increases per-run token usage.
-
-**Anthropic prices** (USD per million tokens, first-party API, checked 2026-10-08; refresh from the pricing page before any cost decision):
-
-| Model | Input | Output | Cache read |
-|-------|-------|--------|------------|
-| Haiku 5.5 (prompt ≤ 100K tokens) | $0.10 | $0.50 | $0.01 |
-| Haiku 5.5 (prompt > 100K) | $0.50 | $2.50 | $0.05 |
-| Haiku 4.5 | $1 | $5 | $0.10 |
-| Sonnet 5 / 5.5 | $2 | $10 | $0.20 |
-| Sonnet 4.5 | $3 | $15 | $0.30 |
-| Opus 5.5 | $4 | $20 | $0.20 |
-| Opus 5 | $5 | $25 | $0.50 |
-
-Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API halves every line, cache included. A cancelled batch still bills the requests that finished before the cancel. Baseline for September 2026 was $31.21 billed (list price, no discounts) across both keys: `cariboosignals` $21.0 (Sonnet 5 script and polish about 3/4 of it), `superfeed` $10.2 (Haiku scoring $9.2).
 
 ## Project Constraints
 
@@ -361,14 +184,18 @@ Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API ha
 - Keep dependencies minimal — check `requirements.txt` before adding anything
 - Every workflow installs `requirements-lock.txt`. Edit `requirements.txt`, then regenerate the lock (Python 3.11); `tests/test_requirements_lock.py` fails until you do
 
-## Decision records
+## Where the rules live
 
-| File | Covers |
-|------|--------|
-| [operations.md](docs/decisions/operations.md) | Scheduling, stages and segments, `degrade()`, exit codes, money preflight, commits, atomic writes, Brave spend, the roadmap |
-| [curation.md](docs/decisions/curation.md) | Themes, the geographic day, the election (`event_focus`), roundup curation, super-cycles and holding |
-| [editorial-voice.md](docs/decisions/editorial-voice.md) | Weekly anchor, naming nations, AI tells and the phrase ledger, the Meta Moment, inbound mail |
-| [openai-tts.md](docs/decisions/openai-tts.md) | The nightly TTS provider, speech-rate fits, per-take checks |
-| [gemini-tts.md](docs/decisions/gemini-tts.md) | Gemini multi-speaker TTS — parked, with its exit criterion |
-| [MANIFESTO.md](docs/MANIFESTO.md) | The editor's values for both curators, and where they pull against today's rules |
-| [2026-02-16-multi-feed-model.md](docs/decisions/2026-02-16-multi-feed-model.md) | The move to seven themed upstream feeds |
+| Rule file (`.claude/rules/`) | Loads when you touch | Decision record |
+|---|---|---|
+| `operations.md` | `podcast_generator.py`, `episode_review.py`, `config_loader.py`, `.github/`, `cloudflare/` | [operations.md](docs/decisions/operations.md) |
+| `curation.md` | `podcast_generator.py`, `dedup_articles.py`, `cohere_enrichment.py`, theme/cycle/feed config | [curation.md](docs/decisions/curation.md) |
+| `editorial-voice.md` | `podcast_generator.py`, `weekly_anchor.py`, `native_land.py`, `email_ingest.py`, `standing_notes.py`, prompt/host/tell config | [editorial-voice.md](docs/decisions/editorial-voice.md) |
+| `tts.md` | `podcast_generator.py`, `gemini_tts.py`, `pronunciations.json` | [openai-tts.md](docs/decisions/openai-tts.md), [gemini-tts.md](docs/decisions/gemini-tts.md) |
+| `api-cost.md` | `podcast_generator.py`, `episode_review.py`, `review_scripts.py`, `standing_notes.py`, `config_loader.py`, workflows | [operations.md](docs/decisions/operations.md) |
+| `configuration.md` | `config/`, `config_loader.py`, `podcasts/` | — |
+| `subsystems.md` | `podcast_generator.py`, `cohere_enrichment.py`, `generate_bespoke.py`, `seed.py`, `psa_selector.py` | — |
+
+Also: [MANIFESTO.md](docs/MANIFESTO.md) (the editor's values for both curators) and
+[2026-02-16-multi-feed-model.md](docs/decisions/2026-02-16-multi-feed-model.md) (the move to seven themed upstream feeds).
+Before changing code a rule file covers when you haven't opened a matching file yet, read the rule file.
