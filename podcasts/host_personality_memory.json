@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Massive data breach sees 220 million traveler re",
-      "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor",
       "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
       "[Williams Lake Tribune] Students explore science, technology",
       "[TechCrunch] Mosqitter is turning its mosquito traps into an",
@@ -10,7 +8,9 @@
       "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
       "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
       "[TechRadar] These social media posts promise big online disc",
-      "AI"
+      "AI",
+      "[TechRadar] Australian government introduces Digital Duty of",
+      "The Tyee Podcast: Inside Canada\u2019s AI Data Centre Fervour"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -90,19 +90,14 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-01",
-        "clue": "evidence-bar:~ \u2014 credibility and cost-bearing are separable questions",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-20",
         "clue": "permit-queue:+ \u2014 Insists permits are the lever Province can move",
         "occurrences": 1
       },
       {
-        "date": "2026-10-23",
-        "clue": "community-trust:+ \u2014 insists organizers' tracking and calls showed accountability",
-        "occurrences": 1
+        "date": "2026-11-02",
+        "clue": "community-trust:+ \u2014 insists outlet should write farewells as checkable record",
+        "occurrences": 2
       },
       {
         "date": "2026-10-24",
@@ -162,6 +157,11 @@
       {
         "date": "2026-10-31",
         "clue": "evidence-bar:~ Admits no proof local consultation is safer",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-02",
+        "clue": "structural-lens:- \u2014 shifts to outlet-first follow-up, softening institutional-archive view",
         "occurrences": 1
       }
     ],
@@ -349,9 +349,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-07",
-        "clue": "structural-lens:x \u2014 Concedes personal metrics help attentive buyers",
-        "occurrences": 1
+        "date": "2026-11-02",
+        "clue": "structural-lens:x \u2014 concedes Riley's clerk and minutes point partly fixes gap",
+        "occurrences": 2
       },
       {
         "date": "2026-10-12",
@@ -382,11 +382,6 @@
         "date": "2026-10-19",
         "clue": "pilot-skepticism:+ \u2014 five-week test is not a permanent budget line",
         "occurrences": 1
-      },
-      {
-        "date": "2026-10-26",
-        "clue": "community-trust:~ \u2014 local in subject versus local in paycheque",
-        "occurrences": 2
       },
       {
         "date": "2026-10-24",
@@ -429,14 +424,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-01",
-        "clue": "evidence-bar:+ \u2014 insists on method caveats in the headline lede",
+        "date": "2026-11-02",
+        "clue": "funding-risk:+ \u2014 stresses staffing gaps outlast reporters and grants",
         "occurrences": 2
-      },
-      {
-        "date": "2026-10-30",
-        "clue": "funding-risk:+ \u2014 presses who keeps monitoring and maintenance funded later",
-        "occurrences": 1
       },
       {
         "date": "2026-10-31",

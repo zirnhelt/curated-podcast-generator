@@ -1381,6 +1381,38 @@
         "https://research.meta.ai/blog/muse-spark-open",
         "https://cryptobriefing.com/nick-cammarata-neural-networks-interpretable/"
       ]
+    },
+    "TWiT-1653-894-863540": {
+      "title": "IM 894: Ghosting Meta Muse - Will Cloud Spending Sink AI's Biggest Players?",
+      "pub_date": "Wed, 28 Oct 2026 18:01:40 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/894",
+      "harvested_at": "2026-11-01T12:51:14.173421+00:00",
+      "question": "Can Anthropic's enterprise AI revenue justify its roughly $16B IPO and the massive compute spending required to keep pace with rivals?",
+      "perspectives": [
+        "Enterprise AI adoption will grow fast enough that current compute costs become a justified, temporary investment in market share.",
+        "Compute spending is outpacing realistic revenue, so the economics don't add up and the IPO carries significant downside risk."
+      ],
+      "open_questions": [
+        "What share of Anthropic's S-1 revenue comes from recurring enterprise contracts versus one-time or usage-spike sales, and how durable is it?",
+        "If a 10% extinction-risk framing is used to market an AI IPO, how should investors and regulators weigh risk disclosures against valuation hype?"
+      ],
+      "topics": [
+        "Anthropic IPO and S-1 filing",
+        "AI compute and cloud spending economics",
+        "Meta Muse data-sharing link disclosures"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://www.nytimes.com/2026/10/26/technology/anthropic-ipo-s1-dario-amodei.html",
+        "https://arstechnica.com/google/2026/10/deepminds-genie-4-world-model-adds-audio-and-more-realistic-people-to-simulations/",
+        "https://www.nytimes.com/2026/10/25/style/marissa-mayer-ai-assistants-women.html",
+        "https://www.techdirt.com/2026/10/26/whoops-metas-muse-share-links-disclosed-all-sorts-of-super-sensitive-user-data",
+        "https://www.nytimes.com/2026/10/23/insider/cooking-recipes-ai.html?unlocked_article_code=1.L1E.Tu5k.4lcwn5PXJzws&amp;smid=url-share"
+      ]
     }
   }
 }
