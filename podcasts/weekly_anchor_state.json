@@ -1,15 +1,5 @@
 {
   "assigned": {
-    "2026-W36": {
-      "id": "self-sufficient-or-connected",
-      "question": "Is it better to be self-sufficient or well-connected?",
-      "dimension": "autonomy-interdependence",
-      "premise": "Rural identity leans hard on independence \u2014 your own water, your own power, your own woodpile, your own read on the weather. But almost every rural success story turns out to run on a network: a co-op, a mutual aid list, a shared mill, a partnership agreement, a satellite dish. The question is whether self-sufficiency is a genuine strategy or a story people tell about infrastructure they've stopped noticing.",
-      "reading": null,
-      "framings": {},
-      "assigned_at": "2026-08-31",
-      "origin": "seeded"
-    },
     "2026-W37": {
       "id": "lost-when-easier",
       "question": "What gets lost when something gets easier?",
@@ -129,6 +119,24 @@
       },
       "assigned_at": "2026-10-26",
       "origin": "generated"
+    },
+    "2026-W45": {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?",
+      "dimension": "harmony-honesty",
+      "premise": "In a place where you will meet the same people at the post office, the rink, and the funeral for decades, every disagreement carries a long tail. Swallowing a complaint can protect a neighbour, a working relationship, or a fragile committee. It can also let a bad practice, a quiet injustice, or a dangerous shortcut carry on for years. Whether silence is a form of care or a form of cowardice often only becomes clear in hindsight, and sometimes not even then.",
+      "reading": null,
+      "framings": {
+        "0": "Tell the hosts to ask whether a Williams Lake arts board should quietly keep a difficult festival director on staff, or publicly fire them, when the director's style is driving away volunteers and funders.",
+        "1": "Have the hosts weigh whether a Cariboo sawmill crew should stay silent about a shaky new automated saw system to protect a close-knit shift and their jobs, or push for a shutdown.",
+        "2": "Direct the hosts to debate whether a rural repair caf\u00e9 or maker group should publicly call out a neighbour's sketchy DIY wiring project, or quietly fix it and keep the friendship intact.",
+        "3": "Ask the hosts whether a Secw\u00e9pemc or T\u015dilhqot'in nation negotiator should accept a flawed consultation process to keep a fragile land-use agreement alive, or walk away and fight publicly.",
+        "4": "Have the hosts argue whether backcountry groups in the Chilcotin should keep quiet about a guide's risky wildfire-season practice to preserve trail partnerships, or report it to authorities.",
+        "5": "Tell the hosts to examine whether a Cariboo councillor should hold back a sharp objection to a colleague's development deal to keep a regional board functioning, or force the vote into the open.",
+        "6": "Direct the hosts to ask whether a Cariboo ranch or research station should downplay a local ecologist's findings on grassland decline to protect a grazing lease and neighbours, or let the science speak loudly."
+      },
+      "assigned_at": "2026-11-02",
+      "origin": "generated"
     }
   },
   "used": [
@@ -203,6 +211,12 @@
       "dimension": "belonging-membership",
       "question": "Who gets to call themselves local?",
       "week": "2026-W44"
+    },
+    {
+      "id": "keeping-the-peace-or-speaking-up",
+      "dimension": "harmony-honesty",
+      "question": "When is keeping the peace worth more than being right?",
+      "week": "2026-W45"
     }
   ],
   "generated": [

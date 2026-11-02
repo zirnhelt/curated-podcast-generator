@@ -1,0 +1,559 @@
+{
+  "episode": {
+    "date": "2026-11-02",
+    "formatted_date": "Monday, November 02, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>THIS WEEK WE'RE ASKING:</b> When is keeping the peace worth more than being right?</p><p><b>NEWS ROUNDUP:</b> We break down Chief Leah Stump seeks fourth term in upcoming election and Quesnel’s Ice Breaker Bonspiel, a success, plus 16 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When a council recap carries only departing members' farewell remarks, is it a usable public record or merely a courtesy, and what does a small outlet owe those last words once they cannot be tested? Topics include: Whether farewell remarks constitute a usable public record or a courtesy, Comparing councillors' claims against motions and vote records in the minutes, The Nazko First Nation candidate list and the Quesnel bonspiel results as contrasting records, Staffing and capacity limits of small newsrooms and who maintains follow-up over time, Who owns the follow-up: the outlet, the city, residents, or podcasts covering local government.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://caribooliteracy.com\">Cariboo Chilcotin Partners for Literacy</a></p><p><b>Sources discussed:</b></p><ul><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317059/news/indigenous/chief-leah-stumps-seeks-fourth-term-in-upcoming-election/\">[My Cariboo Now] Chief Leah Stump seeks fourth term in upcom...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/10/29/quesnels-ice-breaker-bonspiel-a-success/\">[Quesnel Cariboo Observer] Quesnel’s Ice Breaker Bonspiel, a...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/ai-platforms-assistants/australia-government-wants-to-ban-ai-chatbots-that-create-emotional-intimacy-but-critics-are-accusing-it-of-creating-an-orwellian-system-of-censorship\">[TechRadar] Australian government introduces Digital Duty of...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html\">[Boing Boing] Glasgow museum pulls its mummies, citing lack ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Tyeenews/2026/10/30/Tyee-Podcast-AI-Data-Centre-Fervour/\">The Tyee Podcast: Inside Canada’s AI Data Centre Fervour</a></li><li>Committee to Protect Journalists: <a href=\"https://cpj.org/2026/10/turkish-reporter-ismail-ari-arrested-again-on-suspicion-of-spreading-disinformation/\">[Committee to Protect Journalists] Turkish reporter İsmail A...</a></li><li>Open Culture: <a href=\"https://www.openculture.com/2026/10/inside-the-making-of-the-sagrada-familia-barcelonas-144-year-megaproject.html\">[Open Culture] Inside the Making of the Sagrada Família, Bar...</a></li><li>Grace Ebert (Colossal): <a href=\"https://www.thisiscolossal.com/2026/10/tom-hegen-the-mineral-age-photo-book/\">[Colossal] Tom Hegen’s ‘The Mineral Age’ Documents the Indel...</a></li><li>Country Life: <a href=\"https://www.countrylife.co.uk/architecture/church-rate-corner-cambridge\">[Country Life] 'It is hard to imagine a more perfect realisa...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/10/25/thousands-protest-in-prague-against-public-media-funding-reforms?traffic_source=rss\">[Al Jazeera English] Thousands protest in Prague against pub...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91633136/could-ai-give-older-creatives-a-second-act\">[Fast Company] Could AI give older creatives a second act?</a></li><li>Newsletter: i***@podcasthon.org: <a href=\"https://lcjof.r.sp1-brevo.net/mk/un/v2/sh/WCPxRrWByckTigF2JVYw6z1ECGmdHwI5/-puAcyzxcrST\">Will you join the world's biggest charity event in podcastin...</a></li><li>Columbia Journalism Review: <a href=\"https://www.cjr.org/the-interview/indias-crackdown-on-the-press-fatima-khan-new-delhi-press-freedom-diminish-supreme-court-surya-kant-cockroach-janta-godi-media.php\">[Columbia Journalism Review] India’s Crackdown on the Press</a></li><li>New Atlas: <a href=\"https://newatlas.com/architecture/dogtrot-magnetawan/\">[New Atlas] 19th-century dogtrot house gets a prefab Passive...</a></li><li>Popular Woodworking: <a href=\"https://www.popularwoodworking.com/editors-blog/teaching-live-edge-part-1-craft-schools-big-slabs-and-student-projects/\">[Popular Woodworking] Teaching Live Edge (Part 1): Craft Sch...</a></li><li>Nieman Lab: <a href=\"https://www.niemanlab.org/2026/10/press-forward-gave-20-million-to-205-local-newsrooms-over-two-years-heres-how-some-of-them-spent-it/\">[Nieman Lab] Press Forward gave $20 million to 205 local new...</a></li><li>Committee to Protect Journalists: <a href=\"https://cpj.org/2026/10/cpj-partners-condemn-egyptian-authorities-shutdown-of-mada-masr-stand-with-editor-in-chief-lina-attalah/\">[Committee to Protect Journalists] CPJ, partners condemn Egy...</a></li><li>Popular Woodworking: <a href=\"https://www.popularwoodworking.com/tricks/drill-a-centered-hole-in-a-sphere/\">[Popular Woodworking] Drill a Centered Hole in a Sphere</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317036/news/municipal-news/city-of-williams-lake/williams-lake-councillors-give-farewells-in-their-last-meeting/\">[My Cariboo Now] Williams Lake Councillors give farewells in...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-02T01:15:49.708040-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-opus-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3719,
+      "voice_ratio_casey_riley": 0.8,
+      "casey_share_deep_dive_pct": 41,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 1,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 9,
+        "turns": 79,
+        "avg_turn_words": 45.6,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 1
+    },
+    "anchor": {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Chief Leah Stump seeks fourth term in upcoming election",
+          "url": "https://www.mycariboonow.com/317059/news/indigenous/chief-leah-stumps-seeks-fourth-term-in-upcoming-election/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 76,
+          "date_published": "2026-10-29T19:50:57+00:00",
+          "summary": "The preliminary candidates in the upcoming election for the Nazko First Nation have been announced. Chief Leah Stump will be seeking her fourth term against two opponents. The post Chief Leah Stump se...",
+          "discussed": true,
+          "mention_offset_frac": 0.0131
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel’s Ice Breaker Bonspiel, a success",
+          "url": "https://quesnelobserver.com/2026/10/29/quesnels-ice-breaker-bonspiel-a-success/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 44,
+          "date_published": "2026-11-02T06:03:15.421995+00:00",
+          "summary": "Quesnel's Ice Breaker Bonspiel Event C winners - Sam Cork, Myrna Christenson, Terry Berg and Ian Nugent. Quesnel's Ice Breaker Bonspiel Event B winners - Allan Sand, Lynda Sales, Brian Bennett and Bet...",
+          "discussed": true,
+          "mention_offset_frac": 0.0607
+        },
+        {
+          "title": "[Popular Woodworking] Teaching Live Edge (Part 1): Craft Schools, Big Slabs, and Student Projects",
+          "url": "https://www.popularwoodworking.com/editors-blog/teaching-live-edge-part-1-craft-schools-big-slabs-and-student-projects/",
+          "source": "Popular Woodworking",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-27T16:46:25+00:00",
+          "summary": "If you’re a long-time reader of my blogs, you’ve probably noticed that one of the furniture styles I gravitate toward most is live edge. Live edge furniture allows a designer... Source",
+          "discussed": true,
+          "mention_offset_frac": 0.0631
+        },
+        {
+          "title": "The Tyee Podcast: Inside Canada’s AI Data Centre Fervour",
+          "url": "https://thetyee.ca/Tyeenews/2026/10/30/Tyee-Podcast-AI-Data-Centre-Fervour/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 64,
+          "date_published": "2026-10-30T07:30:00+00:00",
+          "summary": "Labour reporter Isaac Phan Nay on the data centres coming to your town, and what you can do about it.",
+          "discussed": true,
+          "mention_offset_frac": 0.0819
+        },
+        {
+          "title": "[TechRadar] Australian government introduces Digital Duty of Care bill to regulate AI chatbots",
+          "url": "https://www.techradar.com/ai-platforms-assistants/australia-government-wants-to-ban-ai-chatbots-that-create-emotional-intimacy-but-critics-are-accusing-it-of-creating-an-orwellian-system-of-censorship",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/rowan-davies",
+          "ai_score": 60,
+          "date_published": "2026-10-28T15:37:54+00:00",
+          "summary": "The proposed ban is also designed to shield social media users from content that promotes harmful content including misogyny, terrorism, and suicide.",
+          "discussed": true,
+          "mention_offset_frac": 0.1449
+        },
+        {
+          "title": "[Boing Boing] Glasgow museum pulls its mummies, citing lack of consent from the dead",
+          "url": "https://boingboing.net/2026/10/23/fountain-pen-kelvingrove-mummies-removed.html",
+          "source": "Boing Boing",
+          "author": "",
+          "ai_score": 28,
+          "date_published": "2026-10-23T18:28:17+00:00",
+          "summary": "People hoping to see mummies at the Kelvingrove Art Gallery and Museum in Glasgow, Scotland, were instead treated to a small sign that said, \"We have removed human remains from this display as a mark ...",
+          "discussed": true,
+          "mention_offset_frac": 0.2122
+        },
+        {
+          "title": "[Committee to Protect Journalists] Turkish reporter İsmail Arı arrested again on suspicion of spreading ‘disinformation’",
+          "url": "https://cpj.org/2026/10/turkish-reporter-ismail-ari-arrested-again-on-suspicion-of-spreading-disinformation/",
+          "source": "Committee to Protect Journalists",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-22T16:44:17+00:00",
+          "summary": "Istanbul, October 22, 2026—Turkish authorities must immediately free İsmail Arı, the latest journalist to be arrested in a relentless crackdown on independent media this year, and abolish the disinfor...",
+          "discussed": true,
+          "mention_offset_frac": 0.3372
+        },
+        {
+          "title": "[Open Culture] Inside the Making of the Sagrada Família, Barcelona’s 144-Year Megaproject",
+          "url": "https://www.openculture.com/2026/10/inside-the-making-of-the-sagrada-familia-barcelonas-144-year-megaproject.html",
+          "source": "Open Culture",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-10-28T09:00:07+00:00",
+          "summary": "To get a sense of Sagrada Família’s popularity with YouTubers, you have only to take a look at the related Open Culture posts linked below. As will hardly escape your attention, most subjects that con...",
+          "discussed": true,
+          "mention_offset_frac": 0.3767
+        },
+        {
+          "title": "[Colossal] Tom Hegen’s ‘The Mineral Age’ Documents the Indelible Effects of the Green Transition",
+          "url": "https://www.thisiscolossal.com/2026/10/tom-hegen-the-mineral-age-photo-book/",
+          "source": "Colossal",
+          "author": "Grace Ebert",
+          "ai_score": 43,
+          "date_published": "2026-10-27T17:53:00+00:00",
+          "summary": "There's no question we need to move away from fossil fuels. But who bears the cost of the green transition? Do stories and artists like this matter to you? Become a Colossal Member today and support i...",
+          "discussed": true,
+          "mention_offset_frac": 0.45
+        },
+        {
+          "title": "[Country Life] 'It is hard to imagine a more perfect realisation of Baillie Scott’s ideal of domestic harmony': The story of Church Rate Corner in Cambridge",
+          "url": "https://www.countrylife.co.uk/architecture/church-rate-corner-cambridge",
+          "source": "Country Life",
+          "author": "https://www.countrylife.co.uk/author/william-fawcett",
+          "ai_score": 43,
+          "date_published": "2026-10-25T07:00:00+00:00",
+          "summary": "Church Rate Corner in Cambridge —home of Michael Nedo and Gillian Moore —is a lovingly maintained house that perfectly captures the spirit of the Arts-and-Crafts Movement and the domestic ideals of th...",
+          "discussed": true,
+          "mention_offset_frac": 0.5053
+        },
+        {
+          "title": "[Al Jazeera English] Thousands protest in Prague against public media funding reforms",
+          "url": "https://www.aljazeera.com/news/2026/10/25/thousands-protest-in-prague-against-public-media-funding-reforms?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-10-25T23:29:13+00:00",
+          "summary": "Demonstrators allege Prime Minister Andrej Babis and his coalition's proposed reforms pose a threat to press freedom.",
+          "discussed": true,
+          "mention_offset_frac": 0.599
+        },
+        {
+          "title": "[Columbia Journalism Review] India’s Crackdown on the Press",
+          "url": "https://www.cjr.org/the-interview/indias-crackdown-on-the-press-fatima-khan-new-delhi-press-freedom-diminish-supreme-court-surya-kant-cockroach-janta-godi-media.php",
+          "source": "Columbia Journalism Review",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-28T10:00:00+00:00",
+          "summary": "Fatima Khan, an independent journalist from New Delhi, says press freedom is diminishing in India—but she has hope for Gen Z.",
+          "discussed": true,
+          "mention_offset_frac": 0.6187
+        },
+        {
+          "title": "[Fast Company] Could AI give older creatives a second act?",
+          "url": "https://www.fastcompany.com/91633136/could-ai-give-older-creatives-a-second-act",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 32,
+          "date_published": "2026-11-01T05:00:00+00:00",
+          "summary": "Advertising is made for the young by the young. That’s conventional wisdom backed up by the Bureau of Labor Statistics , which in 2025 reported the median age of ad industry workers was 39, compared t...",
+          "discussed": true,
+          "mention_offset_frac": 0.6305
+        },
+        {
+          "title": "Will you join the world's biggest charity event in podcasting?",
+          "url": "https://lcjof.r.sp1-brevo.net/mk/un/v2/sh/WCPxRrWByckTigF2JVYw6z1ECGmdHwI5/-puAcyzxcrST",
+          "source": "Newsletter: i***@podcasthon.org",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Domain Name: sp1-brevo.net Registry Domain ID: REDACTED FOR PRIVACY Registrar WHOIS Server: whois.ovh.com Registrar URL: https://ovh.com Updated Date: 2025-06-03T07:17:45Z Creation Date: 2023-06-02T13...",
+          "discussed": true,
+          "mention_offset_frac": 0.69
+        },
+        {
+          "title": "[New Atlas] 19th-century dogtrot house gets a prefab Passive House makeover",
+          "url": "https://newatlas.com/architecture/dogtrot-magnetawan/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/bridget-borgobello/",
+          "ai_score": 59,
+          "date_published": "2026-10-30T05:57:45+00:00",
+          "summary": "A traditional house designed for the heat of the American South might seem an unlikely starting point for a retreat in Canada. However, Toronto studio Williamson Williamson has taken the distinctive o...",
+          "discussed": true,
+          "mention_offset_frac": 0.7657
+        },
+        {
+          "title": "[Nieman Lab] Press Forward gave $20 million to 205 local newsrooms over two years. Here’s how some of them spent it.",
+          "url": "https://www.niemanlab.org/2026/10/press-forward-gave-20-million-to-205-local-newsrooms-over-two-years-heres-how-some-of-them-spent-it/",
+          "source": "Nieman Lab",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-29T20:52:01+00:00",
+          "summary": "Most local newsrooms in the U.S. have one thing in common: They need more money, and many dream of dollars they can use however they want. In 2024, Press Forward, the nonprofit trying to mobilize a ph...",
+          "discussed": true,
+          "mention_offset_frac": 0.8705
+        },
+        {
+          "title": "[Committee to Protect Journalists] CPJ, partners condemn Egyptian authorities’ shutdown of Mada Masr, stand with editor-in-chief Lina Attalah",
+          "url": "https://cpj.org/2026/10/cpj-partners-condemn-egyptian-authorities-shutdown-of-mada-masr-stand-with-editor-in-chief-lina-attalah/",
+          "source": "Committee to Protect Journalists",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-28T14:13:03+00:00",
+          "summary": "The Committee to Protect Journalists and 129 organizations condemn the conviction of Lina Attalah, editor-in-chief of the independent Egyptian news outlet Mada Masr, and denounce the court’s order to ...",
+          "discussed": true,
+          "mention_offset_frac": 0.9184
+        },
+        {
+          "title": "[Popular Woodworking] Drill a Centered Hole in a Sphere",
+          "url": "https://www.popularwoodworking.com/tricks/drill-a-centered-hole-in-a-sphere/",
+          "source": "Popular Woodworking",
+          "author": "",
+          "ai_score": 47,
+          "date_published": "2026-10-27T15:19:02+00:00",
+          "summary": "Drill a perfectly centered hole in a sphere by first counterboring a hole in a scrap board clamped to your table. Drill the counterbore using a Forstner or spade bit... Source",
+          "discussed": true,
+          "mention_offset_frac": 0.9624
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Williams Lake Councillors give farewells in their last meeting",
+          "url": "https://www.mycariboonow.com/317036/news/municipal-news/city-of-williams-lake/williams-lake-councillors-give-farewells-in-their-last-meeting/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 79,
+          "date_published": "2026-10-28T03:13:36+00:00",
+          "summary": "The outgoing councillors of the City of Williams Lake gave fond 'thank yous' to their community during the Roundtable Discussion period in Tuesday, Oct. 27's city council meeting. The post Williams La...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "When a council recap carries only departing members' farewell remarks, is it a usable public record or merely a courtesy, and what does a small outlet owe those last words once they cannot be tested?",
+        "riley_position": "The recap is a first draft of the record that can be made checkable by linking farewell claims to the minutes and vote record, and the outlet should write farewells as verifiable reporting rather than cards.",
+        "riley_key_evidence": [
+          "Councillors Sheila Boehm, Angie Delainey, Joan Flaspohler and Jazmyn Lyons gave farewell remarks at the October 27 Williams Lake meeting, with Boehm serving eight years.",
+          "Motions in the minutes record a mover, seconder and vote count, which survive the farewell and can be compared against claims about funds and work.",
+          "The Nazko First Nation preliminary candidate list (three chief candidates, ten councillor candidates) is a checkable record of who put their names forward."
+        ],
+        "casey_position": "A farewell recap records mood rather than work, and without a reporter with time to compare claims against minutes, nobody reliably tests these statements, so the recap is at risk of being a card.",
+        "casey_key_evidence": [
+          "The recap names no votes, motions or unfinished items, so it does not say what any of the four councillors actually pushed for.",
+          "Minutes show what was decided but not whether funds a councillor claims credit for came from the council's decisions or someone else's budget.",
+          "Williams Lake has about 10,700 people and one council room, and four departures at once represent a large loss of institutional memory."
+        ],
+        "resolution": "They did not fully agree: both accepted that the outlet should name who spoke, which meeting, and what they said, and that a promised follow-up must actually be delivered, with Casey wanting the clerk to answer how minutes capture farewells while Riley wanted the outlet to start; they left ownership of the ongoing follow-up unresolved.",
+        "topics_covered": [
+          "Whether farewell remarks constitute a usable public record or a courtesy",
+          "Comparing councillors' claims against motions and vote records in the minutes",
+          "The Nazko First Nation candidate list and the Quesnel bonspiel results as contrasting records",
+          "Staffing and capacity limits of small newsrooms and who maintains follow-up over time",
+          "Who owns the follow-up: the outlet, the city, residents, or podcasts covering local government"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": -1,
+          "conditions": "clear skies",
+          "high": 11,
+          "low": -2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 0,
+          "conditions": "clear skies",
+          "high": 8,
+          "low": -2
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 1,
+          "conditions": "mainly clear",
+          "high": 11,
+          "low": -1
+        },
+        {
+          "name": "Quesnel",
+          "temp": 2,
+          "conditions": "partly cloudy",
+          "high": 10,
+          "low": 0
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": 1,
+          "conditions": "partly cloudy",
+          "high": 10,
+          "low": -1
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Chilcotin Partners for Literacy",
+      "description": "Free adult literacy, ESL, and digital literacy programs across the Cariboo Chilcotin",
+      "website": "caribooliteracy.com",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "",
+    "log": [
+      {
+        "kind": "question",
+        "query": "Williams Lake council October 27 2026 Lyons funds secured minutes"
+      },
+      {
+        "kind": "question",
+        "query": "Sagrada Familia completion date 2026 construction budget"
+      },
+      {
+        "kind": "question",
+        "query": "Nazko First Nation 2026 election candidates list chief councillor"
+      },
+      {
+        "kind": "question",
+        "query": "Czech public media licence fee replacement bill state budget 15 percent"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A day of stories about who gets to tell the story, and what happens to the people and outlets that try, with a couple of local items up front.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "Chief Leah Stump is seeking a fourth term as chief of Nazko First Nation against two opponents, Evan Clement and Nick Clement, with the election on December 15.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "Quesnel's annual Ice Breaker Bonspiel ran Oct. 23 to 25 at the Quesnel Curling Centre with 24 curlers on six teams, and added a new eight-ender hall of fame entry.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "Australia's government has introduced a Digital Duty of Care bill to regulate AI chatbots and shield social media users from harmful content.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "The Kelvingrove museum in Glasgow removed mummified remains from display, including a priest, a hand, a head and a foot, as a mark of respect.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "The Tyee says publishers face falling web visits as AI scrapes their work, while its own reader-supported model has let it grow its journalism team and reach its largest readership in 23 years.",
+          "bridge_to_next": "Both stories are about independent journalism under pressure, here from the economics of AI and next from a government's laws used against reporters."
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "Turkish reporter İsmail Arı was arrested again earlier this week on suspicion of spreading disinformation, and CPJ says the disinformation law is being used as a weapon against independent reporting.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "Sagrada Família, Gaudí's 144-year building project, draws steady attention from YouTube channels in history, travel, religion, architecture and construction.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "Photographer Tom Hegen spent six years documenting communities affected by mining for the minerals the green transition needs, and presents the work in his book The Mineral Age.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "Church Rate Corner in Cambridge, home of Michael Nedo and Gillian Moore, is a lovingly maintained house that captures the spirit of the Arts-and-Crafts Movement and Baillie Scott's domestic ideals.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "Thousands protested in Prague against a Czech government plan to replace household licence fees for public media with state budget allocations, a change critics say threatens press freedom.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "Fast Company asks whether AI could give older creatives in advertising a second act, in an industry whose workers and targeting skew young.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "A newsletter from Podcasthon invites podcasters to join what it calls the world's biggest charity event in podcasting.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "Independent Delhi journalist Fatima Khan says press freedom is diminishing in India but she has hope for Gen Z, after youth protests over a leaked exam and removal of voter roll names.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "Toronto studio Williamson Williamson reworked the 19th-century dogtrot house into DogTrot Magnetawan, a prefab, highly insulated Passive House cottage in Ontario.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "A Popular Woodworking writer looks at teaching live edge furniture through America's craft schools.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "Press Forward gave $20 million to 205 small local newsrooms, most receiving $100,000 over two years, and Nieman Lab spoke with more than 30 grantees about how they used it.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "CPJ and more than 100 organizations condemned the conviction of Mada Masr editor-in-chief Lina Attalah and a court order to close the Egyptian outlet's website.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "To drill a centered hole in a sphere, counterbore a hole in a scrap board, nest the sphere in it, and drill with a brad point bit.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Whoever is in the room when a community's story gets told, and what ends up written down about it, is the thread the deep dive picks up, starting at home in Williams Lake.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "When a short local news report covers a council's last meeting and the departing members' final words, is it keeping a record residents can use, or only passing along a courtesy, and what should a small outlet do with last words that can no longer be tested?",
+      "riley_holds": "A plain, prompt report of a farewell roundtable is real civic record that a small outlet can build on, and it is better to get it down well than to skip it.",
+      "casey_holds": "A farewell recap with only thank-yous captures the warmth of the moment and little else, and it leaves residents without anything they could hold the departed members to.",
+      "beats": [
+        {
+          "claim": "The farewell report is a record of something specific: who spoke, in which part of the meeting, and what they chose to say about their service.",
+          "evidence": "My Cariboo Now reports the outgoing Williams Lake councillors Sheila Boehm, Angie Delainey, Joan Flaspohler and Jazmyn Lyons gave final words in the Roundtable Discussion at the end of the short Oct. 27 meeting, reflecting on four years, with thank-yous to the community and city staff.",
+          "pushback": "Casey: a record of the mood is not a record of the work. Nothing in the report tells a resident what any of the four did, voted for or left unfinished, so it reads closer to a card than a record.",
+          "leads_to_next": "If the report holds the departing members' own account of their work, the question becomes what in that account a reader can check."
+        },
+        {
+          "claim": "The one concrete self-assessment in the report is a claim only the speaker has made, and the outlet's choice to quote it without testing it is the editorial decision at stake.",
+          "evidence": "Jazmyn Lyons says she is proud of the work and of the sheer amount of funds the council fought for and got, and thanks everyone who put their names forward to run; Sheila Boehm describes a great eight years on council. The report presents these as the members' own words.",
+          "pushback": "Riley: on the day, quoting people accurately in their own words is the right job. Challenging claims at a farewell would turn a goodbye into a cross-examination, and a small outlet that needs these people's cooperation next year has to weigh that.",
+          "leads_to_next": "If testing the claim at the farewell is the wrong moment, the question is whether anyone tests it afterwards, once the speakers have left office."
+        },
+        {
+          "claim": "Once the members leave, their last words stay in the record but the people answerable for them do not, so the follow-up becomes the outlet's job or nobody's.",
+          "evidence": "The report notes the four councillors are leaving after four years (Boehm after eight), and the new council will take over. The members' reflections on the term exist only in this recap and in the meeting itself.",
+          "pushback": "Riley: the new council has its own agenda and staff, and a small outlet cannot re-audit a departed council. Casey's standard asks a paper with a few reporters to do the job of an archive.",
+          "leads_to_next": "If the outlet cannot carry the whole follow-up, the question is how the Williams Lake record of this council gets held somewhere beyond one recap."
+        },
+        {
+          "claim": "In Williams Lake the follow-up depends on who holds the record, the outlet or the city, and a short recap should say what it leaves out so readers know what is unrecorded.",
+          "evidence": "The My Cariboo Now item is a brief account of one meeting. It carries the outgoing members' remarks and says nothing about what the incoming council inherits, and it ends where the Oct. 27 meeting ended.",
+          "pushback": "Casey: saying what is left out only works if the outlet keeps doing the follow-up, and a note that promises a fuller account and never delivers is worse than the plain recap, because it signals a record that does not exist.",
+          "leads_to_next": "That leaves the structural question of who is responsible for the unrecorded part, which is where the landing picks up."
+        }
+      ],
+      "set_aside": [
+        "Press freedom and prosecution stories from Turkey, Egypt, India and the Czech Republic, which concern repression of the press rather than a small outlet's treatment of a local meeting",
+        "The AI chatbot regulation and AI data centre items",
+        "Architecture, woodworking, museum and photography items",
+        "The Nazko election and Quesnel bonspiel items, which are not part of the deep dive material"
+      ],
+      "cariboo_beat": "Beat 4 brings it home to the Williams Lake City Council and My Cariboo Now: the outlet's Oct. 27 recap of the four outgoing councillors' final remarks is the actual record residents have, and the question is who keeps the follow-up on it as the new council takes over.",
+      "landing": "The hosts leave open a structural question rather than a verdict: for a small community, should the follow-up on a departing council's last words belong to the local outlet that reported them, to the city's own record, or to residents who were in the room, and what is lost if each assumes another is doing it?"
+    }
+  }
+}

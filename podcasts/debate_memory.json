@@ -1,31 +1,4 @@
 {
-  "2026-08-03": {
-    "timestamp": 1785757935.201358,
-    "date": "2026-08-03",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "focus": "visual-arts-heritage",
-    "central_question": "How can local cultural institutions verify authenticity and prevent AI-generated or fraudulent content from being presented as genuine human-made cultural work?",
-    "riley_position": "Local institutions can adopt simple, low-cost practical solutions like provenance documentation requirements and basic imaging technology (infrared photography) without waiting for sophisticated detection infrastructure; the distinction between revealing real work and manufacturing fake work is what matters most.",
-    "riley_key_evidence": [
-      "The Archimedes Palimpsest recovery used multispectral imaging to reveal real human work that had been buried, contrasting with Google's fake satellite imagery generation",
-      "Multispectral/infrared imaging tools now cost only a few hundred dollars, making them financially accessible to small organizations",
-      "A simple one-page provenance submission requirement can be implemented immediately by any local gallery or archive without new infrastructure"
-    ],
-    "casey_position": "The capacity gap for small institutions is insurmountable without dedicated resources; cheap tools don't guarantee adoption when nobody has the hours to learn and use them properly, and provenance documentation alone doesn't prevent fakes from reaching audiences first.",
-    "casey_key_evidence": [
-      "Spotify removed 75 million fraudulent AI-generated tracks after they already reached the platform, showing detection after-the-fact doesn't prevent harm",
-      "Small galleries like the Museum of the Cariboo Chilcotin don't have trust-and-safety teams or detection pipelines like streaming platforms do",
-      "The baskets' successful repatriation depended on institutional weight and international standing, not technology\u2014most visual heritage lacks that infrastructure"
-    ],
-    "resolution": "They converged on a practical, implementable compromise: a simple one-page provenance policy for local arts organizations requiring donors to document origin and attribution, combining Casey's recognition of institutional limitations with Riley's low-cost, immediately actionable approach. Neither conceded their larger point but agreed this specific measure was achievable without waiting for external systems.",
-    "topics_covered": [
-      "Music industry response to AI-generated content (label chart rules, Spotify removal rates, Deezer tagging)",
-      "Technological distinction between revealing existing work (multispectral imaging of palimpsests) versus manufacturing fake content (generative AI imagery)",
-      "Institutional capacity gaps in small regional museums and galleries versus large platforms",
-      "T\u015dilhqot'in basket repatriation from Brooklyn Museum as a case study in provenance documentation and institutional authority",
-      "Practical implementation of provenance requirements as a preventive governance measure"
-    ]
-  },
   "2026-08-04": {
     "timestamp": 1785840956.752978,
     "date": "2026-08-04",
@@ -2586,6 +2559,34 @@
       "Peer review and disclosure in the heat-mortality estimate",
       "Custody and standing of local monitoring records (Cow Moose Sign Project, Helen Sandy photographs, fossil and meteorite provenance)",
       "Dementia and daylight exposure association in wrist-device data"
+    ]
+  },
+  "2026-11-02": {
+    "timestamp": 1793607358.608828,
+    "date": "2026-11-02",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "words-journalism",
+    "anchor": "keeping-the-peace-or-speaking-up",
+    "central_question": "When a council recap carries only departing members' farewell remarks, is it a usable public record or merely a courtesy, and what does a small outlet owe those last words once they cannot be tested?",
+    "riley_position": "The recap is a first draft of the record that can be made checkable by linking farewell claims to the minutes and vote record, and the outlet should write farewells as verifiable reporting rather than cards.",
+    "riley_key_evidence": [
+      "Councillors Sheila Boehm, Angie Delainey, Joan Flaspohler and Jazmyn Lyons gave farewell remarks at the October 27 Williams Lake meeting, with Boehm serving eight years.",
+      "Motions in the minutes record a mover, seconder and vote count, which survive the farewell and can be compared against claims about funds and work.",
+      "The Nazko First Nation preliminary candidate list (three chief candidates, ten councillor candidates) is a checkable record of who put their names forward."
+    ],
+    "casey_position": "A farewell recap records mood rather than work, and without a reporter with time to compare claims against minutes, nobody reliably tests these statements, so the recap is at risk of being a card.",
+    "casey_key_evidence": [
+      "The recap names no votes, motions or unfinished items, so it does not say what any of the four councillors actually pushed for.",
+      "Minutes show what was decided but not whether funds a councillor claims credit for came from the council's decisions or someone else's budget.",
+      "Williams Lake has about 10,700 people and one council room, and four departures at once represent a large loss of institutional memory."
+    ],
+    "resolution": "They did not fully agree: both accepted that the outlet should name who spoke, which meeting, and what they said, and that a promised follow-up must actually be delivered, with Casey wanting the clerk to answer how minutes capture farewells while Riley wanted the outlet to start; they left ownership of the ongoing follow-up unresolved.",
+    "topics_covered": [
+      "Whether farewell remarks constitute a usable public record or a courtesy",
+      "Comparing councillors' claims against motions and vote records in the minutes",
+      "The Nazko First Nation candidate list and the Quesnel bonspiel results as contrasting records",
+      "Staffing and capacity limits of small newsrooms and who maintains follow-up over time",
+      "Who owns the follow-up: the outlet, the city, residents, or podcasts covering local government"
     ]
   }
 }
