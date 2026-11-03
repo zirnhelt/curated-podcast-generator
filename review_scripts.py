@@ -50,7 +50,9 @@ VERDICT_ORDER = ("keep", "meh", "skip")
 VERDICT_WINDOW_DAYS = 28
 POLISH_ORDER = ("batch", "realtime", "skipped", "original", "not recorded")
 # review.html's per-segment thumbs (since 2026-10-14), in airing order: {segment: 'up' | 'down'}.
-EPISODE_SEGMENTS = (("cold_open", "Cold open"), ("roundup", "News roundup"), ("deep_dive", "Deep dive"))
+# "flow" (2026-11-03) is the whole episode's: how one story and one beat led to the next.
+EPISODE_SEGMENTS = (("cold_open", "Cold open"), ("roundup", "News roundup"), ("deep_dive", "Deep dive"),
+                    ("flow", "Flow"))
 # The page caps a note at 1,500 characters; this bounds what a hand-edited file can put in the prompt.
 EPISODE_NOTE_MAX = 1500
 

@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import glob
 import json
 import os
 import re
@@ -231,6 +232,8 @@ _SINGLE: dict[str, tuple[str, list[type]]] = {
                       r"split subjects: (.+?); deep dive Cariboo: (yes|no)", [int, int, str, str, str]),
     "theme_fit": (r"🎯 Theme fit: theme block off-charter (\d+) \((.*?)\); deep dive lead "
                   r"(local|p\d+|\?), sources (\d+), unused on-theme (\d+)", [int, str, str, int, int]),
+    "storyboard_flow": (r"🧩 Storyboard flow: roundup in plan order (\d+)/(\d+), bridges named (\d+)/(\d+); "
+                        r"deep dive beats aired (\d+)/(\d+)", [int, int, int, int, int, int]),
     "anchor": (r"❓ This week's question: (.+)", [str]),
     "debate_question": (r"Debate question: (.+)", [str]),
     "psa": (r"🏘️  Community Spotlight: (.+)", [str]),
@@ -397,6 +400,8 @@ _FIELDS: dict[str, list[str]] = {
                            "deep_dive_citations_matched", "deep_dive_citations_total"],
     "roundup_shape": ["local_stories_available", "local_stories_aired", "roundup_opened_local",
                       "split_subjects", "deep_dive_cariboo"],
+    "storyboard_flow": ["roundup_pairs_in_plan_order", "roundup_pairs_placed", "bridges_named",
+                        "bridges_total", "deep_dive_beats_aired", "deep_dive_beats_planned"],
     "theme_fit": ["theme_block_off_charter", "off_charter_titles", "deep_dive_lead_charter",
                   "deep_dive_sources", "unused_on_theme_candidates"],
     "spend": ["anthropic_input_tokens", "api_calls_by_service"],
@@ -613,6 +618,9 @@ _ACTIONS: dict[str, str] = {
     "ai-tells-shipped": "Find the phrase in the script. If it recurs, add it to "
                         "<code>config/ai_tells.json</code>.",
     "voice-ratio": "One host carried the episode. Check the turn split in the script.",
+    "storyboard-drift": "The script did not keep to its storyboard. Compare the plan below with the "
+                        "script: a dropped beat or a reordered roundup is the script or polish "
+                        "overriding the plan.",
     "off-charter-theme-block": "A story aired as on-theme that the feed's charter scored low. Check its "
                                "<code>_theme_score</code> in the day's podcast feed and the charter gate "
                                "in <code>_annotate_roundup_blocks</code>.",
@@ -928,6 +936,60 @@ PAGE = """<!DOCTYPE html>
 """
 
 
+CITATIONS_GLOB = "podcasts/citations_{date}_*.json"
+
+
+def load_storyboard(date: str) -> dict | None:
+    """The day's storyboard from its citations JSON, or None."""
+    for path in sorted(glob.glob(CITATIONS_GLOB.format(date=date))):
+        try:
+            plan = json.loads(Path(path).read_text("utf-8")).get("storyboard")
+        except (OSError, ValueError, AttributeError):
+            continue
+        if isinstance(plan, dict):
+            return plan
+    return None
+
+
+def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
+    """The storyboard the script was written to, for the producer to judge its flow.
+
+    Page only (the RSS copy stays lean). The numbers come from
+    `storyboard_flow_line`; the bridges and the beat chain are the plan's own words.
+    """
+    if not plan:
+        return ""
+    dd = plan.get("deep_dive") or {}
+    rd = plan.get("roundup") or {}
+    flow = facts.get("storyboard_flow")
+    stats = ""
+    if isinstance(flow, list) and len(flow) == 6:
+        stats = (f"<p class=\"note\">Roundup: {flow[0]}/{flow[1]} adjacent stories aired in the plan's "
+                 f"order; {flow[2]}/{flow[3]} bridges name a shared thing (the rest are clean "
+                 f"pivots). Deep dive: {flow[4]}/{flow[5]} planned beats aired.</p>")
+    beats = "".join(
+        f"<li>{escape(b.get('claim', ''))}<br><span class=\"evidence\">then, because: "
+        f"{escape(b.get('leads_to_next', ''))}</span></li>"
+        for b in dd.get("beats") or [] if isinstance(b, dict))
+    bridges = "".join(
+        f"<li>{escape(st.get('bridge_to_next', ''))}</li>"
+        for st in rd.get("stories") or []
+        if isinstance(st, dict) and (st.get("bridge_to_next") or "").strip().lower()
+        not in ("clean pivot", "handoff", ""))
+    rows = [
+        "<h2>The plan</h2>", stats,
+        f"<p><strong>Roundup frame:</strong> {escape(rd.get('opening_frame', ''))}</p>" if rd.get("opening_frame") else "",
+        f"<p><strong>Named bridges:</strong></p><ul>{bridges}</ul>" if bridges else "",
+        f"<p><strong>Handoff to the deep dive:</strong> {escape(rd.get('handoff', ''))}</p>" if rd.get("handoff") else "",
+        f"<p><strong>Deep-dive question:</strong> {escape(dd.get('central_question', ''))}</p>",
+        f"<p><strong>Riley starts:</strong> {escape(dd.get('riley_holds', ''))}<br>"
+        f"<strong>Casey starts:</strong> {escape(dd.get('casey_holds', ''))}</p>",
+        f"<ol>{beats}</ol>" if beats else "",
+        f"<p><strong>Landing:</strong> {escape(dd.get('landing', ''))}</p>" if dd.get("landing") else "",
+    ]
+    return "\n".join(r for r in rows if r)
+
+
 def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str,
                  history: list[dict] | None = None,
                  ledger: dict | None = None) -> tuple[str, str, str]:
@@ -963,6 +1025,7 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
     page_body = "\n\n".join(p for p in [
         lede, banner, render_kpis(facts, runs), actions, render_charts(facts),
         render_trends(history or [], review_metrics(facts), date), detail,
+        render_plan(load_storyboard(date), facts),
         f"<details><summary>Raw numbers</summary>\n{tables}\n</details>" if tables else ""] if p)
     page = PAGE.format(title=escape(title), published=_human_date(date),
                        site=SITE_URL, content=page_body)
@@ -1099,6 +1162,12 @@ SHORT_EPISODE_WORDS = 2800
 THEME_BLOCK_MIN_PCT = 50
 DEEP_DIVE_LEAD_MIN_PCT = 70
 THIN_DEEP_DIVE_UNUSED = 2
+# Storyboard flow (`storyboard_flow_line`): the script kept to its plan. Under these
+# shares it drifted. Roundup order needs enough placed pairs to mean anything: story
+# matching misses some, and 2026-11-03 placed 11 of 17 (9 in order, 0.82).
+FLOW_BEATS_AIRED_MIN = 0.6
+FLOW_ORDER_MIN = 0.75
+FLOW_ORDER_MIN_PAIRS = 6
 _CLOSED_SHOWN = 25
 
 _FINDING_SCHEMA = {
@@ -1212,6 +1281,16 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
         if sources == 1 and unused >= THIN_DEEP_DIVE_UNUSED:
             signals["thin-deep-dive"] = (f"the deep dive aired on one source while {unused} "
                                          f"on-theme candidate(s) went unused")
+    flow = facts.get("storyboard_flow")
+    if isinstance(flow, list) and len(flow) == 6:
+        in_order, placed, _, _, aired, planned = flow
+        drift = []
+        if planned and aired / planned < FLOW_BEATS_AIRED_MIN:
+            drift.append(f"{aired}/{planned} planned deep-dive beats aired")
+        if placed >= FLOW_ORDER_MIN_PAIRS and in_order / placed < FLOW_ORDER_MIN:
+            drift.append(f"{in_order}/{placed} roundup pairs aired in the plan's order")
+        if drift:
+            signals["storyboard-drift"] = "the script left its storyboard: " + "; ".join(drift)
     failed = [r["trigger"] for r in facts.get("runs", []) if r.get("conclusion") == "failure"]
     if failed:
         signals["run-failed"] = "failed: " + ", ".join(failed)

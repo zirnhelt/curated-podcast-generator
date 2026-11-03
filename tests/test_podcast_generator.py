@@ -7843,6 +7843,50 @@ class TestThemeFitLine:
         assert not er.run_signals({"theme_fit": er.scan_log(line)["theme_fit"]})
 
 
+class TestStoryboardFlowLine:
+    """Did the script keep to its plan? Order, named bridges, beats aired."""
+
+    SCRIPT = (
+        "**NEWS ROUNDUP**\n"
+        "**RILEY:** Glencore cobalt output halved under Congo quotas.\n"
+        "**CASEY:** Codelco fired eight more staff over its accounting scandal.\n"
+        "**RILEY:** Swedish crop growers lost money on a strong harvest.\n"
+        "**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands**\n"
+        "**CASEY:** The tanker ban caps crude cargo at 12,500 tonnes on the north coast.\n"
+        "**RILEY:** Strathcona wants 250,000 barrels a day by rail to Prince Rupert.\n")
+    ROUNDUP = [{"title": "[The Northern Miner] Glencore cobalt output halves", "url": "a"},
+               {"title": "[Mining.com] Codelco accounting scandal claims eight", "url": "b"},
+               {"title": "[dagenslantbruk.se] Swedish crop growers margins harvest", "url": "c"}]
+
+    def _plan(self, beats):
+        return {"roundup": {"stories": [{"n": 1, "bridge_to_next": "Mining: cobalt to copper"},
+                                        {"n": 2, "bridge_to_next": "clean pivot"},
+                                        {"n": 3, "bridge_to_next": "handoff"}]},
+                "deep_dive": {"beats": beats}}
+
+    def test_a_kept_plan_reads_clean(self):
+        import podcast_generator as pg
+        import episode_review as er
+        beats = [{"claim": "The tanker ban caps crude cargo", "evidence": "12,500 tonnes north coast"},
+                 {"claim": "Strathcona wants rail to Prince Rupert", "evidence": "250,000 barrels a day"}]
+        line = pg.storyboard_flow_line(self.SCRIPT, self.ROUNDUP, self._plan(beats))
+        assert line == ("🧩 Storyboard flow: roundup in plan order 2/2, bridges named 1/2; "
+                        "deep dive beats aired 2/2")
+        assert "storyboard-drift" not in er.run_signals(
+            {"storyboard_flow": er.scan_log(line)["storyboard_flow"]})
+
+    def test_a_dropped_beat_and_a_reordered_roundup_count(self):
+        import podcast_generator as pg
+        beats = [{"claim": "The tanker ban caps crude cargo", "evidence": "12,500 tonnes north coast"},
+                 {"claim": "Heiltsuk governance argument", "evidence": "Coastal First Nations Slett"}]
+        line = pg.storyboard_flow_line(self.SCRIPT, list(reversed(self.ROUNDUP)), self._plan(beats))
+        assert "roundup in plan order 0/2" in line and "beats aired 1/2" in line
+
+    def test_unplanned(self):
+        import podcast_generator as pg
+        assert pg.storyboard_flow_line(self.SCRIPT, self.ROUNDUP, None) == "🧩 Storyboard flow: unplanned"
+
+
 class TestRoundupShapeLine:
     """The review said 'Shipped clean' on 2026-10-28; the shape line gives it
     no-local-roundup, split-topic and deep-dive-non-local."""
