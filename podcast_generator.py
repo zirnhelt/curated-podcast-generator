@@ -8075,6 +8075,8 @@ DEEP_DIVE_PICK_POOL = 15
 DEEP_DIVE_PICK_MIN_PCT = 70
 DEEP_DIVE_PICK_SUMMARY_CHARS = 240
 RECENT_LOCAL_DAYS = 7
+# The storyboard's look back (week_so_far_block): rolling, so Monday sees last week.
+WEEK_SO_FAR_DAYS = 6
 
 _DEEP_DIVE_PICK_SCHEMA = {
     "type": "object",
@@ -8117,23 +8119,26 @@ def recent_local_roundup(today: date, days: int = RECENT_LOCAL_DAYS) -> list:
     return [a for _, a in found]
 
 
-def week_so_far_block(today: date) -> str:
-    """This ISO week's earlier deep dives for the storyboard, or "".
+def week_so_far_block(today: date, anchor_id: str | None = None,
+                      days: int = WEEK_SO_FAR_DAYS) -> str:
+    """The last `days` days' deep dives for the storyboard, or "".
 
     The weekly anchor is circled by all seven deep dives, but each storyboard
     planned in isolation: it saw past debate questions only to avoid them, never
     where the week's conversation had got to, or what a landing left open. Each
     day's plan is in its citations JSON under `storyboard`; a day without one
-    (unplanned, or before 2026-10-27) is skipped.
+    (unplanned, or before 2026-10-27) is skipped. A rolling window, so Monday
+    is not blank; a day on another anchor is marked as an earlier question, its
+    open ends usable but never this week's thread. Without `anchor_id` the ISO
+    week decides which days are this week's.
     """
-    year, week, _ = today.isocalendar()
-    days = []
+    picked = []
     for path in glob.glob(str(PODCASTS_DIR / "citations_*.json")):
         m = re.match(r"citations_(\d{4}-\d{2}-\d{2})_", os.path.basename(path))
         if not m:
             continue
         aired = date.fromisoformat(m.group(1))
-        if aired >= today or aired.isocalendar()[:2] != (year, week):
+        if not 0 < (today - aired).days <= days:
             continue
         try:
             with open(path, encoding="utf-8") as f:
@@ -8142,13 +8147,21 @@ def week_so_far_block(today: date) -> str:
             question, landing = dd["central_question"].strip(), dd["landing"].strip()
         except (OSError, ValueError, KeyError, TypeError, AttributeError):
             continue
-        if question:
-            days.append((aired, (cit.get("episode") or {}).get("theme", ""), question, landing))
-    if not days:
+        if not question:
+            continue
+        episode = cit.get("episode") or {}
+        day_anchor = episode.get("anchor") or {}
+        same = (day_anchor.get("id") == anchor_id if anchor_id and day_anchor.get("id")
+                else aired.isocalendar()[:2] == today.isocalendar()[:2])
+        picked.append((aired, episode.get("theme", ""), question, landing, same,
+                       day_anchor.get("question", "")))
+    if not picked:
         return ""
     tmpl = CONFIG['prompts']['storyboard_week_so_far']
-    lines = [tmpl['day'].format(weekday=d.strftime('%A'), theme=theme, question=q, landing=l)
-             for d, theme, q, l in sorted(days)]
+    lines = [tmpl['day'].format(
+                 weekday=d.strftime('%A'), theme=theme, question=q, landing=l,
+                 week=tmpl['this_week'] if same else tmpl['earlier'].format(anchor=aq))
+             for d, theme, q, l, same, aq in sorted(picked)]
     return tmpl['template'].format(days="\n".join(lines))
 
 
@@ -10418,7 +10431,8 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                 anchor_block,
                 format_debate_memory_for_prompt(debate_memory, theme_name, today_focus=focus)
                 if debate_memory else "",
-                weekday, week_so_far=week_so_far_block(get_pacific_now().date()))
+                weekday, week_so_far=week_so_far_block(get_pacific_now().date(),
+                                                     anchor_id=(anchor or {}).get('id')))
             storyboard = format_storyboard_for_prompt(_storyboard_used, roundup_articles)
             roundup_articles = apply_storyboard_order(_storyboard_used, roundup_articles)
             news_text = _render_news_text(roundup_articles)

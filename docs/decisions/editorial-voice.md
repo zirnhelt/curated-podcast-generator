@@ -679,10 +679,11 @@ to, and a landing written to stay open ("who in the Cariboo gets to be at the ta
 changes?") was never picked up. Each day's plan was already saved in its citations JSON under
 `storyboard`.
 
-`week_so_far_block` reads this ISO week's earlier plans and hands the storyboard each day's central
-question and landing (`config/prompts.json` → `storyboard_week_so_far`). The storyboard takes the
+`week_so_far_block` reads the last six days' plans and hands the storyboard each day's central
+question and landing, the days on today's anchor marked THIS WEEK. It is rolling, not the ISO week,
+so Monday is not blank (the producer's call): last week's days come marked as an earlier question,
+their open landings usable, never as this week's thread (`config/prompts.json` → `storyboard_week_so_far`). The storyboard takes the
 week's question somewhere new, or picks up what a landing left open when today's material adds a new
 fact; it never re-asks one of those questions. A callback is permission, not an obligation, the same
-escape hatch the anchor has: the risk is hosts saying "as we said Tuesday" every morning. Monday gets
-nothing. About 150 tokens per earlier day on the Sonnet storyboard, under $0.001 a night. Dynamic
+escape hatch the anchor has: the risk is hosts saying "as we said Tuesday" every morning. About 150 tokens per earlier day on the Sonnet storyboard, under $0.001 a night. Dynamic
 prompt only.
