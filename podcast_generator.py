@@ -8117,6 +8117,41 @@ def recent_local_roundup(today: date, days: int = RECENT_LOCAL_DAYS) -> list:
     return [a for _, a in found]
 
 
+def week_so_far_block(today: date) -> str:
+    """This ISO week's earlier deep dives for the storyboard, or "".
+
+    The weekly anchor is circled by all seven deep dives, but each storyboard
+    planned in isolation: it saw past debate questions only to avoid them, never
+    where the week's conversation had got to, or what a landing left open. Each
+    day's plan is in its citations JSON under `storyboard`; a day without one
+    (unplanned, or before 2026-10-27) is skipped.
+    """
+    year, week, _ = today.isocalendar()
+    days = []
+    for path in glob.glob(str(PODCASTS_DIR / "citations_*.json")):
+        m = re.match(r"citations_(\d{4}-\d{2}-\d{2})_", os.path.basename(path))
+        if not m:
+            continue
+        aired = date.fromisoformat(m.group(1))
+        if aired >= today or aired.isocalendar()[:2] != (year, week):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                cit = json.load(f)
+            dd = cit["storyboard"]["deep_dive"]
+            question, landing = dd["central_question"].strip(), dd["landing"].strip()
+        except (OSError, ValueError, KeyError, TypeError, AttributeError):
+            continue
+        if question:
+            days.append((aired, (cit.get("episode") or {}).get("theme", ""), question, landing))
+    if not days:
+        return ""
+    tmpl = CONFIG['prompts']['storyboard_week_so_far']
+    lines = [tmpl['day'].format(weekday=d.strftime('%A'), theme=theme, question=q, landing=l)
+             for d, theme, q, l in sorted(days)]
+    return tmpl['template'].format(days="\n".join(lines))
+
+
 def _pick_line(i: int, a: dict) -> str:
     title = html_lib.unescape(a.get('title', ''))
     summary = (a.get('summary') or a.get('_excerpt') or '')[:DEEP_DIVE_PICK_SUMMARY_CHARS]
@@ -9811,7 +9846,7 @@ _STORYBOARD_SCHEMA = {
 
 def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text: str,
                       theme_name: str, theme_lens: str, anchor_block: str,
-                      debate_history: str, weekday: str) -> dict | None:
+                      debate_history: str, weekday: str, week_so_far: str = "") -> dict | None:
     """Plan both main segments in one structured call; None when it can't.
 
     The roundup's plan is an airing order, a point and a bridge per story. The
@@ -9825,7 +9860,7 @@ def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text
     hosts = CONFIG['hosts']
     prompt = CONFIG['prompts']['script_storyboard']['template'].format(
         weekday=weekday, theme_name=theme_name, theme_lens=theme_lens,
-        anchor_block=anchor_block, debate_history=debate_history,
+        anchor_block=anchor_block, debate_history=debate_history, week_so_far=week_so_far,
         riley_style=hosts['riley']['debate_style'],
         casey_style=hosts['casey']['debate_style'],
         story_count=len(roundup_articles), numbered_news=numbered_news,
@@ -10383,7 +10418,7 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                 anchor_block,
                 format_debate_memory_for_prompt(debate_memory, theme_name, today_focus=focus)
                 if debate_memory else "",
-                weekday)
+                weekday, week_so_far=week_so_far_block(get_pacific_now().date()))
             storyboard = format_storyboard_for_prompt(_storyboard_used, roundup_articles)
             roundup_articles = apply_storyboard_order(_storyboard_used, roundup_articles)
             news_text = _render_news_text(roundup_articles)

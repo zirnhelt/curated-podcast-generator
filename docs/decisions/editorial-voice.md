@@ -670,3 +670,19 @@ carries the risk, who keeps the margin and who was left off the table, and holds
 to its record before trading it for a promise. `debate_style` reaches only the storyboard, which sets `riley_holds` and `casey_holds`; the same
 rule is one line in the cached script prompt's IN DEBATE list, because the script drifted past the
 plan. About 80 tokens on the storyboard prompt and 70 on the cached prompt (written once a day).
+
+## The storyboard sees the week so far (2026-11-03)
+
+The weekly anchor is circled by all seven deep dives, but each storyboard planned in isolation. It saw
+past debate questions only so it would not repeat them, never where the week's conversation had got
+to, and a landing written to stay open ("who in the Cariboo gets to be at the table when the cargo
+changes?") was never picked up. Each day's plan was already saved in its citations JSON under
+`storyboard`.
+
+`week_so_far_block` reads this ISO week's earlier plans and hands the storyboard each day's central
+question and landing (`config/prompts.json` → `storyboard_week_so_far`). The storyboard takes the
+week's question somewhere new, or picks up what a landing left open when today's material adds a new
+fact; it never re-asks one of those questions. A callback is permission, not an obligation, the same
+escape hatch the anchor has: the risk is hosts saying "as we said Tuesday" every morning. Monday gets
+nothing. About 150 tokens per earlier day on the Sonnet storyboard, under $0.001 a night. Dynamic
+prompt only.
