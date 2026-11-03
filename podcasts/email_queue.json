@@ -2315,6 +2315,32 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-11-02"
+    },
+    {
+      "id": "fe89d1d5",
+      "type": "newsletter",
+      "message_id": "<202611020809.11351040988@smtp-relay.mailin.fr>",
+      "from_address": "\"***@podcasthon.org",
+      "from_producer": false,
+      "subject": "Everything you need to know, as promised!",
+      "received_at": "2026-11-02T08:09:10+00:00",
+      "body_text": "A global charity event bringing together thousands of podcasts \u2026 --------------------------------------------------------------- ... in support of an amazing range of *charities* ! The *2026* edition ",
+      "extracted_urls": [
+        "https://www.podcasthon.org/register",
+        "http://www.podcasthon.org",
+        "https://baabcjbd.r.tsp1-brevo.net/tr/up/Ottbe5_h_cHnwuhRx1I2yQOQdBiLMFoNXHnsjqokh98NYG5HDSNf5ftmC8ne-k87CngwvluqT8Eqor3SWklBVnq9jeJduhbBpqfv7nMLFenr0xkmd-0wVJtvdXQqmGeistcxmog8o8zYbBOuaMe6b3gyvEwb2gtGHI1y7AkzuDIehoejhcOCAt4IqIfINWbP0JAq0w",
+        "https://baabcjbd.r.tsp1-brevo.net/tr/un/v2/WNKyj2tPAaxSgIgp3PxWRfXi1T3zkUIhIV0c1CRcriGOGe8ZfRbcM8USX8bz6trTd9I3tsGsAAVxE6EsjKyuBx_HOJBJ6O0q3Pkp68NfY9LV31NVJvbs3t9lLyUP6qx-vxt34JhrwrXDJcPv-urfhsiwyDLK3L5VZb9q_FCqCyMrWnbSXK_F60-SCNpjUVLn9U9AcDjGmfndrVAkQITZGMD8nM9luxgotwEdN2MxsyDRUrmHMKtcCqwcBMvlMR3EiF-Sq0O2PwRmbeiai7TqY8OKVUBaUpa1SS1x4cQlh96zNQfjUSmzJk5LHW24a54kH_JpNSfUUxffNaLAGFolDQ9Y",
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd",
+        "http://www.w3.org/1999/xhtml",
+        "https://baabcjbd.r.tsp1-brevo.net/tr/op/Ch3wNzz5y2KeXgdKgDqpZJ-Cjd1eHeezZ8r_UqjOqVX8hd5r3oKvDwfd4eZwAMUWCgEEtAUtq0M10VK4k6haJO4YYcYBQ8f4s6KS3t7I9nEvn6PZDxWlgsU3pKY13s7csP1tjcw6CGUV46bLOkzOB_txGvI5Aq1wRY5MjQZZfOh7pDamnHbdaXlLvM1pPGpH8P7SCA2qNnI303tzf80gjtWe_aFpRlcOuTKqUfKl",
+        "https://baabcjbd.r.tsp1-brevo.net/tr/cl/0TwB97GSrSmJsV8J0nUatVr7N0lbbhfqgSdhNLXejnaFgx72BMQDGiz7awyojV9s7sryr3cFBJafgd4hqIY1H2w4OEeBOxrUU7wChgQfnLyeliGD2RvdbuTJVYL-Re4586_ekGfatn0zUbNQwQxabX9rhJhwXZqcG6MbsjfxrPbHuRqhI5XvNeBtcly-YkrqbAckZa2v5Pc3u1a03yS8Ln7uRUlT52z17Xvdmc6TtGp6HPfHw6sF1e8iS0NTil-MvWQwKMT2GAC5UkGqOI5c30IVYAeZ1jEgOCzKcdhT-Evo",
+        "https://baabcjbd.r.tsp1-brevo.net/tr/cl/Ov1OcBPC2GbnVxJ9N-09tix4ZcTvB3Po0BxtRVU9h_bHFBjSCzSTWOoZFrdDV4uee9NNl0WBOntxhHMuZKe0pxGIs3hwD-uOdFUNh7jBn2s36td2c74eHUSQkYdTg889I3Gin02YBb2KZsSPm-DObg1TQsdw83Kdj2zgAEhmdV-EPRNDY1GFC38fZZCtfLLJMoVwUZna4KISBD5sskrod3y0XkFVI7GMkpenZRgov2pO4qAkzU30ogf3j6LAuIV3WQO2SIqYN6WB0ut-GqfMepKgDGwUiSQHVpX0FKiTku4q",
+        "https://baabcjbd.r.tsp1-brevo.net/tr/cl/F9Ridckv4ouC1QWDWmd2-AyqOMiwMGSKfn5gyVRUNOMVJUV6Q6UvFlOIHR29YwXIy7DgSZjoYYsOOmyslmJ9GFnqaXH1OwGnygXZSPdPu5_pH5XfiTZsR8Yv6ndqOCox4l2e4JWEyHBtrYAGW7K1uWZFAEzpZtN4I5BKeEuN3RHaY55QfdXpTJ20Yuh_OhNKG_qaC8VcDy_aiD0tmv1b1ABnZN502NsrHQhKfb5rVfo0_MCij2_zj8oEQUtd5XKxrpn1r6Ha2bCYyph467jInS2hYhHfJK-dn4RAw1gTqgXE"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2453,6 +2479,10 @@
     "1a18e3e178c7e160",
     "1a192886ff90cb7c",
     "1a192491d2de1787",
-    "1a1938cfbc1bb14e"
+    "1a1938cfbc1bb14e",
+    "1a1a1fb7e027b083",
+    "1a19df5e58abf841",
+    "1a19d9575e78860b",
+    "1a19b4e241abf8ea"
   ]
 }
