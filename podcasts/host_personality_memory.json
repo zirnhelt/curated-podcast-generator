@@ -85,11 +85,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-25",
-        "clue": "evidence-bar:+ \u2014 defends sixteen-indicator panel as catching real shifts",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-20",
         "clue": "permit-queue:+ \u2014 Insists permits are the lever Province can move",
         "occurrences": 1
@@ -162,6 +157,16 @@
       {
         "date": "2026-11-02",
         "clue": "structural-lens:- \u2014 shifts to outlet-first follow-up, softening institutional-archive view",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-03",
+        "clue": "structural-lens:~ \u2014 route moved to fit rule; rule may have moved project",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-03",
+        "clue": "community-trust:x \u2014 concedes Heiltsuk governance gap needs closing first",
         "occurrences": 1
       }
     ],
@@ -285,7 +290,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
       "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
       "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
       "[My Cariboo Now] Cops for Cancer riders to make community st",
@@ -294,7 +298,8 @@
       "[Wildfire Today] Advancing community wildfire adaptation",
       "[Williams Lake Tribune] New Kamloops facility supports rural",
       "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g",
-      "[100 Mile Free Press] Interlakes community buys fire departm"
+      "[100 Mile Free Press] Interlakes community buys fire departm",
+      "[100 Mile Free Press] CMHA bringing community together with "
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -404,9 +409,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-26",
-        "clue": "funding-risk:~ \u2014 notes courts reversed cancellations but money never returned",
-        "occurrences": 1
+        "date": "2026-11-03",
+        "clue": "funding-risk:~ \u2014 public not paid for terminal, yet risk remains",
+        "occurrences": 2
       },
       {
         "date": "2026-10-27",
@@ -441,6 +446,16 @@
       {
         "date": "2026-10-31",
         "clue": "structural-lens:x Concedes stake differs from standing for students",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-03",
+        "clue": "evidence-bar:+ \u2014 pushes back hard on the thirty-to-one multiplier",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-03",
+        "clue": "rural-context:~ \u2014 Cariboo freight desks unquoted, not guessed at",
         "occurrences": 1
       }
     ],

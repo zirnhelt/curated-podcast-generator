@@ -1,0 +1,589 @@
+{
+  "episode": {
+    "date": "2026-11-03",
+    "formatted_date": "Tuesday, November 03, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>THIS WEEK WE'RE ASKING:</b> When is keeping the peace worth more than being right?</p><p><b>NEWS ROUNDUP:</b> We break down In Puerto Rico, New Farm Models Avoid Imports and Industrial Food and Why are European log prices still high?, plus 11 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should the northern B.C. tanker ban be repealed to allow expanded crude exports via a proposed Strathcona pipeline-and-tanker route, or should it remain in place to protect the coast and Indigenous economies? Topics include: Tanker cap mechanics and per-ship volume limits versus total export volume, Economic claims for jobs and price discounts from landlocked versus coastal sales, Indigenous economic output and governance, including the Coast Funds report and Heiltsuk co-ownership concerns, Pipeline route relocation as a signal of rule versus project priority, Freight and port-access impacts on Cariboo inland industries and community consultation.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://skitimothy.com\">Mt. Timothy Ski Society</a></p><p><b>Sources discussed:</b></p><ul><li>Civil Eats: <a href=\"https://civileats.com/2026/10/29/in-puerto-rico-new-models-avoid-imports-and-industrial-food/\">[Civil Eats] In Puerto Rico, New Farm Models Avoid Imports a...</a></li><li>Canadian Forest Industries: <a href=\"https://www.woodbusiness.ca/why-are-european-log-prices-still-high/\">[Canadian Forest Industries] Why are European log prices sti...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/11/02/BC-Firm-Aims-Mine-Tatshenshini-Park/\">[The Tyee] A BC Firm Aims to Mine in Tatshenshini Park, a Wo...</a></li><li>Mining.com: <a href=\"https://www.mining.com/critical-minerals-getting-harder-to-mine-as-deposits-age-ey/\">[Mining.com] Critical minerals getting harder to mine as dep...</a></li><li>Small Farm Canada: <a href=\"https://www.smallfarmcanada.ca/could-kernza%C2%AE-give-maritime-farmers-several-harvests-from-on/\">[Small Farm Canada] Could Kernza® Give Maritime Farmers Seve...</a></li><li>dagenslantbruk.se: <a href=\"https://www.dagenslantbruk.se/sta-rre-gajpyrdar-va-xlar-upp-mindre-mja-lkfa-retag-planerar-att-la-gga-ner\">[dagenslantbruk.se] Swedish farm survey finds larger farms i...</a></li><li>dagenslantbruk.se: <a href=\"https://www.dagenslantbruk.se/lantma-nnen-kommenterar-ska-rdela-get-2025-god-ska-rd-att-va-nta-men-lantbrukarnas-la-nsamhet-utmanas\">[dagenslantbruk.se] Swedish crop growers face low margins de...</a></li><li>agrarzeitung.de: <a href=\"https://www.agrarzeitung.de/pflanzenbautipps/pflanzenbau-allgemein/gruenland-duerreschaeden---was-nun-159951\">[agrarzeitung.de] Drought, heat and winter damage cut 2026 f...</a></li><li>Small Farm Canada: <a href=\"https://www.smallfarmcanada.ca/news/nearly-4-million-investment-supports-northern-ontario-farms-/\">[Small Farm Canada] Nearly $4 Million Investment Supports No...</a></li><li>Jay Peters (The Verge): <a href=\"https://www.theverge.com/tech/1022571/reddit-login-requirement-q3-2026-earnings\">[The Verge] Reddit will force everyone to log in</a></li><li>RealAgriculture: <a href=\"https://www.realagriculture.com/2026/10/german-farmer-jana-gabert-receives-2026-kleckner-global-farm-leader-award/\">[RealAgriculture] German farmer Jana Gäbert receives 2026 Kl...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/pc-components/gpus/leaked-video-exposes-how-chinese-factories-are-stripping-rtx-5090s-to-fuel-ai-custom-partner-cards-to-nvidia-founders-editions-on-the-chopping-block\">[Tom's Hardware] Leaked video exposes how industrial-scale C...</a></li><li>Small Farm Canada: <a href=\"https://www.smallfarmcanada.ca/news/how-canadian-farms-are-helping-turn-surplus-food-into-commun/\">[Small Farm Canada] How Canadian Farms Are Helping Turn Surp...</a></li><li>cbc.ca: <a href=\"https://www.cbc.ca/news/canada/british-columbia/bc-north-coast-tanker-ban-vote-9.7400350\">[cbc.ca] Liberals defeat Conservative bill to repeal B.C. ta...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/11/02/cmha-bringing-community-together-with-new-soup-program/\">[100 Mile Free Press] CMHA bringing community together with ...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/11/02/leaking-secrets-from-air-gap-computers-by-spelling-radio-signals-from-ram/\">[Adafruit Blog] Leaking secrets from air-gap computers by sp...</a></li><li>Civil Eats: <a href=\"https://civileats.com/2026/10/28/confessions-from-a-farmer-on-the-edge/\">[Civil Eats] Confessions From a Farmer on the Edge</a></li><li>agrapress.it: <a href=\"https://www.agrapress.it/2026/10/agrifish-via-libera-a-posizione-negoziale-parziale-sulla-pac/\">[agrapress.it] EU farm deal mandates young-farmer aid, leave...</a></li><li>Country Life: <a href=\"https://www.countrylife.co.uk/lifestyle/dogs/the-little-dog-beloved-by-royalty-immortalised-by-gainsborough-and-adored-by-the-victorians\">[Country Life] Before the pocket-size Pomeranian charmed Mar...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-03T01:15:12.810142-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-opus-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3632,
+      "voice_ratio_casey_riley": 1.02,
+      "casey_share_deep_dive_pct": 50,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 5,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 21,
+        "turns": 100,
+        "avg_turn_words": 34.9,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 1
+    },
+    "anchor": {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[dagenslantbruk.se] Swedish farm survey finds larger farms investing as small dairies exit",
+          "url": "https://www.dagenslantbruk.se/sta-rre-gajpyrdar-va-xlar-upp-mindre-mja-lkfa-retag-planerar-att-la-gga-ner",
+          "source": "dagenslantbruk.se",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-11-02T07:06:16.758000+00:00",
+          "summary": "A spring 2026 survey found that Swedish farm profitability remained relatively strong overall but varied sharply by sector, with larger farms planning investments while many smaller dairy businesses p...",
+          "discussed": true,
+          "mention_offset_frac": 0.0056
+        },
+        {
+          "title": "[Small Farm Canada] Nearly $4 Million Investment Supports Northern Ontario Farms and Food Businesses",
+          "url": "https://www.smallfarmcanada.ca/news/nearly-4-million-investment-supports-northern-ontario-farms-/",
+          "source": "Small Farm Canada",
+          "author": "https://www.smallfarmcanada.ca/topics/ray-douglas/",
+          "ai_score": 50,
+          "date_published": "2026-10-30T13:13:18+00:00",
+          "summary": "A $3.8 million federal investment is supporting eight Northern Ontario agriculture and food projects, from grain elevators and robotic milking to maple syrup production, greenhouse modernization and n...",
+          "discussed": true,
+          "mention_offset_frac": 0.0056
+        },
+        {
+          "title": "[Small Farm Canada] How Canadian Farms Are Helping Turn Surplus Food Into Community Support",
+          "url": "https://www.smallfarmcanada.ca/news/how-canadian-farms-are-helping-turn-surplus-food-into-commun/",
+          "source": "Small Farm Canada",
+          "author": "https://www.smallfarmcanada.ca/topics/ray-douglas/",
+          "ai_score": 48,
+          "date_published": "2026-10-29T15:16:12+00:00",
+          "summary": "From farms to retailers, surplus food is finding a second destination instead of going to waste. Second Harvest says its fiscal 2026 food rescue efforts redistributed $564 million worth of food while ...",
+          "discussed": true,
+          "mention_offset_frac": 0.0056
+        },
+        {
+          "title": "[Mining.com] Critical minerals getting harder to mine as deposits age: EY",
+          "url": "https://www.mining.com/critical-minerals-getting-harder-to-mine-as-deposits-age-ey/",
+          "source": "Mining.com",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-10-30T00:01:00+00:00",
+          "summary": "A survey of 400 mining executives reveals how declining ore grades, rising costs and tighter financing threaten future supplies.",
+          "discussed": true,
+          "mention_offset_frac": 0.0133
+        },
+        {
+          "title": "[100 Mile Free Press] CMHA bringing community together with new soup program",
+          "url": "https://100milefreepress.net/2026/11/02/cmha-bringing-community-together-with-new-soup-program/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 65,
+          "date_published": "2026-11-03T06:03:40.863796+00:00",
+          "summary": "Rick McKinney, the Canindan Mental Health Association South Cariboo Branch's homeless outreach worker, pours a bowl of French onion soup on Friday, Oct. 30. Kristin Buxton (left), Rick McKinney and Ki...",
+          "discussed": false
+        },
+        {
+          "title": "[Civil Eats] In Puerto Rico, New Farm Models Avoid Imports and Industrial Food",
+          "url": "https://civileats.com/2026/10/29/in-puerto-rico-new-models-avoid-imports-and-industrial-food/",
+          "source": "Civil Eats",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-10-29T08:00:28+00:00",
+          "summary": "By Heather Gies • October 29, 2026 A growing number of food and farming operations are working together to get healthy food directly to their communities. Read the full article →",
+          "discussed": true,
+          "mention_offset_frac": 0.0868
+        },
+        {
+          "title": "[Small Farm Canada] Could Kernza® Give Maritime Farmers Several Harvests From One Planting?",
+          "url": "https://www.smallfarmcanada.ca/could-kernza%C2%AE-give-maritime-farmers-several-harvests-from-on/",
+          "source": "Small Farm Canada",
+          "author": "https://www.smallfarmcanada.ca/topics/ray-douglas/",
+          "ai_score": 60,
+          "date_published": "2026-11-02T05:00:00+00:00",
+          "summary": "Could farmers plant a grain crop once and harvest it for several years? Maritime research suggests Kernza® could provide grain, forage and valuable soil benefits.",
+          "discussed": true,
+          "mention_offset_frac": 0.1213
+        },
+        {
+          "title": "[Canadian Forest Industries] Why are European log prices still high?",
+          "url": "https://www.woodbusiness.ca/why-are-european-log-prices-still-high/",
+          "source": "Canadian Forest Industries",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-11-02T14:08:40+00:00",
+          "summary": "Weak sawmill profitability and subdued lumber demand should normally lead to lower raw material prices. Yet European sawlog prices remain stubbornly high. Europe’s increasingly interconnected timber m...",
+          "discussed": true,
+          "mention_offset_frac": 0.1505
+        },
+        {
+          "title": "[The Verge] Reddit will force everyone to log in",
+          "url": "https://www.theverge.com/tech/1022571/reddit-login-requirement-q3-2026-earnings",
+          "source": "The Verge",
+          "author": "Jay Peters",
+          "ai_score": 60,
+          "date_published": "2026-10-29T20:07:00+00:00",
+          "summary": "Reddit is announcing a huge shift: It's going to start requiring users to log in. Right now, you can browse Reddit without having an account, and the site is generally a great resource for crowdsource...",
+          "discussed": true,
+          "mention_offset_frac": 0.1618
+        },
+        {
+          "title": "[The Tyee] A BC Firm Aims to Mine in Tatshenshini Park, a World Heritage Site",
+          "url": "https://thetyee.ca/News/2026/11/02/BC-Firm-Aims-Mine-Tatshenshini-Park/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 75,
+          "date_published": "2026-11-02T08:40:00+00:00",
+          "summary": "Dominion Critical Minerals wants to reopen a copper and cobalt mining project deemed too hazardous in the ’90s, FOI documents show.",
+          "discussed": true,
+          "mention_offset_frac": 0.2267
+        },
+        {
+          "title": "[Tom's Hardware] Leaked video exposes how industrial-scale Chinese factories are dismantling RTX 5090s by the thousands to fuel AI servers",
+          "url": "https://www.tomshardware.com/pc-components/gpus/leaked-video-exposes-how-chinese-factories-are-stripping-rtx-5090s-to-fuel-ai-custom-partner-cards-to-nvidia-founders-editions-on-the-chopping-block",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/zhiye-liu",
+          "ai_score": 50,
+          "date_published": "2026-10-24T11:15:00+00:00",
+          "summary": "Wondering why RTX 5090s are so hard to find? Leaked footage shows thousands of consumer GPUs, including Founders Editions, being torn apart for AI servers.",
+          "discussed": true,
+          "mention_offset_frac": 0.3781
+        },
+        {
+          "title": "[dagenslantbruk.se] Swedish crop growers face low margins despite a strong harvest",
+          "url": "https://www.dagenslantbruk.se/lantma-nnen-kommenterar-ska-rdela-get-2025-god-ska-rd-att-va-nta-men-lantbrukarnas-la-nsamhet-utmanas",
+          "source": "dagenslantbruk.se",
+          "author": "",
+          "ai_score": 44,
+          "date_published": "2026-10-31T07:08:20.026000+00:00",
+          "summary": "Sweden’s 2025 grain harvest was forecast at 5.9 million tonnes, but crop farmers’ profitability remained weak as grain prices fell and input costs stayed high. Ludvig & Co’s 2025 review found stronger...",
+          "discussed": true,
+          "mention_offset_frac": 0.4365
+        },
+        {
+          "title": "[agrarzeitung.de] Drought, heat and winter damage cut 2026 farm output across regions",
+          "url": "https://www.agrarzeitung.de/pflanzenbautipps/pflanzenbau-allgemein/gruenland-duerreschaeden---was-nun-159951",
+          "source": "agrarzeitung.de",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-10-30T08:51:00+00:00",
+          "summary": "Weather extremes damaged crops and forage across Europe and South Asia in 2026, with drought and heat reducing yields and a cold winter with little snow harming Sweden’s autumn-sown grains. France’s s...",
+          "discussed": true,
+          "mention_offset_frac": 0.503
+        },
+        {
+          "title": "[RealAgriculture] German farmer Jana Gäbert receives 2026 Kleckner Global Farm Leader Award",
+          "url": "https://www.realagriculture.com/2026/10/german-farmer-jana-gabert-receives-2026-kleckner-global-farm-leader-award/",
+          "source": "RealAgriculture",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-27T13:25:58+00:00",
+          "summary": "Jana Gäbert never set out to become an agricultural advocate. She just wanted to be a farmer. But as public criticism of large-scale and conventional agriculture grew in Germany, Gäbert felt compelled...",
+          "discussed": true,
+          "mention_offset_frac": 0.7335
+        },
+        {
+          "title": "[Adafruit Blog] Leaking secrets from air-gap computers by spelling radio signals from RAM",
+          "url": "https://blog.adafruit.com/2026/11/02/leaking-secrets-from-air-gap-computers-by-spelling-radio-signals-from-ram/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-11-02T20:45:05+00:00",
+          "summary": "Air-gapped computers are machines kept off networks on purpose, the way classified systems and industrial controls often are. A 2024 paper posted to arXiv describes a way to get data off one anyway, u...",
+          "discussed": false
+        },
+        {
+          "title": "[Civil Eats] Confessions From a Farmer on the Edge",
+          "url": "https://civileats.com/2026/10/28/confessions-from-a-farmer-on-the-edge/",
+          "source": "Civil Eats",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-10-28T08:00:12+00:00",
+          "summary": "By Caiti Hachmyer • October 28, 2026 My dedication to farming nearly broke me. But we can find a better way. Read the full article →",
+          "discussed": false
+        },
+        {
+          "title": "[agrapress.it] EU farm deal mandates young-farmer aid, leaves payment caps unresolved",
+          "url": "https://www.agrapress.it/2026/10/agrifish-via-libera-a-posizione-negoziale-parziale-sulla-pac/",
+          "source": "agrapress.it",
+          "author": "https://www.agrapress.it/author/agrapress/",
+          "ai_score": 52,
+          "date_published": "2026-10-27T18:23:00+00:00",
+          "summary": "European Union agriculture ministers agreed on a partial framework for the Common Agricultural Policy (CAP) after 2027, requiring countries to increase support for young farmers and develop succession...",
+          "discussed": false
+        },
+        {
+          "title": "[Country Life] Before the pocket-size Pomeranian charmed Marie-Antoinette, it pulled sledges and guarded livestock",
+          "url": "https://www.countrylife.co.uk/lifestyle/dogs/the-little-dog-beloved-by-royalty-immortalised-by-gainsborough-and-adored-by-the-victorians",
+          "source": "Country Life",
+          "author": "https://www.countrylife.co.uk/author/agnes-stamp",
+          "ai_score": 50,
+          "date_published": "2026-10-25T14:00:00+00:00",
+          "summary": "Once a hardworking dog of the Baltic coast, the Pomeranian became a favourite of royalty and fashionable society. Agnes Stamp traces the remarkable rise of this spirited little breed.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[cbc.ca] Liberals defeat Conservative bill to repeal B.C. tanker ban",
+          "url": "https://www.cbc.ca/news/canada/british-columbia/bc-north-coast-tanker-ban-vote-9.7400350",
+          "source": "cbc.ca",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-10-28T22:56:24+00:00",
+          "summary": "Canada’s Liberal government defeated a Conservative bill Wednesday to repeal the oil tanker ban on British Columbia’s northern coast, leaving the restrictions in place. The law bars tankers from carry...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Should the northern B.C. tanker ban be repealed to allow expanded crude exports via a proposed Strathcona pipeline-and-tanker route, or should it remain in place to protect the coast and Indigenous economies?",
+        "riley_position": "The tanker ban is a blunt rule that should be replaced with a negotiated, testable process that evaluates bounded proposals on their terms, while closing the governance gaps (co-ownership, risk terms, community voice) rather than removing the rule outright.",
+        "riley_key_evidence": [
+          "The ban caps tankers at 12,500 metric tonnes of crude in covered northern waters and limits per-ship volume rather than stopping exports outright",
+          "Anstey offered amendments to win Liberal support, a negotiated version of the rule that was lost when the bill failed at second reading",
+          "The Coast Funds report found roughly 30 First Nations generated 1.8 billion dollars in economic output from a 60 million dollar investment, about thirty dollars of output per dollar invested"
+        ],
+        "casey_position": "The ban should stay as a fixed baseline because case-by-case exemptions invite fresh, unverified promises for each pitch, and the proposal lacks the jobs figures, price data, risk terms and community consultation needed to justify an exception.",
+        "casey_key_evidence": [
+          "The coverage gives no job count or per-barrel price figure for the proposed project, and the Strathcona route still requires an exemption from the tanker ban before it can start",
+          "The Heiltsuk Nation says the pipeline proposal has no company behind it, no funding and no Indigenous co-ownership interest",
+          "The Great Bear Rainforest conservation economy supports about 1,400 permanent jobs, 140 businesses and nearly 2 billion dollars in economic value, and the coverage shows no Cariboo community consultation on routing"
+        ],
+        "resolution": "The two did not reach agreement; Riley argued the next step is to demand written terms on spill response, insurance, liability and co-ownership, while Casey maintained the ban should hold until those terms and the Cariboo freight impacts are actually documented, leaving the question open.",
+        "topics_covered": [
+          "Tanker cap mechanics and per-ship volume limits versus total export volume",
+          "Economic claims for jobs and price discounts from landlocked versus coastal sales",
+          "Indigenous economic output and governance, including the Coast Funds report and Heiltsuk co-ownership concerns",
+          "Pipeline route relocation as a signal of rule versus project priority",
+          "Freight and port-access impacts on Cariboo inland industries and community consultation"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 3,
+          "conditions": "overcast",
+          "high": 5,
+          "low": 1
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 1,
+          "conditions": "overcast",
+          "high": 7,
+          "low": -1
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 1,
+          "conditions": "overcast",
+          "high": 9,
+          "low": 0
+        },
+        {
+          "name": "Quesnel",
+          "temp": 1,
+          "conditions": "overcast",
+          "high": 6,
+          "low": 0
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 1,
+          "conditions": "light drizzle",
+          "high": 8,
+          "low": 0
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Mt. Timothy Ski Society",
+      "description": "Community-founded ski society operating the Mt. Timothy Recreation Resort near Lac La Hache — family skiing, a tube park, and 35 runs serving Williams Lake, Quesnel, and 100 Mile House",
+      "website": "skitimothy.com",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: What exactly happened in the House vote, and what is the political context around Bill C-264?\nFindings: On Wednesday, October 28, 2026, the House of Commons voted at second reading on Bill C-264, a Conservative bill to repeal the Oil Tanker Moratorium Act. MPs voted along party lines, and only the Conservatives voted to send the bill to committee. The Star's report adds that the NDP and Bloc Québécois joined Liberals in voting it down. The existing law bars tankers from carrying more than 12,500 metric tonnes of crude in the covered northern B.C. coastal waters. Prime Minister Mark Carney had struck a deal with the B.C. government earlier in summer 2026 to keep the ban, and he and Alberta Premier Danielle Smith then routed the proposed Alberta-to-West Coast pipeline south to respect the ban. Smith had originally wanted it to go north and backed the repeal. Conservative natural resources critic Carol Anstey said the Strathcona proposal was a purely private pitch with no public subsidies, and offered amendments to win Liberal support.\nSuggested angle: Riley can argue that a private, unsubsidized export proposal that would add up to 250,000 barrels a day to Asian markets is exactly the kind of investment Canada says it wants, and that a blanket tonnage cap is a blunt instrument. Casey can counter that the vote shows the ban is now a cross-party consensus in the Commons, with the NDP and Bloc joining Liberals, and that the pipeline-route compromise shows the ban is being treated as a fixed constraint rather than a negotiable one. The vote split also lets Casey ask who is actually pushing this, and whether \"energy superpower\" rhetoric is outrunning the regulatory reality.\n\nRESEARCH QUESTION: What is the Strathcona Resources proposal, and what does it require?\nFindings: Strathcona Resources (Calgary; chairman Adam Waterous) proposed a new Prince Rupert-area marine terminal that would export up to 250,000 barrels per day of Western Canadian heavy crude to Asian markets within about two years. The crude would travel by rail on existing tracks to the coast, then ship by tanker. Reporting from Bloomberg, Calgary Herald, and World Oil (Oct. 22–23, 2026) says the plan cannot proceed without an exemption from the federal tanker ban. Strathcona has pitched this as an unsubsidized private venture. The proposal's rail-to-tanker design means the ban's 12,500-tonne limit is the binding constraint.\nSuggested angle: This is a concrete test of whether the ban is a hard wall or a line that can be negotiated. Riley can use it to ask why a shipper with a specific, bounded plan should be blocked outright rather than evaluated case by case. Casey can point out that the proposal is a pitch, not a permitted project, and that the rail-plus-terminal route simply moves the environmental and spill risk to a different place along the same coast. The \"rail vs. tanker\" framing also lets both sides argue about where the real risk sits.\n\nRESEARCH QUESTION: What is the Indigenous and conservation case for keeping the ban?\nFindings: Coastal First Nations (eight-member alliance, president Marilyn Slett, Heiltsuk Nation chief councillor) has opposed lifting the ban since the November 27, 2025 Carney–Smith memorandum of understanding. The group says the Great Bear Rainforest conservation economy has generated about 1,400 permanent jobs and 140 businesses, creating nearly $2 billion in economic value. An independent report, commissioned by Coast Funds, found that nearly 30 First Nations partnered with Coast Funds generated $1.8 billion in economic output in under a decade from an initial $60 million in provincial and federal investment. BC Nature's backgrounder argues that regular tanker traffic would harm cetacean populations. Heiltsuk leaders have said the pipeline proposal has no company, no funding, and no Indigenous co-ownership interest.\nSuggested angle: This is the strongest counter-argument to Riley's economic framing. Riley can say the job numbers from conservation finance are real but that a single terminal project could generate far more employment and revenue. Casey can respond that the $1.8 billion figure is hard economic evidence that the ban is already producing income, and that the Nations' argument is about rights and governance, not just jobs. It is a case where a \"jobs versus environment\" framing misses that the people most affected are describing a third option: a working coast that does not depend on tanker traffic.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Liberals defeat Conservative bill repeal B.C. north coast tanker ban vote",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Strathcona Resources Prince Rupert rail oil 250,000 barrels proposal",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Great Bear Rainforest tanker ban Indigenous opposition First Nations 2025",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.cbc.ca/news/canada/british-columbia/bc-north-coast-tanker-ban-vote-9.7400350"
+      },
+      {
+        "kind": "question",
+        "query": "Strathcona Resources Prince Rupert crude tanker proposal Adam Waterous"
+      },
+      {
+        "kind": "question",
+        "query": "Coast Funds Great Bear Rainforest economic output report 1.8 billion"
+      },
+      {
+        "kind": "question",
+        "query": "northern B.C. tanker ban 12,500 tonnes crude loading discount landlocked coastal price"
+      },
+      {
+        "kind": "question",
+        "query": "Coastal First Nations Carney Smith memorandum of understanding pipeline route 2025"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A day of resource economies under pressure, from thin farm margins and aging mines to a protected coastline, with a few oddities from the tech world.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "The Canadian Mental Health Association's South Cariboo Branch has run a free Friday soup program since mid-September, drawing up to nine people to eat in, with seniors saying it makes them feel less lonely.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "Puerto Rican farms are working together to feed their communities directly, motivated by the island being cut off from food imports after Hurricane Maria damaged its ports.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "European sawlog prices remain high despite weak lumber demand and thin sawmill profits, because wood supply is constrained and timber markets are more interconnected.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "Dominion Critical Minerals wants to reopen a copper and cobalt project in Tatshenshini Park, a World Heritage Site, that was deemed too hazardous in the 1990s, according to FOI documents.",
+          "bridge_to_next": "Mining: from one proposed mine to the wider problem of aging deposits."
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "An EY survey of 400 mining executives ranks operational complexity as the industry's biggest risk for 2027, as aging mines and declining ore grades make critical minerals harder to extract.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "Canadian research suggests Kernza, a perennial grain, could give Maritime farmers grain and forage from a single planting across several seasons, with possible soil and cost benefits.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "A spring 2026 Swedish survey found overall farm profitability fairly strong, but larger farms are planning investments while many smaller dairies plan to close.",
+          "bridge_to_next": "Swedish crop farms: the same country's grain growers are under margin pressure."
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "Swedish crop growers face low margins despite a forecast 5.9-million-tonne harvest, because grain prices fell, input costs stayed high, and a stronger krona hurt dollar-priced grain.",
+          "bridge_to_next": "Weather and yields: Sweden's cold winter is one of the weather shocks hitting farms this year."
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "Drought, heat and winter damage cut 2026 farm output across Europe and South Asia, including forage losses of 30 to 40 percent in Baden-Württemberg and a 14 percent drop in France's sunflower harvest.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "The federal government is investing about $3.8 million through FedNor in eight Northern Ontario agriculture and food projects, covering grain handling, robotic milking, maple syrup, greenhouses and aquaculture.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "A 2024 research paper describes how malware can turn an air-gapped computer's RAM into a weak radio transmitter to leak data to a nearby receiver.",
+          "bridge_to_next": "Platform access: from closed machines to a website closing its doors to anonymous visitors."
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "Reddit says it will become a logged-in-only experience, citing scraping and automated traffic that has already led it to file lawsuits.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "German farmer Jana Gäbert, who farms 4,000 hectares cooperatively south of Berlin, won the 2026 Kleckner Global Farm Leader Award for her advocacy, which has reached the European Parliament.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "A farmer of 18 years writes that working 80 to 100 hours a week on the land nearly broke her, and argues there is a better way.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "EU agriculture ministers agreed a partial post-2027 farm policy framework requiring more young-farmer support, while payment caps for larger land-based subsidies remain unresolved.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "The Pomeranian began as a working dog of the Baltic coast that pulled sledges and guarded livestock before becoming a favourite of royalty and fashionable society.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "Leaked footage reportedly shows Chinese factories dismantling thousands of consumer RTX 5090 graphics cards to feed AI servers.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "Second Harvest rescued and redistributed $564 million worth of surplus food in fiscal 2026, a 41 percent increase in value over the previous year.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Whoever carries the cost and whoever collects the value when resources move to market: the question behind this morning's farm margins, mine risks and coastal rules, and one the deep dive takes up through the northern B.C. tanker ban.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "With the northern B.C. coast tanker ban left in place, does keeping that rule actually block resource exports and the jobs and prices attached to them, or does it only shape where the cargo and the risk travel, and who gets paid?",
+      "riley_holds": "Riley thinks the ban and export growth can coexist if the routes are designed well, and that a southern pipeline route compliant with the ban shows industry and government can work within the rule.",
+      "casey_holds": "Casey thinks the promises of jobs and better prices are claims that need proof, and that moving crude by rail or new routes shifts risk onto communities along the way without showing who captures the gains.",
+      "beats": [
+        {
+          "claim": "The ban is narrow and specific, and its survival changes the rules for one kind of cargo rather than ending oil exports.",
+          "evidence": "The law bars tankers carrying more than 12,500 metric tonnes of crude in the covered northern coastal area. The Liberal government defeated the Conservative repeal bill at second reading, so it will not go to committee (cbc.ca, winnipegfreepress.com).",
+          "pushback": "Casey says a narrow law still draws a hard line, and the fight over repealing it shows how much value producers believe sits on the other side of it.",
+          "leads_to_next": "If the ban is narrow, the next question is what exactly its opponents say it costs."
+        },
+        {
+          "claim": "Repeal supporters frame the ban as a barrier between Canadian resources and better prices.",
+          "evidence": "Alberta Premier Danielle Smith said repeal is a step toward securing better prices for resources. Conservative critic Carol Anstey said a private-sector shipping proposal could create Canadian jobs and diversify exports (CBC News). Conservatives cited Strathcona Resources' proposal to move up to 250,000 barrels a day by rail through Prince Rupert (cbc.ca).",
+          "pushback": "Casey notes that these are projections from proponents, with no figures in the coverage on how many jobs or what price improvement, and who would capture the gain.",
+          "leads_to_next": "If the jobs and price gains are unquantified, the test is whether the ban is really what stands in the way."
+        },
+        {
+          "claim": "The government's position suggests the ban and export ambitions are not strictly opposed.",
+          "evidence": "Prime Minister Mark Carney agreed with B.C. this summer to maintain the ban, then announced with Smith a proposed pipeline route to the south that would comply with it (cbc.ca, reddit.com).",
+          "pushback": "Casey says Smith still backed repeal, so the Alberta side does not accept the compliant route as sufficient, and a proposed route is not a built one.",
+          "leads_to_next": "With a compliant route only proposed, the question becomes who benefits and who bears the risk while the rules stay as they are."
+        },
+        {
+          "claim": "Who captures value depends on whether projects are private-sector shipping ventures or routes designed with the communities they cross.",
+          "evidence": "Anstey described the Strathcona plan as private-sector shipping. The Conservatives said they were willing to work with Liberals on amendments, though the bill's defeat at second reading ended that path (cbc.ca).",
+          "pushback": "Riley concedes that an open offer to amend is not a community benefit commitment, and the coverage mentions no terms for communities along the route.",
+          "leads_to_next": "That leaves the effect on a place like the Cariboo, which depends on Pacific port access."
+        },
+        {
+          "claim": "For the Cariboo, the ban's survival means existing oil cargo rules stay in force for households and industries that depend on Pacific ports, and the open issue is whether they get a say in what moves through the region.",
+          "evidence": "The article's local note says Cariboo households and industries dependent on Pacific ports keep the existing rules on oil cargo in force. Prince Rupert, named in the Strathcona rail proposal, is the northern port the region's rail freight is oriented toward.",
+          "pushback": "Casey says being covered by a rule is not the same as having a voice in routing decisions, and nothing in the coverage says Cariboo communities were consulted.",
+          "leads_to_next": "This sets up the landing on whether a fixed rule or a negotiated route better protects the working economy of a region."
+        }
+      ],
+      "set_aside": [
+        "Puerto Rico farm models",
+        "European sawlog prices",
+        "Tatshenshini Park mining proposal",
+        "EY mining risk survey",
+        "Kernza perennial grain",
+        "Swedish farm profitability and crop margins",
+        "European and South Asian weather losses",
+        "Northern Ontario FedNor investments",
+        "Air-gap RAM leak and Reddit login",
+        "Gäbert award and farmer burnout",
+        "EU CAP framework",
+        "Pomeranian history",
+        "GPU dismantling",
+        "Second Harvest food rescue"
+      ],
+      "cariboo_beat": "Beat 5 brings it home to the Cariboo as a region dependent on Pacific ports, with Prince Rupert as the port named in the rail proposal, and asks whether Cariboo communities and industries have any role in decisions about what moves through that corridor.",
+      "landing": "Held open: is a fixed rule like the tanker ban a stronger protection for working regions than negotiated, project-by-project routes, and who in the Cariboo gets to be at the table when the cargo changes?"
+    }
+  }
+}

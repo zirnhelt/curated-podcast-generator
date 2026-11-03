@@ -1,34 +1,4 @@
 {
-  "2026-08-04": {
-    "timestamp": 1785840956.752978,
-    "date": "2026-08-04",
-    "theme": "Working Lands & Industry",
-    "focus": "mining-energy",
-    "central_question": "Does the new 'strategic minerals' designation for mining actually improve outcomes for communities and accountability, or does it primarily accelerate permitting at the expense of local safeguards?",
-    "riley_position": "The strategic minerals framing addresses a real, measurable vulnerability\u2014North America's dependency on Chinese processing for domestically mined materials\u2014and the cost of not acting sooner is genuine supply-chain weakness. Courts like T\u015dilhqot'in and constitutional Aboriginal title protections provide meaningful legal safeguards that distinguish Canada from weaker governance environments.",
-    "riley_key_evidence": [
-      "U.S. passed streamlined permitting through One Big Beautiful Bill Act with 50% tariff on copper imports",
-      "USGS expanded critical minerals list to include metallurgical coal and uranium",
-      "T\u015dilhqot'in Supreme Court decision created binding, constitutionally-protected consent requirements for development on title land",
-      "Gibraltar Mine built wildfire-related costs into permanent operating budget including air quality monitoring and helicopter contracts"
-    ],
-    "casey_position": "The 'strategic' label functions as a bypass mechanism that streamlines permitting without strengthening underlying accountability structures, and moving faster than governance capacity can handle risks the same harms seen in weaker jurisdictions\u2014just more subtly. The real safeguards (reclamation bonding, independent monitoring) haven't actually been updated to match the new urgency.",
-    "casey_key_evidence": [
-      "Honduras case: Trump-backed government criminalizing campesino leaders as terrorists over palm oil interests, with 200+ deaths in land conflicts",
-      "Mount Polley 2014 tailings dam failure near Xat\u015b\u016bll First Nation dumped billions of litres of waste into Quesnel Lake; cleanup and legal questions still ongoing a decade later",
-      "BC's reclamation security gets negotiated project-by-project with no fixed formula tied to mineral type or strategic designation",
-      "Legal analysts describe this as genuine paradigm shift routing mining into national security review instead of ordinary commercial permitting, meaning fewer public questions get asked"
-    ],
-    "resolution": "Riley and Casey agreed to disagree on overall risk assessment but converged on a concrete, testable question: whether BC's reclamation security formula has actually been formally updated since critical minerals expanded, or if it's still running on 'commodity era' assumptions. They positioned this as the real story worth investigating rather than the political 'strategic' rhetoric, and proposed it as a records request someone with legal standing should file.",
-    "topics_covered": [
-      "Strategic minerals designation and supply-chain dependency",
-      "Permitting streamlining versus accountability lag",
-      "Reclamation bonding and Mount Polley precedent",
-      "Constitutional Aboriginal title protections versus international governance gaps",
-      "Canada-Mexico wildfire mutual aid treaty as resilient working-lands model",
-      "How outside forces reshape local working lands faster than accountability structures can adapt"
-    ]
-  },
   "2026-08-05": {
     "timestamp": 1785927507.15807,
     "date": "2026-08-05",
@@ -2587,6 +2557,34 @@
       "The Nazko First Nation candidate list and the Quesnel bonspiel results as contrasting records",
       "Staffing and capacity limits of small newsrooms and who maintains follow-up over time",
       "Who owns the follow-up: the outlet, the city, residents, or podcasts covering local government"
+    ]
+  },
+  "2026-11-03": {
+    "timestamp": 1793693723.070121,
+    "date": "2026-11-03",
+    "theme": "Working Lands & Industry",
+    "focus": "tourism-outdoor-economy",
+    "anchor": "keeping-the-peace-or-speaking-up",
+    "central_question": "Should the northern B.C. tanker ban be repealed to allow expanded crude exports via a proposed Strathcona pipeline-and-tanker route, or should it remain in place to protect the coast and Indigenous economies?",
+    "riley_position": "The tanker ban is a blunt rule that should be replaced with a negotiated, testable process that evaluates bounded proposals on their terms, while closing the governance gaps (co-ownership, risk terms, community voice) rather than removing the rule outright.",
+    "riley_key_evidence": [
+      "The ban caps tankers at 12,500 metric tonnes of crude in covered northern waters and limits per-ship volume rather than stopping exports outright",
+      "Anstey offered amendments to win Liberal support, a negotiated version of the rule that was lost when the bill failed at second reading",
+      "The Coast Funds report found roughly 30 First Nations generated 1.8 billion dollars in economic output from a 60 million dollar investment, about thirty dollars of output per dollar invested"
+    ],
+    "casey_position": "The ban should stay as a fixed baseline because case-by-case exemptions invite fresh, unverified promises for each pitch, and the proposal lacks the jobs figures, price data, risk terms and community consultation needed to justify an exception.",
+    "casey_key_evidence": [
+      "The coverage gives no job count or per-barrel price figure for the proposed project, and the Strathcona route still requires an exemption from the tanker ban before it can start",
+      "The Heiltsuk Nation says the pipeline proposal has no company behind it, no funding and no Indigenous co-ownership interest",
+      "The Great Bear Rainforest conservation economy supports about 1,400 permanent jobs, 140 businesses and nearly 2 billion dollars in economic value, and the coverage shows no Cariboo community consultation on routing"
+    ],
+    "resolution": "The two did not reach agreement; Riley argued the next step is to demand written terms on spill response, insurance, liability and co-ownership, while Casey maintained the ban should hold until those terms and the Cariboo freight impacts are actually documented, leaving the question open.",
+    "topics_covered": [
+      "Tanker cap mechanics and per-ship volume limits versus total export volume",
+      "Economic claims for jobs and price discounts from landlocked versus coastal sales",
+      "Indigenous economic output and governance, including the Coast Funds report and Heiltsuk co-ownership concerns",
+      "Pipeline route relocation as a signal of rule versus project priority",
+      "Freight and port-access impacts on Cariboo inland industries and community consultation"
     ]
   }
 }
