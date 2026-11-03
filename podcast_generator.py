@@ -6904,6 +6904,18 @@ ROUNDUP_REPAIR_PASSES = 2
 # its roundup is a worse outcome than a shorter local block.
 ROUNDUP_THEME_FLOOR = 3
 
+# The feed's charter fit decides the theme block where a keyword cannot. On
+# 2026-11-03 (Working Lands) one bare-word hit each ("resource", "industrial",
+# "livestock") filed Reddit's login wall, an air-gap RAM paper, Chinese GPU
+# teardowns and Pomeranian history as on-theme (charter 2-4 of 100), and the
+# protected theme block pushed out Glencore, Codelco, Oyu Tolgoi and an air
+# seeder (58-74) that had no keyword at all. `_theme_score` is the within-day
+# percentile, comparable across days; the raw charter score guards the promotion
+# because on a collapsed day (Monday, Thursday) the 85th percentile can be 12.
+THEME_BLOCK_MIN_PCT = 50       # a keyword hit below this is not on-theme
+THEME_BLOCK_PROMOTE_PCT = 85   # no keyword, but the charter says on-theme...
+THEME_BLOCK_PROMOTE_RAW = 40   # ...and on an absolute scale, not just relatively
+
 
 def _roundup_block_rank(block: str) -> int:
     """Airing rank for a `_roundup_block` value; unknown blocks are the tail."""
@@ -6953,6 +6965,26 @@ def _title_subject_keys(article: dict) -> set:
 
 def _shares_subject(a: dict, b: dict) -> bool:
     return bool(_title_subject_keys(a) & _title_subject_keys(b))
+
+
+def _charter_promotes(article: dict, theme_name: str) -> bool:
+    """True when the feed's charter fit alone puts a story on today's theme.
+
+    Needs both the within-day percentile and the raw score (see
+    THEME_BLOCK_PROMOTE_RAW). Never on the geographic day, where locality, not
+    the charter, decides the opening blocks.
+    """
+    pct, raw = article.get('_theme_score'), article.get('_theme_score_raw')
+    if pct is None or raw is None or _is_geographic_theme(theme_name):
+        return False
+    return pct >= THEME_BLOCK_PROMOTE_PCT and raw >= THEME_BLOCK_PROMOTE_RAW
+
+
+def _charter_demotes(article: dict) -> bool:
+    """True when the charter fit overrules a keyword hit: the word matched, the
+    story isn't about the theme. An article with no score keeps the keyword test."""
+    pct = article.get('_theme_score')
+    return pct is not None and pct < THEME_BLOCK_MIN_PCT
 
 
 def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
@@ -7072,7 +7104,12 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
                                    or relevance(a) >= 2 else 'theme_adjacent')
             (theme_block if a['_roundup_block'] == 'theme'
              else adjacent_block).append(a)
+        elif _charter_promotes(a, theme_name):
+            a['_roundup_block'] = 'theme'
+            theme_block.append(a)
         elif a.get('_is_bonus'):
+            rest.append(a)
+        elif _charter_demotes(a):
             rest.append(a)
         elif a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
             a['_roundup_block'] = 'theme'
@@ -7139,7 +7176,10 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
                        relevance(a), boosted(a)),
         reverse=True,
     )
-    theme_block.sort(key=relevance, reverse=True)
+    # A keyword hit is worth 2 and a charter percentile of 100 is worth 2, so a
+    # story promoted on charter fit alone isn't the first cut from the arc.
+    theme_block.sort(key=lambda a: relevance(a) + (a.get('_theme_score') or 0) / 50,
+                     reverse=True)
     adjacent_block.sort(key=body_theme_hits, reverse=True)
     # Bigger clusters first — the most connective material leads the back half
     ordered_clusters = sorted(
@@ -7995,6 +8035,11 @@ def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
 # the Cariboo needed. Under $0.001 a run. PODCAST_DEEP_DIVE_PICK=0 turns it off.
 DEEP_DIVE_PICK_ENABLED = os.getenv("PODCAST_DEEP_DIVE_PICK", "1") != "0"
 DEEP_DIVE_PICK_POOL = 15
+# A non-local deep-dive candidate below this within-day charter percentile is
+# kept out of the Cariboo bar's pool: on 2026-11-03 it chose a tanker-ban story
+# at the 58th percentile (8 of 100 on Working Lands), found no other report, and
+# the deep dive aired on one source over three on-theme candidates at 85-98.
+DEEP_DIVE_PICK_MIN_PCT = 70
 DEEP_DIVE_PICK_SUMMARY_CHARS = 240
 RECENT_LOCAL_DAYS = 7
 
@@ -8316,7 +8361,14 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
     if DEEP_DIVE_PICK_ENABLED and subject_deep_dive is None:
         ranked = list(deep_dive) + [a for a in (rerank_pool or candidates)
                                     if a not in deep_dive]
-        pool = ranked[:DEEP_DIVE_PICK_POOL]
+        # Local extras compete on their Cariboo tie, so the charter floor skips them.
+        fit = [a for a in ranked if _is_local_article(a)
+               or (a.get('_theme_score') is None
+                   or a['_theme_score'] >= DEEP_DIVE_PICK_MIN_PCT)]
+        if len(fit) < len(ranked):
+            print(f"  🧭 Cariboo bar: {len(ranked) - len(fit)} candidate(s) under the "
+                  f"p{DEEP_DIVE_PICK_MIN_PCT} charter floor left out")
+        pool = (fit or ranked)[:DEEP_DIVE_PICK_POOL]
         pool += [a for a in (local_extras or []) if a not in pool]
         picked = pick_cariboo_deep_dive(pool, count, theme_name,
                                         anchor_question=anchor_question,

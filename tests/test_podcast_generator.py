@@ -4104,6 +4104,37 @@ class TestAnnotateRoundupBlocks:
         bonus = next(a for a in ordered if a.get("_is_bonus"))
         assert bonus["_roundup_block"] not in ("theme", "theme_adjacent")
 
+    def test_charter_fit_overrules_a_stray_keyword_both_ways(self):
+        """2026-11-03: one bare-word hit each filed Reddit's login wall (charter
+        2/100) as on-theme while Glencore (60/100, no keyword) was cut as a bonus."""
+        articles = [
+            {"title": "Reddit's zebra of a login wall", "url": "https://reddit",
+             "_keyword_matches": 1, "_theme_score": 4, "_theme_score_raw": 2,
+             "_boosted_score": 60},
+            {"title": "Glencore cobalt output halves", "url": "https://glencore",
+             "_is_bonus": True, "_theme_score": 93, "_theme_score_raw": 60,
+             "_boosted_score": 50},
+            # A collapsed day: high percentile, low charter score, stays a bonus.
+            {"title": "Atlantic essay on arches", "url": "https://arch",
+             "_is_bonus": True, "_theme_score": 88, "_theme_score_raw": 12,
+             "_boosted_score": 70},
+            # No charter score (e.g. a released held article): the keyword decides.
+            {"title": "Zebra gardening trial expands", "url": "https://unscored",
+             "_boosted_score": 10},
+        ]
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        block = {a["url"]: a["_roundup_block"] for a in ordered}
+        assert block["https://glencore"] == "theme"
+        assert block["https://unscored"] == "theme"
+        assert block["https://reddit"] not in ("theme", "theme_adjacent")
+        assert block["https://arch"] not in ("theme", "theme_adjacent")
+
+    def test_charter_never_promotes_on_the_geographic_day(self):
+        from podcast_generator import _charter_promotes
+        art = {"_theme_score": 99, "_theme_score_raw": 88}
+        assert _charter_promotes(art, _FAKE_THEME)
+        assert not _charter_promotes(art, "Cariboo Local Affairs")
+
     def test_keyword_hit_beats_feed_flag_in_theme_ordering(self):
         ordered, _ = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         # Two local keyword hits (relevance ~4) outrank the feed-flagged
@@ -7718,6 +7749,33 @@ class TestCaribooDeepDivePick:
         assert "https://local" in captured["pool"]
         assert [a["url"] for a in dd] == ["https://local"]
         assert len(news) == len(theme)
+
+    def test_off_charter_candidates_stay_out_of_the_pick(self, monkeypatch):
+        """2026-11-03 aired a one-source deep dive on a tanker-ban story at the
+        58th charter percentile over three Working Lands candidates at 85-98."""
+        import podcast_generator as pg
+        captured = {}
+
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+            captured["pool"] = [a["url"] for a in pool]
+            return [pool[0]]
+        monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
+        theme = [
+            {"title": "[cbc.ca] Liberals defeat bill to repeal tanker ban", "url": "https://tanker",
+             "_keyword_matches": 2, "_theme_score": 58},
+            {"title": "[The Tyee] A BC firm aims to mine a park", "url": "https://mine",
+             "_keyword_matches": 1, "_theme_score": 85},
+            {"title": "[dagenslantbruk.se] Swedish farm survey", "url": "https://swe",
+             "_keyword_matches": 1, "_theme_score": 97},
+            {"title": "[Hobby Farms] Frostbite in chickens", "url": "https://unscored",
+             "_keyword_matches": 1},
+        ]
+        local = {"title": "[Williams Lake Tribune] Mill shift cut", "url": "https://local",
+                 "_is_bonus": True, "_theme_score": 10}
+        pg.select_deep_dive_from_feed(theme, "Repair Culture & Practical Tech",
+                                      count=2, local_extras=[local])
+        assert "https://tanker" not in captured["pool"]
+        assert {"https://mine", "https://swe", "https://unscored", "https://local"} <= set(captured["pool"])
 
     def test_the_geographic_day_is_never_picked(self, monkeypatch):
         import podcast_generator as pg
