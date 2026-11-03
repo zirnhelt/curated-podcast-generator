@@ -1854,6 +1854,53 @@ class TestScriptStoryboard:
         assert rows and rows[0]["status"] == "ok"
         assert pg._storyboard_used == plan
 
+    def test_week_so_far_reaches_the_storyboard(self, monkeypatch, tmp_path):
+        """The week's question builds across the days: the storyboard sees the
+        last six days' questions and landings, today's anchor marked THIS WEEK
+        and an earlier anchor's days marked as an earlier question."""
+        import podcast_generator as pg
+        from datetime import date
+
+        peace = {"id": "peace", "question": "When is keeping the peace worth more?"}
+        local = {"id": "local", "question": "Who gets to call themselves local?"}
+
+        def cit(question, landing, theme, anchor):
+            return json.dumps({"episode": {"theme": theme, "anchor": anchor},
+                               "storyboard": {"deep_dive": {"central_question": question,
+                                                            "landing": landing}}})
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        (tmp_path / "citations_2026-11-02_arts.json").write_text(
+            cit("Who keeps the record?", "Who pays the archivist", "Arts", peace))
+        (tmp_path / "citations_2026-11-03_working.json").write_text(
+            cit("Does the ban move the risk?", "Who in the Cariboo gets a seat", "Working Lands", peace))
+        (tmp_path / "citations_2026-11-01_sunday.json").write_text(
+            cit("Whose record counts?", "Who sets the agenda", "Science", local))
+        (tmp_path / "citations_2026-10-28_old.json").write_text(
+            cit("Too old to show", "x", "Working Lands", local))
+        (tmp_path / "citations_2026-11-04_today.json").write_text(cit("Today", "x", "Gear", peace))
+        (tmp_path / "citations_2026-11-03_unplanned.json").write_text(json.dumps({"segments": {}}))
+
+        block = pg.week_so_far_block(date(2026, 11, 4), anchor_id="peace")
+        assert (block.index("Sunday, earlier question \"Who gets to call themselves local?\"")
+                < block.index("Monday, THIS WEEK (Arts)")
+                < block.index("Tuesday, THIS WEEK (Working Lands)"))
+        assert "Who in the Cariboo gets a seat" in block
+        assert "Too old to show" not in block and "Today" not in block
+        # Monday is not blank: it sees last week, marked as an earlier question.
+        monday = pg.week_so_far_block(date(2026, 11, 2), anchor_id="peace")
+        assert "Sunday, earlier question" in monday and "THIS WEEK (" not in monday
+        assert pg.week_so_far_block(date(2026, 10, 20)) == ""
+
+        monkeypatch.setattr(pg, "week_so_far_block",
+                            lambda today, anchor_id=None: "THE LAST SEVEN DAYS: marker\n\n")
+        plan = self._plan()
+        client, _, _ = self._run(
+            monkeypatch, tmp_path,
+            lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        prompt = self.planner_calls[0]["messages"][0]["content"]
+        assert "THE LAST SEVEN DAYS: marker" in prompt
+        assert prompt.index("THE LAST SEVEN DAYS") < prompt.index("NEWS ROUNDUP:")
+
     def test_failed_plan_writes_the_script_unplanned_and_degrades(self, monkeypatch, tmp_path):
         def boom(**kw):
             raise RuntimeError("overloaded")
