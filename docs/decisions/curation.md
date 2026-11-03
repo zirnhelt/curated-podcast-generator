@@ -627,3 +627,29 @@ stories the pool offered and aired, whether the roundup opened local, which subj
 separate places, and whether the deep dive reached the Cariboo. `episode_review.run_signals`
 turns those into `no-local-roundup`, `split-topic` and `deep-dive-non-local`.
 
+
+## The charter fit overrules a stray keyword (2026-11-03)
+
+The producer heard "random articles" in the Working Lands roundup and a deep dive that "could have
+leveraged far more content". Both came from keyword-only gates that ignore the theme-fit score the
+feed already sends.
+
+- **Roundup.** `_annotate_roundup_blocks` filed a story as `theme` (protected from cuts) on one
+  keyword hit. Reddit's login wall matched "resource", an air-gap RAM paper and a Chinese GPU teardown
+  "industrial", Pomeranian history "livestock": charter 2–4 of 100. Upstream, the feed marks any story
+  with no keyword `_is_bonus`, so Glencore, Codelco, Oyu Tolgoi and a Bourgault seeder (58–74) arrived
+  as bonus picks and were cut "over budget/unconnected".
+- **Deep dive.** The Cariboo bar chose a tanker-ban story at the 58th percentile (8 of 100), found no
+  other report of it, and the deep dive ran on one source over three candidates at 85–98. The thin
+  sourcing also escalated the polish to Opus.
+
+The gates now read the charter: a keyword hit below p50 is not on-theme; a story at p85+ with a raw
+score of 40+ is, keyword or not. The raw floor matters: on a collapsed day (Monday, Thursday) the 85th
+percentile can be a raw 12, and percentile alone would have promoted NYT essays on Arts day. Saturday
+is exempt from promotion (locality decides the opening blocks). The Cariboo bar's pool drops non-local
+candidates under p70; local extras compete on their Cariboo tie. Thresholds were checked against all
+seven live feeds: the demotions on every day were stray-keyword stories. An unscored article (a
+released held story) keeps the keyword test.
+
+The bare keywords themselves ("resource", "industrial", "mill", "forest", "commodity") are fixed in
+`super-rss-feed`'s `podcast_schedule.json`, which also decides `_is_bonus`.

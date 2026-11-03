@@ -48,6 +48,7 @@ paths:
 - The kicker is the wildcard: from the better half of the standalones that share no subject with another roundup story (`_shares_subject`, a headline word pair), the lowest `_theme_score_raw`. None qualifies, no kicker.
 - `_sequence_roundup` is a chain, not a regroup (the block's lead never moves), and runs at both consumers.
 - `_infer_discipline` counts word-boundary hits, never substrings.
+- **The charter fit overrules a stray keyword** (`_charter_promotes` / `_charter_demotes`): a keyword hit under the p`THEME_BLOCK_MIN_PCT` percentile is not on-theme, and a story at p`THEME_BLOCK_PROMOTE_PCT` with raw ≥ `THEME_BLOCK_PROMOTE_RAW` is, keyword or not (never on the geographic day). The Cariboo bar's pool keeps non-local candidates at p`DEEP_DIVE_PICK_MIN_PCT`+. Unscored articles keep the keyword test.
 - `script/curate` degrades when the theme block is thin. **Read that as a scoring problem, not a supply problem.**
 - Hosts never announce blocks, counts, or the running order.
 - **LOCAL ELECTION RACES** is a standing roundup rule: keep each town's race distinct, never borrow a name across races.
