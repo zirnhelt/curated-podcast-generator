@@ -1,0 +1,214 @@
+# Cariboo Signals Podcast Script - 2026-11-03
+# Theme: Working Lands & Industry
+# Brave: yes
+# Weather: yes
+# Kagi: yes
+# Anchor: When is keeping the peace worth more than being right?
+# Generated: 2026-11-03 01:15:20 MST
+
+**COLD OPEN**
+**CASEY:** Hey there, glad you're here. Today on Working Lands & Industry we've got nine people eating soup on a Friday in the South Cariboo, Swedish crop farmers losing money on a good harvest, and a tanker ban that survived its vote this week. Then the big question: if Strathcona's terminal near Prince Rupert gets its exemption, who actually gets paid, and who carries the spill risk? Let's get into it.
+
+**WELCOME**
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. I'm Casey. It's Tuesday, November 3rd, 2026. Today's theme is Working Lands & Industry. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+**RILEY:** [pause:1000] And I'm Riley. Out at Horsefly Lake this morning it's overcast and around 3 degrees, with a high of 5 and a low of 1 today and a 41 percent chance of precipitation. Across the Cariboo, 100 Mile House, Williams Lake, and Quesnel are all around 1 with overcast, and Tatla Lake is around 1 with light drizzle.
+
+**CASEY:** The news roundup is next, and it starts in the Cariboo.
+
+**NEWS ROUNDUP**
+**RILEY:** Margins are the common thread this morning, on farms across Europe and Canada and at mines where the ore keeps getting harder to reach. We start close to home, with a soup program in the South Cariboo.
+
+**CASEY:** [pause:1200] The Canadian Mental Health Association's South Cariboo Branch runs a free soup program every Friday from 10:30 to 11:30 in the morning, and it has run since mid-September. Homeless outreach coordinator Rick McKinney says the first Fridays drew five people, and the busiest drew nine who sat down to eat. Most people also take a to-go soup, and the rest goes out on outreach. A few of the seniors who come every week say it makes them feel less lonely and less isolated.
+
+**RILEY:** Nine people on a Friday is a small room that matters.
+
+**RILEY:** [pause:1200] In Puerto Rico, farms are working together to get healthy food straight to their own communities, and Civil Eats says the push comes from dependence on imports. Hurricane Maria damaged the island's ports so badly that ships could not dock, and after the storm the food stopped coming in. Farmers like Pagan-Roig were able to recover and start feeding their neighbours in the aftermath. The new models are built on that lesson: produce grown close, sold close, and not reliant on a shipping lane.
+
+**CASEY:** [pause:1200] Canadian Forest Industries asks why European sawlog prices are still high. Sawmills are losing money and lumber demand is weak, so logically log prices should fall. They haven't. In Germany, Austria and the Czech Republic, spruce sawlog prices have stayed elevated. The explanations are constrained wood supply and a European timber market that is tightly connected from one country to the next. For Canadian producers, the warning is that high raw material costs can weaken European mills in global markets.
+
+**RILEY:** So the mill takes the squeeze while the log price holds.
+
+**CASEY:** [pause:1200] The Tyee reports that Dominion Critical Minerals wants to reopen a copper and cobalt mining project inside Tatshenshini Park, a World Heritage Site. FOI documents show the project was deemed too hazardous in the 1990s. Now the company wants a second look at it.
+
+**RILEY:** Too hazardous in the nineties is a long finding to walk back.
+
+**CASEY:** [pause:1200] EY surveyed 400 senior mining and metals executives for its Top 10 Business Risks report. Operational complexity ranks as the industry's biggest risk for 2027, ahead of capital availability, supply chain disruptions, rising costs and geopolitics. The cause is aging mines, declining ore grades and deposits that are harder to process. Paul Mitchell, EY's global mining and metals leader, says the complexity keeps rising as reserves are depleted.
+
+**RILEY:** [pause:1200] Agriculture and Agri-Food Canada and Dalhousie University ran a four-year trial of Kernza, a perennial grain also called intermediate wheatgrass. The plots were at the Harrington Research Farm on Prince Edward Island and at Dalhousie's Faculty of Agriculture in Truro, Nova Scotia, and the Atlantic Grains Council funded the work. The crop regrows after harvest and stays productive for several seasons. The researchers say it may suit Maritime conditions and can produce both grain and forage. They tested seeding rates, planting timing, intercropping and nitrogen.
+
+**CASEY:** Four years of plots is solid; farm-scale yields come next.
+
+**RILEY:** [pause:1200] A spring 2026 survey of Swedish farms, reported by dagenslantbruk.se, finds profitability fairly strong overall but uneven by sector. Half of respondents reported good or very good profitability, and 46 percent said it was poor. Larger farms account for most of the plans to invest in livestock buildings, while many smaller dairies are planning to close. The milk profitability index fell from plus 88 last autumn to plus 44 this spring, as milk prices declined.
+
+**CASEY:** [pause:1200] Swedish crop growers had a strong harvest and still lost money. We covered that forecast on October 27th, so the new piece is the currency. Ludvig & Co's review says a stronger krona pushed grain prices down, because grain is priced in dollars while meat and dairy follow the euro more closely. The firm expects another hard year for crop farms in 2026, even with an average harvest. Crop advisers also say some farmers are considering storage after delivery bottlenecks during the big harvest.
+
+**RILEY:** Good crop, thin margin, and a currency that moved the price.
+
+**CASEY:** [pause:1200] Drought, heat and a cold winter with little snow have cut 2026 farm output across Europe and South Asia. In Baden-Württemberg, summer rainfall totalled 156 millimetres, about 45 percent below the 1961 to 1990 average. The state farmers' association estimates forage losses of 30 to 40 percent, and up to 50 percent in the worst-hit spots. France's sunflower harvest is estimated at 1.2 million tonnes, 14 percent below 2025. Sweden's autumn-sown grains took damage from that cold, low-snow winter.
+
+**RILEY:** [overlap:-100] In Shevgaon, Maharashtra, some farmers say they may have to sell their animals.
+
+**CASEY:** [pause:1200] The federal government is investing about 3.8 million dollars through FedNor in eight agriculture and agri-food projects across Northern Ontario. The projects cover grain handling and storage, dairy including robotic milking, maple syrup, greenhouse production and aquaculture. Northern farms often lack nearby grain handling and storage, and the funding targets that gap. Some of the money also helps regional food businesses reach buyers at the Royal Agricultural Winter Fair in Toronto.
+
+**RILEY:** [pause:1200] A 2024 paper posted to arXiv describes how data could leave an air-gapped computer, the kind kept off networks on purpose. The method uses the computer's own RAM. Software on the isolated machine reads and writes memory in a controlled pattern, the memory bus gives off weak electromagnetic emissions, and a nearby receiver with an antenna can pick up and decode the bits. No speaker, network card or cable is needed.
+
+**CASEY:** The attacker still needs a receiver nearby, which is a physical problem more than a network one.
+
+**RILEY:** [pause:1200] Reddit says it is becoming a logged-in-only experience, according to CEO Steve Huffman. The reason is scraping and automated traffic, which has already led Reddit to file lawsuits over alleged unauthorized access to its data. The company has also limited access to Old Reddit.
+
+**CASEY:** So the search trick that finds people's answers now needs a login.
+
+**RILEY:** [pause:1200] German farmer Jana Gäbert has been named the 2026 Kleckner Global Farm Leader Award recipient by the Global Farmer Network. She farms cooperatively south of Berlin, across 4,000 hectares, with 1,100 hectares of pasture and 900 dairy cows. Her advocacy began when public criticism of conventional farming grew in Germany, and nearly seven years later it has taken her to the European Parliament. She says farmers have to balance economics against emissions, biodiversity and animal welfare, while low milk prices limit what they can pass along.
+
+**CASEY:** [pause:1200] Civil Eats publishes a farmer's account of working 80 hours a week, and some seasons closer to 100. Caiti Hachmyer has farmed for 18 years, starting in 2009 with little plan and little money. She writes that the dedication nearly broke her, and she argues there is a better way to do it.
+
+**RILEY:** Eighty-hour weeks for eighteen years reads as a warning to the whole sector.
+
+**CASEY:** [pause:1200] We covered the EU agriculture ministers' partial farm-policy position on Friday. The newer detail is what it asks of member countries: more support for young farmers, succession strategies, and stronger insurance and emergency payment tools after disasters. Countries will define an active farmer within a national framework, and the European Parliament's position is expected in 2027.
+
+**RILEY:** Payment ceilings on larger land-based subsidies are still open, and that's where the money sits.
+
+**CASEY:** [pause:1200] Country Life traces the Pomeranian from a working dog on the Baltic coast. It pulled sledges and guarded livestock before it became a favourite of royalty and fashionable society.
+
+**RILEY:** From sledge dog to drawing-room pet. That's a rough career change.
+
+**CASEY:** [pause:1200] Tom's Hardware reports leaked video that reportedly shows industrial-scale factories in China dismantling thousands of consumer RTX 5090 graphics cards, including Founders Editions, to supply parts for AI servers.
+
+**RILEY:** [pause:1200] Second Harvest says it rescued and redistributed 564 million dollars' worth of surplus food in its fiscal 2026, a 41 percent increase in value over the year before. The food comes from farms, manufacturers, retailers and other businesses, and goes to community organizations that are seeing growing demand.
+
+**RILEY:** That's the roundup. Before the deep dive, a ski hill closer to home.
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** [pause:600] Mt. Timothy Recreation Resort sits near Lac La Hache, and the Mt. Timothy Ski Society runs it as a community-founded group that has kept the hill going for families. You'll find family skiing, a tube park, and 35 runs, serving Williams Lake, Quesnel, and 100 Mile House. Check skitimothy dot com for current conditions before you head up.
+
+**CASEY:** A hill that serves three towns only works if people keep showing up, and this one is built around that.
+
+**CASEY:** Now to the coast, and a tanker ban that didn't move this week.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands & Industry**
+
+**CASEY:** [pause:900] The northern B.C. tanker ban is still in place. The House voted at second reading on Wednesday, October 28th, and the Conservative bill to repeal it, Bill C-264, failed. The vote split along party lines, and only the Conservatives voted to send it to committee.
+
+**RILEY:** [overlap:-100] Right. The NDP and the Bloc voted with the Liberals, so this wasn't one party holding the line. The mechanism is simple. The law bars tankers carrying more than 12,500 metric tonnes of crude from loading or unloading in the covered northern waters. Smaller shipments for community resupply still move. What it limits is how much goes on any one ship.
+
+**CASEY:** So does the cap block the exports, the jobs and the prices? Or does it only decide where the cargo goes, which route carries the risk, and who gets paid for carrying it?
+
+**RILEY:** The arithmetic answers part of that. Strathcona Resources wants to move up to 250,000 barrels a day of Western Canadian heavy crude, by rail on existing tracks to a new terminal near Prince Rupert, then by tanker to Asian markets. That's roughly 40 million litres a day.
+
+**CASEY:** And a single ship under the ban tops out at 12,500 tonnes. Run typical heavy crude density through it and 40 million litres is something like 37,000 tonnes. Call it three capped loads a day, as a rough back-of-envelope.
+
+**RILEY:** Three loads a day is a scheduling problem. You don't remove the volume. You change the berths, the timing and the number of ships.
+
+**CASEY:** More ships on the same coast. Every load is another trip through the waters the ban covers.
+
+**RILEY:** Or the loading moves out of the covered waters entirely. That's what the pipeline discussion is about, and it's the piece I'd look at first.
+
+**CASEY:** [overlap:-100] Mm-hm. We'll get there. First the price argument.
+
+**RILEY:** Repeal supporters say the ban stands between Canadian resources and better prices, and that Canada can't be an energy superpower with federal policy in the way. Danielle Smith backed the repeal. Conservative natural resources critic Carol Anstey argues a private shipping proposal means Canadian jobs and more export customers. Those are the claims a critic has to answer.
+
+**CASEY:** Both are projections from the people selling it. Until someone puts a per-barrel figure on "better price" and says who keeps the difference, it's a slogan.
+
+**RILEY:** Who keeps it matters. But a producer that can reach a second set of buyers in Asia is making a concrete claim. Diversifying where the barrels go changes what a barrel is worth to the seller. You can test that.
+
+**CASEY:** Test it with what? The gap between a coastal sale and a landlocked sale is the number nobody puts in a press release. Show me the discount and the word superpower starts to mean something.
+
+**RILEY:** Then demand the discount as a condition of the hearing. A pitch that leaves out its key number should be made to produce it before anyone rules on the route.
+
+**CASEY:** In writing. And look at who's pitching. Strathcona is a Calgary company, and its chairman is Adam Waterous. The plan is billed as a private, unsubsidized venture, with a target of about two years. It also can't go ahead without an exemption from the tanker ban.
+
+**RILEY:** That exemption is the crux. A shipper with a specific volume, a specific route and a specific loading point is asking for one. The ban treats it the same way it treats every other cargo. Why shouldn't a bounded plan be evaluated on its own terms?
+
+**CASEY:** Because case by case means every pitch gets argued from scratch, with a fresh set of promises each time. The ban's value is a fixed baseline, even a blunt one.
+
+**RILEY:** Blunt works when the alternative is no test at all. But Anstey offered amendments to win Liberal support. A negotiated version of the rule was already on the table.
+
+**CASEY:** For one vote. The bill failed at second reading, and the offer went with it.
+
+**RILEY:** And that's what I'd say to the government. The path existed, and it closed on a party-line split. Nobody got to test the amendments against a real proposal.
+
+**CASEY:** [overlap:-100] Ha. Superpower is a big word for a terminal that needs an exemption before it can start. A pitch is not a permit.
+
+**RILEY:** Agreed, it's a pitch. The two-year timeline can still be checked against the first permit application.
+
+**CASEY:** If there is one. Two years is aggressive for a project without the legal ground to start.
+
+**RILEY:** Then look at the government side. Prime Minister Mark Carney struck a deal with B.C. this summer to keep the ban. Then he and Smith routed the proposed Alberta-to-West Coast pipeline south to respect it. Smith originally wanted it to go north. So the route moved to fit the rule, and that's the signal I'd read first.
+
+**CASEY:** The other reading is that the Alberta side never accepted the southern route as enough. Smith still backed repeal. A route moved south is a line on a map, not a pipe in the ground.
+
+**RILEY:** A line on a map is where every big project starts. The question is whether the rule moved the project, or the project moved the rule. Here the rule held and the route bent. I'd copy that design.
+
+**CASEY:** [overlap:-100] Or the route bent because repeal wasn't winnable this year. Different lessons.
+
+**RILEY:** The politics explain why it bent. They don't change what the route does on paper.
+
+**CASEY:** Paper is where the optimism lives. Now the people on the other side. Coastal First Nations is an alliance of eight nations. Its president is Marilyn Slett, who is also chief councillor of the Heiltsuk Nation. The alliance has opposed lifting the ban since the Carney and Smith memorandum of understanding on November 27th, 2025. It points to the Great Bear Rainforest conservation economy: about 1,400 permanent jobs, 140 businesses and nearly 2 billion dollars in economic value.
+
+**RILEY:** Those jobs are real, and they're spread across a whole economy. Strathcona's pitch has no jobs figure to set against them. So you're weighing jobs built up over years against a single proposal without a permit.
+
+**CASEY:** Then take the measured number. An independent report commissioned by Coast Funds found that nearly 30 First Nations in the Great Bear Rainforest and Haida Gwaii generated about 1.8 billion dollars in economic output between 2008 and 2024. The seed was 60 million dollars in provincial and federal investment.
+
+**RILEY:** That's about thirty dollars of output for each dollar of public seed money. Measured, not projected. I'd take that over a pitch deck.
+
+**CASEY:** Slow down on the thirty. That 60 million leveraged 254 million in total investment across 235 projects. Measured against all of it, you're closer to seven dollars of output per dollar. And output is gross activity, not income in anyone's pocket.
+
+**RILEY:** Seven still beats a projection with no number on it. You've moved me off thirty-to-one; you haven't moved me off output as the yardstick, because the alternative yardstick is a company's projected margin.
+
+**CASEY:** The Heiltsuk make a governance argument as well. They say the pipeline proposal has no company behind it, no funding, and no Indigenous co-ownership interest.
+
+**RILEY:** [pause:400] Which is a gap I'd close before touching the rule. A pitch without an owner is missing a piece, and co-ownership is the piece that changes who captures the value.
+
+**CASEY:** Co-ownership changes who collects. It doesn't change who carries the spill risk unless the terms say so. Has anyone written those terms?
+
+**RILEY:** No one has put them forward. That's an open item, and it stays open.
+
+**CASEY:** Then the other side of the ledger. BC Nature's backgrounder argues regular tanker traffic would harm cetacean populations. Whales don't read the economic report.
+
+**RILEY:** A backgrounder is an argument. It should be met with traffic counts and whale data before anyone signs anything, from either side.
+
+**CASEY:** Fine. But we already know who bears it. The coast carries the traffic, and the terminal's margin, if there is one, goes to a private company.
+
+**RILEY:** Unsubsidized means the company is putting its own money on the hook. That's the strongest form of the pitch.
+
+**CASEY:** And its weakest half. The public isn't paying for the terminal. Nor is the public paid for the risk.
+
+**RILEY:** Then the risk terms are what to demand. Spill response, insurance, liability. Read those clauses before anyone signs.
+
+**CASEY:** Now our end. Keeping the ban means the existing oil cargo rules stay in force for Cariboo households and industries that rely on Pacific ports. Williams Lake, Quesnel and 100 Mile House are inland. Whether their freight runs through Prince Rupert specifically is a question for the people who ship it, and I won't guess.
+
+**RILEY:** Nor will I guess at the rail line. But a region with port-dependent industry should know what cargo moves through the corridor it depends on.
+
+**CASEY:** Quesnel and Williams Lake built their economies on forest products and ranching. A cattle sale or a lumber load doesn't care which tanker is in port. Its freight costs do.
+
+**RILEY:** [overlap:-100] Which makes a good test. Ask a mill manager what a longer haul to a different port would do to a load. That answer would tell you more than either press release.
+
+**CASEY:** It would tell you about one mill. The pipeline people answer for the barrel. Nobody answers for the freight already moving on the region's rail and roads.
+
+**RILEY:** Then put it to the people who run those mills, at a town hall. Who in Quesnel or Williams Lake would notice a change in port access first?
+
+**CASEY:** Whoever answers the phone at the freight desk. Nobody's quoting them.
+
+**RILEY:** Which is why I'd widen the table instead of leaning on a rule that keeps it small.
+
+**CASEY:** Look at who's at it now. Two governments, the Conservatives, one proponent and the coastal nations. No Cariboo town.
+
+**RILEY:** There was a table, and it had two governments at it. That's a process gap. It's the first thing I'd fix, even slowly and imperfectly.
+
+**CASEY:** Slowly means the route gets chosen before the table is set. The Heiltsuk already say the proposal has no Indigenous co-ownership. That table isn't built yet.
+
+**RILEY:** [pause:600] Then the choice is between a fixed rule and a negotiated route. A fixed rule protects the coast from the next pitch. A negotiated route gets the next pitch built, if the terms are written in.
+
+**CASEY:** A fixed rule holds only as long as the next vote goes the same way. This one held at second reading on a party-line split. That's a single vote, not permanence.
+
+**RILEY:** So write the routing into the rule. Put the communities into the drafting, beyond the signing.
+
+**CASEY:** Who drafts it?
+
+**RILEY:** I don't have a clean answer. What could work is a list of who signs the routing decision, with a Cariboo voice on it, and the discount figure and the spill terms attached before anyone votes again.
+
+**CASEY:** And until someone shows what the region gets if the cargo changes, the jobs and the better prices stay unproven. If you work a freight desk, a mill or a ranch and you'd know first, write to us at feedback at cariboo signals dot c-a. Have a great rest of your day.
+
+**RILEY:** And watch the drizzle out near Tatla Lake.
