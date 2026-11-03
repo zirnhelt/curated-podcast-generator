@@ -404,3 +404,12 @@ def test_the_review_scores_hosts_against_their_voice_cards():
 
 def test_a_host_without_a_card_renders_no_card_header():
     assert rs._format_voice_card({"full_bio": "x"}) == ""
+
+
+def test_the_flow_thumb_is_read_with_the_segments():
+    """review.html's episode card gained a whole-episode "Flow" thumb (2026-11-03)."""
+    import review_scripts as rs
+    row = {"episode_verdict": "keep", "episode_segments": {"roundup": "up", "flow": "down"}}
+    assert rs._segments(row) == {"roundup": "up", "flow": "down"}
+    assert "Flow 👎" in rs._segment_summary(row)
+    assert "| Flow | 0 | 1 |" in "\n".join(rs.segment_lines({"2026-11-03": row}))

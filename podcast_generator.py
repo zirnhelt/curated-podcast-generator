@@ -6904,6 +6904,10 @@ ROUNDUP_REPAIR_PASSES = 2
 # its roundup is a worse outcome than a shorter local block.
 ROUNDUP_THEME_FLOOR = 3
 
+# A planned beat counts as aired at this share of its claim+evidence words in the
+# deep dive (storyboard_flow_line).
+STORYBOARD_BEAT_AIRED_OVERLAP = 0.42
+
 # The feed's charter fit decides the theme block where a keyword cannot. On
 # 2026-11-03 (Working Lands) one bare-word hit each ("resource", "industrial",
 # "livestock") filed Reddit's login wall, an air-gap RAM paper, Chinese GPU
@@ -7495,6 +7499,54 @@ def theme_fit_line(roundup: list, deep_dive: list, dropped: list) -> str:
     return (f"🎯 Theme fit: theme block off-charter {len(mislabelled)} ({titles})"
             f"; deep dive lead {lead_label}, sources {len(sources)}, "
               f"unused on-theme {len(unused)}")
+
+
+def _deep_dive_body(script: str) -> str:
+    """The Deep Dive section's text, header excluded; '' when it can't be found."""
+    lines = script.splitlines()
+    start = next((i for i, l in enumerate(lines)
+                  if l.strip().upper().startswith("**DEEP DIVE")), None)
+    if start is None:
+        return ""
+    end = next((i for i in range(start + 1, len(lines))
+                if _SECTION_HEADER_RE.match(lines[i].strip())), len(lines))
+    return "\n".join(lines[start + 1:end])
+
+
+def storyboard_flow_line(script: str, roundup: list, plan: dict | None) -> str:
+    """One log line the episode review reads its storyboard-flow signals from.
+
+    The storyboard plans an order, bridges and a beat chain; nothing checked
+    that the script kept to it. Roundup order counts adjacent stories (in the
+    applied plan's order) whose first mentions aired in that order. A beat
+    "aired" when enough of its claim and evidence words reach the deep dive
+    (STORYBOARD_BEAT_AIRED_OVERLAP: planned beats scored 0.46-0.79 against their
+    own episode, at most 0.39 against another day's, 2026-10-30..11-03). Named
+    bridges are shown, never flagged: a clean pivot beats an invented link.
+    """
+    if not plan:
+        return "🧩 Storyboard flow: unplanned"
+    _, body, _ = _slice_roundup(script)
+    turns = [l for l in (body or "").splitlines() if _SPEAKER_TURN_RE.match(l.strip())]
+    outlets = Counter(_article_source_name(a).lower() for a in roundup)
+    pos = [_article_first_mention(a, turns,
+                                  match_source=outlets[_article_source_name(a).lower()] == 1)
+           for a in roundup]
+    pairs = [(p, q) for p, q in zip(pos, pos[1:]) if p is not None and q is not None]
+    in_order = sum(1 for p, q in pairs if p <= q)
+    stories = (plan.get("roundup") or {}).get("stories") or []
+    named = sum(1 for st in stories
+                if (st.get("bridge_to_next") or "").strip().lower() not in ("clean pivot", "handoff", ""))
+    dd_words = _significant_words(_deep_dive_body(script))
+    beats = (plan.get("deep_dive") or {}).get("beats") or []
+    aired = 0
+    for b in beats:
+        words = _significant_words(f"{b.get('claim', '')} {b.get('evidence', '')}")
+        if words and len(words & dd_words) / len(words) >= STORYBOARD_BEAT_AIRED_OVERLAP:
+            aired += 1
+    return (f"🧩 Storyboard flow: roundup in plan order {in_order}/{len(pairs)}, "
+            f"bridges named {named}/{max(len(stories) - 1, 0)}; "
+            f"deep dive beats aired {aired}/{len(beats)}")
 
 
 def check_roundup_order(script: str, ordered_articles: list) -> list:
@@ -9806,6 +9858,8 @@ STORYBOARD_MODEL = os.getenv("CLAUDE_STORYBOARD_MODEL") or SCRIPT_MODEL
 STORYBOARD_MAX_TOKENS = 32000
 # The citations record what the script was told to follow; set per run.
 _storyboard_used: dict | None = None
+# The roundup in the applied plan's order, for storyboard_flow_line; set per run.
+_storyboard_roundup: list | None = None
 
 _STORYBOARD_SCHEMA = {
     "type": "object",
@@ -10419,8 +10473,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
     theme_lens = _build_theme_lens(theme_name, focus=focus, event_focus=event_focus,
                                    extra_events=extra_events)
 
-    global _storyboard_used
+    global _storyboard_used, _storyboard_roundup
     _storyboard_used, storyboard = None, ""  # the fallback; set before the block
+    _storyboard_roundup = None
     if STORYBOARD_ENABLED and (roundup_articles or deep_dive_articles):
         with segment("script/storyboard", critical=False):
             numbered_news = "\n".join(
@@ -10435,6 +10490,7 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                                                      anchor_id=(anchor or {}).get('id')))
             storyboard = format_storyboard_for_prompt(_storyboard_used, roundup_articles)
             roundup_articles = apply_storyboard_order(_storyboard_used, roundup_articles)
+            _storyboard_roundup = list(roundup_articles)
             news_text = _render_news_text(roundup_articles)
         if not storyboard:
             degrade("script/storyboard", "no storyboard; the script was written unplanned")
@@ -14483,6 +14539,8 @@ def run_script_stage() -> tuple[str, str] | None:
         with segment("script/roundup-shape", critical=False):
             print(roundup_shape_line(script, news_articles, deep_dive_articles, local_available))
             print(theme_fit_line(news_articles, deep_dive_articles, _roundup_dropped))
+            print(storyboard_flow_line(script, _storyboard_roundup or news_articles,
+                                       _storyboard_used))
 
         with segment("script/cold-open", critical=False):
             # Generate the cold open last, now that the News Roundup and Deep

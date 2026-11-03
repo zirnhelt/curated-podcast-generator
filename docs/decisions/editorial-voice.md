@@ -687,3 +687,22 @@ week's question somewhere new, or picks up what a landing left open when today's
 fact; it never re-asks one of those questions. A callback is permission, not an obligation, the same
 escape hatch the anchor has: the risk is hosts saying "as we said Tuesday" every morning. About 150 tokens per earlier day on the Sonnet storyboard, under $0.001 a night. Dynamic
 prompt only.
+
+## Judging the storyboard's flow (2026-11-03)
+
+The producer asked to judge continuity and flow within a single storyboard, by the system and by ear.
+
+**The system.** `storyboard_flow_line` checks the script against the plan it was written to, in Python:
+roundup stories aired in the applied plan's order (adjacent pairs, by first mention), bridges that name
+a shared thing, and planned deep-dive beats that aired. A beat counts as aired when 0.42 of its claim
+and evidence words reach the deep dive: across 2026-10-30, 11-02 and 11-03 every planned beat scored
+0.46-0.79 against its own episode and at most 0.39 against another day's. `storyboard-drift` fires
+under 60% of beats aired, or under 75% of at least 6 placed roundup pairs in order (11-03: 9/12, 5/5
+beats, no drift; its trouble was selection, not drift). Named bridges are shown and never flagged: the
+roundup rule is that a clean pivot beats a manufactured connection, so a choppy-but-honest day is not
+a defect.
+
+**By ear.** The nightly review page shows "The plan": the roundup frame, the named bridges, the
+handoff, the question, both hosts' starting positions, the beat chain with each "then, because", and
+the landing. The episode card in `super-rss-feed`'s `review.html` gains a whole-episode "Flow" thumb
+beside the segment thumbs; `review_scripts.py` tallies it with them in the weekly script review.

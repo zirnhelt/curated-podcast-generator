@@ -878,3 +878,39 @@ def test_theme_fit_signals_get_their_own_action_line():
                               "thin-deep-dive": "z"})
     assert "Investigate." not in html
     assert "_annotate_roundup_blocks" in html
+
+
+def test_storyboard_drift_signal():
+    import episode_review as er
+    drifted = er.scan_log("🧩 Storyboard flow: roundup in plan order 4/10, bridges named 1/17; "
+                          "deep dive beats aired 2/5")["storyboard_flow"]
+    assert drifted == [4, 10, 1, 17, 2, 5]
+    detail = er.run_signals({"storyboard_flow": drifted})["storyboard-drift"]
+    assert "2/5 planned deep-dive beats" in detail and "4/10 roundup pairs" in detail
+    # 2026-11-03: 9/12 in order and every beat aired is the plan kept.
+    kept = er.scan_log("🧩 Storyboard flow: roundup in plan order 9/12, bridges named 4/17; "
+                       "deep dive beats aired 5/5")["storyboard_flow"]
+    assert "storyboard-drift" not in er.run_signals({"storyboard_flow": kept})
+    # Too few placed pairs to judge order; a choppy roundup (few named bridges) is never drift.
+    few = er.scan_log("🧩 Storyboard flow: roundup in plan order 1/4, bridges named 0/17; "
+                      "deep dive beats aired 4/4")["storyboard_flow"]
+    assert "storyboard-drift" not in er.run_signals({"storyboard_flow": few})
+
+
+def test_the_review_page_shows_the_plan(tmp_path, monkeypatch):
+    import episode_review as er
+    plan = {"roundup": {"opening_frame": "Margins day", "handoff": "who carries the cost",
+                        "stories": [{"bridge_to_next": "Mining: <one> to the next"},
+                                    {"bridge_to_next": "clean pivot"}]},
+            "deep_dive": {"central_question": "Does the ban move the risk?",
+                          "riley_holds": "They coexist", "casey_holds": "Prove it",
+                          "beats": [{"claim": "The ban is narrow", "leads_to_next": "so who pays"}],
+                          "landing": "Who gets a seat"}}
+    (tmp_path / "citations_2026-11-03_x.json").write_text(json.dumps({"storyboard": plan}))
+    monkeypatch.setattr(er, "CITATIONS_GLOB", str(tmp_path / "citations_{date}_*.json"))
+    html = er.render_plan(er.load_storyboard("2026-11-03"),
+                          {"storyboard_flow": [9, 12, 4, 17, 5, 5]})
+    assert "<h2>The plan</h2>" in html and "Does the ban move the risk?" in html
+    assert "9/12 adjacent stories" in html and "&lt;one&gt;" in html
+    assert "<li>clean pivot</li>" not in html  # only named bridges are listed
+    assert er.render_plan(er.load_storyboard("2026-10-01"), {}) == ""
