@@ -672,3 +672,24 @@ and other calls that use `POLISH_MODEL` (the roundup-order repair), are not sepa
 `CLAUDE_REVIEW_MODEL` is also read by `episode_review.py` (the nightly review, and the roadmap
 distiller through `ROADMAP_MODEL`). It is passed only to `periodic-review.yml`; passing it to
 `daily-podcast.yml` would move both off Haiku.
+
+## Theme-fit signals for the nightly review (2026-11-03)
+
+The 2026-11-03 nightly review said "Nothing. The run needs no follow-up." for an episode the producer
+flagged the same morning: four stories in the roundup's theme block at the 4th-41st charter
+percentile, and a deep dive that aired one source at p58 while candidates at p85-98 went unused. The
+review reads the run's own facts, and by those the run was clean: nothing degraded, curation did what
+it was written to do. Only the producer's ear, then a manual comparison of the feed's charter scores,
+found it.
+
+`theme_fit_line` now prints those comparisons in the script stage (pure Python over `_theme_score` and
+`_theme_score_raw`, no API call), and `run_signals` turns them into three signals:
+
+- `off-charter-theme-block`: a story filed `theme`/`theme_adjacent` under p`THEME_BLOCK_MIN_PCT`. The
+  charter gate in `_annotate_roundup_blocks` should make this impossible, so the signal is its guard.
+- `off-theme-deep-dive`: a non-local deep-dive lead under p70, the Cariboo bar's floor.
+- `thin-deep-dive`: one source while 2+ non-local candidates at the promotion bar (p85, raw 40) sat in
+  the roundup or the cut list. A one-source deep dive on a day with nothing better is not a signal.
+
+The tail and the kicker are off-theme by design and never counted. Thresholds mirror
+`podcast_generator`'s constants; a test pins them together.

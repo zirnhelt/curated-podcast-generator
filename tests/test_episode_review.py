@@ -844,3 +844,37 @@ def test_roundup_shape_signals():
     assert set(signals) >= {"no-local-roundup", "split-topic", "deep-dive-non-local"}
     clean = er.run_signals({"roundup_shape": [2, 2, "yes", "none", "yes"]})
     assert not {"no-local-roundup", "split-topic", "deep-dive-non-local"} & set(clean)
+
+
+def test_theme_fit_signals():
+    """2026-11-03 shipped as "Nothing. The run needs no follow-up" with four
+    off-charter stories in the theme block and a one-source deep dive at p58."""
+    import episode_review as er
+    import podcast_generator as pg
+    assert er.THEME_BLOCK_MIN_PCT == pg.THEME_BLOCK_MIN_PCT
+    assert er.DEEP_DIVE_LEAD_MIN_PCT == pg.DEEP_DIVE_PICK_MIN_PCT
+    line = ("🎯 Theme fit: theme block off-charter 2 (Reddit will force everyone to log in; "
+            "Leaking secrets from air-gap computers); deep dive lead p58, sources 1, "
+            "unused on-theme 3")
+    fit = er.scan_log(line).get("theme_fit")
+    assert fit == [2, "Reddit will force everyone to log in; Leaking secrets from air-gap computers",
+                   "p58", 1, 3]
+    signals = er.run_signals({"theme_fit": fit})
+    assert set(signals) >= {"off-charter-theme-block", "off-theme-deep-dive", "thin-deep-dive"}
+    assert "Reddit" in signals["off-charter-theme-block"]
+    for clean in ("🎯 Theme fit: theme block off-charter 0 (); deep dive lead p91, sources 4, unused on-theme 2",
+                  "🎯 Theme fit: theme block off-charter 0 (); deep dive lead local, sources 1, unused on-theme 3",
+                  "🎯 Theme fit: theme block off-charter 0 (); deep dive lead ?, sources 1, unused on-theme 1"):
+        got = er.run_signals({"theme_fit": er.scan_log(clean)["theme_fit"]})
+        assert not {"off-charter-theme-block", "off-theme-deep-dive"} & set(got), clean
+    assert "thin-deep-dive" in er.run_signals(
+        {"theme_fit": er.scan_log("🎯 Theme fit: theme block off-charter 0 (); deep dive lead local, "
+                                  "sources 1, unused on-theme 3")["theme_fit"]})
+
+
+def test_theme_fit_signals_get_their_own_action_line():
+    import episode_review as er
+    html = er.render_actions({"off-charter-theme-block": "x", "off-theme-deep-dive": "y",
+                              "thin-deep-dive": "z"})
+    assert "Investigate." not in html
+    assert "_annotate_roundup_blocks" in html

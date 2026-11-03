@@ -7799,6 +7799,50 @@ class TestCaribooDeepDivePick:
         assert [(a["url"], a["_recalled_from"]) for a in got] == [("https://r", "Thursday")]
 
 
+class TestThemeFitLine:
+    """2026-11-03's numbers, as the review's parser reads them back."""
+
+    def test_tuesday_reads_as_three_signals(self):
+        import podcast_generator as pg
+        import episode_review as er
+        roundup = [
+            {"title": "[The Verge] Reddit will force everyone to log in", "url": "https://r",
+             "_roundup_block": "theme", "_theme_score": 4},
+            {"title": "[Country Life] Before the (pocket-size) Pomeranian", "url": "https://p",
+             "_roundup_block": "theme", "_theme_score": 41},
+            {"title": "[The Tyee] A BC firm aims to mine a park", "url": "https://t",
+             "_roundup_block": "theme", "_theme_score": 85, "_theme_score_raw": 42},
+            # Off-theme by design: the tail and the kicker never count.
+            {"title": "[Tom's Hardware] GPU teardowns", "url": "https://g",
+             "_roundup_block": "kicker", "_theme_score": 28},
+            {"title": "[dagenslantbruk.se] Swedish farm survey", "url": "https://s",
+             "_roundup_block": "theme", "_theme_score": 97, "_theme_score_raw": 68},
+        ]
+        dropped = [{"title": "[Mining.com] Codelco scandal", "url": "https://c",
+                    "_theme_score": 94, "_theme_score_raw": 62}]
+        deep = [{"title": "[cbc.ca] Liberals defeat bill to repeal tanker ban", "url": "https://k",
+                 "_theme_score": 58}]
+        line = pg.theme_fit_line(roundup, deep, dropped)
+        assert line.startswith("🎯 Theme fit: theme block off-charter 2 (Reddit")
+        assert "pocket-size" in line and "(pocket" not in line
+        fit = er.scan_log(line)["theme_fit"]
+        assert fit[2:] == ["p58", 1, 3]
+        assert {"off-charter-theme-block", "off-theme-deep-dive", "thin-deep-dive"} <= set(
+            er.run_signals({"theme_fit": fit}))
+
+    def test_a_clean_day_reads_clean(self):
+        import podcast_generator as pg
+        import episode_review as er
+        roundup = [{"title": "Glencore cobalt output", "url": "https://g", "_roundup_block": "theme",
+                    "_theme_score": 93, "_theme_score_raw": 60}]
+        deep = [{"title": f"[Outlet{i}] Mill curtailment", "url": f"https://{i}",
+                 "_theme_score": 95} for i in range(4)]
+        line = pg.theme_fit_line(roundup, deep, [])
+        assert line == ("🎯 Theme fit: theme block off-charter 0 (); deep dive lead p95, "
+                        "sources 4, unused on-theme 1")
+        assert not er.run_signals({"theme_fit": er.scan_log(line)["theme_fit"]})
+
+
 class TestRoundupShapeLine:
     """The review said 'Shipped clean' on 2026-10-28; the shape line gives it
     no-local-roundup, split-topic and deep-dive-non-local."""
