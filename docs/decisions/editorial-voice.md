@@ -652,3 +652,21 @@ the script follows the plan, it does not have to have reasoned it.
 variable overrides it, and `claude-haiku-5-5` rolls back. A Sonnet 5.5 decline retries on Sonnet 5
 (`_REFUSAL_FALLBACK`). Read the plans in the citations JSON (`storyboard`) for a week against the
 Haiku ones from 2026-10-27 to 2026-10-31 before keeping it.
+
+## The hosts' stances cover land and resource stories (2026-11-03)
+
+The producer heard the deep-dive hosts "take a role reversal of their usual positions" on the
+northern B.C. tanker ban. The storyboard had assigned the usual stances; the stances themselves were
+the problem. Both `debate_style` lines in `config/hosts.json` were written about technology: Riley's
+"let's figure out how to make it work" landed on repealing a protective rule for a private crude
+terminal, and Casey's skepticism on defending it. On local and community stories the hosts sound the
+other way round. The script also pushed Riley past the plan (from "the ban and exports can coexist"
+to "replace the ban").
+
+Each style now carries one sentence for land and resource stories (forestry, mining, energy,
+ranching). Riley backs projects that the communities and First Nations they cross help design, share
+in, or can say no to, and does not argue a company's plan on the company's terms. Casey asks who
+carries the risk, who keeps the margin and who was left off the table, and holds a protective rule
+to its record before trading it for a promise. `debate_style` reaches only the storyboard, which sets `riley_holds` and `casey_holds`; the same
+rule is one line in the cached script prompt's IN DEBATE list, because the script drifted past the
+plan. About 80 tokens on the storyboard prompt and 70 on the cached prompt (written once a day).

@@ -122,3 +122,19 @@ def test_no_voice_style_leaves_no_trace(monkeypatch):
     prompt = pg.build_cached_system_prompt()
     assert "{riley_voice}" not in prompt and "{casey_voice}" not in prompt
     assert "pre-announce her moves.\n\nCASEY'S SPEECH:" in prompt
+
+
+def test_both_hosts_carry_a_land_and_resource_stance():
+    """2026-11-03: the stances were written for technology only, so on an oil
+    tanker ban Riley's 'make it work' argued the company's side and the producer
+    heard the hosts swap roles. Both styles name the resource case."""
+    import podcast_generator as pg
+    hosts = pg.CONFIG["hosts"]
+    riley, casey = hosts["riley"]["debate_style"], hosts["casey"]["debate_style"]
+    assert "land and resource stories" in riley and "land and resource stories" in casey
+    assert "on the company's terms" in riley
+    assert "carries the risk" in casey
+    # The storyboard assigns the starting positions from debate_style; the cached
+    # script prompt keeps the script from drifting past them.
+    assert "{riley_style}" in pg.CONFIG["prompts"]["script_storyboard"]["template"]
+    assert "land and resource stories" in pg.build_cached_system_prompt()
