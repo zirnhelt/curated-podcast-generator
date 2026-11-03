@@ -7464,6 +7464,39 @@ def roundup_shape_line(script: str, roundup: list, deep_dive: list,
             f"{'yes' if dd_local else 'no'}")
 
 
+def theme_fit_line(roundup: list, deep_dive: list, dropped: list) -> str:
+    """One log line the episode review reads its theme-fit signals from.
+
+    On 2026-11-03 the nightly review said "Nothing. The run needs no follow-up"
+    for an episode whose theme block held four stories at the 4th-41st charter
+    percentile and whose deep dive aired one source at p58 while candidates at
+    p85-98 went unused. The run had every number; nothing compared them. Pure
+    Python over fields the feed already sends.
+    """
+    def pct(a):
+        return a.get('_theme_score')
+
+    mislabelled = [a for a in roundup
+                   if a.get('_roundup_block') in ('theme', 'theme_adjacent')
+                   and not (a.get('_held_from') or a.get('_recalled_from'))
+                   and pct(a) is not None and pct(a) < THEME_BLOCK_MIN_PCT]
+    sources = [a for a in deep_dive if not a.get('_recalled_from')]
+    lead = sources[0] if sources else None
+    lead_pct = pct(lead) if lead else None
+    lead_label = ('local' if lead is not None and _is_local_article(lead)
+                  else f"p{lead_pct}" if lead_pct is not None else '?')
+    used = {a.get('url') for a in sources}
+    unused = [a for a in list(roundup) + list(dropped)
+              if a.get('url') not in used and not _is_local_article(a)
+              and (pct(a) or 0) >= THEME_BLOCK_PROMOTE_PCT
+              and (a.get('_theme_score_raw') or 0) >= THEME_BLOCK_PROMOTE_RAW]
+    titles = "; ".join(re.sub(r"[();]", "", re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', '')))[:40]
+                       for a in mislabelled)
+    return (f"🎯 Theme fit: theme block off-charter {len(mislabelled)} ({titles})"
+            f"; deep dive lead {lead_label}, sources {len(sources)}, "
+              f"unused on-theme {len(unused)}")
+
+
 def check_roundup_order(script: str, ordered_articles: list) -> list:
     """Find stories the script aired after a story from a later block.
 
@@ -14400,6 +14433,7 @@ def run_script_stage() -> tuple[str, str] | None:
 
         with segment("script/roundup-shape", critical=False):
             print(roundup_shape_line(script, news_articles, deep_dive_articles, local_available))
+            print(theme_fit_line(news_articles, deep_dive_articles, _roundup_dropped))
 
         with segment("script/cold-open", critical=False):
             # Generate the cold open last, now that the News Roundup and Deep

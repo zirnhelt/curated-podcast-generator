@@ -229,6 +229,8 @@ _SINGLE: dict[str, tuple[str, list[type]]] = {
     "citation_alignment": (r"Citation alignment: (\d+)/(\d+) news, (\d+)/(\d+) deep-dive", [int, int, int, int]),
     "roundup_shape": (r"🧭 Roundup shape: local available (\d+), aired (\d+), opened local (yes|no); "
                       r"split subjects: (.+?); deep dive Cariboo: (yes|no)", [int, int, str, str, str]),
+    "theme_fit": (r"🎯 Theme fit: theme block off-charter (\d+) \((.*?)\); deep dive lead "
+                  r"(local|p\d+|\?), sources (\d+), unused on-theme (\d+)", [int, str, str, int, int]),
     "anchor": (r"❓ This week's question: (.+)", [str]),
     "debate_question": (r"Debate question: (.+)", [str]),
     "psa": (r"🏘️  Community Spotlight: (.+)", [str]),
@@ -395,6 +397,8 @@ _FIELDS: dict[str, list[str]] = {
                            "deep_dive_citations_matched", "deep_dive_citations_total"],
     "roundup_shape": ["local_stories_available", "local_stories_aired", "roundup_opened_local",
                       "split_subjects", "deep_dive_cariboo"],
+    "theme_fit": ["theme_block_off_charter", "off_charter_titles", "deep_dive_lead_charter",
+                  "deep_dive_sources", "unused_on_theme_candidates"],
     "spend": ["anthropic_input_tokens", "api_calls_by_service"],
     "video": ["video_size_mb", "video_minutes"],
     "clusters": ["cluster_key", "canonical_title", "duplicates_suppressed"],
@@ -609,6 +613,13 @@ _ACTIONS: dict[str, str] = {
     "ai-tells-shipped": "Find the phrase in the script. If it recurs, add it to "
                         "<code>config/ai_tells.json</code>.",
     "voice-ratio": "One host carried the episode. Check the turn split in the script.",
+    "off-charter-theme-block": "A story aired as on-theme that the feed's charter scored low. Check its "
+                               "<code>_theme_score</code> in the day's podcast feed and the charter gate "
+                               "in <code>_annotate_roundup_blocks</code>.",
+    "off-theme-deep-dive": "The deep dive's lead fit today's theme poorly. Read the run log's "
+                           "deep-dive selection and Cariboo pick against the feed's charter scores.",
+    "thin-deep-dive": "The deep dive ran on one source with on-theme candidates unused. Read the "
+                      "Cariboo pick line in the run log and the candidates it passed over.",
 }
 
 _STATUS = {  # level → (icon, label); colour comes from the CSS class
@@ -1081,6 +1092,13 @@ AI_TELL_SIGNAL_ABOVE = 3
 # since 2026-10-27 (docs/MANIFESTO.md, "short and strong beats full and thin"),
 # and flagging it would keep a roadmap item open over intended behaviour.
 SHORT_EPISODE_WORDS = 2800
+# Theme fit (`theme_fit_line`). The first two mirror podcast_generator's
+# THEME_BLOCK_MIN_PCT and DEEP_DIVE_PICK_MIN_PCT (a test pins them together): a
+# story the gates should have kept out is the signal. A one-source deep dive is
+# a signal only when on-theme material sat unused, since some days have no more.
+THEME_BLOCK_MIN_PCT = 50
+DEEP_DIVE_LEAD_MIN_PCT = 70
+THIN_DEEP_DIVE_UNUSED = 2
 _CLOSED_SHOWN = 25
 
 _FINDING_SCHEMA = {
@@ -1180,6 +1198,20 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
             signals["split-topic"] = f"one subject aired in separate places: {split}"
         if dd_local == "no":
             signals["deep-dive-non-local"] = "the deep dive had no Cariboo story or angle"
+    # Theme fit, from `theme_fit_line`: the charter scores the feed already sends,
+    # compared the way the 2026-11-03 producer note had to compare them by hand.
+    fit = facts.get("theme_fit")
+    if isinstance(fit, list) and len(fit) == 5:
+        mislabelled, titles, lead, sources, unused = fit
+        if mislabelled:
+            signals["off-charter-theme-block"] = (
+                f"{mislabelled} theme-block stor(ies) under the p{THEME_BLOCK_MIN_PCT} charter fit"
+                + (f": {titles}" if titles else ""))
+        if isinstance(lead, str) and lead.startswith("p") and int(lead[1:]) < DEEP_DIVE_LEAD_MIN_PCT:
+            signals["off-theme-deep-dive"] = f"the deep dive's lead sat at {lead} on today's charter"
+        if sources == 1 and unused >= THIN_DEEP_DIVE_UNUSED:
+            signals["thin-deep-dive"] = (f"the deep dive aired on one source while {unused} "
+                                         f"on-theme candidate(s) went unused")
     failed = [r["trigger"] for r in facts.get("runs", []) if r.get("conclusion") == "failure"]
     if failed:
         signals["run-failed"] = "failed: " + ", ".join(failed)
