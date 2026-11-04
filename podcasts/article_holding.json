@@ -82,7 +82,8 @@
     "target_weekday": 2,
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-04"
   },
   "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream": {
     "article": {
@@ -123,50 +124,8 @@
     "target_weekday": 2,
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
-    "status": "held"
-  },
-  "https://civileats.com/2026/10/29/in-puerto-rico-new-models-avoid-imports-and-industrial-food/": {
-    "article": {
-      "id": "https://civileats.com/2026/10/29/in-puerto-rico-new-models-avoid-imports-and-industrial-food/",
-      "url": "https://civileats.com/2026/10/29/in-puerto-rico-new-models-avoid-imports-and-industrial-food/",
-      "title": "[Civil Eats] In Puerto Rico, New Farm Models Avoid Imports and Industrial\u00a0Food",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fcivileats.com%2F2026%2F10%2F29%2Fin-puerto-rico-new-models-avoid-imports-and-industrial-food%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div class=\"rss-custom-item\" style=\"font-family:sans-serif;line-height:1.3;\"><img alt=\"3 \u2013 Marissa Reyes (left) and Stephanie Monserrate (right), co-founders of Finca G\u00fcaki\u00e1. Through G\u00fcaki\u00e1\u2019s farm box program, Reyes and Monserrate seek to bring fresh produce grown in the mountains of San Lorenzo to consumers in urban areas. (Courtesy of Finca G\u00fcaki\u00e1)\" src=\"https://civileats.com/wp-content/uploads/2026/10/Farming-250-PR-Food-Overlay-Homepage-700x467.png\" style=\"height:auto;margin-bottom:12px;display:block;\"/><span style=\"font-style:italic;color:#555555;font-size:14px;display:block;margin-bottom:4px;\">By Heather Gies \u2022 October 29, 2026</span><span style=\"font-size:16px;color:#222222;display:block;margin-bottom:8px;\">A growing number of food and farming operations are working together to get healthy food directly to their communities.\u00a0</span><span style=\"display:block;\"><a href=\"https://civileats.com/2026/10/29/in-puerto-rico-new-models-avoid-imports-and-industrial-food/\" style=\"font-weight:bold;text-decoration:underline;color:#111111;\">Read the full article \u2192</a></span></div>",
-      "summary": "By Heather Gies \u2022 October 29, 2026 A growing number of food and farming operations are working together to get healthy food directly to their communities. Read the full article \u2192",
-      "_excerpt": "By Heather Gies \u2022 October 29, 2026 A growing number of food and farming operations are working together to get healthy food directly to their communities. Read the full article \u2192",
-      "date_published": "2026-10-29T08:00:28+00:00",
-      "authors": [
-        {
-          "name": "Civil Eats",
-          "url": "https://civileats.com"
-        }
-      ],
-      "ai_score": 59,
-      "_quality": 70,
-      "_relevance": 75,
-      "_local": 0,
-      "_theme_score": 78,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "homestead",
-      "_source_category": "homestead",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "sunday",
-        "label": "Science, Wonder & the Natural World",
-        "shown_at": "2026-11-01T06:08:00.497046+00:00"
-      },
-      "_boosted_score": 59
-    },
-    "held_date": "2026-11-02",
-    "target_date": "2026-11-03",
-    "target_weekday": 1,
-    "target_focus_slug": "tourism-outdoor-economy",
-    "target_focus_name": "Tourism & the Outdoor Economy",
     "status": "released",
-    "release_date": "2026-11-03"
+    "release_date": "2026-11-04"
   },
   "https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/": {
     "article": {
@@ -292,7 +251,8 @@
     "target_weekday": 2,
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-04"
   },
   "https://www.lorameshdevices.com/blog/meshtastic/this-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html": {
     "article": {
@@ -329,7 +289,8 @@
     "target_weekday": 2,
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-04"
   },
   "https://www.mycariboonow.com/317059/news/indigenous/chief-leah-stumps-seeks-fourth-term-in-upcoming-election/": {
     "article": {
@@ -374,43 +335,6 @@
     "target_focus_slug": "guardians-stewardship",
     "target_focus_name": "Guardians & Land Stewardship",
     "status": "aired_early"
-  },
-  "https://www.realagriculture.com/2026/10/german-farmer-jana-gabert-receives-2026-kleckner-global-farm-leader-award/": {
-    "article": {
-      "id": "https://www.realagriculture.com/2026/10/german-farmer-jana-gabert-receives-2026-kleckner-global-farm-leader-award/",
-      "url": "https://www.realagriculture.com/2026/10/german-farmer-jana-gabert-receives-2026-kleckner-global-farm-leader-award/",
-      "title": "[RealAgriculture] German farmer Jana G\u00e4bert receives 2026 Kleckner Global Farm Leader Award",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.realagriculture.com%2F2026%2F10%2Fgerman-farmer-jana-gabert-receives-2026-kleckner-global-farm-leader-award%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nJana G\u00e4bert never set out to become an agricultural advocate. She just wanted to be a farmer. But as public criticism of large-scale and conventional agriculture grew in Germany, G\u00e4bert felt compelled to speak up. Nearly seven years later, her advocacy has taken her to the European Parliament, and she has been named the 2026... Read More",
-      "summary": "Jana G\u00e4bert never set out to become an agricultural advocate. She just wanted to be a farmer. But as public criticism of large-scale and conventional agriculture grew in Germany, G\u00e4bert felt compelled to speak up. Nearly seven years later, her advocacy has taken her to the European Parliament, and",
-      "_excerpt": "Jana G\u00e4bert never set out to become an agricultural advocate. She just wanted to be a farmer. But as public criticism of large-scale and conventional agriculture grew in Germany, G\u00e4bert felt compelled to speak up. Nearly seven years later, her advocacy has taken her to the European Parliament, and she has been named the 2026... Read More",
-      "date_published": "2026-10-27T13:25:58+00:00",
-      "authors": [
-        {
-          "name": "RealAgriculture",
-          "url": "https://www.realagriculture.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 78,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 69,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_boosted_score": 55
-    },
-    "held_date": "2026-11-02",
-    "target_date": "2026-11-10",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "held"
   },
   "https://www.aptnnews.ca/featured/first-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent/": {
     "article": {
@@ -494,7 +418,8 @@
     "target_weekday": 2,
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-04"
   },
   "https://www.technologyreview.com/2026/11/02/1147846/the-agentic-web-is-here/": {
     "article": {
@@ -569,6 +494,83 @@
     "target_weekday": 6,
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
+    "status": "held"
+  },
+  "https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/",
+      "url": "https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/",
+      "title": "[My Cariboo Now] First Nations ask court to review Ottawa\u2019s national-interest pipeline designation",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F317119%2Fnews%2Findigenous%2Ffirst-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2026/11/878239615_957991870363712_3605096215933040978_n.jpg?fit=696%2C392&amp;quality=89&amp;ssl=1\" width=\"696\"/>Several First Nations are asking a Federal Court to review Ottawa\u2019s decision to list the proposed new oil pipeline to B.C.\u2019s coast as a \u201cproject of national interest.\u201d</p>\n<p>The post <a href=\"https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/\">First Nations ask court to review Ottawa\u2019s national-interest pipeline designation</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "Several First Nations are asking a Federal Court to review Ottawa\u2019s decision to list the proposed new oil pipeline to B.C.\u2019s coast as a \u201cproject of national interest.\u201d The post First Nations ask court to review Ottawa\u2019s national-interest pipeline designation appeared first on My Cariboo Now .",
+      "_excerpt": "Several First Nations are asking a Federal Court to review Ottawa\u2019s decision to list the proposed new oil pipeline to B.C.\u2019s coast as a \u201cproject of national interest.\u201d The post First Nations ask court to review Ottawa\u2019s national-interest pipeline designation appeared first on My Cariboo Now .",
+      "date_published": "2026-11-03T19:07:54+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 74,
+      "_quality": 77,
+      "_relevance": 78,
+      "_local": 60,
+      "_theme_score": 86,
+      "_theme_score_raw": 2,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 78,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_boosted_score": 74,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-04",
+    "target_date": "2026-11-05",
+    "target_weekday": 3,
+    "target_focus_slug": "guardians-stewardship",
+    "target_focus_name": "Guardians & Land Stewardship",
+    "status": "aired_early"
+  },
+  "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/": {
+    "article": {
+      "id": "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/",
+      "url": "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/",
+      "title": "[The Tyee] The Deceptions That Crippled a Renewable Energy Industry",
+      "content_html": "<img src=\"https://thetyee.ca/Analysis/2026/10/30/SturgeonCountyDataCentreRender.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FAnalysis%2F2026%2F11%2F03%2FDeceptions-Killed-Alberta-Renewable-Energy-Industry%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAlberta invokes \u2018agriculture first\u2019 to block wind and solar while putting gas plants on prime land.",
+      "summary": "Alberta invokes \u2018agriculture first\u2019 to block wind and solar while putting gas plants on prime land.",
+      "_excerpt": "Alberta invokes \u2018agriculture first\u2019 to block wind and solar while putting gas plants on prime land.",
+      "date_published": "2026-11-03T21:45:00+00:00",
+      "authors": [
+        {
+          "name": "The Tyee",
+          "url": "https://thetyee.ca"
+        }
+      ],
+      "ai_score": 69,
+      "_quality": 85,
+      "_relevance": 78,
+      "_local": 25,
+      "_theme_score": 50,
+      "_theme_score_raw": 8,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 37,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thetyee.ca/Analysis/2026/10/30/SturgeonCountyDataCentreRender.jpg",
+      "_boosted_score": 69
+    },
+    "held_date": "2026-11-04",
+    "target_date": "2026-11-10",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
     "status": "held"
   }
 }

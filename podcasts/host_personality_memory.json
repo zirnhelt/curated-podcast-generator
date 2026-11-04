@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Williams Lake Tribune] B.C. Greens propose AI data centre m",
-      "[Williams Lake Tribune] Students explore science, technology",
       "[TechCrunch] Mosqitter is turning its mosquito traps into an",
       "[Business Insider] I broke into tech sales after working in ",
       "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
@@ -10,7 +8,9 @@
       "[TechRadar] These social media posts promise big online disc",
       "AI",
       "[TechRadar] Australian government introduces Digital Duty of",
-      "The Tyee Podcast: Inside Canada\u2019s AI Data Centre Fervour"
+      "The Tyee Podcast: Inside Canada\u2019s AI Data Centre Fervour",
+      "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bik",
+      "[Tom's Hardware] Tech sleuth claims to have found the oldest"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -24,16 +24,6 @@
       "concedes when evidence is compelling"
     ],
     "personality_clues": [
-      {
-        "date": "2026-08-21",
-        "clue": "pilot-skepticism:+ \u2014 Explicitly named 'pilot program' language as hollow messaging.",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-08-23",
-        "clue": "structural-lens:~[signal] \u2014 Acknowledged volunteer continuity as durability answer",
-        "occurrences": 1
-      },
       {
         "date": "2026-09-10",
         "clue": "Indigenous-tech:~ \u2014 collars extend guardian capacity, don't replace embodied knowledge",
@@ -167,6 +157,21 @@
       {
         "date": "2026-11-03",
         "clue": "community-trust:x \u2014 concedes Heiltsuk governance gap needs closing first",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-04",
+        "clue": "structural-lens:+ Insists repair rules belong on what gets sold.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-04",
+        "clue": "evidence-bar:~ Concedes 18 percent partly reflects early mandatory disclosure.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-04",
+        "clue": "tech-optimism:- Softens optimism, acknowledges slow arrival and rural lag.",
         "occurrences": 1
       }
     ],
@@ -314,16 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-08-09",
-        "clue": "structural-lens:[+] Reinforced institutional skepticism \u2014 pushed for explicit accountability checkpoints rather than trusting informal translation happens",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-08-09",
-        "clue": "evidence-bar:[+] Deepened confidence in population-literacy approach, but remained unconvinced it scales faster than formal intervention",
-        "occurrences": 1
-      },
-      {
         "date": "2026-08-14",
         "clue": "funding-risk: ~ \u2014 Conceded that T\u015dilhqot'in governance model genuinely reduces cycle vulnerability.",
         "occurrences": 1
@@ -456,6 +451,21 @@
       {
         "date": "2026-11-03",
         "clue": "rural-context:~ \u2014 Cariboo freight desks unquoted, not guessed at",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-04",
+        "clue": "evidence-bar:+ Demands a delivered part to a rural address first.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-04",
+        "clue": "community-trust:+ Trusts consumer groups over the regulator's own checks.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-04",
+        "clue": "rural-context:~ Frames the long drive to shops as a real, ongoing cost.",
         "occurrences": 1
       }
     ],

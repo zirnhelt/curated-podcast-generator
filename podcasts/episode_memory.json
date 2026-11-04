@@ -1,24 +1,4 @@
 {
-  "2026-09-29": {
-    "timestamp": 1790670005.824998,
-    "topics": [
-      "[My Cariboo Now] Charges are possible in connection with acc",
-      "[Williams Lake Tribune] Credit union hosts silent auction to",
-      "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
-      "[My Cariboo Now] Nazko celebrates opening of new cultural si",
-      "[Canadian Forest Industries] Community knowledge helps guide",
-      "[Small Farm Canada] Will Rural Canada Share in the Country\u2019s",
-      "[My Cariboo Now] B.C. parties tout plans for critical minera",
-      "[Canadian Mining Journal] Ore sorting tests slice CAPEX for "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-09-29",
-    "focus": "mining-energy",
-    "focus_name": "Mining & Energy"
-  },
   "2026-09-30": {
     "timestamp": 1790790042.196649,
     "topics": [
@@ -725,5 +705,25 @@
     "date": "2026-11-03",
     "focus": "tourism-outdoor-economy",
     "focus_name": "Tourism & the Outdoor Economy"
+  },
+  "2026-11-04": {
+    "timestamp": 1793780104.515706,
+    "topics": [
+      "[My Cariboo Now] Quesnel\u2019s new Mayor vows to tackle public s",
+      "[My Cariboo Now] First Nations ask court to review Ottawa\u2019s ",
+      "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bik",
+      "[100 Mile Free Press] Walk for Jennifer marks one year anniv",
+      "[Tom's Hardware] Tech sleuth claims to have found the oldest",
+      "[TechRadar] One year after new EU repairability rules came i",
+      "[Neowin] Anduril and Qualcomm want to build an American lapt",
+      "[The Verge] Anduril now says its BlueChip laptop will meet B"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-04",
+    "focus": "vehicles-field-gear",
+    "focus_name": "Vehicles & Field Gear"
   }
 }
