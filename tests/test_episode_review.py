@@ -914,3 +914,46 @@ def test_the_review_page_shows_the_plan(tmp_path, monkeypatch):
     assert "9/12 adjacent stories" in html and "&lt;one&gt;" in html
     assert "<li>clean pivot</li>" not in html  # only named bridges are listed
     assert er.render_plan(er.load_storyboard("2026-10-01"), {}) == ""
+
+
+class TestCycleWeek:
+    """The weekly rotation panel: calendar-derived, same lookups as the generator."""
+
+    def test_seven_days_today_marked(self):
+        rows = episode_review.cycle_week("2026-11-04")
+        assert [r["day"] for r in rows] == ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        assert [r["today"] for r in rows].count(True) == 1 and rows[2]["today"]
+
+    def test_matches_generator_focus(self):
+        from datetime import date
+        from config_loader import get_focus_for_day
+        rows = episode_review.cycle_week("2026-11-04")
+        focus = get_focus_for_day(2, date(2026, 11, 4))
+        assert rows[2]["focus"] == focus["name"]
+        assert (rows[2]["week"], rows[2]["of"]) == (focus["index"] + 1, focus["cycle_length"])
+        assert rows[5]["focus"] is None  # Saturday runs the broad theme
+
+    def test_event_window(self):
+        sat = episode_review.cycle_week("2026-10-17")[5]
+        assert sat["event"] and "election" in sat["event"].lower()
+        assert episode_review.cycle_week("2026-11-07")[5]["event"] is None
+
+    def test_render_highlights_today(self):
+        html = episode_review.render_cycle(episode_review.cycle_week("2026-11-04"), "Q?")
+        assert html.count('class="today"') == 1
+        assert "week " in html and "Q?" in html
+
+
+class TestReviewSummary:
+    def test_summary_shape_and_plain_text(self, facts):
+        s = episode_review.review_summary("2026-08-19", [], facts, {"items": []})
+        assert s["level"] in ("good", "minor", "warn", "bad") and s["label"]
+        assert len(s["cycle"]) == 7
+        for a in s["actions"]:
+            assert "<" not in a["todo"] and a["evidence"]
+        json.dumps(s)  # index.json must serialize it
+
+    def test_index_carries_summary(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(episode_review, "INDEX_FILE", tmp_path / "index.json")
+        index = episode_review.update_index("2026-11-04", "T", "<p></p>", {}, {"level": "good"})
+        assert index[0]["summary"] == {"level": "good"}
