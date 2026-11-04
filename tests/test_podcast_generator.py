@@ -6630,6 +6630,17 @@ class TestColdOpenDoesNotTeaseAGap:
         assert "Tease what the episode HAS, never what it lacks" in template
 
 
+class TestColdOpenNamesTheDaysFocus:
+    """The cold open marks the weekday's theme in passing, so the rhythm is audible."""
+
+    def test_prompt_takes_weekday_and_theme(self):
+        import config_loader
+
+        template = config_loader.load_prompts_config()[
+            "cold_open_generation"]["template"]
+        assert "{weekday}" in template and "{theme_name}" in template
+
+
 class TestEpisodeMetadata:
     """What podcast apps and the episode page show about each episode."""
 

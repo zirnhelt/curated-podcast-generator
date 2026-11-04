@@ -5879,11 +5879,13 @@ def generate_cold_open(script, theme_name):
         print("  ⚠️  cold_open_generation prompt missing from config — skipping cold open")
         return script
 
+    today = get_pacific_now()
     prompt = prompts['cold_open_generation']['template'].format(
-        theme_name=theme_name,
+        theme_name=theme_name.replace('&', 'and'),  # spoken, not read as a symbol
+        weekday=today.strftime('%A'),
         welcome_host_upper=welcome_host,
         finalized_script=script,
-        recent_cold_opens=_format_recent_cold_opens(get_pacific_now().date().isoformat()),
+        recent_cold_opens=_format_recent_cold_opens(today.date().isoformat()),
         burned_phrases=format_burned_phrases_for_prompt(),
     )
 
