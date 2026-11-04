@@ -4176,6 +4176,19 @@ class TestAnnotateRoundupBlocks:
         assert block["https://reddit"] not in ("theme", "theme_adjacent")
         assert block["https://arch"] not in ("theme", "theme_adjacent")
 
+    def test_one_outlet_does_not_carry_the_theme_block(self):
+        """2026-11-04: Hackaday and Adafruit placed three theme stories each."""
+        articles = [{"title": f"Zebra gardening hack {i}", "url": f"https://h{i}",
+                     "authors": [{"name": "Hackaday"}], "_boosted_score": 90 - i}
+                    for i in range(3)]
+        articles.append({"title": "Zebra gardening shed", "url": "https://o",
+                         "authors": [{"name": "Popular Woodworking"}], "_boosted_score": 10})
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        block = {a["url"]: a["_roundup_block"] for a in ordered}
+        assert [block[f"https://h{i}"] for i in range(2)] == ["theme", "theme"]
+        assert block["https://h2"] not in ("theme", "theme_adjacent")  # the weakest of the three
+        assert block["https://o"] == "theme"
+
     def test_charter_never_promotes_on_the_geographic_day(self):
         from podcast_generator import _charter_promotes
         art = {"_theme_score": 99, "_theme_score_raw": 88}
@@ -7770,6 +7783,22 @@ class TestCaribooDeepDivePick:
         assert [a["url"] for a in dd] == ["https://ifx", "https://wired", "https://r"]
         assert dd[0]["_cariboo_angle"].startswith("A cracked screen")
         assert dd[2]["_recalled_from"] == "Thursday"
+
+    def test_a_neighbouring_story_is_not_a_report_of_the_lead(self, monkeypatch):
+        """2026-11-04 took Anduril-laptop and FCC-ban stories as reports of an
+        EU-repairability story; a real report shares a headline word."""
+        import podcast_generator as pg
+        cands = [
+            {"title": "[TechRadar] One year after new EU repairability rules came into force", "url": "https://eu"},
+            {"title": "[Neowin] Anduril and Qualcomm want to build an American laptop", "url": "https://and"},
+            {"title": "[The Verge] Foreign gadget bans: the FCC's clampdown on Chinese tech", "url": "https://fcc"},
+            {"title": "[iFixit] EU repairability scores one year on: phones get easier to fix", "url": "https://ifx"},
+        ]
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: self._client(
+            {"passes": [1], "lead": 1, "same_story": [2, 3, 4], "local_context": 0,
+             "cariboo_angle": "A cracked phone in Horsefly waits weeks for a part."}))
+        dd = pg.pick_cariboo_deep_dive([dict(a) for a in cands], 4, "Repair")
+        assert [a["url"] for a in dd] == ["https://eu", "https://ifx"]
 
     def test_nothing_passes_returns_none_and_degrades(self, monkeypatch):
         import podcast_generator as pg

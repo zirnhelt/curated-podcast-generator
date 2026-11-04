@@ -6919,6 +6919,10 @@ STORYBOARD_BEAT_AIRED_OVERLAP = 0.42
 THEME_BLOCK_MIN_PCT = 50       # a keyword hit below this is not on-theme
 THEME_BLOCK_PROMOTE_PCT = 85   # no keyword, but the charter says on-theme...
 THEME_BLOCK_PROMOTE_RAW = 40   # ...and on an absolute scale, not just relatively
+# Stories one outlet may place in the roundup's theme blocks. On 2026-11-04 (Repair &
+# Practical Tech) Hackaday and Adafruit placed three each, and the roundup read as a
+# chip-internals newsletter. Past the cap a story joins the tail like any other.
+ROUNDUP_THEME_OUTLET_MAX = 2
 
 
 def _roundup_block_rank(block: str) -> int:
@@ -7127,6 +7131,24 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
             dropped_us_politics.append(a)
         else:
             rest.append(a)
+
+    # One outlet doesn't carry the theme: past ROUNDUP_THEME_OUTLET_MAX, its weaker
+    # theme stories join the tail. Local outlets are exempt (the local block).
+    by_strength = lambda a: relevance(a) + (a.get('_theme_score') or 0) / 50
+    outlet_count = Counter()
+    for block in (theme_block, adjacent_block):
+        block.sort(key=by_strength, reverse=True)
+        kept = []
+        for a in block:
+            outlet = _article_source_name(a).lower()
+            if outlet and a.get('_held_from') is None and a.get('_recalled_from') is None \
+                    and outlet_count[outlet] >= ROUNDUP_THEME_OUTLET_MAX:
+                a.pop('_roundup_block', None)
+                rest.append(a)
+                continue
+            outlet_count[outlet] += 1
+            kept.append(a)
+        block[:] = kept
 
     clusters, standalone = {}, []
     for a in rest:
@@ -8224,6 +8246,11 @@ def _pick_line(i: int, a: dict) -> str:
     return f"{i}. {tag}{title} — {summary}"
 
 
+def _headline_words(article: dict) -> set:
+    """Significant words of an article's headline, outlet tag stripped."""
+    return _significant_words(re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', '')))
+
+
 def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
                            anchor_question: str | None = None,
                            recent_local: list | None = None) -> list | None:
@@ -8285,8 +8312,18 @@ def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
                 f"no candidate of {len(candidates)} passed the Cariboo bar; "
                 f"rule-ranked deep dive aired")
         return None
-    chosen = [lead] + [i for i in pick.get("same_story") or []
-                       if isinstance(i, int) and 1 <= i <= len(candidates) and i != lead]
+    reports = [i for i in pick.get("same_story") or []
+               if isinstance(i, int) and 1 <= i <= len(candidates) and i != lead]
+    # A report of the same story shares a headline word with the lead. On 2026-11-04
+    # the pick took two Anduril-laptop stories and an FCC-ban roundup as reports of
+    # an EU-repairability story, and the deep dive became a trade-policy debate.
+    lead_words = _headline_words(candidates[lead - 1])
+    neighbours = [i for i in reports if not lead_words & _headline_words(candidates[i - 1])]
+    if neighbours:
+        print(f"  🧭 Cariboo pick: {len(neighbours)} 'same story' pick(s) share no headline "
+              f"word with the lead, left out: "
+              + "; ".join(candidates[i - 1].get('title', '')[:50] for i in neighbours))
+    chosen = [lead] + [i for i in reports if i not in neighbours]
     deep_dive = [candidates[i - 1] for i in dict.fromkeys(chosen)][:count]
     angle = (pick.get("cariboo_angle") or "").strip()
     if angle:
