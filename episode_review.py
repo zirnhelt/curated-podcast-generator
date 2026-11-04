@@ -49,6 +49,9 @@ from config_loader import (
     atomic_write_json,
     atomic_write_text,
     format_static_tell_block,
+    get_event_focus_for_day,
+    get_focus_for_day,
+    get_theme_for_day,
     json_output_config,
     load_prompts_config,
     message_text,
@@ -835,7 +838,8 @@ def render_trends(history: list[dict], today: dict[str, float], date: str) -> st
             "Hover a point for its night.</p>\n<div class=\"trends\">\n" + "\n".join(tiles) + "\n</div>")
 
 
-def render_kpis(facts: dict[str, Any], runs: list[dict]) -> str:
+def kpi_tiles(facts: dict[str, Any], runs: list[dict]) -> list[tuple[str, str, str]]:
+    """(label, value, caption) for each headline number the day has."""
     tiles: list[tuple[str, str, str]] = []
     if facts.get("audio_minutes") is not None:
         tiles.append(("Episode", f"{facts['audio_minutes']} min", "audio runtime"))
@@ -851,6 +855,11 @@ def render_kpis(facts: dict[str, Any], runs: list[dict]) -> str:
     if shipped and shipped.get("finished"):
         tiles.append(("Done at", shipped["finished"].replace(" Pacific", ""),
                       shipped["trigger"].split(" (")[0].split(" —")[0] + " rung"))
+    return tiles
+
+
+def render_kpis(facts: dict[str, Any], runs: list[dict]) -> str:
+    tiles = kpi_tiles(facts, runs)
     if not tiles:
         return ""
     return "<div class=\"kpis\">" + "".join(
@@ -925,6 +934,13 @@ PAGE = """<!DOCTYPE html>
     th {{ color: var(--muted); font-weight: 600; }}
     .table-wrap {{ overflow-x: auto; }}
     details {{ margin-top: 2rem; }} summary {{ cursor: pointer; font-weight: 600; }}
+    .cycle-now {{ background: var(--panel); border-left: 6px solid var(--series); border-radius: 8px;
+                  padding: 0.6rem 1rem; }}
+    table.cycle tr.today td {{ background: var(--panel); font-weight: 600; }}
+    table.cycle tr.today td:first-child {{ box-shadow: inset 4px 0 0 var(--series); }}
+    .pips {{ display: inline-flex; gap: 3px; vertical-align: middle; }}
+    .pips i {{ width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--axis); }}
+    .pips i.on {{ background: var(--series); border-color: var(--series); }}
   </style>
 </head>
 <body>
@@ -937,6 +953,76 @@ PAGE = """<!DOCTYPE html>
 
 
 CITATIONS_GLOB = "podcasts/citations_{date}_*.json"
+
+
+def cycle_week(date: str) -> list[dict]:
+    """The Mon–Sun rotation around *date*: each day's theme, super-cycle focus and event.
+
+    Calendar-derived like the generator's own lookups, so a re-review weeks later
+    shows what that week actually ran. `next` is the focus that day moves to.
+    """
+    d = datetime.strptime(date, "%Y-%m-%d").date()
+    monday = d - timedelta(days=d.weekday())
+    rows = []
+    for wd in range(7):
+        day = monday + timedelta(days=wd)
+        focus = get_focus_for_day(wd, day)
+        upcoming = get_focus_for_day(wd, day + timedelta(days=7))
+        event = get_event_focus_for_day(wd, day)
+        rows.append({
+            "date": day.isoformat(), "day": day.strftime("%a"), "today": day == d,
+            "theme": get_theme_for_day(wd),
+            "focus": focus["name"] if focus else None,
+            "week": focus["index"] + 1 if focus else None,
+            "of": focus["cycle_length"] if focus else None,
+            "next": upcoming["name"] if upcoming else None,
+            "event": event.get("name") if event else None,
+        })
+    return rows
+
+
+def week_anchor(date: str, facts: dict[str, Any]) -> str | None:
+    """This ISO week's anchor question: the pinned state first, the run log second."""
+    try:
+        from weekly_anchor import iso_week_key, load_anchor_state
+        week = iso_week_key(datetime.strptime(date, "%Y-%m-%d").date())
+        question = (load_anchor_state().get("assigned", {}).get(week) or {}).get("question")
+    except (ImportError, OSError, ValueError):
+        question = None
+    anchor = facts.get("anchor")
+    return question or (anchor[0] if isinstance(anchor, list) and anchor else None)
+
+
+def render_cycle(rows: list[dict], anchor: str | None) -> str:
+    """Where every weekday sits in its super-cycle, today's row highlighted."""
+    today = next((r for r in rows if r["today"]), None)
+    lede = ""
+    if today:
+        if today["focus"]:
+            lede = (f"<p class=\"cycle-now\"><strong>{escape(today['day'])} &middot; "
+                    f"{escape(today['theme'])}</strong> &mdash; focus <strong>"
+                    f"{escape(today['focus'])}</strong>, week {today['week']} of {today['of']}"
+                    f"{'. Next week: ' + escape(today['next']) if today['next'] else ''}.</p>")
+        else:
+            lede = (f"<p class=\"cycle-now\"><strong>{escape(today['day'])} &middot; "
+                    f"{escape(today['theme'])}</strong> &mdash; no super-cycle; the plain theme runs.</p>")
+    q = f"<p class=\"note\">This week's anchor question: <em>{escape(anchor)}</em></p>" if anchor else ""
+    body = []
+    for r in rows:
+        if r["focus"]:
+            pos = "".join(f'<i class="{"on" if i + 1 == r["week"] else ""}"></i>' for i in range(r["of"]))
+            focus = (f'{escape(r["focus"])} <span class="pips" aria-label="week {r["week"]} of '
+                     f'{r["of"]}">{pos}</span> <span class="note">{r["week"]}/{r["of"]}</span>')
+        else:
+            focus = '<span class="note">broad theme, no cycle</span>'
+        if r["event"]:
+            focus += f'<br><span class="note">Event: {escape(r["event"])}</span>'
+        nxt = escape(r["next"]) if r["next"] and r["next"] != r["focus"] else "&mdash;"
+        body.append(f'<tr class="{"today" if r["today"] else ""}"><td>{escape(r["day"])}</td>'
+                    f'<td>{escape(r["theme"])}</td><td>{focus}</td><td class="note">{nxt}</td></tr>')
+    table = ("<div class=\"table-wrap\"><table class=\"cycle\"><tr><th>Day</th><th>Theme</th>"
+             "<th>Super-cycle focus</th><th>Next week</th></tr>" + "".join(body) + "</table></div>")
+    return "\n".join(p for p in ["<h2>This week's rotation</h2>", lede, q, table] if p)
 
 
 def load_storyboard(date: str) -> dict | None:
@@ -1008,6 +1094,10 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
     parts = []
     if theme:
         parts.append(f"Theme: {escape(theme)}.")
+    rows = cycle_week(date)
+    today = next((r for r in rows if r["today"]), None)
+    if today and today["focus"]:
+        parts.append(f"Focus: {escape(today['focus'])} (week {today['week']} of {today['of']}).")
     if generated and generated.get("url"):
         parts.append(f'Run <a href="{escape(generated["url"])}">{generated["run_id"]}</a>.')
     lede = f"<p class=\"meta\">{' '.join(parts)}</p>" if parts else ""
@@ -1023,13 +1113,42 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
 
     content = "\n\n".join(p for p in [lede, banner, actions, detail, tables] if p)
     page_body = "\n\n".join(p for p in [
-        lede, banner, render_kpis(facts, runs), actions, render_charts(facts),
+        lede, banner, render_kpis(facts, runs), render_cycle(rows, week_anchor(date, facts)),
+        actions, render_charts(facts),
         render_trends(history or [], review_metrics(facts), date), detail,
         render_plan(load_storyboard(date), facts),
         f"<details><summary>Raw numbers</summary>\n{tables}\n</details>" if tables else ""] if p)
     page = PAGE.format(title=escape(title), published=_human_date(date),
                        site=SITE_URL, content=page_body)
     return title, content, page
+
+
+def review_summary(date: str, runs: list[dict], facts: dict[str, Any],
+                   ledger: dict | None = None) -> dict[str, Any]:
+    """The review as data, for the ratings page (reader.html) to show beside the episode's articles.
+
+    Plain text only: the reader escapes everything it is given.
+    """
+    signals = run_signals({**facts, "runs": runs})
+    level, summary = verdict({**facts, "runs": runs}, signals)
+    order = sorted(signals, key=lambda k: (k in _MINOR_SIGNALS, k))
+    actions = []
+    for key in order:
+        todo = (f"{key.split(':', 1)[1]} fell back." if key.startswith("degraded:")
+                else _ACTIONS.get(key, "Investigate."))
+        item = next((i for i in (ledger or {}).get("items", [])
+                     if i.get("signal") == key and i.get("status") in ("open", "pending")), None)
+        actions.append({"signal": key, "todo": re.sub(r"<[^>]+>", "", todo),
+                        "evidence": signals[key], "minor": key in _MINOR_SIGNALS,
+                        "nights_seen": len(item.get("seen") or []) if item else 0})
+    return {
+        "level": level, "label": _STATUS[level][1], "summary": summary,
+        "theme": facts.get("theme_feed") or facts.get("theme_configured") or "",
+        "kpis": [list(t) for t in kpi_tiles(facts, runs)],
+        "actions": actions,
+        "cycle": cycle_week(date),
+        "anchor": week_anchor(date, facts),
+    }
 
 
 def _human_date(date: str) -> str:
@@ -1051,7 +1170,8 @@ def load_index() -> list[dict]:
 
 
 def update_index(date: str, title: str, content: str,
-                 metrics: dict[str, float] | None = None) -> list[dict]:
+                 metrics: dict[str, float] | None = None,
+                 summary: dict[str, Any] | None = None) -> list[dict]:
     """Record this review in the index, replacing any entry for the same date."""
     index = [e for e in load_index() if e.get("date") != date]
     index.append({
@@ -1062,6 +1182,8 @@ def update_index(date: str, title: str, content: str,
         "published": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         # The trend charts read these; the index is the only history the review keeps.
         "metrics": metrics or {},
+        # reader.html shows this beside the day's articles; Pages serves the index.
+        "summary": summary or {},
     })
     index.sort(key=lambda e: e["date"], reverse=True)
     atomic_write_json(INDEX_FILE, index[:FEED_LIMIT], ensure_ascii=False)
@@ -1782,7 +1904,8 @@ def main() -> int:
     REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
     page_path = REVIEWS_DIR / f"episode-review-{date}.html"
     atomic_write_text(page_path, page)
-    index = update_index(date, title, content, review_metrics(facts))
+    index = update_index(date, title, content, review_metrics(facts),
+                         review_summary(date, runs, facts, load_ledger()))
     atomic_write_text(FEED_FILE, build_feed(index))
 
     print(f"✅ {page_path}")

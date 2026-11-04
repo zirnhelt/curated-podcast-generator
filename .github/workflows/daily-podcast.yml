@@ -743,6 +743,7 @@ jobs:
         run: |
           mkdir -p output/podcasts/reviews
           cp podcasts/reviews/*.html output/podcasts/reviews/ 2>/dev/null || true
+          cp podcasts/reviews/index.json output/podcasts/reviews/ 2>/dev/null || true
           cp episode-reviews.xml output/ 2>/dev/null || true
 
       # keep_files: true, so the review and its feed persist without
