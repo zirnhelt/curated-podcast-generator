@@ -449,6 +449,10 @@ def _build_gmail_service():
         creds.refresh(Request())
     except Exception as e:
         error_str = str(e)
+        # Google's own error_description ("Unauthorized", "The OAuth client was
+        # deleted", ...) separates a disabled secret from a deleted client; the
+        # canned advice below can't. It never echoes the secret or token.
+        print(f"   Google said: {error_str}", file=sys.stderr)
         if "invalid_grant" in error_str or "Token has been expired or revoked" in error_str:
             print(
                 "❌ Gmail refresh token has expired or been revoked.\n"
