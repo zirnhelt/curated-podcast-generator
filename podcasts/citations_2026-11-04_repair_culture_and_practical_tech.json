@@ -1,0 +1,610 @@
+{
+  "episode": {
+    "date": "2026-11-04",
+    "formatted_date": "Wednesday, November 04, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> When is keeping the peace worth more than being right?</p><p><b>NEWS ROUNDUP:</b> We break down Quesnel’s new Mayor vows to tackle public safety over the next 100 days ! and First Nations ask court to review Ottawa’s national-interest pipeline designation, plus 11 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Do government rules reshaping what devices people can buy (EU repairability and parts rules, US security-driven import bans) actually deliver parts and repair access to remote owners, or just create different gatekeepers? Topics include: EU repairability scores, parts availability windows, and compliance audit results, Gap between paper compliance and practical access for rural owners, US FCC Covered List actions on drones, routers and robot vacuums, Domestic laptop supply chain and sealed or repairable design tradeoffs, Whether repair requirements should be built into security or sales rules.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cfdccariboo.com\">Community Futures Cariboo Chilcotin</a></p><p><b>Sources discussed:</b></p><ul><li>George Henderson (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317143/news/municipal-news/city-of-quesnel/quesnels-new-mayor-vows-to-tackle-public-safety-over-the-next-100-days/\">[My Cariboo Now] Quesnel’s new Mayor vows to tackle public s...</a></li><li>Emily Joveski (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/\">[My Cariboo Now] First Nations ask court to review Ottawa’s ...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/software/windows/tech-sleuth-claims-to-have-found-the-oldest-gui-application-that-still-works-with-windows-11-cdplayer-exe-from-windows-nt-in-november-1992-wins-the-prize\">[Tom's Hardware] Tech sleuth claims to have found the oldest...</a></li><li>redmondpie.com: <a href=\"https://www.redmondpie.com/apple-confirms-iphone-duo-display-cracking-issue-in-memo-to-its-retail-stores/\">[redmondpie.com] Apple tells stores to inspect cracked iPhon...</a></li><li>Vivian van Zyl (LoRaMeshDevices): <a href=\"https://www.lorameshdevices.com/blog/meshtastic/this-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html\">[LoRaMeshDevices] This Tiny Meshtastic Node Is Solar Ready: ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/11/02/solar-light-shows-why-replacing-nimh-with-li-ion-is-dangerous/\">[Hackaday] Solar Light Shows Why Replacing NiMH with Li-Ion ...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/11/03/pulling-on-a-thread-using-thread-on-ikea-sensors/\">[Adafruit Blog] Pulling on a thread (Using Thread on Ikea Se...</a></li><li>Cool Tools: <a href=\"https://kk.org/cooltools/gars-tips-tools-issue-216/\">[Cool Tools] Gar’s Tips &amp; Tools – Issue #216</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/10/31/rooting-an-amazon-echo-dot/\">[Hackaday] Rooting an Amazon Echo Dot</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/10/28/turning-an-old-phones-motherboard-into-an-rc-plane-controller/\">[Hackaday] Turning an Old Phone’s Motherboard into an RC Pla...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/10/28/e486-web-a-standalone-pure-javascript-intel-80486dx2-pc-web-emulator/\">[Adafruit Blog] e486-web: a standalone pure-JavaScript Intel...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/your-esp32-has-psram-sitting-there-unused-and-most-tutorials-forget-to-mention-it/\">[XDA Developers] Your ESP32 has PSRAM sitting there unused, ...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/10/28/inside-the-intel-8087-chip-floating-point-addition-and-subtraction/\">[Adafruit Blog] Inside the Intel 8087 chip: floating-point a...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/phones/a-year-after-europes-repairability-rules-came-in-are-smartphones-and-laptops-actually-getting-easier-to-repair\">[TechRadar] One year after new EU repairability rules came i...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/anduril-and-qualcomm-want-to-build-an-american-laptop-that-doesnt-depend-on-china/?utm_source=rss\">[Neowin] Anduril and Qualcomm want to build an American lapt...</a></li><li>Sean Hollister (The Verge): <a href=\"https://www.theverge.com/policy/1021554/anduril-bluechip-65-percent-domestic-buy-american\">[The Verge] Anduril now says its BlueChip laptop will meet B...</a></li><li>Sean Hollister (The Verge): <a href=\"https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream\">[The Verge] Foreign gadget bans: all the news about the FCC’...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/11/03/trailblazer-chronicles-buckles-bikes-and-a-very-cariboo-october/\">[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bik...</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/11/03/walk-for-jennifer-marks-one-year-anniversary-renews-call-for-answers/\">[100 Mile Free Press] Walk for Jennifer marks one year anniv...</a></li><li>Popular Woodworking: <a href=\"https://www.popularwoodworking.com/tools/air-fasteners-101/\">[Popular Woodworking] Air Fasteners 101</a></li><li>New Atlas: <a href=\"https://newatlas.com/electronics/biohybrid-mesh-harvester/\">[New Atlas] Bio-hybrid harvester generates electricity from ...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/this-wireless-sensor-board-speaks-your-language-f6e85723c116\">[Hackster News] This Wireless Sensor Board Speaks Your Langu...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-04T01:14:59.048311-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3244,
+      "voice_ratio_casey_riley": 0.87,
+      "casey_share_deep_dive_pct": 48,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 1,
+        "thats_closer": 5,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 12,
+        "turns": 86,
+        "avg_turn_words": 36.3,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 4
+    },
+    "anchor": {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?"
+    },
+    "audio_file_size": 18770349,
+    "audio_duration": "19:33"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Quesnel’s new Mayor vows to tackle public safety over the next 100 days !",
+          "url": "https://www.mycariboonow.com/317143/news/municipal-news/city-of-quesnel/quesnels-new-mayor-vows-to-tackle-public-safety-over-the-next-100-days/",
+          "source": "My Cariboo Now",
+          "author": "George Henderson",
+          "ai_score": 57,
+          "date_published": "2026-11-04T03:59:13+00:00",
+          "summary": "A new Council was sworn in by Judge Jonathan Hutchison in Quesnel on Tuesday (November 4) night. The post Quesnel’s new Mayor vows to tackle public safety over the next 100 days ! appeared first on My...",
+          "discussed": true,
+          "mention_offset_frac": 0.0583
+        },
+        {
+          "title": "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bikes and a very Cariboo October",
+          "url": "https://wltribune.com/2026/11/03/trailblazer-chronicles-buckles-bikes-and-a-very-cariboo-october/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 69,
+          "date_published": "2026-11-04T06:03:30.313910+00:00",
+          "summary": "The Golden Buckle Hunt surprised me. I expected an outdoor adventure. What I had not quite expected was how many other locals would be out there or how friendly the […]",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] First Nations ask court to review Ottawa’s national-interest pipeline designation",
+          "url": "https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/",
+          "source": "My Cariboo Now",
+          "author": "Emily Joveski",
+          "ai_score": 74,
+          "date_published": "2026-11-03T19:07:54+00:00",
+          "summary": "Several First Nations are asking a Federal Court to review Ottawa’s decision to list the proposed new oil pipeline to B.C.’s coast as a “project of national interest.” The post First Nations ask court...",
+          "discussed": true,
+          "mention_offset_frac": 0.0911
+        },
+        {
+          "title": "[Tom's Hardware] Tech sleuth claims to have found the oldest GUI application that still works with Windows 11",
+          "url": "https://www.tomshardware.com/software/windows/tech-sleuth-claims-to-have-found-the-oldest-gui-application-that-still-works-with-windows-11-cdplayer-exe-from-windows-nt-in-november-1992-wins-the-prize",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/mark-tyson",
+          "ai_score": 45,
+          "date_published": "2026-10-31T10:00:00+00:00",
+          "summary": "A technology enthusiast claims that the oldest GUI application that still runs on Windows 11 is CDPLAYER.EXE from November 1992.",
+          "discussed": true,
+          "mention_offset_frac": 0.2855
+        },
+        {
+          "title": "[redmondpie.com] Apple tells stores to inspect cracked iPhone Duo screens",
+          "url": "https://www.redmondpie.com/apple-confirms-iphone-duo-display-cracking-issue-in-memo-to-its-retail-stores/",
+          "source": "redmondpie.com",
+          "author": "",
+          "ai_score": 18,
+          "date_published": "2026-10-31T17:42:48+00:00",
+          "summary": "Apple has told its retail stores and authorized service providers to inspect iPhone Duo foldable phones with cracked inner displays and repair or replace them under standard procedures after acknowled...",
+          "discussed": true,
+          "mention_offset_frac": 0.3502
+        },
+        {
+          "title": "[LoRaMeshDevices] This Tiny Meshtastic Node Is Solar Ready: Base Uno First Look",
+          "url": "https://www.lorameshdevices.com/blog/meshtastic/this-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html",
+          "source": "LoRaMeshDevices",
+          "author": "Vivian van Zyl",
+          "ai_score": 60,
+          "date_published": "2026-10-30T19:41:51+00:00",
+          "summary": "The Muzi Works Base Uno caught my attention because it packs quite a few useful features into a very small Meshtastic board. It comes pre-flashed, includes a 1,500 mAh battery, and has dedicated conne...",
+          "discussed": true,
+          "mention_offset_frac": 0.4473
+        },
+        {
+          "title": "[Hackaday] Solar Light Shows Why Replacing NiMH with Li-Ion is Dangerous",
+          "url": "https://hackaday.com/2026/11/02/solar-light-shows-why-replacing-nimh-with-li-ion-is-dangerous/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 43,
+          "date_published": "2026-11-02T16:30:00+00:00",
+          "summary": "Recently [DiodeGoneWild] got his paws on a purportedly IP44-rated outdoor solar light with PIR motion sensor that also contains an 18650 Li-ion cell. Since it’s being sold in Czechia in …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.4554
+        },
+        {
+          "title": "[Adafruit Blog] Pulling on a thread (Using Thread on Ikea Sensors)",
+          "url": "https://blog.adafruit.com/2026/11/03/pulling-on-a-thread-using-thread-on-ikea-sensors/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-11-03T19:41:11+00:00",
+          "summary": "Ben Hardill wanted to read a pair of IKEA ALPSTUGA CO2 sensors from Node-RED, and wrote up what it took on his blog. The sensors are part of IKEA’s second generation of smart devices, so they use Thre...",
+          "discussed": true,
+          "mention_offset_frac": 0.6384
+        },
+        {
+          "title": "[Cool Tools] Gar’s Tips & Tools – Issue #216",
+          "url": "https://kk.org/cooltools/gars-tips-tools-issue-216/",
+          "source": "Cool Tools",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-31T16:00:00+00:00",
+          "summary": "Access to tools, techniques, and shop tales from the diverse worlds of DIY",
+          "discussed": true,
+          "mention_offset_frac": 0.6912
+        },
+        {
+          "title": "[Hackaday] Rooting an Amazon Echo Dot",
+          "url": "https://hackaday.com/2026/10/31/rooting-an-amazon-echo-dot/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-10-31T23:00:00+00:00",
+          "summary": "The Amazon Echo Dot is one of Amazon’s so-called ‘smart speaker’ offerings that tie into their larger Alexa-fueled ecosystem, designed to be a pretty minimalistic device that gives you access …read mo...",
+          "discussed": true,
+          "mention_offset_frac": 0.7356
+        },
+        {
+          "title": "[Hackaday] Turning an Old Phone’s Motherboard into an RC Plane Controller",
+          "url": "https://hackaday.com/2026/10/28/turning-an-old-phones-motherboard-into-an-rc-plane-controller/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 51,
+          "date_published": "2026-10-28T15:30:08+00:00",
+          "summary": "Upcycling smartphones makes a lot of sense, especially since they contain so many components that remain useful long after their desirability as a smartphone has faded. In the case of …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.8052
+        },
+        {
+          "title": "[Adafruit Blog] e486-web: a standalone pure-JavaScript Intel 80486DX2 PC web emulator",
+          "url": "https://blog.adafruit.com/2026/10/28/e486-web-a-standalone-pure-javascript-intel-80486dx2-pc-web-emulator/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-10-28T17:48:12+00:00",
+          "summary": "Jan de Jager has published e486-web on GitHub, an Intel 80486DX2-66 PC emulator written entirely in ES6 JavaScript. It runs in the browser with no dependencies and no build step. The emulator covers t...",
+          "discussed": true,
+          "mention_offset_frac": 0.8745
+        },
+        {
+          "title": "[XDA Developers] Your ESP32 has PSRAM sitting there unused, and most tutorials forget to mention it",
+          "url": "https://www.xda-developers.com/your-esp32-has-psram-sitting-there-unused-and-most-tutorials-forget-to-mention-it/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-10-25T19:30:20+00:00",
+          "summary": "There's a lot you can do with this overlooked component",
+          "discussed": true,
+          "mention_offset_frac": 0.9043
+        },
+        {
+          "title": "[Adafruit Blog] Inside the Intel 8087 chip: floating-point addition and subtraction",
+          "url": "https://blog.adafruit.com/2026/10/28/inside-the-intel-8087-chip-floating-point-addition-and-subtraction/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 47,
+          "date_published": "2026-10-28T13:35:39+00:00",
+          "summary": "Ken Shirriff has published a look at how the Intel 8087 math coprocessor performs floating-point addition and subtraction. The 1980 chip sped up floating point in the IBM PC and other systems, with ad...",
+          "discussed": true,
+          "mention_offset_frac": 0.9574
+        },
+        {
+          "title": "[100 Mile Free Press] Walk for Jennifer marks one year anniversary, renews call for answers",
+          "url": "https://100milefreepress.net/2026/11/03/walk-for-jennifer-marks-one-year-anniversary-renews-call-for-answers/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 71,
+          "date_published": "2026-11-04T06:03:30.314178+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Popular Woodworking] Air Fasteners 101",
+          "url": "https://www.popularwoodworking.com/tools/air-fasteners-101/",
+          "source": "Popular Woodworking",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-10-29T20:14:11+00:00",
+          "summary": "Choosing the right fastener can mean the difference between a clean, lasting joint and a frustrating repair. Learn when to use pin nails, brads, finish nails, and narrow crown staples... Source",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Bio-hybrid harvester generates electricity from human cells",
+          "url": "https://newatlas.com/electronics/biohybrid-mesh-harvester/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/etiido-uko/",
+          "ai_score": 58,
+          "date_published": "2026-10-23T22:03:00+00:00",
+          "summary": "One reason we don't yet have powerful cyborgs roaming our streets is the batteries needed to power the electromechanical side. They are bulky and prone to running out of juice. Interestingly, the biol...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackster News] This Wireless Sensor Board Speaks Your Language",
+          "url": "https://www.hackster.io/news/this-wireless-sensor-board-speaks-your-language-f6e85723c116",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-29T13:02:24+00:00",
+          "summary": "NINASENSE nRF is an open source BLE and LoRa sensing board that runs for years on AAA batteries and can be programmed with natural language.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[TechRadar] One year after new EU repairability rules came into force, are our smartphones and laptops actually getting easier to repair? Here's what I found out",
+          "url": "https://www.techradar.com/phones/a-year-after-europes-repairability-rules-came-in-are-smartphones-and-laptops-actually-getting-easier-to-repair",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/max-slater-robins",
+          "ai_score": 55,
+          "date_published": "2026-11-01T12:00:00+00:00",
+          "summary": "More than a year after the EU's repairability rules came in, there are some real signs of improvement – but also lingering questions about the difficulty and cost of repairs. We speak to three experts...",
+          "discussed": true
+        },
+        {
+          "title": "[Neowin] Anduril and Qualcomm want to build an American laptop that doesn't depend on China",
+          "url": "https://www.neowin.net/news/anduril-and-qualcomm-want-to-build-an-american-laptop-that-doesnt-depend-on-china/?utm_source=rss",
+          "source": "Neowin",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-10-27T17:26:01+00:00",
+          "summary": "Anduril is teaming up with Qualcomm to break into personal computing, announcing an ambitious hardware lineup dubbed BlueChip. Read more...",
+          "discussed": true
+        },
+        {
+          "title": "[The Verge] Anduril now says its BlueChip laptop will meet Buy American standards at launch",
+          "url": "https://www.theverge.com/policy/1021554/anduril-bluechip-65-percent-domestic-buy-american",
+          "source": "The Verge",
+          "author": "Sean Hollister",
+          "ai_score": 60,
+          "date_published": "2026-10-29T02:22:46+00:00",
+          "summary": "On Tuesday, defense contractor Anduril and chipmaker Qualcomm announced a partnership to build laptops entirely in the United States, starting with a single model in 2027. They also announced a \"long-...",
+          "discussed": true
+        },
+        {
+          "title": "[The Verge] Foreign gadget bans: all the news about the FCC’s clampdown on Chinese tech",
+          "url": "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream",
+          "source": "The Verge",
+          "author": "Sean Hollister",
+          "ai_score": 65,
+          "date_published": "2026-10-28T19:37:31+00:00",
+          "summary": "What do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They’re the first consumer gadgets that are facing de facto import bans bec...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Do government rules reshaping what devices people can buy (EU repairability and parts rules, US security-driven import bans) actually deliver parts and repair access to remote owners, or just create different gatekeepers?",
+        "riley_position": "Repair rules like the EU's can be enforced and will gradually improve access, and a repair requirement belongs on the rule that decides what gets sold; market-shaping rules widen options even for small towns.",
+        "riley_key_evidence": [
+          "A one-year audit of 2,334 EU energy label records found only about 18 percent listed a usable web address for parts prices or repair instructions",
+          "EU rules require spare parts within five to ten working days and availability for at least seven years after a model leaves the market",
+          "Anduril's BlueChip laptop prototype is about 32 percent U.S.-origin by component cost, with a stated goal of at least 65 percent by launch"
+        ],
+        "casey_position": "Compliance on paper doesn't put parts in a remote owner's hands; US security-driven import rules leave repair unaddressed, and the burden of slow access falls on rural households in the meantime.",
+        "casey_key_evidence": [
+          "Rip-and-replace of Huawei and ZTE telecom gear was ordered on a government timetable and many operators still have not completed it",
+          "Banned foreign drones and routers can still receive critical updates until 2029, and the FCC action targets future devices while existing ones remain in service",
+          "Consumer Reports and Mashable note Roborock, Ecovacs and Dreame are Chinese brands, and that iRobot, though American, manufactures largely in China and Vietnam, so brand origin does not reveal parts origin"
+        ],
+        "resolution": "No full concession, but Casey conceded the EU rule is a real step and Riley agreed the label is misleading and needs enforcement; they converged that repair requirements should attach to sales rules, while still disagreeing on whether the EU gains are meaningful for rural buyers and whether US actions will ever address repair.",
+        "topics_covered": [
+          "EU repairability scores, parts availability windows, and compliance audit results",
+          "Gap between paper compliance and practical access for rural owners",
+          "US FCC Covered List actions on drones, routers and robot vacuums",
+          "Domestic laptop supply chain and sealed or repairable design tradeoffs",
+          "Whether repair requirements should be built into security or sales rules"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 0,
+          "conditions": "mainly clear",
+          "high": 10,
+          "low": 0
+        },
+        {
+          "name": "100 Mile House",
+          "temp": -1,
+          "conditions": "mainly clear",
+          "high": 8,
+          "low": -1
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 0,
+          "conditions": "mainly clear",
+          "high": 10,
+          "low": 0
+        },
+        {
+          "name": "Quesnel",
+          "temp": -1,
+          "conditions": "mainly clear",
+          "high": 9,
+          "low": -1
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 1,
+          "conditions": "foggy",
+          "high": 4,
+          "low": 1
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Community Futures Cariboo Chilcotin",
+      "description": "Nonprofit with volunteer board supporting rural entrepreneurs and community economic development",
+      "website": "cfdccariboo.com",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nThese analytical threads were identified before generation. Use the findings to ground Riley's and Casey's arguments with real evidence. Develop them as substantive exchanges, not a citation list. Cite naturally.\n\nRESEARCH QUESTION: Are EU repairability rules for phones and tablets actually producing repair information and spare parts, or is compliance lagging?\n\nFindings: The EU rules have applied since June 20, 2025. They require manufacturers to supply key spare parts within 5 to 10 working days, for at least 7 years after a model leaves the EU market. They also require a self-reported repairability score (A to E) and free public repair instructions and spare-parts prices. A year-in audit by Right to Repair Europe, republished by iFixit on September 10, 2026, checked 2,334 smartphone records in the European Product Registry for Energy Labelling. Only about 18% listed a website where parts prices or repair instructions could readily be found. Roughly half had blank URL fields. About 19% pointed to pages with neither. About 8% gave vague references like \"see manual,\" and close to 5% pointed to Temu or AliExpress. Some non-compliant models still self-declared a class A repair score. For Apple and Samsung, the compliant links exist but take several clicks to reach. The audit also found that member states lack staff to police this, so consumer groups are doing the checking. The TechRadar piece cites a June 2026 BEUC investigation comparing smartphones with battery-powered vacuum cleaners; I did not verify that report directly. Note also that the EU chose to publish parts prices on a website rather than put them in the score, as France does, which campaigners had pushed for.\n\nSuggested angle: Riley can argue that the framework is working as designed. Mandatory disclosure is a lever that makes the problem visible, and the 18% figure is partly a measure of how early it is. Casey can counter that a rule with no enforcement and blank fields is a paper right, and that an A score with blank repair data shows that self-declared labels can mislead buyers. A good exchange: does a consumer ever realistically compare battery prices before buying a phone? Riley can point to France's repair bonus and the 7-year parts window as things that change incentives over time. Casey can ask whether a Temu link counts as \"repair information\" at all.\n\nRESEARCH QUESTION: Does Anduril's BlueChip \"American-made\" laptop meet its own domestic-content claims?\n\nFindings: Anduril and Qualcomm announced BlueChip, a laptop built on Snapdragon X Series chips, with the first model planned for 2027. The Verge reports that Anduril's prototype is about 32% U.S.-origin by component procurement cost, with more than 90% sourced from the U.S. and allied countries combined. Anduril now says it will reach at least 65% U.S.-made components by launch, the Buy American threshold. TechCrunch reports about 90% from the U.S. or allied countries for the first generation, and says the CPU is built at TSMC's Arizona facility. TechRadar reports a stated long-term goal of a 100% U.S. supply chain and warns that a roughly 20% price premium could put it out of reach for everyday buyers. The product is aimed at government and military customers, and it is rugged. The \"65%\" figure is a future commitment and a targeted threshold, not something the prototype meets. Anduril's own statements also use different baselines: procurement cost, component count, and \"allied\" sourcing are not the same measure.\n\nSuggested angle: Riley can frame BlueChip as a real attempt to rebuild domestic electronics manufacturing, with a TSMC Arizona chip and a path to repairable, auditable supply chains. Casey can press on the gap between \"American-made\" marketing and a 32% prototype figure, and note that a military-grade laptop for government buyers is not a consumer repair story. A useful question for both: does onshoring help repairability? A domestic supply chain could make parts easier to source, but a sealed, rugged design built for defense may not be serviceable by ordinary users at all.\n\nRESEARCH QUESTION: What are the consumer repair and supply consequences of the FCC's move to restrict foreign-made consumer electronics?\n\nFindings: The FCC added foreign-produced drones and consumer routers to its Covered List, and has since extended this to foreign-made robots, including robot vacuums. Consumer Reports and Mashable note that major robot vacuum makers, including Roborock, Ecovacs, and Dreame, are Chinese, and that iRobot, a U.S. brand, manufactures largely in China and Vietnam. Mashable reports that banned drones and routers can still receive critical updates until 2029. Secondary coverage says devices already in homes are not being recalled. These are reported in the press and vendor-adjacent summaries, so verify the exact FCC order language before quoting specifics. Reason (August 2026) calls this the first consumer-device ban that goes beyond the earlier router action.\n\nSuggested angle: This is the strongest counterpoint to the repair-optimism thread. Riley can argue that the real repair story is continuity: updates keep existing devices working, and the rule does not force consumers to throw out products they own. Casey can argue that a ban on new product lines reduces the repair ecosystem. Parts, firmware, and support for future products depend on supply chains, and restricting imports could make consumer electronics costlier and harder to fix, not easier. The sharpest exchange is whether security-driven import limits and right-to-repair goals pull in opposite directions.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "EU smartphone repairability rules one year later spare parts availability 2026",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Anduril Qualcomm BlueChip laptop Buy American domestic content",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "FCC covered list foreign drones routers Roomba ban Chinese consumer devices",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.ifixit.com/News/119217/one-year-into-eu-ecodesign-rules-80-of-smartphones-lack-repair-info"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.consumerreports.org/appliances/vacuum-cleaners/foreign-made-robot-vacuums-fcc-ban-a9842224597/"
+      },
+      {
+        "kind": "question",
+        "query": "EU repairability score phone spare parts prices web address audit Right to Repair Europe 2025"
+      },
+      {
+        "kind": "question",
+        "query": "Anduril Qualcomm BlueChip laptop launch date 2027 price"
+      },
+      {
+        "kind": "question",
+        "query": "Apple iPhone Duo foldable hinge crack repair program"
+      },
+      {
+        "kind": "question",
+        "query": "FCC Covered List foreign drones routers robot vacuums ban update waiver"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A day of local swearing-in and long-running community vigils, followed by a run of gadgets, fixes and tinkering stories about keeping devices working and in your own hands.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "Coralee Oakes was sworn in as Quesnel's new mayor on Tuesday night with a council of returning members and two newcomers, and she vows to tackle public safety in her first 100 days.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "Several First Nations, including the St'át'imc Chiefs Council, are asking the Federal Court to review Ottawa's decision to list the proposed oil pipeline to B.C.'s coast as a project of national interest, saying it was made without impact assessment or full consultation.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "A Williams Lake columnist found the Oct. 10 Golden Buckle Ultra, with more than 50 participants hunting four hidden buckles, felt like a friendly community gathering on local trails.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "About 30 people marked one year of monthly Forest Grove walks asking for information on what happened to Jennifer Provençal, who went missing in 2025, with no charges or suspects named.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "A tech enthusiast claims the oldest GUI application still running on Windows 11 is CDPLAYER.EXE from November 1992.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "Pneumatic fasteners are not interchangeable the way screws are, because each nailer takes a specific fastener, and the wrong pairing can split stock or hold poorly.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "Apple has told its stores and authorized service providers to inspect iPhone Duo foldables with cracked inner displays and repair or replace them, but it has announced no recall or public repair program and has not confirmed a cause.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "The Muzi Works Base Uno, a small pre-flashed Meshtastic node with a solar input, connected to nearby nodes and charged its battery to around 96% from a small solar panel in a first test.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "A teardown of a supermarket solar light sold in Czechia found an unprotected Li-ion 18650 cell wired into a circuit with no charge management, apparently swapped in for a NiMH cell, which is dangerous.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "University of Massachusetts Amherst researchers built a flexible mesh that turns the contractions of living heart cells into electricity, with more than 10 times the energy density of conventional harvesting approaches in lab tests.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "Ben Hardill got IKEA's Thread-based ALPSTUGA CO2 sensors reading into Node-RED by buying a Thread border router and adding Bluetooth commissioning to a Matter controller node.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "Gar's Tips & Tools issue 216 includes a recommendation for cheap chunky hex-key T-handles and a look at a pocket rolling measuring tool prototyped on a desktop CNC.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "Someone rooted a 2018 Echo Dot to cut it loose from Amazon's cloud and turn it into a Home Assistant voice satellite, using code that is unaudited and works only on certain devices.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "A maker reused the motherboard of an 8-year-old Xiaomi phone, bought used for $23 and running LineageOS, as a long-range cellular video and control link for an RC plane.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "NINASENSE nRF is an open source BLE and LoRa sensor board designed to run for months or years on two AAA batteries and to be programmed in natural language.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "Jan de Jager published e486-web, an Intel 80486DX2-66 PC emulator written in JavaScript that runs in a browser and boots FreeDOS and DOS games.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "Many ESP32 boards have unused PSRAM that tutorials rarely cover, and it helps with things like camera frame buffers and audio decoding but is unnecessary for simple sensor projects.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "Ken Shirriff's write-up shows how the 1980 Intel 8087 math coprocessor handled floating-point addition and subtraction, from its 1648 micro-instructions to its 69-bit adder.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "The listener is left holding the iPhone Duo's cracked screens: the maker says repair or replace, but never says why it broke, and owners wait on someone else's parts. That sets up who controls the parts, and whether rules about where gear is made or how repairable it must be put fixing within reach.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "When governments reshape what gear people can buy, with EU repairability rules on one side and US import bans and made-in-America pushes on the other, does a remote owner end up with parts and repairs within reach, or only with a different set of gatekeepers?",
+      "riley_holds": "Rules that force repairability and push production closer to home can pay off for remote owners if they are designed to reach them, and the EU's early gains show the approach can work.",
+      "casey_holds": "A rule or a launch announcement is not a part on the shelf, and rural owners tend to be the last to see any benefit, so these measures should be judged by what reaches a remote buyer.",
+      "beats": [
+        {
+          "claim": "The one measure that targets repair directly shows real but incomplete progress: a year on, EU repairability rules have produced some signs of improvement, with open questions about difficulty and cost.",
+          "evidence": "TechRadar's one-year check on the EU rules, speaking to three experts, finds real signs of improvement alongside lingering questions about how hard and costly repairs remain.",
+          "pushback": "Casey: the piece itself leaves difficulty and cost unresolved, and those are exactly what decide whether a remote buyer can afford a fix. Improvement on paper is not the same as a repair that is within reach in a place far from a service centre.",
+          "leads_to_next": "If repair rules only partly deliver where they are aimed squarely at repair, what happens when governments act on gear without mentioning repair at all, as the US is doing with import bans?"
+        },
+        {
+          "claim": "US moves on foreign gadgets decide what can be bought without saying anything about whether it can be fixed, and that shifts who controls supply.",
+          "evidence": "The Verge's tracker says the FCC and the Trump administration have moved to keep Chinese drones, routers and Roombas out, starting in December 2025 with a ban on all future foreign drones unless a company obtains a waiver. These are described as de facto import bans on the first consumer gadgets to face them. The same piece notes telecoms were told to rip and replace Huawei and ZTE gear and many still have not.",
+          "pushback": "Riley: the bans grew out of network-security worry and the stated worry is real. Casey adds that the rip-and-replace record shows swapping gear on a rule's timetable often fails in practice, and the bans cover future devices, so what owners already have stays in the field with nothing said about parts.",
+          "leads_to_next": "If the bans narrow what can be imported, the fair test is whether a domestic alternative can actually supply the machine and its replacement parts."
+        },
+        {
+          "claim": "The domestic-supply answer is so far one announced model and a long-term goal, which says nothing yet about repair.",
+          "evidence": "The Verge reports Anduril and Qualcomm announced laptops built entirely in the US, starting with a single model in 2027, plus a long-term goal of pushing the industry toward a fully domestic supply chain. It notes even one Made-in-USA laptop would be a surprise because no major US computer company builds its laptops there. Neowin adds that the aim is to end dependence on China.",
+          "pushback": "Riley: starting with one model is how supply chains begin, and a maker building at home could in principle design for local service. Casey: none of the reporting says BlueChip will be repairable, and a 2027 launch gives a Cariboo buyer nothing to fix today.",
+          "leads_to_next": "With one policy aimed at repair and another aimed at origin, the question becomes whether the two have to be joined for a remote owner to benefit."
+        },
+        {
+          "claim": "Repairability and supply security are being handled by separate rules, and a remote owner is only helped where they meet.",
+          "evidence": "The EU effort in TechRadar is about repair difficulty and cost, while the US actions in The Verge are about import origin and a future domestic laptop, and neither piece ties the two together.",
+          "pushback": "Casey: if security rules decide what is sold and nobody attaches a repair requirement, remote owners could end up with fewer options and no more fixability. Riley counters that the EU experience shows repair rules can be set on their own and still change what is on shelves, so joining them is not a precondition.",
+          "leads_to_next": "The test of all this is a household far from a service centre, which is where the Cariboo comes in."
+        },
+        {
+          "claim": "A rural household's real experience of these rules depends on whether parts and fixes reach it, not on where the rule was written.",
+          "evidence": "TechRadar's note for this audience is that Cariboo households keeping phones and laptops running for years may see EU-style gains reach them only slowly, so the question is whether parts and repair costs actually fall within reach of remote buyers. The Verge's list of affected categories, drones, routers and Roombas, includes gear a rural household might own.",
+          "pushback": "Riley: slow arrival is still arrival, and a market shaped by big rules lifts the options available to small towns too. Casey: a household that waits for a rule to filter north is the one paying for the repair shop trip in the meantime.",
+          "leads_to_next": "This sets up the landing: whether the repair test should be written into the same rules that decide what gets sold."
+        }
+      ],
+      "set_aside": [],
+      "cariboo_beat": "Beat 5 brings it home to Cariboo households that keep phones, laptops and rural-internet gear like routers running for years, using TechRadar's point that EU-style repair gains may reach them slowly and the Verge's list of banned gadget types.",
+      "landing": "The disagreement is held open: should a rule that restricts or reshapes what gear can be sold also carry a repair requirement for parts and service access, so a remote owner benefits, or should repairability be left to separate law with the risk that supply-security rules leave rural owners with fewer options and no more ability to fix them?"
+    }
+  }
+}

@@ -1,31 +1,4 @@
 {
-  "2026-08-05": {
-    "timestamp": 1785927507.15807,
-    "date": "2026-08-05",
-    "theme": "Repair Culture & Practical Tech",
-    "focus": "digital-life-security",
-    "central_question": "Should rural cybersecurity rely on automated technological solutions (self-healing systems, AI detection) or on human habits and compliance enforcement (multi-factor authentication, updates, inspection regimes)?",
-    "riley_position": "Both technological advancement and human behavior matter, but automated defenses and self-healing materials represent a genuine progress curve that will eventually solve infrastructure problems humans can't constantly monitor. The trajectory from minutes to seconds in self-healing materials over five years is measurable progress worth pursuing.",
-    "riley_key_evidence": [
-      "NUS underwater e-skin self-healing material reduced repair time from minutes to ~10 seconds in recent iterations",
-      "Microsoft security data shows multi-factor authentication blocks overwhelming majority of account-compromise attempts regardless of attacker sophistication",
-      "Windows Defender baseline detection has improved dramatically and doesn't require new hardware purchases"
-    ],
-    "casey_position": "The real fix for rural households and small businesses is unglamorous compliance and habits, not impressive lab results. Most people fall victim to social engineering (fake cheat tools, phishing), not technical failures, and no automation closes the gap when human judgment is the bottleneck.",
-    "casey_key_evidence": [
-      "Xeno Executor targets children seeking free game cheats\u2014a social engineering problem, not a signature detection failure",
-      "Apple's bug bounty program capped due to AI-generated submissions drowning human reviewers, showing automation creates bottlenecks at human judgment layer",
-      "Manhattan construction inspections found code violations at meaningful number of sites\u2014the fix is enforcement of existing rules, not new technology"
-    ],
-    "resolution": "They agreed to disagree on timelines rather than outcomes: Riley conceded lab research operates on a different timeline than immediate practical needs, while Casey acknowledged both streams of work matter. They found consensus that boring compliance (multi-factor authentication, automatic updates, local IT retainers, knowledge-sharing) solves the actual problem facing rural businesses this week, while lab advances address future infrastructure problems on a longer curve.",
-    "topics_covered": [
-      "Cybersecurity vulnerabilities in rural households and small businesses",
-      "Automated vs. habit-based approaches to digital safety",
-      "Self-healing materials research and its practical timeline",
-      "The bottleneck of human judgment in scaled security systems",
-      "Repair culture and durability through knowledge rather than new purchases"
-    ]
-  },
   "2026-08-06": {
     "timestamp": 1786016088.724831,
     "date": "2026-08-06",
@@ -2585,6 +2558,34 @@
       "Indigenous economic output and governance, including the Coast Funds report and Heiltsuk co-ownership concerns",
       "Pipeline route relocation as a signal of rule versus project priority",
       "Freight and port-access impacts on Cariboo inland industries and community consultation"
+    ]
+  },
+  "2026-11-04": {
+    "timestamp": 1793780107.621984,
+    "date": "2026-11-04",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "vehicles-field-gear",
+    "anchor": "keeping-the-peace-or-speaking-up",
+    "central_question": "Do government rules reshaping what devices people can buy (EU repairability and parts rules, US security-driven import bans) actually deliver parts and repair access to remote owners, or just create different gatekeepers?",
+    "riley_position": "Repair rules like the EU's can be enforced and will gradually improve access, and a repair requirement belongs on the rule that decides what gets sold; market-shaping rules widen options even for small towns.",
+    "riley_key_evidence": [
+      "A one-year audit of 2,334 EU energy label records found only about 18 percent listed a usable web address for parts prices or repair instructions",
+      "EU rules require spare parts within five to ten working days and availability for at least seven years after a model leaves the market",
+      "Anduril's BlueChip laptop prototype is about 32 percent U.S.-origin by component cost, with a stated goal of at least 65 percent by launch"
+    ],
+    "casey_position": "Compliance on paper doesn't put parts in a remote owner's hands; US security-driven import rules leave repair unaddressed, and the burden of slow access falls on rural households in the meantime.",
+    "casey_key_evidence": [
+      "Rip-and-replace of Huawei and ZTE telecom gear was ordered on a government timetable and many operators still have not completed it",
+      "Banned foreign drones and routers can still receive critical updates until 2029, and the FCC action targets future devices while existing ones remain in service",
+      "Consumer Reports and Mashable note Roborock, Ecovacs and Dreame are Chinese brands, and that iRobot, though American, manufactures largely in China and Vietnam, so brand origin does not reveal parts origin"
+    ],
+    "resolution": "No full concession, but Casey conceded the EU rule is a real step and Riley agreed the label is misleading and needs enforcement; they converged that repair requirements should attach to sales rules, while still disagreeing on whether the EU gains are meaningful for rural buyers and whether US actions will ever address repair.",
+    "topics_covered": [
+      "EU repairability scores, parts availability windows, and compliance audit results",
+      "Gap between paper compliance and practical access for rural owners",
+      "US FCC Covered List actions on drones, routers and robot vacuums",
+      "Domestic laptop supply chain and sealed or repairable design tradeoffs",
+      "Whether repair requirements should be built into security or sales rules"
     ]
   }
 }
