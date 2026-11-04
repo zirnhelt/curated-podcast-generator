@@ -653,3 +653,22 @@ released held story) keeps the keyword test.
 
 The bare keywords themselves ("resource", "industrial", "mill", "forest", "commodity") are fixed in
 `super-rss-feed`'s `podcast_schedule.json`, which also decides `_is_bonus`.
+
+## One outlet doesn't carry the theme; a report shares the lead's headline (2026-11-04)
+
+The producer rated Wednesday's Repair Culture & Practical Tech episode "meh" (roundup, deep dive and
+flow all down): "Far too deep in the gear coverage. Not accessible to most DIYers." Every mechanical
+check passed: no off-charter theme stories, a p100 deep-dive lead with four sources, the plan kept.
+Three causes, two fixed here:
+
+- **The roundup.** Hackaday and Adafruit placed three theme stories each (Intel 8087 internals, a 486
+  emulator, ESP32 memory, rooting an Echo Dot). Wednesday's charter rewards maker electronics, and the
+  charter promotion (2026-11-03, above) admitted them into the protected theme block. Now
+  `ROUNDUP_THEME_OUTLET_MAX` (2) caps any one outlet there; its weaker stories join the tail. Local
+  outlets are exempt.
+- **The deep dive.** The Cariboo bar took two Anduril-laptop stories and an FCC-ban roundup as "reports
+  of the same story" as an EU-repairability piece, and the deep dive became a trade-policy debate. The
+  prompt already said never a neighbouring story; now a report must share a significant headline word
+  with the lead (`_headline_words`), or it is left out. Real pairs share at least one ("iphone",
+  "tanker", "repairability"); Wednesday's neighbours shared none.
+- **The charter** (the root) is rewritten around repairs a household can do, in `super-rss-feed`.
