@@ -6640,7 +6640,7 @@ class TestColdOpenNamesTheDaysFocus:
             "cold_open_generation"]["template"]
         assert "{day_focus}" in template
 
-    def _prompt_for(self, monkeypatch, focus):
+    def _prompt_for(self, monkeypatch, focus, script=None):
         import podcast_generator as pg
 
         sent = {}
@@ -6654,13 +6654,27 @@ class TestColdOpenNamesTheDaysFocus:
         monkeypatch.setattr(pg, "api_retry", lambda fn: fn())
         monkeypatch.setattr(pg, "_abort_if_billing_wall", lambda e: None)
         monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
-        pg.generate_cold_open(_WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech", focus=focus)
+        pg.generate_cold_open(script or _WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech",
+                              focus=focus)
         return sent["prompt"]
 
-    def test_focus_is_named_with_a_script_gate(self, monkeypatch):
-        prompt = self._prompt_for(monkeypatch, {"name": "Maker & Repair"})
-        assert "Maker and Repair" in prompt and "only if the" in prompt
-        assert "Gear, Gadgets and Practical Tech" in prompt
+    _FOCUS = {"name": "Maker & Repair", "keywords": ["repair café", "right to repair"]}
+
+    def test_focus_the_script_reaches_is_named_instead_of_the_theme(self, monkeypatch):
+        """2026-11-05: four focus hits in the script, and the model still named the theme."""
+        script = (_WELCOME_SCRIPT + "\n**RILEY:** The repair café fixed forty toasters."
+                  "\n**CASEY:** And right to repair passed in Oregon.\n")
+        day_line = self._prompt_for(monkeypatch, self._FOCUS, script).split(
+            "FINALIZED SCRIPT:")[0]
+        assert "centres on Maker and Repair" in day_line
+        assert "not the weekday theme" in day_line
+        assert "Practical Tech day" not in day_line
+
+    def test_focus_the_script_misses_falls_back_to_the_theme(self, monkeypatch):
+        script = _WELCOME_SCRIPT + "\n**RILEY:** One repair café opened.\n"
+        prompt = self._prompt_for(monkeypatch, self._FOCUS, script)
+        assert "centres on" not in prompt
+        assert "the Gear, Gadgets and Practical Tech day" in prompt
 
     def test_no_focus_falls_back_to_the_theme(self, monkeypatch):
         prompt = self._prompt_for(monkeypatch, None)
