@@ -5855,6 +5855,22 @@ def _format_recent_cold_opens(today: str, days: int = COLD_OPEN_LOOKBACK_DAYS) -
     return "RECENT COLD OPENS (greeting … closer):\n" + "\n".join(lines) + "\n\n"
 
 
+# The producer wants the cold open to name the super-cycle focus (2026-11-05).
+# The model was asked to judge whether the script "gets into" the focus and fell
+# back to the theme on a script with four focus-keyword hits; counting is
+# Python's job. Two hits named the focus on 11 of 13 focus days, Oct 21-Nov 5.
+FOCUS_COLD_OPEN_MIN_HITS = 2
+
+
+def _focus_hits(script: str, focus: dict | None) -> int:
+    """Whole-word mentions of *focus*'s keywords in *script*."""
+    if not focus or not script:
+        return 0
+    text = script.lower()
+    return sum(len(re.findall(r"\b" + re.escape(k.lower()) + r"\b", text))
+               for k in focus.get('keywords') or [] if k)
+
+
 def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) -> str:
     """Generate the COLD OPEN teaser after the script is fully drafted and polished.
 
@@ -5866,8 +5882,9 @@ def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) 
     downstream code already handles an episode with no COLD OPEN marker.
 
     The cold open is the one place the super-cycle focus is named on air,
-    and only when the finalized script reaches it; a calendar-picked focus
-    the material never touched would be a promise the episode breaks.
+    and only when the finalized script reaches it (`_focus_hits`, decided in
+    Python); a calendar-picked focus the material never touched would be a
+    promise the episode breaks.
     """
     client = get_anthropic_client()
     if not client or not script:
@@ -5886,14 +5903,17 @@ def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) 
     today = get_pacific_now()
     weekday = today.strftime('%A')
     spoken_theme = theme_name.replace('&', 'and')  # spoken, not read as a symbol
-    if focus and focus.get('name'):
+    hits = _focus_hits(script, focus)
+    if focus and focus.get('name') and hits >= FOCUS_COLD_OPEN_MIN_HITS:
+        print(f"  🎯 Cold open names the focus {focus['name']} ({hits} keyword hits)")
         day_focus = (
-            f"It's {weekday}, the {spoken_theme} day, and this stretch of {weekday}s "
-            f"centres on {focus['name'].replace('&', 'and')}. Name that focus only if the "
-            f"FINALIZED SCRIPT below actually gets into it; if it doesn't, name the "
-            f"{spoken_theme} day instead."
+            f"It's {weekday}, and this stretch of {weekday}s centres on "
+            f"{focus['name'].replace('&', 'and')}. Name that focus, not the weekday theme."
         )
     else:
+        if focus and focus.get('name'):
+            print(f"  🎯 Cold open names the theme: focus {focus['name']} has {hits} "
+                  f"keyword hits (< {FOCUS_COLD_OPEN_MIN_HITS})")
         day_focus = f"It's {weekday}, the {spoken_theme} day."
     prompt = prompts['cold_open_generation']['template'].format(
         theme_name=spoken_theme,
