@@ -1,5 +1,136 @@
 [
   {
+    "date": "2026-11-05",
+    "title": "Episode Review — Cariboo Signals, November 5, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-05.html",
+    "content_html": "<p class=\"meta\">Focus: Guardians &amp; Land Stewardship (week 4 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/41991826376\">41991826376</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Open the day's citations JSON and check which deep-dive sources the script failed to use.</strong><br><span class=\"evidence\">1/3 deep-dive citations matched the script</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Most of the run was ordinary; the notable number is the 27 roundup stories cut for airtime</h3>\n<p>The roundup pool held more stories than one segment can air. The airtime budget (NEWS_ROUNDUP_COUNT) dropped 27 stories from the pool by design, and a cut story can resurface on a better-matched day. Nothing failed to produce output, so this is a budget decision, not a fault.</p>\n<p>Against that, the roundup citations matched 14 of 18, and the deep dives matched 1 of 3. The deep-dive figure is the weaker one: two of the three cited deep-dive sources did not align with the script. Check whether those deep-dive citations point at the right articles before trusting the segment's sourcing.</p>\n\n<h3>The debate segment leaned heavily on Casey</h3>\n<p>Casey's share of the deep-dive words was 48%, and the Casey-to-Riley voice ratio was 0.88. The script ran 3529 words. The ratio sits close to even, but the deep-dive segment is where the imbalance shows, since Casey carries nearly half of it.</p>\n<p>If the goal is an even debate, adjust the deep-dive speaker-allocation prompt so Riley takes a comparable share of the argument.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.88, 3529 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 48% of the words</td></tr>\n<tr><td>Audio</td><td>21.6 min</td></tr>\n<tr><td>Audio size</td><td>19.8 MB</td></tr>\n<tr><td>Citations matched</td><td>14/18 roundup, 1/3 deep dive</td></tr>\n<tr><td>Feed</td><td>281 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>69,972</td></tr>\n<tr><td>API calls</td><td>32 total: claude 12 · brave-search 10 · kagi-extract 6 · brave-answers 4</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-05T10:06:01+00:00",
+    "metrics": {
+      "audio_minutes": 21.6,
+      "script_words": 3529,
+      "tell_hits": 0,
+      "roundup_cite_pct": 77.8,
+      "deep_dive_cite_pct": 33.3
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "1 thing to look at before tomorrow's run.",
+      "theme": "",
+      "kpis": [
+        [
+          "Episode",
+          "21.6 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,529",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "14/18 · 1/3",
+          "roundup · deep dive"
+        ],
+        [
+          "Done at",
+          "1:31 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "citations:deep-dive",
+          "todo": "Open the day's citations JSON and check which deep-dive sources the script failed to use.",
+          "evidence": "1/3 deep-dive citations matched the script",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-02",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Writing, Journalism & Podcasting",
+          "week": 4,
+          "of": 4,
+          "next": "Film & Screen",
+          "event": null
+        },
+        {
+          "date": "2026-11-03",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Tourism & the Outdoor Economy",
+          "week": 4,
+          "of": 4,
+          "next": "Agriculture & Ranching",
+          "event": null
+        },
+        {
+          "date": "2026-11-04",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Vehicles & Field Gear",
+          "week": 4,
+          "of": 4,
+          "next": "Maker & Repair",
+          "event": null
+        },
+        {
+          "date": "2026-11-05",
+          "day": "Thu",
+          "today": true,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Guardians & Land Stewardship",
+          "week": 4,
+          "of": 4,
+          "next": "Governance, Title & Treaty",
+          "event": null
+        },
+        {
+          "date": "2026-11-06",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 3,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-07",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-08",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Sky & Cosmos",
+          "week": 1,
+          "of": 4,
+          "next": "The Living World",
+          "event": null
+        }
+      ],
+      "anchor": "When is keeping the peace worth more than being right?"
+    }
+  },
+  {
     "date": "2026-11-04",
     "title": "Episode Review — Cariboo Signals, November 4, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-04.html",
@@ -391,20 +522,6 @@
       "script_words": 2913,
       "roundup_cite_pct": 100.0,
       "deep_dive_cite_pct": 33.3
-    }
-  },
-  {
-    "date": "2026-10-06",
-    "title": "Episode Review — Cariboo Signals, October 6, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-06.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37433806918\">37433806918</a>.</em></p>\n\n<h3>Cohere embedding failed three times; pipeline fell back to keyword ranking</h3>\n\n<p>The script generation step encountered a <code>ModuleNotFoundError</code> in the Cohere embedding service. This broke three distinct tasks: evolving-story detection, same-story clustering, and deep-dive reranking. The pipeline had fallbacks in place. It abandoned Cohere for keyword-based methods on the first two and kept the keyword ranking on the third without attempting a rerank.</p>\n\n<p>The three deep dives that shipped came from this degraded path. Without Cohere's semantic matching, the selection reflects keyword overlap rather than thematic coherence. The debate question — metrics for measuring success in working-lands industries — aligns loosely with one source (the Farming 4.0 piece) and tightly with none.</p>\n\n<h3>Citation alignment fractured in the deep dive</h3>\n\n<p>The roundup matched 14 of 15 citations. The deep dive matched only 2 of 3. No source URL appears in the facts for the third deep dive story; the pipeline may have failed to retrieve it, or it may have been generated from a headline without a backing URL at all.</p>\n\n<p>The mismatch splits by segment type. Roundup sources are traceable; deep dive sources are not. This is worth flagging as a data integrity problem independent of the Cohere failure.</p>\n\n<h3>Territory check hit its lookup ceiling</h3>\n\n<p>The territory-check segment ran eight cross-reference lookups and exhausted its per-run budget. It flagged two named nations (Nlaka'pamux and Tsilhqot'in) as mismatched against the territory map, rejected a rewrite that would have fixed one of them, and skipped checking \"Ballot\" entirely when it hit the limit.</p>\n\n<p>Two sentences kept an unsupported nation despite the rewrite rejection. The pipeline chose to ship the script rather than halt on a territory mismatch — a choice baked into the design, but one worth noting when a territory check is incomplete.</p>\n\n<h3>Script missed its target; expand pass fell short</h3>\n\n<p>The first draft arrived at 3,117 words against a target of 3,400. The script went back for expansion. The shipped version — 3,084 words — is 316 words under target and 33 words shorter than the first draft. The expand pass made the script smaller.</p>\n\n<p>This is a reversal. Either the expansion was rejected and reverted, or the second pass involved cuts that outweighed additions. The final word count shipped despite the shortfall.</p>\n\n<h3>Audio and video rendered cleanly at 18.7 minutes</h3>\n\n<p>Render audio consumed 387 seconds. Render video consumed 108 seconds. Both produced files at expected ratios: 17.2 MB audio and 64.6 MB video for the same 18.7-minute runtime. No degradation flagged.</p>\n\n<h3>Feed integrity issue in R2 sync</h3>\n\n<p>The publish-to-R2 step found one object referenced in the podcast feed but missing from cloud storage and unrecoverable from disk. This object will return a 404 to feed crawlers. The run completed and published despite the missing asset.</p>\n\n<h3>Run timing and retry behavior</h3>\n\n<p>The primary run started at 1:05 AM and finished at 1:31 AM. Fallback 1 ran at 2:05 AM and finished immediately — it appears to have been a dry-run or health check rather than a full generation. Fallback 2, which generated this review, started at 3:05 AM.</p>\n\n<p>Three scheduler invocations, all on time, suggest the pipeline is set to retry every hour if the primary fails. Neither the primary nor Fallback 1 status explains why a second fallback was needed.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.94, 3084 words</td></tr>\n<tr><td>Audio</td><td>18.7 min</td></tr>\n<tr><td>Audio size</td><td>17.2 MB</td></tr>\n<tr><td>Citations matched</td><td>14/15 roundup, 2/3 deep dive</td></tr>\n<tr><td>Feed</td><td>251 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>49,656 input tokens, calls ***'brave-search': 13, 'claude': 13, 'brave-answers': 6***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-06T10:06:15+00:00",
-    "metrics": {
-      "audio_minutes": 18.7,
-      "tell_hits": 1,
-      "script_words": 3084,
-      "roundup_cite_pct": 93.3,
-      "deep_dive_cite_pct": 66.7
     }
   }
 ]
