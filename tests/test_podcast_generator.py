@@ -6630,6 +6630,44 @@ class TestColdOpenDoesNotTeaseAGap:
         assert "Tease what the episode HAS, never what it lacks" in template
 
 
+class TestColdOpenNamesTheDaysFocus:
+    """The cold open names the cycled focus in passing, gated on the script reaching it."""
+
+    def test_prompt_takes_the_day_focus(self):
+        import config_loader
+
+        template = config_loader.load_prompts_config()[
+            "cold_open_generation"]["template"]
+        assert "{day_focus}" in template
+
+    def _prompt_for(self, monkeypatch, focus):
+        import podcast_generator as pg
+
+        sent = {}
+
+        def fake_send(client, **kw):
+            sent["prompt"] = kw["messages"][0]["content"]
+            raise RuntimeError("stop after capture")
+
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: object())
+        monkeypatch.setattr(pg, "send_claude", fake_send)
+        monkeypatch.setattr(pg, "api_retry", lambda fn: fn())
+        monkeypatch.setattr(pg, "_abort_if_billing_wall", lambda e: None)
+        monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
+        pg.generate_cold_open(_WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech", focus=focus)
+        return sent["prompt"]
+
+    def test_focus_is_named_with_a_script_gate(self, monkeypatch):
+        prompt = self._prompt_for(monkeypatch, {"name": "Maker & Repair"})
+        assert "Maker and Repair" in prompt and "only if the" in prompt
+        assert "Gear, Gadgets and Practical Tech" in prompt
+
+    def test_no_focus_falls_back_to_the_theme(self, monkeypatch):
+        prompt = self._prompt_for(monkeypatch, None)
+        assert "centres on" not in prompt
+        assert "the Gear, Gadgets and Practical Tech day" in prompt
+
+
 class TestEpisodeMetadata:
     """What podcast apps and the episode page show about each episode."""
 

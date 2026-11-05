@@ -5855,7 +5855,7 @@ def _format_recent_cold_opens(today: str, days: int = COLD_OPEN_LOOKBACK_DAYS) -
     return "RECENT COLD OPENS (greeting … closer):\n" + "\n".join(lines) + "\n\n"
 
 
-def generate_cold_open(script, theme_name):
+def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) -> str:
     """Generate the COLD OPEN teaser after the script is fully drafted and polished.
 
     Grounded in the finalized script text so the teaser can only reference
@@ -5864,6 +5864,10 @@ def generate_cold_open(script, theme_name):
     approach) let the model tease an article the rest of the episode never
     ended up covering. On any failure, returns the script unchanged;
     downstream code already handles an episode with no COLD OPEN marker.
+
+    The cold open is the one place the super-cycle focus is named on air,
+    and only when the finalized script reaches it; a calendar-picked focus
+    the material never touched would be a promise the episode breaks.
     """
     client = get_anthropic_client()
     if not client or not script:
@@ -5879,11 +5883,24 @@ def generate_cold_open(script, theme_name):
         print("  ⚠️  cold_open_generation prompt missing from config — skipping cold open")
         return script
 
+    today = get_pacific_now()
+    weekday = today.strftime('%A')
+    spoken_theme = theme_name.replace('&', 'and')  # spoken, not read as a symbol
+    if focus and focus.get('name'):
+        day_focus = (
+            f"It's {weekday}, the {spoken_theme} day, and this stretch of {weekday}s "
+            f"centres on {focus['name'].replace('&', 'and')}. Name that focus only if the "
+            f"FINALIZED SCRIPT below actually gets into it; if it doesn't, name the "
+            f"{spoken_theme} day instead."
+        )
+    else:
+        day_focus = f"It's {weekday}, the {spoken_theme} day."
     prompt = prompts['cold_open_generation']['template'].format(
-        theme_name=theme_name,
+        theme_name=spoken_theme,
+        day_focus=day_focus,
         welcome_host_upper=welcome_host,
         finalized_script=script,
-        recent_cold_opens=_format_recent_cold_opens(get_pacific_now().date().isoformat()),
+        recent_cold_opens=_format_recent_cold_opens(today.date().isoformat()),
         burned_phrases=format_burned_phrases_for_prompt(),
     )
 
@@ -14584,7 +14601,7 @@ def run_script_stage() -> tuple[str, str] | None:
             # Dive are final — grounds the teaser in what the episode actually
             # covers instead of what was merely curated for it.
             print("🎬 Generating cold open teaser...")
-            script = generate_cold_open(script, today_theme)
+            script = generate_cold_open(script, today_theme, focus=today_focus)
 
         with segment("script/tell-scrub", critical=False):
             # Last stop before the script is final. Placed after the cold open on
