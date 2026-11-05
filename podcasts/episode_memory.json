@@ -1,24 +1,4 @@
 {
-  "2026-09-30": {
-    "timestamp": 1790790042.196649,
-    "topics": [
-      "[My Cariboo Now] Emergency officials called to motel in 100 ",
-      "[Williams Lake Tribune] Flames destroy house on Horsefly Roa",
-      "[BC Wildfire Service] Open burning permitted in the Cariboo ",
-      "[100 Mile Free Press] Orange Shirt Day commemorated by South",
-      "[Quesnel Cariboo Observer] RCMP recover loaded firearms and ",
-      "[MakeUseOf] 5 open-source security apps I set up first on ev",
-      "[TechRadar] Massive data breach sees 220 million traveler re",
-      "[TechRadar] Cybercrime civil war brewing? ShinyHunters repor"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-09-30",
-    "focus": "digital-life-security",
-    "focus_name": "Digital Life & Security"
-  },
   "2026-10-02": {
     "timestamp": 1790928843.520568,
     "topics": [
@@ -725,5 +705,27 @@
     "date": "2026-11-04",
     "focus": "vehicles-field-gear",
     "focus_name": "Vehicles & Field Gear"
+  },
+  "2026-11-05": {
+    "timestamp": 1793866429.629263,
+    "topics": [
+      "[Williams Lake Tribune] Award-winning documentary on 2018 no",
+      "[Canadian Mining Journal] Osisko selects new VP to oversee C",
+      "[Regional News Archives",
+      "[Eagle Feather News] Canada open to Indian Act reform as Ind",
+      "[APTN News] First Nations youth, MP Leah Gazan warn new fede",
+      "[APTN News] St\u2019\u00e1t\u2019imc Chiefs Council challenges Ottawa\u2019s pip",
+      "[Vancouver Sun] B.C. First Nations file court challenge agai",
+      "[My Cariboo Now] First Nations ask court to review Ottawa\u2019s "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-05",
+    "focus": "guardians-stewardship",
+    "focus_name": "Guardians & Land Stewardship"
   }
 }

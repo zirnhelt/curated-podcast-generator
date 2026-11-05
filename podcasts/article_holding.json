@@ -45,88 +45,6 @@
     "target_focus_name": "Wildlife & Conservation",
     "status": "held"
   },
-  "https://www.businessinsider.com/ukraine-explosive-weight-soldiers-could-put-on-drone-surprised-maker-2026-10": {
-    "article": {
-      "id": "https://www.businessinsider.com/ukraine-explosive-weight-soldiers-could-put-on-drone-surprised-maker-2026-10",
-      "url": "https://www.businessinsider.com/ukraine-explosive-weight-soldiers-could-put-on-drone-surprised-maker-2026-10",
-      "title": "[Business Insider] Ukrainian soldiers surprised a major drone maker with how much explosive weight they packed onto one of its drones",
-      "content_html": "<img src=\"https://i.insider.com/6ada2391dc67b5b4d01f66b7?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Fukraine-explosive-weight-soldiers-could-put-on-drone-surprised-maker-2026-10\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDrones' explosive power is limited by gear, like batteries, that they must carry. But soldiers push gear to the limit, surprising even its makers.",
-      "summary": "Drones' explosive power is limited by gear, like batteries, that they must carry. But soldiers push gear to the limit, surprising even its makers.",
-      "_excerpt": "Drones' explosive power is limited by gear, like batteries, that they must carry. But soldiers push gear to the limit, surprising even its makers.",
-      "date_published": "2026-10-25T11:56:01+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 36,
-      "_quality": 60,
-      "_relevance": 40,
-      "_local": 0,
-      "_theme_score": 77,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 49,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6ada2391dc67b5b4d01f66b7?format=jpeg",
-      "_boosted_score": 36
-    },
-    "held_date": "2026-10-27",
-    "target_date": "2026-11-04",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-11-04"
-  },
-  "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream": {
-    "article": {
-      "id": "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream",
-      "url": "https://www.theverge.com/policy/1019851/fcc-foreign-gadget-ban-drone-robot-roomba-storystream",
-      "title": "[The Verge] Foreign gadget bans: all the news about the FCC\u2019s clampdown on Chinese tech",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theverge.com%2Fpolicy%2F1019851%2Ffcc-foreign-gadget-ban-drone-robot-roomba-storystream\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWhat do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They\u2019re the first consumer gadgets that are facing de facto import bans because of the US government\u2019s xenophobic stance \u2014 and they might not be the last. Originally, the US government was just worried [\u2026]",
-      "summary": "What do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They\u2019re the first consumer gadgets that are facing de facto import bans because of the US government\u2019s xenophobic stance \u2014 and they might not be the last. Originally, the US",
-      "_excerpt": "What do drones, routers, and Roombas have in common? The US government wants to keep Chinese ones from entering the country. They\u2019re the first consumer gadgets that are facing de facto import bans because of the US government\u2019s xenophobic stance \u2014 and they might not be the last. Originally, the US government was just worried [\u2026]",
-      "date_published": "2026-10-28T19:37:31+00:00",
-      "authors": [
-        {
-          "name": "The Verge",
-          "url": "https://www.theverge.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 74,
-      "_theme_score_raw": 6,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News",
-      "_boosted_score": 65
-    },
-    "held_date": "2026-10-29",
-    "target_date": "2026-11-04",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-11-04"
-  },
   "https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/": {
     "article": {
       "id": "https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/",
@@ -210,132 +128,6 @@
     "target_focus_name": "Music & Live Performance",
     "status": "aired_early"
   },
-  "https://blog.adafruit.com/2026/10/26/coffee-edition-a-newspaper-my-printer-prints-while-i-sleep/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/10/26/coffee-edition-a-newspaper-my-printer-prints-while-i-sleep/",
-      "url": "https://blog.adafruit.com/2026/10/26/coffee-edition-a-newspaper-my-printer-prints-while-i-sleep/",
-      "title": "[Adafruit Blog] Coffee Edition: a newspaper my printer prints while I sleep",
-      "content_html": "<img src=\"https://www.google.com/s2/favicons?domain=blog.adafruit.com&amp;sz=128\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F10%2F26%2Fcoffee-edition-a-newspaper-my-printer-prints-while-i-sleep%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nErol Sen built a system that prints a two-page newspaper on his home printer every morning, and he wrote it up on erolsen.dev. A Claude routine writes the issue in the cloud at 05:15. GitHub Actions lays it out and checks it. A Raspberry Pi Pico 2 W on the WiFi sends it to the [\u2026]",
-      "summary": "Erol Sen built a system that prints a two-page newspaper on his home printer every morning, and he wrote it up on erolsen.dev. A Claude routine writes the issue in the cloud at 05:15. GitHub Actions lays it out and checks it. A Raspberry Pi Pico 2 W on the WiFi sends it to the [\u2026]",
-      "_excerpt": "Erol Sen built a system that prints a two-page newspaper on his home printer every morning, and he wrote it up on erolsen.dev. A Claude routine writes the issue in the cloud at 05:15. GitHub Actions lays it out and checks it. A Raspberry Pi Pico 2 W on the WiFi sends it to the [\u2026]",
-      "date_published": "2026-10-26T15:00:21+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 65,
-      "_relevance": 75,
-      "_local": 0,
-      "_theme_score": 31,
-      "_theme_score_raw": 3,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 36,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "image": "https://www.google.com/s2/favicons?domain=blog.adafruit.com&sz=128",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-10-28T06:11:57.436772+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-10-31",
-    "target_date": "2026-11-04",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-11-04"
-  },
-  "https://www.lorameshdevices.com/blog/meshtastic/this-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html": {
-    "article": {
-      "id": "https://www.lorameshdevices.com/blog/meshtastic/this-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html",
-      "url": "https://www.lorameshdevices.com/blog/meshtastic/this-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html",
-      "title": "[LoRaMeshDevices] This Tiny Meshtastic Node Is Solar Ready: Base Uno First Look",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.lorameshdevices.com%2Fblog%2Fmeshtastic%2Fthis-tiny-meshtastic-node-is-solar-ready-base-uno-first-look.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Muzi Works Base Uno caught my attention because it packs quite a few useful features into a very small Meshtastic board. It comes pre-flashed, includes a 1,500 mAh battery, and has dedicated connections for a solar panel. That is a pretty interesting starting point for a little off-grid node. \n\nI bought the kit to find out how easily it would get going and whether the solar input actually worked. By the end of my first round of testing, it had connected over Bluetooth, discovered nearby nodes, completed a traceroute, and charged its battery to around 96% using a small solar panel. So far, this little board is looking good. \n\n \n\n\nKey Takeaways\n\n\n\tThe Base Uno kit includes a pre-flashed Meshtastic board, antenna, and 1,500 mAh three-wire LiPo battery.\n\tBluetooth pairing worked with PIN 123456, and I retained Long Fast to match my existing mesh.\n\tA small solar panel connected to PV+ and ground raised the reported battery level to about 96%.\n\tThe app eventually showed 33 online nodes, and a traceroute to a node roughly a mile away succeeded.\n\n\n\nTable of Contents\n\n\n\tWhat Comes in the Base Uno Kit?\n\tThe Three-Wire Battery Is an Interesting Detail\n\tHardware Connections for Expansion and Solar\n\tFirst Power-Up and Bluetooth Pairing\n\tConfiguring LoRa to Match the Local Mesh\n\tNode Discovery Took a Little Patience\n\tConnecting a Small Solar Panel\n\tMore Nodes and a Successful Traceroute\n\tA Mobile Node or a Permanent Solar Node?\n\n\nWhat Comes in the Base Uno Kit?\n\nThe kit includes the essentials for getting the board powered up and connected: \n\n\n\tThe Base Uno board, carrying Elecrow and Muzi Works branding.\n\tA small screw-on antenna.\n\tA USB cable.\n\tA 1,500 mAh rechargeable LiPo battery.\n\tA small Allen key and screws.\n\n\nThe board itself is quite compact. There is a reset button and a user button, but no display. Configuration and status checks happen through the Meshtastic app rather than on a screen attached to the node. \n\n \n\nIts nRF processor is one reason I was interested in it. This is the sort of hardware I would expect to be light on battery use, which makes it appealing for both a portable device and a solar-powered installation. I have not measured its power consumption or battery runtime yet, though, so those remain things to test rather than results from this first look. \n\nThe Three-Wire Battery Is an Interesting Detail\n\nThe included battery stood out more than I expected. It is a 1,500 mAh LiPo with three wires, rather than just the usual positive and negative leads. \n\nThe third wire is a sensing connection. My understanding is that it provides battery temperature information that the charging circuitry can use to manage charging, including stopping it when conditions are unsuitable. That is particularly interesting on a board intended for solar use. \n\n \n\nI like seeing that extra sensing connection, but I did not test the temperature cutoff or establish its operating thresholds. The important distinction here is that the battery offers more than a simple two-wire power connection. Confirming exactly how the board responds to that sensing input will need further testing. \n\nHardware Connections for Expansion and Solar\n\nThere is quite a bit available around the edges of this little board: \n\n\n\tQWIIC port: An expansion connection I plan to try in a separate test.\n\tSDA and SCL pins: The labeled I2C connections.\n\tTX and RX pins: Serial connections for additional projects.\n\tOLED-related connections: Useful options if a display becomes part of the build.\n\tPV+ and ground: The dedicated solar-panel connections.\n\tBattery connector: Located on the back of the board, separate from the QWIIC port.\n\n\nThat last distinction is worth paying attention to during assembly. The battery does not plug into the QWIIC port. I checked the connector location and orientation before seating it in the battery socket on the back. \n\nThe PV+ and ground connections are what make this especially tempting as a solar-node project. Rather than starting with a separate charging arrangement, there is already a place on the board to bring in the panel. \n\nFirst Power-Up and Bluetooth Pairing\n\nConnect the antenna before powering up the node. I screwed on the supplied antenna first, then connected the battery. An LED came on straight away, which was a good start. \n\nThe package identified the board as pre-flashed with Meshtastic, so there was no initial firmware installation to work through. My setup sequence was straightforward: \n\n\n\tAttach the antenna.\n\tPlug the battery into the correct battery connector.\n\tOpen the Meshtastic app and look for the node over Bluetooth.\n\tSelect the discovered Meshtastic device.\n\tEnter the Bluetooth pairing PIN.\n\tAllow the app to load the node information.\n\n\nBecause there is no display, I tried the default PIN, 123456, and it connected successfully. The Bluetooth settings later confirmed that this was the configured PIN. It can be changed there rather than left at the default. \n\nMy unit arrived running Meshtastic 2.7.15. The app initially reported the battery at 45%, while a later device-metrics reading showed 67%. Those were the reported values during setup, not a controlled battery-capacity measurement. \n\n\nChanging the Node Name\n\n\nI went into the user settings and gave the node a recognizable name using my vervesoft.live naming scheme with a Muzi identifier. Saving the change caused the node to reboot. \n\nThe Bluetooth connection dropped while it restarted, and the status LED changed colors before the node returned. The same behavior occurred when saving the LoRa settings. A brief disconnect after saving was part of the restart, not a failed setup. \n\nConfiguring LoRa to Match the Local Mesh\n\nThe board initially had the Long Fast modem preset selected. My other nodes were still using Long Fast, so I kept this board on the same settings for the first test. \n\nSelecting the US region in the app changed the preset to Long Turbo during this setup. I changed it back to Long Fast so the Base Uno would match my existing nodes. \n\nThese were the US-region combinations shown during the test: \n\n\n\tLong Fast: Frequency slot 20, operating at 906.875 MHz.\n\tLong Turbo: Frequency slot 14, operating at 908.75 MHz.\n\n\nLong Turbo was the newer default I encountered at the time, but compatibility with the mesh I already had running was the immediate priority. There was no point leaving this one node on a different preset while the rest were still waiting to be migrated. \n\nChoose the correct region for your location and check that the radio settings match the nodes you intend to use. The US settings above describe this particular setup, not a configuration to copy regardless of country. \n\n\nOther Settings I Checked\n\n\nWith the radio configured, I worked through the remaining settings: \n\n\n\tChannels: A Long Fast channel was already present.\n\tPosition sharing: The installed firmware allowed it on that channel, with an approximately 1.8-mile position-precision radius shown.\n\tDevice role: The board was set to Client.\n\tTime zone: I used the computer\u2019s time zone.\n\tBuzzer: The configuration listed pin 22, although I did not add or test a buzzer.\n\tDisplay: Display settings were turned off.\n\tBluetooth: The fixed PIN was set to 123456.\n\n\nThere was no GPS installed on this setup, so the position-sharing option did not mean the board was producing its own GPS location. It also had no environmental readings available. \n\nNode Discovery Took a Little Patience\n\nAt first, the node list stayed empty apart from the Base Uno itself. I enabled the option to include unknown nodes, but there was still nothing else immediately. \n\nI expected it to find somebody fairly quickly. Instead of changing everything at once, I left it running and checked a few diagnostics. \n\nThe signal-quality page did not provide a noise-floor reading with the installed firmware. It did show transmit and receive counters, including one TX and one RX at that stage. Battery telemetry was available, but there was no environmental or position data. \n\nThen another node appeared, identified as 49D4. That was the first useful confirmation that the Base Uno was receiving another mesh node. More entries followed as it continued running. \n\nThe practical lesson from this first startup was simple: an empty node list in the first few minutes did not turn out to mean the board was faulty. In this case, it needed a little time. \n\nI also checked the firmware version against the releases available at the time. The unit had 2.7.15, while 2.7.26 was listed as the latest stable release then. I left the firmware alone for this test so I could establish how the kit behaved as supplied. \n\nConnecting a Small Solar Panel\n\nOnce the basic setup was working, I tried the feature that interested me most: solar charging. \n\nI took a small panel described as roughly 200 mA and soldered its leads to the PV+ and ground connections on the back of the board. The LiPo battery remained connected, and I placed the assembly outside for a short test. \n\n\nThe first solar test used a small panel connected directly to the board\u2019s dedicated solar input.\n\n\nThis was a bare-board experiment, not a finished outdoor installation. I still need to find a suitable case before turning it into a permanent node. \n\n\nSolar Charging Results\n\n\nThere was a useful amount of sun, followed by some cloud, so the panel did not have uninterrupted sunshine throughout the test. \n\nEven so, the reported battery level rose from readings in the 60% to 70% range earlier in the session to approximately 95% to 96%. The device-metrics graph showed the upward charging trend after the assembly had been outside. \n\nThat is the encouraging result: the solar input worked, and the reported battery charge increased while the node was operating. This was not a measured charging-efficiency test, and it does not yet establish whether this particular panel can sustain the node through nights and poor weather. It does show that the basic solar-charging arrangement is functional. \n\nMore Nodes and a Successful Traceroute\n\nAfter the board had been running outside for a while, the app showed 33 online nodes with unknown entries filtered out. That was quite a change from the nearly empty list during the first few minutes. \n\nI then requested a traceroute to another node, and it returned successfully. The other node was roughly a mile down the road, which was a pleasing result with the little supplied stubby antenna still attached. \n\nI would not turn that into a maximum-range claim. This was an initial connectivity check, not a controlled range test. Still, the board was doing the things I wanted to establish first: receiving mesh traffic and completing a traceroute. \n\nA Mobile Node or a Permanent Solar Node?\n\nThat is now the interesting decision. The Base Uno is small enough to make a neat portable build, but the dedicated solar input makes a permanent solar node very tempting. \n\nFor a mobile build, the compact board and included 1,500 mAh battery are appealing. For a solar build, the working panel input and three-wire battery sensing are the details that stand out. \n\nMy next steps are to find a case, update the firmware, and test the QWIIC port. I also want more time with the power system before making any claims about long-term autonomy. \n\nFor now, this is a very positive first impression. It booted, paired, accepted configuration changes, discovered nearby nodes, and charged from a small solar panel. That is a pretty good start for a tiny Meshtastic board. \n\nAffiliate disclosure: I may earn from qualifying purchases through the product link below. \n\n\n\n\t\n\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\nExplore the Base Uno Kit\n\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tFind the compact, pre-flashed Meshtastic kit used in this first setup and solar-charging test. \n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tView the Kit",
-      "summary": "The Muzi Works Base Uno caught my attention because it packs quite a few useful features into a very small Meshtastic board. It comes pre-flashed, includes a 1,500 mAh battery, and has dedicated connections for a solar panel. That is a pretty interesting starting point for a little off-grid node. I",
-      "_excerpt": "The Muzi Works Base Uno caught my attention because it packs quite a few useful features into a very small Meshtastic board. It comes pre-flashed, includes a 1,500 mAh battery, and has dedicated connections for a solar panel. That is a pretty interesting starting point for a little off-grid node. I bought the kit to find out how easily it would get going and whether the solar input actually worked. By the end of my first round of testing, it had connected over Bluetooth, discovered nearby nodes, completed a traceroute, and charged its battery to around 96% using a small solar panel. So far,",
-      "date_published": "2026-10-30T19:41:51+00:00",
-      "authors": [
-        {
-          "name": "LoRaMeshDevices",
-          "url": "https://www.lorameshdevices.com/blog/"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 58,
-      "_relevance": 80,
-      "_local": 0,
-      "_theme_score": 31,
-      "_theme_score_raw": 3,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 35,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_boosted_score": 60
-    },
-    "held_date": "2026-10-31",
-    "target_date": "2026-11-04",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-11-04"
-  },
-  "https://www.mycariboonow.com/317059/news/indigenous/chief-leah-stumps-seeks-fourth-term-in-upcoming-election/": {
-    "article": {
-      "id": "https://www.mycariboonow.com/317059/news/indigenous/chief-leah-stumps-seeks-fourth-term-in-upcoming-election/",
-      "url": "https://www.mycariboonow.com/317059/news/indigenous/chief-leah-stumps-seeks-fourth-term-in-upcoming-election/",
-      "title": "[My Cariboo Now] Chief Leah Stump seeks fourth term in upcoming election",
-      "content_html": "<img src=\"https://www.mycariboonow.com/wp-content/uploads/2026/10/Nazko-Community-Hall-KCP_3388.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F317059%2Fnews%2Findigenous%2Fchief-leah-stumps-seeks-fourth-term-in-upcoming-election%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"464\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2026/10/Nazko-Community-Hall-KCP_3388.jpg?fit=696%2C464&amp;quality=89&amp;ssl=1\" width=\"696\"/>The preliminary candidates in the upcoming election for the Nazko First Nation have been announced. Chief Leah Stump will be seeking her fourth term against two opponents.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/317059/news/indigenous/chief-leah-stumps-seeks-fourth-term-in-upcoming-election/\">Chief Leah Stump seeks fourth term in upcoming election</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
-      "summary": "The preliminary candidates in the upcoming election for the Nazko First Nation have been announced. Chief Leah Stump will be seeking her fourth term against two opponents. The post Chief Leah Stump seeks fourth term in upcoming election appeared first on My Cariboo Now .",
-      "_excerpt": "The preliminary candidates in the upcoming election for the Nazko First Nation have been announced. Chief Leah Stump will be seeking her fourth term against two opponents. The post Chief Leah Stump seeks fourth term in upcoming election appeared first on My Cariboo Now .",
-      "date_published": "2026-10-29T19:50:57+00:00",
-      "authors": [
-        {
-          "name": "My Cariboo Now",
-          "url": "https://www.mycariboonow.com"
-        }
-      ],
-      "ai_score": 76,
-      "_quality": 67,
-      "_relevance": 75,
-      "_local": 90,
-      "_theme_score": 77,
-      "_theme_score_raw": 18,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 75,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "image": "https://www.mycariboonow.com/wp-content/uploads/2026/10/Nazko-Community-Hall-KCP_3388.jpg",
-      "_cross_theme": {
-        "day": "saturday",
-        "label": "Cariboo Local Affairs",
-        "shown_at": "2026-10-31T06:08:15.848283+00:00"
-      },
-      "_boosted_score": 76,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-11-02",
-    "target_date": "2026-11-05",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "aired_early"
-  },
   "https://www.aptnnews.ca/featured/first-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent/": {
     "article": {
       "id": "https://www.aptnnews.ca/featured/first-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent/",
@@ -376,50 +168,8 @@
     "target_weekday": 3,
     "target_focus_slug": "guardians-stewardship",
     "target_focus_name": "Guardians & Land Stewardship",
-    "status": "held"
-  },
-  "https://macleans.ca/longforms/the-hutterites-guide-to-technology/": {
-    "article": {
-      "id": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
-      "url": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
-      "title": "[Maclean's] The Hutterites\u2019 Guide To Technology",
-      "content_html": "<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fmacleans.ca%2Flongforms%2Fthe-hutterites-guide-to-technology%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\"/>On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "summary": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "_excerpt": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "date_published": "2026-11-02T15:30:13+00:00",
-      "authors": [
-        {
-          "name": "Maclean's",
-          "url": "https://macleans.ca"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 85,
-      "_relevance": 70,
-      "_local": 20,
-      "_theme_score": 67,
-      "_theme_score_raw": 12,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 62
-    },
-    "held_date": "2026-11-03",
-    "target_date": "2026-11-04",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
     "status": "released",
-    "release_date": "2026-11-04"
+    "release_date": "2026-11-05"
   },
   "https://www.technologyreview.com/2026/11/02/1147846/the-agentic-web-is-here/": {
     "article": {
@@ -496,44 +246,6 @@
     "target_focus_name": "Sky & Cosmos",
     "status": "held"
   },
-  "https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/": {
-    "article": {
-      "id": "https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/",
-      "url": "https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/",
-      "title": "[My Cariboo Now] First Nations ask court to review Ottawa\u2019s national-interest pipeline designation",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F317119%2Fnews%2Findigenous%2Ffirst-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2026/11/878239615_957991870363712_3605096215933040978_n.jpg?fit=696%2C392&amp;quality=89&amp;ssl=1\" width=\"696\"/>Several First Nations are asking a Federal Court to review Ottawa\u2019s decision to list the proposed new oil pipeline to B.C.\u2019s coast as a \u201cproject of national interest.\u201d</p>\n<p>The post <a href=\"https://www.mycariboonow.com/317119/news/indigenous/first-nations-ask-court-to-review-ottawas-national-interest-pipeline-designation/\">First Nations ask court to review Ottawa\u2019s national-interest pipeline designation</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
-      "summary": "Several First Nations are asking a Federal Court to review Ottawa\u2019s decision to list the proposed new oil pipeline to B.C.\u2019s coast as a \u201cproject of national interest.\u201d The post First Nations ask court to review Ottawa\u2019s national-interest pipeline designation appeared first on My Cariboo Now .",
-      "_excerpt": "Several First Nations are asking a Federal Court to review Ottawa\u2019s decision to list the proposed new oil pipeline to B.C.\u2019s coast as a \u201cproject of national interest.\u201d The post First Nations ask court to review Ottawa\u2019s national-interest pipeline designation appeared first on My Cariboo Now .",
-      "date_published": "2026-11-03T19:07:54+00:00",
-      "authors": [
-        {
-          "name": "My Cariboo Now",
-          "url": "https://www.mycariboonow.com"
-        }
-      ],
-      "ai_score": 74,
-      "_quality": 77,
-      "_relevance": 78,
-      "_local": 60,
-      "_theme_score": 86,
-      "_theme_score_raw": 2,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 78,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_boosted_score": 74,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-11-04",
-    "target_date": "2026-11-05",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "aired_early"
-  },
   "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/": {
     "article": {
       "id": "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/",
@@ -571,6 +283,164 @@
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/11/04/award-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake/": {
+    "article": {
+      "id": "https://wltribune.com/2026/11/04/award-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake/",
+      "url": "https://wltribune.com/2026/11/04/award-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake/",
+      "title": "[Williams Lake Tribune] Award-winning documentary on 2018 northern B.C. wildfires coming to Williams Lake",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F11%2F04%2Faward-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAward-winning documentary on 2018 northern B.C. wildfires coming to Williams Lake | Williams Lake Tribune Award-winning documentary on 2018 northern B.C. wildfires coming to Williams Lake The Fire In Our Hearts, an award-winning wildfire documentary, is coming to Williams Lake on Nov. 7 and Nov. 12 at Paradise CInemas. As wildfires raged in 2018 forcing his friends, family and neighbours to choose to evacuate or remain to protect the land that defines them filmmaker Josias Tschanz knew he wanted to give his remote community in northern B.C. a voice. Tschanz is bringing his feature length",
+      "summary": "Award-winning documentary on 2018 northern B.C. wildfires coming to Williams Lake | Williams Lake Tribune Award-winning documentary on 2018 northern B.C. wildfires coming to Williams Lake The Fire In Our Hearts, an award-winning wildfire documentary, is coming to Williams Lake on Nov. 7 and Nov. 12",
+      "_excerpt": "Award-winning documentary on 2018 northern B.C. wildfires coming to Williams Lake | Williams Lake Tribune Award-winning documentary on 2018 northern B.C. wildfires coming to Williams Lake The Fire In Our Hearts, an award-winning wildfire documentary, is coming to Williams Lake on Nov. 7 and Nov. 12 at Paradise CInemas. As wildfires raged in 2018 forcing his friends, family and neighbours to choose to evacuate or remain to protect the land that defines them filmmaker Josias Tschanz knew he wanted to give his remote community in northern B.C. a voice. Tschanz is bringing his feature length award-winning documentary that he hopes will spark discussion, The Fire In Our Hearts, to Williams Lake on Saturday, Nov. 7 and Thursday, Nov. 12. The film follows communities located directly south of Francois Lake and tells the story of ordinary residents, First Nations and firefighters who chose flight over flight.. \u201cAt first it was not a film,\u201d Tschanz said noting, he immigrated to Canada when he was 16 years old from Switzerland and his parents live in the area. At the time of the fires that resulted in ferry access being restricted, Tschanz was smuggled through the toxic smoke on a shipping boat with a friend. \u201cIt was just to document things and then create a GoFundMe page, and we had a video that would help people that had lost a lot in the community, but then what happened was the beautiful story of the community coming together and forming an organization.\u201d That organization, Tschanz, said is the Chinook Emergency Response Society which is now a national blueprint on how smaller communities can be part of the solution when there is wildfire and they are too remote to access and provide resources and time. This is where the story takes off, according to Tschanz, telling more than just the fires themselves but the aftermath and what happened during that time. He believes the film in which a major part of it follows the Cheslatta Carrier Nation, including Chief Corrina",
+      "date_published": "2026-11-05T06:03:42.515808+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 86,
+      "_quality": 75,
+      "_relevance": 85,
+      "_local": 100,
+      "_theme_score": 85,
+      "_theme_score_raw": 10,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 94,
+      "_keyword_matches": 2,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_boosted_score": 86,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-05",
+    "target_date": "2026-11-20",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://www.canadianminingjournal.com/news/osisko-selects-new-vp-to-oversee-cariboo-construction/": {
+    "article": {
+      "id": "https://www.canadianminingjournal.com/news/osisko-selects-new-vp-to-oversee-cariboo-construction/",
+      "url": "https://www.canadianminingjournal.com/news/osisko-selects-new-vp-to-oversee-cariboo-construction/",
+      "title": "[Canadian Mining Journal] Osisko selects new VP to oversee Cariboo construction",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.canadianminingjournal.com%2Fnews%2Fosisko-selects-new-vp-to-oversee-cariboo-construction%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Osisko Gold (NYSE: OGG, TSXV: OGG) has named Cameron Carter as its new vice-president of construction operations of Barkerville Gold Mines, the [\u2026]</p>\n<p>The post <a href=\"https://www.canadianminingjournal.com/news/osisko-selects-new-vp-to-oversee-cariboo-construction/\">Osisko selects new VP to oversee Cariboo construction</a> appeared first on <a href=\"https://www.canadianminingjournal.com\">Canadian Mining Journal</a>.</p>",
+      "summary": "Osisko Gold (NYSE: OGG, TSXV: OGG) has named Cameron Carter as its new vice-president of construction operations of Barkerville Gold Mines, the [\u2026] The post Osisko selects new VP to oversee Cariboo construction appeared first on Canadian Mining Journal .",
+      "_excerpt": "Osisko Gold (NYSE: OGG, TSXV: OGG) has named Cameron Carter as its new vice-president of construction operations of Barkerville Gold Mines, the [\u2026] The post Osisko selects new VP to oversee Cariboo construction appeared first on Canadian Mining Journal .",
+      "date_published": "2026-11-04T15:21:04+00:00",
+      "authors": [
+        {
+          "name": "Canadian Mining Journal",
+          "url": "https://www.canadianminingjournal.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 50,
+      "_relevance": 55,
+      "_local": 95,
+      "_theme_score": 52,
+      "_theme_score_raw": 3,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_boosted_score": 62,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-05",
+    "target_date": "2026-11-24",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "aired_early"
+  },
+  "https://www.americanagnetwork.com/2026/11/03/usda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers/": {
+    "article": {
+      "id": "https://www.americanagnetwork.com/2026/11/03/usda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers/",
+      "url": "https://www.americanagnetwork.com/2026/11/03/usda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers/",
+      "title": "[americanagnetwork.com] USDA moves nearly $4 million to expand Kansas meat processing",
+      "content_html": "<img src=\"https://kagiproxy.com/img/yVuQVx_I62T5CNzKqBXp9rl_sytlX1ODzub1mX4jRZBDZNny-oTFQ1eRZLFAjfhmqYhrZJB68L78SnpkI3SHU1mOdRXtp0DPKxfU5X98RvZd_7HADQnFfZj8KOuQ5ETZMggVaa3aL42UMMmxV2cbpumI1k8AqeCCW4_AOTiJuILmdYNj0cQkOrPMFcV9uFwRG_yX\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.americanagnetwork.com%2F2026%2F11%2F03%2Fusda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and Poultry Processing Expansion Program. USDA said it can begin obligating the grants after completing the congressional notification period.\n\nThe largest Kansas grant, $2 million for Plainview Beef Company in Peabody, will help renovate and equip a processing facility, including cold storage, packaging, rendering and wastewater systems. USDA says the projects aim to expand market access for independent producers and increase competition among processors. Agriculture Secretary Brooke Rollins said, \u201cA strong, independent processing sector is essential to our food security, and these Kansas processors build the resilient supply chain this country needs\u201d.",
+      "summary": "The U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and",
+      "_excerpt": "The U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and Poultry Processing Expansion Program. USDA said it can begin obligating the grants after completing the congressional notification period (americanagnetwork.com, meatingplace.com). The largest Kansas grant, $2 million for Plainview Beef Company in Peabody, will help renovate and equip a processing facility, including cold storage, packaging, rendering and wastewater systems. USDA says the projects aim to expand market access for independent producers and increase competition among processors. Agriculture Secretary Brooke Rollins said, \u201cA strong, independent processing sector is essential to our food security, and these Kansas processors build the resilient supply chain this country needs\u201d (americanagnetwork.com, beefmagazine.com). Capacity targets: Kansas grants are projected to raise Hat Creek Butchery\u2019s daily harvest capacity by 200%, Walnut Valley Packing\u2019s processing capacity by about 140%, Randel\u2019s annual capacity by about 67% and T & W Meat\u2019s annual capacity by about 25% (americanagnetwork.com, beefmagazine.com). Other states: The round includes $2.17 million for two Iowa facilities, about $1.1 million for six Illinois projects and $1.07 million for four Wisconsin processors (meatingplace.com). Nebraska award: Wahoo Locker in Nebraska will receive $250,000 for automated packaging equipment for pork and beef products (klkntv.com, meatingplace.com). Program scale: USDA says it has awarded more than $200 million to independent processors through the program since it began (meatingplace.com, americanagnetwork.com).",
+      "date_published": "2026-11-03T12:58:40+00:00",
+      "authors": [
+        {
+          "name": "americanagnetwork.com",
+          "url": "https://www.americanagnetwork.com"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 60,
+      "_relevance": 75,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 5,
+      "_kite_sources": 5,
+      "_kite_context": "",
+      "_composite_podcast": 56,
+      "_keyword_matches": 0,
+      "_category": "homestead",
+      "_source_category": "homestead",
+      "_is_bonus": true,
+      "image": "https://kagiproxy.com/img/yVuQVx_I62T5CNzKqBXp9rl_sytlX1ODzub1mX4jRZBDZNny-oTFQ1eRZLFAjfhmqYhrZJB68L78SnpkI3SHU1mOdRXtp0DPKxfU5X98RvZd_7HADQnFfZj8KOuQ5ETZMggVaa3aL42UMMmxV2cbpumI1k8AqeCCW4_AOTiJuILmdYNj0cQkOrPMFcV9uFwRG_yX",
+      "_boosted_score": 57,
+      "_body": "The U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and Poultry Processing Expansion Program. USDA said it can begin obligating the grants after completing the congressional notification period (americanagnetwork.com, meatingplace.com). The largest Kansas grant, $2 million for Plainview Beef Company in Peabody, will help renovate and equip a processing facility, including cold storage, packaging, rendering and wastewater systems. USDA says the projects aim to expand market access for independent producers and increase competition among processors. Agriculture Secretary Brooke Rollins said, \u201cA strong, independent processing sector is essential to our food security, and these Kansas processors build the resilient supply chain this country needs\u201d (americanagnetwork.com, beefmagazine.com). Capacity targets: Kansas grants are projected to raise Hat Creek Butchery\u2019s daily harvest capacity by 200%, Walnut Valley Packing\u2019s processing capacity by about 140%, Randel\u2019s annual capacity by about 67% and T & W Meat\u2019s annual capacity by about 25% (americanagnetwork.com, beefmagazine.com). Other states: The round includes $2.17 million for two Iowa facilities, about $1.1 million for six Illinois projects and $1.07 million for four Wisconsin processors (meatingplace.com). Nebraska award: Wahoo Locker in Nebraska will receive $250,000 for automated packaging equipment for pork and beef products (klkntv.com, meatingplace.com). Program scale: USDA says it has awarded more than $200 million to independent processors through the program since it began (meatingplace.com, americanagnetwork.com)."
+    },
+    "held_date": "2026-11-05",
+    "target_date": "2026-11-10",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "held"
+  },
+  "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754": {
+    "article": {
+      "id": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
+      "url": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
+      "title": "[ABC News] Huge gas-fired power station plan quietly revealed amid renewables fanfare",
+      "content_html": "<img src=\"https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&amp;cropH=1368&amp;cropW=1026&amp;xPos=511&amp;yPos=0&amp;width=862&amp;height=1149\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.abc.net.au%2Fnews%2F2026-10-27%2Fbid-to-double-wa-renewable-energy-output-amid-price-rise-warning%2F107313754\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
+      "summary": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
+      "_excerpt": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
+      "date_published": "2026-10-27T03:39:02+00:00",
+      "authors": [
+        {
+          "name": "ABC News",
+          "url": "https://abc.net.au"
+        }
+      ],
+      "ai_score": 42,
+      "_quality": 60,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 5,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 54,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&cropH=1368&cropW=1026&xPos=511&yPos=0&width=862&height=1149",
+      "_boosted_score": 42
+    },
+    "held_date": "2026-11-05",
+    "target_date": "2026-11-11",
+    "target_weekday": 2,
+    "target_focus_slug": "maker-repair",
+    "target_focus_name": "Maker & Repair",
     "status": "held"
   }
 }
