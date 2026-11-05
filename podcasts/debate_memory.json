@@ -1,31 +1,4 @@
 {
-  "2026-08-06": {
-    "timestamp": 1786016088.724831,
-    "date": "2026-08-06",
-    "theme": "Indigenous Lands & Innovation",
-    "focus": "economic-development",
-    "central_question": "When Indigenous Nations negotiate resource-extraction deals with provincial governments and industry, do these agreements represent genuine self-determination or constrained choices within an unfairly limited menu of options?",
-    "riley_position": "Revenue-sharing and tenure arrangements represent real authority and leverage that Nations can convert extraction happening anyway into outcomes on their own terms, which is meaningfully different from having no say at all.",
-    "riley_key_evidence": [
-      "Pacheedaht signed a forest revenue agreement in 2017 that funds housing, health care, and self-determination programs",
-      "Cariboo Nations like Xat\u015b\u016bll and Williams Lake First Nation hold community forestry tenure arrangements where the Nation itself holds cutting rights",
-      "The T\u015dilhqot'in title decision (2014) gave Nations standing to negotiate from strength rather than from nothing"
-    ],
-    "casey_position": "These deals represent the best available option from a menu drawn up by provincial government and industry before Nations ever sat down to negotiate, and internal governance legitimacy is genuinely contested\u2014both elected councils and hereditary/community voices claim to speak for the Nation.",
-    "casey_key_evidence": [
-      "Pacheedaht's elected council never endorsed the blockade camps, but some community members and hereditary voices still support them",
-      "BC's old-growth deferral framework is explicitly non-permanent, described as 'subject to future management decisions' and requiring repeated extensions",
-      "Environmental groups and land defenders can claim the same territory as Indigenous land defense while opposing the elected council's negotiated deal"
-    ],
-    "resolution": "Neither fully conceded; both agreed they cannot verify the actual internal governance processes from published reporting alone, and invited direct testimony from Nations themselves to better understand how tenure and revenue decisions are actually made and to whom those decisions are accountable within communities.",
-    "topics_covered": [
-      "Revenue-sharing agreements vs. tenure-holding as different models of Indigenous economic authority",
-      "Internal governance legitimacy: elected councils vs. hereditary leadership vs. community assembly voices",
-      "Transparency and accountability: whether Nations publish harvest plans and decision-making visible to community members",
-      "Provincial deferral frameworks as temporary vs. permanent protections",
-      "The distinction between visibility to one's own community versus visibility to external government and industry actors"
-    ]
-  },
   "2026-08-07": {
     "timestamp": 1786094498.098572,
     "date": "2026-08-07",
@@ -2586,6 +2559,34 @@
       "US FCC Covered List actions on drones, routers and robot vacuums",
       "Domestic laptop supply chain and sealed or repairable design tradeoffs",
       "Whether repair requirements should be built into security or sales rules"
+    ]
+  },
+  "2026-11-05": {
+    "timestamp": 1793866431.627253,
+    "date": "2026-11-05",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "guardians-stewardship",
+    "anchor": "keeping-the-peace-or-speaking-up",
+    "central_question": "When a process is flawed before it starts, is a seat at the table worth more than being right about the flaw in the Pacific Link pipeline consultation under the Building Canada Act?",
+    "riley_position": "Riley argues that consultation and negotiation at the table are worth pursuing because they can write binding conditions into permits and win real benefits, while a live court challenge can also force a real process and act as leverage.",
+    "riley_key_evidence": [
+      "The project is about one million barrels of crude a day, moving from Bruderheim, Alberta to a deepwater port near Delta.",
+      "Tsartlip negotiator Adam Olsen reported the Major Projects Office said, once a project is listed, 'it's not about if the project is going to go forward, but how.'",
+      "Phillips Barristers and McMillan LLP note the Building Canada Act's preamble is non-binding and does not make the UN Declaration law in Canada."
+    ],
+    "casey_position": "Casey argues that the designation is decided before consultation, so sitting at the table amounts to accepting the project, and that consultation cannot change the outcome given the fast-track timeline and narrow geographic scope.",
+    "casey_key_evidence": [
+      "The prime minister listed Pacific Link as a national-interest project on October 1st under the Building Canada Act, before consultation began.",
+      "St'\u00e1t'imc complaints cite a summer timeline overlapping harvesting and wildfire season, incomplete route information, and a narrow geographic approach that excludes nations whose territory is off the line.",
+      "Liberal MP Corey Hogan called the 10 per cent equity stake a 'floor not a ceiling,' and the St'\u00e1t'imc Chiefs Council speaks for 11 communities."
+    ],
+    "resolution": "The hosts did not reach agreement. They framed the open question as whether a court case preserves the relationship by forcing a real process or ends it and leaves the process to whoever wins, with Riley leaning toward the court and Casey toward the Nation's own judgment.",
+    "topics_covered": [
+      "Designation under the Building Canada Act versus consultation timing",
+      "Free, prior and informed consent and the legal status of the UN Declaration",
+      "Judicial review and whether litigation helps or hurts negotiation",
+      "Standing and whether consulting individual communities can count as consent for a whole Nation",
+      "Equity stakes, benefit-sharing, and the impact of tanker and spill risk on Cariboo communities"
     ]
   }
 }
