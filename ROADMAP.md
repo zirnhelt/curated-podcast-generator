@@ -41,10 +41,18 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-10-18..2026-10-24) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-09-27..2026-11-06) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
+- [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
+      section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
+      (33%). The gap suggests a different verification pathway or a shortfall in source
+      retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
+      proceeded despite this disparity. Audit the deep dive citation matching logic and the
+      Brave API call sequence to confirm whether thin article bodies or budget exhaustion
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 2
+      reviews, latest 2026-11-06)
 - [ ] **The first script draft ran 21 percent short and needed expansion retries to reach
       length.** The first draft came in at 2694 words against a 3400-word target, and the
       pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is
