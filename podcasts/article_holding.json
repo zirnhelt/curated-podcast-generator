@@ -43,7 +43,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-06"
   },
   "https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/": {
     "article": {
@@ -128,49 +129,6 @@
     "target_focus_name": "Music & Live Performance",
     "status": "aired_early"
   },
-  "https://www.aptnnews.ca/featured/first-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent/": {
-    "article": {
-      "id": "https://www.aptnnews.ca/featured/first-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent/",
-      "url": "https://www.aptnnews.ca/featured/first-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent/",
-      "title": "[APTN News] First Nations youth, MP Leah Gazan warn new federal laws threaten rights, water and consent",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Ffeatured%2Ffirst-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>First Nations youth and NDP Indigenous affairs critic Leah Gazan used a Parliament Hill news...</p>\n<p>The post <a href=\"https://www.aptnnews.ca/featured/first-nations-youth-mp-leah-gazan-warn-new-federal-laws-threaten-rights-water-and-consent/\">First Nations youth, MP Leah Gazan warn new federal laws threaten rights, water and consent</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
-      "summary": "First Nations youth and NDP Indigenous affairs critic Leah Gazan used a Parliament Hill news... The post First Nations youth, MP Leah Gazan warn new federal laws threaten rights, water and consent appeared first on APTN News .",
-      "_excerpt": "First Nations youth and NDP Indigenous affairs critic Leah Gazan used a Parliament Hill news... The post First Nations youth, MP Leah Gazan warn new federal laws threaten rights, water and consent appeared first on APTN News .",
-      "date_published": "2026-10-28T22:34:45+00:00",
-      "authors": [
-        {
-          "name": "APTN News",
-          "url": "https://www.aptnnews.ca"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 78,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-10-29T06:12:40.113624+00:00"
-      },
-      "_boosted_score": 45
-    },
-    "held_date": "2026-11-02",
-    "target_date": "2026-11-05",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "released",
-    "release_date": "2026-11-05"
-  },
   "https://www.technologyreview.com/2026/11/02/1147846/the-agentic-web-is-here/": {
     "article": {
       "id": "https://www.technologyreview.com/2026/11/02/1147846/the-agentic-web-is-here/",
@@ -244,45 +202,6 @@
     "target_weekday": 6,
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
-    "status": "held"
-  },
-  "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/": {
-    "article": {
-      "id": "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/",
-      "url": "https://thetyee.ca/Analysis/2026/11/03/Deceptions-Killed-Alberta-Renewable-Energy-Industry/",
-      "title": "[The Tyee] The Deceptions That Crippled a Renewable Energy Industry",
-      "content_html": "<img src=\"https://thetyee.ca/Analysis/2026/10/30/SturgeonCountyDataCentreRender.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FAnalysis%2F2026%2F11%2F03%2FDeceptions-Killed-Alberta-Renewable-Energy-Industry%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAlberta invokes \u2018agriculture first\u2019 to block wind and solar while putting gas plants on prime land.",
-      "summary": "Alberta invokes \u2018agriculture first\u2019 to block wind and solar while putting gas plants on prime land.",
-      "_excerpt": "Alberta invokes \u2018agriculture first\u2019 to block wind and solar while putting gas plants on prime land.",
-      "date_published": "2026-11-03T21:45:00+00:00",
-      "authors": [
-        {
-          "name": "The Tyee",
-          "url": "https://thetyee.ca"
-        }
-      ],
-      "ai_score": 69,
-      "_quality": 85,
-      "_relevance": 78,
-      "_local": 25,
-      "_theme_score": 50,
-      "_theme_score_raw": 8,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 37,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://thetyee.ca/Analysis/2026/10/30/SturgeonCountyDataCentreRender.jpg",
-      "_boosted_score": 69
-    },
-    "held_date": "2026-11-04",
-    "target_date": "2026-11-10",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
     "status": "held"
   },
   "https://wltribune.com/2026/11/04/award-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake/": {
@@ -370,7 +289,7 @@
       "id": "https://www.americanagnetwork.com/2026/11/03/usda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers/",
       "url": "https://www.americanagnetwork.com/2026/11/03/usda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers/",
       "title": "[americanagnetwork.com] USDA moves nearly $4 million to expand Kansas meat processing",
-      "content_html": "<img src=\"https://kagiproxy.com/img/yVuQVx_I62T5CNzKqBXp9rl_sytlX1ODzub1mX4jRZBDZNny-oTFQ1eRZLFAjfhmqYhrZJB68L78SnpkI3SHU1mOdRXtp0DPKxfU5X98RvZd_7HADQnFfZj8KOuQ5ETZMggVaa3aL42UMMmxV2cbpumI1k8AqeCCW4_AOTiJuILmdYNj0cQkOrPMFcV9uFwRG_yX\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.americanagnetwork.com%2F2026%2F11%2F03%2Fusda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and Poultry Processing Expansion Program. USDA said it can begin obligating the grants after completing the congressional notification period.\n\nThe largest Kansas grant, $2 million for Plainview Beef Company in Peabody, will help renovate and equip a processing facility, including cold storage, packaging, rendering and wastewater systems. USDA says the projects aim to expand market access for independent producers and increase competition among processors. Agriculture Secretary Brooke Rollins said, \u201cA strong, independent processing sector is essential to our food security, and these Kansas processors build the resilient supply chain this country needs\u201d.",
+      "content_html": "<img src=\"https://kagiproxy.com/img/yVuQVx_I62T5CNzKqBXp9rl_sytlX1ODzub1mX4jRZBDZNny-oTFQ1eRZLFAjfhmqYhrZJB68L78SnpkI3SHU1mOdRXtp0DPKxfU5X98RvZd_7HADQnFfZj8KOuQ5ETZMggVaa3aL42UMMmxV2cbpumI1k8AqeCCW4_AOTiJuILmdYNj0cQkOrPMFcV9uFwRG_yX\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.americanagnetwork.com%2F2026%2F11%2F03%2Fusda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and Poultry Processing Expansion Program. USDA said it can begin obligating the grants after completing the congressional notification period.\n\nThe largest Kansas grant, $2 million for Plainview Beef Company in Peabody, will help renovate and equip a processing facility, including cold storage, packaging, rendering and wastewater systems. USDA says the projects aim to expand market access for independent producers and increase competition among processors. Agriculture Secretary Brooke Rollins said, \u201cA strong, independent processing sector is essential to our food security, and these Kansas processors build the resilient supply chain this country needs\u201d.",
       "summary": "The U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and",
       "_excerpt": "The U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and Poultry Processing Expansion Program. USDA said it can begin obligating the grants after completing the congressional notification period (americanagnetwork.com, meatingplace.com). The largest Kansas grant, $2 million for Plainview Beef Company in Peabody, will help renovate and equip a processing facility, including cold storage, packaging, rendering and wastewater systems. USDA says the projects aim to expand market access for independent producers and increase competition among processors. Agriculture Secretary Brooke Rollins said, \u201cA strong, independent processing sector is essential to our food security, and these Kansas processors build the resilient supply chain this country needs\u201d (americanagnetwork.com, beefmagazine.com). Capacity targets: Kansas grants are projected to raise Hat Creek Butchery\u2019s daily harvest capacity by 200%, Walnut Valley Packing\u2019s processing capacity by about 140%, Randel\u2019s annual capacity by about 67% and T & W Meat\u2019s annual capacity by about 25% (americanagnetwork.com, beefmagazine.com). Other states: The round includes $2.17 million for two Iowa facilities, about $1.1 million for six Illinois projects and $1.07 million for four Wisconsin processors (meatingplace.com). Nebraska award: Wahoo Locker in Nebraska will receive $250,000 for automated packaging equipment for pork and beef products (klkntv.com, meatingplace.com). Program scale: USDA says it has awarded more than $200 million to independent processors through the program since it began (meatingplace.com, americanagnetwork.com).",
       "date_published": "2026-11-03T12:58:40+00:00",
@@ -384,20 +303,25 @@
       "_quality": 60,
       "_relevance": 75,
       "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 5,
+      "_theme_score": 79,
+      "_theme_score_raw": 15,
       "_kite_sources": 5,
       "_kite_context": "",
-      "_composite_podcast": 56,
+      "_composite_podcast": 64,
       "_keyword_matches": 0,
       "_category": "homestead",
       "_source_category": "homestead",
       "_is_bonus": true,
       "image": "https://kagiproxy.com/img/yVuQVx_I62T5CNzKqBXp9rl_sytlX1ODzub1mX4jRZBDZNny-oTFQ1eRZLFAjfhmqYhrZJB68L78SnpkI3SHU1mOdRXtp0DPKxfU5X98RvZd_7HADQnFfZj8KOuQ5ETZMggVaa3aL42UMMmxV2cbpumI1k8AqeCCW4_AOTiJuILmdYNj0cQkOrPMFcV9uFwRG_yX",
+      "_cross_theme": {
+        "day": "thursday",
+        "label": "Indigenous Lands & Innovation",
+        "shown_at": "2026-11-05T06:11:14.179763+00:00"
+      },
       "_boosted_score": 57,
       "_body": "The U.S. Department of Agriculture is moving forward with nearly $4 million in grants to 10 Kansas meat processors to expand capacity and give livestock producers more local processing options. The funding is part of a $57.4 million round covering 147 awards in 40 states through the Meat and Poultry Processing Expansion Program. USDA said it can begin obligating the grants after completing the congressional notification period (americanagnetwork.com, meatingplace.com). The largest Kansas grant, $2 million for Plainview Beef Company in Peabody, will help renovate and equip a processing facility, including cold storage, packaging, rendering and wastewater systems. USDA says the projects aim to expand market access for independent producers and increase competition among processors. Agriculture Secretary Brooke Rollins said, \u201cA strong, independent processing sector is essential to our food security, and these Kansas processors build the resilient supply chain this country needs\u201d (americanagnetwork.com, beefmagazine.com). Capacity targets: Kansas grants are projected to raise Hat Creek Butchery\u2019s daily harvest capacity by 200%, Walnut Valley Packing\u2019s processing capacity by about 140%, Randel\u2019s annual capacity by about 67% and T & W Meat\u2019s annual capacity by about 25% (americanagnetwork.com, beefmagazine.com). Other states: The round includes $2.17 million for two Iowa facilities, about $1.1 million for six Illinois projects and $1.07 million for four Wisconsin processors (meatingplace.com). Nebraska award: Wahoo Locker in Nebraska will receive $250,000 for automated packaging equipment for pork and beef products (klkntv.com, meatingplace.com). Program scale: USDA says it has awarded more than $200 million to independent processors through the program since it began (meatingplace.com, americanagnetwork.com)."
     },
-    "held_date": "2026-11-05",
+    "held_date": "2026-11-06",
     "target_date": "2026-11-10",
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
@@ -441,6 +365,209 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/": {
+    "article": {
+      "id": "https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/",
+      "url": "https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/",
+      "title": "[Williams Lake Tribune] Williams Lake screening shows what it takes to save lives in Gaza under siege",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F11%2F05%2Fwilliams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMembers of Williams Lake for Humanity and Williams Lake Film club hold a Palestinian flag and signs outside Paradise Cinemas in Williams Lake on Oct. 22. The two groups organized the screening of the documentary 'American Doctor' A poster for 'American Doctor' is displayed outside Paradise Cinemas in Williams Lake on Oct. 22. The documentary follows three American doctors who volunteer in Gaza, showing what it takes to take care of patients in hospitals under siege. Williams Lake for Humanity volunteers JP Laplante, Rafiullah Sahibzada and Umrah Imran, from left, hold Palestinian flags at the",
+      "summary": "Members of Williams Lake for Humanity and Williams Lake Film club hold a Palestinian flag and signs outside Paradise Cinemas in Williams Lake on Oct. 22. The two groups organized the screening of the documentary 'American Doctor' A poster for 'American Doctor' is displayed outside Paradise Cinemas",
+      "_excerpt": "Members of Williams Lake for Humanity and Williams Lake Film club hold a Palestinian flag and signs outside Paradise Cinemas in Williams Lake on Oct. 22. The two groups organized the screening of the documentary 'American Doctor' A poster for 'American Doctor' is displayed outside Paradise Cinemas in Williams Lake on Oct. 22. The documentary follows three American doctors who volunteer in Gaza, showing what it takes to take care of patients in hospitals under siege. Williams Lake for Humanity volunteers JP Laplante, Rafiullah Sahibzada and Umrah Imran, from left, hold Palestinian flags at the Oct. 22 screening of 'American Doctor' at Paradise Cinemas in Williams Lake. Audience members gather at Paradise Cinemas in Williams Lake for the Oct. 22 screening of 'American Doctor'. The screening sold 165 tickets. Imran Khan, an organizer and member of Williams Lake for Humanity, sells 50/50 raffle tickets during the screening of American Doctor at Paradise Cinemas on Oct. 22. A 50/50 ruffle was held during the Oct.22 screening of 'American Doctor' at Paradise Cinema in Williams Lake where the winner donated the entire prize to the Canadian Red Cross Palestine Humanitarian Needs Appeal. Some audience members left the packed Paradise Cinema in tears on Oct. 22 after watching _American Doctor,_ a documentary about three U.S. physicians who volunteered in hospitals in Gaza. The Williams Lake screening sold 165 tickets and raised $890 for two charities, said Umrah Imran, an organizer and a member of Williams Lake for Humanity. Directed by Poh Si Teng, _American Doctor_ follows Dr. Thaer Ahmad, Dr. Mark Perlmutter and Dr. Feroze Sidhwa as they volunteer in Gaza hospitals and later speak out in the United States about what they witnessed. Dr. Perlmutter, an Orthopedic surgeon, urges health-care workers in the documentary _American Doctor_ to \u201cTreat the genocide as a disease and go after the cause of that disease.\u201d Palestinian authorities say more than 74,000 people have been",
+      "date_published": "2026-11-06T06:03:04.227183+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 73,
+      "_quality": 68,
+      "_relevance": 65,
+      "_local": 100,
+      "_theme_score": 88,
+      "_theme_score_raw": 3,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 84,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_boosted_score": 73,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-06",
+    "target_date": "2026-11-09",
+    "target_weekday": 0,
+    "target_focus_slug": "film-screen",
+    "target_focus_name": "Film & Screen",
+    "status": "aired_early"
+  },
+  "https://macleans.ca/longforms/the-hutterites-guide-to-technology/": {
+    "article": {
+      "id": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
+      "url": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
+      "title": "[Maclean's] The Hutterites\u2019 Guide To Technology",
+      "content_html": "<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fmacleans.ca%2Flongforms%2Fthe-hutterites-guide-to-technology%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\"/>On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
+      "summary": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
+      "_excerpt": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
+      "date_published": "2026-11-02T15:30:13+00:00",
+      "authors": [
+        {
+          "name": "Maclean's",
+          "url": "https://macleans.ca"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 85,
+      "_relevance": 70,
+      "_local": 20,
+      "_theme_score": 79,
+      "_theme_score_raw": 15,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 74,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "thursday",
+        "label": "Indigenous Lands & Innovation",
+        "shown_at": "2026-11-05T06:11:14.179763+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-11-06",
+    "target_date": "2026-11-11",
+    "target_weekday": 2,
+    "target_focus_slug": "maker-repair",
+    "target_focus_name": "Maker & Repair",
+    "status": "held"
+  },
+  "https://www.realagriculture.com/2026/11/gauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school/": {
+    "article": {
+      "id": "https://www.realagriculture.com/2026/11/gauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school/",
+      "url": "https://www.realagriculture.com/2026/11/gauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school/",
+      "title": "[RealAgriculture] Gauging weed stage, moisture, and fall herbicide efficacy | Canola School",
+      "content_html": "<img src=\"https://www.realagriculture.com/cdn-cgi/image/w=1200,h=630,quality=70,fit=cover,f=auto,metadata=none/https://cdn.realagriculture.com/file/ramedia/uploads/2026/11/PXL_20260929_223710691-PORTRAIT.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.realagriculture.com%2F2026%2F11%2Fgauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPost-harvest moisture across the Prairies often triggers a heavy green flush across stubble fields, leaving growers to weigh whether to pull the sprayer out or leave it parked. While seeing green can tempt producers into rapid action, effective fall weed management comes down to weed staging, weather cues, and species prioritization. In this episode of\u2026Read More",
+      "summary": "Post-harvest moisture across the Prairies often triggers a heavy green flush across stubble fields, leaving growers to weigh whether to pull the sprayer out or leave it parked. While seeing green can tempt producers into rapid action, effective fall weed management comes down to weed staging,",
+      "_excerpt": "Post-harvest moisture across the Prairies often triggers a heavy green flush across stubble fields, leaving growers to weigh whether to pull the sprayer out or leave it parked. While seeing green can tempt producers into rapid action, effective fall weed management comes down to weed staging, weather cues, and species prioritization. In this episode of\u2026Read More",
+      "date_published": "2026-11-04T16:47:15+00:00",
+      "authors": [
+        {
+          "name": "RealAgriculture",
+          "url": "https://www.realagriculture.com"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 65,
+      "_relevance": 75,
+      "_local": 0,
+      "_theme_score": 81,
+      "_theme_score_raw": 20,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 68,
+      "_keyword_matches": 0,
+      "_category": "homestead",
+      "_source_category": "homestead",
+      "_is_bonus": true,
+      "image": "https://www.realagriculture.com/cdn-cgi/image/w=1200,h=630,quality=70,fit=cover,f=auto,metadata=none/https://cdn.realagriculture.com/file/ramedia/uploads/2026/11/PXL_20260929_223710691-PORTRAIT.jpg",
+      "_boosted_score": 58
+    },
+    "held_date": "2026-11-06",
+    "target_date": "2026-11-10",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "held"
+  },
+  "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned": {
+    "article": {
+      "id": "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned",
+      "url": "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned",
+      "title": "[Tom's Hardware] Israeli ad tech firm tied to suspected Starlink tracking effort, report claims",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/ENC5zcxZ4NC6STP9xUUgpT-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Ftech-industry%2Fcyber-security%2Fisraeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCitizen Lab and Confiant linked Israeli firm Discover-Tech to suspected surveillance through online advertising. Researchers said its ads appeared across nearly 200,000 websites and mobile apps. TrendAI separately identified related activity under the codename \u201cSHADOW-EARTH-79.\u201d The findings raise concerns about ad auctions being exploited to track users across sensitive networks, though ad impressions alone do not confirm spyware infections.",
+      "summary": "Citizen Lab and Confiant linked Israeli firm Discover-Tech to suspected surveillance through online advertising. Researchers said its ads appeared across nearly 200,000 websites and mobile apps. TrendAI separately identified related activity under the codename \u201cSHADOW-EARTH-79.\u201d The findings raise",
+      "_excerpt": "Citizen Lab and Confiant linked Israeli firm Discover-Tech to suspected surveillance through online advertising. Researchers said its ads appeared across nearly 200,000 websites and mobile apps. TrendAI separately identified related activity under the codename \u201cSHADOW-EARTH-79.\u201d The findings raise concerns about ad auctions being exploited to track users across sensitive networks, though ad impressions alone do not confirm spyware infections.",
+      "date_published": "2026-10-27T17:37:00+00:00",
+      "authors": [
+        {
+          "name": "Tom's Hardware",
+          "url": "https://www.tomshardware.com"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 10,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 64,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/ENC5zcxZ4NC6STP9xUUgpT-1920-80.jpg",
+      "_boosted_score": 50
+    },
+    "held_date": "2026-11-06",
+    "target_date": "2026-11-18",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://www.aljazeera.com/video/inside-story/2026/11/5/why-are-wealthy-countries-failing-developing-nations?traffic_source=rss": {
+    "article": {
+      "id": "https://www.aljazeera.com/video/inside-story/2026/11/5/why-are-wealthy-countries-failing-developing-nations?traffic_source=rss",
+      "url": "https://www.aljazeera.com/video/inside-story/2026/11/5/why-are-wealthy-countries-failing-developing-nations?traffic_source=rss",
+      "title": "[Al Jazeera English] Why are wealthy countries failing developing nations?",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aljazeera.com%2Fvideo%2Finside-story%2F2026%2F11%2F5%2Fwhy-are-wealthy-countries-failing-developing-nations%3Ftraffic_source%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nUN report warns climate adaptation funding is falling far short of needs.",
+      "summary": "UN report warns climate adaptation funding is falling far short of needs.",
+      "_excerpt": "UN report warns climate adaptation funding is falling far short of needs.",
+      "date_published": "2026-11-05T20:45:47+00:00",
+      "authors": [
+        {
+          "name": "Al Jazeera English",
+          "url": "https://www.aljazeera.com"
+        }
+      ],
+      "ai_score": 39,
+      "_quality": 60,
+      "_relevance": 45,
+      "_local": 0,
+      "_theme_score": 80,
+      "_theme_score_raw": 18,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 56,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_boosted_score": 39
+    },
+    "held_date": "2026-11-06",
+    "target_date": "2026-11-20",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   }
 }

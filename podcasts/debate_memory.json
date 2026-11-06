@@ -1,31 +1,4 @@
 {
-  "2026-08-07": {
-    "timestamp": 1786094498.098572,
-    "date": "2026-08-07",
-    "theme": "Wild Spaces & Outdoor Life",
-    "focus": "wildfire-resilience",
-    "central_question": "Who should be responsible for building the systems that protect people during wildfire season, and what happens when institutions fail to act while communities improvise their own solutions?",
-    "riley_position": "Systemic problems can be solved through formalization and policy\u2014if data shows peer support works within 48 hours, governments should mandate and fund it; better real-time alerting tied to live fire data could improve safety outcomes.",
-    "riley_key_evidence": [
-      "Alberta cohort study showing firefighters receiving peer contact within 48 hours of deployment had measurably lower anxiety and depression scores",
-      "Quilpituk Creek wildfire grew from 40 hectares to over 200 hectares while campers remained unaware, suggesting alerting systems could improve real-time communication",
-      "Documentation and formal statements by Indigenous Nations create accountability leverage on the record during active emergencies"
-    ],
-    "casey_position": "Institutional failures reveal deeper problems that procedural fixes cannot solve\u2014complacency and risk normalization require culture change, not better technology; real leverage comes from direct authority and action, not consultation processes or government language.",
-    "casey_key_evidence": [
-      "Alberta Forestry Ministry took two years to charge wildland-fire employer with safety violations after Morgan Kitchen's death in August 2024",
-      "Smoke rolling visibly into Bear Creek Park while campers stayed on the beach demonstrates normalized risk behavior that no app can fix",
-      "Province unilaterally rescinded vehicle hunting restrictions on T\u015dilhqot'in territory during active emergency without consultation, contradicting stated partnership commitments"
-    ],
-    "resolution": "They converged on a shared conclusion: institutional and technological fixes matter, but real change requires either direct Indigenous authority over cultural burning permits on Crown land or genuine behavioral/cultural shifts in how communities perceive fire risk\u2014both of which lie beyond what policy documents or detection systems alone can accomplish.",
-    "topics_covered": [
-      "Wildland firefighter trauma and peer-support networks as institutional failure and grassroots solution",
-      "Real-time fire alerting and the gap between information availability and behavioral complacency",
-      "Indigenous-led cultural burning and tenure/permitting barriers on Crown land",
-      "T\u015dilhqot'in Nation accountability and direct action versus consultation-based governance",
-      "Risk normalization among recreationalists and the limits of technological solutions to cultural problems"
-    ]
-  },
   "2026-08-08": {
     "timestamp": 1786179677.68846,
     "date": "2026-08-08",
@@ -2587,6 +2560,34 @@
       "Judicial review and whether litigation helps or hurts negotiation",
       "Standing and whether consulting individual communities can count as consent for a whole Nation",
       "Equity stakes, benefit-sharing, and the impact of tanker and spill risk on Cariboo communities"
+    ]
+  },
+  "2026-11-06": {
+    "timestamp": 1793953016.744804,
+    "date": "2026-11-06",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildlife-conservation",
+    "anchor": "keeping-the-peace-or-speaking-up",
+    "central_question": "Who is accountable for acting on wildlife, fire, and outdoor-safety detection data, and do these tools actually change what people do in the backcountry?",
+    "riley_position": "Detection and monitoring tools create real value when paired with written, budgeted response plans and built-in safety checks, and designing for the careless hiker is worth the effort.",
+    "riley_key_evidence": [
+      "A smouldering fire was pinpointed within minutes in July in Ruffano, and the Mount Shasta planning app failed to enforce a turnaround time that a line in the plan could have supplied.",
+      "Public budgets show both sensor and staffing numbers, so the gap between them is visible and can be checked.",
+      "CBC provincial figures show two fatal grizzly attacks in B.C. from 2012 to 2025 against 64 recorded attacks, supporting a proportionate response."
+    ],
+    "casey_position": "Tools without named, funded people responsible for maintaining, inspecting, and acting on their data become promises that quietly fail, especially when crews and upkeep are the first things cut.",
+    "casey_key_evidence": [
+      "The Ruffano sensor worked, but the access road to the fire did not, and nobody budgets for terrain and crew response.",
+      "The Nuxalk Nation's 8 p.m. recommendation is unenforced and the bear involved in the earlier attack was never found, so a removal could be a guess that ends a life.",
+      "Sweden's meadow surveys showed sites that lost value were the ones left unmaintained, and airborne LiDAR and satellites miss forest-bird indicators that ear surveys catch."
+    ],
+    "resolution": "They agreed on the need for written, budgeted response plans and public accountability, and Riley accepted that a named inspector must own each tool, but they did not reconcile whether tools should be built for careless hikers or whether the advisory and bear removal should wait for facts.",
+    "topics_covered": [
+      "Sensor detection versus crew capacity and access roads in wildfire response",
+      "Drone and planning-app limits, including the Mount Shasta turnaround-time failure",
+      "Off-grid communication nodes and the need for field testing and logging",
+      "Bear conflict, the Bella Coola attacks, and the proportionality of community curfews",
+      "Long-term maintenance of cabins, signage, meadows, and forest monitoring"
     ]
   }
 }
