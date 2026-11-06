@@ -467,7 +467,7 @@ resurrected on one mention.
   `match_deep_dive_to_script` reads only the deep-dive section and wants
   `_DEEP_MATCH_MIN_TOKENS` (3) title-or-summary words in one host turn, each rare there
   (`_MATCH_RARE_MAX`): 35 of 38, none false. Naming the outlet was tried and left out (one
-  gained, one false). "who" and "which" joined `_MATCH_STOPWORDS`; no October roundup match moved.
+  gained, one false). "who" and "which" joined `_MATCH_STOPWORDS`; no October roundup match moved. **The source a deep dive is *about* gets its own path** (2026-11-06, `_deep_dive_subject_match`): its subject words are the section's most used ("bear" 18 times), so the rarity rule matched a one-source deep dive 0 of 1, and three same-story pipeline reports 1 of 3 the night before. One host turn saying half the headline's words (`_DEEP_SUBJECT_TITLE_RATIO`, at least 3), however often, now counts too; words the welcome says don't (`_welcome_words`: the weather's town names gave the one false credit found, "changes / Williams / Lake"). Over the 896 committed deep-dive sources it credits 71 more, and the 12 from July on all check out. Same-story reports whose headlines share few words with the script (2026-11-05's APTN and My Cariboo Now) still miss.
 - **`voice-ratio` reads who spoke, not how long a turn runs.** The Casey/Riley voice ratio
   compares average deep-dive turn length, and the persona gives Casey the shorter turns, so the
   symmetric (0.8, 1.25) band fired 11 nights in 60 (0.68–0.79 low, one 1.26) with Casey on

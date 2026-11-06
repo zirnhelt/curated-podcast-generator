@@ -7649,6 +7649,33 @@ class TestMatchDeepDiveToScript:
     def test_no_script_keeps_everything(self):
         assert match_deep_dive_to_script([self.KILLER], "") == [(self.KILLER, True)]
 
+    BEAR = {"title": "[Williams Lake Tribune] UPDATE: Two dead in suspected bear attack near "
+                     "Bella Coola",
+            "summary": "A grizzly bear is suspected to be behind the death of a hiker."}
+    BEAR_SCRIPT = (
+        "**WELCOME**\n\n**CASEY:** Foggy in Williams Lake this morning.\n\n"
+        "**NEWS ROUNDUP**\n\n**RILEY:** Briefly, the news.\n\n"
+        "**DEEP DIVE: Wild Spaces**\n\n"
+        + ("**CASEY:** The bear attack near Bella Coola left two people dead, and officers "
+           "suspected a grizzly bear. Every bear, every grizzly, every hiker on that trail.\n\n"
+           "**RILEY:** A bear is a bear. Grizzly or not, the bear response matters.\n\n") * 4)
+
+    def test_the_source_the_deep_dive_is_about_is_discussed(self):
+        """2026-11-06: one source, the whole deep dive about it, matched 0 of 1:
+        "bear" and "grizzly" were too common in the section to count as rare."""
+        [(_, discussed)] = match_deep_dive_to_script([self.BEAR], self.BEAR_SCRIPT)
+        assert discussed is True
+
+    def test_town_names_from_the_welcome_do_not_carry_a_headline(self):
+        """2026-09-12: "changes", "Williams", "Lake" credited a golf-course story
+        the deep dive never mentioned; the town names come from the weather."""
+        import podcast_generator as pg
+        turns = [(0, "big changes are coming to williams lake, and the lake is low.")]
+        title = "Big changes coming to the Williams Lake Golf Course"
+        assert pg._deep_dive_subject_match(title, turns, frozenset())
+        assert not pg._deep_dive_subject_match(
+            title, turns, pg._welcome_words(self.BEAR_SCRIPT))
+
 
 
 class TestSameSubjectAndKicker:
