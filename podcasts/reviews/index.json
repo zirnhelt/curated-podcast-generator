@@ -1,5 +1,136 @@
 [
   {
+    "date": "2026-11-06",
+    "title": "Episode Review — Cariboo Signals, November 6, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-06.html",
+    "content_html": "<p class=\"meta\">Focus: Wildlife &amp; Conservation (week 2 of 3). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/42185190434\">42185190434</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Open the day's citations JSON and check which deep-dive sources the script failed to use.</strong><br><span class=\"evidence\">0/1 deep-dive citations matched the script</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Every run finished on its primary schedule</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:34 AM Pacific with no lateness. Both fallback slots also completed successfully, so the scheduler never had to recover from a missed trigger. The episode published on time as designed.</p>\n\n<h3>Three of four fallback-free checks held, but the script stayed short of target</h3>\n<p>The first draft of the script came in at 2729 words against a target of 3400, so it was sent back for one expand pass. The shipped script is 3959 words, which is above target, so the expand pass overshot. The deep dive took 45% of the script's words and drew on one deep-dive source, the Williams Lake Tribune update on a suspected bear attack. Its citation did not match (0 of 1 deep-dive citations), while 11 of 18 roundup citations matched.</p>\n<p>The roundup pool dropped 35 stories to the airtime budget, which is the designed behaviour. The deep-dive citation miss is the one result that needs a check: confirm whether the single source was matched under a different title or URL before trusting the attribution.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>1 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.83, 3959 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 45% of the words</td></tr>\n<tr><td>Audio</td><td>24.1 min</td></tr>\n<tr><td>Audio size</td><td>22.1 MB</td></tr>\n<tr><td>Citations matched</td><td>11/18 roundup, 0/1 deep dive</td></tr>\n<tr><td>Feed</td><td>282 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>80,951</td></tr>\n<tr><td>API calls</td><td>21 total: claude 12 · brave-answers 4 · brave-search 3 · kagi-extract 2</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-06T10:06:00+00:00",
+    "metrics": {
+      "audio_minutes": 24.1,
+      "script_words": 3959,
+      "tell_hits": 0,
+      "roundup_cite_pct": 61.1,
+      "deep_dive_cite_pct": 0.0
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "1 thing to look at before tomorrow's run.",
+      "theme": "",
+      "kpis": [
+        [
+          "Episode",
+          "24.1 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,959",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "11/18 · 0/1",
+          "roundup · deep dive"
+        ],
+        [
+          "Done at",
+          "1:34 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "citations:deep-dive",
+          "todo": "Open the day's citations JSON and check which deep-dive sources the script failed to use.",
+          "evidence": "0/1 deep-dive citations matched the script",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-02",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Writing, Journalism & Podcasting",
+          "week": 4,
+          "of": 4,
+          "next": "Film & Screen",
+          "event": null
+        },
+        {
+          "date": "2026-11-03",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Tourism & the Outdoor Economy",
+          "week": 4,
+          "of": 4,
+          "next": "Agriculture & Ranching",
+          "event": null
+        },
+        {
+          "date": "2026-11-04",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Vehicles & Field Gear",
+          "week": 4,
+          "of": 4,
+          "next": "Maker & Repair",
+          "event": null
+        },
+        {
+          "date": "2026-11-05",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Guardians & Land Stewardship",
+          "week": 4,
+          "of": 4,
+          "next": "Governance, Title & Treaty",
+          "event": null
+        },
+        {
+          "date": "2026-11-06",
+          "day": "Fri",
+          "today": true,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 3,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-07",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-08",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Sky & Cosmos",
+          "week": 1,
+          "of": 4,
+          "next": "The Living World",
+          "event": null
+        }
+      ],
+      "anchor": "When is keeping the peace worth more than being right?"
+    }
+  },
+  {
     "date": "2026-11-05",
     "title": "Episode Review — Cariboo Signals, November 5, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-05.html",
@@ -509,19 +640,5 @@
     "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>\n\n<h3>Three runs, two failures, one script</h3>\n\n<p>The primary pipeline run failed at 1:05 AM Pacific. The fallback run failed at 2:05 AM Pacific. The second fallback completed this review at 3:05 AM Pacific. The episode shipped.</p>\n\n<p>Both earlier failures occurred during script generation after 120 seconds. The logs are in the GitHub actions. No detail on what broke appears in these facts.</p>\n\n<h3>Cohere embeddings did not load</h3>\n\n<p>Three pipeline stages tried to call Cohere and hit <code>ModuleNotFoundError</code>. The system fell back to simpler logic in each case:</p>\n\n<ul>\n<li>Evolving-story detection: reverted to the non-Cohere path</li>\n<li>Same-story clustering: reverted to the non-Cohere path</li>\n<li>Deep-dive ranking: kept the keyword ranking instead of reranking</li>\n</ul>\n\n<p>These are degradations, not failures. The episode still aired. But the deep-dive selection skipped one layer of judgment. The three stories that made it — Grassy Narrows land use, a nuclear data center proposal, and coal miners' black lung benefits — were ranked by keyword match, not by Cohere's semantic model.</p>\n\n<h3>Script shipped short, then expanded</h3>\n\n<p>The first draft came in at 2072 words against a target of 3400. The system sent it back for one expand pass. What shipped is in <code>quality.script_words</code>, which these facts do not name. The listener heard the expanded version.</p>\n\n<h3>Roundup pool larger than one segment could hold</h3>\n\n<p>52 stories were cut from the roundup before airtime. This is by design — the pool feeds a budget constraint that caps one segment's count at <code>NEWS_ROUNDUP_COUNT</code>. A cut story can surface again on a day where it matches better.</p>\n\n<h3>Three deep dives selected</h3>\n\n<p>IndigiNews on land practice near Grassy Narrows. Resilience.org on a 9,000-acre nuclear data center. Mother Jones on black lung benefits for coal miners. All three aired.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n</tbody>\n</table>",
     "published": "2026-10-08T10:36:17+00:00",
     "metrics": {}
-  },
-  {
-    "date": "2026-10-07",
-    "title": "Episode Review — Cariboo Signals, October 7, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-07.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37591489581\">37591489581</a>.</em></p>\n\n<h3>Cohere embeddings offline; fallback paths held</h3>\n\n<p>The primary run at 1:05 AM completed successfully, but three separate steps in the script generation stage lost access to Cohere's embedding service. The pipeline detected a <code>ModuleNotFoundError</code> and fell back to keyword-based ranking in all three cases: evolving-story detection, same-story clustering, and deep-dive reranking.</p>\n\n<p>The cost was visible only in the last step. The deep-dive rerank kept its keyword ranking instead of the reranked order. Of the three deep dives that aired — an iFixit teardown, a creatine study, and a Gaza journalism piece — only 1 of 3 citations aligned with sources. The roundup maintained perfect citation matching at 15 of 15, suggesting the keyword fallback worked adequately for shorter stories but degraded on longer investigative pieces.</p>\n\n<h3>Script undershoot and expand</h3>\n\n<p>The first draft arrived at 1,939 words against a target of 3,400. The pipeline sent it back for one expand pass. The shipped version landed at 2,913 words — still 487 words short of target, but 974 words longer than the draft.</p>\n\n<p>This gap between target and shipped is the largest tension in the run. The audio rendered to 16.9 minutes regardless. No mechanism in the facts states why the second pass stopped short of the full target.</p>\n\n<h3>TTS retry loop: two segments still short</h3>\n\n<p>Three text-to-speech takes came back shorter than their word counts predicted. The pipeline retried each once. Two of those retries still ran short. The longer take from each pair was kept, so neither segment was dropped from the episode.</p>\n\n<h3>R2 sync broke one asset link</h3>\n\n<p>During publishing, one object referenced by <code>podcast-feed.xml</code> could not be found in R2 storage and could not be healed from disk. Crawlers requesting that object will receive a 404. The RSS feed points to 252 total episodes; this broken reference is live in the feed.</p>\n\n<h3>Voice balance and quality patterns</h3>\n\n<p>Casey's airtime exceeded Riley's by a ratio of 1.01 to 1. One AI tell pattern hit during quality review. The script shipped at 2,913 words across 16.9 minutes of audio and 15.5 MB of file size. Video rendered to 16.9 minutes at 58.1 MB.</p>\n\n<h3>Roundup pool depth and story cutoff</h3>\n\n<p>Fifty-two stories were dropped from the roundup pool by the airtime budget. This is by design — the candidate pool runs larger than a single segment can air, and cut stories can surface on better-matched days. The debate question for the day: how should rural communities measure equipment repairability and reliability beyond standardized spec sheets and online review scores?</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.01, 2913 words</td></tr>\n<tr><td>Audio</td><td>16.9 min</td></tr>\n<tr><td>Audio size</td><td>15.5 MB</td></tr>\n<tr><td>Citations matched</td><td>15/15 roundup, 1/3 deep dive</td></tr>\n<tr><td>Feed</td><td>252 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>39,841 input tokens, calls ***'brave-search': 6, 'claude': 9, 'brave-answers': 5***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-07T10:06:20+00:00",
-    "metrics": {
-      "audio_minutes": 16.9,
-      "tell_hits": 1,
-      "script_words": 2913,
-      "roundup_cite_pct": 100.0,
-      "deep_dive_cite_pct": 33.3
-    }
   }
 ]
