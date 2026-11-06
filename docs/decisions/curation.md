@@ -672,3 +672,14 @@ Three causes, two fixed here:
   with the lead (`_headline_words`), or it is left out. Real pairs share at least one ("iphone",
   "tanker", "repairability"); Wednesday's neighbours shared none.
 - **The charter** (the root) is rewritten around repairs a household can do, in `super-rss-feed`.
+
+## The reader grades the cuts (2026-11-06)
+
+The nightly review counted what the run passed over ("Cut for airtime 35", "unused on-theme 3") but
+never named it, so the producer could see the deep dive went thin without being able to say which
+story should have carried it. `episode_cuts` writes the list (on-charter candidates the deep dive
+didn't use first, then roundup cuts, by charter score, capped at 15) into the citations JSON as a
+top-level `cuts` key: not under `segments`, which dedup reads, so a cut stays free to resurface. The
+review's `index.json` carries it; `review.html`'s Episode tab shows a 👍 right-to-cut / 👎
+should-have-aired per article, saved in the verdict row as `episode_cuts`. `review_scripts.py`
+tallies the calls and hands every 👎 to the weekly reviewer as a selection miss. No spend.

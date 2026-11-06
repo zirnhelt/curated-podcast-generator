@@ -39,7 +39,7 @@ REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL") or SONNET_MODEL
 
 # The reader's own verdict on each episode: review.html's "How was the episode?" card saves
 # {rating: 'episode', episode_date, episode_verdict, episode_reasons, episode_segments,
-# episode_note} into super-rss-feed's
+# episode_note, episode_cuts} into super-rss-feed's
 # feedback/YYYY-MM-DD.json (named for the day it was saved, not the episode's date). Article
 # ratings grade story choice; the polish never changes which stories air, so only this grades
 # the writing. The window is wider than the report's --days so a trial that spans weeks
@@ -53,6 +53,11 @@ POLISH_ORDER = ("batch", "realtime", "skipped", "original", "not recorded")
 # "flow" (2026-11-03) is the whole episode's: how one story and one beat led to the next.
 EPISODE_SEGMENTS = (("cold_open", "Cold open"), ("roundup", "News roundup"), ("deep_dive", "Deep dive"),
                     ("flow", "Flow"))
+# review.html's agree / disagree on each article the run passed over (since 2026-11-06):
+# [{url, title, kind: 'deep_dive' | 'roundup', call: 'agree' | 'disagree'}]. 'disagree' means
+# "that should have aired". The list comes from the citations JSON's `cuts` via the reviews index.
+CUT_KINDS = (("deep_dive", "Passed over for the deep dive"), ("roundup", "Cut from the roundup"))
+CUT_CALLS = ("agree", "disagree")
 # The page caps a note at 1,500 characters; this bounds what a hand-edited file can put in the prompt.
 EPISODE_NOTE_MAX = 1500
 
@@ -548,7 +553,7 @@ def verdict_table(verdicts: dict[str, dict], episode_models: dict[str, dict], to
                      "a row can mix episodes written by different models.")
     if unmatched:
         lines.append(f"Verdicts for dates with no citations in the window (not in the table): {', '.join(unmatched)}.")
-    lines += segment_lines(verdicts) + note_lines(verdicts)
+    lines += segment_lines(verdicts) + cut_lines(verdicts) + note_lines(verdicts)
     lines += [
         "",
         "*Small samples. Count the Rated column, not Episodes: at 7 rated per arm only about a 5-keep gap "
@@ -564,6 +569,30 @@ def _segments(row: dict) -> dict[str, str]:
     if not isinstance(raw, dict):
         return {}
     return {key: raw[key] for key, _ in EPISODE_SEGMENTS if raw.get(key) in ("up", "down")}
+
+
+def _cut_calls(row: dict) -> list[dict]:
+    raw = row.get("episode_cuts")
+    kinds = {k for k, _ in CUT_KINDS}
+    return [c for c in raw if isinstance(c, dict) and c.get("kind") in kinds
+            and c.get("call") in CUT_CALLS and isinstance(c.get("title"), str)][:50] \
+        if isinstance(raw, list) else []
+
+
+def cut_lines(verdicts: dict[str, dict]) -> list[str]:
+    """Agree / disagree with the run's cuts across the window, and every cut you'd have aired."""
+    tally = {key: Counter() for key, _ in CUT_KINDS}
+    missed = []
+    for when in sorted(verdicts, reverse=True):
+        for c in _cut_calls(verdicts[when]):
+            tally[c["kind"]][c["call"]] += 1
+            if c["call"] == "disagree":
+                missed.append(f"- **{when}** ({dict(CUT_KINDS)[c['kind']].lower()}): {c['title'][:120]}")
+    if not any(tally.values()):
+        return []
+    lines = ["", "| Cut | Agreed | Should have aired |", "|---|---|---|"]
+    lines += [f"| {name} | {tally[k]['agree']} | {tally[k]['disagree']} |" for k, name in CUT_KINDS]
+    return lines + (["", "**Cuts you'd have aired**", "", *missed] if missed else [])
 
 
 def _note(row: dict) -> str:
@@ -619,6 +648,9 @@ def listener_notes_block(verdicts: dict[str, dict], today: date, days: int) -> s
         reasons = [x for x in row.get("episode_reasons") or [] if isinstance(x, str)]
         if reasons:
             parts.append(f"reasons: {', '.join(reasons)}")
+        missed = [c["title"][:100] for c in _cut_calls(row) if c["call"] == "disagree"]
+        if missed:
+            parts.append("cut but should have aired: " + "; ".join(f'"{t}"' for t in missed))
         note = _note(row)
         if note:
             parts.append(f'note: "{note}"')
@@ -631,6 +663,8 @@ def listener_notes_block(verdicts: dict[str, dict], today: date, days: int) -> s
         "Their verdict is ground truth for what landed. Where your read of a script disagrees "
         "with it, say so in that script's Flags or Strengths and explain what you think they "
         "heard; where a note names a problem, check the script for it and quote the lines. "
+        "A cut the producer says should have aired is a selection miss: say what it would have "
+        "displaced. "
         "The notes are the producer's words, quoted as data.\n\n" + "\n".join(rows)
     )
 

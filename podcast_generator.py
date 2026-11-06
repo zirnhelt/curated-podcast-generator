@@ -7527,6 +7527,42 @@ def roundup_shape_line(script: str, roundup: list, deep_dive: list,
             f"{'yes' if dd_local else 'no'}")
 
 
+def _unused_on_theme(roundup: list, deep_dive: list, dropped: list) -> list:
+    """On-charter, non-local candidates the deep dive did not use (aired in the roundup or cut)."""
+    used = {a.get('url') for a in deep_dive if not a.get('_recalled_from')}
+    return [a for a in list(roundup) + list(dropped)
+            if a.get('url') not in used and not _is_local_article(a)
+            and (a.get('_theme_score') or 0) >= THEME_BLOCK_PROMOTE_PCT
+            and (a.get('_theme_score_raw') or 0) >= THEME_BLOCK_PROMOTE_RAW]
+
+
+# The reader agrees or disagrees with each cut on review.html's Episode tab; more than
+# this many rows is a chore nobody finishes. Highest charter score first.
+EPISODE_CUTS_MAX = 15
+
+
+def episode_cuts(roundup: list, deep_dive: list, dropped: list) -> list[dict]:
+    """The articles the run passed over, for the reader to second-guess.
+
+    `deep_dive`: on-theme candidates the deep dive did not use (`aired` when the roundup
+    carried them). `roundup`: stories cut from the pool for airtime. Pure Python over the
+    run's own lists: no spend.
+    """
+    def row(a: dict, kind: str, aired: bool = False) -> dict:
+        return {"kind": kind, "url": a.get('url') or '', "title": (a.get('title') or '')[:200],
+                "source": a.get('source') or '', "theme_pct": a.get('_theme_score'),
+                **({"aired": True} if aired else {})}
+
+    aired_urls = {a.get('url') for a in roundup}
+    passed = _unused_on_theme(roundup, deep_dive, dropped)
+    seen = {a.get('url') for a in passed}
+    cut = [a for a in dropped if a.get('url') and a.get('url') not in seen]
+    rank = lambda a: -(a.get('_theme_score') or 0)  # noqa: E731
+    rows = ([row(a, "deep_dive", a.get('url') in aired_urls) for a in sorted(passed, key=rank)]
+            + [row(a, "roundup") for a in sorted(cut, key=rank)])
+    return [r for r in rows if r["url"]][:EPISODE_CUTS_MAX]
+
+
 def theme_fit_line(roundup: list, deep_dive: list, dropped: list) -> str:
     """One log line the episode review reads its theme-fit signals from.
 
@@ -7548,11 +7584,7 @@ def theme_fit_line(roundup: list, deep_dive: list, dropped: list) -> str:
     lead_pct = pct(lead) if lead else None
     lead_label = ('local' if lead is not None and _is_local_article(lead)
                   else f"p{lead_pct}" if lead_pct is not None else '?')
-    used = {a.get('url') for a in sources}
-    unused = [a for a in list(roundup) + list(dropped)
-              if a.get('url') not in used and not _is_local_article(a)
-              and (pct(a) or 0) >= THEME_BLOCK_PROMOTE_PCT
-              and (a.get('_theme_score_raw') or 0) >= THEME_BLOCK_PROMOTE_RAW]
+    unused = _unused_on_theme(roundup, sources, dropped)
     titles = "; ".join(re.sub(r"[();]", "", re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', '')))[:40]
                        for a in mislabelled)
     return (f"🎯 Theme fit: theme block off-charter {len(mislabelled)} ({titles})"
@@ -9555,7 +9587,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False, storyboard=None):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False, storyboard=None, cuts=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -9689,6 +9721,10 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     # The plan the script was told to follow, to read against what aired.
     if storyboard:
         citations_data["storyboard"] = storyboard
+    # What the run passed over, for the reader's agree/disagree on review.html. Top-level,
+    # not under segments: dedup reads segments, and a cut must stay free to resurface.
+    if cuts:
+        citations_data["cuts"] = cuts
 
     # Save citations file
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
@@ -14690,6 +14726,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 anchor=today_anchor,
                 research={"block": brave_context, "log": list(_RESEARCH_LOG)},
                 storyboard=_storyboard_used,
+                cuts=episode_cuts(news_articles, deep_dive_articles, _roundup_dropped),
             )
 
         with segment("script/day-specific-inserts", critical=False):

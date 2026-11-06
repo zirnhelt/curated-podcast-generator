@@ -413,3 +413,21 @@ def test_the_flow_thumb_is_read_with_the_segments():
     assert rs._segments(row) == {"roundup": "up", "flow": "down"}
     assert "Flow 👎" in rs._segment_summary(row)
     assert "| Flow | 0 | 1 |" in "\n".join(rs.segment_lines({"2026-11-03": row}))
+
+
+def test_cut_calls_are_tallied_and_misses_listed():
+    """review.html's agree / disagree on the articles the run passed over (2026-11-06)."""
+    import review_scripts as rs
+    from datetime import date
+    row = {"episode_date": "2026-11-06", "episode_verdict": "meh", "episode_cuts": [
+        {"kind": "deep_dive", "url": "https://a", "title": "Caribou herd count", "call": "disagree"},
+        {"kind": "roundup", "url": "https://b", "title": "GPU teardown", "call": "agree"},
+        {"kind": "roundup", "url": "https://c", "title": "x", "call": "maybe"},   # dropped
+        "junk"]}
+    out = "\n".join(rs.cut_lines({"2026-11-06": row}))
+    assert "| Passed over for the deep dive | 0 | 1 |" in out
+    assert "| Cut from the roundup | 1 | 0 |" in out
+    assert "Caribou herd count" in out and "GPU teardown" not in out
+    block = rs.listener_notes_block({"2026-11-06": row}, date(2026, 11, 7), 7)
+    assert 'cut but should have aired: "Caribou herd count"' in block
+    assert rs.cut_lines({"2026-11-06": {"episode_verdict": "keep"}}) == []
