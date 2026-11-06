@@ -7971,6 +7971,31 @@ class TestThemeFitLine:
         assert not er.run_signals({"theme_fit": er.scan_log(line)["theme_fit"]})
 
 
+class TestEpisodeCuts:
+    """What the run passed over, for the reader's agree / disagree on review.html."""
+
+    def test_deep_dive_misses_first_then_roundup_cuts(self):
+        import podcast_generator as pg
+        roundup = [{"title": "Aired swede", "url": "https://s", "_roundup_block": "theme",
+                    "_theme_score": 97, "_theme_score_raw": 68, "source": "DL"}]
+        dropped = [{"title": "Codelco", "url": "https://c", "_theme_score": 94, "_theme_score_raw": 62},
+                   {"title": "GPU", "url": "https://g", "_theme_score": 20},
+                   {"title": "Mill", "url": "https://m", "_theme_score": 60},
+                   {"title": "No url", "url": ""}]
+        deep = [{"title": "Tanker ban", "url": "https://k", "_theme_score": 58}]
+        cuts = pg.episode_cuts(roundup, deep, dropped)
+        assert [(c["kind"], c["url"]) for c in cuts] == [
+            ("deep_dive", "https://s"), ("deep_dive", "https://c"),
+            ("roundup", "https://m"), ("roundup", "https://g")]
+        assert cuts[0]["aired"] is True and "aired" not in cuts[1]
+        json.dumps(cuts)
+
+    def test_capped(self):
+        import podcast_generator as pg
+        dropped = [{"title": str(i), "url": f"https://{i}", "_theme_score": i} for i in range(40)]
+        assert len(pg.episode_cuts([], [], dropped)) == pg.EPISODE_CUTS_MAX
+
+
 class TestStoryboardFlowLine:
     """Did the script keep to its plan? Order, named bridges, beats aired."""
 

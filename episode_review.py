@@ -1025,16 +1025,43 @@ def render_cycle(rows: list[dict], anchor: str | None) -> str:
     return "\n".join(p for p in ["<h2>This week's rotation</h2>", lede, q, table] if p)
 
 
-def load_storyboard(date: str) -> dict | None:
-    """The day's storyboard from its citations JSON, or None."""
+def _citations_key(date: str, key: str, kind: type) -> Any:
+    """One top-level value of the day's citations JSON, or None when missing or the wrong type."""
     for path in sorted(glob.glob(CITATIONS_GLOB.format(date=date))):
         try:
-            plan = json.loads(Path(path).read_text("utf-8")).get("storyboard")
+            value = json.loads(Path(path).read_text("utf-8")).get(key)
         except (OSError, ValueError, AttributeError):
             continue
-        if isinstance(plan, dict):
-            return plan
+        if isinstance(value, kind):
+            return value
     return None
+
+
+def load_storyboard(date: str) -> dict | None:
+    """The day's storyboard from its citations JSON, or None."""
+    return _citations_key(date, "storyboard", dict)
+
+
+_CUT_KINDS = ("deep_dive", "roundup")
+
+
+def load_cuts(date: str) -> list[dict]:
+    """The articles the run passed over (`episode_cuts` in the generator), for review.html.
+
+    Only http(s) URLs and plain fields: the page escapes them, but a hand-edited file
+    should not reach it with anything else.
+    """
+    rows = []
+    for c in _citations_key(date, "cuts", list) or []:
+        if not (isinstance(c, dict) and c.get("kind") in _CUT_KINDS
+                and isinstance(c.get("url"), str) and re.match(r"https?://", c["url"])):
+            continue
+        rows.append({"kind": c["kind"], "url": c["url"],
+                     "title": str(c.get("title") or "")[:200],
+                     "source": str(c.get("source") or "")[:80],
+                     "theme_pct": c["theme_pct"] if isinstance(c.get("theme_pct"), (int, float)) else None,
+                     "aired": c.get("aired") is True})
+    return rows
 
 
 def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
@@ -1148,6 +1175,8 @@ def review_summary(date: str, runs: list[dict], facts: dict[str, Any],
         "actions": actions,
         "cycle": cycle_week(date),
         "anchor": week_anchor(date, facts),
+        # review.html's Episode tab asks whether each cut was the right call.
+        "cuts": load_cuts(date),
     }
 
 
