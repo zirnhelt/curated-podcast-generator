@@ -1,0 +1,557 @@
+{
+  "episode": {
+    "date": "2026-11-06",
+    "formatted_date": "Friday, November 06, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>THIS WEEK WE'RE ASKING:</b> When is keeping the peace worth more than being right?</p><p><b>NEWS ROUNDUP:</b> We break down B.C outdoor recreation fund open record $400,000 intake and Quesnel Fire Department responds to late night structure fire, plus 9 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Who is accountable for acting on wildlife, fire, and outdoor-safety detection data, and do these tools actually change what people do in the backcountry? Topics include: Sensor detection versus crew capacity and access roads in wildfire response, Drone and planning-app limits, including the Mount Shasta turnaround-time failure, Off-grid communication nodes and the need for field testing and logging, Bear conflict, the Bella Coola attacks, and the proportionality of community curfews, Long-term maintenance of cabins, signage, meadows, and forest monitoring.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://habitatcariboo.org\">Habitat for Humanity Cariboo</a></p><p><b>Sources discussed:</b></p><ul><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317118/news/business/tourism-business/b-c-outdoor-recreation-fund-open-record-400000-intake/\">[My Cariboo Now] B.C outdoor recreation fund open record $40...</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317180/news/emergency-services/fire/quesnel-fire-department-responds-to-late-night-structure-fire/\">[My Cariboo Now] Quesnel Fire Department responds to late ni...</a></li><li>Khushi Arora, Local Journalism Initiative (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/\">[Williams Lake Tribune] Williams Lake screening shows what i...</a></li><li>Tyler Harper (Regional News Archives - Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/05/chronic-illness-clinic-in-b-c-a-shadow-of-what-it-used-to-be-after-fee-changes/\">[Regional News Archives - Williams Lake Tribune] Chronic ill...</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/11/05/fuel-breaks-burning-planned-for-mirage-lake-and-watch-lake-areas/\">[100 Mile Free Press] Fuel breaks, burning planned for Mirag...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/tech-industry/drones/california-county-secures-autonomous-firefighting-drones-with-500-gallon-foam-payload-to-deal-with-wildfires-five-drone-strike-team-can-be-controlled-by-a-single-operator-conduct-nighttime-ops-and-access-difficult-terrain\">[Tom's Hardware] California county deploys autonomous firefi...</a></li><li>theguardian.com: <a href=\"https://www.theguardian.com/global-development/2026/nov/04/funding-poorer-countries-climate-crisis-adaptation-un-report\">[theguardian.com] UN warns climate adaptation funding leaves...</a></li><li>Forbes Innovation: <a href=\"https://www.forbes.com/sites/veronikameduna/2026/11/01/global-icescapes-face-irreversible-damage-as-world-nears-overshoot/\">[Forbes Innovation] Global Icescapes Face Irreversible Damag...</a></li><li>Ella Cobb (Outside Online): <a href=\"https://www.outsideonline.com/outdoor-adventure/environment/montana-black-bears-euthanized/\">[Outside Online] 14 Bears Were Euthanized at One Montana Hom...</a></li><li>Vivian van Zyl (LoRaMeshDevices): <a href=\"https://www.lorameshdevices.com/blog/meshtastic/diy-meshtastic-solar-node-muziworks-uno-full-build-guide.html\">[LoRaMeshDevices] DIY Meshtastic Solar Node: Muziworks Uno F...</a></li><li>Stephanie Pappas (Scientific American): <a href=\"https://www.scientificamerican.com/article/the-super-el-nino-is-already-soaking-the-u-s-expect-more-flooding-to-come/\">[Scientific American] The Super El Niño is already soaking t...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Forbes Innovation: <a href=\"https://www.forbes.com/sites/cathyrubin/2026/11/01/can-ai-save-the-planet-how-nine-innovators-are-fighting-climate-change/\">[Forbes Innovation] Can AI Save The Planet? How Nine Innovat...</a></li><li>Christine Peterson (WIRED): <a href=\"https://www.wired.com/story/chatbots-are-leading-hikers-astray-with-dangerous-consequences/\">[WIRED] Chatbots Are Leading Hikers Astray, With Dangerous C...</a></li><li>Wildfire Today: <a href=\"https://wildfiretoday.com/global-wildfires-interoperability-and-integrated-fire-management/\">Global wildfires, interoperability and integrated fire manag...</a></li><li>leparisien.fr: <a href=\"https://www.leparisien.fr/environnement/climat/climat-el-nino-continue-de-sintensifier-et-devrait-atteindre-un-pic-en-decembre-08-10-2026-SMTSZ7FANZA4XA3AJFSBMIAE5M.php\">[leparisien.fr] WMO says powerful El Niño likely to persist ...</a></li><li>farms.com: <a href=\"https://www.farms.com/ag-industry-news/drought-survival-tips-for-livestock-producers-885.aspx\">[farms.com] Livestock reports highlight forage planning amid...</a></li><li>dagenslantbruk.se: <a href=\"http://www.dagenslantbruk.se/a-ngs-och-betesmarkernas-naturva-rden-a-r-stabila-med-smajpy-skillnader-a-ver-tid\">[dagenslantbruk.se] Swedish survey finds valuable meadows st...</a></li><li>Nautilus: <a href=\"https://nautil.us/our-planets-lungs-are-suffering-1286196/\">[Nautilus] Our Planet’s Lungs Are Suffering</a></li><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/03/1-dead-1-missing-after-suspected-bear-attack-near-bella-coola/\">[Williams Lake Tribune] UPDATE: Two dead in suspected bear a...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-06T01:16:48.650538-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-opus-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3959,
+      "voice_ratio_casey_riley": 0.83,
+      "casey_share_deep_dive_pct": 45,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 1,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 15,
+        "turns": 91,
+        "avg_turn_words": 42.0,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 1
+    },
+    "anchor": {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?"
+    },
+    "audio_file_size": 23161005,
+    "audio_duration": "24:07"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] B.C outdoor recreation fund open record $400,000 intake",
+          "url": "https://www.mycariboonow.com/317118/news/business/tourism-business/b-c-outdoor-recreation-fund-open-record-400000-intake/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 71,
+          "date_published": "2026-11-03T19:14:50+00:00",
+          "summary": "A provincial grant is opening the doors for its largest funding intake yet, which could create opportunities for outdoor recreation projects to in the Cariboo-Chilcotin. The post B.C outdoor recreatio...",
+          "discussed": true,
+          "mention_offset_frac": 0.0128
+        },
+        {
+          "title": "[theguardian.com] UN warns climate adaptation funding leaves vulnerable countries exposed",
+          "url": "https://www.theguardian.com/global-development/2026/nov/04/funding-poorer-countries-climate-crisis-adaptation-un-report",
+          "source": "theguardian.com",
+          "author": "https://www.theguardian.com/profile/jonathanwatts",
+          "ai_score": 44,
+          "date_published": "2026-11-04T11:00:09+00:00",
+          "summary": "A United Nations Environment Programme (UNEP) report says developing countries remain exposed to worsening floods, droughts and heat because adaptation funding is not reaching vulnerable communities a...",
+          "discussed": true,
+          "mention_offset_frac": 0.0177
+        },
+        {
+          "title": "[My Cariboo Now] Quesnel Fire Department responds to late night structure fire",
+          "url": "https://www.mycariboonow.com/317180/news/emergency-services/fire/quesnel-fire-department-responds-to-late-night-structure-fire/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 75,
+          "date_published": "2026-11-04T19:20:00+00:00",
+          "summary": "The Quesnel Fire Department responded to a late night structure fire on Plywood Hill. The post Quesnel Fire Department responds to late night structure fire appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.0851
+        },
+        {
+          "title": "Global wildfires, interoperability and integrated fire management – Wildfire Today",
+          "url": "https://wildfiretoday.com/global-wildfires-interoperability-and-integrated-fire-management/",
+          "source": "Wildfire Today",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-11-01T06:01:35.706967+00:00",
+          "summary": "In the 2026 summer fire season in Europe, major conflagrations occurred in Mediterranean and southern regions with lives and properties lost across Portugal, Spain, France, Italy, Greece, Belgium, and...",
+          "discussed": false
+        },
+        {
+          "title": "[LoRaMeshDevices] DIY Meshtastic Solar Node: Muziworks Uno Full Build Guide",
+          "url": "https://www.lorameshdevices.com/blog/meshtastic/diy-meshtastic-solar-node-muziworks-uno-full-build-guide.html",
+          "source": "LoRaMeshDevices",
+          "author": "Vivian van Zyl",
+          "ai_score": 68,
+          "date_published": "2026-11-05T14:33:17+00:00",
+          "summary": "A bare Meshtastic board, a battery and a solar panel are a good start. To turn them into something I can leave outside, I want a proper enclosure, a secure mounting arrangement, an external antenna an...",
+          "discussed": true,
+          "mention_offset_frac": 0.1003
+        },
+        {
+          "title": "[Outside Online] 14 Bears Were Euthanized at One Montana Home. Wildlife Experts Explain What Went Wrong.",
+          "url": "https://www.outsideonline.com/outdoor-adventure/environment/montana-black-bears-euthanized/",
+          "source": "Outside Online",
+          "author": "Ella Cobb",
+          "ai_score": 60,
+          "date_published": "2026-10-19T21:58:33+00:00",
+          "summary": "Montana wildlife officials euthanized 14 black bears in Bozeman after illegal feeding caused severe habituation, leaving biologists with no safe relocation options. The post 14 Bears Were Euthanized a...",
+          "discussed": true,
+          "mention_offset_frac": 0.1026
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake screening shows what it takes to save lives in Gaza under siege",
+          "url": "https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/",
+          "source": "Williams Lake Tribune",
+          "author": "Khushi Arora, Local Journalism Initiative",
+          "ai_score": 73,
+          "date_published": "2026-11-06T06:03:04.227183+00:00",
+          "summary": "Members of Williams Lake for Humanity and Williams Lake Film club hold a Palestinian flag and signs outside Paradise Cinemas in Williams Lake on Oct. 22. The two groups organized the screening of the ...",
+          "discussed": true,
+          "mention_offset_frac": 0.1481
+        },
+        {
+          "title": "[Forbes Innovation] Can AI Save The Planet? How Nine Innovators Are Fighting Climate Change",
+          "url": "https://www.forbes.com/sites/cathyrubin/2026/11/01/can-ai-save-the-planet-how-nine-innovators-are-fighting-climate-change/",
+          "source": "Forbes Innovation",
+          "author": "",
+          "ai_score": 31,
+          "date_published": "2026-11-01T12:00:00+00:00",
+          "summary": "Global innovators have revealed extraordinary advances in artificial intelligence for detecting wildfires and exploring deep-sea ecosystems.",
+          "discussed": false
+        },
+        {
+          "title": "[Regional News Archives - Williams Lake Tribune] Chronic illness clinic in B.C. ‘a shadow of what it used to be’ after fee changes",
+          "url": "https://wltribune.com/2026/11/05/chronic-illness-clinic-in-b-c-a-shadow-of-what-it-used-to-be-after-fee-changes/",
+          "source": "Regional News Archives - Williams Lake Tribune",
+          "author": "Tyler Harper",
+          "ai_score": 82,
+          "date_published": "2026-11-05T13:30:00+00:00",
+          "summary": "The Health Ministry has capped patients, changed fees for virtual groups",
+          "discussed": true,
+          "mention_offset_frac": 0.2681
+        },
+        {
+          "title": "[100 Mile Free Press] Fuel breaks, burning planned for Mirage Lake and Watch Lake areas",
+          "url": "https://100milefreepress.net/2026/11/05/fuel-breaks-burning-planned-for-mirage-lake-and-watch-lake-areas/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 74,
+          "date_published": "2026-11-06T06:03:04.227523+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.2977
+        },
+        {
+          "title": "[leparisien.fr] WMO says powerful El Niño likely to persist through February 2027",
+          "url": "https://www.leparisien.fr/environnement/climat/climat-el-nino-continue-de-sintensifier-et-devrait-atteindre-un-pic-en-decembre-08-10-2026-SMTSZ7FANZA4XA3AJFSBMIAE5M.php",
+          "source": "leparisien.fr",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-10-24T07:09:00.139000+00:00",
+          "summary": "The World Meteorological Organization (WMO) says the strong El Niño developing in the tropical Pacific is expected to peak in December and is nearly certain to persist until February 2027. The climate...",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] California county deploys autonomous firefighting drones with 500-gallon foam payload to attack wildfires",
+          "url": "https://www.tomshardware.com/tech-industry/drones/california-county-secures-autonomous-firefighting-drones-with-500-gallon-foam-payload-to-deal-with-wildfires-five-drone-strike-team-can-be-controlled-by-a-single-operator-conduct-nighttime-ops-and-access-difficult-terrain",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/jowi-morales",
+          "ai_score": 42,
+          "date_published": "2026-11-01T12:30:00+00:00",
+          "summary": "These Seneca drones should help the San Bernardino County Fire Protection District achieve its goal of stopping 90% of fires before they grow larger than 10 square feet.",
+          "discussed": true,
+          "mention_offset_frac": 0.513
+        },
+        {
+          "title": "[farms.com] Livestock reports highlight forage planning amid drought and feed-supply concerns",
+          "url": "https://www.farms.com/ag-industry-news/drought-survival-tips-for-livestock-producers-885.aspx",
+          "source": "farms.com",
+          "author": "Farms.com",
+          "ai_score": 65,
+          "date_published": "2026-11-03T10:35:21+00:00",
+          "summary": "Livestock guidance published across the United States, France and Poland focuses on forage stocks, grazing and feed transitions during drought and uneven feed supplies. In France, independent livestoc...",
+          "discussed": false
+        },
+        {
+          "title": "[Scientific American] The Super El Niño is already soaking the U.S. Expect more flooding to come",
+          "url": "https://www.scientificamerican.com/article/the-super-el-nino-is-already-soaking-the-u-s-expect-more-flooding-to-come/",
+          "source": "Scientific American",
+          "author": "Stephanie Pappas",
+          "ai_score": 63,
+          "date_published": "2026-11-04T19:00:00+00:00",
+          "summary": "This week Florida and the Four Corners region have been hammered by major rain events, swamping roads and washing away homes",
+          "discussed": true,
+          "mention_offset_frac": 0.5764
+        },
+        {
+          "title": "[Forbes Innovation] Global Icescapes Face Irreversible Damage As World Nears Overshoot",
+          "url": "https://www.forbes.com/sites/veronikameduna/2026/11/01/global-icescapes-face-irreversible-damage-as-world-nears-overshoot/",
+          "source": "Forbes Innovation",
+          "author": "",
+          "ai_score": 22,
+          "date_published": "2026-11-02T02:58:13+00:00",
+          "summary": "The world's frozen regions are among the most sensitive parts of the climate system. The consequences of their loss affect the whole planet.",
+          "discussed": true,
+          "mention_offset_frac": 0.7106
+        },
+        {
+          "title": "[WIRED] Chatbots Are Leading Hikers Astray, With Dangerous Consequences",
+          "url": "https://www.wired.com/story/chatbots-are-leading-hikers-astray-with-dangerous-consequences/",
+          "source": "WIRED",
+          "author": "Christine Peterson",
+          "ai_score": 64,
+          "date_published": "2026-11-01T10:30:00+00:00",
+          "summary": "Outsourcing planning to AI can lead people to surrender their own critical thinking, which can have potentially deadly results in places like the backcountry.",
+          "discussed": false
+        },
+        {
+          "title": "[dagenslantbruk.se] Swedish survey finds valuable meadows stable, but upkeep remains essential",
+          "url": "http://www.dagenslantbruk.se/a-ngs-och-betesmarkernas-naturva-rden-a-r-stabila-med-smajpy-skillnader-a-ver-tid",
+          "source": "dagenslantbruk.se",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-10-26T07:07:07.154000+00:00",
+          "summary": "Sweden’s valuable meadows and grazing lands have largely retained their natural and cultural value, according to an analysis by the Swedish Board of Agriculture. Of 300,000 hectares identified as valu...",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Our Planet’s Lungs Are Suffering",
+          "url": "https://nautil.us/our-planets-lungs-are-suffering-1286196/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-10-29T20:00:00+00:00",
+          "summary": "Has the Amazon reached the dreaded tipping point? The post Our Planet’s Lungs Are Suffering appeared first on Nautilus .",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] UPDATE: Two dead in suspected bear attack near Bella Coola",
+          "url": "https://wltribune.com/2026/11/03/1-dead-1-missing-after-suspected-bear-attack-near-bella-coola/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 70,
+          "date_published": "2026-11-04T04:35:18+00:00",
+          "summary": "A grizzly bear, like the one pictured here, is suspected to be behind the death of a hiker near Bella Coola. The BC Conservation Officer Service is investigating a suspected fatal bear attack near Bel...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Who is accountable for acting on wildlife, fire, and outdoor-safety detection data, and do these tools actually change what people do in the backcountry?",
+        "riley_position": "Detection and monitoring tools create real value when paired with written, budgeted response plans and built-in safety checks, and designing for the careless hiker is worth the effort.",
+        "riley_key_evidence": [
+          "A smouldering fire was pinpointed within minutes in July in Ruffano, and the Mount Shasta planning app failed to enforce a turnaround time that a line in the plan could have supplied.",
+          "Public budgets show both sensor and staffing numbers, so the gap between them is visible and can be checked.",
+          "CBC provincial figures show two fatal grizzly attacks in B.C. from 2012 to 2025 against 64 recorded attacks, supporting a proportionate response."
+        ],
+        "casey_position": "Tools without named, funded people responsible for maintaining, inspecting, and acting on their data become promises that quietly fail, especially when crews and upkeep are the first things cut.",
+        "casey_key_evidence": [
+          "The Ruffano sensor worked, but the access road to the fire did not, and nobody budgets for terrain and crew response.",
+          "The Nuxalk Nation's 8 p.m. recommendation is unenforced and the bear involved in the earlier attack was never found, so a removal could be a guess that ends a life.",
+          "Sweden's meadow surveys showed sites that lost value were the ones left unmaintained, and airborne LiDAR and satellites miss forest-bird indicators that ear surveys catch."
+        ],
+        "resolution": "They agreed on the need for written, budgeted response plans and public accountability, and Riley accepted that a named inspector must own each tool, but they did not reconcile whether tools should be built for careless hikers or whether the advisory and bear removal should wait for facts.",
+        "topics_covered": [
+          "Sensor detection versus crew capacity and access roads in wildfire response",
+          "Drone and planning-app limits, including the Mount Shasta turnaround-time failure",
+          "Off-grid communication nodes and the need for field testing and logging",
+          "Bear conflict, the Bella Coola attacks, and the proportionality of community curfews",
+          "Long-term maintenance of cabins, signage, meadows, and forest monitoring"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 4,
+          "conditions": "light drizzle",
+          "high": 10,
+          "low": 3
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 3,
+          "conditions": "overcast",
+          "high": 9,
+          "low": 2
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 6,
+          "conditions": "overcast",
+          "high": 12,
+          "low": 3
+        },
+        {
+          "name": "Quesnel",
+          "temp": 5,
+          "conditions": "light drizzle",
+          "high": 11,
+          "low": 4
+        },
+        {
+          "name": "Riske Creek",
+          "temp": 2,
+          "conditions": "partly cloudy",
+          "high": 10,
+          "low": 1
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Habitat for Humanity Cariboo",
+      "description": "Builds affordable homes for Cariboo families in need; ReStore diverts building materials from landfill while funding housing projects",
+      "website": "habitatcariboo.org",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: What has been confirmed about the Bella Coola suspected grizzly attack, and how does it compare with B.C.'s broader record of fatal bear attacks?\n\nFindings: The early Williams Lake Tribune framing (\"one dead, one missing,\" then \"two dead\") has been filled in by later reporting. Multiple outlets (CBC, Globe and Mail, CTV, CNN, AP, Washington Post) identify the victims as Jennifer (Jenny) Balcarras, 48, and her daughter Selah Reed, 20 (one outlet gives her age as 19). They went hiking a short distance from home near Bella Coola on B.C.'s Central Coast, and were reported missing on a Sunday. Their remains were found about 150 metres apart, on Monday in the Snooka West Trail area and on Tuesday afternoon. The Conservation Officer Service (BCCOS) said more than one grizzly may have been involved. Insp. Jeff Tyre said it was too early to say whether the bear was the same one involved in last year's attack. No bears had been trapped as of the Wednesday update, though multiple sightings were reported. Any captured bear that is found to be involved will be \"dispatched in accordance with provincial human wildlife conflict response guidelines.\" The Nuxalk Nation recommended residents be indoors by 8 p.m. (a non-enforced curfew), and RCMP and conservation officers began night patrols. Context from CBC: the attack came nearly a year after a grizzly attacked a group of schoolchildren and teachers on a trail south of Highway 20 near Bella Coola. That bear was never found, and BCCOS's Insp. Kevin Van Damme called that type of attack \"extremely rare.\" Provincial figures cited by CBC show two fatal grizzly attacks in B.C. from 2012 to 2025 (2017 and 2025), against 64 recorded grizzly attacks in the same period.\n\nSuggested angle: Riley (tech optimist) can argue that this is a case for better detection and response: night-vision or thermal monitoring on trails, bear-camera networks, GPS collars to track movement, and a shift from reactive trapping to early warning for hikers and schools. Riley can point to the Nuxalk Nation's coordinated response (shuttle services, fruit-gleaning, attractant management) as a model for community-led systems. Casey (skeptic) should push on the limits of that framing. The statistics show that fatal attacks are extremely rare, so the bigger question is whether the community has been underserved on wildlife management for years, and whether the response is proportionate. Casey can also press on the \"dispatch the bear\" approach: when the attacking animal is not clearly identified, as with last year's case where the bear was never found, lethal removal may be a blunt tool with uncertain benefit. Use the gap between the rarity of fatal attacks and the community's sense of ongoing danger to explore how risk perception shapes wild-space policy, and whether a curfew or stay-indoors advisory is a sensible response to a rare event. Both can agree that the investigation is still open and that the Nuxalk Nation's grief and \"retriggered\" trauma are the human core of the story.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Bella Coola suspected grizzly bear attack two dead conservation officers",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "BC grizzly bear attacks fatalities statistics conservation officer service",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.cbc.ca/news/canada/british-columbia/bella-coola-grizzly-bear-attack-update-9.7409268"
+      },
+      {
+        "kind": "question",
+        "query": "Tesla Semi second battery weight kg"
+      },
+      {
+        "kind": "question",
+        "query": "Seneca drone foam payload 500 gallons San Bernardino cost per year"
+      },
+      {
+        "kind": "question",
+        "query": "Mount Shasta summit turnaround time hikers 2026"
+      },
+      {
+        "kind": "question",
+        "query": "Bella Coola grizzly attack bear removal criteria conservation officer"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A day of fire, flood and fragile landscapes, with a few close-to-home items in between and a hard story from the Chilcotin coast waiting just beyond the headlines.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "The Outdoor Recreation Fund of B.C. has opened its fourth funding cycle with $400,000 for about 50 community projects, and Cariboo-Chilcotin groups like the 108 ATV Club and the Williams Lake Powder Kings Snowmobile Club have received money from it before.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "Quesnel firefighters spent about four and a half hours at a fully engulfed mobile home on Redstone Road, with no injuries, the cause still under investigation, and a chief who says the property has had numerous earlier calls including two structure fires.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "A Williams Lake screening of the documentary American Doctor sold 165 tickets and raised $890 for two charities, according to organizer Umrah Imran.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "A B.C. virtual clinic for long COVID, ME/CFS and fibromyalgia, which treats about 8,500 patients, is described by a patient as a shadow of what it was after the Health Ministry capped patients and changed fees for virtual groups.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "The BC Wildfire Service plans to burn woody debris at Mirage Lake (138 hectares in a 261-hectare project beside homes) and at Watch Lake, with work starting within the next week and burning possible from December through March 31, 2027, depending on venting conditions.",
+          "bridge_to_next": "Wildfire. The next story asks whether AI can spot fires early, and what happens once a fire is spotted."
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "AI sensors flagged a smouldering wildfire in Ruffano, Italy within minutes in July 2026, but firefighters struggled to reach the remote terrain, so experts say detection alone does not guarantee protection.",
+          "bridge_to_next": "AI tools in wild spaces: from fire sensors to chatbots giving advice to people heading into the backcountry."
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "Chatbots are leading hikers astray: three hikers on Mount Shasta leaned on Google's Gemini, ran short of food, summited at 7:30 pm and had to be rescued, and a US Forest Service program manager said they had turned their brains off.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "Europe's 2026 summer fire season brought major fires across Mediterranean and southern countries with lives and property lost, and Ireland and the UK saw wildfires well beyond their historic scale.",
+          "bridge_to_next": "Fighting wildfire: from Europe's fire season to a California county putting autonomous drones on the fireline."
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "San Bernardino County, California is deploying autonomous firefighting drones carrying 500 gallons of foam, aimed at stopping 90% of fires before they grow past 10 square feet.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "The World Meteorological Organization says the strong El Niño is expected to peak in December and nearly certain to last through February 2027, with record ocean heat behind it.",
+          "bridge_to_next": "The same El Niño: its first flooding is now hitting the United States."
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "The Super El Niño is already driving major floods in Florida's central coast and the Four Corners region, with homes swamped, roads washed out and cell service cut in Pagosa Springs, Colorado.",
+          "bridge_to_next": "Climate impacts and who is left exposed when they hit."
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "A UN Environment Programme report says adaptation funding is not reaching vulnerable countries at the needed scale, with support to least-developed countries down 16% from 2022 to 2024, ahead of COP31 in Antalya on Nov. 9.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "A UN-backed report from the International Cryosphere Climate Initiative says the world's frozen regions face irreversible damage as warming nears 1.5 degrees, and that the world has lost the chance to avoid exceeding that threshold.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "Livestock guidance from the US, France and Poland urges farmers to measure forage reserves, plan feed and adjust grazing during drought, such as rotational grazing, which an Arkansas extension instructor recommends.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "Montana wildlife officials euthanized 14 black bears at a property near Bozeman after finding that illegal feeding had left them severely food-conditioned and habituated to people, and one cub was sent to a facility in Helena for possible zoo placement.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "A hobbyist's build guide for a solar-powered Meshtastic node puts it in a weatherproof case for outdoor testing, but the author says it is a working build, not a proven self-sufficient solar installation, because the small panel may not keep the battery charged.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "A Swedish Board of Agriculture analysis found valuable meadows and grazing lands have largely kept their value, though unmanaged sites became overgrown and the agency says continued inventories are needed.",
+          "bridge_to_next": "Watching landscapes from a distance: from repeat surveys on the ground to planes sampling the air over the Amazon."
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "A Nature study using 15 years of aircraft air samples suggests the Amazon may shift from a net sink to a net source of atmospheric carbon.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Detecting a fire, spotting a hazard or mapping a landscape is one thing, and getting someone on the ground to act on it is another, which is where a grim story from the Bella Coola valley picks up.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "After a suspected grizzly attack that left two hikers dead near Bella Coola, with officers saying it is not clear how many bears were involved, how should the response weigh public safety, respect for the victims and their families, and the chance of acting against the wrong animal?",
+      "riley_holds": "Riley holds that a clear, officer-led response that secures the area and removes any dangerous bear is workable, and that the work is to make it as accurate and transparent as possible.",
+      "casey_holds": "Casey holds that an investigation this uncertain should not be turned into a lesson or a bear removal until it is shown which animal or animals were responsible, and that what is known so far is thin.",
+      "beats": [
+        {
+          "claim": "The first response was built around people, not bears: secure the area, protect searchers, then recover the dead and bring them home.",
+          "evidence": "Williams Lake Tribune: the BC Conservation Officer Service said its priorities through the day were to secure the area, protect officers and first responders searching for the missing person, and respectfully recover the deceased; the second victim was found dead during joint searches by conservation officers and the RCMP.",
+          "pushback": "Casey says an order of priorities is not a plan for the bear question. The article describes recovery, and what the service will do about a bear is a separate decision with a different standard of proof.",
+          "leads_to_next": "Once recovery is done, the open question is what officers do about the bear, so the next beat turns to what they know about which animal it was."
+        },
+        {
+          "claim": "The attack is still only suspected, and the officers' own account leaves real uncertainty about the animal or animals involved.",
+          "evidence": "Williams Lake Tribune: officers continue to work to locate and capture any bears involved, BCCOS said it is not clear whether more than one bear was involved, and the headline and text keep calling it a suspected grizzly attack.",
+          "pushback": "Riley says that is why capture and identification belong to trained officers: the agency has not asserted more than it knows. Casey replies that 'any bears involved' is a wide net, and that in a case where the number of animals is unknown, deciding which bear counts as the one involved is where a mistake could be made. The article's text is cut off at what happens to captured bears, so the plan cannot be asserted from it.",
+          "leads_to_next": "If the agency itself is uncertain, the next question is what a backcountry user can fairly take from the story so far."
+        },
+        {
+          "claim": "Bear-safety advice for backcountry users fits this story only loosely, because the public record contains almost nothing yet about how the encounter happened.",
+          "evidence": "Williams Lake Tribune's local framing says backcountry users across the Cariboo-Chilcotin need to take bear safety seriously on every trip, but the article reports no details of the circumstances, what the two hikers were doing, or whether a bear has been found.",
+          "pushback": "Riley argues that general readiness is the right message to send even before details arrive, since people will be heading out regardless. Casey answers that a generic caution can quietly blame the victims, and that waiting for the investigation is the more respectful course for the two families the service named in its condolences.",
+          "leads_to_next": "If advice must wait for facts, the question becomes who in the valley hears what the investigation finds, which brings it to Bella Coola itself."
+        }
+      ],
+      "set_aside": [],
+      "cariboo_beat": "The third beat is where it comes home. Bella Coola is a small valley community on the edge of the Chilcotin-Coast region, and the Nuxalk Nation's territory covers it, a fact common public knowledge supports. Riley asks what a small valley gains from being told early what the officers know, and Casey asks who in the valley, including Nuxalk members and local guides and trail users, gets to hear findings or question the choice of which bear is removed. Neither host should claim any local role beyond what the article says.",
+      "landing": "The disagreement stays open: when officers cannot yet say how many bears were involved, who decides what counts as enough evidence to act on a particular animal, and what does the valley, as the people who will live with the answer, need to be told along the way."
+    }
+  }
+}

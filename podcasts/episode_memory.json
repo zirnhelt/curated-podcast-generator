@@ -1,24 +1,4 @@
 {
-  "2026-10-02": {
-    "timestamp": 1790928843.520568,
-    "topics": [
-      "[Williams Lake Tribune] Retired school teacher named BC NDP ",
-      "[Canadian Architect] Northern Secw\u00e9pemc Cultural Centre, 108",
-      "[Williams Lake Tribune] NDP calls on Conservatives to fire N",
-      "[Williams Lake Tribune] Alcohol impairment suspected in two-",
-      "[My Cariboo Now] Xat\u015b\u016bll First Nation announce termination o",
-      "[BC Wildfire Service] c\u00edk\u00edlaxwm (cultural burn) planned for ",
-      "[Vancouver Sun] B.C. Conservation Officer Service warns of i",
-      "[The Tyee] Harassment and Hate on the Municipal Campaign Tra"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-02",
-    "focus": "recreation-access",
-    "focus_name": "Recreation & Backcountry Access"
-  },
   "2026-10-03": {
     "timestamp": 1791015328.117692,
     "topics": [
@@ -727,5 +707,26 @@
     "date": "2026-11-05",
     "focus": "guardians-stewardship",
     "focus_name": "Guardians & Land Stewardship"
+  },
+  "2026-11-06": {
+    "timestamp": 1793953014.35058,
+    "topics": [
+      "[My Cariboo Now] B.C outdoor recreation fund open record $40",
+      "[My Cariboo Now] Quesnel Fire Department responds to late ni",
+      "[Williams Lake Tribune] Williams Lake screening shows what i",
+      "[Regional News Archives",
+      "[100 Mile Free Press] Fuel breaks, burning planned for Mirag",
+      "[Williams Lake Tribune] UPDATE: Two dead in suspected bear a",
+      "AI",
+      "solar"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-06",
+    "focus": "wildlife-conservation",
+    "focus_name": "Wildlife & Conservation"
   }
 }
