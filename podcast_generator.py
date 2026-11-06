@@ -8787,6 +8787,31 @@ def match_articles_to_script(articles, script):
 # false positive (two stories from the same outlet).
 _DEEP_MATCH_MIN_TOKENS = 3
 
+# The rarity rule misses the source a deep dive is *about*: its subject words
+# are the section's most used ("bear" 18 times, "grizzly" 6 on 2026-11-06), so
+# a one-source deep dive matched 0 of 1. A second path credits a source when
+# one host turn says half its headline words (at least _DEEP_MATCH_MIN_TOKENS),
+# however often. Words the welcome says (the weather's town names) don't count:
+# "changes / Williams / Lake" was its one false credit. Over the 896 committed
+# deep-dive sources it credits 71 more; the 12 from July on all check out.
+_DEEP_SUBJECT_TITLE_RATIO = 0.5
+
+
+def _welcome_words(script: str) -> frozenset:
+    """Content words of the WELCOME section: boilerplate, not a source's subject."""
+    m = re.search(r"\*\*WELCOME\*\*(.*?)\*\*NEWS ROUNDUP\*\*", script, re.S)
+    return frozenset(_content_tokens(m.group(1))) if m else frozenset()
+
+
+def _deep_dive_subject_match(title: str, turns: list, boilerplate: frozenset) -> bool:
+    """One host turn says half the headline's own words, frequent or not."""
+    tokens = [t for t in _content_tokens(title) if t not in boilerplate]
+    if len(tokens) < _DEEP_MATCH_MIN_TOKENS:
+        return False
+    needed = max(_DEEP_MATCH_MIN_TOKENS, math.ceil(_DEEP_SUBJECT_TITLE_RATIO * len(tokens)))
+    return any(sum(1 for t in tokens if re.search(r"\b" + re.escape(t), turn)) >= needed
+               for _, turn in turns)
+
 
 def match_deep_dive_to_script(articles, script):
     """(article, discussed) pairs for the deep dive, judged on its own section."""
@@ -8794,6 +8819,7 @@ def match_deep_dive_to_script(articles, script):
         return [(a, True) for a in articles]
     section = _extract_deep_dive_section(script).lower()
     turns = _script_turns(section)
+    boilerplate = _welcome_words(script)
     results = []
     for article in articles:
         title = re.sub(r'^[^\[]*\[[^\]]*\]\s*', '', article.get('title', '')).strip()
@@ -8802,7 +8828,7 @@ def match_deep_dive_to_script(articles, script):
         rare = [t for t in tokens if 0 < counts[t] <= _MATCH_RARE_MAX]
         discussed = any(
             sum(1 for t in rare if re.search(r"\b" + re.escape(t), turn)) >= _DEEP_MATCH_MIN_TOKENS
-            for _, turn in turns)
+            for _, turn in turns) or _deep_dive_subject_match(title, turns, boilerplate)
         results.append((article, discussed))
     return results
 
