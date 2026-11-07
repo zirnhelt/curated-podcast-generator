@@ -1,31 +1,4 @@
 {
-  "2026-08-08": {
-    "timestamp": 1786179677.68846,
-    "date": "2026-08-08",
-    "theme": "Cariboo Local Affairs",
-    "focus": null,
-    "central_question": "Does the Cariboo Regional District have adequate standing governance infrastructure for fire-season response and communication, or does it reinvent its approach every summer?",
-    "riley_position": "The CRD's early-warning system and mutual aid coordination (like requesting Mexican firefighters in advance) demonstrates functioning crisis response, and building boring, reliable communication channels like DriveBC model is the key to institutional durability.",
-    "riley_key_evidence": [
-      "Mexico sent 100 firefighters to Clinton weeks in advance based on early CRD request",
-      "Ontario built real-time data-sharing protocols after 2023 to avoid reinventing coordination every fire season",
-      "T\u015dilhqot'in National Government publishes consistent, regular fire-season updates residents already know to check"
-    ],
-    "casey_position": "The CRD lacks visible, persistent communication infrastructure between crises and appears to restart its response strategy every fire season, creating governance gaps that residents end up filling themselves.",
-    "casey_key_evidence": [
-      "CRD emergency program page shows no standing budget line for fire-season coordination visible to the public",
-      "Clinton lost 120 properties despite mutual aid, indicating the system is reactive rather than preventative",
-      "Residents must stitch together separate Environment Canada and Interior Health alert systems without a shared coordination protocol"
-    ],
-    "resolution": "Riley and Casey largely agreed the core issue is whether the CRD maintains written, funded communication commitments between crises. They converged on a concrete ask: residents should ask at a public CRD board meeting whether a standing communication protocol exists with a named budget line, rather than waiting for the next emergency.",
-    "topics_covered": [
-      "CRD fire-season governance infrastructure and budget accountability",
-      "Regional communication protocols versus ad-hoc crisis response",
-      "Coordination between provincial weather warnings and health authority advisories",
-      "Institutional durability: boring, reliable systems versus new tools deployed mid-crisis",
-      "Public transparency and residents' ability to verify emergency response mechanisms"
-    ]
-  },
   "2026-08-09": {
     "timestamp": 1786266197.362233,
     "date": "2026-08-09",
@@ -2588,6 +2561,34 @@
       "Off-grid communication nodes and the need for field testing and logging",
       "Bear conflict, the Bella Coola attacks, and the proportionality of community curfews",
       "Long-term maintenance of cabins, signage, meadows, and forest monitoring"
+    ]
+  },
+  "2026-11-07": {
+    "timestamp": 1794039471.927623,
+    "date": "2026-11-07",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "keeping-the-peace-or-speaking-up",
+    "central_question": "Does opening a Canada Post office in T\u015dideldel, under its own name, meaningfully resolve the community's long-standing service and identity problem, and what accountability records are needed to confirm it?",
+    "riley_position": "The new post office is a real, checkable win: it gives the community its own address and identity, which is foundational infrastructure, and a community that persistently works with a federal partner can turn a no into a yes.",
+    "riley_key_evidence": [
+      "The post office opened November 2nd at 710 Redstone Flats after years of work by the T\u015dideldel Development Corporation and Canada Post",
+      "Chilanko Forks lost postal service in 1918 and regained it in 1963, showing the service existed in the area and the change was about whose name it carries",
+      "The Lancaster, Pennsylvania Mennonite community building its own drug company for maple syrup urine disease, showing the build route as an alternative when no institution will respond"
+    ],
+    "casey_position": "The address is symbolic and the counter is practical, and neither proves the other; the win is unverified until the costs, transition burdens, decision-making records, and accountability structures are documented and published.",
+    "casey_key_evidence": [
+      "A one-year forwarding window means residents have two addresses in circulation, with unclear responsibility when parcels go to the wrong counter",
+      "The article does not say who paid for the space or staffing, and the cost of residents traveling to neighbouring counters went unmeasured",
+      "The strategy behind the win is recorded in one line of a news story, and the three parties (corporation, council, Canada Post) each may assume someone else filed the records"
+    ],
+    "resolution": "They did not fully agree. Riley argued that the address is itself infrastructure and the forwarding window is the test; Casey argued identity cannot be checked like a box count. Both converged on a practical minimum: obtain and keep copies in the community of the agreement, minutes, staffing plan, lease term and forwarding deadline.",
+    "topics_covered": [
+      "Symbolic value of a postal address versus practical postal service",
+      "Transition costs and the one-year mail forwarding window",
+      "Accountability and record-keeping for community-federal agreements",
+      "Build versus knock strategies for community needs, illustrated by the Lancaster case",
+      "Governance of the Development Corporation and the dual role of elected councillors"
     ]
   }
 }
