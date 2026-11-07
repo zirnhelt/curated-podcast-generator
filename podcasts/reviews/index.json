@@ -1,5 +1,162 @@
 [
   {
+    "date": "2026-11-07",
+    "title": "Episode Review — Cariboo Signals, November 7, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-07.html",
+    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/42353972130\">42353972130</a>.</p>\n\n<div class=\"verdict lvl-good\"><span class=\"icon\" aria-hidden=\"true\">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>\n\n<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>\n\n<h2>What happened</h2>\n<h3>The fallback chain held, and no run was late</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:39 AM Pacific, and it succeeded. Fallback 1 at 2:05 AM Pacific also completed successfully, and fallback 2 at 3:05 AM Pacific is the run producing this review. Each run's minutes_late is 0. Two of the three runs completed successfully, so the schedule had no effect on the episode that shipped.</p>\n\n<h3>Four of 18 roundup stories were cut for airtime</h3>\n<p>The roundup pool held more stories than one segment could air, so the airtime budget dropped 1 story (roundup_dropped). This is designed behaviour: the cut story stays in the pool and can return on a day that suits it better. The deep dive count was 4, and that is the number to watch if the roundup is ever expanded.</p>\n<p>Citation matching is weaker on the deep dives than in the roundup: 12 of 18 roundup citations matched, against 2 of 4 deep dive citations. Two deep dive citations did not match, and the four deep dive sources are a small base for drawing a trend, so the first thing to check is whether the unmatched citations are attribution errors or sources the matcher cannot find.</p>\n\n<h3>The first draft missed target and shipped under it</h3>\n<p>The first script draft came in at 2553 words against a target of 3400. It went back for one expand pass, and the shipped script is 3251 words. That is still under target. The expand pass was the only correction made, and the shortfall is inside the range the pipeline accepts on a thin day, so no change is needed unless the shortfall starts to fail SHORT_EPISODE_WORDS.</p>\n\n<h3>One TTS take stayed short after retry</h3>\n<p>One TTS take came back shorter than its word count predicted and was retried once. The retry was still short, and the longer of the two takes was kept, so no speech was dropped from the episode. The audio runs 20.1 minutes. The script has 3251 words and no AI-tell pattern hits. Voice balance is 1.08 Casey over Riley, and Casey carries 52% of deep dive words. Neither voice dominated the episode.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 1.08, 3251 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 52% of the words</td></tr>\n<tr><td>Audio</td><td>20.1 min</td></tr>\n<tr><td>Audio size</td><td>18.4 MB</td></tr>\n<tr><td>Citations matched</td><td>12/18 roundup, 2/4 deep dive</td></tr>\n<tr><td>Feed</td><td>283 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>70,657</td></tr>\n<tr><td>API calls</td><td>25 total: claude 10 · kagi-extract 6 · brave-search 5 · brave-answers 4</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-07T10:06:00+00:00",
+    "metrics": {
+      "audio_minutes": 20.1,
+      "script_words": 3251,
+      "tell_hits": 0,
+      "roundup_cite_pct": 66.7,
+      "deep_dive_cite_pct": 50.0
+    },
+    "summary": {
+      "level": "good",
+      "label": "Shipped clean",
+      "summary": "Nothing broke and nothing fell back.",
+      "theme": "",
+      "kpis": [
+        [
+          "Episode",
+          "20.1 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,251",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "12/18 · 2/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Done at",
+          "1:39 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [],
+      "cycle": [
+        {
+          "date": "2026-11-02",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Writing, Journalism & Podcasting",
+          "week": 4,
+          "of": 4,
+          "next": "Film & Screen",
+          "event": null
+        },
+        {
+          "date": "2026-11-03",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Tourism & the Outdoor Economy",
+          "week": 4,
+          "of": 4,
+          "next": "Agriculture & Ranching",
+          "event": null
+        },
+        {
+          "date": "2026-11-04",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Vehicles & Field Gear",
+          "week": 4,
+          "of": 4,
+          "next": "Maker & Repair",
+          "event": null
+        },
+        {
+          "date": "2026-11-05",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Guardians & Land Stewardship",
+          "week": 4,
+          "of": 4,
+          "next": "Governance, Title & Treaty",
+          "event": null
+        },
+        {
+          "date": "2026-11-06",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 3,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-07",
+          "day": "Sat",
+          "today": true,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-08",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Sky & Cosmos",
+          "week": 1,
+          "of": 4,
+          "next": "The Living World",
+          "event": null
+        }
+      ],
+      "anchor": "When is keeping the peace worth more than being right?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/06/Miners-Strike-BC/",
+          "title": "[The Tyee] Why 1,200 Miners Are on Strike in BC",
+          "source": "",
+          "theme_pct": 92,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/04/Bordering-Heroism-Tumbler-Ridge-Reporter/",
+          "title": "[The Tyee] ‘Bordering on Heroism’: How Tumbler Ridge’s Only Reporter Covered a Tragedy",
+          "source": "",
+          "theme_pct": 87,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://vancouversun.com/news/inside-bc-election-how-conservatives-won-why-ndp-failed",
+          "title": "[Vancouver Sun] Inside the B.C. election: How the Conservatives won, why the NDP failed",
+          "source": "",
+          "theme_pct": 85,
+          "aired": true
+        },
+        {
+          "kind": "roundup",
+          "url": "https://grist.org/extreme-weather/extreme-flooding-in-the-southwest-foreshadows-a-wild-el-nino-winter/",
+          "title": "[grist.org] El Niño-linked downpours flood Southwest and Florida, killing at least four",
+          "source": "",
+          "theme_pct": 69,
+          "aired": false
+        }
+      ]
+    }
+  },
+  {
     "date": "2026-11-06",
     "title": "Episode Review — Cariboo Signals, November 6, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-06.html",
@@ -632,13 +789,5 @@
       "roundup_cite_pct": 100.0,
       "deep_dive_cite_pct": 66.7
     }
-  },
-  {
-    "date": "2026-10-08",
-    "title": "Episode Review — Cariboo Signals, October 8, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-08.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>\n\n<h3>Three runs, two failures, one script</h3>\n\n<p>The primary pipeline run failed at 1:05 AM Pacific. The fallback run failed at 2:05 AM Pacific. The second fallback completed this review at 3:05 AM Pacific. The episode shipped.</p>\n\n<p>Both earlier failures occurred during script generation after 120 seconds. The logs are in the GitHub actions. No detail on what broke appears in these facts.</p>\n\n<h3>Cohere embeddings did not load</h3>\n\n<p>Three pipeline stages tried to call Cohere and hit <code>ModuleNotFoundError</code>. The system fell back to simpler logic in each case:</p>\n\n<ul>\n<li>Evolving-story detection: reverted to the non-Cohere path</li>\n<li>Same-story clustering: reverted to the non-Cohere path</li>\n<li>Deep-dive ranking: kept the keyword ranking instead of reranking</li>\n</ul>\n\n<p>These are degradations, not failures. The episode still aired. But the deep-dive selection skipped one layer of judgment. The three stories that made it — Grassy Narrows land use, a nuclear data center proposal, and coal miners' black lung benefits — were ranked by keyword match, not by Cohere's semantic model.</p>\n\n<h3>Script shipped short, then expanded</h3>\n\n<p>The first draft came in at 2072 words against a target of 3400. The system sent it back for one expand pass. What shipped is in <code>quality.script_words</code>, which these facts do not name. The listener heard the expanded version.</p>\n\n<h3>Roundup pool larger than one segment could hold</h3>\n\n<p>52 stories were cut from the roundup before airtime. This is by design — the pool feeds a budget constraint that caps one segment's count at <code>NEWS_ROUNDUP_COUNT</code>. A cut story can surface again on a day where it matches better.</p>\n\n<h3>Three deep dives selected</h3>\n\n<p>IndigiNews on land practice near Grassy Narrows. Resilience.org on a 9,000-acre nuclear data center. Mother Jones on black lung benefits for coal miners. All three aired.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-08T10:36:17+00:00",
-    "metrics": {}
   }
 ]
