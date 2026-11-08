@@ -239,6 +239,13 @@ class TestUnaliasedIndigenousNames:
                 "The work spans the Tŝideldel, Tl'etinqox and Yunesit'in territories.")
         assert pg.unaliased_indigenous_names(line) == []
 
+    def test_the_researched_names_are_covered(self):
+        """2026-11-08 follow-up: the three most-aired names the first guide lacked."""
+        import podcast_generator as pg
+        line = ("**RILEY:** Tk'emlúps te Secwépemc and the St'át'imc Chiefs Council "
+                "met at Yuneŝit'in.")
+        assert pg.unaliased_indigenous_names(line) == []
+
     def test_a_new_name_is_reported_and_english_is_not(self):
         import podcast_generator as pg
         line = ("**RILEY:** The Lhoosk'uz Dené Nation's chief said it's Riley's call; "
