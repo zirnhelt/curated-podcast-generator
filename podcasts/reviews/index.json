@@ -1,5 +1,265 @@
 [
   {
+    "date": "2026-11-08",
+    "title": "Episode Review — Cariboo Signals, November 8, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-08.html",
+    "content_html": "<p class=\"meta\">Focus: Sky &amp; Cosmos (week 1 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/42461426079\">42461426079</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>2 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Open the day's citations JSON and check which deep-dive sources the script failed to use.</strong><br><span class=\"evidence\">0/1 deep-dive citations matched the script</span> <span class=\"recur\">Recurring: on the roadmap, seen 10 nights.</span></li>\n<li><strong><code>script/meta-moment/retry</code> fell back. Search the run log for <code>Degraded 'script/meta-moment/retry'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: first draft failed (model judged none of the week's 31 commit(s) listener-noticeable); the retry with upstream changes aired</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The first draft missed its own check and a retry aired in its place</h3>\n<p>The script generator's first draft was rejected by its meta-moment check: the model judged that none of the week's 31 commits were noticeable to a listener. The pipeline ran a retry with upstream changes, and that retry is what aired. The listener got the retried segment, and the commit-talk the first draft wanted to make did not reach the episode.</p>\n\n<h3>The short-script rule was met, but the draft started 858 words under target</h3>\n<p>The first draft came in at 2542 words against a target of 3400, so it went back for one expand pass. The shipped script is 3348 words. The draft was thin, and the expand pass brought it close to target without reaching it. Quality checks passed: zero AI-tell hits and a Casey-to-Riley voice ratio of 0.77. The 3348 figure is below target but still above the short-episode threshold, so no action is needed under the current rule.</p>\n\n<h3>Eleven of 18 roundup citations matched; the one deep-dive citation did not</h3>\n<p>Eleven of the 18 roundup citations matched. The single deep-dive citation matched none of its 1 total, and the deep dive was the Williams Lake Tribune story on Operation Red Nose. Roundup alignment is middling and the deep-dive miss is the bigger signal. Check the deep-dive source extraction and the citation match for that one story before the next run.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>1 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.77, 3348 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 46% of the words</td></tr>\n<tr><td>Audio</td><td>21.4 min</td></tr>\n<tr><td>Audio size</td><td>19.6 MB</td></tr>\n<tr><td>Citations matched</td><td>11/18 roundup, 0/1 deep dive</td></tr>\n<tr><td>Feed</td><td>284 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>76,635</td></tr>\n<tr><td>API calls</td><td>17 total: claude 12 · brave-answers 4 · kagi-extract 1</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-08T10:05:57+00:00",
+    "metrics": {
+      "audio_minutes": 21.4,
+      "script_words": 3348,
+      "tell_hits": 0,
+      "roundup_cite_pct": 61.1,
+      "deep_dive_cite_pct": 0.0
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "2 things to look at before tomorrow's run.",
+      "theme": "",
+      "kpis": [
+        [
+          "Episode",
+          "21.4 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,348",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "11/18 · 0/1",
+          "roundup · deep dive"
+        ],
+        [
+          "Done at",
+          "1:37 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "citations:deep-dive",
+          "todo": "Open the day's citations JSON and check which deep-dive sources the script failed to use.",
+          "evidence": "0/1 deep-dive citations matched the script",
+          "minor": false,
+          "nights_seen": 10
+        },
+        {
+          "signal": "degraded:script/meta-moment/retry",
+          "todo": "script/meta-moment/retry fell back.",
+          "evidence": "degrade() row: first draft failed (model judged none of the week's 31 commit(s) listener-noticeable); the retry with upstream changes aired",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-02",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Writing, Journalism & Podcasting",
+          "week": 4,
+          "of": 4,
+          "next": "Film & Screen",
+          "event": null
+        },
+        {
+          "date": "2026-11-03",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Tourism & the Outdoor Economy",
+          "week": 4,
+          "of": 4,
+          "next": "Agriculture & Ranching",
+          "event": null
+        },
+        {
+          "date": "2026-11-04",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Vehicles & Field Gear",
+          "week": 4,
+          "of": 4,
+          "next": "Maker & Repair",
+          "event": null
+        },
+        {
+          "date": "2026-11-05",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Guardians & Land Stewardship",
+          "week": 4,
+          "of": 4,
+          "next": "Governance, Title & Treaty",
+          "event": null
+        },
+        {
+          "date": "2026-11-06",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 3,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-07",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-08",
+          "day": "Sun",
+          "today": true,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Sky & Cosmos",
+          "week": 1,
+          "of": 4,
+          "next": "The Living World",
+          "event": null
+        }
+      ],
+      "anchor": "When is keeping the peace worth more than being right?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261105224542.htm",
+          "title": "[sciencedaily.com] Researchers identify heme in 115-million-year-old Brazilian dinosaur fossil",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.wired.com/story/chernobyls-dogs-may-be-evolving-but-scientists-dont-know-why/",
+          "title": "[WIRED] Chernobyl’s Dogs May Be Evolving, but Scientists Don’t Know Why",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.wired.com/story/particle-physicists-are-getting-a-first-glimpse-into-the-zeptoverse/",
+          "title": "[WIRED] Particle Physicists Are Getting a First Glimpse Into the ‘Zeptoverse’",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Ghostly_Cat_s_Head_Nebula_lurks_within_sight_of_Hubble_and_Webb",
+          "title": "[esa.int] Hubble and Webb expose hidden structures in Carina star-forming cloud",
+          "source": "",
+          "theme_pct": 99,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/",
+          "title": "[New Atlas] Incredible discovery of fossilized blood cells inside a dinosaur leg bone",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://nautil.us/can-whales-sing-with-their-mouths-full-1286270/",
+          "title": "[Nautilus] Can Whales Sing with Their Mouths Full?",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencealert.com/scientists-discover-two-enormous-tears-in-a-tectonic-plate-beneath-iran",
+          "title": "[ScienceAlert] Scientists Discover Two Enormous Tears in a Tectonic Plate Beneath Iran",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/the-great-pacific-garbage-patch-is-changing-the-color-of-the-ocean/",
+          "title": "[Scientific American] The Great Pacific Garbage Patch is changing the color of the ocean",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencealert.com/water-does-something-unexpected-under-the-crushing-pressures-of-alien-worlds",
+          "title": "[ScienceAlert] Scientists Crushed Water Between Two Diamonds And Saw Something Never Observed in a Lab Before.",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/have-astronomers-spotted-planet-nine/",
+          "title": "[Scientific American] Have astronomers spotted Planet Nine?",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/earths-rocks-have-a-missing-layer-spanning-up-to-a-billion-years-scientists-finally-know-what-happened-to-it/",
+          "title": "[Scientific American] Earth's rocks have a missing layer spanning up to a billion years. Scientists finally know what happened to it",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261103003149.htm",
+          "title": "[ScienceDaily] A hidden star is plowing through Betelgeuse’s atmosphere, new evidence suggests",
+          "source": "",
+          "theme_pct": 95,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261104012333.htm",
+          "title": "[ScienceDaily] Scientists discover Europe's ancient forests were nothing like we imagined",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://nautil.us/a-cross-species-same-sex-love-story-1286276/",
+          "title": "[Nautilus] A Cross-Species Same-Sex Love Story",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://earthsky.org/space/hera-mission-dart-asteroid-impact/",
+          "title": "[EarthSky] Hera mission gets its 1st closeup view of Didymos and Dimorphos",
+          "source": "",
+          "theme_pct": 93,
+          "aired": false
+        }
+      ]
+    }
+  },
+  {
     "date": "2026-11-07",
     "title": "Episode Review — Cariboo Signals, November 7, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-07.html",
@@ -774,20 +1034,6 @@
       "script_words": 3681,
       "roundup_cite_pct": 66.7,
       "deep_dive_cite_pct": 100.0
-    }
-  },
-  {
-    "date": "2026-10-09",
-    "title": "Episode Review — Cariboo Signals, October 9, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-09.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/37902833997\">37902833997</a>.</em></p>\n\n<h3>The territory check ran out of lookups before it finished</h3>\n<p>The script's territory check is meant to confirm that every nation named in the script is supported by the territory map. This run's check hit its per-run ceiling of 8 lookups and stopped with names still unchecked: \"Douglas\", \"Gook\", \"Greens\", \"Prince\", \"George-North\", \"Sheldon\", \"Clare\", \"Denice\", \"Bardua\", \"Randy\", \"Greens\" (again), \"News\", and \"Osoyoos\". The ceiling was reached, so those names were never checked. \"Greens\" and \"News\" appear to be false hits on common words, but the pipeline did not establish that. It recorded them as unchecked.</p>\n<p>A separate check did resolve something. \"Tŝilhqot'in\" was named in connection with Lorne, which the territory map covers as Miâkmaâki, Wabanaki (Dawnland Confederacy). One sentence kept an unsupported nation after a rewrite was rejected. The script shipped with that sentence in it. The pipeline flagged the mismatch and did not fix it. A listener hears a Tŝilhqot'in reference attached to a place the map assigns to another nation.</p>\n\n<h3>The script came in short and was sent back once</h3>\n<p>The first draft ran 2,517 words against a target of 3,400. The pipeline sent it back for one expand pass. The shipped script is 3,237 words, which is 163 short of target. The expand pass closed most of the gap but not all of it. The shipped number is the one that matters for the listener, and it is still under target.</p>\n<p>The quality checks came back clean on the points they measure. There were 0 AI-tell pattern hits, and the Casey-to-Riley voice ratio was 0.99.</p>\n\n<h3>The curated pool was far larger than the airtime</h3>\n<p>The roundup pool held 64 stories more than the airtime budget could carry, and those were cut. The pipeline's design treats this as intended: a cut story can come back on a day when it fits better. What the cut count does not tell you is how many of the stories that aired were picked from the strongest part of the pool and how many were picked for coverage. That choice is not recorded in the facts.</p>\n<p>Citations on the roundup matched fully: 15 of 15. On the deep dives, 2 of 3 matched. The unmatched deep-dive citation is the one that would need checking before anyone treats the deep-dive segment as sourced end to end.</p>\n\n<h3>The episode runs long and the video is heavier than the audio</h3>\n<p>The audio is 19.2 minutes and 17.5 MB. The video is also 19.2 minutes, at 66.4 MB, so the two tracks match in length while the video file is nearly four times the audio size. The RSS feed now lists 254 episodes.</p>\n<p>The script generation step took 1,038 seconds, by far the longest step. Deploy to GitHub Pages took 517 seconds. Those two steps account for most of the run's wall-clock time.</p>\n\n<h3>The run itself was on schedule</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:40 AM Pacific. Fallback 1 started and finished at 2:05 AM Pacific. Both completed successfully and neither was late. Fallback 2, which is the run producing this review, was created at 3:05 AM Pacific and is still running. Nothing in the facts says the primary run needed a fallback to finish, so the fallbacks here were scheduled retries and not recoveries.</p>\n<p>The debate question for the day asks whether wildfire impacts should be planned for with aggregate economic and ecological models, or whether those models systematically miss local human costs, recovery, and community context. The script's deep dives were built around that question. The territory failures above fall in the same area: the places and nations the episode names are the part of the script the pipeline could least verify.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.99, 3237 words</td></tr>\n<tr><td>Audio</td><td>19.2 min</td></tr>\n<tr><td>Audio size</td><td>17.5 MB</td></tr>\n<tr><td>Citations matched</td><td>15/15 roundup, 2/3 deep dive</td></tr>\n<tr><td>Feed</td><td>254 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>50,587 input tokens, calls ***'brave-search': 19, 'claude': 19***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-09T10:06:20+00:00",
-    "metrics": {
-      "audio_minutes": 19.2,
-      "tell_hits": 0,
-      "script_words": 3237,
-      "roundup_cite_pct": 100.0,
-      "deep_dive_cite_pct": 66.7
     }
   }
 ]
