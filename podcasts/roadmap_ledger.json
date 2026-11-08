@@ -404,10 +404,9 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-09-27",
         "2026-10-02",
         "2026-10-03",
         "2026-10-07",
@@ -416,11 +415,12 @@
         "2026-10-17",
         "2026-10-19",
         "2026-11-05",
-        "2026-11-06"
+        "2026-11-06",
+        "2026-11-08"
       ],
-      "last_seen": "2026-11-06",
+      "last_seen": "2026-11-08",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-11-06"
+      "signal_seen": "2026-11-08"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -631,8 +631,8 @@
       "title": "The first script draft ran 21 percent short and needed expansion retries to reach length.",
       "detail": "The first draft came in at 2694 words against a 3400-word target, and the pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is already tracked as script expansion undershooting its target, so the new evidence here is that the first generation pass itself is consistently short, not only the expansion. Closing this would mean checking whether the initial generation prompt states the word target strongly enough, so fewer episodes depend on the retry loop.",
       "source": "review",
-      "status": "open",
-      "occurrences": 3,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-10-18",
       "seen": [
         "2026-10-18",
@@ -709,14 +709,15 @@
       "detail": "The first script draft for the 2026-10-25 episode named Meta and Moment in the dialogue, neither of which appears in the week's commits, so the draft failed and the retry aired with upstream changes. The listener hears a regenerated script and the only record of the discarded draft is the degradation entry. The facts do not establish why the names appeared, but the script step's commit context is the first place to check, and the discarded draft should be logged in full.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-10-25",
       "seen": [
-        "2026-10-25"
+        "2026-10-25",
+        "2026-11-08"
       ],
       "signal": "degraded:script/meta-moment/retry",
-      "signal_seen": "2026-10-25",
-      "last_seen": "2026-10-25"
+      "signal_seen": "2026-11-08",
+      "last_seen": "2026-11-08"
     },
     {
       "id": "script-length-overshoots-target-after-single-expand-pass",
@@ -748,5 +749,5 @@
       "last_seen": "2026-11-01"
     }
   ],
-  "updated": "2026-11-07"
+  "updated": "2026-11-08"
 }

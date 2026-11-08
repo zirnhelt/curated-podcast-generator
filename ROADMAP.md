@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-09-27..2026-11-06) — 2 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-10-02..2026-11-08) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -51,16 +51,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 2
-      reviews, latest 2026-11-06)
-- [ ] **The first script draft ran 21 percent short and needed expansion retries to reach
-      length.** The first draft came in at 2694 words against a 3400-word target, and the
-      pipeline sent it back for up to two expand passes before shipping 3423 words. The gap is
-      already tracked as script expansion undershooting its target, so the new evidence here is
-      that the first generation pass itself is consistently short, not only the expansion.
-      Closing this would mean checking whether the initial generation prompt states the word
-      target strongly enough, so fewer episodes depend on the retry loop. (seen in 3 reviews,
-      latest 2026-10-24)
+      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 3
+      reviews, latest 2026-11-08)
 
 <!-- reviews:end -->
 
