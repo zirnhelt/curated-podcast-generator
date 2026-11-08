@@ -647,7 +647,7 @@ The gates now read the charter: a keyword hit below p50 is not on-theme; a story
 score of 40+ is, keyword or not. The raw floor matters: on a collapsed day (Monday, Thursday) the 85th
 percentile can be a raw 12, and percentile alone would have promoted NYT essays on Arts day. Saturday
 is exempt from promotion (locality decides the opening blocks). The Cariboo bar's pool drops non-local
-candidates under p70; local extras compete on their Cariboo tie. Thresholds were checked against all
+candidates under p70; local extras compete on their Cariboo tie. **Not on no charter fit at all** (2026-11-08): Operation Red Nose, a safe-rides story at raw 2 (p100 on a collapsed Sunday), led a Science deep dive over four Sky & Cosmos candidates; the script, given nothing scientific to argue, built the deep dive from two roundup stories, and the citations credited a story that never aired. A local extra now needs raw `DEEP_DIVE_PICK_LOCAL_MIN_RAW` (`HOLD_RANK_MIN_THEME_RAW`, 12) on today's charter; an unscored one still competes. On that day's seven live feeds 34 local bonus stories were in play; 14 clear raw 12 and 1 is unscored (Wednesday: none clear it). Thresholds were checked against all
 seven live feeds: the demotions on every day were stray-keyword stories. An unscored article (a
 released held story) keeps the keyword test.
 
