@@ -11389,6 +11389,35 @@ def _openai_speech_request(speaker: str) -> tuple[dict, float]:
     return request, 1.0
 
 
+# Indigenous orthography the voices can't read: ŝ ś ẑ ū ʔ, the glottal-stop 7
+# after a letter (Kukpi7), and an apostrophe inside a capitalised word
+# (Tl'etinqox), but not an English 's / 't / 'll / 're / 've / 'd / 'm.
+_ORTHOGRAPHY_MARKS = set("ŝŜśŚẑẐūŪʔ")
+_NAME_TOKEN_RE = re.compile(r"[\wʔ'’]+")
+_ENGLISH_ENDINGS = {"s", "t", "ll", "re", "ve", "d", "m"}
+
+
+def _reads_as_indigenous_name(token: str) -> bool:
+    # A 7 after a lowercase letter, never a model number (SD73, A7R, HX711).
+    if _ORTHOGRAPHY_MARKS & set(token) or re.search(r"[a-z]7", token):
+        return True
+    parts = re.split(r"['’]", token)
+    return (len(parts) > 1 and token[:1].isupper() and parts[0] != "O"  # O'Connor
+            and not re.search(r"\d", token)
+            and any(len(p) >= 2 and p.lower() not in _ENGLISH_ENDINGS for p in parts[1:])
+            and not token.endswith(("'s", "’s")))
+
+
+def unaliased_indigenous_names(script: str) -> list[str]:
+    """Names in spoken lines that still carry Indigenous orthography after the
+    pronunciation table is applied: the voice will read them as written."""
+    spoken = "\n".join(line for line in script.splitlines() if not line.startswith("#"))
+    for word, alias in load_pronunciations().items():
+        spoken = spoken.replace(word, alias)
+    names = (t.strip("'’") for t in _NAME_TOKEN_RE.findall(spoken))
+    return list(dict.fromkeys(t for t in names if t and _reads_as_indigenous_name(t)))
+
+
 def generate_tts_for_segment(text, speaker, output_file):
     """Generate TTS audio for a text segment via OpenAI.
 
@@ -14726,6 +14755,15 @@ def run_script_stage() -> tuple[str, str] | None:
                     )
                 script = scrub_territory_claims(script, _territory_findings)
             _report_native_land_degradations("script/territory-check")
+
+        with segment("script/pronunciation", critical=False):
+            # TTS reads a name it has no respelling for letter by letter; on
+            # 2026-11-08 "Kukpi7" and three Tŝilhqot'in communities aired that way.
+            _unspoken = unaliased_indigenous_names(script)
+            if _unspoken:
+                degrade("script/pronunciation",
+                        f"{len(_unspoken)} name(s) with no entry in config/pronunciations.json: "
+                        + ", ".join(_unspoken[:10]))
 
         with segment("script/debate-summary", critical=False):
             # Extract debate summary if not already obtained from batch

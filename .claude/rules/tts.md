@@ -25,3 +25,5 @@ paths:
 - The code, tests and TTS Eval workflow stay, and `tts_provider=gemini` still dispatches.
 - Don't tune, refit or extend it while parked.
 - **Never put prior dialogue into a TTS prompt.**
+
+**Nation and community names** (`config/pronunciations.json`): respellings follow the BC government's pronunciation guide (built with the nations), never a guess; the community is the final authority. A name with Indigenous orthography (ŝ ś ʔ ū, a 7 after a letter, an apostrophe inside a capitalised word) left after the table is a `script/pronunciation` degrade (`unaliased_indigenous_names`).
