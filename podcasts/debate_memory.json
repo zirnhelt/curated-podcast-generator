@@ -1,31 +1,4 @@
 {
-  "2026-08-09": {
-    "timestamp": 1786266197.362233,
-    "date": "2026-08-09",
-    "theme": "Science, Wonder & the Natural World",
-    "focus": "discovery-health",
-    "central_question": "How should scientific findings be translated and communicated to the public when headlines oversimplify nuanced research?",
-    "riley_position": "Scientific compression into clean numbers is a necessary, valid stage of discovery that eventually gets refined with more data, and existing regional institutions like Interior Health already provide adequate informal filtering of research into actionable advice.",
-    "riley_key_evidence": [
-      "Plasma vortices in solar images were predicted mathematically for a century before optics caught up, showing oversimplification is part of the legitimate discovery process",
-      "BC's grid runs over 90% hydro, making EV emissions math work cleanly in this region",
-      "Interior Health and School District 27 serve as existing human filters between raw studies and public-facing advice"
-    ],
-    "casey_position": "Oversimplified headlines cause immediate harm by prompting people to act on unconfirmed findings before replication, and existing institutional filters are either absent, slow, or operate informally rather than as accountable job responsibilities.",
-    "casey_key_evidence": [
-      "Exercise study's 560-610 minute recommendation is an average across mixed-fitness populations, not a universal target, but this nuance doesn't survive headlines",
-      "EV study assumes grid decarbonization and household affordability conditions that don't hold for most Cariboo residents",
-      "Regional health guidance lags months or years behind fresh studies, and school districts aren't equipped to relitigate new papers"
-    ],
-    "resolution": "They identified shared agreement that the core problem is a literacy and governance gap rather than a data problem, and disagreed on solutions\u2014Riley trusting informal institutional translation versus Casey advocating explicit, accountable checkpoints\u2014while both agreeing this deserved investigation within the Cariboo community.",
-    "topics_covered": [
-      "EV emissions lifecycle claims and regional applicability",
-      "Exercise dose recommendations and population-dependent averages",
-      "Null results and why negative findings get underamplified",
-      "Institutional versus algorithmic filtering of scientific claims",
-      "Science communication gaps between discovery and public action"
-    ]
-  },
   "2026-08-10": {
     "timestamp": 1786355649.828247,
     "date": "2026-08-10",
@@ -2589,6 +2562,34 @@
       "Accountability and record-keeping for community-federal agreements",
       "Build versus knock strategies for community needs, illustrated by the Lancaster case",
       "Governance of the Development Corporation and the dual role of elected councillors"
+    ]
+  },
+  "2026-11-08": {
+    "timestamp": 1794126096.60046,
+    "date": "2026-11-08",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "sky-cosmos",
+    "anchor": "keeping-the-peace-or-speaking-up",
+    "central_question": "When a method like FLIP recovers a planet or signal from existing archival data, does that count as a discovery, or is it only a lead that needs independent verification?",
+    "riley_position": "Recovering known objects is how a new method is calibrated, and if FLIP passes planted-planet tests and its gains are measured against old processing, the results count as genuine discoveries that can be checked now without new hardware.",
+    "riley_key_evidence": [
+      "FLIP models telescope optics and corrects for mismatches between reference and science images, running on Webb data already collected with no hardware change",
+      "Astronomers standardly test pipelines by planting artificial planets in data and checking whether they are recovered",
+      "Sasha Hinkley of the University of Exeter says skipping reference-star observations could free telescope time for more stars and planets"
+    ],
+    "casey_position": "The 51 Eridani b result only tests recovery of a known planet, not finding new ones, and claims about future savings, relaxed observatory requirements, and inferred planetary models are forecasts that need labels and outside verification before being treated as findings.",
+    "casey_key_evidence": [
+      "51 Eridani b was already known before FLIP processed it, so the result is a test of recovery rather than discovery",
+      "Planted-planet tests only prove recovery of what was planted, not detection of unmodelled faint companions",
+      "The FLIP team says it only aims to eventually remove the reference-observation stage, with no date attached, and Neptune's interior composition is an inference no one can sample directly until a probe flies"
+    ],
+    "resolution": "They did not fully agree: Riley accepted that planted-planet tests are bounded and that labels and independent checks are needed, while Casey accepted the planted-test point as fair but kept calling FLIP 'still a plan' and insisted unpaid reruns and outside verification be named in any announcement. They converged on the need for independent reprocessing by a team without a stake in the result, with the open question of who performs that check left unresolved.",
+    "topics_covered": [
+      "Recovery versus discovery in archival Webb data and the FLIP method",
+      "Validation through planted-planet tests and their limits",
+      "Costs of reprocessing archives and telescope-time savings",
+      "Inferred interior models of Neptune and the role of probe missions for testing claims",
+      "Independent verification of results, and labeling forecasts versus findings"
     ]
   }
 }

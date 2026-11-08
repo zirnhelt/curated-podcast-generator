@@ -100,14 +100,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-30",
-        "clue": "structural-lens:+ \u2014 insists a named owner must be assigned to slopes",
+        "date": "2026-11-08",
+        "clue": "evidence-bar:x \u2014 Concedes planted-planet test only proves recovery",
         "occurrences": 2
-      },
-      {
-        "date": "2026-10-28",
-        "clue": "evidence-bar:x \u2014 concedes sanction gap is a disclosure problem, not finding",
-        "occurrences": 1
       },
       {
         "date": "2026-10-30",
@@ -173,6 +168,11 @@
         "date": "2026-11-07",
         "clue": "community-trust:+ \u2014 Keeping relationships intact as the path to yes",
         "occurrences": 2
+      },
+      {
+        "date": "2026-11-08",
+        "clue": "tech-optimism:+ \u2014 Defends FLIP as a discovery-grade method path",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -429,11 +429,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-07",
-        "clue": "evidence-bar:+ \u2014 Demands minutes and agreements, not photos or announcements",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-03",
         "clue": "rural-context:~ \u2014 Cariboo freight desks unquoted, not guessed at",
         "occurrences": 1
@@ -456,6 +451,16 @@
       {
         "date": "2026-11-06",
         "clue": "community-trust:+ \u2014 keep warnings about animals and agencies, not hikers",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-08",
+        "clue": "funding-risk:+ \u2014 Asks who pays for reruns and future checks",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-08",
+        "clue": "community-trust:~ \u2014 Wants failure of assumed double-checking named explicitly",
         "occurrences": 1
       }
     ],
