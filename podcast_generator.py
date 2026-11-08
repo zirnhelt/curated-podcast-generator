@@ -8216,6 +8216,12 @@ DEEP_DIVE_PICK_POOL = 15
 # at the 58th percentile (8 of 100 on Working Lands), found no other report, and
 # the deep dive aired on one source over three on-theme candidates at 85-98.
 DEEP_DIVE_PICK_MIN_PCT = 70
+# A fresh local bonus story joins the pool on its Cariboo tie, but not with a raw
+# charter score under this (the floor below which a rank "means nothing"): on
+# 2026-11-08 Operation Red Nose (raw 2 of 100, p100 on a collapsed Sunday) beat
+# four Sky & Cosmos candidates, and the script argued from roundup stories instead.
+# An unscored local story still competes.
+DEEP_DIVE_PICK_LOCAL_MIN_RAW = HOLD_RANK_MIN_THEME_RAW
 DEEP_DIVE_PICK_SUMMARY_CHARS = 240
 RECENT_LOCAL_DAYS = 7
 # The storyboard's look back (week_so_far_block): rolling, so Monday sees last week.
@@ -8608,7 +8614,14 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
             print(f"  🧭 Cariboo bar: {len(ranked) - len(fit)} candidate(s) under the "
                   f"p{DEEP_DIVE_PICK_MIN_PCT} charter floor left out")
         pool = (fit or ranked)[:DEEP_DIVE_PICK_POOL]
-        pool += [a for a in (local_extras or []) if a not in pool]
+        extras = [a for a in (local_extras or []) if a not in pool]
+        off = [a for a in extras if isinstance(a.get('_theme_score_raw'), int)
+               and a['_theme_score_raw'] < DEEP_DIVE_PICK_LOCAL_MIN_RAW]
+        if off:
+            print(f"  🧭 Cariboo bar: {len(off)} local story(ies) under raw "
+                  f"{DEEP_DIVE_PICK_LOCAL_MIN_RAW} on today's charter left out: "
+                  + "; ".join(a.get('title', '')[:50] for a in off))
+        pool += [a for a in extras if a not in off]
         picked = pick_cariboo_deep_dive(pool, count, theme_name,
                                         anchor_question=anchor_question,
                                         recent_local=recent_local)

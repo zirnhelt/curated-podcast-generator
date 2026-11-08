@@ -7932,6 +7932,29 @@ class TestCaribooDeepDivePick:
         assert "https://tanker" not in captured["pool"]
         assert {"https://mine", "https://swe", "https://unscored", "https://local"} <= set(captured["pool"])
 
+    def test_a_local_story_off_todays_charter_stays_out_of_the_pick(self, monkeypatch):
+        """2026-11-08: Operation Red Nose (raw 2, p100 on a collapsed Sunday) led a
+        Science deep dive over four Sky & Cosmos candidates; the script argued from
+        roundup stories and the citations credited a story that never aired."""
+        import podcast_generator as pg
+        captured = {}
+
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+            captured["pool"] = [a["url"] for a in pool]
+            return [pool[0]]
+        monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        red_nose = {"title": "[Williams Lake Tribune] Operation Red Nose ready to provide rides",
+                    "url": "https://rednose", "_is_bonus": True,
+                    "_theme_score": 100, "_theme_score_raw": 2}
+        burn = {"title": "[100 Mile Free Press] Fuel breaks, burning planned for Mirage Lake",
+                "url": "https://burn", "_is_bonus": True,
+                "_theme_score": 75, "_theme_score_raw": 25}
+        pg.select_deep_dive_from_feed(theme, "Science, Wonder & the Natural World",
+                                      count=4, local_extras=[red_nose, burn])
+        assert "https://rednose" not in captured["pool"]
+        assert "https://burn" in captured["pool"]
+
     def test_the_geographic_day_is_never_picked(self, monkeypatch):
         import podcast_generator as pg
         monkeypatch.setattr(pg, "pick_cariboo_deep_dive",
