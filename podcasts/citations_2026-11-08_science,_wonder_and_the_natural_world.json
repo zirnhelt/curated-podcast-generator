@@ -1,0 +1,668 @@
+{
+  "episode": {
+    "date": "2026-11-08",
+    "formatted_date": "Sunday, November 08, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>THIS WEEK WE'RE ASKING:</b> When is keeping the peace worth more than being right?</p><p><b>NEWS ROUNDUP:</b> We break down 2026-2030 Williams Lake city council sworn in and B.C’s forestry leaders welcome federal funding, but say more action is needed, plus 9 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When a method like FLIP recovers a planet or signal from existing archival data, does that count as a discovery, or is it only a lead that needs independent verification? Topics include: Recovery versus discovery in archival Webb data and the FLIP method, Validation through planted-planet tests and their limits, Costs of reprocessing archives and telescope-time savings, Inferred interior models of Neptune and the role of probe missions for testing claims, Independent verification of results, and labeling forecasts versus findings.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Central Chilcotin Rehabilitation Ltd.</p><p><b>Sources discussed:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/06/2026-2030-williams-lake-city-council-sworn-in/\">[Williams Lake Tribune] 2026-2030 Williams Lake city council...</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/\">[My Cariboo Now] B.C’s forestry leaders welcome federal fund...</a></li><li>New Atlas: <a href=\"https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/\">[New Atlas] Incredible discovery of fossilized blood cells i...</a></li><li>sciencedaily.com: <a href=\"https://www.sciencedaily.com/releases/2026/11/261105224542.htm\">[sciencedaily.com] Researchers identify heme in 115-million-...</a></li><li>Mac Margolis in Rio de Janeiro (The Guardian Global Development): <a href=\"https://www.theguardian.com/global-development/2026/nov/03/the-amazons-canary-in-the-coalmine-what-a-tropical-fish-can-tell-us-about-climate-upheaval\">[The Guardian Global Development] The Amazon’s canary in the...</a></li><li>scitechdaily.com: <a href=\"https://scitechdaily.com/uranus-and-neptune-may-have-been-cosmic-strangers-all-along-new-research-reveals/\">[scitechdaily.com] Study suggests Neptune formed from materi...</a></li><li>Jess Cockerill (sciencealert.com): <a href=\"https://www.sciencealert.com/octopuses-can-squeeze-their-bodies-through-tiny-holes-and-scientists-are-in-awe\">[sciencealert.com] Octopus study maps two tactics for squeez...</a></li><li>Santosh Dhungana, Nicholas Flament, The Conversation US (Scientific American): <a href=\"https://www.scientificamerican.com/article/earths-rocks-have-a-missing-layer-spanning-up-to-a-billion-years-scientists-finally-know-what-happened-to-it/\">[Scientific American] Earth's rocks have a missing layer spa...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/11/261105081000.htm\">[ScienceDaily] For decades, we were told to avoid full-fat d...</a></li><li>science.org: <a href=\"https://www.science.org/content/article/astronomers-sharpen-jwst-s-view-distant-worlds\">[science.org] JWST image-processing method boosts exoplanet ...</a></li><li>abc.net.au: <a href=\"https://www.abc.net.au/news/2026-10-28/lancet-study-counts-three-million-climate-change-related-deaths/107315006\">[abc.net.au] Lancet researchers urge health emergency declar...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Zachary Barrowcliff (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317258/news/emergency-services/former-firefighter-helps-bus-crash-victims-near-mackenzie/\">[My Cariboo Now] Former firefighter helps bus crash victims ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/11/06/BC-Little-Sharks-Get-New-Protections/\">[The Tyee] BC’s Little Sharks Get New Protections</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/11/261104012333.htm\">[ScienceDaily] Scientists discover Europe's ancient forests ...</a></li><li>Nautilus: <a href=\"https://nautil.us/a-cross-species-same-sex-love-story-1286276/\">[Nautilus] A Cross-Species Same-Sex Love Story</a></li><li>Jorge Garay (WIRED): <a href=\"https://www.wired.com/story/chernobyls-dogs-may-be-evolving-but-scientists-dont-know-why/\">[WIRED] Chernobyl’s Dogs May Be Evolving, but Scientists Don...</a></li><li>Jorge Garay (WIRED): <a href=\"https://www.wired.com/story/particle-physicists-are-getting-a-first-glimpse-into-the-zeptoverse/\">[WIRED] Particle Physicists Are Getting a First Glimpse Into...</a></li><li>news.un.org: <a href=\"https://news.un.org/feed/view/en/story/2026/10/1168677\">[news.un.org] UN says record greenhouse gases lock in centur...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/07/operation-red-nose-ready-to-provide-safe-holiday-rides-homes-in-williams-lake/\">[Williams Lake Tribune] Operation Red Nose ready to provide ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-08T01:21:20.897853-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-opus-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3348,
+      "voice_ratio_casey_riley": 0.77,
+      "casey_share_deep_dive_pct": 46,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 16,
+        "turns": 86,
+        "avg_turn_words": 37.4,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 1
+    },
+    "anchor": {
+      "id": "keeping-the-peace-or-speaking-up",
+      "question": "When is keeping the peace worth more than being right?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[news.un.org] UN says record greenhouse gases lock in centuries-long warming",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168677",
+          "source": "news.un.org",
+          "author": "",
+          "ai_score": 43,
+          "date_published": "2026-10-27T12:00:00+00:00",
+          "summary": "The World Meteorological Organization (WMO), the United Nations’ weather agency, reported that atmospheric concentrations of carbon dioxide, methane and nitrous oxide all reached record levels in 2025...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] 2026-2030 Williams Lake city council sworn in",
+          "url": "https://wltribune.com/2026/11/06/2026-2030-williams-lake-city-council-sworn-in/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 61,
+          "date_published": "2026-11-07T06:03:17.706985+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.0131
+        },
+        {
+          "title": "[My Cariboo Now] B.C’s forestry leaders welcome federal funding, but say more action is needed",
+          "url": "https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 75,
+          "date_published": "2026-11-06T18:55:06+00:00",
+          "summary": "The BC Council of Forest Industries say it welcomes the $6.5 billion investment that the feds will be providing to the forestry industy; however, the forestry leaders say more actions are needed to st...",
+          "discussed": true,
+          "mention_offset_frac": 0.0741
+        },
+        {
+          "title": "[sciencedaily.com] Researchers identify heme in 115-million-year-old Brazilian dinosaur fossil",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261105224542.htm",
+          "source": "sciencedaily.com",
+          "author": "",
+          "ai_score": 51,
+          "date_published": "2026-11-06T11:28:01+00:00",
+          "summary": "An international research team says it has found mineralized structures resembling red blood cells and heme, a molecule associated with hemoglobin, in a 115-million-year-old Aratasaurus museunacionali...",
+          "discussed": true,
+          "mention_offset_frac": 0.0893
+        },
+        {
+          "title": "[New Atlas] Incredible discovery of fossilized blood cells inside a dinosaur leg bone",
+          "url": "https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/mike-mcrae/",
+          "ai_score": 41,
+          "date_published": "2026-11-02T20:00:00+00:00",
+          "summary": "A dinosaur that breathed its last breath in the middle of the Cretaceous may have left behind more than a mould of its bones, with a study reporting the astonishing discovery of mineralized blood cell...",
+          "discussed": true,
+          "mention_offset_frac": 0.1462
+        },
+        {
+          "title": "[sciencealert.com] Octopus study maps two tactics for squeezing through tight openings",
+          "url": "https://www.sciencealert.com/octopuses-can-squeeze-their-bodies-through-tiny-holes-and-scientists-are-in-awe",
+          "source": "sciencealert.com",
+          "author": "Jess Cockerill",
+          "ai_score": 45,
+          "date_published": "2026-11-06T11:00:00+00:00",
+          "summary": "Researchers have documented how common octopuses change their movements to pass through small openings, adding a step when a gap is narrower than the distance between their eyes. For the study, publis...",
+          "discussed": true,
+          "mention_offset_frac": 0.1637
+        },
+        {
+          "title": "[ScienceDaily] Scientists discover Europe's ancient forests were nothing like we imagined",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261104012333.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 49,
+          "date_published": "2026-11-07T09:44:48+00:00",
+          "summary": "Scientists have uncovered evidence that Europe was dominated for more than 20 million years by open woodlands, colorful meadows, and large grazing animals, not the dense forests long considered its na...",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] BC’s Little Sharks Get New Protections",
+          "url": "https://thetyee.ca/News/2026/11/06/BC-Little-Sharks-Get-New-Protections/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-11-06T08:20:00+00:00",
+          "summary": "In a ‘pretty rare’ move, Canada is adding over a dozen new aquatic creatures to the Species at Risk Act.",
+          "discussed": false
+        },
+        {
+          "title": "[The Guardian Global Development] The Amazon’s canary in the coalmine: what a tropical fish can tell us about climate upheaval",
+          "url": "https://www.theguardian.com/global-development/2026/nov/03/the-amazons-canary-in-the-coalmine-what-a-tropical-fish-can-tell-us-about-climate-upheaval",
+          "source": "The Guardian Global Development",
+          "author": "Mac Margolis in Rio de Janeiro",
+          "ai_score": 53,
+          "date_published": "2026-11-03T12:00:05+00:00",
+          "summary": "Scientist Adalberto Luis Val’s pioneering research on the tambaqui fish is revealing the effect of climate disruption in Brazil, with global implications for biodiversity and food security As a boy in...",
+          "discussed": true,
+          "mention_offset_frac": 0.2586
+        },
+        {
+          "title": "[ScienceDaily] For decades, we were told to avoid full-fat dairy. New research says otherwise",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 44,
+          "date_published": "2026-11-06T05:51:36+00:00",
+          "summary": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12...",
+          "discussed": true,
+          "mention_offset_frac": 0.2683
+        },
+        {
+          "title": "[abc.net.au] Lancet researchers urge health emergency declaration as climate losses mount",
+          "url": "https://www.abc.net.au/news/2026-10-28/lancet-study-counts-three-million-climate-change-related-deaths/107315006",
+          "source": "abc.net.au",
+          "author": "https://www.abc.net.au/news/nathan-morris/7193520",
+          "ai_score": 47,
+          "date_published": "2026-10-28T01:52:40+00:00",
+          "summary": "Heat-related disruption cost the world an estimated $1.07 trillion in lost worker productivity in 2025, while extreme drought affected about 52% of global land for at least a month, according to the 2...",
+          "discussed": true,
+          "mention_offset_frac": 0.2818
+        },
+        {
+          "title": "[WIRED] Chernobyl’s Dogs May Be Evolving, but Scientists Don’t Know Why",
+          "url": "https://www.wired.com/story/chernobyls-dogs-may-be-evolving-but-scientists-dont-know-why/",
+          "source": "WIRED",
+          "author": "Jorge Garay",
+          "ai_score": 50,
+          "date_published": "2026-11-04T10:00:00+00:00",
+          "summary": "A new study found evidence of natural selection in the dogs of Chernobyl, but it’s still unclear what drove these genetic differences and what evolutionary advantages they may provide.",
+          "discussed": false
+        },
+        {
+          "title": "[scitechdaily.com] Study suggests Neptune formed from materials that originated closer to the young Sun",
+          "url": "https://scitechdaily.com/uranus-and-neptune-may-have-been-cosmic-strangers-all-along-new-research-reveals/",
+          "source": "scitechdaily.com",
+          "author": "",
+          "ai_score": 30,
+          "date_published": "2026-10-31T21:08:36+00:00",
+          "summary": "Neptune may have formed from building blocks that originated closer to the young Sun before moving outward, according to research published in Astronomy & Astrophysics. Neptune’s deep atmosphere appea...",
+          "discussed": true,
+          "mention_offset_frac": 0.4806
+        },
+        {
+          "title": "[Scientific American] Earth's rocks have a missing layer spanning up to a billion years. Scientists finally know what happened to it",
+          "url": "https://www.scientificamerican.com/article/earths-rocks-have-a-missing-layer-spanning-up-to-a-billion-years-scientists-finally-know-what-happened-to-it/",
+          "source": "Scientific American",
+          "author": "Santosh Dhungana, Nicholas Flament, The Conversation US",
+          "ai_score": 55,
+          "date_published": "2026-11-07T13:00:00+00:00",
+          "summary": "The 'Great Unconformity' has puzzled scientists since its discovery in the 1870s",
+          "discussed": true,
+          "mention_offset_frac": 0.6342
+        },
+        {
+          "title": "[science.org] JWST image-processing method boosts exoplanet sensitivity up to 15-fold",
+          "url": "https://www.science.org/content/article/astronomers-sharpen-jwst-s-view-distant-worlds",
+          "source": "science.org",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-11-04T11:00:00+00:00",
+          "summary": "Astronomers have developed a physics-based method to remove residual starlight from James Webb Space Telescope images, improving sensitivity to faint planets by two to 15 times and revealing the known...",
+          "discussed": true,
+          "mention_offset_frac": 0.779
+        },
+        {
+          "title": "[My Cariboo Now] Former firefighter helps bus crash victims near Mackenzie",
+          "url": "https://www.mycariboonow.com/317258/news/emergency-services/former-firefighter-helps-bus-crash-victims-near-mackenzie/",
+          "source": "My Cariboo Now",
+          "author": "Zachary Barrowcliff",
+          "ai_score": 53,
+          "date_published": "2026-11-06T22:33:01+00:00",
+          "summary": "A former firefighter's quick thinking and emergency training helped passengers in Wednesday's Highway 39 bus crash, about four kilometres south of Mackenzie. The post Former firefighter helps bus cras...",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] A Cross-Species Same-Sex Love Story",
+          "url": "https://nautil.us/a-cross-species-same-sex-love-story-1286276/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-11-02T19:00:00+00:00",
+          "summary": "In Ethiopia, scientists documented repeated sex and bonding between a bull and a male donkey The post A Cross-Species Same-Sex Love Story appeared first on Nautilus .",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Particle Physicists Are Getting a First Glimpse Into the ‘Zeptoverse’",
+          "url": "https://www.wired.com/story/particle-physicists-are-getting-a-first-glimpse-into-the-zeptoverse/",
+          "source": "WIRED",
+          "author": "Jorge Garay",
+          "ai_score": 39,
+          "date_published": "2026-11-05T10:30:00+00:00",
+          "summary": "An extremely rare matter-decay event opens up new possibilities for researching the physical world on scales 100 billion times smaller than an atom.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Operation Red Nose ready to provide safe holiday rides homes in Williams Lake",
+          "url": "https://wltribune.com/2026/11/07/operation-red-nose-ready-to-provide-safe-holiday-rides-homes-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 76,
+          "date_published": "2026-11-08T06:03:17.498573+00:00",
+          "summary": "Operation Red Nose Williams Lake is gearing up to provide safe rides home this holiday season. Volunteers will be at the ready this holiday season in Williams Lake to provide safe rides home. Operatio...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "When a method like FLIP recovers a planet or signal from existing archival data, does that count as a discovery, or is it only a lead that needs independent verification?",
+        "riley_position": "Recovering known objects is how a new method is calibrated, and if FLIP passes planted-planet tests and its gains are measured against old processing, the results count as genuine discoveries that can be checked now without new hardware.",
+        "riley_key_evidence": [
+          "FLIP models telescope optics and corrects for mismatches between reference and science images, running on Webb data already collected with no hardware change",
+          "Astronomers standardly test pipelines by planting artificial planets in data and checking whether they are recovered",
+          "Sasha Hinkley of the University of Exeter says skipping reference-star observations could free telescope time for more stars and planets"
+        ],
+        "casey_position": "The 51 Eridani b result only tests recovery of a known planet, not finding new ones, and claims about future savings, relaxed observatory requirements, and inferred planetary models are forecasts that need labels and outside verification before being treated as findings.",
+        "casey_key_evidence": [
+          "51 Eridani b was already known before FLIP processed it, so the result is a test of recovery rather than discovery",
+          "Planted-planet tests only prove recovery of what was planted, not detection of unmodelled faint companions",
+          "The FLIP team says it only aims to eventually remove the reference-observation stage, with no date attached, and Neptune's interior composition is an inference no one can sample directly until a probe flies"
+        ],
+        "resolution": "They did not fully agree: Riley accepted that planted-planet tests are bounded and that labels and independent checks are needed, while Casey accepted the planted-test point as fair but kept calling FLIP 'still a plan' and insisted unpaid reruns and outside verification be named in any announcement. They converged on the need for independent reprocessing by a team without a stake in the result, with the open question of who performs that check left unresolved.",
+        "topics_covered": [
+          "Recovery versus discovery in archival Webb data and the FLIP method",
+          "Validation through planted-planet tests and their limits",
+          "Costs of reprocessing archives and telescope-time savings",
+          "Inferred interior models of Neptune and the role of probe missions for testing claims",
+          "Independent verification of results, and labeling forecasts versus findings"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 5,
+          "conditions": "mainly clear",
+          "high": 11,
+          "low": 2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 3,
+          "conditions": "partly cloudy",
+          "high": 9,
+          "low": 1
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 6,
+          "conditions": "partly cloudy",
+          "high": 13,
+          "low": 1
+        },
+        {
+          "name": "Quesnel",
+          "temp": 6,
+          "conditions": "partly cloudy",
+          "high": 12,
+          "low": 1
+        },
+        {
+          "name": "Riske Creek",
+          "temp": 2,
+          "conditions": "mainly clear",
+          "high": 10,
+          "low": 0
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Central Chilcotin Rehabilitation Ltd.",
+      "description": "Indigenous joint venture doing award-winning forest rehabilitation and biomass work across Tŝideldel, Tl'etinqox, and Yunesit'in territories",
+      "website": "",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "",
+    "log": [
+      {
+        "kind": "question",
+        "query": "FLIP Webb 51 Eridani b reprocessing planted planets test"
+      },
+      {
+        "kind": "question",
+        "query": "Webb FLIP pipeline reprocessing coronagraphic archive results"
+      },
+      {
+        "kind": "question",
+        "query": "Sasha Hinkley Exeter FLIP telescope time reference observations"
+      },
+      {
+        "kind": "question",
+        "query": "NASA Uranus Orbiter and Probe launch date"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A mixed news day: Cariboo civic and industry news up front, then a wide sweep of science from deep time and animal behaviour out to the planets and the smallest scales of matter, ending on the climate numbers.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "Williams Lake's 2026-2030 mayor and council were sworn in at a packed ceremony on Nov. 3, and Williams Lake First Nation Kukpi7 Willie Sellars thanked them for holding up their end of the relationship.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "B.C.'s forestry leaders welcome Ottawa's $6.5 billion in federal forestry funding, delivered over six years from 2027/2028, but say money alone will not fix the sector's competitiveness.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "A former firefighter, Rich Rogers, used his emergency training to help passengers after a shuttle bus left Highway 39 about four kilometres south of Mackenzie.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [
+            5
+          ],
+          "point": "A team led by Curtin University reports heme and cell-like structures in a 115-million-year-old Brazilian dinosaur bone, but paleontologist Mary Schweitzer, who was not involved, says she is not convinced because the chemical analysis covered the whole bone.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "Canada is adding over a dozen new aquatic creatures, including small B.C. sharks, to the Species at Risk Act in a move described as pretty rare.",
+          "bridge_to_next": "Aquatic species under pressure: from newly protected B.C. sharks to a tropical fish used as a climate indicator."
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "Scientist Adalberto Luis Val's research on the tambaqui fish is revealing the effects of climate disruption in Brazil, with implications for biodiversity and food security.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "An Aarhus University-led study finds Europe was dominated for more than 20 million years by open woodlands, meadows and large grazing animals, not dense forest, which raises questions for reforestation programs.",
+          "bridge_to_next": "Large grazing herd animals, from Europe's ancient meadows to cattle on an Ethiopian plateau."
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "Field scientists in the Ethiopian highlands documented a bull and a male donkey repeatedly mating and bonding over several weeks while grazing together.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "A new study finds evidence of natural selection in the dogs around the Chernobyl plant, but it is still unclear what drove the genetic differences or what advantage they give.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "Research suggests Neptune formed from material that originated closer to the young Sun, inferred from carbon monoxide measurements and atmospheric models because the deep atmospheres cannot be sampled directly.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "Octopuses add a step when squeezing through gaps narrower than the distance between their eyes, though the study used only three common octopuses and its results cannot be generalized.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "Researchers publishing in Nature say deep Earth processes lifted continents where ice sheets scoured away rock, which explains the Great Unconformity, a gap of hundreds of millions of years in the rock record.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "A University of Toronto-led study found three daily servings of full-fat dairy for 12 weeks did not worsen weight, cholesterol or insulin resistance, an item from earlier this week.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "CERN physicists found signals of an extremely rare decay of a neutral B meson into a muon and an antimuon, a first step toward exploring the zeptoverse.",
+          "bridge_to_next": "Pulling faint, hard-to-see signals out of noisy data, whether in a collider or in telescope images."
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "A physics-based image-processing method called FLIP improves JWST sensitivity to faint planets by two to 15 times using existing observations, and the team is reprocessing hundreds of coronagraphic images to look for more planets.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "The WMO reports carbon dioxide, methane and nitrous oxide all hit record levels in 2025, with CO2 averaging 426.8 ppm, which locks in warming for decades or centuries.",
+          "bridge_to_next": "Consequences of that warming: the Lancet Countdown counts the human and economic costs."
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "The 2026 Lancet Countdown report estimates heat cost $1.07 trillion in lost worker productivity in 2025 and urges governments to treat climate change as a global health emergency.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Many of today's findings rest on something indirect, such as a model, a reprocessed image or a signal pulled from noise, and the roundup leaves the question of how far to trust a result before anyone can check it directly, which the deep dive takes up through the sky.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "When astronomers pull new planets and new planet histories out of data already collected, as with Webb's FLIP reprocessing and the model-based story of how Neptune formed, should those results count as discoveries now, or only as leads until a new instrument or probe can test them?",
+      "riley_holds": "Better processing of existing Webb data is a real, low-cost gain that should be counted as progress now, because it finds more planets without new hardware and frees telescope time.",
+      "casey_holds": "A result that depends on a model or a processing method, and has been shown on only one known planet or on a deep atmosphere nobody can sample, is a lead to test rather than a discovery to bank.",
+      "beats": [
+        {
+          "claim": "Reprocessing old Webb images is a real, measurable gain, not a trick: FLIP gets more science from a telescope that is already flying.",
+          "evidence": "Science.org and Nature coverage: the physics-based FLIP method improves sensitivity to faint planets by two to 15 times, revealed the known giant planet 51 Eridani b at a wavelength where earlier processing failed, and works on existing observations with no hardware change. The team is now reprocessing hundreds of coronagraphic images.",
+          "pushback": "Casey: the proof so far is recovering a planet already known. A method tuned to show a known planet is different from one that finds new ones, and the research summary says further work is needed to cut computing costs and to test it on larger data sets.",
+          "leads_to_next": "If the proof so far is a known planet, the question becomes what would count as a real test for a new candidate."
+        },
+        {
+          "claim": "The value of FLIP also lies in what it frees up: Webb time and looser stability demands on future observatories.",
+          "evidence": "Sasha Hinkley of the University of Exeter, via Science: avoiding observations of other stars just to build reference images could free telescope time for more stars and planets. Nature and Scimex coverage: the approach could ease strict stability requirements for future observatories.",
+          "pushback": "Casey: those savings depend on the team's aim to skip the first calibration stage, which FLIP currently needs because it calibrates against a reference Webb observation first. A promised saving is not yet a delivered one.",
+          "leads_to_next": "Both agree the gain is conditional on a calibration step, which raises the harder case: a result that no new observation can check for years."
+        },
+        {
+          "claim": "Neptune's origin story is a case where the answer rests on a model and the test is far away.",
+          "evidence": "Scitechdaily summary of the Astronomy & Astrophysics study: researchers used carbon monoxide measurements, including recent ALMA data, and atmospheric models to infer that Neptune's deep atmosphere is richer in oxygen than Uranus's, so it likely formed from material closer to the young Sun. They cannot sample the deep atmospheres directly. NASA's Uranus Orbiter and Probe is expected to launch sometime in the next decade.",
+          "pushback": "Riley: a model-based inference is how planetary science works whenever direct sampling is impossible, and the Mousis quote about Uranus and Neptune being cousins rather than twins is stated as a chemical difference, not a settled history. Waiting a decade to say anything would mean saying nothing.",
+          "leads_to_next": "If inference is acceptable when it is stated as inference, the question is who pays for the check and how the wait is handled, which a rare-event physics result sharpens."
+        },
+        {
+          "claim": "A claim that has gone years without confirmation can still be worth announcing, as long as it is described as the first step.",
+          "evidence": "WIRED on CERN: physicists found signals that a neutral B meson decayed into a muon and an antimuon, an improbable decay hoped for over more than four decades, described as the first step toward exploring the zeptoverse.",
+          "pushback": "Casey: 'first step' and 'glimpse' are forecasts rather than results, and the article uses them to open a scale of reality that has not been explored yet. Readers can mistake a forecast for a finding.",
+          "leads_to_next": "With three cases in hand, the question of what makes a sky result safe to treat as a discovery narrows to the unprocessed sky a Cariboo viewer sees for themselves."
+        },
+        {
+          "claim": "Local viewers under dark rural skies see an unprocessed sky, and that is a useful contrast with a sky that has been processed.",
+          "evidence": "Common public knowledge: the Cariboo-Chilcotin is known for dark rural skies. The FLIP coverage says conventional reference-star images are imperfect matches that the method adjusts for, so what astronomers show is a processed sky.",
+          "pushback": "Riley: processing is what lets Webb reveal a planet no eye or backyard telescope could, so a dark sky is a way into the subject, not a rival source of evidence.",
+          "leads_to_next": "That leaves the practical test for the landing: whether a processed result and a first-hand look can be told apart in how it is reported."
+        }
+      ],
+      "set_aside": [
+        "Operation Red Nose Williams Lake rides home, which does not bear on the sky and cosmos question",
+        "Dinosaur heme dispute, octopus movement, Chernobyl dogs, Europe's ancient forests and the Great Unconformity, which are earth and life science rather than sky science",
+        "WMO greenhouse gases and the Lancet Countdown climate report",
+        "Williams Lake council swearing-in, federal forestry funding and Mackenzie bus crash, covered in the roundup"
+      ],
+      "cariboo_beat": "Beat 5 brings the question home to Cariboo-Chilcotin dark skies, using only public knowledge that the region is known for them. It contrasts what a viewer sees directly with what Webb's processed images show, without naming any specific local group or count.",
+      "landing": "The hosts hold open a structural question: when a sky result depends on a processing method or a model that only the team using it can run, who should be able to check it before it is called a discovery, the team itself, an independent group reprocessing the same archive, or a later instrument like the Uranus probe, and what is lost if each assumes another is checking."
+    }
+  },
+  "cuts": [
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261105224542.htm",
+      "title": "[sciencedaily.com] Researchers identify heme in 115-million-year-old Brazilian dinosaur fossil",
+      "source": "",
+      "theme_pct": 99,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.wired.com/story/chernobyls-dogs-may-be-evolving-but-scientists-dont-know-why/",
+      "title": "[WIRED] Chernobyl’s Dogs May Be Evolving, but Scientists Don’t Know Why",
+      "source": "",
+      "theme_pct": 99,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.wired.com/story/particle-physicists-are-getting-a-first-glimpse-into-the-zeptoverse/",
+      "title": "[WIRED] Particle Physicists Are Getting a First Glimpse Into the ‘Zeptoverse’",
+      "source": "",
+      "theme_pct": 99,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.esa.int/Science_Exploration/Space_Science/Webb/Ghostly_Cat_s_Head_Nebula_lurks_within_sight_of_Hubble_and_Webb",
+      "title": "[esa.int] Hubble and Webb expose hidden structures in Carina star-forming cloud",
+      "source": "",
+      "theme_pct": 99
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://newatlas.com/biology/fossilized-blood-cells-dinosaur-bone/",
+      "title": "[New Atlas] Incredible discovery of fossilized blood cells inside a dinosaur leg bone",
+      "source": "",
+      "theme_pct": 96,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://nautil.us/can-whales-sing-with-their-mouths-full-1286270/",
+      "title": "[Nautilus] Can Whales Sing with Their Mouths Full?",
+      "source": "",
+      "theme_pct": 96
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencealert.com/scientists-discover-two-enormous-tears-in-a-tectonic-plate-beneath-iran",
+      "title": "[ScienceAlert] Scientists Discover Two Enormous Tears in a Tectonic Plate Beneath Iran",
+      "source": "",
+      "theme_pct": 96
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.scientificamerican.com/article/the-great-pacific-garbage-patch-is-changing-the-color-of-the-ocean/",
+      "title": "[Scientific American] The Great Pacific Garbage Patch is changing the color of the ocean",
+      "source": "",
+      "theme_pct": 96
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencealert.com/water-does-something-unexpected-under-the-crushing-pressures-of-alien-worlds",
+      "title": "[ScienceAlert] Scientists Crushed Water Between Two Diamonds And Saw Something Never Observed in a Lab Before.",
+      "source": "",
+      "theme_pct": 96
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.scientificamerican.com/article/have-astronomers-spotted-planet-nine/",
+      "title": "[Scientific American] Have astronomers spotted Planet Nine?",
+      "source": "",
+      "theme_pct": 96
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.scientificamerican.com/article/earths-rocks-have-a-missing-layer-spanning-up-to-a-billion-years-scientists-finally-know-what-happened-to-it/",
+      "title": "[Scientific American] Earth's rocks have a missing layer spanning up to a billion years. Scientists finally know what happened to it",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261103003149.htm",
+      "title": "[ScienceDaily] A hidden star is plowing through Betelgeuse’s atmosphere, new evidence suggests",
+      "source": "",
+      "theme_pct": 95
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261104012333.htm",
+      "title": "[ScienceDaily] Scientists discover Europe's ancient forests were nothing like we imagined",
+      "source": "",
+      "theme_pct": 93,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://nautil.us/a-cross-species-same-sex-love-story-1286276/",
+      "title": "[Nautilus] A Cross-Species Same-Sex Love Story",
+      "source": "",
+      "theme_pct": 93,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://earthsky.org/space/hera-mission-dart-asteroid-impact/",
+      "title": "[EarthSky] Hera mission gets its 1st closeup view of Didymos and Dimorphos",
+      "source": "",
+      "theme_pct": 93
+    }
+  ]
+}

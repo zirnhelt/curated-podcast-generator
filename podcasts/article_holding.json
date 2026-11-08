@@ -155,7 +155,8 @@
     "target_weekday": 6,
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-08"
   },
   "https://wltribune.com/2026/11/04/award-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake/": {
     "article": {
@@ -362,53 +363,6 @@
     "target_focus_name": "Film & Screen",
     "status": "aired_early"
   },
-  "https://macleans.ca/longforms/the-hutterites-guide-to-technology/": {
-    "article": {
-      "id": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
-      "url": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
-      "title": "[Maclean's] The Hutterites\u2019 Guide To Technology",
-      "content_html": "<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fmacleans.ca%2Flongforms%2Fthe-hutterites-guide-to-technology%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\"/>On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "summary": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "_excerpt": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "date_published": "2026-11-02T15:30:13+00:00",
-      "authors": [
-        {
-          "name": "Maclean's",
-          "url": "https://macleans.ca"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 85,
-      "_relevance": 70,
-      "_local": 20,
-      "_theme_score": 79,
-      "_theme_score_raw": 15,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 74,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-11-05T06:11:14.179763+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-11-06",
-    "target_date": "2026-11-11",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "held"
-  },
   "https://www.realagriculture.com/2026/11/gauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school/": {
     "article": {
       "id": "https://www.realagriculture.com/2026/11/gauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school/",
@@ -562,50 +516,6 @@
     "target_focus_name": "Agriculture & Ranching",
     "status": "held"
   },
-  "https://www.scotsman.com/news/opinion/columnists/how-we-must-prepare-scottish-farming-for-a-hotter-world-9306647": {
-    "article": {
-      "id": "https://www.scotsman.com/news/opinion/columnists/how-we-must-prepare-scottish-farming-for-a-hotter-world-9306647",
-      "url": "https://www.scotsman.com/news/opinion/columnists/how-we-must-prepare-scottish-farming-for-a-hotter-world-9306647",
-      "title": "[scotsman.com] European researchers test farm water systems as climate swings threaten crops",
-      "content_html": "<img src=\"https://kagiproxy.com/img/9MYFWxXwF_loyWc6MZu49fTPr0E5AOs1My_PvL_t3EYCmEG6uiOfZ8bGljyJNpnX9LBPbRXCFQhvU25hXGGkycdSP3g1BQAkL6fBFpY8E3hzdkYsiif3J0dQ0Sc2fW-GQDxs87fA2jQbRaU\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.scotsman.com%2Fnews%2Fopinion%2Fcolumnists%2Fhow-we-must-prepare-scottish-farming-for-a-hotter-world-9306647\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nScotland\u2019s summer of 2026 brought earlier harvests, heat stress in spring-sown crops and rapidly falling water levels, while research indicates extreme day-to-night temperature swings have become more frequent since the 1980s. Those swings can disrupt crop growth. The Scotsman reported Scottish cereal yields below historic averages, with results varying by crop, soil and location.\n\nA Swedish research project is testing a retention-irrigation system that stores water during dry periods and releases it during floods to develop recommendations for its use. In Spain, agricultural cooperatives say farmers are working to adapt and cut emissions but warn that putting innovations into practice depends on farm profitability and adequate funding under the next EU farm-policy reform.",
-      "summary": "Scotland\u2019s summer of 2026 brought earlier harvests, heat stress in spring-sown crops and rapidly falling water levels, while research indicates extreme day-to-night temperature swings have become more frequent since the 1980s. Those swings can disrupt crop growth. The Scotsman reported Scottish",
-      "_excerpt": "Scotland\u2019s summer of 2026 brought earlier harvests, heat stress in spring-sown crops and rapidly falling water levels, while research indicates extreme day-to-night temperature swings have become more frequent since the 1980s (scotsman.com, agritechinsights.com). Those swings can disrupt crop growth. The Scotsman reported Scottish cereal yields below historic averages, with results varying by crop, soil and location (agritechinsights.com, scotsman.com). A Swedish research project is testing a retention-irrigation system that stores water during dry periods and releases it during floods to develop recommendations for its use (dagenslantbruk.se). In Spain, agricultural cooperatives say farmers are working to adapt and cut emissions but warn that putting innovations into practice depends on farm profitability and adequate funding under the next EU farm-policy reform (efeagro.com). Heat exposure: Provisional UK figures cited by The Scotsman show 40 days above 30C in summer 2026, while July received 35% of average rainfall (scotsman.com). Research funding: Spanish cooperatives participate in 14 EU projects covering resilient varieties, water efficiency and fertilizer alternatives, among other areas. Gabriel Trenzado of Cooperativas Agro-alimentarias de Espa\u00f1a said only 15% of project proposals are usually funded, compared with a 30% success rate for Spanish cooperatives (efeagro.com). Farm practices: Adaptation options described for Scottish farms include varied crop rotations, more diverse livestock grazing swards, shelterbelt hedges and trees, and drought-tolerant crop varieties (scotsman.com).",
-      "date_published": "2026-10-25T05:00:51+00:00",
-      "authors": [
-        {
-          "name": "scotsman.com",
-          "url": "https://www.scotsman.com"
-        }
-      ],
-      "ai_score": 49,
-      "_quality": 60,
-      "_relevance": 0,
-      "_local": 10,
-      "_theme_score": 78,
-      "_theme_score_raw": 20,
-      "_kite_sources": 4,
-      "_kite_context": "Perspective: Cooperativas Agro-alimentarias de Espa\u00f1a: Gabriel Trenzado described digital farm records and professional guidance as key to putting innovations into practice (efeagro.com). (EFE Agro)\nPerspective: Sociedad Espa\u00f1ola de Agricultura Ecol\u00f3gica y Agroecolog\u00eda: Coordinator Helena Cifre argued that sustainable food production requires prevention, adaptation and mitigation, called for a more ambitious Common Agricultural Policy, and said organic production and (EFE Agro)\nPerspective: Greenpeace: The environmental group urged Spain\u2019s future government to put food production at the center of policy, recommending an 18% increase in land planted with legumes by 2050 and expanded extensive livestock farming (efeagro.com). (EFE Agro)\nQuote: \"What we\u2019re seeing is a growing instability in daily temperature patterns\" (Jie Yang, lead author of the study, Agritech Insights)",
-      "_composite_podcast": 70,
-      "_keyword_matches": 0,
-      "_category": "homestead",
-      "_source_category": "homestead",
-      "_is_bonus": true,
-      "image": "https://kagiproxy.com/img/9MYFWxXwF_loyWc6MZu49fTPr0E5AOs1My_PvL_t3EYCmEG6uiOfZ8bGljyJNpnX9LBPbRXCFQhvU25hXGGkycdSP3g1BQAkL6fBFpY8E3hzdkYsiif3J0dQ0Sc2fW-GQDxs87fA2jQbRaU",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-11-04T06:10:48.905611+00:00"
-      },
-      "_boosted_score": 49,
-      "_body": "Scotland\u2019s summer of 2026 brought earlier harvests, heat stress in spring-sown crops and rapidly falling water levels, while research indicates extreme day-to-night temperature swings have become more frequent since the 1980s (scotsman.com, agritechinsights.com). Those swings can disrupt crop growth. The Scotsman reported Scottish cereal yields below historic averages, with results varying by crop, soil and location (agritechinsights.com, scotsman.com). A Swedish research project is testing a retention-irrigation system that stores water during dry periods and releases it during floods to develop recommendations for its use (dagenslantbruk.se). In Spain, agricultural cooperatives say farmers are working to adapt and cut emissions but warn that putting innovations into practice depends on farm profitability and adequate funding under the next EU farm-policy reform (efeagro.com). Heat exposure: Provisional UK figures cited by The Scotsman show 40 days above 30C in summer 2026, while July received 35% of average rainfall (scotsman.com). Research funding: Spanish cooperatives participate in 14 EU projects covering resilient varieties, water efficiency and fertilizer alternatives, among other areas. Gabriel Trenzado of Cooperativas Agro-alimentarias de Espa\u00f1a said only 15% of project proposals are usually funded, compared with a 30% success rate for Spanish cooperatives (efeagro.com). Farm practices: Adaptation options described for Scottish farms include varied crop rotations, more diverse livestock grazing swards, shelterbelt hedges and trees, and drought-tolerant crop varieties (scotsman.com)."
-    },
-    "held_date": "2026-11-07",
-    "target_date": "2026-11-10",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "held"
-  },
   "https://www.sciencedaily.com/releases/2026/11/261105081000.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
@@ -641,7 +551,8 @@
     "target_weekday": 6,
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-08"
   },
   "https://www.realagriculture.com/2026/11/agris-taps-ai-to-turn-farm-data-into-better-agronomic-decisions/": {
     "article": {
@@ -841,7 +752,7 @@
       "id": "https://blog.adafruit.com/2026/11/06/set-up-n8n-on-the-raspberry-pi/",
       "url": "https://blog.adafruit.com/2026/11/06/set-up-n8n-on-the-raspberry-pi/",
       "title": "[Adafruit Blog] Set Up n8n on the Raspberry Pi",
-      "content_html": "<img src=\"https://www.google.com/s2/favicons?domain=blog.adafruit.com&amp;sz=128\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F11%2F06%2Fset-up-n8n-on-the-raspberry-pi%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
+      "content_html": "<img src=\"https://www.google.com/s2/favicons?domain=blog.adafruit.com&amp;sz=128\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F11%2F06%2Fset-up-n8n-on-the-raspberry-pi%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
       "summary": "PiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often",
       "_excerpt": "PiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
       "date_published": "2026-11-06T21:00:41+00:00",
@@ -855,19 +766,24 @@
       "_quality": 60,
       "_relevance": 80,
       "_local": 0,
-      "_theme_score": 19,
-      "_theme_score_raw": 3,
+      "_theme_score": 49,
+      "_theme_score_raw": 5,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 29,
+      "_composite_podcast": 43,
       "_keyword_matches": 0,
       "_category": "homelab",
       "_source_category": "homelab",
       "_is_bonus": true,
       "image": "https://www.google.com/s2/favicons?domain=blog.adafruit.com&sz=128",
+      "_cross_theme": {
+        "day": "saturday",
+        "label": "Cariboo Local Affairs",
+        "shown_at": "2026-11-07T06:09:30.411403+00:00"
+      },
       "_boosted_score": 60
     },
-    "held_date": "2026-11-07",
+    "held_date": "2026-11-08",
     "target_date": "2026-11-11",
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
@@ -909,6 +825,50 @@
     "target_weekday": 6,
     "target_focus_slug": "sky-cosmos",
     "target_focus_name": "Sky & Cosmos",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-08"
+  },
+  "https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/",
+      "url": "https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/",
+      "title": "[My Cariboo Now] B.C\u2019s forestry leaders welcome federal funding, but say more action is needed",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F317252%2Fnews%2Fbusiness%2Feconomy%2Fb-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"454\" src=\"https://i0.wp.com/www.mycariboonow.com/wp-content/uploads/2026/11/log-yard-1221.jpg?fit=696%2C454&amp;quality=89&amp;ssl=1\" width=\"696\"/>The BC Council of Forest Industries say it welcomes the $6.5 billion investment that the feds will be providing to the forestry industy; however, the forestry leaders say more actions are needed to stay competitive.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/\">B.C\u2019s forestry leaders welcome federal funding, but say more action is needed</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "The BC Council of Forest Industries say it welcomes the $6.5 billion investment that the feds will be providing to the forestry industy; however, the forestry leaders say more actions are needed to stay competitive. The post B.C\u2019s forestry leaders welcome federal funding, but say more action is",
+      "_excerpt": "The BC Council of Forest Industries say it welcomes the $6.5 billion investment that the feds will be providing to the forestry industy; however, the forestry leaders say more actions are needed to stay competitive. The post B.C\u2019s forestry leaders welcome federal funding, but say more action is needed appeared first on My Cariboo Now .",
+      "date_published": "2026-11-06T18:55:06+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 75,
+      "_quality": 73,
+      "_relevance": 80,
+      "_local": 60,
+      "_theme_score": 63,
+      "_theme_score_raw": 10,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 63,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "saturday",
+        "label": "Cariboo Local Affairs",
+        "shown_at": "2026-11-07T06:09:30.411403+00:00"
+      },
+      "_boosted_score": 75,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-08",
+    "target_date": "2026-11-17",
+    "target_weekday": 1,
+    "target_focus_slug": "forestry",
+    "target_focus_name": "Forestry & Timber",
+    "status": "aired_early"
   }
 }
