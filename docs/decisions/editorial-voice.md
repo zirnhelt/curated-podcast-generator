@@ -429,7 +429,10 @@ list") had been in the prompt the whole time.
 
 Gmail items land in `podcasts/email_queue.json` as `newsletter`, `feedback` or `correction`.
 Feedback and newsletters wait for their theme day; a correction is never theme-gated and airs
-as the final beat of the next roundup (`docs/corrections-policy.md`).
+as the final beat of the next roundup (`docs/corrections-policy.md`). A production correction
+may carry `air_date` and waits for it (2026-11-08: the producer booked the First Nations
+pronunciation correction for the next Indigenous Lands & Innovation day, Thursday 2026-11-12,
+rather than Monday's arts episode). A listener's correction never gets one.
 
 **The queue is committed to a public repo.** Senders are masked, and `_sanitize` redacts
 email addresses and phone numbers from bodies (`_redact_contact_details`), because a

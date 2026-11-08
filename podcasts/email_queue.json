@@ -2341,6 +2341,23 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "prod1108",
+      "type": "correction",
+      "message_id": "",
+      "from_address": "producer",
+      "from_producer": true,
+      "subject": "Correction: November 8, 2026 episode \u2014 First Nations name pronunciations",
+      "received_at": "2026-11-08T13:45:00-08:00",
+      "body_text": "In the November 8 episode our voices mispronounced several First Nations names in the news roundup: Kukpi7, the Secw\u00e9pemc title for a chief, used for Williams Lake First Nation Kukpi7 Willie Sellars, and three T\u015dilhqot'in communities, T\u015dideldel, Tl'etinqox and Yunesit'in. The synthetic voices had no pronunciation for those names and read the spelling as written. The show now carries pronunciations for those names and others across the region, about twenty in all, taken from the BC government's pronunciation guide, which was prepared with the nations themselves; Kukpi7 follows its published phonetics. St'\u00e1t'imc and Tk'eml\u00faps were checked against several published sources, including a Secw\u00e9pemc storyteller from Tk'eml\u00faps. For the T\u015dilhqot'in community known in English as Toosey, we found no published pronunciation of its own name, so we are asking: if you know how the community says it, write to feedback@cariboosignals.ca. Each community is the final authority on how its name is said, and the show now flags any nation or community name it has no pronunciation for before an episode airs.",
+      "extracted_urls": [
+        "https://www2.gov.bc.ca/assets/gov/british-columbians-our-governments/indigenous-people/aboriginal-peoples-documents/a_guide_to_pronunciation_of_bc_first_nations_-_oct_29_2018.pdf"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "air_date": "2026-11-12",
+      "status": "pending"
     }
   ],
   "seen_gmail_ids": [

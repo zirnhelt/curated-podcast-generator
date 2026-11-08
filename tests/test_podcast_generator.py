@@ -2489,6 +2489,20 @@ class TestLoadPendingEmailItems:
         assert feedback == []
         assert [c["id"] for c in corrections] == ["c1"]
 
+    def test_a_dated_correction_waits_for_its_day(self, tmp_path, monkeypatch):
+        """2026-11-08: the producer booked the pronunciation correction for the
+        next Indigenous Lands day, not the next episode."""
+        from datetime import datetime
+        import podcast_generator as pg
+        self._write_queue(tmp_path, monkeypatch, [{
+            "id": "dated", "type": "correction", "status": "pending",
+            "air_date": "2026-11-12", "body_text": "names said wrong",
+        }])
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 11, 9, 1, 0))
+        assert load_pending_email_items("Arts, Culture & Digital Storytelling")[2] == []
+        monkeypatch.setattr(pg, "get_pacific_now", lambda: datetime(2026, 11, 12, 1, 0))
+        assert [c["id"] for c in load_pending_email_items("x")[2]] == ["dated"]
+
     def test_correction_with_no_theme_tag_still_returned(self, tmp_path, monkeypatch):
         self._write_queue(tmp_path, monkeypatch, [{
             "id": "c2", "type": "correction", "status": "pending",
