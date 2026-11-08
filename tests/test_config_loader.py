@@ -229,6 +229,29 @@ class TestPronunciations:
             assert not alias.isupper(), (name, alias)
 
 
+class TestUnaliasedIndigenousNames:
+    """2026-11-08: "Kukpi7" and three Tŝilhqot'in communities aired with no
+    respelling, read letter by letter; the producer heard it before any check did."""
+
+    def test_the_names_that_aired_are_now_covered(self):
+        import podcast_generator as pg
+        line = ("**CASEY:** Williams Lake First Nation Kukpi7 Willie Sellars thanked them. "
+                "The work spans the Tŝideldel, Tl'etinqox and Yunesit'in territories.")
+        assert pg.unaliased_indigenous_names(line) == []
+
+    def test_a_new_name_is_reported_and_english_is_not(self):
+        import podcast_generator as pg
+        line = ("**RILEY:** The Lhoosk'uz Dené Nation's chief said it's Riley's call; "
+                "the Tŝilhqot'in won't wait, and Nuxalk'mc elders spoke. ʔAqam too.")
+        assert pg.unaliased_indigenous_names(line) == ["Lhoosk'uz", "Nuxalk'mc", "ʔAqam"]
+
+    def test_surnames_and_model_numbers_are_not_names(self):
+        """Over 284 committed scripts these were the check's only false hits."""
+        import podcast_generator as pg
+        line = "**CASEY:** Kevin O'Leary, the Sony A7R, an HX711 board and SD73 trustees."
+        assert pg.unaliased_indigenous_names(line) == []
+
+
 class TestModelSwitch:
     def test_thinking_off_follows_the_model(self):
         from config_loader import thinking_off

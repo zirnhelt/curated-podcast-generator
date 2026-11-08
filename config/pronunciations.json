@@ -1,5 +1,5 @@
 {
-  "_comment": "Text substitutions applied before synthesis so place and nation names are spoken correctly (OpenAI and Gemini paths). Applied in order with a naive str.replace, so a longer name must precede any name it contains: 'My Cariboo Now' before 'Cariboo'. No hyphens, no ALL-CAPS, no spaces as syllable separators: OpenAI TTS reads hyphens as audible pauses and spaces as word gaps. Moved here from azure_tts.py on 2026-09-23.",
+  "_comment": "Text substitutions applied before synthesis so place and nation names are spoken correctly (OpenAI and Gemini paths). Applied in order with a naive str.replace, so a longer name must precede any name it contains: 'My Cariboo Now' before 'Cariboo'. No hyphens, no ALL-CAPS, no spaces as syllable separators: OpenAI TTS reads hyphens as audible pauses and spaces as word gaps. Moved here from azure_tts.py on 2026-09-23. Nation and community names from 2026-11-08 follow the BC government's pronunciation guide (Guide to Indigenous Organizations and Services in BC, built with the nations; mirrored by CUPE BC), whose syllables are run together here; Kúkpi7 follows its IPA /ˈkukpiʔ/. The final authority is each community. A name with Indigenous orthography and no entry is a script/pronunciation degrade.",
   "aliases": {
     "My Cariboo Now": "MyCaribouNow",
     "Cariboo": "caribou",
@@ -14,6 +14,30 @@
     "Alexis Creek": "Alexis Creek",
     "Canim Lake": "Kannim Lake",
     "100 Mile House": "One Hundred Mile House",
-    "Tatla Lake": "Tatla Lake"
+    "Tatla Lake": "Tatla Lake",
+    "Tŝideldel": "Tsighdeldel",
+    "Tl'etinqox": "Klehdeenko",
+    "Yunesit'in": "Younehsehteen",
+    "ʔEsdilagh": "Essdayla",
+    "Esdilagh": "Essdayla",
+    "Xeni Gwet'in": "Honay Gwiteen",
+    "Xatśūll": "Hatsull",
+    "Xat'súll": "Hatsull",
+    "Esk'etemc": "Esskehtem",
+    "T'exelc": "Tehhuwl",
+    "Stswecem'c Xgat'tem": "Stwetlem Hightlem",
+    "Tsq'escen'": "Chessken",
+    "Tsq'escen": "Chessken",
+    "Lhtako": "Lahtako",
+    "Kúkpi7": "Kookpee",
+    "Kukpi7": "Kookpee",
+    "Tsilhqot'in": "Tsilkohtin",
+    "Xat'sull": "Hatsull",
+    "Nlaka'pamux": "Entlakapum",
+    "Wet'suwet'en": "Wetsoahden",
+    "Tla'amin": "Slyammon",
+    "Lheidli T'enneh": "Claytclay Denay",
+    "Lheidli-T'enneh": "Claytclay Denay",
+    "Ts'kw'aylaxw": "Tiskwhylah"
   }
 }

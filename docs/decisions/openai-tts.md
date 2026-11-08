@@ -111,3 +111,9 @@ code asked for. The code was asking for the wrong things.
   and 2000 ms (same voice), plus up to 15% jitter, so same-voice breaks reached 2300 ms. Now
   1400 / 1600 ms (ceilings ~1610 / ~1840). Still above the 450 ms reaction cap and the 1000 ms
   tag minimum, so the grouping rule holds. Tune by ear from here: one step of ~300 ms at a time.
+
+## Nation and community names (2026-11-08)
+
+The producer heard "Kukpi7" and three Tŝilhqot'in communities (Tŝideldel, Tl'etinqox, Yunesit'in) read letter by letter in the 2026-11-08 roundup: the table held 14 names, three of them nations. The respellings added that day come from the BC government's *Guide to Indigenous Organizations and Services in British Columbia* pronunciation guide (September 2018, built with the nations and the First Peoples' Cultural Council; the copy read was CUPE BC's), syllables run together because a hyphen is an audible pause. Kúkpi7 is not in the guide and follows its IPA, /ˈkukpiʔ/. Names the guide does not cover (Tk'emlúps, St'át'imc, Tl'esqox, K'ómoks and others that aired) are left out rather than guessed: the guide itself says the final authority rests with each community.
+
+`unaliased_indigenous_names` runs after the territory check and `degrade()`s `script/pronunciation` with any name the table leaves untouched, so the next one shows on the review the night it airs instead of in the producer's ears. Over the 284 committed scripts it would have fired on 21 (7 of the last 30 days), every hit a real Indigenous name once Irish O' surnames and model numbers (A7R, SD73) were excluded. A script-stage degrade never sets exit 78.
