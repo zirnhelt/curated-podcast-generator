@@ -243,7 +243,7 @@ class TestUnaliasedIndigenousNames:
         """2026-11-08 follow-up: the three most-aired names the first guide lacked."""
         import podcast_generator as pg
         line = ("**RILEY:** Tk'emlúps te Secwépemc and the St'át'imc Chiefs Council "
-                "met at Yuneŝit'in.")
+                "met at Yuneŝit'in and Tl'esqox.")
         assert pg.unaliased_indigenous_names(line) == []
 
     def test_a_new_name_is_reported_and_english_is_not(self):
