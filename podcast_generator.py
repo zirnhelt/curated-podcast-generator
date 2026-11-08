@@ -1600,8 +1600,10 @@ def load_pending_email_items(today_theme: str) -> tuple:
     Returns (newsletter_items, feedback_items, correction_items). Newsletter and
     feedback items wait for their theme_tag to match today's theme (editorial
     pacing); corrections must air in the next episode per corrections-policy.md,
-    so they are never gated on theme. Items are added automatically by
-    email_ingest.py; this only reads — it never modifies the queue file.
+    so they are never gated on theme. A production correction may carry
+    `air_date` (Pacific YYYY-MM-DD) and waits for it, like a dated seed. Items
+    are added automatically by email_ingest.py; this only reads — it never
+    modifies the queue file.
     """
     if not EMAIL_QUEUE_FILE.exists():
         return [], [], []
@@ -1614,7 +1616,8 @@ def load_pending_email_items(today_theme: str) -> tuple:
         return (
             [i for i in theme_matched if i.get("type") == "newsletter"],
             [i for i in theme_matched if i.get("type") == "feedback"],
-            [i for i in pending if i.get("type") == "correction"],
+            [i for i in pending if i.get("type") == "correction"
+             and (i.get("air_date") or "") <= get_pacific_now().date().isoformat()],
         )
     except (json.JSONDecodeError, OSError):
         return [], [], []

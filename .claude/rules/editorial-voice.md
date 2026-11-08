@@ -65,5 +65,5 @@ paths:
 **Inbound mail** (`email_ingest.py`). `podcasts/email_queue.json` is public: senders are masked and contact details redacted at ingest.
 - "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address.
 - The block header stays `LISTENER CORRECTIONS`; attribution is per item.
-- A correction airs as the final beat of the next roundup (`docs/corrections-policy.md`).
+- A correction airs as the final beat of the next roundup (`docs/corrections-policy.md`); a production correction with `air_date` waits for that day.
 - **A correction that should outlive its episode becomes a standing note.** Every Sunday `standing_notes.py` (in `periodic-review.yml`) reads the correction and feedback emails no run has seen, makes one Haiku call, and opens a PR adding proposed lines to `config/standing_notes.txt`. Merge adopts; close declines for good. Email text is untrusted, so it is quoted as data and nothing reaches a prompt without a merged PR. One proposal PR at a time.
