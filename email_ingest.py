@@ -462,6 +462,19 @@ def _build_gmail_service():
                 "   after 7 days — publish the app or add yourself as a test user to avoid this.",
                 file=sys.stderr,
             )
+        elif "client secret is invalid" in error_str:
+            # 2026-11-04: the secret stopped working ~4h after a clean run, with the
+            # same client and a fresh token. A refresh token is bound to the client
+            # ID, not the secret, so only the secret needs replacing; re-running
+            # --auth (the advice below) costs a token for nothing.
+            print(
+                "❌ GMAIL_CLIENT_SECRET was rejected (rotated, disabled or mistyped).\n"
+                "   The client ID and refresh token are still good; replace only the secret:\n"
+                "   1. Google Cloud Console → APIs & Services → Credentials → this OAuth client.\n"
+                "   2. Copy a secret listed as Enabled (or add one; Google shows it only once).\n"
+                "   3. Update the GMAIL_CLIENT_SECRET repository secret, then re-run the workflow.",
+                file=sys.stderr,
+            )
         elif "invalid_client" in error_str:
             print(
                 "❌ Invalid OAuth client credentials.\n"
