@@ -778,3 +778,58 @@ class TestSeenGmailIds:
         assert added == 0
         assert _get_call_count(svc) == 1  # downloaded once to read the header
         assert queue["seen_gmail_ids"] == ["gmail-legacy"]  # not again next run
+
+
+# ---------------------------------------------------------------------------
+# Gmail auth diagnostics
+# ---------------------------------------------------------------------------
+
+def _stub_google(monkeypatch, refresh_error: str) -> None:
+    """Install fake google modules whose Credentials.refresh raises refresh_error."""
+    import types
+
+    class _Creds:
+        def __init__(self, **kwargs):
+            pass
+
+        def refresh(self, request):
+            raise Exception(refresh_error)
+
+    mods = {
+        "google": types.ModuleType("google"),
+        "google.oauth2": types.ModuleType("google.oauth2"),
+        "google.oauth2.credentials": types.ModuleType("google.oauth2.credentials"),
+        "google.auth": types.ModuleType("google.auth"),
+        "google.auth.transport": types.ModuleType("google.auth.transport"),
+        "google.auth.transport.requests": types.ModuleType("google.auth.transport.requests"),
+        "googleapiclient": types.ModuleType("googleapiclient"),
+        "googleapiclient.discovery": types.ModuleType("googleapiclient.discovery"),
+    }
+    mods["google.oauth2.credentials"].Credentials = _Creds
+    mods["google.auth.transport.requests"].Request = lambda: None
+    mods["googleapiclient.discovery"].build = lambda *a, **k: None
+    for name, mod in mods.items():
+        monkeypatch.setitem(sys.modules, name, mod)
+    for var in ("GMAIL_CLIENT_ID", "GMAIL_CLIENT_SECRET", "GMAIL_REFRESH_TOKEN"):
+        monkeypatch.setenv(var, "x")
+
+
+def test_rejected_secret_asks_for_the_secret_alone(monkeypatch, capsys):
+    from email_ingest import _build_gmail_service
+
+    _stub_google(monkeypatch, "('invalid_client: The provided client secret is invalid.', "
+                              "{'error': 'invalid_client'})")
+    with pytest.raises(SystemExit):
+        _build_gmail_service()
+    err = capsys.readouterr().err
+    assert "replace only the secret" in err
+    assert "--auth" not in err
+
+
+def test_other_invalid_client_still_asks_for_all_three(monkeypatch, capsys):
+    from email_ingest import _build_gmail_service
+
+    _stub_google(monkeypatch, "invalid_client: The OAuth client was not found.")
+    with pytest.raises(SystemExit):
+        _build_gmail_service()
+    assert "Re-generate all three" in capsys.readouterr().err
