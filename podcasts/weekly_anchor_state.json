@@ -1,15 +1,5 @@
 {
   "assigned": {
-    "2026-W37": {
-      "id": "lost-when-easier",
-      "question": "What gets lost when something gets easier?",
-      "dimension": "skill-convenience",
-      "premise": "Every tool that removes friction also removes the practice that friction produced \u2014 reading a map, reading a river, reading a room, knowing a stand of timber by walking it. Sometimes what's lost was drudgery worth losing. Sometimes it was the only way the knowledge was ever transmitted. The question is how to tell the two apart before the last person who had the skill retires.",
-      "reading": null,
-      "framings": {},
-      "assigned_at": "2026-09-07",
-      "origin": "seeded"
-    },
     "2026-W38": {
       "id": "worth-saving",
       "question": "Who decides what's worth saving?",
@@ -137,6 +127,24 @@
       },
       "assigned_at": "2026-11-02",
       "origin": "generated"
+    },
+    "2026-W46": {
+      "id": "fairness-of-who-gets-help",
+      "question": "Is it fair to help the people who are already helping?",
+      "dimension": "reciprocity-fairness",
+      "premise": "Rural life runs on favours, volunteer hours, and informal credit, and those who give the most tend to be the first called on and the first looked after. That keeps the web of obligation alive and rewards real contribution. It also leaves out the person who is new, shy, sick, or simply unable to give back. We disagree about whether help is a debt repaid or a gift that should reach people regardless of what they have put in.",
+      "reading": null,
+      "framings": {
+        "0": "Frame the question through the Cariboo arts scene: when a festival or artist collective gives its best grants and stage slots to the volunteers who built it, does that reward them or lock out the newcomer with fresh work?",
+        "1": "Frame it through a Cariboo sawmill or ranch crew, asking whether the hands who stayed through the lean years should get first shot at scarce shifts and equipment over a skilled newcomer who just moved in.",
+        "2": "Frame it through a rural maker space or community workshop where veteran members hog the laser cutter and 3D printers, asking whether shared tools should prioritize those who maintain them or anyone who needs them.",
+        "3": "Frame it through T\u015dilhqot'in, Secw\u00e9pemc, or Dakelh land stewardship, asking whether reciprocity obligations to elders and knowledge-holders should outrank broader community need when resources like language programs or harvesting rights are divided.",
+        "4": "Frame it through a backcountry search-and-rescue or trail-maintenance crew, asking whether the volunteers who grind out wildfire recovery work should get priority access to restored trails and cabins over visitors who never pitched in.",
+        "5": "Frame it through a Williams Lake council or SD27 decision on who gets a seat, a bursary, or a building permit first, asking whether long-serving volunteer families deserve the edge over residents with no history of local service.",
+        "6": "Frame it through a Cariboo ecology study, such as a wildlife or watershed monitoring program that depends on local volunteers, asking whether those who logged the most field hours should get first access to data and credit over new researchers."
+      },
+      "assigned_at": "2026-11-09",
+      "origin": "generated"
     }
   },
   "used": [
@@ -217,6 +225,12 @@
       "dimension": "harmony-honesty",
       "question": "When is keeping the peace worth more than being right?",
       "week": "2026-W45"
+    },
+    {
+      "id": "fairness-of-who-gets-help",
+      "dimension": "reciprocity-fairness",
+      "question": "Is it fair to help the people who are already helping?",
+      "week": "2026-W46"
     }
   ],
   "generated": [

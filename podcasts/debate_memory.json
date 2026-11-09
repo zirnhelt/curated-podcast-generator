@@ -1,31 +1,4 @@
 {
-  "2026-08-10": {
-    "timestamp": 1786355649.828247,
-    "date": "2026-08-10",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "focus": "words-journalism",
-    "central_question": "How can rural communities sustain trustworthy local storytelling when publishing barriers have collapsed but editorial accountability structures have disappeared?",
-    "riley_position": "Digital tools have democratized publishing and created genuine opportunities for independent creators to reach audiences legacy outlets cannot; the format itself doesn't prevent accountability\u2014it requires deliberate choice from individual creators.",
-    "riley_key_evidence": [
-      "Podcasting eliminates printing costs, delivery trucks, and ad-sales overhead that traditional outlets require",
-      "First Nations and governments can now publish primary statements directly, bypassing traditional media framing",
-      "Some independent journalists have built explicit correction policies and transparency into newsletters and podcasts through deliberate effort"
-    ],
-    "casey_position": "Tools alone don't create editorial discipline; institutional accountability structures (editor accountability, corrections columns, legal review, job consequences) historically enforced trustworthiness in ways individual creators rarely replicate without external pressure.",
-    "casey_key_evidence": [
-      "Newsroom staffing at regional papers has been shrinking for over a decade, leaving gaps filled by unedited social posts",
-      "A newspaper's credibility came from a chain of accountability\u2014editors who could be fired, corrections in the same physical paper, lawyers on retainer",
-      "Beat reporting requires sustained institutional memory across multiple meetings months apart, which single podcast episodes reacting to press releases cannot provide"
-    ],
-    "resolution": "They agreed that the core problem is not technological but structural: someone must be paid or formally assigned to do sustained curation and maintenance work. They pivoted toward a shared solution\u2014a regional index of local storytelling that would require one part-time position to maintain, and asked listeners whether such infrastructure should exist and who would maintain it.",
-    "topics_covered": [
-      "Editorial gatekeeping vs. democratized publishing in rural media ecosystems",
-      "Accountability structures in legacy journalism vs. independent digital platforms",
-      "Discovery and indexing problems for locally-produced podcasts, newsletters, and self-published books",
-      "Beat reporting and institutional memory as irreplaceable journalistic functions",
-      "Sustained governance and staffing as the real barrier to local storytelling infrastructure"
-    ]
-  },
   "2026-08-11": {
     "timestamp": 1786439811.287827,
     "date": "2026-08-11",
@@ -2590,6 +2563,34 @@
       "Costs of reprocessing archives and telescope-time savings",
       "Inferred interior models of Neptune and the role of probe missions for testing claims",
       "Independent verification of results, and labeling forecasts versus findings"
+    ]
+  },
+  "2026-11-09": {
+    "timestamp": 1794212263.671109,
+    "date": "2026-11-09",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "film-screen",
+    "anchor": "fairness-of-who-gets-help",
+    "central_question": "Who decides what a growing community ritual like Remembrance Day commemorates, and can newcomers and groups outside the established organizers change that program?",
+    "riley_position": "Riley argues that a ritual that has widened over a century is cultural infrastructure that can remain open, since the format lets many groups join, established groups have earned their place through reliability, and attendance is a real form of participation that can be made easier.",
+    "riley_key_evidence": [
+      "The article says Remembrance Day has grown from Armistice Day to recognize WWII, the Boer War, Korea, the Afghanistan Mission, UN peacekeepers, and RCMP members.",
+      "Royal Canadian Legion Branch 260 in 100 Mile House organizes the largest regional service, starting at 10:30 a.m. with a parade down Birch Avenue.",
+      "The parade includes the 2887 Rocky Mountain Rangers Royal Canadian Army Cadet Corps, 100 Mile House RCMP, and 100 Mile Girl Guides, and the cadets function as a pipeline that trains future organizers."
+    ],
+    "casey_position": "Casey argues that the story's widening may reflect quiet decisions by whoever holds the pen, that the article does not show who decides additions or who can join the line, and that the open door of attendance is not the same as authorship of the program.",
+    "casey_key_evidence": [
+      "The list is not chronological: the Boer War comes after WWII, which suggests each addition was deliberately chosen rather than added in time order.",
+      "The article does not say who asked for each addition or who organizes the other South Cariboo services on November 11th, and the cadet pipeline only works for youth who can reach the drill hall, a real barrier in a region with long drives.",
+      "The press notice gives time, place, and route but does not say whether planning meetings are open or who sits on the committee, so a visible roster does not reveal who writes the program."
+    ],
+    "resolution": "They did not fully resolve the disagreement, but Riley accepted that the program and planning records should be requested and published, such as next year's order of march, a shared program file, and named committee members, while Casey agreed the test is comparing this year's program to one from two years back. They agreed that authorship and cost-bearing must be made visible, and left open who should keep the record.",
+    "topics_covered": [
+      "Who controls the program and order of march for a commemorative ritual",
+      "Whether established groups' reliability earns them permanent places versus opening slots to newcomers",
+      "Youth pipelines like cadet corps and the geographic barriers to joining them",
+      "Transparency of planning records, committee membership, and shared program files",
+      "Parallel questions about slot allocation and grant decisions at the Central Cariboo Arts & Culture Society"
     ]
   }
 }

@@ -87,7 +87,7 @@
       "id": "https://www.technologyreview.com/2026/11/02/1147846/the-agentic-web-is-here/",
       "url": "https://www.technologyreview.com/2026/11/02/1147846/the-agentic-web-is-here/",
       "title": "[MIT Technology Review] The agentic web is here",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.technologyreview.com%2F2026%2F11%2F02%2F1147846%2Fthe-agentic-web-is-here%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIn 2001, a decade after he invented the World Wide Web, Tim Berners-Lee articulated a new vision. Together with two colleagues, he published an article in the magazine Scientific American in which he outlined what he called the \u201cSemantic Web\u201d: an internet designed to be navigated by autonomous software agents that could address our every\u2026",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.technologyreview.com%2F2026%2F11%2F02%2F1147846%2Fthe-agentic-web-is-here%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIn 2001, a decade after he invented the World Wide Web, Tim Berners-Lee articulated a new vision. Together with two colleagues, he published an article in the magazine Scientific American in which he outlined what he called the \u201cSemantic Web\u201d: an internet designed to be navigated by autonomous software agents that could address our every\u2026",
       "summary": "In 2001, a decade after he invented the World Wide Web, Tim Berners-Lee articulated a new vision. Together with two colleagues, he published an article in the magazine Scientific American in which he outlined what he called the \u201cSemantic Web\u201d: an internet designed to be navigated by autonomous",
       "_excerpt": "In 2001, a decade after he invented the World Wide Web, Tim Berners-Lee articulated a new vision. Together with two colleagues, he published an article in the magazine Scientific American in which he outlined what he called the \u201cSemantic Web\u201d: an internet designed to be navigated by autonomous software agents that could address our every\u2026",
       "date_published": "2026-11-02T09:35:19+00:00",
@@ -101,62 +101,28 @@
       "_quality": 80,
       "_relevance": 75,
       "_local": 0,
-      "_theme_score": 41,
-      "_theme_score_raw": 4,
+      "_theme_score": 82,
+      "_theme_score_raw": 18,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 43,
+      "_composite_podcast": 75,
       "_keyword_matches": 0,
       "_category": "ai-tech",
       "_source_category": "ai-tech",
       "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-11-03T06:10:37.882124+00:00"
+      },
       "_boosted_score": 61
     },
-    "held_date": "2026-11-03",
+    "held_date": "2026-11-09",
     "target_date": "2026-11-15",
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://www.sciencedaily.com/releases/2026/10/261023023734.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/10/261023023734.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/10/261023023734.htm",
-      "title": "[ScienceDaily] NASA\u2019s asteroid Bennu samples reveal a 4.5-billion-year-old secret",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261023023734.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTiny samples from asteroid Bennu are rewriting scientists' understanding of how our Solar System formed. New evidence suggests that Bennu was born where material from the inner and outer Solar System mixed, with Jupiter playing a surprising role in shaping its formation.",
-      "summary": "Tiny samples from asteroid Bennu are rewriting scientists' understanding of how our Solar System formed. New evidence suggests that Bennu was born where material from the inner and outer Solar System mixed, with Jupiter playing a surprising role in shaping its formation.",
-      "_excerpt": "Tiny samples from asteroid Bennu are rewriting scientists' understanding of how our Solar System formed. New evidence suggests that Bennu was born where material from the inner and outer Solar System mixed, with Jupiter playing a surprising role in shaping its formation.",
-      "date_published": "2026-10-24T12:50:06+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 80,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 4,
-      "_theme_score_raw": 2,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 8,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_boosted_score": 53
-    },
-    "held_date": "2026-11-03",
-    "target_date": "2026-11-08",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-11-08"
   },
   "https://wltribune.com/2026/11/04/award-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake/": {
     "article": {
@@ -321,48 +287,6 @@
     "target_focus_name": "Maker & Repair",
     "status": "held"
   },
-  "https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/": {
-    "article": {
-      "id": "https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/",
-      "url": "https://wltribune.com/2026/11/05/williams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege/",
-      "title": "[Williams Lake Tribune] Williams Lake screening shows what it takes to save lives in Gaza under siege",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F11%2F05%2Fwilliams-lake-screening-shows-what-it-takes-to-save-lives-in-gaza-under-siege%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMembers of Williams Lake for Humanity and Williams Lake Film club hold a Palestinian flag and signs outside Paradise Cinemas in Williams Lake on Oct. 22. The two groups organized the screening of the documentary 'American Doctor' A poster for 'American Doctor' is displayed outside Paradise Cinemas in Williams Lake on Oct. 22. The documentary follows three American doctors who volunteer in Gaza, showing what it takes to take care of patients in hospitals under siege. Williams Lake for Humanity volunteers JP Laplante, Rafiullah Sahibzada and Umrah Imran, from left, hold Palestinian flags at the",
-      "summary": "Members of Williams Lake for Humanity and Williams Lake Film club hold a Palestinian flag and signs outside Paradise Cinemas in Williams Lake on Oct. 22. The two groups organized the screening of the documentary 'American Doctor' A poster for 'American Doctor' is displayed outside Paradise Cinemas",
-      "_excerpt": "Members of Williams Lake for Humanity and Williams Lake Film club hold a Palestinian flag and signs outside Paradise Cinemas in Williams Lake on Oct. 22. The two groups organized the screening of the documentary 'American Doctor' A poster for 'American Doctor' is displayed outside Paradise Cinemas in Williams Lake on Oct. 22. The documentary follows three American doctors who volunteer in Gaza, showing what it takes to take care of patients in hospitals under siege. Williams Lake for Humanity volunteers JP Laplante, Rafiullah Sahibzada and Umrah Imran, from left, hold Palestinian flags at the Oct. 22 screening of 'American Doctor' at Paradise Cinemas in Williams Lake. Audience members gather at Paradise Cinemas in Williams Lake for the Oct. 22 screening of 'American Doctor'. The screening sold 165 tickets. Imran Khan, an organizer and member of Williams Lake for Humanity, sells 50/50 raffle tickets during the screening of American Doctor at Paradise Cinemas on Oct. 22. A 50/50 ruffle was held during the Oct.22 screening of 'American Doctor' at Paradise Cinema in Williams Lake where the winner donated the entire prize to the Canadian Red Cross Palestine Humanitarian Needs Appeal. Some audience members left the packed Paradise Cinema in tears on Oct. 22 after watching _American Doctor,_ a documentary about three U.S. physicians who volunteered in hospitals in Gaza. The Williams Lake screening sold 165 tickets and raised $890 for two charities, said Umrah Imran, an organizer and a member of Williams Lake for Humanity. Directed by Poh Si Teng, _American Doctor_ follows Dr. Thaer Ahmad, Dr. Mark Perlmutter and Dr. Feroze Sidhwa as they volunteer in Gaza hospitals and later speak out in the United States about what they witnessed. Dr. Perlmutter, an Orthopedic surgeon, urges health-care workers in the documentary _American Doctor_ to \u201cTreat the genocide as a disease and go after the cause of that disease.\u201d Palestinian authorities say more than 74,000 people have been",
-      "date_published": "2026-11-06T06:03:04.227183+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 73,
-      "_quality": 68,
-      "_relevance": 65,
-      "_local": 100,
-      "_theme_score": 88,
-      "_theme_score_raw": 3,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 84,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 73,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-11-06",
-    "target_date": "2026-11-09",
-    "target_weekday": 0,
-    "target_focus_slug": "film-screen",
-    "target_focus_name": "Film & Screen",
-    "status": "aired_early"
-  },
   "https://www.realagriculture.com/2026/11/gauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school/": {
     "article": {
       "id": "https://www.realagriculture.com/2026/11/gauging-weed-stage-moisture-and-fall-herbicide-efficacy-canola-school/",
@@ -482,7 +406,7 @@
       "id": "https://www.smallfarmcanada.ca/gardens-crops/root-vegetables-when-to-plant-and-harvest-in-canada/",
       "url": "https://www.smallfarmcanada.ca/gardens-crops/root-vegetables-when-to-plant-and-harvest-in-canada/",
       "title": "[Small Farm Canada] Root Vegetables: When to Plant and Harvest in Canada",
-      "content_html": "<img src=\"https://www.smallfarmcanada.ca/downloads/935/download/carrots-2-pexels-markus-spiske-1268101.jpg?cb=c8b3a2ea38e95dc3051d6e5fbfe6b30c\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.smallfarmcanada.ca%2Fgardens-crops%2Froot-vegetables-when-to-plant-and-harvest-in-canada%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nRoot vegetables are some of the most reliable crops for Canadian small farms and gardens. Here's when to plant carrots, beets, parsnips, radishes, turnips, rutabagas, potatoes and garlic, plus tips for harvesting and storing the crop.",
+      "content_html": "<img src=\"https://www.smallfarmcanada.ca/downloads/935/download/carrots-2-pexels-markus-spiske-1268101.jpg?cb=c8b3a2ea38e95dc3051d6e5fbfe6b30c\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.smallfarmcanada.ca%2Fgardens-crops%2Froot-vegetables-when-to-plant-and-harvest-in-canada%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nRoot vegetables are some of the most reliable crops for Canadian small farms and gardens. Here's when to plant carrots, beets, parsnips, radishes, turnips, rutabagas, potatoes and garlic, plus tips for harvesting and storing the crop.",
       "summary": "Root vegetables are some of the most reliable crops for Canadian small farms and gardens. Here's when to plant carrots, beets, parsnips, radishes, turnips, rutabagas, potatoes and garlic, plus tips for harvesting and storing the crop.",
       "_excerpt": "Root vegetables are some of the most reliable crops for Canadian small farms and gardens. Here's when to plant carrots, beets, parsnips, radishes, turnips, rutabagas, potatoes and garlic, plus tips for harvesting and storing the crop.",
       "date_published": "2026-11-06T16:17:53+00:00",
@@ -496,63 +420,30 @@
       "_quality": 55,
       "_relevance": 72,
       "_local": 30,
-      "_theme_score": 71,
-      "_theme_score_raw": 10,
+      "_theme_score": 51,
+      "_theme_score_raw": 6,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 49,
-      "_keyword_matches": 1,
+      "_composite_podcast": 30,
+      "_keyword_matches": 0,
       "_category": "homestead",
       "_source_category": "homestead",
-      "_is_bonus": false,
+      "_is_bonus": true,
       "_thin_body": true,
       "image": "https://www.smallfarmcanada.ca/downloads/935/download/carrots-2-pexels-markus-spiske-1268101.jpg?cb=c8b3a2ea38e95dc3051d6e5fbfe6b30c",
+      "_cross_theme": {
+        "day": "sunday",
+        "label": "Science, Wonder & the Natural World",
+        "shown_at": "2026-11-08T06:08:46.990645+00:00"
+      },
       "_boosted_score": 60
     },
-    "held_date": "2026-11-07",
+    "held_date": "2026-11-09",
     "target_date": "2026-11-10",
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
     "status": "held"
-  },
-  "https://www.sciencedaily.com/releases/2026/11/261105081000.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
-      "title": "[ScienceDaily] For decades, we were told to avoid full-fat dairy. New research says otherwise",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261105081000.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFull-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
-      "summary": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising",
-      "_excerpt": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
-      "date_published": "2026-11-06T05:51:36+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 44,
-      "_quality": 70,
-      "_relevance": 50,
-      "_local": 0,
-      "_theme_score": 71,
-      "_theme_score_raw": 10,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
-      "_is_bonus": true,
-      "_boosted_score": 44
-    },
-    "held_date": "2026-11-07",
-    "target_date": "2026-11-08",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-11-08"
   },
   "https://www.realagriculture.com/2026/11/agris-taps-ai-to-turn-farm-data-into-better-agronomic-decisions/": {
     "article": {
@@ -752,7 +643,7 @@
       "id": "https://blog.adafruit.com/2026/11/06/set-up-n8n-on-the-raspberry-pi/",
       "url": "https://blog.adafruit.com/2026/11/06/set-up-n8n-on-the-raspberry-pi/",
       "title": "[Adafruit Blog] Set Up n8n on the Raspberry Pi",
-      "content_html": "<img src=\"https://www.google.com/s2/favicons?domain=blog.adafruit.com&amp;sz=128\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F11%2F06%2Fset-up-n8n-on-the-raspberry-pi%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
+      "content_html": "<img src=\"https://www.google.com/s2/favicons?domain=blog.adafruit.com&amp;sz=128\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F11%2F06%2Fset-up-n8n-on-the-raspberry-pi%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
       "summary": "PiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often",
       "_excerpt": "PiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
       "date_published": "2026-11-06T21:00:41+00:00",
@@ -766,67 +657,29 @@
       "_quality": 60,
       "_relevance": 80,
       "_local": 0,
-      "_theme_score": 49,
-      "_theme_score_raw": 5,
+      "_theme_score": 66,
+      "_theme_score_raw": 8,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 43,
+      "_composite_podcast": 54,
       "_keyword_matches": 0,
       "_category": "homelab",
       "_source_category": "homelab",
       "_is_bonus": true,
       "image": "https://www.google.com/s2/favicons?domain=blog.adafruit.com&sz=128",
       "_cross_theme": {
-        "day": "saturday",
-        "label": "Cariboo Local Affairs",
-        "shown_at": "2026-11-07T06:09:30.411403+00:00"
+        "day": "sunday",
+        "label": "Science, Wonder & the Natural World",
+        "shown_at": "2026-11-08T06:08:46.990645+00:00"
       },
       "_boosted_score": 60
     },
-    "held_date": "2026-11-08",
+    "held_date": "2026-11-09",
     "target_date": "2026-11-11",
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
     "status": "held"
-  },
-  "https://www.sciencedaily.com/releases/2026/10/261030002931.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/10/261030002931.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/10/261030002931.htm",
-      "title": "[ScienceDaily] Astronauts just gave the International Space Station a powerful upgrade",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261030002931.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTwo astronauts completed a 7-hour, 11-minute spacewalk to install a new solar array on the International Space Station, bringing NASA one step closer to a major power upgrade. Once the final array is installed on November 5, the station will have up to 30% more available power, supporting critical operations and its eventual controlled deorbit.",
-      "summary": "Two astronauts completed a 7-hour, 11-minute spacewalk to install a new solar array on the International Space Station, bringing NASA one step closer to a major power upgrade. Once the final array is installed on November 5, the station will have up to 30% more available power, supporting critical",
-      "_excerpt": "Two astronauts completed a 7-hour, 11-minute spacewalk to install a new solar array on the International Space Station, bringing NASA one step closer to a major power upgrade. Once the final array is installed on November 5, the station will have up to 30% more available power, supporting critical operations and its eventual controlled deorbit.",
-      "date_published": "2026-10-30T06:12:55+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 42,
-      "_quality": 60,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 19,
-      "_theme_score_raw": 3,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 28,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_boosted_score": 42
-    },
-    "held_date": "2026-11-07",
-    "target_date": "2026-11-08",
-    "target_weekday": 6,
-    "target_focus_slug": "sky-cosmos",
-    "target_focus_name": "Sky & Cosmos",
-    "status": "released",
-    "release_date": "2026-11-08"
   },
   "https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/": {
     "article": {
@@ -870,5 +723,54 @@
     "target_focus_slug": "forestry",
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
+  },
+  "https://phys.org/news/2026-11-worse-climate-harder.html": {
+    "article": {
+      "id": "https://phys.org/news/2026-11-worse-climate-harder.html",
+      "url": "https://phys.org/news/2026-11-worse-climate-harder.html",
+      "title": "[phys.org] UN warns warming will breach 1.5C as COP31 opens Monday",
+      "content_html": "<img src=\"https://kagiproxy.com/img/-QBi5EsAAkdWVrzVp7lKs5z8zdMjctJ6SnQ0FePFOxRX29zWuLqzlrhN5JYT7tV4lXbsjxRptm-LzQ09ZPA1kzAVYYMriYtxG9Q2dvzTqnfozRzfgLb4QX8EeTCg2vTbeUkrOxD471qXtPG127yVwQ1S7NOflM3xCcJ8sucDOl_twcs3NZfSLaYnVA\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fphys.org%2Fnews%2F2026-11-worse-climate-harder.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe United Nations says global warming will exceed the 1.5-degree Celsius threshold as nearly 200 countries prepare to begin the COP31 climate talks in Antalya, Turkey, on Nov. 9. Climate scientists say the rate of warming has effectively doubled over the past decade. October 2026 was the hottest October on record, and 2026 is virtually certain to become the second year to exceed 1.5C, after 2024. U.N. Secretary-General Ant\u00f3nio Guterres said the world must now limit how far temperatures rise beyond that level and blamed political leaders for failing to act.\n\nThe Nov. 9-20 talks are expected to focus on fulfilling earlier promises to move away from fossil fuels and on funding for poorer countries facing climate impacts. Turkey is promoting a goal to increase electricity\u2019s share of global energy demand from about 20% to 35% by 2035. Developed countries have resisted further funding commitments, and the Trump administration is not taking part in negotiations.",
+      "summary": "The United Nations says global warming will exceed the 1.5-degree Celsius threshold as nearly 200 countries prepare to begin the COP31 climate talks in Antalya, Turkey, on Nov. 9. Climate scientists say the rate of warming has effectively doubled over the past decade. October 2026 was the hottest",
+      "_excerpt": "The United Nations says global warming will exceed the 1.5-degree Celsius threshold as nearly 200 countries prepare to begin the COP31 climate talks in Antalya, Turkey, on Nov. 9. Climate scientists say the rate of warming has effectively doubled over the past decade. October 2026 was the hottest October on record, and 2026 is virtually certain to become the second year to exceed 1.5C, after 2024 (phys.org, france24.com, apnews.com). U.N. Secretary-General Ant\u00f3nio Guterres said the world must now limit how far temperatures rise beyond that level and blamed political leaders for failing to act (apnews.com, independent.co.uk). The Nov. 9-20 talks are expected to focus on fulfilling earlier promises to move away from fossil fuels and on funding for poorer countries facing climate impacts. Turkey is promoting a goal to increase electricity\u2019s share of global energy demand from about 20% to 35% by 2035. Developed countries have resisted further funding commitments, and the Trump administration is not taking part in negotiations (france24.com, apnews.com). Fossil-fuel subsidies: The U.N. estimates global fossil-fuel subsidies reached $1.1 trillion in 2026; climate negotiators say government support for the fuels impedes the transition (apnews.com). Barriers to climate action: Researchers warn that disaster losses may deepen sovereign-debt burdens and crowd out climate investment, while conflict can weaken international cooperation (reddit.com).",
+      "date_published": "2026-11-06T18:20:01+00:00",
+      "authors": [
+        {
+          "name": "phys.org",
+          "url": "https://phys.org"
+        }
+      ],
+      "ai_score": 59,
+      "_quality": 70,
+      "_relevance": 75,
+      "_local": 0,
+      "_theme_score": 51,
+      "_theme_score_raw": 6,
+      "_kite_sources": 8,
+      "_kite_context": "Where: Antalya, Turkey\nPerspective: U.N. Secretary-General Ant\u00f3nio Guterres: Guterres said fossil-fuel companies making large profits should be taxed, with the revenue used to support countries facing severe climate impacts (independent.co.uk). (The Associated Press)\nPerspective: WWF climate expert Thomas H\u00e4usler: H\u00e4usler argued that global finance flows should be redirected more quickly and fairly, noting that about 30 times more money goes to activities that harm nature than to those that benefit it (watson.ch). (Watson)\nQuote: \"This is a moment of truths. We can no longer wait, we can no longer have endless discussions in which everybody tries to push the responsibility to someone else. Everybody must do more, everybody must do more now.\" (U.N. Secretary-General Ant\u00f3nio Guterres, The Associated Press)\nTimeline: 2023: The COP28 pact called for a transition away from fossil fuels (france24.com).\nTimeline: 2025: Scientists told Guterres the 1.5C goal was no longer achievable (apnews.com).\nTimeline: September 2026: The U.N. revised its decade-old 1.5C goal because the world was exceeding that threshold (apnews.com).\nTimeline: 9 November 2026: COP31 opens in Antalya for two weeks of negotiations (apnews.com, france24.com).",
+      "_composite_podcast": 50,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "image": "https://kagiproxy.com/img/-QBi5EsAAkdWVrzVp7lKs5z8zdMjctJ6SnQ0FePFOxRX29zWuLqzlrhN5JYT7tV4lXbsjxRptm-LzQ09ZPA1kzAVYYMriYtxG9Q2dvzTqnfozRzfgLb4QX8EeTCg2vTbeUkrOxD471qXtPG127yVwQ1S7NOflM3xCcJ8sucDOl_twcs3NZfSLaYnVA",
+      "_us_policy": true,
+      "_us_policy_scope": "out-of-jurisdiction",
+      "tags": [
+        "us-policy"
+      ],
+      "_cross_theme": {
+        "day": "sunday",
+        "label": "Science, Wonder & the Natural World",
+        "shown_at": "2026-11-08T06:08:46.990645+00:00"
+      },
+      "_boosted_score": 59,
+      "_body": "The United Nations says global warming will exceed the 1.5-degree Celsius threshold as nearly 200 countries prepare to begin the COP31 climate talks in Antalya, Turkey, on Nov. 9. Climate scientists say the rate of warming has effectively doubled over the past decade. October 2026 was the hottest October on record, and 2026 is virtually certain to become the second year to exceed 1.5C, after 2024 (phys.org, france24.com, apnews.com). U.N. Secretary-General Ant\u00f3nio Guterres said the world must now limit how far temperatures rise beyond that level and blamed political leaders for failing to act (apnews.com, independent.co.uk). The Nov. 9-20 talks are expected to focus on fulfilling earlier promises to move away from fossil fuels and on funding for poorer countries facing climate impacts. Turkey is promoting a goal to increase electricity\u2019s share of global energy demand from about 20% to 35% by 2035. Developed countries have resisted further funding commitments, and the Trump administration is not taking part in negotiations (france24.com, apnews.com). Fossil-fuel subsidies: The U.N. estimates global fossil-fuel subsidies reached $1.1 trillion in 2026; climate negotiators say government support for the fuels impedes the transition (apnews.com). Barriers to climate action: Researchers warn that disaster losses may deepen sovereign-debt burdens and crowd out climate investment, while conflict can weaken international cooperation (reddit.com)."
+    },
+    "held_date": "2026-11-09",
+    "target_date": "2026-11-20",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
   }
 }
