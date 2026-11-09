@@ -5,7 +5,48 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Sun, 08 Nov 2026 10:05:57 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 10:08:26 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, November 9, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-09.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-09.html</guid>
+      <pubDate>Mon, 09 Nov 2026 10:08:26 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Focus: Film &amp;amp; Screen (week 1 of 4).&lt;/p&gt;
+
+&lt;div class="verdict lvl-bad"&gt;&lt;span class="icon" aria-hidden="true"&gt;✕&lt;/span&gt;&lt;div&gt;&lt;strong&gt;No episode&lt;/strong&gt;No run produced an episode today.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;ol class="actions"&gt;
+&lt;li&gt;&lt;strong&gt;Open the failed run's log. A later rung shipping does not make it a non-event: it spent a retry window.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;failed: Primary (1:05 AM Pacific) — Cloudflare scheduler, Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Both scheduled runs failed, and the third is the one writing this review&lt;/h3&gt;
+&lt;p&gt;The primary run created at &lt;code&gt;1:05 AM Pacific&lt;/code&gt; finished at &lt;code&gt;1:19 AM Pacific&lt;/code&gt; with a conclusion of failure. The first fallback, created at &lt;code&gt;2:05 AM Pacific&lt;/code&gt;, finished at &lt;code&gt;2:07 AM Pacific&lt;/code&gt; and also failed. The second fallback, created at &lt;code&gt;3:05 AM Pacific&lt;/code&gt;, is the run producing this review, so it has no outcome yet. None of the three started late; all three fired on schedule from the Cloudflare scheduler.&lt;/p&gt;
+&lt;p&gt;The gap between the primary and the first fallback is the notable part. The primary ran for 14 minutes before failing, while the fallback ended in two. Whatever broke the primary was not present, or was not reached, in the second attempt. The run logs are the place to find out which step failed in each case; the facts here do not name the failing step.&lt;/p&gt;
+
+&lt;h3&gt;The checkout step was the only slow step on record&lt;/h3&gt;
+&lt;p&gt;The "Checkout repository" step succeeded but took &lt;code&gt;71.0&lt;/code&gt; seconds, which is the only step flagged as slow tonight. A checkout that long is unusual for a repository of this kind and is worth comparing against earlier nights. It did not cause a failure, so it is not the explanation for the two failed runs.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, November 8, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-08.html</link>
@@ -1481,54 +1522,6 @@
 &lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, October 10, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-10.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-10.html</guid>
-      <pubDate>Sat, 10 Oct 2026 10:06:10 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38036684810"&gt;38036684810&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;Two of three TTS retries stayed short, and the pipeline kept the longer take&lt;/h3&gt;
-&lt;p&gt;The audio render flagged three TTS takes that came back shorter than their word count predicts. Each was retried once. Two of the three retries were still short. The pipeline kept the longer of the two takes for each, so nothing was dropped from the episode. The recorded effect is that the retried takes were the longer of two imperfect results, not clean renders. The facts do not say how much of the episode each short take covered.&lt;/p&gt;
-
-&lt;h3&gt;The territory check ran out of lookups and passed names it never verified&lt;/h3&gt;
-&lt;p&gt;The territory check has a ceiling of 8 lookups per run. It hit that ceiling and left eight names unchecked: Lorne, Doerkson, Conservative, Elections, Denice, Bardua, Greens, Randy, and Transit. The count is nine because the ceiling warning repeats once per name after the eighth lookup; the unchecked names are the ones that matter. Several are proper names of people and parties, and the check that would confirm or reject a territorial attribution for them did not run.&lt;/p&gt;
-&lt;p&gt;The check did act on two cases. Sinixt and Nuxalk were both named in connection with the Tribune, which the territory map attributes to KâÃ³moks, Hulâqumiânum Treaty Group, É¬aÊamÉ©n gÉ©Ç°É (Tlaâamin), and Homalco. Two sentences kept an unsupported nation after the rewrite, and the rewrite was rejected. The pipeline did not fix those sentences. The facts record the rejection and do not record what the listener heard in their place.&lt;/p&gt;
-
-&lt;h3&gt;The roundup pool dropped 59 stories, and only 10 of 15 roundup citations matched&lt;/h3&gt;
-&lt;p&gt;The airtime budget (NEWS_ROUNDUP_COUNT) cut 59 stories from the roundup pool. That cut is by design: the pool is larger than one segment can air, and a cut story can return on a day when it fits better. The same day's citation check matched 10 of 15 roundup citations. The five unmatched citations are the discrepancy to watch. The deep dive matched all five of its citations.&lt;/p&gt;
-&lt;p&gt;The script's word count was 3681, and the audio ran 22.3 minutes at 20.4 MB. The video is 78.9 MB at the same 22.3 minutes. The episode was built from a larger pool than it aired, and it cited 15 roundup sources, 5 of which the citation check could not match to the script.&lt;/p&gt;
-
-&lt;h3&gt;The debate question asks what the metrics measure&lt;/h3&gt;
-&lt;p&gt;The episode's debate question was: what do local election and governance metrics (early votes, acclamations, candidate counts, forum attendance, budgets, ridership) actually measure, and do they still track the civic participation they claim to represent? The five deep dives were on Cariboo-region election coverage, a free-transit story, and a provincial income-tax proposal. The question asks the audience to test the numbers the coverage relies on. Those are the same numbers the pipeline's own roundup selected from. The facts do not show whether the episode answered the question.&lt;/p&gt;
-
-&lt;h3&gt;Quality checks passed, and the run finished on time&lt;/h3&gt;
-&lt;p&gt;The AI-tell pattern check returned 0 hits. The voice ratio, Casey over Riley, was 0.69. All three runs today (the primary at 1:05 AM Pacific and fallbacks at 2:05 AM and 3:05 AM Pacific) reported success, with zero minutes late for the primary and both fallbacks. The primary run was created at 1:05 AM Pacific and finished at 1:30 AM Pacific. The fallback at 3:05 AM Pacific is this review's own run and is still in progress. The API spend was 55,715 Anthropic input tokens, with 51 brave-search calls and 15 Claude calls. The slowest step was script generation at 594 seconds, followed by audio rendering at 317 seconds.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.69, 3681 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;22.3 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;20.4 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;10/15 roundup, 5/5 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;255 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;55,715 input tokens, calls ***'brave-search': 51, 'claude': 15***&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>
