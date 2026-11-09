@@ -1,44 +1,4 @@
 {
-  "2026-10-04": {
-    "timestamp": 1791105287.483423,
-    "topics": [
-      "[Williams Lake Tribune] Hearing truth, honouring survivors: ",
-      "[My Cariboo Now] B.C. Conservatives pledge $400M to buy wate",
-      "[100 Mile Free Press] Inaugural CariBOO Con raises over $1,0",
-      "[Regional News Archives",
-      "[The Tyee] Carney\u2019s Push to Fund Industry Imperils Canada\u2019s ",
-      "[ScienceAlert] A 100-Year-Old Physics Effect Doesn't Work Ho",
-      "[Scientific American] Why mathematicians are hiding research",
-      "[Nautilus] How Sugar from Outer Space Became One of the Back"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-10-04",
-    "focus": "discovery-health",
-    "focus_name": "Discovery, Health & How Science Works"
-  },
-  "2026-10-05": {
-    "timestamp": 1791191739.295795,
-    "topics": [
-      "[Williams Lake Tribune] 31 motorcycles hit the road for four",
-      "[Williams Lake Tribune] LETTER: Williams Lake Lions Club raf",
-      "[100 Mile Free Press] 2026 100 Mile Sockathon aims to raise ",
-      "[Fast Company] From nearsightedness to self-harm: Meta-revie",
-      "[NYT Business] Tariffs Are Making Instruments So Expensive, ",
-      "[Fast Company] MoMA explores the useful beauty of informatio",
-      "[Williams Lake Tribune] Special film screening chronicling M",
-      "[Mother Jones] How I Got Dragged Into a Putin Disinformation"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-10-05",
-    "focus": "words-journalism",
-    "focus_name": "Writing, Journalism & Podcasting"
-  },
   "2026-10-06": {
     "timestamp": 1791274547.348248,
     "topics": [
@@ -748,5 +708,25 @@
     "date": "2026-11-08",
     "focus": "sky-cosmos",
     "focus_name": "Sky & Cosmos"
+  },
+  "2026-11-09": {
+    "timestamp": 1794212260.992736,
+    "topics": [
+      "[My Cariboo Now] Temporary shutdown at Quesnel River Pulp wi",
+      "[My Cariboo Now] BC Hydro crews making progress on restoring",
+      "[nikkei.com] Indian publishers challenge data law over journ",
+      "[The Tyee] How Can We Save Local Journalism?",
+      "[Open Culture] Watch David Bowie Take MTV to Task for Failin",
+      "[100 Mile Free Press] Remembrance Day services of the South ",
+      "AI",
+      "infrastructure"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact"
+    ],
+    "date": "2026-11-09",
+    "focus": "film-screen",
+    "focus_name": "Film & Screen"
   }
 }

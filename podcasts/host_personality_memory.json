@@ -25,16 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-09-10",
-        "clue": "Indigenous-tech:~ \u2014 collars extend guardian capacity, don't replace embodied knowledge",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-09-13",
-        "clue": "pilot-skepticism:- \u2014 mitigation tech exists, engineering can reduce harm",
-        "occurrences": 1
-      },
-      {
         "date": "2026-09-20",
         "clue": "tech-optimism:x \u2014 conceded wonder insufficient without distribution pathway",
         "occurrences": 1
@@ -110,9 +100,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-30",
-        "clue": "community-trust:~ \u2014 praises Palmer's local Indigenous-led delivery model",
-        "occurrences": 1
+        "date": "2026-11-09",
+        "clue": "community-trust:~ \u2014 concedes attendance is open door, but authorship remains unproven",
+        "occurrences": 2
       },
       {
         "date": "2026-10-31",
@@ -172,6 +162,16 @@
       {
         "date": "2026-11-08",
         "clue": "tech-optimism:+ \u2014 Defends FLIP as a discovery-grade method path",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-09",
+        "clue": "structural-lens:+ \u2014 insists the ritual's format is cultural infrastructure worth preserving",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-09",
+        "clue": "evidence-bar:- \u2014 softens demand for records, accepting a curator as a named door",
         "occurrences": 1
       }
     ],
@@ -319,11 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-08-14",
-        "clue": "funding-risk: ~ \u2014 Conceded that T\u015dilhqot'in governance model genuinely reduces cycle vulnerability.",
-        "occurrences": 1
-      },
-      {
         "date": "2026-08-23",
         "clue": "evidence-bar:+[signal] \u2014 Pressed harder on gap between finding and product",
         "occurrences": 1
@@ -449,9 +444,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-06",
-        "clue": "community-trust:+ \u2014 keep warnings about animals and agencies, not hikers",
-        "occurrences": 1
+        "date": "2026-11-09",
+        "clue": "community-trust:+ \u2014 repeatedly questions who holds the pen and who decides",
+        "occurrences": 2
       },
       {
         "date": "2026-11-08",
@@ -461,6 +456,16 @@
       {
         "date": "2026-11-08",
         "clue": "community-trust:~ \u2014 Wants failure of assumed double-checking named explicitly",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-09",
+        "clue": "structural-lens:~ \u2014 notes the pipeline has a postcode, adding geographic complexity",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-09",
+        "clue": "evidence-bar:+ \u2014 insists on seeing two years of programs before believing",
         "occurrences": 1
       }
     ],
