@@ -1,5 +1,231 @@
 [
   {
+    "date": "2026-11-09",
+    "title": "Episode Review — Cariboo Signals, November 9, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-09.html",
+    "content_html": "<p class=\"meta\">Focus: Film &amp; Screen (week 1 of 4).</p>\n\n<div class=\"verdict lvl-bad\"><span class=\"icon\" aria-hidden=\"true\">✕</span><div><strong>No episode</strong>No run produced an episode today.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Open the failed run's log. A later rung shipping does not make it a non-event: it spent a retry window.</strong><br><span class=\"evidence\">failed: Primary (1:05 AM Pacific) — Cloudflare scheduler, Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Both scheduled runs failed, and the third is the one writing this review</h3>\n<p>The primary run created at <code>1:05 AM Pacific</code> finished at <code>1:19 AM Pacific</code> with a conclusion of failure. The first fallback, created at <code>2:05 AM Pacific</code>, finished at <code>2:07 AM Pacific</code> and also failed. The second fallback, created at <code>3:05 AM Pacific</code>, is the run producing this review, so it has no outcome yet. None of the three started late; all three fired on schedule from the Cloudflare scheduler.</p>\n<p>The gap between the primary and the first fallback is the notable part. The primary ran for 14 minutes before failing, while the fallback ended in two. Whatever broke the primary was not present, or was not reached, in the second attempt. The run logs are the place to find out which step failed in each case; the facts here do not name the failing step.</p>\n\n<h3>The checkout step was the only slow step on record</h3>\n<p>The \"Checkout repository\" step succeeded but took <code>71.0</code> seconds, which is the only step flagged as slow tonight. A checkout that long is unusual for a repository of this kind and is worth comparing against earlier nights. It did not cause a failure, so it is not the explanation for the two failed runs.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Anthropic input tokens</td><td>0</td></tr>\n<tr><td>API calls</td><td>}</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-09T10:08:26+00:00",
+    "metrics": {},
+    "summary": {
+      "level": "bad",
+      "label": "No episode",
+      "summary": "No run produced an episode today.",
+      "theme": "",
+      "kpis": [],
+      "actions": [
+        {
+          "signal": "run-failed",
+          "todo": "Open the failed run's log. A later rung shipping does not make it a non-event: it spent a retry window.",
+          "evidence": "failed: Primary (1:05 AM Pacific) — Cloudflare scheduler, Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-09",
+          "day": "Mon",
+          "today": true,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 4,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-10",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Agriculture & Ranching",
+          "week": 1,
+          "of": 4,
+          "next": "Forestry & Timber",
+          "event": null
+        },
+        {
+          "date": "2026-11-11",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 4,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-12",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Governance, Title & Treaty",
+          "week": 1,
+          "of": 4,
+          "next": "Language & Culture",
+          "event": null
+        },
+        {
+          "date": "2026-11-13",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 3,
+          "next": "Wildfire & Climate Resilience",
+          "event": null
+        },
+        {
+          "date": "2026-11-14",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-15",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 4,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "Is it fair to help the people who are already helping?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.aptnnews.ca/national-news/akwesasne-family-carries-on-16th-century-haudenosaunee-tradition/",
+          "title": "[APTN News] Akwesasne family carries on 16th century Haudenosaunee tradition",
+          "source": "",
+          "theme_pct": 100,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theguardian.com/global-development/2026/nov/09/fashion-lagos-chanel-model-rachel-ojuromi-nigeria-thrift-style",
+          "title": "[The Guardian Global Development] From the streets of Lagos to the Chanel catwalk: how a creative’s thrift-shop style took her to Paris",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hyperallergic.com/a-midterm-election-guide-for-artists-and-arts-workers/",
+          "title": "[Hyperallergic] A Midterm Election Guide for Artists and Arts Workers",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.nytimes.com/2026/11/01/opinion/trump-arch-washington-dc.html",
+          "title": "[NYT Top Stories] The Rise and Fall of the Triumphal Arch",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.openculture.com/2026/11/watch-david-bowie-take-mtv-to-task-for-failing-to-play-music-videos-by-black-artists-1983.html",
+          "title": "[Open Culture] Watch David Bowie Take MTV to Task for Failing to Play Music Videos by Black Artists (1983)",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theatlantic.com/culture/2026/11/middle-grade-reading-male-protagonists/689285/?utm_source=feed",
+          "title": "[The Atlantic Culture] An Underrated Reason Boys Are Reading Less",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/06/How-Can-We-Save-Local-Journalism/",
+          "title": "[The Tyee] How Can We Save Local Journalism?",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.resilience.org/stories/2026-11-03/live-like-the-weasleys-practicing-craft-in-a-world-of-conspicuous-consumption/",
+          "title": "[Resilience.org] ‘Live like the Weasleys’: Practicing craft in a world of conspicuous consumption",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.resilience.org/stories/2026-11-06/how-seattles-emergency-hubs-build-a-disaster-prepared-community/",
+          "title": "[Resilience.org] How Seattle’s emergency hubs build a disaster-prepared community",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.atlasobscura.com/places/tomba-dei-gigante-s-ena-e-thimes",
+          "title": "[Atlas Obscura] Tomba Dei Gigante S’Ena e Thimes in Dorgali, Italy",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.scientificamerican.com/article/can-the-worlds-religions-survive-the-existence-of-aliens/",
+          "title": "[Scientific American] Can the world’s religions survive the existence of aliens?",
+          "source": "",
+          "theme_pct": 93,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.nytimes.com/2026/10/26/science/space/early-universe-simulation-lumina.html",
+          "title": "[NYT Top Stories] Gaze at the Cosmic Dawn in Dizzying Detail",
+          "source": "",
+          "theme_pct": 93,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.wired.com/story/a-new-uk-ban-sparks-fears-of-unprecedented-sex-censorship/",
+          "title": "[WIRED] A New UK Porn Ban Sparks Fears of Unprecedented Sex Censorship",
+          "source": "",
+          "theme_pct": 92,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://hackaday.com/2026/11/04/beautiful-laser-harp-hides-some-neat-tricks/",
+          "title": "[Hackaday] Beautiful Laser Harp Hides Some Neat Tricks",
+          "source": "",
+          "theme_pct": 92,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.space.com/space-exploration/on-this-day-in-space-november-3-2026",
+          "title": "[space.com] Soviet Union sent Laika into orbit aboard Sputnik 2 with no return plan",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        }
+      ]
+    }
+  },
+  {
     "date": "2026-11-08",
     "title": "Episode Review — Cariboo Signals, November 8, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-08.html",
@@ -1021,19 +1247,5 @@
     "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38127132745\">38127132745</a>.</em></p>\n\n<h3>The primary run failed at 1:30 AM Pacific</h3>\n<p>The primary run, triggered at 1:05 AM Pacific by the Cloudflare scheduler, ran to completion and returned a failure conclusion. It started on time, with zero minutes of lateness, and finished at 1:30 AM Pacific. The facts record the outcome and the timestamps but do not record which step failed or why, so this review cannot name the cause. The run's log at the URL below is where that detail lives: <code>https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38123593506</code>.</p>\n\n<h3>The first fallback produced the day's episode</h3>\n<p>Fallback 1 fired at 2:05 AM Pacific, also through the Cloudflare scheduler, and succeeded. It was created and finished at 2:05 AM Pacific, so the run took no measurable time at the resolution the facts provide, and it started with zero minutes of lateness. The primary's failure at 1:30 AM is what made this the episode's path. Had the fallback not existed or also failed, the facts show no other output for the day.</p>\n\n<h3>The second fallback is this review's own run</h3>\n<p>Fallback 2 was scheduled for 3:05 AM Pacific and is the run producing this document. It was created on time, with zero minutes late, and has no finish time or conclusion yet. The facts record its status as running this review, so the review cannot report on its outcome. Its URL is <code>https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38130708411</code>.</p>\n\n<h3>Three runs, one scheduler, a fixed ladder</h3>\n<p>The schedule is a primary at 1:05 AM followed by fallbacks at two-hour-minus-a-few-minutes intervals, 2:05 AM and 3:05 AM Pacific. Each rung fired exactly on time. The pipeline does not appear to have been held up by scheduling; the sequence reached the success state through the second rung. The facts say nothing about why the primary failed, so the schedule's correctness is established only for timing, not for the reason the first attempt did not produce output.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>",
     "published": "2026-10-11T10:06:08+00:00",
     "metrics": {}
-  },
-  {
-    "date": "2026-10-10",
-    "title": "Episode Review — Cariboo Signals, October 10, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-10.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38036684810\">38036684810</a>.</em></p>\n\n<h3>Two of three TTS retries stayed short, and the pipeline kept the longer take</h3>\n<p>The audio render flagged three TTS takes that came back shorter than their word count predicts. Each was retried once. Two of the three retries were still short. The pipeline kept the longer of the two takes for each, so nothing was dropped from the episode. The recorded effect is that the retried takes were the longer of two imperfect results, not clean renders. The facts do not say how much of the episode each short take covered.</p>\n\n<h3>The territory check ran out of lookups and passed names it never verified</h3>\n<p>The territory check has a ceiling of 8 lookups per run. It hit that ceiling and left eight names unchecked: Lorne, Doerkson, Conservative, Elections, Denice, Bardua, Greens, Randy, and Transit. The count is nine because the ceiling warning repeats once per name after the eighth lookup; the unchecked names are the ones that matter. Several are proper names of people and parties, and the check that would confirm or reject a territorial attribution for them did not run.</p>\n<p>The check did act on two cases. Sinixt and Nuxalk were both named in connection with the Tribune, which the territory map attributes to KâÃ³moks, Hulâqumiânum Treaty Group, É¬aÊamÉ©n gÉ©Ç°É (Tlaâamin), and Homalco. Two sentences kept an unsupported nation after the rewrite, and the rewrite was rejected. The pipeline did not fix those sentences. The facts record the rejection and do not record what the listener heard in their place.</p>\n\n<h3>The roundup pool dropped 59 stories, and only 10 of 15 roundup citations matched</h3>\n<p>The airtime budget (NEWS_ROUNDUP_COUNT) cut 59 stories from the roundup pool. That cut is by design: the pool is larger than one segment can air, and a cut story can return on a day when it fits better. The same day's citation check matched 10 of 15 roundup citations. The five unmatched citations are the discrepancy to watch. The deep dive matched all five of its citations.</p>\n<p>The script's word count was 3681, and the audio ran 22.3 minutes at 20.4 MB. The video is 78.9 MB at the same 22.3 minutes. The episode was built from a larger pool than it aired, and it cited 15 roundup sources, 5 of which the citation check could not match to the script.</p>\n\n<h3>The debate question asks what the metrics measure</h3>\n<p>The episode's debate question was: what do local election and governance metrics (early votes, acclamations, candidate counts, forum attendance, budgets, ridership) actually measure, and do they still track the civic participation they claim to represent? The five deep dives were on Cariboo-region election coverage, a free-transit story, and a provincial income-tax proposal. The question asks the audience to test the numbers the coverage relies on. Those are the same numbers the pipeline's own roundup selected from. The facts do not show whether the episode answered the question.</p>\n\n<h3>Quality checks passed, and the run finished on time</h3>\n<p>The AI-tell pattern check returned 0 hits. The voice ratio, Casey over Riley, was 0.69. All three runs today (the primary at 1:05 AM Pacific and fallbacks at 2:05 AM and 3:05 AM Pacific) reported success, with zero minutes late for the primary and both fallbacks. The primary run was created at 1:05 AM Pacific and finished at 1:30 AM Pacific. The fallback at 3:05 AM Pacific is this review's own run and is still in progress. The API spend was 55,715 Anthropic input tokens, with 51 brave-search calls and 15 Claude calls. The slowest step was script generation at 594 seconds, followed by audio rendering at 317 seconds.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>5 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.69, 3681 words</td></tr>\n<tr><td>Audio</td><td>22.3 min</td></tr>\n<tr><td>Audio size</td><td>20.4 MB</td></tr>\n<tr><td>Citations matched</td><td>10/15 roundup, 5/5 deep dive</td></tr>\n<tr><td>Feed</td><td>255 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>55,715 input tokens, calls ***'brave-search': 51, 'claude': 15***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-10T10:06:10+00:00",
-    "metrics": {
-      "audio_minutes": 22.3,
-      "tell_hits": 0,
-      "script_words": 3681,
-      "roundup_cite_pct": 66.7,
-      "deep_dive_cite_pct": 100.0
-    }
   }
 ]

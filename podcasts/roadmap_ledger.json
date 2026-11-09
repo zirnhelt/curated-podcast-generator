@@ -583,16 +583,17 @@
       "detail": "The Generate episode script step failed after 92 seconds in both the primary run (1:05 AM Pacific, run 36834215592) and Fallback 1 (2:05 AM Pacific, run 36840498673), causing both runs to conclude as failures. The same step succeeded in Fallback 2 (3:05 AM Pacific, run 36846937721) in the same duration. The facts do not state what caused the failures or what changed between attempts. Check the error logs from runs 36834215592 and 36840498673 to identify whether the breakage was transient (a retry-worthy timeout or rate limit) or a code issue that the third attempt avoided by accident.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-10-01",
       "seen": [
         "2026-10-01",
         "2026-10-08",
-        "2026-10-11"
+        "2026-10-11",
+        "2026-11-09"
       ],
       "signal": "run-failed",
-      "signal_seen": "2026-10-11",
-      "last_seen": "2026-10-11"
+      "signal_seen": "2026-11-09",
+      "last_seen": "2026-11-09"
     },
     {
       "id": "cohere-embedding-module-missing",
@@ -749,5 +750,5 @@
       "last_seen": "2026-11-01"
     }
   ],
-  "updated": "2026-11-08"
+  "updated": "2026-11-09"
 }
