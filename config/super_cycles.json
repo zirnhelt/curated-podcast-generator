@@ -63,21 +63,40 @@
       },
       {
         "slug": "words-journalism",
-        "name": "Writing, Journalism & Podcasting",
+        "name": "Books, Libraries & Podcasting",
         "keywords": [
-          "journalism",
-          "newspaper",
-          "newsroom",
           "podcast",
+          "podcaster",
           "author",
           "book",
+          "bookstore",
           "publishing",
-          "local news",
-          "reporter",
           "library",
-          "literacy"
+          "literacy",
+          "poetry",
+          "audiobook",
+          "book club"
         ],
-        "lens": "Center the deep dive on the written and spoken word — local journalism, books, and podcasting, and who sustains storytelling infrastructure in small communities."
+        "lens": "Center the deep dive on books, libraries, and podcasting — who writes, publishes, lends, and records the long-form stories small communities tell about themselves."
+      },
+      {
+        "slug": "small-town-journalism",
+        "name": "Small-Town Journalism",
+        "keywords": [
+          "journalism",
+          "journalist",
+          "local news",
+          "local journalism",
+          "newspaper",
+          "community newspaper",
+          "newsroom",
+          "reporter",
+          "news desert",
+          "press freedom",
+          "news outlet",
+          "independent media"
+        ],
+        "lens": "Center the deep dive on small-town journalism — who reports on rural communities, how local newsrooms stay alive, and what a town loses when nobody is covering council."
       }
     ]
   },
@@ -259,6 +278,32 @@
           "field gear"
         ],
         "lens": "Center the deep dive on vehicles and field gear — the machines and equipment that get work done and get people into the backcountry, and what it's like to own and maintain them."
+      },
+      {
+        "slug": "remote-work-broadband",
+        "name": "Remote Work & Broadband",
+        "keywords": [
+          "broadband",
+          "high-speed internet",
+          "rural internet",
+          "internet service provider",
+          "fibre optic",
+          "fiber optic",
+          "fibre network",
+          "cell coverage",
+          "cell tower",
+          "dead zone",
+          "rural connectivity",
+          "internet connectivity",
+          "remote work",
+          "remote worker",
+          "work from home",
+          "working remotely",
+          "telework",
+          "coworking",
+          "digital nomad"
+        ],
+        "lens": "Center the deep dive on remote work and broadband — the connections rural places do or don't have, and the people and businesses building working lives on top of them."
       }
     ]
   },
@@ -411,6 +456,31 @@
           "campsite"
         ],
         "lens": "Center the deep dive on recreation and backcountry access — how people get out into wild places, and the trails, roads, and rules that shape that access."
+      },
+      {
+        "slug": "conservation-environment",
+        "name": "Conservation & the Environment",
+        "keywords": [
+          "environmental protection",
+          "environmental assessment",
+          "environmentalist",
+          "environmental group",
+          "pollution",
+          "water quality",
+          "air quality",
+          "contamination",
+          "oil spill",
+          "chemical spill",
+          "invasive species",
+          "land trust",
+          "conservancy",
+          "land conservation",
+          "old growth",
+          "clean water",
+          "emissions",
+          "ecological reserve"
+        ],
+        "lens": "Center the deep dive on conservation and the environment — protecting land, water, and air, and who decides what gets protected, polluted, or restored."
       }
     ]
   },
@@ -502,6 +572,32 @@
           "breakthrough"
         ],
         "lens": "Center the deep dive on discovery and the practice of science itself — health research, physics, citizen science, and how we come to know what we know."
+      },
+      {
+        "slug": "health-wellness-aging",
+        "name": "Health, Wellness & Aging",
+        "keywords": [
+          "healthy aging",
+          "healthy ageing",
+          "older adults",
+          "seniors' health",
+          "senior care",
+          "long-term care",
+          "dementia",
+          "Alzheimer's",
+          "longevity",
+          "mental health",
+          "wellness",
+          "nutrition",
+          "sleep research",
+          "physical activity",
+          "chronic disease",
+          "caregiver",
+          "hearing loss",
+          "rural health care",
+          "rural health"
+        ],
+        "lens": "Center the deep dive on health, wellness, and aging — what the science says about staying well and growing older, and what that means far from specialists and big-city hospitals."
       }
     ]
   }

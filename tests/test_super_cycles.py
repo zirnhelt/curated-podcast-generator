@@ -39,9 +39,12 @@ class TestFocusForDay:
     def test_saturday_has_no_cycle(self):
         assert get_focus_for_day(5, date(2026, 7, 18)) is None
 
-    def test_friday_runs_three_week_cycle(self):
-        focus = get_focus_for_day(4, date(2026, 7, 17))
-        assert focus["cycle_length"] == 3
+    def test_cycle_lengths(self):
+        # Mon/Wed/Sun run 5-week cycles, Tue/Thu/Fri 4-week (2026-11-10).
+        d = date(2026, 7, 20)  # a Monday
+        lengths = {wd: get_focus_for_day(wd, d + timedelta(days=wd))["cycle_length"]
+                   for wd in (0, 1, 2, 3, 4, 6)}
+        assert lengths == {0: 5, 1: 4, 2: 5, 3: 4, 4: 4, 6: 5}
 
     def test_focus_carries_slug_name_keywords_lens(self):
         focus = get_focus_for_day(1, date(2026, 7, 21))
@@ -187,7 +190,7 @@ class TestArticleHolding:
         assert entry["target_date"] == mining_day.isoformat()
 
     def test_urgent_offtheme_article_airs_in_bonus_with_ledger(self, holding_env):
-        saturday = date(2026, 7, 18)
+        saturday, _ = _find_saturday_before_focus("digital-life-security")
         cyber = _article(
             "Ransomware phishing scam warning after fraud reports",
             "cyber-url", kw=0, boosted=95,

@@ -455,7 +455,7 @@ there is no thread, and the hosts just move on.
 
 ## Super Cycles (`config/super_cycles.json`)
 
-Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Friday runs a 3-week cycle, all other cycled days 4-week. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.
+Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Monday, Wednesday and Sunday run 5-week cycles, Tuesday, Thursday and Friday 4-week. **Added 2026-11-10** at the producer's request: Small-Town Journalism (Mon), Remote Work & Broadband (Wed), Conservation & the Environment (Fri), Health, Wellness & Aging (Sun). Monday's `words-journalism` gave its journalism keywords to the new focus and became Books, Libraries & Podcasting; its slug stayed, because `debate_memory.json` keys past debates by slug. New foci are appended, so adding one shifts that weekday's calendar position. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.
 
 - **Selection:** the deep dive prefers focus-matching articles; a thin focus week (<3 matches) degrades to plain theme selection (logged `focus_fallback`). The focus lens is appended to the theme lens in the script prompt.
 - **A focus keyword is a phrase when the bare word has another common sense** (2026-10-24).
