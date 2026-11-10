@@ -931,6 +931,25 @@ def test_the_summary_carries_the_cuts_cleaned(tmp_path, monkeypatch):
     assert er.load_cuts("2026-10-01") == []
 
 
+def test_load_deep_dive_plain_and_capped(tmp_path, monkeypatch):
+    import episode_review as er
+    seg = {"deep_dive": {
+        "articles": [{"title": "[Tyee] Herd count", "url": "https://a", "discussed": True},
+                     {"title": "bad", "url": "javascript:alert(1)"},
+                     {"title": "unused", "url": "https://b", "discussed": False}],
+        "discussion": {"central_question": "Q?" + "x" * 900, "riley_position": "R",
+                       "casey_position": 7, "resolution": "",
+                       "topics_covered": ["one", "", 3, "two"]}}}
+    (tmp_path / "citations_2026-11-06_x.json").write_text(json.dumps({"segments": seg}))
+    monkeypatch.setattr(er, "CITATIONS_GLOB", str(tmp_path / "citations_{date}_*.json"))
+    dd = er.load_deep_dive("2026-11-06")
+    assert dd["question"].startswith("Q?") and len(dd["question"]) == 400
+    assert dd["riley"] == "R" and "casey" not in dd and "resolution" not in dd
+    assert dd["topics"] == ["one", "two"]
+    assert dd["sources"] == [{"title": "Herd count", "url": "https://a"}]
+    assert er.load_deep_dive("2026-10-01") == {}
+
+
 class TestCycleWeek:
     """The weekly rotation panel: calendar-derived, same lookups as the generator."""
 

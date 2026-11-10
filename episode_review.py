@@ -1064,6 +1064,33 @@ def load_cuts(date: str) -> list[dict]:
     return rows
 
 
+def load_deep_dive(date: str) -> dict[str, Any]:
+    """What the deep dive covered, from the aired script's debate summary, for review.html.
+
+    A reminder beside the verdict, not the review: plain text, capped, empty when missing.
+    """
+    seg = (_citations_key(date, "segments", dict) or {}).get("deep_dive")
+    if not isinstance(seg, dict):
+        return {}
+    talk = seg.get("discussion") if isinstance(seg.get("discussion"), dict) else {}
+
+    def text(key: str, cap: int = 400) -> str:
+        value = talk.get(key)
+        return value.strip()[:cap] if isinstance(value, str) else ""
+
+    topics = [t.strip()[:160] for t in talk.get("topics_covered") or []
+              if isinstance(t, str) and t.strip()][:6]
+    sources = [{"title": re.sub(r"^\[[^\]]*\]\s*", "", str(a.get("title") or ""))[:200],
+                "url": a["url"]}
+               for a in seg.get("articles") or []
+               if isinstance(a, dict) and isinstance(a.get("url"), str)
+               and re.match(r"https?://", a["url"]) and a.get("discussed") is not False][:5]
+    out = {"question": text("central_question"), "riley": text("riley_position"),
+           "casey": text("casey_position"), "resolution": text("resolution"),
+           "topics": topics, "sources": sources}
+    return {k: v for k, v in out.items() if v}
+
+
 def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
     """The storyboard the script was written to, for the producer to judge its flow.
 
@@ -1177,6 +1204,8 @@ def review_summary(date: str, runs: list[dict], facts: dict[str, Any],
         "anchor": week_anchor(date, facts),
         # review.html's Episode tab asks whether each cut was the right call.
         "cuts": load_cuts(date),
+        # ...and reminds the listener what the deep dive covered before they rate it.
+        "deep_dive": load_deep_dive(date),
     }
 
 
