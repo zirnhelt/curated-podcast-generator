@@ -1753,3 +1753,67 @@ class TestFocusNameKeywords:
                 if "name_keywords" not in focus:
                     continue
                 assert not risky & set(pg._build_focus_keywords(focus)), focus["slug"]
+
+
+# ---------------------------------------------------------------------------
+# High-impact focus override
+# ---------------------------------------------------------------------------
+
+def _wide(title, kite=20, raw=70, **extra):
+    a = {"title": title, "url": title, "summary": "", "_kite_sources": kite,
+         "_theme_score_raw": raw, "_is_bonus": False}
+    a.update(extra)
+    return a
+
+
+def _tuesday_focus(slug):
+    d = date(2026, 7, 21)  # a Tuesday
+    for _ in range(8):
+        f = get_focus_for_day(1, d)
+        if f["slug"] == slug:
+            return f
+        d += timedelta(days=7)
+    raise AssertionError(slug)
+
+
+class TestPickFocusForPool:
+    def test_no_wide_story_keeps_calendar(self):
+        cal = _tuesday_focus("forestry")
+        pool = [_wide("Cattle prices rise at auction", kite=3)]
+        assert pg.pick_focus_for_pool(cal, 1, pool) == (cal, None)
+
+    def test_wide_story_moves_to_sibling_focus(self):
+        cal = _tuesday_focus("forestry")
+        story = _wide("H5N1 hits dairy herds as cattle ranching losses mount", kite=14, raw=78)
+        focus, picked = pg.pick_focus_for_pool(cal, 1, [story])
+        assert picked is story
+        assert focus["slug"] == "agriculture-ranching"
+        assert focus["cycle_length"] == cal["cycle_length"]
+
+    def test_story_already_on_calendar_focus_keeps_it(self):
+        cal = _tuesday_focus("agriculture-ranching")
+        story = _wide("Cattle ranching hit by drought", kite=30)
+        focus, picked = pg.pick_focus_for_pool(cal, 1, [story])
+        assert focus is cal and picked is story
+
+    def test_no_sibling_match_drops_to_theme(self):
+        cal = _tuesday_focus("forestry")
+        story = _wide("Federal budget reshapes rural industry", kite=25, raw=60)
+        focus, picked = pg.pick_focus_for_pool(cal, 1, [story])
+        assert focus is None and picked is story
+
+    def test_wide_but_off_charter_story_ignored(self):
+        # Broad world news with no theme fit must not move the day.
+        cal = _tuesday_focus("forestry")
+        pool = [_wide("US strikes island as talks continue, cattle", kite=53, raw=4)]
+        assert pg.pick_focus_for_pool(cal, 1, pool) == (cal, None)
+
+    def test_bonus_suppressed_and_deferred_ignored(self):
+        cal = _tuesday_focus("forestry")
+        pool = [_wide("Cattle ranching a", _is_bonus=True),
+                _wide("Cattle ranching b", _cluster_suppressed=True),
+                _wide("Cattle ranching c", _no_deep_dive=True)]
+        assert pg.pick_focus_for_pool(cal, 1, pool) == (cal, None)
+
+    def test_uncycled_day_untouched(self):
+        assert pg.pick_focus_for_pool(None, 5, [_wide("Council budget")]) == (None, None)

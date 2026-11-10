@@ -8202,6 +8202,57 @@ def _focus_hit_count(article, focus_keywords) -> int:
     return _keyword_hit_count(text, focus_keywords)
 
 
+# A high-impact story can move the day's focus off the calendar. Coverage is
+# Kagi News's outlet count for the story's cluster (`_kite_sources`); fit is the
+# feed's raw charter score, never the percentile. Both bars are needed: on
+# 2026-11-10's feeds the widest stories were US strikes on Iran (53 outlets) and
+# a Ukraine ceasefire (47), raw fit 2-10 on every day; the ones that pass both are
+# the day's own big story (H5N1 in dairy herds on Working Lands, 14 outlets, raw
+# 78; El Nino floods on Wild Spaces, 14, raw 45).
+# ponytail: Kagi's count only; our own same-story clusters rarely reach 3 outlets.
+HIGH_IMPACT_MIN_SOURCES = 10
+HIGH_IMPACT_MIN_THEME_RAW = 40
+
+
+def pick_focus_for_pool(calendar_focus: dict | None, weekday: int,
+                        articles: list) -> tuple[dict | None, dict | None]:
+    """Return (focus, high-impact story) for today's pool.
+
+    The calendar focus stands unless an on-theme story has broad coverage
+    (`HIGH_IMPACT_MIN_SOURCES`) and strong charter fit (`HIGH_IMPACT_MIN_THEME_RAW`)
+    and the calendar focus doesn't reach it. Then the day takes the sibling
+    focus in its cycle that the story hits hardest, or the plain theme (None)
+    when none does, so the focus gate can't keep the story out of the deep dive.
+    The calendar position is untouched: next week rotates as scheduled.
+    Deterministic on the pool, so a re-run picks the same focus.
+    """
+    if not calendar_focus:
+        return calendar_focus, None
+    contenders = [
+        a for a in articles
+        if (a.get('_kite_sources') or 0) >= HIGH_IMPACT_MIN_SOURCES
+        and (a.get('_theme_score_raw') or 0) >= HIGH_IMPACT_MIN_THEME_RAW
+        and not a.get('_is_bonus') and not a.get('_no_deep_dive')
+        and not a.get('_cluster_suppressed')
+    ]
+    if not contenders:
+        return calendar_focus, None
+    story = max(contenders, key=lambda a: (a.get('_kite_sources') or 0,
+                                           a.get('_theme_score_raw') or 0))
+    if _focus_hit_count(story, _build_focus_keywords(calendar_focus)):
+        return calendar_focus, story
+    cycle = load_super_cycles_config().get(str(weekday), {}).get('cycle', [])
+    hits = [(_focus_hit_count(story, _build_focus_keywords(f)), i, f)
+            for i, f in enumerate(cycle) if f.get('slug') != calendar_focus.get('slug')]
+    best = max(hits, key=lambda h: (h[0], -h[1]), default=(0, 0, None))
+    if not best[0]:
+        return None, story
+    focus = dict(best[2])
+    focus['index'] = best[1]
+    focus['cycle_length'] = len(cycle)
+    return focus, story
+
+
 def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
     """What Cohere Rerank scores deep-dive candidates against: the theme and its
     description, plus the week's focus and its lens. Never the weekly anchor,
@@ -14297,6 +14348,18 @@ def run_script_stage() -> tuple[str, str] | None:
                 bonus_urls = {a.get('url', '') for a in bonus_articles}
                 theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
                 bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
+
+                # A high-impact story outranks the calendar: take the focus it
+                # belongs to (or the plain theme) before routing and selection.
+                picked_focus, high_impact = pick_focus_for_pool(
+                    today_focus, today_weekday, theme_articles)
+                if high_impact and picked_focus is not today_focus:
+                    print(f"📣 High-impact story ({high_impact.get('_kite_sources')} outlets): "
+                          f"{high_impact.get('title', '')[:70]}")
+                    print(f"🎯 Focus moved off the calendar: "
+                          f"{(today_focus or {}).get('name')} → "
+                          f"{(picked_focus or {}).get('name', today_theme + ' (no focus)')}")
+                    today_focus = picked_focus
 
                 # Super-cycle routing: release matured held articles into today's
                 # pool; hold off-theme, non-urgent articles for their focus day;

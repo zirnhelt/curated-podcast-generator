@@ -530,6 +530,20 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
     distribution stays home, which is one story in the roundup tail; the day's best on-theme
     story cannot leave, which is the episode.
 
+- **A high-impact story moves the focus (2026-11-10, `pick_focus_for_pool`).** The calendar
+  pick is blind to the news: on a Forestry week, the day's biggest agriculture story had to beat
+  a focus gate built to keep it out. Now, before routing, an on-theme story with broad coverage
+  and strong fit takes the day to the sibling focus in its cycle that it hits hardest, or to the
+  plain theme when none does. **Coverage alone is not impact**: on that day's feeds the widest
+  stories were US strikes on Iran (53 Kagi outlets) and a Ukraine ceasefire (47), raw charter fit
+  2-10 everywhere. The stories that clear both bars (`HIGH_IMPACT_MIN_SOURCES` 10,
+  `HIGH_IMPACT_MIN_THEME_RAW` 40) were each day's own story: H5N1 in dairy herds, an olive-oil
+  storage order, El Niño floods. The cost: a widely shared, on-charter curiosity can also pre-empt
+  a week (a 14-outlet animal-behaviour study would have moved Sky & Cosmos to Discovery). Raise
+  the bars if that happens more than the producer wants. Only `_kite_sources` counts, since our own
+  same-story clusters rarely reach 3 outlets. The override changes only today: the rotation stays
+  calendar-derived, and the cold open and episode memory record the focus that actually aired.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ## Reading what we already had (2026-10-14)
