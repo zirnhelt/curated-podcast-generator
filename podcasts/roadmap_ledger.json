@@ -748,7 +748,20 @@
       "signal": "degraded:script/storyboard",
       "signal_seen": "2026-11-01",
       "last_seen": "2026-11-01"
+    },
+    {
+      "id": "ai-tell-pattern-shipped-again",
+      "title": "One AI-tell pattern shipped in the episode script despite quality checks.",
+      "detail": "The quality block reports ai_tell_pattern_hits of 1 on the 2026-11-10 episode, so a machine-prose pattern passed the checks and reached the final script. This matches the already-tracked ai-tells-shipped problem, so the recurrence count should carry it forward. Closing it would need the quality gate to reject or rewrite the matched pattern before audio is rendered rather than logging it.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-11-10",
+      "seen": [
+        "2026-11-10"
+      ],
+      "last_seen": "2026-11-10"
     }
   ],
-  "updated": "2026-11-09"
+  "updated": "2026-11-10"
 }

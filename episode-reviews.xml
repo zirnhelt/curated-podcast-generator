@@ -5,7 +5,57 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Mon, 09 Nov 2026 10:08:26 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 10:05:59 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, November 10, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-10.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-10.html</guid>
+      <pubDate>Tue, 10 Nov 2026 10:05:59 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Focus: Agriculture &amp;amp; Ranching (week 1 of 4). Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/42779921268"&gt;42779921268&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class="verdict lvl-good"&gt;&lt;span class="icon" aria-hidden="true"&gt;✓&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped clean&lt;/strong&gt;Nothing broke and nothing fell back.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;p&gt;Nothing. The run needs no follow-up.&lt;/p&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Run went through on schedule with no fallbacks needed&lt;/h3&gt;
+&lt;p&gt;The primary run started at 1:05 AM Pacific and finished at 1:32 AM Pacific with no minutes late. Both fallback slots were scheduled at 2:05 AM and 3:05 AM Pacific; the 2:05 AM fallback completed as well. Nothing needed rescue. The third run, at 3:05 AM Pacific, is this review's own run and is still in progress.&lt;/p&gt;
+
+&lt;h3&gt;Script came in under target, then shipped at 3791 words&lt;/h3&gt;
+&lt;p&gt;The first draft was 2825 words against a 3400-word target. It was sent back for one expand pass and shipped at 3791 words, above target. The expand pass overshot rather than landing at the target, so the shipped length is the final number to track, not the first draft.&lt;/p&gt;
+&lt;p&gt;Two deep dives aired, and Casey's share of deep-dive words was 44 percent. Of the roundup citations, 12 of 18 matched. The debate question is about forestry money and restart priority going to incumbent mill operators versus newcomers, and how to reconcile federal and Nation review processes.&lt;/p&gt;
+
+&lt;h3&gt;Roundup dropped 35 stories to the airtime budget&lt;/h3&gt;
+&lt;p&gt;35 stories were cut from the roundup pool by the airtime budget under NEWS_ROUNDUP_COUNT. This is by design: the pool is larger than one segment can air, and a cut story can resurface on a better-matched day. The roundup citation match of 12 of 18 is the figure to watch alongside it, since it describes only the stories that aired.&lt;/p&gt;
+&lt;p&gt;Change NEWS_ROUNDUP_COUNT in the config only if the cut count stays this high across several nights and the stories being dropped are ones the maintainer wants aired.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;2 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 0.81, 3791 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive split&lt;/td&gt;&lt;td&gt;Casey 44% of the words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;23.5 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;21.5 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;12/18 roundup, 2/2 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;286 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;80,236&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;22 total: claude 12 · brave-search 4 · brave-answers 4 · kagi-extract 2&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, November 9, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-09.html</link>
@@ -1493,35 +1543,6 @@
 &lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;12/14 roundup, 2/3 deep dive&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;257 episodes&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;59,133 input tokens, calls ***'claude': 19, 'brave-search': 23***&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, October 11, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-11.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-11.html</guid>
-      <pubDate>Sun, 11 Oct 2026 10:06:08 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38127132745"&gt;38127132745&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;The primary run failed at 1:30 AM Pacific&lt;/h3&gt;
-&lt;p&gt;The primary run, triggered at 1:05 AM Pacific by the Cloudflare scheduler, ran to completion and returned a failure conclusion. It started on time, with zero minutes of lateness, and finished at 1:30 AM Pacific. The facts record the outcome and the timestamps but do not record which step failed or why, so this review cannot name the cause. The run's log at the URL below is where that detail lives: &lt;code&gt;https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38123593506&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3&gt;The first fallback produced the day's episode&lt;/h3&gt;
-&lt;p&gt;Fallback 1 fired at 2:05 AM Pacific, also through the Cloudflare scheduler, and succeeded. It was created and finished at 2:05 AM Pacific, so the run took no measurable time at the resolution the facts provide, and it started with zero minutes of lateness. The primary's failure at 1:30 AM is what made this the episode's path. Had the fallback not existed or also failed, the facts show no other output for the day.&lt;/p&gt;
-
-&lt;h3&gt;The second fallback is this review's own run&lt;/h3&gt;
-&lt;p&gt;Fallback 2 was scheduled for 3:05 AM Pacific and is the run producing this document. It was created on time, with zero minutes late, and has no finish time or conclusion yet. The facts record its status as running this review, so the review cannot report on its outcome. Its URL is &lt;code&gt;https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38130708411&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Three runs, one scheduler, a fixed ladder&lt;/h3&gt;
-&lt;p&gt;The schedule is a primary at 1:05 AM followed by fallbacks at two-hour-minus-a-few-minutes intervals, 2:05 AM and 3:05 AM Pacific. Each rung fired exactly on time. The pipeline does not appear to have been held up by scheduling; the sequence reached the success state through the second rung. The facts say nothing about why the primary failed, so the schedule's correctness is established only for timing, not for the reason the first attempt did not produce output.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>

@@ -1,5 +1,250 @@
 [
   {
+    "date": "2026-11-10",
+    "title": "Episode Review — Cariboo Signals, November 10, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-10.html",
+    "content_html": "<p class=\"meta\">Focus: Agriculture &amp; Ranching (week 1 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/42779921268\">42779921268</a>.</p>\n\n<div class=\"verdict lvl-good\"><span class=\"icon\" aria-hidden=\"true\">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>\n\n<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>\n\n<h2>What happened</h2>\n<h3>Run went through on schedule with no fallbacks needed</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:32 AM Pacific with no minutes late. Both fallback slots were scheduled at 2:05 AM and 3:05 AM Pacific; the 2:05 AM fallback completed as well. Nothing needed rescue. The third run, at 3:05 AM Pacific, is this review's own run and is still in progress.</p>\n\n<h3>Script came in under target, then shipped at 3791 words</h3>\n<p>The first draft was 2825 words against a 3400-word target. It was sent back for one expand pass and shipped at 3791 words, above target. The expand pass overshot rather than landing at the target, so the shipped length is the final number to track, not the first draft.</p>\n<p>Two deep dives aired, and Casey's share of deep-dive words was 44 percent. Of the roundup citations, 12 of 18 matched. The debate question is about forestry money and restart priority going to incumbent mill operators versus newcomers, and how to reconcile federal and Nation review processes.</p>\n\n<h3>Roundup dropped 35 stories to the airtime budget</h3>\n<p>35 stories were cut from the roundup pool by the airtime budget under NEWS_ROUNDUP_COUNT. This is by design: the pool is larger than one segment can air, and a cut story can resurface on a better-matched day. The roundup citation match of 12 of 18 is the figure to watch alongside it, since it describes only the stories that aired.</p>\n<p>Change NEWS_ROUNDUP_COUNT in the config only if the cut count stays this high across several nights and the stories being dropped are ones the maintainer wants aired.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>2 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.81, 3791 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 44% of the words</td></tr>\n<tr><td>Audio</td><td>23.5 min</td></tr>\n<tr><td>Audio size</td><td>21.5 MB</td></tr>\n<tr><td>Citations matched</td><td>12/18 roundup, 2/2 deep dive</td></tr>\n<tr><td>Feed</td><td>286 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>80,236</td></tr>\n<tr><td>API calls</td><td>22 total: claude 12 · brave-search 4 · brave-answers 4 · kagi-extract 2</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-10T10:05:59+00:00",
+    "metrics": {
+      "audio_minutes": 23.5,
+      "script_words": 3791,
+      "tell_hits": 1,
+      "roundup_cite_pct": 66.7,
+      "deep_dive_cite_pct": 100.0
+    },
+    "summary": {
+      "level": "good",
+      "label": "Shipped clean",
+      "summary": "Nothing broke and nothing fell back.",
+      "theme": "",
+      "kpis": [
+        [
+          "Episode",
+          "23.5 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,791",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "12/18 · 2/2",
+          "roundup · deep dive"
+        ],
+        [
+          "Done at",
+          "1:32 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [],
+      "cycle": [
+        {
+          "date": "2026-11-09",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 4,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-10",
+          "day": "Tue",
+          "today": true,
+          "theme": "Working Lands & Industry",
+          "focus": "Agriculture & Ranching",
+          "week": 1,
+          "of": 4,
+          "next": "Forestry & Timber",
+          "event": null
+        },
+        {
+          "date": "2026-11-11",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 4,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-12",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Governance, Title & Treaty",
+          "week": 1,
+          "of": 4,
+          "next": "Language & Culture",
+          "event": null
+        },
+        {
+          "date": "2026-11-13",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 3,
+          "next": "Wildfire & Climate Resilience",
+          "event": null
+        },
+        {
+          "date": "2026-11-14",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-15",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 4,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "Is it fair to help the people who are already helping?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://elpais.com/economia/2026-11-06/el-mecanismo-para-retirar-parte-de-la-produccion-de-aceite-satisface-a-los-productores-y-disgusta-a-la-industria-del-envasado.html",
+          "title": "[elpais.com] Spain orders olive mills to store 12% of olive oil output until September 2027",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://meatingplace.com/turkeys-remain-under-hpai-pressure-cases-surge-in-northwest-cattle/",
+          "title": "[meatingplace.com] H5N1 detections hit 40 Washington dairy herds as cases surge",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://agrointel.ro/362463/agri4future-romania-obiectiv-2035-conferinta-nationala-a-clubului-fermierilor-romani-a-reunit-peste-500-de-participanti",
+          "title": "[agrointel.ro] Romanian farmers press for post-2027 EU farm policy and investment",
+          "source": "",
+          "theme_pct": 98,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.woodbusiness.ca/cfo-welcomes-federal-forest-investment-while-calling-for-private-forests-to-be-part-of-the-solution/",
+          "title": "[Canadian Forest Industries] CFO welcomes federal forest investment while calling for private forests to be part of the solution",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.realagriculture.com/2026/11/it-takes-more-than-great-genetics-secan-at-50/",
+          "title": "[RealAgriculture] It takes more than great genetics: SeCan at 50",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/fa-rba-ttrad-la-nsamhet-fa-r-lantbruket-inom-mja-lk-gris-och-na-t-fortsatt-tufft-fa-r-va-xtodling",
+          "title": "[dagenslantbruk.se] Swedish farm survey finds smaller dairy producers plan exits",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.farmersweekly.co.nz/technology/ai-cow-monitoring-technology-gains-ground-on-nz-dairy-farms/",
+          "title": "[farmersweekly.co.nz] Farm technology advances in dairy monitoring, milking and livestock drone trials",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/a-ngs-och-betesmarkernas-naturva-rden-a-r-stabila-med-smajpy-skillnader-a-ver-tid",
+          "title": "[dagenslantbruk.se] Farmers urged to tailor grazing to grassland recovery and climate",
+          "source": "",
+          "theme_pct": 95,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.smallfarmcanada.ca/news/pei-farmers-can-dispose-of-old-pesticides-and-livestock-medi/",
+          "title": "[Small Farm Canada] PEI Farmers Can Dispose of Old Pesticides and Livestock Medications for Free",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.americanagnetwork.com/2026/11/03/usda-invests-nearly-4-million-to-expand-kansas-meat-processing-capacity-strengthen-competition-and-support-american-ranchers/",
+          "title": "[americanagnetwork.com] USDA moves nearly $4 million to expand Kansas meat processing",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.farmersweekly.co.nz/lifestyle/rural-lifestyle-leisure/from-celery-to-sunflowers-family-farm-finds-new-ways-to-thrive/",
+          "title": "[farmersweekly.co.nz] Farmers turn to visitor attractions, seed processing and mixed crops for income",
+          "source": "",
+          "theme_pct": 91,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.jeuneafrique.com/1859308/societe/lutte-contre-lorpaillage-illegal-en-guinee-pourquoi-loffensive-de-mamadi-doumbouya-tend-les-relations-avec-laes/",
+          "title": "[jeuneafrique.com] Guinea’s Siguiri gold crackdown sends West African miners into Mali",
+          "source": "",
+          "theme_pct": 91,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/09/Mystery-Vital-Vanishing-Cottonwoods/",
+          "title": "[The Tyee] The Mystery of the Vital, Vanishing Cottonwoods",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/10/29/What-Will-Happen-BC-Old-Growth-Conservatives/",
+          "title": "[The Tyee] What Will Happen to BC’s Old Growth Under the Conservatives?",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/farmers-plan-integrerar-med-agronod-lantbrukare-kan-ajpyteranva-nda-data-och-fajpy-sa-krare-va-xtskydd",
+          "title": "[dagenslantbruk.se] Swedish farm-data tools target paperwork, crop protection and field work",
+          "source": "",
+          "theme_pct": 89,
+          "aired": true
+        }
+      ]
+    }
+  },
+  {
     "date": "2026-11-09",
     "title": "Episode Review — Cariboo Signals, November 9, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-09.html",
@@ -1239,13 +1484,5 @@
       "roundup_cite_pct": 85.7,
       "deep_dive_cite_pct": 66.7
     }
-  },
-  {
-    "date": "2026-10-11",
-    "title": "Episode Review — Cariboo Signals, October 11, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-11.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38127132745\">38127132745</a>.</em></p>\n\n<h3>The primary run failed at 1:30 AM Pacific</h3>\n<p>The primary run, triggered at 1:05 AM Pacific by the Cloudflare scheduler, ran to completion and returned a failure conclusion. It started on time, with zero minutes of lateness, and finished at 1:30 AM Pacific. The facts record the outcome and the timestamps but do not record which step failed or why, so this review cannot name the cause. The run's log at the URL below is where that detail lives: <code>https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38123593506</code>.</p>\n\n<h3>The first fallback produced the day's episode</h3>\n<p>Fallback 1 fired at 2:05 AM Pacific, also through the Cloudflare scheduler, and succeeded. It was created and finished at 2:05 AM Pacific, so the run took no measurable time at the resolution the facts provide, and it started with zero minutes of lateness. The primary's failure at 1:30 AM is what made this the episode's path. Had the fallback not existed or also failed, the facts show no other output for the day.</p>\n\n<h3>The second fallback is this review's own run</h3>\n<p>Fallback 2 was scheduled for 3:05 AM Pacific and is the run producing this document. It was created on time, with zero minutes late, and has no finish time or conclusion yet. The facts record its status as running this review, so the review cannot report on its outcome. Its URL is <code>https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38130708411</code>.</p>\n\n<h3>Three runs, one scheduler, a fixed ladder</h3>\n<p>The schedule is a primary at 1:05 AM followed by fallbacks at two-hour-minus-a-few-minutes intervals, 2:05 AM and 3:05 AM Pacific. Each rung fired exactly on time. The pipeline does not appear to have been held up by scheduling; the sequence reached the success state through the second rung. The facts say nothing about why the primary failed, so the schedule's correctness is established only for timing, not for the reason the first attempt did not produce output.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>failure</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-11T10:06:08+00:00",
-    "metrics": {}
   }
 ]
