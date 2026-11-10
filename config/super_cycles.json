@@ -1,5 +1,5 @@
 {
-  "_comment": "Multi-week rotating focus within each daily theme. Cycle position is calendar-derived: (date.toordinal() // 7) % cycle_length per weekday — stateless and predictable. Saturday (5) is intentionally absent: Cariboo Local Affairs stays broad and acts as the release valve for urgent local stories. Focus keywords narrow the base theme; base theme keywords remain the fallback when a focus week is thin.",
+  "_comment": "Multi-week rotating focus within each daily theme. Cycle position is calendar-derived: (date.toordinal() // 7) % cycle_length per weekday — stateless and predictable. Saturday (5) is intentionally absent: Cariboo Local Affairs stays broad and acts as the release valve for urgent local stories. Focus keywords narrow the base theme; base theme keywords remain the fallback when a focus week is thin. A focus may set name_keywords to replace the name words _build_focus_keywords adds (use it when a name word has another common sense, e.g. 'work').",
   "0": {
     "cycle": [
       {
@@ -282,6 +282,9 @@
       {
         "slug": "remote-work-broadband",
         "name": "Remote Work & Broadband",
+        "name_keywords": [
+          "broadband"
+        ],
         "keywords": [
           "broadband",
           "high-speed internet",
@@ -460,6 +463,9 @@
       {
         "slug": "conservation-environment",
         "name": "Conservation & the Environment",
+        "name_keywords": [
+          "conservation"
+        ],
         "keywords": [
           "environmental protection",
           "environmental assessment",
@@ -576,6 +582,9 @@
       {
         "slug": "health-wellness-aging",
         "name": "Health, Wellness & Aging",
+        "name_keywords": [
+          "wellness"
+        ],
         "keywords": [
           "healthy aging",
           "healthy ageing",

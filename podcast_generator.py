@@ -8142,10 +8142,18 @@ def _build_theme_lens(theme_name, focus=None, event_focus=None, extra_events=())
 
 
 def _build_focus_keywords(focus) -> list:
-    """Lowercased keyword list for a super-cycle focus (name words + config keywords)."""
+    """Lowercased keyword list for a super-cycle focus (name words + config keywords).
+
+    A focus whose name carries a bare word with another common sense ("Remote
+    Work": `work`) lists the name words that are safe in `name_keywords`; one
+    focus hit admits an article to the deep-dive pool.
+    """
     if not focus:
         return []
-    keywords = [w.lower() for w in focus.get('name', '').split() if len(w) > 3]
+    if 'name_keywords' in focus:
+        keywords = [w.lower() for w in focus['name_keywords']]
+    else:
+        keywords = [w.lower() for w in focus.get('name', '').split() if len(w) > 3]
     keywords.extend(k.lower() for k in focus.get('keywords', []))
     seen = set()
     return [k for k in keywords if not (k in seen or seen.add(k))]

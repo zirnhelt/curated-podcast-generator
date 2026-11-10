@@ -1730,3 +1730,26 @@ class TestCohereDeepDiveRerank:
         monkeypatch.setattr(ce, "_degradations", ["deep-dive rerank: failed"])
         pg._report_cohere_degradations("script/cohere")
         assert rows == [("script/cohere", "deep-dive rerank: failed")]
+
+
+class TestFocusNameKeywords:
+    def test_name_words_added_by_default(self):
+        kws = pg._build_focus_keywords({"name": "Forestry & Timber", "keywords": ["mill"]})
+        assert "forestry" in kws and "timber" in kws and "mill" in kws
+
+    def test_name_keywords_replaces_name_words(self):
+        focus = {"name": "Remote Work & Broadband", "name_keywords": ["broadband"],
+                 "keywords": ["remote work"]}
+        kws = pg._build_focus_keywords(focus)
+        assert "work" not in kws and "remote" not in kws
+        assert "broadband" in kws and "remote work" in kws
+
+    def test_no_configured_name_word_has_a_common_other_sense(self):
+        risky = {"work", "remote", "environment", "aging", "health", "tech", "life"}
+        for day, cfg in load_super_cycles_config().items():
+            if day.startswith("_"):
+                continue
+            for focus in cfg["cycle"]:
+                if "name_keywords" not in focus:
+                    continue
+                assert not risky & set(pg._build_focus_keywords(focus)), focus["slug"]
