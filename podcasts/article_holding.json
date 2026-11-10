@@ -246,7 +246,8 @@
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-10"
   },
   "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754": {
     "article": {
@@ -323,7 +324,8 @@
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-10"
   },
   "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned": {
     "article": {
@@ -443,7 +445,8 @@
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-10"
   },
   "https://www.realagriculture.com/2026/11/agris-taps-ai-to-turn-farm-data-into-better-agronomic-decisions/": {
     "article": {
@@ -481,7 +484,8 @@
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-10"
   },
   "https://e360.yale.edu/features/super-el-nino-agriculture": {
     "article": {
@@ -519,7 +523,8 @@
     "target_weekday": 1,
     "target_focus_slug": "agriculture-ranching",
     "target_focus_name": "Agriculture & Ranching",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-10"
   },
   "https://www.technologyreview.com/2026/10/29/1147735/climate-models-blind-spot/": {
     "article": {
@@ -555,44 +560,6 @@
         "shown_at": "2026-11-01T06:08:00.497046+00:00"
       },
       "_boosted_score": 53
-    },
-    "held_date": "2026-11-07",
-    "target_date": "2026-11-20",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
-  },
-  "https://passivehouseplus.co.uk/news/events/dublin-takes-centre-stage-for-europe-s-renovation-push": {
-    "article": {
-      "id": "https://passivehouseplus.co.uk/news/events/dublin-takes-centre-stage-for-europe-s-renovation-push",
-      "url": "https://passivehouseplus.co.uk/news/events/dublin-takes-centre-stage-for-europe-s-renovation-push",
-      "title": "[Articles - passivehouseplus.co.uk] Dublin takes centre stage for Europe's renovation push",
-      "content_html": "<img src=\"https://passivehouseplus.co.uk/media/k2/items/cache/201bd62c004030ca362fe962affecde5_S.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fpassivehouseplus.co.uk%2Fnews%2Fevents%2Fdublin-takes-centre-stage-for-europe-s-renovation-push\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div class=\"K2FeedImage\"><img alt=\"Dublin takes centre stage for Europe's renovation push\" src=\"https://passivehouseplus.co.uk/media/k2/items/cache/201bd62c004030ca362fe962affecde5_S.jpg\"/></div><div class=\"K2FeedIntroText\"><p>Building renovation will be centre stage in Ireland\u2019s EU presidency on 5 November \u2013 with a key retrofit event in an RIAI Sustainability Award-winning retrofit in Dublin.</p> <p>Renovate Europe Day 2026 will bring both commission and ministerial voices to the Department of Climate.</p></div>",
-      "summary": "Building renovation will be centre stage in Ireland\u2019s EU presidency on 5 November \u2013 with a key retrofit event in an RIAI Sustainability Award-winning retrofit in Dublin. Renovate Europe Day 2026 will bring both commission and ministerial voices to the Department of Climate.",
-      "_excerpt": "Building renovation will be centre stage in Ireland\u2019s EU presidency on 5 November \u2013 with a key retrofit event in an RIAI Sustainability Award-winning retrofit in Dublin. Renovate Europe Day 2026 will bring both commission and ministerial voices to the Department of Climate.",
-      "date_published": "2026-10-28T14:25:32+00:00",
-      "authors": [
-        {
-          "name": "Articles - passivehouseplus.co.uk",
-          "url": "https://passivehouseplus.co.uk/"
-        }
-      ],
-      "ai_score": 48,
-      "_quality": 52,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 56,
-      "_theme_score_raw": 5,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 49,
-      "_keyword_matches": 0,
-      "_category": "design",
-      "_source_category": "design",
-      "_is_bonus": true,
-      "image": "https://passivehouseplus.co.uk/media/k2/items/cache/201bd62c004030ca362fe962affecde5_S.jpg",
-      "_boosted_score": 48
     },
     "held_date": "2026-11-07",
     "target_date": "2026-11-20",
@@ -771,6 +738,92 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://100milefreepress.net/2026/10/30/interlakes-community-buys-fire-department-a-new-pickup-truck/": {
+    "article": {
+      "id": "https://100milefreepress.net/2026/10/30/interlakes-community-buys-fire-department-a-new-pickup-truck/",
+      "url": "https://100milefreepress.net/2026/10/30/interlakes-community-buys-fire-department-a-new-pickup-truck/",
+      "title": "[100 Mile Free Press] Interlakes community buys fire department a new pickup truck",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F10%2F30%2Finterlakes-community-buys-fire-department-a-new-pickup-truck%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n",
+      "summary": "",
+      "_excerpt": "",
+      "date_published": "2026-10-31T06:02:41.828056+00:00",
+      "authors": [
+        {
+          "name": "100 Mile Free Press",
+          "url": "https://100milefreepress.net"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 50,
+      "_relevance": 0,
+      "_local": 85,
+      "_theme_score": 74,
+      "_theme_score_raw": 22,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 59,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "friday",
+        "label": "Wild Spaces & Outdoor Life",
+        "shown_at": "2026-11-06T06:11:15.551820+00:00"
+      },
+      "_boosted_score": 63,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-10",
+    "target_date": "2026-12-02",
+    "target_weekday": 2,
+    "target_focus_slug": "vehicles-field-gear",
+    "target_focus_name": "Vehicles & Field Gear",
+    "status": "aired_early"
+  },
+  "https://www.sciencedaily.com/releases/2026/10/261027231200.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/10/261027231200.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261027231200.htm",
+      "title": "[ScienceDaily] Scientists confirm global warming is accelerating faster than ever recorded",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261027231200.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEarth is warming faster than ever recorded, with scientists detecting a major acceleration in global temperatures since around 2015. A new study reveals that the warming rate has surged to approximately 0.35\u00b0C per decade, nearly double the average pace observed from 1970 to 2015. After removing natural climate fluctuations, researchers confirmed the acceleration with more than 98% statistical confidence.",
+      "summary": "Earth is warming faster than ever recorded, with scientists detecting a major acceleration in global temperatures since around 2015. A new study reveals that the warming rate has surged to approximately 0.35\u00b0C per decade, nearly double the average pace observed from 1970 to 2015. After removing",
+      "_excerpt": "Earth is warming faster than ever recorded, with scientists detecting a major acceleration in global temperatures since around 2015. A new study reveals that the warming rate has surged to approximately 0.35\u00b0C per decade, nearly double the average pace observed from 1970 to 2015. After removing natural climate fluctuations, researchers confirmed the acceleration with more than 98% statistical confidence.",
+      "date_published": "2026-10-30T03:50:51+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 70,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 38,
+      "_theme_score_raw": 4,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 45,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "friday",
+        "label": "Wild Spaces & Outdoor Life",
+        "shown_at": "2026-11-06T06:11:15.551820+00:00"
+      },
+      "_boosted_score": 50
+    },
+    "held_date": "2026-11-10",
+    "target_date": "2026-11-22",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
   }
 }

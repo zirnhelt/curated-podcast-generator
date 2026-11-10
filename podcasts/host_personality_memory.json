@@ -25,21 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-09-20",
-        "clue": "tech-optimism:x \u2014 conceded wonder insufficient without distribution pathway",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-09-21",
-        "clue": "rural-context:+ \u2014 Genuine frustration with volunteer-hall friction, moved concrete",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-09-23",
-        "clue": "structural-lens:~[pause:600]inverter-undersizing parallels GPU connector-melt exactly",
-        "occurrences": 1
-      },
-      {
         "date": "2026-09-23",
         "clue": "Indigenous-tech:+local-First-Nations-infrastructure-model-as-template-for-private-systems",
         "occurrences": 1
@@ -172,6 +157,21 @@
       {
         "date": "2026-11-09",
         "clue": "evidence-bar:- \u2014 softens demand for records, accepting a curator as a named door",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-10",
+        "clue": "community-trust:+ Nation-set criteria as model for trustworthy restart",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-10",
+        "clue": "evidence-bar:~ Framework is a template, not a fix for Quesnel",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-10",
+        "clue": "funding-risk:x Concedes six-year horizon is not enough alone",
         "occurrences": 1
       }
     ],
@@ -319,21 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-08-23",
-        "clue": "evidence-bar:+[signal] \u2014 Pressed harder on gap between finding and product",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-04",
-        "clue": "pilot-skepticism:x \u2014 Granted one season beats zero baseline",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-10-23",
-        "clue": "evidence-bar:x \u2014 concedes public logs are the only way forward",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-23",
         "clue": "evidence-bar:xdata-existing-vs-findable-problem-distinction-surfaces",
         "occurrences": 1
@@ -466,6 +451,21 @@
       {
         "date": "2026-11-09",
         "clue": "evidence-bar:+ \u2014 insists on seeing two years of programs before believing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-10",
+        "clue": "community-trust:+ Consultation is a schedule, not a Crown duty discharge",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-10",
+        "clue": "funding-risk:+ Training and modernization money go to existing owners",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-10",
+        "clue": "evidence-bar:+ Demands a real restart example before accepting the model",
         "occurrences": 1
       }
     ],

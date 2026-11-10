@@ -728,5 +728,27 @@
     "date": "2026-11-09",
     "focus": "film-screen",
     "focus_name": "Film & Screen"
+  },
+  "2026-11-10": {
+    "timestamp": 1794298510.505787,
+    "topics": [
+      "[Williams Lake Tribune] Millar Western to indefinitely curta",
+      "[Williams Lake Tribune] All-Ways Travels earns Williams Lake",
+      "[My Cariboo Now] Anonymous donor challenges Quesnel and area",
+      "[My Cariboo Now] What\u2019s in the federal budget for B.C.?",
+      "[Quesnel Cariboo Observer] Quesnel\u2019s new mayor and council g",
+      "[T\u015dilhqot\u2019in National Government] \u201cOur Laws for Our Lands\u201d: ",
+      "[My Cariboo Now] B.C\u2019s forestry leaders welcome federal fund",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-10",
+    "focus": "agriculture-ranching",
+    "focus_name": "Agriculture & Ranching"
   }
 }
