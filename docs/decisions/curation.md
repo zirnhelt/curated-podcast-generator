@@ -603,6 +603,7 @@ review called it clean:
   headline word pair with another roundup story (`_title_subject_keys`: adjacent content
   words, place names and generic pairs such as "climate change" excluded). When the better
   half of the remaining standalones is empty, there is no kicker.
+- **An event notice is not a deep dive (2026-11-09).** The Cariboo bar took the 100 Mile Free Press's Remembrance Day services notice (times, parade order, who marches; raw 38 on Arts day, so it cleared the local floor) as a one-source lead over four Cohere-picked arts stories, and the weekly question turned a commemoration into a debate about who organizes it. The pick prompt now says a notice of an event's times, places and participants does not pass; it airs in the roundup.
 - **A deep dive no one in the Cariboo needed.** The rules ranked theme and focus fit only, and
   the stitched sources (an FCC chip ban, Lego ad scams, a crypto sanction, an NYT essay) became
   a "trust" debate. 2026-10-27's (Chile, Sudan, Argentina mining) was as far away, but sounded

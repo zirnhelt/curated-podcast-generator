@@ -656,6 +656,8 @@ variable overrides it, and `claude-haiku-5-5` rolls back. A Sonnet 5.5 decline r
 (`_REFUSAL_FALLBACK`). Read the plans in the citations JSON (`storyboard`) for a week against the
 Haiku ones from 2026-10-27 to 2026-10-31 before keeping it.
 
+**A pushback is a fact, never a gap (2026-11-09).** The producer heard Casey "arguing just for the sake of arguing" about Remembrance Day. The storyboard had planned every one of his pushbacks on what a one-source services notice did not say ("says nothing about who decided", "the excerpt does not show"). The script and polish prompts ban narrating a source's gaps, the storyboard prompt did not, so polish cut the lines (`source_gap_narration` 0) and left him insinuating with no fact under him. The pushback rule now says it rests on a fact in the material, and that a question the material gives the other host nothing to push on is the wrong question. The same day's standing note keeps Remembrance Day and memorial services out of debate altogether.
+
 ## The hosts' stances cover land and resource stories (2026-11-03)
 
 The producer heard the deep-dive hosts "take a role reversal of their usual positions" on the

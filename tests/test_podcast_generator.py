@@ -7877,6 +7877,25 @@ class TestCaribooDeepDivePick:
         assert dd[0]["_cariboo_angle"].startswith("A cracked screen")
         assert dd[2]["_recalled_from"] == "Thursday"
 
+    def test_an_event_notice_cannot_lead(self, monkeypatch):
+        """2026-11-09: a Remembrance Day services notice (times, parade order) led the
+        deep dive alone and became a debate about who organizes the service."""
+        import podcast_generator as pg
+        client = self._client({"passes": [], "lead": 0, "same_story": [], "local_context": 0,
+                               "cariboo_angle": ""})
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
+        pg.pick_cariboo_deep_dive([dict(a) for a in self.CANDS], 4, "Arts")
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "A notice of an event's times, places and participants does not pass" in prompt
+
+    def test_storyboard_pushback_never_rests_on_a_gap(self):
+        """2026-11-09: every planned Casey pushback was what a one-source notice did
+        not say; polish cut the lines and left him arguing from nothing."""
+        import config_loader
+        template = config_loader.load_prompts_config()["script_storyboard"]["template"]
+        assert "never on what the material leaves out" in template
+
     def test_a_neighbouring_story_is_not_a_report_of_the_lead(self, monkeypatch):
         """2026-11-04 took Anduril-laptop and FCC-ban stories as reports of an
         EU-repairability story; a real report shares a headline word."""
