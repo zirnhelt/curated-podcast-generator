@@ -1189,20 +1189,44 @@ def _review_credit_label() -> str:
     return _review_model_used or POLISH_MODEL
 
 
-def select_review_model(deep_dive_articles):
+# One answered question in the research agent's block (research_deep_dive_with_agent
+# writes "RESEARCH QUESTION: ...\nFindings: ..." per useful finding, or NONE).
+_RESEARCH_FINDING = re.compile(r"^Findings:[ \t]*\S", re.MULTILINE)
+
+
+def _deep_dive_source_count(deep_dive_articles, research_insights=None) -> int:
+    """How many independently sourced pieces stand behind the deep dive.
+
+    An article row is one, a Kagi News cluster is as many as it merged
+    (`_kite_sources`), and each answered question in the pre-generation
+    research block is one more. Counting rows alone called every one-story
+    deep dive thin, however well researched, once the Cariboo bar made one
+    story the usual shape. A story with no research behind it is still thin.
+    """
+    count = 0
+    for article in deep_dive_articles or []:
+        kite = article.get("_kite_sources") if isinstance(article, dict) else None
+        count += max(len(kite), 1) if isinstance(kite, (list, tuple)) else 1
+    if isinstance(research_insights, str):
+        count += len(_RESEARCH_FINDING.findall(research_insights))
+    return count
+
+
+def select_review_model(deep_dive_articles, research_insights=None):
     """Return the model to use for the polish+factcheck pass.
 
     Escalates to Opus when either signal indicates the polish pass needs more
     capability:
-      - Thin sourcing (few deep-dive articles): less verified material means the
-        generator relied more on training-data recall, increasing hallucination risk.
+      - Thin sourcing (few sources behind the deep dive, `_deep_dive_source_count`):
+        less verified material means the generator relied more on training-data
+        recall, increasing hallucination risk.
       - High raw quality hits: the pre-polish script had many AI speech pattern
         violations, meaning the polish model has more stylistic work to do.
 
     Override behaviour via environment variables:
       PODCAST_FORCE_OPUS_REVIEW=1     — always use Opus
       PODCAST_FORCE_OPUS_REVIEW=0     — always use Sonnet (POLISH_MODEL)
-      OPUS_REVIEW_ARTICLE_THRESHOLD   — article count below which Opus is used
+      OPUS_REVIEW_ARTICLE_THRESHOLD   — source count below which Opus is used
       OPUS_QUALITY_HIT_THRESHOLD      — pattern hit count above which Opus is used
     """
     global _review_model_used
@@ -1216,8 +1240,8 @@ def select_review_model(deep_dive_articles):
         _review_model_used = POLISH_MODEL
         return POLISH_MODEL
 
-    article_count = len(deep_dive_articles) if deep_dive_articles else 0
-    thin_sourcing = article_count < OPUS_REVIEW_ARTICLE_THRESHOLD
+    source_count = _deep_dive_source_count(deep_dive_articles, research_insights)
+    thin_sourcing = source_count < OPUS_REVIEW_ARTICLE_THRESHOLD
 
     quality_hits = _raw_quality_score.get("total_hits", 0) if _raw_quality_score else 0
     poor_quality = quality_hits > OPUS_QUALITY_HIT_THRESHOLD
@@ -1226,7 +1250,7 @@ def select_review_model(deep_dive_articles):
         reasons = []
         if thin_sourcing:
             reasons.append(
-                f"thin sourcing: {article_count} deep-dive articles < threshold {OPUS_REVIEW_ARTICLE_THRESHOLD}"
+                f"thin sourcing: {source_count} deep-dive sources < threshold {OPUS_REVIEW_ARTICLE_THRESHOLD}"
             )
         if poor_quality:
             reasons.append(
@@ -1236,7 +1260,7 @@ def select_review_model(deep_dive_articles):
         _review_model_used = OPUS_REVIEW_MODEL
         return OPUS_REVIEW_MODEL
 
-    print(f"   Review model: {POLISH_MODEL} ({article_count} articles, {quality_hits} quality hits)")
+    print(f"   Review model: {POLISH_MODEL} ({source_count} sources, {quality_hits} quality hits)")
     _review_model_used = POLISH_MODEL
     return POLISH_MODEL
 
@@ -4853,7 +4877,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         + _storyboard_polish_addendum(storyboard) \
         + _polish_length_addendum(script)
 
-    review_model = model or select_review_model(deep_dive_articles)
+    review_model = model or select_review_model(deep_dive_articles, research_insights)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     tools = [WEB_SEARCH_TOOL] if brave_key else []
     tool_executors = {"web_search": _web_search_tool_executor} if brave_key else {}
@@ -4933,7 +4957,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         "Segment:\n" + deep_dive_section
     )
 
-    review_model = select_review_model(deep_dive_articles)
+    review_model = select_review_model(deep_dive_articles, research_insights)
     try:
         print("📦 Submitting post-processing batch (polish+factcheck + debate summary)...")
         print(f"   Debate summary model: {SUMMARY_MODEL}")
@@ -4976,19 +5000,21 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         return None
 
 
-def poll_batch_completion(batch_id):
+def poll_batch_completion(batch_id, timeout: int | None = None):
     """Poll a Message Batch until it reaches a terminal state.
 
-    Returns the final batch object, or None on timeout/error.
+    Returns the final batch object, or None on timeout/error. `timeout` (seconds)
+    overrides BATCH_POLL_TIMEOUT for a batch whose fallback is cheap.
     """
     import time
 
     client = get_anthropic_client()
     if not client:
         return None
+    timeout = BATCH_POLL_TIMEOUT if timeout is None else timeout
 
     elapsed = 0
-    while elapsed < BATCH_POLL_TIMEOUT:
+    while elapsed < timeout:
         try:
             batch = client.messages.batches.retrieve(batch_id)
             status = batch.processing_status
@@ -5011,7 +5037,7 @@ def poll_batch_completion(batch_id):
         time.sleep(BATCH_POLL_INTERVAL)
         elapsed += BATCH_POLL_INTERVAL
 
-    print(f"⚠️ Batch {batch_id} timed out after {BATCH_POLL_TIMEOUT}s")
+    print(f"⚠️ Batch {batch_id} timed out after {timeout}s")
     # Cancel so requests that have not finished are not billed — we're about to
     # fall back to real-time calls. Requests that finished before the cancel
     # are billed regardless.
@@ -10061,6 +10087,14 @@ STORYBOARD_MODEL = os.getenv("CLAUDE_STORYBOARD_MODEL") or SCRIPT_MODEL
 # tokens on 2026-10-30 and 15.4K on Saturday 2026-10-31 (18 stories + 5 sources),
 # which cut the plan off at 16000 and the script ran unplanned.
 STORYBOARD_MAX_TOKENS = 32000
+# The storyboard is one Sonnet call nothing downstream is waiting on to the
+# second, so it goes through the Batch API at half price (about $0.09 -> $0.045
+# a night, 2026-11). The wait is short on purpose: past it the batch is
+# cancelled and the plan is made in real time, which costs the full price once
+# more if the batch had already finished. PODCAST_STORYBOARD_BATCH=0 (or
+# PODCAST_USE_BATCH=0) plans in real time.
+STORYBOARD_BATCH = os.getenv("PODCAST_STORYBOARD_BATCH", "1") != "0"
+STORYBOARD_BATCH_TIMEOUT = int(os.getenv("PODCAST_STORYBOARD_BATCH_TIMEOUT", "300"))
 # The citations record what the script was told to follow; set per run.
 _storyboard_used: dict | None = None
 # The roundup in the applied plan's order, for storyboard_flow_line; set per run.
@@ -10116,6 +10150,33 @@ _STORYBOARD_SCHEMA = {
 }
 
 
+def _storyboard_via_batch(client, params: dict) -> dict | None:
+    """The storyboard as a one-request batch: {"text", "truncated"}, or None.
+
+    None means the caller plans in real time: the batch could not be submitted,
+    did not finish inside STORYBOARD_BATCH_TIMEOUT, errored, or was declined
+    (the real-time call has the refusal retry a batch cannot have). Every None
+    is a `script/storyboard-batch` degradation, because the fallback pays again.
+    """
+    try:
+        batch = client.messages.batches.create(
+            requests=[{"custom_id": "storyboard", "params": params}])
+    except Exception as e:
+        _abort_if_billing_wall(e)
+        degrade("script/storyboard-batch", f"batch not submitted ({e}); planned in real time")
+        return None
+    print(f"📦 Storyboard batch submitted: {batch.id}")
+    if not poll_batch_completion(batch.id, timeout=STORYBOARD_BATCH_TIMEOUT):
+        degrade("script/storyboard-batch",
+                f"batch not finished in {STORYBOARD_BATCH_TIMEOUT}s; planned in real time")
+        return None
+    result = collect_batch_results(batch.id).get("storyboard")
+    if not result or not (result["text"] or result["truncated"]):
+        degrade("script/storyboard-batch", "batch returned no plan; planned in real time")
+        return None
+    return result
+
+
 def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text: str,
                       theme_name: str, theme_lens: str, anchor_block: str,
                       debate_history: str, weekday: str, week_so_far: str = "") -> dict | None:
@@ -10139,20 +10200,26 @@ def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text
         deep_dive_text=deep_dive_text,
     )
     output_config = {"effort": THINKING_EFFORT, **_json_output(_STORYBOARD_SCHEMA)}
-    try:
-        response = api_retry(lambda: create_message(
-            client, model=STORYBOARD_MODEL, max_tokens=STORYBOARD_MAX_TOKENS,
-            messages=[{"role": "user", "content": prompt}],
-            output_config=output_config,
-        ))
-    except Exception as e:
-        _abort_if_billing_wall(e)  # the caller's fallback is to write unplanned
-        raise
-    _log_claude_usage(response)
-    if _truncated(response):
+    params = {
+        "model": STORYBOARD_MODEL, "max_tokens": STORYBOARD_MAX_TOKENS,
+        "messages": [{"role": "user", "content": prompt}],
+        "thinking": {"type": "adaptive"},  # what create_message sets in real time
+        "output_config": output_config,
+    }
+    result = (_storyboard_via_batch(client, params)
+              if USE_BATCH_API and STORYBOARD_BATCH else None)
+    if result is None:
+        try:
+            response = api_retry(lambda: create_message(client, **params))
+        except Exception as e:
+            _abort_if_billing_wall(e)  # the caller's fallback is to write unplanned
+            raise
+        _log_claude_usage(response)
+        result = {"text": message_text(response), "truncated": _truncated(response)}
+    if result["truncated"]:
         degrade("script/storyboard", "storyboard truncated at max_tokens; script ran unplanned")
         return None
-    plan = json.loads(message_text(response))
+    plan = json.loads(result["text"])
     if len(plan["deep_dive"]["beats"]) < 2:
         degrade("script/storyboard",
                 f"deep dive plan has {len(plan['deep_dive']['beats'])} beat(s)")

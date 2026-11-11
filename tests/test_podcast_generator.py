@@ -8319,3 +8319,184 @@ def test_claude_rule_files_load_for_files_that_exist() -> None:
         assert not dead, f"{rule.name} paths match no file: {dead}"
         assert f"`{rule.name}`" in (root / "CLAUDE.md").read_text(), \
             f"{rule.name} is missing from CLAUDE.md's 'Where the rules live' table"
+
+
+class TestSelectReviewModelSources:
+    """Thin sourcing counts sources, not article rows.
+
+    The Cariboo bar made a one-story deep dive the usual shape, so the row count
+    sent 8 of 13 polishes to Opus (2026-10-30 to 2026-11-11), researched or not.
+    """
+
+    ONE = [{"title": "Phone repair maths", "url": "https://a.test"}]
+
+    def _pick(self, monkeypatch, articles, research=None, hits=0, force=None):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_raw_quality_score", {"total_hits": hits})
+        if force is None:
+            monkeypatch.delenv("PODCAST_FORCE_OPUS_REVIEW", raising=False)
+        else:
+            monkeypatch.setenv("PODCAST_FORCE_OPUS_REVIEW", force)
+        return pg.select_review_model(articles, research)
+
+    RESEARCH = ("PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\n"
+                "RESEARCH QUESTION: What does the repair cost?\nFindings: NewsBytes reports $999.\n"
+                "Suggested angle: Riley on parts pricing.\n\n"
+                "RESEARCH QUESTION: What does the EU rule require?\nFindings: Spare parts for 7 years.\n")
+
+    def test_one_unresearched_article_is_still_thin(self, monkeypatch):
+        import podcast_generator as pg
+        for research in (None, "", "  \n", "NONE", "RESEARCH QUESTION: q\nFindings:\n"):
+            assert self._pick(monkeypatch, self.ONE, research) == pg.OPUS_REVIEW_MODEL
+        assert self._pick(monkeypatch, []) == pg.OPUS_REVIEW_MODEL
+
+    def test_each_research_finding_is_a_source(self, monkeypatch):
+        """2026-11-11: one article and two answered questions is not thin;
+        2026-11-06: one article and one answered question still is."""
+        import podcast_generator as pg
+        assert pg._deep_dive_source_count(self.ONE, self.RESEARCH) == 3
+        assert self._pick(monkeypatch, self.ONE, self.RESEARCH) == pg.POLISH_MODEL
+        one_finding = self.RESEARCH.split("\n\nRESEARCH QUESTION: What does the EU")[0]
+        assert pg._deep_dive_source_count(self.ONE, one_finding) == 2
+        assert self._pick(monkeypatch, self.ONE, one_finding) == pg.OPUS_REVIEW_MODEL
+
+    def test_a_kagi_cluster_counts_its_outlets(self, monkeypatch):
+        import podcast_generator as pg
+        cluster = [{"title": "Mill curtailment", "_kite_sources": ["CBC", "Tyee", "Tribune"]}]
+        assert pg._deep_dive_source_count(cluster) == 3
+        assert self._pick(monkeypatch, cluster) == pg.POLISH_MODEL
+        assert pg._deep_dive_source_count([{"title": "t", "_kite_sources": []}]) == 1
+
+    def test_three_articles_need_no_research(self, monkeypatch):
+        import podcast_generator as pg
+        assert self._pick(monkeypatch, self.ONE * 3) == pg.POLISH_MODEL
+
+    def test_tell_hits_and_force_flags_are_unchanged(self, monkeypatch):
+        import podcast_generator as pg
+        hits = pg.OPUS_QUALITY_HIT_THRESHOLD + 1
+        assert self._pick(monkeypatch, self.ONE * 4, hits=hits) == pg.OPUS_REVIEW_MODEL
+        assert self._pick(monkeypatch, self.ONE, force="0") == pg.POLISH_MODEL
+        assert self._pick(monkeypatch, self.ONE * 4, force="1") == pg.OPUS_REVIEW_MODEL
+
+    def test_both_polish_paths_pass_the_research(self, monkeypatch):
+        import podcast_generator as pg
+        seen = []
+        monkeypatch.setattr(pg, "select_review_model",
+                            lambda articles, research=None: seen.append(research) or pg.POLISH_MODEL)
+        client = MagicMock()
+        client.messages.batches.create.return_value = MagicMock(id="batch_1")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(pg, "_run_agentic_loop", lambda *a, **kw: None)
+        script = "**RILEY:** hello\n**CASEY:** hi\n" * 50
+        pg.submit_post_processing_batch(script, "Theme", [], self.ONE,
+                                        additional_research="", research_insights="found it")
+        pg.polish_and_factcheck_with_agent(script, "Theme", [], self.ONE,
+                                           research_insights="found it")
+        assert seen == ["found it", "found it"]
+
+
+class TestStoryboardBatch:
+    """The storyboard goes through the Batch API at half price and falls back to
+    the real-time call, with a degrade row, whenever the batch gives no plan."""
+
+    PLAN = {"roundup": {"opening_frame": "f", "stories": [], "handoff": "h"},
+            "deep_dive": {"central_question": "Who owns the last mile?",
+                          "beats": [{"claim": "a"}, {"claim": "b"}]}}
+
+    def _run(self, monkeypatch, batch_result=None, ended=True, submit_error=None,
+             realtime=None, off=None):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "STORYBOARD_BATCH", off != "STORYBOARD_BATCH")
+        monkeypatch.setattr(pg, "USE_BATCH_API", off != "USE_BATCH_API")
+        monkeypatch.setattr(pg, "_RUN_SEGMENTS", [])
+        monkeypatch.setattr(pg, "_unbookend_kicker", lambda plan, arts: None)
+        client = MagicMock()
+        if submit_error:
+            client.messages.batches.create.side_effect = submit_error
+        else:
+            client.messages.batches.create.return_value = MagicMock(id="batch_sb")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        polled = []
+        monkeypatch.setattr(pg, "poll_batch_completion",
+                            lambda batch_id, timeout=None: polled.append(timeout) or (ended or None))
+        monkeypatch.setattr(pg, "collect_batch_results",
+                            lambda batch_id: {"storyboard": batch_result} if batch_result else {})
+        realtime_calls = []
+
+        def create_message(client, **kw):
+            realtime_calls.append(kw)
+            return realtime or _response("end_turn", [_text_block(json.dumps(self.PLAN))])
+        monkeypatch.setattr(pg, "create_message", create_message)
+        monkeypatch.setattr(pg, "_truncated", lambda r: r.stop_reason == "max_tokens")
+        plan = pg.storyboard_script([{"title": "s"}], "1. s", "deep", "Theme", "lens",
+                                    "", "", "Monday")
+        rows = {r["name"]: r["error"] for r in pg._RUN_SEGMENTS}
+        return plan, client, realtime_calls, rows, polled
+
+    def test_a_finished_batch_is_the_plan(self, monkeypatch):
+        import podcast_generator as pg
+        plan, client, realtime_calls, rows, polled = self._run(
+            monkeypatch, {"text": json.dumps(self.PLAN), "truncated": False})
+        assert plan == self.PLAN
+        assert realtime_calls == [] and rows == {}
+        assert polled == [pg.STORYBOARD_BATCH_TIMEOUT]
+        (request,) = client.messages.batches.create.call_args.kwargs["requests"]
+        params = request["params"]
+        assert params["model"] == pg.STORYBOARD_MODEL
+        assert params["max_tokens"] == pg.STORYBOARD_MAX_TOKENS
+        assert params["thinking"] == {"type": "adaptive"}
+        assert "format" in params["output_config"]
+
+    def test_a_timeout_plans_in_real_time_and_degrades(self, monkeypatch):
+        plan, client, realtime_calls, rows, _ = self._run(monkeypatch, ended=False)
+        assert plan == self.PLAN
+        assert len(realtime_calls) == 1
+        assert "planned in real time" in rows["script/storyboard-batch"]
+        # The fallback sends the request the batch carried.
+        (request,) = client.messages.batches.create.call_args.kwargs["requests"]
+        assert realtime_calls[0] == request["params"]
+
+    def test_a_failed_submit_plans_in_real_time(self, monkeypatch):
+        plan, _, realtime_calls, rows, polled = self._run(
+            monkeypatch, submit_error=RuntimeError("503"))
+        assert plan == self.PLAN and len(realtime_calls) == 1 and polled == []
+        assert "not submitted" in rows["script/storyboard-batch"]
+
+    def test_an_errored_or_declined_request_plans_in_real_time(self, monkeypatch):
+        for result in (None, {"text": "", "truncated": False}):
+            plan, _, realtime_calls, rows, _ = self._run(monkeypatch, result)
+            assert plan == self.PLAN and len(realtime_calls) == 1
+            assert "no plan" in rows["script/storyboard-batch"]
+
+    def test_a_truncated_batch_is_not_paid_for_twice(self, monkeypatch):
+        plan, _, realtime_calls, rows, _ = self._run(
+            monkeypatch, {"text": '{"roundup"', "truncated": True})
+        assert plan is None and realtime_calls == []
+        assert "truncated" in rows["script/storyboard"]
+
+    def test_a_billing_wall_on_submit_aborts(self, monkeypatch):
+        import podcast_generator as pg
+
+        def wall(e):
+            raise SystemExit(pg.EXIT_CREDITS_EXHAUSTED)
+        monkeypatch.setattr(pg, "_abort_if_billing_wall", wall)
+        with pytest.raises(SystemExit):
+            self._run(monkeypatch, submit_error=RuntimeError("credit balance is too low"))
+
+    def test_the_switches_turn_it_off(self, monkeypatch):
+        for name in ("STORYBOARD_BATCH", "USE_BATCH_API"):
+            plan, client, realtime_calls, rows, _ = self._run(
+                monkeypatch, {"text": json.dumps(self.PLAN), "truncated": False}, off=name)
+            assert plan == self.PLAN and len(realtime_calls) == 1 and rows == {}
+            client.messages.batches.create.assert_not_called()
+
+    def test_poll_honours_a_short_timeout(self, monkeypatch):
+        import podcast_generator as pg
+        import time
+        client = MagicMock()
+        client.messages.batches.retrieve.return_value.processing_status = "in_progress"
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        monkeypatch.setattr(time, "sleep", lambda s: None)
+        assert pg.poll_batch_completion("batch_sb", timeout=30) is None
+        assert client.messages.batches.retrieve.call_count == 30 // pg.BATCH_POLL_INTERVAL
+        client.messages.batches.cancel.assert_called_once_with("batch_sb")
