@@ -1,14 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-10-21",
-      "words": 3400,
-      "counts": {
-        "mainly": 2,
-        "exactly": 2
-      }
-    },
-    {
       "date": "2026-10-22",
       "words": 3218,
       "counts": {
@@ -156,8 +148,15 @@
       "date": "2026-11-10",
       "words": 3791,
       "counts": {}
+    },
+    {
+      "date": "2026-11-11",
+      "words": 3381,
+      "counts": {
+        "partly": 3
+      }
     }
   ],
   "burned": {},
-  "updated": "2026-11-10"
+  "updated": "2026-11-11"
 }

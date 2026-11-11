@@ -1,0 +1,186 @@
+# Cariboo Signals Podcast Script - 2026-11-11
+# Theme: Repair Culture & Practical Tech
+# Brave: yes
+# Weather: yes
+# Kagi: yes
+# Anchor: Is it fair to help the people who are already helping?
+# Generated: 2026-11-11 01:13:41 MST
+
+**COLD OPEN**
+**CASEY:** Hey there, morning. It's Wednesday, and this stretch of the week is all about Maker and Repair. Today we've got a phone repair bill that could hit a thousand dollars, a folding-screen price nobody published, and a hobbyist's parcel detector for the front step. We're also weighing whether a repair night at the newly reopened Williams Lake library could work. Stick around.
+
+**WELCOME**
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. I'm Casey. It's Wednesday, November 11th, 2026, and today's theme is Repair Culture & Practical Tech. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+**RILEY:** [pause:1000] And I'm Riley. Today we're looking at things you can fix, keep running, and hand down, with a phone repair bill at the centre of it. Quick weather check: out at Horsefly Lake this morning it's overcast and around 7 degrees, with a high of 15 and dense drizzle through the day, about 3 millimetres. Across the Cariboo, 100 Mile House is around 7 and partly cloudy, Williams Lake around 10 and partly cloudy, Quesnel around 9 and partly cloudy, and Tatla Lake around 3 under moderate rain showers.
+
+**CASEY:** Over to the news.
+
+**NEWS ROUNDUP**
+
+**CASEY:** Today is Remembrance Day, and we keep it in mind as we go. The local news is quiet, and the wider tech world is asking who really controls the things we own.
+
+**CASEY:** [pause:1200] The first item is a reopening. The Cariboo Regional District Library's Williams Lake branch reopened on November 3rd after two months of renovations, with repainting, new carpet, new furnishings and a new circulation desk. While the branch was closed, service ran out of outdoor pop-up libraries. Manager of library services Jennifer Coupe spoke at the grand opening celebration yesterday, which began with a prayer from a Williams Lake First Nation elder.
+
+**RILEY:** [pause:1200] Elections B.C.'s final count is in, and it hands the B.C. Conservatives 64 seats out of 93. The NDP has 27 and the Greens have 2, with mail-in and absentee ballots included. In Burnaby South-Metrotown, Conservative David Xie beat NDP incumbent Paul Choi by 64 votes after a recount, which flips that riding from the NDP. Two other ridings have met the threshold for automatic judicial recounts, and applications for a judicial recount are due November 16th.
+
+**CASEY:** Seventeen seats past the 47 needed for a majority.
+
+**CASEY:** [pause:1200] A watermain broke on Anderson Drive in West Quesnel, cutting water to homes between 685 and 835 Anderson. City crews have repaired it and service is back to every property that was affected. The City is asking residents to run their taps until the water runs clear, and traffic on Anderson was single-laned during the work.
+
+**RILEY:** [pause:1200] The Ladies of the Cariboo Lakes are making their last call today for donations toward 50 care bags for 100 Mile House's Canadian Mental Health Association branch. Donations can go by e-transfer, and the group will do the shopping if you'd rather hand over the money. They'll also collect at the Interlakes Community Centre's Christmas craft fair this Saturday, which we mentioned on Tuesday. Packing the bags happens at the Interlakes Community Centre on Tuesday, November 17th, from 9 a.m. to 1 p.m.
+
+**CASEY:** [pause:1200] The Athabasca Chipewyan First Nation, which is in Alberta, has sued British Columbia, the federal government and BC Hydro in B.C. Supreme Court. The suit was filed on November 5th and says the Peace River dams, including Site C, now known as the John Horgan Dam, were built without regard for the nation's Treaty 8 rights and its way of life. The province declined to comment because it's in caretaker mode after the October 24th election, and the incoming government isn't due to be sworn in until November 20th.
+
+**RILEY:** [pause:1200] Louis Rossmann, the outspoken right-to-repair advocate, wants the incoming Congress to take up letting people fix their own iPhones. WIRED's piece says Apple's self-repair program means renting nearly 80 pounds of equipment and using official parts. That's a lot of gear to haul in for a cracked screen. Use a third-party screen or camera part and the phone can lock you out of features because it doesn't recognize the part. Similar locks show up on game consoles, cars and smart home devices.
+
+**CASEY:** And the same piece says self-repair doesn't save much over just going to the Apple Store.
+
+**CASEY:** [pause:1200] A hobbyist built a parcel detector for a front step. An ESP32 camera, fitted into a white socket cover plate, takes a snapshot every three seconds. A Python service using OpenCV compares the cropped zone against a reference image of the empty steps, and a change has to hold still for 45 seconds before it counts as a parcel. Home Assistant sends the notification. Tuning dropped the trigger from 8 percent of the zone to 3 percent, because a small box only registered at 6.5.
+
+**RILEY:** The 45-second hold keeps passing shadows from setting it off.
+
+**RILEY:** [pause:1200] The ESP32 turns up again in a bigger job. Daniel Henzulea built a dealer-grade diagnostic tool for Harley-Davidson motorcycles. Harleys don't use the OBD-II port that cars do. They use a custom six-pin socket that carries a CAN bus, and a CAN transceiver connects that to an ESP32. The software exposes functions Hackaday describes as closed and prohibitively expensive until now.
+
+**CASEY:** Harley still designs the port. The software is the part that opened up.
+
+**CASEY:** [pause:1200] Now the other side of that. iFixit has torn down Apple's first touchscreen MacBook Pro, the one with the PROLED XDR display. The teardown shows how the glowing logo works: four LEDs behind the display, a diffuser, and a logo coated like a two-way mirror. iFixit also criticised what it called Apple's half-hearted commitment to repairability.
+
+**RILEY:** The logo only came back once the backlit display it needed had gone away.
+
+**RILEY:** [pause:1200] A maker known as BubsBuilds built a wax motor, which he calls a waxtuator. Paraffin wax expands by about 1.15 times going from solid to molten, and that expansion drives the actuator. In his tests it held a gap of less than 5 micrometres for twelve hours, provided the temperature was controlled.
+
+**CASEY:** [pause:1200] An old Intel MacBook Pro became a home server. The writer runs Docker containers on it to sync files and stream a media library, and Tailscale handles remote access. Replacing the laptop was overdue, but the writer wasn't ready to retire it.
+
+**RILEY:** Old hardware doing new work is the cheapest repair there is.
+
+**RILEY:** [pause:1200] RAM has become expensive enough that some manufacturers are putting used memory chips into brand-new phones. The chips get detached, cleaned and reballed. Reporting warns that aging silicon and the heat from reworking the chips can raise the risk of crashes, freezes and unexpected shutdowns.
+
+**CASEY:** A brand-new phone, with memory that isn't.
+
+**CASEY:** [pause:1200] Allan Binder of MUON SORTES has shared a how-to guide for building an e-reader for about $40. You need an ESP32-S3 dev board, an e-paper panel with its adapter board, and a five-way button module, with more polished versions on his Instagram.
+
+**RILEY:** [pause:1200] The US Army has flown a hybrid electric drone called VICTOR, powered by a heavy-fuel rotary engine. The engine was developed with metal 3D printing for rapid prototyping, and the design drops a bulky liquid cooling system.
+
+**CASEY:** [pause:1200] Olimex has launched the UEXT-CH390, an open-hardware board that adds 100 megabit wired Ethernet to Raspberry Pi RP2040 and RP2350 boards and ESP32 boards with a UEXT or pUEXT connector. It uses a CH390 SPI-to-Ethernet controller, measures 50 by 21 millimetres, and comes with examples for Home Assistant through ESPHome. The founder's pitch is that basements and metal-walled rooms are where Wi-Fi fails first.
+
+**RILEY:** Basements are where a lot of home networks go to die.
+
+**RILEY:** [pause:1200] Even chickens classed as cold hardy can get frostbite. The hobby-farm guide covers how to prevent it, how to spot the early signs, and what to do when a bird is affected.
+
+**CASEY:** Cold hardy is a breed label. It guarantees nothing about a January night.
+
+**CASEY:** [pause:1200] Bambu Lab says its H3C is the first commercial 3D printer that lets different nozzle sizes print different layer heights on the same surface. Slicers usually change layer height up the part, so neighbouring regions normally share one schedule. Bambu says it solved that problem.
+
+**RILEY:** First to ship, according to the company's own blog.
+
+**RILEY:** [pause:1200] A Tom's Guide piece asks what happens to smart home devices when the company behind them disappears, and offers tips for keeping them running. Underneath it sits a plainer question: how long can you keep a device working once its maker stops helping, and where do you stop fixing it and give up?
+
+**CASEY:** We'll take a version of that into the deep dive, with a phone instead of a smart plug. First, a local organization.
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** [pause:900] The Williams Lake Association for Community Living has been supporting people with diverse abilities in Williams Lake since 1960. That's a lot of families, a lot of jobs found, and a lot of ordinary days made easier over the years. If you know someone who could use their support, or you'd like to pitch in yourself, you can find what they offer at wlacl.org.
+
+**CASEY:** Sixty-six years in one town is a longer record than most programs get.
+
+**CASEY:** Now to a broken phone, and the bill that comes with it.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**CASEY:** When a phone breaks, where does repair stop making sense for a household? And who sets that line, the owner doing the sums or the company pricing the parts?
+
+**RILEY:** [pause:400] The owner, if the sums are honest. Android Authority worked through that exact calculation and concluded that sometimes spending hundreds on a repair is the smarter financial decision. Past a threshold, buying a new handset is the better spend. A household can find that line with three numbers: the repair quote, the phone's resale value, and the price of a replacement.
+
+**CASEY:** Sometimes. The article's own example is the iPhone Duo, where a display replacement is said to cost as much as a new iPhone 18 Pro. So the threshold is set by a price somebody else chose.
+
+**RILEY:** Which the owner can't negotiate, so the sum has to be run against it. What matters is whether that number is fixed or whether service design moves it. NewsBytes and RepairNestPOS both report Apple charging $999 out of warranty for the inner display, or $99 with AppleCare+. That's a tenfold spread on the same part.
+
+**CASEY:** Reported figures. They aren't on a price list Apple has published. And they don't stand alone. Ricky Panesar, the founder of the repair firm iCorrect, told Forbes he expects about £850, roughly $1,155, for the inner screen. He put the same repair on a Galaxy Z Fold 8 at £594. Notebookcheck and TrendForce carried the same estimate, and TweakTown called it possibly the most expensive iPhone screen repair ever.
+
+**RILEY:** So the gap between the two foldables is about £256 on the inner screen alone. Some of that is physics. A folding inner panel is harder to make and harder to swap than a flat screen. But the AppleCare+ figure shows the same part can reach a household at a price it can handle when the service is designed for it.
+
+**CASEY:** Nothing says repairable like a parts price that needs an insurance plan to be reasonable.
+
+**RILEY:** [overlap:-100] Ha. Still, coverage is a choice made at checkout, so a household that reads the terms can change its own outcome.
+
+**CASEY:** At checkout, and only if the plan is on offer when they're buying. Who ends up at the $999 line? Mostly people who skipped the plan, or bought the phone before they knew the plan mattered. They're often the ones least able to pay it.
+
+**RILEY:** And how much is $999 against the phone itself?
+
+**CASEY:** The reported starting price for the Duo is $1,999, so the inner screen is half the phone. For comparison, the standard iPhone 18 Pro's out-of-warranty screen repair is $329, and $419 if the back glass goes too.
+
+**RILEY:** Then the flat-screen phone and the foldable sit in different worlds, even from the same company.
+
+**CASEY:** And the estimates scatter. An iFixPros estimate from a Dallas-Fort Worth repair shop put the out-of-warranty foldable repair at $500 to $900, against $129 to $329 for a standard iPhone screen. That was before launch. PhoneArena reports up to $1,499 for some foldable repairs, with the inner display at $479 in one comparison, though those inner-display figures appear to belong to a different foldable. Every one of these numbers is getting quoted as a price.
+
+**RILEY:** The $1,499 does match one line in the reported Duo schedule: other accidental damage, up to $1,499 without coverage, $99 with it. The outer display is reported at $379, or $29 covered. The back glass is $199, or $29. Across every line, coverage cuts the bill to a fraction.
+
+**CASEY:** Which makes the plan a toll. You pay it up front or you pay the full price later.
+
+**RILEY:** Or you pay nothing and the phone never breaks. People do get lucky. A household can still do the sums with the best number available.
+
+**CASEY:** The best number available is a guess that gets repeated until it sounds like a price list.
+
+**RILEY:** [pause:500] Then the policy lever matters more than the checkout counter. The EU's ecodesign rules for smartphones and tablets, Regulation 2023/1670, took effect June 20th, 2025. They cover energy efficiency, durability, repairability and spare parts. The Right to Repair Directive requires member states to adopt at least one measure that encourages repair, such as repair vouchers. And the Batteries Regulation requires user-removable or easily replaceable batteries in mobile devices, with the rules applying from 2027. Vouchers and parts rules are law now. Advocates aren't just asking for them anymore.
+
+**CASEY:** Those ecodesign rules apply to devices first placed on the EU market on or after June 20th, 2025. A household holding a three-year-old handset gets nothing from them.
+
+**RILEY:** Right, and the installed base is the slow part. Still, a rule that applies to new devices changes what the next generation is built to survive.
+
+**CASEY:** Only if it changes what gets built. A removable battery doesn't touch a folding panel. The screen drives the cost.
+
+**RILEY:** Batteries are the repair people do most often, though. A cheaper battery swap keeps the phone out of the drawer for another year, even if the screen is the expensive part.
+
+**CASEY:** Fine. But TechRadar, reporting a year after the ecodesign rules took effect, still couldn't say whether phones were actually getting easier to repair. It also reported that Apple's new CEO, John Ternus, isn't fully convinced about repairability. The law is new, and the evidence is thin.
+
+**RILEY:** The law is new. The engineering trend toward sealed, integrated designs is older, and the rule is trying to reverse it. Give it a few product cycles before calling it a failure.
+
+**CASEY:** Meanwhile the household is still doing the math alone.
+
+**RILEY:** [pause:500] Which is why the math has to be the right kind. Android Authority compares repair costs with and without insurance to estimate what a handset costs to own as parts prices climb. A single repair quote tells you one number. A cost-of-ownership figure tells you whether the phone is worth keeping past its second repair.
+
+**CASEY:** The piece also carries an affiliate disclosure. Android Authority may earn a commission from some links. Still useful. Just know whose numbers you're trusting.
+
+**RILEY:** Agreed. The article also says smartphone innovation has plateaued, and calls that a blessing in disguise for consumers. If the new phone isn't much better, the old one gives up little by staying in your pocket.
+
+**CASEY:** The same article describes spare parts prices that keep climbing. So the longer you hold a phone, the more each repair costs against a replacement. The plateau argument and the parts argument pull in opposite directions, and the household is stuck between them.
+
+**RILEY:** [overlap:-100] And the insurance comparison is trying to put both pressures in one place: the total cost of owning the handset. With the Duo, that's $99 a claim with coverage, or $999 for one inner screen without it.
+
+**CASEY:** One number that assumes a shop is down the street.
+
+**RILEY:** For a household in Quesnel, Williams Lake or 100 Mile House, the sum needs lines the article doesn't price. Mail the phone out and you pay shipping both ways, and you wait while it sits in a courier's bin. Drive it to a counter and you pay fuel and lose a day. The repair math is the same. The inputs are different.
+
+**CASEY:** And nobody quotes the time a phone spends in a mailbag. A cracked screen on a working phone is a week of a backup phone, a borrowed charger, and a family arguing over the one that works.
+
+**RILEY:** So add your own distance to the sum. Fuel, a day off work, the courier, the days without the phone. Put a number on each before you compare it with the quote.
+
+**CASEY:** The wait gets a number too. Nobody budgets for it.
+
+**RILEY:** [overlap:-100] Right.
+
+**CASEY:** And the gap that won't close is this. The Duo's inner screen is quoted anywhere from $999 to about $1,155 out of warranty, depending on which source you read. The AppleCare+ figure is $99. A household in 100 Mile House could run the math perfectly and still have no repair counter within reach that will touch a foldable. Then the sum doesn't matter.
+
+**RILEY:** Then the gap is structural, and parts of it are solvable locally. That renovated library branch we mentioned up top is the kind of space where a monthly repair night could happen, a place to bring a phone, a kettle or a lamp. Pair that with a published parts-price list and you have a working experiment for a winter.
+
+**CASEY:** Not a bad start. But a repair night is volunteers and a bench. Who fixes the foldable? You need a technician with the parts and the training, and a repair night supplies neither.
+
+**RILEY:** Agreed. The repair night is where a household learns what a foldable actually costs to fix before it decides. That number is the start.
+
+**CASEY:** So the first thing a household needs is a price it can check, and the manufacturer isn't offering one.
+
+**RILEY:** [pause:500] Then the first fix is a published parts-price list. The second is an independent tester checking it, someone other than the company selling the phone. If iCorrect can estimate the inner screen at £850, a third party can publish the same figure with a date and a source attached.
+
+**CASEY:** Then the owner's sums are only as good as the list, and nobody's been assigned to check it. We raised that same worry on Sunday, about a different system. It fits here too.
+
+**RILEY:** And the cost lands in the same place. A household gets a repair quote that looks reasonable and a replacement that looks cheaper, and never sees the whole picture. The sum comes out wrong, and nobody gets blamed for it.
+
+**CASEY:** I don't have an answer for who should publish that line. The manufacturer, an independent tester, or the owner with a spreadsheet. Or whether a published repair price should be a condition of selling a foldable at all. The EU rules haven't shown they can do it yet.
+
+**RILEY:** I'd still start with the list. Publish the price, then argue about the threshold. And if you've got a repair quote from a Cariboo shop, or a story tip, send it to feedback at cariboo signals dot c-a and we'll put it next to the reported figures.
+
+**CASEY:** And before you call the shop, write the model number down. Thanks for spending part of your Remembrance Day with us. Take care this Wednesday.
+
+**RILEY:** And bring the chickens in if Tatla Lake's rain turns to frost.

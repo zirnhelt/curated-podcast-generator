@@ -1,37 +1,4 @@
 {
-  "2026-08-12": {
-    "timestamp": 1786527566.185152,
-    "date": "2026-08-12",
-    "theme": "Repair Culture & Practical Tech",
-    "focus": "vehicles-field-gear",
-    "anchor": "owe-those-after",
-    "central_question": "When AI funding arrives faster than repair rights legislation, are we solving rural health and equipment problems or papering over them with technology that can't legally be maintained?",
-    "riley_position": "Rural hospitals and technicians are being offered AI tools as substitutes for stable financing and repair access, but the technology can't solve problems that are fundamentally legal and contractual, not technical\u2014predictive maintenance is useless if you're barred from actually fixing what fails.",
-    "riley_key_evidence": [
-      "Eight in ten biomedical technicians have equipment in their own hospitals they're legally barred from servicing due to manufacturer-locked service keys and manuals",
-      "Ninety-seven percent of those technicians want repair access barriers removed",
-      "Rural technicians report lockdown happening more frequently, with fewer manufacturer reps willing to travel to remote sites"
-    ],
-    "casey_position": "The sequencing of investment is backwards\u2014hospitals should first establish what they're legally barred from fixing in their existing equipment, then negotiate repair rights, before funding new AI pilots with unproven outcomes; the real accountability question is what obligation a hospital takes on when buying equipment meant to outlast the current board.",
-    "casey_key_evidence": [
-      "KFF Health News and UNC Sheps Center found little rigorous evidence that AI tools improve rural access or patient outcomes, and the technology gets 'oversold as a substitute for stable financing'",
-      "State-level right-to-repair legislation for medical devices in the U.S. is still tangled in legal pushback with no equivalent on B.C. books",
-      "Nobody gets a photo op for quiet contract renegotiation, so funding chains prioritize ribbon-cuttings for new software over maintenance of existing equipment"
-    ],
-    "resolution": "No concession, but unified agreement on next steps: the real question is not whether to reject new tools but to enforce repair rights *alongside* AI investment; both speakers agree the takeaway is to ask specific questions before purchasing\u2014ask dealers about independent shop diagnostic access, and ask regional health authorities whether their equipment comes with repair rights before new funding arrives.",
-    "topics_covered": [
-      "Right-to-repair barriers in rural hospital biomedical equipment",
-      "Disconnect between AI funding timelines and legal repair-access legislation",
-      "Proprietary lockdown creeping into vehicles, ATVs, and consumer equipment in rural areas",
-      "Accountability and implicit promises when purchasing long-lived infrastructure",
-      "Incentive misalignment in funding decisions favoring announcements over maintenance"
-    ],
-    "calls_to_action": [
-      "A local health board member could raise the question publicly: Does Interior Health have full visibility into which machines fall into the locked-out category, and has anyone asked before funding new tech?",
-      "Before your next vehicle purchase, ask the dealer straight out whether independent shops in the Cariboo get full diagnostic access, or whether you're stuck driving to Kamloops every time something electronic goes wrong\u2014ask before you sign, not after.",
-      "If you have a story of a machine sitting dark somewhere in the Cariboo or a truck stuck waiting on a dealer-only part, write in to feedback at cariboosignals.ca and the team will dig into it."
-    ]
-  },
   "2026-08-13": {
     "timestamp": 1786613229.621166,
     "date": "2026-08-13",
@@ -2592,6 +2559,34 @@
       "Millar Western mill idle status, effluent system, and restart uncertainty",
       "Competing claims of existing operators versus newcomers, woodlot owners, and Nation-owned ventures",
       "Training for displaced workers and Quesnel council engagement with First Nations"
+    ]
+  },
+  "2026-11-11": {
+    "timestamp": 1794384823.780553,
+    "date": "2026-11-11",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "maker-repair",
+    "anchor": "fairness-of-who-gets-help",
+    "central_question": "Where does repairing a phone stop making sense for a household, and who should set that threshold: the owner running the numbers or the company pricing the parts?",
+    "riley_position": "The owner should set the repair threshold by running honest cost calculations, and the policy lever (EU ecodesign and repair rules) plus published parts-price lists can make those calculations workable for households.",
+    "riley_key_evidence": [
+      "Apple reportedly charges $999 out of warranty for the Duo inner display versus $99 with AppleCare+, a roughly tenfold spread on the same part",
+      "EU Regulation 2023/1670 ecodesign rules took effect June 20, 2025, covering repairability and spare parts, and the Batteries Regulation requires user-removable or easily replaceable batteries from 2027",
+      "The Williams Lake library branch reopened November 3rd with a community room that could host a monthly repair night"
+    ],
+    "casey_position": "The threshold is set by prices companies choose and sources are unreliable, so households cannot do the math alone; the law is too new and too narrow to have proven effective, and a shop must be reachable for any calculation to matter.",
+    "casey_key_evidence": [
+      "Ricky Panesar of iCorrect estimated about \u00a3850 (roughly $1,155) for the Duo inner screen versus \u00a3594 on the Galaxy Z Fold 8, but these are estimates, not Apple's published prices",
+      "The EU ecodesign rules apply only to devices first placed on the market on or after June 20, 2025, so phones already owned fall outside them, and TechRadar could not yet say whether phones were easier to repair",
+      "An iFixPros estimate puts out-of-warranty foldable repair at $500 to $900 versus $129 to $329 for a standard iPhone screen, and no nearby shop may handle foldables in rural areas like 100 Mile House"
+    ],
+    "resolution": "They did not fully agree. Both agreed a published, dated parts-price list checked by an independent party is the necessary first step, and Riley argued for publishing the price before debating the threshold. Casey left open who should be able to publish such a list and whether it should be a condition of selling foldables.",
+    "topics_covered": [
+      "Out-of-warranty foldable screen repair costs and the Apple versus Galaxy price gap",
+      "EU ecodesign, Right to Repair Directive and Batteries Regulation timelines and limits",
+      "Cost-of-ownership calculations and the effect of insurance plans and affiliate-sourced figures",
+      "Rural access barriers in the Cariboo, including shipping, travel time and lack of foldable-capable shops",
+      "Community repair nights and published parts-price lists as local and independent fixes"
     ]
   }
 }
