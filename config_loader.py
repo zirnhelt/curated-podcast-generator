@@ -208,6 +208,25 @@ def load_blocklist():
             return json.load(f)
     return {"title_keywords": []}
 
+def _gmail_dmarc_pass(auth_results: str, domain: str) -> bool:
+    """True if Gmail's Authentication-Results says DMARC passed for ``domain``.
+
+    The header must be Gmail's own (authserv-id ``mx.google.com``; a receiving
+    server prepends its header, so the first one is the one read). Every
+    ``dmarc=`` result in it must be ``pass`` for ``header.from=<domain>``: the
+    envelope sender is printed in the same header and is the sender's to choose
+    (``smtp.mailfrom=dmarc=pass@evil.test``), so a forger can add text that looks
+    like a pass but can never remove Gmail's genuine ``dmarc=fail``.
+    """
+    authserv, _, results = (auth_results or "").partition(";")
+    if authserv.strip().lower() != "mx.google.com":
+        return False
+    dmarc = [part.split() for part in results.lower().split(";")
+             if part.split() and part.split()[0].startswith("dmarc=")]
+    return bool(dmarc) and all(
+        tokens[0] == "dmarc=pass" and f"header.from={domain}" in tokens for tokens in dmarc)
+
+
 def is_producer_sender(from_address: str, auth_results: str = "") -> bool:
     """True if an email came from the show's own production side, not a listener.
 
@@ -218,17 +237,14 @@ def is_producer_sender(from_address: str, auth_results: str = "") -> bool:
     is not identity, it matches every gmail sender whose name starts with z.
 
     The match is the parsed address, exactly: a display name or a look-alike
-    ("zirnhelt@gmail.com.evil.test") contains the producer's address but is not
-    it. From is also forgeable, so Gmail's own Authentication-Results (the
-    topmost one, stamped by mx.google.com) must report ``dmarc=pass``. Without
-    it the sender is a listener: the failure costs one misattributed thank-you,
-    not a stranger's text aired as the show's own catch.
+    domain can contain the producer's address without being it. From is also
+    forgeable, so Gmail must report a DMARC pass for that address's domain
+    (``_gmail_dmarc_pass``). Without it the sender is a listener: the failure
+    costs one misattributed thank-you, not a stranger's text aired as the show's
+    own catch.
     """
     addr = parseaddr(from_address or "")[1].lower()
-    if not addr:
-        return False
-    if not re.match(r"\s*mx\.google\.com\s*;", auth_results or "", re.I) \
-            or not re.search(r"\bdmarc=pass\b", auth_results, re.I):
+    if "@" not in addr or not _gmail_dmarc_pass(auth_results, addr.rsplit("@", 1)[1]):
         return False
     cfg = load_blocklist().get("email_producer_senders", {})
     if addr in {a.lower() for a in cfg.get("addresses", []) if a}:

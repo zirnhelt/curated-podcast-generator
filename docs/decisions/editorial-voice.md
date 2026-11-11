@@ -711,3 +711,20 @@ a defect.
 handoff, the question, both hosts' starting positions, the beat chain with each "then, because", and
 the landing. The episode card in `super-rss-feed`'s `review.html` gains a whole-episode "Flow" thumb
 beside the segment thumbs; `review_scripts.py` tallies it with them in the weekly script review.
+
+## The producer is identified by address and by DMARC (2026-11-11)
+
+`is_producer_sender` matched the configured address as a substring of the raw From header, so a
+display name containing it, or a look-alike domain, was the producer; and From itself is forgeable.
+Producer mail airs as the show's own catch ("our production team spotted"), so a forged header put a
+stranger's claim in the show's voice. The match is now the parsed address, exactly, and Gmail's
+`Authentication-Results` must report a DMARC pass for that address's domain.
+
+The first version searched the header for `dmarc=pass`. The envelope sender is printed in the same
+header and is the sender's to choose, so `smtp.mailfrom=dmarc=pass@evil.test` passed it. The check
+now reads the header's results one by one and requires every `dmarc=` result to be a pass for the
+From domain: a forger can add text, but cannot remove Gmail's own `dmarc=fail`.
+
+Fails safe: mail with no such header is listener mail. If the producer's own mail ever arrives
+without it (a message that never crossed Gmail's inbound servers), it will be thanked as a listener
+again; widen the check then, with the header in hand.

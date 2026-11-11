@@ -6873,35 +6873,57 @@ class TestEpisodeMetadata:
 
     def test_get_public_caps_body_size_and_total_time(self, monkeypatch):
         """A huge or slow-drip body is dropped (None), not read: one bad link must not cost the day."""
+        import threading
+
         import podcast_generator as pg
 
         monkeypatch.setattr(pg.socket, "getaddrinfo",
                             lambda host, *a, **k: [(None, None, None, "", ("93.184.216.34", 0))])
 
-        class Big:
+        class Body:
             url, is_redirect, headers, cookies, closed = "https://news.test/big", False, {}, {}, False
 
-            def __init__(self, chunks):
-                self.chunks = chunks
+            def __init__(self, chunks, gate=None):
+                self.chunks, self.gate = chunks, gate
 
             def iter_content(self, size):
-                yield from self.chunks
+                for chunk in self.chunks:
+                    if self.gate:
+                        self.gate.wait(10)      # a server that never fills the chunk
+                    yield chunk
 
             def close(self):
                 self.closed = True
 
-        resp = Big([b"x" * 65536] * 100)          # 6.5 MB against the 5 MB cap
+        resp = Body([b"x" * 65536] * 40)
         monkeypatch.setattr(pg.requests, "get", lambda url, **k: resp)
         monkeypatch.setattr(pg, "MAX_BODY_BYTES", 1_000_000)
         assert pg._get_public("https://news.test/big") is None and resp.closed
 
-        resp = Big([b"ok"])
-        monkeypatch.setattr(pg, "MAX_BODY_BYTES", 5_000_000)
+        resp = Body([b"ok"])
         assert pg._get_public("https://news.test/big")._content == b"ok"
 
-        resp = Big([b"a", b"b"])                  # past the deadline after the first chunk
-        monkeypatch.setattr(pg, "MAX_FETCH_SECONDS", -1)
-        assert pg._get_public("https://news.test/big") is None and resp.closed
+        gate = threading.Event()
+        resp = Body([b"a", b"b"], gate)
+        monkeypatch.setattr(pg, "MAX_FETCH_SECONDS", 0.05)
+        try:
+            assert pg._get_public("https://news.test/big") is None
+        finally:
+            gate.set()                          # let the abandoned reader finish
+
+    def test_get_public_still_raises_what_the_fetch_raised(self, monkeypatch):
+        """Callers tell a refused URL (None) from a network failure (an exception)."""
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg.socket, "getaddrinfo",
+                            lambda host, *a, **k: [(None, None, None, "", ("93.184.216.34", 0))])
+
+        def boom(url, **k):
+            raise pg.requests.ConnectionError("refused")
+
+        monkeypatch.setattr(pg.requests, "get", boom)
+        with pytest.raises(pg.requests.ConnectionError):
+            pg._get_public("https://news.test/a")
 
 
 class TestSparseFilterBudget:

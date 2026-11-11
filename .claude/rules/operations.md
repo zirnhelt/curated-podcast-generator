@@ -36,7 +36,7 @@ paths:
 
 **Atomic writes.** Every memory/state/feed write goes through `config_loader.atomic_write_text` / `atomic_write_json`. The loaders read a truncated JSON as `{}`, so a non-atomic write silently loses history.
 
-**Third-party text and URLs.** Episode notes are HTML in a public feed: feed titles, bylines and model summaries go in `html.escape`d, links only when `_public_http_url` passes, and every CDATA body (bespoke feed included) through `_cdata_safe`. Every fetch of a feed- or model-supplied URL goes through `_get_public`, never a bare `requests.get`: each hop is checked by name and by resolved address.
+**Third-party text and URLs.** Episode notes are HTML in a public feed: feed titles, bylines and model summaries go in `html.escape`d, links only when `_public_http_url` passes, and every CDATA body (bespoke feed included) through `_cdata_safe`. Every fetch of a feed- or model-supplied URL goes through `_get_public`, never a bare `requests.get`: each hop is checked by name and by resolved address, the body is capped (`MAX_BODY_BYTES`) and the whole call is abandoned at `MAX_FETCH_SECONDS`. Keep that clock a thread join, never a check between chunks.
 
 **Brave spend.** Two plans, two meters: Search ($5/1000, capped) and Answers (monthly credit).
 - **The Search cap is shared with `super-rss-feed`** — one key serves both repos. Read Brave's per-key usage export before trusting any estimate.

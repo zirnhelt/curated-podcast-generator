@@ -15,6 +15,7 @@ import json
 import glob
 import math
 import random
+import threading
 import time
 import xml.sax.saxutils as saxutils
 import html as html_lib
@@ -1683,38 +1684,26 @@ def _resolves_public(host: str) -> bool:
     return bool(addresses) and all(a.is_global for a in addresses)
 
 
-MAX_BODY_BYTES = 5_000_000   # no article page is larger; a bigger body is a trap or a mistake
-MAX_FETCH_SECONDS = 30       # whole call, redirects included; `timeout=` only bounds each read
+MAX_BODY_BYTES = 10_000_000  # no article page is larger; a bigger body is a trap or a mistake
+MAX_FETCH_SECONDS = 30       # the whole call: DNS, every redirect hop, headers and body
 
 
-def _read_capped(resp, deadline: float) -> bool:
-    """Read ``resp``'s body into it, False (closed) if it is too big, too slow or breaks off."""
+def _read_capped(resp) -> bool:
+    """Read ``resp``'s body into it; False (and closed) once it passes ``MAX_BODY_BYTES``."""
     buf = bytearray()
-    try:
-        for chunk in resp.iter_content(65536):
-            buf += chunk
-            if len(buf) > MAX_BODY_BYTES or time.monotonic() > deadline:
-                resp.close()
-                return False
-    except requests.RequestException:
-        resp.close()
-        return False
+    for chunk in resp.iter_content(65536):
+        buf += chunk
+        if len(buf) > MAX_BODY_BYTES:
+            resp.close()
+            return False
     resp._content, resp._content_consumed = bytes(buf), True
     return True
 
 
-def _get_public(url: str, **kwargs) -> "requests.Response | None":
-    """``requests.get`` for a feed- or model-supplied URL, or None if any hop is not public.
-
-    Each hop must pass ``_public_http_url`` and resolve only to global addresses
-    before it is requested, so neither a public name pointing at a private
-    address nor a redirect through one is fetched. Redirects are followed here
-    (cookies carried, at most ``MAX_REDIRECTS``) so each hop is checked. The body
-    is capped at ``MAX_BODY_BYTES`` and the whole call at ``MAX_FETCH_SECONDS``.
-    """
+def _follow_public(url: str, **kwargs) -> "requests.Response | None":
+    """``_get_public`` without the clock: check each hop, follow redirects, read a capped body."""
     # ponytail: resolve-and-check, not resolve-and-pin. requests resolves again, so a
     # DNS answer that changes between the two lookups still gets through (operations.md).
-    deadline = time.monotonic() + MAX_FETCH_SECONDS
     cookies = requests.cookies.RequestsCookieJar()
     for _ in range(MAX_REDIRECTS + 1):
         if not _public_http_url(url) or not _resolves_public(urlparse(url).hostname):
@@ -1724,11 +1713,42 @@ def _get_public(url: str, **kwargs) -> "requests.Response | None":
             if not _public_http_url(getattr(resp, "url", url)):
                 resp.close()
                 return None
-            return resp if _read_capped(resp, deadline) else None
+            return resp if _read_capped(resp) else None
         cookies.update(resp.cookies)
         url = urljoin(url, resp.headers["location"])
         resp.close()
     return None
+
+
+def _get_public(url: str, **kwargs) -> "requests.Response | None":
+    """``requests.get`` for a feed- or model-supplied URL, or None if any hop is not public.
+
+    Each hop must pass ``_public_http_url`` and resolve only to global addresses
+    before it is requested, so neither a public name pointing at a private
+    address nor a redirect through one is fetched. Redirects are followed here
+    (cookies carried, at most ``MAX_REDIRECTS``) so each hop is checked. A body
+    over ``MAX_BODY_BYTES`` or a call over ``MAX_FETCH_SECONDS`` is None.
+    """
+    # ponytail: a daemon thread and join(), not a deadline checked between chunks.
+    # `timeout=` bounds each socket read and requests only yields a chunk once it is
+    # full, so a server dripping a byte at a time never reaches a between-chunks check.
+    # A fetch that overruns is abandoned; its thread ends with its socket or the process.
+    box: dict = {}
+
+    def run() -> None:
+        try:
+            box["resp"] = _follow_public(url, **kwargs)
+        except Exception as exc:  # re-raised below, in the caller's thread
+            box["exc"] = exc
+
+    worker = threading.Thread(target=run, daemon=True, name="get-public")
+    worker.start()
+    worker.join(MAX_FETCH_SECONDS)
+    if worker.is_alive():
+        return None
+    if "exc" in box:
+        raise box["exc"]
+    return box["resp"]
 
 
 def _fetch_article_author(url):
