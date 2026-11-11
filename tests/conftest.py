@@ -154,3 +154,15 @@ def _isolate_ballot_cache(tmp_path, monkeypatch):
 
     monkeypatch.setattr(podcast_generator, "BALLOT_RESEARCH_CACHE_FILE",
                         tmp_path / "ballot_research_cache.json")
+
+
+@pytest.fixture(autouse=True)
+def _storyboard_in_real_time(monkeypatch):
+    """Plan the storyboard in real time unless a test turns the batch on.
+
+    A MagicMock client never reports a batch as "ended", so the poll loop would
+    sleep out STORYBOARD_BATCH_TIMEOUT in every test that writes a script.
+    """
+    import podcast_generator
+
+    monkeypatch.setattr(podcast_generator, "STORYBOARD_BATCH", False)

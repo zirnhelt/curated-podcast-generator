@@ -623,6 +623,19 @@ articles, which escalates the polish to Opus 5.5 (about 2x the Sonnet 5.5 polish
 escalation rate for a week before deciding whether a researched single-story deep dive should
 still count as thin.
 
+**Thin means unsourced, not one row (2026-11-11).** The rate was 8 of 13 polishes on Opus from
+2026-10-30 to 2026-11-11, against 0 of the 17 before, every one on the article count (1 or 2
+rows) and none on tell hits. Measured from the job logs, the Opus batch polish was $0.137 and
+$0.147 a night (about 21.5K tokens in, 9.4K out), over half the show's Anthropic spend; the same
+tokens on Sonnet 5.5 are half that. It also starved the polish trial: Opus overrides
+`CLAUDE_POLISH_MODEL`, so the Sonnet 5.5 arm got 5 of those 13 nights. `select_review_model`
+now counts sources (`_deep_dive_source_count`): an article row is one, a Kagi News cluster is
+its `_kite_sources`, and each answered question in the research block (`Findings:` with text)
+is one. The threshold stays 3. Replayed over those 8 nights, 4 keep Opus (three with no research
+at all, among them the 11-09 Remembrance notice, and one with a single finding) and 4 go to the
+polish model (1 or 2 articles with 2 or 3 findings). That is about 9 nights a month at $0.07,
+roughly $0.65. The tell-hit trigger and `PODCAST_FORCE_OPUS_REVIEW` are unchanged.
+
 **Review signals.** `roundup_shape_line` prints, from the script as aired, how many local
 stories the pool offered and aired, whether the roundup opened local, which subjects aired in
 separate places, and whether the deep dive reached the Cariboo. `episode_review.run_signals`
