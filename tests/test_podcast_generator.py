@@ -2978,6 +2978,21 @@ class TestFeedContract:
         pg.fetch_podcast_feed(4)
         assert any("_theme_score_raw" in detail for _, detail in rows)
 
+    @pytest.mark.parametrize("payload", [
+        [], None, "x", {"items": None}, {"items": "x"}, {"_podcast": None, "items": [1, None]},
+        {"_podcast": "x", "items": [[]]},
+    ])
+    def test_a_malformed_feed_skips_the_day_instead_of_crashing(self, rows, monkeypatch, payload):
+        """Valid JSON of the wrong shape must not raise out of the fetch."""
+        import podcast_generator as pg
+
+        response = MagicMock()
+        response.json.return_value = payload
+        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: response)
+        monkeypatch.setenv("ALLOW_STALE_FEED", "1")
+        meta, theme, bonus = pg.fetch_podcast_feed(4)
+        assert theme == [] and bonus == []
+
 
 class TestScriptToVttTranscript:
     SCRIPT = "\n".join([
@@ -6821,6 +6836,9 @@ class TestEpisodeMetadata:
             def close(self):
                 pass
 
+            def iter_content(self, size):
+                yield self.text.encode()
+
         calls, routes = [], {}
 
         def get(url, **k):
@@ -6852,6 +6870,60 @@ class TestEpisodeMetadata:
         assert calls == ["https://news.test/a", "https://cdn.test/a"]
         routes["https://news.test/loop"] = Resp("https://news.test/loop", location="/loop")
         assert pg._get_public("https://news.test/loop") is None
+
+    def test_get_public_caps_body_size_and_total_time(self, monkeypatch):
+        """A huge or slow-drip body is dropped (None), not read: one bad link must not cost the day."""
+        import threading
+
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg.socket, "getaddrinfo",
+                            lambda host, *a, **k: [(None, None, None, "", ("93.184.216.34", 0))])
+
+        class Body:
+            url, is_redirect, headers, cookies, closed = "https://news.test/big", False, {}, {}, False
+
+            def __init__(self, chunks, gate=None):
+                self.chunks, self.gate = chunks, gate
+
+            def iter_content(self, size):
+                for chunk in self.chunks:
+                    if self.gate:
+                        self.gate.wait(10)      # a server that never fills the chunk
+                    yield chunk
+
+            def close(self):
+                self.closed = True
+
+        resp = Body([b"x" * 65536] * 40)
+        monkeypatch.setattr(pg.requests, "get", lambda url, **k: resp)
+        monkeypatch.setattr(pg, "MAX_BODY_BYTES", 1_000_000)
+        assert pg._get_public("https://news.test/big") is None and resp.closed
+
+        resp = Body([b"ok"])
+        assert pg._get_public("https://news.test/big")._content == b"ok"
+
+        gate = threading.Event()
+        resp = Body([b"a", b"b"], gate)
+        monkeypatch.setattr(pg, "MAX_FETCH_SECONDS", 0.05)
+        try:
+            assert pg._get_public("https://news.test/big") is None
+        finally:
+            gate.set()                          # let the abandoned reader finish
+
+    def test_get_public_still_raises_what_the_fetch_raised(self, monkeypatch):
+        """Callers tell a refused URL (None) from a network failure (an exception)."""
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg.socket, "getaddrinfo",
+                            lambda host, *a, **k: [(None, None, None, "", ("93.184.216.34", 0))])
+
+        def boom(url, **k):
+            raise pg.requests.ConnectionError("refused")
+
+        monkeypatch.setattr(pg.requests, "get", boom)
+        with pytest.raises(pg.requests.ConnectionError):
+            pg._get_public("https://news.test/a")
 
 
 class TestSparseFilterBudget:

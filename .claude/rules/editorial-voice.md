@@ -64,7 +64,7 @@ paths:
 - **Protect the segment; never force it.** A NONE or a guard drop gets one retry, with upstream changes and the refusal reason (`script/meta-moment/retry`); a failed call degrades; the splice falls back to the deep dive; and a Sunday that ships without it turns the run red (last step, after deploy).
 
 **Inbound mail** (`email_ingest.py`). `podcasts/email_queue.json` is public: senders are masked and contact details redacted at ingest.
-- "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address.
+- "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address. It takes the exact parsed address **and** Gmail's DMARC pass for its domain (`_gmail_dmarc_pass`: every `dmarc=` result must pass); anything less is a listener.
 - The block header stays `LISTENER CORRECTIONS`; attribution is per item.
 - A correction airs as the final beat of the next roundup (`docs/corrections-policy.md`); a production correction with `air_date` waits for that day.
 - **A correction that should outlive its episode becomes a standing note.** Every Sunday `standing_notes.py` (in `periodic-review.yml`) reads the correction and feedback emails no run has seen, makes one Haiku call, and opens a PR adding proposed lines to `config/standing_notes.txt`. Merge adopts; close declines for good. Email text is untrusted, so it is quoted as data and nothing reaches a prompt without a merged PR. One proposal PR at a time.

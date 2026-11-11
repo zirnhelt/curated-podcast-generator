@@ -195,17 +195,57 @@ class TestIsProducerSender:
     ingest, because the stored address is masked. Configured in
     config/blocklist.json alongside the other email routing rules."""
 
+    AUTH = "mx.google.com; dkim=pass header.i=@gmail.com; spf=pass; dmarc=pass (p=NONE) header.from=gmail.com"
+
     def test_matches_the_configured_producer_address(self):
         from config_loader import is_producer_sender
 
-        assert is_producer_sender("Erich Zirnhelt <zirnhelt@gmail.com>")
-        assert is_producer_sender("ZIRNHELT@GMAIL.COM")
+        assert is_producer_sender("Erich Zirnhelt <zirnhelt@gmail.com>", self.AUTH)
+        assert is_producer_sender("ZIRNHELT@GMAIL.COM", self.AUTH)
 
     def test_listener_address_is_not_the_producer(self):
         from config_loader import is_producer_sender
 
-        assert not is_producer_sender("someone@example.com")
-        assert not is_producer_sender("")
+        assert not is_producer_sender("someone@example.com", self.AUTH)
+        assert not is_producer_sender("", self.AUTH)
+
+    def test_lookalikes_and_display_names_are_not_the_producer(self):
+        from config_loader import is_producer_sender
+
+        assert not is_producer_sender("zirnhelt@gmail.com.evil.test", self.AUTH)
+        assert not is_producer_sender('"zirnhelt@gmail.com" <x@evil.test>', self.AUTH)
+        assert not is_producer_sender("zirnhelt@gmail.com <x@evil.test>", self.AUTH)
+
+    def test_unauthenticated_mail_is_not_the_producer(self):
+        from config_loader import is_producer_sender
+
+        assert not is_producer_sender("zirnhelt@gmail.com")
+        assert not is_producer_sender("zirnhelt@gmail.com", "mx.google.com; dmarc=fail")
+        # Only the receiving server's verdict counts, not one the sender wrote.
+        assert not is_producer_sender("zirnhelt@gmail.com", "evil.test; dmarc=pass header.from=gmail.com")
+        # A pass for some other domain says nothing about this address.
+        assert not is_producer_sender("zirnhelt@gmail.com", "mx.google.com; dmarc=pass header.from=evil.test")
+
+    def test_text_that_looks_like_a_pass_in_the_envelope_sender_is_not_one(self):
+        """The envelope sender is the forger's to choose and is printed in the same header."""
+        from config_loader import is_producer_sender
+
+        for forged in (
+            "mx.google.com; spf=pass (domain of dmarc=pass@evil.test) smtp.mailfrom=dmarc=pass@evil.test;"
+            " dmarc=fail (p=NONE) header.from=gmail.com",
+            'mx.google.com; spf=pass smtp.mailfrom="a; dmarc=pass header.from=gmail.com"@evil.test;'
+            " dmarc=fail (p=NONE) header.from=gmail.com",
+        ):
+            assert not is_producer_sender("zirnhelt@gmail.com", forged)
+
+    def test_a_folded_gmail_header_still_passes(self):
+        from config_loader import is_producer_sender
+
+        folded = ("mx.google.com;\r\n       dkim=pass header.i=@gmail.com header.s=20230601;\r\n"
+                  "       spf=pass (google.com: domain of x@gmail.com designates 1.2.3.4 as permitted sender)"
+                  " smtp.mailfrom=x@gmail.com;\r\n"
+                  "       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com")
+        assert is_producer_sender("Erich Zirnhelt <zirnhelt@gmail.com>", folded)
 
 
 class TestPronunciations:

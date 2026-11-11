@@ -653,14 +653,7 @@
 'use strict';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const REPO_OWNER  = 'zirnhelt';
-const REPO_NAME   = 'super-rss-feed';
 const FEED_BASE   = 'https://zirnhelt.github.io/super-rss-feed';
-const BAKED_TOKEN = (() => {
-  const e = '__BAKED_GH_TOKEN__';
-  return e.startsWith('__') ? null : e.split('').reverse().join('');
-})();
-
 const CATS = [
   { slug:'local',   name:'Local News',       emoji:'🏔️' },
   { slug:'ai-tech', name:'AI & Tech',         emoji:'🤖' },
@@ -692,8 +685,6 @@ let query      = '';
 let focusIdx   = -1;
 let panelUrl   = null;
 
-let ghStateSha  = null;
-let ghSaveTimer = null;
 let podcastArts = [];
 let autoReadObserver = null;
 let reviews = [];   // podcasts/reviews/index.json, newest first
@@ -750,81 +741,15 @@ function loadLocal() {
   unreadOnly = stored === null ? true : stored !== '0';
 }
 
-// ── GitHub sync ───────────────────────────────────────────────────────────────
-async function syncGitHub() {
-  if (!BAKED_TOKEN) return;
-  try {
-    const r = await fetch(
-      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/reader-state.json`,
-      { headers: { 'Authorization': `Bearer ${BAKED_TOKEN}`, 'Accept': 'application/vnd.github+json' } }
-    );
-    if (r.status === 404) return;
-    if (!r.ok) return;
-    const meta = await r.json();
-    ghStateSha = meta.sha;
-    const data = JSON.parse(atob(meta.content.replace(/\n/g, '')));
-    for (const url of data.read    || []) readUrls.add(url);
-    for (const url of data.starred || []) starUrls.add(url);
-    Object.assign(corrs, data.corrs || {});
-    saveLocal();
-  } catch {}
-}
-
-function scheduleGhSave() {
-  if (!BAKED_TOKEN) return;
-  clearTimeout(ghSaveTimer);
-  ghSaveTimer = setTimeout(ghSaveState, 8000);
-}
-
-async function ghSaveState() {
-  if (!BAKED_TOKEN) return;
-  const payload = {
-    version: 1,
-    updated_at: new Date().toISOString(),
-    read: [...readUrls],
-    starred: [...starUrls],
-    corrs,
-  };
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
-  const body = {
-    message: `Update reader state [skip ci]`,
-    content,
-    ...(ghStateSha ? { sha: ghStateSha } : {}),
-  };
-  try {
-    const r = await fetch(
-      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/reader-state.json`,
-      {
-        method: 'PUT',
-        keepalive: true,
-        headers: {
-          'Authorization': `Bearer ${BAKED_TOKEN}`,
-          'Content-Type': 'application/json',
-          'Accept': 'application/vnd.github+json',
-        },
-        body: JSON.stringify(body),
-      }
-    );
-    if (r.ok) {
-      const data = await r.json();
-      ghStateSha = data.content.sha;
-    } else if (r.status === 409 || r.status === 422) {
-      await syncGitHub();
-      setTimeout(ghSaveState, 1000);
-    }
-  } catch {}
-}
-
 // ── Actions ───────────────────────────────────────────────────────────────────
-function markRead(url)   { readUrls.add(url);    saveLocal(); scheduleGhSave(); badge(); renderSidebar(); patchCard(url); }
-function markUnread(url) { readUrls.delete(url); saveLocal(); scheduleGhSave(); badge(); renderSidebar(); patchCard(url); }
+function markRead(url)   { readUrls.add(url);    saveLocal(); badge(); renderSidebar(); patchCard(url); }
+function markUnread(url) { readUrls.delete(url); saveLocal(); badge(); renderSidebar(); patchCard(url); }
 function toggleRead(url) { readUrls.has(url) ? markUnread(url) : markRead(url); }
 
 function toggleStar(url) {
   if (starUrls.has(url)) { starUrls.delete(url); toast('Unstarred'); }
   else                    { starUrls.add(url);    toast('⭐ Starred'); }
   saveLocal();
-  scheduleGhSave();
   patchCard(url);
   renderSidebar();
 }
@@ -833,7 +758,6 @@ function markAllRead() {
   const vs = visible();
   vs.forEach(a => readUrls.add(a.url));
   saveLocal();
-  scheduleGhSave();
   badge();
   renderSidebar();
   renderArts();
@@ -979,7 +903,6 @@ function setupAutoReadObserver() {
 function autoMarkRead(url, cardEl) {
   readUrls.add(url);
   saveLocal();
-  scheduleGhSave();
   badge();
   renderSidebar();
   if (unreadOnly) {
@@ -1289,69 +1212,14 @@ async function submitCorrection(url) {
   if (cat && cat !== a?.category) {
     corrs[url] = {...corrs[url], category_override: cat};
     saveLocal();
-    scheduleGhSave();
     renderSidebar();
     renderArts();
   }
 
-  if (!BAKED_TOKEN) {
-    stEl.className = 'save-st';
-    stEl.textContent = 'Saved locally (no GitHub token configured).';
-    toast('Saved locally');
-    saveLocal();
-    return;
-  }
-
-  btn.disabled = true;
   stEl.className = 'save-st';
-  stEl.textContent = 'Saving…';
-
-  const dk     = todayKey();
-  const payload = {
-    url, title: a?.title || '', source: a?.source || '',
-    category: a?.category || '', category_override: cat || null,
-    score: a?.score || 0,
-    rating: r.rating || null, better_theme: r.better_theme || null,
-    note: note || null, rated_at: new Date().toISOString(),
-  };
-
-  const apiBase = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/feedback/${dk}.json`;
-  const hdrs = {
-    'Authorization': `Bearer ${BAKED_TOKEN}`,
-    'Content-Type': 'application/json',
-    'Accept': 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28',
-  };
-
-  try {
-    let sha = null, existing = [];
-    const cur = await fetch(apiBase, {headers: hdrs});
-    if (cur.ok) {
-      const data = await cur.json();
-      sha = data.sha;
-      try {
-        const dec = JSON.parse(atob(data.content.replace(/\n/g,'')));
-        existing = dec.ratings || [];
-      } catch {}
-    }
-    const byUrl = Object.fromEntries(existing.map(x => [x.url, x]));
-    byUrl[url] = payload;
-    const body = {
-      message: `Add review feedback ${dk} [skip ci]`,
-      content: btoa(unescape(encodeURIComponent(JSON.stringify({date:dk, submitted_at:new Date().toISOString(), ratings:Object.values(byUrl)}, null, 2)))),
-      ...(sha ? {sha} : {}),
-    };
-    const res = await fetch(apiBase, {method:'PUT', headers:hdrs, body:JSON.stringify(body)});
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    stEl.className = 'save-st ok';
-    stEl.textContent = '✅ Saved to GitHub!';
-    toast('✅ Feedback saved');
-    saveLocal();
-  } catch(e) {
-    stEl.className = 'save-st err';
-    stEl.textContent = '❌ ' + e.message;
-    btn.disabled = false;
-  }
+  stEl.textContent = 'Saved locally in this browser.';
+  toast('Saved locally');
+  saveLocal();
 }
 
 // ── PWA badge + title ─────────────────────────────────────────────────────────
@@ -1437,9 +1305,7 @@ $('btn-close-panel').addEventListener('click', closePanel);
 
 // ── Settings ──────────────────────────────────────────────────────────────────
 function openSettings() {
-  $('sync-status-msg').textContent = BAKED_TOKEN
-    ? '✅ GitHub sync active — read/star state syncs across devices automatically.'
-    : '⚠️ No GitHub token. Open this page from the deployed GitHub Pages site for cross-device sync. State is saved locally in this browser only.';
+  $('sync-status-msg').textContent = 'Read/star state and corrections are saved locally in this browser only.';
   $('settings-modal').classList.remove('hidden');
 }
 $('btn-settings').addEventListener('click', openSettings);
@@ -1454,7 +1320,7 @@ async function refresh() {
   const btn = $('btn-refresh');
   btn.classList.add('spin');
   btn.disabled = true;
-  await Promise.all([loadFeeds(), syncGitHub()]);
+  await loadFeeds();
   renderSidebar();
   renderArts();
   badge();
@@ -1469,14 +1335,8 @@ async function init() {
   loadLocal();
   syncHideReadButtons();
   renderSidebar();
-  await syncGitHub();
   await loadFeeds();
-  setInterval(async () => { await syncGitHub(); renderSidebar(); badge(); }, 5 * 60 * 1000);
 }
-
-window.addEventListener('beforeunload', () => {
-  if (ghSaveTimer) { clearTimeout(ghSaveTimer); ghSaveState(); }
-});
 
 init();
 </script>

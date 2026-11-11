@@ -693,3 +693,16 @@ found it.
 
 The tail and the kicker are off-theme by design and never counted. Thresholds mirror
 `podcast_generator`'s constants; a test pins them together.
+
+## Outside fetches are bounded in size and time (2026-11-11)
+
+A code review found `_get_public` checked where a URL pointed but not how much it sent or for how
+long: `timeout=` bounds each socket read, not the call, so a page that drips bytes holds the run.
+The first fix read the body in chunks and checked a deadline between them. It did not work: requests
+yields a chunk only once it is full, so a server sending one byte every half second never reached the
+check (a 2-second cap took 20 seconds against a local test server). The clock is now a daemon thread
+and `join(MAX_FETCH_SECONDS)`; an overrun is abandoned and returns None, like a refused URL. The size
+cap (`MAX_BODY_BYTES`) is still enforced while reading. `generate_bespoke.py` and `twit_harvest.py`
+fetched page URLs with a bare `requests.get`; both now go through the guard.
+
+`super-rss-feed` carries the same guard (`sanitize.get_public`) and got the same change.

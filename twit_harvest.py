@@ -136,7 +136,10 @@ def fetch_episode_page(url: str) -> tuple[str, list[str]]:
     if not url:
         return "", []
     try:
-        resp = requests.get(url, timeout=12, headers={"User-Agent": "Mozilla/5.0"})
+        from podcast_generator import _get_public  # ponytail: the daily pipeline's SSRF guard
+        resp = _get_public(url, timeout=12, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
+            raise ValueError("not a public http(s) URL")
         resp.raise_for_status()
         html = resp.text
     except Exception as exc:

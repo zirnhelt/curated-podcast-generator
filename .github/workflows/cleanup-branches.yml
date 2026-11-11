@@ -22,9 +22,12 @@ jobs:
       - name: Delete stale claude/ branches
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Via env, never ${{ }} in the script body: a branch name is attacker-chosen text.
+          HEAD_REF: ${{ github.head_ref }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            branch="${{ github.head_ref }}"
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            branch="$HEAD_REF"
             echo "Deleting closed PR branch: $branch"
             gh api "repos/${{ github.repository }}/git/refs/heads/$branch" -X DELETE \
               && echo "Deleted $branch" || echo "Branch already deleted or protected"
