@@ -195,17 +195,34 @@ class TestIsProducerSender:
     ingest, because the stored address is masked. Configured in
     config/blocklist.json alongside the other email routing rules."""
 
+    AUTH = "mx.google.com; dkim=pass header.i=@gmail.com; spf=pass; dmarc=pass (p=NONE) header.from=gmail.com"
+
     def test_matches_the_configured_producer_address(self):
         from config_loader import is_producer_sender
 
-        assert is_producer_sender("Erich Zirnhelt <zirnhelt@gmail.com>")
-        assert is_producer_sender("ZIRNHELT@GMAIL.COM")
+        assert is_producer_sender("Erich Zirnhelt <zirnhelt@gmail.com>", self.AUTH)
+        assert is_producer_sender("ZIRNHELT@GMAIL.COM", self.AUTH)
 
     def test_listener_address_is_not_the_producer(self):
         from config_loader import is_producer_sender
 
-        assert not is_producer_sender("someone@example.com")
-        assert not is_producer_sender("")
+        assert not is_producer_sender("someone@example.com", self.AUTH)
+        assert not is_producer_sender("", self.AUTH)
+
+    def test_lookalikes_and_display_names_are_not_the_producer(self):
+        from config_loader import is_producer_sender
+
+        assert not is_producer_sender("zirnhelt@gmail.com.evil.test", self.AUTH)
+        assert not is_producer_sender('"zirnhelt@gmail.com" <x@evil.test>', self.AUTH)
+        assert not is_producer_sender("zirnhelt@gmail.com <x@evil.test>", self.AUTH)
+
+    def test_unauthenticated_mail_is_not_the_producer(self):
+        from config_loader import is_producer_sender
+
+        assert not is_producer_sender("zirnhelt@gmail.com")
+        assert not is_producer_sender("zirnhelt@gmail.com", "mx.google.com; dmarc=fail")
+        # Only the receiving server's verdict counts, not one the sender wrote.
+        assert not is_producer_sender("zirnhelt@gmail.com", "evil.test; dmarc=pass")
 
 
 class TestPronunciations:

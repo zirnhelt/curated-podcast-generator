@@ -1683,23 +1683,48 @@ def _resolves_public(host: str) -> bool:
     return bool(addresses) and all(a.is_global for a in addresses)
 
 
+MAX_BODY_BYTES = 5_000_000   # no article page is larger; a bigger body is a trap or a mistake
+MAX_FETCH_SECONDS = 30       # whole call, redirects included; `timeout=` only bounds each read
+
+
+def _read_capped(resp, deadline: float) -> bool:
+    """Read ``resp``'s body into it, False (closed) if it is too big, too slow or breaks off."""
+    buf = bytearray()
+    try:
+        for chunk in resp.iter_content(65536):
+            buf += chunk
+            if len(buf) > MAX_BODY_BYTES or time.monotonic() > deadline:
+                resp.close()
+                return False
+    except requests.RequestException:
+        resp.close()
+        return False
+    resp._content, resp._content_consumed = bytes(buf), True
+    return True
+
+
 def _get_public(url: str, **kwargs) -> "requests.Response | None":
     """``requests.get`` for a feed- or model-supplied URL, or None if any hop is not public.
 
     Each hop must pass ``_public_http_url`` and resolve only to global addresses
     before it is requested, so neither a public name pointing at a private
     address nor a redirect through one is fetched. Redirects are followed here
-    (cookies carried, at most ``MAX_REDIRECTS``) so each hop is checked.
+    (cookies carried, at most ``MAX_REDIRECTS``) so each hop is checked. The body
+    is capped at ``MAX_BODY_BYTES`` and the whole call at ``MAX_FETCH_SECONDS``.
     """
     # ponytail: resolve-and-check, not resolve-and-pin. requests resolves again, so a
     # DNS answer that changes between the two lookups still gets through (operations.md).
+    deadline = time.monotonic() + MAX_FETCH_SECONDS
     cookies = requests.cookies.RequestsCookieJar()
     for _ in range(MAX_REDIRECTS + 1):
         if not _public_http_url(url) or not _resolves_public(urlparse(url).hostname):
             return None
-        resp = requests.get(url, allow_redirects=False, cookies=cookies, **kwargs)
+        resp = requests.get(url, allow_redirects=False, cookies=cookies, stream=True, **kwargs)
         if not getattr(resp, "is_redirect", False):
-            return resp if _public_http_url(getattr(resp, "url", url)) else None
+            if not _public_http_url(getattr(resp, "url", url)):
+                resp.close()
+                return None
+            return resp if _read_capped(resp, deadline) else None
         cookies.update(resp.cookies)
         url = urljoin(url, resp.headers["location"])
         resp.close()
@@ -6674,9 +6699,10 @@ def _check_feed_contract(feed_data: dict, feed_url: str) -> None:
     key is a changed writer. Never raises — the defaults keep the episode
     going; the row is what gets the writer fixed.
     """
-    meta = feed_data.get("_podcast") or {}
+    meta = feed_data.get("_podcast") if isinstance(feed_data.get("_podcast"), dict) else {}
     missing = [f"_podcast.{k}" for k in FEED_CONTRACT_FEED_FIELDS if k not in meta]
-    items = [i for i in feed_data.get("items", []) if isinstance(i, dict)]
+    raw_items = feed_data.get("items")
+    items = [i for i in raw_items if isinstance(i, dict)] if isinstance(raw_items, list) else []
     for field in FEED_CONTRACT_ITEM_FIELDS:
         absent = sum(1 for i in items if field not in i)
         if absent:
@@ -6715,14 +6741,20 @@ def fetch_podcast_feed(weekday):
         response.raise_for_status()
 
         feed_data = response.json()
+        # A truncated or hand-edited feed can be valid JSON of the wrong shape; skip
+        # the day (exit 76) rather than crash on `.get` of a list or a null.
+        if not isinstance(feed_data, dict):
+            raise json.JSONDecodeError("podcast feed is not a JSON object", "", 0)
 
         # Extract podcast metadata from the feed
+        podcast_meta = feed_data.get('_podcast') if isinstance(feed_data.get('_podcast'), dict) else {}
         feed_meta = {
-            'theme': feed_data.get('_podcast', {}).get('theme', ''),
-            'theme_description': feed_data.get('_podcast', {}).get('theme_description', ''),
+            'theme': podcast_meta.get('theme', ''),
+            'theme_description': podcast_meta.get('theme_description', ''),
         }
 
-        items = feed_data.get('items', [])
+        raw_items = feed_data.get('items')
+        items = [i for i in raw_items if isinstance(i, dict)] if isinstance(raw_items, list) else []
         _assert_feed_fresh(items, feed_url)
         _check_feed_contract(feed_data, feed_url)
 

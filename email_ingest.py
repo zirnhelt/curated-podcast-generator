@@ -732,7 +732,7 @@ def ingest(dry_run: bool = False) -> int:
             # the stored form is masked, and a masked address cannot identify
             # anyone. The pipeline reads the flag back to attribute the item on
             # air as an in-house catch rather than as listener mail.
-            "from_producer": is_producer_sender(from_address),
+            "from_producer": is_producer_sender(from_address, msg.get("Authentication-Results", "")),
             "subject": subject[:200],
             "received_at": received_at,
             "body_text": body_text,

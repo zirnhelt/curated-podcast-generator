@@ -9,6 +9,7 @@ import os
 import re
 import tempfile
 from datetime import date, timedelta
+from email.utils import parseaddr
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -207,7 +208,7 @@ def load_blocklist():
             return json.load(f)
     return {"title_keywords": []}
 
-def is_producer_sender(from_address: str) -> bool:
+def is_producer_sender(from_address: str, auth_results: str = "") -> bool:
     """True if an email came from the show's own production side, not a listener.
 
     Lives here rather than in email_ingest for the same reason atomic_write_text
@@ -215,12 +216,22 @@ def is_producer_sender(from_address: str) -> bool:
     reads it back, and neither may import the other. Matched on the raw From
     header before it is masked for storage — a masked address ("z***@gmail.com")
     is not identity, it matches every gmail sender whose name starts with z.
+
+    The match is the parsed address, exactly: a display name or a look-alike
+    ("zirnhelt@gmail.com.evil.test") contains the producer's address but is not
+    it. From is also forgeable, so Gmail's own Authentication-Results (the
+    topmost one, stamped by mx.google.com) must report ``dmarc=pass``. Without
+    it the sender is a listener: the failure costs one misattributed thank-you,
+    not a stranger's text aired as the show's own catch.
     """
-    if not from_address:
+    addr = parseaddr(from_address or "")[1].lower()
+    if not addr:
         return False
-    addr = from_address.lower()
+    if not re.match(r"\s*mx\.google\.com\s*;", auth_results or "", re.I) \
+            or not re.search(r"\bdmarc=pass\b", auth_results, re.I):
+        return False
     cfg = load_blocklist().get("email_producer_senders", {})
-    if any(a.lower() in addr for a in cfg.get("addresses", []) if a):
+    if addr in {a.lower() for a in cfg.get("addresses", []) if a}:
         return True
     return any(p.lower() in addr for p in cfg.get("patterns", []) if p)
 

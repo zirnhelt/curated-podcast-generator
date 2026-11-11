@@ -233,7 +233,10 @@ def fetch_url_content(url):
     body = ""
 
     try:
-        resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
+        from podcast_generator import _get_public  # ponytail: the daily pipeline's SSRF guard
+        resp = _get_public(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
+        if resp is None:
+            raise ValueError("not a public http(s) URL")
         resp.raise_for_status()
         html = resp.text
 
@@ -1275,6 +1278,9 @@ def main():
         parser.error("--tag is required unless --sync-only is set")
 
     tag = args.tag.lower()
+    # The tag names output files and arrives from a dispatch payload: no path characters.
+    if not re.fullmatch(r"[a-z0-9][a-z0-9 _-]{0,63}", tag):
+        parser.error("--tag may only use letters, digits, spaces, '-' and '_' (max 64)")
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     BESPOKE_DIR.mkdir(parents=True, exist_ok=True)

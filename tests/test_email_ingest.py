@@ -362,7 +362,8 @@ class TestScoreThemes:
 # ingest() — full pipeline with mocked Gmail service
 # ---------------------------------------------------------------------------
 
-def _make_raw_email(subject, from_addr, body, message_id=None, to_addr="podcast@cariboosignals.ca"):
+def _make_raw_email(subject, from_addr, body, message_id=None, to_addr="podcast@cariboosignals.ca",
+                    auth_results=None):
     """Build a base64url-encoded raw email dict as returned by the Gmail API."""
     msg = MIMEText(body)
     msg["Subject"] = subject
@@ -370,6 +371,8 @@ def _make_raw_email(subject, from_addr, body, message_id=None, to_addr="podcast@
     msg["To"] = to_addr
     msg["Date"] = "Thu, 01 Jan 2026 00:00:00 +0000"
     msg["Message-ID"] = message_id or f"<{uuid.uuid4().hex}@example.com>"
+    if auth_results:
+        msg["Authentication-Results"] = auth_results
     return {"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}
 
 
@@ -428,6 +431,7 @@ class TestIngest:
             subject="Correction: Monday",
             from_addr="Erich Zirnhelt <zirnhelt@gmail.com>",
             body="Williams Lake and Cariboo community stories — the Okanagan is south and east of us.",
+            auth_results="mx.google.com; spf=pass; dmarc=pass (p=NONE) header.from=gmail.com",
         )
         svc = _mock_gmail_service([raw])
 
@@ -441,6 +445,23 @@ class TestIngest:
         assert item["from_producer"] is True
         # The stored address is still masked — the flag is what survives.
         assert item["from_address"] == "z***@gmail.com"
+
+    def test_forged_producer_from_is_not_flagged(self, tmp_path, monkeypatch):
+        """A From header naming the producer proves nothing without Gmail's DMARC pass."""
+        raw = _make_raw_email(
+            subject="Correction: Monday",
+            from_addr="Erich Zirnhelt <zirnhelt@gmail.com>",
+            body="Williams Lake and Cariboo community stories — the Okanagan is south and east of us.",
+            auth_results="mx.google.com; spf=fail; dmarc=fail",
+        )
+        svc = _mock_gmail_service([raw])
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        assert ingest(dry_run=False) == 1
+        assert json.loads(queue_file.read_text())["items"][0]["from_producer"] is False
 
     def test_listener_email_is_not_flagged_as_production(self, tmp_path, monkeypatch):
         raw = _make_raw_email(
