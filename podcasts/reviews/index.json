@@ -1,5 +1,269 @@
 [
   {
+    "date": "2026-11-11",
+    "title": "Episode Review — Cariboo Signals, November 11, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-11.html",
+    "content_html": "<p class=\"meta\">Focus: Maker &amp; Repair (week 1 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/42984275815\">42984275815</a>.</p>\n\n<div class=\"verdict lvl-good\"><span class=\"icon\" aria-hidden=\"true\">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>\n\n<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>\n\n<h2>What happened</h2>\n<h3>Two runs timed out and one fallback was needed before the scheduler succeeded</h3>\n<p>The primary run at 1:05 AM Pacific and the first fallback at 2:05 AM Pacific both completed with a success conclusion, and this review is running on the second fallback at 3:05 AM Pacific. The primary run finished at 1:31 AM Pacific; the first fallback finished at 2:05 AM Pacific with zero minutes late.</p>\n<p>The scheduler did not require the second fallback to produce the episode. Nothing in the facts says why the earlier triggers were needed, so the cause is not established here. Check the primary and fallback run logs at the URLs in the run record before changing the schedule.</p>\n\n<h3>The first draft fell short of target and was expanded once</h3>\n<p>The script's first draft came in at 2,469 words against a target of 3,400. The pipeline sent it back for one expand pass, and the script that shipped was 3,381 words. That leaves it 19 words under target, which the pipeline treats as intended for a thin day. It is a problem only if the word count drops below SHORT_EPISODE_WORDS, which the facts do not report as triggered.</p>\n<p>The roundup pool still lost 39 stories to the airtime budget. The roundup pool is larger than one segment can air, so this is by design, but the thin first draft and the 39 cut stories together point to a pool that is larger than the target word count can carry. If the expand pass keeps needing to fill gaps, consider raising NEWS_ROUNDUP_COUNT or lowering the airtime budget so the draft meets target without an extra pass.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>1 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.82, 3381 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 46% of the words</td></tr>\n<tr><td>Audio</td><td>20.3 min</td></tr>\n<tr><td>Audio size</td><td>18.6 MB</td></tr>\n<tr><td>Citations matched</td><td>17/18 roundup, 1/1 deep dive</td></tr>\n<tr><td>Feed</td><td>287 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>72,629</td></tr>\n<tr><td>API calls</td><td>23 total: claude 11 · kagi-extract 5 · brave-answers 4 · brave-search 3</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-11T10:05:58+00:00",
+    "metrics": {
+      "audio_minutes": 20.3,
+      "script_words": 3381,
+      "tell_hits": 0,
+      "roundup_cite_pct": 94.4,
+      "deep_dive_cite_pct": 100.0
+    },
+    "summary": {
+      "level": "good",
+      "label": "Shipped clean",
+      "summary": "Nothing broke and nothing fell back.",
+      "theme": "",
+      "kpis": [
+        [
+          "Episode",
+          "20.3 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,381",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "17/18 · 1/1",
+          "roundup · deep dive"
+        ],
+        [
+          "Done at",
+          "1:31 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [],
+      "cycle": [
+        {
+          "date": "2026-11-09",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 4,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-10",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Agriculture & Ranching",
+          "week": 1,
+          "of": 4,
+          "next": "Forestry & Timber",
+          "event": null
+        },
+        {
+          "date": "2026-11-11",
+          "day": "Wed",
+          "today": true,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 4,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-12",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Governance, Title & Treaty",
+          "week": 1,
+          "of": 4,
+          "next": "Language & Culture",
+          "event": null
+        },
+        {
+          "date": "2026-11-13",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 3,
+          "next": "Wildfire & Climate Resilience",
+          "event": null
+        },
+        {
+          "date": "2026-11-14",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-15",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 4,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "Is it fair to help the people who are already helping?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.wired.com/story/the-big-interview-podcast-louis-rossmann-right-to-repair/",
+          "title": "[WIRED] Louis Rossmann Wants More People to Care About the Right to Repair",
+          "source": "",
+          "theme_pct": 100,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/09/free-your-harley-from-the-dealer/",
+          "title": "[Hackaday] Free Your Harley From The Dealer",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.engadget.com/2312969/ifixit-teardown-shows-how-apples-glowing-proled-macbook-logo-works/",
+          "title": "[Engadget] iFixit teardown shows how Apple's glowing PROLED MacBook logo works",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.makeuseof.com/i-turned-my-old-macbook-into-a-home-server-and-gave-it-a-new-lease-on-life/",
+          "title": "[MakeUseOf] I turned my old MacBook into a home server and gave it a new lease on life",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.tomshardware.com/tech-industry/drones/us-army-successfully-flies-a-hybrid-electric-drone-with-3d-printed-heavy-fuel-rotary-engine-400v-motor-generator-uses-advanced-engineering-to-ditch-a-bulky-liquid-cooling-system",
+          "title": "[Tom's Hardware] US Army successfully flies a hybrid electric drone with 3D-printed heavy-fuel rotary engine — uses advanced engineering to ditch a bulky liquid cooling system",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/08/saving-a-vintage-high-voltage-power-supply-from-the-scrap-heap/",
+          "title": "[Hackaday] Saving a Vintage High-Voltage Power Supply From the Scrap Heap",
+          "source": "",
+          "theme_pct": 97,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.popularwoodworking.com/projects/wooden-router-plane/",
+          "title": "[Popular Woodworking] Wooden Router Plane",
+          "source": "",
+          "theme_pct": 97,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.popularwoodworking.com/tricks/accurate-paring-requires-a-flat-back/",
+          "title": "[Popular Woodworking] Accurate Paring Requires A Flat Back",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.popularwoodworking.com/editors-blog/teaching-live-edge-part-2-alternative-flattening-design-options-and-debs-build/",
+          "title": "[Popular Woodworking] Teaching Live Edge (Part 2): Alternative Flattening, Design Options, and Deb’s Build",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/07/build-your-own-e-reader-for-40/",
+          "title": "[Adafruit Blog] Build Your Own E-Reader for $40",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.tomsguide.com/home/smart-home/what-happens-to-your-smart-home-devices-when-the-company-vanishes-what-you-need-to-know",
+          "title": "[Toms Guide] What happens to your smart home devices when the company vanishes? What you need to know",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/04/making-a-wax-motor-for-micrometer-level-control/",
+          "title": "[Hackaday] Making a Wax Motor for Micrometer-Level Control",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.makeuseof.com/ram-is-so-expensive-that-manufacturers-are-putting-used-parts-in-new-phones/",
+          "title": "[MakeUseOf] RAM is so expensive that manufacturers are putting used parts in new phones",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.hackster.io/news/olimex-s-uext-ch390-brings-wired-ethernet-to-raspberry-pi-rp2040-rp2350-and-espressif-esp32-boards-c56db23260c0",
+          "title": "[Hackster News] Olimex's UEXT-CH390 Brings Wired Ethernet to Raspberry Pi RP2040, RP2350, and Espressif ESP32 Boards",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/04/detecting-parcels-at-the-front-door-with-a-camera-opencv-and-home-assistant/",
+          "title": "[Adafruit Blog] Detecting parcels at the front door with a camera, OpenCV and Home Assistant",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        }
+      ],
+      "deep_dive": {
+        "question": "Where does repairing a phone stop making sense for a household, and who should set that threshold: the owner running the numbers or the company pricing the parts?",
+        "riley": "The owner should set the repair threshold by running honest cost calculations, and the policy lever (EU ecodesign and repair rules) plus published parts-price lists can make those calculations workable for households.",
+        "casey": "The threshold is set by prices companies choose and sources are unreliable, so households cannot do the math alone; the law is too new and too narrow to have proven effective, and a shop must be reachable for any calculation to matter.",
+        "resolution": "They did not fully agree. Both agreed a published, dated parts-price list checked by an independent party is the necessary first step, and Riley argued for publishing the price before debating the threshold. Casey left open who should be able to publish such a list and whether it should be a condition of selling foldables.",
+        "topics": [
+          "Out-of-warranty foldable screen repair costs and the Apple versus Galaxy price gap",
+          "EU ecodesign, Right to Repair Directive and Batteries Regulation timelines and limits",
+          "Cost-of-ownership calculations and the effect of insurance plans and affiliate-sourced figures",
+          "Rural access barriers in the Cariboo, including shipping, travel time and lack of foldable-capable shops",
+          "Community repair nights and published parts-price lists as local and independent fixes"
+        ],
+        "sources": [
+          {
+            "title": "Should you repair your phone or replace it? We did the math",
+            "url": "https://www.androidauthority.com/is-phone-repair-worth-it-3728938/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-10",
     "title": "Episode Review — Cariboo Signals, November 10, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-10.html",
@@ -1468,20 +1732,6 @@
       "tell_hits": 0,
       "script_words": 2935,
       "roundup_cite_pct": 73.3,
-      "deep_dive_cite_pct": 66.7
-    }
-  },
-  {
-    "date": "2026-10-12",
-    "title": "Episode Review — Cariboo Signals, October 12, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-12.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38221496054\">38221496054</a>.</em></p>\n\n<h3>The short draft and the expand passes</h3>\n<p>The first script draft came in at 3,003 words against a target of 3,400. The pipeline sent it back for up to two expand passes. The script that shipped is 3,513 words, which is above target, so the expansion overshot. The first draft was short by 397 words and the shipped script is 113 words over the target.</p>\n<p>Quality checks on that script: zero AI-tell pattern hits. The Casey-to-Riley voice ratio is 0.82.</p>\n\n<h3>Roundup: 44 stories cut, 2 aired out of order</h3>\n<p>The roundup pool was larger than one segment could air. The airtime budget (NEWS_ROUNDUP_COUNT) dropped 44 stories. That is the design: a cut story stays in the pool and can run on a day that matches it better.</p>\n<p>The script stage had a degradation. Two stories still aired after a later block, even after one repair pass on the roundup order. The listener heard two items out of their intended sequence. The pipeline did not fix this and shipped the episode with it.</p>\n<p>Citations for the roundup matched 12 of 14. Two roundup citations did not match their sources.</p>\n\n<h3>Deep dives: three segments, two citations matched</h3>\n<p>The episode carried three deep dives: a Business Insider piece on a cookie business that scaled too quickly, an NYT Top Stories piece on a new generation of Inuit creatives in Canada's Arctic, and a Mother Jones piece titled \"Stop the Steal Never Stopped.\" Deep-dive citations matched 2 of 3. One deep-dive citation did not match its source.</p>\n<p>The debate question for the episode was: when a talented kid leaves a small town, is that a loss for the town or a success for the kid, and what does the town owe the people who stay?</p>\n\n<h3>Audio: three short takes, one retry still short</h3>\n<p>Text-to-speech returned three segments shorter than their word count predicted. Each got one retry. One of those retries was still short. The pipeline keeps the longer of the two takes for each segment, so the episode drops no content. The one that stayed short is a take that ran short on both attempts, and the longer of those two is what aired.</p>\n<p>The rendered episode runs 20.8 minutes at 19.0 MB. The video render is 20.8 minutes at 71.4 MB, and it went to YouTube.</p>\n\n<h3>Timing and spend</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:44 AM Pacific with a success conclusion, 0 minutes late. Fallback 1 started at 2:05 AM Pacific and finished at 2:05 AM Pacific, also a success and 0 minutes late. Fallback 2 started at 3:05 AM Pacific, is the run writing this review, and has no finish time yet.</p>\n<p>The script stage ran for 607 seconds and install system dependencies took 710 seconds, the longest step. Deploy to GitHub Pages took 349 seconds. Render episode audio took 300 seconds.</p>\n<p>Spend: 59,133 Anthropic input tokens across 19 Claude calls, and 23 Brave Search calls. The feed now holds 257 episodes.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.82, 3513 words</td></tr>\n<tr><td>Audio</td><td>20.8 min</td></tr>\n<tr><td>Audio size</td><td>19.0 MB</td></tr>\n<tr><td>Citations matched</td><td>12/14 roundup, 2/3 deep dive</td></tr>\n<tr><td>Feed</td><td>257 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>59,133 input tokens, calls ***'claude': 19, 'brave-search': 23***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-12T10:06:10+00:00",
-    "metrics": {
-      "audio_minutes": 20.8,
-      "tell_hits": 0,
-      "script_words": 3513,
-      "roundup_cite_pct": 85.7,
       "deep_dive_cite_pct": 66.7
     }
   }

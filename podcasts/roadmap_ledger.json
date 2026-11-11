@@ -403,8 +403,8 @@
       "title": "Deep dive citations matched at 33% versus roundup at 80%.",
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
-      "status": "open",
-      "occurrences": 3,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-10-02",
@@ -763,5 +763,5 @@
       "last_seen": "2026-11-10"
     }
   ],
-  "updated": "2026-11-10"
+  "updated": "2026-11-11"
 }
