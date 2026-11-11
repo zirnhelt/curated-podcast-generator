@@ -1,0 +1,682 @@
+{
+  "episode": {
+    "date": "2026-11-11",
+    "formatted_date": "Wednesday, November 11, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is it fair to help the people who are already helping?</p><p><b>NEWS ROUNDUP:</b> We break down Williams Lake Library begins a new chapter with a newly renovated look and Final vote count for snap election hands B.C. Conservatives 64 seat majority, plus 15 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Where does repairing a phone stop making sense for a household, and who should set that threshold: the owner running the numbers or the company pricing the parts? Topics include: Out-of-warranty foldable screen repair costs and the Apple versus Galaxy price gap, EU ecodesign, Right to Repair Directive and Batteries Regulation timelines and limits, Cost-of-ownership calculations and the effect of insurance plans and affiliate-sourced figures, Rural access barriers in the Cariboo, including shipping, travel time and lack of foldable-capable shops, Community repair nights and published parts-price lists as local and independent fixes.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://wlacl.org\">Williams Lake Association for Community Living</a></p><p><b>Sources discussed:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/10/williams-lake-library-begins-a-new-chapter-with-a-newly-renovated-look/\">[Williams Lake Tribune] Williams Lake Library begins a new c...</a></li><li>Emily Joveski (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317315/news/politics/final-vote-count-for-snap-election-hands-b-c-conservatives-64-seat-majority/\">[My Cariboo Now] Final vote count for snap election hands B....</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317286/news/water-utilities/watermain-breaks-in-west-quesnel/\">[My Cariboo Now] Watermain breaks in West Quesnel</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/11/10/forster-ladies-of-the-cariboo-lakes-issue-last-call-for-care-bag-donations/\">[100 Mile Free Press] FORSTER: Ladies of the Cariboo Lakes i...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/11/10/alberta-first-nation-sues-b-c-over-site-c-dam-impacts/\">[Williams Lake Tribune] Alberta First Nation sues B.C. over ...</a></li><li>Brian Barrett (WIRED): <a href=\"https://www.wired.com/story/the-big-interview-podcast-louis-rossmann-right-to-repair/\">[WIRED] Louis Rossmann Wants More People to Care About the R...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/11/04/detecting-parcels-at-the-front-door-with-a-camera-opencv-and-home-assistant/\">[Adafruit Blog] Detecting parcels at the front door with a c...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/11/09/free-your-harley-from-the-dealer/\">[Hackaday] Free Your Harley From The Dealer</a></li><li>Ian Carlos Campbell (Engadget): <a href=\"https://www.engadget.com/2312969/ifixit-teardown-shows-how-apples-glowing-proled-macbook-logo-works/\">[Engadget] iFixit teardown shows how Apple's glowing PROLED ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/11/04/making-a-wax-motor-for-micrometer-level-control/\">[Hackaday] Making a Wax Motor for Micrometer-Level Control</a></li><li>MakeUseOf: <a href=\"https://www.makeuseof.com/i-turned-my-old-macbook-into-a-home-server-and-gave-it-a-new-lease-on-life/\">[MakeUseOf] I turned my old MacBook into a home server and g...</a></li><li>MakeUseOf: <a href=\"https://www.makeuseof.com/ram-is-so-expensive-that-manufacturers-are-putting-used-parts-in-new-phones/\">[MakeUseOf] RAM is so expensive that manufacturers are putti...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/tech-industry/drones/us-army-successfully-flies-a-hybrid-electric-drone-with-3d-printed-heavy-fuel-rotary-engine-400v-motor-generator-uses-advanced-engineering-to-ditch-a-bulky-liquid-cooling-system\">[Tom's Hardware] US Army successfully flies a hybrid electri...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/olimex-s-uext-ch390-brings-wired-ethernet-to-raspberry-pi-rp2040-rp2350-and-espressif-esp32-boards-c56db23260c0\">[Hackster News] Olimex's UEXT-CH390 Brings Wired Ethernet to...</a></li><li>Hobby Farms: <a href=\"https://www.hobbyfarms.com/how-to-prevent-frostbite-in-chickens/\">[Hobby Farms] How to Prevent Frostbite in Chickens: Signs an...</a></li><li>Bambu Lab Blog: <a href=\"https://blog.bambulab.com/the-impossible-slice-how-bambu-lab-h3c-made-mixed-nozzles-work-on-different-layer-heights/\">[Bambu Lab Blog] The \"Impossible\" Slice: how Bambu Lab H3C m...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/home/smart-home/what-happens-to-your-smart-home-devices-when-the-company-vanishes-what-you-need-to-know\">[Toms Guide] What happens to your smart home devices when th...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/is-phone-repair-worth-it-3728938/\">[Android Authority] Should you repair your phone or replace ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/11/07/build-your-own-e-reader-for-40/\">[Adafruit Blog] Build Your Own E-Reader for $40</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-11T01:13:35.917914-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-opus-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3381,
+      "voice_ratio_casey_riley": 0.82,
+      "casey_share_deep_dive_pct": 46,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 19,
+        "turns": 85,
+        "avg_turn_words": 38.3,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 1
+    },
+    "anchor": {
+      "id": "fairness-of-who-gets-help",
+      "question": "Is it fair to help the people who are already helping?"
+    },
+    "audio_file_size": 19510701,
+    "audio_duration": "20:19"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Alberta First Nation sues B.C. over Site C dam impacts",
+          "url": "https://wltribune.com/2026/11/10/alberta-first-nation-sues-b-c-over-site-c-dam-impacts/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 80,
+          "date_published": "2026-11-10T21:46:02+00:00",
+          "summary": "The Athabasca Chipewyan First Nation in Alberta is suing British Columbia, the federal government, and BC Hydro for what it says are Treaty 8 rights violations related to several dams on the Peace Riv...",
+          "discussed": true,
+          "mention_offset_frac": 0.0822
+        },
+        {
+          "title": "[My Cariboo Now] Final vote count for snap election hands B.C. Conservatives 64 seat majority",
+          "url": "https://www.mycariboonow.com/317315/news/politics/final-vote-count-for-snap-election-hands-b-c-conservatives-64-seat-majority/",
+          "source": "My Cariboo Now",
+          "author": "Emily Joveski",
+          "ai_score": 78,
+          "date_published": "2026-11-10T03:42:46+00:00",
+          "summary": "The B.C. Conservatives have secured another seat after the final vote results for this fall's provincial election, flipping a Burnaby riding from the NDP. The post Final vote count for snap election h...",
+          "discussed": true,
+          "mention_offset_frac": 0.0914
+        },
+        {
+          "title": "[My Cariboo Now] Watermain breaks in West Quesnel",
+          "url": "https://www.mycariboonow.com/317286/news/water-utilities/watermain-breaks-in-west-quesnel/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 81,
+          "date_published": "2026-11-09T21:14:58+00:00",
+          "summary": "A watermain in West Quesnel has temporarily shut off water for several houses on Anderson Drive. The post Watermain breaks in West Quesnel appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.1587
+        },
+        {
+          "title": "[Adafruit Blog] Detecting parcels at the front door with a camera, OpenCV and Home Assistant",
+          "url": "https://blog.adafruit.com/2026/11/04/detecting-parcels-at-the-front-door-with-a-camera-opencv-and-home-assistant/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-11-04T15:53:18+00:00",
+          "summary": "Delivery drivers often leave a parcel on the step and drive off without knocking, so a box can sit outside for hours. The Brian Dorey Tech Blog covers a small setup that watches the front step and sen...",
+          "discussed": true,
+          "mention_offset_frac": 0.1633
+        },
+        {
+          "title": "[WIRED] Louis Rossmann Wants More People to Care About the Right to Repair",
+          "url": "https://www.wired.com/story/the-big-interview-podcast-louis-rossmann-right-to-repair/",
+          "source": "WIRED",
+          "author": "Brian Barrett",
+          "ai_score": 57,
+          "date_published": "2026-11-10T11:30:00+00:00",
+          "summary": "The outspoken consumer rights advocate knows the incoming Democrat-heavy Congress has a lot to get done. But he hopes one of those things is letting you fix your own iPhone.",
+          "discussed": true,
+          "mention_offset_frac": 0.1704
+        },
+        {
+          "title": "[100 Mile Free Press] FORSTER: Ladies of the Cariboo Lakes issue last call for care bag donations",
+          "url": "https://100milefreepress.net/2026/11/10/forster-ladies-of-the-cariboo-lakes-issue-last-call-for-care-bag-donations/",
+          "source": "100 Mile Free Press",
+          "author": "none",
+          "ai_score": 62,
+          "date_published": "2026-11-11T06:03:25.439919+00:00",
+          "summary": "The Ladies of the Cariboo Lakes (LCL) thanks those who have donated towards the 50 care bags which will be provided to 100 Mile’s Canadian…",
+          "discussed": true,
+          "mention_offset_frac": 0.1986
+        },
+        {
+          "title": "[Toms Guide] What happens to your smart home devices when the company vanishes? What you need to know",
+          "url": "https://www.tomsguide.com/home/smart-home/what-happens-to-your-smart-home-devices-when-the-company-vanishes-what-you-need-to-know",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/max-slater-robins",
+          "ai_score": 52,
+          "date_published": "2026-11-04T06:00:00+00:00",
+          "summary": "Can your smart home survive if its maker disappears? Here’s what you need to know and some top tips.",
+          "discussed": true,
+          "mention_offset_frac": 0.4019
+        },
+        {
+          "title": "[Hackaday] Free Your Harley From The Dealer",
+          "url": "https://hackaday.com/2026/11/09/free-your-harley-from-the-dealer/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-11-10T00:00:08+00:00",
+          "summary": "Vehicles have come with diagnostic ports for many years now, and there are a host of easily available tools to interrogate them. Despite that, there are still proprietary aspects that …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.4997
+        },
+        {
+          "title": "[Engadget] iFixit teardown shows how Apple's glowing PROLED MacBook logo works",
+          "url": "https://www.engadget.com/2312969/ifixit-teardown-shows-how-apples-glowing-proled-macbook-logo-works/",
+          "source": "Engadget",
+          "author": "Ian Carlos Campbell",
+          "ai_score": 53,
+          "date_published": "2026-11-11T00:03:54+00:00",
+          "summary": "The new laptop goes the extra mile to recreate the iconic feature.",
+          "discussed": true,
+          "mention_offset_frac": 0.5702
+        },
+        {
+          "title": "[Hackaday] Making a Wax Motor for Micrometer-Level Control",
+          "url": "https://hackaday.com/2026/11/04/making-a-wax-motor-for-micrometer-level-control/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-11-04T19:30:11+00:00",
+          "summary": "Although not very glamorous, wax motors are a fairly common type of linear actuator. They use the thermal response of waxes and the resulting volumetric expansion or reduction to create …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.6143
+        },
+        {
+          "title": "[MakeUseOf] I turned my old MacBook into a home server and gave it a new lease on life",
+          "url": "https://www.makeuseof.com/i-turned-my-old-macbook-into-a-home-server-and-gave-it-a-new-lease-on-life/",
+          "source": "MakeUseOf",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-11-04T15:31:17+00:00",
+          "summary": "Running a few docker containers let me sync files and stream my media library, while Tailscale provided remote access to my repurposed Mac.",
+          "discussed": true,
+          "mention_offset_frac": 0.6546
+        },
+        {
+          "title": "[MakeUseOf] RAM is so expensive that manufacturers are putting used parts in new phones",
+          "url": "https://www.makeuseof.com/ram-is-so-expensive-that-manufacturers-are-putting-used-parts-in-new-phones/",
+          "source": "MakeUseOf",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-11-09T20:58:20+00:00",
+          "summary": "Reworked RAM undergoes detaching, cleaning, and reballing yet may carry wear that risks freezes and data errors.",
+          "discussed": true,
+          "mention_offset_frac": 0.6974
+        },
+        {
+          "title": "[Tom's Hardware] US Army successfully flies a hybrid electric drone with 3D-printed heavy-fuel rotary engine — uses advanced engineering to ditch a bulky liquid cooling system",
+          "url": "https://www.tomshardware.com/tech-industry/drones/us-army-successfully-flies-a-hybrid-electric-drone-with-3d-printed-heavy-fuel-rotary-engine-400v-motor-generator-uses-advanced-engineering-to-ditch-a-bulky-liquid-cooling-system",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/jhet-borja",
+          "ai_score": 51,
+          "date_published": "2026-11-04T10:30:00+00:00",
+          "summary": "The US Army VICTOR drone uses an optimized heavy-fuel rotary engine developed with metal 3D printing for rapid prototyping.",
+          "discussed": true,
+          "mention_offset_frac": 0.7739
+        },
+        {
+          "title": "[Hackster News] Olimex's UEXT-CH390 Brings Wired Ethernet to Raspberry Pi RP2040, RP2350, and Espressif ESP32 Boards",
+          "url": "https://www.hackster.io/news/olimex-s-uext-ch390-brings-wired-ethernet-to-raspberry-pi-rp2040-rp2350-and-espressif-esp32-boards-c56db23260c0",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-11-05T13:52:17+00:00",
+          "summary": "Example firmware shows how the UEXT/pUEXT-connected add-on can replace Wi-Fi in Home Assistant deployments.",
+          "discussed": true,
+          "mention_offset_frac": 0.8014
+        },
+        {
+          "title": "[Hobby Farms] How to Prevent Frostbite in Chickens: Signs and Treatment",
+          "url": "https://www.hobbyfarms.com/how-to-prevent-frostbite-in-chickens/",
+          "source": "Hobby Farms",
+          "author": "https://www.facebook.com/thegreenestacre/",
+          "ai_score": 58,
+          "date_published": "2026-11-02T08:00:31+00:00",
+          "summary": "All Chickens Can Develop Frostbite Even if They Are Classified As \"Cold Hardy\" The post How to Prevent Frostbite in Chickens: Signs and Treatment appeared first on Hobby Farms .",
+          "discussed": true,
+          "mention_offset_frac": 0.8764
+        },
+        {
+          "title": "[Bambu Lab Blog] The \"Impossible\" Slice: how Bambu Lab H3C made mixed nozzles work on different layer heights",
+          "url": "https://blog.bambulab.com/the-impossible-slice-how-bambu-lab-h3c-made-mixed-nozzles-work-on-different-layer-heights/",
+          "source": "Bambu Lab Blog",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-11-09T10:48:22+00:00",
+          "summary": "Thick and thin in one go. The first commercially available 3D printer to give every region of your print its own vertical resolution",
+          "discussed": true,
+          "mention_offset_frac": 0.9118
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Library begins a new chapter with a newly renovated look",
+          "url": "https://wltribune.com/2026/11/10/williams-lake-library-begins-a-new-chapter-with-a-newly-renovated-look/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 88,
+          "date_published": "2026-11-11T06:03:25.439551+00:00",
+          "summary": "Manager of library services Jennifer Coupe speaks at a grand opening celebration for the recently renovated Cariboo Regional District Library Williams Lake Branch on Tuesday, Nov. 10. A prayer at the ...",
+          "discussed": true
+        },
+        {
+          "title": "[Adafruit Blog] Build Your Own E-Reader for $40",
+          "url": "https://blog.adafruit.com/2026/11/07/build-your-own-e-reader-for-40/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-11-07T21:03:06+00:00",
+          "summary": "Allan Binder of MUON SORTES shares this how to guide for building an affordable e-reader. And head to Allan Binder‘s instagram for a more polished look and future iterations. You need four things: an ...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[Android Authority] Should you repair your phone or replace it? We did the math",
+          "url": "https://www.androidauthority.com/is-phone-repair-worth-it-3728938/",
+          "source": "Android Authority",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-11-01T10:30:16+00:00",
+          "summary": "Sometimes, spending hundreds on repairs is the smarter financial decision.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Where does repairing a phone stop making sense for a household, and who should set that threshold: the owner running the numbers or the company pricing the parts?",
+        "riley_position": "The owner should set the repair threshold by running honest cost calculations, and the policy lever (EU ecodesign and repair rules) plus published parts-price lists can make those calculations workable for households.",
+        "riley_key_evidence": [
+          "Apple reportedly charges $999 out of warranty for the Duo inner display versus $99 with AppleCare+, a roughly tenfold spread on the same part",
+          "EU Regulation 2023/1670 ecodesign rules took effect June 20, 2025, covering repairability and spare parts, and the Batteries Regulation requires user-removable or easily replaceable batteries from 2027",
+          "The Williams Lake library branch reopened November 3rd with a community room that could host a monthly repair night"
+        ],
+        "casey_position": "The threshold is set by prices companies choose and sources are unreliable, so households cannot do the math alone; the law is too new and too narrow to have proven effective, and a shop must be reachable for any calculation to matter.",
+        "casey_key_evidence": [
+          "Ricky Panesar of iCorrect estimated about £850 (roughly $1,155) for the Duo inner screen versus £594 on the Galaxy Z Fold 8, but these are estimates, not Apple's published prices",
+          "The EU ecodesign rules apply only to devices first placed on the market on or after June 20, 2025, so phones already owned fall outside them, and TechRadar could not yet say whether phones were easier to repair",
+          "An iFixPros estimate puts out-of-warranty foldable repair at $500 to $900 versus $129 to $329 for a standard iPhone screen, and no nearby shop may handle foldables in rural areas like 100 Mile House"
+        ],
+        "resolution": "They did not fully agree. Both agreed a published, dated parts-price list checked by an independent party is the necessary first step, and Riley argued for publishing the price before debating the threshold. Casey left open who should be able to publish such a list and whether it should be a condition of selling foldables.",
+        "topics_covered": [
+          "Out-of-warranty foldable screen repair costs and the Apple versus Galaxy price gap",
+          "EU ecodesign, Right to Repair Directive and Batteries Regulation timelines and limits",
+          "Cost-of-ownership calculations and the effect of insurance plans and affiliate-sourced figures",
+          "Rural access barriers in the Cariboo, including shipping, travel time and lack of foldable-capable shops",
+          "Community repair nights and published parts-price lists as local and independent fixes"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 7,
+          "conditions": "overcast",
+          "high": 15,
+          "low": 6
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 7,
+          "conditions": "partly cloudy",
+          "high": 12,
+          "low": 5
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 10,
+          "conditions": "partly cloudy",
+          "high": 15,
+          "low": 8
+        },
+        {
+          "name": "Quesnel",
+          "temp": 9,
+          "conditions": "partly cloudy",
+          "high": 16,
+          "low": 8
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 3,
+          "conditions": "moderate rain showers",
+          "high": 7,
+          "low": 2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Williams Lake Association for Community Living",
+      "description": "Supporting people with diverse abilities in Williams Lake since 1960",
+      "website": "wlacl.org",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\nThese analytical threads were identified before generation. Use the findings to ground Riley's and Casey's arguments with real evidence, develop them as substantive exchanges, not a citation list. Cite naturally.\n\nRESEARCH QUESTION: Does the reported cost of repairing Apple's foldable iPhone (the \"iPhone Duo\") really match the article's claim that a display repair can cost as much as a new flagship?\n\nFindings: Multiple outlets back up the repair-cost alarm, though their status claims differ. Reported figures for the inner-screen replacement:\n- NewsBytes and RepairNestPOS report Apple charging $999 out of warranty for the inner display, or $99 with AppleCare+. RepairNestPOS puts a Galaxy Z Fold 8 repair at about $579.\n- Ricky Panesar, founder of repair firm iCorrect, told Forbes he expects about £850 (roughly $1,155) for the inner screen, against £594 for the same repair on a Galaxy Z Fold 8. Notebookcheck and TrendForce carried the same estimate, and TweakTown called it possibly the most expensive iPhone screen repair ever.\n- PhoneArena reports up to $1,499 for some foldable iPhone repairs, with the internal display at $479 and the external display at $149 in one comparison. These numbers appear to refer to a different foldable, so treat them carefully.\n- iFixPros, a DFW repair shop, gave a pre-launch estimate of $500 to $900 out of warranty, against $129 to $329 for a standard iPhone screen.\n\nCaveat: sources disagree on whether the device and prices are confirmed or still estimates, and the $999 and $1,155 figures are not from Apple's published price list. Present them as reported or expected, not official. The AppleCare+ pricing is the most concrete point of comparison.\n\nSuggested angle: Riley can argue that the spread between $99 with AppleCare+ and $999 out of warranty shows that repair economics are driven by service design and coverage rather than by repairability alone, so better insurance and parts pricing could solve it. Casey can counter that the premium lands on the people least able to pay it, and that the iCorrect and Forbes estimates show the cost is structural: a folding inner panel is expensive to make and hard to swap, which means \"repairable in principle\" and \"worth repairing in practice\" are different things. Both should agree that the repair-versus-replace threshold moves depending on whether the buyer has coverage.\n\nRESEARCH QUESTION: Are EU repair rules changing the economics of phone repair, and do they cover batteries and displays?\n\nFindings: The EU's ecodesign rules for smartphones and tablets (Regulation (EU) 2023/1670) took effect on 20 June 2025, covering devices first placed on the EU market on or after that date. They address energy efficiency, durability, repairability, and spare parts. The Right to Repair Directive requires member states to adopt at least one repair-encouraging measure, such as repair vouchers. Separately, the Batteries Regulation (EU) 2023/1542 requires user-removable or easily replaceable batteries in mobile devices, with the rules applying from 2027. TechRadar reported a year after the ecodesign rules took effect that it was still unclear whether phones were actually becoming easier to repair, and noted that the new Apple CEO John Ternus is not fully convinced about repairability. Battery and display replacement are the two repair categories most directly affected.\n\nSuggested angle: Riley can present the regulation as proof that policy can reverse planned obsolescence, pointing to the fact that repair vouchers and parts-availability rules are now written into law and not just advocated. Casey can push back by asking whether the rules only apply to devices sold after June 2025, which would leave the existing installed base untouched for years. He can also argue that a \"removable battery\" mandate does not address the foldable-display problem, since the cost driver is the panel and not the battery. The strongest exchange would test whether regulation can outpace the engineering trend toward more integrated, more expensive designs.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Apple foldable iPhone display replacement cost repair price",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "right to repair smartphones law 2025 EU repair directive phones batteries",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "question",
+        "query": "Apple iPhone 18 Pro inner display out of warranty repair price"
+      },
+      {
+        "kind": "question",
+        "query": "Apple iPhone Duo inner display repair cost $999 AppleCare+ $99"
+      },
+      {
+        "kind": "question",
+        "query": "iCorrect Ricky Panesar iPhone Fold inner screen repair £850 Galaxy Z Fold 8 £594"
+      },
+      {
+        "kind": "question",
+        "query": "iFixPros foldable iPhone screen repair estimate $500 to $900"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A local day of reopenings and repairs, where the wider tech news keeps asking who really controls the things we own and keep running.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "The Cariboo Regional District Library's Williams Lake branch reopened Nov. 3 after two months of renovations, and held a grand reopening on Nov. 10 that included a Williams Lake First Nation prayer, drumming and singing.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "Elections B.C.'s final count gives the B.C. Conservatives 64 seats, the NDP 27 and the Greens 2, with two ridings headed to judicial recounts and an application deadline of Nov. 16.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "A water main break on Anderson Drive in West Quesnel cut water to homes between 685 and 835 Anderson, and City crews have repaired it and restored service.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "The Ladies of the Cariboo Lakes are making their last call for donations to 50 care bags for 100 Mile's Canadian Mental Health Association, with a packing session at the Interlakes Community Centre on Nov. 17.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "The Athabasca Chipewyan First Nation has sued B.C., Ottawa and BC Hydro in B.C. Supreme Court over Treaty 8 rights and the Peace River dams including Site C, and the province declined comment because it is in caretaker mode.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "Right-to-repair advocate Louis Rossmann wants Congress to make it easier to fix your own iPhone, since Apple's self-repair program and parts-locking limit what owners can do.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "A hobbyist built a parcel detector from an ESP32 camera, OpenCV and Home Assistant that sends a notification when a box has sat on the step for 45 seconds.",
+          "bridge_to_next": "The ESP32 board: the parcel camera runs on one, and the next project uses one to read a motorcycle's data bus."
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "A maker built a dealer-grade diagnostic tool for Harley-Davidsons from an ESP32 and a CAN transceiver, opening up functions that used to be closed-source and costly.",
+          "bridge_to_next": "Repairability: from an open tool that beats a dealer lock to a teardown that grades a manufacturer's repair commitment."
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "iFixit's teardown of Apple's first touchscreen MacBook Pro shows how the glowing logo works, with four LEDs behind the display, and criticizes the company's half-hearted commitment to repairability.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "A maker built a paraffin wax motor that held a gap of under 5 micrometres for twelve hours.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "A writer turned an old Intel MacBook Pro into a home server running Docker containers, with Tailscale for remote access.",
+          "bridge_to_next": "Second-hand hardware: from an old laptop given new work to used memory chips going into new phones."
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "RAM has become so expensive that some manufacturers are putting reworked used memory chips in new phones, which may carry wear that risks crashes and data errors.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "Allan Binder of MUON SORTES has shared a how-to guide for building an affordable e-reader for about $40.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "The US Army flew a hybrid electric drone called VICTOR that uses a heavy-fuel rotary engine developed with metal 3D printing.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "Olimex launched the UEXT-CH390 module, which adds 100 Mbit wired Ethernet to RP2040, RP2350 and ESP32 boards, with examples for Home Assistant through ESPHome.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "Even chickens classed as cold hardy can get frostbite, so keepers need to know how to prevent it and recognize the signs.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "Bambu Lab says its H3C is the first commercial 3D printer to let different nozzle sizes print different layer heights on the same surface.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "A Tom's Guide piece asks what happens to smart home devices if their maker disappears, and offers tips for keeping them working.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Whether you can keep a device working once its maker stops helping, and where the line falls between fixing it and giving up on it.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "When a phone breaks, where does repairing it stop making financial sense for a household, and who ends up setting that line, the owner doing the math or the manufacturer pricing the parts?",
+      "riley_holds": "Riley holds that the repair-versus-replace math is a practical tool households can use, and that repairing is often the smarter spend when phones last longer.",
+      "casey_holds": "Casey holds that the line is set less by the owner's math than by manufacturer parts pricing, so the sums can quietly steer households toward replacing.",
+      "beats": [
+        {
+          "claim": "There is a real threshold: repairing makes sense up to a point, and past it buying a new handset is the wiser spend.",
+          "evidence": "Android Authority says repair is sometimes the smarter financial decision, but that beyond a point it is wiser to buy new, and notes the new iPhone Duo's display replacement costs as much as a new iPhone 18 Pro.",
+          "pushback": "Casey: the Duo example shows the manufacturer's parts price sets the threshold, so a household's careful math only works inside a number it did not choose.",
+          "leads_to_next": "If the parts price fixes the line, the next question is whether keeping a phone longer still pays when part prices rise."
+        },
+        {
+          "claim": "Longer ownership is a sensible default because phone innovation has plateaued, so an older handset gives up little.",
+          "evidence": "Android Authority says smartphone innovation has plateaued in recent years and calls that a blessing in disguise for consumers.",
+          "pushback": "Casey: the same article describes mounting spare part prices, so the longer you hold a phone, the more each repair may cost against a replacement.",
+          "leads_to_next": "Both pressures meet in the total cost of owning a handset, which is what the insurance comparison measures."
+        },
+        {
+          "claim": "Honest repair math has to compare the long-run cost of ownership with and without insurance, not a single repair quote.",
+          "evidence": "Android Authority compares repair costs with and without insurance to give a realistic expectation of what a handset costs to own as part prices mount.",
+          "pushback": "Riley: the piece carries an affiliate-links disclosure saying Android Authority may earn a commission, so a household should check whose numbers it is trusting and what the sums leave out.",
+          "leads_to_next": "If the math is only as good as its inputs, a household far from a shop faces inputs the article does not price, which brings it home."
+        },
+        {
+          "claim": "For a Cariboo household weighing a broken phone, the repair-versus-replace math decides whether a repair justifies its cost, and that matters more for families far from a repair shop.",
+          "evidence": "The material's local note says households far from a repair shop can use the math to decide whether a repair is worth it; the article's own sums cover repair cost and insurance.",
+          "pushback": "Riley asks whether the article's figures, with no travel or mailing-time cost in them, can be trusted for a family in Quesnel, Williams Lake or 100 Mile House, or whether each household has to add its own distance to the sum.",
+          "leads_to_next": "That gap leaves the landing: who should publish a price line a household can check, so the threshold is not only the manufacturer's."
+        }
+      ],
+      "set_aside": [],
+      "cariboo_beat": "Beat 4 brings it home to a Cariboo household, in a community like Quesnel, Williams Lake or 100 Mile House, weighing a broken phone far from a repair shop: the article's math covers repair and insurance cost, and the household must add its own distance.",
+      "landing": "Held open: if parts pricing sets the line between repair and replacement, who should be able to publish and check that line for a household, the manufacturer, an independent tester, or the owner doing their own sums, and what is lost if each assumes another is checking."
+    }
+  },
+  "cuts": [
+    {
+      "kind": "deep_dive",
+      "url": "https://www.wired.com/story/the-big-interview-podcast-louis-rossmann-right-to-repair/",
+      "title": "[WIRED] Louis Rossmann Wants More People to Care About the Right to Repair",
+      "source": "",
+      "theme_pct": 100,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://hackaday.com/2026/11/09/free-your-harley-from-the-dealer/",
+      "title": "[Hackaday] Free Your Harley From The Dealer",
+      "source": "",
+      "theme_pct": 99,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.engadget.com/2312969/ifixit-teardown-shows-how-apples-glowing-proled-macbook-logo-works/",
+      "title": "[Engadget] iFixit teardown shows how Apple's glowing PROLED MacBook logo works",
+      "source": "",
+      "theme_pct": 99,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.makeuseof.com/i-turned-my-old-macbook-into-a-home-server-and-gave-it-a-new-lease-on-life/",
+      "title": "[MakeUseOf] I turned my old MacBook into a home server and gave it a new lease on life",
+      "source": "",
+      "theme_pct": 97,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.tomshardware.com/tech-industry/drones/us-army-successfully-flies-a-hybrid-electric-drone-with-3d-printed-heavy-fuel-rotary-engine-400v-motor-generator-uses-advanced-engineering-to-ditch-a-bulky-liquid-cooling-system",
+      "title": "[Tom's Hardware] US Army successfully flies a hybrid electric drone with 3D-printed heavy-fuel rotary engine — uses advanced engineering to ditch a bulky liquid cooling system",
+      "source": "",
+      "theme_pct": 97,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://hackaday.com/2026/11/08/saving-a-vintage-high-voltage-power-supply-from-the-scrap-heap/",
+      "title": "[Hackaday] Saving a Vintage High-Voltage Power Supply From the Scrap Heap",
+      "source": "",
+      "theme_pct": 97
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.popularwoodworking.com/projects/wooden-router-plane/",
+      "title": "[Popular Woodworking] Wooden Router Plane",
+      "source": "",
+      "theme_pct": 97
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.popularwoodworking.com/tricks/accurate-paring-requires-a-flat-back/",
+      "title": "[Popular Woodworking] Accurate Paring Requires A Flat Back",
+      "source": "",
+      "theme_pct": 96
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.popularwoodworking.com/editors-blog/teaching-live-edge-part-2-alternative-flattening-design-options-and-debs-build/",
+      "title": "[Popular Woodworking] Teaching Live Edge (Part 2): Alternative Flattening, Design Options, and Deb’s Build",
+      "source": "",
+      "theme_pct": 96
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://blog.adafruit.com/2026/11/07/build-your-own-e-reader-for-40/",
+      "title": "[Adafruit Blog] Build Your Own E-Reader for $40",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.tomsguide.com/home/smart-home/what-happens-to-your-smart-home-devices-when-the-company-vanishes-what-you-need-to-know",
+      "title": "[Toms Guide] What happens to your smart home devices when the company vanishes? What you need to know",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://hackaday.com/2026/11/04/making-a-wax-motor-for-micrometer-level-control/",
+      "title": "[Hackaday] Making a Wax Motor for Micrometer-Level Control",
+      "source": "",
+      "theme_pct": 94,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.makeuseof.com/ram-is-so-expensive-that-manufacturers-are-putting-used-parts-in-new-phones/",
+      "title": "[MakeUseOf] RAM is so expensive that manufacturers are putting used parts in new phones",
+      "source": "",
+      "theme_pct": 94,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.hackster.io/news/olimex-s-uext-ch390-brings-wired-ethernet-to-raspberry-pi-rp2040-rp2350-and-espressif-esp32-boards-c56db23260c0",
+      "title": "[Hackster News] Olimex's UEXT-CH390 Brings Wired Ethernet to Raspberry Pi RP2040, RP2350, and Espressif ESP32 Boards",
+      "source": "",
+      "theme_pct": 94,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://blog.adafruit.com/2026/11/04/detecting-parcels-at-the-front-door-with-a-camera-opencv-and-home-assistant/",
+      "title": "[Adafruit Blog] Detecting parcels at the front door with a camera, OpenCV and Home Assistant",
+      "source": "",
+      "theme_pct": 93,
+      "aired": true
+    }
+  ]
+}

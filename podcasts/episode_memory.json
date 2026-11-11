@@ -1,42 +1,4 @@
 {
-  "2026-10-06": {
-    "timestamp": 1791274547.348248,
-    "topics": [
-      "[Quesnel Cariboo Observer] Meet the Candidates: Tony Goulet ",
-      "[My Cariboo Now] B.C. Conservatives hold 5 point lead over N",
-      "[Williams Lake Tribune] Quesnel Writer\u2019s Day returns for the",
-      "[My Cariboo Now] B.C. NDP plans to resume seven paused long-",
-      "[Williams Lake Tribune] Lorne Doerkson pledges to create $50",
-      "[Fast Company] The $170 billion lesson data center developer",
-      "[Williams Lake Tribune] Options being considered for B.C.\u2019s ",
-      "[farmonaut.com] Farming 4.0: Why the Future of Sustainable F"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-10-06",
-    "focus": "tourism-outdoor-economy",
-    "focus_name": "Tourism & the Outdoor Economy"
-  },
-  "2026-10-07": {
-    "timestamp": 1791360738.89106,
-    "topics": [
-      "[100 Mile Free Press] Two vehicle MVI in 100 Mile House sent",
-      "[My Cariboo Now] Search and Rescue teams find person who was",
-      "[Williams Lake Tribune] Vancouver man experiences Okanagan w",
-      "[Williams Lake Tribune] LETTER: Kudos to everyone keeping ra",
-      "[My Cariboo Now] Esk\u2019etemc First Nation head to the polls fo",
-      "[iFixit] Apple Watch Series 12 and Ultra 4 Teardown Reveals ",
-      "[ScienceDaily] Creatine may help build muscle even without e",
-      "[The Guardian Global Development] NGOs say Israel bombed a j"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-10-07",
-    "focus": "vehicles-field-gear",
-    "focus_name": "Vehicles & Field Gear"
-  },
   "2026-10-08": {
     "timestamp": 1791455013.191876,
     "topics": [
@@ -750,5 +712,25 @@
     "date": "2026-11-10",
     "focus": "agriculture-ranching",
     "focus_name": "Agriculture & Ranching"
+  },
+  "2026-11-11": {
+    "timestamp": 1794384821.870459,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake Library begins a new c",
+      "[My Cariboo Now] Final vote count for snap election hands B.",
+      "[My Cariboo Now] Watermain breaks in West Quesnel",
+      "[100 Mile Free Press] FORSTER: Ladies of the Cariboo Lakes i",
+      "[Williams Lake Tribune] Alberta First Nation sues B.C. over ",
+      "[Android Authority] Should you repair your phone or replace ",
+      "AI",
+      "innovation"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-11-11",
+    "focus": "maker-repair",
+    "focus_name": "Maker & Repair"
   }
 }
