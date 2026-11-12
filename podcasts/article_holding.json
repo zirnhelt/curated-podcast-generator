@@ -1,48 +1,4 @@
 {
-  "https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/": {
-    "article": {
-      "id": "https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/",
-      "url": "https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/",
-      "title": "[Hackaday] Arduino Engine Runs Many Games",
-      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/10/zx-arduino-main.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F10%2F26%2Farduino-engine-runs-many-games%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"450\" src=\"https://hackaday.com/wp-content/uploads/2026/10/zx-arduino-main.jpg?w=800\" style=\"margin:0 auto;margin-bottom:15px;\" width=\"800\"/></div>A few years ago, [Smashcat] ported a ZX Spectrum game called\u00a0Manic Miner to the Arduino Uno. The Arduino has less memory than the original Spectrum did, so doing all this <a class=\"read-more\" href=\"https://hackaday.com/2026/10/26/arduino-engine-runs-many-games/\">\u2026read more</a>",
-      "summary": "A few years ago, [Smashcat] ported a ZX Spectrum game called Manic Miner to the Arduino Uno. The Arduino has less memory than the original Spectrum did, so doing all this \u2026read more",
-      "_excerpt": "A few years ago, [Smashcat] ported a ZX Spectrum game called Manic Miner to the Arduino Uno. The Arduino has less memory than the original Spectrum did, so doing all this \u2026read more",
-      "date_published": "2026-10-26T17:30:33+00:00",
-      "authors": [
-        {
-          "name": "Hackaday",
-          "url": "https://hackaday.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 78,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 69,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://hackaday.com/wp-content/uploads/2026/10/zx-arduino-main.jpg",
-      "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-10-30T06:12:42.265943+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-11-02",
-    "target_date": "2026-11-11",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-11-11"
-  },
   "https://100milefreepress.net/2026/10/29/evening-of-song-to-feature-south-cariboo-musicians-on-music-creator-day/": {
     "article": {
       "id": "https://100milefreepress.net/2026/10/29/evening-of-song-to-feature-south-cariboo-musicians-on-music-creator-day/",
@@ -205,46 +161,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "aired_early"
   },
-  "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754": {
-    "article": {
-      "id": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
-      "url": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
-      "title": "[ABC News] Huge gas-fired power station plan quietly revealed amid renewables fanfare",
-      "content_html": "<img src=\"https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&amp;cropH=1368&amp;cropW=1026&amp;xPos=511&amp;yPos=0&amp;width=862&amp;height=1149\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.abc.net.au%2Fnews%2F2026-10-27%2Fbid-to-double-wa-renewable-energy-output-amid-price-rise-warning%2F107313754\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
-      "summary": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
-      "_excerpt": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
-      "date_published": "2026-10-27T03:39:02+00:00",
-      "authors": [
-        {
-          "name": "ABC News",
-          "url": "https://abc.net.au"
-        }
-      ],
-      "ai_score": 42,
-      "_quality": 60,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 5,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&cropH=1368&cropW=1026&xPos=511&yPos=0&width=862&height=1149",
-      "_boosted_score": 42
-    },
-    "held_date": "2026-11-05",
-    "target_date": "2026-11-11",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-11-11"
-  },
   "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned": {
     "article": {
       "id": "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned",
@@ -400,50 +316,6 @@
     "target_focus_name": "Recreation & Backcountry Access",
     "status": "held"
   },
-  "https://blog.adafruit.com/2026/11/06/set-up-n8n-on-the-raspberry-pi/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/11/06/set-up-n8n-on-the-raspberry-pi/",
-      "url": "https://blog.adafruit.com/2026/11/06/set-up-n8n-on-the-raspberry-pi/",
-      "title": "[Adafruit Blog] Set Up n8n on the Raspberry Pi",
-      "content_html": "<img src=\"https://www.google.com/s2/favicons?domain=blog.adafruit.com&amp;sz=128\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F11%2F06%2Fset-up-n8n-on-the-raspberry-pi%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
-      "summary": "PiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often",
-      "_excerpt": "PiMyLifeUp shares how to self-host n8n on your Raspberry Pi. n8n is a self-hosted workflow automation tool. You build each workflow by connecting nodes on a canvas, where each node fetches some data, changes it, or sends it somewhere else. With hundreds of built-in integrations, it is often compared to services like Zapier and Make.",
-      "date_published": "2026-11-06T21:00:41+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 60,
-      "_relevance": 80,
-      "_local": 0,
-      "_theme_score": 66,
-      "_theme_score_raw": 8,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "image": "https://www.google.com/s2/favicons?domain=blog.adafruit.com&sz=128",
-      "_cross_theme": {
-        "day": "sunday",
-        "label": "Science, Wonder & the Natural World",
-        "shown_at": "2026-11-08T06:08:46.990645+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-11-09",
-    "target_date": "2026-11-11",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-11-11"
-  },
   "https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/": {
     "article": {
       "id": "https://www.mycariboonow.com/317252/news/business/economy/b-cs-forestry-leaders-welcome-federal-funding-but-say-more-action-is-needed/",
@@ -585,7 +457,7 @@
       "id": "https://www.sciencedaily.com/releases/2026/10/261027231200.htm",
       "url": "https://www.sciencedaily.com/releases/2026/10/261027231200.htm",
       "title": "[ScienceDaily] Scientists confirm global warming is accelerating faster than ever recorded",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261027231200.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEarth is warming faster than ever recorded, with scientists detecting a major acceleration in global temperatures since around 2015. A new study reveals that the warming rate has surged to approximately 0.35\u00b0C per decade, nearly double the average pace observed from 1970 to 2015. After removing natural climate fluctuations, researchers confirmed the acceleration with more than 98% statistical confidence.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F10%2F261027231200.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEarth is warming faster than ever recorded, with scientists detecting a major acceleration in global temperatures since around 2015. A new study reveals that the warming rate has surged to approximately 0.35\u00b0C per decade, nearly double the average pace observed from 1970 to 2015. After removing natural climate fluctuations, researchers confirmed the acceleration with more than 98% statistical confidence.",
       "summary": "Earth is warming faster than ever recorded, with scientists detecting a major acceleration in global temperatures since around 2015. A new study reveals that the warming rate has surged to approximately 0.35\u00b0C per decade, nearly double the average pace observed from 1970 to 2015. After removing",
       "_excerpt": "Earth is warming faster than ever recorded, with scientists detecting a major acceleration in global temperatures since around 2015. A new study reveals that the warming rate has surged to approximately 0.35\u00b0C per decade, nearly double the average pace observed from 1970 to 2015. After removing natural climate fluctuations, researchers confirmed the acceleration with more than 98% statistical confidence.",
       "date_published": "2026-10-30T03:50:51+00:00",
@@ -599,70 +471,28 @@
       "_quality": 70,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 38,
-      "_theme_score_raw": 4,
+      "_theme_score": 53,
+      "_theme_score_raw": 3,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 45,
+      "_composite_podcast": 54,
       "_keyword_matches": 0,
       "_category": "science",
       "_source_category": "science",
       "_is_bonus": true,
       "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-11-06T06:11:15.551820+00:00"
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-11-10T06:09:07.164900+00:00"
       },
       "_boosted_score": 50
     },
-    "held_date": "2026-11-10",
+    "held_date": "2026-11-12",
     "target_date": "2026-11-22",
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://wltribune.com/2026/11/10/alberta-first-nation-sues-b-c-over-site-c-dam-impacts/": {
-    "article": {
-      "id": "https://wltribune.com/2026/11/10/alberta-first-nation-sues-b-c-over-site-c-dam-impacts/",
-      "url": "https://wltribune.com/2026/11/10/alberta-first-nation-sues-b-c-over-site-c-dam-impacts/",
-      "title": "[Williams Lake Tribune] Alberta First Nation sues B.C. over Site C dam impacts",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F11%2F10%2Falberta-first-nation-sues-b-c-over-site-c-dam-impacts%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Athabasca Chipewyan First Nation in Alberta is suing British Columbia, the federal government, and BC Hydro for what it says are Treaty 8 rights violations related to several dams on the Peace River, including Site C, now known as the John Horgan Dam. \u201cThe Province and British Columbia Hydro built these hydroelectric projects without regard for the rights, culture and way of life of ACFN, which includes the exercise of its Treaty Rights,\u201d the lawsuit, filed on Nov. 5 in B.C. Supreme Court, argues. B.C.\u2019s Ministry of Attorney General declined to comment on the case because the government",
-      "summary": "The Athabasca Chipewyan First Nation in Alberta is suing British Columbia, the federal government, and BC Hydro for what it says are Treaty 8 rights violations related to several dams on the Peace River, including Site C, now known as the John Horgan Dam. \u201cThe Province and British Columbia Hydro",
-      "_excerpt": "The Athabasca Chipewyan First Nation in Alberta is suing British Columbia, the federal government, and BC Hydro for what it says are Treaty 8 rights violations related to several dams on the Peace River, including Site C, now known as the John Horgan Dam. \u201cThe Province and British Columbia Hydro built these hydroelectric projects without regard for the rights, culture and way of life of ACFN, which includes the exercise of its Treaty Rights,\u201d the lawsuit, filed on Nov. 5 in B.C. Supreme Court, argues. B.C.\u2019s Ministry of Attorney General declined to comment on the case because the government is in \u201ccaretaker mode\u201d following the Oct. 24 election. The incoming government is not due to be sworn in until Nov. 20. The First Nation signed Treaty 8 in 1899, guaranteeing protection for the Chipewyan way of life in exchange for allowing settlement and development in the nation\u2019s territories. When B.C. began building dams along the Peace River, including the W.A.C. Bennnet Dam (completed in 1967), the Peace Canyon Dam (completed in 1980), and finally the Site C Dam (finished in 2024), the nation says the province failed to consult on the impacts on the Peace River Delta. And B.C. is now in the early stages of \u201cinformation-gathering\u201d on another potential dam on the river at a place known as Site E near the Alberta border. The nation says that BC Hydro did not even speak of the downstream impacts during hearings related to the earlier dams, and did not include the delta area in the environmental assessment area for Site C, claiming there would be \u201cno detectable effects\u201d from Site C. But the Athabasca Chipewyan First Nation says it is experiencing lasting impacts from the dams. The nation blames the dams for altering the river\u2019s natural flow and seasonal timing, impacting water quality and interfering with the area\u2019s natural ecology, which affects fish, wildlife and vegetation. According to the court filing, the nation says this impacts its rights by destroying and taking away",
-      "date_published": "2026-11-10T21:46:02+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 80,
-      "_quality": 82,
-      "_relevance": 80,
-      "_local": 80,
-      "_theme_score": 87,
-      "_theme_score_raw": 2,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 77,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 80,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-11-11",
-    "target_date": "2026-11-12",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
-    "status": "aired_early"
   },
   "https://www.tomshardware.com/software/enthusiast-abandons-self-hosted-microsoft-exchange-after-27-years-moving-mailboxes-to-microsoft-365-replaces-final-on-premises-relay-with-postfix-starttls-and-lets-encrypt-certificates": {
     "article": {
@@ -702,46 +532,359 @@
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
   },
-  "https://wltribune.com/2026/11/10/williams-lake-library-begins-a-new-chapter-with-a-newly-renovated-look/": {
+  "https://indiginews.com/news/youth-lead-rally-against-greenlit-copper-mountain-mine-expansion/": {
     "article": {
-      "id": "https://wltribune.com/2026/11/10/williams-lake-library-begins-a-new-chapter-with-a-newly-renovated-look/",
-      "url": "https://wltribune.com/2026/11/10/williams-lake-library-begins-a-new-chapter-with-a-newly-renovated-look/",
-      "title": "[Williams Lake Tribune] Williams Lake Library begins a new chapter with a newly renovated look",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F11%2F10%2Fwilliams-lake-library-begins-a-new-chapter-with-a-newly-renovated-look%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nManager of library services Jennifer Coupe speaks at a grand opening celebration for the recently renovated Cariboo Regional District Library Williams Lake Branch on Tuesday, Nov. 10. A prayer at the newly renovated public library in Williams Lake was provided by Williams Lake First Nation elder Virginia Gilbert who was joined with Frances Supernault for drumming and singing. Attending the grand reopening of the Williams Lake public library on Tuesday, Nov. 10 was Williams Lake Mayor Surinderpal Rathor who was joined with councillors Nathan Wiebe, Paul French and Ruth Lloyd. Cariboo Regional",
-      "summary": "Manager of library services Jennifer Coupe speaks at a grand opening celebration for the recently renovated Cariboo Regional District Library Williams Lake Branch on Tuesday, Nov. 10. A prayer at the newly renovated public library in Williams Lake was provided by Williams Lake First Nation elder",
-      "_excerpt": "Manager of library services Jennifer Coupe speaks at a grand opening celebration for the recently renovated Cariboo Regional District Library Williams Lake Branch on Tuesday, Nov. 10. A prayer at the newly renovated public library in Williams Lake was provided by Williams Lake First Nation elder Virginia Gilbert who was joined with Frances Supernault for drumming and singing. Attending the grand reopening of the Williams Lake public library on Tuesday, Nov. 10 was Williams Lake Mayor Surinderpal Rathor who was joined with councillors Nathan Wiebe, Paul French and Ruth Lloyd. Cariboo Regional District (CRD) chair and Electoral Area H Director Margo Wagner. A fresh new look at the Cariboo Regional District Library in Williams Lake was recently celebrated following two months of renovations. The branch was temporarily closed in September and October with limited services available through outdoor pop-up libraries to allow for repainting in addition to new carpeting, furnishings and circulation desk. It reopened on Tuesday, Nov. 3 with a grand reopening a week later that included Virginia Gilbert and Frances Supernault of the Williams Lake First Nation providing a prayer, drumming and singing. Speeches were additionally shared by officials including Cariboo Regional District (CRD) chair and Electoral Area H Director Margo Wagner and Williams Lake Mayor Surinderpal Rathor. Wagner admitted she is not in the library often although she does access electronic materials. \u201cBut the difference from when I was here last time is unbelievable,\u201d she said. \u201cIt\u2019s so much brighter, there seems to be more room, there\u2019s more additions that make it more like a living room rather than a library.\u201d Funding for the project was provided by the BC Public Library Enhancement Grant that Manager of Library Services Jennifer Coupe said they had received in 2023. \u201cIt took three and half years to get this project off the ground and it was well worth it,\u201d she said, thanking staff for their countless",
-      "date_published": "2026-11-11T06:03:25.439551+00:00",
+      "id": "https://indiginews.com/news/youth-lead-rally-against-greenlit-copper-mountain-mine-expansion/",
+      "url": "https://indiginews.com/news/youth-lead-rally-against-greenlit-copper-mountain-mine-expansion/",
+      "title": "[IndigiNews] sm\u01ddlqm\u00edx Youth lead rally against greenlit Copper Mountain Mine expansion: \u2018They don\u2019t care that their decision makes us sick\u2019",
+      "content_html": "<img src=\"https://media.indiginews.com/2026/11/SimilkameenYouthGathering261108-52-1024x683.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Fnews%2Fyouth-lead-rally-against-greenlit-copper-mountain-mine-expansion%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>The province issued permits for the mine\u2019s New Ingerbelle pit earlier this year \u2014 but young people are \u2018united\u2019 against the project, which they say threatens the Similkameen River</p>\n<p>The post <a href=\"https://indiginews.com/news/youth-lead-rally-against-greenlit-copper-mountain-mine-expansion/\">sm\u01ddlqm\u00edx Youth lead rally against greenlit Copper Mountain Mine expansion: \u2018They don\u2019t care that their decision makes us sick\u2019</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
+      "summary": "The province issued permits for the mine\u2019s New Ingerbelle pit earlier this year \u2014 but young people are \u2018united\u2019 against the project, which they say threatens the Similkameen River The post sm\u01ddlqm\u00edx Youth lead rally against greenlit Copper Mountain Mine expansion: \u2018They don\u2019t care that their",
+      "_excerpt": "The province issued permits for the mine\u2019s New Ingerbelle pit earlier this year \u2014 but young people are \u2018united\u2019 against the project, which they say threatens the Similkameen River The post sm\u01ddlqm\u00edx Youth lead rally against greenlit Copper Mountain Mine expansion: \u2018They don\u2019t care that their decision makes us sick\u2019 appeared first on Indiginews .",
+      "date_published": "2026-11-10T18:07:01+00:00",
       "authors": [
         {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
+          "name": "IndigiNews",
+          "url": "https://indiginews.com/"
         }
       ],
-      "ai_score": 88,
-      "_quality": 70,
-      "_relevance": 90,
-      "_local": 100,
-      "_theme_score": 48,
-      "_theme_score_raw": 8,
+      "ai_score": 65,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 91,
+      "_theme_score_raw": 22,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 59,
+      "_composite_podcast": 79,
       "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
+      "_category": "news",
+      "_source_category": "news",
       "_is_bonus": true,
+      "image": "https://media.indiginews.com/2026/11/SimilkameenYouthGathering261108-52-1024x683.jpg",
+      "_boosted_score": 65
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-24",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/": {
+    "article": {
+      "id": "https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/",
+      "url": "https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/",
+      "title": "[The Northern Miner] Mining companies raise $2.4B in a month",
+      "content_html": "<img src=\"https://www.northernminer.com/wp-content/uploads/2026/11/tiny-AdobeStock_372123356-2-scaled.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.northernminer.com%2Fcommodities-markets%2Fmining-companies-raise-2-4b-in-a-month%2F1003897585%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Mining companies raised $2.4 billion (US$1.69 billion) in the month through Oct. 15, led by Osisko Gold Group\u2019s debt and equity financings for its Cariboo...</p>\n<p>The post <a href=\"https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/\">Mining companies raise $2.4B in a month</a> appeared first on <a href=\"https://www.northernminer.com\">The Northern Miner</a>.</p>",
+      "summary": "Mining companies raised $2.4 billion (US$1.69 billion) in the month through Oct. 15, led by Osisko Gold Group\u2019s debt and equity financings for its Cariboo... The post Mining companies raise $2.4B in a month appeared first on The Northern Miner .",
+      "_excerpt": "Mining companies raised $2.4 billion (US$1.69 billion) in the month through Oct. 15, led by Osisko Gold Group\u2019s debt and equity financings for its Cariboo... The post Mining companies raise $2.4B in a month appeared first on The Northern Miner .",
+      "date_published": "2026-11-11T21:50:58+00:00",
+      "authors": [
+        {
+          "name": "The Northern Miner",
+          "url": "https://www.northernminer.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 67,
+      "_relevance": 55,
+      "_local": 70,
+      "_theme_score": 87,
+      "_theme_score_raw": 12,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 75,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "https://www.northernminer.com/wp-content/uploads/2026/11/tiny-AdobeStock_372123356-2-scaled.jpg",
+      "_boosted_score": 60,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-24",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "aired_early"
+  },
+  "https://www.nationalobserver.com/2026/11/10/news/dabrusin-defends-canadas-climate-record-advance-climate-conference": {
+    "article": {
+      "id": "https://www.nationalobserver.com/2026/11/10/news/dabrusin-defends-canadas-climate-record-advance-climate-conference",
+      "url": "https://www.nationalobserver.com/2026/11/10/news/dabrusin-defends-canadas-climate-record-advance-climate-conference",
+      "title": "[nationalobserver.com] Canada\u2019s climate minister defends record as COP31 opens amid coal dispute",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nationalobserver.com%2F2026%2F11%2F10%2Fnews%2Fdabrusin-defends-canadas-climate-record-advance-climate-conference\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCanadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets. She is attending the conference\u2019s first week, when activists expect other countries to question Canada\u2019s recent policy shifts.\n\nThe dispute centres on Ottawa\u2019s unfulfilled 2021 pledge to ban thermal-coal exports: an environment commissioner\u2019s report said work was abandoned in 2024 and formally ended in August 2025. Dabrusin said the previous government made the decision and her government is open to next steps. Climate advocates say continued exports undermine Canada\u2019s leadership in the Powering Past Coal Alliance.",
+      "summary": "Canadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets. She is attending the conference\u2019s first",
+      "_excerpt": "Canadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets (nationalobserver.com, thestar.com). She is attending the conference\u2019s first week, when activists expect other countries to question Canada\u2019s recent policy shifts (nationalobserver.com, canada.ca). The dispute centres on Ottawa\u2019s unfulfilled 2021 pledge to ban thermal-coal exports: an environment commissioner\u2019s report said work was abandoned in 2024 and formally ended in August 2025. Dabrusin said the previous government made the decision and her government is open to next steps. Climate advocates say continued exports undermine Canada\u2019s leadership in the Powering Past Coal Alliance (nationalobserver.com, thestar.com). Climate funding: Ottawa says it committed to providing $13 billion in climate-related support to developing countries over five years, beginning with an announcement in April 2026 (canada.ca). Methane pledge: Dabrusin plans to co-convene a ministerial meeting with the European Union for the Global Methane Pledge, whose 159 members aim to cut methane emissions by 30% from 2020 levels by 2030 (nationalobserver.com, thestar.com). Fossil fuel concerns: Experts interviewed by Le Devoir and cited in a National Observer report argued that expanding oil and gas production conflicts with Canada\u2019s net-zero goal. The report cited a proposed Pacific Link pipeline with an estimated cost of $35 billion to $45 billion (nationalobserver.com).",
+      "date_published": "2026-11-10T12:01:46+00:00",
+      "authors": [
+        {
+          "name": "nationalobserver.com",
+          "url": "https://www.nationalobserver.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 70,
+      "_relevance": 80,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 5,
+      "_kite_sources": 4,
+      "_kite_context": "Where: Antalya, T\u00fcrkiye\nPerspective: Julie Dabrusin, Canada's environment minister, says other countries remain keen to work with Canada and view it as a reliable energy partner as Ottawa pursues its climate goals (nationalobserver.com). (National Observer)\nPerspective: Annie Chaloux, an associate professor at the Universit\u00e9 de Sherbrooke, warns that prioritizing short-term economic gains risks locking Canada into oil and gas, making a future shift away from fossil fuel extraction difficult (nationalobserver.com). (National Observer)\nQuote: \"Ideally, Canada should reaffirm the commitment to banning the export of thermal coal.\" (Julia Levin, associate director of national climate at Environmental Defence, National Observer)\nTimeline: June 2026: UN Secretary-General Ant\u00f3nio Guterres launched a global call to action on methane during London Climate Action Week (nationalobserver.com).\nTimeline: June 2026: Canada joined international partners in launching Electrify Now, an initiative to increase electricity\u2019s share of global final energy consumption to 35% by 2035 (canada.ca).\nTimeline: 9 November 2026: COP31 opened in Antalya. Dabrusin was scheduled to participate from November 11 to 14, leading Canada\u2019s delegation (canada.ca).",
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_boosted_score": 62,
+      "_body": "Canadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets (nationalobserver.com, thestar.com). She is attending the conference\u2019s first week, when activists expect other countries to question Canada\u2019s recent policy shifts (nationalobserver.com, canada.ca). The dispute centres on Ottawa\u2019s unfulfilled 2021 pledge to ban thermal-coal exports: an environment commissioner\u2019s report said work was abandoned in 2024 and formally ended in August 2025. Dabrusin said the previous government made the decision and her government is open to next steps. Climate advocates say continued exports undermine Canada\u2019s leadership in the Powering Past Coal Alliance (nationalobserver.com, thestar.com). Climate funding: Ottawa says it committed to providing $13 billion in climate-related support to developing countries over five years, beginning with an announcement in April 2026 (canada.ca). Methane pledge: Dabrusin plans to co-convene a ministerial meeting with the European Union for the Global Methane Pledge, whose 159 members aim to cut methane emissions by 30% from 2020 levels by 2030 (nationalobserver.com, thestar.com). Fossil fuel concerns: Experts interviewed by Le Devoir and cited in a National Observer report argued that expanding oil and gas production conflicts with Canada\u2019s net-zero goal. The report cited a proposed Pacific Link pipeline with an estimated cost of $35 billion to $45 billion (nationalobserver.com)."
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-20",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://cleantechnica.com/2026/11/03/overshoot-demands-a-new-era-of-adaptation-loss-damage-and-climate-justice/": {
+    "article": {
+      "id": "https://cleantechnica.com/2026/11/03/overshoot-demands-a-new-era-of-adaptation-loss-damage-and-climate-justice/",
+      "url": "https://cleantechnica.com/2026/11/03/overshoot-demands-a-new-era-of-adaptation-loss-damage-and-climate-justice/",
+      "title": "[CleanTechnica] Overshoot Demands a New Era of Adaptation, Loss & Damage, and Climate Justice",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fcleantechnica.com%2F2026%2F11%2F03%2Fovershoot-demands-a-new-era-of-adaptation-loss-damage-and-climate-justice%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>As the world is on track to exceed 1.5 degrees Celsius of global warming, climate action must double down but also go beyond emissions cuts to prioritize adaptation, respond to loss and damage, and confront growing inequality. For decades, climate policy has been dominated by a central question: How do   ... [continued]</p>\n<p>The post <a href=\"https://cleantechnica.com/2026/11/03/overshoot-demands-a-new-era-of-adaptation-loss-damage-and-climate-justice/\">Overshoot Demands a New Era of Adaptation, Loss &amp; Damage, and Climate Justice</a> appeared first on <a href=\"https://cleantechnica.com\">CleanTechnica</a>.</p>",
+      "summary": "As the world is on track to exceed 1.5 degrees Celsius of global warming, climate action must double down but also go beyond emissions cuts to prioritize adaptation, respond to loss and damage, and confront growing inequality. For decades, climate policy has been dominated by a central question:",
+      "_excerpt": "As the world is on track to exceed 1.5 degrees Celsius of global warming, climate action must double down but also go beyond emissions cuts to prioritize adaptation, respond to loss and damage, and confront growing inequality. For decades, climate policy has been dominated by a central question: How do ... [continued] The post Overshoot Demands a New Era of Adaptation, Loss & Damage, and Climate Justice appeared first on CleanTechnica .",
+      "date_published": "2026-11-03T23:56:16+00:00",
+      "authors": [
+        {
+          "name": "CleanTechnica",
+          "url": "https://cleantechnica.com"
+        }
+      ],
+      "ai_score": 33,
+      "_quality": 60,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 5,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 66,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_boosted_score": 33
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-15",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use": {
+    "article": {
+      "id": "https://www.carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use",
+      "url": "https://www.carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use",
+      "title": "[carbonbrief.org] El Ni\u00f1o-linked fires lift total carbon emissions despite fossil fuel dip",
+      "content_html": "<img src=\"https://kagiproxy.com/img/gneWxoho4gytkdYd9PF4pGSm9WU0MnghQI1F2oJ-6M52NmnxZdL2RlvK8OwHzaMg0W6Ots-OglEPwgxP7IxFrG6-OrYucp-4YBvajf33-icwlhOkIJO4UcE7oYcla1ln\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.carbonbrief.org%2Fanalysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEl Ni\u00f1o-related peat fires and forest degradation in Southeast Asia are projected to push land-use carbon emissions higher in 2026, bringing total global CO\u2082 emissions to 43.3 billion tonnes even as fossil-fuel emissions edge down, according to the Global Carbon Project\u2019s annual assessment. The researchers link the rise in land-use emissions to drier conditions and fires often ignited by human activity.\n\nThe 21st Global Carbon Budget, published Nov. 10 in Earth System Science Data and presented during the U.N. climate conference in Antalya, projects 5.1 billion tonnes of emissions from land-use change this year. The projected decline in fossil-fuel emissions is partly attributable to the Iran conflict\u2019s energy shock, alongside the growing contribution of solar, wind and electric vehicles.\n\nThe report says the land carbon sink recovered in 2025 after weakening during the 2023-24 El Ni\u00f1o, but the strong 2026 El Ni\u00f1o is expected to weaken it again in 2027. Separately, an analysis of Chinese data found that emissions fell 3.1% in July-September, the country\u2019s steepest quarterly drop since pandemic lockdowns in 2022.",
+      "summary": "El Ni\u00f1o-related peat fires and forest degradation in Southeast Asia are projected to push land-use carbon emissions higher in 2026, bringing total global CO\u2082 emissions to 43.3 billion tonnes even as fossil-fuel emissions edge down, according to the Global Carbon Project\u2019s annual assessment. The",
+      "_excerpt": "El Ni\u00f1o-related peat fires and forest degradation in Southeast Asia are projected to push land-use carbon emissions higher in 2026, bringing total global CO\u2082 emissions to 43.3 billion tonnes even as fossil-fuel emissions edge down, according to the Global Carbon Project\u2019s annual assessment (carbonbrief.org, scimex.org, time.com). The researchers link the rise in land-use emissions to drier conditions and fires often ignited by human activity (scimex.org, straitstimes.com). The 21st Global Carbon Budget, published Nov. 10 in Earth System Science Data and presented during the U.N. climate conference in Antalya, projects 5.1 billion tonnes of emissions from land-use change this year (phys.org, time.com, scimex.org). The projected decline in fossil-fuel emissions is partly attributable to the Iran conflict\u2019s energy shock, alongside the growing contribution of solar, wind and electric vehicles (carbonbrief.org, theguardian.com). The report says the land carbon sink recovered in 2025 after weakening during the 2023-24 El Ni\u00f1o, but the strong 2026 El Ni\u00f1o is expected to weaken it again in 2027 (carbonbrief.org). Separately, an analysis of Chinese data found that emissions fell 3.1% in July-September, the country\u2019s steepest quarterly drop since pandemic lockdowns in 2022 (yale.edu). China\u2019s clean-energy constraints: Electric cars made up two-thirds of new passenger-vehicle sales in September, but the country curtailed about a quarter of wind and solar output in the first half of the year (yale.edu). Clean energy offset: Solar, wind and electric vehicles are projected to offset 64% to 79% of emissions growth from rising energy demand through 2028, depending on deployment (newscientist.com, time.com). Uneven national trends: India\u2019s fossil-fuel emissions are projected to rise 4.4% in 2026, while China, the United States, the European Union and Japan are forecast to record declines (scimex.org, carbonbrief.org). Atmospheric concentration: Atmospheric CO\u2082 concentration is",
+      "date_published": "2026-11-10T01:01:00+00:00",
+      "authors": [
+        {
+          "name": "carbonbrief.org",
+          "url": "https://www.carbonbrief.org"
+        }
+      ],
+      "ai_score": 61,
+      "_quality": 80,
+      "_relevance": 75,
+      "_local": 0,
+      "_theme_score": 69,
+      "_theme_score_raw": 4,
+      "_kite_sources": 30,
+      "_kite_context": "Where: Antalya, Turkey\nPerspective: Niklas H\u00f6hne, NewClimate Institute co-founder: H\u00f6hne said permanent shifts are taking place, particularly the rapid uptake of electric cars and trucks in Asia, and argued that global emissions may be near their peak or may already have peaked (The Independent)\nPerspective: Julia Pongratz, LMU Munich geographer and report co-author: Pongratz said carbon removal must expand alongside emissions cuts. She noted that reforestation removes substantial CO\u2082 but is outweighed by deforestation, while newer removal methods remain very (Scimex)\nPerspective: Malte Mienshausen, University of Melbourne climate policy expert: Mienshausen warned that oil producers outside the disrupted region received large windfalls, potentially encouraging exploration elsewhere and reducing the oil shock\u2019s effect on emissions (The Independent)\nQuote: \"A drop in emissions in one year is not a peak, unless it is driven by structural change.\" (Glen Peters, research professor at the CICERO Center for International Climate Research, The Guardian)\nTimeline: 2023-24: El Ni\u00f1o weakened the land carbon sink, according to the assessment (carbonbrief.org, scimex.org)\nTimeline: 2025: The land carbon sink rebounded to its highest level on record (carbonbrief.org)\nTimeline: 2026: The Global Carbon Budget projects higher land-use emissions and lower fossil-fuel emissions (carbonbrief.org, scimex.org)",
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "image": "https://kagiproxy.com/img/gneWxoho4gytkdYd9PF4pGSm9WU0MnghQI1F2oJ-6M52NmnxZdL2RlvK8OwHzaMg0W6Ots-OglEPwgxP7IxFrG6-OrYucp-4YBvajf33-icwlhOkIJO4UcE7oYcla1ln",
+      "_boosted_score": 61,
+      "_body": "El Ni\u00f1o-related peat fires and forest degradation in Southeast Asia are projected to push land-use carbon emissions higher in 2026, bringing total global CO\u2082 emissions to 43.3 billion tonnes even as fossil-fuel emissions edge down, according to the Global Carbon Project\u2019s annual assessment (carbonbrief.org, scimex.org, time.com). The researchers link the rise in land-use emissions to drier conditions and fires often ignited by human activity (scimex.org, straitstimes.com). The 21st Global Carbon Budget, published Nov. 10 in Earth System Science Data and presented during the U.N. climate conference in Antalya, projects 5.1 billion tonnes of emissions from land-use change this year (phys.org, time.com, scimex.org). The projected decline in fossil-fuel emissions is partly attributable to the Iran conflict\u2019s energy shock, alongside the growing contribution of solar, wind and electric vehicles (carbonbrief.org, theguardian.com). The report says the land carbon sink recovered in 2025 after weakening during the 2023-24 El Ni\u00f1o, but the strong 2026 El Ni\u00f1o is expected to weaken it again in 2027 (carbonbrief.org). Separately, an analysis of Chinese data found that emissions fell 3.1% in July-September, the country\u2019s steepest quarterly drop since pandemic lockdowns in 2022 (yale.edu). China\u2019s clean-energy constraints: Electric cars made up two-thirds of new passenger-vehicle sales in September, but the country curtailed about a quarter of wind and solar output in the first half of the year (yale.edu). Clean energy offset: Solar, wind and electric vehicles are projected to offset 64% to 79% of emissions growth from rising energy demand through 2028, depending on deployment (newscientist.com, time.com). Uneven national trends: India\u2019s fossil-fuel emissions are projected to rise 4.4% in 2026, while China, the United States, the European Union and Japan are forecast to record declines (scimex.org, carbonbrief.org). Atmospheric concentration: Atmospheric CO\u2082 concentration is"
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-22",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.statnews.com/2026/11/06/health-news-new-evidence-for-ancient-cannabis-use/?utm_campaign=rss": {
+    "article": {
+      "id": "https://www.statnews.com/2026/11/06/health-news-new-evidence-for-ancient-cannabis-use/?utm_campaign=rss",
+      "url": "https://www.statnews.com/2026/11/06/health-news-new-evidence-for-ancient-cannabis-use/?utm_campaign=rss",
+      "title": "[STAT News] New evidence for ancient cannabis use",
+      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2020/01/STAT_cannabis_GettyImages-658203110-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F11%2F06%2Fhealth-news-new-evidence-for-ancient-cannabis-use%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA new paper, published yesterday in Science, offers compelling evidence of ritual cannabis use in a 2,800-year-old Siberian tomb.",
+      "summary": "A new paper, published yesterday in Science, offers compelling evidence of ritual cannabis use in a 2,800-year-old Siberian tomb.",
+      "_excerpt": "A new paper, published yesterday in Science, offers compelling evidence of ritual cannabis use in a 2,800-year-old Siberian tomb.",
+      "date_published": "2026-11-06T14:59:42+00:00",
+      "authors": [
+        {
+          "name": "STAT News",
+          "url": "https://www.statnews.com"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 91,
+      "_theme_score_raw": 22,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 62,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.statnews.com/wp-content/uploads/2020/01/STAT_cannabis_GettyImages-658203110-645x645.jpg",
+      "_boosted_score": 50
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-22",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://eos.org/articles/scientists-traced-arctic-arsenic-back-to-a-montana-mine": {
+    "article": {
+      "id": "https://eos.org/articles/scientists-traced-arctic-arsenic-back-to-a-montana-mine",
+      "url": "https://eos.org/articles/scientists-traced-arctic-arsenic-back-to-a-montana-mine",
+      "title": "[eos.org] Arctic ice cores trace century-old toxic pollution to Montana mine",
+      "content_html": "<img src=\"https://kagiproxy.com/img/QJ2F3nHUamjnJgncVFZP3CB8W3rhFTCo27vFlyVBux-IemKaDvs8BJa84E1svOvYTlE9u-QAKLgfFrrLBGzhEOaoQ9Yup0OK6XtBHGkbR0q449lyDf48doz_gnMQjwXWucTZx5yP62k\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Feos.org%2Farticles%2Fscientists-traced-arctic-arsenic-back-to-a-montana-mine\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResearchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to the study in Nature Sustainability.\n\nBy combining ice-core measurements, atmospheric modeling and historical production records, the team estimated that about 50.5 million Americans and 600,000 Canadians were exposed to arsenic levels associated with increased health risks between 1898 and 1918. Pollution-control equipment installed at the smelter in 1919 reduced emissions by roughly 60% to 65%, though the mine continued operating until 1947. Lead researcher Joseph McConnell, a climate and environmental scientist at the Desert Research Institute, said epidemiologists should investigate the pollution\u2019s potential effects on people.",
+      "summary": "Researchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to",
+      "_excerpt": "Researchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to the study in Nature Sustainability (eos.org, sciencenews.org, phys.org). By combining ice-core measurements, atmospheric modeling and historical production records, the team estimated that about 50.5 million Americans and 600,000 Canadians were exposed to arsenic levels associated with increased health risks between 1898 and 1918 (eos.org, phys.org). Pollution-control equipment installed at the smelter in 1919 reduced emissions by roughly 60% to 65%, though the mine continued operating until 1947 (eos.org, sciencenews.org). Lead researcher Joseph McConnell, a climate and environmental scientist at the Desert Research Institute, said epidemiologists should investigate the pollution\u2019s potential effects on people (sciencenews.org). Other sources ruled out: The team compared the ice records with production data from North American mining sites; Tacoma\u2019s smelter was too small, while lead isotope ratios did not match those from Sudbury, Canada (eos.org). Delayed controls: Researchers estimated that the delay in installing pollution controls resulted in an additional 60,000 tons of arsenic and 24,000 tons of lead emissions (eos.org).",
+      "date_published": "2026-11-10T10:01:00+00:00",
+      "authors": [
+        {
+          "name": "eos.org",
+          "url": "https://eos.org"
+        }
+      ],
+      "ai_score": 64,
+      "_quality": 82,
+      "_relevance": 80,
+      "_local": 0,
+      "_theme_score": 53,
+      "_theme_score_raw": 3,
+      "_kite_sources": 3,
+      "_kite_context": "Perspective: Karl Kreutz, an Earth scientist at the University of Maine who was not involved in the study, said the arsenic analysis made a convincing case for tracing the pollution to one major Montana mine. (Eos)\nPerspective: Fred Quivik, a historian and author of Smoke and Tailings, said ranchers and farmers reported livestock dying from arsenic poisoning during the period of mine pollution. (Science News)\nQuote: \"Montana government policy at the time was they only had to install pollution controls if it was profitable to the polluter\" (Joseph McConnell, climate and environmental scientist at the Desert Research Institute, Eos)",
+      "_composite_podcast": 55,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "image": "https://kagiproxy.com/img/QJ2F3nHUamjnJgncVFZP3CB8W3rhFTCo27vFlyVBux-IemKaDvs8BJa84E1svOvYTlE9u-QAKLgfFrrLBGzhEOaoQ9Yup0OK6XtBHGkbR0q449lyDf48doz_gnMQjwXWucTZx5yP62k",
+      "_boosted_score": 64,
+      "_body": "Researchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to the study in Nature Sustainability (eos.org, sciencenews.org, phys.org). By combining ice-core measurements, atmospheric modeling and historical production records, the team estimated that about 50.5 million Americans and 600,000 Canadians were exposed to arsenic levels associated with increased health risks between 1898 and 1918 (eos.org, phys.org). Pollution-control equipment installed at the smelter in 1919 reduced emissions by roughly 60% to 65%, though the mine continued operating until 1947 (eos.org, sciencenews.org). Lead researcher Joseph McConnell, a climate and environmental scientist at the Desert Research Institute, said epidemiologists should investigate the pollution\u2019s potential effects on people (sciencenews.org). Other sources ruled out: The team compared the ice records with production data from North American mining sites; Tacoma\u2019s smelter was too small, while lead isotope ratios did not match those from Sudbury, Canada (eos.org). Delayed controls: Researchers estimated that the delay in installing pollution controls resulted in an additional 60,000 tons of arsenic and 24,000 tons of lead emissions (eos.org)."
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-24",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed": {
+    "article": {
+      "id": "https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed",
+      "url": "https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed",
+      "title": "[The Atlantic] The Lost World of Aquaterra",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theatlantic.com%2Fmagazine%2F2026%2F12%2Faquaterra-ancient-human-migration%2F689029%2F%3Futm_source%3Dfeed\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMost of human history is waiting to be found. And it\u2019s underwater.",
+      "summary": "Most of human history is waiting to be found. And it\u2019s underwater.",
+      "_excerpt": "Most of human history is waiting to be found. And it\u2019s underwater.",
+      "date_published": "2026-11-10T12:00:00+00:00",
+      "authors": [
+        {
+          "name": "The Atlantic",
+          "url": "https://www.theatlantic.com"
+        }
+      ],
+      "ai_score": 65,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 5,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 54,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
       "tags": [
         "subscriber-access"
       ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 88,
-      "_no_deep_dive": true
+      "_subscriber_access": "Apple News+",
+      "_boosted_score": 65
     },
-    "held_date": "2026-11-11",
-    "target_date": "2026-11-12",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
-    "status": "aired_early"
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-15",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.smallfarmcanada.ca/livestock/could-earlier-shearing-help-produce-bigger-healthier-lambs/": {
+    "article": {
+      "id": "https://www.smallfarmcanada.ca/livestock/could-earlier-shearing-help-produce-bigger-healthier-lambs/",
+      "url": "https://www.smallfarmcanada.ca/livestock/could-earlier-shearing-help-produce-bigger-healthier-lambs/",
+      "title": "[Small Farm Canada] Could Earlier Shearing Help Produce Bigger, Healthier Lambs?",
+      "content_html": "<img src=\"https://www.smallfarmcanada.ca/downloads/4433/download/Sheep.png?cb=9556508453a9ac86de443f99d1f67d34\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.smallfarmcanada.ca%2Flivestock%2Fcould-earlier-shearing-help-produce-bigger-healthier-lambs%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCould changing when you shear pregnant ewes lead to heavier lambs? New research points to promising results among ewes carrying twins and triplets, although cold-climate producers should take some important precautions.",
+      "summary": "Could changing when you shear pregnant ewes lead to heavier lambs? New research points to promising results among ewes carrying twins and triplets, although cold-climate producers should take some important precautions.",
+      "_excerpt": "Could changing when you shear pregnant ewes lead to heavier lambs? New research points to promising results among ewes carrying twins and triplets, although cold-climate producers should take some important precautions.",
+      "date_published": "2026-11-10T05:00:00+00:00",
+      "authors": [
+        {
+          "name": "Small Farm Canada",
+          "url": "https://www.smallfarmcanada.ca"
+        }
+      ],
+      "ai_score": 61,
+      "_quality": 65,
+      "_relevance": 80,
+      "_local": 0,
+      "_theme_score": 53,
+      "_theme_score_raw": 3,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 33,
+      "_keyword_matches": 0,
+      "_category": "homestead",
+      "_source_category": "homestead",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.smallfarmcanada.ca/downloads/4433/download/Sheep.png?cb=9556508453a9ac86de443f99d1f67d34",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-11-10T06:09:07.164900+00:00"
+      },
+      "_boosted_score": 61
+    },
+    "held_date": "2026-11-12",
+    "target_date": "2026-11-20",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
   }
 }

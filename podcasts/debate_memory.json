@@ -1,32 +1,4 @@
 {
-  "2026-08-13": {
-    "timestamp": 1786613229.621166,
-    "date": "2026-08-13",
-    "theme": "Indigenous Lands & Innovation",
-    "focus": "guardians-stewardship",
-    "anchor": "owe-those-after",
-    "central_question": "Does Xat\u015b\u016bll First Nation's sequence of land acquisition, business development, and youth cultural programming represent genuine capacity-building for the next generation, or do these initiatives risk remaining symbolically separate without structural governance authority?",
-    "riley_position": "The acting workshop is not decorative but downstream of the ranch purchase; the sequencing of land restitution, business infrastructure, and cultural programming demonstrates how real capacity-building works when governance and revenue are structurally connected.",
-    "riley_key_evidence": [
-      "Xat\u015b\u016bll acquired ranch lands in 2020 as part of treaty talks and runs Xatsull Development as an economic development arm",
-      "ArchDaily piece on craft economies shows that cultural programs only become durable when communities control underlying material and labor systems, not just aesthetics",
-      "Xat\u015b\u016bll already operates a cultural hall, health station, and community kitchen independent of treaty outcomes"
-    ],
-    "casey_position": "A three-day workshop and one ranch purchase over six years is insufficient evidence of systemic change; the real risk is that cultural programming becomes a 'soft win' while actual governance authority over land and resources remains with the province.",
-    "casey_key_evidence": [
-      "T\u015dilhqot'in title case took 25 years (1989-2014) to reach Supreme Court, showing treaty processes move at decade-long scales",
-      "Denisiqi Services Society succeeded because it controlled governance, not because grants were designed to produce outcomes",
-      "Operating costs like health stations and cultural halls are different from decision-making authority over the land base"
-    ],
-    "resolution": "Both agreed the key test is whether Xat\u015b\u016bll's youth programming is structurally connected to its economic development arm with concrete career pathways, not whether it exists as separate initiatives; they committed to the concrete followup question of checking Xatsull Development's own public materials on youth hiring pipelines.",
-    "topics_covered": [
-      "Intergenerational obligation and infrastructure design in Indigenous nations",
-      "The distinction between symbolic land acquisition and operating economic assets",
-      "Governance authority versus Indigenous-led service delivery without decision-making power",
-      "Long-term institutional sustainability as measured in decades (Quesnel Tillicum Society at 50+ years)",
-      "The risk of aestheticizing Indigenous culture while undercapitalizing underlying economic systems"
-    ]
-  },
   "2026-08-14": {
     "timestamp": 1786699450.006248,
     "date": "2026-08-14",
@@ -2587,6 +2559,34 @@
       "Cost-of-ownership calculations and the effect of insurance plans and affiliate-sourced figures",
       "Rural access barriers in the Cariboo, including shipping, travel time and lack of foldable-capable shops",
       "Community repair nights and published parts-price lists as local and independent fixes"
+    ]
+  },
+  "2026-11-12": {
+    "timestamp": 1794471505.378576,
+    "date": "2026-11-12",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "governance-title",
+    "anchor": "fairness-of-who-gets-help",
+    "central_question": "Should the Esk'etemc Nation's council and services decisions be governed by a clear, transparent rule set that reflects both resident costs and member rights, given a narrow ten-vote election margin and low turnout?",
+    "riley_position": "A ten-vote mandate is still a legitimate mandate, and Nations should widen participation through mail-in ballots while publishing transparent, reviewable rules so that members can check and challenge how decisions are made.",
+    "riley_key_evidence": [
+      "Chief Fred Robbins won re-election 179 to 169 over Charlene Belleau, a ten-vote margin, with 480 ballots cast from 1,085 eligible voters",
+      "Mail-in ballots are available for members living off the reservation alongside the polling station at the Esk'et Gym in Alkali Lake, open 9 a.m. to 8 p.m.",
+      "The Ha\u00ed\u026bzaqv Big House (\u03bb\u00e1\u03bbix\u030cs\u00edstala), raised twenty years ago, is now run by the first generation raised there, showing a community building its own institution"
+    ],
+    "casey_position": "Turnout and a ten-vote margin give a thin mandate, so the council's authority to rank residents, members, and contributors and to apply rules needs explicit written criteria, verification, and succession planning before its decisions can be trusted.",
+    "casey_key_evidence": [
+      "Fewer than half of eligible voters (about 44 percent) participated, and the article does not report how many mail ballots were sent or returned",
+      "Chief Sheila North said the Ottawa meeting was a waste of time if abolition of the Indian Act was the only outcome, and Grand Chief Mercredi questioned whether the agenda was coordinated",
+      "The Esk'etemc forestry stewardship claims come from a course wiki and a summary of an ASFPM article that give no outcome numbers on wildfire or flood risk reduction"
+    ],
+    "resolution": "Riley and Casey agreed that a ten-vote mandate can hold the council but cannot support major restructuring, and that written, published criteria with review dates should exist before disputes arise. They left open who should be ranked first among residents, members, and those who did the work, and whether the forestry companies' governance and outcomes can be verified.",
+    "topics_covered": [
+      "Voter turnout and the legitimacy of a narrow election margin",
+      "Mail-in ballots and the rights of members living off-reserve versus the costs borne by residents",
+      "Publishing transparent, written criteria for allocating language programs and harvesting access",
+      "Ottawa meeting with federal officials and the Indian Act abolition debate",
+      "Governance and succession of Esk'etemc forestry companies and stewardship claims"
     ]
   }
 }
