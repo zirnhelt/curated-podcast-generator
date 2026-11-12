@@ -1,5 +1,277 @@
 [
   {
+    "date": "2026-11-12",
+    "title": "Episode Review — Cariboo Signals, November 12, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-12.html",
+    "content_html": "<p class=\"meta\">Focus: Governance, Title &amp; Treaty (week 1 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/43180110799\">43180110799</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong><code>script/pronunciation</code> fell back. Search the run log for <code>Degraded 'script/pronunciation'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: 1 name(s) with no entry in config/pronunciations.json: Esk'et</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The deep dive fell to one story and the roundup dropped 19 candidates</h3>\n<p>The episode ran one deep dive, a single story from My Cariboo Now on the Esk'etemc First Nation election this weekend. The debate question built on it asks whether the council and services decisions should be governed by a clear, transparent rule set that reflects both resident costs and member rights, given a narrow ten-vote election margin and low turnout. Casey carried 49% of the deep dive's words, and the voice ratio of Casey to Riley came in at 0.96.</p>\n<p>The roundup dropped 19 stories from the pool because the airtime budget for NEWS_ROUNDUP_COUNT could not hold them. That is by design: the pool is larger than one segment can air, and a cut story can come back on a day when it fits better. The roundup citations matched 15 of 18, and the single deep-dive citation matched. Nothing about this run required a change to the budget.</p>\n\n<h3>The script came in under target and shipped at 3357 words</h3>\n<p>The first draft was 2608 words against a 3400-word target, so it went back for one expand pass. The shipped script is 3357 words, short of target but within the range the pipeline accepts. A thin day shipping under target is intended, and the pipeline only treats it as a problem under SHORT_EPISODE_WORDS.</p>\n<p>The expand pass therefore brought the draft most of the way to target without reaching it. Anyone tuning the expand prompt should weigh that gap against the 2608-word first draft, not against the 3400 target alone.</p>\n\n<h3>One name had no pronunciation entry and went to TTS unmapped</h3>\n<p>The script step reported one name with no entry in config/pronunciations.json: Esk'et. The pipeline did not stop or substitute a fallback spelling; the name went to text-to-speech as written. Two TTS takes came back shorter than their word count predicted, and one of those two retries stayed short. The longer take was kept, so no segment was dropped from the episode.</p>\n<p>Add \"Esk'et\" to config/pronunciations.json before the next episode that names the nation, since this election will keep the name in rotation.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>1 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.96, 3357 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 49% of the words</td></tr>\n<tr><td>Audio</td><td>20.7 min</td></tr>\n<tr><td>Audio size</td><td>18.9 MB</td></tr>\n<tr><td>Citations matched</td><td>15/18 roundup, 1/1 deep dive</td></tr>\n<tr><td>Feed</td><td>288 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>80,043</td></tr>\n<tr><td>API calls</td><td>30 total: claude 14 · kagi-extract 7 · brave-search 5 · brave-answers 4</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-12T10:06:00+00:00",
+    "metrics": {
+      "audio_minutes": 20.7,
+      "script_words": 3357,
+      "tell_hits": 0,
+      "roundup_cite_pct": 83.3,
+      "deep_dive_cite_pct": 100.0
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "1 thing to look at before tomorrow's run.",
+      "theme": "",
+      "kpis": [
+        [
+          "Episode",
+          "20.7 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,357",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "15/18 · 1/1",
+          "roundup · deep dive"
+        ],
+        [
+          "Done at",
+          "1:36 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "degraded:script/pronunciation",
+          "todo": "script/pronunciation fell back.",
+          "evidence": "degrade() row: 1 name(s) with no entry in config/pronunciations.json: Esk'et",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-09",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 4,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-10",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Agriculture & Ranching",
+          "week": 1,
+          "of": 4,
+          "next": "Forestry & Timber",
+          "event": null
+        },
+        {
+          "date": "2026-11-11",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 4,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-12",
+          "day": "Thu",
+          "today": true,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Governance, Title & Treaty",
+          "week": 1,
+          "of": 4,
+          "next": "Language & Culture",
+          "event": null
+        },
+        {
+          "date": "2026-11-13",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 3,
+          "next": "Wildfire & Climate Resilience",
+          "event": null
+        },
+        {
+          "date": "2026-11-14",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-15",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 4,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "Is it fair to help the people who are already helping?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://indiginews.com/features/inside-the-big-house-connecting-generations-to-heiltsuk-knowledge/",
+          "title": "[IndigiNews] Inside the Big House connecting generations to Haíɫzaqv knowledge",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.aptnnews.ca/national-news/chiefs-question-motive-behind-indian-act-talks-after-meeting-with-carney-premiers/",
+          "title": "[APTN News] Chiefs question motive behind Indian Act talks after meeting with Carney, premiers",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://eaglefeathernews.com/2026/11/05/growing-local-specialists-to-address-dental-care-challenges-in-northern-saskatchewan/",
+          "title": "[Eagle Feather News] Growing local specialists to address dental care challenges in northern Saskatchewan",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/09/Mystery-Vital-Vanishing-Cottonwoods/",
+          "title": "[The Tyee] The Mystery of the Vital, Vanishing Cottonwoods",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thehub.ca/2026/11/04/parliament-today-last-years-budget-bill-on-the-eve-of-this-years-budget/",
+          "title": "[thehub.ca] Canada's budget due Thursday as First Nations seek $376 billion plan",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.aptnnews.ca/national-news/where-is-the-accountability-nunavuts-child-advocate-says-territorys-protection-issues-arent-being-addressed/",
+          "title": "[APTN News] ‘Where is the accountability?’: Nunavut’s child advocate says territory’s protection issues aren’t being addressed",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.aljazeera.com/news/2026/10/29/palestinians-face-growing-bans-from-al-aqsa-as-israel-tightens-control?traffic_source=rss",
+          "title": "[Al Jazeera English] Palestinians face growing bans from Al-Aqsa as Israel tightens control",
+          "source": "",
+          "theme_pct": 94,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://macleans.ca/economy/business/the-case-for-nationalizing-stelco/",
+          "title": "[Maclean's] The Case for Nationalizing Stelco",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.aptnnews.ca/investigates/on-the-outside-is-manitoba-contributing-to-its-own-crime-problem/",
+          "title": "[APTN News] On the Outside: Is Manitoba contributing to its own crime problem?",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://thetyee.ca/Opinion/2026/11/11/Doerkson-Invited-Young-People-Need-Homes/",
+          "title": "[The Tyee] Doerkson Invited Young People to Stay. Now They Need Homes",
+          "source": "",
+          "theme_pct": 90,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mining.com/botswana-chooses-gareth-penny-led-groups-bid-for-de-beers/",
+          "title": "[Mining.com] Botswana chooses Gareth Penny-led group’s bid for De Beers",
+          "source": "",
+          "theme_pct": 87,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.resilience.org/stories/2026-11-11/myanmars-civil-war-is-threatening-a-major-peatland-discovery/",
+          "title": "[Resilience.org] Myanmar’s civil war is threatening a major peatland discovery",
+          "source": "",
+          "theme_pct": 85,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.404media.co/reverse-engineer-anything-ai-companies-crack-down-on-the-coolest-thing-people-were-doing-with-ai/",
+          "title": "[404 Media] 'Reverse Engineer Anything': AI Companies Crack Down on the Coolest Thing People Were Doing With AI",
+          "source": "",
+          "theme_pct": 79,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.techradar.com/pro/gartner-report-finds-just-3-percent-of-organizations-say-theyve-hit-productivity-and-savings-goals-from-using-ai",
+          "title": "[TechRadar] Gartner report finds just 3% of organizations say they've hit productivity and savings goals from using AI",
+          "source": "",
+          "theme_pct": 79,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.aljazeera.com/news/2026/11/1/bolivia-declares-state-of-emergency-over-el-nino-weather-pattern?traffic_source=rss",
+          "title": "[Al Jazeera English] Bolivia declares state of emergency over El Nino weather pattern",
+          "source": "",
+          "theme_pct": 79,
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "Should the Esk'etemc Nation's council and services decisions be governed by a clear, transparent rule set that reflects both resident costs and member rights, given a narrow ten-vote election margin and low turnout?",
+        "riley": "A ten-vote mandate is still a legitimate mandate, and Nations should widen participation through mail-in ballots while publishing transparent, reviewable rules so that members can check and challenge how decisions are made.",
+        "casey": "Turnout and a ten-vote margin give a thin mandate, so the council's authority to rank residents, members, and contributors and to apply rules needs explicit written criteria, verification, and succession planning before its decisions can be trusted.",
+        "resolution": "Riley and Casey agreed that a ten-vote mandate can hold the council but cannot support major restructuring, and that written, published criteria with review dates should exist before disputes arise. They left open who should be ranked first among residents, members, and those who did the work, and whether the forestry companies' governance and outcomes can be verified.",
+        "topics": [
+          "Voter turnout and the legitimacy of a narrow election margin",
+          "Mail-in ballots and the rights of members living off-reserve versus the costs borne by residents",
+          "Publishing transparent, written criteria for allocating language programs and harvesting access",
+          "Ottawa meeting with federal officials and the Indian Act abolition debate",
+          "Governance and succession of Esk'etemc forestry companies and stewardship claims"
+        ],
+        "sources": [
+          {
+            "title": "Esk’etemc First Nation election this weekend",
+            "url": "https://www.mycariboonow.com/317244/news/indigenous/esketemc-first-nation-election-this-weekend/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-11",
     "title": "Episode Review — Cariboo Signals, November 11, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-11.html",
@@ -1719,20 +1991,6 @@
       "script_words": 3237,
       "roundup_cite_pct": 100.0,
       "deep_dive_cite_pct": 33.3
-    }
-  },
-  {
-    "date": "2026-10-13",
-    "title": "Episode Review — Cariboo Signals, October 13, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-13.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38366919269\">38366919269</a>.</em></p>\n\n<h3>Four short TTS takes, one kept at full length</h3>\n<p>The most consequential thing in this run is not a failure but a fallback. Four TTS takes came back shorter than their word count predicts. Each was retried once. Of those retries, four were still short. The pipeline kept the longer of the two takes for each, so nothing is dropped from the episode.</p>\n<p>The tradeoff is that a short take is evidence the audio may not match the script. Keeping the longer take preserves the content but does not verify that every word was spoken. The facts do not say whether the four still-short segments are truncated, only that the longer take was kept.</p>\n\n<h3>The script came in under target and was expanded</h3>\n<p>The first draft ran 2,923 words against a target of 3,400. The pipeline sent it back for up to two expand passes. The shipped script is 2,935 words, which is 465 words short of the 3,400 target. The expand passes added 12 words over the first draft. The episode ran 17.6 minutes of audio at 16.1 MB.</p>\n<p>The gap between the target and the shipped length is the number to watch. The expand passes recovered almost none of the shortfall, so the length target is not being met by this mechanism.</p>\n\n<h3>Citations: 11 of 15 roundup, 2 of 3 deep dive</h3>\n<p>Eleven of 15 roundup citations matched. Two of 3 deep-dive citations matched. The unmatched citations are the ones a listener or maintainer would need to check by hand. The three deep dives were Small Farm Canada on light and nutrient use, Quartz on grocery staples and El Niño, and Country Life on sheep farming and architecture.</p>\n<p>The roundup pool was far larger than the airtime. Of the stories curated, 47 were dropped by the airtime budget (NEWS_ROUNDUP_COUNT). That is by design. A dropped story can resurface on a day when it fits better. But it means the 15 roundup citations are a small slice of what the pipeline read, and the citation ratio describes only the aired slice.</p>\n\n<h3>Ratio of voices and the AI-tell check</h3>\n<p>The voice ratio of Casey over Riley is 0.85, so the two hosts are close to balanced in speaking share. The AI-tell pattern check recorded zero hits.</p>\n\n<h3>Runs and spend</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:27 AM Pacific with a success conclusion. Fallback 1 started and finished at 2:05 AM Pacific, also a success. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has not finished. Both completed runs were zero minutes late.</p>\n<p>The Anthropic input was 58,919 tokens. API calls were 8 to brave-search, 10 to claude, and 4 to brave-answers. The slowest step was script generation at 456 seconds, followed by GitHub Pages deploy at 341 seconds and audio rendering at 248 seconds.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>3 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.85, 2935 words</td></tr>\n<tr><td>Audio</td><td>17.6 min</td></tr>\n<tr><td>Audio size</td><td>16.1 MB</td></tr>\n<tr><td>Citations matched</td><td>11/15 roundup, 2/3 deep dive</td></tr>\n<tr><td>Feed</td><td>258 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>58,919 input tokens, calls ***'brave-search': 8, 'claude': 10, 'brave-answers': 4***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-13T10:06:19+00:00",
-    "metrics": {
-      "audio_minutes": 17.6,
-      "tell_hits": 0,
-      "script_words": 2935,
-      "roundup_cite_pct": 73.3,
-      "deep_dive_cite_pct": 66.7
     }
   }
 ]
