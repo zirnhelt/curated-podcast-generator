@@ -1,0 +1,694 @@
+{
+  "episode": {
+    "date": "2026-11-12",
+    "formatted_date": "Thursday, November 12, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is it fair to help the people who are already helping?</p><p><b>NEWS ROUNDUP:</b> We break down Mining companies raise $2.4B in a month and Chiefs question motive behind Indian Act talks after meeting with Carney, premiers, plus 13 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should the Esk'etemc Nation's council and services decisions be governed by a clear, transparent rule set that reflects both resident costs and member rights, given a narrow ten-vote election margin and low turnout? Topics include: Voter turnout and the legitimacy of a narrow election margin, Mail-in ballots and the rights of members living off-reserve versus the costs borne by residents, Publishing transparent, written criteria for allocating language programs and harvesting access, Ottawa meeting with federal officials and the Indian Act abolition debate, Governance and succession of Esk'etemc forestry companies and stewardship claims.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Cariboo Chilcotin Métis Association</p><p><b>Sources discussed:</b></p><ul><li>Henry Lazenby (The Northern Miner): <a href=\"https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/\">[The Northern Miner] Mining companies raise $2.4B in a month</a></li><li>APTN News: <a href=\"https://www.aptnnews.ca/national-news/chiefs-question-motive-behind-indian-act-talks-after-meeting-with-carney-premiers/\">[APTN News] Chiefs question motive behind Indian Act talks a...</a></li><li>thehub.ca: <a href=\"https://thehub.ca/2026/11/04/parliament-today-last-years-budget-bill-on-the-eve-of-this-years-budget/\">[thehub.ca] Canada's budget due Thursday as First Nations se...</a></li><li>Matt Simmons (IndigiNews): <a href=\"https://indiginews.com/features/inside-the-big-house-connecting-generations-to-heiltsuk-knowledge/\">[IndigiNews] Inside the Big House connecting generations to ...</a></li><li>Eagle Feather News: <a href=\"https://eaglefeathernews.com/2026/11/05/growing-local-specialists-to-address-dental-care-challenges-in-northern-saskatchewan/\">[Eagle Feather News] Growing local specialists to address de...</a></li><li>APTN News: <a href=\"https://www.aptnnews.ca/national-news/where-is-the-accountability-nunavuts-child-advocate-says-territorys-protection-issues-arent-being-addressed/\">[APTN News] ‘Where is the accountability?’: Nunavut’s child ...</a></li><li>aptnnews.ca: <a href=\"https://www.aptnnews.ca/national-news/prime-minister-announces-1b-for-housing-new-hospital-to-tackle-homelessness-in-winnipeg/\">[aptnnews.ca] Ottawa commits $1 billion to Winnipeg homes an...</a></li><li>cbc.ca: <a href=\"https://www.cbc.ca/news/canada/british-columbia/search-suspended-canoer-vancouver-island-bc-9.7416767\">[cbc.ca] Storm forces RCMP to suspend search for missing Van...</a></li><li>Mohamed Mandour (Committee to Protect Journalists): <a href=\"https://cpj.org/2026/11/how-egypts-laws-are-used-to-choke-its-independent-press/\">[Committee to Protect Journalists] How Egypt’s laws are used...</a></li><li>The Guardian Global Development: <a href=\"https://www.theguardian.com/global-development/2026/oct/30/electrocutions-disease-and-no-pay-how-workers-risk-exploitation-in-europes-datacentres\">[The Guardian Global Development] Electrocutions, disease an...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/10/261031221159.htm\">[ScienceDaily] Even moderate drinking linked to cancer and e...</a></li><li>Josiah Spyker (My East Kootenay Now): <a href=\"https://www.myeastkootenaynow.com/59285/news/municipal-news/city-of-cranbrook/cranbrook-council-sets-rdek-and-hospital-board-appointees/\">[My East Kootenay Now] Cranbrook council sets RDEK and hospi...</a></li><li>Josiah Spyker (My East Kootenay Now): <a href=\"https://www.myeastkootenaynow.com/59229/news/municipal-news/city-of-cranbrook/cranbrooks-new-mayor-optimistic-about-provincial-government-change/\">[My East Kootenay Now] Cranbrook’s new mayor optimistic abou...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Analysis/2026/11/10/Downstream-Doubts-LNG-Canada-Emission-Claims/\">[The Tyee] The Downstream Doubts That Cloud LNG Canada’s Emi...</a></li><li>cbc.ca: <a href=\"https://www.cbc.ca/news/canada/calgary/avalanche-search-rescue-dog-parks-canada-9.7412536\">[cbc.ca] Parks Canada expects to eliminate about 500 full-ti...</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317244/news/indigenous/esketemc-first-nation-election-this-weekend/\">[My Cariboo Now] Esk’etemc First Nation election this weeken...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>The Guardian Global Development: <a href=\"https://www.theguardian.com/global-development/2026/nov/10/investigation-pulp-company-paraguay-paracel-eucalyptus-plantation\">[The Guardian Global Development] ‘We said no, no, no, but t...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/11/09/Mystery-Vital-Vanishing-Cottonwoods/\">[The Tyee] The Mystery of the Vital, Vanishing Cottonwoods</a></li><li>Mark Olalde (propublica.org): <a href=\"https://www.propublica.org/article/burgum-public-land-data-centers-investments\">[propublica.org] AI data-center expansion faces scrutiny ove...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-12T01:18:17.058338-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3357,
+      "voice_ratio_casey_riley": 0.96,
+      "casey_share_deep_dive_pct": 49,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 1,
+        "thats_closer": 4,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 5,
+        "turns": 81,
+        "avg_turn_words": 40.0,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "short_turns"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 1
+    },
+    "anchor": {
+      "id": "fairness-of-who-gets-help",
+      "question": "Is it fair to help the people who are already helping?"
+    },
+    "audio_file_size": 19848621,
+    "audio_duration": "20:40"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[The Northern Miner] Mining companies raise $2.4B in a month",
+          "url": "https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/",
+          "source": "The Northern Miner",
+          "author": "Henry Lazenby",
+          "ai_score": 60,
+          "date_published": "2026-11-11T21:50:58+00:00",
+          "summary": "Mining companies raised $2.4 billion (US$1.69 billion) in the month through Oct. 15, led by Osisko Gold Group’s debt and equity financings for its Cariboo... The post Mining companies raise $2.4B in a...",
+          "discussed": true,
+          "mention_offset_frac": 0.0127
+        },
+        {
+          "title": "[thehub.ca] Canada's budget due Thursday as First Nations seek $376 billion plan",
+          "url": "https://thehub.ca/2026/11/04/parliament-today-last-years-budget-bill-on-the-eve-of-this-years-budget/",
+          "source": "thehub.ca",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-11-04T11:04:12+00:00",
+          "summary": "Finance Minister François-Philippe Champagne is scheduled to present Canada’s 2026 federal budget on Thursday, Nov. 5, at 4 p.m. The government is expected to emphasize productivity and investment in ...",
+          "discussed": true,
+          "mention_offset_frac": 0.0162
+        },
+        {
+          "title": "[aptnnews.ca] Ottawa commits $1 billion to Winnipeg homes and addiction care",
+          "url": "https://www.aptnnews.ca/national-news/prime-minister-announces-1b-for-housing-new-hospital-to-tackle-homelessness-in-winnipeg/",
+          "source": "aptnnews.ca",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-11-06T22:46:11+00:00",
+          "summary": "Prime Minister Mark Carney announced a $1-billion federal commitment in Winnipeg on Friday for more than 2,000 supportive and transitional homes and a mental-health and addictions centre as part of th...",
+          "discussed": true,
+          "mention_offset_frac": 0.0162
+        },
+        {
+          "title": "[APTN News] Chiefs question motive behind Indian Act talks after meeting with Carney, premiers",
+          "url": "https://www.aptnnews.ca/national-news/chiefs-question-motive-behind-indian-act-talks-after-meeting-with-carney-premiers/",
+          "source": "APTN News",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-11-09T21:35:06+00:00",
+          "summary": "First Nations chiefs who attended a closed-door meeting with Prime Minister Mark Carney and premiers... The post Chiefs question motive behind Indian Act talks after meeting with Carney, premiers appe...",
+          "discussed": true,
+          "mention_offset_frac": 0.0717
+        },
+        {
+          "title": "[Committee to Protect Journalists] How Egypt’s laws are used to choke its independent press",
+          "url": "https://cpj.org/2026/11/how-egypts-laws-are-used-to-choke-its-independent-press/",
+          "source": "Committee to Protect Journalists",
+          "author": "Mohamed Mandour",
+          "ai_score": 60,
+          "date_published": "2026-11-10T15:19:17+00:00",
+          "summary": "The conviction of Mada Masr Editor-in-Chief Lina Attalah highlights the persistent threat of how Egyptian authorities use licensing requirements, criminal penalties, and website blocking to silence in...",
+          "discussed": true,
+          "mention_offset_frac": 0.1664
+        },
+        {
+          "title": "[My East Kootenay Now] Cranbrook’s new mayor optimistic about provincial government change",
+          "url": "https://www.myeastkootenaynow.com/59229/news/municipal-news/city-of-cranbrook/cranbrooks-new-mayor-optimistic-about-provincial-government-change/",
+          "source": "My East Kootenay Now",
+          "author": "Josiah Spyker",
+          "ai_score": 47,
+          "date_published": "2026-11-02T20:13:28+00:00",
+          "summary": "Cranbrook's new mayor Tom Shypitka thinks the new provincial government could be good for Cranbrook. The post Cranbrook’s new mayor optimistic about provincial government change appeared first on My E...",
+          "discussed": true,
+          "mention_offset_frac": 0.2029
+        },
+        {
+          "title": "[Eagle Feather News] Growing local specialists to address dental care challenges in northern Saskatchewan",
+          "url": "https://eaglefeathernews.com/2026/11/05/growing-local-specialists-to-address-dental-care-challenges-in-northern-saskatchewan/",
+          "source": "Eagle Feather News",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-11-05T16:42:52+00:00",
+          "summary": "The Dental Therapist training program is the only one of it's kind in Canada (photo: University of Saskatchewan)",
+          "discussed": true,
+          "mention_offset_frac": 0.3888
+        },
+        {
+          "title": "[The Tyee] The Downstream Doubts That Cloud LNG Canada’s Emission Claims",
+          "url": "https://thetyee.ca/Analysis/2026/11/10/Downstream-Doubts-LNG-Canada-Emission-Claims/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 69,
+          "date_published": "2026-11-10T08:20:00+00:00",
+          "summary": "Once it’s burned, gas processed at the Kitimat facility will produce more emissions than all other activities within BC.",
+          "discussed": true,
+          "mention_offset_frac": 0.4394
+        },
+        {
+          "title": "[APTN News] ‘Where is the accountability?’: Nunavut’s child advocate says territory’s protection issues aren’t being addressed",
+          "url": "https://www.aptnnews.ca/national-news/where-is-the-accountability-nunavuts-child-advocate-says-territorys-protection-issues-arent-being-addressed/",
+          "source": "APTN News",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-11-09T23:03:55+00:00",
+          "summary": "Another scathing report from the federal auditor general looking into Nunavut’s child protection system came... The post ‘Where is the accountability?’: Nunavut’s child advocate says territory’s prote...",
+          "discussed": true,
+          "mention_offset_frac": 0.4404
+        },
+        {
+          "title": "[cbc.ca] Storm forces RCMP to suspend search for missing Vancouver Island canoeist",
+          "url": "https://www.cbc.ca/news/canada/british-columbia/search-suspended-canoer-vancouver-island-bc-9.7416767",
+          "source": "cbc.ca",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-11-10T20:36:49+00:00",
+          "summary": "The Royal Canadian Mounted Police (RCMP) suspended the official search for James “Dakota” Smith, a Ma’amtagila Nation member who went missing while canoeing near Sayward, British Columbia, on Nov. 6. ...",
+          "discussed": true,
+          "mention_offset_frac": 0.5675
+        },
+        {
+          "title": "[The Guardian Global Development] Electrocutions, disease and no pay: how workers risk exploitation in Europe’s datacentres",
+          "url": "https://www.theguardian.com/global-development/2026/oct/30/electrocutions-disease-and-no-pay-how-workers-risk-exploitation-in-europes-datacentres",
+          "source": "The Guardian Global Development",
+          "author": "https://www.theguardian.com/profile/mei-ling-mcnamara",
+          "ai_score": 49,
+          "date_published": "2026-10-30T05:00:46+00:00",
+          "summary": "As thousands of datacentres are constructed across Europe, the Guardian and Investigate Europe have uncovered disturbing evidence that some workers building them are exposed to dangerous conditions an...",
+          "discussed": true,
+          "mention_offset_frac": 0.6147
+        },
+        {
+          "title": "[ScienceDaily] Even moderate drinking linked to cancer and early death, major study finds",
+          "url": "https://www.sciencedaily.com/releases/2026/10/261031221159.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-11-02T04:12:24+00:00",
+          "summary": "A major new study challenges the idea that moderate drinking is safe, finding that even relatively small amounts of alcohol increase the risk of cancer, heart disease, and premature death. Researchers...",
+          "discussed": true,
+          "mention_offset_frac": 0.6708
+        },
+        {
+          "title": "[My East Kootenay Now] Cranbrook council sets RDEK and hospital board appointees",
+          "url": "https://www.myeastkootenaynow.com/59285/news/municipal-news/city-of-cranbrook/cranbrook-council-sets-rdek-and-hospital-board-appointees/",
+          "source": "My East Kootenay Now",
+          "author": "Josiah Spyker",
+          "ai_score": 50,
+          "date_published": "2026-11-05T03:42:44+00:00",
+          "summary": "Cranbrook council has decided on who will represent the city at regional district and hospital board meetings. The post Cranbrook council sets RDEK and hospital board appointees appeared first on My E...",
+          "discussed": true,
+          "mention_offset_frac": 0.7186
+        },
+        {
+          "title": "[cbc.ca] Parks Canada expects to eliminate about 500 full-time-equivalent positions, ends Banff rescue-dog program",
+          "url": "https://www.cbc.ca/news/canada/calgary/avalanche-search-rescue-dog-parks-canada-9.7412536",
+          "source": "cbc.ca",
+          "author": "",
+          "ai_score": 69,
+          "date_published": "2026-11-07T11:00:00+00:00",
+          "summary": "Parks Canada expects to eliminate about 500 full-time-equivalent positions, close 13 park-warden detachments and discontinue its Banff search-and-rescue dog program as part of $145 million in cuts ove...",
+          "discussed": true,
+          "mention_offset_frac": 0.8587
+        },
+        {
+          "title": "[IndigiNews] Inside the Big House connecting generations to Haíɫzaqv knowledge",
+          "url": "https://indiginews.com/features/inside-the-big-house-connecting-generations-to-heiltsuk-knowledge/",
+          "source": "IndigiNews",
+          "author": "Matt Simmons",
+          "ai_score": 56,
+          "date_published": "2026-11-06T13:28:21+00:00",
+          "summary": "Twenty years ago, Haíɫzaqv community members raised λáλix̌sístala to help Youth reconnect with their language, songs, dances, culture and ceremony. Today, the first generation to grow up here is carry...",
+          "discussed": true
+        },
+        {
+          "title": "[The Guardian Global Development] ‘We said no, no, no, but they kept insisting’: the Paraguayan people battling a eucalyptus empire",
+          "url": "https://www.theguardian.com/global-development/2026/nov/10/investigation-pulp-company-paraguay-paracel-eucalyptus-plantation",
+          "source": "The Guardian Global Development",
+          "author": "https://www.theguardian.com/profile/laurence-blair",
+          "ai_score": 62,
+          "date_published": "2026-11-10T11:00:49+00:00",
+          "summary": "It is Paraguay’s largest private investment but local people accuse a forestry giant of ignoring their contamination concerns over its vast plantation When Paracel arrived in Tacuarita, an Indigenous ...",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] The Mystery of the Vital, Vanishing Cottonwoods",
+          "url": "https://thetyee.ca/News/2026/11/09/Mystery-Vital-Vanishing-Cottonwoods/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-11-09T08:40:00+00:00",
+          "summary": "Inside the drive to restore 500,000 ‘keystone’ trees along the dammed Nechako. A Tyee special feature.",
+          "discussed": false
+        },
+        {
+          "title": "[propublica.org] AI data-center expansion faces scrutiny over public land and local resistance",
+          "url": "https://www.propublica.org/article/burgum-public-land-data-centers-investments",
+          "source": "propublica.org",
+          "author": "Mark Olalde",
+          "ai_score": 35,
+          "date_published": "2026-11-09T03:31:35+00:00",
+          "summary": "Interior Secretary Doug Burgum is promoting data centers on federal land while holding investments estimated at $18.1 million to $64.4 million in AI companies; Ethereum co-founder Vitalik Buterin has ...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Esk’etemc First Nation election this weekend",
+          "url": "https://www.mycariboonow.com/317244/news/indigenous/esketemc-first-nation-election-this-weekend/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 73,
+          "date_published": "2026-11-06T18:39:22+00:00",
+          "summary": "The Esk'etemc First Nation will be hitting the polls to elect a chief and three councillors on Sunday, Nov. 8. The post Esk’etemc First Nation election this weekend appeared first on My Cariboo Now .",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Should the Esk'etemc Nation's council and services decisions be governed by a clear, transparent rule set that reflects both resident costs and member rights, given a narrow ten-vote election margin and low turnout?",
+        "riley_position": "A ten-vote mandate is still a legitimate mandate, and Nations should widen participation through mail-in ballots while publishing transparent, reviewable rules so that members can check and challenge how decisions are made.",
+        "riley_key_evidence": [
+          "Chief Fred Robbins won re-election 179 to 169 over Charlene Belleau, a ten-vote margin, with 480 ballots cast from 1,085 eligible voters",
+          "Mail-in ballots are available for members living off the reservation alongside the polling station at the Esk'et Gym in Alkali Lake, open 9 a.m. to 8 p.m.",
+          "The Haíɫzaqv Big House (λáλix̌sístala), raised twenty years ago, is now run by the first generation raised there, showing a community building its own institution"
+        ],
+        "casey_position": "Turnout and a ten-vote margin give a thin mandate, so the council's authority to rank residents, members, and contributors and to apply rules needs explicit written criteria, verification, and succession planning before its decisions can be trusted.",
+        "casey_key_evidence": [
+          "Fewer than half of eligible voters (about 44 percent) participated, and the article does not report how many mail ballots were sent or returned",
+          "Chief Sheila North said the Ottawa meeting was a waste of time if abolition of the Indian Act was the only outcome, and Grand Chief Mercredi questioned whether the agenda was coordinated",
+          "The Esk'etemc forestry stewardship claims come from a course wiki and a summary of an ASFPM article that give no outcome numbers on wildfire or flood risk reduction"
+        ],
+        "resolution": "Riley and Casey agreed that a ten-vote mandate can hold the council but cannot support major restructuring, and that written, published criteria with review dates should exist before disputes arise. They left open who should be ranked first among residents, members, and those who did the work, and whether the forestry companies' governance and outcomes can be verified.",
+        "topics_covered": [
+          "Voter turnout and the legitimacy of a narrow election margin",
+          "Mail-in ballots and the rights of members living off-reserve versus the costs borne by residents",
+          "Publishing transparent, written criteria for allocating language programs and harvesting access",
+          "Ottawa meeting with federal officials and the Indian Act abolition debate",
+          "Governance and succession of Esk'etemc forestry companies and stewardship claims"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 6,
+          "conditions": "light drizzle",
+          "high": 13,
+          "low": 6
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 8,
+          "conditions": "overcast",
+          "high": 12,
+          "low": 7
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 8,
+          "conditions": "moderate drizzle",
+          "high": 11,
+          "low": 7
+        },
+        {
+          "name": "Quesnel",
+          "temp": 8,
+          "conditions": "overcast",
+          "high": 10,
+          "low": 3
+        },
+        {
+          "name": "Redstone",
+          "temp": 2,
+          "conditions": "light drizzle",
+          "high": 4,
+          "low": 2
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Chilcotin Métis Association",
+      "description": "Williams Lake's chartered Métis community — cultural programs, advocacy, and the annual Métis Music Jamboree celebrating 30 years of Métis identity in the Cariboo",
+      "website": "",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Has the Esk'etemc First Nation election already happened, and what were the results?\n\nFindings: Yes. The election was held Sunday, Nov. 8, 2026, and My Cariboo Now reported the results on Nov. 10, 2026 (reporter Teryn Midzain). Chief Fred Robbins won re-election in a close race, 179 votes to Charlene Belleau's 169, a margin of 10. Carolyn Belleau topped the councillor vote with 214. Audrey Grinder (184) and Chelsea King (178) were the other councillors elected. Turnout was 480 ballots cast out of 1,085 eligible voters, roughly 44%. The preview article's listed candidates therefore match the results, and Chelsea King is the councillor winner. Note that the preview lists Kerry Chelsea as a councillor candidate, but the results name Chelsea King as the elected councillor, so the deep dive should use the results as published.\nSuggested angle: Riley can argue that a 10-vote margin shows how a small, engaged community's governance works through direct, transparent voting, with counting done on the spot at local polls. Casey can push on the turnout: fewer than half of eligible members voted, which raises questions about how representative a close mandate is. Use this as a bridge into whether land and resource decisions made by a narrowly elected chief carry enough legitimacy for ambitious innovation projects.\n\nRESEARCH QUESTION: What is the Esk'etemc's record on land stewardship and innovation beyond the election?\n\nFindings: An ASFPM (Association of State Floodplain Managers) article, \"Indigenous Land Stewardship Offers Lessons in Reducing Wildfire and Flood Risk,\" describes the Esk'etemc (Alkali Lake) First Nation, part of the Secwepemc Nation in the Cariboo, as widely recognized for leadership in Indigenous land stewardship. It presents them as a model for community-driven stewardship that reduces cascading hazards such as wildfire followed by flooding. A UBC forestry course wiki (FRST370, 2021) also documents Esk'etemc community forest management, in which the framework has allowed the community to create its own companies to manage harvesting. I read only the summary of the ASFPM piece, not the full text, so specific programs and outcomes should be checked before they are cited on air.\nSuggested angle: This is the innovation thread. Riley can argue that the Esk'etemc show how Indigenous governance can create its own commercial and environmental structures, such as community forestry companies and stewardship that lowers wildfire and flood risk, which outside agencies often miss. Casey can respond that community forestry depends on the same local politics that just produced a 10-vote margin, and ask whether a model that rests on a few leaders can survive leadership change or fiscal stress. Both can ask whether the model is replicable or relies on the specific conditions of this nation.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Esk'etemc First Nation election chief councillors results",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Esk'etemc First Nation Alkali Lake Cariboo economic development innovation",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.mycariboonow.com/317332/news/indigenous/fred-robbins-wins-re-election-for-esketemc-first-nation/"
+      },
+      {
+        "kind": "page",
+        "url": "https://www.floods.org/news-views/flood-mitigation/indigenous-land-stewardship-offers-lessons-in-reducing-wildfire-and-flood-risk/"
+      },
+      {
+        "kind": "question",
+        "query": "Esk'etemc Nation 2026 council election results Chelsea King Carolyn Belleau Audrey Grinder"
+      },
+      {
+        "kind": "question",
+        "query": "Esk'etemc Nation chief election Fred Robbins Charlene Belleau 179 169 votes"
+      },
+      {
+        "kind": "question",
+        "query": "Esk'etemc Nation mail-in ballots number issued returned 2026 election"
+      },
+      {
+        "kind": "question",
+        "query": "Assembly of First Nations 2026 infrastructure shortfall $376 billion estimate methodology"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A day where money, mandates and who gets to decide run through nearly every story, from Cariboo mine financing to First Nations chiefs doubting Ottawa's motives.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "Mining companies raised $2.4 billion in the month through Oct. 15, led by Osisko Gold Group's $894 million in financings, which include notes sold to refinance project debt and advance construction at its Cariboo gold project.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "First Nations chiefs who met Carney and most premiers in Ottawa in late October say their concerns were overshadowed by Manitoba Premier Wab Kinew's call to abolish the Indian Act, and some question whether it was coordinated.",
+          "bridge_to_next": "Federal money and Indigenous priorities: the chiefs' complaints about the meeting lead into what First Nations are asking of the federal budget."
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "Ahead of the Nov. 5 federal budget, the Assembly of First Nations urged a funded plan, developed with First Nations, to close an infrastructure shortfall it puts at more than $376 billion over 10 years, including 77 on-reserve schools needing immediate replacement.",
+          "bridge_to_next": "Federal funding announced for Indigenous-linked needs: from the national budget to a specific $1 billion Winnipeg commitment that includes First Nations partners."
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "Carney announced $1 billion in Winnipeg for more than 2,000 supportive and transitional homes and an addictions centre, with First Nations governments among the partners, though the Southern Chiefs' Organization says it does not yet know how much will reach its projects.",
+          "bridge_to_next": "Public services for Indigenous people: from housing funding to the child protection system that Nunavut's auditor general has criticised again."
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "Nunavut's child advocate asks where the accountability is after another critical federal auditor general report on the territory's child protection system.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "The RCMP suspended its search for Ma'amtagila Nation member James Dakota Smith, missing since Nov. 6 near Sayward, because of storms, while his family and community keep searching and ask for government support for a coordinated operation.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "In Paraguay, Mbya Guaraní villagers in Tacuarita say the forestry company Paracel ignored their contamination concerns over eucalyptus plantations that begin less than 200 metres from their homes and crops, even though it kept early promises of roads and a well.",
+          "bridge_to_next": "Trees and Indigenous land: from a plantation near a community to cottonwood restoration along BC's Nechako River."
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "A Tyee feature looks at the drive to plant 500,000 cottonwood seedlings along the dammed Nechako River, where old cottonwoods stand but no young ones grow beneath them.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "Twenty years after Haíɫzaqv community members raised the Big House λáλix̌sístala, the first generation to grow up there is carrying forward language, songs, dances and ceremony for youth.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "A dental therapy training program in northern Saskatchewan has expanded to Prince Albert and La Ronge, recruiting from remote Indigenous communities in the hope graduates return home to work.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "The Tyee reports that once burned, gas processed at LNG Canada's Kitimat facility will produce more emissions than all other activity within BC, casting doubt on the project's emission claims.",
+          "bridge_to_next": "Large projects on public or contested land: from LNG to data centres being pushed onto federal land."
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "ProPublica reports that Interior Secretary Doug Burgum is promoting data centres on federal land while holding investments in AI companies, and that local campaigns oppose such sites.",
+          "bridge_to_next": "Data centres: from the proposed US sites to the workers who build them in Europe."
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "A Guardian and Investigate Europe investigation found some workers building European datacentres face dangerous conditions and are afraid to speak out.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "A major study finds even moderate drinking is associated with higher risks of cancer, heart disease and premature death, with no protective effect seen at low levels.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "Egypt's New Cairo court ordered Mada Masr closed and fined editor Lina Attalah 3 million pounds for running an unlicensed website, with an appeal session set for Nov. 25.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "Cranbrook's new mayor Tom Shypitka is optimistic about the incoming provincial government because of his existing relationship with the premier-elect.",
+          "bridge_to_next": "Cranbrook city hall: from the mayor's view of the province to who sits for the city on regional bodies."
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "Cranbrook council named Mayor Tom Shypitka and Councillor Joe McGowan as its RDEK and hospital board directors, with Ron Miles and Robin Goldsbury as alternates, for four years.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "Parks Canada expects to cut about 500 full-time-equivalent positions, close 13 warden detachments and end its Banff search-and-rescue dog program as part of $145 million in cuts over three years.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Across these stories, decisions about land, services and money keep being made by someone other than the people who live with them, which leads into who holds that power in a Cariboo First Nation this weekend.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "When a Nation in the Cariboo votes for its chief and council, and that leadership is the body that decides on community services and lands, does a member living away from the community have an equal say, and should those who have stayed and carried the work count for more than those who cannot be there?",
+      "riley_holds": "Self-government works best when a Nation's own electoral process is open to every member, including those living off reserve, and that inclusion strengthens the leadership's authority to decide on lands and services.",
+      "casey_holds": "A vote only matters if the leadership it selects actually holds the decision-making power over lands and services, and a ballot count says little about whether those who gave the most to the community, or those who have been shut out, are served.",
+      "beats": [
+        {
+          "claim": "Esk'etemc's election is an exercise of self-government: members choose the chief and councillors who make decisions on community services and lands.",
+          "evidence": "My Cariboo Now: members elect a chief and three councillors on Sunday, Nov. 8; Chief Fred Robbins is seeking re-election against Charlene Belleau and Kerry Chelsea, and 10 candidates are running for the open councillor seats.",
+          "pushback": "Casey: an election shows who holds office, not what power the office carries; the Ottawa meeting shows chiefs saying their concerns were overshadowed (APTN News).",
+          "leads_to_next": "If office-holders' power is the real question, then who gets to choose them, including members living away, bears on that power."
+        },
+        {
+          "claim": "Mail-in ballots for members living off the reservation mean the Nation counts its dispersed members as full participants in who decides.",
+          "evidence": "My Cariboo Now: mail-in ballots will be available for members who are living off the reservation, alongside the polling station at the Esk'et Gym in Alkali Lake open 9 a.m. to 8 p.m.",
+          "pushback": "Casey: the article says only that mail-in ballots are available; a member who has not been present for years may be voting on decisions whose costs fall on those who live there, so who should weigh more is a real question.",
+          "leads_to_next": "If the vote includes people who live elsewhere, the question becomes whether the decisions that follow should answer to residents, to all members, or to those who carried the work."
+        },
+        {
+          "claim": "Federal processes show why a Nation's own leadership matters: chiefs say Ottawa's meeting sidelined their agenda, so the authority that counts is the one the Nation itself selects.",
+          "evidence": "APTN News: chiefs say their concerns at the first meeting with Carney and premiers since the 2005 Kelowna Accord talks were overshadowed by the call to abolish the Indian Act; Grand Chief Mercredi asked whether it was coordinated.",
+          "pushback": "Riley: Casey's caution cuts both ways; when chiefs can name what was done to them, the leadership is doing its job of pressing for the Nation's terms.",
+          "leads_to_next": "With external actors setting agendas, what a council can actually decide, such as language programs or harvesting access, shows what the vote is for."
+        },
+        {
+          "claim": "What a council can allocate, such as language programs or access to resources, is where reciprocity to elders and knowledge-holders competes with the needs of members at large.",
+          "evidence": "IndigiNews: Haíɫzaqv community members raised a Big House twenty years ago for youth to reconnect with language, songs and ceremony, and the first generation raised there now carries it forward, showing how a community built the institution itself.",
+          "pushback": "Casey: that case shows a community shaping its own program over twenty years; it does not show how a council should divide scarce resources between elders who hold the knowledge and members who could not give back.",
+          "leads_to_next": "If the rule for dividing is the Nation's own to write, the Cariboo case is who in Esk'etemc's electorate writes it."
+        }
+      ],
+      "set_aside": [
+        "Mining financing for the Cariboo gold project",
+        "Canada's budget and the $376 billion First Nations infrastructure ask",
+        "Winnipeg housing commitment",
+        "Nunavut child protection report",
+        "Paraguay eucalyptus plantations",
+        "Nechako cottonwood restoration",
+        "Dental therapy program in northern Saskatchewan",
+        "Missing canoeist search near Sayward"
+      ],
+      "cariboo_beat": "Beat 2 and the closing beat bring it home to Esk'etemc First Nation at Alkali Lake: the Nov. 8 vote, with Fred Robbins, Charlene Belleau and Kerry Chelsea for chief, and mail-in ballots for members living off reserve.",
+      "landing": "Held open: when a Nation's electorate spans residents and members living away, and the council divides things like language programs and harvesting access, who in the Nation should set the rule for how the contribution of elders and knowledge-holders weighs against wider need, and who should be able to see how it is applied."
+    }
+  },
+  "cuts": [
+    {
+      "kind": "deep_dive",
+      "url": "https://indiginews.com/features/inside-the-big-house-connecting-generations-to-heiltsuk-knowledge/",
+      "title": "[IndigiNews] Inside the Big House connecting generations to Haíɫzaqv knowledge",
+      "source": "",
+      "theme_pct": 99,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.aptnnews.ca/national-news/chiefs-question-motive-behind-indian-act-talks-after-meeting-with-carney-premiers/",
+      "title": "[APTN News] Chiefs question motive behind Indian Act talks after meeting with Carney, premiers",
+      "source": "",
+      "theme_pct": 98,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://eaglefeathernews.com/2026/11/05/growing-local-specialists-to-address-dental-care-challenges-in-northern-saskatchewan/",
+      "title": "[Eagle Feather News] Growing local specialists to address dental care challenges in northern Saskatchewan",
+      "source": "",
+      "theme_pct": 97,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://thetyee.ca/News/2026/11/09/Mystery-Vital-Vanishing-Cottonwoods/",
+      "title": "[The Tyee] The Mystery of the Vital, Vanishing Cottonwoods",
+      "source": "",
+      "theme_pct": 96,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://thehub.ca/2026/11/04/parliament-today-last-years-budget-bill-on-the-eve-of-this-years-budget/",
+      "title": "[thehub.ca] Canada's budget due Thursday as First Nations seek $376 billion plan",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.aptnnews.ca/national-news/where-is-the-accountability-nunavuts-child-advocate-says-territorys-protection-issues-arent-being-addressed/",
+      "title": "[APTN News] ‘Where is the accountability?’: Nunavut’s child advocate says territory’s protection issues aren’t being addressed",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "roundup",
+      "url": "https://www.aljazeera.com/news/2026/10/29/palestinians-face-growing-bans-from-al-aqsa-as-israel-tightens-control?traffic_source=rss",
+      "title": "[Al Jazeera English] Palestinians face growing bans from Al-Aqsa as Israel tightens control",
+      "source": "",
+      "theme_pct": 94
+    },
+    {
+      "kind": "roundup",
+      "url": "https://macleans.ca/economy/business/the-case-for-nationalizing-stelco/",
+      "title": "[Maclean's] The Case for Nationalizing Stelco",
+      "source": "",
+      "theme_pct": 91
+    },
+    {
+      "kind": "roundup",
+      "url": "https://www.aptnnews.ca/investigates/on-the-outside-is-manitoba-contributing-to-its-own-crime-problem/",
+      "title": "[APTN News] On the Outside: Is Manitoba contributing to its own crime problem?",
+      "source": "",
+      "theme_pct": 91
+    },
+    {
+      "kind": "roundup",
+      "url": "https://thetyee.ca/Opinion/2026/11/11/Doerkson-Invited-Young-People-Need-Homes/",
+      "title": "[The Tyee] Doerkson Invited Young People to Stay. Now They Need Homes",
+      "source": "",
+      "theme_pct": 90
+    },
+    {
+      "kind": "roundup",
+      "url": "https://www.mining.com/botswana-chooses-gareth-penny-led-groups-bid-for-de-beers/",
+      "title": "[Mining.com] Botswana chooses Gareth Penny-led group’s bid for De Beers",
+      "source": "",
+      "theme_pct": 87
+    },
+    {
+      "kind": "roundup",
+      "url": "https://www.resilience.org/stories/2026-11-11/myanmars-civil-war-is-threatening-a-major-peatland-discovery/",
+      "title": "[Resilience.org] Myanmar’s civil war is threatening a major peatland discovery",
+      "source": "",
+      "theme_pct": 85
+    },
+    {
+      "kind": "roundup",
+      "url": "https://www.404media.co/reverse-engineer-anything-ai-companies-crack-down-on-the-coolest-thing-people-were-doing-with-ai/",
+      "title": "[404 Media] 'Reverse Engineer Anything': AI Companies Crack Down on the Coolest Thing People Were Doing With AI",
+      "source": "",
+      "theme_pct": 79
+    },
+    {
+      "kind": "roundup",
+      "url": "https://www.techradar.com/pro/gartner-report-finds-just-3-percent-of-organizations-say-theyve-hit-productivity-and-savings-goals-from-using-ai",
+      "title": "[TechRadar] Gartner report finds just 3% of organizations say they've hit productivity and savings goals from using AI",
+      "source": "",
+      "theme_pct": 79
+    },
+    {
+      "kind": "roundup",
+      "url": "https://www.aljazeera.com/news/2026/11/1/bolivia-declares-state-of-emergency-over-el-nino-weather-pattern?traffic_source=rss",
+      "title": "[Al Jazeera English] Bolivia declares state of emergency over El Nino weather pattern",
+      "source": "",
+      "theme_pct": 79
+    }
+  ]
+}
