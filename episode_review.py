@@ -138,7 +138,10 @@ def fetch_job_log(session: requests.Session, run_id: int) -> tuple[str, list[dic
         log_resp = session.get(f"{API_ROOT}/repos/{REPO}/actions/jobs/{job['id']}/logs",
                                timeout=60)
         log_resp.raise_for_status()
-        log = log_resp.text
+        # The log is UTF-8 served as text/plain with no charset, which requests
+        # reads as ISO-8859-1: "Pâtur'ajuste" reached the 2026-11-13 review as
+        # "PÃ¢tur'ajuste", and every nation name in a finding would too.
+        log = log_resp.content.decode("utf-8", errors="replace")
     except requests.RequestException as exc:
         print(f"  ⚠️  Could not read job log ({exc}) — reviewing from run metadata alone")
     return log, steps
