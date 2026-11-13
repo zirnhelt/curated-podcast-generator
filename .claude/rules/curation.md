@@ -36,7 +36,7 @@ paths:
 - **All-week events** (`podcast.json` → `all_week_events`: the 2026 B.C. provincial vote, Oct 24) are swept and lensed on any day an episode article carries their vocabulary (`_events_in_play`). They never steer selection.
 - **An all-week event gets its own research pass** (`_research_event_ballot`: election meter, results-only search, `recent` for this campaign). It never takes the deep dive's pass; only the day's own event shares that one.
 - **Once nominations close, the weekday ballot pass reuses its last complete research** (`podcasts/ballot_research_cache.json`) until it is `BALLOT_RESEARCH_MAX_AGE_DAYS` old, the roster or brief changes, or an election story reads like the field moved (`_ROSTER_CHANGE_RE`). Saturday's shared pass is never cached.
-- **A fresh ballot pass is handed the last one** (PRIOR RESEARCH) and each election story's URL and first 1500 characters: never call unestablished what an earlier pass sourced. Article bodies are `<p>` prose (`_article_prose`), never the page's menus.
+- **A fresh ballot pass is handed the last one** (PRIOR RESEARCH) and each election story's URL and first 1500 characters: never call unestablished what an earlier pass sourced. Article bodies are `<p>` prose (`_article_prose`), never the page's menus or its affiliate disclosure.
 - `docs/wl-2026-election-candidates.md` and the JSON must carry the same names (a test enforces it).
 - An election story airs the day it breaks and is also booked back (`status: 'recall'`) for the next civic episode, tagged `_recalled_from` so the hosts say they covered it.
 - The event vocabulary is never folded into `_build_theme_subject_keywords`: "campaign" and "ballot" would admit US politics.

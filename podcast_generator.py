@@ -1854,6 +1854,20 @@ def _fetch_page_text(url: str) -> str:
 
 ARTICLE_PARAGRAPH_MIN_WORDS = 8
 
+# An outlet's note that it earns from its links is not the story. On 2026-11-11
+# Android Authority's opened the body, the storyboard made it a pushback, and the
+# hosts read it out. Short paragraphs only, so a story about affiliate marketing
+# keeps its own.
+_AFFILIATE_DISCLOSURE_RE = re.compile(
+    r"\baffiliate links?\b|\bearn\w*\b.{0,60}?\b(?:commissions?|qualifying purchases)\b", re.I)
+AFFILIATE_DISCLOSURE_MAX_WORDS = 30
+
+
+def _is_affiliate_disclosure(paragraph: str) -> bool:
+    """A short paragraph saying the outlet earns from the links on its page."""
+    return (len(paragraph.split()) <= AFFILIATE_DISCLOSURE_MAX_WORDS
+            and bool(_AFFILIATE_DISCLOSURE_RE.search(paragraph)))
+
 
 def _article_prose(html: str) -> str:
     """The article's own paragraphs: the text of every <p> long enough to be prose.
@@ -1862,10 +1876,12 @@ def _article_prose(html: str) -> str:
     which is what the roundup prompt sees, were navigation. On 2026-10-14 the
     show said "the excerpt we have doesn't establish the challenger's name" for
     a Tyee story whose own image file names her. Menus are <li><a>, prose is <p>.
+    An affiliate disclosure is a <p> too, and is dropped.
     """
     # ponytail: regex over <p>, not a readability library; no new dependency.
     paragraphs = (_html_text(p) for p in re.findall(r'<p\b[^>]*>(.*?)</p>', html, re.I | re.S))
-    return " ".join(p for p in paragraphs if len(p.split()) >= ARTICLE_PARAGRAPH_MIN_WORDS)
+    return " ".join(p for p in paragraphs
+                    if len(p.split()) >= ARTICLE_PARAGRAPH_MIN_WORDS and not _is_affiliate_disclosure(p))
 
 
 def _fetch_article_text(url: str) -> str:

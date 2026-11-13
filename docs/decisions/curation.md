@@ -568,6 +568,13 @@ a My Cariboo Now story on a Conservative candidate "doesn't name that candidate"
   pass as PRIOR RESEARCH (`PRIOR_BALLOT_RESEARCH_CHARS`, ~1.5K tokens on the Haiku default):
   carry its findings forward unless superseded, never list someone it sourced as NO RECORD
   FOUND, and take who is running from the roster, never from it.
+- **An affiliate disclosure is not prose (2026-11-11).** Android Authority's "Affiliate links on
+  Android Authority may earn us a commission" is a `<p>` of eight words or more, so it opened the
+  body; the storyboard planned a pushback on it and the hosts read it out ("funny and
+  unnecessary", the producer's note). `_article_prose` drops a paragraph of
+  `AFFILIATE_DISCLOSURE_MAX_WORDS` (30) or fewer that says the outlet earns from its links. The
+  cap keeps a story about affiliate marketing whole. Kagi Extract text and the whole-page
+  fallback are not filtered: neither carried one.
 
 ## Research before the roundup is written (2026-10-15)
 
