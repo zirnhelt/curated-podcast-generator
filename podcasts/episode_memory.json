@@ -1,26 +1,4 @@
 {
-  "2026-10-08": {
-    "timestamp": 1791455013.191876,
-    "topics": [
-      "[Williams Lake Tribune] Bomb threat at secondary school in P",
-      "[Williams Lake Tribune] A masterclass in local government po",
-      "[Williams Lake Tribune] BC Conservatives\u2019 Doerkson announces",
-      "[Regional News Archives",
-      "[APTN News] Manitoba\u2019s handling of moose hunting an \u2018infring",
-      "[IndigiNews] Near Grassy Narrows, an Elder shows us how usin",
-      "[Resilience.org] 9,000-acre nuclear-powered data center prop",
-      "[Mother Jones] Sickened Coal Miners Plead for Their Black Lu"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-08",
-    "focus": "guardians-stewardship",
-    "focus_name": "Guardians & Land Stewardship"
-  },
   "2026-10-09": {
     "timestamp": 1791534296.705006,
     "topics": [
@@ -753,5 +731,26 @@
     "date": "2026-11-12",
     "focus": "governance-title",
     "focus_name": "Governance, Title & Treaty"
+  },
+  "2026-11-13": {
+    "timestamp": 1794557796.458566,
+    "topics": [
+      "[Williams Lake Tribune] Cariboo Regional District Area Direc",
+      "[My Cariboo Now] Cariboo Chilcotin Forestry Forum looks to s",
+      "[Williams Lake Tribune] Indigenous-led joint venture west of",
+      "[My Cariboo Now] Quesnel health service delivery area contin",
+      "[Quesnel Cariboo Observer] PHOTOS: 2026 Remembrance Day cere",
+      "[The Tyee] After a Megafire, Clinton Faces Floods and Landsl",
+      "AI",
+      "infrastructure"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-13",
+    "focus": "recreation-access",
+    "focus_name": "Recreation & Backcountry Access"
   }
 }
