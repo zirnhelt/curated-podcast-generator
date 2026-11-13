@@ -991,3 +991,34 @@ class TestReviewSummary:
         monkeypatch.setattr(episode_review, "INDEX_FILE", tmp_path / "index.json")
         index = episode_review.update_index("2026-11-04", "T", "<p></p>", {}, {"level": "good"})
         assert index[0]["summary"] == {"level": "good"}
+
+
+class TestFetchJobLog:
+    """2026-11-13: the review printed "PÃ¢tur'ajuste" for the script's
+    "Pâtur'ajuste"; the job log is UTF-8 served as text/plain, no charset."""
+
+    def test_the_log_is_read_as_utf8(self):
+        import requests
+
+        def response(content: bytes, encoding: str | None = None, data=None):
+            r = requests.Response()
+            r.status_code = 200
+            r._content = content
+            r.encoding = encoding
+            if data is not None:
+                r._content = json.dumps(data).encode()
+            return r
+
+        line = "Degraded 'script/pronunciation': Pâtur'ajuste, Tŝilhqot'in, Kúkpi7"
+
+        class Session:
+            def get(self, url, **kw):
+                if url.endswith("/jobs"):
+                    return response(b"", data={"jobs": [
+                        {"id": 7, "name": episode_review.GENERATING_JOB, "steps": []}]})
+                # What requests sets for text/plain without a charset.
+                return response(line.encode("utf-8"), encoding="ISO-8859-1")
+
+        log, _ = episode_review.fetch_job_log(Session(), 1)
+        assert log == line
+
