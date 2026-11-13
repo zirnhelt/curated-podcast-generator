@@ -7662,6 +7662,30 @@ class TestArticleProse:
         monkeypatch.setattr(pg, "_fetch_page_html", lambda url: page)
         assert pg._fetch_article_text("https://news.test/a").startswith("Candidate list")
 
+    def test_an_affiliate_disclosure_is_not_prose(self):
+        """2026-11-11: Android Authority's disclosure opened the body and aired as a pushback."""
+        import podcast_generator as pg
+        disclosures = [
+            "Affiliate links on Android Authority may earn us a commission. Learn more.",
+            "When you purchase through links on our site, we may earn an affiliate commission.",
+            "As an Amazon Associate we earn from qualifying purchases made through this page.",
+        ]
+        page = self.PAGE.replace("<article>", "<article>" + "".join(f"<p>{d}</p>" for d in disclosures))
+        prose = pg._article_prose(page)
+        assert prose.startswith("Incumbent Ron Paull")
+        assert "commission" not in prose and "qualifying" not in prose
+
+    def test_a_story_about_commissions_keeps_its_paragraphs(self):
+        import podcast_generator as pg
+        kept = [
+            "The BC Utilities Commission will hear the rate application in Williams Lake next month.",
+            "Creators said affiliate links now earn them more than ads, and the FTC wants every "
+            "post that carries one to say so plainly, in the first line, before any product is "
+            "named, shown or reviewed, whatever the platform, the audience or the size of the fee.",
+        ]
+        prose = pg._article_prose("".join(f"<p>{p}</p>" for p in kept))
+        assert "Utilities Commission" in prose and "FTC wants" in prose
+
 
 class TestRecentColdOpens:
     """"Hey there, welcome in ... That and more, coming right up" aired five
