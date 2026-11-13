@@ -41,11 +41,17 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` — 0 open. An item with a signal closes
-itself once the signal has been absent for 3 days. Check a box to close one; it comes back only
-if the reviews raise it 2 more times._
+_Distilled from the daily reviews by `episode_review.py` (2026-11-12..2026-11-13) — 1 open. An
+item with a signal closes itself once the signal has been absent for 3 days. Check a box to
+close one; it comes back only if the reviews raise it 2 more times._
 
-_Nothing recurring in the window._
+- [ ] **The name Esk'et has no entry in config/pronunciations.json and reached TTS unmapped.**
+      The script step degraded with one name lacking a pronunciation entry (Esk'et) on
+      2026-11-12, and the pipeline sent it to text-to-speech as written instead of stopping or
+      substituting. The same nation name is expected to recur through the election coverage.
+      Closing this means adding the Esk'et entry to config/pronunciations.json and having the
+      script step fail or flag, rather than pass through, any name with no mapping. (signal
+      `degraded:script/pronunciation`; seen in 2 reviews, latest 2026-11-13)
 
 <!-- reviews:end -->
 

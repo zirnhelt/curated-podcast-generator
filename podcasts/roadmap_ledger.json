@@ -404,10 +404,9 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-10-02",
         "2026-10-03",
         "2026-10-07",
         "2026-10-14",
@@ -416,11 +415,12 @@
         "2026-10-19",
         "2026-11-05",
         "2026-11-06",
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-13"
       ],
-      "last_seen": "2026-11-08",
+      "last_seen": "2026-11-13",
       "signal": "citations:deep-dive",
-      "signal_seen": "2026-11-08"
+      "signal_seen": "2026-11-13"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -767,16 +767,17 @@
       "title": "The name Esk'et has no entry in config/pronunciations.json and reached TTS unmapped.",
       "detail": "The script step degraded with one name lacking a pronunciation entry (Esk'et) on 2026-11-12, and the pipeline sent it to text-to-speech as written instead of stopping or substituting. The same nation name is expected to recur through the election coverage. Closing this means adding the Esk'et entry to config/pronunciations.json and having the script step fail or flag, rather than pass through, any name with no mapping.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-11-12",
       "seen": [
-        "2026-11-12"
+        "2026-11-12",
+        "2026-11-13"
       ],
       "signal": "degraded:script/pronunciation",
-      "signal_seen": "2026-11-12",
-      "last_seen": "2026-11-12"
+      "signal_seen": "2026-11-13",
+      "last_seen": "2026-11-13"
     }
   ],
-  "updated": "2026-11-12"
+  "updated": "2026-11-13"
 }
