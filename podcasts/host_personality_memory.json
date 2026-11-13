@@ -135,11 +135,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-07",
-        "clue": "community-trust:+ \u2014 Keeping relationships intact as the path to yes",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-08",
         "clue": "tech-optimism:+ \u2014 Defends FLIP as a discovery-grade method path",
         "occurrences": 1
@@ -172,6 +167,11 @@
       {
         "date": "2026-11-12",
         "clue": "Indigenous-tech:~ \u2014 admits mail ballots imperfect but still necessary",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-13",
+        "clue": "funding-risk:~ \u2014 Admits he doesn't know who pays for fixes",
         "occurrences": 1
       }
     ],
@@ -451,6 +451,16 @@
       {
         "date": "2026-11-10",
         "clue": "evidence-bar:+ Demands a real restart example before accepting the model",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-13",
+        "clue": "evidence-bar:x \u2014 Concedes closures without end dates are a hazard",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-13",
+        "clue": "community-trust:~ \u2014 Still demands proof someone actually checks roads",
         "occurrences": 1
       }
     ],
