@@ -455,7 +455,7 @@ there is no thread, and the hosts just move on.
 
 ## Super Cycles (`config/super_cycles.json`)
 
-Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Friday runs a 3-week cycle, all other cycled days 4-week. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.
+Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Monday, Wednesday and Sunday run 5-week cycles, Tuesday, Thursday and Friday 4-week. **Added 2026-11-10** at the producer's request: Small-Town Journalism (Mon), Remote Work & Broadband (Wed), Conservation & the Environment (Fri), Health, Wellness & Aging (Sun). Monday's `words-journalism` gave its journalism keywords to the new focus and became Books, Libraries & Podcasting; its slug stayed, because `debate_memory.json` keys past debates by slug. New foci are appended, so adding one shifts that weekday's calendar position. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.
 
 - **Selection:** the deep dive prefers focus-matching articles; a thin focus week (<3 matches) degrades to plain theme selection (logged `focus_fallback`). The focus lens is appended to the theme lens in the script prompt.
 - **A focus keyword is a phrase when the bare word has another common sense** (2026-10-24).
@@ -529,6 +529,20 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
     The cost is asymmetric on purpose: a genuinely off-theme story at the top of a bad
     distribution stays home, which is one story in the roundup tail; the day's best on-theme
     story cannot leave, which is the episode.
+
+- **A high-impact story moves the focus (2026-11-10, `pick_focus_for_pool`).** The calendar
+  pick is blind to the news: on a Forestry week, the day's biggest agriculture story had to beat
+  a focus gate built to keep it out. Now, before routing, an on-theme story with broad coverage
+  and strong fit takes the day to the sibling focus in its cycle that it hits hardest, or to the
+  plain theme when none does. **Coverage alone is not impact**: on that day's feeds the widest
+  stories were US strikes on Iran (53 Kagi outlets) and a Ukraine ceasefire (47), raw charter fit
+  2-10 everywhere. The stories that clear both bars (`HIGH_IMPACT_MIN_SOURCES` 10,
+  `HIGH_IMPACT_MIN_THEME_RAW` 40) were each day's own story: H5N1 in dairy herds, an olive-oil
+  storage order, El Niño floods. The cost: a widely shared, on-charter curiosity can also pre-empt
+  a week (a 14-outlet animal-behaviour study would have moved Sky & Cosmos to Discovery). Raise
+  the bars if that happens more than the producer wants. Only `_kite_sources` counts, since our own
+  same-story clusters rarely reach 3 outlets. The override changes only today: the rotation stays
+  calendar-derived, and the cold open and episode memory record the focus that actually aired.
 
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 

@@ -58,6 +58,7 @@ paths:
 
 **Super-cycles.** Each topical weekday rotates a multi-week focus, calendar-derived (`get_focus_for_day`). **Only the cold open names it**, and only when the script reaches it (`_focus_hits` ≥ `FOCUS_COLD_OPEN_MIN_HITS` keyword mentions, counted in Python, never the model's judgement), else the weekday theme; the script body never announces it. Holding (`route_articles_for_focus`) parks off-theme articles for their day within 14 days, flagged `_held_from`.
 - **Never hold a local story.**
+- **A high-impact story moves the focus** (`pick_focus_for_pool`): `_kite_sources` ≥ `HIGH_IMPACT_MIN_SOURCES` **and** raw fit ≥ `HIGH_IMPACT_MIN_THEME_RAW` (wide coverage alone is world news). The day takes the sibling focus it hits, else the plain theme; the calendar is untouched.
 - Route both the theme and bonus buckets. A slot matches on its theme **or** focus keywords.
 - Keyword sets that **gate** a decision are strict (`_build_strict_theme_keywords`); description prose is for ranking only.
 - A focus keyword is a phrase when the bare word has another common sense (`park`, `trail`, `space`): one hit admits an article to the deep-dive pool, and rerank cannot drop it.
