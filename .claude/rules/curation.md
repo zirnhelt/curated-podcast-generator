@@ -26,6 +26,7 @@ paths:
 - `_build_theme_subject_keywords` strips places and ranks on civic vocabulary.
 - `home_places` (Williams Lake, the CRD and its electoral areas, SD27) outranks neighbour towns. It is an **ordering rule, not an exclusion**.
 - A geographic day is never a routing target for held articles.
+- Its deep dive ranks only `_is_local_article` candidates when any exist: once the week's local news has aired, upstream's Saturday lane carries non-local strays.
 
 **`event_focus`** is a date-bounded civic event: the Williams Lake 2026 local election, window to Oct 24.
 - **It is named on air.** No endorsements: report the races and the candidates' stated positions, never rank them.

@@ -8623,6 +8623,17 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         print(f"  ⏭️  {len(deferred)} article(s) air today but are deferred out of the "
               f"deep dive (off today's subject)")
     candidates = eligible
+    # The geographic day ranks as if every candidate were local, but once the
+    # week's local news has aired on weekdays, upstream's Saturday lane fills with
+    # strays. On 2026-11-14 a Home Assistant tool and a polar-vortex piece (civic
+    # because each says "community") joined a Quesnel defamation case as its deep
+    # dive and aired nowhere. A non-local story airs in the roundup instead.
+    if _is_geographic_theme(theme_name):
+        local_pool = [a for a in candidates if _is_local_article(a)]
+        if local_pool and len(local_pool) < len(candidates):
+            print(f"  🏠 {len(candidates) - len(local_pool)} non-local article(s) kept "
+                  f"out of the civic deep dive; they air in the roundup")
+            candidates = local_pool
 
     # Articles are mostly sorted by boosted score from the feed, but seeded/
     # newsletter articles are prepended ahead of the feed and shouldn't win a
