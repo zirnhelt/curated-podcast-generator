@@ -6639,17 +6639,32 @@ def fetch_feed_data():
     print(f"✅ Loaded {len(unique_articles)} unique articles from {len(categories)} categories")
     return unique_articles
 
+def _whole_word_matcher(words: list) -> re.Pattern | None:
+    """One case-insensitive pattern matching any of `words` as a whole word or
+    phrase (a plural ending allowed), or None for an empty list.
+
+    The blocklist matched substrings, and a title carries its outlet: "MAGA" sat
+    inside "Quanta Magazine" and "Pique Newsmagazine", "NFL" inside "inflation".
+    In the week to 2026-11-14 that was 31 of its 48 hits, and every story from
+    five magazines.
+    """
+    words = [w for w in words if w]
+    if not words:
+        return None
+    return re.compile(r'(?<!\w)(?:' + '|'.join(re.escape(w) for w in words)
+                      + r')(?:s|es)?(?!\w)', re.I)
+
+
 def apply_blocklist(articles):
     """Remove articles whose titles match blocklist keywords."""
     blocklist = load_blocklist()
-    keywords = [kw.lower() for kw in blocklist.get("title_keywords", [])]
-    if not keywords:
+    blocked = _whole_word_matcher(blocklist.get("title_keywords", []))
+    if not blocked:
         return articles
     filtered = []
     removed = 0
     for article in articles:
-        title = article.get("title", "").lower()
-        if any(kw in title for kw in keywords):
+        if blocked.search(article.get("title", "")):
             removed += 1
         else:
             filtered.append(article)
@@ -6669,18 +6684,17 @@ def apply_bad_news_filter(articles, today_weekday):
     """
     blocklist = load_blocklist()
     filter_cfg = blocklist.get("bad_news_filter", {})
-    phrases = [p.lower() for p in filter_cfg.get("phrases", [])]
+    bad_news = _whole_word_matcher(filter_cfg.get("phrases", []))
     threshold = filter_cfg.get("theme_relevance_threshold", 2)
 
-    if not phrases:
+    if not bad_news:
         return articles
 
     themes_config = load_themes_config()
 
     kept, removed = [], 0
     for article in articles:
-        title = article.get("title", "").lower()
-        if not any(phrase in title for phrase in phrases):
+        if not bad_news.search(article.get("title", "")):
             kept.append(article)
             continue
 

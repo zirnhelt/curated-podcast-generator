@@ -70,4 +70,6 @@ paths:
 - A released article is re-labelled for its new day (`_relabel_for_day`), and its stale theme scores are dropped, not rewritten. A story imported for today must not be droppable by the run that imported it.
 - The export decision reads the feed's **raw** charter score (`_theme_score_raw`), never the percentile.
 
+**The title blocklist and the bad-news filter match whole words** (`_whole_word_matcher`, a plural ending allowed), never substrings. A title carries its outlet: "MAGA" blocked every "…Magazine" and "NFL" every "inflation".
+
 **Opinion and crime are filtered upstream** (`super-rss-feed` → `podcast_content_exclusion()`). When one reaches an episode, read that repo's `config/podcast_schedule.json` → `excluded_content` before touching anything here.
