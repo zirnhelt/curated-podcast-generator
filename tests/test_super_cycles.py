@@ -567,6 +567,113 @@ class TestGeographicDeepDiveSelection:
         assert "stale" not in holding and "future" in holding
 
 
+class TestWeekInTheCariboo:
+    """2026-11-14: weekday episodes had aired the week's local news, dedup dropped
+    18 of the Saturday feed's 23 local-lane stories, and the Cariboo Local Affairs
+    roundup aired no local story. The local day now recalls the week."""
+
+    TODAY = date(2026, 11, 14)
+
+    def _citations(self, tmp_path, day, roundup=(), deep_dive=()):
+        import json
+        body = {"segments": {"news_roundup": {"articles": list(roundup)},
+                             "deep_dive": {"articles": list(deep_dive)}}}
+        (tmp_path / f"citations_{day}_x.json").write_text(json.dumps(body))
+
+    def _feed(self):
+        return [
+            _article("[Williams Lake Tribune] Millar Western to curtail Quesnel operations", "mill"),
+            _article("[My Cariboo Now] Quesnel's new mayor and council sworn in", "council"),
+            _article("[Williams Lake Tribune] Tsilhqot'in Nation releases its land law", "law"),
+            _article("[WIRED] iPhone Duo screens crack", "phone"),
+            _article("[100 Mile Free Press] South Cariboo holiday markets open", "markets"),
+            _article("[Williams Lake Tribune] Williams Lake rodeo names its queen", "rodeo"),
+        ]
+
+    def _week(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        self._citations(tmp_path, "2026-11-10", roundup=[
+            {"url": "mill", "discussed": True}, {"url": "council", "discussed": False},
+            {"url": "phone", "discussed": True}],
+            deep_dive=[{"url": "law", "discussed": True}])
+        self._citations(tmp_path, "2026-11-13", roundup=[{"url": "markets"}])
+        # Last Saturday: outside the Sunday-to-Friday window.
+        self._citations(tmp_path, "2026-11-07", roundup=[{"url": "rodeo", "discussed": True}])
+
+    def test_a_told_local_story_comes_back_tagged_with_its_weekday(self, monkeypatch, tmp_path):
+        self._week(monkeypatch, tmp_path)
+        back = {a["url"]: a for a in pg.recall_week_local(self._feed(), self.TODAY)}
+        assert back["mill"]["_recalled_from"] == "Tuesday" and back["mill"]["_week_recall"]
+        assert back["markets"]["_recalled_from"] == "Friday"
+
+    def test_a_story_listed_but_never_told_comes_back_fresh(self, monkeypatch, tmp_path):
+        self._week(monkeypatch, tmp_path)
+        back = {a["url"]: a for a in pg.recall_week_local(self._feed(), self.TODAY)}
+        assert "_recalled_from" not in back["council"] and "_week_recall" not in back["council"]
+
+    def test_deep_dive_sources_non_local_and_older_stories_stay_out(self, monkeypatch, tmp_path):
+        self._week(monkeypatch, tmp_path)
+        urls = {a["url"] for a in pg.recall_week_local(self._feed(), self.TODAY)}
+        assert urls == {"mill", "council", "markets"}
+
+    def test_recalls_are_capped_and_the_feed_copy_is_untouched(self, monkeypatch, tmp_path):
+        self._week(monkeypatch, tmp_path)
+        feed = self._feed()
+        back = pg.recall_week_local(feed, self.TODAY, limit=1)
+        assert [a["url"] for a in back if a.get("_week_recall")] == ["mill"]
+        assert all("_week_recall" not in a for a in feed)
+
+    def test_fresh_local_stories_air_ahead_of_the_weeks_recalls(self):
+        recalled = dict(_article("[Williams Lake Tribune] Williams Lake council passes its budget",
+                                 "old", boosted=95), _recalled_from="Tuesday", _week_recall=True)
+        fresh = _article("[My Cariboo Now] Quesnel landfill fire is out", "new", boosted=40)
+        ordered, _ = pg._annotate_roundup_blocks([recalled, fresh], "Cariboo Local Affairs")
+        assert [a["url"] for a in ordered] == ["new", "old"]
+        assert {a["_roundup_block"] for a in ordered} == {"local"}
+
+    def test_a_fresh_civic_story_leads_the_deep_dive_over_a_recalled_one(self):
+        recalled = dict(_article("[Williams Lake Tribune] Williams Lake council votes on the "
+                                 "transit budget", "old", kw=3, boosted=95),
+                        _recalled_from="Tuesday", _week_recall=True)
+        fresh = _article("[My Cariboo Now] Quesnel council sets its meeting schedule",
+                         "new", kw=1, boosted=40)
+        deep_dive, _ = pg.select_deep_dive_from_feed([recalled, fresh],
+                                                     "Cariboo Local Affairs", count=2)
+        assert [a["url"] for a in deep_dive] == ["new", "old"]
+
+    def test_the_tags_say_when_it_aired_and_ask_for_more_than_a_repeat(self):
+        week = {"_recalled_from": "Tuesday", "_week_recall": True}
+        tag = pg._roundup_recall_tag(week)
+        assert "AIRED ON TUESDAY" in tag and "what comes next" in tag
+        assert "leave it out" not in tag, "a recap airs even when nothing has moved"
+        assert "go past what that mention said" in pg._deep_dive_recall_tag(week)
+        # The election recall and the Cariboo connection keep their own wording.
+        election = {"_recalled_from": "2026-09-08"}
+        assert "leave it out" in pg._roundup_recall_tag(election)
+        assert "bring the question home" in pg._deep_dive_recall_tag({"_recalled_from": "Friday"})
+        assert pg._roundup_recall_tag({}) == "" and pg._deep_dive_recall_tag({}) == ""
+
+    def test_a_week_recall_counts_as_a_deep_dive_source(self):
+        deep_dive = [dict(_article("[Williams Lake Tribune] Williams Lake council budget", "a"),
+                          _recalled_from="Tuesday", _week_recall=True),
+                     dict(_article("[My Cariboo Now] Rogers outage in Quesnel", "b"),
+                          _recalled_from="Thursday")]
+        assert "sources 1" in pg.theme_fit_line([], deep_dive, [])
+
+    def test_the_recall_is_wired_into_the_script_stage(self):
+        import inspect
+        src = inspect.getsource(pg.run_script_stage)
+        assert "recall_week_local(" in src and "_is_geographic_theme(today_theme)" in src
+
+    def test_an_off_charter_stray_is_not_a_theme_story_on_the_local_day(self):
+        """A Home Assistant add-on (raw 8, p65) took the theme block on 'community'."""
+        stray = {"_theme_score": 65, "_theme_score_raw": 8}
+        assert pg._charter_demotes(stray, "Cariboo Local Affairs")
+        assert not pg._charter_demotes(stray, "Gear, Gadgets & Practical Tech")
+        assert not pg._charter_demotes({"_theme_score": 65, "_theme_score_raw": 25},
+                                       "Cariboo Local Affairs")
+
+
 class TestHomeJurisdictionCentrality:
     """Williams Lake is the home jurisdiction; Quesnel is a neighbour.
 

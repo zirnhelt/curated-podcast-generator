@@ -27,6 +27,9 @@ paths:
 - `home_places` (Williams Lake, the CRD and its electoral areas, SD27) outranks neighbour towns. It is an **ordering rule, not an exclusion**.
 - A geographic day is never a routing target for held articles.
 - Its deep dive ranks only `_is_local_article` candidates when any exist: once the week's local news has aired, upstream's Saturday lane carries non-local strays.
+- **Saturday reads the week** (`recall_week_local`): local feed stories a weekday roundup told come back tagged `_recalled_from` + `_week_recall`, at most `WEEK_RECALL_MAX` (6), behind the fresh local stories in the roundup and the deep dive. One a weekday listed but never told (`discussed` false) comes back fresh; a weekday's deep-dive sources stay out. The recap airs even when nothing has moved, unlike the election recall.
+- The recall reads the feed's own copies, so `super-rss-feed`'s Saturday feed must keep carrying the week's local stories, aired or not.
+- A non-local story under raw `HOLD_RANK_MIN_THEME_RAW` is never a theme story on the geographic day (`_charter_demotes`): the percentile there ranks it against a non-local pool.
 
 **`event_focus`** is a date-bounded civic event: the Williams Lake 2026 local election, window to Oct 24.
 - **It is named on air.** No endorsements: report the races and the candidates' stated positions, never rank them.
