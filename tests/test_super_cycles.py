@@ -674,6 +674,85 @@ class TestWeekInTheCariboo:
                                        "Cariboo Local Affairs")
 
 
+class TestWeeklyNicheCloser:
+    """Niche interests (super-rss-feed `_niche`: Dezeen, Architizer, PyTorch, Dark
+    Reading) air about once a week, as the roundup's closer. The producer rated them
+    "Niche but fun" now and then, "Too niche" or "No local hook" as regular stories."""
+
+    TODAY = date(2026, 11, 16)
+
+    def _cite(self, tmp_path, day, rows):
+        import json
+        body = {"segments": {"news_roundup": {"articles": rows}, "deep_dive": {"articles": []}}}
+        (tmp_path / f"citations_{day}_x.json").write_text(json.dumps(body))
+
+    def _pool(self):
+        theme = [_article("[Dezeen] Glulam towers for a crematorium", "dezeen", boosted=48),
+                 _article("[Small Dwellings] A Cariboo cabin retrofit", "cabin", boosted=60)]
+        bonus = [_article("[PyTorch] Optimizing kernels on TPU v7", "pytorch", boosted=72),
+                 _article("[CBC] Snowpack outlook for B.C.", "snow", boosted=55)]
+        for a in theme + bonus:
+            a["_niche"] = a["url"] in ("dezeen", "pytorch")
+        return theme, bonus
+
+    def test_due_when_no_niche_story_closed_the_past_six_days(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        assert pg.niche_closer_due(self.TODAY)
+        self._cite(tmp_path, "2026-11-09", [{"url": "old", "niche": True, "discussed": True}])
+        assert pg.niche_closer_due(self.TODAY), "a week ago is a week ago"
+        self._cite(tmp_path, "2026-11-12", [{"url": "cut", "niche": True, "discussed": False}])
+        assert pg.niche_closer_due(self.TODAY), "a closer that never aired does not count"
+        self._cite(tmp_path, "2026-11-13", [{"url": "aired", "niche": True, "discussed": True}])
+        assert not pg.niche_closer_due(self.TODAY)
+
+    def test_the_strongest_niche_story_closes_and_the_rest_stay_out(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        theme, bonus = self._pool()
+        theme, bonus, closer = pg.split_niche(theme, bonus, self.TODAY)
+        assert [a["url"] for a in theme] == ["cabin"], "a niche story never anchors the deep dive"
+        assert [a["url"] for a in bonus] == ["snow", "pytorch"]
+        assert closer["url"] == "pytorch" and closer["_niche_closer"]
+
+    def test_not_due_means_no_niche_story_at_all(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        self._cite(tmp_path, "2026-11-14", [{"url": "aired", "niche": True}])
+        theme, bonus = self._pool()
+        theme, bonus, closer = pg.split_niche(theme, bonus, self.TODAY)
+        assert closer is None
+        assert not any(a.get("_niche") for a in theme + bonus)
+
+    def test_a_day_without_niche_stories_is_untouched(self):
+        theme = [_article("[CBC] Snowpack outlook", "snow")]
+        assert pg.split_niche(theme, [], self.TODAY) == (theme, [], None)
+
+    def test_the_niche_closer_is_the_kicker(self):
+        standalone = [dict(_article(f"[Wire] Unrelated story number {i}", f"s{i}", boosted=50 + i),
+                           _theme_score_raw=5) for i in range(4)]
+        # On fit alone the wildcard rule would pick a standalone (raw 5), not this.
+        closer = dict(_article("[PyTorch] Optimizing kernels on TPU v7", "pytorch", boosted=30),
+                      _niche=True, _niche_closer=True, _theme_score_raw=60)
+        ordered, _ = pg._annotate_roundup_blocks(standalone + [closer],
+                                                 "Gear, Gadgets & Practical Tech")
+        assert ordered[-1]["url"] == "pytorch" and ordered[-1]["_roundup_block"] == "kicker"
+        assert sum(1 for a in ordered if a["_roundup_block"] == "kicker") == 1
+
+    def test_the_citation_row_remembers_a_niche_story(self, monkeypatch, tmp_path):
+        import json
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        news = [dict(_article("[PyTorch] Optimizing kernels on TPU v7", "pytorch"), _niche=True),
+                _article("[CBC] Snowpack outlook", "snow")]
+        pg.generate_citations_file(news, [], "Gear, Gadgets & Practical Tech")
+        rows = json.loads(next(tmp_path.glob("citations_*.json")).read_text())[
+            "segments"]["news_roundup"]["articles"]
+        assert {r["url"]: r.get("niche") for r in rows} == {"pytorch": True, "snow": None}
+
+    def test_the_closer_is_wired_into_the_script_stage(self):
+        import inspect
+        src = inspect.getsource(pg.run_script_stage)
+        assert "split_niche(" in src
+        assert "_niche" in pg.FEED_CONTRACT_ITEM_FIELDS
+
+
 class TestHomeJurisdictionCentrality:
     """Williams Lake is the home jurisdiction; Quesnel is a neighbour.
 

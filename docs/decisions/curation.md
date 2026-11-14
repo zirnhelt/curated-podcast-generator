@@ -582,6 +582,24 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
 
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
+## Niche interests close the roundup once a week (2026-11-14)
+
+The producer's ratings split on a handful of outlets: Dezeen 6 bad and 5 interesting ("Niche
+but fun", then "No local hook" three days running), Architizer "Too niche", a PyTorch TPU post
+and a Dark Reading patch story "Too niche". A demotion like ArchDaily's was declined: "a
+miscellany bucket of infrequent but niche interests" instead. In `super-rss-feed` those outlets
+are typed `niche`, their stories go to a Miscellany reader feed, and every podcast-feed item
+carries `_niche` (a contract key, `FEED_CONTRACT_ITEM_FIELDS`).
+
+Here, after routing and before deep-dive selection, `split_niche` takes them out of the pool.
+When `niche_closer_due` finds no roundup row flagged `niche` and not undiscussed in the six
+days before today, the strongest one by feed score returns as a bonus article tagged
+`_niche_closer`, and `_annotate_roundup_blocks` makes it the kicker over the usual wildcard
+pick. A closer the pool cap drops, or the script never discusses, is not in the citations as
+aired, so the next day tries again. A niche story never anchors the deep dive. "About once a
+week" was the producer's choice over "never" and "a few times a week". No API call: the
+citations are read locally.
+
 ## The blocklist matched inside other words (2026-11-14)
 
 `apply_blocklist` tested `keyword in title.lower()`, and a title carries its outlet
