@@ -1,25 +1,4 @@
 {
-  "2026-10-09": {
-    "timestamp": 1791534296.705006,
-    "topics": [
-      "[Williams Lake Tribune] Free transit for residents in Quesne",
-      "[Williams Lake Tribune] BCAA investment supports wildfire me",
-      "[Williams Lake Tribune] Feasibility study for Williams Lake ",
-      "[My Cariboo Now] Food Hub in Quesnel to be reconstructed",
-      "[My Cariboo Now] The potential last Rocky Mountaineer throug",
-      "[NPR Health News] Wildfire smoke affects animals in unique w",
-      "[Wildfire Today] Advancing community wildfire adaptation",
-      "[globalnews.ca] Climate-driven wildfires in Canada could cos"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-09",
-    "focus": "wildfire-resilience",
-    "focus_name": "Wildfire & Climate Resilience"
-  },
   "2026-10-10": {
     "timestamp": 1791620233.911972,
     "topics": [
@@ -752,5 +731,26 @@
     "date": "2026-11-13",
     "focus": "recreation-access",
     "focus_name": "Recreation & Backcountry Access"
+  },
+  "2026-11-14": {
+    "timestamp": 1794644157.492566,
+    "topics": [
+      "[Global News] Summerland landslides raise concerns after wil",
+      "[cbc.ca] B.C. floods force evacuations, shelter orders as ro",
+      "[Committee to Protect Journalists] Cuban journalist Yoani S\u00e1",
+      "[Yellowhead Institute] Budget 2026: Indigenous Investment in",
+      "[Nieman Lab] \u201cIt\u2019s either this or death\u201d: Canada renews the ",
+      "[My Cariboo Now] Former Quesnel Mayor\u2019s wife loses defamatio",
+      "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M",
+      "[Scientific American] The polar vortex is about to go haywir"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-14",
+    "focus": null,
+    "focus_name": null
   }
 }
