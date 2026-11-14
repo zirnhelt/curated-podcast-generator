@@ -6763,7 +6763,7 @@ def _assert_feed_fresh(items: list, feed_url: str) -> None:
 FEED_CONTRACT_ITEM_FIELDS = (
     "id", "url", "title", "summary", "date_published", "authors", "ai_score",
     "_excerpt", "_is_bonus", "_keyword_matches", "_theme_score", "_theme_score_raw",
-    "_kite_sources", "_kite_context",
+    "_kite_sources", "_kite_context", "_niche",
 )
 FEED_CONTRACT_FEED_FIELDS = ("theme", "theme_description")  # under `_podcast`
 
@@ -7242,7 +7242,11 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
 
     theme_block, adjacent_block, local_block, rest = [], [], [], []
     dropped_us_politics = []
+    # The week's niche closer (split_niche) is the kicker by construction.
+    niche_closer = [a for a in articles if a.get('_niche_closer')][:1]
     for a in articles:
+        if a.get('_niche_closer'):
+            continue
         # Local wins over theme: a story that is both is the strongest opener.
         # relevance ≥ 2 means at least one net keyword hit survives the
         # anti-keyword penalty — score alone (boosted/100 + source boost)
@@ -7340,7 +7344,10 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
     kicker = []
     fresh = [a for a in standalone
              if not any(_shares_subject(a, b) for b in articles if b is not a)]
-    if fresh:
+    if niche_closer:
+        kicker = niche_closer
+        kicker[0]['_roundup_block'] = 'kicker'
+    elif fresh:
         upper_half = fresh[:(len(fresh) + 1) // 2]
         pick = min(upper_half, key=lambda a: a.get('_theme_score_raw') or 0)
         standalone.remove(pick)
@@ -8531,6 +8538,53 @@ def _roundup_recall_tag(a: dict) -> str:
             f'a position stated. Never re-read the original story as '
             f'though it were new. If nothing in it has moved since, '
             f'leave it out]')
+
+
+# Niche interests (super-rss-feed `source_types.niche`, the feed's `_niche`): outlets the
+# producer enjoys now and then but rates "Too niche" or "No local hook" when they compete
+# for regular slots. One a week airs, as the roundup's closer; the rest stay out.
+NICHE_CLOSER_DAYS = 7
+
+
+def niche_closer_due(today: date) -> bool:
+    """True when no niche story closed a roundup in the `NICHE_CLOSER_DAYS` before today.
+
+    Read from the citations (`niche` on a roundup row), so a closer that was cut or
+    never discussed does not count and the next day tries again.
+    """
+    for path in glob.glob(str(PODCASTS_DIR / "citations_*.json")):
+        m = re.match(r"citations_(\d{4}-\d{2}-\d{2})_", os.path.basename(path))
+        if not m or not 0 < (today - date.fromisoformat(m.group(1))).days < NICHE_CLOSER_DAYS:
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                rows = json.load(f)["segments"]["news_roundup"]["articles"]
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+        if any(isinstance(r, dict) and r.get('niche') and r.get('discussed') is not False
+               for r in rows):
+            return False
+    return True
+
+
+def split_niche(theme_articles: list, bonus_articles: list, today: date) -> tuple:
+    """Take the niche stories out of today's pool, keeping one as the closer when due.
+
+    Returns (theme_articles, bonus_articles, closer). The closer, the strongest niche
+    story by feed score, goes back as a bonus article tagged `_niche_closer`, which
+    `_annotate_roundup_blocks` makes the kicker. It never anchors the deep dive.
+    """
+    niche = [a for a in theme_articles + bonus_articles if a.get('_niche')]
+    if not niche:
+        return theme_articles, bonus_articles, None
+    theme_articles = [a for a in theme_articles if not a.get('_niche')]
+    bonus_articles = [a for a in bonus_articles if not a.get('_niche')]
+    closer = None
+    if niche_closer_due(today):
+        closer = dict(max(niche, key=lambda a: a.get('_boosted_score', a.get('ai_score', 0))),
+                      _niche_closer=True)
+        bonus_articles = bonus_articles + [closer]
+    return theme_articles, bonus_articles, closer
 
 
 def _deep_dive_recall_tag(a: dict) -> str:
@@ -10021,6 +10075,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
             "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', ''),
             "discussed": discussed,
         }
+        if article.get('_niche'):
+            citation["niche"] = True  # read back by niche_closer_due
         return citation
 
     # Add articles with discussion status. Discussed roundup entries also get
@@ -14627,6 +14683,13 @@ def run_script_stage() -> tuple[str, str] | None:
                     theme_articles, bonus_articles, pacific_now.date(), today_theme,
                     today_focus, event_focus=active_event
                 )
+
+                # Niche interests: one a week closes the roundup, the rest stay out.
+                theme_articles, bonus_articles, niche_closer = split_niche(
+                    theme_articles, bonus_articles, pacific_now.date())
+                if niche_closer:
+                    print(f"  🧩 Niche closer (none in the past {NICHE_CLOSER_DAYS - 1} days): "
+                          f"{niche_closer.get('title', '')[:70]}")
 
                 # The local day reads the week. Weekday episodes have aired the
                 # week's Cariboo news, so dedup has just dropped it: bring it back
