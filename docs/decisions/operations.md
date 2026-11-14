@@ -205,6 +205,22 @@ baseline week of `_log_claude_usage` totals on Sonnet 5. Compare script length, 
 short-script retries, `claude/refusal` rows and cost per run in the nightly review; start
 `CLAUDE_THINKING_EFFORT` at `medium` and try `low`. Unset the variable to go back.
 
+### The script writer stays on Haiku (2026-11-14)
+
+The weekly triage (#539, 2026-11-08) found every night's first draft 20-25% short (2.5k-2.7k
+of 3.4k words, repaired by the expand pass) and the script writer on `claude-haiku-5-5`, while
+the manifesto's row 24 said `CLAUDE_SCRIPT_MODEL` was Sonnet 5.5. The citations settle it: the
+script has been Haiku 5.5 since 2026-10-09; the polish has been Sonnet 5.5 since 2026-10-13
+(`CLAUDE_POLISH_MODEL`, Opus on thinly sourced days) and the storyboard Sonnet 5.5 since
+2026-10-31. Row 24 was wrong and is corrected.
+
+The triage priced the switch from logged tokens: the first script call costs $0.025-0.036 on
+Haiku 5.5 and would cost about $0.50-0.71 on Sonnet 5.5, taking the night from $0.21-0.30 to
+about $0.7-1.0. The producer kept Haiku: "staying with haiku until an equivalently priced
+alternative appears." `CLAUDE_SCRIPT_MODEL` stays unset. The short first draft is a known cost
+of that choice, paid for by the one expand pass, not a defect to fix by changing models.
+Revisit when a new model lands at Haiku 5.5's price ($0.10 / $0.50 per million).
+
 ### Committing between stages
 
 Every workflow that commits uses the `./.github/actions/commit-push` composite action —
