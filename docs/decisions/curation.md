@@ -55,6 +55,15 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   Cariboo civic day exactly the way the bare word 'local' admitted "8 local AI models that run
   great on 8GB of VRAM" on 2026-08-22. Inside the geographic deep dive every candidate is
   already local by construction, which is what makes those words safe there and only there.
+- **"Local by construction" stopped being true (2026-11-14).** Weekday episodes air every
+  local story in their local block (local news is never held), so by Saturday the week's local
+  news has aired and dedup removes it: of the Saturday feed's 23 theme articles, 18 had aired
+  Monday to Friday. Upstream fills the lane with strays, and on 2026-11-14 a Home Assistant
+  tool (raw 8) and a polar-vortex piece (raw 5) passed as civic on the word "community" and
+  joined a Quesnel defamation case as its deep dive; neither aired, so 1 of 3 deep-dive
+  citations matched. `select_deep_dive_from_feed` now ranks only `_is_local_article`
+  candidates on the geographic day when any exist; the strays air in the roundup. Saturday's
+  thin local supply itself is an editorial question, not fixed here.
 - **An election story airs twice, and the second airing says so.** Local news is never
   held — it is the most time-sensitive material in the pool — so a nomination story breaking
   on a Tuesday runs on Tuesday. It is *also* booked back for the next civic episode

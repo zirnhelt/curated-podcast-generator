@@ -520,6 +520,27 @@ class TestGeographicDeepDiveSelection:
         # Nothing is dropped — they still air in the roundup
         assert {a["url"] for a in news} == {"lumber-url", "ranch-url"}
 
+    def test_a_non_local_story_never_joins_the_civic_deep_dive(self):
+        """2026-11-14: a Home Assistant tool and a polar-vortex piece ('community')
+        joined a Quesnel defamation case as its deep dive and aired nowhere."""
+        pool = [
+            _article("[My Cariboo Now] Former Quesnel Mayor's wife loses defamation case "
+                     "against Quesnel City Councillor", "case-url", kw=3, boosted=90),
+            _article("[simon42.com] AI tool HA-MCP arrives in the Home Assistant Marketplace",
+                     "ha-url", kw=1, boosted=61, summary="The community add-on needs admin rights."),
+            _article("[Scientific American] The polar vortex is about to go haywire",
+                     "vortex-url", kw=1, boosted=33, summary="Forecasters warn the community."),
+        ]
+        deep_dive, news = pg.select_deep_dive_from_feed(pool, "Cariboo Local Affairs", count=5)
+        assert [a["url"] for a in deep_dive] == ["case-url"]
+        assert {a["url"] for a in news} == {"ha-url", "vortex-url"}
+
+    def test_a_day_with_no_local_story_still_gets_a_deep_dive(self):
+        pool = [_article("[Scientific American] The polar vortex is about to go haywire",
+                         "vortex-url", kw=1, boosted=33, summary="Forecasters warn the community.")]
+        deep_dive, _ = pg.select_deep_dive_from_feed(pool, "Cariboo Local Affairs", count=5)
+        assert [a["url"] for a in deep_dive] == ["vortex-url"]
+
     def test_deferred_articles_return_when_the_day_is_too_thin(self):
         pool = self._pool()
         for a in pool:
