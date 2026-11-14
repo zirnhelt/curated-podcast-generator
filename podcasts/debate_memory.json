@@ -1,32 +1,4 @@
 {
-  "2026-08-15": {
-    "timestamp": 1786783755.284998,
-    "date": "2026-08-15",
-    "theme": "Cariboo Local Affairs",
-    "focus": null,
-    "anchor": "owe-those-after",
-    "central_question": "Does the Williams Lake Timber Supply Area public consultation process meaningfully influence harvest-level decisions, or does it merely create the appearance of input around predetermined figures?",
-    "riley_position": "The timber supply review represents genuine structural improvement over past closed-door forestry decisions, and consultation records can become powerful legal evidence later even if they don't immediately change outcomes.",
-    "riley_key_evidence": [
-      "Twenty-eight First Nations now have formal, documented seats at the consultation table, a change from decades past when harvest was set purely by ministry staff with no public visibility",
-      "Weak consultation records from past reviews became the foundation for stronger legal challenges in other B.C. contexts",
-      "Timber supply reviews set harvest based on regrowth modeling and sustained-yield calculations rather than current mill payroll"
-    ],
-    "casey_position": "Public comment processes are structurally mismatched to real-time industry collapse; a multi-year review cycle cannot address mill closures happening over months, and there is no explicit commitment that consultation will actually alter the final harvest number.",
-    "casey_key_evidence": [
-      "Four major job-loss events in the region within weeks: Drax pellet plant closure (100+ jobs), 100 Mile House mill closure (165+ jobs), Quesnel River Pulp curtailment (90 jobs at risk), and a separate mill closure elsewhere (300 jobs)",
-      "No publicly available commitment that the allowable cut will be altered if consultation surfaces serious sustained concern",
-      "The decision with the largest generational stakes (provincial timber harvest levels) has the least direct local accountability compared to small-town mayoral races"
-    ],
-    "resolution": "They reached agreement that the structural asymmetry is real and worth naming plainly, and identified a practical first step: residents should force the ministry to state in writing whether the review process genuinely adapts to industry collapse or simply assumes a stable mill base that no longer exists. Neither fully conceded; they agreed the consultation process has limited immediate power but potential long-term value if properly documented.",
-    "topics_covered": [
-      "Timber Supply Area consultation process and its effectiveness",
-      "Regional mill closures and their timing relative to review cycles",
-      "Comparison between provincial decision-making timelines and local electoral accountability",
-      "First Nations governance structures and long-term stewardship models",
-      "Whether public comment periods create meaningful policy change or symbolic participation"
-    ]
-  },
   "2026-08-16": {
     "timestamp": 1786870089.422878,
     "date": "2026-08-16",
@@ -2587,6 +2559,34 @@
       "Who is accountable for road and creek-bank risk and who funds mitigation on private land",
       "Burn severity, soil water-repellency and the Land Management Handbook No. 69 method",
       "Local knowledge, crew reporting and dated, named signage for burned roads"
+    ]
+  },
+  "2026-11-14": {
+    "timestamp": 1794644160.085331,
+    "date": "2026-11-14",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "fairness-of-who-gets-help",
+    "central_question": "Does the defamation protection for public comment and the early dismissal process give a newcomer with no local history the same effective access to speak about public matters as a long-established local figure like the Morton family?",
+    "riley_position": "The rule works as written: the test is whether the statement concerns a public matter, it applies equally to councillors and residents, and Morton's repeated dismissed claims show the protection holds regardless of family standing.",
+    "riley_key_evidence": [
+      "Application to dismiss was heard May 12 before B.C. Supreme Court Justice Ronald Tindale, and the Free Press reported on May 26 that Roodenburg's lawyer argued the suit aims to control the narrative.",
+      "The Tyee reports Morton has filed more than a dozen civil claims in B.C. courts over several decades.",
+      "Morton's suit against the Union of B.C. Indian Chiefs was thrown out by Justice Jasmin Ahmad, who found public interest in free debate outweighed the claimed harm and ordered her to pay costs."
+    ],
+    "casey_position": "The dismissals only show the judges found the claims not worth a trial, not that the councillor's words were fair, and the real fairness problem is cost and access, which nobody has measured, along with the lack of clear council rules on naming residents.",
+    "casey_key_evidence": [
+      "Morton's notice of civil claim calls the statements defamatory but malicious and politically motivated, and motive is very hard to prove in either direction.",
+      "A resident with no seat must pay a lawyer before anyone reads the statement, while the councillor had a lawyer, a hearing, and a seat at the next meeting.",
+      "The mayor's husband cited his own reconciliation work, including co-hosting the 2024 B.C. Winter Games with the Lhtako Dene Nation, while the councillor handles reconciliation, so both sides invoke the same history."
+    ],
+    "resolution": "They did not fully agree: Riley thinks the rule is fair on paper and should be left as is, while Casey thinks it is expensive in practice and needs measurement. They agreed the next steps are to ask the court registry for data on how many residents have been sued over council remarks and to ask the Quesnel council in public whether its procedure bylaw gives councillors and residents the same protections and limits.",
+    "topics_covered": [
+      "Mechanics of defamation defences (fair comment, qualified privilege) and the application to dismiss",
+      "The Morton v. Roodenburg case, the Kamloops/TRC book controversy, and the council recording played in court",
+      "Morton's pattern of filed claims and the dismissal of her suit against the Union of B.C. Indian Chiefs",
+      "Cost and access asymmetry between councillors, former mayors' households, and ordinary residents",
+      "Whether Quesnel's council has written rules on naming residents, and how court rulings get communicated to the public"
     ]
   }
 }

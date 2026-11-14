@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechCrunch] Mosqitter is turning its mosquito traps into an",
       "[Business Insider] I broke into tech sales after working in ",
       "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
       "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
@@ -10,7 +9,8 @@
       "[TechRadar] Australian government introduces Digital Duty of",
       "The Tyee Podcast: Inside Canada\u2019s AI Data Centre Fervour",
       "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bik",
-      "[Tom's Hardware] Tech sleuth claims to have found the oldest"
+      "[Tom's Hardware] Tech sleuth claims to have found the oldest",
+      "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -130,11 +130,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-06",
-        "clue": "evidence-bar:~ \u2014 a dated log beats rumour, but needs owners",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-08",
         "clue": "tech-optimism:+ \u2014 Defends FLIP as a discovery-grade method path",
         "occurrences": 1
@@ -172,6 +167,11 @@
       {
         "date": "2026-11-13",
         "clue": "funding-risk:~ \u2014 Admits he doesn't know who pays for fixes",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-14",
+        "clue": "community-trust:+ \u2014 insists the rule protects residents equally, defends it",
         "occurrences": 1
       }
     ],
@@ -459,8 +459,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-13",
-        "clue": "community-trust:~ \u2014 Still demands proof someone actually checks roads",
+        "date": "2026-11-14",
+        "clue": "community-trust:~ \u2014 notes filings and fairness hinge on who can pay",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-11-14",
+        "clue": "evidence-bar:+ \u2014 repeatedly demands outcome lists and measured counts over anecdote",
         "occurrences": 1
       }
     ],
