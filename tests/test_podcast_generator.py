@@ -2297,6 +2297,43 @@ class TestPolishAnchorThreading:
         assert "Why is everyone in tech so sad?" in captured["user_content"]
 
 
+class TestBlocklistMatchesWholeWords:
+    """2026-11-14: "MAGA" sat inside "Pique Newsmagazine" and removed a fresh
+    Quesnel pulp-mill story; in that week's pool 31 of the blocklist's 48 hits
+    were inside another word, among them every Quanta Magazine story."""
+
+    def _titles(self, titles):
+        import podcast_generator as pg
+        return [a["title"] for a in pg.apply_blocklist([{"title": t} for t in titles])]
+
+    def test_a_keyword_inside_another_word_blocks_nothing(self):
+        kept = [
+            "[Pique Newsmagazine] Doerkson says indefinite halt at pulp mill a 'hard blow' to Quesnel",
+            "[Quanta Magazine] A New Era for the Dawn of Life",
+            "[bloomberg.com] Inflation and borrowing fears drive Treasury yields higher",
+            "[CBC] Conflict over water licences reaches the regional district",
+            "[The Tyee] Trumpeter swans return to the Chilcotin",
+        ]
+        assert self._titles(kept) == kept
+
+    def test_the_words_themselves_still_block(self):
+        blocked = [
+            "[NYT] How Trump Is Dismantling America's Scientific Research Machine",
+            "[CBC] Trump's tariffs hit B.C. lumber",
+            "[AP] MAGA rally draws thousands",
+            "[Williams Lake Tribune] Stampeders open the playoffs at home",
+            "[TSN] NFL trade deadline passes quietly",
+            "[100 Mile Free Press] Wranglers hockey season opens Friday",
+            "[My Cariboo Now] Longtime Quesnel volunteer has died",
+        ]
+        assert self._titles(blocked) == []
+
+    def test_bad_news_phrases_match_whole_words_too(self):
+        arts = [{"title": "B.C. needs more skilled trades workers, report says"},
+                {"title": "Troubleshooting a heat pump in a Cariboo winter"}]
+        assert len(apply_bad_news_filter(arts, 1)) == 2
+
+
 class TestApplyBadNewsFilter:
     TUESDAY = 1   # Working Lands & Industry
     SATURDAY = 5  # Cariboo Local Affairs

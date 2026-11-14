@@ -582,6 +582,22 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
 
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
+## The blocklist matched inside other words (2026-11-14)
+
+`apply_blocklist` tested `keyword in title.lower()`, and a title carries its outlet
+(`[Pique Newsmagazine] …`). "MAGA" is inside "magazine", so every story from Quanta Magazine,
+Pique Newsmagazine, Noema, Reactor and Discover was removed before curation, and "NFL" is
+inside "inflation", "conflict" and "influence". Measured on `super-rss-feed`'s pool for the
+week to 2026-11-14 (1,474 articles): 48 blocklist hits, 31 of them inside another word (23
+"MAGA", 8 "NFL"). It surfaced when the Saturday replay lost a fresh Quesnel pulp-mill story
+from Pique. The bad-news filter had the same test ("killed" inside "skilled"), with no false
+hit that week.
+
+Both now use `_whole_word_matcher`: one case-insensitive pattern, whole words and phrases, a
+plural ending allowed ("playoff" still catches "playoffs", "Trump" still catches "Trump's").
+The 17 true hits that week are unchanged. No keyword was added or removed: what the list
+blocks is the producer's.
+
 ## Reading what we already had (2026-10-14)
 
 The roundup said "the excerpt we have doesn't establish the challenger's name" about a Tyee
