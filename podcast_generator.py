@@ -7122,10 +7122,18 @@ def _charter_promotes(article: dict, theme_name: str) -> bool:
     return pct >= THEME_BLOCK_PROMOTE_PCT and raw >= THEME_BLOCK_PROMOTE_RAW
 
 
-def _charter_demotes(article: dict) -> bool:
+def _charter_demotes(article: dict, theme_name: str = "") -> bool:
     """True when the charter fit overrules a keyword hit: the word matched, the
-    story isn't about the theme. An article with no score keeps the keyword test."""
-    pct = article.get('_theme_score')
+    story isn't about the theme. An article with no score keeps the keyword test.
+
+    On the geographic day the raw score decides too. The pool there is mostly
+    non-local, so a Home Assistant add-on at raw 8 sat at p65 and "community"
+    made it a theme story (2026-11-14).
+    """
+    pct, raw = article.get('_theme_score'), article.get('_theme_score_raw')
+    if (isinstance(raw, int) and raw < HOLD_RANK_MIN_THEME_RAW
+            and _is_geographic_theme(theme_name)):
+        return True
     return pct is not None and pct < THEME_BLOCK_MIN_PCT
 
 
@@ -7251,7 +7259,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
             theme_block.append(a)
         elif a.get('_is_bonus'):
             rest.append(a)
-        elif _charter_demotes(a):
+        elif _charter_demotes(a, theme_name):
             rest.append(a)
         elif a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
             a['_roundup_block'] = 'theme'
@@ -7331,9 +7339,11 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
     # place names alone sorted on which town got named most often and a Quesnel
     # story could open a Williams Lake show. `home_places` is empty on the six
     # topical themes, where this term is a constant and changes no order.
+    # A story the week already aired (`_week_recall`) follows the fresh ones, so
+    # it is the first trimmed when the block is over budget.
     local_block.sort(
-        key=lambda a: (_home_place_hits(a, theme_name), _local_place_hits(a),
-                       relevance(a), boosted(a)),
+        key=lambda a: (not a.get('_week_recall'), _home_place_hits(a, theme_name),
+                       _local_place_hits(a), relevance(a), boosted(a)),
         reverse=True,
     )
     # A keyword hit is worth 2 and a charter percentile of 100 is worth 2, so a
@@ -7626,7 +7636,8 @@ def roundup_shape_line(script: str, roundup: list, deep_dive: list,
 
 def _unused_on_theme(roundup: list, deep_dive: list, dropped: list) -> list:
     """On-charter, non-local candidates the deep dive did not use (aired in the roundup or cut)."""
-    used = {a.get('url') for a in deep_dive if not a.get('_recalled_from')}
+    used = {a.get('url') for a in deep_dive
+            if not a.get('_recalled_from') or a.get('_week_recall')}
     return [a for a in list(roundup) + list(dropped)
             if a.get('url') not in used and not _is_local_article(a)
             and (a.get('_theme_score') or 0) >= THEME_BLOCK_PROMOTE_PCT
@@ -7676,7 +7687,8 @@ def theme_fit_line(roundup: list, deep_dive: list, dropped: list) -> str:
                    if a.get('_roundup_block') in ('theme', 'theme_adjacent')
                    and not (a.get('_held_from') or a.get('_recalled_from'))
                    and pct(a) is not None and pct(a) < THEME_BLOCK_MIN_PCT]
-    sources = [a for a in deep_dive if not a.get('_recalled_from')]
+    sources = [a for a in deep_dive
+               if not a.get('_recalled_from') or a.get('_week_recall')]
     lead = sources[0] if sources else None
     lead_pct = pct(lead) if lead else None
     lead_label = ('local' if lead is not None and _is_local_article(lead)
@@ -8424,6 +8436,103 @@ def recent_local_roundup(today: date, days: int = RECENT_LOCAL_DAYS) -> list:
     return [a for _, a in found]
 
 
+# The local day's look back: Sunday to Friday, the six episodes since the last one.
+WEEK_RECALL_DAYS = 6
+# Aired local stories one Saturday may bring back, roundup and deep dive together.
+WEEK_RECALL_MAX = 6
+
+
+def recall_week_local(dropped: list, today: date, limit: int = WEEK_RECALL_MAX) -> list:
+    """The local day's week in the Cariboo: local feed stories that dedup dropped
+    because a weekday episode cited them.
+
+    Local news is never held, so each weekday's local block airs it as it breaks
+    and by Saturday the week's Cariboo stories are all in the citations: on
+    2026-11-14 dedup dropped 18 of the feed's 23 local-lane stories and the
+    Cariboo Local Affairs roundup aired none. A story a weekday roundup told comes
+    back tagged `_recalled_from` (the weekday) and `_week_recall`, at most `limit`
+    of them, in feed order. One a weekday listed but never told (`discussed`
+    false) comes back as the fresh story it still is. A weekday's deep-dive
+    sources stay out: they had their airtime.
+    """
+    told, listed, deep = {}, set(), set()
+    for path in glob.glob(str(PODCASTS_DIR / "citations_*.json")):
+        m = re.match(r"citations_(\d{4}-\d{2}-\d{2})_", os.path.basename(path))
+        if not m:
+            continue
+        aired = date.fromisoformat(m.group(1))
+        if not 0 < (today - aired).days <= WEEK_RECALL_DAYS:
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                segments = json.load(f)["segments"]
+            deep_rows = segments.get("deep_dive", {}).get("articles") or []
+            roundup_rows = segments.get("news_roundup", {}).get("articles") or []
+        except (OSError, ValueError, KeyError, TypeError, AttributeError):
+            continue
+        deep.update(a.get('url') for a in deep_rows if isinstance(a, dict))
+        for a in roundup_rows:
+            if not isinstance(a, dict) or not a.get('url'):
+                continue
+            if a.get('discussed') is False:
+                listed.add(a['url'])
+            else:
+                told[a['url']] = aired
+    back, recalled = [], 0
+    for a in dropped:
+        url = a.get('url')
+        if not url or url in deep or not _is_local_article(a):
+            continue
+        if url in told:
+            if recalled < limit:
+                recalled += 1
+                back.append({**a, '_recalled_from': told[url].strftime('%A'),
+                             '_week_recall': True})
+        elif url in listed:
+            back.append(dict(a))
+    return back
+
+
+def _roundup_recall_tag(a: dict) -> str:
+    """The prompt tag on a roundup story the listener has already heard, or ''.
+
+    The inverse instruction to the held tag, and deliberately so. A held story
+    is one the listener has not heard, aired on a better-matched day, so
+    explaining the timing would only expose the machinery. A recalled one they
+    HAVE heard, on the day it broke, so pretending otherwise is the failure.
+    """
+    if not a.get('_recalled_from'):
+        return ''
+    if a.get('_week_recall'):
+        # The local day's week in the Cariboo: a recap, so unlike an election
+        # recall it airs even when nothing has moved.
+        return (f' [AIRED ON {a["_recalled_from"].upper()}: say so plainly '
+                f'("we told you about this on {a["_recalled_from"]}"), give what '
+                f'happened in one sentence, then spend the time on what that '
+                f'mention left out and what comes next. Never tell it again as '
+                f'though it were new]')
+    return (f' [ALREADY COVERED {a["_recalled_from"]} — say so plainly '
+            f'("we mentioned this on Tuesday") and lead with what has '
+            f'CHANGED since: a new name in the race, a deadline passed, '
+            f'a position stated. Never re-read the original story as '
+            f'though it were new. If nothing in it has moved since, '
+            f'leave it out]')
+
+
+def _deep_dive_recall_tag(a: dict) -> str:
+    """The prompt tag on a deep-dive source that already aired in a roundup, or ''."""
+    if not a.get('_recalled_from'):
+        return ''
+    if a.get('_week_recall'):
+        return (f" [AIRED IN THE ROUNDUP ON {a['_recalled_from'].upper()}: say we "
+                f"covered it, then go past what that mention said; never present "
+                f"it as new news]")
+    # An aired local story brought back as the deep dive's Cariboo connection.
+    return (f" [AIRED IN THE ROUNDUP ON {a['_recalled_from'].upper()}: say we "
+            f"covered it, and use it to bring the question home, never as "
+            f"new news]")
+
+
 def week_so_far_block(today: date, anchor_id: str | None = None,
                       days: int = WEEK_SO_FAR_DAYS) -> str:
     """The last `days` days' deep dives for the storyboard, or "".
@@ -8686,15 +8795,17 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         def _is_civic(a):
             return a.get('_subject_matches', 0) > 0 or a.get('_event_matches', 0) > 0
 
+        # A fresh story leads one the week already aired (`_week_recall`).
         subject_strong = sorted(
-            (a for a in candidates if _is_civic(a)), key=_geographic_rank, reverse=True,
+            (a for a in candidates if _is_civic(a)),
+            key=lambda a: (not a.get('_week_recall'), *_geographic_rank(a)), reverse=True,
         )
         if subject_strong:
             # Civic stories lead; the remaining slots go to the strongest local
             # material left, which is the only thing a thin civic week has.
             rest = sorted(
                 (a for a in candidates if not _is_civic(a)),
-                key=lambda a: (a.get('_home_matches', 0),
+                key=lambda a: (not a.get('_week_recall'), a.get('_home_matches', 0),
                                a.get('_boosted_score', a.get('ai_score', 0))),
                 reverse=True,
             )
@@ -10522,18 +10633,7 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         held_tag = (f' [FROM {a["_held_from"]}: frame as "earlier this week", not '
                     f'breaking — do not explain why it airs today]'
                     if a.get('_held_from') else '')
-        # The inverse instruction to held_tag, and deliberately so. A held story
-        # is one the listener has not heard, aired on a better-matched day, so
-        # explaining the timing would only expose the machinery. A recalled one
-        # they HAVE heard — it ran on the day it broke — so pretending otherwise
-        # is the failure. Say we covered it and say what has moved since.
-        recall_tag = (f' [ALREADY COVERED {a["_recalled_from"]} — say so plainly '
-                      f'("we mentioned this on Tuesday") and lead with what has '
-                      f'CHANGED since: a new name in the race, a deadline passed, '
-                      f'a position stated. Never re-read the original story as '
-                      f'though it were new. If nothing in it has moved since, '
-                      f'leave it out]'
-                      if a.get('_recalled_from') else '')
+        recall_tag = _roundup_recall_tag(a)
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
         via = a.get('_body_via')
@@ -10622,10 +10722,7 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         summary = a.get('summary', '')[:300]
         score = a.get('_boosted_score', a.get('ai_score', 0))
         jurisdiction_tag = us_policy_framing_tag(a)
-        # An aired local story brought back as the deep dive's Cariboo connection.
-        recall_tag = (f" [AIRED IN THE ROUNDUP ON {a['_recalled_from'].upper()}: say we "
-                      f"covered it, and use it to bring the question home, never as "
-                      f"new news]" if a.get('_recalled_from') else "")
+        recall_tag = _deep_dive_recall_tag(a)
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:1000]}" if body else ""
         body_line += _kite_context_line(a, DEEP_DIVE_PROMPT_CONTEXT_CHARS)
@@ -14451,6 +14548,7 @@ def run_script_stage() -> tuple[str, str] | None:
 
                 # Deduplicate all articles against recent episodes
                 all_feed_articles = theme_articles + bonus_articles
+                feed_before_dedup = list(all_feed_articles)
                 all_feed_articles, evolving_stories = deduplicate_articles(all_feed_articles)
 
                 if len(all_feed_articles) < MIN_FRESH_ARTICLES:
@@ -14515,6 +14613,26 @@ def run_script_stage() -> tuple[str, str] | None:
                     theme_articles, bonus_articles, pacific_now.date(), today_theme,
                     today_focus, event_focus=active_event
                 )
+
+                # The local day reads the week. Weekday episodes have aired the
+                # week's Cariboo news, so dedup has just dropped it: bring it back
+                # as recalls, behind whatever is fresh. After routing, like the
+                # election recall, so nothing re-drops it.
+                if _is_geographic_theme(today_theme):
+                    week_back = []
+                    with segment("script/week-recall", critical=False):
+                        kept_urls = {a.get('url') for a in theme_articles + bonus_articles}
+                        week_back = recall_week_local(
+                            [a for a in feed_before_dedup if a.get('url') not in kept_urls],
+                            pacific_now.date())
+                    if week_back:
+                        recalls = [a for a in week_back if a.get('_week_recall')]
+                        print(f"  🗓️  Week in the Cariboo: {len(recalls)} aired local "
+                              f"story(ies) recalled, {len(week_back) - len(recalls)} "
+                              f"listed on a weekday but never told")
+                        for a in recalls:
+                            print(f"     ↩️  {a['_recalled_from']}: {a.get('title', '')[:64]}")
+                        theme_articles = theme_articles + week_back
 
                 # The deep dive needs 3 and the roundup's theme block needs
                 # ROUNDUP_THEME_FLOOR; a pool at or under that is already

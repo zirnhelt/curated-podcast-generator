@@ -64,6 +64,33 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   citations matched. `select_deep_dive_from_feed` now ranks only `_is_local_article`
   candidates on the geographic day when any exist; the strays air in the roundup. Saturday's
   thin local supply itself is an editorial question, not fixed here.
+- **Saturday reads the week (2026-11-14, the producer's call).** The cause above is structural:
+  local news is never held, so each weekday's local block spends it, and the local day inherits
+  what is left. Holding local stories for Saturday was rejected (local news goes stale fastest).
+  Instead `recall_week_local` brings back, on the geographic day only, the local feed stories
+  dedup has just dropped:
+  - told in a Sunday-to-Friday roundup: recalled with `_recalled_from` (the weekday) and
+    `_week_recall`, at most `WEEK_RECALL_MAX` (6) in feed order. The tag asks the hosts to say
+    when it aired, give what happened in a sentence, then spend the time on what that mention
+    left out and what comes next. Unlike the election recall it airs even when nothing has
+    moved: it is a recap. The already-aired ledger still lists what was said, so the recap adds
+    to the weekday mention and does not re-read it.
+  - listed by a weekday but never told (`discussed` false): back as the fresh story it still is.
+    On 2026-11-14 that was Quesnel's new council being sworn in and the Quesnel opioid numbers.
+  - a weekday's deep-dive source: stays out, it had its airtime.
+  Fresh local stories lead recalled ones in the roundup's local block (so recalls are trimmed
+  first) and in the civic deep-dive ranking. A week recall in the deep dive counts as a source
+  in `theme_fit_line`; the Cariboo bar's ride-along connection still does not. Replayed on the
+  2026-11-14 feed: a five-source deep dive on the week's local government (two fresh, one
+  never-told, two recalled) and four recalled stories opening the roundup, against a real
+  episode with none. No API call; the bodies go through the existing capped research budgets.
+  The recall reads the feed's copies, so upstream's Saturday feed has to keep carrying the
+  week's local stories; `super-rss-feed` lifted its 3-an-outlet cap for local stories on
+  Saturday the same day, which is where the unaired local stories come from.
+- **A stray is not a theme story on the local day.** With the strays out of the deep dive, the
+  Home Assistant add-on (raw 8) took the roundup's theme block on the word "community": its
+  percentile was 65 because the Saturday pool is mostly non-local. `_charter_demotes` now also
+  demotes under raw `HOLD_RANK_MIN_THEME_RAW` on the geographic day.
 - **An election story airs twice, and the second airing says so.** Local news is never
   held — it is the most time-sensitive material in the pool — so a nomination story breaking
   on a Tuesday runs on Tuesday. It is *also* booked back for the next civic episode
