@@ -1,5 +1,304 @@
 [
   {
+    "date": "2026-11-15",
+    "title": "Episode Review — Science, Wonder & the Natural World, November 15, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-15.html",
+    "content_html": "<p class=\"meta\">Theme: Science, Wonder &amp; the Natural World. Focus: Sky &amp; Cosmos (week 1 of 5). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/43692869039\">43692869039</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>4 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong><code>render/music-fallback</code> fell back. Search the run log for <code>Degraded 'render/music-fallback'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: script did not parse into welcome/news/deep-dive — episode rendered without music beds or section structure</span></li>\n<li><strong><code>script/kagi-extract</code> fell back. Search the run log for <code>Degraded 'script/kagi-extract'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Kagi Extract reply matched no page for 2 of 2 URLs sent</span></li>\n<li><strong>Investigate.</strong><br><span class=\"evidence\">2 local stor(ies) in the pool, 1 aired, roundup opened local: no</span> <span class=\"recur\">Recurring: pending for the roadmap, seen 1 night.</span></li>\n<li><strong>The deep dive ran on one source with on-theme candidates unused. Read the Cariboo pick line in the run log and the candidates it passed over.</strong><br><span class=\"evidence\">the deep dive aired on one source while 32 on-theme candidate(s) went unused</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Two segments fell back to a degraded render, and the script never parsed into sections</h3>\n<p>The script step produced a draft, but the segment parser could not split it into welcome, news and deep-dive, so the render fell back to TTS-only mode. The episode went out without music beds or section structure. The parse warning reads \"Segment parsing failed - falling back to TTS-only mode\", and the render degradation carries the same cause. The listener gets a continuous spoken track with no transitions between the roundup and the deep dive.</p>\n<p>Alongside this, the Kagi Extract step matched no page for 2 of 2 URLs sent, so the script had no extracted article text for either of those sources. Set the parse failure next to the extract failure and the pattern is that the script stage is degrading in two places at once. Check the segment delimiters in the script prompt and the Kagi Extract request format before the next run.</p>\n\n<h3>The roundup aired one of two local stories, and the deep dive is the local one</h3>\n<p>The roundup pool held 18 stories, 17 on theme and 1 local, and the airtime budget cut 42 from the pool. Of the 2 local stories available, 1 aired, and the roundup did not open with local news. Local material reached the episode through the deep dive, where the lead is Cariboo and the single source is My Cariboo Now.</p>\n<p>The deep-dive beat count is 4 aired against 5 planned, so the segment ran one beat short. Only 6 of 17 bridges were named, and no roundup pairs were placed in plan order. Treat the bridge gap as the likely cause of the missing beat and the unplaced pairs, and make bridge naming a required output of the script step.</p>\n\n<h3>Two released holds were older articles, and 32 on-theme candidates went unused</h3>\n<p>Focus routing released 2 held articles and held none. Both were held from earlier in the cycle: one from 2026-11-09 and one from 2026-11-12, both on kw=1. The tonight's focus is Sky &amp; Cosmos, cycle week 1 of 5, but neither released article is a Sky &amp; Cosmos piece, so the release came from the hold queue rather than from tonight's focus match.</p>\n<p>Meanwhile 32 on-theme candidates were left unused. Those are the pool's remaining material after the cut, not a shortage. The routing is working, but the release rule is letting older held items through ahead of fresher on-theme ones. Review the release ordering in focus routing.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>82</td></tr>\n<tr><td>Kept after dedup</td><td>59</td></tr>\n<tr><td>Held / released</td><td>2 released, 0 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:17, local:1</td></tr>\n<tr><td>Deep dive</td><td>1 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.79, 3695 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 40% of the words</td></tr>\n<tr><td>Audio</td><td>23.8 min</td></tr>\n<tr><td>Audio size</td><td>21.8 MB</td></tr>\n<tr><td>Citations matched</td><td>12/18 roundup, 1/1 deep dive</td></tr>\n<tr><td>Feed</td><td>291 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>80,045</td></tr>\n<tr><td>API calls</td><td>141 total: openai-tts 112 · claude 12 · brave-search 6 · cohere 5 · brave-answers 4 · kagi-extract 2</td></tr>\n<tr><td>Anthropic cost</td><td>$0.23 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.78 at list price: OpenAI TTS $0.343 · Anthropic $0.232 · Brave Answers $0.164 · Brave Search $0.030 · Kagi Extract $0.008 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-15T10:06:05+00:00",
+    "metrics": {
+      "audio_minutes": 23.8,
+      "script_words": 3695,
+      "tell_hits": 0,
+      "roundup_cite_pct": 66.7,
+      "deep_dive_cite_pct": 100.0,
+      "cost_usd": 0.78
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "4 things to look at before tomorrow's run.",
+      "theme": "Science, Wonder & the Natural World",
+      "kpis": [
+        [
+          "Episode",
+          "23.8 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,695",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "12/18 · 1/1",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.78",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:31 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "degraded:render/music-fallback",
+          "todo": "render/music-fallback fell back.",
+          "evidence": "degrade() row: script did not parse into welcome/news/deep-dive — episode rendered without music beds or section structure",
+          "minor": false,
+          "nights_seen": 0
+        },
+        {
+          "signal": "degraded:script/kagi-extract",
+          "todo": "script/kagi-extract fell back.",
+          "evidence": "degrade() row: Kagi Extract reply matched no page for 2 of 2 URLs sent",
+          "minor": false,
+          "nights_seen": 0
+        },
+        {
+          "signal": "no-local-roundup",
+          "todo": "Investigate.",
+          "evidence": "2 local stor(ies) in the pool, 1 aired, roundup opened local: no",
+          "minor": false,
+          "nights_seen": 1
+        },
+        {
+          "signal": "thin-deep-dive",
+          "todo": "The deep dive ran on one source with on-theme candidates unused. Read the Cariboo pick line in the run log and the candidates it passed over.",
+          "evidence": "the deep dive aired on one source while 32 on-theme candidate(s) went unused",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-09",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Small-Town Journalism",
+          "week": 5,
+          "of": 5,
+          "next": "Film & Screen",
+          "event": null
+        },
+        {
+          "date": "2026-11-10",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Agriculture & Ranching",
+          "week": 1,
+          "of": 4,
+          "next": "Forestry & Timber",
+          "event": null
+        },
+        {
+          "date": "2026-11-11",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Remote Work & Broadband",
+          "week": 5,
+          "of": 5,
+          "next": "Maker & Repair",
+          "event": null
+        },
+        {
+          "date": "2026-11-12",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Governance, Title & Treaty",
+          "week": 1,
+          "of": 4,
+          "next": "Language & Culture",
+          "event": null
+        },
+        {
+          "date": "2026-11-13",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildfire & Climate Resilience",
+          "week": 1,
+          "of": 4,
+          "next": "Wildlife & Conservation",
+          "event": null
+        },
+        {
+          "date": "2026-11-14",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-15",
+          "day": "Sun",
+          "today": true,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Sky & Cosmos",
+          "week": 1,
+          "of": 5,
+          "next": "The Living World",
+          "event": null
+        }
+      ],
+      "anchor": "Is it fair to help the people who are already helping?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scimex.org/newsfeed/researchers-discover-rare-star-system-that-emits-radio-signals-every-eight-minutes",
+          "title": "[scimex.org] Astronomers trace eight-minute radio pulses to white dwarf and Sun-like star",
+          "source": "",
+          "theme_pct": 100,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261112025529.htm",
+          "title": "[ScienceDaily] A new treasure map reveals where Earth's lost prehistoric life may be hiding",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sci.news/paleontology/scaphokogia-huachafo-15184.html",
+          "title": "[sci.news] Peruvian fossil reveals pygmy sperm whale with extreme skull asymmetry",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://kottke.org/26/11/0049955-scientists-have-identifie",
+          "title": "[Kottke.org] Scientists have identified a new species of penguin, the...",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.wired.com/story/scientists-discover-massive-starless-galaxy/",
+          "title": "[WIRED] Scientists May Have Discovered a Massive Starless Galaxy",
+          "source": "",
+          "theme_pct": 97,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://kottke.org/26/11/100-big-unanswered-scientific-questions",
+          "title": "[Kottke.org] 100 Big Unanswered Scientific Questions",
+          "source": "",
+          "theme_pct": 97,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.astronomy.com/science/mysterious-gas-on-mars-suggests-magma-below/",
+          "title": "[astronomy.com] Mars orbiter finds volcanic gas near Alba Mons, hinting magma persists",
+          "source": "",
+          "theme_pct": 97,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261110042549.htm",
+          "title": "[ScienceDaily] Earth's fiery birth may have created hundreds of oceans' worth of water",
+          "source": "",
+          "theme_pct": 97,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261110042558.htm",
+          "title": "[ScienceDaily] Where are all the males? Ancient human fossils reveal a startling mystery",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dlr.de/en/latest/news/2026/hera-spots-its-target-a-first-glimpse-into-the-study-of-the-didymos-binary-asteroid-system",
+          "title": "[dlr.de] Europe’s Hera probe reveals Didymos ridge as asteroid-defense survey begins",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed",
+          "title": "[The Atlantic] The Lost World of Aquaterra",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/acorns-not-deer-can-predict-a-rise-in-lyme-spreading-ticks/",
+          "title": "[Scientific American] Acorns—not deer—can predict a rise in Lyme-spreading ticks",
+          "source": "",
+          "theme_pct": 95,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.nytimes.com/2026/10/26/science/space/early-universe-simulation-lumina.html",
+          "title": "[NYT Top Stories] Gaze at the Cosmic Dawn in Dizzying Detail",
+          "source": "",
+          "theme_pct": 95,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.npr.org/2026/11/08/nx-s1-5393776/color-climate-change-coral-lakes",
+          "title": "[npr.org] Climate change shifts Arctic greenery, darkens lakes and bleaches coral",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.discovermagazine.com/the-3-million-year-old-taung-child-suggests-the-human-family-tree-is-more-like-a-tangled-bush-49927",
+          "title": "[discovermagazine.com] Study dates Taung Child to 3 million years, questions fossil classification",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        }
+      ],
+      "deep_dive": {
+        "question": "Does a single record-breaking warm day in Quesnel and Williams Lake constitute evidence of climate change, or does it require a longer, verified series of records and a physical mechanism to count as change rather than weather?",
+        "riley": "The Remembrance Day records are a claim that needs a long data series behind it, but the documented atmospheric river cause and broader Arctic and lake measurements show a real, physically explainable pattern worth taking seriously while the local data is checked.",
+        "casey": "One warm day in two towns is a point, not a series, and the record cannot be trusted until its reference values, station history, sampling choices and measurement changes are reconciled and published.",
+        "resolution": "They agreed the Quesnel and Williams Lake day alone is not a climate trend and that the local series, station move logs and sensor history must be obtained, but they did not settle whether the broader Arctic and lake evidence supports a directional change. Riley accepted the number stays open for now, and Casey accepted the lake measurement while still withholding judgment on its cause.",
+        "topics": [
+          "Whether a single weather event like an atmospheric river can distinguish weather from climate change",
+          "Station record integrity, including benchmark mismatches, station moves and the need for move logs and sensor history",
+          "Fossil record gaps and sampling bias, illustrated by the Taung Child and the Neubauer and Harzhauser map",
+          "Arctic and boreal lake darkening, satellite greening and the physical mechanisms of permafrost thaw and soot on snow",
+          "Natural variation versus a steady directional push, and who is responsible for publicly qualifying uncertain climate claims"
+        ],
+        "sources": [
+          {
+            "title": "Remembrance Day saw record setting temperatures in Quesnel and Williams Lake",
+            "url": "https://www.mycariboonow.com/317370/news/weather/remembrance-day-saw-record-setting-temperatures-in-quesnel-and-williams-lake/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-14",
     "title": "Episode Review — Cariboo Local Affairs, November 14, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-14.html",
@@ -2467,20 +2766,6 @@
       "script_words": 3721,
       "roundup_cite_pct": 64.7,
       "deep_dive_cite_pct": 20.0
-    }
-  },
-  {
-    "date": "2026-10-16",
-    "title": "Episode Review — Cariboo Signals, October 16, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-16.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/38871365504\">38871365504</a>.</em></p>\n\n<h3>The script came in short and was padded, not the other way round</h3>\n<p>The first draft of the script ran 3,129 words against a target of 3,400. The pipeline sent it back for up to two expand passes. What shipped was 3,412 words, which clears the target by 12. The padding was done by the same machinery that wrote the first draft, so the number that reached the listener is not evidence that the first draft was complete.</p>\n<p>Two things in the quality block are worth reading against that. The AI-tell pattern check found 0 hits in the shipped script. The voice ratio of Casey to Riley came in at 0.84. Neither number says anything about whether the expand passes added substance or only length.</p>\n\n<h3>Six stories aired out of order after two repair passes failed to fix it</h3>\n<p>The roundup order degraded. Six stories still aired after a later block, even after 2 repair passes. The pipeline did not drop them or re-cut the segment. It let them run in the wrong place and logged the degradation. A listener hears a story from the wrong part of the day's sequence, and nothing in the audio signals that.</p>\n<p>The same segment is where the citation numbers are weakest for the deep dives. Roundup citations matched 16 of 17. Deep dive citations matched 1 of 4. The roundup count is a strong match. The deep-dive count means three of the four deep dives have a citation the pipeline could not align to its source, which is a larger gap than anything the roundup shows.</p>\n\n<h3>The roundup pool is much bigger than the airtime</h3>\n<p>The pipeline dropped 59 stories from the roundup pool to fit the airtime budget set by NEWS_ROUNDUP_COUNT. That is the design: the pool is meant to exceed what one segment can carry, and a cut story can come back on a day where it fits better. The 59 are not failures. They are the cost of a fixed airtime, and the pipeline will not show which of them a listener would have wanted.</p>\n<p>The four deep dives drew on different sources: Global News, Fast Company, Wildfire Today and NYT Business. They covered a parole decision in British Columbia, heat exposure, Los Angeles fire danger, and California's Proposition 45. The debate question the episode was built around asks who bears the cost of protecting people from wildfire and extreme heat, and whether faster housing review and public ownership of warnings and wildlife data make communities safer or mostly favor developers. Only one of the four deep-dive citations matched, so the sourcing behind that question is the thinnest part of the episode.</p>\n\n<h3>Three runs, all on time, one still running</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:30 AM Pacific. It completed with success and was 0 minutes late. Fallback 1 started and finished at 2:05 AM Pacific, also successful, also 0 minutes late. Fallback 2, at 3:05 AM Pacific, is the run writing this review and has not finished. The fallbacks did not fire because the primary failed. They were scheduled, and the primary succeeded.</p>\n<p>The slowest step was script generation at 534 seconds, followed by GitHub Pages deployment at 350 seconds and audio rendering at 266 seconds. Checkout took 75 seconds, publishing 90 seconds, and the video render and YouTube upload 132 seconds. Every step concluded successfully.</p>\n\n<h3>The output is 20.7 minutes of audio and 71.7 MB of video</h3>\n<p>The audio runs 20.7 minutes and is 18.9 MB. The video is 71.7 MB and also runs 20.7 minutes. The RSS feed now lists 261 episodes. The script consumed 62,718 Anthropic input tokens across 11 Claude calls. The service breakdown shows 12 Brave search calls and 4 Brave answers calls. The input-token figure is a count of tokens and says nothing about cost.</p>\n<p>The 3,412-word script at 20.7 minutes is the number to hold against the 3,400-word target and the 3,129-word first draft. The audio length is what the listener gets. The gap between the first draft and the shipped script is what the pipeline had to do to reach it.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.84, 3412 words</td></tr>\n<tr><td>Audio</td><td>20.7 min</td></tr>\n<tr><td>Audio size</td><td>18.9 MB</td></tr>\n<tr><td>Citations matched</td><td>16/17 roundup, 1/4 deep dive</td></tr>\n<tr><td>Feed</td><td>261 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>62,718 input tokens, calls ***'brave-search': 12, 'claude': 11, 'brave-answers': 4***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-16T10:06:09+00:00",
-    "metrics": {
-      "audio_minutes": 20.7,
-      "tell_hits": 0,
-      "script_words": 3412,
-      "roundup_cite_pct": 94.1,
-      "deep_dive_cite_pct": 25.0
     }
   }
 ]
