@@ -79,7 +79,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-15"
   },
   "https://wltribune.com/2026/11/04/award-winning-documentary-on-2018-northern-b-c-wildfires-coming-to-williams-lake/": {
     "article": {
@@ -534,49 +535,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "aired_early"
   },
-  "https://www.nationalobserver.com/2026/11/10/news/dabrusin-defends-canadas-climate-record-advance-climate-conference": {
-    "article": {
-      "id": "https://www.nationalobserver.com/2026/11/10/news/dabrusin-defends-canadas-climate-record-advance-climate-conference",
-      "url": "https://www.nationalobserver.com/2026/11/10/news/dabrusin-defends-canadas-climate-record-advance-climate-conference",
-      "title": "[nationalobserver.com] Canada\u2019s climate minister defends record as COP31 opens amid coal dispute",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nationalobserver.com%2F2026%2F11%2F10%2Fnews%2Fdabrusin-defends-canadas-climate-record-advance-climate-conference\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCanadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets. She is attending the conference\u2019s first week, when activists expect other countries to question Canada\u2019s recent policy shifts.\n\nThe dispute centres on Ottawa\u2019s unfulfilled 2021 pledge to ban thermal-coal exports: an environment commissioner\u2019s report said work was abandoned in 2024 and formally ended in August 2025. Dabrusin said the previous government made the decision and her government is open to next steps. Climate advocates say continued exports undermine Canada\u2019s leadership in the Powering Past Coal Alliance.",
-      "summary": "Canadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets. She is attending the conference\u2019s first",
-      "_excerpt": "Canadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets (nationalobserver.com, thestar.com). She is attending the conference\u2019s first week, when activists expect other countries to question Canada\u2019s recent policy shifts (nationalobserver.com, canada.ca). The dispute centres on Ottawa\u2019s unfulfilled 2021 pledge to ban thermal-coal exports: an environment commissioner\u2019s report said work was abandoned in 2024 and formally ended in August 2025. Dabrusin said the previous government made the decision and her government is open to next steps. Climate advocates say continued exports undermine Canada\u2019s leadership in the Powering Past Coal Alliance (nationalobserver.com, thestar.com). Climate funding: Ottawa says it committed to providing $13 billion in climate-related support to developing countries over five years, beginning with an announcement in April 2026 (canada.ca). Methane pledge: Dabrusin plans to co-convene a ministerial meeting with the European Union for the Global Methane Pledge, whose 159 members aim to cut methane emissions by 30% from 2020 levels by 2030 (nationalobserver.com, thestar.com). Fossil fuel concerns: Experts interviewed by Le Devoir and cited in a National Observer report argued that expanding oil and gas production conflicts with Canada\u2019s net-zero goal. The report cited a proposed Pacific Link pipeline with an estimated cost of $35 billion to $45 billion (nationalobserver.com).",
-      "date_published": "2026-11-10T12:01:46+00:00",
-      "authors": [
-        {
-          "name": "nationalobserver.com",
-          "url": "https://www.nationalobserver.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 70,
-      "_relevance": 80,
-      "_local": 0,
-      "_theme_score": 77,
-      "_theme_score_raw": 15,
-      "_kite_sources": 4,
-      "_kite_context": "Where: Antalya, T\u00fcrkiye\nPerspective: Julie Dabrusin, Canada's environment minister, says other countries remain keen to work with Canada and view it as a reliable energy partner as Ottawa pursues its climate goals (nationalobserver.com). (National Observer)\nPerspective: Annie Chaloux, an associate professor at the Universit\u00e9 de Sherbrooke, warns that prioritizing short-term economic gains risks locking Canada into oil and gas, making a future shift away from fossil fuel extraction difficult (nationalobserver.com). (National Observer)\nQuote: \"Ideally, Canada should reaffirm the commitment to banning the export of thermal coal.\" (Julia Levin, associate director of national climate at Environmental Defence, National Observer)\nTimeline: June 2026: UN Secretary-General Ant\u00f3nio Guterres launched a global call to action on methane during London Climate Action Week (nationalobserver.com).\nTimeline: June 2026: Canada joined international partners in launching Electrify Now, an initiative to increase electricity\u2019s share of global final energy consumption to 35% by 2035 (canada.ca).\nTimeline: 9 November 2026: COP31 opened in Antalya. Dabrusin was scheduled to participate from November 11 to 14, leading Canada\u2019s delegation (canada.ca).",
-      "_composite_podcast": 70,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-11-12T06:10:50.999414+00:00"
-      },
-      "_boosted_score": 62,
-      "_body": "Canadian Environment Minister Julie Dabrusin defended the government\u2019s climate record before the COP31 climate conference in Antalya, citing methane action, electrification and international climate financing as evidence of Canada\u2019s commitment to its targets (nationalobserver.com, thestar.com). She is attending the conference\u2019s first week, when activists expect other countries to question Canada\u2019s recent policy shifts (nationalobserver.com, canada.ca). The dispute centres on Ottawa\u2019s unfulfilled 2021 pledge to ban thermal-coal exports: an environment commissioner\u2019s report said work was abandoned in 2024 and formally ended in August 2025. Dabrusin said the previous government made the decision and her government is open to next steps. Climate advocates say continued exports undermine Canada\u2019s leadership in the Powering Past Coal Alliance (nationalobserver.com, thestar.com). Climate funding: Ottawa says it committed to providing $13 billion in climate-related support to developing countries over five years, beginning with an announcement in April 2026 (canada.ca). Methane pledge: Dabrusin plans to co-convene a ministerial meeting with the European Union for the Global Methane Pledge, whose 159 members aim to cut methane emissions by 30% from 2020 levels by 2030 (nationalobserver.com, thestar.com). Fossil fuel concerns: Experts interviewed by Le Devoir and cited in a National Observer report argued that expanding oil and gas production conflicts with Canada\u2019s net-zero goal. The report cited a proposed Pacific Link pipeline with an estimated cost of $35 billion to $45 billion (nationalobserver.com)."
-    },
-    "held_date": "2026-11-13",
-    "target_date": "2026-11-20",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
-  },
   "https://cleantechnica.com/2026/11/03/overshoot-demands-a-new-era-of-adaptation-loss-damage-and-climate-justice/": {
     "article": {
       "id": "https://cleantechnica.com/2026/11/03/overshoot-demands-a-new-era-of-adaptation-loss-damage-and-climate-justice/",
@@ -612,7 +570,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-15"
   },
   "https://www.statnews.com/2026/11/06/health-news-new-evidence-for-ancient-cannabis-use/?utm_campaign=rss": {
     "article": {
@@ -693,51 +652,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
-  },
-  "https://www.smallfarmcanada.ca/livestock/could-earlier-shearing-help-produce-bigger-healthier-lambs/": {
-    "article": {
-      "id": "https://www.smallfarmcanada.ca/livestock/could-earlier-shearing-help-produce-bigger-healthier-lambs/",
-      "url": "https://www.smallfarmcanada.ca/livestock/could-earlier-shearing-help-produce-bigger-healthier-lambs/",
-      "title": "[Small Farm Canada] Could Earlier Shearing Help Produce Bigger, Healthier Lambs?",
-      "content_html": "<img src=\"https://www.smallfarmcanada.ca/downloads/4433/download/Sheep.png?cb=9556508453a9ac86de443f99d1f67d34\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.smallfarmcanada.ca%2Flivestock%2Fcould-earlier-shearing-help-produce-bigger-healthier-lambs%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCould changing when you shear pregnant ewes lead to heavier lambs? New research points to promising results among ewes carrying twins and triplets, although cold-climate producers should take some important precautions.",
-      "summary": "Could changing when you shear pregnant ewes lead to heavier lambs? New research points to promising results among ewes carrying twins and triplets, although cold-climate producers should take some important precautions.",
-      "_excerpt": "Could changing when you shear pregnant ewes lead to heavier lambs? New research points to promising results among ewes carrying twins and triplets, although cold-climate producers should take some important precautions.",
-      "date_published": "2026-11-10T05:00:00+00:00",
-      "authors": [
-        {
-          "name": "Small Farm Canada",
-          "url": "https://www.smallfarmcanada.ca"
-        }
-      ],
-      "ai_score": 61,
-      "_quality": 65,
-      "_relevance": 80,
-      "_local": 0,
-      "_theme_score": 53,
-      "_theme_score_raw": 3,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 33,
-      "_keyword_matches": 0,
-      "_category": "homestead",
-      "_source_category": "homestead",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.smallfarmcanada.ca/downloads/4433/download/Sheep.png?cb=9556508453a9ac86de443f99d1f67d34",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-11-10T06:09:07.164900+00:00"
-      },
-      "_boosted_score": 61
-    },
-    "held_date": "2026-11-12",
-    "target_date": "2026-11-20",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-15"
   },
   "https://wltribune.com/2026/11/12/indigenous-led-joint-venture-west-of-williams-lake-awarded-at-national-conference/": {
     "article": {
@@ -819,43 +735,6 @@
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
   },
-  "https://yellowheadinstitute.org/2026/budget-2026-indigenous-investment-in-the-shadow-of-a-new-economy/?utm_source=rss&utm_medium=rss&utm_campaign=budget-2026-indigenous-investment-in-the-shadow-of-a-new-economy": {
-    "article": {
-      "id": "https://yellowheadinstitute.org/2026/budget-2026-indigenous-investment-in-the-shadow-of-a-new-economy/?utm_source=rss&utm_medium=rss&utm_campaign=budget-2026-indigenous-investment-in-the-shadow-of-a-new-economy",
-      "url": "https://yellowheadinstitute.org/2026/budget-2026-indigenous-investment-in-the-shadow-of-a-new-economy/?utm_source=rss&utm_medium=rss&utm_campaign=budget-2026-indigenous-investment-in-the-shadow-of-a-new-economy",
-      "title": "[Yellowhead Institute] Budget 2026: Indigenous Investment in the Shadow of a New Economy",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fyellowheadinstitute.org%2F2026%2Fbudget-2026-indigenous-investment-in-the-shadow-of-a-new-economy%2F%3Futm_source%3Drss%26utm_medium%3Drss%26utm_campaign%3Dbudget-2026-indigenous-investment-in-the-shadow-of-a-new-economy\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>In a review of the budget, Riley Yesno finds that while its proposed investments in Indigenous communities are unprecedented, they come with expectations: that Indigenous communities will be open for business, advancing Canada\u2019s priorities in mining, industry, and AI.</p>\n<p>The post <a href=\"https://yellowheadinstitute.org/2026/budget-2026-indigenous-investment-in-the-shadow-of-a-new-economy/\">Budget 2026: Indigenous Investment in the Shadow of a New Economy</a> appeared first on <a href=\"https://yellowheadinstitute.org\">Yellowhead Institute</a>.</p>",
-      "summary": "In a review of the budget, Riley Yesno finds that while its proposed investments in Indigenous communities are unprecedented, they come with expectations: that Indigenous communities will be open for business, advancing Canada\u2019s priorities in mining, industry, and AI. The post Budget 2026:",
-      "_excerpt": "In a review of the budget, Riley Yesno finds that while its proposed investments in Indigenous communities are unprecedented, they come with expectations: that Indigenous communities will be open for business, advancing Canada\u2019s priorities in mining, industry, and AI. The post Budget 2026: Indigenous Investment in the Shadow of a New Economy appeared first on Yellowhead Institute .",
-      "date_published": "2026-11-12T10:35:23+00:00",
-      "authors": [
-        {
-          "name": "Yellowhead Institute",
-          "url": "https://yellowheadinstitute.org/"
-        }
-      ],
-      "ai_score": 67,
-      "_quality": 80,
-      "_relevance": 78,
-      "_local": 20,
-      "_theme_score": 73,
-      "_theme_score_raw": 12,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 72,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_boosted_score": 67
-    },
-    "held_date": "2026-11-13",
-    "target_date": "2026-11-17",
-    "target_weekday": 1,
-    "target_focus_slug": "forestry",
-    "target_focus_name": "Forestry & Timber",
-    "status": "held"
-  },
   "https://hackaday.com/2026/11/09/web-satellite-tracker-plays-the-music-of-the-spheres/": {
     "article": {
       "id": "https://hackaday.com/2026/11/09/web-satellite-tracker-plays-the-music-of-the-spheres/",
@@ -934,7 +813,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-15"
   },
   "https://www.sciencedaily.com/releases/2026/11/261111005853.htm": {
     "article": {
@@ -1206,5 +1086,48 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
+  },
+  "https://wltribune.com/2026/11/14/spanish-mountain-gold-ltd-eyes-redesigned-open-pit-gold-mine-near-williams-lake/": {
+    "article": {
+      "id": "https://wltribune.com/2026/11/14/spanish-mountain-gold-ltd-eyes-redesigned-open-pit-gold-mine-near-williams-lake/",
+      "url": "https://wltribune.com/2026/11/14/spanish-mountain-gold-ltd-eyes-redesigned-open-pit-gold-mine-near-williams-lake/",
+      "title": "[Williams Lake Tribune] Spanish Mountain Gold eyes redesigned open-pit gold mine near Williams Lake",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F11%2F14%2Fspanish-mountain-gold-ltd-eyes-redesigned-open-pit-gold-mine-near-williams-lake%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSpanish Mountain Gold Ltd. has redesigned its proposed open-pit gold mine near Likely that is planned to utilize filtered stack tailings technology (dry stacking). As B.C\u2019s forestry sector continues to struggle, now is the time for mining according to the Mayor of Williams Lake as a mining exploration company seeks to develop a newly redesigned open-pit gold mine that would annually inject an estimated $190-million into the Cariboo regional economy. Spanish Mountain Gold Ltd. (SMG) has recently resumed early community engagement on its proposed open-pit gold mine near Likely northeast of",
+      "summary": "Spanish Mountain Gold Ltd. has redesigned its proposed open-pit gold mine near Likely that is planned to utilize filtered stack tailings technology (dry stacking). As B.C\u2019s forestry sector continues to struggle, now is the time for mining according to the Mayor of Williams Lake as a mining",
+      "_excerpt": "Spanish Mountain Gold Ltd. has redesigned its proposed open-pit gold mine near Likely that is planned to utilize filtered stack tailings technology (dry stacking). As B.C\u2019s forestry sector continues to struggle, now is the time for mining according to the Mayor of Williams Lake as a mining exploration company seeks to develop a newly redesigned open-pit gold mine that would annually inject an estimated $190-million into the Cariboo regional economy. Spanish Mountain Gold Ltd. (SMG) has recently resumed early community engagement on its proposed open-pit gold mine near Likely northeast of Williams Lake. \u201dIt\u2019s mining time. You can\u2019t go wrong,\u201d Surinderpal Rathor said at a community open house earlier this month in Williams Lake where he was joined by Coun. Scott Nelson. SMG Vice President, Environment, Social and Governance Travis Desormeaux said SMG hopes to have a final investment decision in 2028 with construction commencing shortly after where they would likely be hiring between 750 to 1,000 jobs over a 24-month period. The mine\u2019s utilization of filtered stack tailings technology, also known as dry stacking, is anticipated to provide up to 250 full time jobs during its planned 25-year mine life. A 2021 design previously directly impacted Boswell and Nina Lakes, which are fish-bearing, with the tailings storage facility located directly above Cedar Creek, a catchment that flows into Quesnel Lake and at its confluence sits Cedar Point Provincial Park. The Quesnel Lake Watershed was heavily impacted by a catastrophic August 2014 Mount Polley Mine tailings pond collapse which resulted in the release of millions of cubic metres of waste, and through the early engagement process in 2021 by SGM, concerns of any potential failure risks were identified. Treated mine water would also have been discharged directly into Cedar Creek, passing through the provincial park before entering Quesnel Lake. Water quality, aquatic habitat, cultural rights and geotechnical concerns in",
+      "date_published": "2026-11-15T06:02:52.155741+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 88,
+      "_quality": 78,
+      "_relevance": 88,
+      "_local": 100,
+      "_theme_score": 57,
+      "_theme_score_raw": 6,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 73,
+      "_keyword_matches": 1,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "_niche": false,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_boosted_score": 88,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-15",
+    "target_date": "2026-11-17",
+    "target_weekday": 1,
+    "target_focus_slug": "forestry",
+    "target_focus_name": "Forestry & Timber",
+    "status": "aired_early"
   }
 }

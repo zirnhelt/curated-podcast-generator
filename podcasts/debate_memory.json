@@ -1,32 +1,4 @@
 {
-  "2026-08-16": {
-    "timestamp": 1786870089.422878,
-    "date": "2026-08-16",
-    "theme": "Science, Wonder & the Natural World",
-    "focus": "sky-cosmos",
-    "anchor": "owe-those-after",
-    "central_question": "Why does the forestry industry continue spraying aspen\u2014a proven natural firebreak\u2014in favor of commercially valuable conifers that burn faster, despite mounting evidence and fire risk?",
-    "riley_position": "The science is clear and actionable: aspen retention is a low-cost, immediate solution that requires only a policy shift in spraying practices and permit conditions, not new technology.",
-    "riley_key_evidence": [
-      "McGill University research shows aspen trees were 2.42 times more common at fire edges than inside burned areas",
-      "Foresters have observed aspen stands surviving fires for generations, but this knowledge hasn't been formalized into policy",
-      "Aspen retention zones could be written into timber permits as binding conditions, similar to existing water quality requirements"
-    ],
-    "casey_position": "The problem isn't scientific knowledge but institutional misalignment: decision-makers who benefit from conifer harvests don't bear the fire risk thirty years later, making even zero-cost solutions economically irrational for them.",
-    "casey_key_evidence": [
-      "License holders capture conifer yield at harvest while communities bear fire exposure decades later",
-      "Forestry decisions are optimized for 10-20 year harvest horizons, not the 30-40 year timeframes when consequences materialize",
-      "Permit conditions without enforcement mechanisms become paper commitments when compliance monitoring is chronically understaffed"
-    ],
-    "resolution": "They converged on agreement that the core issue is enforcement and accountability: any aspen retention policy must include built-in monitoring mechanisms and designated oversight before submission, not as an afterthought, to avoid becoming a meaningless paper commitment.",
-    "topics_covered": [
-      "Aspen's fire-suppression properties vs. commercial forestry incentives",
-      "The gap between scientific evidence and policy implementation",
-      "Structural misalignment between decision-makers and communities bearing long-term risks",
-      "How to make effective public input to Ministry timber consultations",
-      "Compliance monitoring and enforcement challenges in forestry permits"
-    ]
-  },
   "2026-08-17": {
     "timestamp": 1786957402.599688,
     "date": "2026-08-17",
@@ -2587,6 +2559,34 @@
       "Morton's pattern of filed claims and the dismissal of her suit against the Union of B.C. Indian Chiefs",
       "Cost and access asymmetry between councillors, former mayors' households, and ordinary residents",
       "Whether Quesnel's council has written rules on naming residents, and how court rulings get communicated to the public"
+    ]
+  },
+  "2026-11-15": {
+    "timestamp": 1794730575.356413,
+    "date": "2026-11-15",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "earth-systems",
+    "anchor": "fairness-of-who-gets-help",
+    "central_question": "Does a single record-breaking warm day in Quesnel and Williams Lake constitute evidence of climate change, or does it require a longer, verified series of records and a physical mechanism to count as change rather than weather?",
+    "riley_position": "The Remembrance Day records are a claim that needs a long data series behind it, but the documented atmospheric river cause and broader Arctic and lake measurements show a real, physically explainable pattern worth taking seriously while the local data is checked.",
+    "riley_key_evidence": [
+      "Quesnel's Remembrance Day reading of 18.8 degrees beat the 1981 record of 16.7, with Quesnel's station records going back to 1893",
+      "Environment and Climate Change Canada meteorologist Terri Lang attributed the warmth to an atmospheric river, and 27 to 32 B.C. high-temperature records were set on the 11th",
+      "Green-wavelength readings fell 15 per cent across more than 400,000 North American boreal and Arctic lakes from 1984 to 2019"
+    ],
+    "casey_position": "One warm day in two towns is a point, not a series, and the record cannot be trusted until its reference values, station history, sampling choices and measurement changes are reconciled and published.",
+    "casey_key_evidence": [
+      "My Cariboo Now cited older benchmarks of 17.2 for Quesnel from 1928 and 14.8 for Williams Lake from 1990 that do not match the 1981 figures and were never reconciled",
+      "The Taung Child skull was dated to 2.96 to 3.03 million years ago and the fossils may represent more than one species, showing how a single specimen can set and later revise a whole category",
+      "Arctic greening was measured at about 38 per cent of sampled sites, and clustered or satellite-selected sites could share a bias that makes them agree for the wrong reason"
+    ],
+    "resolution": "They agreed the Quesnel and Williams Lake day alone is not a climate trend and that the local series, station move logs and sensor history must be obtained, but they did not settle whether the broader Arctic and lake evidence supports a directional change. Riley accepted the number stays open for now, and Casey accepted the lake measurement while still withholding judgment on its cause.",
+    "topics_covered": [
+      "Whether a single weather event like an atmospheric river can distinguish weather from climate change",
+      "Station record integrity, including benchmark mismatches, station moves and the need for move logs and sensor history",
+      "Fossil record gaps and sampling bias, illustrated by the Taung Child and the Neubauer and Harzhauser map",
+      "Arctic and boreal lake darkening, satellite greening and the physical mechanisms of permafrost thaw and soot on snow",
+      "Natural variation versus a steady directional push, and who is responsible for publicly qualifying uncertain climate claims"
     ]
   }
 }

@@ -1,24 +1,4 @@
 {
-  "2026-10-10": {
-    "timestamp": 1791620233.911972,
-    "topics": [
-      "[My Cariboo Now] BC Cancer opens breast cancer screening app",
-      "[Williams Lake Tribune] Disgraced Vernon lawyer misappropria",
-      "[Williams Lake Tribune] Williams Lake Salvation Army shares ",
-      "[Williams Lake Tribune] Cannabis store move to Williams Lake",
-      "[My Cariboo Now] The unemployment rate takes a plunge in the",
-      "[Quesnel Cariboo Observer] Meet the Candidates: Tony Goulet ",
-      "[Williams Lake Tribune] Free transit for residents in Quesne",
-      "[My Cariboo Now] Early voting opportunities in the Cariboo"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-10-10",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-10-11": {
     "timestamp": 1791706707.618413,
     "topics": [
@@ -752,5 +732,26 @@
     "date": "2026-11-14",
     "focus": null,
     "focus_name": null
+  },
+  "2026-11-15": {
+    "timestamp": 1794730573.069819,
+    "topics": [
+      "[Williams Lake Tribune] Spanish Mountain Gold eyes redesigne",
+      "[npr.org] Climate change shifts Arctic greenery, darkens lak",
+      "[tsln.com] Cattle specialists urge targeted winter feeding t",
+      "[ScienceDaily] Where are all the males? Ancient human fossil",
+      "[discovermagazine.com] Study dates Taung Child to 3 million ",
+      "[My Cariboo Now] Remembrance Day saw record setting temperat",
+      "AI",
+      "solar"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "connectivity"
+    ],
+    "date": "2026-11-15",
+    "focus": "earth-systems",
+    "focus_name": "Earth Systems & Climate Science"
   }
 }
