@@ -105,11 +105,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-07",
-        "clue": "structural-lens:~ \u2014 Admits knocking depends on corporation's willingness",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-12",
         "clue": "community-trust:x \u2014 conceded written rules needed before disputes",
         "occurrences": 2
@@ -172,6 +167,11 @@
       {
         "date": "2026-11-14",
         "clue": "community-trust:+ \u2014 insists the rule protects residents equally, defends it",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-15",
+        "clue": "evidence-bar:+ \u2014 insists on checking station history before claims",
         "occurrences": 1
       }
     ],
@@ -424,11 +424,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-09",
-        "clue": "community-trust:+ \u2014 repeatedly questions who holds the pen and who decides",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-08",
         "clue": "funding-risk:+ \u2014 Asks who pays for reruns and future checks",
         "occurrences": 1
@@ -454,9 +449,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-13",
-        "clue": "evidence-bar:x \u2014 Concedes closures without end dates are a hazard",
-        "occurrences": 1
+        "date": "2026-11-15",
+        "clue": "evidence-bar:x \u2014 concedes the cause is documented, not just a day",
+        "occurrences": 2
       },
       {
         "date": "2026-11-14",

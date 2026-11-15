@@ -1,0 +1,685 @@
+{
+  "episode": {
+    "date": "2026-11-15",
+    "formatted_date": "Sunday, November 15, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is it fair to help the people who are already helping?</p><p><b>NEWS ROUNDUP:</b> We break down Spanish Mountain Gold eyes redesigned open-pit gold mine near Williams Lake and Where are all the males? Ancient human fossils reveal a startling mystery, plus 10 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Does a single record-breaking warm day in Quesnel and Williams Lake constitute evidence of climate change, or does it require a longer, verified series of records and a physical mechanism to count as change rather than weather? Topics include: Whether a single weather event like an atmospheric river can distinguish weather from climate change, Station record integrity, including benchmark mismatches, station moves and the need for move logs and sensor history, Fossil record gaps and sampling bias, illustrated by the Taung Child and the Neubauer and Harzhauser map, Arctic and boreal lake darkening, satellite greening and the physical mechanisms of permafrost thaw and soot on snow, Natural variation versus a steady directional push, and who is responsible for publicly qualifying uncertain climate claims.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://scoutisland.ca\">Scout Island Nature Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/14/spanish-mountain-gold-ltd-eyes-redesigned-open-pit-gold-mine-near-williams-lake/\">[Williams Lake Tribune] Spanish Mountain Gold eyes redesigne...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/11/261110042558.htm\">[ScienceDaily] Where are all the males? Ancient human fossil...</a></li><li>discovermagazine.com: <a href=\"https://www.discovermagazine.com/the-3-million-year-old-taung-child-suggests-the-human-family-tree-is-more-like-a-tangled-bush-49927\">[discovermagazine.com] Study dates Taung Child to 3 million ...</a></li><li>Enrico de Lazaro (sci.news): <a href=\"https://www.sci.news/paleontology/scaphokogia-huachafo-15184.html\">[sci.news] Peruvian fossil reveals pygmy sperm whale with ex...</a></li><li>phys.org: <a href=\"https://phys.org/news/2026-10-unusual-sexual-bond-bull-male.html\">[phys.org] Researchers document sustained sexual bond betwee...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/11/0049955-scientists-have-identifie\">[Kottke.org] Scientists have identified a new species of pen...</a></li><li>news.mit.edu: <a href=\"https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113\">[news.mit.edu] Older adults show weaker brain-clearing fluid...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/11/09/physicists-listened-to-electrical-noise-to-crack-a-superconductor-mystery/\">[Adafruit Blog] Physicists listened to electrical noise to c...</a></li><li>newscientist.com: <a href=\"https://www.newscientist.com/article/2598415-re-analysis-of-black-hole-data-proves-iconic-ring-shape-really-is-there/\">[newscientist.com] Independent analysis confirms ring in M87...</a></li><li>livescience.com: <a href=\"https://www.livescience.com/space/astronomy/nasas-destroyed-swift-observatory-took-one-of-the-best-ever-photos-of-bright-andromeda-space-photo-of-the-week\">[livescience.com] NASA's Swift telescope burns up after near...</a></li><li>The Atlantic: <a href=\"https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed\">[The Atlantic] The Lost World of Aquaterra</a></li><li>space.com: <a href=\"https://www.space.com/astronomy/uranus/scientists-may-finally-understand-the-weird-magnetic-fields-of-uranus-and-neptune\">[space.com] Simulations link Uranus and Neptune’s skewed mag...</a></li><li>George Henderson (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317370/news/weather/remembrance-day-saw-record-setting-temperatures-in-quesnel-and-williams-lake/\">[My Cariboo Now] Remembrance Day saw record setting temperat...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>npr.org: <a href=\"https://www.npr.org/2026/11/08/nx-s1-5393776/color-climate-change-coral-lakes\">[npr.org] Climate change shifts Arctic greenery, darkens lak...</a></li><li>Written collaboratively by Dr. Jessica Nora Drum, Dr. Rebecca Swanson, and Dr. Ana Clara B. Menezes. (tsln.com): <a href=\"https://www.tsln.com/news/fetal-programming-in-beef-cattle-lessons-for-winter-management/\">[tsln.com] Cattle specialists urge targeted winter feeding t...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/11/261112025529.htm\">[ScienceDaily] A new treasure map reveals where Earth's lost...</a></li><li>dlr.de: <a href=\"https://www.dlr.de/en/latest/news/2026/hera-spots-its-target-a-first-glimpse-into-the-study-of-the-didymos-binary-asteroid-system\">[dlr.de] Europe’s Hera probe reveals Didymos ridge as astero...</a></li><li>phys.org: <a href=\"https://phys.org/news/2026-11-euclid-3d-universe-date.html\">[phys.org] Euclid releases 1.7 petabytes as European teams p...</a></li><li>Quanta Magazine: <a href=\"https://www.quantamagazine.org/the-evolving-story-of-how-chemistry-became-biology-20261112/\">[Quanta Magazine] The Evolving Story of How Chemistry Became...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Content Enrichment: Cohere<br>News Summaries: Kagi News (CC BY-NC 4.0)<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-15T01:15:58.455003-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-opus-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3695,
+      "voice_ratio_casey_riley": 0.79,
+      "casey_share_deep_dive_pct": 40,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 2,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 21,
+        "turns": 94,
+        "avg_turn_words": 37.9,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 1
+    },
+    "anchor": {
+      "id": "fairness-of-who-gets-help",
+      "question": "Is it fair to help the people who are already helping?"
+    },
+    "audio_file_size": 22856493,
+    "audio_duration": "23:48"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Spanish Mountain Gold eyes redesigned open-pit gold mine near Williams Lake",
+          "url": "https://wltribune.com/2026/11/14/spanish-mountain-gold-ltd-eyes-redesigned-open-pit-gold-mine-near-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 88,
+          "date_published": "2026-11-15T06:02:52.155741+00:00",
+          "summary": "Spanish Mountain Gold Ltd. has redesigned its proposed open-pit gold mine near Likely that is planned to utilize filtered stack tailings technology (dry stacking). As B.C’s forestry sector continues t...",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceDaily] Where are all the males? Ancient human fossils reveal a startling mystery",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261110042558.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-11-11T09:43:55+00:00",
+          "summary": "A remarkable discovery in a South African cave suggests that an extinct human relative may have created an all-female burial site more than 240,000 years ago. Scientists analyzed ancient proteins pres...",
+          "discussed": true
+        },
+        {
+          "title": "[discovermagazine.com] Study dates Taung Child to 3 million years, questions fossil classification",
+          "url": "https://www.discovermagazine.com/the-3-million-year-old-taung-child-suggests-the-human-family-tree-is-more-like-a-tangled-bush-49927",
+          "source": "discovermagazine.com",
+          "author": "",
+          "ai_score": 35,
+          "date_published": "2026-11-10T22:30:00+00:00",
+          "summary": "A new study dates the Taung Child, a South African hominin fossil, to between 2.96 million and 3.03 million years ago—older than a previous estimate of 2.58 million—and argues that fossils long groupe...",
+          "discussed": true
+        },
+        {
+          "title": "[sci.news] Peruvian fossil reveals pygmy sperm whale with extreme skull asymmetry",
+          "url": "https://www.sci.news/paleontology/scaphokogia-huachafo-15184.html",
+          "source": "sci.news",
+          "author": "Enrico de Lazaro",
+          "ai_score": 47,
+          "date_published": "2026-11-09T21:57:16+00:00",
+          "summary": "Researchers have described Scaphokogia huachafo, an extinct pygmy sperm whale whose fossil skull shows the most extreme facial asymmetry documented in a cetacean, and possibly in any mammal. The anima...",
+          "discussed": true
+        },
+        {
+          "title": "[phys.org] Researchers document sustained sexual bond between Ethiopian bull and male donkey",
+          "url": "https://phys.org/news/2026-10-unusual-sexual-bond-bull-male.html",
+          "source": "phys.org",
+          "author": "",
+          "ai_score": 32,
+          "date_published": "2026-11-02T16:00:25+00:00",
+          "summary": "An Italian-led research team documented repeated sexual interactions between a bull and a male donkey on an Ethiopian plateau, describing a selective social bond between the animals. During eight days...",
+          "discussed": true
+        },
+        {
+          "title": "[Kottke.org] Scientists have identified a new species of penguin, the...",
+          "url": "https://kottke.org/26/11/0049955-scientists-have-identifie",
+          "source": "Kottke.org",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-11-11T20:04:00+00:00",
+          "summary": "Scientists have identified a new species of penguin , the first in 100 years. “Genetic evidence shows that what scientists once treated as a single, widely distributed gentoo penguin species is actual...",
+          "discussed": true
+        },
+        {
+          "title": "[news.mit.edu] Older adults show weaker brain-clearing fluid waves during sleep",
+          "url": "https://news.mit.edu/2026/waste-clearing-waves-in-brain-during-sleep-are-impaired-in-older-adults-1113",
+          "source": "news.mit.edu",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-11-13T10:00:00+00:00",
+          "summary": "MIT researchers found that older adults had significantly weaker waves of cerebrospinal fluid (CSF), which helps clear waste from the brain during sleep, than younger adults. The researchers used brai...",
+          "discussed": true
+        },
+        {
+          "title": "[Adafruit Blog] Physicists listened to electrical noise to crack a superconductor mystery",
+          "url": "https://blog.adafruit.com/2026/11/09/physicists-listened-to-electrical-noise-to-crack-a-superconductor-mystery/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-11-09T17:00:40+00:00",
+          "summary": "Jacek Krywko writing for Ars Technica covers a Science study that listened to the faint electrical crackle of current flowing into a copper-based superconductor. The team was led by Milan Allan of Lud...",
+          "discussed": true
+        },
+        {
+          "title": "[newscientist.com] Independent analysis confirms ring in M87* black hole image",
+          "url": "https://www.newscientist.com/article/2598415-re-analysis-of-black-hole-data-proves-iconic-ring-shape-really-is-there/",
+          "source": "newscientist.com",
+          "author": "",
+          "ai_score": 37,
+          "date_published": "2026-11-11T16:00:00+00:00",
+          "summary": "An independent reanalysis of Event Horizon Telescope observations has reproduced the bright ring surrounding the black hole's shadow in the first black hole image, confirming the central feature of th...",
+          "discussed": true
+        },
+        {
+          "title": "[livescience.com] NASA's Swift telescope burns up after nearly 22 years",
+          "url": "https://www.livescience.com/space/astronomy/nasas-destroyed-swift-observatory-took-one-of-the-best-ever-photos-of-bright-andromeda-space-photo-of-the-week",
+          "source": "livescience.com",
+          "author": "https://www.livescience.com/author/brandon-specktor",
+          "ai_score": 38,
+          "date_published": "2026-11-08T11:00:00+00:00",
+          "summary": "NASA’s Neil Gehrels Swift Observatory reentered Earth’s atmosphere and burned up over North Sumatra on Nov. 4, ending a nearly 22-year mission. Its observations, including millions of images, remain a...",
+          "discussed": true
+        },
+        {
+          "title": "[The Atlantic] The Lost World of Aquaterra",
+          "url": "https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed",
+          "source": "The Atlantic",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-11-10T12:00:00+00:00",
+          "summary": "Most of human history is waiting to be found. And it’s underwater.",
+          "discussed": true
+        },
+        {
+          "title": "[space.com] Simulations link Uranus and Neptune’s skewed magnetic fields to interior conditions",
+          "url": "https://www.space.com/astronomy/uranus/scientists-may-finally-understand-the-weird-magnetic-fields-of-uranus-and-neptune",
+          "source": "space.com",
+          "author": "https://www.space.com/author/keith-cooper",
+          "ai_score": 61,
+          "date_published": "2026-11-10T19:00:00+00:00",
+          "summary": "Computer simulations based on Voyager 2 measurements suggest that increasing electrical conductivity with depth inside Uranus and Neptune may explain their unusually tilted, off-center magnetic fields...",
+          "discussed": true
+        },
+        {
+          "title": "[npr.org] Climate change shifts Arctic greenery, darkens lakes and bleaches coral",
+          "url": "https://www.npr.org/2026/11/08/nx-s1-5393776/color-climate-change-coral-lakes",
+          "source": "npr.org",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-11-08T11:00:00+00:00",
+          "summary": "Climate change is altering natural colors across Arctic landscapes, lakes and coral reefs, with shifts linked to warming, permafrost thaw and pollution. A satellite study published in 2020 found green...",
+          "discussed": false
+        },
+        {
+          "title": "[tsln.com] Cattle specialists urge targeted winter feeding to manage costs",
+          "url": "https://www.tsln.com/news/fetal-programming-in-beef-cattle-lessons-for-winter-management/",
+          "source": "tsln.com",
+          "author": "Written collaboratively by Dr. Jessica Nora Drum, Dr. Rebecca Swanson, and Dr. Ana Clara B. Menezes.",
+          "ai_score": 74,
+          "date_published": "2026-11-13T03:46:42+00:00",
+          "summary": "Cattle advisers and researchers are urging producers to match winter rations to forage quality and herd needs. Drought has tightened forage supplies, and feed is a major operating expense. South Dakot...",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] A new treasure map reveals where Earth's lost prehistoric life may be hiding",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261112025529.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-11-12T11:24:47+00:00",
+          "summary": "A sweeping analysis of 540 million years of marine fossils has revealed surprising gaps in our understanding of Earth's ancient life. Scientists discovered that some of the greatest opportunities for ...",
+          "discussed": false
+        },
+        {
+          "title": "[dlr.de] Europe’s Hera probe reveals Didymos ridge as asteroid-defense survey begins",
+          "url": "https://www.dlr.de/en/latest/news/2026/hera-spots-its-target-a-first-glimpse-into-the-study-of-the-didymos-binary-asteroid-system",
+          "source": "dlr.de",
+          "author": "",
+          "ai_score": 44,
+          "date_published": "2026-11-12T09:09:00+00:00",
+          "summary": "The European Space Agency’s Hera spacecraft has begun its close study of the Didymos asteroid pair. New images show boulders, craters and a sharply defined ridge around Didymos’ equator. Hera is inspe...",
+          "discussed": false
+        },
+        {
+          "title": "[phys.org] Euclid releases 1.7 petabytes as European teams process cosmic survey",
+          "url": "https://phys.org/news/2026-11-euclid-3d-universe-date.html",
+          "source": "phys.org",
+          "author": "",
+          "ai_score": 37,
+          "date_published": "2026-11-12T15:30:01+00:00",
+          "summary": "German institutes supplied optical components for Euclid, while Italian teams developed near-infrared processing software and lead parts of the mission’s science ground segment. The European Space Age...",
+          "discussed": false
+        },
+        {
+          "title": "[Quanta Magazine] The Evolving Story of How Chemistry Became Biology",
+          "url": "https://www.quantamagazine.org/the-evolving-story-of-how-chemistry-became-biology-20261112/",
+          "source": "Quanta Magazine",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-11-12T15:45:27+00:00",
+          "summary": "After decades of bickering about which molecules came first, a new generation of scientists is rethinking what life was, is, and could be. The post The Evolving Story of How Chemistry Became Biology f...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Remembrance Day saw record setting temperatures in Quesnel and Williams Lake",
+          "url": "https://www.mycariboonow.com/317370/news/weather/remembrance-day-saw-record-setting-temperatures-in-quesnel-and-williams-lake/",
+          "source": "My Cariboo Now",
+          "author": "George Henderson",
+          "ai_score": 62,
+          "date_published": "2026-11-12T20:01:26+00:00",
+          "summary": "There was unusually mild weather in Quesnel and Williams Lake on Remembrance Day. The post Remembrance Day saw record setting temperatures in Quesnel and Williams Lake appeared first on My Cariboo Now...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Does a single record-breaking warm day in Quesnel and Williams Lake constitute evidence of climate change, or does it require a longer, verified series of records and a physical mechanism to count as change rather than weather?",
+        "riley_position": "The Remembrance Day records are a claim that needs a long data series behind it, but the documented atmospheric river cause and broader Arctic and lake measurements show a real, physically explainable pattern worth taking seriously while the local data is checked.",
+        "riley_key_evidence": [
+          "Quesnel's Remembrance Day reading of 18.8 degrees beat the 1981 record of 16.7, with Quesnel's station records going back to 1893",
+          "Environment and Climate Change Canada meteorologist Terri Lang attributed the warmth to an atmospheric river, and 27 to 32 B.C. high-temperature records were set on the 11th",
+          "Green-wavelength readings fell 15 per cent across more than 400,000 North American boreal and Arctic lakes from 1984 to 2019"
+        ],
+        "casey_position": "One warm day in two towns is a point, not a series, and the record cannot be trusted until its reference values, station history, sampling choices and measurement changes are reconciled and published.",
+        "casey_key_evidence": [
+          "My Cariboo Now cited older benchmarks of 17.2 for Quesnel from 1928 and 14.8 for Williams Lake from 1990 that do not match the 1981 figures and were never reconciled",
+          "The Taung Child skull was dated to 2.96 to 3.03 million years ago and the fossils may represent more than one species, showing how a single specimen can set and later revise a whole category",
+          "Arctic greening was measured at about 38 per cent of sampled sites, and clustered or satellite-selected sites could share a bias that makes them agree for the wrong reason"
+        ],
+        "resolution": "They agreed the Quesnel and Williams Lake day alone is not a climate trend and that the local series, station move logs and sensor history must be obtained, but they did not settle whether the broader Arctic and lake evidence supports a directional change. Riley accepted the number stays open for now, and Casey accepted the lake measurement while still withholding judgment on its cause.",
+        "topics_covered": [
+          "Whether a single weather event like an atmospheric river can distinguish weather from climate change",
+          "Station record integrity, including benchmark mismatches, station moves and the need for move logs and sensor history",
+          "Fossil record gaps and sampling bias, illustrated by the Taung Child and the Neubauer and Harzhauser map",
+          "Arctic and boreal lake darkening, satellite greening and the physical mechanisms of permafrost thaw and soot on snow",
+          "Natural variation versus a steady directional push, and who is responsible for publicly qualifying uncertain climate claims"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 7,
+          "conditions": "light drizzle",
+          "high": 11,
+          "low": 3
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 5,
+          "conditions": "partly cloudy",
+          "high": 8,
+          "low": 1
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 8,
+          "conditions": "partly cloudy",
+          "high": 12,
+          "low": 2
+        },
+        {
+          "name": "Quesnel",
+          "temp": 8,
+          "conditions": "mainly clear",
+          "high": 12,
+          "low": 4
+        },
+        {
+          "name": "Redstone",
+          "temp": 1,
+          "conditions": "mainly clear",
+          "high": 7,
+          "low": -1
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Scout Island Nature Centre",
+      "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
+      "website": "scoutisland.ca",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Did Quesnel and Williams Lake actually set Remembrance Day temperature records, and what caused the warmth?\n\nFindings: Multiple outlets confirm the local records. Quesnel hit 18.8 C, beating its 1981 Nov. 11 record of 16.7 C. Williams Lake reached 15.5 C, beating its 1981 mark of 13.2 C (CFJC Today, KelownaNow, Quesnel Cariboo Observer). Across B.C., Environment and Climate Change Canada logged 27 to 32 high-temperature records on Nov. 11, depending on the tally. The strongest was Cache Creek at 21.5 C, against a 1981 record of 17 C. Records in the Quesnel area have been kept since 1893. Environment and Climate Change Canada meteorologist Terri Lang attributed the warmth to an atmospheric river. Subtropical air rose over the coastal mountains, lost its moisture as rain and snow, then descended the eastern slopes into the Interior, where it warmed through compression. One caveat: My Cariboo Now's own text quotes older benchmarks (17.2 C for Quesnel from 1928, 14.8 C for Williams Lake from 1990). Those look like figures from a different day or a forecast-day comparison, so Riley and Casey should cite the ECCC-based numbers above and not the older ones.\n\nSuggested angle: Riley can argue that this is a triumph of the data record: 130-plus years of station data let meteorologists say with confidence that this was an outlier, and the fast, precise reporting shows how well monitoring works. Casey can push back that a single event, driven by a storm system, proves nothing about the climate trend. Records broken by a weather pattern are not the same as a shifting baseline. The sharper exchange is about attribution. Lang's explanation is meteorological, not climatic, so the debate is whether a local record in a small community is evidence of anything larger, and what it would take to know. Both can agree that the 1981 benchmark being beaten in multiple towns is more interesting than any one town's record.\n\n",
+    "log": [
+      {
+        "kind": "agent-search",
+        "query": "Remembrance Day record temperature Quesnel Williams Lake November 11 record high",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "November record warm temperatures British Columbia Interior climate change Environment Canada",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "question",
+        "query": "Williams Lake weather station historical record November 11 1981 temperature"
+      },
+      {
+        "kind": "question",
+        "query": "Quesnel 1893 weather station daily temperature record history"
+      },
+      {
+        "kind": "question",
+        "query": "Quesnel November 11 2025 record high 18.8 degrees Environment Canada"
+      },
+      {
+        "kind": "question",
+        "query": "Williams Lake Quesnel 100 Mile House temperature same day comparison November 11"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A news day that starts with a mine proposal near home, then ranges across changing land and water, fossils, living animals, and far-off space missions.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "Spanish Mountain Gold has redesigned its proposed open-pit gold mine near Likely, about 70 km northeast of Williams Lake, around dry-stack tailings. It estimates $190 million a year for the Cariboo economy, up to 250 full-time jobs over a 25-year mine life, and a final investment decision in 2028.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "Warming, permafrost thaw and soot are changing the colour of Arctic land, lakes and reefs. About 38% of sampled Arctic sites greened between 1985 and 2016, and green-wavelength values in more than 400,000 boreal-Arctic lakes fell 15% between 1984 and 2019, which indicates darker water.",
+          "bridge_to_next": "Climate-driven change in what the land provides: shrubs shading Arctic berry patches, then drought-tightened forage for cattle."
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "With drought tightening forage, advisers urge matching winter rations to forage quality. South Dakota State research found limit-fed, energy-dense diets saved about $29 per cow without harming calf growth.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "Ancient proteins recovered from Homo naledi fossils in South Africa's Rising Star Cave suggest the cave may hold an all-female burial site more than 240,000 years old, according to a study in Cell.",
+          "bridge_to_next": "South African hominin fossils and what they can tell us about who lived where."
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "A new study dates the Taung Child to 2.96 to 3.03 million years ago, older than the earlier 2.58 million estimate. It argues that fossils grouped as Australopithecus africanus may be more than one species, and that swings between wet and dry climates reshaped habitats.",
+          "bridge_to_next": "Fossil records: what gets preserved and where scientists can find it."
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "An analysis of 540 million years of marine fossils maps the gaps in the fossil record to guide where researchers should dig next. Few organisms fossilize, and only rock layers that are accessible today can be searched.",
+          "bridge_to_next": "Another fossil find: an extinct whale from Peru."
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "Scaphokogia huachafo, an extinct pygmy sperm whale from southern Peru that lived 6.3 to 5.6 million years ago, has the most extreme skull asymmetry documented in a cetacean. Researchers think it used echolocation to find prey buried in seabed sediment.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "Researchers recorded a bull and a male donkey on an Ethiopian plateau mounting each other 51 times over eight days, and describe a selective bond. The team cautions that one domesticated pair cannot show why the behaviour occurred.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "Genetic evidence indicates that what was treated as one gentoo penguin species is actually four separate species, which would be the first new penguin species in 100 years.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "MIT researchers found that older adults, aged 60 to 84, have significantly weaker waves of brain-clearing cerebrospinal fluid during sleep than younger adults. Weaker deep-sleep brain waves and smaller vascular responses explain much of the gap but not all of it.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "Physicists listened to the faint electrical noise of current flowing into a copper-based superconductor to probe the pseudogap, a state of missing electrons that has puzzled researchers for nearly 40 years.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "An independent reanalysis of Event Horizon Telescope data, published in Nature, reproduced the bright ring around M87*'s shadow. The ring averages 42.2 microarcseconds across, consistent with a 6.5 billion solar mass black hole, though finer details still vary with the method.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "ESA's Hera spacecraft has begun close study of the Didymos asteroid pair after NASA's 2022 DART impact. It has imaged a sharp equatorial ridge on Didymos, and detailed images are due Nov. 25.",
+          "bridge_to_next": "Space missions and the data they leave behind: Swift's archive, then Euclid's release."
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "NASA's Swift Observatory reentered the atmosphere over North Sumatra on Nov. 4 after nearly 22 years. Its millions of images remain available for research.",
+          "bridge_to_next": "Space telescopes' data: Swift's archive remains, and Euclid has just released its first big dataset."
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "ESA released Euclid's first major data release, 1.7 petabytes covering 13 months of observations and spectra for 160 million sources. More than 2,500 researchers use the data, and processing it takes precise calibration.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "Scientists are homing in on the roughly 200 million years between Earth becoming habitable and the appearance of the earliest single-celled ancestor, and are rethinking how chemistry became biology.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "The Atlantic's Toby Lester writes that archaeologists are finding evidence of submerged lands, which he calls Aquaterra, that may hold answers to major questions of human history.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "Simulations based on Voyager 2 data suggest that electrical conductivity rising with depth inside Uranus and Neptune may explain their tilted, off-centre magnetic fields, which may also shift substantially over decades, unlike Earth's.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "How long a record has to be watched, and from how many places, before a change reads as a signal rather than a one-off; the deep dive picks this up with the record-mild Remembrance Day in Quesnel and Williams Lake.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "When Quesnel and Williams Lake set record warmth on Remembrance Day, what does one record day tell residents about the changing climate, and what has to stand behind it before it counts as evidence of change rather than weather?",
+      "riley_holds": "A record day is a legitimate data point, and the science on Arctic lakes and land shows that change can be measured and read when it is tallied across many sites and years.",
+      "casey_holds": "One warm day in two towns is weather until it is set against a long series, and the earth's own history shows swings between wet and dry that make any single record easy to over-read.",
+      "beats": [
+        {
+          "claim": "A record is only a claim against a series: Remembrance Day was unusually mild in both Quesnel and Williams Lake, and that fact is local and felt, but it is a single day.",
+          "evidence": "My Cariboo Now reports record-setting temperatures in Quesnel and Williams Lake on Remembrance Day, with unusually mild weather. The source gives no figure for the old record and no consequence for households.",
+          "pushback": "Casey asks how many years of readings stand behind the old record in each town, and whether two towns count as one event or two separate readings.",
+          "leads_to_next": "If a record depends on how much series sits behind it, the next question is what we know and don't know about any record because of where and how long we look."
+        },
+        {
+          "claim": "Every record is shaped by where researchers can look, so the gaps in a series matter as much as the extremes in it.",
+          "evidence": "ScienceDaily: the 540-million-year marine fossil analysis shows that fossilization is rare and that fossils can only be found where the rock layers are accessible today, which leaves large gaps in the picture of ancient life.",
+          "pushback": "Riley says gaps argue for a better map of where to look, as the fossil study does, not for discarding the record. A tool that shows where coverage is thin makes the rest more usable.",
+          "leads_to_next": "If gaps can be mapped and the record still used, what does a record look like when it is built from many sites over decades?"
+        },
+        {
+          "claim": "Change becomes readable when many sites and many years are tallied together, which a single day in two towns cannot do.",
+          "evidence": "NPR: satellite work found greening at about 38% of sampled Arctic sites between 1985 and 2016, and green-wavelength values in more than 400,000 boreal-Arctic lakes fell 15% between 1984 and 2019, indicating darker water.",
+          "pushback": "Casey says those are decades-long tallies across hundreds of thousands of lakes, and the record-day claim has none of that behind it. Casey also notes the researchers say permafrost thaw may be darkening the lakes, which is a hypothesis not yet settled.",
+          "leads_to_next": "If tallies across space and time are what make change readable, we need to ask whether the earth swings on its own enough to confuse the reading."
+        },
+        {
+          "claim": "The land has always swung between conditions, so a signal has to be separated from natural variation, but known mechanisms like soot and permafrost thaw help do that.",
+          "evidence": "Discover Magazine and Nautilus: the Taung Child study proposes repeated shifts between wet and dry climates that changed habitats, and fossil pollen shows a wetter, more wooded setting than the area's landscape today. NPR: dark soot on snow and ice absorbs sunlight and accelerates melting, and darker lakes can retain heat longer.",
+          "pushback": "Riley answers that the swings in the Taung study played out over geological time, while the soot, thawing permafrost and heat-retaining dark lakes in the NPR piece are specific physical processes that compound a warming trend rather than random swings.",
+          "leads_to_next": "With a tally and a mechanism both in hand, we can go back to Quesnel and Williams Lake and ask what a local record would have to be set beside."
+        },
+        {
+          "claim": "The two towns' record day becomes evidence only when it is placed alongside a long local series, nearby sites and the known mechanisms.",
+          "evidence": "My Cariboo Now: record-mild Remembrance Day in Quesnel and Williams Lake. NPR: the Arctic tallies drew on thousands of sites and decades of satellite records. ScienceDaily: gaps in any record come from where researchers can look.",
+          "pushback": "Casey says that without the old record's year and size, residents cannot tell a margin of a fraction of a degree from a large one, and a loose reading shouldn't be sold as a trend. Riley says the day is still worth flagging because it gives people a reason to ask for the series.",
+          "leads_to_next": "This sets up the landing: what a reader of a single record day should ask to see."
+        }
+      ],
+      "set_aside": [
+        "Spanish Mountain Gold mine proposal",
+        "Cattle winter feeding research",
+        "Homo naledi female-only burial site",
+        "Peruvian pygmy sperm whale fossil",
+        "Ethiopian bull and donkey bond",
+        "New gentoo penguin species",
+        "MIT sleep and cerebrospinal fluid study",
+        "Cuprate superconductor noise study",
+        "M87* black hole ring reanalysis",
+        "Hera and Didymos",
+        "Swift telescope reentry",
+        "Euclid data release",
+        "Chemistry becoming biology",
+        "Aquaterra submerged lands",
+        "Uranus and Neptune magnetic fields"
+      ],
+      "cariboo_beat": "Beat 5 brings the question home to Quesnel and Williams Lake, where residents felt the record-mild Remembrance Day, and asks what a local record would need beside it: how long the series is, whether the neighbouring town agrees, and what mechanism links it to wider change.",
+      "landing": "Held open: for a record-warm day in Quesnel and Williams Lake, how many years and how many nearby places must stand behind it before residents should read it as a sign of change rather than a mild day, and who should say so publicly when the answer is not yet clear."
+    }
+  },
+  "cuts": [
+    {
+      "kind": "deep_dive",
+      "url": "https://www.scimex.org/newsfeed/researchers-discover-rare-star-system-that-emits-radio-signals-every-eight-minutes",
+      "title": "[scimex.org] Astronomers trace eight-minute radio pulses to white dwarf and Sun-like star",
+      "source": "",
+      "theme_pct": 100
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261112025529.htm",
+      "title": "[ScienceDaily] A new treasure map reveals where Earth's lost prehistoric life may be hiding",
+      "source": "",
+      "theme_pct": 97,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sci.news/paleontology/scaphokogia-huachafo-15184.html",
+      "title": "[sci.news] Peruvian fossil reveals pygmy sperm whale with extreme skull asymmetry",
+      "source": "",
+      "theme_pct": 97,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://kottke.org/26/11/0049955-scientists-have-identifie",
+      "title": "[Kottke.org] Scientists have identified a new species of penguin, the...",
+      "source": "",
+      "theme_pct": 97,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.wired.com/story/scientists-discover-massive-starless-galaxy/",
+      "title": "[WIRED] Scientists May Have Discovered a Massive Starless Galaxy",
+      "source": "",
+      "theme_pct": 97
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://kottke.org/26/11/100-big-unanswered-scientific-questions",
+      "title": "[Kottke.org] 100 Big Unanswered Scientific Questions",
+      "source": "",
+      "theme_pct": 97
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.astronomy.com/science/mysterious-gas-on-mars-suggests-magma-below/",
+      "title": "[astronomy.com] Mars orbiter finds volcanic gas near Alba Mons, hinting magma persists",
+      "source": "",
+      "theme_pct": 97
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261110042549.htm",
+      "title": "[ScienceDaily] Earth's fiery birth may have created hundreds of oceans' worth of water",
+      "source": "",
+      "theme_pct": 97
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261110042558.htm",
+      "title": "[ScienceDaily] Where are all the males? Ancient human fossils reveal a startling mystery",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.dlr.de/en/latest/news/2026/hera-spots-its-target-a-first-glimpse-into-the-study-of-the-didymos-binary-asteroid-system",
+      "title": "[dlr.de] Europe’s Hera probe reveals Didymos ridge as asteroid-defense survey begins",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed",
+      "title": "[The Atlantic] The Lost World of Aquaterra",
+      "source": "",
+      "theme_pct": 95,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.scientificamerican.com/article/acorns-not-deer-can-predict-a-rise-in-lyme-spreading-ticks/",
+      "title": "[Scientific American] Acorns—not deer—can predict a rise in Lyme-spreading ticks",
+      "source": "",
+      "theme_pct": 95
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.nytimes.com/2026/10/26/science/space/early-universe-simulation-lumina.html",
+      "title": "[NYT Top Stories] Gaze at the Cosmic Dawn in Dizzying Detail",
+      "source": "",
+      "theme_pct": 95
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.npr.org/2026/11/08/nx-s1-5393776/color-climate-change-coral-lakes",
+      "title": "[npr.org] Climate change shifts Arctic greenery, darkens lakes and bleaches coral",
+      "source": "",
+      "theme_pct": 93,
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.discovermagazine.com/the-3-million-year-old-taung-child-suggests-the-human-family-tree-is-more-like-a-tangled-bush-49927",
+      "title": "[discovermagazine.com] Study dates Taung Child to 3 million years, questions fossil classification",
+      "source": "",
+      "theme_pct": 93,
+      "aired": true
+    }
+  ]
+}
