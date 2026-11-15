@@ -1514,6 +1514,64 @@ class TestCreateMessage:
         client.messages.create.assert_not_called()
 
 
+class TestRoundupHeaderGuard:
+    """2026-11-15: the script reached the render with no **NEWS ROUNDUP** header, so
+    the parser found no sections and the episode went out as one TTS-only track,
+    without music beds."""
+
+    BODY = "**RILEY:** The landfill fire is out and the cause is under review today.\n\n" * 40
+    SCRIPT = ("**COLD OPEN**\n\n**RILEY:** A tease.\n\n"
+              "**WELCOME**\n\n**CASEY:** Welcome to Cariboo Signals.\n\n"
+              "**RILEY:** [pause:1000] And I'm Riley, with the weather.\n\n"
+              "**CASEY:** [pause:1200] Spanish Mountain Gold has redesigned its mine.\n\n"
+              "**RILEY:** Dry stacking means a filtered pile.\n\n"
+              "**CASEY:** [pause:1200] Next, the Uranus field.\n\n"
+              "**COMMUNITY SPOTLIGHT**\n\n**CASEY:** Scout Island.\n\n"
+              "**DEEP DIVE: CARIBOO CONNECTIONS - Science, Wonder & the Natural World**\n\n")
+
+    def test_the_header_goes_back_before_the_first_story(self):
+        import podcast_generator as pg
+        out, restored = pg.restore_roundup_header(self.SCRIPT)
+        assert restored
+        before, after = out.split("**NEWS ROUNDUP**\n\n")
+        assert after.startswith("**CASEY:** [pause:1200] Spanish Mountain Gold")
+        assert "I'm Riley, with the weather" in before
+        assert out.replace("**NEWS ROUNDUP**\n\n", "") == self.SCRIPT
+
+    def test_a_script_with_the_header_is_untouched(self):
+        import podcast_generator as pg
+        script = self.SCRIPT.replace("**CASEY:** [pause:1200] Spanish",
+                                     "**NEWS ROUNDUP**\n\n**CASEY:** Spanish")
+        assert pg.restore_roundup_header(script) == (script, False)
+
+    def test_no_story_turn_means_no_guess(self):
+        import podcast_generator as pg
+        script = self.SCRIPT.replace("[pause:1200] ", "")
+        assert pg.restore_roundup_header(script) == (script, False)
+        assert pg.restore_roundup_header("**RILEY:** [pause:1200] hi") == \
+            ("**RILEY:** [pause:1200] hi", False)
+
+    def test_the_restored_script_parses_into_sections(self):
+        import podcast_generator as pg
+        out, _ = pg.restore_roundup_header(self.SCRIPT + self.BODY)
+        segments = pg.parse_script_into_segments(out)
+        assert segments["welcome"] and segments["news"] and segments["deep_dive"]
+
+    def test_a_polish_that_drops_a_header_is_refused(self):
+        import podcast_generator as pg
+        original = (self.SCRIPT.replace("**CASEY:** [pause:1200] Spanish",
+                                        "**NEWS ROUNDUP**\n\n**CASEY:** Spanish")
+                    + self.BODY * 20)
+        assert pg._polish_valid(original, original)
+        assert not pg._polish_valid(original, original.replace("**NEWS ROUNDUP**\n\n", ""))
+
+    def test_the_guard_runs_in_the_script_stage(self):
+        import inspect
+        import podcast_generator as pg
+        src = inspect.getsource(pg.run_script_stage)
+        assert 'segment("script/structure"' in src and "restore_roundup_header(" in src
+
+
 class TestTruncationGuards:
     """Guards added after the 2026-07-06 episode shipped a script truncated
     at max_tokens (adaptive thinking shares the output budget)."""

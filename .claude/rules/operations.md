@@ -30,6 +30,8 @@ paths:
 
 **`degrade(name, detail)`.** When you add a fallback, add a `degrade()` call — a silent fallback is the failure this exists to catch. `run_publish_stage` derives exit 78 from these records. Modules that cannot import `degrade()` without a cycle (`gemini_tts`, `weekly_anchor`, `native_land`) append to their own `_degradations` list, which the pipeline drains; a new fallback there must append too. `write_run_report()` runs from a `finally`, so a crashed run still reports.
 
+**The render splits on section headers** (`parse_script_into_segments`). A polish that drops one the draft had is refused (`_polish_valid`), and a lost `**NEWS ROUNDUP**` is put back before the first story turn (`restore_roundup_header`, a `[pause:1200]` turn after the Welcome) and `degrade()`s `script/structure`. Without it the episode renders TTS-only.
+
 **Money preflight** (`check_api_budget`, `_check_tts_budget`). Recognise billing walls by their **credit wording, never the status code** (`_billing_wall()`): Gemini uses the same 429 for an ordinary rate limit. TTS is preflighted in the script stage, before the day's state is spent. OpenAI is the universal fallback, so its health alone answers "can this day ship?"; the primary is probed only when OpenAI is walled, and the run aborts only when nothing left can render. A wall can also arrive mid-run: any `except` around a Claude call that falls back must call `_abort_if_billing_wall(e)` first.
 
 **Commits.** Every workflow commits through the `./.github/actions/commit-push` composite action, never an inline `git add`/`commit`/`push`. Its `--autostash` rebase is load-bearing. **If a stage writes a tracked file, some step must stage it.**

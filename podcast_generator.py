@@ -804,6 +804,44 @@ SECTION_WORD_FLOORS = {"NEWS ROUNDUP": 1200, "DEEP DIVE": 2000}
 _EXPANDABLE_HEADER_RE = re.compile(
     r'^\*\*(NEWS ROUNDUP|COMMUNITY SPOTLIGHT|META MOMENT|DEEP DIVE)\b[^\n]*$', re.M)
 _SPEAKER_TAG_RE = re.compile(r'\*\*(?:RILEY|CASEY):\*\*')
+# The section headers the render's parser splits on. A script without the roundup's
+# rendered as one TTS-only track with no music beds or sections (2026-11-15).
+_STRUCTURE_HEADER_RE = re.compile(
+    r'^\*\*(WELCOME|NEWS ROUNDUP|COMMUNITY SPOTLIGHT|META MOMENT|DEEP DIVE)\b[^\n]*\*\*$', re.M)
+# The prompt opens every roundup story with this pause, and no Welcome turn in 125
+# scripts used one, so it marks where a lost roundup header belongs.
+_STORY_PAUSE_RE = re.compile(r'\[pause:(\d+)\]')
+STORY_INTRO_PAUSE_MS = 1200
+
+
+def _section_headers(script: str) -> set[str]:
+    """The section names whose header lines `script` carries."""
+    return {m.group(1) for m in _STRUCTURE_HEADER_RE.finditer(script)}
+
+
+def restore_roundup_header(script: str) -> tuple[str, bool]:
+    """Put a lost **NEWS ROUNDUP** header back before the first story turn.
+
+    The first speaker turn after **WELCOME** that opens a story (a pause of at least
+    `STORY_INTRO_PAUSE_MS`) starts the roundup. Returns (script, restored); a script
+    that has the header, has no Welcome, or has no such turn before the next section
+    comes back unchanged.
+    """
+    headers = _section_headers(script)
+    if "NEWS ROUNDUP" in headers or "WELCOME" not in headers:
+        return script, False
+    lines = script.split("\n")
+    start = next(i for i, line in enumerate(lines) if line.strip() == "**WELCOME**")
+    for i in range(start + 1, len(lines)):
+        line = lines[i].strip()
+        if _STRUCTURE_HEADER_RE.match(line):
+            break
+        pause = _STORY_PAUSE_RE.search(line)
+        if (_SPEAKER_TAG_RE.match(line) and pause
+                and int(pause.group(1)) >= STORY_INTRO_PAUSE_MS):
+            lines[i:i] = ["**NEWS ROUNDUP**", ""]
+            return "\n".join(lines), True
+    return script, False
 
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
@@ -4767,11 +4805,13 @@ def _polish_valid(original: str, polished: str) -> bool:
     be drastically shorter than the input — a big shrink means the rewrite was
     truncated or lossy, and the full-length original is the safer output.
     The absolute MIN_SCRIPT_WORDS floor also applies: a script that barely
-    cleared generation QA must not be polished below publishable length.
+    cleared generation QA must not be polished below publishable length. Every
+    section header the original has must survive: the render splits on them.
     """
     return ("**RILEY:**" in polished and "**CASEY:**" in polished
             and len(polished) >= 0.6 * len(original)
-            and len(polished.split()) >= MIN_SCRIPT_WORDS)
+            and len(polished.split()) >= MIN_SCRIPT_WORDS
+            and _section_headers(original) <= _section_headers(polished))
 
 
 def _polish_length_addendum(script: str) -> str:
@@ -15098,6 +15138,17 @@ def run_script_stage() -> tuple[str, str] | None:
                 degrade("script/roundup-echo",
                         f"{len(_echoes_after)} deep dive line(s) still retell the roundup "
                         f"after polish, e.g. \"{_clip(_echoes_after[0][0], 120)}\"")
+
+        with segment("script/structure", critical=False):
+            # The render splits the script on its section headers; without the
+            # roundup's, the 2026-11-15 episode went out as one TTS-only track.
+            script, _restored = restore_roundup_header(script)
+            if _restored:
+                degrade("script/structure", "the script had no **NEWS ROUNDUP** header; "
+                        "restored before the first story turn")
+            elif "NEWS ROUNDUP" not in _section_headers(script):
+                degrade("script/structure", "the script has no **NEWS ROUNDUP** header and "
+                        "no story turn to restore it at: the render will run TTS-only")
 
         with segment("script/correction-guard", critical=False):
             # Last line of defence against an invented on-air correction — both
