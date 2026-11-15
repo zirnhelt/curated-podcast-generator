@@ -205,6 +205,30 @@ baseline week of `_log_claude_usage` totals on Sonnet 5. Compare script length, 
 short-script retries, `claude/refusal` rows and cost per run in the nightly review; start
 `CLAUDE_THINKING_EFFORT` at `medium` and try `low`. Unset the variable to go back.
 
+### A lost section header is put back (2026-11-15)
+
+The Sunday script reached the render with no `**NEWS ROUNDUP**` header: the roundup's 27 turns
+ran on from the Welcome, the parser found no news section ("Segment parsing failed"), and
+`render/music-fallback` shipped one TTS-only track with no music beds or section breaks. The
+header was already gone at the citations step, which runs after the polish (`News: 0
+segments`). That polish was Opus (one deep-dive source escalated it), and `_polish_valid`
+checked host tags and length, never headers. The draft is not kept, so whether the writer or
+the polish dropped it is unknown. It was the first script without the header since the
+February format change (1 in about 280).
+
+Two guards, both pure Python:
+
+- `_polish_valid` refuses a polish that loses any section header the draft had (`WELCOME`,
+  `NEWS ROUNDUP`, `COMMUNITY SPOTLIGHT`, `META MOMENT`, `DEEP DIVE`); the draft airs and
+  `script/polish` degrades, as for any refused polish.
+- `restore_roundup_header`, in its own `script/structure` segment after the polish, puts the
+  header back before the first speaker turn after the Welcome that opens with a pause of 1200
+  ms or more. The prompt opens every roundup story with `[pause:1200]`, and across 125 scripts
+  no Welcome turn used one. A restored header `degrade()`s `script/structure`; a script with
+  no such turn is left alone and degrades with the TTS-only warning. On the 2026-11-15 script
+  it lands before the Spanish Mountain Gold story and the episode parses into all its sections;
+  it changes no other October-November script.
+
 ### The script writer stays on Haiku (2026-11-14)
 
 The weekly triage (#539, 2026-11-08) found every night's first draft 20-25% short (2.5k-2.7k
