@@ -22,7 +22,8 @@
     "adc1835a",
     "prod0926",
     "ba77ef5c",
-    "787d3002"
+    "787d3002",
+    "prod1108"
   ],
   "proposed": [
     {
@@ -40,6 +41,18 @@
     {
       "note": "Verify facts about dates and deadlines carefully, especially when multiple dates appear in the same story segment, as these are easily corrected mistakes that should not occur.",
       "date": "2026-10-04"
+    },
+    {
+      "note": "Before an episode airs, flag any First Nations or community name the show has no pronunciation for, and use pronunciations taken from the BC government's pronunciation guide, which was prepared with the nations themselves.",
+      "date": "2026-11-15"
+    },
+    {
+      "note": "Kukpi7 is the Secwépemc title for a chief; say it following the BC government guide's published phonetics.",
+      "date": "2026-11-15"
+    },
+    {
+      "note": "Each First Nation or community is the final authority on how its own name is said; never present an AI-derived pronunciation as the community's own word, and say so when no published pronunciation exists, as with Tl'esqox (Toosey).",
+      "date": "2026-11-15"
     }
   ]
 }
