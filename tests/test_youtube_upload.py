@@ -60,6 +60,9 @@ class TestBuildMetadata:
         assert meta["status"]["privacyStatus"] == "unlisted"
         assert meta["status"]["selfDeclaredMadeForKids"] is False
         assert meta["snippet"]["categoryId"] == "28"
+        assert meta["status"]["containsSyntheticMedia"] is True
+        assert meta["snippet"]["defaultLanguage"] == "en"
+        assert meta["snippet"]["defaultAudioLanguage"] == "en"
 
     def test_chapter_lines_start_at_zero(self, citations, chapters):
         desc = yu.build_metadata(citations, chapters, "private", "2026-07-14")["snippet"]["description"]

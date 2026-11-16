@@ -183,10 +183,15 @@ def build_metadata(citations: dict, chapters: list, privacy: str, date_str: str)
             "description": description,
             "tags": tags,
             "categoryId": CATEGORY_SCIENCE_TECH,
+            "defaultLanguage": "en",
+            "defaultAudioLanguage": "en",
         },
         "status": {
             "privacyStatus": privacy,
             "selfDeclaredMadeForKids": False,
+            # Both hosts are synthetic voices; disclose it rather than argue
+            # whether YouTube's "realistic" test applies.
+            "containsSyntheticMedia": True,
         },
     }
 
