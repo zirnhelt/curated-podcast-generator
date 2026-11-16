@@ -16,6 +16,7 @@ Quota: videos.insert = 1600 units + captions.insert = 400 of the default
 
 import json
 import os
+import re
 import time
 from datetime import date, timedelta
 from pathlib import Path
@@ -112,6 +113,24 @@ def _clean(text: str) -> str:
     return text.replace("<", "(").replace(">", ")")
 
 
+_SOURCE_PREFIX_RE = re.compile(r"^\W*\[([^\]]*)\]\s*")
+_PLACEHOLDER_SOURCES = {"", "unknown source", "seeded content"}
+
+
+def _story_line(article: dict) -> str:
+    """One description bullet. Feed titles arrive as "[Outlet] Headline", so the
+    outlet is stripped from the title rather than printed twice."""
+    title = str(article.get("title") or "")
+    source = str(article.get("source") or "").strip()
+    m = _SOURCE_PREFIX_RE.match(title)
+    if m:
+        title = title[m.end():]
+        if source.lower() in _PLACEHOLDER_SOURCES:
+            source = m.group(1).strip()
+    credit = f" ({source})" if source else ""
+    return f"• {title}{credit} — {article.get('url', '')}"
+
+
 def build_metadata(citations: dict, chapters: list, privacy: str, date_str: str) -> dict:
     """videos.insert body from the episode's citations + chapters JSON."""
     from config_loader import load_podcast_config
@@ -139,8 +158,7 @@ def build_metadata(citations: dict, chapters: list, privacy: str, date_str: str)
         articles = [a for a in all_articles if a.get("discussed", True)] or all_articles
         if articles:
             lines.append(f"{heading}:")
-            lines += [f"• {a.get('title', '')} ({a.get('source', '')}) — {a.get('url', '')}"
-                      for a in articles]
+            lines += [_story_line(a) for a in articles]
             lines.append("")
 
     base_url = podcast_cfg.get("audio_base_url", "")
