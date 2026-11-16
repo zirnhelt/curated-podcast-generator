@@ -580,6 +580,19 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   same-story clusters rarely reach 3 outlets. The override changes only today: the rotation stays
   calendar-derived, and the cold open and episode memory record the focus that actually aired.
 
+  **2026-11-15: a space story moved the day off space.** The calendar focus was Sky & Cosmos.
+  A 31-outlet Euclid data release qualified as high-impact, matched no Sky & Cosmos keyword
+  (the list had `telescope` and `spacecraft`, nothing for the universe, galaxies or cosmology),
+  and Earth Systems & Climate Science won on bare words its name adds as keywords: `earth`,
+  `systems`, `climate`, `science`. The producer's note: "Deep dive should have focused on the
+  cosmos", with five astronomy stories marked as the deep dive they wanted. Sky & Cosmos gains
+  cosmology words (`universe`, `cosmic`, `galaxies`, `astronomer`, `white dwarf`, `asteroid`,
+  `orbiter`…; not bare `galaxy`, which is also a phone and a soccer team). The Living World,
+  Earth Systems and Discovery set `name_keywords` to their name as a phrase. On that night's
+  Sunday feed the name words alone matched a synthetic cell, "ponies… for a living" and
+  "floppy-based air traffic systems". Other days carry the same pattern (`life`, `field`,
+  `land`, `live`, `development`); they wait for the producer's call.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ## Niche interests close the roundup once a week (2026-11-14)

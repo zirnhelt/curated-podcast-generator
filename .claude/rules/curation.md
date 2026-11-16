@@ -66,7 +66,7 @@ paths:
 - **A high-impact story moves the focus** (`pick_focus_for_pool`): `_kite_sources` ≥ `HIGH_IMPACT_MIN_SOURCES` **and** raw fit ≥ `HIGH_IMPACT_MIN_THEME_RAW` (wide coverage alone is world news). The day takes the sibling focus it hits, else the plain theme; the calendar is untouched.
 - Route both the theme and bonus buckets. A slot matches on its theme **or** focus keywords.
 - Keyword sets that **gate** a decision are strict (`_build_strict_theme_keywords`); description prose is for ranking only.
-- A focus keyword is a phrase when the bare word has another common sense (`park`, `trail`, `space`): one hit admits an article to the deep-dive pool, and rerank cannot drop it.
+- A focus keyword is a phrase when the bare word has another common sense (`park`, `trail`, `space`): one hit admits an article to the deep-dive pool, and rerank cannot drop it. A focus's name words count as keywords too: set `name_keywords` when one is a common word (`earth`, `science`, `world`).
 - `_no_deep_dive` is honoured by `select_deep_dive_from_feed`.
 - A released article is re-labelled for its new day (`_relabel_for_day`), and its stale theme scores are dropped, not rewritten. A story imported for today must not be droppable by the run that imported it.
 - The export decision reads the feed's **raw** charter score (`_theme_score_raw`), never the percentile.

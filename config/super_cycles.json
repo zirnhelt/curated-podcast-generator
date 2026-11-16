@@ -512,13 +512,36 @@
           "exoplanet",
           "solar system",
           "night sky",
-          "solar storm"
+          "solar storm",
+          "astronomer",
+          "astrophysics",
+          "astrophysicist",
+          "cosmic",
+          "cosmology",
+          "universe",
+          "galaxies",
+          "dark matter",
+          "dark energy",
+          "black hole",
+          "white dwarf",
+          "neutron star",
+          "pulsar",
+          "supernova",
+          "nebula",
+          "asteroid",
+          "orbiter",
+          "milky way",
+          "space mission",
+          "space agency"
         ],
         "lens": "Center the deep dive on the sky and cosmos — astronomy, aurora, and space science as seen from dark rural skies."
       },
       {
         "slug": "living-world",
         "name": "The Living World",
+        "name_keywords": [
+          "living world"
+        ],
         "keywords": [
           "biology",
           "species",
@@ -541,6 +564,9 @@
       {
         "slug": "earth-systems",
         "name": "Earth Systems & Climate Science",
+        "name_keywords": [
+          "earth systems"
+        ],
         "keywords": [
           "geology",
           "glacier",
@@ -563,6 +589,9 @@
       {
         "slug": "discovery-health",
         "name": "Discovery, Health & How Science Works",
+        "name_keywords": [
+          "how science works"
+        ],
         "keywords": [
           "research",
           "study",
