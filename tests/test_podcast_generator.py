@@ -8118,7 +8118,7 @@ class TestCaribooDeepDivePick:
 
         def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
             captured["pool"] = [a["url"] for a in pool]
-            return [pool[-1]]
+            return [pool[-1], pool[0]]  # the local lead and a second report of it
         monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
         theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
         local = {"title": "[Williams Lake Tribune] Rogers outage cuts the Cariboo off",
@@ -8126,8 +8126,55 @@ class TestCaribooDeepDivePick:
         dd, news = pg.select_deep_dive_from_feed(theme, "Repair Culture & Practical Tech",
                                                  count=4, local_extras=[local])
         assert "https://local" in captured["pool"]
-        assert [a["url"] for a in dd] == ["https://local"]
-        assert len(news) == len(theme)
+        assert [a["url"] for a in dd][0] == "https://local" and len(dd) == 2
+        assert len(news) == len(theme) - 1
+
+    # Episode notes 2026-11-15 and 2026-11-16: the bar swapped a ranked four-story deep
+    # dive for one local story with no other report and no focus hit, both marked down.
+    PUBLIC_ART = {"title": "[Williams Lake Tribune] $10,000 in public art funding supports two "
+                           "Williams Lake projects", "url": "https://art", "_is_bonus": True}
+
+    def _one_source(self, monkeypatch, picked_extra=()):
+        import podcast_generator as pg
+
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+            lead = next(a for a in pool if a["url"] == "https://art")
+            lead["_cariboo_angle"] = "Two local projects get art money."
+            return [lead, *picked_extra]
+        monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
+
+    def test_a_one_source_local_pick_is_set_aside(self, monkeypatch, capsys):
+        import podcast_generator as pg
+        self._one_source(monkeypatch)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        local = dict(self.PUBLIC_ART)
+        dd, news = pg.select_deep_dive_from_feed(theme, "Arts, Culture & Digital Storytelling",
+                                                 count=4, local_extras=[local])
+        assert "https://art" not in {a["url"] for a in dd} and len(dd) == 4
+        assert "_cariboo_angle" not in local, "the roundup copy carries no deep-dive angle"
+        assert "Cariboo pick set aside" in capsys.readouterr().out
+
+    def test_aired_context_is_not_a_second_report(self, monkeypatch):
+        import podcast_generator as pg
+        recent = [{"title": "[My Cariboo Now] Arts council grant round opens", "url": "https://r",
+                   "_recalled_from": "Thursday"}]
+        self._one_source(monkeypatch, picked_extra=recent)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        dd, _ = pg.select_deep_dive_from_feed(theme, "Arts, Culture & Digital Storytelling",
+                                              count=4, local_extras=[dict(self.PUBLIC_ART)],
+                                              recent_local=recent)
+        assert "https://art" not in {a["url"] for a in dd}
+
+    def test_a_one_source_pick_on_the_weeks_focus_holds(self, monkeypatch):
+        import podcast_generator as pg
+        self._one_source(monkeypatch)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        focus = {"slug": "visual-arts-heritage", "name": "Visual Arts & Heritage",
+                 "name_keywords": [], "keywords": ["public art", "mural", "gallery"]}
+        dd, _ = pg.select_deep_dive_from_feed(theme, "Arts, Culture & Digital Storytelling",
+                                              count=4, focus=focus,
+                                              local_extras=[dict(self.PUBLIC_ART)])
+        assert [a["url"] for a in dd] == ["https://art"]
 
     def test_off_charter_candidates_stay_out_of_the_pick(self, monkeypatch):
         """2026-11-03 aired a one-source deep dive on a tanker-ban story at the

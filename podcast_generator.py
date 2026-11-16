@@ -8785,6 +8785,21 @@ def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
     return deep_dive
 
 
+def _cariboo_pick_holds(picked: list, focus_keywords: list,
+                        recent_local: list | None = None) -> bool:
+    """Whether the Cariboo bar's deep dive may replace the ranked one.
+
+    It needs a second report of its story, or a lead on the week's focus. On
+    2026-11-15 (Sky & Cosmos, then Earth Systems) and 2026-11-16 the bar swapped a
+    four-story ranked deep dive for one local story with no other report and no
+    focus hit, Quesnel's Remembrance Day temperatures and a public-art grant, and
+    the producer marked both deep dives down. An aired local story riding along as
+    context is not a second report.
+    """
+    reports = [a for a in picked[1:] if not any(a is r for r in (recent_local or []))]
+    return bool(reports) or bool(focus_keywords and _focus_hit_count(picked[0], focus_keywords))
+
+
 def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT, focus=None,
                                event_focus=None, anchor_question=None, local_extras=None,
                                recent_local=None):
@@ -9012,8 +9027,13 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         picked = pick_cariboo_deep_dive(pool, count, theme_name,
                                         anchor_question=anchor_question,
                                         recent_local=recent_local)
-        if picked:
+        if picked and _cariboo_pick_holds(picked, focus_keywords, recent_local):
             deep_dive = picked
+        elif picked:
+            picked[0].pop('_cariboo_angle', None)
+            print(f"  🏡 Cariboo pick set aside (one source, no hit on the week's focus): "
+                  f"{picked[0].get('title', '')[:70]} airs in the roundup; the ranked "
+                  f"deep dive stands")
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
     news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
