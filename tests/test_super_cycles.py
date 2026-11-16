@@ -2024,3 +2024,47 @@ class TestPickFocusForPool:
 
     def test_uncycled_day_untouched(self):
         assert pg.pick_focus_for_pool(None, 5, [_wide("Council budget")]) == (None, None)
+
+
+def _sunday_focus(slug):
+    d = date(2026, 11, 15)  # a Sunday, Sky & Cosmos week
+    for _ in range(8):
+        f = get_focus_for_day(6, d)
+        if f["slug"] == slug:
+            return f
+        d += timedelta(days=7)
+    raise AssertionError(slug)
+
+
+class TestSkyAndCosmosKeepsItsWeek:
+    """Episode note 2026-11-15: "Deep dive should have focused on the cosmos"."""
+
+    # The producer's "should have been the deep dive" calls, plus the story that moved the day.
+    COSMOS_STORIES = [
+        "[scimex.org] Astronomers trace eight-minute radio pulses to white dwarf and Sun-like star",
+        "[astronomy.com] Mars orbiter finds volcanic gas near Alba Mons, hinting magma persists",
+        "[dlr.de] Europe’s Hera probe reveals Didymos ridge as asteroid-defense survey begins",
+        "[NYT Top Stories] Gaze at the Cosmic Dawn in Dizzying Detail",
+        "[phys.org] Euclid releases 1.7 petabytes as European teams process cosmic data",
+    ]
+
+    @pytest.mark.parametrize("title", COSMOS_STORIES)
+    def test_space_stories_hit_sky_and_cosmos(self, title):
+        kws = pg._build_focus_keywords(_sunday_focus("sky-cosmos"))
+        assert pg._focus_hit_count({"title": title, "summary": ""}, kws)
+
+    def test_a_wide_space_story_keeps_the_cosmos_week(self):
+        # 2026-11-15: a 31-outlet Euclid story missed every Sky & Cosmos keyword and hit
+        # Earth Systems on the bare name words "earth" and "science".
+        cal = _sunday_focus("sky-cosmos")
+        story = _wide("[phys.org] Euclid releases 1.7 petabytes as European teams process cosmic data",
+                      kite=31, raw=70,
+                      summary="The largest 3D map of the universe yet, a milestone for science "
+                              "far beyond Earth.")
+        focus, picked = pg.pick_focus_for_pool(cal, 6, [story])
+        assert picked is story and focus is cal
+
+    def test_sunday_name_words_are_phrases(self):
+        bare = {"earth", "systems", "climate", "science", "living", "world", "works", "health"}
+        for focus in load_super_cycles_config()["6"]["cycle"]:
+            assert not bare & set(pg._build_focus_keywords(focus)), focus["slug"]
