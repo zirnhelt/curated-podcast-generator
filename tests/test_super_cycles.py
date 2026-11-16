@@ -138,6 +138,93 @@ class TestFocusAwareDeepDive:
             assert phrase not in lens.lower()
 
 
+def _story(title, raw=60, bonus=False, summary="", **extra):
+    a = {"title": title, "url": title, "summary": summary, "_theme_score_raw": raw,
+         "_is_bonus": bonus, "_keyword_matches": 0 if bonus else 1, "_boosted_score": raw}
+    a.update(extra)
+    return a
+
+
+def _monday_focus(slug):
+    d = date(2026, 11, 16)  # Film & Screen week
+    for _ in range(8):
+        f = get_focus_for_day(0, d)
+        if f["slug"] == slug:
+            return f
+        d += timedelta(days=7)
+    raise AssertionError(slug)
+
+
+class TestStarvedFocusTakesTheCluster:
+    """Episode note 2026-11-16: "If the stories cluster overwhelmingly around a super
+    cycle theme from a different week, go with that. This week could have been journalism"."""
+
+    def _nov16(self):
+        theme = [
+            _story("[Hyperallergic] Piecing Together Romare Bearden’s Life",
+                   summary="A new documentary follows the painter."),
+            _story("[Nieman Lab] Some local news outlets are losing physical newsrooms", raw=58),
+            _story("[Nieman Lab] Student journalists are reporting more local news", raw=40),
+            _story("[Country Life] How London made Peggy Guggenheim a great patron", raw=70),
+            _story("[Williams Lake Tribune] $10,000 in public art funding supports two projects", raw=88),
+        ]
+        bonus = [
+            _story("[Columbia Journalism Review] The Mississippi Free Press Is Using Journalism",
+                   raw=40, bonus=True),
+            _story("[Nieman Lab] Canada renews the Local Journalism Initiative", raw=58, bonus=True),
+            _story("[Committee to Protect Journalists] CPJ calls on Cuba to drop charges",
+                   raw=28, bonus=True, summary="Three independent journalists face prison."),
+            _story("[prensa.com] Explosive device attacks home of Panamanian journalist",
+                   raw=10, bonus=True),
+        ]
+        return theme, bonus
+
+    def test_a_starved_week_takes_the_journalism_cluster(self):
+        cal = _monday_focus("film-screen")
+        theme, bonus = self._nov16()
+        focus, theme_out, bonus_out = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus["slug"] == "small-town-journalism"
+        assert focus["cycle_length"] == cal["cycle_length"] and "index" in focus
+        moved = {a["title"][:20] for a in theme_out} - {a["title"][:20] for a in theme}
+        assert moved == {"[Columbia Journalism", "[Nieman Lab] Canada ", "[Committee to Protec"}
+        # Under the charter floor, a stray stays in the bonus bucket.
+        assert [a["title"][:10] for a in bonus_out] == ["[prensa.co"]
+
+    def test_the_deep_dive_then_centres_on_journalism(self, monkeypatch):
+        monkeypatch.setattr(pg, "DEEP_DIVE_PICK_ENABLED", False)
+        theme, bonus = self._nov16()
+        focus, theme_out, _ = pg.pick_focus_for_cluster(_monday_focus("film-screen"), 0, theme, bonus)
+        deep_dive, _ = pg.select_deep_dive_from_feed(
+            theme_out, "Arts, Culture & Digital Storytelling", count=4, focus=focus)
+        kws = pg._build_focus_keywords(focus)
+        assert len(deep_dive) == 4 and all(pg._focus_hit_count(a, kws) for a in deep_dive)
+
+    def test_a_week_with_enough_matches_keeps_its_focus(self):
+        cal = _monday_focus("small-town-journalism")
+        theme, bonus = self._nov16()
+        theme += [_story("[CJR] Newsroom layoffs hit a weekly newspaper")] * 2
+        focus, theme_out, bonus_out = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus is cal and theme_out is theme and bonus_out is bonus
+
+    def test_no_sibling_cluster_leaves_the_plain_fallback(self):
+        cal = _monday_focus("film-screen")
+        theme = [_story("[Hyperallergic] A documentary premieres"), _story("[Arts] A gallery opens")]
+        bonus = [_story("[Nieman Lab] Newsroom closes", bonus=True)]
+        assert pg.pick_focus_for_cluster(cal, 0, theme, bonus) == (cal, theme, bonus)
+
+    def test_deferred_and_suppressed_stories_do_not_count(self):
+        cal = _monday_focus("film-screen")
+        theme, bonus = self._nov16()
+        for a in theme + bonus:
+            if "journalis" in a["title"].lower() or "news" in a["title"].lower():
+                a["_no_deep_dive"] = True
+        focus, _, _ = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus is cal
+
+    def test_uncycled_day_untouched(self):
+        assert pg.pick_focus_for_cluster(None, 5, [], []) == (None, [], [])
+
+
 # ---------------------------------------------------------------------------
 # Article holding & aired-early ledger
 # ---------------------------------------------------------------------------
