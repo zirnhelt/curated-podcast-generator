@@ -593,6 +593,21 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   "floppy-based air traffic systems". Other days carry the same pattern (`life`, `field`,
   `land`, `live`, `development`); they wait for the producer's call.
 
+- **A starved week takes the cluster (2026-11-16, `pick_focus_for_cluster`).** Film & Screen
+  matched 1 story, the deep dive needs 4, so the day fell back to the plain theme. The Cariboo
+  bar then aired one Tribune story. Small-Town Journalism, a later week's focus, matched 7
+  on-charter stories in the same feed: 3 in the theme bucket, the rest in the bonus bucket,
+  where the deep dive never looks. The producer: "If the stories cluster overwhelmingly around a
+  super cycle theme from a different week, go with that. This week could have been journalism."
+  So when no high-impact story moved the day and the week's focus has fewer than
+  `DEEP_DIVE_COUNT` theme matches, the sibling with the most matches across the pool takes the
+  day, provided it reaches the count and beats the week's own. A bonus story counts only at raw
+  fit ≥ `HOLD_MIN_THEME_RAW`, and the sibling's bonus matches join the theme pool so the deep dive
+  can use them. On that night's live feeds it would fire on Monday (journalism 7 v 2), Friday
+  (Wildfire & Climate Resilience 12 v 2) and Sunday (Discovery 6 v 2). The last two are swollen
+  by broad keywords (`climate`, `study`, `research`): fix the keyword, not the rule. The
+  calendar is untouched; the cold open and memory record the focus that aired.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ## Niche interests close the roundup once a week (2026-11-14)
