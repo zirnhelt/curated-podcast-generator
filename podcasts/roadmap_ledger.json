@@ -768,8 +768,8 @@
       "title": "The name Esk'et has no entry in config/pronunciations.json and reached TTS unmapped.",
       "detail": "The script step degraded with one name lacking a pronunciation entry (Esk'et) on 2026-11-12, and the pipeline sent it to text-to-speech as written instead of stopping or substituting. The same nation name is expected to recur through the election coverage. Closing this means adding the Esk'et entry to config/pronunciations.json and having the script step fail or flag, rather than pass through, any name with no mapping.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-12",
       "seen": [
         "2026-11-12",
@@ -815,16 +815,17 @@
       "title": "The deep dive aired on a single source while on-theme candidates went unused.",
       "detail": "On 2026-11-15 the deep dive used one source, My Cariboo Now, while 32 on-theme candidates remained unused after the roundup cut. The deep-dive beat count was 4 aired against 5 planned, and only 6 of 17 bridges were named. The facts show the deep dive ran short of sources rather than of candidates, so the selection step is not drawing on the unused pool. Closing this means checking why the deep-dive selector accepts a single source when more candidates are available.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-11-15",
       "seen": [
-        "2026-11-15"
+        "2026-11-15",
+        "2026-11-16"
       ],
       "signal": "thin-deep-dive",
-      "signal_seen": "2026-11-15",
-      "last_seen": "2026-11-15"
+      "signal_seen": "2026-11-16",
+      "last_seen": "2026-11-16"
     }
   ],
-  "updated": "2026-11-15"
+  "updated": "2026-11-16"
 }

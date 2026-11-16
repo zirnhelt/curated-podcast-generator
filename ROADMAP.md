@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-10-07..2026-11-15) — 3 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-10-07..2026-11-16) — 3 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -53,13 +53,6 @@ close one; it comes back only if the reviews raise it 2 more times._
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
       degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 2
       reviews, latest 2026-11-14)
-- [ ] **The name Esk'et has no entry in config/pronunciations.json and reached TTS unmapped.**
-      The script step degraded with one name lacking a pronunciation entry (Esk'et) on
-      2026-11-12, and the pipeline sent it to text-to-speech as written instead of stopping or
-      substituting. The same nation name is expected to recur through the election coverage.
-      Closing this means adding the Esk'et entry to config/pronunciations.json and having the
-      script step fail or flag, rather than pass through, any name with no mapping. (signal
-      `degraded:script/pronunciation`; seen in 2 reviews, latest 2026-11-13)
 - [ ] **A theme-feed local story was available for the roundup but did not air there.** On
       2026-11-14 the Cariboo Local Affairs feed loaded 21 on-theme articles and 1 local story
       reached the roundup pool, yet 0 local stories aired and the roundup did not open on a
@@ -69,6 +62,14 @@ close one; it comes back only if the reviews raise it 2 more times._
       over the local story, so the fix is to inspect the roundup selection logic so a theme-feed
       local story is not dropped when the deep dive takes a different subject. (signal
       `no-local-roundup`; seen in 2 reviews, latest 2026-11-15)
+- [ ] **The deep dive aired on a single source while on-theme candidates went unused.** On
+      2026-11-15 the deep dive used one source, My Cariboo Now, while 32 on-theme candidates
+      remained unused after the roundup cut. The deep-dive beat count was 4 aired against 5
+      planned, and only 6 of 17 bridges were named. The facts show the deep dive ran short of
+      sources rather than of candidates, so the selection step is not drawing on the unused
+      pool. Closing this means checking why the deep-dive selector accepts a single source when
+      more candidates are available. (signal `thin-deep-dive`; seen in 2 reviews, latest
+      2026-11-16)
 
 <!-- reviews:end -->
 
