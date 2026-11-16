@@ -913,6 +913,10 @@ def test_the_review_page_shows_the_plan(tmp_path, monkeypatch):
     assert "<h2>The plan</h2>" in html and "Does the ban move the risk?" in html
     assert "9/12 adjacent stories" in html and "&lt;one&gt;" in html
     assert "<li>clean pivot</li>" not in html  # only named bridges are listed
+    # The deep dive is its question and the beats-aired count; the argument stays in the episode.
+    assert "5/5 planned beats aired" in html
+    for told in ("They coexist", "Prove it", "The ban is narrow", "so who pays", "Who gets a seat"):
+        assert told not in html
     assert er.render_plan(er.load_storyboard("2026-10-01"), {}) == ""
 
 
@@ -1022,3 +1026,35 @@ class TestFetchJobLog:
         log, _ = episode_review.fetch_job_log(Session(), 1)
         assert log == line
 
+
+
+def test_stories_chart_is_a_fallout():
+    import episode_review as er
+    html = er._fallout_chart({"articles_loaded": 78, "dedup_filtered": 54, "roundup_pool": [18, "x"],
+                              "roundup_dropped": 29, "deep_dive_count": 1})
+    assert "−24: dropped at dedup" in html
+    assert "−35: 29 cut for airtime, 6 held, clustered or filtered" in html
+    assert "19 (24%)" in html and "18 roundup + 1 deep dive" in html
+    assert html.count('class="bar ghost"') == 2
+    assert er._fallout_chart({"dedup_filtered": 54}) == ""  # one stage is not a fallout
+
+
+def test_time_chart_is_one_stacked_bar():
+    import episode_review as er
+    html = er._stacked_bar([("Script <x>", 9.0), ("Render", 3.0)])
+    assert html.count('class="stack"') == 1 and "Script &lt;x&gt;" in html
+    assert "9.0 min (75%)" in html and "3.0 min (25%)" in html
+    many = er._stacked_bar([(f"step {i}", 1.0) for i in range(11)])
+    assert "Other" in many and 'class="s9"' not in many  # eight colours, never a ninth
+    assert er._stacked_bar([]) == ""
+
+
+def test_spend_chart_is_a_pie_coloured_by_service():
+    import episode_review as er
+    html = er._pie_chart({"openai-tts": 0.3, "anthropic": 0.2, "cohere": 0.001, "new <svc>": 0.05})
+    assert html.count("<path") == 4 and "new &lt;svc&gt;" in html
+    assert "Cohere" in html and "(&lt;1%)" in html
+    # Anthropic keeps slot 1 whatever its rank tonight.
+    assert '<i class="s1"></i>Anthropic' in html and '<i class="s2"></i>OpenAI TTS' in html
+    assert "<circle" in er._pie_chart({"anthropic": 0.2})  # one service: a full disc, not a zero-length arc
+    assert er._pie_chart({"anthropic": 0}) == ""
