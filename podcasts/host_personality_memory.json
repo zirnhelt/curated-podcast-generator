@@ -25,21 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-09-24",
-        "clue": "Indigenous-tech:x \u2014 Conceded that tool ownership \u2260 automatic recognition in decisions.",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-06",
-        "clue": "rural-context:x \u2014 Conceded that consent measurement remains genuinely difficult",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-10-14",
-        "clue": "pilot-skepticism:~ \u2014 proposes testing one lake before scaling claims",
-        "occurrences": 1
-      },
-      {
         "date": "2026-10-20",
         "clue": "permit-queue:+ \u2014 Insists permits are the lever Province can move",
         "occurrences": 1
@@ -172,6 +157,21 @@
       {
         "date": "2026-11-15",
         "clue": "evidence-bar:+ \u2014 insists on checking station history before claims",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "community-trust:+ Values the public, checkable grant process",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "evidence-bar:x Concedes rulebook beats unexplained wall",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "funding-risk:~ Notes $5,000 may not cover materials",
         "occurrences": 1
       }
     ],
@@ -319,16 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-09-23",
-        "clue": "evidence-bar:xdata-existing-vs-findable-problem-distinction-surfaces",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-09-23",
-        "clue": "community-trust:~undocumented-resilience-is-single-point-failure-reframing",
-        "occurrences": 1
-      },
-      {
         "date": "2026-10-12",
         "clue": "tech-optimism:+ \u2014 platforms are new gatekeepers with unpublished rules",
         "occurrences": 1
@@ -461,6 +451,21 @@
       {
         "date": "2026-11-14",
         "clue": "evidence-bar:+ \u2014 repeatedly demands outcome lists and measured counts over anecdote",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "structural-lens:+ Frames the brief and editor as hidden constraints",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "funding-risk:+ Presses on upkeep, repairs, and who pays",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "community-trust:~ Admits unveilings beat a plaque with nobody there",
         "occurrences": 1
       }
     ],

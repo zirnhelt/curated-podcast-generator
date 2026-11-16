@@ -1445,6 +1445,38 @@
         "https://techcrunch.com/2026/09/23/anthropic-says-its-biology-lab-has-already-found-something-big/",
         "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/"
       ]
+    },
+    "TWiT-1653-896-863703": {
+      "title": "IM 896: Culling the Herd - The Secret Sauce (and Struggles) of Running AI at Home",
+      "pub_date": "Wed, 11 Nov 2026 19:30:59 PST",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/896",
+      "harvested_at": "2026-11-15T13:38:28.680305+00:00",
+      "question": "Can running capable AI models locally on consumer hardware, as TensorFold-style optimizations promise, realistically compete with cloud-hosted frontier models in speed, quality, and cost?",
+      "perspectives": [
+        "Local optimizations like TensorFold could multiply performance on owned hardware, making cloud models look slow and expensive for many users.",
+        "Cloud frontier models retain decisive advantages in scale, model size, and continuous updates that local setups cannot match regardless of software gains."
+      ],
+      "open_questions": [
+        "At what model size or task complexity does a local setup stop being a practical substitute for a cloud API?",
+        "Will hardware vendors like Apple and Nvidia keep local AI performance gains accessible to small developers, or consolidate them into proprietary stacks?"
+      ],
+      "topics": [
+        "TensorFold local inference optimization",
+        "Apple and Nvidia on-device AI hardware",
+        "AMD EPYC Venice benchmarks"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://tensorfold.dev/",
+        "https://www.wsj.com/business/nvidia-is-preparing-to-oust-nvidia-ceo-jensen-huang-30f421ad",
+        "https://hntrbrk.com/investigations/nvidia",
+        "https://www.tomshardware.com/pc-components/cpus/amd-zen-6-epyc-venice-deep-dive-and-benchmarking-dual-epyc-9996-with-1-024-threads-delivers-up-to-93-percent-performance-gain-gen-on-gen-9686f-outclasses-nvidias-vera",
+        "https://www.wsj.com/finance/stocks/anthropic-ipo-valuation-8337b669?mod=rss_Technology"
+      ]
     }
   }
 }
