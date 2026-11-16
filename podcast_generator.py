@@ -8420,6 +8420,62 @@ def pick_focus_for_pool(calendar_focus: dict | None, weekday: int,
     return focus, story
 
 
+def pick_focus_for_cluster(focus: dict | None, weekday: int, theme_articles: list,
+                           bonus_articles: list, count: int = DEEP_DIVE_COUNT
+                           ) -> tuple[dict | None, list, list]:
+    """Return (focus, theme_articles, bonus_articles) once a starved week has looked
+    for the sibling focus the day's pool is about.
+
+    The deep dive centres on the focus only when `count` theme candidates match it;
+    under that it falls back to the plain theme. On 2026-11-16 Film & Screen matched
+    1 story while Small-Town Journalism matched 7, and the producer wrote: "If the
+    stories cluster overwhelmingly around a super cycle theme from a different week,
+    go with that." So when the week's focus has fewer than `count` theme matches,
+    the sibling with the most matches across the day's pool takes the day, provided
+    it reaches `count` and beats the week's own focus. Its on-charter bonus matches
+    (raw fit >= HOLD_MIN_THEME_RAW) join the theme pool so the deep dive can use
+    them. Most of that day's journalism cluster sat in the bonus bucket. The
+    calendar is untouched, as with a high-impact story (`pick_focus_for_pool`).
+    """
+    if not focus:
+        return focus, theme_articles, bonus_articles
+
+    def candidate(a: dict) -> bool:
+        return not (a.get('_no_deep_dive') or a.get('_cluster_suppressed'))
+
+    def matches(f: dict) -> tuple[list, list]:
+        kws = _build_focus_keywords(f)
+        return ([a for a in theme_articles if candidate(a) and _focus_hit_count(a, kws)],
+                [a for a in bonus_articles if candidate(a) and _focus_hit_count(a, kws)
+                 and _theme_fit_raw(a) >= HOLD_MIN_THEME_RAW])
+
+    own_theme, own_bonus = matches(focus)
+    if len(own_theme) >= count:
+        return focus, theme_articles, bonus_articles
+    cycle = load_super_cycles_config().get(str(weekday), {}).get('cycle', [])
+    best = None
+    for i, sibling in enumerate(cycle):
+        if sibling.get('slug') == focus.get('slug'):
+            continue
+        m_theme, m_bonus = matches(sibling)
+        size = len(m_theme) + len(m_bonus)
+        if (size >= count and size > len(own_theme) + len(own_bonus)
+                and (best is None or size > best[0])):
+            best = (size, i, sibling, m_bonus)
+    if best is None:
+        return focus, theme_articles, bonus_articles
+    size, index, sibling, promote = best
+    picked = dict(sibling)
+    picked['index'] = index
+    picked['cycle_length'] = len(cycle)
+    moved = {id(a) for a in promote}
+    print(f"🎯 Focus moved off the calendar: {focus.get('name')} → {picked.get('name')} "
+          f"(the week's focus matched {len(own_theme) + len(own_bonus)}, "
+          f"{picked.get('name')} {size}; {len(promote)} bonus stor(ies) join the theme pool)")
+    return (picked, theme_articles + promote,
+            [a for a in bonus_articles if id(a) not in moved])
+
+
 def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
     """What Cohere Rerank scores deep-dive candidates against: the theme and its
     description, plus the week's focus and its lens. Never the weekly anchor,
@@ -14715,6 +14771,10 @@ def run_script_stage() -> tuple[str, str] | None:
                           f"{(today_focus or {}).get('name')} → "
                           f"{(picked_focus or {}).get('name', today_theme + ' (no focus)')}")
                     today_focus = picked_focus
+                else:
+                    # A starved week takes the sibling focus the pool clusters around.
+                    today_focus, theme_articles, bonus_articles = pick_focus_for_cluster(
+                        today_focus, today_weekday, theme_articles, bonus_articles)
 
                 # Super-cycle routing: release matured held articles into today's
                 # pool; hold off-theme, non-urgent articles for their focus day;
