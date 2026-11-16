@@ -1,5 +1,283 @@
 [
   {
+    "date": "2026-11-16",
+    "title": "Episode Review — Arts, Culture & Digital Storytelling, November 16, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-16.html",
+    "content_html": "<p class=\"meta\">Theme: Arts, Culture &amp; Digital Storytelling. Focus: Film &amp; Screen (week 1 of 5). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/43828479597\">43828479597</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>The deep dive ran on one source with on-theme candidates unused. Read the Cariboo pick line in the run log and the candidates it passed over.</strong><br><span class=\"evidence\">the deep dive aired on one source while 12 on-theme candidate(s) went unused</span> <span class=\"recur\">Recurring: pending for the roadmap, seen 1 night.</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Focus routing held four articles and released none</h3>\n<p>The Film &amp; Screen focus cycle matched only 1 article, below the minimum of 4, so the pipeline fell back to base theme selection: \"only 1 article(s) matched focus 'Film &amp; Screen' (&lt;4) — using base theme selection.\" The episode therefore aired the normal Arts, Culture &amp; Digital Storytelling mix instead of the focus block. Meanwhile four articles were held for other focuses (The Living World, and three for Maker &amp; Repair), and none were released tonight. Held items include the Nautilus piece for 2026-11-22 and three Tom's Hardware and Engadget pieces for 2026-11-18, so the Maker &amp; Repair backlog is now waiting on that day.</p>\n<p>The cycle is not failing, but it is starved for focus-matched content on this theme feed. Check whether the Film &amp; Screen keyword set is narrow enough to miss screen coverage the feed actually carries.</p>\n\n<h3>Roundup kept 18 stories and aired 2 locals; 29 were cut for airtime</h3>\n<p>The roundup pool held 18 stories (16 theme, 2 local), and the airtime budget cut 29 more from the pool. The pool is meant to be larger than one segment can air, so the cuts are by design, and cut stories can resurface on a better-matched day. Of 3 local stories available, 2 aired, and the roundup opened on local. The deep dive was the Williams Lake Tribune piece on public art funding, so the local thread ran through both segments.</p>\n<p>The script shipped at 3541 words against a first draft of 2686 and a target of 3400, after one expand pass. Under target was not the problem here; the first draft came in thin and was expanded to meet the target.</p>\n\n<h3>Two TTS takes came back short and were retried once</h3>\n<p>Two text-to-speech segments returned shorter than their word counts predicted. Each was retried once, and the facts do not record whether the retries came back at full length, so the audio result is unknown from this run. Check the rendered audio at the flagged points before assuming the retry fixed them.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>78</td></tr>\n<tr><td>Kept after dedup</td><td>54</td></tr>\n<tr><td>Held / released</td><td>0 released, 4 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:16, local:2</td></tr>\n<tr><td>Deep dive</td><td>1 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.74, 3541 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 44% of the words</td></tr>\n<tr><td>Audio</td><td>20.9 min</td></tr>\n<tr><td>Audio size</td><td>19.1 MB</td></tr>\n<tr><td>Citations matched</td><td>15/18 roundup, 1/1 deep dive</td></tr>\n<tr><td>Feed</td><td>292 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>75,752</td></tr>\n<tr><td>API calls</td><td>129 total: openai-tts 100 · claude 14 · kagi-extract 5 · cohere 5 · brave-answers 4 · brave-search 1</td></tr>\n<tr><td>Anthropic cost</td><td>$0.21 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.71 at list price: OpenAI TTS $0.300 · Anthropic $0.214 · Brave Answers $0.164 · Kagi Extract $0.020 · Brave Search $0.005 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-16T10:05:57+00:00",
+    "metrics": {
+      "audio_minutes": 20.9,
+      "script_words": 3541,
+      "tell_hits": 0,
+      "roundup_cite_pct": 83.3,
+      "deep_dive_cite_pct": 100.0,
+      "cost_usd": 0.706
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "1 thing to look at before tomorrow's run.",
+      "theme": "Arts, Culture & Digital Storytelling",
+      "kpis": [
+        [
+          "Episode",
+          "20.9 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,541",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "15/18 · 1/1",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.71",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:37 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "thin-deep-dive",
+          "todo": "The deep dive ran on one source with on-theme candidates unused. Read the Cariboo pick line in the run log and the candidates it passed over.",
+          "evidence": "the deep dive aired on one source while 12 on-theme candidate(s) went unused",
+          "minor": false,
+          "nights_seen": 1
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-16",
+          "day": "Mon",
+          "today": true,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 5,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-17",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Forestry & Timber",
+          "week": 2,
+          "of": 4,
+          "next": "Mining & Energy",
+          "event": null
+        },
+        {
+          "date": "2026-11-18",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 5,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-19",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Language & Culture",
+          "week": 2,
+          "of": 4,
+          "next": "Economic Development",
+          "event": null
+        },
+        {
+          "date": "2026-11-20",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 4,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-21",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-22",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 5,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "How much should neighbours know about each other?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://publicdomainreview.org/essay/soldiers-of-misfortune",
+          "title": "[The Public Domain Review] Soldiers of Misfortune: The Drawings of Urs Graf the Elder",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hyperallergic.com/piecing-together-romare-beardens-life/",
+          "title": "[Hyperallergic] Piecing Together Romare Bearden’s Life",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.countrylife.co.uk/culture/art-exhibitions/how-london-made-peggy-guggenheim-one-of-the-worlds-great-artistic-patrons",
+          "title": "[Country Life] How London made Peggy Guggenheim one of the world's great artistic patrons",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.niemanlab.org/2026/11/some-local-news-outlets-are-losing-physical-newsrooms/",
+          "title": "[Nieman Lab] Some local news outlets are losing physical newsrooms",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hyperallergic.com/mamdani-begins-reconstruction-of-historic-chinatown-building-decimated-in-2020-fire/",
+          "title": "[Hyperallergic] Mamdani Begins Reconstruction of Historic Chinatown Building Decimated in 2020 Fire",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.openculture.com/2026/11/when-charles-dickens-and-edgar-allan-poe-met.html",
+          "title": "[Open Culture] When Charles Dickens Met Edgar Allan Poe",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hyperallergic.com/betsy-james-wyeths-placemaking-prowess/",
+          "title": "[Hyperallergic] Betsy James Wyeth’s Placemaking Prowess",
+          "source": "",
+          "theme_pct": 95,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.businessinsider.com/higher-earning-creators-face-more-ai-pressure-2026-11",
+          "title": "[Business Insider] For creators, higher incomes mean more pressure to use AI",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.cjr.org/the-interview/mississippi-free-press-using-journalism-to-make-democracy-work-a-little-better-ashton-pittman-midterms-hyde-smith-colom.php",
+          "title": "[Columbia Journalism Review] The Mississippi Free Press Is Using Journalism to ‘Make Democracy Work a Little Better’",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.niemanlab.org/2026/11/student-journalists-are-reporting-more-local-news-for-real-audiences-their-professors-are-exhausted/",
+          "title": "[Nieman Lab] Student journalists are reporting more local news for real audiences. Their professors are exhausted.",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/11/Vancouver-Aquatic-Centre-Demolition-Back-On/",
+          "title": "[The Tyee] The Vancouver Aquatic Centre Demolition Is Back On",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.wired.com/story/authors-can-defend-against-ai-allegations-with-paper-trail-tools/",
+          "title": "[WIRED] Authors Can Defend Against AI Allegations With ‘Paper Trail’ Tools. Is It Enough?",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.theatlantic.com/books/2026/11/ai-literary-scams-amazon/689391/?utm_source=feed",
+          "title": "[The Atlantic] AI Is Destroying the Trust Between Writers and Readers",
+          "source": "",
+          "theme_pct": 92,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.404media.co/reverse-engineer-anything-ai-companies-crack-down-on-the-coolest-thing-people-were-doing-with-ai/",
+          "title": "[404 Media] 'Reverse Engineer Anything': AI Companies Crack Down on the Coolest Thing People Were Doing With AI",
+          "source": "",
+          "theme_pct": 90,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.nytimes.com/2026/11/12/world/asia/yamamoto-pearl-harbor-plane-bougainville-tourism.html",
+          "title": "[NYT Top Stories] Tourists Brave a Muddy Jungle Trek to See a Famed World War II Wreck",
+          "source": "",
+          "theme_pct": 90,
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "Who sets the frame for publicly funded murals in Williams Lake, and who is accountable for how a continuing mural series reads and is maintained?",
+        "riley": "Grant-funded murals are real paid commissions that give emerging artists strong public exposure, and the program is checkable even if imperfect; the real need is for transparent rules rather than dismissing the work.",
+        "casey": "The selection process, brief, funding breakdown, and maintenance responsibility are unpublished, so the series lacks an accountable named person and the town cannot yet confirm the artists had free creative choice.",
+        "resolution": "They did not fully agree; Riley accepted the need to publish the series rules and ask sponsors about fee breakdowns and upkeep, while Casey held that the work is a real step forward but not yet settled until a named person answers for the series.",
+        "topics": [
+          "Grant funding, sponsorship, and whether the $5,000 fees are truly paid commissions",
+          "Who sets the subject, selection criteria, and sequencing of a mural series",
+          "Comparison with the Mulberry Street Percent for Art model in New York",
+          "Public unveilings, reach of the artwork, and the role of artist statements",
+          "Long-term maintenance, upkeep responsibility, and accountability for the series"
+        ],
+        "sources": [
+          {
+            "title": "$10,000 in public art funding supports two Williams Lake artists",
+            "url": "https://wltribune.com/2026/11/15/10000-in-public-art-funding-supports-two-williams-lake-artists/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-15",
     "title": "Episode Review — Science, Wonder & the Natural World, November 15, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-15.html",
@@ -2752,20 +3030,6 @@
       "script_words": 3423,
       "roundup_cite_pct": 77.8,
       "deep_dive_cite_pct": 75.0
-    }
-  },
-  {
-    "date": "2026-10-17",
-    "title": "Episode Review — Cariboo Signals, October 17, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-17.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39016086060\">39016086060</a>.</em></p>\n\n<h3>The script shipped 11% over target after a short first draft</h3>\n<p>The first draft came in at 2,687 words against a target of 3,400. The pipeline sent it back for up to two expand passes. What shipped was 3,721 words, which is 321 words over the target. The short draft was fixed by expansion, and the expansion overshot.</p>\n<p>The script's voice balance held. The Casey-to-Riley ratio is 0.94, and there were zero AI-tell pattern hits.</p>\n\n<h3>Ten of 24 ballot candidates have no research record</h3>\n<p>The election research step found no record for 10 of the 24 candidates on the ballot: Nicole Berreth, Laura Zimmerman, Greg Jeannotte, Charlene Hays, Whitney Spearing, Nathan Wiebe, Rafiullah Sahibzada, Michael Franklin, Kayla Zaruk, and Ruth Lloyd. The pipeline did not fill those gaps with invented material. It wrote the episode around them.</p>\n<p>This matters for the episode's central question. The debate asks whose account of a candidate's record voters should weight, and what an endorsement or acclamation proves. For ten candidates the pipeline had no record to weigh at all. The five deep dives cover candidates the research did find, so the coverage is uneven by construction.</p>\n\n<h3>Citations matched less often in the deep dives than in the roundup</h3>\n<p>Eleven of 17 roundup citations matched their sources. Only 1 of 5 deep-dive citations matched. The deep-dive sources were all local election coverage, several of them \"Meet the Candidates\" profiles, so the failure is concentrated in the segment with the most specific claims.</p>\n<p>The roundup pool was far larger than the airtime. Sixty-six stories were cut by the airtime budget (NEWS_ROUNDUP_COUNT). That is by design. A cut story can come back on a day when it fits better. The pool had more material than the episode could carry, and the budget decided which stories aired.</p>\n\n<h3>Four short TTS takes, three still short after retry</h3>\n<p>Four TTS takes came back shorter than their word count predicts. Each was retried once. Three of the retries were still short. In those cases the longer of the two takes was kept, so no content was dropped from the episode. The count of still-short retries does not mean that three segments are missing from the audio. The pipeline kept the longer take each time.</p>\n\n<h3>The run finished on time, and the review is running inside its own fallback</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:32 AM Pacific. It completed successfully with zero minutes late. Fallback 1 was created at 2:05 AM Pacific and finished at 2:06 AM Pacific, also successful. This review is running as Fallback 2, created at 3:05 AM Pacific, and has not finished.</p>\n<p>The primary run needed the full pipeline. The script step took 619 seconds and rendering the audio took 312 seconds. Deploying to GitHub Pages took 326 seconds, longer than the publish step at 109 seconds. The deploy was the second-slowest step after the script.</p>\n<p>The episode is 22.5 minutes of audio, 20.6 MB. The video is 22.5 minutes and 79.4 MB. The RSS feed now lists 262 episodes. The run used 62,663 Anthropic input tokens across 11 Claude calls, 48 Brave Search calls, and 4 Brave Answers calls.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>5 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.94, 3721 words</td></tr>\n<tr><td>Audio</td><td>22.5 min</td></tr>\n<tr><td>Audio size</td><td>20.6 MB</td></tr>\n<tr><td>Citations matched</td><td>11/17 roundup, 1/5 deep dive</td></tr>\n<tr><td>Feed</td><td>262 episodes</td></tr>\n<tr><td>Anthropic spend</td><td>62,663 input tokens, calls ***'brave-search': 48, 'claude': 11, 'brave-answers': 4***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-17T10:06:30+00:00",
-    "metrics": {
-      "audio_minutes": 22.5,
-      "tell_hits": 0,
-      "script_words": 3721,
-      "roundup_cite_pct": 64.7,
-      "deep_dive_cite_pct": 20.0
     }
   }
 ]
