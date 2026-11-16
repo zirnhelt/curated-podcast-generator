@@ -60,6 +60,9 @@ class TestBuildMetadata:
         assert meta["status"]["privacyStatus"] == "unlisted"
         assert meta["status"]["selfDeclaredMadeForKids"] is False
         assert meta["snippet"]["categoryId"] == "28"
+        assert meta["status"]["containsSyntheticMedia"] is True
+        assert meta["snippet"]["defaultLanguage"] == "en"
+        assert meta["snippet"]["defaultAudioLanguage"] == "en"
 
     def test_chapter_lines_start_at_zero(self, citations, chapters):
         desc = yu.build_metadata(citations, chapters, "private", "2026-07-14")["snippet"]["description"]
@@ -78,6 +81,19 @@ class TestBuildMetadata:
         assert "https://example.com/1" in desc
         assert "https://example.com/dd" in desc
         assert "<" not in desc and ">" not in desc
+
+    def test_outlet_prefix_not_repeated(self, citations, chapters):
+        citations["segments"]["news_roundup"]["articles"] = [
+            {"title": "[My Cariboo Now] Mayor vows action", "source": "My Cariboo Now",
+             "url": "https://example.com/a"},
+            {"title": "[Gizmodo] Seeded story", "source": "Seeded Content",
+             "url": "https://example.com/b"},
+            {"title": "No prefix here", "source": "", "url": "https://example.com/c"},
+        ]
+        desc = yu.build_metadata(citations, chapters, "private", "2026-07-14")["snippet"]["description"]
+        assert "• Mayor vows action (My Cariboo Now) — https://example.com/a" in desc
+        assert "• Seeded story (Gizmodo) — https://example.com/b" in desc
+        assert "• No prefix here — https://example.com/c" in desc
 
     def test_description_capped(self, citations, chapters):
         citations["segments"]["news_roundup"]["articles"] = [

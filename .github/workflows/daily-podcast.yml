@@ -629,7 +629,7 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-          YT_PRIVACY: unlisted
+          YT_PRIVACY: public
         run: python video_generator.py
 
       # The upload ledger (idempotency record) is written by the video step,
