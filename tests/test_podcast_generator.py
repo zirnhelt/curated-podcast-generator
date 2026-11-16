@@ -8165,7 +8165,8 @@ class TestCaribooDeepDivePick:
                                               recent_local=recent)
         assert "https://art" not in {a["url"] for a in dd}
 
-    def test_a_one_source_pick_on_the_weeks_focus_holds(self, monkeypatch):
+    def test_a_one_source_pick_on_the_weeks_focus_is_set_aside_too(self, monkeypatch):
+        # The producer's call (2026-11-16): a focus hit is no substitute for a second report.
         import podcast_generator as pg
         self._one_source(monkeypatch)
         theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
@@ -8174,7 +8175,7 @@ class TestCaribooDeepDivePick:
         dd, _ = pg.select_deep_dive_from_feed(theme, "Arts, Culture & Digital Storytelling",
                                               count=4, focus=focus,
                                               local_extras=[dict(self.PUBLIC_ART)])
-        assert [a["url"] for a in dd] == ["https://art"]
+        assert "https://art" not in {a["url"] for a in dd} and len(dd) == 4
 
     def test_off_charter_candidates_stay_out_of_the_pick(self, monkeypatch):
         """2026-11-03 aired a one-source deep dive on a tanker-ban story at the

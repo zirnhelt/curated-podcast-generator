@@ -817,7 +817,7 @@ review's `index.json` carries it; `review.html`'s Episode tab shows a 👍 right
 should-have-aired per article, saved in the verdict row as `episode_cuts`. `review_scripts.py`
 tallies the calls and hands every 👎 to the weekly reviewer as a selection miss. No spend.
 
-## The Cariboo bar needs a second report or the week's focus (2026-11-16)
+## The Cariboo bar needs a second report (2026-11-16)
 
 Two nights running the bar swapped a ranked four-story deep dive for one local story
 with no other report and no hit on the week's focus: on 2026-11-15, Quesnel's
@@ -828,9 +828,9 @@ roadmap. The bar was built for 2026-10-28, when the rules stitched four unrelate
 stories into a "trust" debate. It was never meant to trade a cluster for one notice.
 
 `_cariboo_pick_holds()`: the bar's deep dive replaces the ranked one only when it has a
-second report of its story or its lead hits the week's focus. An aired local story
-riding along as context is not a report. Otherwise the ranked deep dive stands and the
-local story airs in the roundup (`🏡 Cariboo pick set aside …` in the log); no
-`degrade()`, because it is a rule, not a failure. On a day with no focus only a second
-report passes. A one-source pick on the week's focus still replaces the ranked four:
-that is the producer's rule as approved, and the case to watch.
+second report of its story. An aired local story riding along as context is not a
+report. Otherwise the ranked deep dive stands and the local story airs in the roundup
+(`🏡 Cariboo pick set aside …` in the log); no `degrade()`, because it is a rule, not a
+failure. The first draft also let a one-source lead on the week's focus through; the
+producer tightened it ("Tighten", 2026-11-16): a focus hit is no substitute for a
+second outlet.
