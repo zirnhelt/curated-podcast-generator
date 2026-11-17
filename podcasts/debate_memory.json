@@ -1,32 +1,4 @@
 {
-  "2026-08-18": {
-    "timestamp": 1787043438.80786,
-    "date": "2026-08-18",
-    "theme": "Working Lands & Industry",
-    "focus": "agriculture-ranching",
-    "anchor": "tech-sadness",
-    "central_question": "Why does the tech industry describe its work as meaningless while working-lands industries like ranching find purpose despite greater economic hardship?",
-    "riley_position": "Tech malaise stems from distance between work and tangible consequence; when engineers see direct real-world impact (like Watch Duty's firefighting role), the existential crisis disappears. The problem is structural lack of feedback loops, not that the work is fake.",
-    "riley_key_evidence": [
-      "Watch Duty serves 10 million users and keeps pace with real-time wildfire tracking during BC's province-wide emergency and Spokane's destructive firestorm",
-      "Ranchers using informal phone-tree coordination during fire season have immediate, unambiguous feedback (herd survives or doesn't)",
-      "Gibraltar Mine treats wildfire response as permanent budget line items rather than emergency spending, providing a governance model for public disaster infrastructure"
-    ],
-    "casey_position": "Watch Duty's growth represents volunteer labor filling gaps left by FEMA cuts, not genuine innovation; tech's crisis and ranching's crisis are different\u2014tech searches for purpose (existential doubt) while ranchers face economic survival (structural crisis). The real issue is who controls decision-making, not meaning itself.",
-    "casey_key_evidence": [
-      "Rancher incomes squeezed by cattle prices, drought, and fire risk creates exhaustion from economic pressure, not existential doubt about mission viability",
-      "Watch Duty is volunteer-run and nonprofit-funded with accountability gaps at 10 million users versus phone-tree accountability where everyone knows who's responsible for wrong information",
-      "BC gutted extension and forestry advisory capacity a decade ago; ranchers have diagnosed fuel-load and forest-management failures for years without authority to act"
-    ],
-    "resolution": "They converge on a deeper insight: both crises stem from lack of control over outcomes rather than lack of meaning. Tech workers mistake the meaning question for the hardest problem when the actual structural problem\u2014having diagnosis but zero authority to fix it\u2014is what ranchers have lived with. They agree the next design fork that matters is whether wildfire-tech tools are shaped by local/Indigenous communities with territory-specific knowledge (like T\u015dilhqot'in programs) rather than imported from outside.",
-    "topics_covered": [
-      "Watch Duty's role as volunteer-built disaster response filling government funding gaps",
-      "Contrast between tech worker malaise (existential) and ranching sector stress (economic/structural)",
-      "Forest management policy failures versus climate change as causes of fire severity",
-      "Rancher phone-tree coordination as governance model versus top-down tech platform design",
-      "Indigenous and local community input in designing regional disaster-response tools"
-    ]
-  },
   "2026-08-19": {
     "timestamp": 1787144301.819391,
     "date": "2026-08-19",
@@ -2587,6 +2559,34 @@
       "Comparison with the Mulberry Street Percent for Art model in New York",
       "Public unveilings, reach of the artwork, and the role of artist statements",
       "Long-term maintenance, upkeep responsibility, and accountability for the series"
+    ]
+  },
+  "2026-11-17": {
+    "timestamp": 1794903354.275895,
+    "date": "2026-11-17",
+    "theme": "Working Lands & Industry",
+    "focus": "forestry",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "Who should count as affected by the Quesnel River Pulp mill curtailment, and how should the affected circle be defined and supported?",
+    "riley_position": "The city's wide list of affected groups is the right starting point, the province's transition toolkit and the company's financial supports are real resources, and the missing piece is a published rule tying them together.",
+    "riley_key_evidence": [
+      "The mill is rated at 375,000 tonnes a year, about 1,000 tonnes a day, with 93 per cent of sales going to Asian markets, mainly China.",
+      "Heavy industry accounts for 53 per cent of Quesnel's tax base, and the city is losing a $150,000 BC Hydro revenue grant tied to the mill's electricity use.",
+      "Ottawa gave Millar Western a C$100 million Large Enterprise Tariff Loan in July, and Atlas Holdings has a long-term fibre supply agreement for the mill."
+    ],
+    "casey_position": "The affected circle is wider than the 90 payroll workers, the criteria and reviewers for who qualifies are unpublished, and the 'closure' versus 'curtailment' distinction may decide eligibility for transition support.",
+    "casey_key_evidence": [
+      "The province's Community Transition Services page cites 'such as a mill closure', while earlier documentation describes the program as triggered by closure announcements with needs assessments, job fairs and town halls.",
+      "The city's release and the Observer article do not name any First Nation among the affected groups, raising questions about who was consulted.",
+      "Canfor announced in July it would shut its Northwood pulp mill in Prince George (300,000 tonnes capacity), and Domtar curtailed its Howe Sound mill in August."
+    ],
+    "resolution": "They agreed that a published set of criteria should come first and that an outside reader is useful, but did not resolve who the outside reader would be or whether curtailment counts as closure under provincial rules; they left those as open questions for written answers from the ministry and the city.",
+    "topics_covered": [
+      "Defining the affected circle beyond payroll workers",
+      "Curtailment versus closure and its effect on contracts and eligibility",
+      "Quesnel's tax-base dependence on heavy industry and council incentives",
+      "Provincial transition supports and the Community Transition Services eligibility question",
+      "Need for published criteria and an independent reviewer for the affected list"
     ]
   }
 }

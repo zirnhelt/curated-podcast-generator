@@ -1,46 +1,4 @@
 {
-  "2026-10-12": {
-    "timestamp": 1791793757.140756,
-    "topics": [
-      "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor",
-      "[Williams Lake Tribune] MEET THE CANDIDATES: City councillor",
-      "[Williams Lake Tribune] Hereditary chiefs call for closure o",
-      "[Nieman Lab] Fox News attacks the media roughly every 15 min",
-      "[Adafruit Blog] Automating a 35mm film scanning pipeline",
-      "[Business Insider] I started a cookie business and scaled to",
-      "[NYT Top Stories] In Canada\u2019s Arctic, a New Generation of In",
-      "[Mother Jones] Stop the Steal Never Stopped"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-10-12",
-    "focus": "film-screen",
-    "focus_name": "Film & Screen"
-  },
-  "2026-10-13": {
-    "timestamp": 1791879286.339825,
-    "topics": [
-      "[Williams Lake Tribune] Station House Gallery invites commun",
-      "[Quesnel Cariboo Observer] Meet the Candidates: Mike Cave se",
-      "[Williams Lake Tribune] New Kamloops facility supports rural",
-      "[The Guardian Global Development] \u2018They take our water, our ",
-      "[Small Farm Canada] Canadian Food Charities Face Growing Dem",
-      "[Small Farm Canada] Study shows light and smart nutrient use",
-      "[Quartz] Grocery staples most likely to cost more because of",
-      "[Country Life] How sheep farming transformed the architectur"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-10-13",
-    "focus": "agriculture-ranching",
-    "focus_name": "Agriculture & Ranching"
-  },
   "2026-10-14": {
     "timestamp": 1791965856.081062,
     "topics": [
@@ -752,5 +710,24 @@
     "date": "2026-11-16",
     "focus": "film-screen",
     "focus_name": "Film & Screen"
+  },
+  "2026-11-17": {
+    "timestamp": 1794903351.875583,
+    "topics": [
+      "[My Cariboo Now] Drug trial wraps up in Quesnel",
+      "[100 Mile Free Press] Cariboo, Thompson  newspapers implemen",
+      "[100 Mile Free Press] Green Lake family cleans up illegal du",
+      "[RealAgriculture] Testing the potential of multi-species cov",
+      "[dagenslantbruk.se] Swedish farmers weigh more grain storage",
+      "[Quesnel Cariboo Observer] City of Quesnel requests provinci",
+      "[My Cariboo Now] Quesnel requests Community Transition Servi",
+      "AI"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-11-17",
+    "focus": "forestry",
+    "focus_name": "Forestry & Timber"
   }
 }
