@@ -403,8 +403,8 @@
       "title": "Deep dive citations matched at 33% versus roundup at 80%.",
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-10-07",
@@ -825,7 +825,22 @@
       "signal": "thin-deep-dive",
       "signal_seen": "2026-11-16",
       "last_seen": "2026-11-16"
+    },
+    {
+      "id": "split-topic-farmers-weigh-roundup-and-deep-dive",
+      "title": "Farmers-weigh subject aired in separate places rather than as one story.",
+      "detail": "The roundup split the subject 'farmers weigh' across segments, so the same story reached listeners in two places instead of one coherent pass. The facts record the split in roundup_shape but do not say whether the duplication was intentional or whether the storyboard placed the pieces apart. The likely fix is to have the storyboard step group stories sharing a subject into one roundup slot or to mark the split explicitly so it does not read as repetition.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-11-17",
+      "seen": [
+        "2026-11-17"
+      ],
+      "signal": "split-topic",
+      "signal_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
     }
   ],
-  "updated": "2026-11-16"
+  "updated": "2026-11-17"
 }

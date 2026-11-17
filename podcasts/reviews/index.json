@@ -1,5 +1,287 @@
 [
   {
+    "date": "2026-11-17",
+    "title": "Episode Review — Working Lands & Industry, November 17, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-17.html",
+    "content_html": "<p class=\"meta\">Theme: Working Lands &amp; Industry. Focus: Forestry &amp; Timber (week 2 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44043764969\">44043764969</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Investigate.</strong><br><span class=\"evidence\">one subject aired in separate places: farmers weigh</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Four held articles never aired on their focus day</h3>\n<p>Focus routing released 0 articles and held 4. Two were held for \"The Living World\" and two for \"Maker & Repair\", with target release dates of 2026-11-18 and 2026-11-22. None of the four reached an episode on this run. They remain in the queue for their focus days, so the cost to listeners tonight was zero stories from those focus slots, and the cost to the cycle is that the Maker & Repair and Living World weeks will carry a smaller pool than the schedule assumes.</p>\n<p>The forestry focus week (cycle week 2 of 4) released nothing from the focus routing itself, so the theme and local material carried the whole episode. Check whether the routing should release a minimum count when the focus day is not the current one.</p>\n\n<h3>Eighteen roundup stories kept, twenty-three cut, two deep dives</h3>\n<p>The roundup pool held 18 stories: 15 theme and 3 local. The airtime budget (NEWS_ROUNDUP_COUNT) dropped 23 from the pool, so the aired segment covered a fraction of what was curated. By design, the cut stories stay eligible for a later day. The deep dive pair was the Quesnel curtailment coverage, with the lead set to local under the Cariboo heading, which is where the debate question on who counts as affected by the curtailment came from.</p>\n<p>Of 5 local stories available, 3 aired, and the roundup opened on local material. Citation alignment in the roundup matched 11 of 18, while both deep-dive citations matched. The gap in the roundup is the one to watch: 7 unmatched citations in a segment of 15 planned pairs means some spoken claims are not tied to a source the listener can find.</p>\n<p>Change: review the roundup citation matching in the script-assembly step, since 11 of 18 is the weakest number on the page.</p>\n\n<h3>The first draft came in 753 words short and the expand pass fixed it</h3>\n<p>The first draft ran 2547 words against a target of 3400. It was sent back for one expand pass and shipped at 3223 words, which is still under target. Under the rule that a thin day is intended and only matters against SHORT_EPISODE_WORDS, this run is acceptable, but the gap shows the pool was not deep enough to fill the target without the expand pass. Casey's share of the deep-dive words was 48%, and the Casey-to-Riley voice ratio was 0.92, so the two voices stayed close to balanced.</p>\n<p>Two TTS takes came back shorter than their word count predicted. Each was retried once, and both retries stayed short. The longer take of each was kept, so no words were dropped from the audio, though the two takes may have been clipped at the source.</p>\n<p>Change: if the expand pass is the regular fix for thin days, raise the default pool size so the first draft reaches target without a second pass.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>64</td></tr>\n<tr><td>Kept after dedup</td><td>47</td></tr>\n<tr><td>Held / released</td><td>0 released, 4 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:15, local:3</td></tr>\n<tr><td>Deep dive</td><td>2 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.92, 3223 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 48% of the words</td></tr>\n<tr><td>Audio</td><td>19.6 min</td></tr>\n<tr><td>Audio size</td><td>18.0 MB</td></tr>\n<tr><td>Citations matched</td><td>11/18 roundup, 2/2 deep dive</td></tr>\n<tr><td>Feed</td><td>293 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>74,710</td></tr>\n<tr><td>API calls</td><td>126 total: openai-tts 95 · claude 12 · kagi-extract 6 · cohere 5 · brave-search 4 · brave-answers 4</td></tr>\n<tr><td>Anthropic cost</td><td>$0.13 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.62 at list price: OpenAI TTS $0.277 · Brave Answers $0.164 · Anthropic $0.134 · Kagi Extract $0.024 · Brave Search $0.020 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-17T10:06:02+00:00",
+    "metrics": {
+      "audio_minutes": 19.6,
+      "script_words": 3223,
+      "tell_hits": 0,
+      "roundup_cite_pct": 61.1,
+      "deep_dive_cite_pct": 100.0,
+      "cost_usd": 0.621
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "1 thing to look at before tomorrow's run.",
+      "theme": "Working Lands & Industry",
+      "kpis": [
+        [
+          "Episode",
+          "19.6 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,223",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "11/18 · 2/2",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.62",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:29 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "split-topic",
+          "todo": "Investigate.",
+          "evidence": "one subject aired in separate places: farmers weigh",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-16",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 5,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-17",
+          "day": "Tue",
+          "today": true,
+          "theme": "Working Lands & Industry",
+          "focus": "Forestry & Timber",
+          "week": 2,
+          "of": 4,
+          "next": "Mining & Energy",
+          "event": null
+        },
+        {
+          "date": "2026-11-18",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 5,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-19",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Language & Culture",
+          "week": 2,
+          "of": 4,
+          "next": "Economic Development",
+          "event": null
+        },
+        {
+          "date": "2026-11-20",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 4,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-21",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-22",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 5,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "How much should neighbours know about each other?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://vancouversun.com/news/local-news/federal-budgets-6-5-billion-commitment-to-forestry-comes-at-critical-time",
+          "title": "[Vancouver Sun] Federal budget&#039;s $6.5 billion commitment to forestry comes at &#039;critical time&#039;",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/fa-ltrapporten-ha-ga-ska-rdar-och-lajpyga-priser-va-cker-tankar-kring-uta-kad-lagring",
+          "title": "[dagenslantbruk.se] Swedish farmers weigh more grain storage after large 2025 harvest",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/sta-rre-gajpyrdar-va-xlar-upp-mindre-mja-lkfa-retag-planerar-att-la-gga-ner",
+          "title": "[dagenslantbruk.se] Larger Swedish dairy farms plan expansion as smaller farms consider closure",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.woodbusiness.ca/soft-demand-continues-despite-lower-prices-on-some-lumber-items/",
+          "title": "[Canadian Forest Industries] Soft demand continues despite lower prices on some lumber items",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.realagriculture.com/2026/11/testing-the-potential-of-multi-species-cover-crops-in-potato-rotations-farming-forward/",
+          "title": "[RealAgriculture] Testing the potential of multi-species cover crops in potato rotations | Farming Forward",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://forestnet.com/kmc-max-unveils-first-machine-at-uruforest-prepares-for-operations-in-brazil/",
+          "title": "[Logging and Sawmilling Journal] KMC MAX Unveils First Machine at Uruforest, Prepares for Operations in Brazil - Forestnet",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.realagriculture.com/2026/11/canadian-farmer-sentiment-shows-resilient-long-term-outlook-amid-input-cost-worries/",
+          "title": "[RealAgriculture] Canadian farmer sentiment shows resilient long-term outlook amid input cost worries",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.northernminer.com/news/resource-review-video-industry-needs-workers-power-cmi-says/1003897833/",
+          "title": "[The Northern Miner] Resource Review video: Industry needs workers, power, CIM says",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/konjunkturen-pekar-brant-nerajpyt-i-lantbrukets-mat-och-energiproduktion",
+          "title": "[dagenslantbruk.se] Swedish farm confidence hits record low as costs squeeze producers",
+          "source": "",
+          "theme_pct": 95,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.farmanddairy.com/columns/corn-residue-grazing-save-winter-hay-with-post-harvest-field-forage/936719.html",
+          "title": "[farmanddairy.com] Farmers weigh grazing and feed-loss trade-offs for winter livestock",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.proplanta.de/agrar-nachrichten/agrarwirtschaft/macht-ki-im-stall-die-tierhaltung-besser_article1794462440.html",
+          "title": "[proplanta.de] EuroTier showcases AI cattle monitors as farmers weigh costs and welfare",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.realagriculture.com/2026/11/canola-needs-a-stronger-demand-signal-within-the-cfr-says-copa/",
+          "title": "[RealAgriculture] Canola needs a stronger demand signal within the CFR, says COPA",
+          "source": "",
+          "theme_pct": 93,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.smallfarmcanada.ca/news/growing-barley-for-a-small-brewery/",
+          "title": "[Small Farm Canada] From Field to Tap: Growing Barley for a Small Brewery",
+          "source": "",
+          "theme_pct": 93,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.americanagnetwork.com/2026/11/10/usda-trims-corn-yield-stocks-in-november-wasde/",
+          "title": "[americanagnetwork.com] USDA cuts corn yield, tightens soybean stocks, lifts grain prices",
+          "source": "",
+          "theme_pct": 90,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.smallfarmcanada.ca/news/six-changes-could-help-alberta-farms-grow-agritourism/",
+          "title": "[Small Farm Canada] Six Changes Could Help Alberta Farms Grow Agritourism",
+          "source": "",
+          "theme_pct": 90,
+          "aired": true
+        }
+      ],
+      "deep_dive": {
+        "question": "Who should count as affected by the Quesnel River Pulp mill curtailment, and how should the affected circle be defined and supported?",
+        "riley": "The city's wide list of affected groups is the right starting point, the province's transition toolkit and the company's financial supports are real resources, and the missing piece is a published rule tying them together.",
+        "casey": "The affected circle is wider than the 90 payroll workers, the criteria and reviewers for who qualifies are unpublished, and the 'closure' versus 'curtailment' distinction may decide eligibility for transition support.",
+        "resolution": "They agreed that a published set of criteria should come first and that an outside reader is useful, but did not resolve who the outside reader would be or whether curtailment counts as closure under provincial rules; they left those as open questions for written answers from the ministry and the city.",
+        "topics": [
+          "Defining the affected circle beyond payroll workers",
+          "Curtailment versus closure and its effect on contracts and eligibility",
+          "Quesnel's tax-base dependence on heavy industry and council incentives",
+          "Provincial transition supports and the Community Transition Services eligibility question",
+          "Need for published criteria and an independent reviewer for the affected list"
+        ],
+        "sources": [
+          {
+            "title": "City of Quesnel requests provincial support following pulp mill curtailment",
+            "url": "https://quesnelobserver.com/2026/11/16/city-of-quesnel-requests-provincial-support-following-pulp-mill-curtailment/"
+          },
+          {
+            "title": "Quesnel requests Community Transition Services for those impacted by QRP curtailment",
+            "url": "https://www.mycariboonow.com/317438/news/forestry/city-requests-community-transition-services-for-those-impacted-by-qrp-curtailment/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-16",
     "title": "Episode Review — Arts, Culture & Digital Storytelling, November 16, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-16.html",
@@ -3016,20 +3298,6 @@
       "script_words": 3673,
       "roundup_cite_pct": 76.5,
       "deep_dive_cite_pct": 25.0
-    }
-  },
-  {
-    "date": "2026-10-18",
-    "title": "Episode Review — Cariboo Signals, October 18, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-18.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39110140984\">39110140984</a>.</em></p>\n\n<h3>The short draft that the pipeline sent back twice</h3>\n<p>The first script draft came in at 2694 words against a target of 3400. The pipeline did not ship it. It sent the draft back for expansion, up to two passes, and what shipped was 3423 words. That is 23 words over target, so the expand passes did their job, but the gap is the story: the generator's first attempt ran about 21 percent short and needed the retry loop to reach length.</p>\n<p>The voice split held at 0.87, Casey over Riley, and the AI-tell pattern check recorded zero hits. Neither of those numbers was at risk on this run.</p>\n\n<h3>Two takes came back short from TTS</h3>\n<p>Two text-to-speech takes returned shorter than their word counts predicted. Each was retried once. One retry still came back short. For that segment the pipeline kept the longer of the two takes, so no content was dropped from the episode. The audio ran 22.3 minutes at 20.5 MB.</p>\n<p>The short-take count is two and the still-short retry count is one. The second number does not mean one segment is missing from the audio. It means one segment is the one where the retry did not produce a full-length take, and the longer take was used in its place. Whether that take is complete is not something the run measured.</p>\n\n<h3>The roundup cut 68 stories and the citations did not fully hold</h3>\n<p>The roundup pool was larger than one segment could air. The airtime budget, set by NEWS_ROUNDUP_COUNT, cut 68 stories. The pipeline treats that as expected: the pool is deliberately oversized, and a cut story can air on a day where it fits better.</p>\n<p>The cuts left a visible tension in the citations. Of 18 roundup citations, 14 matched the aired content. Of four deep-dive citations, three matched. So four citations did not align: one in the roundup and one in the deep dive. The facts do not say which citations failed or why, and this review does not guess.</p>\n\n<h3>What the deep dives covered</h3>\n<p>The four deep dives were drawn from the Gulf attacks coverage in the NYT Business feed, a WIRED piece on microplastics reacting with water, a TechCrunch story on Mosqitter's AI-powered mosquito traps, and an NYT Top Stories piece on worlds more habitable than Earth. The episode's debate question asks whether long-term environmental and scientific monitoring should be trusted and acted on before its implications are confirmed, and how such records should be funded, governed, and sustained. The four deep dives are a loose fit for that question, which is a matter of editorial choice, not a pipeline failure.</p>\n\n<h3>Runs and spend</h3>\n<p>The primary run started at 1:05 AM Pacific, zero minutes late, and finished at 1:53 AM Pacific with a success conclusion. Fallback 1 started at 2:05 AM Pacific and finished at 2:06 AM Pacific, also a success. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has no finish time yet. Its conclusion is null. The fallback runs were scheduled as backups, and their successful completion does not by itself show that the primary's output was replaced.</p>\n<p>The slowest step was Deploy to GitHub Pages at 1092 seconds, followed by Checkout repository at 776 seconds and Generate episode script at 491 seconds. Script generation alone consumed 57,310 Anthropic input tokens. The service call counts were brave-search 8, kagi-extract 4, claude 10, and brave-answers 4. The video is 79.3 MB at 22.3 minutes, and the RSS feed now lists 263 episodes.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.87, 3423 words</td></tr>\n<tr><td>Audio</td><td>22.3 min</td></tr>\n<tr><td>Audio size</td><td>20.5 MB</td></tr>\n<tr><td>Citations matched</td><td>14/18 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>263 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>57,310</td></tr>\n<tr><td>API calls</td><td>***'brave-search': 8, 'kagi-extract': 4, 'claude': 10, 'brave-answers': 4***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-18T10:06:29+00:00",
-    "metrics": {
-      "audio_minutes": 22.3,
-      "tell_hits": 0,
-      "script_words": 3423,
-      "roundup_cite_pct": 77.8,
-      "deep_dive_cite_pct": 75.0
     }
   }
 ]

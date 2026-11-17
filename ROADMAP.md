@@ -41,18 +41,10 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-10-07..2026-11-16) — 3 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-11-14..2026-11-16) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
-      section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
-      (33%). The gap suggests a different verification pathway or a shortfall in source
-      retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
-      proceeded despite this disparity. Audit the deep dive citation matching logic and the
-      Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 2
-      reviews, latest 2026-11-14)
 - [ ] **A theme-feed local story was available for the roundup but did not air there.** On
       2026-11-14 the Cariboo Local Affairs feed loaded 21 on-theme articles and 1 local story
       reached the roundup pool, yet 0 local stories aired and the roundup did not open on a
