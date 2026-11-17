@@ -46,11 +46,6 @@
       },
       {
         "date": "2026-10-26",
-        "clue": "structural-lens:x \u2014 concedes binder defenders have a valid point",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-10-26",
         "clue": "funding-risk:+ \u2014 doubles down on written rules and filing cabinets",
         "occurrences": 1
       },
@@ -172,6 +167,11 @@
       {
         "date": "2026-11-16",
         "clue": "funding-risk:~ Notes $5,000 may not cover materials",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-17",
+        "clue": "rural-context:+ \u2014 insists on city-scale and plain-terms reading of disruption",
         "occurrences": 1
       }
     ],
@@ -295,7 +295,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
       "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
       "[My Cariboo Now] Cops for Cancer riders to make community st",
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
@@ -304,7 +303,8 @@
       "[Williams Lake Tribune] New Kamloops facility supports rural",
       "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g",
       "[100 Mile Free Press] Interlakes community buys fire departm",
-      "[100 Mile Free Press] CMHA bringing community together with "
+      "[100 Mile Free Press] CMHA bringing community together with ",
+      "[My Cariboo Now] Quesnel requests Community Transition Servi"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -361,11 +361,6 @@
       {
         "date": "2026-11-06",
         "clue": "evidence-bar:~ \u2014 DNA match depends on scene samples and catching right bear",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-03",
-        "clue": "funding-risk:~ \u2014 public not paid for terminal, yet risk remains",
         "occurrences": 2
       },
       {
@@ -449,9 +444,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-14",
-        "clue": "evidence-bar:+ \u2014 repeatedly demands outcome lists and measured counts over anecdote",
-        "occurrences": 1
+        "date": "2026-11-17",
+        "clue": "evidence-bar:+ \u2014 presses on what documents actually govern eligibility",
+        "occurrences": 2
       },
       {
         "date": "2026-11-16",
