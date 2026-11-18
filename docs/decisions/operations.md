@@ -303,6 +303,16 @@ first; the workflow fetches the last five episodes' audio, which bounds it.
 Render-only mode skips the backlog: it would re-render the same days nightly for
 nobody.
 
+**A recorded upload is not a watchable video** (2026-11-18). `videos.insert` returns an ID
+before YouTube processes the file, so the ledger said "uploaded" for twelve days while YouTube
+abandoned every video as too long: the channel was not phone-verified, which caps uploads at
+15 minutes. The review now asks YouTube for the day's video after the run
+(`episode_review.check_youtube` → `youtube_upload.video_status`, one `videos.list`). The review
+job therefore carries the `YT_*` secrets; without them its row reads "unchecked" rather than
+nothing. `failed` and `missing` raise the `youtube-failed` signal, and so does a video held
+private when `YT_PRIVACY` asked for more (the unaudited-project lock). The ledger itself is
+untouched: deleting a day's entry is what makes the next run retry it.
+
 ## Brave spend (`_brave_search`, `_BRAVE_WALLS`, the four call budgets)
 
 **Two plans, two meters** (since 2026-08-29). Search is $5/1000 requests against a

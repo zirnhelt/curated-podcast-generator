@@ -71,6 +71,39 @@ def get_service():
     return build("youtube", "v3", credentials=creds, cache_discovery=False)
 
 
+def video_status(service, video_id: str, requested_privacy: str | None = None) -> tuple[str, str]:
+    """(state, detail) for an uploaded video, as YouTube reports it now.
+
+    videos.insert returns an ID before processing starts, so the upload call
+    cannot say whether the video is watchable: twelve uploads were recorded as
+    done while YouTube abandoned each one as "too long" (unverified channel).
+    State is one of ok, processing, failed, missing. Anything we cannot
+    positively call ok or still-processing is failed, with YouTube's own
+    words in the detail.
+    """
+    items = service.videos().list(part="status,processingDetails", id=video_id).execute().get("items", [])
+    if not items:
+        return "missing", "YouTube has no such video (deleted, or uploaded to another channel)"
+    status = items[0].get("status", {})
+    proc = items[0].get("processingDetails", {})
+    upload = status.get("uploadStatus", "")
+    processing = proc.get("processingStatus", "")
+    privacy = status.get("privacyStatus", "?")
+
+    if upload in ("rejected", "failed", "deleted"):
+        why = status.get("rejectionReason") or status.get("failureReason") or upload
+        return "failed", f"upload {upload}: {why}"
+    if processing in ("failed", "terminated"):
+        why = proc.get("processingFailureReason") or processing
+        return "failed", f"processing {processing}: {why}"
+    if upload == "processed":
+        if requested_privacy and privacy != requested_privacy:
+            return "failed", (f"processed but held as {privacy}; {requested_privacy} was requested "
+                              "(an unaudited API project is forced to private)")
+        return "ok", f"processed, {privacy}"
+    return "processing", f"upload {upload or '?'}, processing {processing or '?'}"
+
+
 def load_ledger() -> dict:
     if LEDGER_PATH.exists():
         with open(LEDGER_PATH, encoding="utf-8") as f:

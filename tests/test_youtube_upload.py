@@ -212,3 +212,65 @@ class TestDegradeRow:
 
         yu.upload_captions(Boom(), "vid", "t.vtt")
         assert "Degraded 'video/captions'" in capsys.readouterr().out
+
+
+class _FakeVideos:
+    def __init__(self, items):
+        self._items = items
+
+    def videos(self):
+        return self
+
+    def list(self, **kwargs):
+        self.kwargs = kwargs
+        return self
+
+    def execute(self):
+        return {"items": self._items}
+
+
+def _video(upload="processed", privacy="public", processing="succeeded", **extra):
+    status = {"uploadStatus": upload, "privacyStatus": privacy}
+    status.update({k: v for k, v in extra.items() if k in ("rejectionReason", "failureReason")})
+    proc = {"processingStatus": processing}
+    if "processingFailureReason" in extra:
+        proc["processingFailureReason"] = extra["processingFailureReason"]
+    return [{"status": status, "processingDetails": proc}]
+
+
+class TestVideoStatus:
+    """videos.insert returns an ID before processing: 12 uploads were recorded
+    as done while YouTube abandoned every one of them."""
+
+    def test_processed_and_public_is_ok(self):
+        assert yu.video_status(_FakeVideos(_video()), "abc", "public") == ("ok", "processed, public")
+
+    def test_asks_for_status_and_processing_details(self):
+        svc = _FakeVideos(_video())
+        yu.video_status(svc, "abc")
+        assert svc.kwargs == {"part": "status,processingDetails", "id": "abc"}
+
+    def test_abandoned_processing_is_a_failure(self):
+        state, detail = yu.video_status(
+            _FakeVideos(_video(upload="uploaded", processing="terminated",
+                               processingFailureReason="other")), "abc")
+        assert state == "failed" and "terminated" in detail and "other" in detail
+
+    def test_rejection_reason_is_reported(self):
+        state, detail = yu.video_status(
+            _FakeVideos(_video(upload="rejected", processing="", rejectionReason="length")), "abc")
+        assert (state, detail) == ("failed", "upload rejected: length")
+
+    def test_private_when_public_was_asked_is_a_failure(self):
+        state, detail = yu.video_status(_FakeVideos(_video(privacy="private")), "abc", "public")
+        assert state == "failed" and "private" in detail and "public was requested" in detail
+
+    def test_privacy_is_not_compared_without_a_request(self):
+        assert yu.video_status(_FakeVideos(_video(privacy="private")), "abc")[0] == "ok"
+
+    def test_still_processing_is_not_a_failure(self):
+        assert yu.video_status(
+            _FakeVideos(_video(upload="uploaded", processing="processing")), "abc")[0] == "processing"
+
+    def test_unknown_video_is_missing(self):
+        assert yu.video_status(_FakeVideos([]), "abc")[0] == "missing"
