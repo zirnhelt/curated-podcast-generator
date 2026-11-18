@@ -1,5 +1,298 @@
 [
   {
+    "date": "2026-11-18",
+    "title": "Episode Review — Repair Culture & Practical Tech, November 18, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-18.html",
+    "content_html": "<p class=\"meta\">Theme: Repair Culture &amp; Practical Tech. Focus: Maker &amp; Repair (week 1 of 5). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44264007315\">44264007315</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>2 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Investigate.</strong><br><span class=\"evidence\">the deep dive had no Cariboo story or angle</span></li>\n<li><strong><code>script/roundup-echo</code> fell back. Search the run log for <code>Degraded 'script/roundup-echo'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: 3 deep dive line(s) still retell the roundup after polish, e.g. \"Same card, different software on the Arc A750: local AI went from about 19 to 22 tokens per sec</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Two segments aired under budget and one more retry came back short</h3>\n<p>The first draft of the script came in at <code>2940</code> words against a target of <code>3400</code>, so it was sent back for one expand pass. The shipped script is <code>3767</code> words. The pipeline did not truncate to hit the target; it accepted the overage.</p>\n<p>Four TTS takes came back shorter than their word count predicts. Each was retried once, and <code>3</code> of those retries were still short. The longer take of each pair was kept, so nothing was dropped from the episode, but those three segments may run quieter or faster than the rest. The audio itself is the place to check.</p>\n\n<h3>The roundup opened on local news and the deep dive drifted from its charter</h3>\n<p>The roundup pool kept <code>18</code> stories, <code>14</code> on theme and <code>4</code> local. The airtime budget cut <code>34</code> stories from the pool. All <code>4</code> local stories aired, and the roundup opened with them. The deep dive led on a charter-aligned item (p100), but the script still retold roundup material: <code>3</code> deep dive lines repeated the roundup after polish, including the Arc A750 tokens-per-second example. This is a script-level overlap the polish pass did not remove.</p>\n<p>The local-first opening is the designed behaviour, and the cut stories remain in the pool for a later day. The deep dive overlap is the item to act on: tighten the deep dive prompt so it does not re-explain roundup items, or add a check that rejects deep dive sentences that repeat a roundup card's specific figures.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>68</td></tr>\n<tr><td>Kept after dedup</td><td>57</td></tr>\n<tr><td>Held / released</td><td>2 released, 3 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:14, local:4</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.87, 3767 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 47% of the words</td></tr>\n<tr><td>Audio</td><td>22.1 min</td></tr>\n<tr><td>Audio size</td><td>20.2 MB</td></tr>\n<tr><td>Citations matched</td><td>15/18 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>294 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>85,334</td></tr>\n<tr><td>API calls</td><td>146 total: openai-tts 112 · claude 11 · brave-search 8 · kagi-extract 6 · cohere 5 · brave-answers 4</td></tr>\n<tr><td>Anthropic cost</td><td>$0.16 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.72 at list price: OpenAI TTS $0.323 · Anthropic $0.165 · Brave Answers $0.164 · Brave Search $0.040 · Kagi Extract $0.024 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-18T10:06:32+00:00",
+    "metrics": {
+      "audio_minutes": 22.1,
+      "script_words": 3767,
+      "tell_hits": 0,
+      "roundup_cite_pct": 83.3,
+      "deep_dive_cite_pct": 75.0,
+      "cost_usd": 0.719
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "2 things to look at before tomorrow's run.",
+      "theme": "Repair Culture & Practical Tech",
+      "kpis": [
+        [
+          "Episode",
+          "22.1 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,767",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "15/18 · 3/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.72",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:34 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "deep-dive-non-local",
+          "todo": "Investigate.",
+          "evidence": "the deep dive had no Cariboo story or angle",
+          "minor": false,
+          "nights_seen": 0
+        },
+        {
+          "signal": "degraded:script/roundup-echo",
+          "todo": "script/roundup-echo fell back.",
+          "evidence": "degrade() row: 3 deep dive line(s) still retell the roundup after polish, e.g. \"Same card, different software on the Arc A750: local AI went from about 19 to 22 tokens per sec",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-16",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 5,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-17",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Forestry & Timber",
+          "week": 2,
+          "of": 4,
+          "next": "Mining & Energy",
+          "event": null
+        },
+        {
+          "date": "2026-11-18",
+          "day": "Wed",
+          "today": true,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 5,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-19",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Language & Culture",
+          "week": 2,
+          "of": 4,
+          "next": "Economic Development",
+          "event": null
+        },
+        {
+          "date": "2026-11-20",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 4,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-21",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-22",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 5,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "How much should neighbours know about each other?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://boingboing.net/2026/11/12/fountain-pen-fulu-smart-tv-spyware-dmca.html",
+          "title": "[Boing Boing] A dumb copyright law makes it illegal to remove the spyware from your own TV",
+          "source": "",
+          "theme_pct": 100,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.zdnet.com/home-and-office/home-assistant-connect-aux-2-hardware-older-tech-smart/",
+          "title": "[ZDNet] This tiny box gives your older tech smart home superpowers – and it’s only $69",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.ifixit.com/News/120317/homeview-teardown-a-surprising-step-backward",
+          "title": "[iFixit] HomeView Teardown: A Surprising Step Backward",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.engadget.com/2313927/13-year-old-solving-solar-panel-limitation/",
+          "title": "[Engadget] How one 13-year-old is helping solve a huge solar panel limitation",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/11/ev-batteries-are-proving-hardier-than-expected/",
+          "title": "[Hackaday] EV Batteries Are Proving Hardier Than Expected",
+          "source": "",
+          "theme_pct": 98,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.tomshardware.com/3d-printing/mechatronics-student-builds-3d-printer-made-from-92-percent-lego-for-less-than-usd180-lego-leadscrews-and-print-bed-can-print-a-decent-benchy-in-1-25-hours",
+          "title": "[Tom's Hardware] Mechatronics student builds 3D printer made from 92% LEGO for less than $180",
+          "source": "",
+          "theme_pct": 98,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/16/making-a-universal-self-centering-tap-wrench/",
+          "title": "[Hackaday] Making a Universal, Self-Centering Tap Wrench",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.xda-developers.com/ollama-was-holding-back-my-weak-intel-arc-gpu/",
+          "title": "[XDA Developers] Ollama was holding back my \"weak\" Intel GPU, and one swap turned it into a solid local AI setup",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/14/my-300-embroidery-machine-needed-a-subscription-so-i-built-my-own-app/",
+          "title": "[Adafruit Blog] My $300 embroidery machine needed a subscription, so I built my own app",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.xda-developers.com/i-put-20-usb-hub-in-car-now-my-dash-cam-phone-android-auto-all-run-off-one-port/",
+          "title": "[XDA Developers] I put a $20 USB hub in my car, and now my dash cam, phone, and Android Auto all run off one port",
+          "source": "",
+          "theme_pct": 95,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.tomshardware.com/3d-printing/3d-printing-developer-creates-self-hostable-non-planar-printing-slicer-pancakeslicer-makes-non-planar-3d-printing-accessible-potentially-leading-to-rapid-community-development",
+          "title": "[Tom's Hardware] 3D printing dev’s free tool unlocks curved printing along all three axes",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/17/custom-firmware-for-fortinet-fortigate-60-firewall-router/",
+          "title": "[Hackaday] Custom Firmware for Fortinet FortiGate 60 Firewall/Router",
+          "source": "",
+          "theme_pct": 92,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.howtogeek.com/the-operating-system-that-almost-beat-windows-and-why-you-have-probably-never-heard-of-it/",
+          "title": "[How-To Geek] The operating system that almost beat Windows (and why you've probably never heard of it)",
+          "source": "",
+          "theme_pct": 92,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/16/open-source-3d-printer-built-mostly-from-lego/",
+          "title": "[Adafruit Blog] Open-source 3D printer built mostly from LEGO",
+          "source": "",
+          "theme_pct": 92,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.bambulab.com/h2d-h2c-and-x2d-will-support-hybrid-printing-with-multi-orifice-nozzles/",
+          "title": "[Bambu Lab Blog] H2D, H2C and X2D will support hybrid printing with multi-orifice nozzles",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "Should consumers expect new products from repair-friendly companies to be as easy to open and repair as older models, and what can buyers, makers, and local communities do when they are not?",
+        "riley": "Repairability is a judgment that teardowns make public, and open designs, skill-building, and local repair logs can shift buying behavior and pressure companies toward repairable products; a regression like HomeView is not proof the company cannot build repairable devices.",
+        "casey": "Teardowns report on screws and glue but cannot show intent or future improvement, and the buyer usually decides before any teardown appears; open designs and local logs depend on skills, budgets, and maintainers that are rarely secured in practice.",
+        "resolution": "They did not reach agreement. Riley held that teardowns, open designs, and local logs create useful public records and buying signals, while Casey held that the buyer's choice is made before those records appear and that maintenance, budgets, and skill retention remain unresolved. They ended by leaving the question open of who should be accountable for warning buyers about regressions and whether ",
+        "topics": [
+          "Apple HomeView teardown and repairability regression",
+          "Copyright law (DMCA) as a barrier to repairing and modifying devices",
+          "Open-source and low-cost DIY hardware such as the bioprinter, Hydra ceramic printer, and LEGO-based Studprint",
+          "Maintenance, skill retention, and budgeting for local repair and maker projects",
+          "Vendor subscriptions, firmware, and open-source workarounds like ZigZag and llama.cpp"
+        ],
+        "sources": [
+          {
+            "title": "iFixit’s Apple HomeView teardown reveals a device that will be difficult to repair",
+            "url": "https://www.theverge.com/tech/1036045/ifixit-teardown-apple-homeview-smart-home-hub"
+          },
+          {
+            "title": "3D Printing a Tank Is Both Easier and More Challenging Than You Think",
+            "url": "https://www.hackster.io/news/3d-printing-a-tank-is-both-easier-and-more-challenging-than-you-think-1818b00ba8a5"
+          },
+          {
+            "title": "Modified Ender 3 becomes a $450 bioprinter for 3D printing engineered living materials",
+            "url": "https://www.tomshardware.com/3d-printing/university-of-rochester-researchers-made-a-3d-bioprinter-from-a-modified-ender-3-usd450-bioprinter-makes-engineered-living-material-research-accessible"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-17",
     "title": "Episode Review — Working Lands & Industry, November 17, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-17.html",
@@ -3284,20 +3577,6 @@
       "script_words": 3554,
       "roundup_cite_pct": 72.2,
       "deep_dive_cite_pct": 100.0
-    }
-  },
-  {
-    "date": "2026-10-19",
-    "title": "Episode Review — Cariboo Signals, October 19, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-19.html",
-    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39220293431\">39220293431</a>.</em></p>\n\n<h3>The short draft and the expand passes</h3>\n<p>The first script draft came in at 2850 words against a target of 3400. The pipeline sent it back for up to two expand passes. What shipped was 3673 words, so the expansion overshot the target by 273 words. The episode is longer than the spec asked for, and the audio reflects it: 21.9 minutes of audio, 20.1 MB.</p>\n<p>The degradation log lists one failure, in the script step. Kagi Extract returned no page for 4 thin roundup stories. Those stories were still in the script without their source text.</p>\n\n<h3>Citations that did not match</h3>\n<p>Citation alignment was uneven. Of 17 roundup citations, 13 matched. Of 4 deep-dive citations, 1 matched. The deep-dive figure is the weaker one: three of the four long segments went to air with citations that did not check out against their sources.</p>\n<p>The four failed Kagi Extract pages are the likely cause for the roundup side, since thin stories give the matcher less to match against. The facts do not establish that link, so treat it as a suspicion until someone checks which citations were the unmatched ones.</p>\n\n<h3>Cut stories</h3>\n<p>The roundup pool had 40 stories cut by the airtime budget. This is by design. The pool is larger than one segment can air, and a cut story can come back on a day when it fits better. The 40 cuts are not 40 missing items from this episode. They are the pool doing what it was built to do.</p>\n<p>The tension is that 4 of those roundup stories were thin enough that Kagi returned nothing for them, yet they still made the script. The budget cut 40 stories, and the thinnest sources were the ones that got through.</p>\n\n<h3>Quality and tone</h3>\n<p>The voice split between the two hosts was 0.93 Casey over Riley. The script tripped the AI-tell pattern check once. Both figures are within what the pipeline is meant to accept, and neither needs action today.</p>\n\n<h3>The schedule held, with fallbacks</h3>\n<p>The primary run started at 1:05 AM Pacific and finished at 1:31 AM Pacific. It completed successfully with no lateness. Two fallback runs were scheduled behind it. Fallback 1 started at 2:05 AM Pacific and finished at 2:05 AM Pacific, also successful. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has not finished.</p>\n<p>The slowest steps were the script generation at 502 seconds and the Pages deploy at 371 seconds. Audio rendering took 283 seconds. The video render and YouTube upload took 131 seconds.</p>\n\n<h3>Spend and output</h3>\n<p>The run used 61,831 Anthropic input tokens. API calls split across four services: 11 to Claude, 9 to Brave Search, 4 to Kagi Extract, and 4 to Brave Answers. The video is 75.3 MB at a runtime of 21.9 minutes. The RSS feed now carries 264 episodes.</p>\n\n<h3>The day's debate</h3>\n<p>The episode's question was whether credibility and authenticity in arts and culture come from the artists and audiences themselves, or whether sponsors, founders, and institutions can inherit and spend them. The four deep dives covered a music genre turned into a brand asset, a state crackdown on critics, an architecture archive, and an off-grid refrigerator built from fire and salt. Three of the four deep-dive citations failed to match, so the argument rests more on the scripted framing than on the verified sources behind it.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.93, 3673 words</td></tr>\n<tr><td>Audio</td><td>21.9 min</td></tr>\n<tr><td>Audio size</td><td>20.1 MB</td></tr>\n<tr><td>Citations matched</td><td>13/17 roundup, 1/4 deep dive</td></tr>\n<tr><td>Feed</td><td>264 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>61,831</td></tr>\n<tr><td>API calls</td><td>***'claude': 11, 'brave-search': 9, 'kagi-extract': 4, 'brave-answers': 4***</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-19T10:06:06+00:00",
-    "metrics": {
-      "audio_minutes": 21.9,
-      "tell_hits": 1,
-      "script_words": 3673,
-      "roundup_cite_pct": 76.5,
-      "deep_dive_cite_pct": 25.0
     }
   }
 ]
