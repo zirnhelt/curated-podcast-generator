@@ -10762,9 +10762,13 @@ def format_storyboard_for_prompt(plan: dict | None, roundup_articles: list) -> s
               f"Riley holds: {dd['riley_holds']}",
               f"Casey holds: {dd['casey_holds']}"]
     for i, b in enumerate(dd["beats"], 1):
+        pushback = b['pushback'].strip()
+        if pushback.rstrip('.').lower() in ('none', 'n/a', ''):
+            # The hosts agree here (producer, 2026-11-17/18: "the debate was forced").
+            pushback = "none: the hosts agree here; build on it, never stage a disagreement"
         lines += [f"Beat {i}: {b['claim']}",
                   f"  Evidence: {b['evidence']}",
-                  f"  Pushback: {b['pushback']}",
+                  f"  Pushback: {pushback}",
                   f"  → next, because: {b['leads_to_next']}"]
     if dd["set_aside"]:
         lines.append("Set aside (not part of the deep dive): " + "; ".join(dd["set_aside"]))

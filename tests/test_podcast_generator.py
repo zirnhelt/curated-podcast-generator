@@ -8098,6 +8098,42 @@ class TestCaribooDeepDivePick:
         prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
         assert "A notice of an event's times, places and participants does not pass" in prompt
 
+    def test_the_hosts_may_agree(self):
+        """Episode notes 2026-11-17 and 11-18: "the debate was forced". Every beat had to
+        carry a pushback, and an empty one was told to "choose a question it does"."""
+        import config_loader
+        prompts = config_loader.load_prompts_config()
+        storyboard = prompts["script_storyboard"]["template"]
+        assert "choose a question it does" not in storyboard
+        assert "agree and differ only in emphasis" in storyboard
+        assert "write none" in storyboard
+        assert "disagree on substance" not in prompts["script_generation_system"]["template"]
+        assert "Never stage a disagreement" in prompts["script_generation"]["template"]
+
+    def test_a_none_pushback_renders_as_agreement(self):
+        import podcast_generator as pg
+        plan = {"roundup": {"opening_frame": "f", "stories": [], "handoff": "h"},
+                "deep_dive": {"central_question": "q", "riley_holds": "r", "casey_holds": "c",
+                              "beats": [{"claim": "c1", "evidence": "e", "pushback": "None.",
+                                         "leads_to_next": "n"}],
+                              "set_aside": [], "cariboo_beat": "b", "landing": "l"}}
+        block = pg.format_storyboard_for_prompt(plan, [])
+        assert "Pushback: none: the hosts agree here" in block
+
+    def test_a_roundup_reaction_rests_on_the_story(self):
+        """Episode note 2026-11-18: after an ocean-temperature story Casey said
+        "Somebody has to keep sensors running four hundred metres down. That's a
+        maintenance bill nobody reads in the headline." The story said no such thing."""
+        import config_loader
+        prompts = config_loader.load_prompts_config()
+        assert "A reaction rests on something the story says" in \
+            prompts["script_generation"]["template"]
+        for key, field in (("polish_and_factcheck", "template"),
+                           ("agentic_polish_and_factcheck", "system_template")):
+            assert "rests on something the story says" in prompts[key][field], key
+        assert "the stakes and costs the material shows" in \
+            prompts["script_generation_system"]["template"]
+
     def test_storyboard_pushback_never_rests_on_a_gap(self):
         """2026-11-09: every planned Casey pushback was what a one-source notice did
         not say; polish cut the lines and left him arguing from nothing."""
