@@ -24,7 +24,7 @@ paths:
 
 **Saturday is geographic** (`geographic: true`): every candidate is local, so a place-name hit is a constant, not a signal.
 - `_build_theme_subject_keywords` strips places and ranks on civic vocabulary.
-- `home_places` (Williams Lake, the CRD and its electoral areas, SD27) outranks neighbour towns. It is an **ordering rule, not an exclusion**.
+- `home_places` (Williams Lake, the CRD and its electoral areas, SD27) outranks neighbour towns. It is an **ordering rule, not an exclusion**. The roundup's local block applies it every day (`_show_home_hits`): Quesnel is secondary to Williams Lake news (producer, 2026-11-17).
 - A geographic day is never a routing target for held articles.
 - Its deep dive ranks only `_is_local_article` candidates when any exist: once the week's local news has aired, upstream's Saturday lane carries non-local strays.
 - **Saturday reads the week** (`recall_week_local`): local feed stories a weekday roundup told come back tagged `_recalled_from` + `_week_recall`, at most `WEEK_RECALL_MAX` (6), behind the fresh local stories in the roundup and the deep dive. One a weekday listed but never told (`discussed` false) comes back fresh; a weekday's deep-dive sources stay out. The recap airs even when nothing has moved, unlike the election recall.
