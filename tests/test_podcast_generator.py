@@ -4246,6 +4246,24 @@ class TestAnnotateRoundupBlocks:
         assert blocks[6] == "kicker"
         assert ordered[-1]["title"] == "Celebrity fashion week highlights"
 
+    def test_williams_lake_leads_the_local_block_on_a_weekday(self):
+        """Episode note 2026-11-17: Quesnel is secondary to Williams Lake news. The
+        show's home jurisdictions lead the local block every day, not only Saturday."""
+        articles = [
+            {"title": "[My Cariboo Now] Quesnel asks Cariboo and Prince George mills for jobs",
+             "url": "https://q.com", "authors": [{"name": "My Cariboo Now"}],
+             "_boosted_score": 80},
+            {"title": "[Williams Lake Tribune] Library opens a new wing",
+             "url": "https://wl.com", "authors": [{"name": "Williams Lake Tribune"}],
+             "summary": "The City of Williams Lake library reopens Monday.",
+             "_boosted_score": 40},
+            {"title": "Zebra gardening breakthrough", "url": "https://t1.com",
+             "_keyword_matches": 1, "_boosted_score": 20},
+        ]
+        ordered, _ = _annotate_roundup_blocks(articles, "Working Lands & Industry")
+        local = [a["url"] for a in ordered if a.get("_roundup_block") == "local"]
+        assert local == ["https://wl.com", "https://q.com"], "an ordering rule, not an exclusion"
+
     def test_bonus_pick_is_annotated_like_any_other_tail_story(self):
         """It used to short-circuit to a 'bonus' block and skip curation."""
         ordered, _ = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)

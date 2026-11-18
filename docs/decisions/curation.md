@@ -834,3 +834,20 @@ report. Otherwise the ranked deep dive stands and the local story airs in the ro
 failure. The first draft also let a one-source lead on the week's focus through; the
 producer tightened it ("Tighten", 2026-11-16): a focus hit is no substitute for a
 second outlet.
+
+## Williams Lake leads the local block every day (2026-11-18)
+
+The producer's note of 2026-11-17: "Quesnel has been over weighted in the stories for the
+past few weeks. It's secondary to Williams Lake news." By headline count it was not:
+since 10-21 the aired local stories named Williams Lake 30 times and Quesnel 15. Order was
+the problem. Quesnel opened the roundup on 11-16 (its new mayor) and 11-17 (a court case),
+and led that day's cold open and deep dive too (the pulp-mill curtailment). `home_places`
+(Williams Lake, the CRD, SD27, Horsefly…) ranked the local block on the geographic day
+only; on weekdays the sort fell to place-name counts and score, so a Quesnel story naming
+two places beat a Williams Lake story naming one.
+
+`_show_home_hits()` reads the geographic theme's `home_places` on every day, and the
+local block sorts on it first, after the week-recall tag. It is an ordering rule, not an
+exclusion: every local story still airs. The storyboard keeps the local stories in their
+draft order ("Every close-to-home story stays first, in its listed order"), so the draft
+order is the aired order. The deep dive and the Cariboo bar are unchanged.

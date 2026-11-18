@@ -7055,6 +7055,21 @@ def _home_place_hits(article: dict, theme_name) -> int:
     return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), home)
 
 
+def _show_home_hits(article: dict) -> int:
+    """Hits on the show's own jurisdictions, whatever the day's theme.
+
+    The geographic theme's `home_places` (Williams Lake, the CRD, SD27, Horsefly...)
+    name the places the show is from. `_home_place_hits` reads them on that day only;
+    the roundup's local block reads them every day. The producer's note of 2026-11-17:
+    "Quesnel has been over weighted in the stories for the past few weeks. It's
+    secondary to Williams Lake news." Quesnel had opened the roundup on 11-16 and 11-17.
+    """
+    for info in CONFIG['themes'].values():
+        if info.get('geographic'):
+            return _home_place_hits(article, info['name'])
+    return 0
+
+
 def _is_local_article(article: dict) -> bool:
     """True when a story names a Cariboo/BC place or comes from a local outlet.
 
@@ -7396,14 +7411,14 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
     # local story opens the episode — the local block is the show's front door.
-    # Home jurisdiction leads all of it: every story here is local, so counting
-    # place names alone sorted on which town got named most often and a Quesnel
-    # story could open a Williams Lake show. `home_places` is empty on the six
-    # topical themes, where this term is a constant and changes no order.
+    # Home jurisdiction leads all of it, every day (`_show_home_hits`): every story
+    # here is local, so counting place names alone sorted on which town got named
+    # most often and a Quesnel story could open a Williams Lake show. The storyboard
+    # keeps the local stories in this order.
     # A story the week already aired (`_week_recall`) follows the fresh ones, so
     # it is the first trimmed when the block is over budget.
     local_block.sort(
-        key=lambda a: (not a.get('_week_recall'), _home_place_hits(a, theme_name),
+        key=lambda a: (not a.get('_week_recall'), _show_home_hits(a),
                        _local_place_hits(a), relevance(a), boosted(a)),
         reverse=True,
     )
