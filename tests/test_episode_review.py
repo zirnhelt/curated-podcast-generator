@@ -920,6 +920,31 @@ def test_the_review_page_shows_the_plan(tmp_path, monkeypatch):
     assert er.render_plan(er.load_storyboard("2026-10-01"), {}) == ""
 
 
+def test_the_review_page_lists_research_spend_by_service(tmp_path, monkeypatch):
+    """The producer, 2026-11-18: list for which topics Brave and Kagi were used."""
+    import episode_review as er
+    log = [{"kind": "agent-search", "query": "Quesnel <mill> closure", "pass": "deep"},
+           {"kind": "roll-call", "query": "Williams Lake mayor race", "results": 4},
+           {"kind": "body-search", "story": "Fire hall vote", "result": "used (via wltribune.com)"},
+           {"kind": "question", "query": "How many jobs at the mill?"},
+           {"kind": "kagi-extract", "story": "Water plant", "result": "refused"},
+           {"kind": "page", "url": "https://free.test/read"},
+           {"kind": "cached", "researched": "2026-11-17"},
+           "junk", {"kind": "body-search"}]
+    (tmp_path / "citations_2026-11-18_x.json").write_text(
+        json.dumps({"research": {"block": "", "log": log}}))
+    monkeypatch.setattr(er, "CITATIONS_GLOB", str(tmp_path / "citations_{date}_*.json"))
+    html = er.render_research(er.load_research("2026-11-18"))
+    assert "<h2>Research spend</h2>" in html
+    assert "<strong>Brave Search</strong> (3)" in html
+    assert "<strong>Brave Answers</strong> (1)" in html
+    assert "<strong>Kagi Extract</strong> (1)" in html
+    assert "Quesnel &lt;mill&gt; closure" in html and "research pass (deep)" in html
+    assert "4 results" in html and "used (via wltribune.com)" in html and "refused" in html
+    assert "free.test" not in html and "2026-11-17" not in html  # free lookups stay off
+    assert er.render_research(er.load_research("2026-10-01")) == ""
+
+
 def test_the_summary_carries_the_cuts_cleaned(tmp_path, monkeypatch):
     import episode_review as er
     cuts = [{"kind": "deep_dive", "url": "https://a", "title": "Herd count", "source": "Tyee",

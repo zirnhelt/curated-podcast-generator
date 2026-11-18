@@ -1255,6 +1255,48 @@ def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
     return "\n".join(r for r in rows if r)
 
 
+# The research log's paid kinds, by the service that billed them. Pages read, candidate
+# profiles and a reused ballot pass cost nothing and stay off the page.
+_RESEARCH_SERVICES = (
+    ("Brave Search", {"agent-search": "research pass", "roll-call": "election roll call",
+                      "body-search": "roundup body backfill"}),
+    ("Brave Answers", {"question": "fact question"}),
+    ("Kagi Extract", {"kagi-extract": "roundup page read"}),
+)
+
+
+def load_research(date: str) -> list[dict]:
+    """The paid lookups the run made (`_RESEARCH_LOG` in the generator), for review.html."""
+    log = (_citations_key(date, "research", dict) or {}).get("log")
+    return [r for r in log if isinstance(r, dict)] if isinstance(log, list) else []
+
+
+def render_research(rows: list[dict]) -> str:
+    """What Brave and Kagi were spent on, one list per service, for the producer.
+
+    Page only. Each line is the query or story and why it was looked up; the outcome
+    when the log has one.
+    """
+    sections = []
+    for service, kinds in _RESEARCH_SERVICES:
+        items = []
+        for r in rows:
+            why = kinds.get(r.get("kind"))
+            what = str(r.get("query") or r.get("story") or "").strip()[:200]
+            if not (why and what):
+                continue
+            how = str(r.get("result") or "")[:40]
+            if r.get("kind") == "agent-search" and r.get("pass"):
+                why = f"{why} ({str(r['pass'])[:30]})"
+            if r.get("kind") == "roll-call" and isinstance(r.get("results"), int):
+                how = f"{r['results']} results"
+            items.append(f"<li>{escape(what)} <span class=\"note\">— {escape(why)}"
+                         f"{', ' + escape(how) if how else ''}</span></li>")
+        if items:
+            sections.append(f"<p><strong>{service}</strong> ({len(items)})</p><ul>{''.join(items)}</ul>")
+    return "\n".join(["<h2>Research spend</h2>", *sections]) if sections else ""
+
+
 def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str,
                  history: list[dict] | None = None,
                  ledger: dict | None = None) -> tuple[str, str, str]:
@@ -1296,6 +1338,7 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
         actions, render_charts(facts),
         render_trends(history or [], review_metrics(facts), date), detail,
         render_plan(load_storyboard(date), facts),
+        render_research(load_research(date)),
         f"<details><summary>Raw numbers</summary>\n{tables}\n</details>" if tables else ""] if p)
     page = PAGE.format(title=escape(title), published=_human_date(date),
                        site=SITE_URL, content=page_body)

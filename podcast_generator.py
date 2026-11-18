@@ -4438,6 +4438,8 @@ def _extract_roundup_stories(articles: list) -> int:
             data = resp.json().get("data") or []
         except Exception as e:
             status = getattr(getattr(e, "response", None), "status_code", None)
+            _RESEARCH_LOG.extend({"kind": "kagi-extract", "story": a.get("title", "")[:200],
+                                  "result": "failed"} for a in batch)
             degrade("script/kagi-extract",
                     f"Kagi Extract request failed ({status or type(e).__name__}); "
                     "thin roundup stories fall back to Brave title search")
@@ -4445,18 +4447,24 @@ def _extract_roundup_stories(articles: list) -> int:
         by_url = {p.get("url"): p for p in data if isinstance(p, dict) and p.get("url")}
         for j, (a, url) in enumerate(zip(batch, urls)):
             page = by_url.get(url) or (data[j] if not by_url and j < len(data) else None)
+            # What each page bought, for the review's research section.
+            row = {"kind": "kagi-extract", "story": a.get("title", "")[:200], "result": "unmatched"}
+            _RESEARCH_LOG.append(row)
             if not isinstance(page, dict):
                 unmatched += 1
                 continue
             if page.get("error"):
                 errors.append(str(page["error"])[:80])
+                row["result"] = "refused"
                 continue
             read += 1
+            row["result"] = "read"
             text = _markdown_prose(page.get("markdown") or "")[:2000]
             if len(text) > len(a.get("_body", "") or ""):
                 a["_body"] = text
                 a.pop("_body_via", None)
                 grew += 1
+                row["result"] = "used"
                 _KAGI_EXTRACT_STATE["used"] = True
     print(f"  📰 Kagi Extract: {grew}/{len(thin)} thin roundup stories read from their own page "
           f"(~${len(thin) * _FLAT_USD_PER_UNIT['kagi-extract']:.3f})")
@@ -4478,7 +4486,11 @@ def _research_roundup_story(article: dict, brave_key: str) -> bool:
     Returns True when the body grew.
     """
     title = article.get("title", "")
+    sent = _BRAVE_SEARCH_STATE["search_calls"]
     results = _brave_search_rate_limit(title, brave_key, count=3)
+    row = {"kind": "body-search", "story": title[:200], "result": "no results"}
+    if _BRAVE_SEARCH_STATE["search_calls"] > sent:  # a walled or spent meter sent nothing
+        _RESEARCH_LOG.append(row)
     if not results:
         return False
     want = _significant_words(title)
@@ -4496,10 +4508,12 @@ def _research_roundup_story(article: dict, brave_key: str) -> bool:
             if len(candidate) > len(best):
                 best, best_via = candidate, (host if host and host != own_host else None)
     if len(best) <= len(article.get("_body", "") or ""):
+        row["result"] = "nothing longer"
         return False
     article["_body"] = best
     if best_via:
         article["_body_via"] = best_via
+    row["result"] = f"used{' (via ' + best_via + ')' if best_via else ''}"
     return True
 
 
