@@ -41,19 +41,10 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-11-14..2026-11-16) — 2 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-11-15..2026-11-16) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **A theme-feed local story was available for the roundup but did not air there.** On
-      2026-11-14 the Cariboo Local Affairs feed loaded 21 on-theme articles and 1 local story
-      reached the roundup pool, yet 0 local stories aired and the roundup did not open on a
-      local item (roundup_shape: local_stories_aired 0, roundup_opened_local no). The one local
-      story was instead routed to the deep dive, which took the lead subject, while 3 unused
-      on-theme candidates were left over. The facts do not show why the roundup selection passed
-      over the local story, so the fix is to inspect the roundup selection logic so a theme-feed
-      local story is not dropped when the deep dive takes a different subject. (signal
-      `no-local-roundup`; seen in 2 reviews, latest 2026-11-15)
 - [ ] **The deep dive aired on a single source while on-theme candidates went unused.** On
       2026-11-15 the deep dive used one source, My Cariboo Now, while 32 on-theme candidates
       remained unused after the roundup cut. The deep-dive beat count was 4 aired against 5

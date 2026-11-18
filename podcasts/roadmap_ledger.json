@@ -784,8 +784,8 @@
       "title": "A theme-feed local story was available for the roundup but did not air there.",
       "detail": "On 2026-11-14 the Cariboo Local Affairs feed loaded 21 on-theme articles and 1 local story reached the roundup pool, yet 0 local stories aired and the roundup did not open on a local item (roundup_shape: local_stories_aired 0, roundup_opened_local no). The one local story was instead routed to the deep dive, which took the lead subject, while 3 unused on-theme candidates were left over. The facts do not show why the roundup selection passed over the local story, so the fix is to inspect the roundup selection logic so a theme-feed local story is not dropped when the deep dive takes a different subject.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-14",
       "seen": [
         "2026-11-14",
@@ -800,8 +800,8 @@
       "title": "Script output fails to parse into welcome, news and deep-dive sections, so episodes ship without music beds or section structure.",
       "detail": "On 2026-11-15 the script stage produced a draft that the segment parser could not split into welcome, news and deep-dive, and the render fell back to TTS-only mode with the warning 'Segment parsing failed - falling back to TTS-only mode'. The episode went out as one continuous spoken track. The Kagi Extract step also matched no page for 2 of 2 URLs in the same run, so the script stage is degrading in two places at once. The fix is to check the segment delimiters the script prompt asks for against what the parser expects, and to make the parser fail loudly on the next run rather than falling back silently.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-15",
       "seen": [
         "2026-11-15"
@@ -840,7 +840,22 @@
       "signal": "split-topic",
       "signal_seen": "2026-11-17",
       "last_seen": "2026-11-17"
+    },
+    {
+      "id": "deep-dive-retells-roundup-figures",
+      "title": "Deep dive lines repeat roundup card figures after the polish pass.",
+      "detail": "On 2026-11-18, three deep dive lines still retold the roundup after polish, including the Arc A750 tokens-per-second example (about 19 to 22, then around 33). The polish pass did not remove the overlap, so the same specific figures aired twice in one episode. The deep dive prompt should be tightened so it does not re-explain roundup items, or a check should reject deep dive sentences that repeat a roundup card's specific numbers before the script is accepted.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-11-18",
+      "seen": [
+        "2026-11-18"
+      ],
+      "signal": "degraded:script/roundup-echo",
+      "signal_seen": "2026-11-18",
+      "last_seen": "2026-11-18"
     }
   ],
-  "updated": "2026-11-17"
+  "updated": "2026-11-18"
 }
