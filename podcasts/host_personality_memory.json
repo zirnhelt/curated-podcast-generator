@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Business Insider] I broke into tech sales after working in ",
       "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
       "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
       "[TechRadar] These social media posts promise big online disc",
@@ -10,7 +9,8 @@
       "The Tyee Podcast: Inside Canada\u2019s AI Data Centre Fervour",
       "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bik",
       "[Tom's Hardware] Tech sleuth claims to have found the oldest",
-      "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M"
+      "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M",
+      "[ZDNet] This tiny box gives your older tech smart home super"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -105,14 +105,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-08",
-        "clue": "tech-optimism:+ \u2014 Defends FLIP as a discovery-grade method path",
-        "occurrences": 1
+        "date": "2026-11-18",
+        "clue": "tech-optimism:+ \u2014 Repair as public good, open designs advocated throughout",
+        "occurrences": 2
       },
       {
-        "date": "2026-11-09",
-        "clue": "evidence-bar:- \u2014 softens demand for records, accepting a curator as a named door",
-        "occurrences": 1
+        "date": "2026-11-18",
+        "clue": "evidence-bar:- \u2014 Accepts 'the transferable part is the method' over headline claims",
+        "occurrences": 2
       },
       {
         "date": "2026-11-10",
@@ -145,9 +145,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-14",
-        "clue": "community-trust:+ \u2014 insists the rule protects residents equally, defends it",
-        "occurrences": 1
+        "date": "2026-11-18",
+        "clue": "community-trust:+ \u2014 Logs and school shop classes as buying-signal infrastructure",
+        "occurrences": 2
       },
       {
         "date": "2026-11-15",
@@ -339,9 +339,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-19",
-        "clue": "pilot-skepticism:+ \u2014 five-week test is not a permanent budget line",
-        "occurrences": 1
+        "date": "2026-11-18",
+        "clue": "pilot-skepticism:+ \u2014 Solar tracker and bioprinter treated as single prototypes",
+        "occurrences": 2
       },
       {
         "date": "2026-10-24",
@@ -436,16 +436,6 @@
       {
         "date": "2026-11-15",
         "clue": "evidence-bar:x \u2014 concedes the cause is documented, not just a day",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-14",
-        "clue": "community-trust:~ \u2014 notes filings and fairness hinge on who can pay",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-17",
-        "clue": "evidence-bar:+ \u2014 presses on what documents actually govern eligibility",
         "occurrences": 2
       },
       {
