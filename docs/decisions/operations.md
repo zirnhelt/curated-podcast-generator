@@ -586,6 +586,19 @@ with the scheduler PAT, the one token with Actions write on both repos. The refr
 nothing. The step is `continue-on-error`: a miss costs only the same-morning copy, because the
 nightly still picks the review up.
 
+### The review lists what Brave and Kagi were spent on (2026-11-18)
+
+The producer asked for the episode report to say which topics Brave and Kagi were used for.
+The citations JSON already kept the research pass's log (`research.log`: agent searches, the
+election roll call, Answers questions), but the roundup's body research wrote nothing: the
+Kagi Extract reads (`_extract_roundup_stories`) and the Brave title searches
+(`_research_roundup_story`) were visible only as totals in the run log. Both now log one row per
+page or search, with its story and outcome (`used`, `read`, `refused`, `unmatched`, `failed`;
+`no results`, `nothing longer`, `used (via host)`). A title search is logged only when the call
+went out: the wrapper answers `[]` for a walled or spent meter as well. `render_research` lists
+the paid rows under their service on the review page (not the RSS copy); pages read, candidate
+profiles and a reused ballot pass cost nothing and stay off it.
+
 ## Third-party text in the episode notes, and fetches of outside URLs (2026-10-03)
 
 The episode description is HTML inside a CDATA section of the public RSS feed, and it quoted

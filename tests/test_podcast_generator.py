@@ -7064,6 +7064,7 @@ class TestSparseFilterBudget:
         monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "test-key")
         monkeypatch.delenv("KAGI_API_KEY", raising=False)
         monkeypatch.setattr(pg, "_KAGI_EXTRACT_STATE", {"pages": 0})
+        monkeypatch.setattr(pg, "_RESEARCH_LOG", [])
 
     def test_feed_excerpt_is_used_before_any_search(self, monkeypatch):
         import podcast_generator as pg
@@ -7277,6 +7278,59 @@ class TestSparseFilterBudget:
         kept, brave_used = pg._filter_sparse_news_articles(articles)
         assert len(calls) == 3
         assert len(kept) == 3 and brave_used
+
+    def test_the_review_hears_which_stories_kagi_read(self, monkeypatch):
+        """The producer, 2026-11-18: list for which topics Brave and Kagi were used."""
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": "https://x.test/a", "markdown": story},
+                                 {"url": "https://x.test/b", "error": "No data returned"}]}
+        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
+        articles = [{"title": "Fire hall", "url": "https://x.test/a"},
+                    {"title": "Water plant", "url": "https://x.test/b"},
+                    {"title": "Lost page", "url": "https://x.test/c"}]
+        pg._extract_roundup_stories(articles)
+        assert pg._RESEARCH_LOG == [
+            {"kind": "kagi-extract", "story": "Fire hall", "result": "used"},
+            {"kind": "kagi-extract", "story": "Water plant", "result": "refused"},
+            {"kind": "kagi-extract", "story": "Lost page", "result": "unmatched"}]
+
+    def test_a_failed_kagi_request_logs_every_page_it_carried(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+
+        def _post(url, **kw):
+            raise pg.requests.ConnectionError("down")
+        monkeypatch.setattr(pg.requests, "post", _post)
+        pg._extract_roundup_stories([{"title": f"S{i}", "url": f"https://x.test/{i}"}
+                                     for i in range(2)])
+        assert [r["result"] for r in pg._RESEARCH_LOG] == ["failed", "failed"]
+
+    def test_a_body_search_is_logged_only_when_it_was_sent(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "BRAVE_SEARCH_CALL_LIMIT", 1)
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [])
+        pg._research_roundup_story({"title": "Mill reopens"}, "test-key")
+        pg._research_roundup_story({"title": "Over budget"}, "test-key")
+        assert pg._RESEARCH_LOG == [
+            {"kind": "body-search", "story": "Mill reopens", "result": "no results"}]
+
+    def test_a_body_search_logs_what_it_bought(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [
+            {"title": "Mill reopens", "url": "https://other.test/m",
+             "description": "Substantive search snippet about the mill. " * 5}])
+        monkeypatch.setattr(pg, "_fetch_article_text", lambda url: "")
+        assert pg._research_roundup_story(
+            {"title": "Mill reopens", "url": "https://own.test/m"}, "test-key")
+        assert pg._RESEARCH_LOG[-1]["result"] == "used (via other.test)"
 
     def test_only_the_budget_wrappers_call_brave_search(self):
         """A direct _brave_search call is spend no per-run budget can see."""
