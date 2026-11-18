@@ -1,25 +1,4 @@
 {
-  "2026-10-14": {
-    "timestamp": 1791965856.081062,
-    "topics": [
-      "[My Cariboo Now] Advance voting days in 2026 municipal elect",
-      "[The Tyee] Can a Former BC Liberal Unseat Quesnel\u2019s Controve",
-      "[My Cariboo Now] First Nations leaders call on B.C. Conserva",
-      "[Williams Lake Tribune] Spooky vibes in full swing at Willia",
-      "[Williams Lake Tribune] Multiple SAR teams locate missing pe",
-      "[Hackster News] This DIY System Automatically Measures Packa",
-      "[Hackster News] Going to Great Depths to Map Lakebeds",
-      "[Hackster News] Protect Your Raspberry Pi 5 From Sudden Powe"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-14",
-    "focus": "maker-repair",
-    "focus_name": "Maker & Repair"
-  },
   "2026-10-15": {
     "timestamp": 1792052607.81313,
     "topics": [
@@ -729,5 +708,24 @@
     "date": "2026-11-17",
     "focus": "forestry",
     "focus_name": "Forestry & Timber"
+  },
+  "2026-11-18": {
+    "timestamp": 1794989856.207339,
+    "topics": [
+      "[My Cariboo Now] Williams Lake Taxpayers to pay for Mayor an",
+      "[My Cariboo Now] Scientists say record-high ocean temperatur",
+      "[100 Mile Free Press] South Cariboo vendors offer unique hom",
+      "[Williams Lake Tribune] Tribunal declines to levy another $1",
+      "[ZDNet] This tiny box gives your older tech smart home super",
+      "[The Verge] iFixit\u2019s Apple HomeView teardown reveals a devic",
+      "[Hackster News] Researchers Unveil the $450 3D Bioprinter, B",
+      "[Hackster News] 3D Printing a Tank Is Both Easier and More C"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-11-18",
+    "focus": "maker-repair",
+    "focus_name": "Maker & Repair"
   }
 }

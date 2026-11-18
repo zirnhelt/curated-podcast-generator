@@ -1,32 +1,4 @@
 {
-  "2026-08-19": {
-    "timestamp": 1787144301.819391,
-    "date": "2026-08-19",
-    "theme": "Repair Culture & Practical Tech",
-    "focus": "maker-repair",
-    "anchor": "tech-sadness",
-    "central_question": "Does repair work\u2014physical or digital\u2014carry inherent meaning that building new things lacks, and can recognizing maintenance as valuable as new launches address burnout in tech?",
-    "riley_position": "Repair work carries psychological and moral weight because it produces a visible, tangible outcome you can point to afterward, and tech could address its burnout crisis by formally crediting maintenance and repair work the same way it credits new launches.",
-    "riley_key_evidence": [
-      "Ken Soble Tower retrofit produces 50-75% less embodied carbon than new construction",
-      "Summerland wildlife rehab centre operators are rebuilding with visible, purposeful work ahead of them",
-      "School District 27 and Xat\u015b\u016bll's approaches show communities can design systems for long-term maintenance from day one"
-    ],
-    "casey_position": "The real problem is structural incentive misalignment rather than physical versus abstract work; tech rewards new launches and walks away from maintenance, while invisible legacy-system maintenance work already exists but goes uncredited and unfunded.",
-    "casey_key_evidence": [
-      "2025 survey documents bugs in AI-generated code; USENIX study shows package hallucination attacks where bad actors register fake library names the AI invented",
-      "Software repair literacy gap means users can't verify what code is actually running in apps they 'built' with AI in an afternoon",
-      "Performance reviews never score 'kept the lights on for three years' as highly as shipping a new product"
-    ],
-    "resolution": "They converge on the structural diagnosis: the issue isn't repair versus new-build work itself, but that tech industry design rewards walking away after launch and leaving maintenance to whoever remains. They agree to test whether publicly naming maintainers\u2014without knowing if visibility alone can close the deeper despair\u2014is worth trying as a Cariboo experiment.",
-    "topics_covered": [
-      "Retrofit architecture versus new construction economics and emissions",
-      "AI-generated code security risks and repair literacy gaps",
-      "Why maintenance work in tech goes invisible and uncredited",
-      "How visibility and accountability for long-term maintenance affects worker meaning",
-      "Structural incentive design in industries that reward staying versus leaving"
-    ]
-  },
   "2026-08-20": {
     "timestamp": 1787217064.700873,
     "date": "2026-08-20",
@@ -2587,6 +2559,34 @@
       "Quesnel's tax-base dependence on heavy industry and council incentives",
       "Provincial transition supports and the Community Transition Services eligibility question",
       "Need for published criteria and an independent reviewer for the affected list"
+    ]
+  },
+  "2026-11-18": {
+    "timestamp": 1794989858.658098,
+    "date": "2026-11-18",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "maker-repair",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "Should consumers expect new products from repair-friendly companies to be as easy to open and repair as older models, and what can buyers, makers, and local communities do when they are not?",
+    "riley_position": "Repairability is a judgment that teardowns make public, and open designs, skill-building, and local repair logs can shift buying behavior and pressure companies toward repairable products; a regression like HomeView is not proof the company cannot build repairable devices.",
+    "riley_key_evidence": [
+      "iFixit tore apart Apple's HomeView, a seven-inch iPad display on a HomePod mini, and documented the damage with photos",
+      "Apple previously published official iPad repair manuals and shipped replaceable USB-C ports",
+      "The Creality Ender 3 (about $450) was modified into a bioprinter that prints more than 100 layers, versus earlier DIY limits of about 20 layers"
+    ],
+    "casey_position": "Teardowns report on screws and glue but cannot show intent or future improvement, and the buyer usually decides before any teardown appears; open designs and local logs depend on skills, budgets, and maintainers that are rarely secured in practice.",
+    "casey_key_evidence": [
+      "HomeView is $299 in the U.S. and went on sale November 13th, while iFixit has no official repairability scorecard for this device category",
+      "The bioprinter comparison is self-reported with no independent replication found, and the living-materials result depended on new materials",
+      "The solar tracker prototype cost under $25 and gave about 20 percent more voltage in one outdoor test, with no data on winter or multi-season durability"
+    ],
+    "resolution": "They did not reach agreement. Riley held that teardowns, open designs, and local logs create useful public records and buying signals, while Casey held that the buyer's choice is made before those records appear and that maintenance, budgets, and skill retention remain unresolved. They ended by leaving the question open of who should be accountable for warning buyers about regressions and whether a record can change the company.",
+    "topics_covered": [
+      "Apple HomeView teardown and repairability regression",
+      "Copyright law (DMCA) as a barrier to repairing and modifying devices",
+      "Open-source and low-cost DIY hardware such as the bioprinter, Hydra ceramic printer, and LEGO-based Studprint",
+      "Maintenance, skill retention, and budgeting for local repair and maker projects",
+      "Vendor subscriptions, firmware, and open-source workarounds like ZigZag and llama.cpp"
     ]
   }
 }

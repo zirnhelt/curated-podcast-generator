@@ -115,7 +115,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-18"
   },
   "https://www.aljazeera.com/video/inside-story/2026/11/5/why-are-wealthy-countries-failing-developing-nations?traffic_source=rss": {
     "article": {
@@ -368,7 +369,8 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-18"
   },
   "https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/": {
     "article": {
@@ -495,7 +497,7 @@
       "id": "https://www.sciencedaily.com/releases/2026/11/261111005853.htm",
       "url": "https://www.sciencedaily.com/releases/2026/11/261111005853.htm",
       "title": "[ScienceDaily] A breakthrough in magnetism could make AI chips use dramatically less energy",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261111005853.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResearchers at Brown University have overcome a major obstacle to creating ultra-low-power computer chips that could help slash the energy demands of AI. Their breakthrough eliminates a long-standing \"dead layer\" problem that causes promising materials to stop working when made extremely thin. Remarkably, the new technique not only preserves the materials' electrical and magnetic properties at nearly atomic thicknesses but also gives them enhanced magnetic capabilities",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261111005853.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResearchers at Brown University have overcome a major obstacle to creating ultra-low-power computer chips that could help slash the energy demands of AI. Their breakthrough eliminates a long-standing \"dead layer\" problem that causes promising materials to stop working when made extremely thin. Remarkably, the new technique not only preserves the materials' electrical and magnetic properties at nearly atomic thicknesses but also gives them enhanced magnetic capabilities",
       "summary": "Researchers at Brown University have overcome a major obstacle to creating ultra-low-power computer chips that could help slash the energy demands of AI. Their breakthrough eliminates a long-standing \"dead layer\" problem that causes promising materials to stop working when made extremely thin.",
       "_excerpt": "Researchers at Brown University have overcome a major obstacle to creating ultra-low-power computer chips that could help slash the energy demands of AI. Their breakthrough eliminates a long-standing \"dead layer\" problem that causes promising materials to stop working when made extremely thin. Remarkably, the new technique not only preserves the materials' electrical and magnetic properties at nearly atomic thicknesses but also gives them enhanced magnetic capabilities",
       "date_published": "2026-11-13T01:40:17+00:00",
@@ -509,23 +511,24 @@
       "_quality": 0,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 56,
-      "_theme_score_raw": 6,
+      "_theme_score": 72,
+      "_theme_score_raw": 18,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 56,
+      "_composite_podcast": 67,
       "_keyword_matches": 0,
       "_category": "news",
       "_source_category": "news",
       "_is_bonus": true,
+      "_niche": false,
       "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-11-13T06:10:43.356652+00:00"
+        "day": "sunday",
+        "label": "Science, Wonder & the Natural World",
+        "shown_at": "2026-11-15T06:08:27.958984+00:00"
       },
       "_boosted_score": 60
     },
-    "held_date": "2026-11-14",
+    "held_date": "2026-11-18",
     "target_date": "2026-11-24",
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
@@ -800,7 +803,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-18"
   },
   "https://www.tomshardware.com/3d-printing/university-of-rochester-researchers-made-a-3d-bioprinter-from-a-modified-ender-3-usd450-bioprinter-makes-engineered-living-material-research-accessible": {
     "article": {
@@ -845,7 +849,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-18"
   },
   "https://www.tomshardware.com/3d-printing/3d-printing-developer-creates-self-hostable-non-planar-printing-slicer-pancakeslicer-makes-non-planar-3d-printing-accessible-potentially-leading-to-rapid-community-development": {
     "article": {
@@ -885,93 +890,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
-  },
-  "https://macleans.ca/longforms/the-hutterites-guide-to-technology/": {
-    "article": {
-      "id": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
-      "url": "https://macleans.ca/longforms/the-hutterites-guide-to-technology/",
-      "title": "[Maclean's] The Hutterites\u2019 Guide To Technology",
-      "content_html": "<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fmacleans.ca%2Flongforms%2Fthe-hutterites-guide-to-technology%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<img src=\"https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg\"/>On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "summary": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "_excerpt": "On Canada\u2019s Hutterite colonies, social media and smartphones are blamed for phone addiction and subversive ideas. How these communities handle the storm of socially disruptive tech has lessons for us all.",
-      "date_published": "2026-11-02T15:30:13+00:00",
-      "authors": [
-        {
-          "name": "Maclean's",
-          "url": "https://macleans.ca"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 85,
-      "_relevance": 0,
-      "_local": 20,
-      "_theme_score": 64,
-      "_theme_score_raw": 12,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 64,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_niche": false,
-      "image": "https://macleans.mblycdn.com/uploads/mac/2026/10/Feature_Hutterites_1126_01.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 62
-    },
-    "held_date": "2026-11-17",
-    "target_date": "2026-11-18",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "held"
-  },
-  "https://www.sciencedaily.com/releases/2026/11/261105081000.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
-      "title": "[ScienceDaily] For decades, we were told to avoid full-fat dairy. New research says otherwise",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261105081000.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFull-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
-      "summary": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising",
-      "_excerpt": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
-      "date_published": "2026-11-06T05:51:36+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 44,
-      "_quality": 70,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 61,
-      "_theme_score_raw": 10,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 56,
-      "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
-      "_is_bonus": true,
-      "_niche": false,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-11-16T06:07:47.371824+00:00"
-      },
-      "_boosted_score": 44
-    },
-    "held_date": "2026-11-17",
-    "target_date": "2026-11-22",
-    "target_weekday": 6,
-    "target_focus_slug": "living-world",
-    "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-18"
   },
   "https://www.sciencedaily.com/releases/2026/11/261104012305.htm": {
     "article": {
@@ -1005,6 +925,127 @@
       "_boosted_score": 41
     },
     "held_date": "2026-11-17",
+    "target_date": "2026-11-22",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://100milefreepress.net/2026/11/17/south-cariboo-vendors-offer-unique-homemade-gifts/": {
+    "article": {
+      "id": "https://100milefreepress.net/2026/11/17/south-cariboo-vendors-offer-unique-homemade-gifts/",
+      "url": "https://100milefreepress.net/2026/11/17/south-cariboo-vendors-offer-unique-homemade-gifts/",
+      "title": "[100 Mile Free Press] South Cariboo vendors offer unique homemade gifts",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F11%2F17%2Fsouth-cariboo-vendors-offer-unique-homemade-gifts%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWhen shopping for holiday gifts, something made by hand is often the most meaningful. While big-box stores like Walmart may have all the latest gadgets\u2026",
+      "summary": "When shopping for holiday gifts, something made by hand is often the most meaningful. While big-box stores like Walmart may have all the latest gadgets\u2026",
+      "_excerpt": "When shopping for holiday gifts, something made by hand is often the most meaningful. While big-box stores like Walmart may have all the latest gadgets\u2026",
+      "date_published": "2026-11-18T06:02:53.129883+00:00",
+      "authors": [
+        {
+          "name": "100 Mile Free Press",
+          "url": "https://100milefreepress.net"
+        }
+      ],
+      "ai_score": 54,
+      "_quality": 50,
+      "_relevance": 40,
+      "_local": 100,
+      "_theme_score": 91,
+      "_theme_score_raw": null,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 82,
+      "_keyword_matches": 1,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "_niche": false,
+      "_thin_body": true,
+      "_boosted_score": 54,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-18",
+    "target_date": "2026-11-25",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "aired_early"
+  },
+  "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/": {
+    "article": {
+      "id": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
+      "url": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
+      "title": "[Krebs on Security] Attackers Used Optimizely to A/B Test Malware on Top Websites",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fkrebsonsecurity.com%2F2026%2F11%2Fattackers-used-optimizely-to-a-b-test-malware-on-top-websites%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAt least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw data-stealing malicious software silently injected into sites like the BBC, CNN,\u00a0Equifax, Ledger and Zoom, was exacerbated by the reality that few popular websites enforce strict rules on the sources of third-party content.",
+      "summary": "At least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw",
+      "_excerpt": "At least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw data-stealing malicious software silently injected into sites like the BBC, CNN, Equifax, Ledger and Zoom, was exacerbated by the reality that few popular websites enforce strict rules on the sources of third-party content.",
+      "date_published": "2026-11-18T02:52:04+00:00",
+      "authors": [
+        {
+          "name": "Krebs on Security",
+          "url": "https://krebsonsecurity.com"
+        }
+      ],
+      "ai_score": 61,
+      "_quality": 80,
+      "_relevance": 75,
+      "_local": 0,
+      "_theme_score": 63,
+      "_theme_score_raw": 10,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 63,
+      "_keyword_matches": 0,
+      "_category": "ai-tech",
+      "_source_category": "ai-tech",
+      "_is_bonus": true,
+      "_niche": false,
+      "_boosted_score": 61
+    },
+    "held_date": "2026-11-18",
+    "target_date": "2026-12-02",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
+    "status": "held"
+  },
+  "https://www.sciencedaily.com/releases/2026/11/261105081000.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
+      "title": "[ScienceDaily] For decades, we were told to avoid full-fat dairy. New research says otherwise",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261105081000.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFull-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
+      "summary": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising",
+      "_excerpt": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
+      "date_published": "2026-11-06T05:51:36+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 44,
+      "_quality": 70,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 23,
+      "_theme_score_raw": 3,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 31,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "_niche": false,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-11-17T06:09:40.585373+00:00"
+      },
+      "_boosted_score": 44
+    },
+    "held_date": "2026-11-18",
     "target_date": "2026-11-22",
     "target_weekday": 6,
     "target_focus_slug": "living-world",
