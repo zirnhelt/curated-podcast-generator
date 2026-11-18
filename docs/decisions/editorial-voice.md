@@ -739,3 +739,30 @@ From domain: a forger can add text, but cannot remove Gmail's own `dmarc=fail`.
 Fails safe: mail with no such header is listener mail. If the producer's own mail ever arrives
 without it (a message that never crossed Gmail's inbound servers), it will be thanked as a listener
 again; widen the check then, with the header in hand.
+
+## The hosts may agree; a reaction rests on the story (2026-11-18)
+
+**Forced debate.** The producer's notes on 2026-11-17 and 11-18: "The deep dive debate felt
+forced. Let's relax the 'sides' if the topic is one the hosts would normally agree on", then
+"Again, the debate was forced." Every layer asked for a fight:
+- the storyboard required a pushback on every beat and, when the material gave the other
+  host nothing to push on, told it to "choose a question it does";
+- the script prompt said "Casey naturally pushes back with concerns and counter-examples";
+- the system prompt said the hosts "disagree on substance";
+- the polish's counterpoint check added a counterpoint wherever a point went unchallenged.
+
+Only the polish's own format line ("contested ground gets a real argument… material that
+invites shared exploration gets that instead") allowed otherwise, and it came last. Now the
+storyboard may plan agreement ("agree and differ only in emphasis"), a beat's pushback may be
+`none` (rendered to the script as "the hosts agree here; build on it"), the script and system
+prompts ask for disagreement only where the material divides the hosts, and the counterpoint
+check adds one only where the material holds one. The 2026-11-09 rule stands: a pushback that
+does air rests on a fact in the material.
+
+**Improvised asides.** On 2026-11-18, after Ocean Networks Canada's record deep-water
+temperatures, Casey said "Somebody has to keep sensors running four hundred metres down.
+That's a maintenance bill nobody reads in the headline." The story said nothing about
+upkeep, and the storyboard had the story as a clean pivot. The system prompt let hosts "weigh
+stakes and costs", and on a Repair day Casey's voice card reached for one. Now the hosts weigh
+the stakes and costs the material shows, and the script prompt and both polish prompts hold
+a roundup reaction to something the story says.
