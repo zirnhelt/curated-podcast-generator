@@ -593,6 +593,19 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   "floppy-based air traffic systems". Other days carry the same pattern (`life`, `field`,
   `land`, `live`, `development`); they wait for the producer's call.
 
+  **2026-11-19: the other days' name words confirm, never admit.** The producer approved the
+  fix with a note: "Similar to the crime logic, we should also check the content for matches
+  to raise the confidence" (super-rss-feed's crime filter takes an ambiguous term only beside
+  a justice word). So, rather than a phrase per focus, a name word the focus doesn't list as
+  a keyword is confirming only (`CONFIRMING_PREFIX`): `_keyword_hit_count` counts it once a
+  listed keyword has hit the title and summary, and then it adds weight. "Retirement life in a
+  small town" no longer reaches Digital Life & Security; "seniors lose life savings to a
+  phone scam" counts twice. Five name words that are the focus's subject (`cosmos`,
+  `libraries`, `podcasting`, `homestead`, `guardians`) and `governance`, which a trailing
+  comma had kept from ever matching, became listed keywords so they still admit alone. The
+  fallback `categorize_articles_for_deep_dive` counts focus words by substring, so there a
+  confirming word simply doesn't count.
+
 - **A starved week takes the cluster (2026-11-16, `pick_focus_for_cluster`).** Film & Screen
   matched 1 story, the deep dive needs 4, so the day fell back to the plain theme. The Cariboo
   bar then aired one Tribune story. Small-Town Journalism, a later week's focus, matched 7
