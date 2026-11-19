@@ -8000,6 +8000,24 @@ class TestMatchDeepDiveToScript:
         [(_, discussed)] = match_deep_dive_to_script([self.BEAR], self.BEAR_SCRIPT)
         assert discussed is True
 
+    CLINTON = {"title": "[The Tyee] After a Megafire, Clinton Faces Floods and Landslide Warnings",
+               "summary": ""}
+    CLINTON_SCRIPT = (
+        "**DEEP DIVE: Indigenous Lands**\n\n"
+        + ("**RILEY:** Clinton burned two summers ago, and now the floods.\n\n"
+           "**CASEY:** And the landslide warnings came with them, on the same slopes.\n\n"
+           "**RILEY:** Clinton is where the question lands.\n\n") * 4)
+
+    def test_a_source_told_across_two_turns_is_discussed(self):
+        """2026-11-13: the deep dive was about this Tyee story, but the hosts split its
+        headline words across turns and no single turn held the 3 the check needs."""
+        [(_, discussed)] = match_deep_dive_to_script([self.CLINTON], self.CLINTON_SCRIPT)
+        assert discussed is True
+
+    def test_two_turns_still_need_the_sources_own_words(self):
+        [(_, discussed)] = match_deep_dive_to_script([self.KILLER], self.CLINTON_SCRIPT)
+        assert discussed is False
+
     def test_town_names_from_the_welcome_do_not_carry_a_headline(self):
         """2026-09-12: "changes", "Williams", "Lake" credited a golf-course story
         the deep dive never mentioned; the town names come from the weather."""
