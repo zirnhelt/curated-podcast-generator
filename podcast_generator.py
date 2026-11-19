@@ -8023,12 +8023,15 @@ def _keyword_hit_count(text: str, keywords) -> int:
     'tech' in "TechCrunch"); the optional trailing 's' keeps singular
     keywords matching plural mentions ('first nation' → "First Nations").
     Multi-word keywords count once per word, matching the historical
-    substring scorer's weighting.
+    substring scorer's weighting. A CONFIRMING_PREFIX keyword counts only when
+    a plain one already hit: it adds confidence, never admits a story alone.
     """
-    hits = 0
-    for kw in keywords:
-        if re.search(r'\b' + re.escape(kw) + r's?\b', text):
-            hits += len(kw.split())
+    def hit(kw: str) -> int:
+        return len(kw.split()) if re.search(r'\b' + re.escape(kw) + r's?\b', text) else 0
+    hits = sum(hit(kw) for kw in keywords if not kw.startswith(CONFIRMING_PREFIX))
+    if hits:
+        hits += sum(hit(kw[len(CONFIRMING_PREFIX):]) for kw in keywords
+                    if kw.startswith(CONFIRMING_PREFIX))
     return hits
 
 
@@ -8361,17 +8364,23 @@ def _build_focus_keywords(focus) -> list:
 
     A focus whose name carries a bare word with another common sense ("Remote
     Work": `work`) lists the name words that are safe in `name_keywords`; one
-    focus hit admits an article to the deep-dive pool.
+    focus hit admits an article to the deep-dive pool. Without that list, a name
+    word the focus doesn't also list as a keyword ("life", "field", "land",
+    "climate") is confirming only (CONFIRMING_PREFIX): it counts once the
+    story's title and summary hit a real keyword, the way super-rss-feed's crime
+    filter takes an ambiguous term only beside a justice word.
     """
     if not focus:
         return []
+    listed = [k.lower() for k in focus.get('keywords', [])]
     if 'name_keywords' in focus:
-        keywords = [w.lower() for w in focus['name_keywords']]
+        names = [w.lower() for w in focus['name_keywords']]
     else:
-        keywords = [w.lower() for w in focus.get('name', '').split() if len(w) > 3]
-    keywords.extend(k.lower() for k in focus.get('keywords', []))
+        names = [w if w in listed else CONFIRMING_PREFIX + w
+                 for w in (w.strip(',.;:!?').lower() for w in focus.get('name', '').split())
+                 if len(w) > 3]
     seen = set()
-    return [k for k in keywords if not (k in seen or seen.add(k))]
+    return [k for k in names + listed if not (k in seen or seen.add(k))]
 
 
 def _build_event_focus_keywords(event) -> list:
@@ -8408,6 +8417,10 @@ def _geographic_rank(article: dict) -> tuple:
         article.get('_subject_matches', 0),
         article.get('_boosted_score', article.get('ai_score', 0)),
     )
+
+
+# Marks a keyword that confirms a match but never makes one (`_keyword_hit_count`).
+CONFIRMING_PREFIX = '~'
 
 
 def _focus_hit_count(article, focus_keywords) -> int:

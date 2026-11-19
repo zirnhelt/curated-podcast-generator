@@ -75,7 +75,9 @@
           "literacy",
           "poetry",
           "audiobook",
-          "book club"
+          "book club",
+          "libraries",
+          "podcasting"
         ],
         "lens": "Center the deep dive on books, libraries, and podcasting — who writes, publishes, lends, and records the long-form stories small communities tell about themselves."
       },
@@ -232,7 +234,8 @@
           "well pump",
           "wood stove",
           "heat pump",
-          "backup power"
+          "backup power",
+          "homestead"
         ],
         "lens": "Center the deep dive on homestead and off-grid technology — power, connectivity, and self-reliance systems for rural properties where the grid is thin."
       },
@@ -328,7 +331,8 @@
           "land claim",
           "rights and title",
           "governance agreement",
-          "data sovereignty"
+          "data sovereignty",
+          "governance"
         ],
         "lens": "Center the deep dive on governance, title, and treaty — who holds decision-making power over lands and data, and how title and self-government are being asserted in practice."
       },
@@ -385,7 +389,8 @@
           "protected area",
           "fire keeping",
           "cultural burning",
-          "watershed protection"
+          "watershed protection",
+          "guardians"
         ],
         "lens": "Center the deep dive on guardians and land stewardship — Indigenous-led monitoring, restoration, and care of territory, and the science and technology woven into it."
       }
@@ -532,7 +537,8 @@
           "orbiter",
           "milky way",
           "space mission",
-          "space agency"
+          "space agency",
+          "cosmos"
         ],
         "lens": "Center the deep dive on the sky and cosmos — astronomy, aurora, and space science as seen from dark rural skies."
       },

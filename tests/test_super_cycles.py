@@ -2026,10 +2026,60 @@ class TestCohereDeepDiveRerank:
         assert rows == [("script/cohere", "deep-dive rerank: failed")]
 
 
+def _focus_named(name):
+    for day, cfg in load_super_cycles_config().items():
+        if not day.startswith("_"):
+            for focus in cfg["cycle"]:
+                if focus["name"] == name:
+                    return focus
+    raise KeyError(name)
+
+
 class TestFocusNameKeywords:
-    def test_name_words_added_by_default(self):
-        kws = pg._build_focus_keywords({"name": "Forestry & Timber", "keywords": ["mill"]})
-        assert "forestry" in kws and "timber" in kws and "mill" in kws
+    def test_a_listed_name_word_admits_and_an_unlisted_one_only_confirms(self):
+        kws = pg._build_focus_keywords({"name": "Forestry & Timber", "keywords": ["mill", "timber"]})
+        assert "timber" in kws and "mill" in kws
+        assert "forestry" not in kws and pg.CONFIRMING_PREFIX + "forestry" in kws
+
+    def test_a_confirming_word_counts_only_beside_a_real_keyword(self):
+        kws = ["scam", pg.CONFIRMING_PREFIX + "life"]
+        assert pg._keyword_hit_count("life after the mill closes", kws) == 0
+        assert pg._keyword_hit_count("a phone scam took their life savings", kws) == 2
+
+    @pytest.mark.parametrize("name, stray, real", [
+        # Producer, 2026-11-19: "similar to the crime logic, we should also check the content".
+        ("Digital Life & Security", "What retirement life looks like in a small town",
+         "Seniors lose life savings to a phone scam"),
+        ("Vehicles & Field Gear", "Field day for the 4-H club at the fairgrounds",
+         "Field test: three satellite messenger units in the backcountry"),
+        ("Guardians & Land Stewardship", "Land prices climb across the Interior",
+         "Land guardians begin watershed protection survey"),
+        ("Music & Live Performance", "Live updates: the provincial budget",
+         "Live from the hall: a choir's first concert in years"),
+        ("Economic Development", "Housing development approved on the old mill site",
+         "Nation's development corporation takes an equity stake in the mine"),
+        ("Wildfire & Climate Resilience", "Climate talks stall over finance",
+         "Climate adaptation plan readies the town for fire season"),
+    ])
+    def test_a_bare_name_word_needs_the_content_to_confirm_it(self, name, stray, real):
+        kws = pg._build_focus_keywords(_focus_named(name))
+        assert pg._focus_hit_count({"title": stray, "summary": ""}, kws) == 0
+        assert pg._focus_hit_count({"title": real, "summary": ""}, kws) >= 2
+
+    @pytest.mark.parametrize("name, title", [
+        ("Sky & Cosmos", "Euclid maps the cosmos"),
+        ("Books, Libraries & Podcasting", "Rural libraries extend their hours"),
+        ("Homestead & Off-Grid Tech", "A homestead in the Chilcotin, ten years on"),
+        ("Guardians & Land Stewardship", "Guardians patrol the river this fall"),
+        ("Governance, Title & Treaty", "Nation adopts a new governance code"),
+    ])
+    def test_a_strong_name_word_still_admits_alone(self, name, title):
+        kws = pg._build_focus_keywords(_focus_named(name))
+        assert pg._focus_hit_count({"title": title, "summary": ""}, kws)
+
+    def test_name_words_lose_their_punctuation(self):
+        kws = pg._build_focus_keywords(_focus_named("Books, Libraries & Podcasting"))
+        assert not any(k.endswith(",") for k in kws)
 
     def test_name_keywords_replaces_name_words(self):
         focus = {"name": "Remote Work & Broadband", "name_keywords": ["broadband"],

@@ -67,7 +67,7 @@ paths:
 - **A starved week takes the cluster** (`pick_focus_for_cluster`, when no high-impact story moved the day): under `DEEP_DIVE_COUNT` theme matches, the sibling with the most matches across the pool (bonus stories only at raw ≥ `HOLD_MIN_THEME_RAW`) takes the day if it reaches the count and beats the week's own; its bonus matches join the theme pool. The calendar is untouched.
 - Route both the theme and bonus buckets. A slot matches on its theme **or** focus keywords.
 - Keyword sets that **gate** a decision are strict (`_build_strict_theme_keywords`); description prose is for ranking only.
-- A focus keyword is a phrase when the bare word has another common sense (`park`, `trail`, `space`): one hit admits an article to the deep-dive pool, and rerank cannot drop it. A focus's name words count as keywords too: set `name_keywords` when one is a common word (`earth`, `science`, `world`).
+- A focus keyword is a phrase when the bare word has another common sense (`park`, `trail`, `space`): one hit admits an article to the deep-dive pool, and rerank cannot drop it. A focus's name words count as keywords too, but a name word the focus doesn't list in `keywords` only confirms (`CONFIRMING_PREFIX`: it counts once a listed keyword hits, like the crime filter's ambiguous tier); `name_keywords` replaces the name words outright (`earth`, `science`, `world`).
 - `_no_deep_dive` is honoured by `select_deep_dive_from_feed`.
 - A released article is re-labelled for its new day (`_relabel_for_day`), and its stale theme scores are dropped, not rewritten. A story imported for today must not be droppable by the run that imported it.
 - The export decision reads the feed's **raw** charter score (`_theme_score_raw`), never the percentile.
