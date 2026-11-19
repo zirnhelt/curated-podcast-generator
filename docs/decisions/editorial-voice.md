@@ -434,6 +434,16 @@ may carry `air_date` and waits for it (2026-11-08: the producer booked the First
 pronunciation correction for the next Indigenous Lands & Innovation day, Thursday 2026-11-12,
 rather than Monday's arts episode). A listener's correction never gets one.
 
+**Every point of a production correction airs** (2026-11-19). The Nov 12 correction aired
+its core (what was said, when, what's right, who caught it) and dropped three points the
+producer wrote: that the voices are English-trained and the show keeps learning, the
+Tl'esqox reading and the invitation to write in, and that each community has the final
+say. The corrections block asks for exactly that core, and the polish sees only a
+correction's subject, so either pass could have cut them. `_PRODUCTION_POINTS_RULE`
+("condense its wording, never drop one of its points") now rides in the block and in
+`_corrections_ground_truth`, which both polishes get, and only on a day with a production
+correction. The producer declined a follow-up correction to air the missing points.
+
 **The queue is committed to a public repo.** Senders are masked, and `_sanitize` redacts
 email addresses and phone numbers from bodies (`_redact_contact_details`), because a
 signature carries both. Before the recipient allowlist (2026-07-25) the ingest also queued
