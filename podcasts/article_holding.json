@@ -79,45 +79,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "aired_early"
   },
-  "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned": {
-    "article": {
-      "id": "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned",
-      "url": "https://www.tomshardware.com/tech-industry/cyber-security/israeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned",
-      "title": "[Tom's Hardware] Israeli ad tech firm tied to suspected Starlink tracking effort, report claims",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/ENC5zcxZ4NC6STP9xUUgpT-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Ftech-industry%2Fcyber-security%2Fisraeli-ad-tech-firm-tied-to-suspected-starlink-tracking-effort-report-claims-researchers-say-it-outbid-everyone-for-starlink-linked-ads-in-100-countries-including-where-the-service-is-banned\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCitizen Lab and Confiant linked Israeli firm Discover-Tech to suspected surveillance through online advertising. Researchers said its ads appeared across nearly 200,000 websites and mobile apps. TrendAI separately identified related activity under the codename \u201cSHADOW-EARTH-79.\u201d The findings raise concerns about ad auctions being exploited to track users across sensitive networks, though ad impressions alone do not confirm spyware infections.",
-      "summary": "Citizen Lab and Confiant linked Israeli firm Discover-Tech to suspected surveillance through online advertising. Researchers said its ads appeared across nearly 200,000 websites and mobile apps. TrendAI separately identified related activity under the codename \u201cSHADOW-EARTH-79.\u201d The findings raise",
-      "_excerpt": "Citizen Lab and Confiant linked Israeli firm Discover-Tech to suspected surveillance through online advertising. Researchers said its ads appeared across nearly 200,000 websites and mobile apps. TrendAI separately identified related activity under the codename \u201cSHADOW-EARTH-79.\u201d The findings raise concerns about ad auctions being exploited to track users across sensitive networks, though ad impressions alone do not confirm spyware infections.",
-      "date_published": "2026-10-27T17:37:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 50,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 10,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 64,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/ENC5zcxZ4NC6STP9xUUgpT-1920-80.jpg",
-      "_boosted_score": 50
-    },
-    "held_date": "2026-11-06",
-    "target_date": "2026-11-18",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-11-18"
-  },
   "https://www.aljazeera.com/video/inside-story/2026/11/5/why-are-wealthy-countries-failing-developing-nations?traffic_source=rss": {
     "article": {
       "id": "https://www.aljazeera.com/video/inside-story/2026/11/5/why-are-wealthy-countries-failing-developing-nations?traffic_source=rss",
@@ -332,45 +293,6 @@
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
-  },
-  "https://www.tomshardware.com/software/enthusiast-abandons-self-hosted-microsoft-exchange-after-27-years-moving-mailboxes-to-microsoft-365-replaces-final-on-premises-relay-with-postfix-starttls-and-lets-encrypt-certificates": {
-    "article": {
-      "id": "https://www.tomshardware.com/software/enthusiast-abandons-self-hosted-microsoft-exchange-after-27-years-moving-mailboxes-to-microsoft-365-replaces-final-on-premises-relay-with-postfix-starttls-and-lets-encrypt-certificates",
-      "url": "https://www.tomshardware.com/software/enthusiast-abandons-self-hosted-microsoft-exchange-after-27-years-moving-mailboxes-to-microsoft-365-replaces-final-on-premises-relay-with-postfix-starttls-and-lets-encrypt-certificates",
-      "title": "[Tom's Hardware] Enthusiast abandons self-hosted Microsoft Exchange after 27 years, moving mailboxes to Microsoft 365",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/GpApBtoCh4tb9AUh89kM3m-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Fsoftware%2Fenthusiast-abandons-self-hosted-microsoft-exchange-after-27-years-moving-mailboxes-to-microsoft-365-replaces-final-on-premises-relay-with-postfix-starttls-and-lets-encrypt-certificates\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA homelab enthusiast is retiring a Microsoft Exchange installation that began with Exchange 5.5 on Windows NT 4 in 1999. After migrating mailboxes to Microsoft 365, he kept Exchange 2019 running to relay local hardware and software alerts. Postfix on Ubuntu Server LTS will take over, with plans to add STARTTLS, Let's Encrypt certificates, and boot encryption",
-      "summary": "A homelab enthusiast is retiring a Microsoft Exchange installation that began with Exchange 5.5 on Windows NT 4 in 1999. After migrating mailboxes to Microsoft 365, he kept Exchange 2019 running to relay local hardware and software alerts. Postfix on Ubuntu Server LTS will take over, with plans to",
-      "_excerpt": "A homelab enthusiast is retiring a Microsoft Exchange installation that began with Exchange 5.5 on Windows NT 4 in 1999. After migrating mailboxes to Microsoft 365, he kept Exchange 2019 running to relay local hardware and software alerts. Postfix on Ubuntu Server LTS will take over, with plans to add STARTTLS, Let's Encrypt certificates, and boot encryption",
-      "date_published": "2026-11-07T12:30:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 68,
-      "_relevance": 72,
-      "_local": 0,
-      "_theme_score": 70,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/GpApBtoCh4tb9AUh89kM3m-1920-80.jpg",
-      "_boosted_score": 57
-    },
-    "held_date": "2026-11-11",
-    "target_date": "2026-11-18",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-11-18"
   },
   "https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/": {
     "article": {
@@ -686,7 +608,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-19"
   },
   "https://www.theguardian.com/global-development/2026/nov/13/el-nino-death-in-childbirth-millions-midwives-cop31-extreme-weather-maternal-newborn-death-rates": {
     "article": {
@@ -765,140 +688,12 @@
     "target_focus_name": "The Living World",
     "status": "held"
   },
-  "https://www.engadget.com/2313927/13-year-old-solving-solar-panel-limitation/": {
-    "article": {
-      "id": "https://www.engadget.com/2313927/13-year-old-solving-solar-panel-limitation/",
-      "url": "https://www.engadget.com/2313927/13-year-old-solving-solar-panel-limitation/",
-      "title": "[Engadget] How one 13-year-old is helping solve a huge solar panel limitation",
-      "content_html": "<img src=\"https://www.engadget.com/img/gallery/how-one-13-year-old-is-helping-solve-a-huge-solar-panel-limitation/l-intro-1794243328.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.engadget.com%2F2313927%2F13-year-old-solving-solar-panel-limitation%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis teenager's affordable DIY solar panel design is attracting national attention, and for good reason.",
-      "summary": "This teenager's affordable DIY solar panel design is attracting national attention, and for good reason.",
-      "_excerpt": "This teenager's affordable DIY solar panel design is attracting national attention, and for good reason.",
-      "date_published": "2026-11-15T22:15:00+00:00",
-      "authors": [
-        {
-          "name": "Engadget",
-          "url": "http://www.engadget.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 83,
-      "_theme_score_raw": 18,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 56,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_niche": false,
-      "_thin_body": true,
-      "image": "https://www.engadget.com/img/gallery/how-one-13-year-old-is-helping-solve-a-huge-solar-panel-limitation/l-intro-1794243328.jpg",
-      "_boosted_score": 55
-    },
-    "held_date": "2026-11-16",
-    "target_date": "2026-11-18",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-11-18"
-  },
-  "https://www.tomshardware.com/3d-printing/university-of-rochester-researchers-made-a-3d-bioprinter-from-a-modified-ender-3-usd450-bioprinter-makes-engineered-living-material-research-accessible": {
-    "article": {
-      "id": "https://www.tomshardware.com/3d-printing/university-of-rochester-researchers-made-a-3d-bioprinter-from-a-modified-ender-3-usd450-bioprinter-makes-engineered-living-material-research-accessible",
-      "url": "https://www.tomshardware.com/3d-printing/university-of-rochester-researchers-made-a-3d-bioprinter-from-a-modified-ender-3-usd450-bioprinter-makes-engineered-living-material-research-accessible",
-      "title": "[Tom's Hardware] Modified Ender 3 becomes a $450 bioprinter for 3D printing engineered living materials",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/ZiLPdL3uLtUwWzEjcCNVWj-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2F3d-printing%2Funiversity-of-rochester-researchers-made-a-3d-bioprinter-from-a-modified-ender-3-usd450-bioprinter-makes-engineered-living-material-research-accessible\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMicrobiologists at the University of Rochester have modified an Ender 3 FDM printer into a 3D bioprinter for $450 and outperforming 3D bioprinters costing more than $100,000.",
-      "summary": "Microbiologists at the University of Rochester have modified an Ender 3 FDM printer into a 3D bioprinter for $450 and outperforming 3D bioprinters costing more than $100,000.",
-      "_excerpt": "Microbiologists at the University of Rochester have modified an Ender 3 FDM printer into a 3D bioprinter for $450 and outperforming 3D bioprinters costing more than $100,000.",
-      "date_published": "2026-11-15T13:00:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 72,
-      "_relevance": 80,
-      "_local": 0,
-      "_theme_score": 32,
-      "_theme_score_raw": 4,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 20,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_niche": false,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/ZiLPdL3uLtUwWzEjcCNVWj-1920-80.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-11-16T06:07:47.371824+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-11-17",
-    "target_date": "2026-11-18",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-11-18"
-  },
-  "https://www.tomshardware.com/3d-printing/3d-printing-developer-creates-self-hostable-non-planar-printing-slicer-pancakeslicer-makes-non-planar-3d-printing-accessible-potentially-leading-to-rapid-community-development": {
-    "article": {
-      "id": "https://www.tomshardware.com/3d-printing/3d-printing-developer-creates-self-hostable-non-planar-printing-slicer-pancakeslicer-makes-non-planar-3d-printing-accessible-potentially-leading-to-rapid-community-development",
-      "url": "https://www.tomshardware.com/3d-printing/3d-printing-developer-creates-self-hostable-non-planar-printing-slicer-pancakeslicer-makes-non-planar-3d-printing-accessible-potentially-leading-to-rapid-community-development",
-      "title": "[Tom's Hardware] 3D printing dev\u2019s free tool unlocks curved printing along all three axes",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/SD4QE3FpnQwctLP45wf3y5-1920-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2F3d-printing%2F3d-printing-developer-creates-self-hostable-non-planar-printing-slicer-pancakeslicer-makes-non-planar-3d-printing-accessible-potentially-leading-to-rapid-community-development\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPancakeSlicer is a self-hostable non-planar 3D printing slicer that might finally make non-planar slicing more accessible to the masses.",
-      "summary": "PancakeSlicer is a self-hostable non-planar 3D printing slicer that might finally make non-planar slicing more accessible to the masses.",
-      "_excerpt": "PancakeSlicer is a self-hostable non-planar 3D printing slicer that might finally make non-planar slicing more accessible to the masses.",
-      "date_published": "2026-11-15T15:00:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 68,
-      "_relevance": 78,
-      "_local": 0,
-      "_theme_score": 76,
-      "_theme_score_raw": 10,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 46,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_niche": false,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/SD4QE3FpnQwctLP45wf3y5-1920-80.jpg",
-      "_boosted_score": 60
-    },
-    "held_date": "2026-11-16",
-    "target_date": "2026-11-18",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-11-18"
-  },
   "https://www.sciencedaily.com/releases/2026/11/261104012305.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/11/261104012305.htm",
       "url": "https://www.sciencedaily.com/releases/2026/11/261104012305.htm",
       "title": "[ScienceDaily] Human bodies produce 2 billion metric tons of CO2 a year just by staying alive",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261104012305.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHumans collectively produce more than 2 billion tonnes of carbon dioxide annually just by turning food into energy, a 74% increase over three decades largely driven by population growth. Unlike fossil fuel emissions, however, the CO2 we exhale is part of the natural carbon cycle, and scientists say measuring it more accurately could improve climate models.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261104012305.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHumans collectively produce more than 2 billion tonnes of carbon dioxide annually just by turning food into energy, a 74% increase over three decades largely driven by population growth. Unlike fossil fuel emissions, however, the CO2 we exhale is part of the natural carbon cycle, and scientists say measuring it more accurately could improve climate models.",
       "summary": "Humans collectively produce more than 2 billion tonnes of carbon dioxide annually just by turning food into energy, a 74% increase over three decades largely driven by population growth. Unlike fossil fuel emissions, however, the CO2 we exhale is part of the natural carbon cycle, and scientists say",
       "_excerpt": "Humans collectively produce more than 2 billion tonnes of carbon dioxide annually just by turning food into energy, a 74% increase over three decades largely driven by population growth. Unlike fossil fuel emissions, however, the CO2 we exhale is part of the natural carbon cycle, and scientists say measuring it more accurately could improve climate models.",
       "date_published": "2026-11-07T10:00:03+00:00",
@@ -912,19 +707,24 @@
       "_quality": 72,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 56,
-      "_theme_score_raw": 8,
+      "_theme_score": 66,
+      "_theme_score_raw": 4,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 55,
+      "_composite_podcast": 62,
       "_keyword_matches": 0,
       "_category": "science",
       "_source_category": "science",
       "_is_bonus": true,
       "_niche": false,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-11-17T06:09:40.585373+00:00"
+      },
       "_boosted_score": 41
     },
-    "held_date": "2026-11-17",
+    "held_date": "2026-11-19",
     "target_date": "2026-11-22",
     "target_weekday": 6,
     "target_focus_slug": "living-world",
@@ -1009,43 +809,115 @@
     "target_focus_name": "Digital Life & Security",
     "status": "held"
   },
-  "https://www.sciencedaily.com/releases/2026/11/261105081000.htm": {
+  "https://vancouversun.com/opinion/columnists/douglas-todd-under-lorne-doerkson-b-c-interior-residents-feel-their-time-has-finally-come": {
     "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/11/261105081000.htm",
-      "title": "[ScienceDaily] For decades, we were told to avoid full-fat dairy. New research says otherwise",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F11%2F261105081000.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFull-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
-      "summary": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising",
-      "_excerpt": "Full-fat dairy may not be the health villain it has long been portrayed as, according to a new study finding that three daily servings did not worsen weight, cholesterol, or insulin resistance over 12 weeks. Researchers also observed improvements in blood pressure and nutrient intake, raising questions about longstanding recommendations to choose low-fat dairy.",
-      "date_published": "2026-11-06T05:51:36+00:00",
+      "id": "https://vancouversun.com/opinion/columnists/douglas-todd-under-lorne-doerkson-b-c-interior-residents-feel-their-time-has-finally-come",
+      "url": "https://vancouversun.com/opinion/columnists/douglas-todd-under-lorne-doerkson-b-c-interior-residents-feel-their-time-has-finally-come",
+      "title": "[Vancouver Sun] Douglas Todd: Under Lorne Doerkson, B.C. Interior residents feel their time has finally come",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fvancouversun.com%2Fopinion%2Fcolumnists%2Fdouglas-todd-under-lorne-doerkson-b-c-interior-residents-feel-their-time-has-finally-come\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWith the B.C. Conservatives winning most of the huge, remote ridings populated by loggers, miners and oil-and-gas workers, we examine what it means for the resource industry, health care and housing.",
+      "summary": "With the B.C. Conservatives winning most of the huge, remote ridings populated by loggers, miners and oil-and-gas workers, we examine what it means for the resource industry, health care and housing.",
+      "_excerpt": "With the B.C. Conservatives winning most of the huge, remote ridings populated by loggers, miners and oil-and-gas workers, we examine what it means for the resource industry, health care and housing.",
+      "date_published": "2026-11-17T23:00:34+00:00",
       "authors": [
         {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
+          "name": "Vancouver Sun",
+          "url": "https://vancouversun.com/news/bc-wildfires-new-evacuation-orders-issued-south-chilcotin"
         }
       ],
-      "ai_score": 44,
+      "ai_score": 70,
       "_quality": 70,
+      "_relevance": 80,
+      "_local": 35,
+      "_theme_score": 90,
+      "_theme_score_raw": 22,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 66,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_niche": false,
+      "_thin_body": true,
+      "_boosted_score": 70
+    },
+    "held_date": "2026-11-19",
+    "target_date": "2026-11-24",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.northernminer.com/news/china-border-checks-cut-oyu-tolgoi-exports-by-70/1003896235/": {
+    "article": {
+      "id": "https://www.northernminer.com/news/china-border-checks-cut-oyu-tolgoi-exports-by-70/1003896235/",
+      "url": "https://www.northernminer.com/news/china-border-checks-cut-oyu-tolgoi-exports-by-70/1003896235/",
+      "title": "[The Northern Miner] China border checks cut Oyu Tolgoi exports by 70%",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.northernminer.com%2Fnews%2Fchina-border-checks-cut-oyu-tolgoi-exports-by-70%2F1003896235%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Copper concentrate exports from Rio Tinto\u2019s (NYSE, LSE, ASX: RIO) Oyu Tolgoi mine in Mongolia have dropped about 70% over the past two weeks because of Chinese border restrictions, the...</p>\n<p>The post <a href=\"https://www.northernminer.com/news/china-border-checks-cut-oyu-tolgoi-exports-by-70/1003896235/\">China border checks cut Oyu Tolgoi exports by 70%</a> appeared first on <a href=\"https://www.northernminer.com\">The Northern Miner</a>.</p>",
+      "summary": "Copper concentrate exports from Rio Tinto\u2019s (NYSE, LSE, ASX: RIO) Oyu Tolgoi mine in Mongolia have dropped about 70% over the past two weeks because of Chinese border restrictions, the... The post China border checks cut Oyu Tolgoi exports by 70% appeared first on The Northern Miner .",
+      "_excerpt": "Copper concentrate exports from Rio Tinto\u2019s (NYSE, LSE, ASX: RIO) Oyu Tolgoi mine in Mongolia have dropped about 70% over the past two weeks because of Chinese border restrictions, the... The post China border checks cut Oyu Tolgoi exports by 70% appeared first on The Northern Miner .",
+      "date_published": "2026-10-29T19:45:47+00:00",
+      "authors": [
+        {
+          "name": "The Northern Miner",
+          "url": "https://www.northernminer.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 23,
+      "_theme_score": 66,
+      "_theme_score_raw": 4,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 60,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_niche": false,
+      "_boosted_score": 55
+    },
+    "held_date": "2026-11-19",
+    "target_date": "2026-11-24",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.sciencealert.com/major-fossil-discovery-in-china-reveals-two-new-secrets-about-the-home-of-homo-erectus": {
+    "article": {
+      "id": "https://www.sciencealert.com/major-fossil-discovery-in-china-reveals-two-new-secrets-about-the-home-of-homo-erectus",
+      "url": "https://www.sciencealert.com/major-fossil-discovery-in-china-reveals-two-new-secrets-about-the-home-of-homo-erectus",
+      "title": "[ScienceAlert] Major Fossil Discovery in China Reveals New Secrets About Mysterious Hominin Ancestors",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fmajor-fossil-discovery-in-china-reveals-two-new-secrets-about-the-home-of-homo-erectus\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Homo erectus replica\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/10/HomoErectus-1200x675.jpg\" style=\"float:left;margin:0 15px 15px 0;\" width=\"1200\"/>We didn't think it could live there.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&amp;utm_medium=feed&amp;utm_campaign=rss_feed_promo\" rel=\"noopener noreferrer\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.</a></p>",
+      "summary": "We didn't think it could live there. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "_excerpt": "We didn't think it could live there. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "date_published": "2026-11-18T16:00:00+00:00",
+      "authors": [
+        {
+          "name": "ScienceAlert",
+          "url": "https://www.sciencealert.com"
+        }
+      ],
+      "ai_score": 47,
+      "_quality": 70,
+      "_relevance": 55,
+      "_local": 0,
+      "_theme_score": 51,
       "_theme_score_raw": 3,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 31,
+      "_composite_podcast": 55,
       "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
+      "_category": "science",
+      "_source_category": "science",
       "_is_bonus": true,
       "_niche": false,
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-11-17T06:09:40.585373+00:00"
-      },
-      "_boosted_score": 44
+      "_boosted_score": 47
     },
-    "held_date": "2026-11-18",
+    "held_date": "2026-11-19",
     "target_date": "2026-11-22",
     "target_weekday": 6,
     "target_focus_slug": "living-world",

@@ -1,37 +1,4 @@
 {
-  "2026-08-20": {
-    "timestamp": 1787217064.700873,
-    "date": "2026-08-20",
-    "theme": "Indigenous Lands & Innovation",
-    "focus": "governance-title",
-    "anchor": "tech-sadness",
-    "central_question": "What structural conditions enable durable accountability and decision-making authority, and how do Indigenous governance models differ from corporate mission-driven structures in sustaining meaningful work?",
-    "riley_position": "Legal and governance frameworks that establish clear accountability structures\u2014where decision-making authority sits with affected communities rather than external institutions\u2014create durability independent of individual persistence or market conditions. Building evidentiary records now (oral history, land-use documentation, monitoring data) establishes the foundation for future legal claims and community-controlled governance.",
-    "riley_key_evidence": [
-      "T\u015dilhqot'in's 2014 title decision provided court-backed decision-making authority over defined territory, giving them a legal floor Olsen's W\u0331S\u00c1NE\u0106 fight lacks",
-      "Denisiqi Services Society survived 20 years because its board answers to the communities it serves, not to grant cycles or ministry goodwill",
-      "Tech companies' mission collapse occurred because their accountability structure answered to boards and shareholders, not the workers or communities claiming to benefit"
-    ],
-    "casey_position": "While legal frameworks matter, they require decades of expensive litigation with outcomes that aren't guaranteed, and the immediate fight for resources and protection happens now with whatever tools exist today. Accountability structures matter more than meaning, but both Indigenous governance and tech work exhaust people\u2014one because stakes are real, one because stakes were never real, yet both burden individuals compensating for structural failures.",
-    "casey_key_evidence": [
-      "Carl Olsen has been personally carrying the Goldstream fight for years because a government promise wasn't self-enforcing, at real personal cost",
-      "T\u015dilhqot'in title took decades of litigation and specific historical facts about occupation that aren't replicable on the same timeline for every nation",
-      "NCARB architecture licensure shows more diversity in candidate pools but persistent gaps in who gets licensed and holds real authority\u2014participation on paper \u2260 decision-making power"
-    ],
-    "resolution": "Casey and Riley converged on accountability rather than meaning as the load-bearing concept, agreeing that durability comes from decision-making authority sitting outside the institution itself. They acknowledged that legal frameworks are important groundwork but aren't substitutes for the immediate fight, and that both Indigenous governance and corporate contexts reveal the critical question: who actually has the power to revoke authority and to whom do they answer.",
-    "topics_covered": [
-      "Comparison between tech industry's collapsed mission-driven identity and Indigenous governance's sustained accountability",
-      "Legal title vs. governance authority: T\u015dilhqot'in's court-recognized decision-making power vs. Olsen's negotiation from public pressure alone",
-      "Building evidentiary records and governance structures before crises force negotiation",
-      "Participation vs. power: the gap between increased representation and actual decision-making authority",
-      "Community-controlled institutions as models for durability (Denisiqi Services Society case study)"
-    ],
-    "calls_to_action": [
-      "Communities can begin now building documented occupation records, continuous-use documentation, and structured oral history capture on their own terms, treating this as multi-decade groundwork that establishes the evidentiary foundation future title claims would need.",
-      "Before launching any new community program, ask concretely: who can shut it down and who does it actually answer to day-to-day? If the honest answer is 'a ministry, annually, depending on budget,' that reveals the authority gap.",
-      "Listeners in the Cariboo with stories about community governance projects, land-use monitoring, or Indigenous-led initiative: send tips to feedback at cariboo signals dot c-a so examples of local implementation can be documented and shared."
-    ]
-  },
   "2026-08-21": {
     "timestamp": 1787303012.909274,
     "date": "2026-08-21",
@@ -2587,6 +2554,34 @@
       "Open-source and low-cost DIY hardware such as the bioprinter, Hydra ceramic printer, and LEGO-based Studprint",
       "Maintenance, skill retention, and budgeting for local repair and maker projects",
       "Vendor subscriptions, firmware, and open-source workarounds like ZigZag and llama.cpp"
+    ]
+  },
+  "2026-11-19": {
+    "timestamp": 1795076644.358709,
+    "date": "2026-11-19",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "governance-title",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "Can an Indigenous Nation meaningfully refuse a project, through consultation or legal rights, when fast-track laws like Bill C-39 set decision clocks and let Cabinet designate projects of national interest?",
+    "riley_position": "Speed itself is not the problem; the real issue is whether a Nation can say no within the decision clock, and that refusal right can be written into the law through co-design, equity stakes, and a formal veto before designation.",
+    "riley_key_evidence": [
+      "The Narwhal reports C-39 folds Indigenous consultation into a single coordinated impact assessment across federal permits.",
+      "The Dipping Road prescribed burn near Williams Lake was a partnership with the Williams Lake First Nation at the planning table, showing the co-design model in practice.",
+      "The T\u015dilhqot'in National Government's economic arm owns 51 percent of TEN, an Indigenous-led civil construction company doing infrastructure work across B.C."
+    ],
+    "casey_position": "Consultation under C-39 gives Nations a seat in the room rather than a real decision, because the bill's timelines and Cabinet's control over national interest leave no clear mechanism for refusal, and ownership of contractors does not equal a veto.",
+    "casey_key_evidence": [
+      "The Assembly of First Nations says the bill puts commercial timelines ahead of free, prior and informed consent, and the Council of Canadians reads it as 'everything is on the menu.'",
+      "Hyperallergic reports the U.S. bill narrows Section 106 of the National Historic Preservation Act, and nine tribal organizations asked Senate leadership to remove provisions weakening consultation.",
+      "Kebaowek is paying its own legal costs while waiting on a Supreme Court leave decision, and C-39 sets a one-year clock, so the two processes run on very different budgets and timelines."
+    ],
+    "resolution": "The two agreed that the clarity of the legal process is what is missing and that the designation test is the critical question, but they did not resolve whether a Nation's no would survive a designation. Casey stated they would not sign off on the bill until the designation test is read in writing, leaving the question open.",
+    "topics_covered": [
+      "Bill C-39 national interest designation and one-year decision clock",
+      "Consultation versus consent and whether a Nation can refuse projects",
+      "Kebaowek v. Canadian Nuclear Laboratories and the legal status of UNDRIP",
+      "U.S. permitting bill and narrowing of Section 106 tribal consultation",
+      "T\u015dilhqot'in ownership of TEN construction company and the Pirutsiagutiit National Framework"
     ]
   }
 }
