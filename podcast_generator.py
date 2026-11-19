@@ -2440,6 +2440,12 @@ _PRODUCER_ATTRIBUTION = (
     "'our production team spotted' — never as listener mail, never thank a "
     "listener for them, and never name the producer on air."
 )
+# 2026-11-12: the production correction aired its core and dropped three of
+# its points. Condensing is fine; losing a point is not.
+_PRODUCTION_POINTS_RULE = (
+    "Every point of a production correction airs: condense its wording, never "
+    "drop one of its points."
+)
 
 
 def format_feedback_emails_for_prompt(feedback_items: list) -> str:
@@ -2739,6 +2745,7 @@ def format_corrections_for_prompt(correction_items: list) -> str:
     ]
     if any(_is_producer_item(i) for i in correction_items):
         lines.append(_PRODUCER_ATTRIBUTION)
+        lines.append(_PRODUCTION_POINTS_RULE)
     lines.append("---")
     for item in correction_items:
         preview = (item.get("body_text") or "").strip()
@@ -4913,7 +4920,7 @@ def _corrections_ground_truth(corrections: list | None) -> str:
         whose = "All of them" if producer_count == len(corrections) else f"{producer_count} of them"
         origin = (f" {whose} came from the show's own production side, not from a "
                   f"listener — credit those to the show ('we caught') and never thank a "
-                  f"listener for them.")
+                  f"listener for them. {_PRODUCTION_POINTS_RULE}")
     return (f"\n\nCORRECTIONS SUPPLIED FOR THIS EPISODE: {len(corrections)} "
             f"({subjects}).{origin} A correction beat tied to these is legitimate — keep it, and "
             f"keep it specific about what was wrong and what is correct. Delete any "

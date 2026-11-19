@@ -2770,6 +2770,19 @@ class TestProducerAttribution:
             _corrections_ground_truth([self.PRODUCER])
         assert "production side" not in _corrections_ground_truth([self.LISTENER])
 
+    def test_every_point_of_a_production_correction_airs(self, tmp_path, monkeypatch):
+        """2026-11-12: the production correction aired its core and dropped three of its
+        points. The draft sees the rule in the block; both polishes see it in the ground
+        truth, which carries only the subject."""
+        from podcast_generator import _corrections_ground_truth
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        rule = "never drop one of its points"
+        assert rule in format_corrections_for_prompt([self.PRODUCER])
+        assert rule in _corrections_ground_truth([self.PRODUCER])
+        # A listener's correction doesn't spend the tokens.
+        assert rule not in format_corrections_for_prompt([self.LISTENER])
+        assert rule not in _corrections_ground_truth([self.LISTENER])
+
     def test_ground_truth_absence_covers_a_fabricated_in_house_catch(self):
         from podcast_generator import _corrections_ground_truth
 
