@@ -9356,11 +9356,19 @@ def _deep_dive_subject_match(title: str, turns: list, boilerplate: frozenset) ->
 
 
 def match_deep_dive_to_script(articles, script):
-    """(article, discussed) pairs for the deep dive, judged on its own section."""
+    """(article, discussed) pairs for the deep dive, judged on its own section.
+
+    The headline test also runs on two adjacent turns together: hosts pass a story
+    back and forth, and on 2026-11-13 the deep dive's own Tyee source ("Clinton faces
+    floods and landslide warnings") read as undiscussed because no single turn held
+    3 of its words. Only the headline test: replayed over 922 committed sources, the
+    summary-word test on pairs credited "call / change / day" and "stop / past / like".
+    """
     if not script:
         return [(a, True) for a in articles]
     section = _extract_deep_dive_section(script).lower()
     turns = _script_turns(section)
+    pairs = list(turns) + [(a[0], f"{a[1]} {b[1]}") for a, b in zip(turns, turns[1:])]
     boilerplate = _welcome_words(script)
     results = []
     for article in articles:
@@ -9370,7 +9378,7 @@ def match_deep_dive_to_script(articles, script):
         rare = [t for t in tokens if 0 < counts[t] <= _MATCH_RARE_MAX]
         discussed = any(
             sum(1 for t in rare if re.search(r"\b" + re.escape(t), turn)) >= _DEEP_MATCH_MIN_TOKENS
-            for _, turn in turns) or _deep_dive_subject_match(title, turns, boilerplate)
+            for _, turn in turns) or _deep_dive_subject_match(title, pairs, boilerplate)
         results.append((article, discussed))
     return results
 
