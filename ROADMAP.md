@@ -41,18 +41,17 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-11-15..2026-11-16) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-10-19..2026-11-19) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **The deep dive aired on a single source while on-theme candidates went unused.** On
-      2026-11-15 the deep dive used one source, My Cariboo Now, while 32 on-theme candidates
-      remained unused after the roundup cut. The deep-dive beat count was 4 aired against 5
-      planned, and only 6 of 17 bridges were named. The facts show the deep dive ran short of
-      sources rather than of candidates, so the selection step is not drawing on the unused
-      pool. Closing this means checking why the deep-dive selector accepts a single source when
-      more candidates are available. (signal `thin-deep-dive`; seen in 2 reviews, latest
-      2026-11-16)
+- [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
+      for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
+      on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were
+      cut by the airtime budget, so the thinnest sources were the ones that passed through. The
+      pipeline should either drop stories whose extraction failed or mark them as unverified
+      before scripting. This is the degradation whose handling the facts show as wrong. (signal
+      `degraded:script/kagi-extract`; seen in 2 reviews, latest 2026-11-19)
 
 <!-- reviews:end -->
 
