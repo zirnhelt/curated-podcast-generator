@@ -1,25 +1,4 @@
 {
-  "2026-10-15": {
-    "timestamp": 1792052607.81313,
-    "topics": [
-      "[100 Mile Free Press] South Cariboo Recreation Centre adds $",
-      "[Williams Lake Tribune] MEET THE CANDIDATE: City council can",
-      "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g",
-      "[My Cariboo Now] Thanksgiving Food Drive in Quesnel was a su",
-      "[My Cariboo Now] Health Service Delivery Area that includes ",
-      "[Global News] FSIN launches legal action over Ottawa\u2019s $12.4",
-      "[Eagle Feather News] The Last Generation \u2013 Survivors share s",
-      "[IndigiNews] A century after it was taken, ancestral tipi co"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-15",
-    "focus": "governance-title",
-    "focus_name": "Governance, Title & Treaty"
-  },
   "2026-10-16": {
     "timestamp": 1792138576.984427,
     "topics": [
@@ -727,5 +706,27 @@
     "date": "2026-11-18",
     "focus": "maker-repair",
     "focus_name": "Maker & Repair"
+  },
+  "2026-11-19": {
+    "timestamp": 1795076642.13874,
+    "topics": [
+      "[Williams Lake Tribune] Addictions Awareness Week wraps up w",
+      "[BC Wildfire Service] Prescribed burn planned for Dipping Ro",
+      "[T\u015dilhqot\u2019in National Government] Ts\u0302ilhqot\u2019in National Gove",
+      "[Regional News Archives",
+      "[The Tyee] BC\u2019s Rockfish Conservation Areas Have Been a Huge",
+      "[APTN News] Kebaowek First Nation turns to Supreme Court to ",
+      "[The Council of Canadians] ANALYSIS: Who\u2019s on the menu in Ca",
+      "[Hyperallergic] Tribal Groups Urge Congress to Halt Bill Tha"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-19",
+    "focus": "governance-title",
+    "focus_name": "Governance, Title & Treaty"
   }
 }

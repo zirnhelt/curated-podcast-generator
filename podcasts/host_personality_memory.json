@@ -55,9 +55,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-30",
-        "clue": "funding-risk:x \u2014 concedes UK landscape line is not yet proven",
-        "occurrences": 1
+        "date": "2026-11-19",
+        "clue": "funding-risk:x \u2014 admitted unpriced cost of Nation participation",
+        "occurrences": 2
       },
       {
         "date": "2026-11-09",
@@ -145,11 +145,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-18",
-        "clue": "community-trust:+ \u2014 Logs and school shop classes as buying-signal infrastructure",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-15",
         "clue": "evidence-bar:+ \u2014 insists on checking station history before claims",
         "occurrences": 1
@@ -172,6 +167,11 @@
       {
         "date": "2026-11-17",
         "clue": "rural-context:+ \u2014 insists on city-scale and plain-terms reading of disruption",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-19",
+        "clue": "structural-lens:x \u2014 conceded clarity matters more than planning",
         "occurrences": 1
       }
     ],
@@ -451,6 +451,21 @@
       {
         "date": "2026-11-16",
         "clue": "community-trust:~ Admits unveilings beat a plaque with nobody there",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-19",
+        "clue": "structural-lens:+ \u2014 doubts designation test; wants clause read",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-19",
+        "clue": "funding-risk:~ \u2014 frameworks die in budget cycles",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-19",
+        "clue": "community-trust:~ \u2014 ownership differs from veto power",
         "occurrences": 1
       }
     ],
