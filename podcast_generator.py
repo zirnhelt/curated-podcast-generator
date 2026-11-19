@@ -1012,9 +1012,11 @@ BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOW
 # Kagi Extract reads a thin roundup story's own page (rendered, clean markdown)
 # before any Brave title search: $4/1000 pages against Brave's $5/1000, and it
 # spends nothing from the Search cap the two repos share. Pages, not requests,
-# are the unit; one request carries up to KAGI_EXTRACT_BATCH. Unset key = off.
+# are the unit, so one page a request costs the same: Kagi fetches a request's
+# pages under one shared time budget, and one slow site came back as an empty
+# reply for all six pages sent on 2026-11-19. Unset key = off.
 KAGI_EXTRACT_CALL_LIMIT = int(os.getenv("PODCAST_KAGI_EXTRACT_CALL_LIMIT", "10"))  # 0=disabled
-KAGI_EXTRACT_BATCH = 10
+KAGI_EXTRACT_BATCH = 1
 #
 # A themes.json `event_focus` carrying a `research` brief turns the research pass
 # from a judgement call into a roster sweep — one search per candidate per
@@ -4407,9 +4409,13 @@ def _extract_roundup_stories(articles: list) -> int:
     pages a run; a failed request or a 402 falls back to Brave and degrades.
     A page the site refuses is the designed Brave path, not a degradation: about
     half of them miss (paywalls, bot walls), so four misses in a row is an
-    ordinary night (2026-10-19, -21); the reasons are logged. What degrades is a
-    reply that can't be matched to the pages sent. An account-level refusal
-    arrives as an HTTP error and degrades above.
+    ordinary night (2026-10-19, -21); the reasons are logged. So is a page that
+    comes back empty: Kagi fetches a request's pages under one time budget and
+    answers `"data": []` when it runs out, so each page goes alone
+    (KAGI_EXTRACT_BATCH) and a slow site loses only itself. What degrades is a
+    reply that names none of the pages sent (the contract moved), or no page
+    coming back at all. An account-level refusal arrives as an HTTP error and
+    degrades above.
     """
     key = os.getenv("KAGI_API_KEY")
     if not key or KAGI_EXTRACT_CALL_LIMIT <= 0:
@@ -4419,7 +4425,7 @@ def _extract_roundup_stories(articles: list) -> int:
             if a.get("url") and len(a.get("_body", "") or "") < NEWS_BODY_RICH_CHARS][:max(left, 0)]
     if not thin:
         return 0
-    read = grew = unmatched = 0
+    read = grew = unmatched = dropped = 0
     errors: list = []
     for i in range(0, len(thin), KAGI_EXTRACT_BATCH):
         batch = thin[i:i + KAGI_EXTRACT_BATCH]
@@ -4446,10 +4452,18 @@ def _extract_roundup_stories(articles: list) -> int:
             break
         by_url = {p.get("url"): p for p in data if isinstance(p, dict) and p.get("url")}
         for j, (a, url) in enumerate(zip(batch, urls)):
-            page = by_url.get(url) or (data[j] if not by_url and j < len(data) else None)
+            # A one-page reply is that page, whatever URL it names (a redirect, a
+            # trailing slash); a longer one is matched by URL, then by position.
+            page = (by_url.get(url) or (data[0] if len(batch) == 1 and len(data) == 1 else None)
+                    or (data[j] if not by_url and j < len(data) else None))
             # What each page bought, for the review's research section.
             row = {"kind": "kagi-extract", "story": a.get("title", "")[:200], "result": "unmatched"}
             _RESEARCH_LOG.append(row)
+            if not data:
+                # The request's time budget ran out before the page rendered.
+                dropped += 1
+                row["result"] = "timed out"
+                continue
             if not isinstance(page, dict):
                 unmatched += 1
                 continue
@@ -4470,9 +4484,14 @@ def _extract_roundup_stories(articles: list) -> int:
           f"(~${len(thin) * _FLAT_USD_PER_UNIT['kagi-extract']:.3f})")
     for reason, n in Counter(errors).most_common():
         print(f"     {n}× page error: {reason}")
+    if dropped:
+        print(f"     {dropped}× timed out (empty reply)")
     if unmatched:
         degrade("script/kagi-extract",
                 f"Kagi Extract reply matched no page for {unmatched} of {len(thin)} URLs sent")
+    elif dropped and dropped == len(thin):
+        degrade("script/kagi-extract",
+                f"Kagi Extract returned nothing for any of the {len(thin)} pages sent")
     return read
 
 

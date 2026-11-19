@@ -708,6 +708,17 @@ The Atlantic and Civil Eats are among the misses), and Brave researched every mi
 reasons are now logged; `script/kagi-extract` degrades on a failed request or on a reply that
 matches none of the URLs sent, which would mean the API contract moved.
 
+**One page a request** (2026-11-19). That night all six pages came back unmatched and the row
+fired as a contract change; 11-17 and 11-18 had read 6/6 with the same code. Kagi's spec says a
+request's URLs are fetched concurrently under one time budget (`timeout`, at most 10 s), and a
+reported bug shows the reply when it runs out: `"data": []` after ~10 s, the pages that rendered
+dropped with the slow one. The 2026-10-19 "no page for 4" sighting fits the same shape. Brave
+then researched all six (13 Search calls against 4-8 on the nights before). Kagi bills pages, not
+requests, so each page now goes alone (`KAGI_EXTRACT_BATCH = 1`): a slow site loses only itself,
+logs `timed out` and takes the Brave path. A one-page reply is that page whatever URL it names.
+`script/kagi-extract` degrades on a failed request, a reply naming none of the pages sent, or no
+page back at all. Cost unchanged; worst case adds ~10 s per slow page to the script stage.
+
 ## Local leads, one subject in one place, a Cariboo deep dive (2026-10-28)
 
 The 2026-10-28 Practical Tech episode broke three standing commitments at once and the
