@@ -7225,23 +7225,75 @@ class TestSparseFilterBudget:
         assert rows == []
         assert "4× page error: No data returned" in capsys.readouterr().out
 
-    def test_kagi_extract_reply_that_matches_no_url_degrades(self, monkeypatch):
+    @staticmethod
+    def _kagi_replies(monkeypatch, replies):
+        """Each request gets the next reply's `data`; returns the pages each request sent."""
         import podcast_generator as pg
         monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
-        rows = []
-        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        sent, queue = [], list(replies)
 
         class Resp:
+            def __init__(self, data):
+                self.data = data
+
             def raise_for_status(self):
                 pass
 
             def json(self):
-                return {"data": [{"url": "https://x.test/0/", "markdown": "text"}]}
-        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
-        articles = [{"title": "S0", "url": "https://x.test/0"},
-                    {"title": "S1", "url": "https://x.test/1"}]
-        pg._extract_roundup_stories(articles)
-        assert rows == ["Kagi Extract reply matched no page for 2 of 2 URLs sent"]
+                return {"meta": {"ms": 10005}, "data": self.data}
+
+        def _post(url, **kw):
+            sent.append([p["url"] for p in kw["json"]["pages"]])
+            return Resp(queue.pop(0))
+        monkeypatch.setattr(pg.requests, "post", _post)
+        return sent
+
+    def test_kagi_extract_sends_each_page_alone(self, monkeypatch):
+        """Kagi fetches a request's pages under one time budget: on 2026-11-19 one slow
+        site emptied the reply for all six pages sent together."""
+        import podcast_generator as pg
+        sent = self._kagi_replies(monkeypatch, [[], [], []])
+        pg._extract_roundup_stories([{"title": f"S{i}", "url": f"https://x.test/{i}"} for i in range(3)])
+        assert sent == [["https://x.test/0"], ["https://x.test/1"], ["https://x.test/2"]]
+
+    def test_an_empty_reply_is_a_slow_page_not_a_broken_contract(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+        self._kagi_replies(monkeypatch, [[], [{"url": "https://x.test/1", "markdown": story}]])
+        articles = [{"title": "Slow", "url": "https://x.test/0"}, {"title": "Fast", "url": "https://x.test/1"}]
+        assert pg._extract_roundup_stories(articles) == 1
+        assert articles[1]["_body"].startswith("The regional district")
+        assert [r["result"] for r in pg._RESEARCH_LOG] == ["timed out", "used"]
+        assert rows == []
+
+    def test_nothing_back_for_any_page_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        self._kagi_replies(monkeypatch, [[], []])
+        pg._extract_roundup_stories([{"title": f"S{i}", "url": f"https://x.test/{i}"} for i in range(2)])
+        assert rows == ["Kagi Extract returned nothing for any of the 2 pages sent"]
+
+    def test_a_one_page_reply_is_that_page_whatever_url_it_names(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+        self._kagi_replies(monkeypatch, [[{"url": "https://x.test/0/", "markdown": story}]])
+        articles = [{"title": "S0", "url": "https://x.test/0"}]
+        assert pg._extract_roundup_stories(articles) == 1
+        assert articles[0]["_body"].startswith("The regional district") and rows == []
+
+    def test_kagi_extract_reply_that_names_no_page_sent_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        self._kagi_replies(monkeypatch, [[{"url": "https://other.test/a", "markdown": "a"},
+                                          {"url": "https://other.test/b", "markdown": "b"}]])
+        pg._extract_roundup_stories([{"title": "S0", "url": "https://x.test/0"}])
+        assert rows == ["Kagi Extract reply matched no page for 1 of 1 URLs sent"]
 
     def test_kagi_extract_stops_at_its_page_budget(self, monkeypatch):
         import podcast_generator as pg
@@ -7302,16 +7354,21 @@ class TestSparseFilterBudget:
             {"kind": "kagi-extract", "story": "Water plant", "result": "refused"},
             {"kind": "kagi-extract", "story": "Lost page", "result": "unmatched"}]
 
-    def test_a_failed_kagi_request_logs_every_page_it_carried(self, monkeypatch):
+    def test_a_failed_kagi_request_stops_the_rest(self, monkeypatch):
+        """An HTTP failure is account-level or an outage: the remaining pages go to Brave
+        unsent, so only the page that was sent is logged."""
         import podcast_generator as pg
         monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        calls = []
 
         def _post(url, **kw):
+            calls.append(kw["json"])
             raise pg.requests.ConnectionError("down")
         monkeypatch.setattr(pg.requests, "post", _post)
         pg._extract_roundup_stories([{"title": f"S{i}", "url": f"https://x.test/{i}"}
                                      for i in range(2)])
-        assert [r["result"] for r in pg._RESEARCH_LOG] == ["failed", "failed"]
+        assert len(calls) == 1
+        assert [r["result"] for r in pg._RESEARCH_LOG] == ["failed"]
 
     def test_a_body_search_is_logged_only_when_it_was_sent(self, monkeypatch):
         import podcast_generator as pg
