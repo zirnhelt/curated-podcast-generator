@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
       "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
       "[TechRadar] These social media posts promise big online disc",
       "AI",
@@ -10,7 +9,8 @@
       "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bik",
       "[Tom's Hardware] Tech sleuth claims to have found the oldest",
       "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M",
-      "[ZDNet] This tiny box gives your older tech smart home super"
+      "[ZDNet] This tiny box gives your older tech smart home super",
+      "[Outside Online] Lawmakers Move to Ban AI Data Centers on Na"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -24,16 +24,6 @@
       "concedes when evidence is compelling"
     ],
     "personality_clues": [
-      {
-        "date": "2026-10-20",
-        "clue": "permit-queue:+ \u2014 Insists permits are the lever Province can move",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-24",
-        "clue": "community-trust:+ Trust comes from seeing results on the street",
-        "occurrences": 1
-      },
       {
         "date": "2026-10-24",
         "clue": "evidence-bar:x Conceded Casey's point on the petition allegation",
@@ -140,9 +130,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-13",
-        "clue": "funding-risk:~ \u2014 Admits he doesn't know who pays for fixes",
-        "occurrences": 1
+        "date": "2026-11-20",
+        "clue": "funding-risk:~ \u2014 concedes a line can be cut, still wants both",
+        "occurrences": 2
       },
       {
         "date": "2026-11-15",
@@ -172,6 +162,16 @@
       {
         "date": "2026-11-19",
         "clue": "structural-lens:x \u2014 conceded clarity matters more than planning",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-20",
+        "clue": "structural-lens:+ \u2014 insists lead time should fund drainage sizing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-20",
+        "clue": "community-trust:+ \u2014 wants land users in from the first meeting",
         "occurrences": 1
       }
     ],
@@ -319,11 +319,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-10-12",
-        "clue": "tech-optimism:+ \u2014 platforms are new gatekeepers with unpublished rules",
-        "occurrences": 1
-      },
-      {
         "date": "2026-10-18",
         "clue": "pilot-skepticism:~ \u2014 notes sensing reveals fragility without fixing it",
         "occurrences": 2
@@ -409,9 +404,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-08",
-        "clue": "funding-risk:+ \u2014 Asks who pays for reruns and future checks",
-        "occurrences": 1
+        "date": "2026-11-20",
+        "clue": "funding-risk:+ \u2014 budget lines can be reallocated with a single motion",
+        "occurrences": 2
       },
       {
         "date": "2026-11-09",
@@ -464,8 +459,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-19",
-        "clue": "community-trust:~ \u2014 ownership differs from veto power",
+        "date": "2026-11-20",
+        "clue": "community-trust:~ \u2014 notes land users see change first but rarely write warnings",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-11-20",
+        "clue": "evidence-bar:+ \u2014 sixty percent odds still too uncertain to trust",
         "occurrences": 1
       }
     ],
