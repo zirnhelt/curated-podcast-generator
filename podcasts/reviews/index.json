@@ -1,5 +1,294 @@
 [
   {
+    "date": "2026-11-20",
+    "title": "Episode Review — Wild Spaces & Outdoor Life, November 20, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-20.html",
+    "content_html": "<p class=\"meta\">Theme: Wild Spaces &amp; Outdoor Life. Focus: Wildlife &amp; Conservation (week 2 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44699780081\">44699780081</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>2 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Investigate.</strong><br><span class=\"evidence\">the deep dive had no Cariboo story or angle</span></li>\n<li><strong><code>script/weather</code> fell back. Search the run log for <code>Degraded 'script/weather'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Open-Meteo did not answer — the episode airs with no weather check and no weather credit</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Two held articles released; seven held for other focus weeks</h3>\n<p>Focus is Wildlife &amp; Conservation, cycle week 2 of 4. Of 82 articles loaded, 26 came from the theme feed and 55 were bonus. The focus router released 2 and held 7. The two released were held since 2026-11-06 and 2026-11-07, both by kw=1. The seven still held are targeted at Economic Development, The Living World, Mining &amp; Energy, Conservation &amp; the Environment (two), Homestead &amp; Off-Grid Tech, and Digital Life &amp; Security. Two of those seven are targeted at Conservation &amp; the Environment, the focus this cycle's week 2 does not reach.</p>\n\n<h3>Weather check dropped: Open-Meteo did not answer</h3>\n<p>The weather segment ran without a weather check and without a weather credit. The episode aired without that segment, and the listener gets no weather line in this episode.</p>\n\n<h3>Two TTS takes came back short after one retry each</h3>\n<p>Two text-to-speech takes came back shorter than their word count predicted. Each was retried once, and both retries stayed short. The longer take of each pair was kept, so no script content is missing from the episode. The retry budget is spent and the pipeline does not retry a third time; if the short takes recur, the TTS provider is the place to look.</p>\n\n<h3>Script shipped at 2,979 words against a 3,400-word target</h3>\n<p>The first draft came in at 2,704 words and went back for one expand pass; the shipped script is 2,979 words. The episode is under the 3,400-word target, which is intended on a thin day. It is a problem only if SHORT_EPISODE_WORDS is set above 2,979. Of 38 stories cut from the roundup pool of 18 kept by the airtime budget (NEWS_ROUNDUP_COUNT), those cut stories remain in the pool and can resurface on a better-matched day.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>82</td></tr>\n<tr><td>Kept after dedup</td><td>65</td></tr>\n<tr><td>Held / released</td><td>2 released, 7 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:16, local:2</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.76, 2979 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 43% of the words</td></tr>\n<tr><td>Audio</td><td>18.3 min</td></tr>\n<tr><td>Audio size</td><td>16.7 MB</td></tr>\n<tr><td>Citations matched</td><td>14/18 roundup, 2/4 deep dive</td></tr>\n<tr><td>Feed</td><td>296 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>74,598</td></tr>\n<tr><td>API calls</td><td>104 total: openai-tts 73 · claude 11 · brave-search 7 · kagi-extract 5 · cohere 5 · brave-answers 3</td></tr>\n<tr><td>Anthropic cost</td><td>$0.13 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.57 at list price: OpenAI TTS $0.259 · Anthropic $0.133 · Brave Answers $0.123 · Brave Search $0.035 · Kagi Extract $0.020 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-20T10:05:56+00:00",
+    "metrics": {
+      "audio_minutes": 18.3,
+      "script_words": 2979,
+      "tell_hits": 0,
+      "roundup_cite_pct": 77.8,
+      "deep_dive_cite_pct": 50.0,
+      "cost_usd": 0.573
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "2 things to look at before tomorrow's run.",
+      "theme": "Wild Spaces & Outdoor Life",
+      "kpis": [
+        [
+          "Episode",
+          "18.3 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "2,979",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "14/18 · 2/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.57",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:40 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "deep-dive-non-local",
+          "todo": "Investigate.",
+          "evidence": "the deep dive had no Cariboo story or angle",
+          "minor": false,
+          "nights_seen": 0
+        },
+        {
+          "signal": "degraded:script/weather",
+          "todo": "script/weather fell back.",
+          "evidence": "degrade() row: Open-Meteo did not answer — the episode airs with no weather check and no weather credit",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-16",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 5,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-17",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Forestry & Timber",
+          "week": 2,
+          "of": 4,
+          "next": "Mining & Energy",
+          "event": null
+        },
+        {
+          "date": "2026-11-18",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 5,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-19",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Language & Culture",
+          "week": 2,
+          "of": 4,
+          "next": "Economic Development",
+          "event": null
+        },
+        {
+          "date": "2026-11-20",
+          "day": "Fri",
+          "today": true,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 4,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-21",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-22",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 5,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "How much should neighbours know about each other?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.winnipegfreepress.com/arts-and-life/life/health/2026/11/15/freshwater-supply-challenges-threaten-canadas-security-internal-federal-memo-says",
+          "title": "[winnipegfreepress.com] Federal memo warns freshwater pressures threaten Canada’s long-term security",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.outsideonline.com/outdoor-adventure/environment/bill-ban-ai-data-centers-public-lands/",
+          "title": "[Outside Online] Lawmakers Move to Ban AI Data Centers on National Forests and Federal Land",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261112230458.htm",
+          "title": "[ScienceDaily] Scientists discover a bizarre paradox among endangered penguins",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/14/locating-the-source-of-a-mysterious-beep-using-claude/",
+          "title": "[Adafruit Blog] Locating the source of a mysterious beep using Claude",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.livefortheoutdoors.com/hiking/news/why-are-mountain-rescue-teams-busier-than-ever/",
+          "title": "[Live for the Outdoors (Country Walking)] Mountain rescue teams are busier than ever – so what’s driving the increase?",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/we-beat-screwworm-once-heres-how-were-trying-to-do-it-again/",
+          "title": "[Scientific American] We beat screwworm once. Here’s how we’re trying to do it again",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261114202227.htm",
+          "title": "[ScienceDaily] NASA warns this year's Monster El Niño could be even bigger than legendary 1997 event",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.zmescience.com/ecology/ss-united-states-sunk-artificial-reef/",
+          "title": "[zmescience.com] Researchers will track marine life on sunken SS United States liner",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.nrdc.org/press-releases/lawsuit-challenges-third-gulf-oil-lease-sale-held-without-environmental-review",
+          "title": "[NRDC] Lawsuit Challenges Third Gulf Oil Lease Sale Held Without Environmental Review",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-coast-storm-rain-wind/",
+          "title": "[theglobeandmail.com] B.C. storm warnings escalate as coast faces 250 mm of rain",
+          "source": "",
+          "theme_pct": 95,
+          "aired": true
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.popularmechanics.com/science/environment/a74457761/super-el-nino-amazon/",
+          "title": "[Popular Mechanics] Ancient Mud Reveals a Startling Secret About the Amazon—and Why This El Niño Could Be Catastrophic",
+          "source": "",
+          "theme_pct": 94,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.scientificamerican.com/article/why-time-runs-faster-on-mountains-and-how-optical-clocks-could-map-earth/",
+          "title": "[Scientific American] Why time runs faster on mountains, and how optical clocks could map Earth",
+          "source": "",
+          "theme_pct": 92,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/11/6/building-wind-turbines-out-of-parts-found-in-gazas-rubble?traffic_source=rss",
+          "title": "[Al Jazeera English] Building wind turbines out of parts found in Gaza’s rubble",
+          "source": "",
+          "theme_pct": 92,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.theatlantic.com/podcasts/2026/11/suing-our-way-out-of-climate-change/689500/?utm_source=feed",
+          "title": "[The Atlantic] Making Oil Companies Pay for Climate Damages",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.npr.org/2026/10/30/nx-s1-6020514/florida-sees-spike-in-dengue-fever-cases",
+          "title": "[NPR Health News] Florida sees spike in dengue fever cases",
+          "source": "",
+          "theme_pct": 91,
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "When a long-lead El Niño warning arrives, what can a place actually do with the lead time, and what does a global forecast leave each place to work out alone?",
+        "riley": "Lead time is valuable and should be used now: places should start the first concrete steps (protocols, named assets, funded mapping, contracts) before the damage arrives, sizing actions to the forecast range rather than waiting for certainty.",
+        "casey": "A warning is not a prepared place: global averages and probabilistic forecasts don't tell a town which asset fails, and without named owners, funding, and maintained maps, lead time gets wasted and the warning becomes a press release.",
+        "resolution": "They did not fully resolve the debate; Riley argued for funding and naming owners in budget lines while Casey wanted a named person on the map, and both agreed the regional government should own the turning of forecasts into local action with land users brought in early. Casey closed by saying who decides which creek goes first remains open.",
+        "topics": [
+          "Forecast uncertainty and planning under probabilistic warnings (WMO vs. U.S. Climate Prediction Center odds)",
+          "Health early-warning systems and staffing in Nairobi and Ghana",
+          "Coastal flooding, King Tides, and sea-level monitoring in California",
+          "Post-wildfire landslide and flood risk in the Cariboo and the Pear Lake fire",
+          "Institutional roles: who turns forecasts into named, funded local action"
+        ],
+        "sources": [
+          {
+            "title": "WMO warns strengthening El Niño could intensify global extremes into 2027",
+            "url": "https://www.thesouthafrican.com/news/weather/wmo-warns-of-off-the-charts-climate-extremes-as-el-nino-strengthens/"
+          },
+          {
+            "title": "El Niño and King Tides will tear up California’s coast this winter",
+            "url": "https://www.scientificamerican.com/article/el-nino-and-king-tides-will-tear-up-californias-coast-this-winter/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-19",
     "title": "Episode Review — Indigenous Lands & Innovation, November 19, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-19.html",
@@ -3848,20 +4137,6 @@
       "script_words": 3183,
       "tell_hits": 1,
       "roundup_cite_pct": 88.9,
-      "deep_dive_cite_pct": 75.0
-    }
-  },
-  {
-    "date": "2026-10-21",
-    "title": "Episode Review — Cariboo Signals, October 21, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-21.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39566768401\">39566768401</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>2 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong><code>script/kagi-extract</code> fell back. Search the run log for <code>Degraded 'script/kagi-extract'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Kagi Extract returned no page for 4 thin roundup stories</span> <span class=\"recur\">Recurring: pending for the roadmap, seen 1 night.</span></li>\n<li><strong><code>script/roundup-order</code> fell back. Search the run log for <code>Degraded 'script/roundup-order'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: 1 story(ies) still aired after a later block after 2 repair passes</span></li>\n<li><strong>One host carried the episode. Check the turn split in the script.</strong><br><span class=\"evidence\">Casey/Riley voice ratio 0.76</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The first draft came in 745 words under target and was expanded twice</h3>\n<p>The first script draft ran 2545 words against a target of 3400. The pipeline sent it back for up to two expand passes, and the script that shipped is 3400 words, which matches the target. Length was recovered by rework rather than accepted as drafted, so the expand passes are doing real work on this kind of night.</p>\n<p>The same shortfall came from the roundup side of the pipeline. 48 stories were cut from the roundup pool by the airtime budget (NEWS_ROUNDUP_COUNT). That cut is designed: the pool is larger than one segment can air, and cut stories can resurface on a better-matched day. The first draft's thin length is the thing to watch if the expand passes start failing, since they are now the only thing standing between a short draft and a short episode.</p>\n\n<h3>Four roundup stories had no page to extract and one aired after a failed reorder</h3>\n<p>Kagi Extract returned no page for 4 thin roundup stories. Those stories had to be handled without their source text. The script step also reported that 1 story still aired after a later block, despite 2 repair passes on the roundup order. The pipeline shipped the episode with that story out of its intended position rather than dropping it or failing the run.</p>\n<p>Citation alignment shows the cost: 13 of 17 roundup citations matched, and 3 of 4 deep-dive citations matched. Four citations in the roundup and one in the deep dives did not align with the sources that were available. The roundup count is the weaker of the two, and the four thin stories are the likely cause. Check whether Kagi Extract's failure rate on thin pages is recurring before changing any retry logic.</p>\n\n<h3>One TTS take came back short and was retried once</h3>\n<p>The text-to-speech step produced 1 take with fewer words than its script length predicts. That take was retried once under the standard rule. The facts do not say whether the retry was accepted, so this is a single short take flagged for inspection, not evidence of a missing passage.</p>\n\n<h3>Debate question: home and ranch technology trust</h3>\n<p>The episode's debate question was: Is trust in home and ranch technology built through open, locally maintained systems that people can repair and read, or inherited from commercial brands and their vendor-controlled platforms? The Casey-to-Riley voice ratio was 0.76, and the script carried no AI-tell pattern hits.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:06 AM Pacific</td><td>+1 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.76, 3400 words</td></tr>\n<tr><td>Audio</td><td>20.3 min</td></tr>\n<tr><td>Audio size</td><td>18.6 MB</td></tr>\n<tr><td>Citations matched</td><td>13/17 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>266 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>64,627</td></tr>\n<tr><td>API calls</td><td>28 total: claude 11 · brave-search 9 · kagi-extract 4 · brave-answers 4</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-21T10:06:00+00:00",
-    "metrics": {
-      "audio_minutes": 20.3,
-      "script_words": 3400,
-      "tell_hits": 0,
-      "roundup_cite_pct": 76.5,
       "deep_dive_cite_pct": 75.0
     }
   }

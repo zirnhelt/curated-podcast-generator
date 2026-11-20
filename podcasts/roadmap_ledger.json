@@ -833,8 +833,8 @@
       "title": "Farmers-weigh subject aired in separate places rather than as one story.",
       "detail": "The roundup split the subject 'farmers weigh' across segments, so the same story reached listeners in two places instead of one coherent pass. The facts record the split in roundup_shape but do not say whether the duplication was intentional or whether the storyboard placed the pieces apart. The likely fix is to have the storyboard step group stories sharing a subject into one roundup slot or to mark the split explicitly so it does not read as repetition.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-17",
       "seen": [
         "2026-11-17"
@@ -857,7 +857,22 @@
       "signal": "degraded:script/roundup-echo",
       "signal_seen": "2026-11-18",
       "last_seen": "2026-11-18"
+    },
+    {
+      "id": "deep-dive-non-local-no-cariboo-angle",
+      "title": "The deep dive aired with no Cariboo story or angle despite the theme feed being local.",
+      "detail": "On 2026-11-20 the roundup opened with two local stories, but the deep_dive_cariboo field reads no, and the deep dive led with p87 from four sources, none of them local. The facts show 10 on-theme candidates went unused, so a local angle was available to the deep-dive selector and was not chosen. The closing change is to have the deep-dive selection step require at least one Cariboo-tagged candidate when one exists in the theme feed, and log the reason when it does not.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-11-20",
+      "seen": [
+        "2026-11-20"
+      ],
+      "signal": "deep-dive-non-local",
+      "signal_seen": "2026-11-20",
+      "last_seen": "2026-11-20"
     }
   ],
-  "updated": "2026-11-19"
+  "updated": "2026-11-20"
 }
