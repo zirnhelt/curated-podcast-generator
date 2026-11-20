@@ -34,6 +34,22 @@ Deploy with **Actions → Deploy Cloudflare Scheduler**; there is no local wrang
 path. See `cloudflare/scheduler/README.md` for the token scopes, the recorded PAT
 expiry, and the rollback.
 
+### Digest clicks: a second Worker, not the scheduler (2026-11-20)
+
+super-rss-feed's "Also in the news" digest lists the widely covered stories no feed
+carried. The producer approved recording which of them they open (Proposals tab,
+2026-11-20), as the evidence for the audit's `headline-misses` question. That needs a
+public URL, and the scheduler is cron-only with `workers_dev: false` on purpose: a bug
+or a bad deploy there skips the show. So the clicks live in their own Worker,
+`cloudflare/clicks/`, deployed by **Actions → Deploy Cloudflare Clicks**, with no
+triggers (the free plan's five crons are all the scheduler's).
+
+It stores the article URL, the Kagi category, the digest date and the time; nothing
+about the reader's device. A link is followed only with a valid signature (HMAC with
+`CLICKS_KEY`, shared with super-rss-feed), so it is never an open redirect, and a
+prefetch or `HEAD` is not counted. super-rss-feed's nightly reads the clicks into
+`feedback/clicks/`. Using them to train scoring waits until there are enough of them.
+
 ## Stages and Segments
 
 The pipeline is split at two levels: **stages** are separate processes with a git commit

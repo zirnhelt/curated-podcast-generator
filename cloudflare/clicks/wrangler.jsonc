@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cariboo-signals-clicks",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-31",
+
+  // Public on purpose: the digest's links point here. It redirects only links the
+  // nightly signed with CLICKS_KEY, so it is never an open redirect.
+  "workers_dev": true,
+
+  "observability": { "enabled": true },
+
+  // No triggers: the account's five free crons all belong to the scheduler.
+
+  "kv_namespaces": [
+    // deploy-clicks.yml replaces CLICKS_KV_ID with the CLICKS_KV_ID repository
+    // variable before it builds; see README.md for creating the namespace.
+    { "binding": "CLICKS", "id": "CLICKS_KV_ID" }
+  ]
+}
