@@ -250,6 +250,10 @@ _SINGLE: dict[str, tuple[str, list[type]]] = {
     "spend": (r"Anthropic input tokens: ([\d,]+) \| API call counts: (.+)", [str, str]),
     "spend_usd": (r"💰 Anthropic est\. \$([\d.]+) at list price", [str]),
     "video": (r"Video rendered: \S+ \(([\d.]+) MB, ([\d.]+) min\)", [float, float]),
+    # What the upload step recorded. The ID is the key to asking YouTube how the
+    # video turned out; see check_youtube.
+    "youtube_video_id": (r"✅ Uploaded: https://www\.youtube\.com/watch\?v=([\w-]+)", [str]),
+    "youtube_privacy_requested": (r"⬆️  Uploading to YouTube \((\w+)\)", [str]),
 }
 
 # Repeating extractions: key → pattern. Every match is kept, in order.
@@ -385,6 +389,30 @@ def scan_log(text: str) -> dict[str, Any]:
     return facts
 
 
+def check_youtube(facts: dict[str, Any]) -> list[str] | None:
+    """[state, detail] for the video the run uploaded, or None when it uploaded none.
+
+    The upload step records success the moment YouTube hands back an ID, before
+    processing. The review runs hours later, so this is the first look at
+    whether the video is watchable. It never raises: an unreachable API is a
+    row saying so, not a lost review. Without YT_* credentials in this job the
+    row says that too, rather than staying silent.
+    """
+    video_id = facts.get("youtube_video_id")
+    if not video_id:
+        return None
+    import youtube_upload
+
+    if not youtube_upload.have_credentials():
+        return ["unchecked", "no YT_* credentials in the review job"]
+    try:
+        state, detail = youtube_upload.video_status(
+            youtube_upload.get_service(), video_id, facts.get("youtube_privacy_requested"))
+    except Exception as exc:
+        return ["unchecked", f"{type(exc).__name__}: {exc}"[:200]]
+    return [state, detail]
+
+
 # ---------------------------------------------------------------------------
 # Facts → labelled facts
 # ---------------------------------------------------------------------------
@@ -413,6 +441,7 @@ _FIELDS: dict[str, list[str]] = {
                   "deep_dive_sources", "unused_on_theme_candidates"],
     "spend": ["anthropic_input_tokens", "api_calls_by_service"],
     "video": ["video_size_mb", "video_minutes"],
+    "youtube_status": ["state", "detail"],
     "clusters": ["cluster_key", "canonical_title", "duplicates_suppressed"],
     "held": ["release_date", "target_focus", "article_title"],
     "released": ["held_since", "article_title"],
@@ -436,6 +465,9 @@ _MEANS: dict[str, str] = {
     "short_script": ("the first draft came in under target and was sent back for one expand "
                      "pass. quality.script_words is what shipped. A thin day shipping under "
                      "target is intended; it is a problem only under SHORT_EPISODE_WORDS."),
+    "youtube_status": ("YouTube's own report on the video this run uploaded, asked after the "
+                       "upload. ok = processed and watchable; processing = not finished, not a "
+                       "fault; failed or missing = nobody can watch it."),
     # Raised as a lost-articles problem on five nights before this was here.
     "roundup_dropped": ("stories cut from the roundup pool by the airtime budget "
                         "(NEWS_ROUNDUP_COUNT). By design: the pool is larger than one segment "
@@ -579,6 +611,7 @@ def render_numbers_table(facts: dict[str, Any]) -> str:
         row("Audio size", "audio_mb", "{} MB"),
         row("Citations matched", "citation_alignment", "{}/{} roundup, {}/{} deep dive"),
         row("Feed", "rss_episodes", "{} episodes"),
+        row("YouTube", "youtube_status", "{} — {}"),
         row("Anthropic input tokens", "spend", "{0}"),
         row("API calls", "spend", "{1}"),
         row("Anthropic cost", "spend_usd", "${} at list price (estimate)"),
@@ -628,6 +661,10 @@ _ACTIONS: dict[str, str] = {
     "storyboard-drift": "The script did not keep to its storyboard. Compare the plan below with the "
                         "script: a dropped beat or a reordered roundup is the script or polish "
                         "overriding the plan.",
+    "youtube-failed": "Open the video in YouTube Studio. If it is rejected or abandoned (an unverified "
+                      "channel caps uploads at 15 minutes) fix the cause, delete the video, and remove "
+                      "that date from <code>podcasts/youtube_uploads.json</code> so the next run "
+                      "uploads it again.",
     "off-charter-theme-block": "A story aired as on-theme that the feed's charter scored low. Check its "
                                "<code>_theme_score</code> in the day's podcast feed and the charter gate "
                                "in <code>_annotate_roundup_blocks</code>.",
@@ -1639,6 +1676,9 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
             drift.append(f"{in_order}/{placed} roundup pairs aired in the plan's order")
         if drift:
             signals["storyboard-drift"] = "the script left its storyboard: " + "; ".join(drift)
+    yt = facts.get("youtube_status")
+    if isinstance(yt, list) and len(yt) == 2 and yt[0] in ("failed", "missing"):
+        signals["youtube-failed"] = f"YouTube {yt[0]}: {yt[1]}"
     failed = [r["trigger"] for r in facts.get("runs", []) if r.get("conclusion") == "failure"]
     if failed:
         signals["run-failed"] = "failed: " + ", ".join(failed)
@@ -2111,6 +2151,11 @@ def main() -> int:
     facts = scan_log(log) if log else {}
     facts["date"] = date
     facts["runs"] = runs
+    if not args.dry_run:
+        yt = check_youtube(facts)
+        if yt:
+            facts["youtube_status"] = yt
+            print(f"  📺 YouTube: {yt[0]} — {yt[1]}")
     if slow_steps:
         facts["slow_steps"] = slow_steps
     print(f"  🔍 {len(facts)} fact group(s) extracted")

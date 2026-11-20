@@ -1053,6 +1053,76 @@ class TestFetchJobLog:
 
 
 
+class TestYouTubeStatus:
+    """The upload step records success when YouTube returns an ID, before
+    processing. The review asks YouTube afterwards."""
+
+    LOG = ("⬆️  Uploading to YouTube (public): Cariboo Signals - Repair Culture\n"
+           "  ⬆️  Upload 100%\n"
+           "✅ Uploaded: https://www.youtube.com/watch?v=QZeo-qLfI4g\n")
+
+    def test_the_log_gives_the_video_and_the_privacy_asked_for(self):
+        facts = episode_review.scan_log(self.LOG)
+        assert facts["youtube_video_id"] == "QZeo-qLfI4g"
+        assert facts["youtube_privacy_requested"] == "public"
+
+    def test_no_upload_no_check(self):
+        assert episode_review.check_youtube({}) is None
+
+    def test_without_credentials_the_row_says_so(self, monkeypatch):
+        for k in ("YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN"):
+            monkeypatch.delenv(k, raising=False)
+        state, detail = episode_review.check_youtube({"youtube_video_id": "abc"})
+        assert state == "unchecked" and "credentials" in detail
+
+    def test_an_unreachable_api_is_a_row_not_a_crash(self, monkeypatch):
+        import youtube_upload
+        for k in ("YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN"):
+            monkeypatch.setenv(k, "x")
+
+        def boom():
+            raise ConnectionError("no route")
+        monkeypatch.setattr(youtube_upload, "get_service", boom)
+        assert episode_review.check_youtube({"youtube_video_id": "abc"}) == [
+            "unchecked", "ConnectionError: no route"]
+
+    def test_the_status_comes_from_youtube_upload(self, monkeypatch):
+        import youtube_upload
+        for k in ("YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN"):
+            monkeypatch.setenv(k, "x")
+        monkeypatch.setattr(youtube_upload, "get_service", lambda: object())
+        seen = {}
+
+        def fake(service, video_id, requested):
+            seen.update(video_id=video_id, requested=requested)
+            return "ok", "processed, public"
+        monkeypatch.setattr(youtube_upload, "video_status", fake)
+        assert episode_review.check_youtube(
+            {"youtube_video_id": "abc", "youtube_privacy_requested": "public"}) == [
+                "ok", "processed, public"]
+        assert seen == {"video_id": "abc", "requested": "public"}
+
+    @pytest.mark.parametrize("state", ["failed", "missing"])
+    def test_a_video_nobody_can_watch_is_a_signal(self, state):
+        signals = episode_review.run_signals({"youtube_status": [state, "upload rejected: length"]})
+        assert signals["youtube-failed"] == f"YouTube {state}: upload rejected: length"
+        assert "youtube-failed" in episode_review._ACTIONS
+
+    @pytest.mark.parametrize("state", ["ok", "processing", "unchecked"])
+    def test_everything_else_is_not(self, state):
+        assert "youtube-failed" not in episode_review.run_signals({"youtube_status": [state, "x"]})
+
+    def test_the_row_reaches_the_numbers_table(self):
+        table = episode_review.render_numbers_table(
+            {"youtube_status": ["failed", "processing terminated: other"]})
+        assert "<td>YouTube</td><td>failed — processing terminated: other</td>" in table
+
+    def test_the_model_sees_named_fields_and_what_they_mean(self):
+        labelled = episode_review.label_facts({"youtube_status": ["processing", "upload uploaded"]})
+        assert labelled["youtube_status"]["value"] == {"state": "processing", "detail": "upload uploaded"}
+        assert "not a fault" in labelled["youtube_status"]["means"]
+
+
 def test_stories_chart_is_a_fallout():
     import episode_review as er
     html = er._fallout_chart({"articles_loaded": 78, "dedup_filtered": 54, "roundup_pool": [18, "x"],

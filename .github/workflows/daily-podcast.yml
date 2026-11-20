@@ -720,6 +720,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Read-only use: videos.list on the day's upload (episode_review.check_youtube).
+          # Without them the review says "unchecked" instead of reporting YouTube's status.
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         # --skip-if-reviewed: on a night rung 3 ran, the backstop has nothing to add.
         run: python episode_review.py --skip-if-reviewed
 
