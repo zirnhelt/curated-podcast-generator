@@ -32,6 +32,7 @@ import argparse
 import ast
 import glob
 import json
+import math
 import os
 import re
 import sys
@@ -773,6 +774,113 @@ def _length_chart(facts: dict[str, Any]) -> str:
             f'title="Shipped: {shipped:,} words"></span>{marks}</div></div>')
 
 
+def _share(part: float, whole: float) -> str:
+    """A share as a whole percent; a sliver reads "<1%", never "0%"."""
+    pct = 100 * part / whole
+    return "<1%" if 0 < pct < 0.5 else f"{pct:.0f}%"
+
+
+def _fallout_chart(facts: dict[str, Any]) -> str:
+    """Loaded → kept after dedup → on air, each bar with the share the step before it removed."""
+    aired = (facts.get("roundup_pool") or [None])[0]
+    dive = facts.get("deep_dive_count")
+    cut = facts.get("roundup_dropped")
+    on_air = (aired + (dive if isinstance(dive, int) else 0)) if isinstance(aired, int) else None
+    stages = [(label, v, why) for label, v, why in (
+        ("Loaded from feed", facts.get("articles_loaded"), ""),
+        ("Kept after dedup", facts.get("dedup_filtered"), "dropped at dedup"),
+        ("On air", on_air, "")) if isinstance(v, int)]
+    if len(stages) < 2 or stages[0][1] <= 0:
+        return ""
+    top = stages[0][1]
+    scale = 75 / top  # the longest bar takes 75% of the track; the rest holds its value text
+    out, prev = [], None
+    for label, v, why in stages:
+        lost = max(0, prev - v) if prev is not None else 0
+        if lost:
+            if label == "On air":
+                # What the log itemises, and the remainder it doesn't (held for their
+                # day, folded into a cluster, filtered).
+                parts = [f"{cut} cut for airtime"] if isinstance(cut, int) and cut else []
+                other = lost - (cut if isinstance(cut, int) else 0)
+                if parts and other > 0:
+                    parts.append(f"{other} held, clustered or filtered")
+                why = ", ".join(parts)
+            out.append(f'<div class="row drop"><span></span><span class="note">↓ −{lost}'
+                       f'{": " + escape(why) if why else ""}</span></div>')
+        text = f"{v}" if prev is None else f"{v} ({_share(v, top)})"
+        ghost = (f'<span class="bar ghost" style="width:{scale * lost:.1f}%"></span>' if lost else "")
+        out.append(f'<div class="row" title="{_attr(label)}: {_attr(text)}"><span class="lbl">{escape(label)}'
+                   f'</span><span class="track fall"><span class="bar" style="width:'
+                   f'{max(1.0, scale * min(v, top)):.1f}%"></span>{ghost}'
+                   f'<span class="val">{escape(text)}</span></span></div>')
+        if label == "On air" and isinstance(dive, int) and dive:
+            out.append(f'<div class="row drop"><span></span><span class="note">{aired} roundup + '
+                       f'{dive} deep dive</span></div>')
+        prev = v
+    return '<div class="bars">' + "".join(out) + "</div>"
+
+
+_MAX_PARTS = 8  # the categorical palette has eight slots; a ninth part folds into "Other"
+
+
+def _legend(parts: list[tuple[str, str, str]]) -> str:
+    """(slot class, name, value text) → a legend that carries every value, so no part is colour alone."""
+    return ('<ul class="legend">' + "".join(
+        f'<li><i class="{cls}"></i>{escape(name)} <span class="val">{escape(text)}</span></li>'
+        for cls, name, text in parts) + "</ul>")
+
+
+def _stacked_bar(parts: list[tuple[str, float]]) -> str:
+    """One horizontal bar split into its parts, in the order given, with a legend below."""
+    if len(parts) > _MAX_PARTS:
+        parts = parts[:_MAX_PARTS - 1] + [("Other", sum(v for _, v in parts[_MAX_PARTS - 1:]))]
+    total = sum(v for _, v in parts)
+    if total <= 0:
+        return ""
+    rows = [(f"s{i + 1}", name, v, f"{v:.1f} min ({_share(v, total)})") for i, (name, v) in enumerate(parts)]
+    segs = "".join(f'<span class="{cls}" style="flex:{v:.3f} 1 0" title="{_attr(name)}: {_attr(text)}"></span>'
+                   for cls, name, v, text in rows)
+    label = "; ".join(f"{name} {text}" for _, name, _, text in rows)
+    return (f'<div class="stack" role="img" aria-label="{_attr(label)}">{segs}</div>'
+            + _legend([(cls, name, text) for cls, name, _, text in rows]))
+
+
+# Colour follows the service, never its rank: Anthropic is the same slice colour every night.
+_SERVICE_SLOTS = {"anthropic": 1, "openai-tts": 2, "brave-answers": 3, "kagi-extract": 4,
+                  "brave-search": 5, "cohere": 6}
+
+
+def _pie_chart(by_service: dict[str, float]) -> str:
+    """Spend as a pie, largest slice first from twelve o'clock; the legend carries the dollars."""
+    items = [(k, v) for k, v in sorted(by_service.items(), key=lambda kv: -kv[1])
+             if isinstance(v, (int, float)) and v > 0]
+    total = sum(v for _, v in items)
+    if total <= 0:
+        return ""
+    spare = iter(n for n in range(1, _MAX_PARTS + 1) if n not in _SERVICE_SLOTS.values())
+    rows = []
+    for k, v in items:
+        slot = _SERVICE_SLOTS.get(k) or next(spare, None)
+        rows.append((f"s{slot}" if slot else "s-other", _SERVICE_LABELS.get(k, k), v,
+                     f"${v:.3f} ({_share(v, total)})"))
+    r, at, slices = 50.0, 0.0, []
+    for cls, name, v, text in rows:
+        tip = f"<title>{escape(name)}: {escape(text)}</title>"
+        if len(rows) == 1:
+            slices.append(f'<circle r="{r}" class="{cls}">{tip}</circle>')
+            break
+        a0, a1 = 2 * math.pi * at / total, 2 * math.pi * (at + v) / total
+        at += v
+        x0, y0, x1, y1 = r * math.sin(a0), -r * math.cos(a0), r * math.sin(a1), -r * math.cos(a1)
+        slices.append(f'<path class="{cls}" d="M0,0 L{x0:.2f},{y0:.2f} A{r},{r} 0 {int(a1 - a0 > math.pi)} 1 '
+                      f'{x1:.2f},{y1:.2f} Z">{tip}</path>')
+    label = "; ".join(f"{name} {text}" for _, name, _, text in rows)
+    return (f'<div class="pie-wrap"><svg class="pie" viewBox="-52 -52 104 104" role="img" '
+            f'aria-label="{_attr(label)}">{"".join(slices)}</svg>'
+            + _legend([(cls, name, text) for cls, name, _, text in rows]) + "</div>")
+
+
 def render_charts(facts: dict[str, Any]) -> str:
     figures: list[tuple[str, str, str]] = []  # (title, caption, svg)
 
@@ -788,25 +896,20 @@ def render_charts(facts: dict[str, Any]) -> str:
                         "Below the line, the roadmap starts counting it.",
                         _hbar(rows, max_value=100, floor=(100 * CITATION_FLOOR, f"{CITATION_FLOOR:.0%} floor"))))
 
-    funnel = [("Loaded from feed", facts.get("articles_loaded")),
-              ("Kept after dedup", facts.get("dedup_filtered")),
-              ("Aired in roundup", (facts.get("roundup_pool") or [None])[0]),
-              ("Cut for airtime", facts.get("roundup_dropped")),
-              ("Deep dive sources", facts.get("deep_dive_count"))]
-    figures.append(("Where the stories went", "Cuts for airtime are by design: the pool is "
-                    "larger than one segment.",
-                    _hbar([(l, v, f"{v}") for l, v in funnel if isinstance(v, int)])))
+    figures.append(("Where the stories went", "Each bar is what was left after the step, as a "
+                    "share of what was loaded; the pale part is what that step took out. Cuts for airtime are by design: "
+                    "the pool is larger than one segment.", _fallout_chart(facts)))
 
-    steps = facts.get("slow_steps") or []
-    figures.append(("Where the time went", "Steps over a minute, in the run that shipped.",
-                    _hbar([(s["name"][:28], s["seconds"] / 60, f"{s['seconds'] / 60:.1f} min")
-                           for s in steps if s.get("seconds")])))
+    steps = [(s["name"], s["seconds"] / 60) for s in facts.get("slow_steps") or [] if s.get("seconds")]
+    if steps:
+        figures.append(("Where the time went", f"{sum(m for _, m in steps):.1f} min across the steps "
+                        "over a minute, in the run that shipped, in the order they ran.",
+                        _stacked_bar(steps)))
 
     by_service = facts.get("spend_by_service") or {}
     if by_service:
         figures.append(("Spend by service", f"${sum(by_service.values()):.2f} at list price.",
-                        _hbar([(_SERVICE_LABELS.get(k, k), v, f"${v:.3f}")
-                               for k, v in sorted(by_service.items(), key=lambda kv: -kv[1])])))
+                        _pie_chart(by_service)))
 
     blocks = [f'<figure><figcaption><strong>{escape(t)}</strong> {escape(c)}</figcaption>{svg}</figure>'
               for t, c, svg in figures if svg]
@@ -916,12 +1019,18 @@ PAGE = """<!DOCTYPE html>
   <style>
     :root {{ --bg: #fcfcfb; --ink: #0b0b0b; --muted: #52514e; --rule: #e1e0d9; --axis: #c3c2b7;
              --panel: #f4f3ef; --series: #2a78d6; --link: #1c5cab;
+             --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300;
+             --s7: #6250d6; --s8: #e34948;
              --good: #0ca30c; --minor: #2a78d6; --warn: #fab219; --bad: #d03b3b; color-scheme: light; }}
     @media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) {{
              --bg: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --rule: #2c2c2a; --axis: #383835;
-             --panel: #242423; --series: #3987e5; --link: #86b6ef; color-scheme: dark; }} }}
+             --panel: #242423; --series: #3987e5; --link: #86b6ef;
+             --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+             --s6: #0ca30c; --s7: #9085e9; --s8: #e66767; color-scheme: dark; }} }}
     :root[data-theme="dark"] {{ --bg: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --rule: #2c2c2a;
-             --axis: #383835; --panel: #242423; --series: #3987e5; --link: #86b6ef; color-scheme: dark; }}
+             --axis: #383835; --panel: #242423; --series: #3987e5; --link: #86b6ef;
+             --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+             --s6: #0ca30c; --s7: #9085e9; --s8: #e66767; color-scheme: dark; }}
     body {{ font-family: system-ui, sans-serif; max-width: 880px; margin: 2rem auto; padding: 0 16px;
             line-height: 1.55; color: var(--ink); background: var(--bg); }}
     h1 {{ font-size: 1.5rem; margin-bottom: 0.25rem; }}
@@ -953,6 +1062,23 @@ PAGE = """<!DOCTYPE html>
     .track .bar {{ display: block; height: 16px; background: var(--series); border-radius: 0 4px 4px 0; flex: none; }}
     .track .val {{ font-variant-numeric: tabular-nums; white-space: nowrap; }}
     .track .ref {{ position: absolute; top: -3px; bottom: -3px; border-left: 1px dashed var(--axis); }}
+    .track.fall {{ gap: 0; }} .track.fall .val {{ margin-left: 6px; }}
+    .track .bar.ghost {{ opacity: 0.22; margin-left: 2px; }}
+    .row.drop {{ margin: -3px 0; }} .row.drop .note {{ font-size: 0.78rem; }}
+    .s1 {{ --c: var(--s1); }} .s2 {{ --c: var(--s2); }} .s3 {{ --c: var(--s3); }} .s4 {{ --c: var(--s4); }}
+    .s5 {{ --c: var(--s5); }} .s6 {{ --c: var(--s6); }} .s7 {{ --c: var(--s7); }} .s8 {{ --c: var(--s8); }}
+    .s-other {{ --c: var(--axis); }}
+    .stack {{ display: flex; gap: 2px; height: 22px; border-radius: 4px; overflow: hidden; }}
+    .stack span {{ background: var(--c); min-width: 2px; }}
+    .legend {{ list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap;
+               gap: 4px 16px; font-size: 0.85rem; }}
+    .legend i {{ display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px;
+                 background: var(--c); }}
+    .legend .val {{ color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }}
+    .pie-wrap {{ display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; }}
+    .pie-wrap .legend {{ flex-direction: column; margin: 0; }}
+    svg.pie {{ width: 150px; height: 150px; flex: none; }}
+    svg.pie path, svg.pie circle {{ fill: var(--c); stroke: var(--bg); stroke-width: 1.5; stroke-linejoin: round; }}
     .length {{ font-size: 0.85rem; }} .length .track {{ margin: 22px 0 22px; }}
     .length .bar {{ height: 18px; }}
     .length .tick {{ position: absolute; top: -4px; bottom: -4px; border-left: 2px solid var(--ink); }}
@@ -1135,7 +1261,8 @@ def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
     """The storyboard the script was written to, for the producer to judge its flow.
 
     Page only (the RSS copy stays lean). The numbers come from
-    `storyboard_flow_line`; the bridges and the beat chain are the plan's own words.
+    `storyboard_flow_line`; the bridges are the plan's own words. The deep dive is its
+    question and the beats-aired count, nothing of the argument.
     """
     if not plan:
         return ""
@@ -1147,10 +1274,6 @@ def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
         stats = (f"<p class=\"note\">Roundup: {flow[0]}/{flow[1]} adjacent stories aired in the plan's "
                  f"order; {flow[2]}/{flow[3]} bridges name a shared thing (the rest are clean "
                  f"pivots). Deep dive: {flow[4]}/{flow[5]} planned beats aired.</p>")
-    beats = "".join(
-        f"<li>{escape(b.get('claim', ''))}<br><span class=\"evidence\">then, because: "
-        f"{escape(b.get('leads_to_next', ''))}</span></li>"
-        for b in dd.get("beats") or [] if isinstance(b, dict))
     bridges = "".join(
         f"<li>{escape(st.get('bridge_to_next', ''))}</li>"
         for st in rd.get("stories") or []
@@ -1161,13 +1284,54 @@ def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
         f"<p><strong>Roundup frame:</strong> {escape(rd.get('opening_frame', ''))}</p>" if rd.get("opening_frame") else "",
         f"<p><strong>Named bridges:</strong></p><ul>{bridges}</ul>" if bridges else "",
         f"<p><strong>Handoff to the deep dive:</strong> {escape(rd.get('handoff', ''))}</p>" if rd.get("handoff") else "",
-        f"<p><strong>Deep-dive question:</strong> {escape(dd.get('central_question', ''))}</p>",
-        f"<p><strong>Riley starts:</strong> {escape(dd.get('riley_holds', ''))}<br>"
-        f"<strong>Casey starts:</strong> {escape(dd.get('casey_holds', ''))}</p>",
-        f"<ol>{beats}</ol>" if beats else "",
-        f"<p><strong>Landing:</strong> {escape(dd.get('landing', ''))}</p>" if dd.get("landing") else "",
+        # The question only. The opening positions, the beat chain and the landing are
+        # the episode itself: the page judges the plan's shape, it doesn't retell it.
+        f"<p><strong>Deep-dive question:</strong> {escape(dd.get('central_question', ''))}</p>"
+        if dd.get("central_question") else "",
     ]
     return "\n".join(r for r in rows if r)
+
+
+# The research log's paid kinds, by the service that billed them. Pages read, candidate
+# profiles and a reused ballot pass cost nothing and stay off the page.
+_RESEARCH_SERVICES = (
+    ("Brave Search", {"agent-search": "research pass", "roll-call": "election roll call",
+                      "body-search": "roundup body backfill"}),
+    ("Brave Answers", {"question": "fact question"}),
+    ("Kagi Extract", {"kagi-extract": "roundup page read"}),
+)
+
+
+def load_research(date: str) -> list[dict]:
+    """The paid lookups the run made (`_RESEARCH_LOG` in the generator), for review.html."""
+    log = (_citations_key(date, "research", dict) or {}).get("log")
+    return [r for r in log if isinstance(r, dict)] if isinstance(log, list) else []
+
+
+def render_research(rows: list[dict]) -> str:
+    """What Brave and Kagi were spent on, one list per service, for the producer.
+
+    Page only. Each line is the query or story and why it was looked up; the outcome
+    when the log has one.
+    """
+    sections = []
+    for service, kinds in _RESEARCH_SERVICES:
+        items = []
+        for r in rows:
+            why = kinds.get(r.get("kind"))
+            what = str(r.get("query") or r.get("story") or "").strip()[:200]
+            if not (why and what):
+                continue
+            how = str(r.get("result") or "")[:40]
+            if r.get("kind") == "agent-search" and r.get("pass"):
+                why = f"{why} ({str(r['pass'])[:30]})"
+            if r.get("kind") == "roll-call" and isinstance(r.get("results"), int):
+                how = f"{r['results']} results"
+            items.append(f"<li>{escape(what)} <span class=\"note\">— {escape(why)}"
+                         f"{', ' + escape(how) if how else ''}</span></li>")
+        if items:
+            sections.append(f"<p><strong>{service}</strong> ({len(items)})</p><ul>{''.join(items)}</ul>")
+    return "\n".join(["<h2>Research spend</h2>", *sections]) if sections else ""
 
 
 def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str,
@@ -1211,6 +1375,7 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
         actions, render_charts(facts),
         render_trends(history or [], review_metrics(facts), date), detail,
         render_plan(load_storyboard(date), facts),
+        render_research(load_research(date)),
         f"<details><summary>Raw numbers</summary>\n{tables}\n</details>" if tables else ""] if p)
     page = PAGE.format(title=escape(title), published=_human_date(date),
                        site=SITE_URL, content=page_body)

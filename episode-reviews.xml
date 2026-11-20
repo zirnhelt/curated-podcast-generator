@@ -5,7 +5,302 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Sun, 15 Nov 2026 10:06:05 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 10:05:56 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Wild Spaces &amp; Outdoor Life, November 20, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-20.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-20.html</guid>
+      <pubDate>Fri, 20 Nov 2026 10:05:56 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Theme: Wild Spaces &amp;amp; Outdoor Life. Focus: Wildlife &amp;amp; Conservation (week 2 of 4). Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44699780081"&gt;44699780081&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class="verdict lvl-warn"&gt;&lt;span class="icon" aria-hidden="true"&gt;▲&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped, needs a look&lt;/strong&gt;2 things to look at before tomorrow's run.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;ol class="actions"&gt;
+&lt;li&gt;&lt;strong&gt;Investigate.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;the deep dive had no Cariboo story or angle&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;script/weather&lt;/code&gt; fell back. Search the run log for &lt;code&gt;Degraded 'script/weather'&lt;/code&gt; and decide whether the fallback is acceptable or the cause needs fixing.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;degrade() row: Open-Meteo did not answer — the episode airs with no weather check and no weather credit&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Two held articles released; seven held for other focus weeks&lt;/h3&gt;
+&lt;p&gt;Focus is Wildlife &amp;amp; Conservation, cycle week 2 of 4. Of 82 articles loaded, 26 came from the theme feed and 55 were bonus. The focus router released 2 and held 7. The two released were held since 2026-11-06 and 2026-11-07, both by kw=1. The seven still held are targeted at Economic Development, The Living World, Mining &amp;amp; Energy, Conservation &amp;amp; the Environment (two), Homestead &amp;amp; Off-Grid Tech, and Digital Life &amp;amp; Security. Two of those seven are targeted at Conservation &amp;amp; the Environment, the focus this cycle's week 2 does not reach.&lt;/p&gt;
+
+&lt;h3&gt;Weather check dropped: Open-Meteo did not answer&lt;/h3&gt;
+&lt;p&gt;The weather segment ran without a weather check and without a weather credit. The episode aired without that segment, and the listener gets no weather line in this episode.&lt;/p&gt;
+
+&lt;h3&gt;Two TTS takes came back short after one retry each&lt;/h3&gt;
+&lt;p&gt;Two text-to-speech takes came back shorter than their word count predicted. Each was retried once, and both retries stayed short. The longer take of each pair was kept, so no script content is missing from the episode. The retry budget is spent and the pipeline does not retry a third time; if the short takes recur, the TTS provider is the place to look.&lt;/p&gt;
+
+&lt;h3&gt;Script shipped at 2,979 words against a 3,400-word target&lt;/h3&gt;
+&lt;p&gt;The first draft came in at 2,704 words and went back for one expand pass; the shipped script is 2,979 words. The episode is under the 3,400-word target, which is intended on a thin day. It is a problem only if SHORT_EPISODE_WORDS is set above 2,979. Of 38 stories cut from the roundup pool of 18 kept by the airtime budget (NEWS_ROUNDUP_COUNT), those cut stories remain in the pool and can resurface on a better-matched day.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Articles loaded&lt;/td&gt;&lt;td&gt;82&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Kept after dedup&lt;/td&gt;&lt;td&gt;65&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Held / released&lt;/td&gt;&lt;td&gt;2 released, 7 held&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Roundup pool&lt;/td&gt;&lt;td&gt;18 stories — theme:16, local:2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.76, 2979 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive split&lt;/td&gt;&lt;td&gt;Casey 43% of the words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;18.3 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;16.7 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;14/18 roundup, 2/4 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;296 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;74,598&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;104 total: openai-tts 73 · claude 11 · brave-search 7 · kagi-extract 5 · cohere 5 · brave-answers 3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic cost&lt;/td&gt;&lt;td&gt;$0.13 at list price (estimate)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Total cost&lt;/td&gt;&lt;td&gt;$0.57 at list price: OpenAI TTS $0.259 · Anthropic $0.133 · Brave Answers $0.123 · Brave Search $0.035 · Kagi Extract $0.020 · Cohere $0.003&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Episode Review — Indigenous Lands &amp; Innovation, November 19, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-19.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-19.html</guid>
+      <pubDate>Thu, 19 Nov 2026 10:06:01 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Theme: Indigenous Lands &amp;amp; Innovation. Focus: Language &amp;amp; Culture (week 2 of 4). Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44484681869"&gt;44484681869&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class="verdict lvl-warn"&gt;&lt;span class="icon" aria-hidden="true"&gt;▲&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped, needs a look&lt;/strong&gt;3 things to look at before tomorrow's run.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;ol class="actions"&gt;
+&lt;li&gt;&lt;strong&gt;Investigate.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;the deep dive had no Cariboo story or angle&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;script/kagi-extract&lt;/code&gt; fell back. Search the run log for &lt;code&gt;Degraded 'script/kagi-extract'&lt;/code&gt; and decide whether the fallback is acceptable or the cause needs fixing.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;degrade() row: Kagi Extract reply matched no page for 6 of 6 URLs sent&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;script/pronunciation&lt;/code&gt; fell back. Search the run log for &lt;code&gt;Degraded 'script/pronunciation'&lt;/code&gt; and decide whether the fallback is acceptable or the cause needs fixing.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;degrade() row: 1 name(s) with no entry in config/pronunciations.json: ʔEten&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Two degradations shaped the audio and the script&lt;/h3&gt;
+&lt;p&gt;The script's Kagi Extract step returned no matching page for 6 of 6 URLs sent, so the script was written without the extracted article text it normally draws on. The pipeline did not stop; it went on to write from the feed material alone. The listener gets the same show structure, but the detail behind the four deep-dive stories comes from fewer sources than usual.&lt;/p&gt;
+&lt;p&gt;Separately, a name in the script, ʔEten, has no entry in config/pronunciations.json, so the text-to-speech engine guessed at its pronunciation. Add the entry before the next run that names it.&lt;/p&gt;
+
+&lt;h3&gt;The roundup opened on local news and cut 21 stories&lt;/h3&gt;
+&lt;p&gt;The roundup pool held 18 stories after deduplication, and the airtime budget (NEWS_ROUNDUP_COUNT) dropped 21 more. The pool is designed to be larger than one segment can air, so the cut is expected; the dropped stories can return on a day that matches them better. The roundup aired 5 local stories against 4 available, and it opened with local news. Nothing was split across subjects.&lt;/p&gt;
+&lt;p&gt;Of the 18 pooled stories, 12 of 18 roundup citations matched their sources. Of the 4 deep dives, 3 of 4 citations matched.&lt;/p&gt;
+
+&lt;h3&gt;Four focus-routed articles were held and none released&lt;/h3&gt;
+&lt;p&gt;The cycle is in week 2 of 4 on the Language &amp;amp; Culture focus. Four articles were routed to other focuses and held, and 0 were released for this focus, so the held articles are not in tonight's episode. Two are headed for The Living World and two for Mining &amp;amp; Energy. Their release dates are 2026-11-22 and 2026-11-24. Check that the held articles will be released on those dates; if the focus rotation is shorter than the holds, they will wait a full cycle.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Articles loaded&lt;/td&gt;&lt;td&gt;68&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Kept after dedup&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Held / released&lt;/td&gt;&lt;td&gt;0 released, 4 held&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Roundup pool&lt;/td&gt;&lt;td&gt;18 stories — theme:11, local:4, life_sciences:2, kicker:1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 0.97, 3223 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive split&lt;/td&gt;&lt;td&gt;Casey 49% of the words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;20.1 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;18.4 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;12/18 roundup, 3/4 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;295 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;77,912&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;126 total: openai-tts 87 · brave-search 13 · claude 12 · kagi-extract 6 · brave-answers 4 · cohere 4&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic cost&lt;/td&gt;&lt;td&gt;$0.14 at list price (estimate)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Total cost&lt;/td&gt;&lt;td&gt;$0.68 at list price: OpenAI TTS $0.287 · Brave Answers $0.164 · Anthropic $0.141 · Brave Search $0.065 · Kagi Extract $0.024 · Cohere $0.001&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Episode Review — Repair Culture &amp; Practical Tech, November 18, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-18.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-18.html</guid>
+      <pubDate>Wed, 18 Nov 2026 10:06:32 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Theme: Repair Culture &amp;amp; Practical Tech. Focus: Maker &amp;amp; Repair (week 1 of 5). Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44264007315"&gt;44264007315&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class="verdict lvl-warn"&gt;&lt;span class="icon" aria-hidden="true"&gt;▲&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped, needs a look&lt;/strong&gt;2 things to look at before tomorrow's run.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;ol class="actions"&gt;
+&lt;li&gt;&lt;strong&gt;Investigate.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;the deep dive had no Cariboo story or angle&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;script/roundup-echo&lt;/code&gt; fell back. Search the run log for &lt;code&gt;Degraded 'script/roundup-echo'&lt;/code&gt; and decide whether the fallback is acceptable or the cause needs fixing.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;degrade() row: 3 deep dive line(s) still retell the roundup after polish, e.g. "Same card, different software on the Arc A750: local AI went from about 19 to 22 tokens per sec&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Two segments aired under budget and one more retry came back short&lt;/h3&gt;
+&lt;p&gt;The first draft of the script came in at &lt;code&gt;2940&lt;/code&gt; words against a target of &lt;code&gt;3400&lt;/code&gt;, so it was sent back for one expand pass. The shipped script is &lt;code&gt;3767&lt;/code&gt; words. The pipeline did not truncate to hit the target; it accepted the overage.&lt;/p&gt;
+&lt;p&gt;Four TTS takes came back shorter than their word count predicts. Each was retried once, and &lt;code&gt;3&lt;/code&gt; of those retries were still short. The longer take of each pair was kept, so nothing was dropped from the episode, but those three segments may run quieter or faster than the rest. The audio itself is the place to check.&lt;/p&gt;
+
+&lt;h3&gt;The roundup opened on local news and the deep dive drifted from its charter&lt;/h3&gt;
+&lt;p&gt;The roundup pool kept &lt;code&gt;18&lt;/code&gt; stories, &lt;code&gt;14&lt;/code&gt; on theme and &lt;code&gt;4&lt;/code&gt; local. The airtime budget cut &lt;code&gt;34&lt;/code&gt; stories from the pool. All &lt;code&gt;4&lt;/code&gt; local stories aired, and the roundup opened with them. The deep dive led on a charter-aligned item (p100), but the script still retold roundup material: &lt;code&gt;3&lt;/code&gt; deep dive lines repeated the roundup after polish, including the Arc A750 tokens-per-second example. This is a script-level overlap the polish pass did not remove.&lt;/p&gt;
+&lt;p&gt;The local-first opening is the designed behaviour, and the cut stories remain in the pool for a later day. The deep dive overlap is the item to act on: tighten the deep dive prompt so it does not re-explain roundup items, or add a check that rejects deep dive sentences that repeat a roundup card's specific figures.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Articles loaded&lt;/td&gt;&lt;td&gt;68&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Kept after dedup&lt;/td&gt;&lt;td&gt;57&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Held / released&lt;/td&gt;&lt;td&gt;2 released, 3 held&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Roundup pool&lt;/td&gt;&lt;td&gt;18 stories — theme:14, local:4&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.87, 3767 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive split&lt;/td&gt;&lt;td&gt;Casey 47% of the words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;22.1 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;20.2 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;15/18 roundup, 3/4 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;294 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;85,334&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;146 total: openai-tts 112 · claude 11 · brave-search 8 · kagi-extract 6 · cohere 5 · brave-answers 4&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic cost&lt;/td&gt;&lt;td&gt;$0.16 at list price (estimate)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Total cost&lt;/td&gt;&lt;td&gt;$0.72 at list price: OpenAI TTS $0.323 · Anthropic $0.165 · Brave Answers $0.164 · Brave Search $0.040 · Kagi Extract $0.024 · Cohere $0.003&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Episode Review — Working Lands &amp; Industry, November 17, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-17.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-17.html</guid>
+      <pubDate>Tue, 17 Nov 2026 10:06:02 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Theme: Working Lands &amp;amp; Industry. Focus: Forestry &amp;amp; Timber (week 2 of 4). Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44043764969"&gt;44043764969&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class="verdict lvl-warn"&gt;&lt;span class="icon" aria-hidden="true"&gt;▲&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped, needs a look&lt;/strong&gt;1 thing to look at before tomorrow's run.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;ol class="actions"&gt;
+&lt;li&gt;&lt;strong&gt;Investigate.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;one subject aired in separate places: farmers weigh&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Four held articles never aired on their focus day&lt;/h3&gt;
+&lt;p&gt;Focus routing released 0 articles and held 4. Two were held for "The Living World" and two for "Maker &amp; Repair", with target release dates of 2026-11-18 and 2026-11-22. None of the four reached an episode on this run. They remain in the queue for their focus days, so the cost to listeners tonight was zero stories from those focus slots, and the cost to the cycle is that the Maker &amp; Repair and Living World weeks will carry a smaller pool than the schedule assumes.&lt;/p&gt;
+&lt;p&gt;The forestry focus week (cycle week 2 of 4) released nothing from the focus routing itself, so the theme and local material carried the whole episode. Check whether the routing should release a minimum count when the focus day is not the current one.&lt;/p&gt;
+
+&lt;h3&gt;Eighteen roundup stories kept, twenty-three cut, two deep dives&lt;/h3&gt;
+&lt;p&gt;The roundup pool held 18 stories: 15 theme and 3 local. The airtime budget (NEWS_ROUNDUP_COUNT) dropped 23 from the pool, so the aired segment covered a fraction of what was curated. By design, the cut stories stay eligible for a later day. The deep dive pair was the Quesnel curtailment coverage, with the lead set to local under the Cariboo heading, which is where the debate question on who counts as affected by the curtailment came from.&lt;/p&gt;
+&lt;p&gt;Of 5 local stories available, 3 aired, and the roundup opened on local material. Citation alignment in the roundup matched 11 of 18, while both deep-dive citations matched. The gap in the roundup is the one to watch: 7 unmatched citations in a segment of 15 planned pairs means some spoken claims are not tied to a source the listener can find.&lt;/p&gt;
+&lt;p&gt;Change: review the roundup citation matching in the script-assembly step, since 11 of 18 is the weakest number on the page.&lt;/p&gt;
+
+&lt;h3&gt;The first draft came in 753 words short and the expand pass fixed it&lt;/h3&gt;
+&lt;p&gt;The first draft ran 2547 words against a target of 3400. It was sent back for one expand pass and shipped at 3223 words, which is still under target. Under the rule that a thin day is intended and only matters against SHORT_EPISODE_WORDS, this run is acceptable, but the gap shows the pool was not deep enough to fill the target without the expand pass. Casey's share of the deep-dive words was 48%, and the Casey-to-Riley voice ratio was 0.92, so the two voices stayed close to balanced.&lt;/p&gt;
+&lt;p&gt;Two TTS takes came back shorter than their word count predicted. Each was retried once, and both retries stayed short. The longer take of each was kept, so no words were dropped from the audio, though the two takes may have been clipped at the source.&lt;/p&gt;
+&lt;p&gt;Change: if the expand pass is the regular fix for thin days, raise the default pool size so the first draft reaches target without a second pass.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Articles loaded&lt;/td&gt;&lt;td&gt;64&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Kept after dedup&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Held / released&lt;/td&gt;&lt;td&gt;0 released, 4 held&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Roundup pool&lt;/td&gt;&lt;td&gt;18 stories — theme:15, local:3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;2 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.92, 3223 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive split&lt;/td&gt;&lt;td&gt;Casey 48% of the words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;19.6 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;18.0 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;11/18 roundup, 2/2 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;293 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;74,710&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;126 total: openai-tts 95 · claude 12 · kagi-extract 6 · cohere 5 · brave-search 4 · brave-answers 4&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic cost&lt;/td&gt;&lt;td&gt;$0.13 at list price (estimate)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Total cost&lt;/td&gt;&lt;td&gt;$0.62 at list price: OpenAI TTS $0.277 · Brave Answers $0.164 · Anthropic $0.134 · Kagi Extract $0.024 · Brave Search $0.020 · Cohere $0.003&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Episode Review — Arts, Culture &amp; Digital Storytelling, November 16, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-16.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-16.html</guid>
+      <pubDate>Mon, 16 Nov 2026 10:05:57 +0000</pubDate>
+      <description>&lt;p class="meta"&gt;Theme: Arts, Culture &amp;amp; Digital Storytelling. Focus: Film &amp;amp; Screen (week 1 of 5). Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/43828479597"&gt;43828479597&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class="verdict lvl-warn"&gt;&lt;span class="icon" aria-hidden="true"&gt;▲&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped, needs a look&lt;/strong&gt;1 thing to look at before tomorrow's run.&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;What to do&lt;/h2&gt;
+&lt;ol class="actions"&gt;
+&lt;li&gt;&lt;strong&gt;The deep dive ran on one source with on-theme candidates unused. Read the Cariboo pick line in the run log and the candidates it passed over.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;the deep dive aired on one source while 12 on-theme candidate(s) went unused&lt;/span&gt; &lt;span class="recur"&gt;Recurring: pending for the roadmap, seen 1 night.&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;What happened&lt;/h2&gt;
+&lt;h3&gt;Focus routing held four articles and released none&lt;/h3&gt;
+&lt;p&gt;The Film &amp;amp; Screen focus cycle matched only 1 article, below the minimum of 4, so the pipeline fell back to base theme selection: "only 1 article(s) matched focus 'Film &amp;amp; Screen' (&amp;lt;4) — using base theme selection." The episode therefore aired the normal Arts, Culture &amp;amp; Digital Storytelling mix instead of the focus block. Meanwhile four articles were held for other focuses (The Living World, and three for Maker &amp;amp; Repair), and none were released tonight. Held items include the Nautilus piece for 2026-11-22 and three Tom's Hardware and Engadget pieces for 2026-11-18, so the Maker &amp;amp; Repair backlog is now waiting on that day.&lt;/p&gt;
+&lt;p&gt;The cycle is not failing, but it is starved for focus-matched content on this theme feed. Check whether the Film &amp;amp; Screen keyword set is narrow enough to miss screen coverage the feed actually carries.&lt;/p&gt;
+
+&lt;h3&gt;Roundup kept 18 stories and aired 2 locals; 29 were cut for airtime&lt;/h3&gt;
+&lt;p&gt;The roundup pool held 18 stories (16 theme, 2 local), and the airtime budget cut 29 more from the pool. The pool is meant to be larger than one segment can air, so the cuts are by design, and cut stories can resurface on a better-matched day. Of 3 local stories available, 2 aired, and the roundup opened on local. The deep dive was the Williams Lake Tribune piece on public art funding, so the local thread ran through both segments.&lt;/p&gt;
+&lt;p&gt;The script shipped at 3541 words against a first draft of 2686 and a target of 3400, after one expand pass. Under target was not the problem here; the first draft came in thin and was expanded to meet the target.&lt;/p&gt;
+
+&lt;h3&gt;Two TTS takes came back short and were retried once&lt;/h3&gt;
+&lt;p&gt;Two text-to-speech segments returned shorter than their word counts predicted. Each was retried once, and the facts do not record whether the retries came back at full length, so the audio result is unknown from this run. Check the rendered audio at the flagged points before assuming the retry fixed them.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Articles loaded&lt;/td&gt;&lt;td&gt;78&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Kept after dedup&lt;/td&gt;&lt;td&gt;54&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Held / released&lt;/td&gt;&lt;td&gt;0 released, 4 held&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Roundup pool&lt;/td&gt;&lt;td&gt;18 stories — theme:16, local:2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;1 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.74, 3541 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive split&lt;/td&gt;&lt;td&gt;Casey 44% of the words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;20.9 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;19.1 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;15/18 roundup, 1/1 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;292 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;75,752&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;129 total: openai-tts 100 · claude 14 · kagi-extract 5 · cohere 5 · brave-answers 4 · brave-search 1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic cost&lt;/td&gt;&lt;td&gt;$0.21 at list price (estimate)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Total cost&lt;/td&gt;&lt;td&gt;$0.71 at list price: OpenAI TTS $0.300 · Anthropic $0.214 · Brave Answers $0.164 · Kagi Extract $0.020 · Brave Search $0.005 · Cohere $0.003&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Science, Wonder &amp; the Natural World, November 15, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-15.html</link>
@@ -1296,279 +1591,6 @@
 &lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;267 episodes&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;40,254&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;45 total: brave-search 17 · claude 16 · kagi-extract 8 · brave-answers 4&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, October 21, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-21.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-21.html</guid>
-      <pubDate>Wed, 21 Oct 2026 10:06:00 +0000</pubDate>
-      <description>&lt;p class="meta"&gt;Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39566768401"&gt;39566768401&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div class="verdict lvl-warn"&gt;&lt;span class="icon" aria-hidden="true"&gt;▲&lt;/span&gt;&lt;div&gt;&lt;strong&gt;Shipped, needs a look&lt;/strong&gt;2 things to look at before tomorrow's run.&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2&gt;What to do&lt;/h2&gt;
-&lt;ol class="actions"&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;script/kagi-extract&lt;/code&gt; fell back. Search the run log for &lt;code&gt;Degraded 'script/kagi-extract'&lt;/code&gt; and decide whether the fallback is acceptable or the cause needs fixing.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;degrade() row: Kagi Extract returned no page for 4 thin roundup stories&lt;/span&gt; &lt;span class="recur"&gt;Recurring: pending for the roadmap, seen 1 night.&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;code&gt;script/roundup-order&lt;/code&gt; fell back. Search the run log for &lt;code&gt;Degraded 'script/roundup-order'&lt;/code&gt; and decide whether the fallback is acceptable or the cause needs fixing.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;degrade() row: 1 story(ies) still aired after a later block after 2 repair passes&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;One host carried the episode. Check the turn split in the script.&lt;/strong&gt;&lt;br&gt;&lt;span class="evidence"&gt;Casey/Riley voice ratio 0.76&lt;/span&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2&gt;What happened&lt;/h2&gt;
-&lt;h3&gt;The first draft came in 745 words under target and was expanded twice&lt;/h3&gt;
-&lt;p&gt;The first script draft ran 2545 words against a target of 3400. The pipeline sent it back for up to two expand passes, and the script that shipped is 3400 words, which matches the target. Length was recovered by rework rather than accepted as drafted, so the expand passes are doing real work on this kind of night.&lt;/p&gt;
-&lt;p&gt;The same shortfall came from the roundup side of the pipeline. 48 stories were cut from the roundup pool by the airtime budget (NEWS_ROUNDUP_COUNT). That cut is designed: the pool is larger than one segment can air, and cut stories can resurface on a better-matched day. The first draft's thin length is the thing to watch if the expand passes start failing, since they are now the only thing standing between a short draft and a short episode.&lt;/p&gt;
-
-&lt;h3&gt;Four roundup stories had no page to extract and one aired after a failed reorder&lt;/h3&gt;
-&lt;p&gt;Kagi Extract returned no page for 4 thin roundup stories. Those stories had to be handled without their source text. The script step also reported that 1 story still aired after a later block, despite 2 repair passes on the roundup order. The pipeline shipped the episode with that story out of its intended position rather than dropping it or failing the run.&lt;/p&gt;
-&lt;p&gt;Citation alignment shows the cost: 13 of 17 roundup citations matched, and 3 of 4 deep-dive citations matched. Four citations in the roundup and one in the deep dives did not align with the sources that were available. The roundup count is the weaker of the two, and the four thin stories are the likely cause. Check whether Kagi Extract's failure rate on thin pages is recurring before changing any retry logic.&lt;/p&gt;
-
-&lt;h3&gt;One TTS take came back short and was retried once&lt;/h3&gt;
-&lt;p&gt;The text-to-speech step produced 1 take with fewer words than its script length predicts. That take was retried once under the standard rule. The facts do not say whether the retry was accepted, so this is a single short take flagged for inspection, not evidence of a missing passage.&lt;/p&gt;
-
-&lt;h3&gt;Debate question: home and ranch technology trust&lt;/h3&gt;
-&lt;p&gt;The episode's debate question was: Is trust in home and ranch technology built through open, locally maintained systems that people can repair and read, or inherited from commercial brands and their vendor-controlled platforms? The Casey-to-Riley voice ratio was 0.76, and the script carried no AI-tell pattern hits.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:06 AM Pacific&lt;/td&gt;&lt;td&gt;+1 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.76, 3400 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;20.3 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;18.6 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/17 roundup, 3/4 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;266 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;64,627&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;28 total: claude 11 · brave-search 9 · kagi-extract 4 · brave-answers 4&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, October 20, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-20.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-20.html</guid>
-      <pubDate>Tue, 20 Oct 2026 10:06:02 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39390907505"&gt;39390907505&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;The script shipped 554 words over target, after two expand passes&lt;/h3&gt;
-&lt;p&gt;The first draft came in at 2809 words against a 3400-word target. The pipeline sent it back for up to two expand passes. The script that shipped is 3554 words, which is 154 words over target. The first draft was 591 words short. The expand passes closed that gap and then overshot it.&lt;/p&gt;
-&lt;p&gt;The overshoot matters because the target is the only length control the pipeline has. Whatever the expand passes added is the part nobody chose, and the review cannot say from these facts where those extra words sit.&lt;/p&gt;
-
-&lt;h3&gt;Thirteen of eighteen roundup citations matched&lt;/h3&gt;
-&lt;p&gt;The roundup pool had 18 citations, and 13 of them matched. The five that did not match are the gap to watch. The facts do not say whether those five were dropped, paraphrased past recognition, or attached to claims the source does not support. They also do not say which stories they belonged to.&lt;/p&gt;
-&lt;p&gt;All four deep-dive citations matched. The contrast is the finding. The deep dives are the part of the episode with the most sourcing, and they were the part that held. The roundup stories were the part under pressure, and that is where the unmatched citations sit.&lt;/p&gt;
-
-&lt;h3&gt;Forty-five roundup stories were cut for airtime&lt;/h3&gt;
-&lt;p&gt;The pool is larger than one segment can air. Forty-five stories were dropped by the airtime budget (NEWS_ROUNDUP_COUNT), and the pipeline treats that as the design working. A cut story can come back on a day when it fits better.&lt;/p&gt;
-&lt;p&gt;The cut count and the citation gap are separate facts. Forty-five stories were removed before they reached the script. Five citations failed to match among the stories that did reach it. The review does not connect the two, because the facts do not connect them.&lt;/p&gt;
-
-&lt;h3&gt;The ratio of Casey to Riley lines came out at 1.24&lt;/h3&gt;
-&lt;p&gt;The voice ratio, Casey over Riley, is 1.24. Casey has more lines than Riley, but not by a wide margin. The pipeline recorded one AI-tell pattern hit in the script. The facts do not name the pattern, so the review cannot say whether it was caught and fixed or passed through.&lt;/p&gt;
-
-&lt;h3&gt;Every scheduled run finished on time, but the first run did most of the work&lt;/h3&gt;
-&lt;p&gt;Three runs were scheduled for this date. The primary run started at 1:05 AM Pacific and finished at 1:38 AM Pacific with a success conclusion. Fallback 1 started at 2:05 AM Pacific and also finished successfully at 2:05 AM Pacific. Fallback 2, started at 3:05 AM Pacific, is the run writing this review and has no finish time yet.&lt;/p&gt;
-&lt;p&gt;Both completed runs were zero minutes late. The primary run took the full script generation and rendering path. The facts do not say what Fallback 1 did in its 2:05 AM Pacific slot, or why it finished the moment it began. The review does not guess.&lt;/p&gt;
-&lt;p&gt;In the primary run, script generation took 894 seconds, the longest step. Audio rendering took 286 seconds. Deploying to GitHub Pages took 379 seconds, longer than publishing the episode at 113 seconds. The deploy step is the slowest part of the pipeline after script generation, and nothing in the facts explains why.&lt;/p&gt;
-
-&lt;h3&gt;The episode runs 21.7 minutes and the video is 75.0 MB&lt;/h3&gt;
-&lt;p&gt;The audio is 21.7 minutes long and 19.9 MB. The video is 21.7 minutes long and 75.0 MB. The two runtimes match, which confirms the video and audio carry the same episode. The file sizes differ by a factor of about four because the video carries the picture track. The feed now holds 265 episodes.&lt;/p&gt;
-
-&lt;h3&gt;The debate question and the forest-products numbers&lt;/h3&gt;
-&lt;p&gt;The episode's question is whether a forest-products sector shifting toward high-value markets, with a 45 million cubic metre harvest target, serves Cariboo communities, and whose numbers residents should trust during that shift. The four deep dives cover mass timber demand, a Conservative harvest promise, retraining for former South Cariboo forestry workers, and a federal and Ontario investment of up to $50 million. All four deep-dive citations matched, so the question rests on sourcing that checked out.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 1.24, 3554 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;21.7 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;19.9 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/18 roundup, 4/4 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;265 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;66,646&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;***'kagi-extract': 8, 'brave-search': 6, 'claude': 11, 'brave-answers': 4***&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, October 19, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-19.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-19.html</guid>
-      <pubDate>Mon, 19 Oct 2026 10:06:06 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39220293431"&gt;39220293431&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;The short draft and the expand passes&lt;/h3&gt;
-&lt;p&gt;The first script draft came in at 2850 words against a target of 3400. The pipeline sent it back for up to two expand passes. What shipped was 3673 words, so the expansion overshot the target by 273 words. The episode is longer than the spec asked for, and the audio reflects it: 21.9 minutes of audio, 20.1 MB.&lt;/p&gt;
-&lt;p&gt;The degradation log lists one failure, in the script step. Kagi Extract returned no page for 4 thin roundup stories. Those stories were still in the script without their source text.&lt;/p&gt;
-
-&lt;h3&gt;Citations that did not match&lt;/h3&gt;
-&lt;p&gt;Citation alignment was uneven. Of 17 roundup citations, 13 matched. Of 4 deep-dive citations, 1 matched. The deep-dive figure is the weaker one: three of the four long segments went to air with citations that did not check out against their sources.&lt;/p&gt;
-&lt;p&gt;The four failed Kagi Extract pages are the likely cause for the roundup side, since thin stories give the matcher less to match against. The facts do not establish that link, so treat it as a suspicion until someone checks which citations were the unmatched ones.&lt;/p&gt;
-
-&lt;h3&gt;Cut stories&lt;/h3&gt;
-&lt;p&gt;The roundup pool had 40 stories cut by the airtime budget. This is by design. The pool is larger than one segment can air, and a cut story can come back on a day when it fits better. The 40 cuts are not 40 missing items from this episode. They are the pool doing what it was built to do.&lt;/p&gt;
-&lt;p&gt;The tension is that 4 of those roundup stories were thin enough that Kagi returned nothing for them, yet they still made the script. The budget cut 40 stories, and the thinnest sources were the ones that got through.&lt;/p&gt;
-
-&lt;h3&gt;Quality and tone&lt;/h3&gt;
-&lt;p&gt;The voice split between the two hosts was 0.93 Casey over Riley. The script tripped the AI-tell pattern check once. Both figures are within what the pipeline is meant to accept, and neither needs action today.&lt;/p&gt;
-
-&lt;h3&gt;The schedule held, with fallbacks&lt;/h3&gt;
-&lt;p&gt;The primary run started at 1:05 AM Pacific and finished at 1:31 AM Pacific. It completed successfully with no lateness. Two fallback runs were scheduled behind it. Fallback 1 started at 2:05 AM Pacific and finished at 2:05 AM Pacific, also successful. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has not finished.&lt;/p&gt;
-&lt;p&gt;The slowest steps were the script generation at 502 seconds and the Pages deploy at 371 seconds. Audio rendering took 283 seconds. The video render and YouTube upload took 131 seconds.&lt;/p&gt;
-
-&lt;h3&gt;Spend and output&lt;/h3&gt;
-&lt;p&gt;The run used 61,831 Anthropic input tokens. API calls split across four services: 11 to Claude, 9 to Brave Search, 4 to Kagi Extract, and 4 to Brave Answers. The video is 75.3 MB at a runtime of 21.9 minutes. The RSS feed now carries 264 episodes.&lt;/p&gt;
-
-&lt;h3&gt;The day's debate&lt;/h3&gt;
-&lt;p&gt;The episode's question was whether credibility and authenticity in arts and culture come from the artists and audiences themselves, or whether sponsors, founders, and institutions can inherit and spend them. The four deep dives covered a music genre turned into a brand asset, a state crackdown on critics, an architecture archive, and an off-grid refrigerator built from fire and salt. Three of the four deep-dive citations failed to match, so the argument rests more on the scripted framing than on the verified sources behind it.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 0.93, 3673 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;21.9 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;20.1 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/17 roundup, 1/4 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;264 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;61,831&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;***'claude': 11, 'brave-search': 9, 'kagi-extract': 4, 'brave-answers': 4***&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, October 18, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-18.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-18.html</guid>
-      <pubDate>Sun, 18 Oct 2026 10:06:29 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39110140984"&gt;39110140984&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;The short draft that the pipeline sent back twice&lt;/h3&gt;
-&lt;p&gt;The first script draft came in at 2694 words against a target of 3400. The pipeline did not ship it. It sent the draft back for expansion, up to two passes, and what shipped was 3423 words. That is 23 words over target, so the expand passes did their job, but the gap is the story: the generator's first attempt ran about 21 percent short and needed the retry loop to reach length.&lt;/p&gt;
-&lt;p&gt;The voice split held at 0.87, Casey over Riley, and the AI-tell pattern check recorded zero hits. Neither of those numbers was at risk on this run.&lt;/p&gt;
-
-&lt;h3&gt;Two takes came back short from TTS&lt;/h3&gt;
-&lt;p&gt;Two text-to-speech takes returned shorter than their word counts predicted. Each was retried once. One retry still came back short. For that segment the pipeline kept the longer of the two takes, so no content was dropped from the episode. The audio ran 22.3 minutes at 20.5 MB.&lt;/p&gt;
-&lt;p&gt;The short-take count is two and the still-short retry count is one. The second number does not mean one segment is missing from the audio. It means one segment is the one where the retry did not produce a full-length take, and the longer take was used in its place. Whether that take is complete is not something the run measured.&lt;/p&gt;
-
-&lt;h3&gt;The roundup cut 68 stories and the citations did not fully hold&lt;/h3&gt;
-&lt;p&gt;The roundup pool was larger than one segment could air. The airtime budget, set by NEWS_ROUNDUP_COUNT, cut 68 stories. The pipeline treats that as expected: the pool is deliberately oversized, and a cut story can air on a day where it fits better.&lt;/p&gt;
-&lt;p&gt;The cuts left a visible tension in the citations. Of 18 roundup citations, 14 matched the aired content. Of four deep-dive citations, three matched. So four citations did not align: one in the roundup and one in the deep dive. The facts do not say which citations failed or why, and this review does not guess.&lt;/p&gt;
-
-&lt;h3&gt;What the deep dives covered&lt;/h3&gt;
-&lt;p&gt;The four deep dives were drawn from the Gulf attacks coverage in the NYT Business feed, a WIRED piece on microplastics reacting with water, a TechCrunch story on Mosqitter's AI-powered mosquito traps, and an NYT Top Stories piece on worlds more habitable than Earth. The episode's debate question asks whether long-term environmental and scientific monitoring should be trusted and acted on before its implications are confirmed, and how such records should be funded, governed, and sustained. The four deep dives are a loose fit for that question, which is a matter of editorial choice, not a pipeline failure.&lt;/p&gt;
-
-&lt;h3&gt;Runs and spend&lt;/h3&gt;
-&lt;p&gt;The primary run started at 1:05 AM Pacific, zero minutes late, and finished at 1:53 AM Pacific with a success conclusion. Fallback 1 started at 2:05 AM Pacific and finished at 2:06 AM Pacific, also a success. Fallback 2, at 3:05 AM Pacific, is the run producing this review and has no finish time yet. Its conclusion is null. The fallback runs were scheduled as backups, and their successful completion does not by itself show that the primary's output was replaced.&lt;/p&gt;
-&lt;p&gt;The slowest step was Deploy to GitHub Pages at 1092 seconds, followed by Checkout repository at 776 seconds and Generate episode script at 491 seconds. Script generation alone consumed 57,310 Anthropic input tokens. The service call counts were brave-search 8, kagi-extract 4, claude 10, and brave-answers 4. The video is 79.3 MB at 22.3 minutes, and the RSS feed now lists 263 episodes.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;4 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.87, 3423 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;22.3 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;20.5 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;14/18 roundup, 3/4 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;263 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic input tokens&lt;/td&gt;&lt;td&gt;57,310&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;API calls&lt;/td&gt;&lt;td&gt;***'brave-search': 8, 'kagi-extract': 4, 'claude': 10, 'brave-answers': 4***&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</description>
-    </item>
-    <item>
-      <title>Episode Review — Cariboo Signals, October 17, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-17.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-17.html</guid>
-      <pubDate>Sat, 17 Oct 2026 10:06:30 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39016086060"&gt;39016086060&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;The script shipped 11% over target after a short first draft&lt;/h3&gt;
-&lt;p&gt;The first draft came in at 2,687 words against a target of 3,400. The pipeline sent it back for up to two expand passes. What shipped was 3,721 words, which is 321 words over the target. The short draft was fixed by expansion, and the expansion overshot.&lt;/p&gt;
-&lt;p&gt;The script's voice balance held. The Casey-to-Riley ratio is 0.94, and there were zero AI-tell pattern hits.&lt;/p&gt;
-
-&lt;h3&gt;Ten of 24 ballot candidates have no research record&lt;/h3&gt;
-&lt;p&gt;The election research step found no record for 10 of the 24 candidates on the ballot: Nicole Berreth, Laura Zimmerman, Greg Jeannotte, Charlene Hays, Whitney Spearing, Nathan Wiebe, Rafiullah Sahibzada, Michael Franklin, Kayla Zaruk, and Ruth Lloyd. The pipeline did not fill those gaps with invented material. It wrote the episode around them.&lt;/p&gt;
-&lt;p&gt;This matters for the episode's central question. The debate asks whose account of a candidate's record voters should weight, and what an endorsement or acclamation proves. For ten candidates the pipeline had no record to weigh at all. The five deep dives cover candidates the research did find, so the coverage is uneven by construction.&lt;/p&gt;
-
-&lt;h3&gt;Citations matched less often in the deep dives than in the roundup&lt;/h3&gt;
-&lt;p&gt;Eleven of 17 roundup citations matched their sources. Only 1 of 5 deep-dive citations matched. The deep-dive sources were all local election coverage, several of them "Meet the Candidates" profiles, so the failure is concentrated in the segment with the most specific claims.&lt;/p&gt;
-&lt;p&gt;The roundup pool was far larger than the airtime. Sixty-six stories were cut by the airtime budget (NEWS_ROUNDUP_COUNT). That is by design. A cut story can come back on a day when it fits better. The pool had more material than the episode could carry, and the budget decided which stories aired.&lt;/p&gt;
-
-&lt;h3&gt;Four short TTS takes, three still short after retry&lt;/h3&gt;
-&lt;p&gt;Four TTS takes came back shorter than their word count predicts. Each was retried once. Three of the retries were still short. In those cases the longer of the two takes was kept, so no content was dropped from the episode. The count of still-short retries does not mean that three segments are missing from the audio. The pipeline kept the longer take each time.&lt;/p&gt;
-
-&lt;h3&gt;The run finished on time, and the review is running inside its own fallback&lt;/h3&gt;
-&lt;p&gt;The primary run started at 1:05 AM Pacific and finished at 1:32 AM Pacific. It completed successfully with zero minutes late. Fallback 1 was created at 2:05 AM Pacific and finished at 2:06 AM Pacific, also successful. This review is running as Fallback 2, created at 3:05 AM Pacific, and has not finished.&lt;/p&gt;
-&lt;p&gt;The primary run needed the full pipeline. The script step took 619 seconds and rendering the audio took 312 seconds. Deploying to GitHub Pages took 326 seconds, longer than the publish step at 109 seconds. The deploy was the second-slowest step after the script.&lt;/p&gt;
-&lt;p&gt;The episode is 22.5 minutes of audio, 20.6 MB. The video is 22.5 minutes and 79.4 MB. The RSS feed now lists 262 episodes. The run used 62,663 Anthropic input tokens across 11 Claude calls, 48 Brave Search calls, and 4 Brave Answers calls.&lt;/p&gt;
-
-&lt;h3&gt;The day's triggers&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;1:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler&lt;/td&gt;&lt;td&gt;2:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run&lt;/td&gt;&lt;td&gt;3:05 AM Pacific&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;running this review&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;What shipped&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.94, 3721 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;22.5 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;20.6 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;11/17 roundup, 1/5 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;262 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;62,663 input tokens, calls ***'brave-search': 48, 'claude': 11, 'brave-answers': 4***&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>

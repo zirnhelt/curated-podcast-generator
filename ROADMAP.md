@@ -41,34 +41,17 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-10-07..2026-11-15) — 3 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-10-19..2026-11-19) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
-      section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
-      (33%). The gap suggests a different verification pathway or a shortfall in source
-      retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
-      proceeded despite this disparity. Audit the deep dive citation matching logic and the
-      Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (signal `citations:deep-dive`; seen in 2
-      reviews, latest 2026-11-14)
-- [ ] **The name Esk'et has no entry in config/pronunciations.json and reached TTS unmapped.**
-      The script step degraded with one name lacking a pronunciation entry (Esk'et) on
-      2026-11-12, and the pipeline sent it to text-to-speech as written instead of stopping or
-      substituting. The same nation name is expected to recur through the election coverage.
-      Closing this means adding the Esk'et entry to config/pronunciations.json and having the
-      script step fail or flag, rather than pass through, any name with no mapping. (signal
-      `degraded:script/pronunciation`; seen in 2 reviews, latest 2026-11-13)
-- [ ] **A theme-feed local story was available for the roundup but did not air there.** On
-      2026-11-14 the Cariboo Local Affairs feed loaded 21 on-theme articles and 1 local story
-      reached the roundup pool, yet 0 local stories aired and the roundup did not open on a
-      local item (roundup_shape: local_stories_aired 0, roundup_opened_local no). The one local
-      story was instead routed to the deep dive, which took the lead subject, while 3 unused
-      on-theme candidates were left over. The facts do not show why the roundup selection passed
-      over the local story, so the fix is to inspect the roundup selection logic so a theme-feed
-      local story is not dropped when the deep dive takes a different subject. (signal
-      `no-local-roundup`; seen in 2 reviews, latest 2026-11-15)
+- [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
+      for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
+      on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were
+      cut by the airtime budget, so the thinnest sources were the ones that passed through. The
+      pipeline should either drop stories whose extraction failed or mark them as unverified
+      before scripting. This is the degradation whose handling the facts show as wrong. (signal
+      `degraded:script/kagi-extract`; seen in 2 reviews, latest 2026-11-19)
 
 <!-- reviews:end -->
 

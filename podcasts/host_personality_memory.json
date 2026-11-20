@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Business Insider] I broke into tech sales after working in ",
-      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi",
       "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
       "[TechRadar] These social media posts promise big online disc",
       "AI",
@@ -10,7 +8,9 @@
       "The Tyee Podcast: Inside Canada\u2019s AI Data Centre Fervour",
       "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Buckles, bik",
       "[Tom's Hardware] Tech sleuth claims to have found the oldest",
-      "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M"
+      "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M",
+      "[ZDNet] This tiny box gives your older tech smart home super",
+      "[Outside Online] Lawmakers Move to Ban AI Data Centers on Na"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -25,31 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-09-24",
-        "clue": "Indigenous-tech:x \u2014 Conceded that tool ownership \u2260 automatic recognition in decisions.",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-06",
-        "clue": "rural-context:x \u2014 Conceded that consent measurement remains genuinely difficult",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-10-14",
-        "clue": "pilot-skepticism:~ \u2014 proposes testing one lake before scaling claims",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-20",
-        "clue": "permit-queue:+ \u2014 Insists permits are the lever Province can move",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-24",
-        "clue": "community-trust:+ Trust comes from seeing results on the street",
-        "occurrences": 1
-      },
-      {
         "date": "2026-10-24",
         "clue": "evidence-bar:x Conceded Casey's point on the petition allegation",
         "occurrences": 1
@@ -58,11 +33,6 @@
         "date": "2026-10-24",
         "clue": "structural-lens:~ Acknowledged conflict-of-interest disclosure is only a first step",
         "occurrences": 1
-      },
-      {
-        "date": "2026-10-26",
-        "clue": "structural-lens:x \u2014 concedes binder defenders have a valid point",
-        "occurrences": 2
       },
       {
         "date": "2026-10-26",
@@ -75,9 +45,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-10-30",
-        "clue": "funding-risk:x \u2014 concedes UK landscape line is not yet proven",
-        "occurrences": 1
+        "date": "2026-11-19",
+        "clue": "funding-risk:x \u2014 admitted unpriced cost of Nation participation",
+        "occurrences": 2
       },
       {
         "date": "2026-11-09",
@@ -125,14 +95,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-08",
-        "clue": "tech-optimism:+ \u2014 Defends FLIP as a discovery-grade method path",
-        "occurrences": 1
+        "date": "2026-11-18",
+        "clue": "tech-optimism:+ \u2014 Repair as public good, open designs advocated throughout",
+        "occurrences": 2
       },
       {
-        "date": "2026-11-09",
-        "clue": "evidence-bar:- \u2014 softens demand for records, accepting a curator as a named door",
-        "occurrences": 1
+        "date": "2026-11-18",
+        "clue": "evidence-bar:- \u2014 Accepts 'the transferable part is the method' over headline claims",
+        "occurrences": 2
       },
       {
         "date": "2026-11-10",
@@ -160,18 +130,48 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-13",
-        "clue": "funding-risk:~ \u2014 Admits he doesn't know who pays for fixes",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-11-14",
-        "clue": "community-trust:+ \u2014 insists the rule protects residents equally, defends it",
-        "occurrences": 1
+        "date": "2026-11-20",
+        "clue": "funding-risk:~ \u2014 concedes a line can be cut, still wants both",
+        "occurrences": 2
       },
       {
         "date": "2026-11-15",
         "clue": "evidence-bar:+ \u2014 insists on checking station history before claims",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "community-trust:+ Values the public, checkable grant process",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "evidence-bar:x Concedes rulebook beats unexplained wall",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "funding-risk:~ Notes $5,000 may not cover materials",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-17",
+        "clue": "rural-context:+ \u2014 insists on city-scale and plain-terms reading of disruption",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-19",
+        "clue": "structural-lens:x \u2014 conceded clarity matters more than planning",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-20",
+        "clue": "structural-lens:+ \u2014 insists lead time should fund drainage sizing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-20",
+        "clue": "community-trust:+ \u2014 wants land users in from the first meeting",
         "occurrences": 1
       }
     ],
@@ -295,7 +295,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
       "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
       "[My Cariboo Now] Cops for Cancer riders to make community st",
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
@@ -304,7 +303,8 @@
       "[Williams Lake Tribune] New Kamloops facility supports rural",
       "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g",
       "[100 Mile Free Press] Interlakes community buys fire departm",
-      "[100 Mile Free Press] CMHA bringing community together with "
+      "[100 Mile Free Press] CMHA bringing community together with ",
+      "[My Cariboo Now] Quesnel requests Community Transition Servi"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -318,21 +318,6 @@
       "demands full picture \u2014 not just press releases"
     ],
     "personality_clues": [
-      {
-        "date": "2026-09-23",
-        "clue": "evidence-bar:xdata-existing-vs-findable-problem-distinction-surfaces",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-09-23",
-        "clue": "community-trust:~undocumented-resilience-is-single-point-failure-reframing",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-12",
-        "clue": "tech-optimism:+ \u2014 platforms are new gatekeepers with unpublished rules",
-        "occurrences": 1
-      },
       {
         "date": "2026-10-18",
         "clue": "pilot-skepticism:~ \u2014 notes sensing reveals fragility without fixing it",
@@ -349,9 +334,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-10-19",
-        "clue": "pilot-skepticism:+ \u2014 five-week test is not a permanent budget line",
-        "occurrences": 1
+        "date": "2026-11-18",
+        "clue": "pilot-skepticism:+ \u2014 Solar tracker and bioprinter treated as single prototypes",
+        "occurrences": 2
       },
       {
         "date": "2026-10-24",
@@ -371,11 +356,6 @@
       {
         "date": "2026-11-06",
         "clue": "evidence-bar:~ \u2014 DNA match depends on scene samples and catching right bear",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-03",
-        "clue": "funding-risk:~ \u2014 public not paid for terminal, yet risk remains",
         "occurrences": 2
       },
       {
@@ -424,9 +404,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-08",
-        "clue": "funding-risk:+ \u2014 Asks who pays for reruns and future checks",
-        "occurrences": 1
+        "date": "2026-11-20",
+        "clue": "funding-risk:+ \u2014 budget lines can be reallocated with a single motion",
+        "occurrences": 2
       },
       {
         "date": "2026-11-09",
@@ -454,13 +434,38 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-14",
-        "clue": "community-trust:~ \u2014 notes filings and fairness hinge on who can pay",
+        "date": "2026-11-16",
+        "clue": "structural-lens:+ Frames the brief and editor as hidden constraints",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "funding-risk:+ Presses on upkeep, repairs, and who pays",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-16",
+        "clue": "community-trust:~ Admits unveilings beat a plaque with nobody there",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-19",
+        "clue": "structural-lens:+ \u2014 doubts designation test; wants clause read",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-19",
+        "clue": "funding-risk:~ \u2014 frameworks die in budget cycles",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-20",
+        "clue": "community-trust:~ \u2014 notes land users see change first but rarely write warnings",
         "occurrences": 2
       },
       {
-        "date": "2026-11-14",
-        "clue": "evidence-bar:+ \u2014 repeatedly demands outcome lists and measured counts over anecdote",
+        "date": "2026-11-20",
+        "clue": "evidence-bar:+ \u2014 sixty percent odds still too uncertain to trust",
         "occurrences": 1
       }
     ],

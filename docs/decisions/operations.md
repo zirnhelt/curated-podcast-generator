@@ -517,7 +517,7 @@ resurrected on one mention.
   `match_deep_dive_to_script` reads only the deep-dive section and wants
   `_DEEP_MATCH_MIN_TOKENS` (3) title-or-summary words in one host turn, each rare there
   (`_MATCH_RARE_MAX`): 35 of 38, none false. Naming the outlet was tried and left out (one
-  gained, one false). "who" and "which" joined `_MATCH_STOPWORDS`; no October roundup match moved. **The source a deep dive is *about* gets its own path** (2026-11-06, `_deep_dive_subject_match`): its subject words are the section's most used ("bear" 18 times), so the rarity rule matched a one-source deep dive 0 of 1, and three same-story pipeline reports 1 of 3 the night before. One host turn saying half the headline's words (`_DEEP_SUBJECT_TITLE_RATIO`, at least 3), however often, now counts too; words the welcome says don't (`_welcome_words`: the weather's town names gave the one false credit found, "changes / Williams / Lake"). Over the 896 committed deep-dive sources it credits 71 more, and the 12 from July on all check out. Same-story reports whose headlines share few words with the script (2026-11-05's APTN and My Cariboo Now) still miss.
+  gained, one false). "who" and "which" joined `_MATCH_STOPWORDS`; no October roundup match moved. **The source a deep dive is *about* gets its own path** (2026-11-06, `_deep_dive_subject_match`): its subject words are the section's most used ("bear" 18 times), so the rarity rule matched a one-source deep dive 0 of 1, and three same-story pipeline reports 1 of 3 the night before. One host turn saying half the headline's words (`_DEEP_SUBJECT_TITLE_RATIO`, at least 3), however often, now counts too; words the welcome says don't (`_welcome_words`: the weather's town names gave the one false credit found, "changes / Williams / Lake"). Over the 896 committed deep-dive sources it credits 71 more, and the 12 from July on all check out. Same-story reports whose headlines share few words with the script (2026-11-05's APTN and My Cariboo Now) still miss. **Two adjacent turns count together for the headline test** (2026-11-19, producer-approved): on 2026-11-13 the deep dive was about The Tyee's "After a Megafire, Clinton Faces Floods and Landslide Warnings", but the hosts passed the story back and forth and no one turn held 3 of its words. Replayed over 922 committed sources the pair window credits 18 more; about three ride on generic words ("money / build / tools", "react / study / problem"), 3 of the 4 from July on check out. Run on the summary-word (rarity) test it credited 46, with "call / change / day" and "stop / past / like" among them, so pairs stay off that test. The roundup's matcher keeps one turn: there adjacent turns are often different stories.
 - **The review reads the job log as UTF-8** (`fetch_job_log`, 2026-11-13). GitHub serves it as `text/plain` with no charset, and `requests` falls back to ISO-8859-1, so the script's "Pâtur'ajuste" reached the review as "PÃ¢tur'ajuste"; every nation name in a finding, evidence line or roadmap title would have been mangled the same way. It now decodes the bytes itself.
 - **`voice-ratio` reads who spoke, not how long a turn runs.** The Casey/Riley voice ratio
   compares average deep-dive turn length, and the persona gives Casey the shorter turns, so the
@@ -595,6 +595,19 @@ a minute or more after the gh-pages push), then dispatches that repo's `refresh-
 with the scheduler PAT, the one token with Actions write on both repos. The refresh spends
 nothing. The step is `continue-on-error`: a miss costs only the same-morning copy, because the
 nightly still picks the review up.
+
+### The review lists what Brave and Kagi were spent on (2026-11-18)
+
+The producer asked for the episode report to say which topics Brave and Kagi were used for.
+The citations JSON already kept the research pass's log (`research.log`: agent searches, the
+election roll call, Answers questions), but the roundup's body research wrote nothing: the
+Kagi Extract reads (`_extract_roundup_stories`) and the Brave title searches
+(`_research_roundup_story`) were visible only as totals in the run log. Both now log one row per
+page or search, with its story and outcome (`used`, `read`, `refused`, `unmatched`, `failed`;
+`no results`, `nothing longer`, `used (via host)`). A title search is logged only when the call
+went out: the wrapper answers `[]` for a walled or spent meter as well. `render_research` lists
+the paid rows under their service on the review page (not the RSS copy); pages read, candidate
+profiles and a reused ballot pass cost nothing and stay off it.
 
 ## Third-party text in the episode notes, and fetches of outside URLs (2026-10-03)
 

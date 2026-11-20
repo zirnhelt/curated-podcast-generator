@@ -1,15 +1,5 @@
 {
   "assigned": {
-    "2026-W38": {
-      "id": "worth-saving",
-      "question": "Who decides what's worth saving?",
-      "dimension": "value-triage",
-      "premise": "Not everything survives, and the choosing is rarely explicit. A species gets recovery funding or doesn't; a building gets heritage status or a demolition permit; a mill town gets a transition plan or a highway sign; a dialect gets documented or doesn't. The question is who is actually in the room when those calls get made, and what happens to the things nobody nominated.",
-      "reading": null,
-      "framings": {},
-      "assigned_at": "2026-09-14",
-      "origin": "seeded"
-    },
     "2026-W39": {
       "id": "place-unrecorded",
       "question": "Does a place still exist if nobody records it?",
@@ -145,6 +135,24 @@
       },
       "assigned_at": "2026-11-09",
       "origin": "generated"
+    },
+    "2026-W47": {
+      "id": "the-right-to-be-left-alone",
+      "question": "How much should neighbours know about each other?",
+      "dimension": "privacy-visibility",
+      "premise": "Everyone notices whose truck is in the yard, whose lights are on late, and whose marriage is struggling. That watchfulness is also what gets a stranded driver found, a failing elder checked on, and a theft noticed. But it is the same attention that fuels gossip, judgment, and the feeling of never being able to start over. Where care ends and surveillance begins depends on who is looking and what they intend to do with what they see.",
+      "reading": null,
+      "framings": {
+        "0": "Tell the hosts to ask whether a community theatre's Facebook group that lists who's performing, who's sick, and who's divorcing is celebrating local talent or turning the arts scene into a gossip feed.",
+        "1": "Tell the hosts to probe whether a ranch's shared GPS tracking of cattle and equipment across neighbouring leases protects herds and rigs, or quietly maps who is working, resting, and struggling.",
+        "2": "Tell the hosts to weigh whether a Williams Lake maker posting home security camera footage of a neighbour's driveway to a community board is deterring theft or documenting someone's comings and goings without consent.",
+        "3": "Tell the hosts to examine whether a Secw\u00e9pemc community's member registry and language-learning app should expose who speaks what and where they live, or keep that knowledge within families and governance circles.",
+        "4": "Tell the hosts to consider whether backcountry hunters and trail users sharing live location beacons with neighbours and search groups makes rescues faster or lets everyone track everyone's hunting spots and solitude.",
+        "5": "Tell the hosts to ask whether publishing the names and addresses of residents who speak at Williams Lake council or CRD public hearings strengthens civic participation or discourages ordinary people from ever speaking up.",
+        "6": "Tell the hosts to debate whether citizen-science wildlife cameras and water-quality monitoring run by neighbours on Cariboo creeks reveal ecological truths that matter or turn private land into a public record of who's around."
+      },
+      "assigned_at": "2026-11-16",
+      "origin": "generated"
     }
   },
   "used": [
@@ -231,6 +239,12 @@
       "dimension": "reciprocity-fairness",
       "question": "Is it fair to help the people who are already helping?",
       "week": "2026-W46"
+    },
+    {
+      "id": "the-right-to-be-left-alone",
+      "dimension": "privacy-visibility",
+      "question": "How much should neighbours know about each other?",
+      "week": "2026-W47"
     }
   ],
   "generated": [
@@ -274,6 +288,48 @@
       "question": "Who should carry the risk when something goes wrong?",
       "dimension": "risk-responsibility",
       "premise": "Out where help is hours away, a bad road, a late fire season, a failed crop, or a backcountry mistake lands on someone, and the question of who is responsible gets tangled fast. Individuals are expected to look after themselves, yet institutions, employers, landowners, and whole towns end up absorbing the cost. Pushing risk onto the person closest to it preserves freedom and keeps decisions local. Spreading it out is gentler and fairer, but it can make everyone more careless and more dependent. We disagree about where the line sits between your problem and ours.",
+      "origin": "generated"
+    },
+    {
+      "id": "debt-of-the-kind-neighbour",
+      "question": "Do you owe a favour back to someone who never asked?",
+      "dimension": "unsolicited-obligation",
+      "premise": "Plenty of rural life runs on people quietly plowing a driveway, dropping off soup, or lending a trailer without being asked. Those gifts create a sense of owing that nobody priced in and nobody can fully repay. Some people feel bound to return them, others feel that insisting on repayment cheapens the kindness. It is unclear whether an unrequested kindness creates a real debt or only a feeling of one.",
+      "origin": "generated"
+    },
+    {
+      "id": "enough-land",
+      "question": "How much land is enough land to be responsible for?",
+      "dimension": "stewardship-threshold",
+      "premise": "Owning a few acres in some places means owning a forest, a creek, and a set of fences you cannot fully maintain. Stewardship costs time and money that scale with the size of the holding, and at some point the land starts owning you. Others argue that even a small piece of ground can be cared for well, and that bigger is simply harder to be good at. Where the line sits between cared-for and overextended is not settled.",
+      "origin": "generated"
+    },
+    {
+      "id": "the-good-enough-repair",
+      "question": "When is a patch good enough to stop there?",
+      "dimension": "sufficiency-durability",
+      "premise": "A temporary fix, a bit of baling wire or a borrowed part, often holds for years and keeps a machine or a house running when a proper replacement is out of reach. Repair culture prizes this ingenuity, but the same patch can also delay a fix that would have been safer or cheaper in the long run. Deciding when a repair is wise versus stubborn depends on things no one can see in advance. The true threshold of sufficiency stays hard to locate.",
+      "origin": "generated"
+    },
+    {
+      "id": "who-speaks-for-the-quiet-one",
+      "question": "Should the loudest voice at the meeting count for more?",
+      "dimension": "voice-weight",
+      "premise": "Small-town councils, school boards and co-op meetings tend to be shaped by whoever shows up and talks most, usually the same few people who have always had time to attend. Quieter residents, shift workers, or newcomers may hold views that go unheard, yet giving them weight can mean discounting people who have invested years in the work. Fairness in public talk is easy to want and harder to design. Whether speaking up should itself earn influence is not clear.",
+      "origin": "generated"
+    },
+    {
+      "id": "the-season-you-missed",
+      "question": "Is a life measured by what you did or by what you were present for?",
+      "dimension": "presence-achievement",
+      "premise": "A rural year is full of brief windows, the calving, the harvest, the first ice, a neighbour's last summer, and people often miss some of them to earn a living. Work pays the bills and builds something lasting, but it can also mean being elsewhere when the things that matter most happen. Weighing a completed project against a moment you were there for is not something arithmetic resolves. It remains uncertain which kind of account of a life should win.",
+      "origin": "generated"
+    },
+    {
+      "id": "the-useful-stranger",
+      "question": "Should a newcomer's skills count for more than their roots?",
+      "dimension": "contribution-origin",
+      "premise": "Small places often need exactly the skill a newcomer brings, a nurse, a mechanic, a teacher, or a bookkeeper for the local farm, and they struggle to keep people who arrive with those abilities. Yet long-standing families often feel that how a person fits into the place matters more than what they can offer, and that usefulness can be a shortcut past real commitment. Whether a community should judge people by what they add or by how they belong is a genuine tension. Neither measure seems to capture a whole person.",
       "origin": "generated"
     }
   ]

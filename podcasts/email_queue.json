@@ -2359,6 +2359,25 @@
       "air_date": "2026-11-12",
       "status": "used",
       "used_at": "2026-11-12"
+    },
+    {
+      "id": "67af6461",
+      "type": "feedback",
+      "message_id": "<64f5529766ef3141dbd5f8ad2e4fde29@podstatus.com>",
+      "from_address": "h***@podstatus.com",
+      "from_producer": false,
+      "subject": "Cariboo Signals is ranking very well in Canada",
+      "received_at": "2026-11-16T14:53:56+00:00",
+      "body_text": "Hello, how\u2019s it going? Hope all is well. I have some cool information that might interest you. Your podcast Cariboo Signals has good performance in Apple Podcasts rankings (last 30 days): Position 219 in the category Technology (Canada) This data is provided by podstatus.com. Happy Podcasting! Carlos, from Podstatus. GDPR compliance information Controller: Carlos Tenor (\"Podstatus\"). Purpose: to provide podcast owners information about podcast rankings. Legitimation: legitimate interests of Pods",
+      "extracted_urls": [
+        "https://podstatus.com",
+        "https://podstatus.com/mail-privacy",
+        "https://podstatus.com/mail-privacy/#rights"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2527,6 +2546,14 @@
     "1a1d7094d5f34e68",
     "1a1dad87ca586753",
     "1a1daafd62a6e9ad",
-    "1a1da9ac64d2b6b8"
+    "1a1da9ac64d2b6b8",
+    "1a1e1b2b952fdf66",
+    "1a1e1b2ad6e0d7bc",
+    "1a1e1a0c04458148",
+    "1a1e1a0bb9ef87e5",
+    "1a1e4d9c6acf4e21",
+    "1a1ea96df893a8d7",
+    "1a1f009d8f5d18f7",
+    "1a1ef8d13b8cf3c9"
   ]
 }

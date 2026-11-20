@@ -138,6 +138,93 @@ class TestFocusAwareDeepDive:
             assert phrase not in lens.lower()
 
 
+def _story(title, raw=60, bonus=False, summary="", **extra):
+    a = {"title": title, "url": title, "summary": summary, "_theme_score_raw": raw,
+         "_is_bonus": bonus, "_keyword_matches": 0 if bonus else 1, "_boosted_score": raw}
+    a.update(extra)
+    return a
+
+
+def _monday_focus(slug):
+    d = date(2026, 11, 16)  # Film & Screen week
+    for _ in range(8):
+        f = get_focus_for_day(0, d)
+        if f["slug"] == slug:
+            return f
+        d += timedelta(days=7)
+    raise AssertionError(slug)
+
+
+class TestStarvedFocusTakesTheCluster:
+    """Episode note 2026-11-16: "If the stories cluster overwhelmingly around a super
+    cycle theme from a different week, go with that. This week could have been journalism"."""
+
+    def _nov16(self):
+        theme = [
+            _story("[Hyperallergic] Piecing Together Romare Bearden’s Life",
+                   summary="A new documentary follows the painter."),
+            _story("[Nieman Lab] Some local news outlets are losing physical newsrooms", raw=58),
+            _story("[Nieman Lab] Student journalists are reporting more local news", raw=40),
+            _story("[Country Life] How London made Peggy Guggenheim a great patron", raw=70),
+            _story("[Williams Lake Tribune] $10,000 in public art funding supports two projects", raw=88),
+        ]
+        bonus = [
+            _story("[Columbia Journalism Review] The Mississippi Free Press Is Using Journalism",
+                   raw=40, bonus=True),
+            _story("[Nieman Lab] Canada renews the Local Journalism Initiative", raw=58, bonus=True),
+            _story("[Committee to Protect Journalists] CPJ calls on Cuba to drop charges",
+                   raw=28, bonus=True, summary="Three independent journalists face prison."),
+            _story("[prensa.com] Explosive device attacks home of Panamanian journalist",
+                   raw=10, bonus=True),
+        ]
+        return theme, bonus
+
+    def test_a_starved_week_takes_the_journalism_cluster(self):
+        cal = _monday_focus("film-screen")
+        theme, bonus = self._nov16()
+        focus, theme_out, bonus_out = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus["slug"] == "small-town-journalism"
+        assert focus["cycle_length"] == cal["cycle_length"] and "index" in focus
+        moved = {a["title"][:20] for a in theme_out} - {a["title"][:20] for a in theme}
+        assert moved == {"[Columbia Journalism", "[Nieman Lab] Canada ", "[Committee to Protec"}
+        # Under the charter floor, a stray stays in the bonus bucket.
+        assert [a["title"][:10] for a in bonus_out] == ["[prensa.co"]
+
+    def test_the_deep_dive_then_centres_on_journalism(self, monkeypatch):
+        monkeypatch.setattr(pg, "DEEP_DIVE_PICK_ENABLED", False)
+        theme, bonus = self._nov16()
+        focus, theme_out, _ = pg.pick_focus_for_cluster(_monday_focus("film-screen"), 0, theme, bonus)
+        deep_dive, _ = pg.select_deep_dive_from_feed(
+            theme_out, "Arts, Culture & Digital Storytelling", count=4, focus=focus)
+        kws = pg._build_focus_keywords(focus)
+        assert len(deep_dive) == 4 and all(pg._focus_hit_count(a, kws) for a in deep_dive)
+
+    def test_a_week_with_enough_matches_keeps_its_focus(self):
+        cal = _monday_focus("small-town-journalism")
+        theme, bonus = self._nov16()
+        theme += [_story("[CJR] Newsroom layoffs hit a weekly newspaper")] * 2
+        focus, theme_out, bonus_out = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus is cal and theme_out is theme and bonus_out is bonus
+
+    def test_no_sibling_cluster_leaves_the_plain_fallback(self):
+        cal = _monday_focus("film-screen")
+        theme = [_story("[Hyperallergic] A documentary premieres"), _story("[Arts] A gallery opens")]
+        bonus = [_story("[Nieman Lab] Newsroom closes", bonus=True)]
+        assert pg.pick_focus_for_cluster(cal, 0, theme, bonus) == (cal, theme, bonus)
+
+    def test_deferred_and_suppressed_stories_do_not_count(self):
+        cal = _monday_focus("film-screen")
+        theme, bonus = self._nov16()
+        for a in theme + bonus:
+            if "journalis" in a["title"].lower() or "news" in a["title"].lower():
+                a["_no_deep_dive"] = True
+        focus, _, _ = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus is cal
+
+    def test_uncycled_day_untouched(self):
+        assert pg.pick_focus_for_cluster(None, 5, [], []) == (None, [], [])
+
+
 # ---------------------------------------------------------------------------
 # Article holding & aired-early ledger
 # ---------------------------------------------------------------------------
@@ -1939,10 +2026,60 @@ class TestCohereDeepDiveRerank:
         assert rows == [("script/cohere", "deep-dive rerank: failed")]
 
 
+def _focus_named(name):
+    for day, cfg in load_super_cycles_config().items():
+        if not day.startswith("_"):
+            for focus in cfg["cycle"]:
+                if focus["name"] == name:
+                    return focus
+    raise KeyError(name)
+
+
 class TestFocusNameKeywords:
-    def test_name_words_added_by_default(self):
-        kws = pg._build_focus_keywords({"name": "Forestry & Timber", "keywords": ["mill"]})
-        assert "forestry" in kws and "timber" in kws and "mill" in kws
+    def test_a_listed_name_word_admits_and_an_unlisted_one_only_confirms(self):
+        kws = pg._build_focus_keywords({"name": "Forestry & Timber", "keywords": ["mill", "timber"]})
+        assert "timber" in kws and "mill" in kws
+        assert "forestry" not in kws and pg.CONFIRMING_PREFIX + "forestry" in kws
+
+    def test_a_confirming_word_counts_only_beside_a_real_keyword(self):
+        kws = ["scam", pg.CONFIRMING_PREFIX + "life"]
+        assert pg._keyword_hit_count("life after the mill closes", kws) == 0
+        assert pg._keyword_hit_count("a phone scam took their life savings", kws) == 2
+
+    @pytest.mark.parametrize("name, stray, real", [
+        # Producer, 2026-11-19: "similar to the crime logic, we should also check the content".
+        ("Digital Life & Security", "What retirement life looks like in a small town",
+         "Seniors lose life savings to a phone scam"),
+        ("Vehicles & Field Gear", "Field day for the 4-H club at the fairgrounds",
+         "Field test: three satellite messenger units in the backcountry"),
+        ("Guardians & Land Stewardship", "Land prices climb across the Interior",
+         "Land guardians begin watershed protection survey"),
+        ("Music & Live Performance", "Live updates: the provincial budget",
+         "Live from the hall: a choir's first concert in years"),
+        ("Economic Development", "Housing development approved on the old mill site",
+         "Nation's development corporation takes an equity stake in the mine"),
+        ("Wildfire & Climate Resilience", "Climate talks stall over finance",
+         "Climate adaptation plan readies the town for fire season"),
+    ])
+    def test_a_bare_name_word_needs_the_content_to_confirm_it(self, name, stray, real):
+        kws = pg._build_focus_keywords(_focus_named(name))
+        assert pg._focus_hit_count({"title": stray, "summary": ""}, kws) == 0
+        assert pg._focus_hit_count({"title": real, "summary": ""}, kws) >= 2
+
+    @pytest.mark.parametrize("name, title", [
+        ("Sky & Cosmos", "Euclid maps the cosmos"),
+        ("Books, Libraries & Podcasting", "Rural libraries extend their hours"),
+        ("Homestead & Off-Grid Tech", "A homestead in the Chilcotin, ten years on"),
+        ("Guardians & Land Stewardship", "Guardians patrol the river this fall"),
+        ("Governance, Title & Treaty", "Nation adopts a new governance code"),
+    ])
+    def test_a_strong_name_word_still_admits_alone(self, name, title):
+        kws = pg._build_focus_keywords(_focus_named(name))
+        assert pg._focus_hit_count({"title": title, "summary": ""}, kws)
+
+    def test_name_words_lose_their_punctuation(self):
+        kws = pg._build_focus_keywords(_focus_named("Books, Libraries & Podcasting"))
+        assert not any(k.endswith(",") for k in kws)
 
     def test_name_keywords_replaces_name_words(self):
         focus = {"name": "Remote Work & Broadband", "name_keywords": ["broadband"],
@@ -2024,3 +2161,47 @@ class TestPickFocusForPool:
 
     def test_uncycled_day_untouched(self):
         assert pg.pick_focus_for_pool(None, 5, [_wide("Council budget")]) == (None, None)
+
+
+def _sunday_focus(slug):
+    d = date(2026, 11, 15)  # a Sunday, Sky & Cosmos week
+    for _ in range(8):
+        f = get_focus_for_day(6, d)
+        if f["slug"] == slug:
+            return f
+        d += timedelta(days=7)
+    raise AssertionError(slug)
+
+
+class TestSkyAndCosmosKeepsItsWeek:
+    """Episode note 2026-11-15: "Deep dive should have focused on the cosmos"."""
+
+    # The producer's "should have been the deep dive" calls, plus the story that moved the day.
+    COSMOS_STORIES = [
+        "[scimex.org] Astronomers trace eight-minute radio pulses to white dwarf and Sun-like star",
+        "[astronomy.com] Mars orbiter finds volcanic gas near Alba Mons, hinting magma persists",
+        "[dlr.de] Europe’s Hera probe reveals Didymos ridge as asteroid-defense survey begins",
+        "[NYT Top Stories] Gaze at the Cosmic Dawn in Dizzying Detail",
+        "[phys.org] Euclid releases 1.7 petabytes as European teams process cosmic data",
+    ]
+
+    @pytest.mark.parametrize("title", COSMOS_STORIES)
+    def test_space_stories_hit_sky_and_cosmos(self, title):
+        kws = pg._build_focus_keywords(_sunday_focus("sky-cosmos"))
+        assert pg._focus_hit_count({"title": title, "summary": ""}, kws)
+
+    def test_a_wide_space_story_keeps_the_cosmos_week(self):
+        # 2026-11-15: a 31-outlet Euclid story missed every Sky & Cosmos keyword and hit
+        # Earth Systems on the bare name words "earth" and "science".
+        cal = _sunday_focus("sky-cosmos")
+        story = _wide("[phys.org] Euclid releases 1.7 petabytes as European teams process cosmic data",
+                      kite=31, raw=70,
+                      summary="The largest 3D map of the universe yet, a milestone for science "
+                              "far beyond Earth.")
+        focus, picked = pg.pick_focus_for_pool(cal, 6, [story])
+        assert picked is story and focus is cal
+
+    def test_sunday_name_words_are_phrases(self):
+        bare = {"earth", "systems", "climate", "science", "living", "world", "works", "health"}
+        for focus in load_super_cycles_config()["6"]["cycle"]:
+            assert not bare & set(pg._build_focus_keywords(focus)), focus["slug"]

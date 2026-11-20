@@ -1,47 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-10-26",
-      "words": 3272,
-      "counts": {
-        "archdaily": 2
-      }
-    },
-    {
-      "date": "2026-10-27",
-      "words": 3955,
-      "counts": {
-        "partly": 2
-      }
-    },
-    {
-      "date": "2026-10-28",
-      "words": 3529,
-      "counts": {
-        "quickly": 2,
-        "nearly": 3
-      }
-    },
-    {
-      "date": "2026-10-29",
-      "words": 3771,
-      "counts": {
-        "partly": 2,
-        "usually": 3,
-        "nearly": 2
-      }
-    },
-    {
-      "date": "2026-10-30",
-      "words": 3931,
-      "counts": {
-        "mainly": 2,
-        "usually": 2,
-        "nearly": 2,
-        "barely": 2
-      }
-    },
-    {
       "date": "2026-10-31",
       "words": 3662,
       "counts": {
@@ -158,8 +117,44 @@
         "roughly": 2,
         "nearly": 2
       }
+    },
+    {
+      "date": "2026-11-16",
+      "words": 3541,
+      "counts": {
+        "partly": 3,
+        "mostly": 2,
+        "roughly": 3
+      }
+    },
+    {
+      "date": "2026-11-17",
+      "words": 3223,
+      "counts": {
+        "formally": 2,
+        "roughly": 2
+      }
+    },
+    {
+      "date": "2026-11-18",
+      "words": 3767,
+      "counts": {
+        "nearly": 2
+      }
+    },
+    {
+      "date": "2026-11-19",
+      "words": 3254,
+      "counts": {
+        "likely": 2
+      }
+    },
+    {
+      "date": "2026-11-20",
+      "words": 2979,
+      "counts": {}
     }
   ],
   "burned": {},
-  "updated": "2026-11-15"
+  "updated": "2026-11-20"
 }

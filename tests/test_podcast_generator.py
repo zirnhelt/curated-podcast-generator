@@ -2770,6 +2770,19 @@ class TestProducerAttribution:
             _corrections_ground_truth([self.PRODUCER])
         assert "production side" not in _corrections_ground_truth([self.LISTENER])
 
+    def test_every_point_of_a_production_correction_airs(self, tmp_path, monkeypatch):
+        """2026-11-12: the production correction aired its core and dropped three of its
+        points. The draft sees the rule in the block; both polishes see it in the ground
+        truth, which carries only the subject."""
+        from podcast_generator import _corrections_ground_truth
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        rule = "never drop one of its points"
+        assert rule in format_corrections_for_prompt([self.PRODUCER])
+        assert rule in _corrections_ground_truth([self.PRODUCER])
+        # A listener's correction doesn't spend the tokens.
+        assert rule not in format_corrections_for_prompt([self.LISTENER])
+        assert rule not in _corrections_ground_truth([self.LISTENER])
+
     def test_ground_truth_absence_covers_a_fabricated_in_house_catch(self):
         from podcast_generator import _corrections_ground_truth
 
@@ -4245,6 +4258,24 @@ class TestAnnotateRoundupBlocks:
         # The strongest standalone is promoted to the kicker and airs last
         assert blocks[6] == "kicker"
         assert ordered[-1]["title"] == "Celebrity fashion week highlights"
+
+    def test_williams_lake_leads_the_local_block_on_a_weekday(self):
+        """Episode note 2026-11-17: Quesnel is secondary to Williams Lake news. The
+        show's home jurisdictions lead the local block every day, not only Saturday."""
+        articles = [
+            {"title": "[My Cariboo Now] Quesnel asks Cariboo and Prince George mills for jobs",
+             "url": "https://q.com", "authors": [{"name": "My Cariboo Now"}],
+             "_boosted_score": 80},
+            {"title": "[Williams Lake Tribune] Library opens a new wing",
+             "url": "https://wl.com", "authors": [{"name": "Williams Lake Tribune"}],
+             "summary": "The City of Williams Lake library reopens Monday.",
+             "_boosted_score": 40},
+            {"title": "Zebra gardening breakthrough", "url": "https://t1.com",
+             "_keyword_matches": 1, "_boosted_score": 20},
+        ]
+        ordered, _ = _annotate_roundup_blocks(articles, "Working Lands & Industry")
+        local = [a["url"] for a in ordered if a.get("_roundup_block") == "local"]
+        assert local == ["https://wl.com", "https://q.com"], "an ordering rule, not an exclusion"
 
     def test_bonus_pick_is_annotated_like_any_other_tail_story(self):
         """It used to short-circuit to a 'bonus' block and skip curation."""
@@ -7046,6 +7077,7 @@ class TestSparseFilterBudget:
         monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "test-key")
         monkeypatch.delenv("KAGI_API_KEY", raising=False)
         monkeypatch.setattr(pg, "_KAGI_EXTRACT_STATE", {"pages": 0})
+        monkeypatch.setattr(pg, "_RESEARCH_LOG", [])
 
     def test_feed_excerpt_is_used_before_any_search(self, monkeypatch):
         import podcast_generator as pg
@@ -7206,23 +7238,75 @@ class TestSparseFilterBudget:
         assert rows == []
         assert "4× page error: No data returned" in capsys.readouterr().out
 
-    def test_kagi_extract_reply_that_matches_no_url_degrades(self, monkeypatch):
+    @staticmethod
+    def _kagi_replies(monkeypatch, replies):
+        """Each request gets the next reply's `data`; returns the pages each request sent."""
         import podcast_generator as pg
         monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
-        rows = []
-        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        sent, queue = [], list(replies)
 
         class Resp:
+            def __init__(self, data):
+                self.data = data
+
             def raise_for_status(self):
                 pass
 
             def json(self):
-                return {"data": [{"url": "https://x.test/0/", "markdown": "text"}]}
-        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
-        articles = [{"title": "S0", "url": "https://x.test/0"},
-                    {"title": "S1", "url": "https://x.test/1"}]
-        pg._extract_roundup_stories(articles)
-        assert rows == ["Kagi Extract reply matched no page for 2 of 2 URLs sent"]
+                return {"meta": {"ms": 10005}, "data": self.data}
+
+        def _post(url, **kw):
+            sent.append([p["url"] for p in kw["json"]["pages"]])
+            return Resp(queue.pop(0))
+        monkeypatch.setattr(pg.requests, "post", _post)
+        return sent
+
+    def test_kagi_extract_sends_each_page_alone(self, monkeypatch):
+        """Kagi fetches a request's pages under one time budget: on 2026-11-19 one slow
+        site emptied the reply for all six pages sent together."""
+        import podcast_generator as pg
+        sent = self._kagi_replies(monkeypatch, [[], [], []])
+        pg._extract_roundup_stories([{"title": f"S{i}", "url": f"https://x.test/{i}"} for i in range(3)])
+        assert sent == [["https://x.test/0"], ["https://x.test/1"], ["https://x.test/2"]]
+
+    def test_an_empty_reply_is_a_slow_page_not_a_broken_contract(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+        self._kagi_replies(monkeypatch, [[], [{"url": "https://x.test/1", "markdown": story}]])
+        articles = [{"title": "Slow", "url": "https://x.test/0"}, {"title": "Fast", "url": "https://x.test/1"}]
+        assert pg._extract_roundup_stories(articles) == 1
+        assert articles[1]["_body"].startswith("The regional district")
+        assert [r["result"] for r in pg._RESEARCH_LOG] == ["timed out", "used"]
+        assert rows == []
+
+    def test_nothing_back_for_any_page_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        self._kagi_replies(monkeypatch, [[], []])
+        pg._extract_roundup_stories([{"title": f"S{i}", "url": f"https://x.test/{i}"} for i in range(2)])
+        assert rows == ["Kagi Extract returned nothing for any of the 2 pages sent"]
+
+    def test_a_one_page_reply_is_that_page_whatever_url_it_names(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+        self._kagi_replies(monkeypatch, [[{"url": "https://x.test/0/", "markdown": story}]])
+        articles = [{"title": "S0", "url": "https://x.test/0"}]
+        assert pg._extract_roundup_stories(articles) == 1
+        assert articles[0]["_body"].startswith("The regional district") and rows == []
+
+    def test_kagi_extract_reply_that_names_no_page_sent_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append(detail))
+        self._kagi_replies(monkeypatch, [[{"url": "https://other.test/a", "markdown": "a"},
+                                          {"url": "https://other.test/b", "markdown": "b"}]])
+        pg._extract_roundup_stories([{"title": "S0", "url": "https://x.test/0"}])
+        assert rows == ["Kagi Extract reply matched no page for 1 of 1 URLs sent"]
 
     def test_kagi_extract_stops_at_its_page_budget(self, monkeypatch):
         import podcast_generator as pg
@@ -7259,6 +7343,64 @@ class TestSparseFilterBudget:
         kept, brave_used = pg._filter_sparse_news_articles(articles)
         assert len(calls) == 3
         assert len(kept) == 3 and brave_used
+
+    def test_the_review_hears_which_stories_kagi_read(self, monkeypatch):
+        """The producer, 2026-11-18: list for which topics Brave and Kagi were used."""
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        story = "The regional district board voted to fund the new fire hall on Tuesday. " * 10
+
+        class Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"data": [{"url": "https://x.test/a", "markdown": story},
+                                 {"url": "https://x.test/b", "error": "No data returned"}]}
+        monkeypatch.setattr(pg.requests, "post", lambda url, **kw: Resp())
+        articles = [{"title": "Fire hall", "url": "https://x.test/a"},
+                    {"title": "Water plant", "url": "https://x.test/b"},
+                    {"title": "Lost page", "url": "https://x.test/c"}]
+        pg._extract_roundup_stories(articles)
+        assert pg._RESEARCH_LOG == [
+            {"kind": "kagi-extract", "story": "Fire hall", "result": "used"},
+            {"kind": "kagi-extract", "story": "Water plant", "result": "refused"},
+            {"kind": "kagi-extract", "story": "Lost page", "result": "unmatched"}]
+
+    def test_a_failed_kagi_request_stops_the_rest(self, monkeypatch):
+        """An HTTP failure is account-level or an outage: the remaining pages go to Brave
+        unsent, so only the page that was sent is logged."""
+        import podcast_generator as pg
+        monkeypatch.setenv("KAGI_API_KEY", "kagi-key")
+        calls = []
+
+        def _post(url, **kw):
+            calls.append(kw["json"])
+            raise pg.requests.ConnectionError("down")
+        monkeypatch.setattr(pg.requests, "post", _post)
+        pg._extract_roundup_stories([{"title": f"S{i}", "url": f"https://x.test/{i}"}
+                                     for i in range(2)])
+        assert len(calls) == 1
+        assert [r["result"] for r in pg._RESEARCH_LOG] == ["failed"]
+
+    def test_a_body_search_is_logged_only_when_it_was_sent(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "BRAVE_SEARCH_CALL_LIMIT", 1)
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [])
+        pg._research_roundup_story({"title": "Mill reopens"}, "test-key")
+        pg._research_roundup_story({"title": "Over budget"}, "test-key")
+        assert pg._RESEARCH_LOG == [
+            {"kind": "body-search", "story": "Mill reopens", "result": "no results"}]
+
+    def test_a_body_search_logs_what_it_bought(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_brave_search", lambda *a, **k: [
+            {"title": "Mill reopens", "url": "https://other.test/m",
+             "description": "Substantive search snippet about the mill. " * 5}])
+        monkeypatch.setattr(pg, "_fetch_article_text", lambda url: "")
+        assert pg._research_roundup_story(
+            {"title": "Mill reopens", "url": "https://own.test/m"}, "test-key")
+        assert pg._RESEARCH_LOG[-1]["result"] == "used (via other.test)"
 
     def test_only_the_budget_wrappers_call_brave_search(self):
         """A direct _brave_search call is spend no per-run budget can see."""
@@ -7871,6 +8013,24 @@ class TestMatchDeepDiveToScript:
         [(_, discussed)] = match_deep_dive_to_script([self.BEAR], self.BEAR_SCRIPT)
         assert discussed is True
 
+    CLINTON = {"title": "[The Tyee] After a Megafire, Clinton Faces Floods and Landslide Warnings",
+               "summary": ""}
+    CLINTON_SCRIPT = (
+        "**DEEP DIVE: Indigenous Lands**\n\n"
+        + ("**RILEY:** Clinton burned two summers ago, and now the floods.\n\n"
+           "**CASEY:** And the landslide warnings came with them, on the same slopes.\n\n"
+           "**RILEY:** Clinton is where the question lands.\n\n") * 4)
+
+    def test_a_source_told_across_two_turns_is_discussed(self):
+        """2026-11-13: the deep dive was about this Tyee story, but the hosts split its
+        headline words across turns and no single turn held the 3 the check needs."""
+        [(_, discussed)] = match_deep_dive_to_script([self.CLINTON], self.CLINTON_SCRIPT)
+        assert discussed is True
+
+    def test_two_turns_still_need_the_sources_own_words(self):
+        [(_, discussed)] = match_deep_dive_to_script([self.KILLER], self.CLINTON_SCRIPT)
+        assert discussed is False
+
     def test_town_names_from_the_welcome_do_not_carry_a_headline(self):
         """2026-09-12: "changes", "Williams", "Lake" credited a golf-course story
         the deep dive never mentioned; the town names come from the weather."""
@@ -8080,6 +8240,42 @@ class TestCaribooDeepDivePick:
         prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
         assert "A notice of an event's times, places and participants does not pass" in prompt
 
+    def test_the_hosts_may_agree(self):
+        """Episode notes 2026-11-17 and 11-18: "the debate was forced". Every beat had to
+        carry a pushback, and an empty one was told to "choose a question it does"."""
+        import config_loader
+        prompts = config_loader.load_prompts_config()
+        storyboard = prompts["script_storyboard"]["template"]
+        assert "choose a question it does" not in storyboard
+        assert "agree and differ only in emphasis" in storyboard
+        assert "write none" in storyboard
+        assert "disagree on substance" not in prompts["script_generation_system"]["template"]
+        assert "Never stage a disagreement" in prompts["script_generation"]["template"]
+
+    def test_a_none_pushback_renders_as_agreement(self):
+        import podcast_generator as pg
+        plan = {"roundup": {"opening_frame": "f", "stories": [], "handoff": "h"},
+                "deep_dive": {"central_question": "q", "riley_holds": "r", "casey_holds": "c",
+                              "beats": [{"claim": "c1", "evidence": "e", "pushback": "None.",
+                                         "leads_to_next": "n"}],
+                              "set_aside": [], "cariboo_beat": "b", "landing": "l"}}
+        block = pg.format_storyboard_for_prompt(plan, [])
+        assert "Pushback: none: the hosts agree here" in block
+
+    def test_a_roundup_reaction_rests_on_the_story(self):
+        """Episode note 2026-11-18: after an ocean-temperature story Casey said
+        "Somebody has to keep sensors running four hundred metres down. That's a
+        maintenance bill nobody reads in the headline." The story said no such thing."""
+        import config_loader
+        prompts = config_loader.load_prompts_config()
+        assert "A reaction rests on something the story says" in \
+            prompts["script_generation"]["template"]
+        for key, field in (("polish_and_factcheck", "template"),
+                           ("agentic_polish_and_factcheck", "system_template")):
+            assert "rests on something the story says" in prompts[key][field], key
+        assert "the stakes and costs the material shows" in \
+            prompts["script_generation_system"]["template"]
+
     def test_storyboard_pushback_never_rests_on_a_gap(self):
         """2026-11-09: every planned Casey pushback was what a one-source notice did
         not say; polish cut the lines and left him arguing from nothing."""
@@ -8118,7 +8314,7 @@ class TestCaribooDeepDivePick:
 
         def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
             captured["pool"] = [a["url"] for a in pool]
-            return [pool[-1]]
+            return [pool[-1], pool[0]]  # the local lead and a second report of it
         monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
         theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
         local = {"title": "[Williams Lake Tribune] Rogers outage cuts the Cariboo off",
@@ -8126,8 +8322,56 @@ class TestCaribooDeepDivePick:
         dd, news = pg.select_deep_dive_from_feed(theme, "Repair Culture & Practical Tech",
                                                  count=4, local_extras=[local])
         assert "https://local" in captured["pool"]
-        assert [a["url"] for a in dd] == ["https://local"]
-        assert len(news) == len(theme)
+        assert [a["url"] for a in dd][0] == "https://local" and len(dd) == 2
+        assert len(news) == len(theme) - 1
+
+    # Episode notes 2026-11-15 and 2026-11-16: the bar swapped a ranked four-story deep
+    # dive for one local story with no other report and no focus hit, both marked down.
+    PUBLIC_ART = {"title": "[Williams Lake Tribune] $10,000 in public art funding supports two "
+                           "Williams Lake projects", "url": "https://art", "_is_bonus": True}
+
+    def _one_source(self, monkeypatch, picked_extra=()):
+        import podcast_generator as pg
+
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+            lead = next(a for a in pool if a["url"] == "https://art")
+            lead["_cariboo_angle"] = "Two local projects get art money."
+            return [lead, *picked_extra]
+        monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
+
+    def test_a_one_source_local_pick_is_set_aside(self, monkeypatch, capsys):
+        import podcast_generator as pg
+        self._one_source(monkeypatch)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        local = dict(self.PUBLIC_ART)
+        dd, news = pg.select_deep_dive_from_feed(theme, "Arts, Culture & Digital Storytelling",
+                                                 count=4, local_extras=[local])
+        assert "https://art" not in {a["url"] for a in dd} and len(dd) == 4
+        assert "_cariboo_angle" not in local, "the roundup copy carries no deep-dive angle"
+        assert "Cariboo pick set aside" in capsys.readouterr().out
+
+    def test_aired_context_is_not_a_second_report(self, monkeypatch):
+        import podcast_generator as pg
+        recent = [{"title": "[My Cariboo Now] Arts council grant round opens", "url": "https://r",
+                   "_recalled_from": "Thursday"}]
+        self._one_source(monkeypatch, picked_extra=recent)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        dd, _ = pg.select_deep_dive_from_feed(theme, "Arts, Culture & Digital Storytelling",
+                                              count=4, local_extras=[dict(self.PUBLIC_ART)],
+                                              recent_local=recent)
+        assert "https://art" not in {a["url"] for a in dd}
+
+    def test_a_one_source_pick_on_the_weeks_focus_is_set_aside_too(self, monkeypatch):
+        # The producer's call (2026-11-16): a focus hit is no substitute for a second report.
+        import podcast_generator as pg
+        self._one_source(monkeypatch)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        focus = {"slug": "visual-arts-heritage", "name": "Visual Arts & Heritage",
+                 "name_keywords": [], "keywords": ["public art", "mural", "gallery"]}
+        dd, _ = pg.select_deep_dive_from_feed(theme, "Arts, Culture & Digital Storytelling",
+                                              count=4, focus=focus,
+                                              local_extras=[dict(self.PUBLIC_ART)])
+        assert "https://art" not in {a["url"] for a in dd} and len(dd) == 4
 
     def test_off_charter_candidates_stay_out_of_the_pick(self, monkeypatch):
         """2026-11-03 aired a one-source deep dive on a tanker-ban story at the

@@ -1,121 +1,4 @@
 {
-  "2026-08-18": {
-    "timestamp": 1787043438.80786,
-    "date": "2026-08-18",
-    "theme": "Working Lands & Industry",
-    "focus": "agriculture-ranching",
-    "anchor": "tech-sadness",
-    "central_question": "Why does the tech industry describe its work as meaningless while working-lands industries like ranching find purpose despite greater economic hardship?",
-    "riley_position": "Tech malaise stems from distance between work and tangible consequence; when engineers see direct real-world impact (like Watch Duty's firefighting role), the existential crisis disappears. The problem is structural lack of feedback loops, not that the work is fake.",
-    "riley_key_evidence": [
-      "Watch Duty serves 10 million users and keeps pace with real-time wildfire tracking during BC's province-wide emergency and Spokane's destructive firestorm",
-      "Ranchers using informal phone-tree coordination during fire season have immediate, unambiguous feedback (herd survives or doesn't)",
-      "Gibraltar Mine treats wildfire response as permanent budget line items rather than emergency spending, providing a governance model for public disaster infrastructure"
-    ],
-    "casey_position": "Watch Duty's growth represents volunteer labor filling gaps left by FEMA cuts, not genuine innovation; tech's crisis and ranching's crisis are different\u2014tech searches for purpose (existential doubt) while ranchers face economic survival (structural crisis). The real issue is who controls decision-making, not meaning itself.",
-    "casey_key_evidence": [
-      "Rancher incomes squeezed by cattle prices, drought, and fire risk creates exhaustion from economic pressure, not existential doubt about mission viability",
-      "Watch Duty is volunteer-run and nonprofit-funded with accountability gaps at 10 million users versus phone-tree accountability where everyone knows who's responsible for wrong information",
-      "BC gutted extension and forestry advisory capacity a decade ago; ranchers have diagnosed fuel-load and forest-management failures for years without authority to act"
-    ],
-    "resolution": "They converge on a deeper insight: both crises stem from lack of control over outcomes rather than lack of meaning. Tech workers mistake the meaning question for the hardest problem when the actual structural problem\u2014having diagnosis but zero authority to fix it\u2014is what ranchers have lived with. They agree the next design fork that matters is whether wildfire-tech tools are shaped by local/Indigenous communities with territory-specific knowledge (like T\u015dilhqot'in programs) rather than imported from outside.",
-    "topics_covered": [
-      "Watch Duty's role as volunteer-built disaster response filling government funding gaps",
-      "Contrast between tech worker malaise (existential) and ranching sector stress (economic/structural)",
-      "Forest management policy failures versus climate change as causes of fire severity",
-      "Rancher phone-tree coordination as governance model versus top-down tech platform design",
-      "Indigenous and local community input in designing regional disaster-response tools"
-    ]
-  },
-  "2026-08-19": {
-    "timestamp": 1787144301.819391,
-    "date": "2026-08-19",
-    "theme": "Repair Culture & Practical Tech",
-    "focus": "maker-repair",
-    "anchor": "tech-sadness",
-    "central_question": "Does repair work\u2014physical or digital\u2014carry inherent meaning that building new things lacks, and can recognizing maintenance as valuable as new launches address burnout in tech?",
-    "riley_position": "Repair work carries psychological and moral weight because it produces a visible, tangible outcome you can point to afterward, and tech could address its burnout crisis by formally crediting maintenance and repair work the same way it credits new launches.",
-    "riley_key_evidence": [
-      "Ken Soble Tower retrofit produces 50-75% less embodied carbon than new construction",
-      "Summerland wildlife rehab centre operators are rebuilding with visible, purposeful work ahead of them",
-      "School District 27 and Xat\u015b\u016bll's approaches show communities can design systems for long-term maintenance from day one"
-    ],
-    "casey_position": "The real problem is structural incentive misalignment rather than physical versus abstract work; tech rewards new launches and walks away from maintenance, while invisible legacy-system maintenance work already exists but goes uncredited and unfunded.",
-    "casey_key_evidence": [
-      "2025 survey documents bugs in AI-generated code; USENIX study shows package hallucination attacks where bad actors register fake library names the AI invented",
-      "Software repair literacy gap means users can't verify what code is actually running in apps they 'built' with AI in an afternoon",
-      "Performance reviews never score 'kept the lights on for three years' as highly as shipping a new product"
-    ],
-    "resolution": "They converge on the structural diagnosis: the issue isn't repair versus new-build work itself, but that tech industry design rewards walking away after launch and leaving maintenance to whoever remains. They agree to test whether publicly naming maintainers\u2014without knowing if visibility alone can close the deeper despair\u2014is worth trying as a Cariboo experiment.",
-    "topics_covered": [
-      "Retrofit architecture versus new construction economics and emissions",
-      "AI-generated code security risks and repair literacy gaps",
-      "Why maintenance work in tech goes invisible and uncredited",
-      "How visibility and accountability for long-term maintenance affects worker meaning",
-      "Structural incentive design in industries that reward staying versus leaving"
-    ]
-  },
-  "2026-08-20": {
-    "timestamp": 1787217064.700873,
-    "date": "2026-08-20",
-    "theme": "Indigenous Lands & Innovation",
-    "focus": "governance-title",
-    "anchor": "tech-sadness",
-    "central_question": "What structural conditions enable durable accountability and decision-making authority, and how do Indigenous governance models differ from corporate mission-driven structures in sustaining meaningful work?",
-    "riley_position": "Legal and governance frameworks that establish clear accountability structures\u2014where decision-making authority sits with affected communities rather than external institutions\u2014create durability independent of individual persistence or market conditions. Building evidentiary records now (oral history, land-use documentation, monitoring data) establishes the foundation for future legal claims and community-controlled governance.",
-    "riley_key_evidence": [
-      "T\u015dilhqot'in's 2014 title decision provided court-backed decision-making authority over defined territory, giving them a legal floor Olsen's W\u0331S\u00c1NE\u0106 fight lacks",
-      "Denisiqi Services Society survived 20 years because its board answers to the communities it serves, not to grant cycles or ministry goodwill",
-      "Tech companies' mission collapse occurred because their accountability structure answered to boards and shareholders, not the workers or communities claiming to benefit"
-    ],
-    "casey_position": "While legal frameworks matter, they require decades of expensive litigation with outcomes that aren't guaranteed, and the immediate fight for resources and protection happens now with whatever tools exist today. Accountability structures matter more than meaning, but both Indigenous governance and tech work exhaust people\u2014one because stakes are real, one because stakes were never real, yet both burden individuals compensating for structural failures.",
-    "casey_key_evidence": [
-      "Carl Olsen has been personally carrying the Goldstream fight for years because a government promise wasn't self-enforcing, at real personal cost",
-      "T\u015dilhqot'in title took decades of litigation and specific historical facts about occupation that aren't replicable on the same timeline for every nation",
-      "NCARB architecture licensure shows more diversity in candidate pools but persistent gaps in who gets licensed and holds real authority\u2014participation on paper \u2260 decision-making power"
-    ],
-    "resolution": "Casey and Riley converged on accountability rather than meaning as the load-bearing concept, agreeing that durability comes from decision-making authority sitting outside the institution itself. They acknowledged that legal frameworks are important groundwork but aren't substitutes for the immediate fight, and that both Indigenous governance and corporate contexts reveal the critical question: who actually has the power to revoke authority and to whom do they answer.",
-    "topics_covered": [
-      "Comparison between tech industry's collapsed mission-driven identity and Indigenous governance's sustained accountability",
-      "Legal title vs. governance authority: T\u015dilhqot'in's court-recognized decision-making power vs. Olsen's negotiation from public pressure alone",
-      "Building evidentiary records and governance structures before crises force negotiation",
-      "Participation vs. power: the gap between increased representation and actual decision-making authority",
-      "Community-controlled institutions as models for durability (Denisiqi Services Society case study)"
-    ],
-    "calls_to_action": [
-      "Communities can begin now building documented occupation records, continuous-use documentation, and structured oral history capture on their own terms, treating this as multi-decade groundwork that establishes the evidentiary foundation future title claims would need.",
-      "Before launching any new community program, ask concretely: who can shut it down and who does it actually answer to day-to-day? If the honest answer is 'a ministry, annually, depending on budget,' that reveals the authority gap.",
-      "Listeners in the Cariboo with stories about community governance projects, land-use monitoring, or Indigenous-led initiative: send tips to feedback at cariboo signals dot c-a so examples of local implementation can be documented and shared."
-    ]
-  },
-  "2026-08-21": {
-    "timestamp": 1787303012.909274,
-    "date": "2026-08-21",
-    "theme": "Wild Spaces & Outdoor Life",
-    "focus": "recreation-access",
-    "anchor": "tech-sadness",
-    "central_question": "What makes land-based and treaty-protected work structurally more meaningful than tech knowledge work\u2014is it the outdoor setting itself, or the built-in accountability to others?",
-    "riley_position": "Work tied to real, concrete outcomes that others depend on (like Z\u023aWIZUT's salmon habitat fight) carries inherent meaning that survives exhaustion, whereas mission-driven tech work becomes hollow when funding collapses because nothing material remains.",
-    "riley_key_evidence": [
-      "Z\u023aWIZUT's 30-year fight protecting salmon habitat around W\u0331S\u00c1NE\u0106 village sites through Douglas Treaties",
-      "Washington State culvert replacement case (Stevens Treaties) cost billions and took decades of litigation from the 1970s onward",
-      "Tech workers leaving jobs have 'nothing to show for it'\u2014no product, no community depending on the outcome"
-    ],
-    "casey_position": "The meaningful difference isn't outdoor versus office work, but whether accountability is structurally embedded in the relationship itself (treaties, Nations, watersheds that outlast funding cycles), and exhaustion with purpose is still exhaustion even when the purpose is real.",
-    "casey_key_evidence": [
-      "Solo thru-hikes are experiences, not structures\u2014nobody else depends on how they turn out",
-      "Goldstream case shows even court-recognized treaty rights must be re-defended when new development pressure appears years later",
-      "Salmon funding announcements are 'photo opportunities with dollar figures attached'\u2014not accountability mechanisms without public ledgers"
-    ],
-    "resolution": "Both agreed that structure, not fresh air, is what makes work meaningful\u2014accountability built into treaties, Nations, and watersheds that force commitment to outlast individual funding cycles. They concluded this structure can't be legislated into startups but could be pushed for locally through demanding public accounting of how recovery dollars are actually disbursed by watershed.",
-    "topics_covered": [
-      "Indigenous treaty rights and multi-decade legal battles for salmon habitat protection",
-      "Tech industry burnout and the search for 'authentic' outdoor work as escape",
-      "True-crime narrative distortion versus actual safety statistics on the Appalachian Trail",
-      "Accountability mechanisms: how to track whether government funding announcements translate to actual on-the-ground disbursement",
-      "Structural differences between mission-driven knowledge work and land-based work tied to treaty obligations"
-    ]
-  },
   "2026-08-22": {
     "timestamp": 1787388813.158463,
     "date": "2026-08-22",
@@ -2559,6 +2442,146 @@
       "Fossil record gaps and sampling bias, illustrated by the Taung Child and the Neubauer and Harzhauser map",
       "Arctic and boreal lake darkening, satellite greening and the physical mechanisms of permafrost thaw and soot on snow",
       "Natural variation versus a steady directional push, and who is responsible for publicly qualifying uncertain climate claims"
+    ]
+  },
+  "2026-11-16": {
+    "timestamp": 1794817001.892339,
+    "date": "2026-11-16",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "film-screen",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "Who sets the frame for publicly funded murals in Williams Lake, and who is accountable for how a continuing mural series reads and is maintained?",
+    "riley_position": "Grant-funded murals are real paid commissions that give emerging artists strong public exposure, and the program is checkable even if imperfect; the real need is for transparent rules rather than dismissing the work.",
+    "riley_key_evidence": [
+      "Two artists each received $5,000 from the public art grant jointly funded by the City of Williams Lake and the Downtown Williams Lake Business Improvement Association",
+      "Jorgensen's panel is the third in the Cariboo Reflections Mural Project, on the Cariboo Regional District building at 180 3rd Ave. N.",
+      "The Mulberry Street project in New York is a $184 million reconstruction including Jennifer Wen Ma's 'Wings of Everchange,' commissioned through the Percent for Art program"
+    ],
+    "casey_position": "The selection process, brief, funding breakdown, and maintenance responsibility are unpublished, so the series lacks an accountable named person and the town cannot yet confirm the artists had free creative choice.",
+    "casey_key_evidence": [
+      "Patenaude's abstract mural is on the north wall of Sam's Restaurant at 179 Third Avenue North, and the restaurant owner still controls the surface",
+      "The reporting gives no selection criteria, brief, or breakdown of whether the $5,000 covers materials, scaffolding, or artist fees",
+      "Nothing in the reporting says who repaints or pays for upkeep in later years, and the series name 'Reflections' may function as an unwritten brief"
+    ],
+    "resolution": "They did not fully agree; Riley accepted the need to publish the series rules and ask sponsors about fee breakdowns and upkeep, while Casey held that the work is a real step forward but not yet settled until a named person answers for the series.",
+    "topics_covered": [
+      "Grant funding, sponsorship, and whether the $5,000 fees are truly paid commissions",
+      "Who sets the subject, selection criteria, and sequencing of a mural series",
+      "Comparison with the Mulberry Street Percent for Art model in New York",
+      "Public unveilings, reach of the artwork, and the role of artist statements",
+      "Long-term maintenance, upkeep responsibility, and accountability for the series"
+    ]
+  },
+  "2026-11-17": {
+    "timestamp": 1794903354.275895,
+    "date": "2026-11-17",
+    "theme": "Working Lands & Industry",
+    "focus": "forestry",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "Who should count as affected by the Quesnel River Pulp mill curtailment, and how should the affected circle be defined and supported?",
+    "riley_position": "The city's wide list of affected groups is the right starting point, the province's transition toolkit and the company's financial supports are real resources, and the missing piece is a published rule tying them together.",
+    "riley_key_evidence": [
+      "The mill is rated at 375,000 tonnes a year, about 1,000 tonnes a day, with 93 per cent of sales going to Asian markets, mainly China.",
+      "Heavy industry accounts for 53 per cent of Quesnel's tax base, and the city is losing a $150,000 BC Hydro revenue grant tied to the mill's electricity use.",
+      "Ottawa gave Millar Western a C$100 million Large Enterprise Tariff Loan in July, and Atlas Holdings has a long-term fibre supply agreement for the mill."
+    ],
+    "casey_position": "The affected circle is wider than the 90 payroll workers, the criteria and reviewers for who qualifies are unpublished, and the 'closure' versus 'curtailment' distinction may decide eligibility for transition support.",
+    "casey_key_evidence": [
+      "The province's Community Transition Services page cites 'such as a mill closure', while earlier documentation describes the program as triggered by closure announcements with needs assessments, job fairs and town halls.",
+      "The city's release and the Observer article do not name any First Nation among the affected groups, raising questions about who was consulted.",
+      "Canfor announced in July it would shut its Northwood pulp mill in Prince George (300,000 tonnes capacity), and Domtar curtailed its Howe Sound mill in August."
+    ],
+    "resolution": "They agreed that a published set of criteria should come first and that an outside reader is useful, but did not resolve who the outside reader would be or whether curtailment counts as closure under provincial rules; they left those as open questions for written answers from the ministry and the city.",
+    "topics_covered": [
+      "Defining the affected circle beyond payroll workers",
+      "Curtailment versus closure and its effect on contracts and eligibility",
+      "Quesnel's tax-base dependence on heavy industry and council incentives",
+      "Provincial transition supports and the Community Transition Services eligibility question",
+      "Need for published criteria and an independent reviewer for the affected list"
+    ]
+  },
+  "2026-11-18": {
+    "timestamp": 1794989858.658098,
+    "date": "2026-11-18",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "maker-repair",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "Should consumers expect new products from repair-friendly companies to be as easy to open and repair as older models, and what can buyers, makers, and local communities do when they are not?",
+    "riley_position": "Repairability is a judgment that teardowns make public, and open designs, skill-building, and local repair logs can shift buying behavior and pressure companies toward repairable products; a regression like HomeView is not proof the company cannot build repairable devices.",
+    "riley_key_evidence": [
+      "iFixit tore apart Apple's HomeView, a seven-inch iPad display on a HomePod mini, and documented the damage with photos",
+      "Apple previously published official iPad repair manuals and shipped replaceable USB-C ports",
+      "The Creality Ender 3 (about $450) was modified into a bioprinter that prints more than 100 layers, versus earlier DIY limits of about 20 layers"
+    ],
+    "casey_position": "Teardowns report on screws and glue but cannot show intent or future improvement, and the buyer usually decides before any teardown appears; open designs and local logs depend on skills, budgets, and maintainers that are rarely secured in practice.",
+    "casey_key_evidence": [
+      "HomeView is $299 in the U.S. and went on sale November 13th, while iFixit has no official repairability scorecard for this device category",
+      "The bioprinter comparison is self-reported with no independent replication found, and the living-materials result depended on new materials",
+      "The solar tracker prototype cost under $25 and gave about 20 percent more voltage in one outdoor test, with no data on winter or multi-season durability"
+    ],
+    "resolution": "They did not reach agreement. Riley held that teardowns, open designs, and local logs create useful public records and buying signals, while Casey held that the buyer's choice is made before those records appear and that maintenance, budgets, and skill retention remain unresolved. They ended by leaving the question open of who should be accountable for warning buyers about regressions and whether a record can change the company.",
+    "topics_covered": [
+      "Apple HomeView teardown and repairability regression",
+      "Copyright law (DMCA) as a barrier to repairing and modifying devices",
+      "Open-source and low-cost DIY hardware such as the bioprinter, Hydra ceramic printer, and LEGO-based Studprint",
+      "Maintenance, skill retention, and budgeting for local repair and maker projects",
+      "Vendor subscriptions, firmware, and open-source workarounds like ZigZag and llama.cpp"
+    ]
+  },
+  "2026-11-19": {
+    "timestamp": 1795076644.358709,
+    "date": "2026-11-19",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "governance-title",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "Can an Indigenous Nation meaningfully refuse a project, through consultation or legal rights, when fast-track laws like Bill C-39 set decision clocks and let Cabinet designate projects of national interest?",
+    "riley_position": "Speed itself is not the problem; the real issue is whether a Nation can say no within the decision clock, and that refusal right can be written into the law through co-design, equity stakes, and a formal veto before designation.",
+    "riley_key_evidence": [
+      "The Narwhal reports C-39 folds Indigenous consultation into a single coordinated impact assessment across federal permits.",
+      "The Dipping Road prescribed burn near Williams Lake was a partnership with the Williams Lake First Nation at the planning table, showing the co-design model in practice.",
+      "The T\u015dilhqot'in National Government's economic arm owns 51 percent of TEN, an Indigenous-led civil construction company doing infrastructure work across B.C."
+    ],
+    "casey_position": "Consultation under C-39 gives Nations a seat in the room rather than a real decision, because the bill's timelines and Cabinet's control over national interest leave no clear mechanism for refusal, and ownership of contractors does not equal a veto.",
+    "casey_key_evidence": [
+      "The Assembly of First Nations says the bill puts commercial timelines ahead of free, prior and informed consent, and the Council of Canadians reads it as 'everything is on the menu.'",
+      "Hyperallergic reports the U.S. bill narrows Section 106 of the National Historic Preservation Act, and nine tribal organizations asked Senate leadership to remove provisions weakening consultation.",
+      "Kebaowek is paying its own legal costs while waiting on a Supreme Court leave decision, and C-39 sets a one-year clock, so the two processes run on very different budgets and timelines."
+    ],
+    "resolution": "The two agreed that the clarity of the legal process is what is missing and that the designation test is the critical question, but they did not resolve whether a Nation's no would survive a designation. Casey stated they would not sign off on the bill until the designation test is read in writing, leaving the question open.",
+    "topics_covered": [
+      "Bill C-39 national interest designation and one-year decision clock",
+      "Consultation versus consent and whether a Nation can refuse projects",
+      "Kebaowek v. Canadian Nuclear Laboratories and the legal status of UNDRIP",
+      "U.S. permitting bill and narrowing of Section 106 tribal consultation",
+      "T\u015dilhqot'in ownership of TEN construction company and the Pirutsiagutiit National Framework"
+    ]
+  },
+  "2026-11-20": {
+    "timestamp": 1795162677.249042,
+    "date": "2026-11-20",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": null,
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "When a long-lead El Ni\u00f1o warning arrives, what can a place actually do with the lead time, and what does a global forecast leave each place to work out alone?",
+    "riley_position": "Lead time is valuable and should be used now: places should start the first concrete steps (protocols, named assets, funded mapping, contracts) before the damage arrives, sizing actions to the forecast range rather than waiting for certainty.",
+    "riley_key_evidence": [
+      "NOAA's Office for Coastal Management recorded all-time high water levels at four California coastal sites in late October, and the gauges caught the event early.",
+      "Nairobi's Bramwell Simiyu says drainage was built for a much smaller population and puts a full sewerage and drainage upgrade at up to $192 million.",
+      "Provincial preliminary analysis of the Pear Lake wildfire found high landslide, flood, and debris flow risk in parts of the Cariboo, with risk highest in the two years after a fire."
+    ],
+    "casey_position": "A warning is not a prepared place: global averages and probabilistic forecasts don't tell a town which asset fails, and without named owners, funding, and maintained maps, lead time gets wasted and the warning becomes a press release.",
+    "casey_key_evidence": [
+      "WMO's September update put the chance El Ni\u00f1o persists through February 2027 near 100 percent, but the U.S. Climate Prediction Center gives only roughly 60 percent odds on a record-strength season.",
+      "The Los Angeles Times says the ocean rise is now the larger effect than astronomical tides, and the standard tide table doesn't include that component.",
+      "Protocols and mapping decay without ongoing staffing and maintenance, and budget lines can be reallocated by a single motion, so accountability needs a named person."
+    ],
+    "resolution": "They did not fully resolve the debate; Riley argued for funding and naming owners in budget lines while Casey wanted a named person on the map, and both agreed the regional government should own the turning of forecasts into local action with land users brought in early. Casey closed by saying who decides which creek goes first remains open.",
+    "topics_covered": [
+      "Forecast uncertainty and planning under probabilistic warnings (WMO vs. U.S. Climate Prediction Center odds)",
+      "Health early-warning systems and staffing in Nairobi and Ghana",
+      "Coastal flooding, King Tides, and sea-level monitoring in California",
+      "Post-wildfire landslide and flood risk in the Cariboo and the Pear Lake fire",
+      "Institutional roles: who turns forecasts into named, funded local action"
     ]
   }
 }

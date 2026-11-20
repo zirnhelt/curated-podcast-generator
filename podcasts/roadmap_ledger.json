@@ -403,8 +403,8 @@
       "title": "Deep dive citations matched at 33% versus roundup at 80%.",
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-10-07",
@@ -647,17 +647,18 @@
       "title": "Four thin roundup stories reached the script after Kagi Extract returned no source text for them.",
       "detail": "The degrade row shows Kagi Extract returned no page for 4 thin roundup stories on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were cut by the airtime budget, so the thinnest sources were the ones that passed through. The pipeline should either drop stories whose extraction failed or mark them as unverified before scripting. This is the degradation whose handling the facts show as wrong.",
       "source": "review",
-      "status": "retired",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-10-19",
       "seen": [
         "2026-10-19",
         "2026-10-21",
-        "2026-11-15"
+        "2026-11-15",
+        "2026-11-19"
       ],
       "signal": "degraded:script/kagi-extract",
-      "signal_seen": "2026-11-15",
-      "last_seen": "2026-11-15"
+      "signal_seen": "2026-11-19",
+      "last_seen": "2026-11-19"
     },
     {
       "id": "debate-summary-json-truncation-falls-back-to-keywords",
@@ -768,24 +769,25 @@
       "title": "The name Esk'et has no entry in config/pronunciations.json and reached TTS unmapped.",
       "detail": "The script step degraded with one name lacking a pronunciation entry (Esk'et) on 2026-11-12, and the pipeline sent it to text-to-speech as written instead of stopping or substituting. The same nation name is expected to recur through the election coverage. Closing this means adding the Esk'et entry to config/pronunciations.json and having the script step fail or flag, rather than pass through, any name with no mapping.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 1,
       "first_seen": "2026-11-12",
       "seen": [
         "2026-11-12",
-        "2026-11-13"
+        "2026-11-13",
+        "2026-11-19"
       ],
       "signal": "degraded:script/pronunciation",
-      "signal_seen": "2026-11-13",
-      "last_seen": "2026-11-13"
+      "signal_seen": "2026-11-19",
+      "last_seen": "2026-11-19"
     },
     {
       "id": "local-story-missed-roundup-despite-theme-availability",
       "title": "A theme-feed local story was available for the roundup but did not air there.",
       "detail": "On 2026-11-14 the Cariboo Local Affairs feed loaded 21 on-theme articles and 1 local story reached the roundup pool, yet 0 local stories aired and the roundup did not open on a local item (roundup_shape: local_stories_aired 0, roundup_opened_local no). The one local story was instead routed to the deep dive, which took the lead subject, while 3 unused on-theme candidates were left over. The facts do not show why the roundup selection passed over the local story, so the fix is to inspect the roundup selection logic so a theme-feed local story is not dropped when the deep dive takes a different subject.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-14",
       "seen": [
         "2026-11-14",
@@ -800,8 +802,8 @@
       "title": "Script output fails to parse into welcome, news and deep-dive sections, so episodes ship without music beds or section structure.",
       "detail": "On 2026-11-15 the script stage produced a draft that the segment parser could not split into welcome, news and deep-dive, and the render fell back to TTS-only mode with the warning 'Segment parsing failed - falling back to TTS-only mode'. The episode went out as one continuous spoken track. The Kagi Extract step also matched no page for 2 of 2 URLs in the same run, so the script stage is degrading in two places at once. The fix is to check the segment delimiters the script prompt asks for against what the parser expects, and to make the parser fail loudly on the next run rather than falling back silently.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-15",
       "seen": [
         "2026-11-15"
@@ -815,16 +817,62 @@
       "title": "The deep dive aired on a single source while on-theme candidates went unused.",
       "detail": "On 2026-11-15 the deep dive used one source, My Cariboo Now, while 32 on-theme candidates remained unused after the roundup cut. The deep-dive beat count was 4 aired against 5 planned, and only 6 of 17 bridges were named. The facts show the deep dive ran short of sources rather than of candidates, so the selection step is not drawing on the unused pool. Closing this means checking why the deep-dive selector accepts a single source when more candidates are available.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-15",
       "seen": [
-        "2026-11-15"
+        "2026-11-15",
+        "2026-11-16"
       ],
       "signal": "thin-deep-dive",
-      "signal_seen": "2026-11-15",
-      "last_seen": "2026-11-15"
+      "signal_seen": "2026-11-16",
+      "last_seen": "2026-11-16"
+    },
+    {
+      "id": "split-topic-farmers-weigh-roundup-and-deep-dive",
+      "title": "Farmers-weigh subject aired in separate places rather than as one story.",
+      "detail": "The roundup split the subject 'farmers weigh' across segments, so the same story reached listeners in two places instead of one coherent pass. The facts record the split in roundup_shape but do not say whether the duplication was intentional or whether the storyboard placed the pieces apart. The likely fix is to have the storyboard step group stories sharing a subject into one roundup slot or to mark the split explicitly so it does not read as repetition.",
+      "source": "review",
+      "status": "retired",
+      "occurrences": 0,
+      "first_seen": "2026-11-17",
+      "seen": [
+        "2026-11-17"
+      ],
+      "signal": "split-topic",
+      "signal_seen": "2026-11-17",
+      "last_seen": "2026-11-17"
+    },
+    {
+      "id": "deep-dive-retells-roundup-figures",
+      "title": "Deep dive lines repeat roundup card figures after the polish pass.",
+      "detail": "On 2026-11-18, three deep dive lines still retold the roundup after polish, including the Arc A750 tokens-per-second example (about 19 to 22, then around 33). The polish pass did not remove the overlap, so the same specific figures aired twice in one episode. The deep dive prompt should be tightened so it does not re-explain roundup items, or a check should reject deep dive sentences that repeat a roundup card's specific numbers before the script is accepted.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-11-18",
+      "seen": [
+        "2026-11-18"
+      ],
+      "signal": "degraded:script/roundup-echo",
+      "signal_seen": "2026-11-18",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "id": "deep-dive-non-local-no-cariboo-angle",
+      "title": "The deep dive aired with no Cariboo story or angle despite the theme feed being local.",
+      "detail": "On 2026-11-20 the roundup opened with two local stories, but the deep_dive_cariboo field reads no, and the deep dive led with p87 from four sources, none of them local. The facts show 10 on-theme candidates went unused, so a local angle was available to the deep-dive selector and was not chosen. The closing change is to have the deep-dive selection step require at least one Cariboo-tagged candidate when one exists in the theme feed, and log the reason when it does not.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-11-20",
+      "seen": [
+        "2026-11-20"
+      ],
+      "signal": "deep-dive-non-local",
+      "signal_seen": "2026-11-20",
+      "last_seen": "2026-11-20"
     }
   ],
-  "updated": "2026-11-15"
+  "updated": "2026-11-20"
 }

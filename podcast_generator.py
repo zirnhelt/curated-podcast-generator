@@ -1012,9 +1012,11 @@ BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOW
 # Kagi Extract reads a thin roundup story's own page (rendered, clean markdown)
 # before any Brave title search: $4/1000 pages against Brave's $5/1000, and it
 # spends nothing from the Search cap the two repos share. Pages, not requests,
-# are the unit; one request carries up to KAGI_EXTRACT_BATCH. Unset key = off.
+# are the unit, so one page a request costs the same: Kagi fetches a request's
+# pages under one shared time budget, and one slow site came back as an empty
+# reply for all six pages sent on 2026-11-19. Unset key = off.
 KAGI_EXTRACT_CALL_LIMIT = int(os.getenv("PODCAST_KAGI_EXTRACT_CALL_LIMIT", "10"))  # 0=disabled
-KAGI_EXTRACT_BATCH = 10
+KAGI_EXTRACT_BATCH = 1
 #
 # A themes.json `event_focus` carrying a `research` brief turns the research pass
 # from a judgement call into a roster sweep — one search per candidate per
@@ -2438,6 +2440,12 @@ _PRODUCER_ATTRIBUTION = (
     "'our production team spotted' — never as listener mail, never thank a "
     "listener for them, and never name the producer on air."
 )
+# 2026-11-12: the production correction aired its core and dropped three of
+# its points. Condensing is fine; losing a point is not.
+_PRODUCTION_POINTS_RULE = (
+    "Every point of a production correction airs: condense its wording, never "
+    "drop one of its points."
+)
 
 
 def format_feedback_emails_for_prompt(feedback_items: list) -> str:
@@ -2737,6 +2745,7 @@ def format_corrections_for_prompt(correction_items: list) -> str:
     ]
     if any(_is_producer_item(i) for i in correction_items):
         lines.append(_PRODUCER_ATTRIBUTION)
+        lines.append(_PRODUCTION_POINTS_RULE)
     lines.append("---")
     for item in correction_items:
         preview = (item.get("body_text") or "").strip()
@@ -4407,9 +4416,13 @@ def _extract_roundup_stories(articles: list) -> int:
     pages a run; a failed request or a 402 falls back to Brave and degrades.
     A page the site refuses is the designed Brave path, not a degradation: about
     half of them miss (paywalls, bot walls), so four misses in a row is an
-    ordinary night (2026-10-19, -21); the reasons are logged. What degrades is a
-    reply that can't be matched to the pages sent. An account-level refusal
-    arrives as an HTTP error and degrades above.
+    ordinary night (2026-10-19, -21); the reasons are logged. So is a page that
+    comes back empty: Kagi fetches a request's pages under one time budget and
+    answers `"data": []` when it runs out, so each page goes alone
+    (KAGI_EXTRACT_BATCH) and a slow site loses only itself. What degrades is a
+    reply that names none of the pages sent (the contract moved), or no page
+    coming back at all. An account-level refusal arrives as an HTTP error and
+    degrades above.
     """
     key = os.getenv("KAGI_API_KEY")
     if not key or KAGI_EXTRACT_CALL_LIMIT <= 0:
@@ -4419,7 +4432,7 @@ def _extract_roundup_stories(articles: list) -> int:
             if a.get("url") and len(a.get("_body", "") or "") < NEWS_BODY_RICH_CHARS][:max(left, 0)]
     if not thin:
         return 0
-    read = grew = unmatched = 0
+    read = grew = unmatched = dropped = 0
     errors: list = []
     for i in range(0, len(thin), KAGI_EXTRACT_BATCH):
         batch = thin[i:i + KAGI_EXTRACT_BATCH]
@@ -4438,33 +4451,54 @@ def _extract_roundup_stories(articles: list) -> int:
             data = resp.json().get("data") or []
         except Exception as e:
             status = getattr(getattr(e, "response", None), "status_code", None)
+            _RESEARCH_LOG.extend({"kind": "kagi-extract", "story": a.get("title", "")[:200],
+                                  "result": "failed"} for a in batch)
             degrade("script/kagi-extract",
                     f"Kagi Extract request failed ({status or type(e).__name__}); "
                     "thin roundup stories fall back to Brave title search")
             break
         by_url = {p.get("url"): p for p in data if isinstance(p, dict) and p.get("url")}
         for j, (a, url) in enumerate(zip(batch, urls)):
-            page = by_url.get(url) or (data[j] if not by_url and j < len(data) else None)
+            # A one-page reply is that page, whatever URL it names (a redirect, a
+            # trailing slash); a longer one is matched by URL, then by position.
+            page = (by_url.get(url) or (data[0] if len(batch) == 1 and len(data) == 1 else None)
+                    or (data[j] if not by_url and j < len(data) else None))
+            # What each page bought, for the review's research section.
+            row = {"kind": "kagi-extract", "story": a.get("title", "")[:200], "result": "unmatched"}
+            _RESEARCH_LOG.append(row)
+            if not data:
+                # The request's time budget ran out before the page rendered.
+                dropped += 1
+                row["result"] = "timed out"
+                continue
             if not isinstance(page, dict):
                 unmatched += 1
                 continue
             if page.get("error"):
                 errors.append(str(page["error"])[:80])
+                row["result"] = "refused"
                 continue
             read += 1
+            row["result"] = "read"
             text = _markdown_prose(page.get("markdown") or "")[:2000]
             if len(text) > len(a.get("_body", "") or ""):
                 a["_body"] = text
                 a.pop("_body_via", None)
                 grew += 1
+                row["result"] = "used"
                 _KAGI_EXTRACT_STATE["used"] = True
     print(f"  📰 Kagi Extract: {grew}/{len(thin)} thin roundup stories read from their own page "
           f"(~${len(thin) * _FLAT_USD_PER_UNIT['kagi-extract']:.3f})")
     for reason, n in Counter(errors).most_common():
         print(f"     {n}× page error: {reason}")
+    if dropped:
+        print(f"     {dropped}× timed out (empty reply)")
     if unmatched:
         degrade("script/kagi-extract",
                 f"Kagi Extract reply matched no page for {unmatched} of {len(thin)} URLs sent")
+    elif dropped and dropped == len(thin):
+        degrade("script/kagi-extract",
+                f"Kagi Extract returned nothing for any of the {len(thin)} pages sent")
     return read
 
 
@@ -4478,7 +4512,11 @@ def _research_roundup_story(article: dict, brave_key: str) -> bool:
     Returns True when the body grew.
     """
     title = article.get("title", "")
+    sent = _BRAVE_SEARCH_STATE["search_calls"]
     results = _brave_search_rate_limit(title, brave_key, count=3)
+    row = {"kind": "body-search", "story": title[:200], "result": "no results"}
+    if _BRAVE_SEARCH_STATE["search_calls"] > sent:  # a walled or spent meter sent nothing
+        _RESEARCH_LOG.append(row)
     if not results:
         return False
     want = _significant_words(title)
@@ -4496,10 +4534,12 @@ def _research_roundup_story(article: dict, brave_key: str) -> bool:
             if len(candidate) > len(best):
                 best, best_via = candidate, (host if host and host != own_host else None)
     if len(best) <= len(article.get("_body", "") or ""):
+        row["result"] = "nothing longer"
         return False
     article["_body"] = best
     if best_via:
         article["_body_via"] = best_via
+    row["result"] = f"used{' (via ' + best_via + ')' if best_via else ''}"
     return True
 
 
@@ -4880,7 +4920,7 @@ def _corrections_ground_truth(corrections: list | None) -> str:
         whose = "All of them" if producer_count == len(corrections) else f"{producer_count} of them"
         origin = (f" {whose} came from the show's own production side, not from a "
                   f"listener — credit those to the show ('we caught') and never thank a "
-                  f"listener for them.")
+                  f"listener for them. {_PRODUCTION_POINTS_RULE}")
     return (f"\n\nCORRECTIONS SUPPLIED FOR THIS EPISODE: {len(corrections)} "
             f"({subjects}).{origin} A correction beat tied to these is legitimate — keep it, and "
             f"keep it specific about what was wrong and what is correct. Delete any "
@@ -7055,6 +7095,21 @@ def _home_place_hits(article: dict, theme_name) -> int:
     return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), home)
 
 
+def _show_home_hits(article: dict) -> int:
+    """Hits on the show's own jurisdictions, whatever the day's theme.
+
+    The geographic theme's `home_places` (Williams Lake, the CRD, SD27, Horsefly...)
+    name the places the show is from. `_home_place_hits` reads them on that day only;
+    the roundup's local block reads them every day. The producer's note of 2026-11-17:
+    "Quesnel has been over weighted in the stories for the past few weeks. It's
+    secondary to Williams Lake news." Quesnel had opened the roundup on 11-16 and 11-17.
+    """
+    for info in CONFIG['themes'].values():
+        if info.get('geographic'):
+            return _home_place_hits(article, info['name'])
+    return 0
+
+
 def _is_local_article(article: dict) -> bool:
     """True when a story names a Cariboo/BC place or comes from a local outlet.
 
@@ -7396,14 +7451,14 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
     # local story opens the episode — the local block is the show's front door.
-    # Home jurisdiction leads all of it: every story here is local, so counting
-    # place names alone sorted on which town got named most often and a Quesnel
-    # story could open a Williams Lake show. `home_places` is empty on the six
-    # topical themes, where this term is a constant and changes no order.
+    # Home jurisdiction leads all of it, every day (`_show_home_hits`): every story
+    # here is local, so counting place names alone sorted on which town got named
+    # most often and a Quesnel story could open a Williams Lake show. The storyboard
+    # keeps the local stories in this order.
     # A story the week already aired (`_week_recall`) follows the fresh ones, so
     # it is the first trimmed when the block is over budget.
     local_block.sort(
-        key=lambda a: (not a.get('_week_recall'), _home_place_hits(a, theme_name),
+        key=lambda a: (not a.get('_week_recall'), _show_home_hits(a),
                        _local_place_hits(a), relevance(a), boosted(a)),
         reverse=True,
     )
@@ -7975,12 +8030,15 @@ def _keyword_hit_count(text: str, keywords) -> int:
     'tech' in "TechCrunch"); the optional trailing 's' keeps singular
     keywords matching plural mentions ('first nation' → "First Nations").
     Multi-word keywords count once per word, matching the historical
-    substring scorer's weighting.
+    substring scorer's weighting. A CONFIRMING_PREFIX keyword counts only when
+    a plain one already hit: it adds confidence, never admits a story alone.
     """
-    hits = 0
-    for kw in keywords:
-        if re.search(r'\b' + re.escape(kw) + r's?\b', text):
-            hits += len(kw.split())
+    def hit(kw: str) -> int:
+        return len(kw.split()) if re.search(r'\b' + re.escape(kw) + r's?\b', text) else 0
+    hits = sum(hit(kw) for kw in keywords if not kw.startswith(CONFIRMING_PREFIX))
+    if hits:
+        hits += sum(hit(kw[len(CONFIRMING_PREFIX):]) for kw in keywords
+                    if kw.startswith(CONFIRMING_PREFIX))
     return hits
 
 
@@ -8313,17 +8371,23 @@ def _build_focus_keywords(focus) -> list:
 
     A focus whose name carries a bare word with another common sense ("Remote
     Work": `work`) lists the name words that are safe in `name_keywords`; one
-    focus hit admits an article to the deep-dive pool.
+    focus hit admits an article to the deep-dive pool. Without that list, a name
+    word the focus doesn't also list as a keyword ("life", "field", "land",
+    "climate") is confirming only (CONFIRMING_PREFIX): it counts once the
+    story's title and summary hit a real keyword, the way super-rss-feed's crime
+    filter takes an ambiguous term only beside a justice word.
     """
     if not focus:
         return []
+    listed = [k.lower() for k in focus.get('keywords', [])]
     if 'name_keywords' in focus:
-        keywords = [w.lower() for w in focus['name_keywords']]
+        names = [w.lower() for w in focus['name_keywords']]
     else:
-        keywords = [w.lower() for w in focus.get('name', '').split() if len(w) > 3]
-    keywords.extend(k.lower() for k in focus.get('keywords', []))
+        names = [w if w in listed else CONFIRMING_PREFIX + w
+                 for w in (w.strip(',.;:!?').lower() for w in focus.get('name', '').split())
+                 if len(w) > 3]
     seen = set()
-    return [k for k in keywords if not (k in seen or seen.add(k))]
+    return [k for k in names + listed if not (k in seen or seen.add(k))]
 
 
 def _build_event_focus_keywords(event) -> list:
@@ -8360,6 +8424,10 @@ def _geographic_rank(article: dict) -> tuple:
         article.get('_subject_matches', 0),
         article.get('_boosted_score', article.get('ai_score', 0)),
     )
+
+
+# Marks a keyword that confirms a match but never makes one (`_keyword_hit_count`).
+CONFIRMING_PREFIX = '~'
 
 
 def _focus_hit_count(article, focus_keywords) -> int:
@@ -8418,6 +8486,62 @@ def pick_focus_for_pool(calendar_focus: dict | None, weekday: int,
     focus['index'] = best[1]
     focus['cycle_length'] = len(cycle)
     return focus, story
+
+
+def pick_focus_for_cluster(focus: dict | None, weekday: int, theme_articles: list,
+                           bonus_articles: list, count: int = DEEP_DIVE_COUNT
+                           ) -> tuple[dict | None, list, list]:
+    """Return (focus, theme_articles, bonus_articles) once a starved week has looked
+    for the sibling focus the day's pool is about.
+
+    The deep dive centres on the focus only when `count` theme candidates match it;
+    under that it falls back to the plain theme. On 2026-11-16 Film & Screen matched
+    1 story while Small-Town Journalism matched 7, and the producer wrote: "If the
+    stories cluster overwhelmingly around a super cycle theme from a different week,
+    go with that." So when the week's focus has fewer than `count` theme matches,
+    the sibling with the most matches across the day's pool takes the day, provided
+    it reaches `count` and beats the week's own focus. Its on-charter bonus matches
+    (raw fit >= HOLD_MIN_THEME_RAW) join the theme pool so the deep dive can use
+    them. Most of that day's journalism cluster sat in the bonus bucket. The
+    calendar is untouched, as with a high-impact story (`pick_focus_for_pool`).
+    """
+    if not focus:
+        return focus, theme_articles, bonus_articles
+
+    def candidate(a: dict) -> bool:
+        return not (a.get('_no_deep_dive') or a.get('_cluster_suppressed'))
+
+    def matches(f: dict) -> tuple[list, list]:
+        kws = _build_focus_keywords(f)
+        return ([a for a in theme_articles if candidate(a) and _focus_hit_count(a, kws)],
+                [a for a in bonus_articles if candidate(a) and _focus_hit_count(a, kws)
+                 and _theme_fit_raw(a) >= HOLD_MIN_THEME_RAW])
+
+    own_theme, own_bonus = matches(focus)
+    if len(own_theme) >= count:
+        return focus, theme_articles, bonus_articles
+    cycle = load_super_cycles_config().get(str(weekday), {}).get('cycle', [])
+    best = None
+    for i, sibling in enumerate(cycle):
+        if sibling.get('slug') == focus.get('slug'):
+            continue
+        m_theme, m_bonus = matches(sibling)
+        size = len(m_theme) + len(m_bonus)
+        if (size >= count and size > len(own_theme) + len(own_bonus)
+                and (best is None or size > best[0])):
+            best = (size, i, sibling, m_bonus)
+    if best is None:
+        return focus, theme_articles, bonus_articles
+    size, index, sibling, promote = best
+    picked = dict(sibling)
+    picked['index'] = index
+    picked['cycle_length'] = len(cycle)
+    moved = {id(a) for a in promote}
+    print(f"🎯 Focus moved off the calendar: {focus.get('name')} → {picked.get('name')} "
+          f"(the week's focus matched {len(own_theme) + len(own_bonus)}, "
+          f"{picked.get('name')} {size}; {len(promote)} bonus stor(ies) join the theme pool)")
+    return (picked, theme_articles + promote,
+            [a for a in bonus_articles if id(a) not in moved])
 
 
 def _deep_dive_rerank_query(theme_name: str, focus: dict | None) -> str:
@@ -8785,6 +8909,19 @@ def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
     return deep_dive
 
 
+def _cariboo_pick_holds(picked: list, recent_local: list | None = None) -> bool:
+    """Whether the Cariboo bar's deep dive may replace the ranked one: only with a
+    second report of its story.
+
+    On 2026-11-15 (Sky & Cosmos, then Earth Systems) and 2026-11-16 the bar swapped a
+    four-story ranked deep dive for one local story with no other report, Quesnel's
+    Remembrance Day temperatures and a public-art grant, and the producer marked both
+    deep dives down. A lead on the week's focus is no exception (the producer's call,
+    2026-11-16). An aired local story riding along as context is not a second report.
+    """
+    return any(not any(a is r for r in (recent_local or [])) for a in picked[1:])
+
+
 def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT, focus=None,
                                event_focus=None, anchor_question=None, local_extras=None,
                                recent_local=None):
@@ -9012,8 +9149,13 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         picked = pick_cariboo_deep_dive(pool, count, theme_name,
                                         anchor_question=anchor_question,
                                         recent_local=recent_local)
-        if picked:
+        if picked and _cariboo_pick_holds(picked, recent_local):
             deep_dive = picked
+        elif picked:
+            picked[0].pop('_cariboo_angle', None)
+            print(f"  🏡 Cariboo pick set aside (one source, no second report): "
+                  f"{picked[0].get('title', '')[:70]} airs in the roundup; the ranked "
+                  f"deep dive stands")
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
     news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
@@ -9214,11 +9356,19 @@ def _deep_dive_subject_match(title: str, turns: list, boilerplate: frozenset) ->
 
 
 def match_deep_dive_to_script(articles, script):
-    """(article, discussed) pairs for the deep dive, judged on its own section."""
+    """(article, discussed) pairs for the deep dive, judged on its own section.
+
+    The headline test also runs on two adjacent turns together: hosts pass a story
+    back and forth, and on 2026-11-13 the deep dive's own Tyee source ("Clinton faces
+    floods and landslide warnings") read as undiscussed because no single turn held
+    3 of its words. Only the headline test: replayed over 922 committed sources, the
+    summary-word test on pairs credited "call / change / day" and "stop / past / like".
+    """
     if not script:
         return [(a, True) for a in articles]
     section = _extract_deep_dive_section(script).lower()
     turns = _script_turns(section)
+    pairs = list(turns) + [(a[0], f"{a[1]} {b[1]}") for a, b in zip(turns, turns[1:])]
     boilerplate = _welcome_words(script)
     results = []
     for article in articles:
@@ -9228,7 +9378,7 @@ def match_deep_dive_to_script(articles, script):
         rare = [t for t in tokens if 0 < counts[t] <= _MATCH_RARE_MAX]
         discussed = any(
             sum(1 for t in rare if re.search(r"\b" + re.escape(t), turn)) >= _DEEP_MATCH_MIN_TOKENS
-            for _, turn in turns) or _deep_dive_subject_match(title, turns, boilerplate)
+            for _, turn in turns) or _deep_dive_subject_match(title, pairs, boilerplate)
         results.append((article, discussed))
     return results
 
@@ -10673,9 +10823,13 @@ def format_storyboard_for_prompt(plan: dict | None, roundup_articles: list) -> s
               f"Riley holds: {dd['riley_holds']}",
               f"Casey holds: {dd['casey_holds']}"]
     for i, b in enumerate(dd["beats"], 1):
+        pushback = b['pushback'].strip()
+        if pushback.rstrip('.').lower() in ('none', 'n/a', ''):
+            # The hosts agree here (producer, 2026-11-17/18: "the debate was forced").
+            pushback = "none: the hosts agree here; build on it, never stage a disagreement"
         lines += [f"Beat {i}: {b['claim']}",
                   f"  Evidence: {b['evidence']}",
-                  f"  Pushback: {b['pushback']}",
+                  f"  Pushback: {pushback}",
                   f"  → next, because: {b['leads_to_next']}"]
     if dd["set_aside"]:
         lines.append("Set aside (not part of the deep dive): " + "; ".join(dd["set_aside"]))
@@ -14715,6 +14869,10 @@ def run_script_stage() -> tuple[str, str] | None:
                           f"{(today_focus or {}).get('name')} → "
                           f"{(picked_focus or {}).get('name', today_theme + ' (no focus)')}")
                     today_focus = picked_focus
+                else:
+                    # A starved week takes the sibling focus the pool clusters around.
+                    today_focus, theme_articles, bonus_articles = pick_focus_for_cluster(
+                        today_focus, today_weekday, theme_articles, bonus_articles)
 
                 # Super-cycle routing: release matured held articles into today's
                 # pool; hold off-theme, non-urgent articles for their focus day;

@@ -580,6 +580,47 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   same-story clusters rarely reach 3 outlets. The override changes only today: the rotation stays
   calendar-derived, and the cold open and episode memory record the focus that actually aired.
 
+  **2026-11-15: a space story moved the day off space.** The calendar focus was Sky & Cosmos.
+  A 31-outlet Euclid data release qualified as high-impact, matched no Sky & Cosmos keyword
+  (the list had `telescope` and `spacecraft`, nothing for the universe, galaxies or cosmology),
+  and Earth Systems & Climate Science won on bare words its name adds as keywords: `earth`,
+  `systems`, `climate`, `science`. The producer's note: "Deep dive should have focused on the
+  cosmos", with five astronomy stories marked as the deep dive they wanted. Sky & Cosmos gains
+  cosmology words (`universe`, `cosmic`, `galaxies`, `astronomer`, `white dwarf`, `asteroid`,
+  `orbiter`…; not bare `galaxy`, which is also a phone and a soccer team). The Living World,
+  Earth Systems and Discovery set `name_keywords` to their name as a phrase. On that night's
+  Sunday feed the name words alone matched a synthetic cell, "ponies… for a living" and
+  "floppy-based air traffic systems". Other days carry the same pattern (`life`, `field`,
+  `land`, `live`, `development`); they wait for the producer's call.
+
+  **2026-11-19: the other days' name words confirm, never admit.** The producer approved the
+  fix with a note: "Similar to the crime logic, we should also check the content for matches
+  to raise the confidence" (super-rss-feed's crime filter takes an ambiguous term only beside
+  a justice word). So, rather than a phrase per focus, a name word the focus doesn't list as
+  a keyword is confirming only (`CONFIRMING_PREFIX`): `_keyword_hit_count` counts it once a
+  listed keyword has hit the title and summary, and then it adds weight. "Retirement life in a
+  small town" no longer reaches Digital Life & Security; "seniors lose life savings to a
+  phone scam" counts twice. Five name words that are the focus's subject (`cosmos`,
+  `libraries`, `podcasting`, `homestead`, `guardians`) and `governance`, which a trailing
+  comma had kept from ever matching, became listed keywords so they still admit alone. The
+  fallback `categorize_articles_for_deep_dive` counts focus words by substring, so there a
+  confirming word simply doesn't count.
+
+- **A starved week takes the cluster (2026-11-16, `pick_focus_for_cluster`).** Film & Screen
+  matched 1 story, the deep dive needs 4, so the day fell back to the plain theme. The Cariboo
+  bar then aired one Tribune story. Small-Town Journalism, a later week's focus, matched 7
+  on-charter stories in the same feed: 3 in the theme bucket, the rest in the bonus bucket,
+  where the deep dive never looks. The producer: "If the stories cluster overwhelmingly around a
+  super cycle theme from a different week, go with that. This week could have been journalism."
+  So when no high-impact story moved the day and the week's focus has fewer than
+  `DEEP_DIVE_COUNT` theme matches, the sibling with the most matches across the pool takes the
+  day, provided it reaches the count and beats the week's own. A bonus story counts only at raw
+  fit ≥ `HOLD_MIN_THEME_RAW`, and the sibling's bonus matches join the theme pool so the deep dive
+  can use them. On that night's live feeds it would fire on Monday (journalism 7 v 2), Friday
+  (Wildfire & Climate Resilience 12 v 2) and Sunday (Discovery 6 v 2). The last two are swollen
+  by broad keywords (`climate`, `study`, `research`): fix the keyword, not the rule. The
+  calendar is untouched; the cold open and memory record the focus that aired.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ## Niche interests close the roundup once a week (2026-11-14)
@@ -679,6 +720,17 @@ The Atlantic and Civil Eats are among the misses), and Brave researched every mi
 `read == 0` row fired on two of those nights and reached the roadmap as a fault. Per-page error
 reasons are now logged; `script/kagi-extract` degrades on a failed request or on a reply that
 matches none of the URLs sent, which would mean the API contract moved.
+
+**One page a request** (2026-11-19). That night all six pages came back unmatched and the row
+fired as a contract change; 11-17 and 11-18 had read 6/6 with the same code. Kagi's spec says a
+request's URLs are fetched concurrently under one time budget (`timeout`, at most 10 s), and a
+reported bug shows the reply when it runs out: `"data": []` after ~10 s, the pages that rendered
+dropped with the slow one. The 2026-10-19 "no page for 4" sighting fits the same shape. Brave
+then researched all six (13 Search calls against 4-8 on the nights before). Kagi bills pages, not
+requests, so each page now goes alone (`KAGI_EXTRACT_BATCH = 1`): a slow site loses only itself,
+logs `timed out` and takes the Brave path. A one-page reply is that page whatever URL it names.
+`script/kagi-extract` degrades on a failed request, a reply naming none of the pages sent, or no
+page back at all. Cost unchanged; worst case adds ~10 s per slow page to the script stage.
 
 ## Local leads, one subject in one place, a Cariboo deep dive (2026-10-28)
 
@@ -788,3 +840,38 @@ top-level `cuts` key: not under `segments`, which dedup reads, so a cut stays fr
 review's `index.json` carries it; `review.html`'s Episode tab shows a 👍 right-to-cut / 👎
 should-have-aired per article, saved in the verdict row as `episode_cuts`. `review_scripts.py`
 tallies the calls and hands every 👎 to the weekly reviewer as a selection miss. No spend.
+
+## The Cariboo bar needs a second report (2026-11-16)
+
+Two nights running the bar swapped a ranked four-story deep dive for one local story
+with no other report and no hit on the week's focus: on 2026-11-15, Quesnel's
+Remembrance Day temperature records on a Science day whose rerank had picked four
+Earth Systems stories; on 2026-11-16, a $10,000 public-art grant over the rerank's
+four. The producer marked both deep dives down, and `thin-deep-dive` reached the
+roadmap. The bar was built for 2026-10-28, when the rules stitched four unrelated
+stories into a "trust" debate. It was never meant to trade a cluster for one notice.
+
+`_cariboo_pick_holds()`: the bar's deep dive replaces the ranked one only when it has a
+second report of its story. An aired local story riding along as context is not a
+report. Otherwise the ranked deep dive stands and the local story airs in the roundup
+(`🏡 Cariboo pick set aside …` in the log); no `degrade()`, because it is a rule, not a
+failure. The first draft also let a one-source lead on the week's focus through; the
+producer tightened it ("Tighten", 2026-11-16): a focus hit is no substitute for a
+second outlet.
+
+## Williams Lake leads the local block every day (2026-11-18)
+
+The producer's note of 2026-11-17: "Quesnel has been over weighted in the stories for the
+past few weeks. It's secondary to Williams Lake news." By headline count it was not:
+since 10-21 the aired local stories named Williams Lake 30 times and Quesnel 15. Order was
+the problem. Quesnel opened the roundup on 11-16 (its new mayor) and 11-17 (a court case),
+and led that day's cold open and deep dive too (the pulp-mill curtailment). `home_places`
+(Williams Lake, the CRD, SD27, Horsefly…) ranked the local block on the geographic day
+only; on weekdays the sort fell to place-name counts and score, so a Quesnel story naming
+two places beat a Williams Lake story naming one.
+
+`_show_home_hits()` reads the geographic theme's `home_places` on every day, and the
+local block sorts on it first, after the week-recall tag. It is an ordering rule, not an
+exclusion: every local story still airs. The storyboard keeps the local stories in their
+draft order ("Every close-to-home story stays first, in its listed order"), so the draft
+order is the aired order. The deep dive and the Cariboo bar are unchanged.
