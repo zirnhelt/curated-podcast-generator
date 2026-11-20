@@ -20,6 +20,7 @@ paths:
 - Keep the one GitHub cron (`5 11 * * *`) as the backstop for the Worker being down. Don't remove it; don't add ladder slots back.
 - Anything that needs to know which rung it is on reads `inputs.run_slot`, never `github.event.schedule`.
 - Deploy the Worker with **Actions → Deploy Cloudflare Scheduler**; there is no local wrangler path.
+- Never give the scheduler a public URL. The digest-click Worker (`cloudflare/clicks/`, **Deploy Cloudflare Clicks**) is separate so nothing public shares the crons' Worker.
 
 **Script length.**Scripts under `TARGET_SCRIPT_WORDS` get up to `EXPAND_MAX_PASSES` (1) expand pass; under `MIN_SCRIPT_WORDS` after that the run aborts. The script call, its retries and the polish carry `max_tokens` 64000. About 19–20 min ships (167 words a minute), against the 22 min the prompts still say.
 

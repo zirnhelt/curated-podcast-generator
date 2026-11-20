@@ -1,0 +1,93 @@
+name: Deploy Cloudflare Clicks
+
+# Manual only, like the scheduler. This Worker records clicks on super-rss-feed's
+# "Also in the news" digest (cloudflare/clicks/README.md). It is separate from the
+# scheduler so a deploy here can never touch the crons that start the show.
+on:
+  workflow_dispatch:
+    inputs:
+      push_secret:
+        description: 'Also push CLICKS_KEY to the Worker (first deploy, or key rotation)'
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: 'Verify only — typecheck and build, change nothing on Cloudflare'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: cloudflare/clicks
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+
+      - name: Set up Node
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: cloudflare/clicks/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # The namespace id is not a secret, but it is the account's, so it lives in a
+      # repository variable rather than in the committed config.
+      - name: Fill in the KV namespace id
+        env:
+          CLICKS_KV_ID: ${{ vars.CLICKS_KV_ID }}
+        run: |
+          set -euo pipefail
+          if ! printf '%s' "${CLICKS_KV_ID:-}" | grep -Eq '^[0-9a-f]{32}$'; then
+            echo "::error::Set the CLICKS_KV_ID repository variable to the KV namespace id (32 hex characters). See cloudflare/clicks/README.md."
+            exit 1
+          fi
+          sed -i "s/\"CLICKS_KV_ID\"/\"$CLICKS_KV_ID\"/" wrangler.jsonc
+          grep -q "$CLICKS_KV_ID" wrangler.jsonc
+
+      - name: Build (no upload)
+        run: npx wrangler deploy --dry-run --outdir /tmp/clicks-build
+
+      - name: Push CLICKS_KEY to the Worker
+        if: inputs.push_secret && !inputs.dry_run
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLICKS_KEY: ${{ secrets.CLICKS_KEY }}
+        run: |
+          set -euo pipefail
+          if [ ${#CLICKS_KEY} -lt 32 ]; then
+            echo "::error::Set the CLICKS_KEY secret (32+ random characters) in this repo and in super-rss-feed."
+            exit 1
+          fi
+          printf '%s' "$CLICKS_KEY" | npx wrangler secret put CLICKS_KEY
+
+      - name: Deploy
+        if: ${{ !inputs.dry_run }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: |
+          set -o pipefail
+          npx wrangler deploy 2>&1 | tee /tmp/wrangler-deploy.log
+          url=$(grep -Eo 'https://[a-z0-9.-]+\.workers\.dev' /tmp/wrangler-deploy.log | head -1 || true)
+          echo "Worker URL: ${url:-see the log above}"
+          echo "Set super-rss-feed's config/system.json clicks.base_url to it." >> "$GITHUB_STEP_SUMMARY"
+          echo "Worker URL: ${url:-see the deploy log}" >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,15 @@
+{
+  "name": "cariboo-signals-clicks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Records clicks on super-rss-feed's Also in the news digest and redirects to the article",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260831.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.127.1"
+  }
+}
