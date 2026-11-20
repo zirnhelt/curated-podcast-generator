@@ -1,25 +1,4 @@
 {
-  "2026-10-16": {
-    "timestamp": 1792138576.984427,
-    "topics": [
-      "[My Cariboo Now] Williams Lake sets new early voter turnout ",
-      "[Williams Lake Tribune] Williams Lake gathers for a movie un",
-      "[Williams Lake Tribune] Williams Lake First Nation celebrate",
-      "[Williams Lake Tribune] Open letter warns of hospital specia",
-      "[The Tyee] First Nations Make Rare Endorsement in Williams L",
-      "[Global News] Leave for B.C. child killer sparks call for ch",
-      "[Fast Company] Half of the world\u2019s population has been expos",
-      "[Wildfire Today] LA faces \u2018critical\u2019 fire danger, electricit"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-16",
-    "focus": "wildlife-conservation",
-    "focus_name": "Wildlife & Conservation"
-  },
   "2026-10-17": {
     "timestamp": 1792225088.027965,
     "topics": [
@@ -728,5 +707,26 @@
     "date": "2026-11-19",
     "focus": "governance-title",
     "focus_name": "Governance, Title & Treaty"
+  },
+  "2026-11-20": {
+    "timestamp": 1795162674.942202,
+    "topics": [
+      "[My Cariboo Now] Cariboo Regional District Board meets for f",
+      "[Williams Lake Tribune] DIY poppy workshop in Williams Lake ",
+      "[Outside Online] Lawmakers Move to Ban AI Data Centers on Na",
+      "[The Atlantic] Is This the End of Cheap Salmon?",
+      "[zmescience.com] Researchers will track marine life on sunke",
+      "[thesouthafrican.com] WMO warns strengthening El Ni\u00f1o could ",
+      "[Scientific American] El Ni\u00f1o and King Tides will tear up Ca",
+      "[euronews.com] EU auditors urge faster PFAS controls as prop"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-11-20",
+    "focus": null,
+    "focus_name": null
   }
 }
