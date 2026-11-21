@@ -34,7 +34,8 @@ the crons. It has no triggers of its own (the free plan's five crons are all the
    `cariboo-signals-clicks`. Copy its id into this repo's **variable** `CLICKS_KV_ID`
    (Settings → Secrets and variables → Actions → Variables).
 2. **Key.** Generate 32+ random characters (`openssl rand -hex 32`). Save the same value as
-   the **secret** `CLICKS_KEY` in this repo and in super-rss-feed.
+   the **secret** `CLICKS_KEY` in this repo and in super-rss-feed. Both sides strip whitespace,
+   so a newline picked up in a phone paste does no harm; letters and digits only.
 3. **Deploy.** Actions → Deploy Cloudflare Clicks, with *push_secret* ticked. The run summary
    prints the Worker URL (`https://cariboo-signals-clicks.<your subdomain>.workers.dev`).
 4. **Turn it on.** Set super-rss-feed's `config/system.json` → `clicks.base_url` to that URL.
