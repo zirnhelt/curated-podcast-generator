@@ -24,10 +24,6 @@
     "spotify": "https://open.spotify.com/show/37ss1f0PZFdCLhGmRJzCCC",
     "youtube": "https://www.youtube.com/@cariboosignals"
   },
-  "embargoed_surfaces": {
-    "_comment": "Delivery surfaces still in test that the hosts must not mention on air. Commit subjects matching these terms are dropped from the Sunday Meta Moment changelog. Remove this block once the surface is publicly launched.",
-    "terms": ["video", "youtube", "slide", "mp4", "thumbnail"]
-  },
   "all_week_events": [
     {
       "name": "2026 B.C. provincial general election",
