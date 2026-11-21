@@ -215,6 +215,22 @@
       overflow-y: auto;
       padding: 10px;
     }
+    /* Episode review card (podcast day views) — data from podcasts/reviews/index.json */
+    .rv { background: var(--card); border: 1px solid var(--border); border-left: 5px solid var(--rv-c, var(--primary));
+          border-radius: var(--radius); padding: 12px 14px; margin: 0 0 12px; font-size: 13px; }
+    .rv.good { --rv-c: #22c55e; } .rv.minor { --rv-c: var(--primary); }
+    .rv.warn { --rv-c: #f59e0b; } .rv.bad { --rv-c: #ef4444; }
+    .rv-head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+    .rv-head strong { font-size: 14px; } .rv-head a { color: var(--primary); font-size: 12px; }
+    .rv-sum, .rv-q, .rv-ev { color: var(--muted); }
+    .rv-focus { margin: 8px 0; padding: 6px 10px; background: var(--bg); border-radius: 6px; }
+    .rv-pips { display: inline-flex; gap: 3px; vertical-align: middle; margin: 0 4px; }
+    .rv-pips i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--score-lo); }
+    .rv-pips i.on { background: var(--primary); border-color: var(--primary); }
+    .rv-kpis { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 6px 0; }
+    .rv-kpis span { color: var(--muted); } .rv-kpis b { color: var(--text); font-variant-numeric: tabular-nums; }
+    .rv ul { margin: 6px 0 0 18px; padding: 0; } .rv li { margin-bottom: 4px; }
+    .rv li.minor { opacity: 0.75; } .rv-rec { color: #ef4444; font-size: 12px; }
     #arts-wrap::-webkit-scrollbar { width: 5px; }
     #arts-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
@@ -637,14 +653,7 @@
 'use strict';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const REPO_OWNER  = 'zirnhelt';
-const REPO_NAME   = 'super-rss-feed';
 const FEED_BASE   = 'https://zirnhelt.github.io/super-rss-feed';
-const BAKED_TOKEN = (() => {
-  const e = '__BAKED_GH_TOKEN__';
-  return e.startsWith('__') ? null : e.split('').reverse().join('');
-})();
-
 const CATS = [
   { slug:'local',   name:'Local News',       emoji:'🏔️' },
   { slug:'ai-tech', name:'AI & Tech',         emoji:'🤖' },
@@ -676,10 +685,9 @@ let query      = '';
 let focusIdx   = -1;
 let panelUrl   = null;
 
-let ghStateSha  = null;
-let ghSaveTimer = null;
 let podcastArts = [];
 let autoReadObserver = null;
+let reviews = [];   // podcasts/reviews/index.json, newest first
 
 // ── Utils ─────────────────────────────────────────────────────────────────────
 const $  = id => document.getElementById(id);
@@ -733,81 +741,15 @@ function loadLocal() {
   unreadOnly = stored === null ? true : stored !== '0';
 }
 
-// ── GitHub sync ───────────────────────────────────────────────────────────────
-async function syncGitHub() {
-  if (!BAKED_TOKEN) return;
-  try {
-    const r = await fetch(
-      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/reader-state.json`,
-      { headers: { 'Authorization': `Bearer ${BAKED_TOKEN}`, 'Accept': 'application/vnd.github+json' } }
-    );
-    if (r.status === 404) return;
-    if (!r.ok) return;
-    const meta = await r.json();
-    ghStateSha = meta.sha;
-    const data = JSON.parse(atob(meta.content.replace(/\n/g, '')));
-    for (const url of data.read    || []) readUrls.add(url);
-    for (const url of data.starred || []) starUrls.add(url);
-    Object.assign(corrs, data.corrs || {});
-    saveLocal();
-  } catch {}
-}
-
-function scheduleGhSave() {
-  if (!BAKED_TOKEN) return;
-  clearTimeout(ghSaveTimer);
-  ghSaveTimer = setTimeout(ghSaveState, 8000);
-}
-
-async function ghSaveState() {
-  if (!BAKED_TOKEN) return;
-  const payload = {
-    version: 1,
-    updated_at: new Date().toISOString(),
-    read: [...readUrls],
-    starred: [...starUrls],
-    corrs,
-  };
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
-  const body = {
-    message: `Update reader state [skip ci]`,
-    content,
-    ...(ghStateSha ? { sha: ghStateSha } : {}),
-  };
-  try {
-    const r = await fetch(
-      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/reader-state.json`,
-      {
-        method: 'PUT',
-        keepalive: true,
-        headers: {
-          'Authorization': `Bearer ${BAKED_TOKEN}`,
-          'Content-Type': 'application/json',
-          'Accept': 'application/vnd.github+json',
-        },
-        body: JSON.stringify(body),
-      }
-    );
-    if (r.ok) {
-      const data = await r.json();
-      ghStateSha = data.content.sha;
-    } else if (r.status === 409 || r.status === 422) {
-      await syncGitHub();
-      setTimeout(ghSaveState, 1000);
-    }
-  } catch {}
-}
-
 // ── Actions ───────────────────────────────────────────────────────────────────
-function markRead(url)   { readUrls.add(url);    saveLocal(); scheduleGhSave(); badge(); renderSidebar(); patchCard(url); }
-function markUnread(url) { readUrls.delete(url); saveLocal(); scheduleGhSave(); badge(); renderSidebar(); patchCard(url); }
+function markRead(url)   { readUrls.add(url);    saveLocal(); badge(); renderSidebar(); patchCard(url); }
+function markUnread(url) { readUrls.delete(url); saveLocal(); badge(); renderSidebar(); patchCard(url); }
 function toggleRead(url) { readUrls.has(url) ? markUnread(url) : markRead(url); }
 
 function toggleStar(url) {
   if (starUrls.has(url)) { starUrls.delete(url); toast('Unstarred'); }
   else                    { starUrls.add(url);    toast('⭐ Starred'); }
   saveLocal();
-  scheduleGhSave();
   patchCard(url);
   renderSidebar();
 }
@@ -816,7 +758,6 @@ function markAllRead() {
   const vs = visible();
   vs.forEach(a => readUrls.add(a.url));
   saveLocal();
-  scheduleGhSave();
   badge();
   renderSidebar();
   renderArts();
@@ -833,7 +774,7 @@ async function loadFeeds() {
 
   arts.sort((a, b) => new Date(b.date_published || 0) - new Date(a.date_published || 0));
 
-  await loadPodcastFeeds();
+  await Promise.all([loadPodcastFeeds(), loadReviews()]);
 
   // Backfill podcast_day on regular articles that also appear in a podcast day feed
   const podcastDayByUrl = new Map(podcastArts.map(a => [a.url, a.podcast_day]));
@@ -894,6 +835,55 @@ async function loadPodcastFeeds() {
   podcastArts.sort((a, b) => new Date(b.date_published || 0) - new Date(a.date_published || 0));
 }
 
+// ── Episode reviews ───────────────────────────────────────────────────────────
+// Same origin as this page: episode_review.py writes the index, the daily
+// workflow deploys it beside the review pages.
+async function loadReviews() {
+  try {
+    const r = await fetch('podcasts/reviews/index.json', {cache: 'no-cache'});
+    reviews = r.ok ? await r.json() : [];
+  } catch { reviews = []; }
+}
+
+// Newest review whose episode aired on this weekday.
+function reviewForDay(day) {
+  const wd = DAYS.indexOf(day);
+  return reviews.find(e => {
+    const [y, m, d] = (e.date || '').split('-').map(Number);
+    return y && (new Date(y, m - 1, d).getDay() + 6) % 7 === wd;
+  });
+}
+
+function reviewCardHtml(day) {
+  const e = reviewForDay(day);
+  if (!e) return '';
+  const s = e.summary || {};
+  const row = (s.cycle || []).find(c => c.today);
+  const level = ['good','minor','warn','bad'].includes(s.level) ? s.level : 'minor';
+  let focus = '';
+  if (row && row.focus) {
+    const pips = Array.from({length: row.of}, (_, i) => `<i class="${i + 1 === row.week ? 'on' : ''}"></i>`).join('');
+    focus = `<div class="rv-focus">🎯 <b>${esc(row.focus)}</b><span class="rv-pips" aria-label="week ${row.week} of ${row.of}">${pips}</span>week ${row.week}/${row.of}`
+          + (row.next && row.next !== row.focus ? ` · next: ${esc(row.next)}` : '')
+          + (row.event ? `<br>📅 ${esc(row.event)}` : '') + '</div>';
+  } else if (row) {
+    focus = `<div class="rv-focus">Broad theme, no super-cycle${row.event ? ` · 📅 ${esc(row.event)}` : ''}</div>`;
+  }
+  const kpis = (s.kpis || []).map(([k, v, c]) => `<span title="${esc(c)}">${esc(k)} <b>${esc(v)}</b></span>`).join('');
+  const acts = (s.actions || []).map(a =>
+    `<li class="${a.minor ? 'minor' : ''}">${esc(a.todo)}<br><span class="rv-ev">${esc(a.evidence)}</span>`
+    + (a.nights_seen > 1 ? ` <span class="rv-rec">seen ${a.nights_seen} nights</span>` : '') + '</li>').join('');
+  return `<div class="rv ${level}">
+    <div class="rv-head"><strong>📝 ${esc(s.label || 'Episode review')} — ${esc(e.date)}</strong>
+      <a href="${esc(e.url)}" target="_blank" rel="noopener">Full review ↗</a></div>
+    ${s.summary ? `<div class="rv-sum">${esc(s.summary)}</div>` : ''}
+    ${focus}
+    ${s.anchor ? `<div class="rv-q">❓ ${esc(s.anchor)}</div>` : ''}
+    ${kpis ? `<div class="rv-kpis">${kpis}</div>` : ''}
+    ${acts ? `<ul>${acts}</ul>` : ''}
+  </div>`;
+}
+
 // ── Auto-read on scroll ───────────────────────────────────────────────────────
 function setupAutoReadObserver() {
   if (autoReadObserver) { autoReadObserver.disconnect(); autoReadObserver = null; }
@@ -913,7 +903,6 @@ function setupAutoReadObserver() {
 function autoMarkRead(url, cardEl) {
   readUrls.add(url);
   saveLocal();
-  scheduleGhSave();
   badge();
   renderSidebar();
   if (unreadOnly) {
@@ -998,6 +987,8 @@ function toolbarLabel() {
   if (selCat === 'starred') return '⭐ Starred';
   if (selCat.startsWith('podcast-')) {
     const d = selCat.slice('podcast-'.length);
+    const row = (reviewForDay(d)?.summary?.cycle || []).find(c => c.today);
+    if (row) return `🎙 ${DAY_SHORT[d]} — ${row.theme}${row.focus ? ` · ${row.focus} (${row.week}/${row.of})` : ''}`;
     return `🎙 ${DAY_SHORT[d]} — ${DAY_THEME[d]}`;
   }
   const c = CATS.find(x => x.slug === selCat);
@@ -1017,16 +1008,18 @@ function renderArts() {
   syncHideReadButtons();
 
   const w = $('arts-wrap');
+  const rv = selCat.startsWith('podcast-') ? reviewCardHtml(selCat.slice('podcast-'.length)) : '';
   if (vs.length === 0) {
     if (!arts.length)        w.innerHTML = '<div class="msg"><div class="ic">📭</div><p>No feeds loaded.</p></div>';
     else if (unreadOnly)     w.innerHTML = '<div class="msg"><div class="ic">✅</div><p>All caught up!</p></div>';
     else if (query)          w.innerHTML = `<div class="msg"><div class="ic">🔍</div><p>No results for "<strong>${esc(query)}</strong>"</p></div>`;
     else                     w.innerHTML = '<div class="msg"><div class="ic">📭</div><p>Nothing here.</p></div>';
+    if (rv) w.insertAdjacentHTML('afterbegin', rv);
     setupAutoReadObserver();
     return;
   }
 
-  w.innerHTML = vs.map((a, i) => cardHtml(a, i)).join('');
+  w.innerHTML = rv + vs.map((a, i) => cardHtml(a, i)).join('');
 
   w.querySelectorAll('.card').forEach((el, i) => {
     const a = vs[i];
@@ -1219,69 +1212,14 @@ async function submitCorrection(url) {
   if (cat && cat !== a?.category) {
     corrs[url] = {...corrs[url], category_override: cat};
     saveLocal();
-    scheduleGhSave();
     renderSidebar();
     renderArts();
   }
 
-  if (!BAKED_TOKEN) {
-    stEl.className = 'save-st';
-    stEl.textContent = 'Saved locally (no GitHub token configured).';
-    toast('Saved locally');
-    saveLocal();
-    return;
-  }
-
-  btn.disabled = true;
   stEl.className = 'save-st';
-  stEl.textContent = 'Saving…';
-
-  const dk     = todayKey();
-  const payload = {
-    url, title: a?.title || '', source: a?.source || '',
-    category: a?.category || '', category_override: cat || null,
-    score: a?.score || 0,
-    rating: r.rating || null, better_theme: r.better_theme || null,
-    note: note || null, rated_at: new Date().toISOString(),
-  };
-
-  const apiBase = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/feedback/${dk}.json`;
-  const hdrs = {
-    'Authorization': `Bearer ${BAKED_TOKEN}`,
-    'Content-Type': 'application/json',
-    'Accept': 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28',
-  };
-
-  try {
-    let sha = null, existing = [];
-    const cur = await fetch(apiBase, {headers: hdrs});
-    if (cur.ok) {
-      const data = await cur.json();
-      sha = data.sha;
-      try {
-        const dec = JSON.parse(atob(data.content.replace(/\n/g,'')));
-        existing = dec.ratings || [];
-      } catch {}
-    }
-    const byUrl = Object.fromEntries(existing.map(x => [x.url, x]));
-    byUrl[url] = payload;
-    const body = {
-      message: `Add review feedback ${dk} [skip ci]`,
-      content: btoa(unescape(encodeURIComponent(JSON.stringify({date:dk, submitted_at:new Date().toISOString(), ratings:Object.values(byUrl)}, null, 2)))),
-      ...(sha ? {sha} : {}),
-    };
-    const res = await fetch(apiBase, {method:'PUT', headers:hdrs, body:JSON.stringify(body)});
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    stEl.className = 'save-st ok';
-    stEl.textContent = '✅ Saved to GitHub!';
-    toast('✅ Feedback saved');
-    saveLocal();
-  } catch(e) {
-    stEl.className = 'save-st err';
-    stEl.textContent = '❌ ' + e.message;
-    btn.disabled = false;
-  }
+  stEl.textContent = 'Saved locally in this browser.';
+  toast('Saved locally');
+  saveLocal();
 }
 
 // ── PWA badge + title ─────────────────────────────────────────────────────────
@@ -1367,9 +1305,7 @@ $('btn-close-panel').addEventListener('click', closePanel);
 
 // ── Settings ──────────────────────────────────────────────────────────────────
 function openSettings() {
-  $('sync-status-msg').textContent = BAKED_TOKEN
-    ? '✅ GitHub sync active — read/star state syncs across devices automatically.'
-    : '⚠️ No GitHub token. Open this page from the deployed GitHub Pages site for cross-device sync. State is saved locally in this browser only.';
+  $('sync-status-msg').textContent = 'Read/star state and corrections are saved locally in this browser only.';
   $('settings-modal').classList.remove('hidden');
 }
 $('btn-settings').addEventListener('click', openSettings);
@@ -1384,7 +1320,7 @@ async function refresh() {
   const btn = $('btn-refresh');
   btn.classList.add('spin');
   btn.disabled = true;
-  await Promise.all([loadFeeds(), syncGitHub()]);
+  await loadFeeds();
   renderSidebar();
   renderArts();
   badge();
@@ -1399,14 +1335,8 @@ async function init() {
   loadLocal();
   syncHideReadButtons();
   renderSidebar();
-  await syncGitHub();
   await loadFeeds();
-  setInterval(async () => { await syncGitHub(); renderSidebar(); badge(); }, 5 * 60 * 1000);
 }
-
-window.addEventListener('beforeunload', () => {
-  if (ghSaveTimer) { clearTimeout(ghSaveTimer); ghSaveState(); }
-});
 
 init();
 </script>
