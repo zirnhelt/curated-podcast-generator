@@ -379,5 +379,124 @@ class TestTransientFailureRetry:
         mock_get.return_value = bad
 
         assert fetch_weather() is None
-        assert mock_get.call_count == 5   # one call per location, no retries
+        # One call for Horsefly, no retries; without it the other four Open-Meteo
+        # calls are not made, and Environment Canada's three pages are asked once each.
+        assert mock_get.call_count == 4
         sleep.assert_not_called()
+
+
+# --- Environment Canada fallback (2026-11-21) ----------------------------------
+# Open-Meteo's per-address daily cap turned GitHub's runner away two nights running
+# (every call timed out; from another cloud address it answered 429 "Daily API
+# request limit exceeded"). Environment Canada's city pages stand in.
+
+from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
+
+import weather
+
+
+def _city_page(today, high=0, low=-8, morning=-4, warnings=None):
+    """One api.weather.gc.ca city page as the 1 AM run sees it: last night's period first."""
+    en = lambda v: {"en": v, "fr": v}
+    weekday = today.strftime("%A")
+    yesterday = (today - timedelta(days=1)).strftime("%A")
+    eight_am = datetime(today.year, today.month, today.day, 8,
+                        tzinfo=ZoneInfo("America/Vancouver")).astimezone(timezone.utc)
+    hour = lambda at, temp, cond: {"timestamp": at.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                   "temperature": {"value": en(temp)}, "condition": en(cond)}
+    return {"properties": {
+        "forecastGroup": {"forecasts": [
+            {"period": {"textForecastName": en("Tonight"), "value": en(f"{yesterday} night")},
+             "temperatures": {"temperature": [{"class": en("low"), "value": en(low)}]},
+             "textSummary": en("Clear. Low minus 8."),
+             "abbreviatedForecast": {"textSummary": en("Clear")}},
+            {"period": {"textForecastName": en(weekday), "value": en(weekday)},
+             "temperatures": {"temperature": [{"class": en("high"), "value": en(high)}]},
+             "textSummary": en("Cloudy. 30 percent chance of flurries. Wind up to 15 km/h. High zero."),
+             "abbreviatedForecast": {"textSummary": en("Chance of flurries")}},
+        ]},
+        "hourlyForecastGroup": {"hourlyForecasts": [
+            hour(eight_am - timedelta(hours=1), -99, "Thunderstorm"),  # the wrong hour, loudly
+            hour(eight_am, morning, "Chance of flurries"),
+        ]},
+        "warnings": warnings or [],
+    }}
+
+
+def _pages(*bodies):
+    resps = []
+    for body in bodies:
+        m = MagicMock()
+        m.json.return_value = body
+        m.raise_for_status = MagicMock()
+        resps.append(m)
+    return resps
+
+
+SATURDAY = date(2026, 11, 21)
+
+
+class TestEnvironmentCanadaFallback:
+    @patch("weather.requests.get")
+    def test_reads_today_by_weekday_and_the_morning_hour(self, mock_get):
+        mock_get.side_effect = _pages(*[_city_page(SATURDAY)] * 3)
+        result = weather.fetch_eccc_weather(SATURDAY)
+        assert result["source"] == weather.ECCC_SOURCE
+        wl = result["williams_lake"]
+        assert (wl["high"], wl["low"], wl["morning_temp"]) == (0, -8, -4)
+        assert "around -4 degrees this morning" in result["summary"]
+        assert "High zero." in result["summary"]
+        assert "km/h" not in result["summary"] and "15 k-p-h" in result["summary"]
+        assert "100 Mile House chance of flurries, high 0" in result["summary"]
+        assert [c.args[0].rsplit("/", 1)[1] for c in mock_get.call_args_list] == ["bc-76", "bc-7", "bc-64"]
+
+    @patch("weather.requests.get")
+    def test_gives_horsefly_no_figure(self, mock_get):
+        # SOURCED OR UNSAID: there is no Horsefly city page.
+        mock_get.side_effect = _pages(*[_city_page(SATURDAY)] * 3)
+        result = weather.fetch_eccc_weather(SATURDAY)
+        assert "Horsefly Lake" not in result["summary"]
+        assert "nearest to Horsefly" in result["summary"]
+        prompt = format_weather_for_prompt(result)
+        assert "no Horsefly forecast" in prompt
+        assert "home base at Horsefly Lake" not in prompt
+
+    @patch("weather.requests.get")
+    def test_no_forecast_for_today_is_none(self, mock_get):
+        # A page from another day (or a changed schema) must not air as today's.
+        mock_get.side_effect = _pages(*[_city_page(SATURDAY + timedelta(days=2))] * 3)
+        assert weather.fetch_eccc_weather(SATURDAY) is None
+
+    @patch("weather.requests.get")
+    def test_warnings_are_read_once(self, mock_get):
+        snow = [{"description": {"en": "Snowfall warning in effect.", "fr": "x"}}]
+        mock_get.side_effect = _pages(*[_city_page(SATURDAY, warnings=snow)] * 3)
+        summary = weather.fetch_eccc_weather(SATURDAY)["summary"]
+        assert summary.count("Environment Canada alert: Snowfall warning in effect.") == 1
+
+    @patch("weather.requests.get")
+    def test_slide_lists_the_three_towns(self, mock_get):
+        mock_get.side_effect = _pages(*[_city_page(SATURDAY)] * 3)
+        slide = weather_slide_data(weather.fetch_eccc_weather(SATURDAY))
+        assert slide["source"] == "Environment Canada"
+        assert [l["name"] for l in slide["locations"]] == ["Williams Lake", "100 Mile House", "Quesnel"]
+        assert slide["locations"][0] == {"name": "Williams Lake", "temp": -4,
+                                         "conditions": "Chance of flurries", "high": 0, "low": -8}
+
+    @patch("weather.time.sleep")
+    @patch("weather.requests.get")
+    def test_stands_in_when_open_meteo_times_out(self, mock_get, _sleep):
+        import requests as _requests
+        today = datetime.now(ZoneInfo("America/Vancouver")).date()
+        timeout = _requests.exceptions.ReadTimeout("read timeout=10")
+        # Horsefly twice (one retry), then straight to Environment Canada's three pages.
+        mock_get.side_effect = [timeout, timeout] + _pages(*[_city_page(today)] * 3)
+        result = fetch_weather()
+        assert result["source"] == "Environment Canada"
+        assert mock_get.call_count == 5
+
+    @patch("weather.requests.get")
+    def test_open_meteo_nights_say_so(self, mock_get):
+        mock_get.side_effect = _make_mock_get(*[_mock_api_response()] * 5).side_effect
+        assert fetch_weather()["source"] == "Open-Meteo"

@@ -415,6 +415,13 @@ class TestSpokenCreditsNameTheirSources:
         assert "Open-Meteo" in text
         assert "Brave Search" not in text
 
+    def test_a_fallback_provider_is_named_instead(self, monkeypatch, tmp_path):
+        # The night Environment Canada stood in, it is the provider owed the credit.
+        text = self._credits(monkeypatch, tmp_path, weather_used=True,
+                             weather_source="Environment Canada")
+        assert "Weather data from Environment Canada." in text
+        assert "Open-Meteo" not in text
+
     def test_weather_source_comes_from_config(self, monkeypatch, tmp_path):
         monkeypatch.setitem(podcast_generator.CONFIG['credits']['structured'],
                             'weather_data', 'Some Other Service')

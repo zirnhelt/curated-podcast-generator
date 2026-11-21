@@ -41,6 +41,8 @@ paths:
 
 **Third-party text and URLs.** Episode notes are HTML in a public feed: feed titles, bylines and model summaries go in `html.escape`d, links only when `_public_http_url` passes, and every CDATA body (bespoke feed included) through `_cdata_safe`. Every fetch of a feed- or model-supplied URL goes through `_get_public`, never a bare `requests.get`: each hop is checked by name and by resolved address, the body is capped (`MAX_BODY_BYTES`) and the whole call is abandoned at `MAX_FETCH_SECONDS`. Keep that clock a thread join, never a check between chunks.
 
+**Weather.** Open-Meteo first; a failed Horsefly fetch falls back to Environment Canada (`fetch_eccc_weather`), which has no Horsefly page, so Horsefly gets no figure that night. The provider crosses stages in `# Weather:` and both credits name it; the fallback `degrade()`s as `script/weather-fallback`.
+
 **Brave spend.** Two plans, two meters: Search ($5/1000, capped) and Answers (monthly credit).
 - **The Search cap is shared with `super-rss-feed`** — one key serves both repos. Read Brave's per-key usage export before trusting any estimate.
 - A 402 closes that meter for the run (`_trip_brave_wall`); a spent meter is a reason to ask the other one, not to give up.
