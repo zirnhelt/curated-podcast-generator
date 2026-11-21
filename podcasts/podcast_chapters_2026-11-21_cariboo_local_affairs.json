@@ -1,0 +1,25 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0.0,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 46.6,
+      "title": "News Roundup"
+    },
+    {
+      "startTime": 547.7,
+      "title": "Community Spotlight"
+    },
+    {
+      "startTime": 581.9,
+      "title": "Deep Dive"
+    },
+    {
+      "startTime": 1122.8,
+      "title": "Credits"
+    }
+  ]
+}
