@@ -776,3 +776,19 @@ upkeep, and the storyboard had the story as a clean pivot. The system prompt let
 stakes and costs", and on a Repair day Casey's voice card reached for one. Now the hosts weigh
 the stakes and costs the material shows, and the script prompt and both polish prompts hold
 a roundup reaction to something the story says.
+
+## Wednesdays explain the tech (2026-11-21)
+
+**Listener feedback:** Wednesdays are "far too insider baseball", with acronyms and presumed
+foreknowledge. Wednesday is theme 2, Gear, Gadgets & Practical Tech (homelab, networking,
+repair), where the sources are written for people who already own the gear.
+
+**The fix is one paragraph in that theme's `lens`** (`config/themes.json`), because the lens
+reaches both the storyboard and the script prompt and no other day's. It asks for the whole
+episode, roundup included, to be written for a listener who has never owned the gear: say what
+a thing does before naming it, spell out or skip acronyms, one plain sentence on the mechanism,
+no assumed specs or earlier episodes. An explanation defines a term and adds no fact about the
+story, so SOURCED OR UNSAID still holds.
+
+**Not changed:** the polish prompts never see the lens. If a Wednesday's polish trims the
+explanations back out, the next step is a line in both polish prompts (they change together).

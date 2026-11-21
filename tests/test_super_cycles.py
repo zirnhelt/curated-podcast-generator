@@ -132,6 +132,16 @@ class TestFocusAwareDeepDive:
         # Subtlety guardrail: focus steers curation but is never announced on air
         assert "never announce" in with_focus
 
+    def test_wednesday_theme_alone_asks_for_plain_language(self):
+        # Listener feedback 2026-11-21: Wednesday (Gear, Gadgets & Practical Tech) ran
+        # on acronyms and assumed knowledge. The ask lives in that theme's lens only.
+        gear = pg._build_theme_lens("Gear, Gadgets & Practical Tech")
+        assert "PLAIN LANGUAGE" in gear
+        assert "adds no fact" in gear
+        for info in pg.CONFIG['themes'].values():
+            if info['name'] != "Gear, Gadgets & Practical Tech":
+                assert "PLAIN LANGUAGE" not in info.get('lens', '')
+
     def test_no_prompt_surface_names_the_rotation(self):
         lens = pg._build_theme_lens("Working Lands & Industry", focus=MINING_FOCUS)
         for phrase in ("rotation", "this week's focus", "focus week", "super cycle"):
