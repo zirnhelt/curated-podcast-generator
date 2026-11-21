@@ -91,6 +91,19 @@ the script file's `#` header instead, read back by `read_script_metadata`:
   all until all five locations hit their 10 s read timeout inside one window on 2026-09-06; it
   now re-asks once on a transport failure (never on a malformed body, which would come back
   malformed) and `degrade()`s when the sweep comes back empty.
+  **Environment Canada stands in when Open-Meteo doesn't answer (2026-11-21).** Two nights
+  running (11-20, 11-21) every Open-Meteo call from the runner timed out, after 30 clean
+  nights; from another shared cloud address it answered `429 "Daily API request limit
+  exceeded"` (10,000 a day per IP, shared by every project on the address). A retry can't fix
+  a cap, so on the producer's call a failed Horsefly fetch now goes straight to Environment
+  Canada's city pages (`fetch_eccc_weather`: Williams Lake, 100 Mile House, Quesnel; free,
+  keyless, Open Government Licence – Canada) instead of waiting out four more timeouts.
+  Today's forecast is found by weekday, because at 1 AM the page still leads with last night,
+  and the morning figure is the hourly forecast's 8 AM row. There is no Horsefly page, so
+  Williams Lake leads and the prompt forbids a Horsefly figure (SOURCED OR UNSAID). The
+  provider rides the header as `# Weather: Environment Canada` (`yes` still means the
+  configured Open-Meteo credit), so both credits name it, and the night `degrade()`s as
+  `script/weather-fallback`. Only when both providers fail does `script/weather` degrade.
 - **`# Anchor:`** — the week's anchor question, which is named on air and appears in the
   episode description. Whitespace-collapsed to one line, since the header parser reads one
   key per line. Scripts predating this header degrade to `None`.

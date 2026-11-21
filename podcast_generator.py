@@ -101,7 +101,8 @@ from weekly_anchor import (
 )
 
 # Import weather and ambient audio modules
-from weather import fetch_weather, format_weather_for_prompt, weather_slide_data
+from weather import (ECCC_SOURCE, ECCC_WRITTEN_CREDIT, fetch_weather,
+                     format_weather_for_prompt, weather_slide_data)
 from ambient import get_ambient_transition
 
 # Reuse the git-log plumbing already built for the Sunday quality-review job
@@ -9427,7 +9428,7 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False, anchor=None, kagi_used=False, kagi_news_used=False):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False, anchor=None, kagi_used=False, kagi_news_used=False, weather_source: str = ""):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
@@ -9562,7 +9563,9 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     review_model_label = _review_credit_label()
     tts_label = get_tts_credit()
     brave_credit = "Web Search: Brave Search API<br>"
-    weather_credit = f"Weather Data: {credits['weather_data']}<br>" if weather_used else ""
+    # The provider that answered tonight: Environment Canada on a fallback night.
+    weather_name = ECCC_WRITTEN_CREDIT if weather_source == ECCC_SOURCE else credits['weather_data']
+    weather_credit = f"Weather Data: {weather_name}<br>" if weather_used else ""
     cohere_credit = f"Content Enrichment: {credits['content_enrichment']}<br>" if cohere_used else ""
     kagi_credit = f"Page Extraction: {credits['page_extraction']}<br>" if kagi_used else ""
     if kagi_news_used:
@@ -10187,6 +10190,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         debate_summary=debate_summary, psa_info=psa_info, brave_used=brave_used,
         weather_used=weather_used, cohere_used=cohere_used, anchor=anchor,
         kagi_used=kagi_used, kagi_news_used=kagi_news_used,
+        weather_source=(weather_data or {}).get("source", ""),
     )
 
     # Match articles against script, then reorder the roundup to follow the
@@ -12954,7 +12958,7 @@ def _append_comparison_log(entry):
 
 
 def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False,
-                               weather_used=False, kagi_used=False):
+                               weather_used=False, kagi_used=False, weather_source: str = ""):
     """Convert script to audio with music interludes and theme-aware ambient transitions."""
     global _tts_provider_used
     print("📊 Generating audio with music interludes...")
@@ -13248,7 +13252,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             # the segment existed, and the spoken credits never did (2026-08-17).
             # Gated on the header flag, not on config: on a day the fetch failed
             # there is no weather segment and nothing to credit.
-            _weather_provider = _credits_cfg['structured'].get('weather_data', '')
+            _weather_provider = weather_source or _credits_cfg['structured'].get('weather_data', '')
             weather_spoken = (
                 f" Weather data from {_weather_provider}."
                 if weather_used and _weather_provider else ""
@@ -14416,7 +14420,8 @@ def generate_podcast_rss_feed():
 
 def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
                         anchor_question: str | None = None,
-                        weather_used: bool = False, kagi_used: bool = False) -> str | None:
+                        weather_used: bool = False, kagi_used: bool = False,
+                        weather_source: str = "") -> str | None:
     """Save the generated script to a file.
 
     The header carries the metadata the audio stage needs, since it runs as a
@@ -14441,7 +14446,8 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
             f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n",
             f"# Theme: {theme_name}\n",
             f"# Brave: {'yes' if brave_used else 'no'}\n",
-            f"# Weather: {'yes' if weather_used else 'no'}\n",
+            # `yes` is Open-Meteo (the configured credit); a fallback names its provider.
+            f"# Weather: {(weather_source or 'yes') if weather_used else 'no'}\n",
             f"# Kagi: {'yes' if kagi_used else 'no'}\n",
             # Whitespace-collapsed: the header parser reads one line per key, so
             # a question carrying a newline would silently truncate the header.
@@ -14462,14 +14468,15 @@ def read_script_metadata(script_path) -> dict:
     """Parse the `# Key: value` header written by save_script_to_file().
 
     Returns {"theme": str | None, "brave_used": bool, "weather_used": bool,
-    "kagi_used": bool, "anchor": str | None}. Scripts written before the header
+    "weather_source": str, "kagi_used": bool, "anchor": str | None}; weather_source is
+    the provider a fallback night named (`# Weather: Environment Canada`), else "". Scripts written before the header
     carried `# Brave:`, `# Weather:` or `# Kagi:` degrade to False, scripts predating `# Anchor:` degrade to
     anchor=None, and any script without a `# Theme:` line degrades to
     theme=None — all of which the downstream callers already tolerate.
     """
     metadata: dict = {
-        "theme": None, "brave_used": False, "weather_used": False, "kagi_used": False,
-        "anchor": None,
+        "theme": None, "brave_used": False, "weather_used": False, "weather_source": "",
+        "kagi_used": False, "anchor": None,
     }
     try:
         with open(script_path, "r", encoding="utf-8") as fh:
@@ -14484,7 +14491,10 @@ def read_script_metadata(script_path) -> dict:
                 elif key == "brave":
                     metadata["brave_used"] = value.lower() in ("yes", "true", "1")
                 elif key == "weather":
-                    metadata["weather_used"] = value.lower() in ("yes", "true", "1")
+                    flag = value.lower()
+                    metadata["weather_used"] = flag not in ("", "no", "false", "0")
+                    if metadata["weather_used"] and flag not in ("yes", "true", "1"):
+                        metadata["weather_source"] = value
                 elif key == "kagi":
                     metadata["kagi_used"] = value.lower() in ("yes", "true", "1")
                 elif key == "anchor" and value:
@@ -14588,6 +14598,7 @@ def _recover_orphaned_episodes(lookback_days=3):
                     brave_used=metadata["brave_used"],
                     weather_used=metadata["weather_used"],
                     kagi_used=metadata["kagi_used"],
+                    weather_source=metadata["weather_source"],
                 )
                 if result:
                     print(f"   ✅ Recovery succeeded: {audio_path.name}")
@@ -15099,6 +15110,10 @@ def run_script_stage() -> tuple[str, str] | None:
             weather_data = fetch_weather()
             if weather_data:
                 print(f"   {weather_data['summary']}")
+                if weather_data.get("source") == ECCC_SOURCE:
+                    degrade("script/weather-fallback",
+                            "Open-Meteo did not answer — Environment Canada's forecast "
+                            "stood in (Williams Lake leads; Horsefly gets no figure)")
             else:
                 # fetch_weather() handles its own failure, so the segment sees a
                 # clean run and the report used to say the weather phase was fine
@@ -15474,6 +15489,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 script, today_theme, brave_used=brave_used,
                 anchor_question=today_anchor.get("question") if today_anchor else None,
                 weather_used=bool(weather_data),
+                weather_source=(weather_data or {}).get("source", ""),
                 # The spoken credit says "Kagi" for either product.
                 kagi_used=(_KAGI_EXTRACT_STATE.get("used", False)
                            or _kite_body_used(news_articles, deep_dive_articles)),
@@ -15623,6 +15639,7 @@ def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
                 script, audio_filename, theme_name=today_theme,
                 brave_used=brave_used, weather_used=weather_used,
                 kagi_used=metadata["kagi_used"],
+                weather_source=metadata["weather_source"],
             )
 
         if audio_file:

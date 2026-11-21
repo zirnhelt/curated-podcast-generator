@@ -16,12 +16,19 @@ Covers four communities spread across the Cariboo for a regional picture:
 Plus a randomly selected Chilcotin plateau community for regional variety:
   - Alexis Creek, Riske Creek, Hanceville, Tatla Lake, Anahim Lake, or Redstone
 
-Uses the Open-Meteo free API — no API key required.
+Uses the Open-Meteo free API — no API key required. When Open-Meteo does not
+answer for Horsefly, Environment Canada's city-page forecasts stand in
+(`fetch_eccc_weather`): Williams Lake, 100 Mile House and Quesnel. There is no
+Horsefly page there, so on those nights Williams Lake leads and Horsefly gets no
+figure. The result's `source` names the provider, for the credits.
 Returns a plain-English summary suitable for injection into the podcast script prompt.
 """
 
 import random
 import time
+from datetime import date, datetime
+from typing import Any
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -52,6 +59,19 @@ CHILCOTIN_TOWNS = [
 ]
 
 TIMEZONE = "America/Vancouver"
+
+OPEN_METEO_SOURCE = "Open-Meteo"
+
+# Environment Canada's city pages, the fallback when Open-Meteo turns us away. On
+# 2026-11-20 and 11-21 every Open-Meteo call from GitHub's runner timed out; from
+# another shared cloud address it answered 429 "Daily API request limit exceeded"
+# (10,000 a day per IP, shared by every project on that address). Free and keyless,
+# under the Open Government Licence - Canada, which asks for the source to be named.
+ECCC_SOURCE = "Environment Canada"
+ECCC_WRITTEN_CREDIT = "Environment and Climate Change Canada (Open Government Licence – Canada)"
+ECCC_URL = "https://api.weather.gc.ca/collections/citypageweather-realtime/items/{site}"
+# Williams Lake first: it leads the summary in Horsefly's place.
+ECCC_SITES = (("Williams Lake", "bc-76"), ("100 Mile House", "bc-7"), ("Quesnel", "bc-64"))
 
 # Open-Meteo is free, keyless and normally answers in well under a second, so a
 # read timeout is a blip rather than a verdict — and there was no retry at all
@@ -118,6 +138,29 @@ def _morning_index(hourly: dict, day: str) -> int:
     return hourly["time"].index(f"{day}T{MORNING_HOUR:02d}:00")
 
 
+def _get_json(url: str, params: dict, label: str) -> Any:
+    """GET a JSON body, re-asking once on a transport failure; None when it never comes.
+
+    Only a transport-level failure is worth re-asking: a timeout, a dropped
+    connection or a 5xx. A malformed response would come back malformed a second
+    time, and paying the backoff for it delays the remaining locations for nothing.
+    """
+    for attempt in range(1, FETCH_ATTEMPTS + 1):
+        try:
+            resp = requests.get(url, params=params, timeout=REQUEST_TIMEOUT_S)
+            resp.raise_for_status()
+            return resp.json()
+        except Exception as e:
+            retryable = isinstance(e, requests.exceptions.RequestException)
+            if retryable and attempt < FETCH_ATTEMPTS:
+                print(f"  Weather fetch failed ({label}), retrying: {e}")
+                time.sleep(RETRY_BACKOFF_S)
+                continue
+            print(f"  Weather fetch failed ({label}): {e}")
+            return None
+    return None
+
+
 def _fetch_location(lat, lon):
     """Fetch today's morning outlook and daily forecast for a single location.
 
@@ -135,29 +178,9 @@ def _fetch_location(lat, lon):
         "wind_speed_unit": "kmh",
     }
 
-    data = None
-    for attempt in range(1, FETCH_ATTEMPTS + 1):
-        try:
-            resp = requests.get(
-                "https://api.open-meteo.com/v1/forecast",
-                params=params,
-                timeout=REQUEST_TIMEOUT_S,
-            )
-            resp.raise_for_status()
-            data = resp.json()
-            break
-        except Exception as e:
-            # Only a transport-level failure is worth re-asking: a timeout, a
-            # dropped connection or a 5xx. A malformed response would come back
-            # malformed a second time, and paying the backoff for it delays the
-            # remaining four locations for nothing.
-            retryable = isinstance(e, requests.exceptions.RequestException)
-            if retryable and attempt < FETCH_ATTEMPTS:
-                print(f"  Weather fetch failed ({lat}, {lon}), retrying: {e}")
-                time.sleep(RETRY_BACKOFF_S)
-                continue
-            print(f"  Weather fetch failed ({lat}, {lon}): {e}")
-            return None
+    data = _get_json("https://api.open-meteo.com/v1/forecast", params, f"{lat}, {lon}")
+    if data is None:
+        return None
 
     try:
         daily = data["daily"]
@@ -224,10 +247,15 @@ def fetch_weather():
     plus a randomly selected Chilcotin plateau community for variety.
 
     Returns:
-        dict with 'summary' string for the script prompt, plus raw data per location.
-        None if the primary (Horsefly Lake) fetch fails entirely.
+        dict with 'summary' string for the script prompt, raw data per location and
+        'source' (the provider, for the credits). When Horsefly Lake's fetch fails,
+        Environment Canada's forecast (`fetch_eccc_weather`), or None if that fails too.
     """
     horsefly = _fetch_location(HORSEFLY_LAT, HORSEFLY_LON)
+    if not horsefly:
+        # Open-Meteo is down or has turned this address away: the other four
+        # would wait out the same timeouts, and without Horsefly nothing airs.
+        return fetch_eccc_weather()
     hundred_mile = _fetch_location(HUNDRED_MILE_LAT, HUNDRED_MILE_LON)
     williams = _fetch_location(WILLIAMS_LAKE_LAT, WILLIAMS_LAKE_LON)
     quesnel = _fetch_location(QUESNEL_LAT, QUESNEL_LON)
@@ -236,9 +264,6 @@ def fetch_weather():
     chilcotin_town = random.choice(CHILCOTIN_TOWNS)
     chilcotin = _fetch_location(chilcotin_town["lat"], chilcotin_town["lon"])
     chilcotin_name = chilcotin_town["name"]
-
-    if not horsefly:
-        return None
 
     hf = horsefly
 
@@ -320,6 +345,109 @@ def fetch_weather():
         "chilcotin_town_name": chilcotin_name,
         "williams_lake_driving_impact": williams is not None and _has_driving_impact(williams),
         "summary": summary,
+        "source": OPEN_METEO_SOURCE,
+    }
+
+
+def _en(node: Any) -> Any:
+    """The English half of an Environment Canada {"en", "fr"} pair."""
+    return node.get("en") if isinstance(node, dict) else None
+
+
+def _eccc_temperature(period: dict, kind: str) -> int | None:
+    for temp in (period.get("temperatures") or {}).get("temperature") or []:
+        if _en(temp.get("class")) == kind and isinstance(_en(temp.get("value")), (int, float)):
+            return round(_en(temp["value"]))
+    return None
+
+
+def _spoken(text: str) -> str:
+    # The hosts' voices read "km/h" letter by letter; the Open-Meteo lines say k-p-h.
+    return text.replace("km/h", "k-p-h")
+
+
+def _eccc_location(props: dict, today: date) -> dict | None:
+    """Today's forecast from one city page, or None when it has no forecast for today.
+
+    The show is written between 1 and 3 AM, when the page's first period is still
+    the night before, so today is found by its weekday, never as the first period.
+    The morning figure is the MORNING_HOUR row of the hourly forecast.
+    """
+    try:
+        periods = props["forecastGroup"]["forecasts"]
+        weekday = today.strftime("%A")
+        idx = next(i for i, f in enumerate(periods) if _en(f["period"]["value"]) == weekday)
+        day = periods[idx]
+        text = _en(day["textSummary"])
+        high = _eccc_temperature(day, "high")
+    except (KeyError, TypeError, StopIteration):
+        return None
+    if not text or high is None:
+        return None
+    low = None
+    for j in (idx - 1, idx + 1):   # the night before today's day, else the night after
+        if 0 <= j < len(periods):
+            low = _eccc_temperature(periods[j], "low")
+            if low is not None:
+                break
+    morning_temp = morning_conditions = None
+    tz = ZoneInfo(TIMEZONE)
+    for hour in (props.get("hourlyForecastGroup") or {}).get("hourlyForecasts") or []:
+        try:
+            at = datetime.fromisoformat(hour["timestamp"].replace("Z", "+00:00")).astimezone(tz)
+        except (KeyError, TypeError, ValueError):
+            continue
+        if at.date() == today and at.hour == MORNING_HOUR:
+            value = _en((hour.get("temperature") or {}).get("value"))
+            morning_temp = round(value) if isinstance(value, (int, float)) else None
+            morning_conditions = _en(hour.get("condition"))
+            break
+    warnings = [_en(w.get("description")) for w in props.get("warnings") or [] if isinstance(w, dict)]
+    return {
+        "text": _spoken(text),
+        "conditions": _en((day.get("abbreviatedForecast") or {}).get("textSummary")) or "",
+        "high": high,
+        "low": low,
+        "morning_temp": morning_temp,
+        "morning_conditions": morning_conditions,
+        "warnings": [w for w in warnings if isinstance(w, str) and w],
+    }
+
+
+def fetch_eccc_weather(today: date | None = None) -> dict | None:
+    """Environment Canada's forecast for the Cariboo, or None if Williams Lake has none.
+
+    Williams Lake leads in Horsefly's place (there is no Horsefly city page) and
+    the summary says so, so no Horsefly figure is ever read on air.
+    """
+    today = today or datetime.now(ZoneInfo(TIMEZONE)).date()
+    found: dict[str, dict | None] = {}
+    for name, site in ECCC_SITES:
+        data = _get_json(ECCC_URL.format(site=site), {"f": "json", "lang": "en"}, name)
+        props = data.get("properties") if isinstance(data, dict) else None
+        found[name] = _eccc_location(props, today) if isinstance(props, dict) else None
+    wl = found["Williams Lake"]
+    if not wl:
+        return None
+
+    lead = "Environment Canada's forecast for Williams Lake, the nearest to Horsefly"
+    if wl["morning_temp"] is not None:
+        lead += (f": around {wl['morning_temp']} degrees this morning"
+                 + (f", {wl['morning_conditions'].lower()}" if wl["morning_conditions"] else ""))
+    summary = f"{lead}. Today: {wl['text']}"
+    regional = [f"{name} {loc['conditions'].lower() or 'forecast'}, high {loc['high']}"
+                for name, loc in found.items() if loc and name != "Williams Lake"]
+    if regional:
+        summary += " Across the Cariboo — " + ", ".join(regional) + "."
+    alerts = list(dict.fromkeys(w for loc in found.values() if loc for w in loc["warnings"]))
+    for alert in alerts[:2]:
+        summary += f" Environment Canada alert: {_spoken(alert)}"
+    return {
+        "williams_lake": wl,
+        "hundred_mile": found.get("100 Mile House"),
+        "quesnel": found.get("Quesnel"),
+        "summary": summary,
+        "source": ECCC_SOURCE,
     }
 
 
@@ -337,6 +465,15 @@ def weather_slide_data(weather_data: dict | None) -> dict | None:
         return None
 
     d = weather_data
+    if d.get("source") == ECCC_SOURCE:
+        rows = [{"name": name, "temp": loc["morning_temp"] if loc["morning_temp"] is not None else loc["high"],
+                 "conditions": loc["morning_conditions"] or loc["conditions"],
+                 "high": loc["high"], "low": "–" if loc["low"] is None else loc["low"]}
+                for name, loc in (("Williams Lake", d.get("williams_lake")),
+                                  ("100 Mile House", d.get("hundred_mile")),
+                                  ("Quesnel", d.get("quesnel"))) if loc]
+        return {"locations": rows, "source": ECCC_SOURCE} if rows else None
+
     locations = []
     for name, loc in [
         ("Horsefly Lake", d.get("horsefly")),
@@ -357,7 +494,7 @@ def weather_slide_data(weather_data: dict | None) -> dict | None:
 
     if not locations:
         return None
-    return {"locations": locations, "source": "Open-Meteo"}
+    return {"locations": locations, "source": OPEN_METEO_SOURCE}
 
 
 def format_weather_for_prompt(weather_data):
@@ -375,10 +512,16 @@ def format_weather_for_prompt(weather_data):
     # The rotating fifth town is named and nothing more. Calling it "today's
     # Chilcotin plateau community" in the prompt is how that label reached the
     # air; the listener wants the forecast for the town, not its geography.
+    lead = ("home base at Horsefly Lake, then a brief sweep across each of the other "
+            "communities named below")
+    if weather_data.get("source") == ECCC_SOURCE:
+        # SOURCED OR UNSAID: Environment Canada has no Horsefly forecast.
+        lead = ("Williams Lake first, then a brief sweep across the other communities named "
+                "below. Environment Canada has no Horsefly forecast today: give no figure for "
+                "Horsefly and never present Williams Lake's as Horsefly's")
     return (
         "WEATHER CHECK (Cariboo-wide — for the hosts to deliver naturally in the welcome "
-        "section. Cover the regional highlights: home base at Horsefly Lake, then a brief "
-        "sweep across each of the other communities named below. Name each town plainly — "
+        f"section. Cover the regional highlights: {lead}. Name each town plainly — "
         "no regional labels (\"on the Chilcotin plateau\", \"in the south Cariboo\") and no "
         "explaining where it is. Keep it to 2-3 sentences, conversational, not a formal "
         "forecast. Flag any driving alerts if noted below.\n"

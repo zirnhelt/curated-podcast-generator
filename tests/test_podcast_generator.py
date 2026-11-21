@@ -1044,6 +1044,18 @@ class TestPolishOutcome:
         used = pg.generate_episode_description([], [], "Working Lands & Industry", kagi_used=True)
         assert "Page Extraction: Kagi Extract<br>" in used
 
+    def test_the_weather_credit_names_the_provider_that_answered(self):
+        # 2026-11-21: Environment Canada stands in when Open-Meteo does not answer.
+        # Its licence (Open Government Licence - Canada) asks for the source to be named.
+        import podcast_generator as pg
+        usual = pg.generate_episode_description([], [], "Theme", weather_used=True)
+        assert "Weather Data: Open-Meteo<br>" in usual
+        fallback = pg.generate_episode_description([], [], "Theme", weather_used=True,
+                                                   weather_source="Environment Canada")
+        assert ("Weather Data: Environment and Climate Change Canada "
+                "(Open Government Licence – Canada)<br>") in fallback
+        assert "Open-Meteo" not in fallback
+
 
 class TestPolishFallbackBudget:
     def test_fallback_matches_the_batch_budget(self, monkeypatch):
@@ -5427,6 +5439,7 @@ class TestScriptMetadataHeader:
             "theme": "Working Lands & Industry",
             "brave_used": True,
             "weather_used": False,
+            "weather_source": "",
             "kagi_used": False,
             "anchor": None,
         }
@@ -5449,6 +5462,25 @@ class TestScriptMetadataHeader:
     def test_weather_unused_stays_false(self, tmp_path, monkeypatch):
         path = self._save(tmp_path, monkeypatch, "Theme", False, weather_used=False)
         assert read_script_metadata(path)["weather_used"] is False
+
+    def test_a_fallback_provider_crosses_the_stage_boundary(self, tmp_path, monkeypatch):
+        # 2026-11-21: on a night Open-Meteo turns the runner away, Environment
+        # Canada's forecast airs, and the render stage's spoken credit must name it.
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        path = save_script_to_file("**RILEY:** Hello.\n", "Theme", weather_used=True,
+                                   weather_source="Environment Canada")
+        assert "# Weather: Environment Canada" in open(path, encoding="utf-8").read()
+        meta = read_script_metadata(path)
+        assert (meta["weather_used"], meta["weather_source"]) == (True, "Environment Canada")
+
+    def test_a_yes_header_names_no_provider(self, tmp_path):
+        # Every script before the fallback says "yes"; its credit is the configured one.
+        f = tmp_path / "podcast_script_2026-11-19_x.txt"
+        f.write_text("# Weather: yes\n\n**RILEY:** Hi.\n", encoding="utf-8")
+        meta = read_script_metadata(f)
+        assert (meta["weather_used"], meta["weather_source"]) == (True, "")
 
     def test_round_trips_brave_unused(self, tmp_path, monkeypatch):
         path = self._save(tmp_path, monkeypatch, "Wild Spaces & Outdoor Life", False)
@@ -5481,6 +5513,7 @@ class TestScriptMetadataHeader:
             "theme": "Legacy Theme",
             "brave_used": False,
             "weather_used": False,
+            "weather_source": "",
             "kagi_used": False,
             "anchor": None,
         }
@@ -5490,6 +5523,7 @@ class TestScriptMetadataHeader:
             "theme": None,
             "brave_used": False,
             "weather_used": False,
+            "weather_source": "",
             "kagi_used": False,
             "anchor": None,
         }
@@ -5643,10 +5677,11 @@ class TestAudioStageCrossBoundary:
         captured = {}
 
         def fake_audio(script_text, output_filename, theme_name=None, brave_used=False,
-                       weather_used=False, kagi_used=False):
+                       weather_used=False, kagi_used=False, weather_source=""):
             captured["theme_name"] = theme_name
             captured["brave_used"] = brave_used
             captured["weather_used"] = weather_used
+            captured["weather_source"] = weather_source
             captured["output_filename"] = output_filename
             open(output_filename, "wb").write(b"\x00")
             return output_filename

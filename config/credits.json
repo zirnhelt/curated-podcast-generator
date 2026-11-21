@@ -115,6 +115,11 @@
       "keywords": ["open-meteo"],
       "name": "Open-Meteo",
       "disclosure": "Open-Meteo provides the weather data used in our episode openings"
+    },
+    {
+      "keywords": ["environment canada"],
+      "name": "Environment and Climate Change Canada",
+      "disclosure": "Environment Canada's forecasts stand in for the weather check on nights Open-Meteo does not answer (Open Government Licence – Canada)"
     }
   ],
   "bespoke_html": {
