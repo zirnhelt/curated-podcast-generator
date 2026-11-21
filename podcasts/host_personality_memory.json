@@ -25,19 +25,9 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-10-24",
-        "clue": "evidence-bar:x Conceded Casey's point on the petition allegation",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-24",
-        "clue": "structural-lens:~ Acknowledged conflict-of-interest disclosure is only a first step",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-10-26",
-        "clue": "funding-risk:+ \u2014 doubles down on written rules and filing cabinets",
-        "occurrences": 1
+        "date": "2026-11-21",
+        "clue": "funding-risk:+ \u2014 insists plan must state what happens if grant fails",
+        "occurrences": 2
       },
       {
         "date": "2026-11-08",
@@ -170,8 +160,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-20",
-        "clue": "community-trust:+ \u2014 wants land users in from the first meeting",
+        "date": "2026-11-21",
+        "clue": "community-trust:+ \u2014 wants refusal records published, not just minutes",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-11-21",
+        "clue": "structural-lens:~ \u2014 council controls bylaws even if province controls money",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-21",
+        "clue": "rural-context:~ \u2014 local procurement rules can give partial control",
         "occurrences": 1
       }
     ],
@@ -404,11 +404,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-20",
-        "clue": "funding-risk:+ \u2014 budget lines can be reallocated with a single motion",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-09",
         "clue": "structural-lens:~ \u2014 notes the pipeline has a postcode, adding geographic complexity",
         "occurrences": 1
@@ -459,13 +454,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-20",
-        "clue": "community-trust:~ \u2014 notes land users see change first but rarely write warnings",
+        "date": "2026-11-21",
+        "clue": "evidence-bar:+ \u2014 a number isn't money; demands public tax models",
         "occurrences": 2
       },
       {
-        "date": "2026-11-20",
-        "clue": "evidence-bar:+ \u2014 sixty percent odds still too uncertain to trust",
+        "date": "2026-11-21",
+        "clue": "structural-lens:x \u2014 concedes bylaws can be kept and checked publicly",
         "occurrences": 1
       }
     ],

@@ -1,32 +1,4 @@
 {
-  "2026-08-22": {
-    "timestamp": 1787388813.158463,
-    "date": "2026-08-22",
-    "theme": "Cariboo Local Affairs",
-    "focus": null,
-    "anchor": "tech-sadness",
-    "central_question": "Does the Cariboo region have meaningful formal input into economic decisions made at federal and provincial levels, or does it only absorb outcomes determined elsewhere?",
-    "riley_position": "Local governments have untested but real tools available to build leverage within their existing authority\u2014particularly procurement policies and formal questioning of provincial processes\u2014rather than passively accepting external decisions.",
-    "riley_key_evidence": [
-      "Softwood lumber duty rate dropped from 36% to 25%, with antidumping component falling from 20.6% to 10.7%",
-      "Stewardship awards paired with scarcity can create pricing leverage for well-managed herds with buyers willing to pay premiums",
-      "Regional districts and provinces can implement local wood procurement rules for public construction without new funding"
-    ],
-    "casey_position": "These local leverage tools are marginal compared to the structural forces (federal trade policy, continental drought, packer consolidation) that actually determine regional economic outcomes, and their effectiveness depends on whether anyone has the capacity to actually use them.",
-    "casey_key_evidence": [
-      "Drax closed its pellet plant, 100 Mile House lost its mill, Quesnel River Pulp curtailed production while waiting two years for promised trade deals",
-      "U.S. cattle herd at lowest point in 75 years, Tyson closing three plants, Canadian cattle numbers at record lows",
-      "No documented local wood procurement rules currently on the books in any Cariboo council"
-    ],
-    "resolution": "They agreed to disagree on impact but converged on a specific action: the region should formally ask the province whether range tenure renewal has structured local input, with the answer itself becoming the real story regardless of outcome. They also agreed that capacity gaps\u2014whether anyone actually shows up to meetings to ask these questions\u2014may be the more honest limiting factor than policy unavailability.",
-    "topics_covered": [
-      "Softwood lumber tariffs and federal trade policy leverage",
-      "Value-added wood product processing as local economic strategy",
-      "Range tenure renewal and provincial decision-making processes",
-      "Market consolidation in cattle and forest products industries",
-      "Local procurement policy as untested governance tool"
-    ]
-  },
   "2026-08-23": {
     "timestamp": 1787496730.14909,
     "date": "2026-08-23",
@@ -2582,6 +2554,34 @@
       "Coastal flooding, King Tides, and sea-level monitoring in California",
       "Post-wildfire landslide and flood risk in the Cariboo and the Pear Lake fire",
       "Institutional roles: who turns forecasts into named, funded local action"
+    ]
+  },
+  "2026-11-21": {
+    "timestamp": 1795248949.222058,
+    "date": "2026-11-21",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "When a small town cannot fund its own infrastructure, does taking the problem to a regional association give its council real control, or do decisions stay with whoever holds the grants?",
+    "riley_position": "Riley argues that asset management and a regional resolution give small councils real leverage and a choice over their own projects, and that councils should write procurement rules and publish the record of refused requests so residents can see where decisions are made.",
+    "riley_key_evidence": [
+      "The 2026 Living Wage Report found no B.C. community where the $18.25 minimum wage covers a living wage, with Whistler at $30.50 and Grand Forks at $22.15.",
+      "Dandzen Development, the economic development arm of the T\u015dilhqot'in National Government, founded TEN in 2017 and holds 51 per cent of it.",
+      "Barriere Mayor Rob Kerslake brought a resolution to the Southern Interior Local Government Association convention asking for a broader conversation on municipal infrastructure funding."
+    ],
+    "casey_position": "Casey argues that grant-dependent infrastructure plans are precarious, that resolutions and rules are only as strong as the budgets behind them, and that the real test is whether plans show lines for grants that never arrive and publish deferred projects alongside wanted ones.",
+    "casey_key_evidence": [
+      "Kerslake calls grant programs precarious, and a five-year plan cannot rest on something a budget cycle can cut.",
+      "Williams Lake council approved $150,000 in the 2025 Capital Budget to update its parks plan, yet nothing in the coverage names a capital line to fund it.",
+      "Cranbrook has over $40 million in project costs over ten years, including $8.3 million for Western Financial Place alone, and deferred projects are rarely voted on or published."
+    ],
+    "resolution": "The two agreed that the decision record should be kept public at the council table, with copies held by the regional association and the province, and that councils should publish both wanted and deferred project lists with the same dates. They did not settle whether the resolution passed or whether the province will answer it.",
+    "topics_covered": [
+      "Asset management and grant dependence in small-town infrastructure planning",
+      "Regional association resolutions and who answers them",
+      "Living wage pressures and property tax versus user fee burdens on households",
+      "Local ownership and procurement rules, using the TEN and Dandzen example",
+      "Public records of refused requests, deferred projects, and provincial tax cuts and transfers"
     ]
   }
 }
