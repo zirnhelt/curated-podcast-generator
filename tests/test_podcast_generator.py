@@ -838,6 +838,9 @@ class TestLogClaudeUsage:
         import podcast_generator as pg
         assert pg._claude_price("claude-opus-5-5") == (4.0, 20.0, 0.20)
         assert pg._claude_price("claude-opus-5") == (5.0, 25.0, 0.50)
+        # Sonnet 5.5 reads cache at half Sonnet 5's rate (pricing page, 2026-11-21).
+        assert pg._claude_price("claude-sonnet-5-5") == (2.0, 10.0, 0.10)
+        assert pg._claude_price("claude-sonnet-5") == (2.0, 10.0, 0.20)
         assert pg._claude_price("claude-haiku-4-5-20251001") == (1.0, 5.0, 0.10)
         assert pg._claude_price("claude-haiku-5-5") == (0.10, 0.50, 0.01)
         assert pg._claude_price("gpt-4o") is None
