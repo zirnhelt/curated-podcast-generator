@@ -848,8 +848,8 @@
       "title": "Deep dive lines repeat roundup card figures after the polish pass.",
       "detail": "On 2026-11-18, three deep dive lines still retold the roundup after polish, including the Arc A750 tokens-per-second example (about 19 to 22, then around 33). The polish pass did not remove the overlap, so the same specific figures aired twice in one episode. The deep dive prompt should be tightened so it does not re-explain roundup items, or a check should reject deep dive sentences that repeat a roundup card's specific numbers before the script is accepted.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-18",
       "seen": [
         "2026-11-18"
@@ -872,7 +872,22 @@
       "signal": "deep-dive-non-local",
       "signal_seen": "2026-11-20",
       "last_seen": "2026-11-20"
+    },
+    {
+      "id": "weather-check-dropped-when-open-meteo-unreachable",
+      "title": "The weather segment is dropped entirely when Open-Meteo does not answer.",
+      "detail": "On 2026-11-21 Open-Meteo did not answer, so the episode aired with no weather check and no weather credit, removing a segment from the listener's episode rather than shortening it. The run logged this as a degradation but still shipped the episode without any fallback weather content. Closing this would mean the script/weather stage falls back to a cached or last-known forecast, or substitutes a brief neutral line, when the API is unreachable, instead of silently omitting the segment.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-11-21",
+      "seen": [
+        "2026-11-21"
+      ],
+      "signal": "degraded:script/weather",
+      "signal_seen": "2026-11-21",
+      "last_seen": "2026-11-21"
     }
   ],
-  "updated": "2026-11-20"
+  "updated": "2026-11-21"
 }

@@ -1,5 +1,291 @@
 [
   {
+    "date": "2026-11-21",
+    "title": "Episode Review — Cariboo Local Affairs, November 21, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-21.html",
+    "content_html": "<p class=\"meta\">Theme: Cariboo Local Affairs. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/44883218714\">44883218714</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong><code>script/weather</code> fell back. Search the run log for <code>Degraded 'script/weather'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Open-Meteo did not answer — the episode airs with no weather check and no weather credit</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Two of three runs were fallbacks, and the primary run was not the one that published the episode</h3>\n<p>The primary run started at 1:05 AM Pacific and completed at 1:33 AM Pacific with a success conclusion. Fallback 1 (2:05 AM Pacific) also completed successfully. Fallback 2 at 3:05 AM Pacific is the run writing this review and is still in progress. Each run's url is in the run record above, so the maintainer can check which run produced the published artifacts.</p>\n<p>Weather did not run. Open-Meteo did not answer, so the episode aired with no weather check and no weather credit. This is the one degradation in the run, and it removed a segment from the listener's episode entirely rather than shortening it.</p>\n\n<h3>The script came in under target and shipped under target</h3>\n<p>The first draft was 2,407 words against a 3,400-word target. It was sent back for one expand pass, and the shipped script is 3,100 words. The episode is still 300 words short of target, which is the thin-day case the pipeline tolerates. The episode's word count is well above the length the pipeline counts as short under SHORT_EPISODE_WORDS.</p>\n<p>The cold open was skipped because it ran 91 words, which exceeded the length limit. Listeners heard the episode without it. Consider raising the cold-open word limit if this recurs on normal nights, since skipping it removes the framing the show normally opens with.</p>\n\n<h3>Local stories filled the roundup but only two theme stories made it in</h3>\n<p>The roundup pool kept 18 stories: 16 local and 2 theme. Of 39 local stories available, 16 aired. The roundup opened local, and the deep dives all led with local subjects, with one Cariboo deep dive. Six on-theme candidates were not used. The airtime budget (NEWS_ROUNDUP_COUNT) cut 55 stories from the roundup pool; those stories remain eligible for a later, better-matched day.</p>\n<p>Theme loading, by contrast, was not the constraint: 52 theme articles loaded against 51 bonus articles. The bottleneck was airtime, not the feed. If the theme should carry more of the roundup, raise its share of NEWS_ROUNDUP_COUNT rather than widening the pool.</p>\n\n<h3>Thirteen of eighteen roundup citations matched the aired script</h3>\n<p>Roundup citations matched 12 of 18, and deep-dive citations matched 3 of 5. Five roundup citations and two deep-dive citations did not align with what was aired. Check the citation alignment step against the storyboard before trusting those segments' source attributions.</p>\n\n<h3>The text-to-speech canary timed out and OpenAI rendered the whole episode</h3>\n<p>Two of the short TTS takes were retried, and both retries came back short again. The longer take of each was kept, so no content was dropped, but the audio for those two takes is shorter than their word count predicts. This is a single observation about two takes, not a missing segment.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>106</td></tr>\n<tr><td>Kept after dedup</td><td>79</td></tr>\n<tr><td>Held / released</td><td>0 released, 7 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — local:16, theme:2</td></tr>\n<tr><td>Deep dive</td><td>5 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.74, 3100 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 39% of the words</td></tr>\n<tr><td>Audio</td><td>19.2 min</td></tr>\n<tr><td>Audio size</td><td>17.6 MB</td></tr>\n<tr><td>Citations matched</td><td>12/18 roundup, 3/5 deep dive</td></tr>\n<tr><td>Feed</td><td>297 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>74,772</td></tr>\n<tr><td>API calls</td><td>122 total: openai-tts 98 · claude 11 · brave-answers 4 · cohere 4 · brave-search 3 · kagi-extract 2</td></tr>\n<tr><td>Anthropic cost</td><td>$0.14 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.59 at list price: OpenAI TTS $0.269 · Brave Answers $0.164 · Anthropic $0.136 · Brave Search $0.015 · Kagi Extract $0.008 · Cohere $0.001</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-21T10:06:03+00:00",
+    "metrics": {
+      "audio_minutes": 19.2,
+      "script_words": 3100,
+      "tell_hits": 0,
+      "roundup_cite_pct": 66.7,
+      "deep_dive_cite_pct": 60.0,
+      "cost_usd": 0.594
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "1 thing to look at before tomorrow's run.",
+      "theme": "Cariboo Local Affairs",
+      "kpis": [
+        [
+          "Episode",
+          "19.2 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,100",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "12/18 · 3/5",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.59",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:33 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "degraded:script/weather",
+          "todo": "script/weather fell back.",
+          "evidence": "degrade() row: Open-Meteo did not answer — the episode airs with no weather check and no weather credit",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-16",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 5,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-17",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Forestry & Timber",
+          "week": 2,
+          "of": 4,
+          "next": "Mining & Energy",
+          "event": null
+        },
+        {
+          "date": "2026-11-18",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 5,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-19",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Language & Culture",
+          "week": 2,
+          "of": 4,
+          "next": "Economic Development",
+          "event": null
+        },
+        {
+          "date": "2026-11-20",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 4,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-21",
+          "day": "Sat",
+          "today": true,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-22",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 5,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "How much should neighbours know about each other?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://vancouversun.com/opinion/op-ed/opinion-will-b-c-still-have-local-newspapers-to-cover-the-next-election",
+          "title": "[Vancouver Sun] Opinion: Will B.C. still have local newspapers to cover the next election?",
+          "source": "",
+          "theme_pct": 89,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/18/Mega-Mine-Instant-Town-Rocked-Strike/",
+          "title": "[The Tyee] The Mega Mine and ‘Instant Town’ Rocked by a Strike",
+          "source": "",
+          "theme_pct": 88,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/20/Online-Long-Covid-Clinic-MSP-Billing/",
+          "title": "[The Tyee] Did an Online Long COVID Clinic’s Model Spur Changes to MSP Billing?",
+          "source": "",
+          "theme_pct": 87,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://vancouversun.com/opinion/columnists/douglas-todd-under-lorne-doerkson-b-c-interior-residents-feel-their-time-has-finally-come",
+          "title": "[Vancouver Sun] Douglas Todd: Under Lorne Doerkson, B.C. Interior residents feel their time has finally come",
+          "source": "",
+          "theme_pct": 86,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/18/Teck-Used-Illegal-Replacement-Workers-Highland-Valley-Copper/",
+          "title": "[The Tyee] Teck Used Illegal Replacement Workers, Labour Board Finds",
+          "source": "",
+          "theme_pct": 86,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.cbc.ca/news/canada/british-columbia/search-suspended-canoer-vancouver-island-bc-9.7416767",
+          "title": "[cbc.ca] Storm forces RCMP to suspend search for missing Vancouver Island canoeist",
+          "source": "",
+          "theme_pct": 85,
+          "aired": true
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317490/news/municipal-news/city-of-williams-lake/williams-lake-taxpayers-to-pay-for-mayors-and-councillors-trip-to-victoria/",
+          "title": "[My Cariboo Now] Williams Lake Taxpayers to pay for Mayor and Councillor’s trip to Victoria",
+          "source": "",
+          "theme_pct": 98,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/17/company-ordered-to-stop-using-ineligible-replacement-workers-during-logan-lake-strike/",
+          "title": "[Williams Lake Tribune] Company ordered to stop using ineligible replacement workers during Logan Lake strike",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/14/spanish-mountain-gold-ltd-eyes-redesigned-open-pit-gold-mine-near-williams-lake/",
+          "title": "[Williams Lake Tribune] Spanish Mountain Gold eyes redesigned open-pit gold mine near Williams Lake",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317523/news/municipal-news/cariboo-regional-district/cariboo-regional-district-board-meets-for-first-time-of-new-term/",
+          "title": "[My Cariboo Now] Cariboo Regional District Board meets for first time of new term",
+          "source": "",
+          "theme_pct": 94,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/10/diy-poppy-workshop-in-williams-blends-art-and-stories-ahead-remembrance-day/",
+          "title": "[Williams Lake Tribune] DIY poppy workshop in Williams Lake blends art and stories ahead Remembrance Day",
+          "source": "",
+          "theme_pct": 94,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/18/health-authorities-in-better-position-after-lapu-lapu-privacy-breach-commissioner/",
+          "title": "[Williams Lake Tribune] Health authorities in better position after Lapu Lapu privacy breach: Commissioner",
+          "source": "",
+          "theme_pct": 93,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317403/news/rcmp/rcmp-helicopters-can-now-livestream-footage-to-officers-on-the-ground/",
+          "title": "[My Cariboo Now] RCMP helicopters can now livestream footage to officers on the ground",
+          "source": "",
+          "theme_pct": 92,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317429/news/national/canadian-travellers-face-weekend-flight-delays-after-u-s-outage/",
+          "title": "[My Cariboo Now] Canadian travellers face weekend flight delays after U.S. outage",
+          "source": "",
+          "theme_pct": 89,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317518/news/politics/b-c-conservatives-prepare-to-officially-take-power-this-week/",
+          "title": "[My Cariboo Now] B.C. Conservatives prepare to officially take power this week",
+          "source": "",
+          "theme_pct": 89,
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "When a small town cannot fund its own infrastructure, does taking the problem to a regional association give its council real control, or do decisions stay with whoever holds the grants?",
+        "riley": "Riley argues that asset management and a regional resolution give small councils real leverage and a choice over their own projects, and that councils should write procurement rules and publish the record of refused requests so residents can see where decisions are made.",
+        "casey": "Casey argues that grant-dependent infrastructure plans are precarious, that resolutions and rules are only as strong as the budgets behind them, and that the real test is whether plans show lines for grants that never arrive and publish deferred projects alongside wanted ones.",
+        "resolution": "The two agreed that the decision record should be kept public at the council table, with copies held by the regional association and the province, and that councils should publish both wanted and deferred project lists with the same dates. They did not settle whether the resolution passed or whether the province will answer it.",
+        "topics": [
+          "Asset management and grant dependence in small-town infrastructure planning",
+          "Regional association resolutions and who answers them",
+          "Living wage pressures and property tax versus user fee burdens on households",
+          "Local ownership and procurement rules, using the TEN and Dandzen example",
+          "Public records of refused requests, deferred projects, and provincial tax cuts and transfers"
+        ],
+        "sources": [
+          {
+            "title": "B.C. mayors call for funding reform as infrastructure costs mount",
+            "url": "https://wltribune.com/2026/11/20/b-c-mayors-call-for-funding-reform-as-infrastructure-costs-mount/"
+          },
+          {
+            "title": "Tŝilhqot’in company looks to grow beyond its home territory with new partnership",
+            "url": "https://wltribune.com/2026/11/18/tsilqotin-company-looks-to-grow-beyond-its-home-territory-with-new-partnership/"
+          },
+          {
+            "title": "Gap between minimum wage and living wage widens across B.C., report finds",
+            "url": "https://www.mycariboonow.com/317526/news/business/economy/gap-between-minimum-wage-and-living-wage-widens-across-b-c-report-finds/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-20",
     "title": "Episode Review — Wild Spaces & Outdoor Life, November 20, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-20.html",
@@ -4124,20 +4410,6 @@
       "tell_hits": 0,
       "roundup_cite_pct": 66.7,
       "deep_dive_cite_pct": 50.0
-    }
-  },
-  {
-    "date": "2026-10-22",
-    "title": "Episode Review — Cariboo Signals, October 22, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-22.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39745162710\">39745162710</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>4 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong><code>script/debate-summary</code> fell back. Search the run log for <code>Degraded 'script/debate-summary'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Claude debate extraction failed, used keyword fallback: Unterminated string starting at: line 1 column 2923 (char 2922)</span></li>\n<li><strong><code>script/persist-host-memory</code> fell back. Search the run log for <code>Degraded 'script/persist-host-memory'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: personality clue extraction skipped: Unterminated string starting at: line 1 column 486 (char 485)</span></li>\n<li><strong><code>script/roundup-order</code> fell back. Search the run log for <code>Degraded 'script/roundup-order'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: 6 story(ies) still aired after a later block after 2 repair passes</span> <span class=\"recur\">Recurring: on the roadmap, seen 5 nights.</span></li>\n<li><strong>Read the expand passes in the script stage log. Target and floor are <code>TARGET_SCRIPT_WORDS</code> / <code>MIN_SCRIPT_WORDS</code> in <code>podcast_generator.py</code>.</strong><br><span class=\"evidence\">shipped 3183 words against a 3400-word target (first draft 2964)</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The script shipped 3183 words against a 3400-word target</h3>\n<p>The first draft came in at 2964 words, under the 3400-word target, so it was sent back for up to two expand passes. The episode that shipped is 3183 words. The target was not reached, and the pipeline accepted the result after the repair passes ran out.</p>\n<p>Roundup ordering also failed to repair. Six stories still aired after a later block, after 2 repair passes. Listeners heard those stories out of sequence. Change the ordering repair so it is run until the order holds, or fail the run instead of shipping a misordered roundup.</p>\n\n<h3>Debate summary fell back to keyword extraction</h3>\n<p>Claude's debate extraction failed with an unterminated string at line 1 column 2923, so the pipeline fell back to keyword matching to summarise the deep-dive debate on Indigenous Lands &amp; Innovation. Keyword matching can pull the wrong thread from the debate, so the summary a listener hears may not reflect what was argued.</p>\n<p>Host memory also lost its personality clue extraction, which failed at line 1 column 486 and was skipped. The hosts carry nothing forward from this episode. Fix the JSON handling in both extraction calls, since both failed on unterminated strings: check for truncated output before parsing and retry the call.</p>\n\n<h3>Roundup citations and deep-dive citations do not fully match</h3>\n<p>Sixteen of 18 roundup citations matched, and three of four deep-dive citations matched. Two roundup citations and one deep-dive citation did not match what was aired.</p>\n<p>The 65 roundup stories dropped from the pool by the airtime budget are by design, and a cut story can resurface on a better-matched day, so their absence is not itself the problem. The unmatched citations are. Review the citation step for the four deep-dive sources so the cited material is checked against the script before publication.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.98, 3183 words</td></tr>\n<tr><td>Audio</td><td>19.6 min</td></tr>\n<tr><td>Audio size</td><td>18.0 MB</td></tr>\n<tr><td>Citations matched</td><td>16/18 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>267 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>40,254</td></tr>\n<tr><td>API calls</td><td>45 total: brave-search 17 · claude 16 · kagi-extract 8 · brave-answers 4</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-22T10:06:04+00:00",
-    "metrics": {
-      "audio_minutes": 19.6,
-      "script_words": 3183,
-      "tell_hits": 1,
-      "roundup_cite_pct": 88.9,
-      "deep_dive_cite_pct": 75.0
     }
   }
 ]
