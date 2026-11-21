@@ -503,13 +503,15 @@ def _log_api_call(service: str, unit: str, count: int) -> None:
 
 
 # USD per million tokens (input, output, cache read), first-party list prices
-# checked 2026-10-08. Cache writes are 1.25x input (5-minute TTL — the only one
+# checked 2026-11-21. Cache writes are 1.25x input (5-minute TTL — the only one
 # this pipeline uses); the Batch API halves every line. Longest prefix wins, so
-# claude-opus-5-5 is not priced as claude-opus-5.
+# claude-opus-5-5 is not priced as claude-opus-5, nor claude-sonnet-5-5 as
+# claude-sonnet-5: the 5.5 models read cache at 0.05x input, the rest at 0.1x.
 _CLAUDE_PRICES = {
     "claude-haiku-4-5": (1.0, 5.0, 0.10),
     "claude-haiku-5-5": (0.10, 0.50, 0.01),
     "claude-sonnet-5": (2.0, 10.0, 0.20),
+    "claude-sonnet-5-5": (2.0, 10.0, 0.10),
     "claude-opus-5": (5.0, 25.0, 0.50),
     "claude-opus-5-5": (4.0, 20.0, 0.20),
 }

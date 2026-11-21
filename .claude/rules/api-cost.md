@@ -25,16 +25,17 @@ The general rules are in the root CLAUDE.md under API Cost Discipline.
 - **The storyboard goes through the Batch API** (`_storyboard_via_batch`, half price) and waits `STORYBOARD_BATCH_TIMEOUT` (300 s) before planning in real time; every such fallback `degrade()`s as `script/storyboard-batch`. `PODCAST_STORYBOARD_BATCH=0` turns it off.
 - **A refusal is retried once on the model it replaced** (`send_claude`, `_REFUSAL_FALLBACK`) and always `degrade()`s as `claude/refusal`. Every Sonnet or Opus call goes through `send_claude` or `create_message`, never a bare `client.messages.create`.
 
-**Anthropic prices** (USD per million tokens, first-party API, checked 2026-10-08; refresh from the pricing page before any cost decision):
+**Anthropic prices** (USD per million tokens, first-party API, checked 2026-11-21 at platform.claude.com/docs/en/about-claude/pricing; refresh from that page before any cost decision):
 
 | Model | Input | Output | Cache read |
 |-------|-------|--------|------------|
 | Haiku 5.5 (prompt ≤ 100K tokens) | $0.10 | $0.50 | $0.01 |
 | Haiku 5.5 (prompt > 100K) | $0.50 | $2.50 | $0.05 |
 | Haiku 4.5 | $1 | $5 | $0.10 |
-| Sonnet 5 / 5.5 | $2 | $10 | $0.20 |
+| Sonnet 5 | $2 | $10 | $0.20 |
+| Sonnet 5.5 | $2 | $10 | $0.10 |
 | Sonnet 4.5 | $3 | $15 | $0.30 |
 | Opus 5.5 | $4 | $20 | $0.20 |
 | Opus 5 | $5 | $25 | $0.50 |
 
-Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API halves every line, cache included. A cancelled batch still bills the requests that finished before the cancel. Baseline for September 2026 was $31.21 billed (list price, no discounts) across both keys: `cariboosignals` $21.0 (Sonnet 5 script and polish about 3/4 of it), `superfeed` $10.2 (Haiku scoring $9.2).
+Cache reads are 0.1x input, except Sonnet 5.5 and Opus 5.5 (0.05x). Sonnet 5's $2/$10 is its standard price now; the increase to $3/$15 planned for 2026-09-01 did not happen. Cache writes are 1.25x input (5-minute TTL) or 2x (1-hour TTL). The Batch API halves every line, cache included. A cancelled batch still bills the requests that finished before the cancel. Baseline for September 2026 was $31.21 billed (list price, no discounts) across both keys: `cariboosignals` $21.0 (Sonnet 5 script and polish about 3/4 of it), `superfeed` $10.2 (Haiku scoring $9.2).
