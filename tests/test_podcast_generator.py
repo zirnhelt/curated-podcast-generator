@@ -3595,7 +3595,11 @@ class TestGetWeeklyChangelog:
     def test_drops_unreleased_surface_commits(self, monkeypatch):
         # 2026-07-26: slide/video commits reached the prompt and the hosts said
         # "drowning out our voices in the video version" on air, advertising a
-        # YouTube surface that is still in test.
+        # YouTube surface that is still in test. The embargo block is empty once
+        # a surface launches, so the test sets its own terms.
+        import podcast_generator as pg
+        monkeypatch.setitem(pg.CONFIG['podcast'], 'embargoed_surfaces',
+                            {'terms': ['video', 'youtube', 'slide', 'mp4', 'thumbnail']})
         monkeypatch.setattr(
             "podcast_generator._git",
             lambda *a, **k: (
@@ -3617,6 +3621,9 @@ class TestGetWeeklyChangelog:
     def test_all_commits_embargoed_yields_empty_changelog(self, monkeypatch):
         # An empty changelog makes generate_meta_moment_text skip the segment,
         # which is the right outcome — better no Meta Moment than a leaky one.
+        import podcast_generator as pg
+        monkeypatch.setitem(pg.CONFIG['podcast'], 'embargoed_surfaces',
+                            {'terms': ['video', 'youtube', 'slide', 'mp4', 'thumbnail']})
         monkeypatch.setattr(
             "podcast_generator._git",
             lambda *a, **k: "Add YouTube upload ledger\nRender video thumbnail",
