@@ -1477,6 +1477,39 @@
         "https://www.tomshardware.com/pc-components/cpus/amd-zen-6-epyc-venice-deep-dive-and-benchmarking-dual-epyc-9996-with-1-024-threads-delivers-up-to-93-percent-performance-gain-gen-on-gen-9686f-outclasses-nvidias-vera",
         "https://www.wsj.com/finance/stocks/anthropic-ipo-valuation-8337b669?mod=rss_Technology"
       ]
+    },
+    "TWiT-1653-897-863797": {
+      "title": "IM 897: I Like Money Bro - Global Chip Games",
+      "pub_date": "Wed, 18 Nov 2026 19:24:39 PST",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/897",
+      "harvested_at": "2026-11-22T14:16:10.227501+00:00",
+      "question": "Should the US restrict AI chip exports to China, and do such curbs slow China's AI development or instead accelerate its push for independent chip capacity?",
+      "perspectives": [
+        "Chip export curbs protect national security by denying China frontier AI compute, preserving a meaningful lead.",
+        "Chip curbs backfire long-term by spurring Chinese self-sufficiency and weakening US firms' revenue and research capacity."
+      ],
+      "open_questions": [
+        "Will long-term export restrictions produce a durable capability gap, or will China close it through domestic fabrication and efficiency gains?",
+        "Should the Trump administration's proposed requirement that US firms disclose Chinese AI use be enforced, and how would companies verify it?"
+      ],
+      "topics": [
+        "AI chip export controls (US\u2013China)",
+        "Nvidia and its leadership succession",
+        "AI-driven software patches and infrastructure outages in banking and government",
+        "Disclosure policy for Chinese AI model use by US firms"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://daniel-suarez.com/",
+        "https://www.wired.com/story/nvidia-employees-petition-for-jensen-huangs-return/",
+        "https://www.washingtonsun.com/technology/bank-ceos-nsa-tell-congress-ai-driven-patches-behind-outages",
+        "https://arstechnica.com/ai/2026/11/ai-is-the-most-likely-reason-youll-die-openai-board-member-warns",
+        "https://www.ft.com/content/08086201-6359-47ec-8854-70462ad5a4c0?syn-25a6b1a6=1"
+      ]
     }
   }
 }
