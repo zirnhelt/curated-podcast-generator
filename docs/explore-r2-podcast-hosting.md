@@ -46,6 +46,22 @@ https://podcast.cariboosignals.ca/podcasts/podcast_audio_2026-02-10_example.mp3
 - Professional appearance for directory submissions
 - No need for the `r2.dev` public access toggle at all
 
+### Apex and `www` redirect (fixes Error 1014)
+
+Never CNAME the apex or `www` to `podcast.cariboosignals.ca`: that host is an
+R2-managed custom domain (target `public.r2.dev`), and Cloudflare refuses
+cross-account CNAMEs with **Error 1014: CNAME Cross-User Banned**. Redirect instead:
+
+1. DNS: delete the `@` and `www` CNAME records.
+2. DNS: add `A` `@` → `192.0.2.1` and `A` `www` → `192.0.2.1`, both **Proxied**
+   (placeholder IP; the proxy answers before it is ever contacted).
+3. Rules → Redirect Rules → Create rule, "Custom filter expression":
+   `(http.host eq "cariboosignals.ca") or (http.host eq "www.cariboosignals.ca")`
+   → Dynamic redirect to `concat("https://podcast.cariboosignals.ca", http.request.uri.path)`,
+   status 301, preserve query string.
+
+Leave the MX, TXT (SPF/DKIM/DMARC) and `podcast` records untouched.
+
 The RSS feed URL can also move to the custom domain later if desired:
 
 ```
