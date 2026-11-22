@@ -121,7 +121,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://www.northernminer.com/commodities-markets/mining-companies-raise-2-4b-in-a-month/1003897585/": {
     "article": {
@@ -199,7 +200,8 @@
     "target_weekday": 6,
     "target_focus_slug": "earth-systems",
     "target_focus_name": "Earth Systems & Climate Science",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://www.sciencedaily.com/releases/2026/11/261111005853.htm": {
     "article": {
@@ -357,7 +359,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://www.theguardian.com/global-development/2026/nov/13/el-nino-death-in-childbirth-millions-midwives-cop31-extreme-weather-maternal-newborn-death-rates": {
     "article": {
@@ -394,7 +397,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://nautil.us/the-original-x-men-1286311/": {
     "article": {
@@ -434,7 +438,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://www.sciencedaily.com/releases/2026/11/261104012305.htm": {
     "article": {
@@ -477,7 +482,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://100milefreepress.net/2026/11/17/south-cariboo-vendors-offer-unique-homemade-gifts/": {
     "article": {
@@ -524,7 +530,7 @@
       "id": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
       "url": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
       "title": "[Krebs on Security] Attackers Used Optimizely to A/B Test Malware on Top Websites",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fkrebsonsecurity.com%2F2026%2F11%2Fattackers-used-optimizely-to-a-b-test-malware-on-top-websites%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAt least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw data-stealing malicious software silently injected into sites like the BBC, CNN,\u00a0Equifax, Ledger and Zoom, was exacerbated by the reality that few popular websites enforce strict rules on the sources of third-party content.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fkrebsonsecurity.com%2F2026%2F11%2Fattackers-used-optimizely-to-a-b-test-malware-on-top-websites%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAt least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw data-stealing malicious software silently injected into sites like the BBC, CNN,\u00a0Equifax, Ledger and Zoom, was exacerbated by the reality that few popular websites enforce strict rules on the sources of third-party content.",
       "summary": "At least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw",
       "_excerpt": "At least 178 top web destinations unwittingly served a variety of malware exploits against visitors over the past 24 hours thanks to a security vulnerability involving Optimizely, a company that helps websites customize user experiences and test out new features. Experts say the incident, which saw data-stealing malicious software silently injected into sites like the BBC, CNN, Equifax, Ledger and Zoom, was exacerbated by the reality that few popular websites enforce strict rules on the sources of third-party content.",
       "date_published": "2026-11-18T02:52:04+00:00",
@@ -538,19 +544,24 @@
       "_quality": 80,
       "_relevance": 75,
       "_local": 0,
-      "_theme_score": 63,
-      "_theme_score_raw": 10,
+      "_theme_score": 42,
+      "_theme_score_raw": 4,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 63,
+      "_composite_podcast": 44,
       "_keyword_matches": 0,
       "_category": "ai-tech",
       "_source_category": "ai-tech",
       "_is_bonus": true,
       "_niche": false,
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-11-18T06:11:19.280655+00:00"
+      },
       "_boosted_score": 61
     },
-    "held_date": "2026-11-18",
+    "held_date": "2026-11-22",
     "target_date": "2026-12-02",
     "target_weekday": 2,
     "target_focus_slug": "digital-life-security",
@@ -675,14 +686,15 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://yellowheadinstitute.org/2026/whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists/?utm_source=rss&utm_medium=rss&utm_campaign=whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists": {
     "article": {
       "id": "https://yellowheadinstitute.org/2026/whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists/?utm_source=rss&utm_medium=rss&utm_campaign=whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists",
       "url": "https://yellowheadinstitute.org/2026/whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists/?utm_source=rss&utm_medium=rss&utm_campaign=whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists",
       "title": "[Yellowhead Institute] Whither Albertan \u201cIndependence?\u201d How Indigenous Diplomacy Defeated Separatists",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fyellowheadinstitute.org%2F2026%2Fwhither-albertan-independence-how-indigenous-diplomacy-defeated-separatists%2F%3Futm_source%3Drss%26utm_medium%3Drss%26utm_campaign%3Dwhither-albertan-independence-how-indigenous-diplomacy-defeated-separatists\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Roughly 75% of voters reflected Alberta's October 19th seperatist referendum. First Nations' opposition impacted the vote in some regions but it also extended beyond the ballot box. In this Yellowhead Brief, Michael Fabris examines how First Nations challenged separatism through strategic litigation and public mobilization, asserting that Alberta's future cannot be decided without addressing Indigenous jurisdiction and maintaining treaty relationships. That lesson extends to Alberta politics post-referundum. </p>\n<p>The post <a href=\"https://yellowheadinstitute.org/2026/whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists/\">Whither Albertan \u201cIndependence?\u201d How Indigenous Diplomacy Defeated Separatists</a> appeared first on <a href=\"https://yellowheadinstitute.org\">Yellowhead Institute</a>.</p>",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fyellowheadinstitute.org%2F2026%2Fwhither-albertan-independence-how-indigenous-diplomacy-defeated-separatists%2F%3Futm_source%3Drss%26utm_medium%3Drss%26utm_campaign%3Dwhither-albertan-independence-how-indigenous-diplomacy-defeated-separatists\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Roughly 75% of voters reflected Alberta's October 19th seperatist referendum. First Nations' opposition impacted the vote in some regions but it also extended beyond the ballot box. In this Yellowhead Brief, Michael Fabris examines how First Nations challenged separatism through strategic litigation and public mobilization, asserting that Alberta's future cannot be decided without addressing Indigenous jurisdiction and maintaining treaty relationships. That lesson extends to Alberta politics post-referundum. </p>\n<p>The post <a href=\"https://yellowheadinstitute.org/2026/whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists/\">Whither Albertan \u201cIndependence?\u201d How Indigenous Diplomacy Defeated Separatists</a> appeared first on <a href=\"https://yellowheadinstitute.org\">Yellowhead Institute</a>.</p>",
       "summary": "Roughly 75% of voters reflected Alberta's October 19th seperatist referendum. First Nations' opposition impacted the vote in some regions but it also extended beyond the ballot box. In this Yellowhead Brief, Michael Fabris examines how First Nations challenged separatism through strategic",
       "_excerpt": "Roughly 75% of voters reflected Alberta's October 19th seperatist referendum. First Nations' opposition impacted the vote in some regions but it also extended beyond the ballot box. In this Yellowhead Brief, Michael Fabris examines how First Nations challenged separatism through strategic litigation and public mobilization, asserting that Alberta's future cannot be decided without addressing Indigenous jurisdiction and maintaining treaty relationships. That lesson extends to Alberta politics post-referundum. The post Whither Albertan \u201cIndependence?\u201d How Indigenous Diplomacy Defeated",
       "date_published": "2026-11-19T14:48:46+00:00",
@@ -696,24 +708,24 @@
       "_quality": 80,
       "_relevance": 75,
       "_local": 20,
-      "_theme_score": 83,
-      "_theme_score_raw": 24,
+      "_theme_score": 52,
+      "_theme_score_raw": 5,
       "_kite_sources": 0,
       "_kite_context": "",
-      "_composite_podcast": 79,
+      "_composite_podcast": 59,
       "_keyword_matches": 0,
       "_category": "news",
       "_source_category": "news",
       "_is_bonus": true,
       "_niche": false,
       "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-11-20T06:13:27.737900+00:00"
+        "day": "saturday",
+        "label": "Cariboo Local Affairs",
+        "shown_at": "2026-11-21T06:10:14.064463+00:00"
       },
       "_boosted_score": 65
     },
-    "held_date": "2026-11-21",
+    "held_date": "2026-11-22",
     "target_date": "2026-11-26",
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
@@ -960,7 +972,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-22"
   },
   "https://www.lemonde.fr/planete/article/2026/11/19/grippe-aviaire-la-france-releve-le-risque-a-son-niveau-le-plus-eleve_6813274_3244.html": {
     "article": {
@@ -1086,6 +1099,46 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754": {
+    "article": {
+      "id": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
+      "url": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
+      "title": "[ABC News] Huge gas-fired power station plan quietly revealed amid renewables fanfare",
+      "content_html": "<img src=\"https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&amp;cropH=1368&amp;cropW=1026&amp;xPos=511&amp;yPos=0&amp;width=862&amp;height=1149\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.abc.net.au%2Fnews%2F2026-10-27%2Fbid-to-double-wa-renewable-energy-output-amid-price-rise-warning%2F107313754\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
+      "summary": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
+      "_excerpt": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
+      "date_published": "2026-10-27T03:39:02+00:00",
+      "authors": [
+        {
+          "name": "ABC News",
+          "url": "https://abc.net.au"
+        }
+      ],
+      "ai_score": 42,
+      "_quality": 60,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 75,
+      "_theme_score_raw": 15,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 54,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_niche": false,
+      "_thin_body": true,
+      "image": "https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&cropH=1368&cropW=1026&xPos=511&yPos=0&width=862&height=1149",
+      "_boosted_score": 42
+    },
+    "held_date": "2026-11-22",
+    "target_date": "2026-11-25",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
   }
 }
