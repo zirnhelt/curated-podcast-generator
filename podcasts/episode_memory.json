@@ -1,25 +1,4 @@
 {
-  "2026-10-17": {
-    "timestamp": 1792225088.027965,
-    "topics": [
-      "[Williams Lake Tribune] Students explore science, technology",
-      "[Williams Lake Tribune] Prescribed burn to be conducted in S",
-      "[My Cariboo Now] Horse Lake residents get Boil Water Notice",
-      "[Williams Lake Tribune] Tatla Lake grandma sells bread to se",
-      "[The Tyee] First Nations Make Rare Endorsement in Williams L",
-      "[Quesnel Cariboo Observer] Meet the Candidates: Rocky Nenka ",
-      "[My Cariboo Now] Advance voting days in 2026 municipal elect",
-      "[Quesnel Cariboo Observer] Meet the Candidates: Mike Cave se"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-17",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-10-18": {
     "timestamp": 1792312066.572911,
     "topics": [
@@ -748,5 +727,26 @@
     "date": "2026-11-21",
     "focus": null,
     "focus_name": null
+  },
+  "2026-11-22": {
+    "timestamp": 1795335320.974257,
+    "topics": [
+      "[100 Mile Free Press] 100 Mile Ford running community coat d",
+      "[100 Mile Free Press] Former attorney general calls for B.C.",
+      "[ScienceDaily] A 3-million-year-old child just made human ev",
+      "[WIRED] New Species of Giant Fungus Discovered in China Grow",
+      "[WIRED] It\u2019s Getting Too Dry for Even Cactuses to Survive",
+      "[popsci.com] Nearby giant likely tilted hot Jupiter out of v",
+      "[phys.org] Cosmology researchers test rival accounts of dark",
+      "[nasa.gov] Voyager 1 stops sending science data before one-l"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-11-22",
+    "focus": "sky-cosmos",
+    "focus_name": "Sky & Cosmos"
   }
 }

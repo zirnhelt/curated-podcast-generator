@@ -1,32 +1,4 @@
 {
-  "2026-08-23": {
-    "timestamp": 1787496730.14909,
-    "date": "2026-08-23",
-    "theme": "Science, Wonder & the Natural World",
-    "focus": "living-world",
-    "anchor": "tech-sadness",
-    "central_question": "Does patient, long-term scientific work offer a fundamentally different and more sustainable relationship to purpose than venture-driven tech work?",
-    "riley_position": "Patient science has built-in survivability through institutional design and produces durable objects (findings, data) that persist independent of funding cycles, unlike tech work whose output often disappears when companies pivot or shut down.",
-    "riley_key_evidence": [
-      "CERN's multi-billion-dollar collider program builds durability through decade-long research timelines, not quarterly earnings pressure",
-      "Rockefeller University's mosquito research and UC Riverside's independent replication represent stable institutional backing without product-launch timelines",
-      "Scout Island's volunteer-run programs have maintained continuity for years without depending on single grant cycles or champion staff members"
-    ],
-    "casey_position": "Scientific institutions face the same fragility as tech companies when funding gets contested, and the real distinction isn't institutional stability but rather the durability of the objects produced and whether findings survive independent of their funding sources.",
-    "casey_key_evidence": [
-      "NIH funding gets contested every political cycle and observatories lose mid-decade funding when budget committees decide science isn't glamorous enough",
-      "Tech workers' code only exists inside company platforms and gets deprecated/deleted when products sunset, whereas a nucleus shape remains true regardless of board decisions",
-      "The gap between 'we understand the mechanism' and 'here's a product that works' is where public disappointment with science tends to live"
-    ],
-    "resolution": "They converged on a partial agreement: the real distinction is the durability of the object produced rather than funding stability alone, and Scout Island exemplifies a sustainable model by being small enough that burnout doesn't collapse the entire program and honest about its actual scope rather than overselling mission-driven narratives.",
-    "topics_covered": [
-      "The communications work versus scientific work distinction in physics headlines (bowling pin metaphor)",
-      "Replication and validation across independent research labs (mosquito attraction studies)",
-      "The gap between theoretical understanding and practical application in science",
-      "Structural differences between venture-backed tech timelines and long-baseline scientific research programs",
-      "Community-scale science infrastructure and volunteer continuity as an alternative sustainability model"
-    ]
-  },
   "2026-08-24": {
     "timestamp": 1787562472.968273,
     "date": "2026-08-24",
@@ -2582,6 +2554,34 @@
       "Living wage pressures and property tax versus user fee burdens on households",
       "Local ownership and procurement rules, using the TEN and Dandzen example",
       "Public records of refused requests, deferred projects, and provincial tax cuts and transfers"
+    ]
+  },
+  "2026-11-22": {
+    "timestamp": 1795335324.340023,
+    "date": "2026-11-22",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "sky-cosmos",
+    "anchor": "the-right-to-be-left-alone",
+    "central_question": "When a long-running observational record goes quiet, who should write the note explaining the silence, and how can a gap be distinguished from a genuinely quiet sky or system?",
+    "riley_position": "Silences in long records are open parts of the record rather than failures; the record should explicitly mark what it could not see, with the expected pattern, known gaps, and reasons stated beside it, and a camera on a creek can serve as a monitoring station if its purpose and data rules are set in advance.",
+    "riley_key_evidence": [
+      "TESS watched TOI-2535 b from April 2019 to March 2026, with transits arriving up to six hours early or late before stopping, and an inferred companion planet detected via NEID spectrograph timing analysis.",
+      "Kepler-413b stopped transiting for 800 days under the influence of its two stars, providing precedent for disappearing transits.",
+      "Voyager 1 has sent no science data since November 14th, but its carrier signal was used on November 18th to confirm it was about one light-day (roughly 16 billion miles) from Earth, and a similar 2023 interruption was resolved with science data returning in June 2024."
+    ],
+    "casey_position": "Records are only as trustworthy as the people writing their gap notes, so a log kept by the person who lost the data is a self-report; the rules for any monitoring, especially cameras recording neighbours, must be written down before disputes arise, and synchrony in lake data may reflect shared climate forcing rather than new systemic fragility.",
+    "casey_key_evidence": [
+      "The TOI-2535 b companion is inferred from timing, not yet seen, and the press coverage headlined it as an \"invisible planet\" while the paper called it inferred.",
+      "Voyager's commands take a day each way, and project manager Suzanne Dodd expects more anomalies as the probes age, even while expressing confidence in a fix.",
+      "A PNAS study of about 2,000 lakes found temperature, algal blooms and oxygen increasingly moving together across continents, which Casey notes could stem from regional weather and warming air rather than new fragility."
+    ],
+    "resolution": "They agreed that the record should explicitly state what it could not see and that a gap note should not be written solely by the person who lost the data, but they disagreed on who should write it, with Riley proposing a body holding the log or a later reader checking the raw data, and Casey insisting the rules be written before anyone has reason to dispute them. The question was left open.",
+    "topics_covered": [
+      "Inferred versus observed exoplanet evidence and the TOI-2535 b companion",
+      "Gap notation and the difference between silence, outage, and absence of data (Voyager 1 carrier versus science data)",
+      "Synchrony in lake records and whether it signals climate forcing or systemic risk",
+      "Privacy, rules, and governance of a neighbour's creek camera recording animals and people",
+      "Who should write the explanation for a gap in a long observational record"
     ]
   }
 }

@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-11-21",
-        "clue": "funding-risk:+ \u2014 insists plan must state what happens if grant fails",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-08",
         "clue": "evidence-bar:x \u2014 Concedes planted-planet test only proves recovery",
         "occurrences": 2
@@ -125,9 +120,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-15",
-        "clue": "evidence-bar:+ \u2014 insists on checking station history before claims",
-        "occurrences": 1
+        "date": "2026-11-22",
+        "clue": "evidence-bar:+ \u2014 insists record and companion are different evidence kinds",
+        "occurrences": 2
       },
       {
         "date": "2026-11-16",
@@ -165,13 +160,18 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-21",
-        "clue": "structural-lens:~ \u2014 council controls bylaws even if province controls money",
-        "occurrences": 1
+        "date": "2026-11-22",
+        "clue": "structural-lens:~ \u2014 gap notes need an independent reader beyond keeper",
+        "occurrences": 2
       },
       {
         "date": "2026-11-21",
         "clue": "rural-context:~ \u2014 local procurement rules can give partial control",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-22",
+        "clue": "community-trust:- \u2014 softens on camera surveillance, favors rule-setting over refusal",
         "occurrences": 1
       }
     ],
@@ -295,7 +295,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r",
       "[My Cariboo Now] Cops for Cancer riders to make community st",
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
       "[Canadian Forest Industries] Community knowledge helps guide",
@@ -304,7 +303,8 @@
       "[My Cariboo Now] The Quesnel Community Foundation\u2019s annual g",
       "[100 Mile Free Press] Interlakes community buys fire departm",
       "[100 Mile Free Press] CMHA bringing community together with ",
-      "[My Cariboo Now] Quesnel requests Community Transition Servi"
+      "[My Cariboo Now] Quesnel requests Community Transition Servi",
+      "[100 Mile Free Press] 100 Mile Ford running community coat d"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -454,13 +454,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-21",
-        "clue": "evidence-bar:+ \u2014 a number isn't money; demands public tax models",
+        "date": "2026-11-22",
+        "clue": "structural-lens:x \u2014 concedes a sooner companion test exists",
         "occurrences": 2
       },
       {
-        "date": "2026-11-21",
-        "clue": "structural-lens:x \u2014 concedes bylaws can be kept and checked publicly",
+        "date": "2026-11-22",
+        "clue": "community-trust:~ \u2014 neighbour cameras expose who's around, consent matters",
         "occurrences": 1
       }
     ],
