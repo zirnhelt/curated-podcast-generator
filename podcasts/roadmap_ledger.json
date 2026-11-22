@@ -647,8 +647,8 @@
       "title": "Four thin roundup stories reached the script after Kagi Extract returned no source text for them.",
       "detail": "The degrade row shows Kagi Extract returned no page for 4 thin roundup stories on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were cut by the airtime budget, so the thinnest sources were the ones that passed through. The pipeline should either drop stories whose extraction failed or mark them as unverified before scripting. This is the degradation whose handling the facts show as wrong.",
       "source": "review",
-      "status": "open",
-      "occurrences": 2,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-10-19",
       "seen": [
         "2026-10-19",
@@ -834,14 +834,15 @@
       "detail": "The roundup split the subject 'farmers weigh' across segments, so the same story reached listeners in two places instead of one coherent pass. The facts record the split in roundup_shape but do not say whether the duplication was intentional or whether the storyboard placed the pieces apart. The likely fix is to have the storyboard step group stories sharing a subject into one roundup slot or to mark the split explicitly so it does not read as repetition.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-11-17",
       "seen": [
-        "2026-11-17"
+        "2026-11-17",
+        "2026-11-22"
       ],
       "signal": "split-topic",
-      "signal_seen": "2026-11-17",
-      "last_seen": "2026-11-17"
+      "signal_seen": "2026-11-22",
+      "last_seen": "2026-11-22"
     },
     {
       "id": "deep-dive-retells-roundup-figures",
@@ -863,15 +864,16 @@
       "title": "The deep dive aired with no Cariboo story or angle despite the theme feed being local.",
       "detail": "On 2026-11-20 the roundup opened with two local stories, but the deep_dive_cariboo field reads no, and the deep dive led with p87 from four sources, none of them local. The facts show 10 on-theme candidates went unused, so a local angle was available to the deep-dive selector and was not chosen. The closing change is to have the deep-dive selection step require at least one Cariboo-tagged candidate when one exists in the theme feed, and log the reason when it does not.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-11-20",
       "seen": [
-        "2026-11-20"
+        "2026-11-20",
+        "2026-11-22"
       ],
       "signal": "deep-dive-non-local",
-      "signal_seen": "2026-11-20",
-      "last_seen": "2026-11-20"
+      "signal_seen": "2026-11-22",
+      "last_seen": "2026-11-22"
     },
     {
       "id": "weather-check-dropped-when-open-meteo-unreachable",
@@ -889,5 +891,5 @@
       "last_seen": "2026-11-21"
     }
   ],
-  "updated": "2026-11-21"
+  "updated": "2026-11-22"
 }

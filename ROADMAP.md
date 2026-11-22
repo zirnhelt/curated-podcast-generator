@@ -41,17 +41,18 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-10-19..2026-11-19) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-11-20..2026-11-22) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
-- [ ] **Four thin roundup stories reached the script after Kagi Extract returned no source text
-      for them.** The degrade row shows Kagi Extract returned no page for 4 thin roundup stories
-      on 2026-10-19, yet those stories were still scripted. Meanwhile 40 roundup stories were
-      cut by the airtime budget, so the thinnest sources were the ones that passed through. The
-      pipeline should either drop stories whose extraction failed or mark them as unverified
-      before scripting. This is the degradation whose handling the facts show as wrong. (signal
-      `degraded:script/kagi-extract`; seen in 2 reviews, latest 2026-11-19)
+- [ ] **The deep dive aired with no Cariboo story or angle despite the theme feed being local.**
+      On 2026-11-20 the roundup opened with two local stories, but the deep_dive_cariboo field
+      reads no, and the deep dive led with p87 from four sources, none of them local. The facts
+      show 10 on-theme candidates went unused, so a local angle was available to the deep-dive
+      selector and was not chosen. The closing change is to have the deep-dive selection step
+      require at least one Cariboo-tagged candidate when one exists in the theme feed, and log
+      the reason when it does not. (signal `deep-dive-non-local`; seen in 2 reviews, latest
+      2026-11-22)
 
 <!-- reviews:end -->
 
