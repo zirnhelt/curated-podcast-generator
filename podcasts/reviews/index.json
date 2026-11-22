@@ -1,5 +1,294 @@
 [
   {
+    "date": "2026-11-22",
+    "title": "Episode Review — Science, Wonder & the Natural World, November 22, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-22.html",
+    "content_html": "<p class=\"meta\">Theme: Science, Wonder &amp; the Natural World. Focus: The Living World (week 2 of 5). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/45001166360\">45001166360</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>2 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Investigate.</strong><br><span class=\"evidence\">the deep dive had no Cariboo story or angle</span> <span class=\"recur\">Recurring: pending for the roadmap, seen 1 night.</span></li>\n<li><strong>Investigate.</strong><br><span class=\"evidence\">one subject aired in separate places: million year, year old</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>YouTube upload is processed and public</h3>\n<p>The video from this run finished processing on YouTube and is public, with the status reported as ok. The upload is watchable.</p>\n\n<h3>Roundup opened on a local story and the deep dive missed the Cariboo</h3>\n<p>The roundup pool held 18 stories, 16 on theme and 2 local, and both local stories aired. The roundup opened on local news. Two roundup subjects were split across segments, one on a million-year timescale and one on a year-old event. The Cariboo did not feature in the deep dive.</p>\n\n<h3>Three articles held and seven released from the focus queue</h3>\n<p>Focus routing released 7 articles and held 3. The three held articles were routed to Economic Development, Homestead &amp; Off-Grid Tech, and Digital Life &amp; Security, with release dates of 2026-11-26, 2026-11-25 and 2026-12-02. The seven released articles had been waiting since 2026-11-12 through 2026-11-21. Two had a keyword score of 2 and five had a score of 1.</p>\n\n<h3>First draft came in 152 words under target and was expanded once</h3>\n<p>The first script draft was 3152 words against a target of 3400. It went back for one expand pass, and the script that shipped was 3830 words. The draft was short, but the episode met its length after the expansion.</p>\n\n<h3>Roundup citations matched on 11 of 18 and deep dive citations on 2 of 4</h3>\n<p>Citation alignment matched 11 of 18 roundup citations and 2 of 4 deep dive citations. Four deep-dive sources were used and 23 unused on-theme candidates remain in the pool. Storyboard flow placed 13 roundup pairs against 12 in plan order, and named no bridges out of 16.</p>\n<p>Change the citation step in the storyboard so roundup and deep-dive citations are checked against the source list before the script is accepted.</p>\n\n<h3>Seven short TTS takes, five still short after retry</h3>\n<p>Seven TTS takes came back shorter than their word count predicts and were each retried once. Five were still short after the retry. The longer take of each pair was kept, so nothing was dropped from the episode.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>77</td></tr>\n<tr><td>Kept after dedup</td><td>58</td></tr>\n<tr><td>Held / released</td><td>7 released, 3 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:16, local:2</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.57, 3830 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 36% of the words</td></tr>\n<tr><td>Audio</td><td>25.4 min</td></tr>\n<tr><td>Audio size</td><td>23.2 MB</td></tr>\n<tr><td>Citations matched</td><td>11/18 roundup, 2/4 deep dive</td></tr>\n<tr><td>Feed</td><td>298 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>83,051</td></tr>\n<tr><td>API calls</td><td>141 total: openai-tts 116 · claude 12 · cohere 5 · brave-answers 4 · brave-search 3 · kagi-extract 1</td></tr>\n<tr><td>Anthropic cost</td><td>$0.15 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.71 at list price: OpenAI TTS $0.374 · Brave Answers $0.164 · Anthropic $0.150 · Brave Search $0.015 · Kagi Extract $0.004 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-22T10:06:03+00:00",
+    "metrics": {
+      "audio_minutes": 25.4,
+      "script_words": 3830,
+      "tell_hits": 0,
+      "roundup_cite_pct": 61.1,
+      "deep_dive_cite_pct": 50.0,
+      "cost_usd": 0.71
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "2 things to look at before tomorrow's run.",
+      "theme": "Science, Wonder & the Natural World",
+      "kpis": [
+        [
+          "Episode",
+          "25.4 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,830",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "11/18 · 2/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.71",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:33 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "deep-dive-non-local",
+          "todo": "Investigate.",
+          "evidence": "the deep dive had no Cariboo story or angle",
+          "minor": false,
+          "nights_seen": 1
+        },
+        {
+          "signal": "split-topic",
+          "todo": "Investigate.",
+          "evidence": "one subject aired in separate places: million year, year old",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-16",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Film & Screen",
+          "week": 1,
+          "of": 5,
+          "next": "Music & Live Performance",
+          "event": null
+        },
+        {
+          "date": "2026-11-17",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Forestry & Timber",
+          "week": 2,
+          "of": 4,
+          "next": "Mining & Energy",
+          "event": null
+        },
+        {
+          "date": "2026-11-18",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Maker & Repair",
+          "week": 1,
+          "of": 5,
+          "next": "Homestead & Off-Grid Tech",
+          "event": null
+        },
+        {
+          "date": "2026-11-19",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Language & Culture",
+          "week": 2,
+          "of": 4,
+          "next": "Economic Development",
+          "event": null
+        },
+        {
+          "date": "2026-11-20",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Wildlife & Conservation",
+          "week": 2,
+          "of": 4,
+          "next": "Recreation & Backcountry Access",
+          "event": null
+        },
+        {
+          "date": "2026-11-21",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-22",
+          "day": "Sun",
+          "today": true,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "The Living World",
+          "week": 2,
+          "of": 5,
+          "next": "Earth Systems & Climate Science",
+          "event": null
+        }
+      ],
+      "anchor": "How much should neighbours know about each other?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.wired.com/story/new-species-of-giant-fungus-discovered-in-china-grows-up-to-20-inches-tall/",
+          "title": "[WIRED] New Species of Giant Fungus Discovered in China Grows up to 20 Inches Tall",
+          "source": "",
+          "theme_pct": 99,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/a-52-000-year-old-runaway-star-was-a-long-standing-cosmic-cold-case-now-scientists-think-theyve-cracked-it/",
+          "title": "[Scientific American] A 52,000-year-old runaway star was a long-standing cosmic cold case. Now scientists think they’ve cracked it",
+          "source": "",
+          "theme_pct": 99,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/no-one-knows-how-the-grand-canyon-formed/",
+          "title": "[Scientific American] No one knows how the Grand Canyon formed",
+          "source": "",
+          "theme_pct": 99,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261118065531.htm",
+          "title": "[ScienceDaily] A 3-million-year-old child just made human evolution far more complicated",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.science.org/content/article/extinct-vampire-camel-once-stalked-north-american-plains",
+          "title": "[science.org] Museum fossils identify 13-million-year-old North American ‘vampire camel’",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencealert.com/scientists-show-earths-magnetic-field-helps-guide-moths-in-massive-australian-migration",
+          "title": "[ScienceAlert] Moths Are Guided by Earth's Magnetic Field in Massive Australian Migration",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/11/scientists-check-their-work-and-confirm-it-with-update-on-iconic-black-hole-image/",
+          "title": "[Adafruit Blog] Scientists check their work and confirm it with update on iconic black hole image",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/astronomers-just-witnessed-a-dying-star-gobble-up-its-neighbor-in-real-time/",
+          "title": "[Scientific American] Astronomers just witnessed a dying star gobble up its neighbor in real time",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261120075556.htm",
+          "title": "[ScienceDaily] A giant star swallowed another star. James Webb reveals the aftermath",
+          "source": "",
+          "theme_pct": 96,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencealert.com/major-fossil-discovery-in-china-reveals-two-new-secrets-about-the-home-of-homo-erectus",
+          "title": "[ScienceAlert] Major Fossil Discovery in China Reveals New Secrets About Mysterious Hominin Ancestors",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sci.news/othersciences/anthropology/homo-erectus-china-15208.html",
+          "title": "[sci.news] Chinese fossils extend Homo erectus survival and reveal rainforest adaptation",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://science.nasa.gov/missions/webb/nasa-data-clinches-first-of-its-kind-stellar-merger/",
+          "title": "[science.nasa.gov] Webb traces Andromeda star merger, challenging common-envelope models",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scimex.org/newsfeed/galactic-shock-discovery-challenges-our-understanding-of-the-milky-ways-structure",
+          "title": "[scimex.org] Milky Way bar shock may explain part of disputed Norma arm",
+          "source": "",
+          "theme_pct": 93,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://nautil.us/oceans-and-forests-have-absorbed-roughly-half-our-carbon-emissions-for-decades-slowing-climate-change-but-can-they-keep-it-up-1286879/",
+          "title": "[Nautilus] Oceans and Forests Have Absorbed Roughly Half Our Carbon Emissions for Decades, Slowing Climate Change. But Can They Keep It Up?",
+          "source": "",
+          "theme_pct": 90,
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.sciencealert.com/scientists-just-established-a-safe-operating-space-for-earths-cryosphere-and-its-already-breached",
+          "title": "[ScienceAlert] Scientists Say Earth's Cryosphere Is No Longer Within a Safe Operating Space",
+          "source": "",
+          "theme_pct": 90,
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "When a long-running observational record goes quiet, who should write the note explaining the silence, and how can a gap be distinguished from a genuinely quiet sky or system?",
+        "riley": "Silences in long records are open parts of the record rather than failures; the record should explicitly mark what it could not see, with the expected pattern, known gaps, and reasons stated beside it, and a camera on a creek can serve as a monitoring station if its purpose and data rules are set in advance.",
+        "casey": "Records are only as trustworthy as the people writing their gap notes, so a log kept by the person who lost the data is a self-report; the rules for any monitoring, especially cameras recording neighbours, must be written down before disputes arise, and synchrony in lake data may reflect shared climate forcing rather than new systemic fragility.",
+        "resolution": "They agreed that the record should explicitly state what it could not see and that a gap note should not be written solely by the person who lost the data, but they disagreed on who should write it, with Riley proposing a body holding the log or a later reader checking the raw data, and Casey insisting the rules be written before anyone has reason to dispute them. The question was left open.",
+        "topics": [
+          "Inferred versus observed exoplanet evidence and the TOI-2535 b companion",
+          "Gap notation and the difference between silence, outage, and absence of data (Voyager 1 carrier versus science data)",
+          "Synchrony in lake records and whether it signals climate forcing or systemic risk",
+          "Privacy, rules, and governance of a neighbour's creek camera recording animals and people",
+          "Who should write the explanation for a gap in a long observational record"
+        ],
+        "sources": [
+          {
+            "title": "Nearby giant likely tilted hot Jupiter out of view",
+            "url": "https://www.popsci.com/science/wobbly-exoplanet-vanished-explanation/"
+          },
+          {
+            "title": "Voyager 1 stops sending science data before one-light-day milestone",
+            "url": "https://www.nasa.gov/news-release/nasas-voyager-1-makes-history-reaching-one-light-day-from-earth/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-21",
     "title": "Episode Review — Cariboo Local Affairs, November 21, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-21.html",
@@ -4396,20 +4685,6 @@
       "tell_hits": 1,
       "roundup_cite_pct": 44.4,
       "deep_dive_cite_pct": 40.0
-    }
-  },
-  {
-    "date": "2026-10-23",
-    "title": "Episode Review — Cariboo Signals, October 23, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-23.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/39922933170\">39922933170</a>.</p>\n\n<div class=\"verdict lvl-minor\"><span class=\"icon\" aria-hidden=\"true\">●</span><div><strong>Shipped, minor notes</strong>Nothing broke. A couple of quality notes below.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>One host carried the episode. Check the turn split in the script.</strong><br><span class=\"evidence\">Casey/Riley voice ratio 0.78</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The short draft took two expand passes to reach target</h3>\n<p>The first script draft came in at 3163 words against a target of 3400. The pipeline sent it back for up to two expand passes, and the script that shipped is 3515 words. The draft was short by a margin the pipeline treats as a failure, and the retry loop is what fixed it. Nothing in the facts says whether the expanded material added substance or padding, so that is worth reading in the script itself before assuming the retry was clean.</p>\n\n<h3>One TTS take came back short and was retried once</h3>\n<p>One text-to-speech take returned shorter than its word count predicts. Each such take is retried once, and this was the only one tonight. The facts record the retry, not whether the retried take came back at full length, so treat the audio at that point as unverified.</p>\n\n<h3>Citations matched on 12 of 18 roundup items and 2 of 4 deep dives</h3>\n<p>Roundup citations matched on 12 of 18 items, and deep-dive citations on 2 of 4. The four deep dives are a short list, and half of them failed to align. Two of the four deep-dive sources are a local election story and a theme-park death, and the debate question about who holds responsibility for outdoor safety decisions sits awkwardly against both. Check the two unmatched deep-dive citations against their source articles before the next run, since the mismatch may be in the extraction step rather than the script.</p>\n\n<h3>65 roundup stories were cut by the airtime budget</h3>\n<p>The roundup pool held more stories than one segment can air, so 65 were dropped by the airtime budget set in NEWS_ROUNDUP_COUNT. This is by design, and a dropped story can resurface on a day when it fits the debate better. The number is large enough that the budget is the main thing deciding what listeners hear, so if the show's coverage starts to feel narrow, NEWS_ROUNDUP_COUNT is the first setting to revisit.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:11 AM Pacific</td><td>+6 min</td><td>success</td></tr>\n<tr><td>Manual (workflow_dispatch)</td><td>1:24 AM Pacific</td><td>—</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:07 AM Pacific</td><td>+2 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.78, 3515 words</td></tr>\n<tr><td>Audio</td><td>21.5 min</td></tr>\n<tr><td>Audio size</td><td>19.7 MB</td></tr>\n<tr><td>Citations matched</td><td>12/18 roundup, 2/4 deep dive</td></tr>\n<tr><td>Feed</td><td>268 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>58,930</td></tr>\n<tr><td>API calls</td><td>19 total: claude 9 · brave-search 4 · brave-answers 4 · kagi-extract 2</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-23T10:06:02+00:00",
-    "metrics": {
-      "audio_minutes": 21.5,
-      "script_words": 3515,
-      "tell_hits": 0,
-      "roundup_cite_pct": 66.7,
-      "deep_dive_cite_pct": 50.0
     }
   }
 ]
