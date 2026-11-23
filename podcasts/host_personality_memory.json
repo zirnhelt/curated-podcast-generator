@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-11-08",
-        "clue": "evidence-bar:x \u2014 Concedes planted-planet test only proves recovery",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-19",
         "clue": "funding-risk:x \u2014 admitted unpriced cost of Nation participation",
         "occurrences": 2
@@ -150,9 +145,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-20",
-        "clue": "structural-lens:+ \u2014 insists lead time should fund drainage sizing",
-        "occurrences": 1
+        "date": "2026-11-23",
+        "clue": "structural-lens:+ \u2014 insists records need visibility and off-site, durable copies",
+        "occurrences": 2
       },
       {
         "date": "2026-11-21",
@@ -459,8 +454,13 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-22",
-        "clue": "community-trust:~ \u2014 neighbour cameras expose who's around, consent matters",
+        "date": "2026-11-23",
+        "clue": "community-trust:~ \u2014 shelf write-downs cheap, but museum sentences expensive to recover",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-11-23",
+        "clue": "evidence-bar:+ \u2014 two interested parties' accounts don't amount to a record",
         "occurrences": 1
       }
     ],

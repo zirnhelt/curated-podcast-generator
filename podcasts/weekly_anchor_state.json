@@ -1,15 +1,5 @@
 {
   "assigned": {
-    "2026-W39": {
-      "id": "place-unrecorded",
-      "question": "Does a place still exist if nobody records it?",
-      "dimension": "memory-record",
-      "premise": "The Cariboo is thinly documented and getting thinner \u2014 a shrinking local press, council meetings nobody minutes, oral history held by people in their eighties, ecosystems monitored by satellite but not by anyone who lives there. Meanwhile the same landscape is captured in enormous detail by systems that answer to nobody local. The question is what the difference is between being recorded and being known.",
-      "reading": null,
-      "framings": {},
-      "assigned_at": "2026-09-21",
-      "origin": "seeded"
-    },
     "2026-W40": {
       "id": "small-better-or-excuse",
       "question": "When is small genuinely better, and when is it just an excuse?",
@@ -153,6 +143,24 @@
       },
       "assigned_at": "2026-11-16",
       "origin": "generated"
+    },
+    "2026-W48": {
+      "id": "staying-versus-leaving",
+      "question": "Is staying put a virtue or a failure of nerve?",
+      "dimension": "rootedness-mobility",
+      "premise": "Some people stay because the land, the family, and the work are the point, and holding a place together takes someone willing to hold still. Others stay because leaving was frightening, expensive, or never seriously imagined. Those who go often send back money, ideas, and a wider view, though they also take young talent and leave thinner communities behind. It is hard to know from the outside whether a given decision to stay or go is courage, habit, or fear.",
+      "reading": null,
+      "framings": {
+        "0": "Ask whether the Williams Lake arts scene and its festivals survive only because someone stayed to run the venue, or whether leaving for Vancouver would have been the more honest career for a local artist.",
+        "1": "Weigh whether a Cariboo sawmill or ranch family that stays through the downturns is showing commitment to the land or simply lacks the savings and options to walk away.",
+        "2": "Consider whether a rural tradesperson who builds their own repair shop, homelab, or solar setup is choosing self-reliance over leaving for a city job, or just making do with what's around them.",
+        "3": "Examine whether T\u015dilhqot'in or Secw\u00e9pemc youth who return to rebuild language programs and land governance are answering a duty to their nation or accepting a sacrifice their communities should not require.",
+        "4": "Debate whether a Chilcotin guide or wildfire crew member who stays year-round in the backcountry is protecting a landscape worth holding onto or clinging to work that climate change is making unsustainable.",
+        "5": "Question whether a councillor in 100 Mile House or Quesnel who has lived there for decades brings stabilizing local knowledge to council, or whether an unbroken local line simply blocks fresh ideas and outside investment.",
+        "6": "Probe whether a Cariboo field biologist who spends a career tracking grizzlies or lake ecology near home is committed to long-term observation, or whether the science would be stronger if researchers moved on to wider labs."
+      },
+      "assigned_at": "2026-11-23",
+      "origin": "generated"
     }
   },
   "used": [
@@ -245,6 +253,12 @@
       "dimension": "privacy-visibility",
       "question": "How much should neighbours know about each other?",
       "week": "2026-W47"
+    },
+    {
+      "id": "staying-versus-leaving",
+      "dimension": "rootedness-mobility",
+      "question": "Is staying put a virtue or a failure of nerve?",
+      "week": "2026-W48"
     }
   ],
   "generated": [

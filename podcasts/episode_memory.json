@@ -1,45 +1,4 @@
 {
-  "2026-10-18": {
-    "timestamp": 1792312066.572911,
-    "topics": [
-      "[100 Mile Free Press] Forest Grove resident demands return o",
-      "[Williams Lake Tribune] Williams Lake Film Club presents Ame",
-      "[My Cariboo Now] Municipal election races underway across th",
-      "[STAT News] Opinion: 50 years ago, my colleagues and I pursu",
-      "[The Guardian Global Development] Shortages of crucial HIV m",
-      "[NYT Business] Burst of Attacks in Gulf Heightens Fears Over",
-      "[WIRED] Microplastics React With Water, a New Study Says. Th",
-      "[TechCrunch] Mosqitter is turning its mosquito traps into an"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-10-18",
-    "focus": "living-world",
-    "focus_name": "The Living World"
-  },
-  "2026-10-19": {
-    "timestamp": 1792397759.730744,
-    "topics": [
-      "[100 Mile Free Press] Two of 3 South Cariboo regional distri",
-      "[Williams Lake Tribune] Surinderpal Rathor re-elected mayor ",
-      "[The Tyee] In Kamloops and Across BC, Many Mayors Ousted",
-      "[Quesnel Cariboo Observer] Coralee Oakes elected mayor of Qu",
-      "[Quesnel Cariboo Observer] Jillian Merrick elected mayor of ",
-      "[Dangerous Minds] Ambassador Satch: The music genre that bec",
-      "[Al Jazeera English] India\u2019s crackdown on cockroaches, criti",
-      "[ArchDaily] Living Archive / Office ParkScheerbarth"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-10-19",
-    "focus": "music-performance",
-    "focus_name": "Music & Live Performance"
-  },
   "2026-10-20": {
     "timestamp": 1792484556.178119,
     "topics": [
@@ -748,5 +707,24 @@
     "date": "2026-11-22",
     "focus": "sky-cosmos",
     "focus_name": "Sky & Cosmos"
+  },
+  "2026-11-23": {
+    "timestamp": 1795422001.223814,
+    "topics": [
+      "[Pique Newsmagazine] Doerkson says indefinite halt at pulp m",
+      "[Quesnel Cariboo Observer] Faces behind the counter: Quesnel",
+      "[100 Mile Free Press] Free counselling now available through",
+      "[Quesnel Cariboo Observer] SHOP LOCAL: Discover one-of-a-kin",
+      "[100 Mile Free Press] Student Vote sees minority Conservativ",
+      "[NYT Top Stories] How a Crash Into a Cruise Ship in New Orle",
+      "[Hyperallergic] Restitution Claim on $180M Van Gogh Shakes U",
+      "[ArchDaily] Brazil in Focus: This Month in Architecture, Cul"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-11-23",
+    "focus": "visual-arts-heritage",
+    "focus_name": "Visual Arts & Heritage"
   }
 }
