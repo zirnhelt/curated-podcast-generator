@@ -776,3 +776,19 @@ upkeep, and the storyboard had the story as a clean pivot. The system prompt let
 stakes and costs", and on a Repair day Casey's voice card reached for one. Now the hosts weigh
 the stakes and costs the material shows, and the script prompt and both polish prompts hold
 a roundup reaction to something the story says.
+
+## The storyboard groups a topic, not only a subject (2026-11-23)
+
+**Producer's note on 2026-11-22:** "weird jump from fossil to fungus to cactus then back to
+fossils." The storyboard planned the Taung Child fossil, a giant fungus, a cactus drought
+study, then the Homo erectus fossils and a 13-million-year-old camel fossil, every link a
+"clean pivot". The prompt asked for stories on one *subject* (the same product, event,
+organisation or decision) to air together, and three different fossil finds are three
+subjects, so it obeyed. The review's split check caught it on the words "million year".
+
+**The fix is one sentence in the storyboard prompt** (the producer chose the prompt over a
+code regroup): stories on one *topic* air together too, with the topic named in the bridge,
+and a topic is grouped, never folded (`merge_with` stays for reports of the same thing).
+About 45 more tokens on the batched Sonnet 5.5 storyboard call, under $0.0001 a run. If a
+night still splits a topic, the split check will say so, and a code regroup after
+`apply_storyboard_order` is the next step.

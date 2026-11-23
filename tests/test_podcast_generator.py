@@ -8373,6 +8373,15 @@ class TestCaribooDeepDivePick:
         template = config_loader.load_prompts_config()["script_storyboard"]["template"]
         assert "never on what the material leaves out" in template
 
+    def test_storyboard_groups_a_topic_without_folding_it(self):
+        """2026-11-22: three fossil finds aired around a fungus and a cactus study. The
+        rule asked only for one subject (one product, event, organisation or decision)
+        to air together, and three different finds were not one subject (the producer)."""
+        import config_loader
+        template = config_loader.load_prompts_config()["script_storyboard"]["template"]
+        assert "Do the same for stories on one topic" in template
+        assert "Group a topic, never fold it: merge_with is only for reports of the same thing." in template
+
     def test_a_neighbouring_story_is_not_a_report_of_the_lead(self, monkeypatch):
         """2026-11-04 took Anduril-laptop and FCC-ban stories as reports of an
         EU-repairability story; a real report shares a headline word."""
