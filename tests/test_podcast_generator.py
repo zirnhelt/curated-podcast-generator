@@ -5990,6 +5990,39 @@ class TestScriptStageAnthropicFallbacksHonourBillingWall:
         assert clean_segments[-1]["name"] == "script/cold-open"
         assert clean_segments[-1]["status"] == "degraded"
 
+    # 2026-11-21: a 91-word teaser was dropped with one stdout line, no second try
+    # and no degrade(), so Saturday aired with no cold open and the review never knew.
+    @staticmethod
+    def _teasers(monkeypatch, *texts):
+        client = MagicMock()
+        client.messages.create.side_effect = [_response("end_turn", [_text_block(t)]) for t in texts]
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        return client
+
+    def test_a_long_cold_open_gets_one_shorter_try(self, monkeypatch, clean_segments):
+        client = self._teasers(monkeypatch, "**RILEY:** " + "word " * 91, "**RILEY:** Morning. Short and sweet.")
+        with segment("script/cold-open", critical=False):
+            result = generate_cold_open(_WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech")
+        assert result.startswith("**COLD OPEN**\n**RILEY:** Morning. Short and sweet.")
+        assert client.messages.create.call_count == 2
+        retry = client.messages.create.call_args_list[1].kwargs["messages"][0]["content"]
+        assert "Your teaser ran 91 words" in retry
+        assert clean_segments[-1]["status"] != "degraded"
+
+    def test_a_cold_open_long_twice_degrades(self, monkeypatch, clean_segments):
+        self._teasers(monkeypatch, "**RILEY:** " + "word " * 91, "**RILEY:** " + "word " * 95)
+        with segment("script/cold-open", critical=False):
+            result = generate_cold_open(_WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech")
+        assert result == _WELCOME_SCRIPT
+        assert clean_segments[-1]["status"] == "degraded"
+        assert "95 on the retry" in clean_segments[-1]["error"]
+
+    def test_an_unusable_cold_open_degrades(self, monkeypatch, clean_segments):
+        self._teasers(monkeypatch, "Here is a teaser without a host tag.")
+        with segment("script/cold-open", critical=False):
+            assert generate_cold_open(_WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech") == _WELCOME_SCRIPT
+        assert clean_segments[-1]["status"] == "degraded"
+
     def test_debate_summary_aborts_on_credit_wall(self, monkeypatch):
         client = MagicMock()
         client.messages.create.side_effect = Exception(CREDIT_BALANCE_ERROR)

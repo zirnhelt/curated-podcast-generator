@@ -6044,6 +6044,12 @@ def _focus_hits(script: str, focus: dict | None) -> int:
                for k in focus.get('keywords') or [] if k)
 
 
+# A teaser over this many words is not aired. The prompt asks for 45-70; one long
+# answer gets a second try (2026-11-21 aired no cold open over a 91-word teaser).
+COLD_OPEN_MAX_WORDS = 90
+COLD_OPEN_SHORTER = "\n\nYour teaser ran {words} words. Write it again in 45-70 words, keeping its hook."
+
+
 def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) -> str:
     """Generate the COLD OPEN teaser after the script is fully drafted and polished.
 
@@ -6066,11 +6072,13 @@ def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) 
     welcome_host = _find_welcome_host(script)
     if not welcome_host:
         print("  ⚠️  Could not find welcome host in script — skipping cold open")
+        degrade("script/cold-open", "no welcome host in the script, episode ships with no cold open")
         return script
 
     prompts = CONFIG['prompts']
     if 'cold_open_generation' not in prompts:
         print("  ⚠️  cold_open_generation prompt missing from config — skipping cold open")
+        degrade("script/cold-open", "cold_open_generation prompt missing, episode ships with no cold open")
         return script
 
     today = get_pacific_now()
@@ -6097,30 +6105,39 @@ def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) 
         burned_phrases=format_burned_phrases_for_prompt(),
     )
 
+    content = prompt
     try:
-        # A 300-token budget has no room for thinking, which shares it: the
-        # small-call rule in CLAUDE.md. Sonnet 5.5 thinks before almost every
-        # reply at its default effort and would spend the budget doing it.
-        response = api_retry(lambda: send_claude(
-            client,
-            model=COLD_OPEN_MODEL,
-            max_tokens=300,
-            thinking=thinking_off(COLD_OPEN_MODEL),
-            messages=[{"role": "user", "content": prompt}]
-        ))
-        _log_claude_usage(response)
-        teaser = message_text(response).strip()
-        m = re.match(r'\*{0,2}(RILEY|CASEY):\*{0,2}\s*(.+)', teaser, re.DOTALL)
-        if not m or not m.group(2).strip():
-            print("  ⚠️  Cold open generation returned unusable output — skipping cold open")
-            return script
-        host, text = m.group(1), ' '.join(m.group(2).split())
-        word_count = len(text.split())
-        if word_count > 90:
-            print(f"  ⚠️  Cold open too long ({word_count} words) — skipping cold open")
-            return script
-        print(f"  🎙️  Generated cold open ({word_count} words)")
-        return f"**COLD OPEN**\n**{host}:** {text}\n\n{script}"
+        # Every way out without a teaser degrade()s: the 91-word drop on
+        # 2026-11-21 printed one stdout line and the review never saw it.
+        for attempt in (1, 2):
+            # A 300-token budget has no room for thinking, which shares it: the
+            # small-call rule in CLAUDE.md. Sonnet 5.5 thinks before almost every
+            # reply at its default effort and would spend the budget doing it.
+            response = api_retry(lambda: send_claude(
+                client,
+                model=COLD_OPEN_MODEL,
+                max_tokens=300,
+                thinking=thinking_off(COLD_OPEN_MODEL),
+                messages=[{"role": "user", "content": content}]
+            ))
+            _log_claude_usage(response)
+            teaser = message_text(response).strip()
+            m = re.match(r'\*{0,2}(RILEY|CASEY):\*{0,2}\s*(.+)', teaser, re.DOTALL)
+            if not m or not m.group(2).strip():
+                print("  ⚠️  Cold open generation returned unusable output — skipping cold open")
+                degrade("script/cold-open", "cold open came back unusable, episode ships with none")
+                return script
+            host, text = m.group(1), ' '.join(m.group(2).split())
+            word_count = len(text.split())
+            if word_count <= COLD_OPEN_MAX_WORDS:
+                print(f"  🎙️  Generated cold open ({word_count} words)")
+                return f"**COLD OPEN**\n**{host}:** {text}\n\n{script}"
+            print(f"  ⚠️  Cold open too long ({word_count} words)"
+                  + (" — asking once for a shorter one" if attempt == 1 else " again — skipping cold open"))
+            content = prompt + COLD_OPEN_SHORTER.format(words=word_count)
+        degrade("script/cold-open", f"cold open ran over {COLD_OPEN_MAX_WORDS} words twice "
+                                    f"({word_count} on the retry), episode ships with none")
+        return script
     except Exception as e:
         _abort_if_billing_wall(e)
         print(f"  ⚠️  Cold open generation failed, skipping: {e}")
