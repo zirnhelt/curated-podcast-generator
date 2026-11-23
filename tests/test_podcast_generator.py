@@ -4523,6 +4523,18 @@ class TestCurateRoundupPool:
         assert "Solar storm hits the magnetosphere" not in kept_titles
         assert "Astronomers watch supernova explode in distant galaxy" not in kept_titles
 
+    def test_every_drop_says_why(self):
+        # The producer, 2026-11-21: review.html's cut list should give the skip reason.
+        known = {"over the airtime budget", "no room left for a pair from its subject area",
+                 "no room left for the closing story", "local block trimmed to keep room for the theme",
+                 "US federal politics with no local or theme tie"}
+        for size in (3, 4, 5):
+            _, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, size)
+            assert dropped and all(a.get("_cut_reason") in known for a in dropped), size
+        # One slot left after the protected arc and the closer's reserve: the pair is not split.
+        _, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 5)
+        assert "no room left for a pair from its subject area" in {a["_cut_reason"] for a in dropped}
+
     def test_bonus_counts_against_the_cap(self):
         """2026-08-13: 15 curated stories aired alongside 37 uncapped bonus picks.
 
@@ -8585,6 +8597,21 @@ class TestEpisodeCuts:
             ("roundup", "https://m"), ("roundup", "https://g")]
         assert cuts[0]["aired"] is True and "aired" not in cuts[1]
         json.dumps(cuts)
+        assert cuts[0]["reason"] == "aired in the roundup; not picked for the deep dive"
+        assert cuts[1]["reason"] == "not picked for the deep dive"
+        assert cuts[2]["reason"] == "over the airtime budget"
+
+    def test_rows_carry_the_curation_reason_and_skip_stories_already_aired(self):
+        # 2026-11-21: 4 of Saturday's 9 roundup cuts were the week recall's stories,
+        # aired earlier in the week, and the card listed them as cuts with no reason.
+        import podcast_generator as pg
+        dropped = [{"title": "Cluster spill", "url": "https://x", "_theme_score": 50,
+                    "_cut_reason": "over the 3-story cap for one subject area"},
+                   {"title": "Poppy workshop", "url": "https://p", "_theme_score": 94,
+                    "_recalled_from": "2026-11-20", "_week_recall": True}]
+        cuts = pg.episode_cuts([], [], dropped)
+        assert [(c["url"], c["reason"]) for c in cuts] == [
+            ("https://x", "over the 3-story cap for one subject area")]
 
     def test_capped(self):
         import podcast_generator as pg

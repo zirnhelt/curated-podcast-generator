@@ -7563,6 +7563,13 @@ def _sequence_roundup(pool: list) -> list:
     return ordered
 
 
+def _cut_for(articles: list, reason: str) -> list:
+    """Mark each article with why the roundup dropped it (review.html shows it); returns them."""
+    for a in articles:
+        a['_cut_reason'] = reason
+    return articles
+
+
 def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tuple:
     """Cap the News Roundup pool at `pool_size` while maximizing coherence.
 
@@ -7586,6 +7593,7 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     docstring.
     """
     pool, dropped_us_politics = _annotate_roundup_blocks(articles, theme_name)
+    _cut_for(dropped_us_politics, "US federal politics with no local or theme tie")
     if dropped_us_politics:
         print(f"   🇺🇸 {len(dropped_us_politics)} story(ies) dropped — pure US "
               f"federal politics with no local/theme tie")
@@ -7604,7 +7612,8 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
             capped.extend(members)
             continue
         capped.extend(members[:ROUNDUP_CLUSTER_MAX])
-        over_cluster.extend(members[ROUNDUP_CLUSTER_MAX:])
+        over_cluster.extend(_cut_for(members[ROUNDUP_CLUSTER_MAX:],
+                                     f"over the {ROUNDUP_CLUSTER_MAX}-story cap for one subject area"))
     pool = capped
     if over_cluster:
         print(f"   ✂️  {len(over_cluster)} story(ies) over the "
@@ -7642,10 +7651,10 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
         theme_arc = [a for a in protected if a['_roundup_block'] != 'local']
         theme_keep = min(len(theme_arc), ROUNDUP_THEME_FLOOR, pool_size)
         local_keep = max(0, pool_size - theme_keep)
-        dropped.extend(local_arc[local_keep:])
+        dropped.extend(_cut_for(local_arc[local_keep:], "local block trimmed to keep room for the theme"))
         local_arc = local_arc[:local_keep]
         theme_room = pool_size - len(local_arc)
-        dropped.extend(theme_arc[theme_room:])
+        dropped.extend(_cut_for(theme_arc[theme_room:], "over the airtime budget"))
         protected = local_arc + theme_arc[:theme_room]
 
     # Reserve the closer's slot before the tail spends the budget. A roundup that
@@ -7660,13 +7669,14 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
         room = fill_budget - len(protected) - len(kept_fill)
         # Don't strand a single cluster member with nothing to bridge to
         if room <= 0 or (block != 'standalone' and room < 2):
-            dropped.extend(members)
+            dropped.extend(_cut_for(members, "over the airtime budget" if room <= 0
+                                    else "no room left for a pair from its subject area"))
             continue
         kept_fill.extend(members[:room])
-        dropped.extend(members[room:])
+        dropped.extend(_cut_for(members[room:], "over the airtime budget"))
 
     if not kicker_room:
-        dropped.extend(kicker)
+        dropped.extend(_cut_for(kicker, "no room left for the closing story"))
         kicker = []
     return _sequence_roundup(protected + kept_fill + kicker), dropped
 
@@ -7789,18 +7799,27 @@ def episode_cuts(roundup: list, deep_dive: list, dropped: list) -> list[dict]:
     """The articles the run passed over, for the reader to second-guess.
 
     `deep_dive`: on-theme candidates the deep dive did not use (`aired` when the roundup
-    carried them). `roundup`: stories cut from the pool for airtime. Pure Python over the
-    run's own lists: no spend.
+    carried them). `roundup`: stories cut from the pool, each with the `reason` the roundup
+    curation gave (`_cut_reason`). A story that aired earlier in the week (`_recalled_from`:
+    Saturday's week recall, an election recall) is not a cut the reader can second-guess,
+    so it gets no row (the producer, 2026-11-21). Pure Python over the run's own lists:
+    no spend.
     """
     def row(a: dict, kind: str, aired: bool = False) -> dict:
+        if kind == "deep_dive":
+            reason = ("aired in the roundup; not picked for the deep dive" if aired
+                      else "not picked for the deep dive")
+        else:
+            reason = a.get('_cut_reason') or "over the airtime budget"
         return {"kind": kind, "url": a.get('url') or '', "title": (a.get('title') or '')[:200],
                 "source": a.get('source') or '', "theme_pct": a.get('_theme_score'),
-                **({"aired": True} if aired else {})}
+                "reason": reason, **({"aired": True} if aired else {})}
 
     aired_urls = {a.get('url') for a in roundup}
     passed = _unused_on_theme(roundup, deep_dive, dropped)
     seen = {a.get('url') for a in passed}
-    cut = [a for a in dropped if a.get('url') and a.get('url') not in seen]
+    cut = [a for a in dropped if a.get('url') and a.get('url') not in seen
+           and not a.get('_recalled_from')]
     rank = lambda a: -(a.get('_theme_score') or 0)  # noqa: E731
     rows = ([row(a, "deep_dive", a.get('url') in aired_urls) for a in sorted(passed, key=rank)]
             + [row(a, "roundup") for a in sorted(cut, key=rank)])

@@ -948,7 +948,7 @@ def test_the_review_page_lists_research_spend_by_service(tmp_path, monkeypatch):
 def test_the_summary_carries_the_cuts_cleaned(tmp_path, monkeypatch):
     import episode_review as er
     cuts = [{"kind": "deep_dive", "url": "https://a", "title": "Herd count", "source": "Tyee",
-             "theme_pct": 94, "aired": True},
+             "theme_pct": 94, "aired": True, "reason": "not picked for the deep dive"},
             {"kind": "roundup", "url": "javascript:alert(1)", "title": "bad"},
             {"kind": "other", "url": "https://b", "title": "bad kind"},
             {"kind": "roundup", "url": "https://c", "title": "GPU", "theme_pct": "high"}]
@@ -957,6 +957,7 @@ def test_the_summary_carries_the_cuts_cleaned(tmp_path, monkeypatch):
     rows = er.load_cuts("2026-11-06")
     assert [r["url"] for r in rows] == ["https://a", "https://c"]
     assert rows[0]["aired"] is True and rows[1]["theme_pct"] is None
+    assert rows[0]["reason"] == "not picked for the deep dive" and rows[1]["reason"] == ""
     assert er.load_cuts("2026-10-01") == []
 
 

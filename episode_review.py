@@ -1226,6 +1226,7 @@ def load_cuts(date: str) -> list[dict]:
                      "title": str(c.get("title") or "")[:200],
                      "source": str(c.get("source") or "")[:80],
                      "theme_pct": c["theme_pct"] if isinstance(c.get("theme_pct"), (int, float)) else None,
+                     "reason": str(c.get("reason") or "")[:120],
                      "aired": c.get("aired") is True})
     return rows
 
