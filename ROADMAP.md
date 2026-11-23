@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-11-20..2026-11-22) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-11-20..2026-11-23) — 1 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -51,8 +51,8 @@ close one; it comes back only if the reviews raise it 2 more times._
       show 10 on-theme candidates went unused, so a local angle was available to the deep-dive
       selector and was not chosen. The closing change is to have the deep-dive selection step
       require at least one Cariboo-tagged candidate when one exists in the theme feed, and log
-      the reason when it does not. (signal `deep-dive-non-local`; seen in 2 reviews, latest
-      2026-11-22)
+      the reason when it does not. (signal `deep-dive-non-local`; seen in 3 reviews, latest
+      2026-11-23)
 
 <!-- reviews:end -->
 

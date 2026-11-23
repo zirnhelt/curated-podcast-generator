@@ -1,5 +1,301 @@
 [
   {
+    "date": "2026-11-23",
+    "title": "Episode Review — Arts, Culture & Digital Storytelling, November 23, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-23.html",
+    "content_html": "<p class=\"meta\">Theme: Arts, Culture &amp; Digital Storytelling. Focus: Music &amp; Live Performance (week 2 of 5). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/45135830721\">45135830721</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>3 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Investigate.</strong><br><span class=\"evidence\">the deep dive had no Cariboo story or angle</span> <span class=\"recur\">Recurring: on the roadmap, seen 2 nights.</span></li>\n<li><strong><code>script/weather-fallback</code> fell back. Search the run log for <code>Degraded 'script/weather-fallback'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Open-Meteo did not answer — Environment Canada's forecast stood in (Williams Lake leads; Horsefly gets no figure)</span></li>\n<li><strong>The deep dive's lead fit today's theme poorly. Read the run log's deep-dive selection and Cariboo pick against the feed's charter scores.</strong><br><span class=\"evidence\">the deep dive's lead sat at p51 on today's charter</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Twelve articles were held for a focus that never aired</h3>\n<p>The focus rotation was on week 2 of 5, set to Music &amp; Live Performance. Routing released 0 articles and held 12, each waiting for a focus later in the cycle. None of the 12 held titles is music-related, so the held pool is carrying material for other days. Nothing was dropped from the pool because of routing.</p>\n<p>The held items are dated 2026-11-24 through 2026-12-07 and target Mining &amp; Energy, Economic Development, Discovery, Health &amp; How Science Works, and others. They will surface when their focus comes up in the cycle.</p>\n\n<h3>The roundup cut 18 stories, and the deep dive ran a 45 percent Casey share</h3>\n<p>The roundup pool kept 18 stories (13 theme, 5 local), and the airtime budget (NEWS_ROUNDUP_COUNT) cut all 18 from the segment. This is designed: the pool is larger than one segment can air, and the cut stories can return on a better-matched day. The five local stories all aired and the roundup opened on local news. Roundup citations matched 15 of 18.</p>\n<p>The first draft came in at 2554 words against a target of 3400. It went back for one expand pass and shipped at 3262 words. That is under target but above the 2554 first draft, and the fallback is not a failure under SHORT_EPISODE_WORDS. Casey carried 45 percent of the deep dive words. Deep dive citations matched 2 of 4.</p>\n<p>Deep dive citation alignment (2 of 4) is the weakest number in the review. Check whether the expand pass pulls in claims outside the four deep dive sources.</p>\n\n<h3>Weather fell back to Environment Canada and Horsefly has no figure</h3>\n<p>Open-Meteo did not answer, so the weather segment used Environment Canada's forecast. Williams Lake leads the segment. Horsefly gets no figure, so listeners in that community heard no local forecast tonight. The degradation is recorded as the only one.</p>\n<p>If Open-Meteo outages recur, add Horsefly coverage to the Environment Canada fallback path in the weather module.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>73</td></tr>\n<tr><td>Kept after dedup</td><td>52</td></tr>\n<tr><td>Held / released</td><td>0 released, 12 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:13, local:5</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.87, 3262 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 45% of the words</td></tr>\n<tr><td>Audio</td><td>19.4 min</td></tr>\n<tr><td>Audio size</td><td>17.8 MB</td></tr>\n<tr><td>Citations matched</td><td>15/18 roundup, 2/4 deep dive</td></tr>\n<tr><td>Feed</td><td>299 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>72,544</td></tr>\n<tr><td>API calls</td><td>118 total: openai-tts 83 · claude 13 · brave-search 7 · kagi-extract 6 · cohere 5 · brave-answers 4</td></tr>\n<tr><td>Anthropic cost</td><td>$0.13 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.64 at list price: OpenAI TTS $0.278 · Brave Answers $0.164 · Anthropic $0.135 · Brave Search $0.035 · Kagi Extract $0.024 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-23T10:06:00+00:00",
+    "metrics": {
+      "audio_minutes": 19.4,
+      "script_words": 3262,
+      "tell_hits": 0,
+      "roundup_cite_pct": 83.3,
+      "deep_dive_cite_pct": 50.0,
+      "cost_usd": 0.638
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "3 things to look at before tomorrow's run.",
+      "theme": "Arts, Culture & Digital Storytelling",
+      "kpis": [
+        [
+          "Episode",
+          "19.4 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,262",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "15/18 · 2/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.64",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:39 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "deep-dive-non-local",
+          "todo": "Investigate.",
+          "evidence": "the deep dive had no Cariboo story or angle",
+          "minor": false,
+          "nights_seen": 2
+        },
+        {
+          "signal": "degraded:script/weather-fallback",
+          "todo": "script/weather-fallback fell back.",
+          "evidence": "degrade() row: Open-Meteo did not answer — Environment Canada's forecast stood in (Williams Lake leads; Horsefly gets no figure)",
+          "minor": false,
+          "nights_seen": 0
+        },
+        {
+          "signal": "off-theme-deep-dive",
+          "todo": "The deep dive's lead fit today's theme poorly. Read the run log's deep-dive selection and Cariboo pick against the feed's charter scores.",
+          "evidence": "the deep dive's lead sat at p51 on today's charter",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-23",
+          "day": "Mon",
+          "today": true,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Music & Live Performance",
+          "week": 2,
+          "of": 5,
+          "next": "Visual Arts & Heritage",
+          "event": null
+        },
+        {
+          "date": "2026-11-24",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Mining & Energy",
+          "week": 3,
+          "of": 4,
+          "next": "Tourism & the Outdoor Economy",
+          "event": null
+        },
+        {
+          "date": "2026-11-25",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Homestead & Off-Grid Tech",
+          "week": 2,
+          "of": 5,
+          "next": "Digital Life & Security",
+          "event": null
+        },
+        {
+          "date": "2026-11-26",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Economic Development",
+          "week": 3,
+          "of": 4,
+          "next": "Guardians & Land Stewardship",
+          "event": null
+        },
+        {
+          "date": "2026-11-27",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 4,
+          "next": "Conservation & the Environment",
+          "event": null
+        },
+        {
+          "date": "2026-11-28",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-29",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Earth Systems & Climate Science",
+          "week": 3,
+          "of": 5,
+          "next": "Discovery, Health & How Science Works",
+          "event": null
+        }
+      ],
+      "anchor": "Is staying put a virtue or a failure of nerve?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://hyperallergic.com/talking-art-and-data-with-mona-chalabi/",
+          "title": "[Hyperallergic] Talking Art and Data With Mona Chalabi",
+          "source": "",
+          "theme_pct": 100,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://flowingdata.com/2026/11/16/film-made-in-excel/",
+          "title": "[FlowingData] Film made in Excel",
+          "source": "",
+          "theme_pct": 98,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/17/a-pen-plotter-to-draw-you-up-on-the-wall/",
+          "title": "[Hackaday] A Pen Plotter to Draw You Up (on) the Wall",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hyperallergic.com/eleanor-antin-sues-dealer-for-withholding-nearly-200-works/",
+          "title": "[Hyperallergic] Eleanor Antin Sues Dealer for Withholding Nearly 200 Works",
+          "source": "",
+          "theme_pct": 97,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.al-monitor.com/originals/2026/11/inside-gaza-wins-best-documentary-montreals-cinemania-film-festival",
+          "title": "[al-monitor.com] AFP Gaza journalists' film wins Montreal festival's top documentary prize",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.niemanlab.org/2026/11/federal-funding-for-public-media-is-coming-back-one-way-or-another-but-is-it-time-for-a-deeper-rethink/",
+          "title": "[Nieman Lab] Federal funding for public media is coming back, one way or another. But is it time for a deeper rethink?",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.themarginalian.org/2026/11/19/pablo-casals-work-age/",
+          "title": "[The Marginalian] Legendary Cellist Pablo Casals, at Age 93, on Creative Vitality and How Working with Love Prolongs Your Life",
+          "source": "",
+          "theme_pct": 96,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/what-animals-reveal-about-the-origins-of-music/",
+          "title": "[Scientific American] What animals reveal about the origins of music",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.npr.org/2026/11/15/nx-s1-6002935/being-heumann-new-generation-disability-rights",
+          "title": "[NPR Health News] A new generation of disability rights activists carry on Judy Heumann's legacy",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theatlantic.com/newsletters/2026/11/books-briefing-writers-reconstruct-past-lamela/689429/?utm_source=feed",
+          "title": "[The Atlantic] Rebuilding a World That Never Existed",
+          "source": "",
+          "theme_pct": 94,
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.archdaily.com/1188914/any-user-of-a-space-is-also-its-producer-in-conversation-with-vyjayanthi-rao-at-the-2026-sharjah-architecture-triennial",
+          "title": "[ArchDaily] \"Any User of a Space Is Also Its Producer\": In Conversation With Vyjayanthi Rao at the 2026 Sharjah Architecture Triennial",
+          "source": "",
+          "theme_pct": 94,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.wired.com/story/just-ridiculous-a-famed-philosopher-takes-on-ai-consciousness/",
+          "title": "[WIRED] ‘Just Ridiculous’: A Famed Philosopher Takes on AI Consciousness",
+          "source": "",
+          "theme_pct": 92,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://blog.adafruit.com/2026/11/19/tandy-1000-models-from-1984-to-1992/",
+          "title": "[Adafruit Blog] Tandy 1000 models from 1984 to 1992",
+          "source": "",
+          "theme_pct": 90,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.theguardian.com/global-development/2026/nov/19/eritrea-16-journalists-jailed-press-freedom-award-cpj-censorship-warning",
+          "title": "[The Guardian Global Development] Mentors, colleagues and friends: tributes paid to the ‘Eritrea 16’ who disappeared 25 years ago",
+          "source": "",
+          "theme_pct": 87,
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://hackaday.com/2026/11/19/dabblecad-takes-design-offline/",
+          "title": "[Hackaday] DabbleCAD Takes Design Offline",
+          "source": "",
+          "theme_pct": 87,
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "When a valuable object changes hands under pressure and the sale is later disputed, should the record of how it left its owner stay open, and who should keep it?",
+        "riley": "Settlement answers only who owns the object now; the record of how it changed hands should stay public and be kept by a party with a stake in its accuracy, with outside readers able to check it.",
+        "casey": "The price was settled but the history was not; a two-sentence announcement from an interested seller does not constitute a record, and keepers without neutrality or durable funding cannot be trusted to preserve it.",
+        "resolution": "They agreed that a record needs a named keeper, a review date, and an outside reader, and that entries can state gaps as 'unknown'; they disagreed on whether a neutral archive exists for the Cariboo and on whether a rebuilt system or keeper's job can survive budget cuts.",
+        "topics": [
+          "Auction house settlements and the disclosure gap in provenance disputes (Van Gogh sale)",
+          "Nonprofit archive stewardship and staff labor organizing (Internet Archive)",
+          "Press freedom and licensing as threats to archives (Egypt, Mada Masr)",
+          "Museum provenance entries and recording unknowns (Museum of the Cariboo Chilcotin)",
+          "Attribution of local makers in retail and business ownership changes (Mama C's, The Crafty Nook)"
+        ],
+        "sources": [
+          {
+            "title": "Restitution Claim on $180M Van Gogh Shakes Up Sotheby's Marquee Week",
+            "url": "https://hyperallergic.com/restitution-claim-on-180m-van-gogh-shakes-up-sothebys-marquee-week/"
+          },
+          {
+            "title": "Internet Archive Staffers Are Unionizing",
+            "url": "https://www.wired.com/story/internet-archive-staffers-are-unionizing/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-22",
     "title": "Episode Review — Science, Wonder & the Natural World, November 22, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-22.html",
@@ -4671,20 +4967,6 @@
       "tell_hits": 1,
       "roundup_cite_pct": 44.4,
       "deep_dive_cite_pct": 50.0
-    }
-  },
-  {
-    "date": "2026-10-24",
-    "title": "Episode Review — Cariboo Signals, October 24, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-24.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/40076675820\">40076675820</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>3 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Open the day's citations JSON and check which deep-dive sources the script failed to use.</strong><br><span class=\"evidence\">2/5 deep-dive citations matched the script</span></li>\n<li><strong>Open the day's citations JSON and find the roundup stories the script paraphrased past matching, or never aired.</strong><br><span class=\"evidence\">8/18 roundup citations matched the script</span></li>\n<li><strong><code>script/research</code> fell back. Search the run log for <code>Degraded 'script/research'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Election research found no record for 12 of 24 candidates on the ballot: Laura Zimmerman, Nicole Berreth, Greg Jeannotte, Charlene Hays, Cianna O'Connor, Rafiul</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The script ran short, then was expanded to 3575 words</h3>\n<p>The first script draft came in at 2585 words against a 3400-word target, so it was sent back for up to two expand passes. The shipped script is 3575 words. Expansion closed the gap but the first draft was not usable as written, and the expand passes are the reason the script cost what it did. The first draft missed its target by a wide margin; the review's job is to say that plainly rather than let the shipped number hide it.</p>\n<p>The roundup pool is larger than one segment can air by design: 61 stories were cut by the airtime budget. Citation alignment is the weaker signal here. Only 8 of 18 roundup citations matched, and 2 of 5 deep-dive citations matched. Those ratios should be checked against the sources before the next run is trusted on attribution.</p>\n\n<h3>Twelve of 24 candidates had no research record</h3>\n<p>Election research found nothing for 12 of the 24 candidates on the ballot: Laura Zimmerman, Nicole Berreth, Greg Jeannotte, Charlene Hays, Cianna O'Connor, Rafiullah Sahibzada, Billie Sheridan, Whitney Spearing, Nathan Wiebe, Kayla Zaruk, Ruth Lloyd and Michael Franklin. The debate question asks whether re-election reflects a record in office or an inherited name, and half the field has no record the script could draw on. Any segment that discusses those candidates is working from the name alone.</p>\n<p>Change the candidate research step to flag unresolved names for a second search pass before the script is written, not after.</p>\n\n<h3>One short TTS take, and the longer take was kept</h3>\n<p>One TTS take came back shorter than its word count predicted, and the retry was also short. The longer of the two takes was kept, so the episode itself is complete; the short retry is the only evidence of the problem.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>5 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.92, 3575 words</td></tr>\n<tr><td>Audio</td><td>21.7 min</td></tr>\n<tr><td>Audio size</td><td>19.9 MB</td></tr>\n<tr><td>Citations matched</td><td>8/18 roundup, 2/5 deep dive</td></tr>\n<tr><td>Feed</td><td>269 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>61,420</td></tr>\n<tr><td>API calls</td><td>68 total: brave-search 48 · claude 12 · kagi-extract 4 · brave-answers 4</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-24T10:06:00+00:00",
-    "metrics": {
-      "audio_minutes": 21.7,
-      "script_words": 3575,
-      "tell_hits": 1,
-      "roundup_cite_pct": 44.4,
-      "deep_dive_cite_pct": 40.0
     }
   }
 ]
