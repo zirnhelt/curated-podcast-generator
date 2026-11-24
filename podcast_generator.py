@@ -12253,9 +12253,24 @@ UPSTREAM_WEEKLY_FILE = "weekly-state-article.json"
 UPSTREAM_CHANGE_MAX = 200
 
 
+# A merged pull request's subject ends "(#569)". On 2026-11-22 the Meta Moment
+# kept two of them and Riley read "Right, #569." and "Yes, #580." aloud.
+_PR_NUMBER_RE = re.compile(r",?\s*\(#\d+(?:,\s*#\d+)*\)|,?\s*(?<![\w&])#\d+\b")
+
+
+def _strip_pr_numbers(text: str) -> str:
+    """`text` without pull request numbers: "(#569)", "(#577, #578)" or a bare "#569"."""
+    return _PR_NUMBER_RE.sub("", text)
+
+
 def _changelog_subjects(lines: list) -> list:
-    """Non-merge, non-embargoed subjects, reporting what the embargo withheld."""
-    subjects = [s.strip() for s in lines if s.strip() and not _MERGE_SUBJECT_RE.match(s.strip())]
+    """Non-merge, non-embargoed subjects, reporting what the embargo withheld.
+
+    Pull request numbers are stripped: a listener hears them as codes.
+    """
+    subjects = [_strip_pr_numbers(s).strip() for s in lines
+                if s.strip() and not _MERGE_SUBJECT_RE.match(s.strip())]
+    subjects = [s for s in subjects if s]
     kept = [s for s in subjects if not _is_embargoed_subject(s)]
     if len(kept) < len(subjects):
         print(f"   🔇 Meta Moment: withheld {len(subjects) - len(kept)} unreleased-surface commit(s)")
@@ -13010,7 +13025,8 @@ def _meta_moment_attempt(client: object, changelog: str, feedback: str = "") -> 
         print(f"  ⚠️  Meta Moment reply had no dialogue; it began: {raw[:300]!r}")
         return "", "guard", "the reply was neither NONE nor a **RILEY:**/**CASEY:** dialogue"
 
-    dialogue = raw[start:]
+    # The list carries no pull request numbers, but a model can still write one.
+    dialogue = _strip_pr_numbers(raw[start:])
     if not _meta_moment_covered(raw[:start], subjects):
         return "", "guard", "the dialogue cited no commit from the week's list"
     unknown = _meta_moment_unknown_names(dialogue, changelog)

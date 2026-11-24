@@ -3903,6 +3903,23 @@ class TestGenerateMetaMomentText:
         assert block.count("**RILEY:**") == 2
         assert block.count("**CASEY:**") == 2
 
+    def test_pull_request_numbers_never_reach_the_prompt_or_the_air(self, monkeypatch):
+        # 2026-11-22: Riley read "Right, #569." and "Yes, #580." aloud, kept
+        # from the merged pull requests' "(#569)" subjects.
+        import podcast_generator as pg
+        assert pg._changelog_subjects([
+            "Williams Lake leads the local block every day (#569)",
+            "Click capture setup fixes (#578, #396)", "(#12)"]) == [
+            "Williams Lake leads the local block every day", "Click capture setup fixes"]
+        reply = (self._COVERED + "**RILEY:** Right, #569. Williams Lake goes first now.\n"
+                 "**CASEY:** Yes, #580. The forecast has a fallback.")
+        client = self._client_returning(reply)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        block = generate_meta_moment_text(self._CHANGELOG)
+        assert "#" not in block
+        assert "**RILEY:** Right. Williams Lake goes first now." in block
+        assert "**CASEY:** Yes. The forecast has a fallback." in block
+
     def test_strips_preamble_before_first_riley_line(self, monkeypatch):
         monkeypatch.setattr(
             "podcast_generator.get_anthropic_client",
