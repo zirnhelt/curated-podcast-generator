@@ -635,6 +635,14 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   final deep-dive articles; a Cariboo pick that replaces the deep dive clears it). The focus
   still routes and holds articles and still writes the theme lens.
 
+- **The review card shows the focus the run used (2026-11-24, the producer's call on 11-22's
+  note).** The producer judged Sunday's cuts against The Living World, the calendar's focus,
+  while the run had moved to Sky & Cosmos (10 matches) and built the deep dive and cold open on
+  it; Monday moved too. The move was in the job log only. `focus_record` writes
+  `episode.focus` into the citations (`name`, empty for the plain theme; `moved_from` when it
+  left the calendar's; `centred`), `episode_review.load_focus` carries it into the review
+  summary, and review.html's Episode card shows it beside the calendar's super-cycle line.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ## Niche interests close the roundup once a week (2026-11-14)

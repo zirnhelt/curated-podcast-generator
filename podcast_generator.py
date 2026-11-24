@@ -10232,7 +10232,27 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False, storyboard=None, cuts=None):
+def focus_record(calendar_focus: dict | None, used_focus: dict | None,
+                 deep_dive_articles: list) -> dict | None:
+    """The focus the run used, the calendar's when the run moved off it, and
+    whether it centred the deep dive, for the citations and the review card.
+
+    2026-11-22: the producer judged Sunday's cuts against The Living World while
+    the run had moved to Sky & Cosmos; the move was only in the job log.
+    None on a day with no focus either way.
+    """
+    if not (calendar_focus or used_focus):
+        return None
+    used = (used_focus or {}).get('name') or ""
+    calendar = (calendar_focus or {}).get('name') or ""
+    record = {"name": used,
+              "centred": bool(used) and any(a.get('_focus_centred') for a in deep_dive_articles)}
+    if calendar != used:
+        record["moved_from"] = calendar
+    return record
+
+
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False, storyboard=None, cuts=None, focus=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -10293,6 +10313,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
             # week's episodes can be grouped without parsing HTML.
             **({"anchor": {"id": anchor.get("id"), "question": anchor.get("question")}}
                if anchor else {}),
+            **({"focus": focus} if focus else {}),
         },
         "segments": {
             "news_roundup": {
@@ -14759,6 +14780,7 @@ def run_script_stage() -> tuple[str, str] | None:
         today_theme = get_theme_for_day(today_weekday)
         # Super-cycle rotation focus for today (None on uncycled days, e.g. Saturday)
         today_focus = get_focus_for_day(today_weekday, pacific_now.date())
+        calendar_focus = today_focus  # the review card shows a move off it
         # A named civic event the day's theme should center while it is live —
         # calendar-bounded, so it needs no cleanup commit when it ends.
         # Two lookups, two questions: `today_event` is "is TODAY'S theme running
@@ -15566,6 +15588,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 research={"block": brave_context, "log": list(_RESEARCH_LOG)},
                 storyboard=_storyboard_used,
                 cuts=episode_cuts(news_articles, deep_dive_articles, _roundup_dropped),
+                focus=focus_record(calendar_focus, today_focus, deep_dive_articles),
             )
 
         with segment("script/day-specific-inserts", critical=False):

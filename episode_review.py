@@ -1231,6 +1231,21 @@ def load_cuts(date: str) -> list[dict]:
     return rows
 
 
+def load_focus(date: str) -> dict[str, Any]:
+    """The focus the run used, the one it moved from, and whether it centred the
+    deep dive (`focus_record` in the generator), for review.html's Episode card.
+
+    Plain capped strings; empty when the citations carry none.
+    """
+    f = (_citations_key(date, "episode", dict) or {}).get("focus")
+    if not isinstance(f, dict):
+        return {}
+    out = {"name": str(f.get("name") or "")[:80], "centred": f.get("centred") is True}
+    if isinstance(f.get("moved_from"), str):
+        out["moved_from"] = f["moved_from"][:80]
+    return out
+
+
 def load_deep_dive(date: str) -> dict[str, Any]:
     """What the deep dive covered, from the aired script's debate summary, for review.html.
 
@@ -1408,6 +1423,8 @@ def review_summary(date: str, runs: list[dict], facts: dict[str, Any],
         "actions": actions,
         "cycle": cycle_week(date),
         "anchor": week_anchor(date, facts),
+        # The focus the run used, which can differ from the calendar's `cycle` row.
+        "focus": load_focus(date),
         # review.html's Episode tab asks whether each cut was the right call.
         "cuts": load_cuts(date),
         # ...and reminds the listener what the deep dive covered before they rate it.

@@ -961,6 +961,20 @@ def test_the_summary_carries_the_cuts_cleaned(tmp_path, monkeypatch):
     assert er.load_cuts("2026-10-01") == []
 
 
+def test_the_summary_carries_the_focus_the_run_used(tmp_path, monkeypatch):
+    # 2026-11-22: the card showed the calendar's The Living World; the run used Sky & Cosmos.
+    import episode_review as er
+    ep = {"focus": {"name": "Sky & Cosmos", "moved_from": "The Living World", "centred": True}}
+    (tmp_path / "citations_2026-11-22_x.json").write_text(json.dumps({"episode": ep}))
+    (tmp_path / "citations_2026-11-23_x.json").write_text(json.dumps(
+        {"episode": {"focus": {"name": "<b>" + "x" * 200, "centred": "yes", "moved_from": 3}}}))
+    monkeypatch.setattr(er, "CITATIONS_GLOB", str(tmp_path / "citations_{date}_*.json"))
+    assert er.load_focus("2026-11-22") == ep["focus"]
+    odd = er.load_focus("2026-11-23")
+    assert len(odd["name"]) == 80 and odd["centred"] is False and "moved_from" not in odd
+    assert er.load_focus("2026-10-01") == {}
+
+
 def test_load_deep_dive_plain_and_capped(tmp_path, monkeypatch):
     import episode_review as er
     seg = {"deep_dive": {
