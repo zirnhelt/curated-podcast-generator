@@ -8266,6 +8266,67 @@ class TestApplyStoryboardOrder:
             pg._unbookend_kicker(plan, self._arts())
             assert [s["n"] for s in plan["roundup"]["stories"]] == [1, 2, 3, 4, 5]
 
+    def test_a_theme_story_planned_among_the_locals_moves_behind_them(self, monkeypatch):
+        # 2026-11-24: the plan moved The Tyee's Logan Lake feature (theme) up
+        # beside the local strike story, ahead of the other local stories. The
+        # order was rejected while the prompt block still carried it.
+        import podcast_generator as pg
+        seen = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: seen.append(detail))
+        arts = self._arts()
+        arts[3]["_roundup_block"] = "local"
+        plan = self._kicker_plan([1, 2, 4, 3, 5], repeats=0)
+        plan["roundup"].update(opening_frame="f", handoff="h")
+        plan["deep_dive"] = {"central_question": "q", "riley_holds": "r", "casey_holds": "c",
+                             "beats": [], "set_aside": [], "cariboo_beat": "cb", "landing": "l"}
+        pg._locals_first(plan, arts)
+        stories = plan["roundup"]["stories"]
+        assert [s["n"] for s in stories] == [1, 4, 2, 3, 5]
+        assert [s["bridge_to_next"] for s in stories] == [
+            "clean pivot", "clean pivot", "clean pivot", "from 3", "handoff"]
+        out = pg.apply_storyboard_order(plan, arts)
+        assert not seen
+        assert [a["title"] for a in out] == [
+            "Williams Lake council farewells", "iPhone Duo screens crack",
+            "iPhone Duo teardown", "Prusa hotend", "Norwegian tree house"]
+        block = pg.format_storyboard_for_prompt(plan, arts)
+        order = [block.index(a["title"]) for a in out]
+        assert order == sorted(order)
+
+    def test_a_story_pushed_to_the_end_takes_the_handoff(self):
+        import podcast_generator as pg
+        arts = self._arts()
+        arts[4]["_roundup_block"] = "local"
+        plan = self._kicker_plan([1, 2, 3, 4, 5], repeats=0)
+        pg._locals_first(plan, arts)
+        stories = plan["roundup"]["stories"]
+        assert [s["n"] for s in stories] == [1, 5, 2, 3, 4]
+        assert [s["bridge_to_next"] for s in stories] == [
+            "clean pivot", "clean pivot", "from 2", "from 3", "handoff"]
+
+    def test_a_locals_first_or_invalid_plan_is_left_alone(self):
+        import podcast_generator as pg
+        for order in ([1, 2, 3, 4, 5], [1, 2, 3, 5], [2, 3, 4, 5]):
+            plan = self._kicker_plan(order, repeats=0)
+            before = json.loads(json.dumps(plan))
+            pg._locals_first(plan, self._arts())
+            assert plan == before
+
+    def test_the_storyboard_repairs_the_plan_before_the_prompt_sees_it(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+        monkeypatch.setattr(pg, "_locals_first", lambda plan, arts: calls.append("locals"))
+        monkeypatch.setattr(pg, "_unbookend_kicker", lambda plan, arts: calls.append("kicker"))
+        monkeypatch.setattr(pg, "STORYBOARD_BATCH", False)
+        plan = {"roundup": {"opening_frame": "f", "stories": [], "handoff": "h"},
+                "deep_dive": {"central_question": "q", "beats": [{"claim": "a"}, {"claim": "b"}]}}
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: MagicMock())
+        monkeypatch.setattr(pg, "create_message",
+                            lambda client, **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        monkeypatch.setattr(pg, "_truncated", lambda r: False)
+        pg.storyboard_script([{"title": "s"}], "1. s", "deep", "Theme", "lens", "", "", "Monday")
+        assert calls == ["locals", "kicker"]
+
     def test_folded_story_renders_under_its_lead(self, monkeypatch, tmp_path):
         import podcast_generator as pg
         monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
