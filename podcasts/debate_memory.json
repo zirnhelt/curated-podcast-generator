@@ -1,32 +1,4 @@
 {
-  "2026-08-25": {
-    "timestamp": 1787648544.48636,
-    "date": "2026-08-25",
-    "theme": "Working Lands & Industry",
-    "focus": "forestry",
-    "anchor": "allowed-to-fix",
-    "central_question": "When local industries face external constraints\u2014whether trade tariffs or regulatory permitting\u2014who has the actual authority to respond, and does that authority structure match the speed at which crises demand action?",
-    "riley_position": "Trade policy and regulatory gatekeeping create real constraints on local economies, but governance shifts like Nation-held forest tenure can at least relocate decision-making authority to people who live with the consequences, even if they can't solve externally-imposed problems like tariffs.",
-    "riley_key_evidence": [
-      "Richmond Plywood faces a 50% U.S. tariff on finished panel products (but not raw lumber) affecting roughly one-fifth of its sales",
-      "The tariff exempts raw softwood lumber while hitting value-added products hardest, penalizing mills that followed two decades of provincial economic development advice to build local processing capacity",
-      "The province could request a seat at future tenure-review discussions to formally incorporate trade-exposure concerns into how forest licenses are structured"
-    ],
-    "casey_position": "The core problem is structural: decision-making authority sits with distant gatekeepers (Washington for tariffs, federal permits for wildlife management, Victoria for tenure) while consequences land on communities with no say in the process, creating an inherent mismatch between crisis timelines and solution timelines.",
-    "casey_key_evidence": [
-      "A plywood mill losing 20% of sales overnight has only months of runway before layoffs, but building new customer relationships in Japan takes years\u2014timelines that 'don't reconcile'",
-      "Only federally-permitted individuals can remove barred owls, excluding local land managers and hunters with decades of watershed knowledge, paralleling how mill operators cannot act on tariff policy set in Washington",
-      "When Quesnel and Williams Lake lost mills after pine beetle salvage ended, provincial tenure structures left local operators without fallback because they held licenses, not ownership, of standing timber"
-    ],
-    "resolution": "Riley and Casey agreed that the structural mismatch between crisis speed and solution timeline is real and acknowledged, but disagreed on whether Nation-held tenure offers meaningful leverage against external trade shocks\u2014Riley arguing it at least relocates decision authority to affected communities, Casey noting it doesn't solve tariffs themselves. They concluded by recommending local communities formally request input into provincial tenure reviews and invite listener feedback on ground-level impacts.",
-    "topics_covered": [
-      "U.S. tariff structure on finished wood products versus raw lumber and its impact on B.C. mills",
-      "Misalignment between economic development policy (investing in value-added processing) and trade policy consequences",
-      "Governance authority and permit structures in forest management and wildlife removal programs",
-      "Timeline mismatch between immediate economic crisis and market diversification or policy change",
-      "Nation-held forest tenure as a model for relocating decision-making authority to affected communities"
-    ]
-  },
   "2026-08-26": {
     "timestamp": 1787735043.530515,
     "date": "2026-08-26",
@@ -2582,6 +2554,34 @@
       "Press freedom and licensing as threats to archives (Egypt, Mada Masr)",
       "Museum provenance entries and recording unknowns (Museum of the Cariboo Chilcotin)",
       "Attribution of local makers in retail and business ownership changes (Mama C's, The Crafty Nook)"
+    ]
+  },
+  "2026-11-24": {
+    "timestamp": 1795508138.055398,
+    "date": "2026-11-24",
+    "theme": "Working Lands & Industry",
+    "focus": "agriculture-ranching",
+    "anchor": "staying-versus-leaving",
+    "central_question": "When farm and ranch families keep working the same land through thin years, is staying a genuine choice or simply what remains after the money has moved elsewhere?",
+    "riley_position": "Staying can be a deliberate bet that is made viable through better contract terms, growers' seats at the table, competition, direct sales, and data control, so the fix lies in structuring the terms and enforcing existing rules.",
+    "riley_key_evidence": [
+      "Polish sugar beet growers face costs of 8,000 to 8,500 zloty per hectare and need close to 65 tonnes per hectare to break even at 30 euros a tonne.",
+      "Poland's 2016 unfair contractual advantage act is enforced by UOKiK, which has charged buyers over contract terms that failed to excuse suppliers for weather-caused non-performance.",
+      "A Polish family-run 14-hectare vegetable farm sells weekly boxes to households, with about 70 per cent of customers returning the following year."
+    ],
+    "casey_position": "Staying is often what remains after structural forces such as input costs, price squeezes, buyer power, and foreign or carbon-driven land sales have already shifted value away from working families, and rules and contracts cannot reach those root costs.",
+    "casey_key_evidence": [
+      "Polish deputy agriculture minister Ma\u0142gorzata Gromadzka says retailers can put producers and processors in a take-it-or-leave-it position.",
+      "Two Australian properties were sold, Rushy Lagoon (about 22,000 hectares, over $100 million) and Cobungra Station (about 31,000 hectares, $51 million to a carbon fund), with no public clause covering cattle rebuilding if carbon prices fall.",
+      "A Warsaw University of Life Sciences study found about 66 per cent of Polish farms are still outside digital transformation, and the 53.9 per cent AI-use figure comes from an engaged marketing-forum sample."
+    ],
+    "resolution": "The two did not reach agreement. Riley acknowledged that exclusivity bans are weak without a second buyer and that contract terms matter, while Casey conceded the honest answer is that coverage does not reveal whether the Australian sellers were forced or chose the price, and both agreed the family's financial cushion is the unmeasured variable that decides the question.",
+    "topics_covered": [
+      "Contract terms, buyer power, and enforcement under Polish and EU rules",
+      "Cost structures and break-even thresholds in sugar beet and other crops",
+      "Australian land sales to carbon and forestry buyers and their implications",
+      "AI adoption, data control, and survey reliability in agriculture",
+      "Community forest ownership and post-wildfire salvage in the Cariboo"
     ]
   }
 }

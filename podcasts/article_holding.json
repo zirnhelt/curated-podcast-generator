@@ -161,7 +161,8 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-24"
   },
   "http://www.africanews.com/2026/11/11/gold-miners-expelled-by-guinea-start-leaving-assembly-site-in-mali/": {
     "article": {
@@ -200,7 +201,8 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-24"
   },
   "https://www.northernminer.com/news/ontario-fast-tracks-mayfairs-fenn-gib-gold-project/1003897051/": {
     "article": {
@@ -237,7 +239,8 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-24"
   },
   "https://100milefreepress.net/2026/11/17/south-cariboo-vendors-offer-unique-homemade-gifts/": {
     "article": {
@@ -364,7 +367,8 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-24"
   },
   "https://www.northernminer.com/news/china-border-checks-cut-oyu-tolgoi-exports-by-70/1003896235/": {
     "article": {
@@ -402,7 +406,8 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-24"
   },
   "https://yellowheadinstitute.org/2026/whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists/?utm_source=rss&utm_medium=rss&utm_campaign=whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists": {
     "article": {
@@ -774,7 +779,8 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-24"
   },
   "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754": {
     "article": {
@@ -895,90 +901,6 @@
     "target_focus_slug": "forestry",
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
-  },
-  "https://www.thestar.com/news/canada/network-of-deepfake-videos-spreading-falsehoods-about-trade-war-with-u-s-report/article_6dc3f63a-a9c5-56a6-b18f-518c4b81ca84.html": {
-    "article": {
-      "id": "https://www.thestar.com/news/canada/network-of-deepfake-videos-spreading-falsehoods-about-trade-war-with-u-s-report/article_6dc3f63a-a9c5-56a6-b18f-518c4b81ca84.html",
-      "url": "https://www.thestar.com/news/canada/network-of-deepfake-videos-spreading-falsehoods-about-trade-war-with-u-s-report/article_6dc3f63a-a9c5-56a6-b18f-518c4b81ca84.html",
-      "title": "[thestar.com] McGill report finds deepfake network spreading false Canada-U.S. trade claims",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.thestar.com%2Fnews%2Fcanada%2Fnetwork-of-deepfake-videos-spreading-falsehoods-about-trade-war-with-u-s-report%2Farticle_6dc3f63a-a9c5-56a6-b18f-518c4b81ca84.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA McGill University research centre says a network of nearly 300 TikTok and Instagram accounts has circulated more than 3,201 deepfake videos that drew 22.1 million views over three months. Many focused on Canada\u2019s trade dispute with the United States. One widely viewed false story described a nonexistent 48-hour ultimatum from President Donald Trump and claimed Prime Minister Mark Carney responded by cancelling $8 billion in U.S. defence contracts. It appeared in 161 videos on 129 accounts and drew 5.1 million views.\n\nThe report says the accounts promote misleading claims from both sides of the trade debate, while the network\u2019s operators and purpose remain unknown. Researchers said posting patterns and some accounts\u2019 Chinese-language settings or registrations in China point to activity outside North America, but they could not firmly attribute the network to anyone. The report says the accounts have not been monetized and could be building an audience for later use, testing a tool or operating on behalf of someone seeking to influence Canadians.",
-      "summary": "A McGill University research centre says a network of nearly 300 TikTok and Instagram accounts has circulated more than 3,201 deepfake videos that drew 22.1 million views over three months. Many focused on Canada\u2019s trade dispute with the United States. One widely viewed false story described a",
-      "_excerpt": "A McGill University research centre says a network of nearly 300 TikTok and Instagram accounts has circulated more than 3,201 deepfake videos that drew 22.1 million views over three months. Many focused on Canada\u2019s trade dispute with the United States (thestar.com, lapresse.ca). One widely viewed false story described a nonexistent 48-hour ultimatum from President Donald Trump and claimed Prime Minister Mark Carney responded by cancelling $8 billion in U.S. defence contracts. It appeared in 161 videos on 129 accounts and drew 5.1 million views (thestar.com, lapresse.ca). The report says the accounts promote misleading claims from both sides of the trade debate, while the network\u2019s operators and purpose remain unknown (thestar.com, winnipegfreepress.com). Researchers said posting patterns and some accounts\u2019 Chinese-language settings or registrations in China point to activity outside North America, but they could not firmly attribute the network to anyone (thestar.com). The report says the accounts have not been monetized and could be building an audience for later use, testing a tool or operating on behalf of someone seeking to influence Canadians (thestar.com, lapresse.ca). Few spotted fakes: Only 6.3% of commenters identified the videos as fake or propaganda, while one in 10 addressed the narrator as if they were a real person (thestar.com, lapresse.ca). Few AI labels: The report says TikTok had labelled just 4% of the videos as AI-generated, and the use of real people\u2019s footage may help the fakes evade detection (thestar.com, winnipegfreepress.com). Shifting identities: Narrators present themselves as Canadian in some clips and American in others (thestar.com, lapresse.ca).",
-      "date_published": "2026-11-12T19:11:00+00:00",
-      "authors": [
-        {
-          "name": "thestar.com",
-          "url": "https://www.thestar.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 8,
-      "_kite_sources": 5,
-      "_kite_context": "",
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_niche": false,
-      "_boosted_score": 58,
-      "_body": "A McGill University research centre says a network of nearly 300 TikTok and Instagram accounts has circulated more than 3,201 deepfake videos that drew 22.1 million views over three months. Many focused on Canada\u2019s trade dispute with the United States (thestar.com, lapresse.ca). One widely viewed false story described a nonexistent 48-hour ultimatum from President Donald Trump and claimed Prime Minister Mark Carney responded by cancelling $8 billion in U.S. defence contracts. It appeared in 161 videos on 129 accounts and drew 5.1 million views (thestar.com, lapresse.ca). The report says the accounts promote misleading claims from both sides of the trade debate, while the network\u2019s operators and purpose remain unknown (thestar.com, winnipegfreepress.com). Researchers said posting patterns and some accounts\u2019 Chinese-language settings or registrations in China point to activity outside North America, but they could not firmly attribute the network to anyone (thestar.com). The report says the accounts have not been monetized and could be building an audience for later use, testing a tool or operating on behalf of someone seeking to influence Canadians (thestar.com, lapresse.ca). Few spotted fakes: Only 6.3% of commenters identified the videos as fake or propaganda, while one in 10 addressed the narrator as if they were a real person (thestar.com, lapresse.ca). Few AI labels: The report says TikTok had labelled just 4% of the videos as AI-generated, and the use of real people\u2019s footage may help the fakes evade detection (thestar.com, winnipegfreepress.com). Shifting identities: Narrators present themselves as Canadian in some clips and American in others (thestar.com, lapresse.ca)."
-    },
-    "held_date": "2026-11-23",
-    "target_date": "2026-12-06",
-    "target_weekday": 6,
-    "target_focus_slug": "discovery-health",
-    "target_focus_name": "Discovery, Health & How Science Works",
-    "status": "held"
-  },
-  "https://eos.org/articles/scientists-traced-arctic-arsenic-back-to-a-montana-mine": {
-    "article": {
-      "id": "https://eos.org/articles/scientists-traced-arctic-arsenic-back-to-a-montana-mine",
-      "url": "https://eos.org/articles/scientists-traced-arctic-arsenic-back-to-a-montana-mine",
-      "title": "[eos.org] Arctic ice cores trace century-old toxic pollution to Montana mine",
-      "content_html": "<img src=\"https://kagiproxy.com/img/QJ2F3nHUamjnJgncVFZP3CB8W3rhFTCo27vFlyVBux-IemKaDvs8BJa84E1svOvYTlE9u-QAKLgfFrrLBGzhEOaoQ9Yup0OK6XtBHGkbR0q449lyDf48doz_gnMQjwXWucTZx5yP62k\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Feos.org%2Farticles%2Fscientists-traced-arctic-arsenic-back-to-a-montana-mine\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResearchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to the study in Nature Sustainability.\n\nBy combining ice-core measurements, atmospheric modeling and historical production records, the team estimated that about 50.5 million Americans and 600,000 Canadians were exposed to arsenic levels associated with increased health risks between 1898 and 1918. Pollution-control equipment installed at the smelter in 1919 reduced emissions by roughly 60% to 65%, though the mine continued operating until 1947. Lead researcher Joseph McConnell, a climate and environmental scientist at the Desert Research Institute, said epidemiologists should investigate the pollution\u2019s potential effects on people.",
-      "summary": "Researchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to",
-      "_excerpt": "Researchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to the study in Nature Sustainability (eos.org, sciencenews.org, phys.org). By combining ice-core measurements, atmospheric modeling and historical production records, the team estimated that about 50.5 million Americans and 600,000 Canadians were exposed to arsenic levels associated with increased health risks between 1898 and 1918 (eos.org, phys.org). Pollution-control equipment installed at the smelter in 1919 reduced emissions by roughly 60% to 65%, though the mine continued operating until 1947 (eos.org, sciencenews.org). Lead researcher Joseph McConnell, a climate and environmental scientist at the Desert Research Institute, said epidemiologists should investigate the pollution\u2019s potential effects on people (sciencenews.org). Other sources ruled out: The team compared the ice records with production data from North American mining sites; Tacoma\u2019s smelter was too small, while lead isotope ratios did not match those from Sudbury, Canada (eos.org). Delayed controls: Researchers estimated that the delay in installing pollution controls resulted in an additional 60,000 tons of arsenic and 24,000 tons of lead emissions (eos.org).",
-      "date_published": "2026-11-10T10:01:00+00:00",
-      "authors": [
-        {
-          "name": "eos.org",
-          "url": "https://eos.org"
-        }
-      ],
-      "ai_score": 64,
-      "_quality": 82,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_theme_score_raw": 8,
-      "_kite_sources": 3,
-      "_kite_context": "Perspective: Karl Kreutz, an Earth scientist at the University of Maine who was not involved in the study, said the arsenic analysis made a convincing case for tracing the pollution to one major Montana mine. (Eos)\nPerspective: Fred Quivik, a historian and author of Smoke and Tailings, said ranchers and farmers reported livestock dying from arsenic poisoning during the period of mine pollution. (Science News)\nQuote: \"Montana government policy at the time was they only had to install pollution controls if it was profitable to the polluter\" (Joseph McConnell, climate and environmental scientist at the Desert Research Institute, Eos)",
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_niche": false,
-      "image": "https://kagiproxy.com/img/QJ2F3nHUamjnJgncVFZP3CB8W3rhFTCo27vFlyVBux-IemKaDvs8BJa84E1svOvYTlE9u-QAKLgfFrrLBGzhEOaoQ9Yup0OK6XtBHGkbR0q449lyDf48doz_gnMQjwXWucTZx5yP62k",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-11-17T06:09:40.585373+00:00"
-      },
-      "_boosted_score": 64,
-      "_body": "Researchers traced arsenic and other heavy metals preserved in 10 Arctic ice cores to the Anaconda Copper Mine in Montana, linking pollution to a single industrial source thousands of kilometers away. Arsenic levels in some cores reached about 15 times preindustrial levels around 1914, according to the study in Nature Sustainability (eos.org, sciencenews.org, phys.org). By combining ice-core measurements, atmospheric modeling and historical production records, the team estimated that about 50.5 million Americans and 600,000 Canadians were exposed to arsenic levels associated with increased health risks between 1898 and 1918 (eos.org, phys.org). Pollution-control equipment installed at the smelter in 1919 reduced emissions by roughly 60% to 65%, though the mine continued operating until 1947 (eos.org, sciencenews.org). Lead researcher Joseph McConnell, a climate and environmental scientist at the Desert Research Institute, said epidemiologists should investigate the pollution\u2019s potential effects on people (sciencenews.org). Other sources ruled out: The team compared the ice records with production data from North American mining sites; Tacoma\u2019s smelter was too small, while lead isotope ratios did not match those from Sudbury, Canada (eos.org). Delayed controls: Researchers estimated that the delay in installing pollution controls resulted in an additional 60,000 tons of arsenic and 24,000 tons of lead emissions (eos.org)."
-    },
-    "held_date": "2026-11-23",
-    "target_date": "2026-11-24",
-    "target_weekday": 1,
-    "target_focus_slug": "mining-energy",
-    "target_focus_name": "Mining & Energy",
-    "status": "held"
   },
   "https://www.wired.com/story/a-muslim-author-is-suing-xai-after-people-used-grok-to-strip-her-hijab/": {
     "article": {
@@ -1238,7 +1160,8 @@
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-24"
   },
   "https://www.winnipegfreepress.com/canada/2026/11/20/first-nations-youth-plan-day-of-action-against-ottawas-major-projects-legislation": {
     "article": {
@@ -1290,7 +1213,7 @@
       "id": "https://www.bmj.com/content/395/bmj-2026-101445/rr",
       "url": "https://www.bmj.com/content/395/bmj-2026-101445/rr",
       "title": "[bmj.com] Study finds limited code sharing as medical AI oversight faces scrutiny",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.bmj.com%2Fcontent%2F395%2Fbmj-2026-101445%2Frr\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResearchers from the Massachusetts Institute of Technology and Dana-Farber Cancer Institute reviewed nearly 4,000 clinical prediction studies and found that only about one in eight reported sharing code. Many public repositories also lacked documentation or files needed to run and check the analyses. The findings are intended to inform a guideline on reusable research code.\n\nA physician writing in The BMJ urged Utah to publish independently assessed counts of missed escalation cases before allowing AI-generated acne prescriptions to be reviewed after issuance rather than before. In South Korea, Doctors for a Fair Society called for scrutiny of possible AI-assisted cheating in a medical-school entrance exam, while the group\u2019s leader cautioned against treating an individual\u2019s high score or educational background as proof of wrongdoing.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.bmj.com%2Fcontent%2F395%2Fbmj-2026-101445%2Frr\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nResearchers from the Massachusetts Institute of Technology and Dana-Farber Cancer Institute reviewed nearly 4,000 clinical prediction studies and found that only about one in eight reported sharing code. Many public repositories also lacked documentation or files needed to run and check the analyses. The findings are intended to inform a guideline on reusable research code.\n\nA physician writing in The BMJ urged Utah to publish independently assessed counts of missed escalation cases before allowing AI-generated acne prescriptions to be reviewed after issuance rather than before. In South Korea, Doctors for a Fair Society called for scrutiny of possible AI-assisted cheating in a medical-school entrance exam, while the group\u2019s leader cautioned against treating an individual\u2019s high score or educational background as proof of wrongdoing.",
       "summary": "Researchers from the Massachusetts Institute of Technology and Dana-Farber Cancer Institute reviewed nearly 4,000 clinical prediction studies and found that only about one in eight reported sharing code. Many public repositories also lacked documentation or files needed to run and check the",
       "_excerpt": "Researchers from the Massachusetts Institute of Technology and Dana-Farber Cancer Institute reviewed nearly 4,000 clinical prediction studies and found that only about one in eight reported sharing code. Many public repositories also lacked documentation or files needed to run and check the analyses. The findings are intended to inform a guideline on reusable research code (lavx.hu). A physician writing in The BMJ urged Utah to publish independently assessed counts of missed escalation cases before allowing AI-generated acne prescriptions to be reviewed after issuance rather than before (bmj.com). In South Korea, Doctors for a Fair Society called for scrutiny of possible AI-assisted cheating in a medical-school entrance exam, while the group\u2019s leader cautioned against treating an individual\u2019s high score or educational background as proof of wrongdoing (kormedi.com). Study sample: Researchers drew from PubMed Central\u2019s open-access collection and included studies that developed, updated or validated prediction models and cited the TRIPOD or TRIPOD+AI reporting checklists (lavx.hu). Safety reporting: Utah\u2019s agreement sets a target of zero material missed escalations and requires audits of encounters the AI did not flag, but does not specify a count or denominator for quarterly public reporting (bmj.com). Exam scrutiny: The Korean group asked the consortium that administers the MDEET medical-school entrance exam for an official response. The test was not among 528 national qualification exams slated for a government-wide investigation (kormedi.com).",
       "date_published": "2026-11-19T15:12:02+00:00",
@@ -1304,29 +1227,109 @@
       "_quality": 0,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 51,
-      "_theme_score_raw": 5,
+      "_theme_score": 22,
+      "_theme_score_raw": 3,
       "_kite_sources": 3,
       "_kite_context": "Perspective: Jidong Peng, physician and BMJ rapid-response author: Peng\u2019s proposed denominator is a representative sample of Stage 1 encounters the AI initially did not flag, while the numerator would include cases meeting a prespecified escalation criterion based on (The BMJ)\nPerspective: Park Ji-yong, head of the Korean group Doctors for a Fair Society: Park argued that raw scores across the full MDEET cohort should be compared with prior years; an unusually high-scoring cohort or historically unprecedented distribution, he said, could (Kormedi)\nPerspective: Tom Pollard, MIT research scientist: Pollard said data and code expose analytical choices, including how researchers handle missing values and prepare datasets, that a methods section alone may not reveal (lavx.hu). (MIT News)\nQuote: \"Good code sharing means giving enough information to understand what the code does and be able to run it to reproduce the results reported in the paper.\" (Thomas Sounack, first author of the study, MIT News)",
-      "_composite_podcast": 49,
+      "_composite_podcast": 30,
       "_keyword_matches": 0,
       "_category": "wellness",
       "_source_category": "wellness",
       "_is_bonus": true,
       "_niche": false,
       "_cross_theme": {
-        "day": "sunday",
-        "label": "Science, Wonder & the Natural World",
-        "shown_at": "2026-11-22T06:07:55.888524+00:00"
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-11-23T06:07:10.049074+00:00"
       },
       "_boosted_score": 62,
       "_body": "Researchers from the Massachusetts Institute of Technology and Dana-Farber Cancer Institute reviewed nearly 4,000 clinical prediction studies and found that only about one in eight reported sharing code. Many public repositories also lacked documentation or files needed to run and check the analyses. The findings are intended to inform a guideline on reusable research code (lavx.hu). A physician writing in The BMJ urged Utah to publish independently assessed counts of missed escalation cases before allowing AI-generated acne prescriptions to be reviewed after issuance rather than before (bmj.com). In South Korea, Doctors for a Fair Society called for scrutiny of possible AI-assisted cheating in a medical-school entrance exam, while the group\u2019s leader cautioned against treating an individual\u2019s high score or educational background as proof of wrongdoing (kormedi.com). Study sample: Researchers drew from PubMed Central\u2019s open-access collection and included studies that developed, updated or validated prediction models and cited the TRIPOD or TRIPOD+AI reporting checklists (lavx.hu). Safety reporting: Utah\u2019s agreement sets a target of zero material missed escalations and requires audits of encounters the AI did not flag, but does not specify a count or denominator for quarterly public reporting (bmj.com). Exam scrutiny: The Korean group asked the consortium that administers the MDEET medical-school entrance exam for an official response. The test was not among 528 national qualification exams slated for a government-wide investigation (kormedi.com)."
     },
-    "held_date": "2026-11-23",
+    "held_date": "2026-11-24",
     "target_date": "2026-12-06",
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.castanet.net/news/Canada/638657/All-signs-show-Canada-can-t-meet-its-Paris-target-here-s-why-Ottawa-won-t-admit-it": {
+    "article": {
+      "id": "https://www.castanet.net/news/Canada/638657/All-signs-show-Canada-can-t-meet-its-Paris-target-here-s-why-Ottawa-won-t-admit-it",
+      "url": "https://www.castanet.net/news/Canada/638657/All-signs-show-Canada-can-t-meet-its-Paris-target-here-s-why-Ottawa-won-t-admit-it",
+      "title": "[Castanet.net - Canada] All signs show Canada can\u2019t meet its Paris target \u2014 here\u2019s why Ottawa won\u2019t admit it",
+      "content_html": "<img src=\"https://www.castanet.net/content/2026/11/large/ab57666a5f4236470ec6f6f5aef6494af0a14d855be1e40fbdf565065f5b10f9.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.castanet.net%2Fnews%2FCanada%2F638657%2FAll-signs-show-Canada-can-t-meet-its-Paris-target-here-s-why-Ottawa-won-t-admit-it\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIn June, Prime Minister Mark Carney told Canadians that the country's emissions would be higher \u201cin the next few years\u201d than previously projected. Those projections already said Canada would miss its 2030 emissions target under the Paris climate accord.\n\nThe government's own projection...",
+      "summary": "In June, Prime Minister Mark Carney told Canadians that the country's emissions would be higher \u201cin the next few years\u201d than previously projected. Those projections already said Canada would miss its 2030 emissions target under the Paris climate accord. The government's own projection...",
+      "_excerpt": "In June, Prime Minister Mark Carney told Canadians that the country's emissions would be higher \u201cin the next few years\u201d than previously projected. Those projections already said Canada would miss its 2030 emissions target under the Paris climate accord. The government's own projection...",
+      "date_published": "2026-11-22T14:25:00+00:00",
+      "authors": [
+        {
+          "name": "Castanet.net - Canada",
+          "url": "https://castanet.net"
+        }
+      ],
+      "ai_score": 67,
+      "_quality": 75,
+      "_relevance": 80,
+      "_local": 20,
+      "_theme_score": 72,
+      "_theme_score_raw": 20,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 72,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_niche": false,
+      "image": "https://www.castanet.net/content/2026/11/large/ab57666a5f4236470ec6f6f5aef6494af0a14d855be1e40fbdf565065f5b10f9.jpg",
+      "_boosted_score": 67,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-11-24",
+    "target_date": "2026-12-04",
+    "target_weekday": 4,
+    "target_focus_slug": "conservation-environment",
+    "target_focus_name": "Conservation & the Environment",
+    "status": "aired_early"
+  },
+  "https://www.stpetersburg.usf.edu/news/2026/new-research-finds-that-even-cacti-are-severely-threatened-in-a-warmer-drier-world.aspx": {
+    "article": {
+      "id": "https://www.stpetersburg.usf.edu/news/2026/new-research-finds-that-even-cacti-are-severely-threatened-in-a-warmer-drier-world.aspx",
+      "url": "https://www.stpetersburg.usf.edu/news/2026/new-research-finds-that-even-cacti-are-severely-threatened-in-a-warmer-drier-world.aspx",
+      "title": "[stpetersburg.usf.edu] Study finds drought could cut cactus habitat by 80% by 2100",
+      "content_html": "<img src=\"https://kagiproxy.com/img/Aizsl0DqfpjgF7esu-Dh7U7IM4k2H0OwQQPo42cauKt23uUANqmxNz1B7dWv1noTHxw9k-jSmE8acVqDWIt4Nl-lUr_vXOWps-MuOduA4rEfjHxlVxY0glv9lsosJ_NGVivEXQN9OTJQ3CDyNM5WCk02MlH1eRr7FJulNe7YpFwn0MQojze9xO22G_Cm52K1SUnSsU1z6y9aFMPC_rjUKOqks8S7\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.stpetersburg.usf.edu%2Fnews%2F2026%2Fnew-research-finds-that-even-cacti-are-severely-threatened-in-a-warmer-drier-world.aspx\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAn international research team analyzed nearly 1,000 cactus species and found that more than a quarter could lose at least 80% of their suitable habitat by 2100 if severe droughts intensify. The researchers added drought projections to climate models, which commonly use long-term temperature and rainfall averages, and combined them with biodiversity records, field observations and community-science data.\n\nThe projected losses could qualify affected species as Critically Endangered under criteria set by the International Union for Conservation of Nature (IUCN), more than doubling the number of cacti in that category. Researchers say drought may also reduce growth or flowering without immediately killing plants, compounding threats from habitat destruction and illegal collection. The findings are expected to inform updated IUCN Red List assessments; the team says further research is needed to determine which life stages and biological processes drought affects.",
+      "summary": "An international research team analyzed nearly 1,000 cactus species and found that more than a quarter could lose at least 80% of their suitable habitat by 2100 if severe droughts intensify. The researchers added drought projections to climate models, which commonly use long-term temperature and",
+      "_excerpt": "An international research team analyzed nearly 1,000 cactus species and found that more than a quarter could lose at least 80% of their suitable habitat by 2100 if severe droughts intensify (usf.edu, grist.org). The researchers added drought projections to climate models, which commonly use long-term temperature and rainfall averages, and combined them with biodiversity records, field observations and community-science data (usf.edu). The projected losses could qualify affected species as Critically Endangered under criteria set by the International Union for Conservation of Nature (IUCN), more than doubling the number of cacti in that category (usf.edu). Researchers say drought may also reduce growth or flowering without immediately killing plants, compounding threats from habitat destruction and illegal collection (grist.org, usf.edu). The findings are expected to inform updated IUCN Red List assessments; the team says further research is needed to determine which life stages and biological processes drought affects (usf.edu). Regional hotspots: Projected diversity declines could be especially severe in cactus-rich areas of Chile, Peru and northeastern Brazil (usf.edu). Existing pressures: More than 30% of cactus species are already threatened with extinction (usf.edu). Saguaro reproduction: In the Sonoran Desert, prolonged drought has been associated with saguaros flowering less often, reducing opportunities for reproduction (grist.org). Model shift: When severe drought was included, the share of cactus species described as \u201csick\u201d by lead author Michiel Pillet, a conservation ecologist at the University of South Florida, rose from about six in 10 to seven in 10 (azfamily.com).",
+      "date_published": "2026-11-12T08:08:02+00:00",
+      "authors": [
+        {
+          "name": "stpetersburg.usf.edu",
+          "url": "https://www.stpetersburg.usf.edu"
+        }
+      ],
+      "ai_score": 35,
+      "_quality": 72,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 78,
+      "_theme_score_raw": 24,
+      "_kite_sources": 5,
+      "_kite_context": "Perspective: Brian Maitner, assistant professor of integrative biology at the University of South Florida, said the researchers initially doubted the model results, but cactus specialists across North and South America told them the projections matched changes they were (University of South Florida)\nPerspective: Marcos Robles, Nature Conservancy lead scientist in Arizona, said desert ecosystems can take decades to recover after disturbance or degradation, and some do not recover (grist.org). (Grist)\nPerspective: Rod Haenni, president of the Cactus and Succulent Society of America, argued that governments should protect threatened cactus habitat and said many of the governments involved are indifferent to the issue (grist.org). (Grist)\nQuote: \"Just like other plants, they evolved under conditions that they\u2019re used to. When you take them outside of those conditions, they might not be able to handle that.\" (Michiel Pillet, conservation ecologist at the University of South Florida and lead author, Grist)",
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_niche": false,
+      "image": "https://kagiproxy.com/img/Aizsl0DqfpjgF7esu-Dh7U7IM4k2H0OwQQPo42cauKt23uUANqmxNz1B7dWv1noTHxw9k-jSmE8acVqDWIt4Nl-lUr_vXOWps-MuOduA4rEfjHxlVxY0glv9lsosJ_NGVivEXQN9OTJQ3CDyNM5WCk02MlH1eRr7FJulNe7YpFwn0MQojze9xO22G_Cm52K1SUnSsU1z6y9aFMPC_rjUKOqks8S7",
+      "_boosted_score": 35,
+      "_body": "An international research team analyzed nearly 1,000 cactus species and found that more than a quarter could lose at least 80% of their suitable habitat by 2100 if severe droughts intensify (usf.edu, grist.org). The researchers added drought projections to climate models, which commonly use long-term temperature and rainfall averages, and combined them with biodiversity records, field observations and community-science data (usf.edu). The projected losses could qualify affected species as Critically Endangered under criteria set by the International Union for Conservation of Nature (IUCN), more than doubling the number of cacti in that category (usf.edu). Researchers say drought may also reduce growth or flowering without immediately killing plants, compounding threats from habitat destruction and illegal collection (grist.org, usf.edu). The findings are expected to inform updated IUCN Red List assessments; the team says further research is needed to determine which life stages and biological processes drought affects (usf.edu). Regional hotspots: Projected diversity declines could be especially severe in cactus-rich areas of Chile, Peru and northeastern Brazil (usf.edu). Existing pressures: More than 30% of cactus species are already threatened with extinction (usf.edu). Saguaro reproduction: In the Sonoran Desert, prolonged drought has been associated with saguaros flowering less often, reducing opportunities for reproduction (grist.org). Model shift: When severe drought was included, the share of cactus species described as \u201csick\u201d by lead author Michiel Pillet, a conservation ecologist at the University of South Florida, rose from about six in 10 to seven in 10 (azfamily.com)."
+    },
+    "held_date": "2026-11-24",
+    "target_date": "2026-11-29",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
   }
 }
