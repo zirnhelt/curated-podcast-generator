@@ -421,6 +421,10 @@ list") had been in the prompt the whole time.
     week whose commits never did and the guard dropped the segment (the run went
     red). The examples are gone. The same draft was also dropped for "API", which is an
     acronym, not a name, and is now in `_META_MOMENT_KNOWN_WORDS` with "AI" and "BC".
+- **No pull request numbers on air** (2026-11-22). A merged pull request's subject ends
+  "(#569)"; the model kept two and Riley said "Right, #569." and "Yes, #580." aloud.
+  `_changelog_subjects` strips them from every subject, the show's and upstream's, and
+  `_strip_pr_numbers` drops any the dialogue writes anyway.
 - The last turn hands off **in general terms** — the Meta Moment is spliced ahead of the
   community spotlight and has not been told what follows it. On 2026-08-30 it previewed a
   deep-dive story two segments away, and invented that too.

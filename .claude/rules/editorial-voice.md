@@ -56,6 +56,7 @@ paths:
 
 **Sunday Meta Moment.** One Haiku call turns the week's commit subjects into a segment.
 - **NONE is a first-class answer.**
+- Pull request numbers ("(#569)") are stripped from every subject and from the dialogue (`_strip_pr_numbers`): Riley read them aloud on 2026-11-22.
 - The reply cites its commit lines (`COVERED:`) before it speaks, and unknown capitalised names drop the segment.
 - Every Sunday without the segment `degrade()`s, whatever the reason.
 - Nothing listener-facing goes into that prompt unconditionally.
