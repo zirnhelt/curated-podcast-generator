@@ -1,5 +1,324 @@
 [
   {
+    "date": "2026-11-24",
+    "title": "Episode Review — Working Lands & Industry, November 24, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-24.html",
+    "content_html": "<p class=\"meta\">Theme: Working Lands &amp; Industry. Focus: Mining &amp; Energy (week 3 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/45353101196\">45353101196</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>3 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Investigate.</strong><br><span class=\"evidence\">the deep dive had no Cariboo story or angle</span> <span class=\"recur\">Recurring: on the roadmap, seen 3 nights.</span></li>\n<li><strong><code>script/storyboard</code> fell back. Search the run log for <code>Degraded 'script/storyboard'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: roundup order not applied: a local story moved behind a non-local one</span></li>\n<li><strong>The script did not keep to its storyboard. Compare the plan below with the script: a dropped beat or a reordered roundup is the script or polish overriding the plan.</strong><br><span class=\"evidence\">the script left its storyboard: 9/15 roundup pairs aired in the plan's order</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Two stories were held back by focus routing and five released late, with two still waiting</h3>\n<p>The pipeline routes each article to the focus block it fits, and this run was in the Mining &amp; Energy week of the cycle. Five previously held articles were released into this run and two remain held, one targeting Earth Systems &amp; Climate Science and one targeting Discovery, Health &amp; How Science Works. Three of the released stories were mining pieces, which is what the current focus wanted, and two came out of earlier holds on keyword matches. The two still held will wait for their own focus weeks.</p>\n\n<h3>The roundup opened on a local story but one story was reordered out of plan</h3>\n<p>The script stage applied the roundup order imperfectly: a local story was moved behind a non-local one. The roundup opened on local material as planned, and all seven local stories available were aired, but the reordering means the sequence the storyboard promised is not the sequence the listener heard. The storyboard planned 9 roundup pairs in order and 15 were placed, and 13 of 17 bridges were named.</p>\n<p>The roundup pool kept 18 stories and 33 were cut by the airtime budget (NEWS_ROUNDUP_COUNT); those cut stories remain eligible for a later day. Roundup citations matched 15 of 18. The ordering fault should be checked in the storyboard step to see whether the local-first rule is being overridden when a non-local story carries a higher score.</p>\n\n<h3>YouTube processed the upload, but the TTS canary timed out and was not a clean run</h3>\n<p>The video was uploaded as public and YouTube reports it processed and watchable. The audio render produced 6 deep-dive beats, all of them aired, and one TTS take came back shorter than its word count predicts; it was retried once and the retry is the only short segment reported. No other warnings were raised.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>66</td></tr>\n<tr><td>Kept after dedup</td><td>52</td></tr>\n<tr><td>Held / released</td><td>5 released, 2 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:11, local:7</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 1.1, 4061 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 53% of the words</td></tr>\n<tr><td>Audio</td><td>25.0 min</td></tr>\n<tr><td>Audio size</td><td>22.9 MB</td></tr>\n<tr><td>Citations matched</td><td>15/18 roundup, 4/4 deep dive</td></tr>\n<tr><td>Feed</td><td>300 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>90,340</td></tr>\n<tr><td>API calls</td><td>139 total: openai-tts 109 · claude 12 · kagi-extract 5 · cohere 5 · brave-search 4 · brave-answers 4</td></tr>\n<tr><td>Anthropic cost</td><td>$0.25 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.81 at list price: OpenAI TTS $0.354 · Anthropic $0.247 · Brave Answers $0.164 · Kagi Extract $0.020 · Brave Search $0.020 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-24T10:05:58+00:00",
+    "metrics": {
+      "audio_minutes": 25.0,
+      "script_words": 4061,
+      "tell_hits": 0,
+      "roundup_cite_pct": 83.3,
+      "deep_dive_cite_pct": 100.0,
+      "cost_usd": 0.808
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "3 things to look at before tomorrow's run.",
+      "theme": "Working Lands & Industry",
+      "kpis": [
+        [
+          "Episode",
+          "25.0 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "4,061",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "15/18 · 4/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.81",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:35 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "deep-dive-non-local",
+          "todo": "Investigate.",
+          "evidence": "the deep dive had no Cariboo story or angle",
+          "minor": false,
+          "nights_seen": 3
+        },
+        {
+          "signal": "degraded:script/storyboard",
+          "todo": "script/storyboard fell back.",
+          "evidence": "degrade() row: roundup order not applied: a local story moved behind a non-local one",
+          "minor": false,
+          "nights_seen": 0
+        },
+        {
+          "signal": "storyboard-drift",
+          "todo": "The script did not keep to its storyboard. Compare the plan below with the script: a dropped beat or a reordered roundup is the script or polish overriding the plan.",
+          "evidence": "the script left its storyboard: 9/15 roundup pairs aired in the plan's order",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-23",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Music & Live Performance",
+          "week": 2,
+          "of": 5,
+          "next": "Visual Arts & Heritage",
+          "event": null
+        },
+        {
+          "date": "2026-11-24",
+          "day": "Tue",
+          "today": true,
+          "theme": "Working Lands & Industry",
+          "focus": "Mining & Energy",
+          "week": 3,
+          "of": 4,
+          "next": "Tourism & the Outdoor Economy",
+          "event": null
+        },
+        {
+          "date": "2026-11-25",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Homestead & Off-Grid Tech",
+          "week": 2,
+          "of": 5,
+          "next": "Digital Life & Security",
+          "event": null
+        },
+        {
+          "date": "2026-11-26",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Economic Development",
+          "week": 3,
+          "of": 4,
+          "next": "Guardians & Land Stewardship",
+          "event": null
+        },
+        {
+          "date": "2026-11-27",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 4,
+          "next": "Conservation & the Environment",
+          "event": null
+        },
+        {
+          "date": "2026-11-28",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-29",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Earth Systems & Climate Science",
+          "week": 3,
+          "of": 5,
+          "next": "Discovery, Health & How Science Works",
+          "event": null
+        }
+      ],
+      "anchor": "Is staying put a virtue or a failure of nerve?",
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://meatingplace.com/us-cattle-placements-fall-to-lowest-october-level-on-record/",
+          "title": "[meatingplace.com] U.S. cattle placements hit October record low as supplies tighten",
+          "source": "",
+          "theme_pct": 99,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/18/Mega-Mine-Instant-Town-Rocked-Strike/",
+          "title": "[The Tyee] The Mega Mine and ‘Instant Town’ Rocked by a Strike",
+          "source": "",
+          "theme_pct": 99,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.realagriculture.com/2026/11/weighing-the-pros-cons-and-timing-of-fall-residual-herbicides-canola-school/",
+          "title": "[RealAgriculture] Weighing the pros, cons, and timing of fall residual herbicides | Canola School",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/18/Teck-Used-Illegal-Replacement-Workers-Highland-Valley-Copper/",
+          "title": "[The Tyee] Teck Used Illegal Replacement Workers, Labour Board Finds",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.realagriculture.com/2026/11/building-a-more-competitive-wheat-breeding-system-in-western-canada/",
+          "title": "[RealAgriculture] Building a more competitive wheat breeding system in Western Canada",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.realagriculture.com/2026/11/the-rc-farmbot-retrofits-existing-iron-with-remote-and-autonomous-capabilities/",
+          "title": "[RealAgriculture] The RC FarmBOT retrofits existing iron with remote and autonomous capabilities",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/a-rets-spannmajpylsska-rd-la-gre-a-n-fa-rra-ajpyret-utmanande-ga-dselmarknad-skapar-osa-kerhet-infa-r-2027",
+          "title": "[dagenslantbruk.se] Swedish grain outlook points to near-normal crop, fertilizer uncertainty",
+          "source": "",
+          "theme_pct": 95,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.dagenslantbruk.se/fa-rba-ttrad-la-nsamhet-i-lantbruket-la-gre-ra-ntor-ger-framtidstro",
+          "title": "[dagenslantbruk.se] Swedish farm profits improve, but investment plans remain cautious",
+          "source": "",
+          "theme_pct": 95,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://vancouversun.com/opinion/columnists/douglas-todd-under-lorne-doerkson-b-c-interior-residents-feel-their-time-has-finally-come",
+          "title": "[Vancouver Sun] Douglas Todd: Under Lorne Doerkson, B.C. Interior residents feel their time has finally come",
+          "source": "",
+          "theme_pct": 93,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.woodbusiness.ca/west-fraser-assessing-possibility-of-sawmill-in-scotland/",
+          "title": "[Canadian Forest Industries] West Fraser assessing possibility of sawmill in Scotland",
+          "source": "",
+          "theme_pct": 93,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.mining.com/brazil-picks-27-critical-minerals-in-push-for-local-supply-chain/",
+          "title": "[Mining.com] Brazil picks 27 critical minerals in push for local supply chain",
+          "source": "",
+          "theme_pct": 93,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.mining.com/dispatch-from-the-ground-pakistan-day-one/",
+          "title": "[Mining.com] Dispatch from the ground: Pakistan, day one",
+          "source": "",
+          "theme_pct": 90,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.topagrar.pl/articles/aktualnosci/pustynia-ponad-40degc-i-plan-na-270-tys-krow-inwestycja-juz-ruszyla-pasze-dla-stada-maja-dac-wlasne-uprawy-2695557",
+          "title": "[topagrar.pl] Algeria advances $3.5 billion desert dairy complex for 270,000 cows",
+          "source": "",
+          "theme_pct": 90,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.woodbusiness.ca/rescon-a-tale-of-two-cities/",
+          "title": "[Canadian Forest Industries] RESCON: A tale of two cities",
+          "source": "",
+          "theme_pct": 90,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.npr.org/2026/11/15/nx-s1-6039311/laws-limiting-coal-miners-exposure-to-toxic-dust-are-in-danger-of-being-rolled-back",
+          "title": "[NPR Health News] Laws limiting coal miners' exposure to toxic dust are in danger of being rolled back",
+          "source": "",
+          "theme_pct": 90,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "When farm and ranch families keep working the same land through thin years, is staying a genuine choice or simply what remains after the money has moved elsewhere?",
+        "riley": "Staying can be a deliberate bet that is made viable through better contract terms, growers' seats at the table, competition, direct sales, and data control, so the fix lies in structuring the terms and enforcing existing rules.",
+        "casey": "Staying is often what remains after structural forces such as input costs, price squeezes, buyer power, and foreign or carbon-driven land sales have already shifted value away from working families, and rules and contracts cannot reach those root costs.",
+        "resolution": "The two did not reach agreement. Riley acknowledged that exclusivity bans are weak without a second buyer and that contract terms matter, while Casey conceded the honest answer is that coverage does not reveal whether the Australian sellers were forced or chose the price, and both agreed the family's financial cushion is the unmeasured variable that decides the question.",
+        "topics": [
+          "Contract terms, buyer power, and enforcement under Polish and EU rules",
+          "Cost structures and break-even thresholds in sugar beet and other crops",
+          "Australian land sales to carbon and forestry buyers and their implications",
+          "AI adoption, data control, and survey reliability in agriculture",
+          "Community forest ownership and post-wildfire salvage in the Cariboo"
+        ],
+        "sources": [
+          {
+            "title": "Polish farmers warn shrinking margins are reshaping livestock and supply chains",
+            "url": "https://www.farmer.pl/produkcja-zwierzeca/bydlo-i-mleko/malego-zniszczyc-duzego-zakredytowac-nie-ma-tygodnia-zeby-jakies-male-gospodarstwo-nie-zniknelo,187419.html"
+          },
+          {
+            "title": "Sale of prime farmland for carbon projects sparks debate",
+            "url": "https://www.abc.net.au/news/rural/2026-11-21/carbon-credits-farmland-sales-reshaping-landscape/107404514"
+          },
+          {
+            "title": "Farmers test soil and heat-tolerant crops as drought strains fields",
+            "url": "https://agritechinsights.com/index.php/2026/11/23/linseed-varieties-thrive-under-late-season-heat-stress/"
+          },
+          {
+            "title": "Farmers and agribusinesses test AI to cut costs and improve crops",
+            "url": "https://www.dagenslantbruk.se/lantma-nnen-ai-kan-sta-rka-europas-jordbruk-och-lantbrukarnas-la-nsamhet"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-23",
     "title": "Episode Review — Arts, Culture & Digital Storytelling, November 23, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-23.html",
@@ -4953,20 +5272,6 @@
       "tell_hits": 1,
       "roundup_cite_pct": 77.8,
       "deep_dive_cite_pct": 75.0
-    }
-  },
-  {
-    "date": "2026-10-25",
-    "title": "Episode Review — Cariboo Signals, October 25, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-25.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/40175259192\">40175259192</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>3 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Open the day's citations JSON and find the roundup stories the script paraphrased past matching, or never aired.</strong><br><span class=\"evidence\">8/18 roundup citations matched the script</span></li>\n<li><strong><code>script/meta-moment/retry</code> fell back. Search the run log for <code>Degraded 'script/meta-moment/retry'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: first draft failed (the dialogue named Meta, Moment, absent from the week's commits); the retry with upstream changes aired</span></li>\n<li><strong>Read the expand passes in the script stage log. Target and floor are <code>TARGET_SCRIPT_WORDS</code> / <code>MIN_SCRIPT_WORDS</code> in <code>podcast_generator.py</code>.</strong><br><span class=\"evidence\">shipped 3371 words against a 3400-word target (first draft 2692)</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The short script was expanded to 3371 words, against a 3400 target</h3>\n<p>The first draft came in at 2692 words, below the 3400 target, and was sent back for up to two expand passes. The episode that shipped has 3371 words. The gap to target is the number to watch, not the expansion itself: the pipeline accepted a script that still falls short of what it asked for.</p>\n<p>Only 2 of 4 deep-dive citations matched, and 8 of 18 roundup citations matched. The rest did not align to the source material the script was built from. Check the citation-matching step before trusting the expanded passes to have added grounded material rather than filler.</p>\n\n<h3>The Meta/Moment dialogue failed and the retry aired with upstream changes</h3>\n<p>The first script draft named Meta and Moment, neither of which appears in the week's commits, so the draft failed. The retry aired with upstream changes in place of the failed draft. The listener hears a script that was regenerated, and the only record of the discarded version is this degradation entry.</p>\n<p>The source of the hallucinated names is not in the facts. Look at what the script step receives as its commit context before the next run.</p>\n\n<h3>Three TTS takes came back short and one retry stayed short</h3>\n<p>Three audio segments returned shorter than their word counts predicted. Each was retried once. One retry was still short, and the longer of the two takes was kept, so no audio was dropped from the episode.</p>\n<p>The remaining two were recovered by the retry. Only the one that stayed short is still a risk, and it is the take that was kept, so listen to that segment before assuming the episode is clean.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.0, 3371 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 49% of the words</td></tr>\n<tr><td>Audio</td><td>22.4 min</td></tr>\n<tr><td>Audio size</td><td>20.5 MB</td></tr>\n<tr><td>Citations matched</td><td>8/18 roundup, 2/4 deep dive</td></tr>\n<tr><td>Feed</td><td>270 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>62,181</td></tr>\n<tr><td>API calls</td><td>39 total: brave-search 16 · claude 16 · brave-answers 4 · kagi-extract 3</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-25T10:06:01+00:00",
-    "metrics": {
-      "audio_minutes": 22.4,
-      "script_words": 3371,
-      "tell_hits": 1,
-      "roundup_cite_pct": 44.4,
-      "deep_dive_cite_pct": 50.0
     }
   }
 ]
