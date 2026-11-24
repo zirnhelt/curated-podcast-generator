@@ -640,6 +640,22 @@ the block it lands in. A kicker already beside its twin, or folded in, is left a
 plan names no repeat, nothing moves: the model's judgement is still the detector; the code only
 stops it being ignored.
 
+### A theme story planned among the locals moves behind them (2026-11-24)
+
+Tuesday's plan moved The Tyee's Logan Lake feature (theme block) up beside the Williams Lake
+Tribune's story on the Highland Valley strike ruling, ahead of the rest of the local block.
+`apply_storyboard_order` rejected the whole order (`script/storyboard` degraded) and the draft's
+story list went to the script, but the prompt block still carried the plan's order: two orders
+in one prompt. Haiku followed the plan and moved the Tyee piece behind the locals itself, so the
+flow check, measuring against the draft, read 9/15 pairs in order.
+
+`_locals_first` now repairs the plan right after it is parsed, before `_unbookend_kicker`: local
+groups first and the rest after them, each half in the plan's order, so the prompt block, the
+applied order and the flow check all carry the same order. Every story whose next story changed
+gets a clean pivot (a bridge written for a different neighbour would be a manufactured link), and
+a story pushed to the end takes the handoff. The rejection in `apply_storyboard_order` stays as
+the guard for a plan the repair can't read (a dropped or repeated story number).
+
 
 ### The storyboard ran out of room on a Saturday (2026-10-31)
 

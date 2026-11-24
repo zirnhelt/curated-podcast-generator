@@ -10722,6 +10722,7 @@ def storyboard_script(roundup_articles: list, numbered_news: str, deep_dive_text
     if len(plan["deep_dive"]["beats"]) < 2:
         degrade("script/storyboard",
                 f"deep dive plan has {len(plan['deep_dive']['beats'])} beat(s)")
+    _locals_first(plan, roundup_articles)
     _unbookend_kicker(plan, roundup_articles)
     return plan
 
@@ -10743,6 +10744,41 @@ def _storyboard_groups(plan: dict, count: int) -> tuple[list | None, str]:
     if seen != list(range(1, count + 1)):
         return None, f"plan covers {seen} of {count} stories"
     return groups, ""
+
+
+def _locals_first(plan: dict, roundup_articles: list) -> None:
+    """Move every non-local story the plan put among the local ones down behind them.
+
+    2026-11-24 moved The Tyee's Logan Lake feature (theme) up beside the local
+    Highland Valley strike story, ahead of the rest of the local block. The whole
+    order was rejected and the draft aired as the story list, but the prompt
+    block still carried the plan's order, so the script followed neither (9/15
+    pairs in order). This keeps the plan's order within each half, in the plan
+    itself, so the prompt block and `apply_storyboard_order` agree. A story
+    whose next story changed gets a clean pivot; the new last one takes the
+    handoff bridge. An invalid plan is left for `apply_storyboard_order`.
+    """
+    groups, _ = _storyboard_groups(plan, len(roundup_articles))
+    if groups is None:
+        return
+    local = [any(roundup_articles[i - 1].get('_roundup_block') == 'local' for i in g)
+             for g in groups]
+    if not any(local[i] and not local[i - 1] for i in range(1, len(local))):
+        return
+    stories = plan["roundup"]["stories"]
+    old_next = {id(st): nxt for st, nxt in zip(stories, stories[1:] + [None])}
+    handoff = stories[-1].get("bridge_to_next", "")
+    last_local = max(i for i, loc in enumerate(local) if loc)
+    jumped = [st.get("n") for i, (st, loc) in enumerate(zip(stories, local))
+              if not loc and i < last_local]
+    reordered = ([st for st, loc in zip(stories, local) if loc]
+                 + [st for st, loc in zip(stories, local) if not loc])
+    for st, nxt in zip(reordered, reordered[1:] + [None]):
+        if old_next[id(st)] is not nxt:
+            st["bridge_to_next"] = handoff if nxt is None else "clean pivot"
+    stories[:] = reordered
+    print(f"🗂️  Storyboard: non-local stor(ies) {jumped} planned among the local ones; "
+          "moved behind them")
 
 
 def _unbookend_kicker(plan: dict, roundup_articles: list) -> None:
@@ -10791,8 +10827,10 @@ def apply_storyboard_order(plan: dict | None, roundup_articles: list) -> list:
     The storyboard may move same-subject stories together and fold same-story
     reports into one (2026-10-28 aired six iPhone Duo stories as separate slots,
     three first and three last, because the plan was told the order was fixed).
-    Local news still opens the show: a plan that puts a local story after a
-    non-local one is rejected and the draft order airs. A story moved out of its
+    Local news still opens the show: `storyboard_script` moves a non-local story
+    planned among the local ones behind them (`_locals_first`), and a plan that
+    still puts a local story after a non-local one is rejected and the draft
+    order airs. A story moved out of its
     block takes the block of the stories it now sits among, so the rank-based
     order check (`check_roundup_order`) measures the order the script was told to
     follow. A folded story carries `_merged_into` and its lead's block.
