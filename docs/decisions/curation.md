@@ -621,6 +621,20 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   by broad keywords (`climate`, `study`, `research`): fix the keyword, not the rule. The
   calendar is untouched; the cold open and memory record the focus that aired.
 
+- **A weak focus doesn't centre the deep dive (2026-11-24, the producer's call on 11-23's
+  note).** Monday's week focus (Music & Live Performance) matched one story, so the cluster
+  pick moved the day to Visual Arts & Heritage, which matched five, each on a single keyword.
+  Four of them became the deep dive (a cruise ship crash, a Van Gogh restitution claim, an
+  architecture roundup, the Internet Archive union), led at the 51st charter percentile while
+  11 stronger on-theme stories went unused. The script, written around them, used the focus's
+  words 26 times, so the cold open named it. A focus now centres the deep dive only on matches
+  that clear the Cariboo bar's floor (`_clears_charter_floor`: p`DEEP_DIVE_PICK_MIN_PCT`, local
+  and unscored stories exempt, the same predicate the bar uses), and rerank draws only from
+  those. Fewer than the count clear it: `focus_fallback`, and the plain theme ranking stands.
+  The cold open names the focus only when it centred the deep dive (`_focus_centred` on the
+  final deep-dive articles; a Cariboo pick that replaces the deep dive clears it). The focus
+  still routes and holds articles and still writes the theme lens.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ## Niche interests close the roundup once a week (2026-11-14)
