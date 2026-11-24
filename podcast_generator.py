@@ -6050,7 +6050,8 @@ COLD_OPEN_MAX_WORDS = 90
 COLD_OPEN_SHORTER = "\n\nYour teaser ran {words} words. Write it again in 45-70 words, keeping its hook."
 
 
-def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) -> str:
+def generate_cold_open(script: str, theme_name: str, focus: dict | None = None,
+                       focus_centred: bool = True) -> str:
     """Generate the COLD OPEN teaser after the script is fully drafted and polished.
 
     Grounded in the finalized script text so the teaser can only reference
@@ -6061,9 +6062,10 @@ def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) 
     downstream code already handles an episode with no COLD OPEN marker.
 
     The cold open is the one place the super-cycle focus is named on air,
-    and only when the finalized script reaches it (`_focus_hits`, decided in
-    Python); a calendar-picked focus the material never touched would be a
-    promise the episode breaks.
+    and only when the focus centred the deep dive (`focus_centred`) and the
+    finalized script reaches it (`_focus_hits`, decided in Python); a focus the
+    material never touched would be a promise the episode breaks. On 2026-11-23
+    a script written around a weak focus used its words 26 times.
     """
     client = get_anthropic_client()
     if not client or not script:
@@ -6085,7 +6087,11 @@ def generate_cold_open(script: str, theme_name: str, focus: dict | None = None) 
     weekday = today.strftime('%A')
     spoken_theme = theme_name.replace('&', 'and')  # spoken, not read as a symbol
     hits = _focus_hits(script, focus)
-    if focus and focus.get('name') and hits >= FOCUS_COLD_OPEN_MIN_HITS:
+    if focus and focus.get('name') and not focus_centred:
+        print(f"  🎯 Cold open names the theme: focus {focus['name']} did not centre "
+              "the deep dive")
+        day_focus = f"It's {weekday}, the {spoken_theme} day."
+    elif focus and focus.get('name') and hits >= FOCUS_COLD_OPEN_MIN_HITS:
         print(f"  🎯 Cold open names the focus {focus['name']} ({hits} keyword hits)")
         day_focus = (
             f"It's {weekday}, and this stretch of {weekday}s centres on "
@@ -8633,6 +8639,16 @@ _DEEP_DIVE_PICK_SCHEMA = {
 }
 
 
+def _clears_charter_floor(article: dict) -> bool:
+    """Whether a deep-dive candidate is fit to lead on today's charter.
+
+    A local story competes on its Cariboo tie and an unscored one keeps its
+    keyword test; anything else needs the p`DEEP_DIVE_PICK_MIN_PCT` percentile.
+    """
+    pct = article.get('_theme_score')
+    return _is_local_article(article) or pct is None or pct >= DEEP_DIVE_PICK_MIN_PCT
+
+
 def recent_local_roundup(today: date, days: int = RECENT_LOCAL_DAYS) -> list:
     """Local roundup stories from the past `days` episodes, newest first.
 
@@ -9110,6 +9126,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
     # Super-cycle focus: prefer articles matching this week's rotation slice.
     focus_keywords = _build_focus_keywords(focus)
     deep_dive = None
+    focus_centred = False
     if focus_keywords:
         for a in candidates:
             a['_focus_matches'] = _focus_hit_count(a, focus_keywords)
@@ -9119,9 +9136,18 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
                            a.get('_boosted_score', a.get('ai_score', 0))),
             reverse=True,
         )
-        if len(focus_strong) >= count:
-            deep_dive = focus_strong[:count]
-            print(f"  🎯 Focus '{focus['name']}': {len(focus_strong)} matching article(s) — deep dive centered on focus")
+        # A keyword match under the charter floor can't centre the deep dive:
+        # 2026-11-23's Visual Arts & Heritage built one on four single-keyword
+        # stories led at p51, over 11 stronger on-theme ones.
+        focus_fit = [a for a in focus_strong if _clears_charter_floor(a)]
+        if len(focus_fit) >= count:
+            deep_dive = focus_fit[:count]
+            focus_centred = True
+            print(f"  🎯 Focus '{focus['name']}': {len(focus_fit)} matching article(s) — deep dive centered on focus")
+        elif len(focus_strong) >= count:
+            print(f"  🎯 focus_fallback: {len(focus_strong)} article(s) matched focus "
+                  f"'{focus['name']}', {len(focus_fit)} at or over the "
+                  f"p{DEEP_DIVE_PICK_MIN_PCT} charter floor (<{count}) — using base theme selection")
         else:
             print(f"  🎯 focus_fallback: only {len(focus_strong)} article(s) matched focus "
                   f"'{focus['name']}' (<{count}) — using base theme selection")
@@ -9132,7 +9158,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         # then the event): never reranked.
         deep_dive = subject_deep_dive
     elif deep_dive is not None:
-        rerank_pool = focus_strong
+        rerank_pool = focus_fit
     elif strong_match:
         # Feed provided keyword matches — use them
         rerank_pool = strong_match
@@ -9170,9 +9196,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         ranked = list(deep_dive) + [a for a in (rerank_pool or candidates)
                                     if a not in deep_dive]
         # Local extras compete on their Cariboo tie, so the charter floor skips them.
-        fit = [a for a in ranked if _is_local_article(a)
-               or (a.get('_theme_score') is None
-                   or a['_theme_score'] >= DEEP_DIVE_PICK_MIN_PCT)]
+        fit = [a for a in ranked if _clears_charter_floor(a)]
         if len(fit) < len(ranked):
             print(f"  🧭 Cariboo bar: {len(ranked) - len(fit)} candidate(s) under the "
                   f"p{DEEP_DIVE_PICK_MIN_PCT} charter floor left out")
@@ -9190,6 +9214,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
                                         recent_local=recent_local)
         if picked and _cariboo_pick_holds(picked, recent_local):
             deep_dive = picked
+            focus_centred = False
         elif picked:
             picked[0].pop('_cariboo_angle', None)
             print(f"  🏡 Cariboo pick set aside (one source, no second report): "
@@ -9198,6 +9223,9 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
     news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
+    # The cold open names the focus only on a day it centred the deep dive.
+    for a in deep_dive:
+        a['_focus_centred'] = focus_centred
 
     # When using local scoring, also sort news by theme relevance
     if used_local_scoring:
@@ -15457,7 +15485,9 @@ def run_script_stage() -> tuple[str, str] | None:
             # Dive are final — grounds the teaser in what the episode actually
             # covers instead of what was merely curated for it.
             print("🎬 Generating cold open teaser...")
-            script = generate_cold_open(script, today_theme, focus=today_focus)
+            script = generate_cold_open(
+                script, today_theme, focus=today_focus,
+                focus_centred=any(a.get('_focus_centred') for a in deep_dive_articles))
 
         with segment("script/tell-scrub", critical=False):
             # Last stop before the script is final. Placed after the cold open on

@@ -6944,6 +6944,74 @@ class TestColdOpenNamesTheDaysFocus:
         assert "the Gear, Gadgets and Practical Tech day" in prompt
 
 
+class TestWeakFocusLeavesTheDeepDive:
+    """2026-11-23: Visual Arts & Heritage matched five stories on one keyword each
+    and centred the deep dive on a lead at p51 over 11 stronger on-theme stories;
+    the cold open then named the focus. The producer's call (2026-11-24): a focus
+    centres the deep dive only on matches at the Cariboo bar's charter floor."""
+
+    FOCUS = {"slug": "visual-arts-heritage", "name": "Visual Arts & Heritage",
+             "name_keywords": [], "keywords": ["mural", "gallery"]}
+
+    def _pool(self, focus_pct):
+        focus = [{"title": f"[Wire] A gallery story {i}", "url": f"https://f{i}",
+                  "source": "Wire", "_keyword_matches": 1, "_theme_score": focus_pct}
+                 for i in range(4)]
+        theme = [{"title": f"[Wire] A theatre story {i}", "url": f"https://t{i}",
+                  "source": "Wire", "_keyword_matches": 2, "_theme_score": 92}
+                 for i in range(4)]
+        return focus + theme
+
+    def _select(self, monkeypatch, pool):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "DEEP_DIVE_PICK_ENABLED", False)
+        monkeypatch.setattr(pg.cohere_enrichment, "rerank_for_deep_dive", lambda *a, **k: None)
+        dd, _ = pg.select_deep_dive_from_feed(pool, "Arts, Culture & Digital Storytelling",
+                                              count=4, focus=self.FOCUS)
+        return dd
+
+    def test_matches_under_the_floor_leave_the_theme_ranking_standing(self, monkeypatch, capsys):
+        dd = self._select(monkeypatch, self._pool(focus_pct=51))
+        assert {a["url"] for a in dd} == {f"https://t{i}" for i in range(4)}
+        assert not any(a["_focus_centred"] for a in dd)
+        assert "4 article(s) matched focus" in capsys.readouterr().out
+
+    def test_matches_over_the_floor_centre_the_deep_dive(self, monkeypatch):
+        dd = self._select(monkeypatch, self._pool(focus_pct=80))
+        assert {a["url"] for a in dd} == {f"https://f{i}" for i in range(4)}
+        assert all(a["_focus_centred"] for a in dd)
+
+    def test_a_local_or_unscored_match_needs_no_floor(self, monkeypatch):
+        pool = self._pool(focus_pct=51)
+        pool[0]["title"] = "[Wire] A Williams Lake gallery opens"
+        pool[1].pop("_theme_score")
+        pool += [{"title": f"[Wire] A mural story {i}", "url": f"https://m{i}", "source": "Wire",
+                  "_keyword_matches": 1, "_theme_score": 75} for i in range(2)]
+        dd = self._select(monkeypatch, pool)
+        assert {a["url"] for a in dd} == {"https://f0", "https://f1", "https://m0", "https://m1"}
+
+    def test_the_cold_open_names_the_theme_when_the_focus_did_not_centre(self, monkeypatch):
+        import podcast_generator as pg
+        sent = {}
+
+        def fake_send(client, **kw):
+            sent["prompt"] = kw["messages"][0]["content"]
+            raise RuntimeError("stop after capture")
+
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: object())
+        monkeypatch.setattr(pg, "send_claude", fake_send)
+        monkeypatch.setattr(pg, "api_retry", lambda fn: fn())
+        monkeypatch.setattr(pg, "_abort_if_billing_wall", lambda e: None)
+        monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
+        script = (_WELCOME_SCRIPT + "\n**RILEY:** The gallery reopened, and the mural is back."
+                  "\n**CASEY:** A second gallery, a second mural.\n")
+        pg.generate_cold_open(script, "Arts, Culture & Digital Storytelling",
+                              focus=self.FOCUS, focus_centred=False)
+        day_line = sent["prompt"].split("FINALIZED SCRIPT:")[0]
+        assert "centres on" not in day_line
+        assert "the Arts, Culture and Digital Storytelling day" in day_line
+
+
 class TestEpisodeMetadata:
     """What podcast apps and the episode page show about each episode."""
 
