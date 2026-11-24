@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] iFixit awards the iPhone Duo the highest repair ",
       "[TechRadar] These social media posts promise big online disc",
       "AI",
       "[TechRadar] Australian government introduces Digital Duty of",
@@ -10,7 +9,8 @@
       "[Tom's Hardware] Tech sleuth claims to have found the oldest",
       "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M",
       "[ZDNet] This tiny box gives your older tech smart home super",
-      "[Outside Online] Lawmakers Move to Ban AI Data Centers on Na"
+      "[Outside Online] Lawmakers Move to Ban AI Data Centers on Na",
+      "[agritechinsights.com] Farmers test soil and heat-tolerant c"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -76,11 +76,6 @@
       },
       {
         "date": "2026-11-18",
-        "clue": "tech-optimism:+ \u2014 Repair as public good, open designs advocated throughout",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-18",
         "clue": "evidence-bar:- \u2014 Accepts 'the transferable part is the method' over headline claims",
         "occurrences": 2
       },
@@ -140,18 +135,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-19",
-        "clue": "structural-lens:x \u2014 conceded clarity matters more than planning",
-        "occurrences": 1
+        "date": "2026-11-24",
+        "clue": "structural-lens:x \u2014 concedes exclusivity clauses worthless without second buyer",
+        "occurrences": 2
       },
       {
         "date": "2026-11-23",
         "clue": "structural-lens:+ \u2014 insists records need visibility and off-site, durable copies",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-21",
-        "clue": "community-trust:+ \u2014 wants refusal records published, not just minutes",
         "occurrences": 2
       },
       {
@@ -290,7 +280,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[My Cariboo Now] Cops for Cancer riders to make community st",
       "[Williams Lake Tribune] Sept. 30 Williams Lake community gat",
       "[Canadian Forest Industries] Community knowledge helps guide",
       "[Wildfire Today] Advancing community wildfire adaptation",
@@ -299,7 +288,8 @@
       "[100 Mile Free Press] Interlakes community buys fire departm",
       "[100 Mile Free Press] CMHA bringing community together with ",
       "[My Cariboo Now] Quesnel requests Community Transition Servi",
-      "[100 Mile Free Press] 100 Mile Ford running community coat d"
+      "[100 Mile Free Press] 100 Mile Ford running community coat d",
+      "[100 Mile Free Press] Up to 70 per cent of Clinton Community"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -439,14 +429,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-11-19",
-        "clue": "structural-lens:+ \u2014 doubts designation test; wants clause read",
-        "occurrences": 1
+        "date": "2026-11-24",
+        "clue": "structural-lens:+ \u2014 contracts don't reach input costs or price structure",
+        "occurrences": 2
       },
       {
-        "date": "2026-11-19",
-        "clue": "funding-risk:~ \u2014 frameworks die in budget cycles",
-        "occurrences": 1
+        "date": "2026-11-24",
+        "clue": "funding-risk:~ \u2014 sale looks same whether forced or chosen, complexity added",
+        "occurrences": 2
       },
       {
         "date": "2026-11-22",
@@ -459,9 +449,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-23",
-        "clue": "evidence-bar:+ \u2014 two interested parties' accounts don't amount to a record",
-        "occurrences": 1
+        "date": "2026-11-24",
+        "clue": "evidence-bar:+ \u2014 questions PLUSAGRI survey sample and audience bias",
+        "occurrences": 2
       }
     ],
     "core_memories": [
