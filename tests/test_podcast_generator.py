@@ -7012,6 +7012,37 @@ class TestWeakFocusLeavesTheDeepDive:
         assert "the Arts, Culture and Digital Storytelling day" in day_line
 
 
+class TestFocusRecord:
+    """The citations record the focus the run used and the one it moved from."""
+
+    SKY = {"slug": "sky", "name": "Sky & Cosmos"}
+    LIVING = {"slug": "living", "name": "The Living World"}
+
+    def test_a_moved_focus_names_both(self):
+        import podcast_generator as pg
+        rec = pg.focus_record(self.LIVING, self.SKY, [{"_focus_centred": True}])
+        assert rec == {"name": "Sky & Cosmos", "moved_from": "The Living World", "centred": True}
+
+    def test_the_calendars_focus_has_no_move(self):
+        import podcast_generator as pg
+        rec = pg.focus_record(self.SKY, self.SKY, [{"_focus_centred": False}])
+        assert rec == {"name": "Sky & Cosmos", "centred": False}
+
+    def test_a_move_to_the_plain_theme_and_no_focus_at_all(self):
+        import podcast_generator as pg
+        assert pg.focus_record(self.SKY, None, []) == {
+            "name": "", "moved_from": "Sky & Cosmos", "centred": False}
+        assert pg.focus_record(None, None, []) is None
+
+    def test_the_citations_carry_it(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        pg.generate_citations_file([], [], "Science, Wonder & the Natural World",
+                                   focus={"name": "Sky & Cosmos", "centred": True})
+        data = json.loads(next(tmp_path.glob("citations_*.json")).read_text())
+        assert data["episode"]["focus"] == {"name": "Sky & Cosmos", "centred": True}
+
+
 class TestEpisodeMetadata:
     """What podcast apps and the episode page show about each episode."""
 
