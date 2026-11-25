@@ -920,6 +920,78 @@ def test_the_review_page_shows_the_plan(tmp_path, monkeypatch):
     assert er.render_plan(er.load_storyboard("2026-10-01"), {}) == ""
 
 
+class TestStoryboardFidelity:
+    """The review judges the aired script against its storyboard (producer, 2026-11-25)."""
+
+    JUDGED = {"verdict": "loosely kept", "summary": "Beat 3 argued <cost>, not policy.",
+              "roundup": {"frame": "aired", "order": "held", "bridges": "partly used", "note": ""},
+              "question": "asked", "stances": "held",
+              "beats": [{"beat": 1, "status": "aired", "note": ""},
+                        {"beat": 3, "status": "changed", "note": "argued cost & not law"}],
+              "cariboo_beat": "dropped", "landing": "aired", "additions": ["a tariff aside"]}
+
+    def test_the_script_is_read_without_its_header(self, tmp_path, monkeypatch):
+        (tmp_path / "podcast_script_2026-11-25_x.txt").write_text(
+            "# Theme: X\n# Brave: yes\n\n**COLD OPEN**\n**RILEY:** Hi.\n", encoding="utf-8")
+        monkeypatch.setattr(episode_review, "SCRIPT_GLOB", str(tmp_path / "podcast_script_{date}_*.txt"))
+        assert episode_review.load_script("2026-11-25") == "**COLD OPEN**\n**RILEY:** Hi."
+        assert episode_review.load_script("2026-01-01") == ""
+
+    def test_no_plan_or_no_script_spends_nothing(self, monkeypatch):
+        monkeypatch.setattr(episode_review, "load_prompts_config",
+                            lambda: pytest.fail("called the model without a plan"))
+        assert episode_review.judge_storyboard_fidelity(None, "script") is None
+        assert episode_review.judge_storyboard_fidelity({"roundup": {}}, "") is None
+
+    def test_a_failed_call_is_none(self, monkeypatch):
+        import anthropic
+
+        def boom(**_):
+            raise RuntimeError("no key")
+
+        monkeypatch.setattr(anthropic, "Anthropic",
+                            lambda **_: type("C", (), {"messages": type("M", (), {"create": staticmethod(boom)})})(),
+                            raising=False)
+        assert episode_review.judge_storyboard_fidelity({"deep_dive": {}}, "script") is None
+
+    def test_the_reply_is_constrained_and_closed(self):
+        from config_loader import json_output_config
+
+        schema = json_output_config(episode_review._FIDELITY_SCHEMA)["format"]["schema"]
+        assert schema["additionalProperties"] is False
+        assert schema["properties"]["roundup"]["additionalProperties"] is False
+        assert schema["properties"]["beats"]["items"]["additionalProperties"] is False
+
+    def test_the_prompt_takes_its_fields(self):
+        from config_loader import load_prompts_config
+
+        template = load_prompts_config()["storyboard_fidelity"]["template"]
+        for field in ("plan_json", "script", "tell_block"):
+            assert "{" + field + "}" in template
+        assert "clean pivot" in template  # a plain move-on is faithful, never a miss
+
+    def test_the_page_renders_it_escaped(self):
+        html = episode_review.render_fidelity(self.JUDGED)
+        assert "Did the script keep to the plan?" in html
+        assert "loosely kept" in html and "&lt;cost&gt;" in html and "<cost>" not in html
+        assert "Beat 3" in html and "argued cost &amp; not law" in html
+        assert "a tariff aside" in html
+        lede = episode_review.render_fidelity(self.JUDGED, full=False)
+        assert "loosely kept" in lede and "<table>" not in lede
+        assert episode_review.render_fidelity(None) == ""
+
+    def test_the_article_carries_the_verdict_line(self, monkeypatch):
+        monkeypatch.setattr(episode_review, "load_storyboard", lambda d: None)
+        monkeypatch.setattr(episode_review, "load_research", lambda d: [])
+        _, content, page = episode_review.build_review("2026-11-25", [], {}, "", fidelity=self.JUDGED)
+        assert "Script vs. storyboard: loosely kept." in content
+        assert "Did the script keep" not in content  # the table is the page's
+        assert "Did the script keep to the plan?" in page and "<th>Beat 3</th>" in page
+
+    def test_it_is_never_a_roadmap_signal(self):
+        assert not any("fidelity" in k for k in episode_review.run_signals({"storyboard_flow": [9, 12, 4, 17, 5, 5]}))
+
+
 def test_the_review_page_lists_research_spend_by_service(tmp_path, monkeypatch):
     """The producer, 2026-11-18: list for which topics Brave and Kagi were used."""
     import episode_review as er
