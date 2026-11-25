@@ -1,25 +1,4 @@
 {
-  "2026-10-20": {
-    "timestamp": 1792484556.178119,
-    "topics": [
-      "[My Cariboo Now] Lac La Hache Arena to be closed for season",
-      "[Williams Lake Tribune] Williams Lake RCMP seek missing 81-y",
-      "[Williams Lake Tribune] B.C. Conservatives costed platform r",
-      "[My Cariboo Now] Quesnel businesses recognized for excellenc",
-      "[Mining.com] Sudan gold rush leaves toxic legacy as war driv",
-      "[Canadian Forest Industries] Mass timber is booming. What do",
-      "[Vancouver Sun] Conservatives promise to amp up harvest for ",
-      "[Williams Lake Tribune] Former South Cariboo forestry worker"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-10-20",
-    "focus": "forestry",
-    "focus_name": "Forestry & Timber"
-  },
   "2026-10-21": {
     "timestamp": 1792570915.657294,
     "topics": [
@@ -746,5 +725,26 @@
     "date": "2026-11-24",
     "focus": "agriculture-ranching",
     "focus_name": "Agriculture & Ranching"
+  },
+  "2026-11-25": {
+    "timestamp": 1795594599.230222,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake non-profit helping red",
+      "[My Cariboo Now] Quesnel City Council seeks provincial help ",
+      "[My Cariboo Now] Cariboo-Chilcotin School District chooses n",
+      "[100 Mile Free Press] ALEXANDER: Local fun events coming soo",
+      "[Quesnel Cariboo Observer] Air quality warning issued for Qu",
+      "[The Tyee] BC\u2019s Housing Fix? Build a Wealth Fund out of Conc",
+      "[WIRED] Artex Is Criminals\u2019 New Favorite \u2018Point-and-Shoot\u2019 A",
+      "[WIRED] A Muslim Author Is Suing xAI After People Used Grok "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-11-25",
+    "focus": "homestead-offgrid",
+    "focus_name": "Homestead & Off-Grid Tech"
   }
 }

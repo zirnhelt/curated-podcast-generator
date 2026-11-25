@@ -1,0 +1,247 @@
+WEBVTT
+
+00:00:00.634 --> 00:00:23.802
+<v Riley>Hey there, good to have you. It's Wednesday, so it's repair day. Today we've got a Cariboo shop-owner's problem: a subscription that rents you the ability to fix a truck you already own. We're also looking at Quesnel's shut mill and the council letter asking the province to meet, a Williams Lake cat-spay market, and a garage door that needs its maker's server to stay online. Stay with us.
+
+00:00:37.277 --> 00:00:57.893
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. I'm Riley. It's Wednesday, November 25th, 2026. Today's theme is Repair Culture &amp; Practical Tech. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+00:00:58.893 --> 00:01:34.027
+<v Casey>And I'm Casey. Today we're looking at things you can fix, keep running, and hand to the next person, which matters most where the nearest repair shop is a long drive. Quick weather check: Williams Lake is around 2 degrees this morning under partly cloudy skies, with a high of 7 today, a mix of sun and cloud turning cloudy in the afternoon, and a 30 percent chance of showers later. Southeast winds are 30 kilometres an hour, gusting to 50. 100 Mile House is cloudy with a high of 6, Quesnel has a chance of showers and a high of 7, and Environment Canada has a yellow air quality warning in effect.
+
+00:01:34.227 --> 00:01:35.091
+<v Riley>Into the news now.
+
+00:01:36.191 --> 00:01:45.599
+<v Riley>A lot of today's news lands in our own backyard, from a council asking for help with a closed mill to a new school board chair and a hall full of Christmas plans.
+
+00:01:47.199 --> 00:02:09.583
+<v Riley>WL Kitty Spay, a Williams Lake non-profit, held its first Pet Vendor Market at Cariboo Corner on Saturday, November 21st. The group helps pay for spaying and neutering. Founder Cassidy Porter is severely allergic to cats, and collecting donations is how she helps them anyway. The market sold entries for three Christmas baskets, and Save-On-Foods donated pet dishes.
+
+00:02:10.033 --> 00:02:14.089
+<v Casey>Spay money is the cheapest maintenance there is. It just doesn't come with a ribbon.
+
+00:02:15.812 --> 00:02:48.234
+<v Casey>Quesnel City Council unanimously endorsed a letter asking the province to meet about the indefinite curtailment at Quesnel River Pulp. Millar Western announced earlier this month that it was shutting the mill, citing market challenges and significant tariffs on Chinese exports that have weakened demand and pricing. Mayor Coralee Oakes wants the Minister of Forests and the minister responsible for BC Hydro to meet with the company and the city to see whether the mill can run again. Quesnel is a city of about 9,000 people, and council meets MLA Sheldon Clare today.
+
+00:02:49.833 --> 00:03:11.057
+<v Riley>The Cariboo-Chilcotin School District has a new board chair and vice-chair. At its inaugural meeting on November 3rd, the trustees elected Mike Franklin, trustee for Zone 6, as chair. Franklin is in his second term, and he takes over from Angie Delainey, who did not seek re-election. Melissa Coates, trustee for Zone 4, was chosen as vice-chair.
+
+00:03:12.653 --> 00:03:39.605
+<v Casey>In 70 Mile House, the community hall hosts a Christmas craft fair on Saturday, November 28th, from 10 to 2, with a 50/50 draw at 1 p.m. Pancake breakfasts are back on the first Saturday of each month, from 9 to 11. The annual Christmas dinner has no date yet, because the people who run it are waiting for hall renovations to finish. The same local column closes with a plea to slow down on winter roads, from a writer who learned the hard way.
+
+00:03:41.106 --> 00:04:13.096
+<v Riley>An air quality warning for coarse particulate matter was issued Tuesday, November 24th, for the North Cariboo, including Quesnel. The Ministry of Environment and Parks issued it with Northern Health. The advice is to postpone or cut back strenuous outdoor activity and to spend time indoors in filtered air. Infants, older adults, pregnant people, and anyone with asthma, COPD, heart disease, or diabetes are particularly at risk. Environment Canada says conditions may improve during the day as weather patterns change.
+
+00:04:14.546 --> 00:04:31.418
+<v Casey>Low-tech Magazine runs on solar power, which means the website sometimes goes offline when the weather doesn't cooperate. The publication's original book series is available again, redesigned from the edits made for the compressed edition, and its complete book collection is now offered in epub format.
+
+00:04:31.868 --> 00:04:35.500
+<v Riley>Going dark when the sun is low is the power budget, showing in public.
+
+00:04:37.275 --> 00:05:07.483
+<v Riley>A repair guide for the Elegoo Saturn 4 Ultra 16K resin printer tackles a common startup message, an LCD connection error. The guide, written by a San Diego repair shop that sells repairs, says the screen is the expensive guess. A ribbon cable that has slipped out of its latch, or firmware that doesn't match the mainboard, can throw the same message. Checking both means removing seven screws. A new screen means fifty-eight, and Elegoo sells the screen for $129.99.
+
+00:05:07.933 --> 00:05:13.525
+<v Casey>Seven screws before a hundred and thirty dollars. Cheap diagnosis is the skill that disappears first.
+
+00:05:15.315 --> 00:05:35.299
+<v Casey>Two private equity-backed companies now dominate the U.S. wheelchair market. As they buy up local repair shops, waits for repairs can stretch to weeks or months. A New York Times story follows a singer whose specialized chair broke down a month before a reunion show. It describes the limbo many wheelchair users now face, with dangerous health consequences.
+
+00:05:36.761 --> 00:06:03.889
+<v Riley>Over five days, a string of tech outages at JPMorgan Chase, the U.S. Federal Aviation Administration, and Microsoft left people unable to send email, catch flights, or reach their bank accounts. An adviser quoted by the New York Post says outages like these often come when old systems are going through major upgrades, and that bolting new tools onto old systems is the bigger issue. This is a U.S. matter, not ours to vote on, but worth watching for precedent.
+
+00:06:04.339 --> 00:06:09.123
+<v Casey>Old systems with new bolts. Somebody pays for that later, usually the customer on hold.
+
+00:06:10.813 --> 00:06:34.605
+<v Casey>Munich-based RECNAS is preparing a crowdfunding campaign for AGP4SATA, a board that uses the obsolete graphics slot on an old PC to run SATA drives, turning the machine into a four-bay network storage box. The founder says even a first-generation AGP system can make a usable NAS, and he claims a Pentium 4 build can idle below 20 watts. The campaign hasn't launched yet, so those claims are his to back up.
+
+00:06:35.055 --> 00:06:38.943
+<v Riley>Twenty watts at idle is the number to check against your battery bank.
+
+00:06:40.633 --> 00:07:09.249
+<v Riley>A blog post documents a PC Shadow PCT 5000, a green-screen CRT terminal that came with a stack of 8-inch floppy disks. The terminal is in reasonable shape, apart from dead and dying RIFA capacitors, the mains filter parts of that era that crack and smoke with age. A paper manual is now archived online. The post suggests the terminal was built to work with MultiLink, a DOS package that ran several text programs out to terminals from a single PC.
+
+00:07:10.801 --> 00:07:22.833
+<v Casey>A TechRadar piece from earlier this month says Ericsson is developing mobile network technology that detects and tracks drones. Commercial trials are planned for 2027, with wider deployment in 2028.
+
+00:07:23.283 --> 00:07:28.339
+<v Riley>Whoever runs the tower ends up holding the tracking data. That's the part to watch.
+
+00:07:30.154 --> 00:07:51.962
+<v Riley>TechRadar reports that Nomadic's 4-kilogram drones land on live 420-kilovolt power lines and recharge from the magnetic field around them. The company says the drones have logged 20,000 hours inspecting European and U.S. grids for transmission bottlenecks. The job is finding hidden weak spots on lines that are already carrying power.
+
+00:07:53.557 --> 00:08:12.317
+<v Casey>A Hackaday writer, Kusha, got a LiftMaster MyQ Home Bridge garage door controller to stop rebooting when offline. The device kept timing out against remote servers, so the fix was to pull the encryption key off the chip and run a dummy server that answers the device's pings. The device still tries to reach the manufacturer's domains.
+
+00:08:12.767 --> 00:08:17.231
+<v Riley>A garage door that needs its maker's server to stay up is a design choice.
+
+00:08:19.010 --> 00:08:36.898
+<v Riley>MyFitnessPal lets you enter your own food records for free, but exporting them takes a premium subscription, $20 a month or $80 a year. One user spent several hours writing a free Chrome extension that exports the data, and shared it. The writer calls the subscription a ransom.
+
+00:08:37.348 --> 00:08:41.188
+<v Casey>Free to put in, paid to take out. That's the whole model in one sentence.
+
+00:08:42.819 --> 00:08:58.611
+<v Casey>A maker called Koshiro Robot built a dozen custom robot actuator motors, their drivers, and field-oriented control firmware, with almost everything made in-house. The only bought parts were a couple of precision components. The designs and code are published openly for anyone to look over.
+
+00:09:00.203 --> 00:09:22.731
+<v Riley>ArchDaily says shipping container buildings are quick, cost-effective, and durable. The catch is the box itself. Intermodal containers are 2.44 metres wide, barely wider than a motorhome. Steel also conducts heat, so insulation has to be planned from the start, and cutting openings or joining containers brings engineering work that careless planning makes painful.
+
+00:09:24.266 --> 00:09:40.058
+<v Casey>A ZDNet writer bought a Thunderbolt 5 docking station and fell down a USB-C rabbit hole. The standard fixes the shape of the plug, not what the cable can do. What a cable carries for data and power depends on what's inside it, so the writer tested dozens of cables to sort them out.
+
+00:09:40.508 --> 00:09:45.668
+<v Riley>A cable you can't read is a small version of a bigger problem. We'll come back to that in a minute.
+
+00:09:46.767 --> 00:10:07.095
+<v Casey>Williams Lake Women's Centre provides crisis support, advocacy, and community programming for women and families across the Williams Lake area. Much of that work happens without any fanfare, and the people who depend on it need it to be there when they call. Giving Tuesday is December 1st. If you want to give, the centre's website is wlwomenscentre dot org.
+
+00:10:07.654 --> 00:10:12.422
+<v Riley>Reliable support is the kind of maintenance a community only notices once it's gone.
+
+00:10:12.730 --> 00:10:14.922
+<v Casey>Now the shop bench, and who holds its keys.
+
+00:10:16.022 --> 00:10:39.470
+<v Riley>Say a mechanic stays in a small town and builds their own shop, their own network, their own way of fixing things. Is that independence something they own, or access they rent and have to defend alone? We got into the right-to-repair fight on October 21st, including the trust question around open home systems. Today's material is the cost side of the same fight, and it comes with numbers.
+
+00:10:39.775 --> 00:10:41.535
+<v Casey>Numbers that come with a subscription.
+
+00:10:42.096 --> 00:11:08.104
+<v Riley>Per manufacturer, yes. The Closing Shop report, from iFixit with the U.S. PIRG Education Fund and the FULU Foundation, puts the cost for one shop working on cars from five manufacturers at $15,878 a year. That's paid before a single repair brings in revenue. Diagnosing an electrical fault in a Ford F-150 taillight costs $2,178 once you add repair information, diagnostic software, and an adapter kit.
+
+00:11:08.635 --> 00:11:14.555
+<v Casey>So the mechanic who stays is renting the ability to fix the truck. The truck is paid for. The fix is not.
+
+00:11:15.170 --> 00:11:27.538
+<v Riley>Renting, yes, and the labour is the other cost. The report finds mechanics spend a median of 1.25 hours per repair just getting through manufacturer software. That's the middle job, not the worst one.
+
+00:11:28.066 --> 00:11:33.218
+<v Casey>That time never reaches the invoice. The customer pays for the repair, not for the login screen.
+
+00:11:33.891 --> 00:11:42.759
+<v Riley>And the $15,878 covers five manufacturers. A shop that picks its makes pays less. Choosing what to serve is a form of independence too.
+
+00:11:42.759 --> 00:11:48.687
+<v Casey>Quesnel has about 9,000 people. The owner of the other make is still standing in the parking lot.
+
+00:11:49.255 --> 00:11:53.783
+<v Riley>Ha. Then the shop turns some owners away, and that's still a decision the shop made.
+
+00:11:54.400 --> 00:12:05.080
+<v Casey>Fine, but every one of these numbers is a U.S. shop number. Nothing in front of us says what a shop in Williams Lake pays per manufacturer, or whether the same subscription tiers apply up here.
+
+00:12:05.738 --> 00:12:18.578
+<v Riley>The gap is real. The price list is a U.S. price list. The manufacturers sell the same software across borders, so the structure is likely similar, but I can't give you the exact dollar amount for a BC garage.
+
+00:12:18.862 --> 00:12:20.774
+<v Casey>Likely similar isn't a budget line.
+
+00:12:20.874 --> 00:12:40.034
+<v Casey>The $12 billion headline is a different animal. The report gets it from 83 million mechanic hours a year, which is roughly 42,000 full-time technicians. A critical read in The Auto Wire points out the survey base was 28 answers, and the estimate assumes a $140 labour rate. Thin sample, assumed rate, big total.
+
+00:12:40.607 --> 00:12:52.423
+<v Riley>Then argue the total down. Cut it in half and the shop still pays the subscription every month. The price list is the strongest evidence in the report, and a shop owner can check it without a calculator.
+
+00:12:53.014 --> 00:12:59.406
+<v Casey>Fine. Put the price list in front of a council. My question is still whose shop it is once the subscription lapses.
+
+00:13:00.039 --> 00:13:26.871
+<v Riley>Which brings us to the network, because the shop's tools run on it now. WIRED reports that since around the end of August, companies, government agencies, and banks around the world have been hit by a new wave of AI penetration-testing tools. Operators point a language model at a target, it scans for weak spots, and it tries to force its way in, with a human writing the attack plan. A shop with a server in the back room faces the same threat.
+
+00:13:27.456 --> 00:13:34.624
+<v Casey>And the owner is the security team. One person, after closing, with a router they set up one Saturday and haven't touched since.
+
+00:13:35.302 --> 00:13:44.758
+<v Riley>WIRED also says many of these setups copy legitimate defensive penetration testing. The same methods are available to an owner who wants to test their own network.
+
+00:13:45.282 --> 00:13:53.230
+<v Casey>Available isn't affordable. Someone has to run the tests, read the output, and install the patch. That line never makes it into anybody's budget.
+
+00:13:53.230 --> 00:14:02.598
+<v Riley>Mm-hm. Then make the update path the design problem. A server that patches itself on a schedule the owner sets is a smaller job than an audit every month.
+
+00:14:03.143 --> 00:14:22.591
+<v Casey>Maybe. And the automakers have an argument ready for the keys. Ford's Jim Farley has said letting owners repair a new vehicle at home "would put people's lives at risk." Automakers and dealers say they support repair access, but they raise cybersecurity and counterfeit-parts concerns. On brakes and driver-assistance systems, that argument has force.
+
+00:14:23.116 --> 00:14:36.804
+<v Riley>Then the question is who holds the access, and who checks them. If the access is safe for a franchised dealer, the safety argument has to explain why a certified independent is different. If it can't, the paywall is about revenue, not safety.
+
+00:14:37.415 --> 00:14:43.047
+<v Casey>That test assumes regulators can check certification. Who checks the checkers? That's where this stalls.
+
+00:14:43.595 --> 00:15:07.843
+<v Riley>Stalling is a pattern, not a verdict. In June, the Trump administration issued a "freedom to fix" memo. Critics say it covers emissions parts and not the software paywall. Federal right-to-repair legislation is still stalled as of 2026. Reuters reported that the White House met with the auto industry over the debate in June. A narrow memo is a draft you can rewrite. A stalled bill can come back.
+
+00:15:08.375 --> 00:15:16.695
+<v Casey>So the headline says demand the right to repair, and the law is still at the demand stage. A shop can't plan a decade around a bill that hasn't passed.
+
+00:15:17.251 --> 00:15:24.523
+<v Riley>Stalled isn't dead. The price list gives a legislator a number to point at, which is more than most repair fights start with.
+
+00:15:24.881 --> 00:15:27.201
+<v Casey>The subscriptions are moving faster than the bills.
+
+00:15:27.731 --> 00:15:36.043
+<v Riley>That solar-powered magazine from the roundup has a shop's budget problem too: what stays up when the money is short, and what goes dark first.
+
+00:15:36.598 --> 00:15:44.102
+<v Casey>Except the site can't be shut down by a software update. A shop can lose a diagnostic tool the week the subscription renewal goes up.
+
+00:15:44.757 --> 00:15:56.221
+<v Riley>Which is the argument for owning the records and the tools that read them. A shop that keeps its own repair history can move to a different tool, or to a different make, when the mix changes.
+
+00:15:56.908 --> 00:16:09.124
+<v Casey>Now bring it home. Williams Lake and Quesnel both have independent shops working on the trucks that haul ranch and logging freight. Quesnel's mill is shut indefinitely. If the logging rigs thin out, the makes that justified the subscription go with them.
+
+00:16:09.808 --> 00:16:26.992
+<v Riley>Then the shop specialises. It keeps the makes it can afford to support and tells everyone else where to go. That's a deliberate kind of staying, and plenty of people in those towns do it without calling it independence. Is that a failure of nerve? I don't think so. It's a budget decision made in daylight.
+
+00:16:27.611 --> 00:16:37.099
+<v Casey>And what happens when the owner retires? A shop with one person who knows the diagnostic login, and nobody else who knows where the passwords are, is making do with a lot of luck.
+
+00:16:37.772 --> 00:16:51.716
+<v Riley>Succession is the same problem we had in September with off-grid systems. The fix is cheap and boring: a written record, the subscription logins, the network password, and the reset steps, stored where the next person can find them.
+
+00:16:52.320 --> 00:16:57.616
+<v Casey>Boring is the point. If the record lives only in the owner's head, the shop is rented by the owner.
+
+00:16:58.287 --> 00:17:13.727
+<v Riley>The Elegoo guide makes the same case at hobby scale. Its advice is to check the cheap parts first, the cable and the firmware, before buying the expensive screen. A truck has no seven-screw check. The diagnostic software is the check, and the shop has to pay to open it.
+
+00:17:14.265 --> 00:17:21.193
+<v Casey>So the cheap diagnosis is locked behind the expensive subscription. That's the design problem, written in the manufacturer's favour.
+
+00:17:21.753 --> 00:17:34.193
+<v Riley>It has a known fix. Open diagnostic data is what Linux and open hardware communities used against lock-in in other fields. The question is whether a rule forces that, or a shop begs for it one case at a time.
+
+00:17:34.777 --> 00:17:41.481
+<v Casey>Rules, if they come, will arrive after a lot of shops have already signed the subscriptions. The owner pays for the wait.
+
+00:17:42.132 --> 00:17:52.820
+<v Riley>Then the owner has leverage now. A shop can ask its suppliers which subscriptions it pays for, and whether each one still works if the owner leaves. Write that list down this winter.
+
+00:17:53.408 --> 00:17:58.624
+<v Casey>And test the network. Have someone other than the owner try to log in from outside the building.
+
+00:17:59.254 --> 00:18:14.062
+<v Riley>So which parts must the owner hold outright? Diagnostic access, the repair records, or the network? My answer: the records and the network are within reach of most owners. Diagnostic access is the expensive one, and that's where the lock sits.
+
+00:18:14.592 --> 00:18:26.784
+<v Casey>I'd say all three, and the records are the cheapest of them. What's still unproven is who decides when a shop crosses from staying by choice to making do. The owner, a regulator, or whoever holds the support contract?
+
+00:18:27.059 --> 00:18:42.995
+<v Riley>Nobody has settled that. A regulator can set the access rules, and a shop can set its own record-keeping. The line between them isn't drawn in a Cariboo garage yet. If you've got a correction, a tip, or a shop story, write to feedback at cariboo signals dot c-a.
+
+00:18:43.673 --> 00:18:49.593
+<v Casey>Then leave it open. A shop that can't leave is one bad renewal away from making do. Have a good Wednesday.
+
+00:18:49.886 --> 00:18:51.918
+<v Riley>Keep the spare key somewhere you can find it.
+
+00:18:52.517 --> 00:19:12.173
+<v Riley>Cariboo Signals is produced by Erich Zirnhelt — scripts by Claude, today's voices by OpenAI TTS, theme by Suno. Weather data from Environment Canada. Today's episode included additional web research via Brave Search and Kagi. Automated with GitHub Actions, hosted on Cloudflare Pages. Find us at cariboo signals dot c-a.
