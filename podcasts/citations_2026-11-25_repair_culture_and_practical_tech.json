@@ -1,0 +1,747 @@
+{
+  "episode": {
+    "date": "2026-11-25",
+    "formatted_date": "Wednesday, November 25, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is staying put a virtue or a failure of nerve?</p><p><b>NEWS ROUNDUP:</b> We break down Williams Lake non-profit helping reduce cat overpopulation with spaying, neutering and Quesnel City Council seeks provincial help to try to get QRP up and running again, plus 12 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Is a small independent repair shop's ability to service vehicles and maintain its systems something it truly owns, or access it rents and must defend alone? Topics include: Manufacturer subscription costs and diagnostic software pricing for independent shops, Reliability and sourcing of U.S. repair cost estimates versus local Cariboo conditions, Cybersecurity risks and safety arguments used by automakers against independent repair access, Right-to-repair legislation and federal executive actions, including the stalled bill and June memo, Succession planning and owner-held records as protection against lock-in.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://wlwomenscentre.org\">Williams Lake Women's Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/11/24/williams-lake-non-profit-helping-reduce-cat-overpopulation-with-spaying-neutering/\">[Williams Lake Tribune] Williams Lake non-profit helping red...</a></li><li>George Henderson (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317590/news/politics/quesnel-city-council-seeks-provincial-help-to-try-to-get-qrp-up-and-running-again/\">[My Cariboo Now] Quesnel City Council seeks provincial help ...</a></li><li>Teryn Midzain (My Cariboo Now): <a href=\"https://www.mycariboonow.com/317573/news/education/school-district-27/cariboo-chilcotin-school-district-chooses-new-chair-and-vice/\">[My Cariboo Now] Cariboo-Chilcotin School District chooses n...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/11/23/alexander-local-fun-events-coming-soon-to-70-mile-house/\">[100 Mile Free Press] ALEXANDER: Local fun events coming soo...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/11/24/air-quality-warning-issued-for-quesnel-due-to-coarse-particulate-matter/\">[Quesnel Cariboo Observer] Air quality warning issued for Qu...</a></li><li>Low-tech Magazine: <a href=\"https://solar.lowtechmagazine.com/\">[Low-tech Magazine] LOW←TECH MAGAZINE</a></li><li>Dreaming3D Inc - News: <a href=\"https://dreaming3d.net/blogs/news/saturn-4-ultra-16k-lcd-connection-error-cable-firmware-screen-or-mainboard-how-to-tell-and-what-to-buy\">[Dreaming3D Inc - News] Saturn 4 Ultra 16K LCD Connection Er...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/11/21/us/wheelchair-repair-delays-public-equity.html\">[NYT Top Stories] A Punk Rocker’s Painful Wait for Wheelchai...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/upcycle-your-old-desktop-into-a-four-bay-high-performance-nas-with-the-agp4sata-board-884c58c1d494\">[Hackster News] Upcycle Your Old Desktop Into a Four-Bay Hig...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/11/19/preventing-a-garage-door-opener-from-rebooting-when-offline/\">[Hackaday] Preventing a Garage Door Opener From Rebooting Wh...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/these-4-kg-drones-land-on-live-420-kv-power-lines-to-recharge-from-the-magnetic-field-logging-20-000-hours-hunting-hidden-bottlenecks-across-european-and-us-grids\">[TechRadar] These 4kg drones land on live 420 kV power lines...</a></li><li>jik: <a href=\"https://blog.kamens.us/2026/11/23/exporting-myfitnesspal-data-without-paying-myfitnesspal/\">[jik] Exporting MyFitnessPal data without paying MyFitnessPa...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/11/20/pc-shadow-model-pct-5000-video-terminal/\">[Adafruit Blog] PC Shadow Model PCT 5000 video terminal</a></li><li>ArchDaily: <a href=\"https://www.archdaily.com/1185946/beyond-the-box-what-shipping-container-architecture-gets-right-and-where-it-falls-short\">[ArchDaily] When Does Shipping Container Architecture Make S...</a></li><li>Matt Burgess (WIRED): <a href=\"https://www.wired.com/story/artex-ai-hacking-tools/\">[WIRED] Artex Is Criminals’ New Favorite ‘Point-and-Shoot’ A...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/11/23/its-time-we-demand-the-right-to-repair-our-cars/\">[Adafruit Blog] It’s time we demand the right to repair our ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Fast Company: <a href=\"https://www.fastcompany.com/91644249/all-these-outages-show-how-corporate-america-needs-to-modernize-out-of-date-tech\">[Fast Company] All these outages show how corporate America ...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/drones-can-now-be-tracked-down-by-mobile-networks-alone-could-this-new-ericsson-tech-spell-the-end-for-the-current-crop-of-flying-uavs\">[TechRadar] Drones can now be tracked down by mobile network...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/11/23/a-dozen-completely-diy-robot-actuators/\">[Hackaday] A Dozen Completely DIY Robot Actuators</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/tech/usb-c-cable-speed-power-differences/\">[ZDNet] Why your USB-C cables look alike, but work different...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Analysis/2026/11/24/BC-Housing-Fix-Build-Wealth-Fund/\">[The Tyee] BC’s Housing Fix? Build a Wealth Fund out of Conc...</a></li><li>Kat Tenbarge (WIRED): <a href=\"https://www.wired.com/story/a-muslim-author-is-suing-xai-after-people-used-grok-to-strip-her-hijab/\">[WIRED] A Muslim Author Is Suing xAI After People Used Grok ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Environment and Climate Change Canada (Open Government Licence – Canada)<br>Content Enrichment: Cohere<br>Page Extraction: Kagi Extract<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-11-25T01:16:29.422627-07:00",
+    "models": {
+      "script": "claude-haiku-5-5",
+      "review": "claude-sonnet-5-5",
+      "polish": "batch",
+      "summary": "claude-haiku-5-5"
+    },
+    "quality": {
+      "word_count": 3255,
+      "voice_ratio_casey_riley": 0.68,
+      "casey_share_deep_dive_pct": 38,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 1,
+        "thats_closer": 5,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "source_gap_narration": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 0.0,
+        "short_turns": 15,
+        "turns": 81,
+        "avg_turn_words": 38.7,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 4
+    },
+    "anchor": {
+      "id": "staying-versus-leaving",
+      "question": "Is staying put a virtue or a failure of nerve?"
+    },
+    "focus": {
+      "name": "Homestead & Off-Grid Tech",
+      "centred": false
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Williams Lake non-profit helping reduce cat overpopulation with spaying, neutering",
+          "url": "https://wltribune.com/2026/11/24/williams-lake-non-profit-helping-reduce-cat-overpopulation-with-spaying-neutering/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 81,
+          "date_published": "2026-11-25T06:03:56.730301+00:00",
+          "summary": "WL Kitty Spay founder Cassidy Porter and vice president Crystal Sheridan were at Cariboo Corner on Saturday, Nov. 21 for their first annual Pet Vendor Market. Collecting donations in Williams Lake to ...",
+          "discussed": true,
+          "mention_offset_frac": 0.0234
+        },
+        {
+          "title": "[My Cariboo Now] Cariboo-Chilcotin School District chooses new chair and vice",
+          "url": "https://www.mycariboonow.com/317573/news/education/school-district-27/cariboo-chilcotin-school-district-chooses-new-chair-and-vice/",
+          "source": "My Cariboo Now",
+          "author": "Teryn Midzain",
+          "ai_score": 57,
+          "date_published": "2026-11-24T13:00:33+00:00",
+          "summary": "The Cariboo-Chilcotin School District has chosen its new board chair and vice-chair. The post Cariboo-Chilcotin School District chooses new chair and vice appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.0314
+        },
+        {
+          "title": "[Fast Company] All these outages show how corporate America needs to modernize out-of-date tech",
+          "url": "https://www.fastcompany.com/91644249/all-these-outages-show-how-corporate-america-needs-to-modernize-out-of-date-tech",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 36,
+          "date_published": "2026-11-17T22:00:00+00:00",
+          "summary": "Over the past five days, a string of high-profile tech outages has left Americans struggling to send emails, catch flights, and access their bank accounts. While the disruptions raised concerns about ...",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Quesnel City Council seeks provincial help to try to get QRP up and running again",
+          "url": "https://www.mycariboonow.com/317590/news/politics/quesnel-city-council-seeks-provincial-help-to-try-to-get-qrp-up-and-running-again/",
+          "source": "My Cariboo Now",
+          "author": "George Henderson",
+          "ai_score": 89,
+          "date_published": "2026-11-25T02:02:55+00:00",
+          "summary": "Quesnel City Council has unanimously endorsed a letter to the province to meet to see what can be done about the indefinite curtailment at Quesnel River Pulp. The post Quesnel City Council seeks provi...",
+          "discussed": true,
+          "mention_offset_frac": 0.0799
+        },
+        {
+          "title": "[100 Mile Free Press] ALEXANDER: Local fun events coming soon to 70 Mile House",
+          "url": "https://100milefreepress.net/2026/11/23/alexander-local-fun-events-coming-soon-to-70-mile-house/",
+          "source": "100 Mile Free Press",
+          "author": "none",
+          "ai_score": 78,
+          "date_published": "2026-11-24T06:03:14.752449+00:00",
+          "summary": "The 70 Mile Pancake Breakfast is up and running again on the first Saturday of the month. Steve Greenwood and Lisa Schramm are seen here enjoying one at the 70 Mile Community Hall. There are a lot of ...",
+          "discussed": true,
+          "mention_offset_frac": 0.1994
+        },
+        {
+          "title": "[NYT Top Stories] A Punk Rocker’s Painful Wait for Wheelchair Repairs",
+          "url": "https://www.nytimes.com/2026/11/21/us/wheelchair-repair-delays-public-equity.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-11-21T13:57:49+00:00",
+          "summary": "Two private equity-backed companies now dominate the U.S. wheelchair market. For users, extended repair times can be dangerous and frustrating.",
+          "discussed": true,
+          "mention_offset_frac": 0.2371
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Air quality warning issued for Quesnel due to coarse particulate matter",
+          "url": "https://quesnelobserver.com/2026/11/24/air-quality-warning-issued-for-quesnel-due-to-coarse-particulate-matter/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 73,
+          "date_published": "2026-11-25T06:03:56.730480+00:00",
+          "summary": "An air quality warning has been issued for Quesnel due to elevated levels of coarse particulate matter. According to Environment Canada’s website, the Ministry of…",
+          "discussed": true,
+          "mention_offset_frac": 0.2571
+        },
+        {
+          "title": "[Low-tech Magazine] LOW←TECH MAGAZINE",
+          "url": "https://solar.lowtechmagazine.com/",
+          "source": "Low-tech Magazine",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-11-25T06:03:53.137439+00:00",
+          "summary": "Low-tech Magazine: The Uncompressed Book Series Low-tech Magazine’s original book series is available again, redesigned and based on the edits made for the compressed edition. March 30, 2026 ... This ...",
+          "discussed": true,
+          "mention_offset_frac": 0.3243
+        },
+        {
+          "title": "[Dreaming3D Inc - News] Saturn 4 Ultra 16K LCD Connection Error: Cable, Firmware, Screen or Mainboard? How to Tell, and What to Buy",
+          "url": "https://dreaming3d.net/blogs/news/saturn-4-ultra-16k-lcd-connection-error-cable-firmware-screen-or-mainboard-how-to-tell-and-what-to-buy",
+          "source": "Dreaming3D Inc - News",
+          "author": "",
+          "ai_score": 40,
+          "date_published": "2026-11-21T15:42:32+00:00",
+          "summary": "&&& Repair guide · Elegoo Saturn 4 Ultra 16K · Updated November 20, 2026 Saturn 4 Ultra 16K LCD Connection Error: Cable, Firmware, Screen or Mainboard? How to Tell, and What to Buy The self-check flag...",
+          "discussed": true,
+          "mention_offset_frac": 0.3769
+        },
+        {
+          "title": "[Hackster News] Upcycle Your Old Desktop Into a Four-Bay High-Performance NAS with the AGP4SATA Board",
+          "url": "https://www.hackster.io/news/upcycle-your-old-desktop-into-a-four-bay-high-performance-nas-with-the-agp4sata-board-884c58c1d494",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-11-23T11:17:09+00:00",
+          "summary": "Clever add-in board repurposes the obsolete AGP graphics slot for high-throughput storage using modern SATA drives.",
+          "discussed": true,
+          "mention_offset_frac": 0.587
+        },
+        {
+          "title": "[Adafruit Blog] PC Shadow Model PCT 5000 video terminal",
+          "url": "https://blog.adafruit.com/2026/11/20/pc-shadow-model-pct-5000-video-terminal/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 45,
+          "date_published": "2026-11-20T15:54:34+00:00",
+          "summary": "A post on emergent.unpythonic.net covers a PC Shadow Model PCT 5000, a green screen CRT terminal that arrived along with a large stack of 8″ single sided, single density floppy disks. The terminal is ...",
+          "discussed": true,
+          "mention_offset_frac": 0.6308
+        },
+        {
+          "title": "[jik] Exporting MyFitnessPal data without paying MyFitnessPal",
+          "url": "https://blog.kamens.us/2026/11/23/exporting-myfitnesspal-data-without-paying-myfitnesspal/",
+          "source": "jik",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-11-24T03:23:01+00:00",
+          "summary": "When a company tries to hold my data hostage, I will go to a lot of effort to thwart that for myself and others. In this case, that meant writing a Chrome extension.",
+          "discussed": true,
+          "mention_offset_frac": 0.7181
+        },
+        {
+          "title": "[TechRadar] These 4kg drones land on live 420 kV power lines to recharge from the magnetic field — logging 20,000 hours hunting hidden bottlenecks across European and US grids",
+          "url": "https://www.techradar.com/pro/these-4-kg-drones-land-on-live-420-kv-power-lines-to-recharge-from-the-magnetic-field-logging-20-000-hours-hunting-hidden-bottlenecks-across-european-and-us-grids",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/efosa-udinmwen",
+          "ai_score": 63,
+          "date_published": "2026-11-23T00:10:00+00:00",
+          "summary": "Nomadic has developed self-charging drones that inspect energized power lines, monitor changing conditions, and help electricity operators identify transmission weaknesses.",
+          "discussed": true,
+          "mention_offset_frac": 0.728
+        },
+        {
+          "title": "[Hackaday] Preventing a Garage Door Opener From Rebooting When Offline",
+          "url": "https://hackaday.com/2026/11/19/preventing-a-garage-door-opener-from-rebooting-when-offline/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-11-20T00:00:48+00:00",
+          "summary": "It’s always great when a smart garage door opener allows for easy local integration into a smart home network, but it’s not so nice when said device still insists on …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.7775
+        },
+        {
+          "title": "[ArchDaily] When Does Shipping Container Architecture Make Sense?",
+          "url": "https://www.archdaily.com/1185946/beyond-the-box-what-shipping-container-architecture-gets-right-and-where-it-falls-short",
+          "source": "ArchDaily",
+          "author": "",
+          "ai_score": 47,
+          "date_published": "2026-11-19T01:30:00+00:00",
+          "summary": "Using shipping containers as the basis for a structure—also known as \"cargotecture\"—seems like a simple approach to building. Perhaps deceptively so. While it's true that containers are a quick, cost-...",
+          "discussed": true,
+          "mention_offset_frac": 0.9047
+        },
+        {
+          "title": "[TechRadar] Drones can now be tracked down by mobile networks alone — could this new Ericsson tech spell the end for the current crop of flying UAVs?",
+          "url": "https://www.techradar.com/pro/drones-can-now-be-tracked-down-by-mobile-networks-alone-could-this-new-ericsson-tech-spell-the-end-for-the-current-crop-of-flying-uavs",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/efosa-udinmwen",
+          "ai_score": 57,
+          "date_published": "2026-11-08T00:10:00+00:00",
+          "summary": "Ericsson is developing mobile network technology that detects and tracks drones, with commercial trials planned for 2027 and wider deployment in 2028.",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] A Dozen Completely DIY Robot Actuators",
+          "url": "https://hackaday.com/2026/11/23/a-dozen-completely-diy-robot-actuators/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 49,
+          "date_published": "2026-11-23T19:30:53+00:00",
+          "summary": "It’s one of those tropes that comes up every so often on Hackaday: Someone says they made something “completely” DIY, and then someone in the comments asks if they grew …read more",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Why your USB-C cables look alike, but work differently – and how to tell them apart",
+          "url": "https://www.zdnet.com/tech/usb-c-cable-speed-power-differences/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-11-17T03:09:11+00:00",
+          "summary": "My Thunderbolt 5 docking station sent me down a USB-C rabbit hole I never expected. Here’s what I learned.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[The Tyee] BC’s Housing Fix? Build a Wealth Fund out of Concrete and Timber",
+          "url": "https://thetyee.ca/Analysis/2026/11/24/BC-Housing-Fix-Build-Wealth-Fund/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-11-24T08:10:00+00:00",
+          "summary": "How a public developer can make homes affordable by cutting delays and capital costs while creating an asset the province keeps.",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Artex Is Criminals’ New Favorite ‘Point-and-Shoot’ AI Hacking Tool",
+          "url": "https://www.wired.com/story/artex-ai-hacking-tools/",
+          "source": "WIRED",
+          "author": "Matt Burgess",
+          "ai_score": 63,
+          "date_published": "2026-11-18T16:35:24+00:00",
+          "summary": "Artex and similar penetration testing tools allow newbie hackers to scan targeted systems for vulnerabilities and successfully wage attacks using prompts fed to chatbots.",
+          "discussed": true
+        },
+        {
+          "title": "[WIRED] A Muslim Author Is Suing xAI After People Used Grok to Strip Her Hijab",
+          "url": "https://www.wired.com/story/a-muslim-author-is-suing-xai-after-people-used-grok-to-strip-her-hijab/",
+          "source": "WIRED",
+          "author": "Kat Tenbarge",
+          "ai_score": 60,
+          "date_published": "2026-11-18T17:30:54+00:00",
+          "summary": "“The only way you get some change against Big Tech is to sue them,” says lawyer Hillary Nappi, who is representing Amani Al-Khatahtbeh in the lawsuit.",
+          "discussed": false
+        },
+        {
+          "title": "[Adafruit Blog] It’s time we demand the right to repair our cars",
+          "url": "https://blog.adafruit.com/2026/11/23/its-time-we-demand-the-right-to-repair-our-cars/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-11-23T15:49:04+00:00",
+          "summary": "Kyle Wiens has written up Closing Shop at iFixit News, a new report on automotive software locks written with Nathan Proctor of U.S. PIRG Education Fund and Kevin O’Reilly of FULU. Automakers are putt...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Is a small independent repair shop's ability to service vehicles and maintain its systems something it truly owns, or access it rents and must defend alone?",
+        "riley_position": "The subscription and software costs are a real lock-in, but shops can make deliberate, budget-conscious choices about which makes to serve, and the fight is better won through open diagnostic access rules and owner-held records than through despair.",
+        "riley_key_evidence": [
+          "The Closing Shop report (iFixit, U.S. PIRG Education Fund, FULU Foundation) puts annual cost for one shop working on five manufacturers' cars at $15,878 before any repair revenue.",
+          "Diagnosing an electrical fault in a Ford F-150 taillight costs $2,178 once repair information, diagnostic software, and an adapter kit are added.",
+          "Mechanics spend a median of 1.25 hours per repair just getting through manufacturer software, and a June Trump administration 'freedom to fix' memo exists though critics say it covers emissions parts rather than the software paywall."
+        ],
+        "casey_position": "The access is rented and the owner carries the costs and risks alone, since the numbers are U.S.-based, the headline estimates rest on thin evidence, and rules will arrive too late for shops already locked into subscriptions.",
+        "casey_key_evidence": [
+          "The $12 billion headline estimate draws on 83 million mechanic hours and a $140 labour rate, but a critical read in The Auto Wire notes the survey base was only 28 responses.",
+          "WIRED reports a new wave of AI penetration-testing tools since late August hitting companies, government agencies, and banks, which small shops with a single owner-run server are exposed to.",
+          "Ford's Jim Farley has said letting owners repair new vehicles at home 'would put people's lives at risk,' while automakers cite cybersecurity and counterfeit-parts concerns."
+        ],
+        "resolution": "They did not fully agree. Riley conceded that the Williams Lake and Quesnel pricing is unverified and likely similar rather than confirmed, and Casey conceded the records are the cheapest safeguard. They left open who decides when a shop moves from choosing to stay to making do, agreeing only on practical steps like writing down subscriptions, passwords, and reset steps and testing the network.",
+        "topics_covered": [
+          "Manufacturer subscription costs and diagnostic software pricing for independent shops",
+          "Reliability and sourcing of U.S. repair cost estimates versus local Cariboo conditions",
+          "Cybersecurity risks and safety arguments used by automakers against independent repair access",
+          "Right-to-repair legislation and federal executive actions, including the stalled bill and June memo",
+          "Succession planning and owner-held records as protection against lock-in"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Williams Lake",
+          "temp": 2,
+          "conditions": "Partly cloudy",
+          "high": 7,
+          "low": 2
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 3,
+          "conditions": "Mainly cloudy",
+          "high": 6,
+          "low": 4
+        },
+        {
+          "name": "Quesnel",
+          "temp": 2,
+          "conditions": "Partly cloudy",
+          "high": 7,
+          "low": 2
+        }
+      ],
+      "source": "Environment Canada"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Williams Lake Women's Centre",
+      "description": "Provides crisis support, advocacy, and community programming for women and families in the Williams Lake area",
+      "website": "wlwomenscentre.org",
+      "psa_angle": "It's Giving Tuesday. Williams Lake Women's Centre does vital work right here in the Cariboo — consider a donation at wlwomenscentre.org.",
+      "event_name": "Giving Tuesday"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "page_extraction": "Kagi Extract",
+    "news_summaries": "Kagi News (CC BY-NC 4.0)",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  },
+  "research": {
+    "block": "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n\nRESEARCH QUESTION: Are the Closing Shop report's headline numbers ($15,878 a year per mechanic, $12 billion total) holding up, and what is the automakers' counter-case?\n\nFindings: The $15,878 figure is repeated across iFixit, the FULU Foundation, PIRG and Adafruit. It is a subscription-cost estimate for one shop servicing cars from five manufacturers, paid before any repair revenue comes in. The report is a joint project of the Repair.org coalition, authored by U.S. PIRG Education Fund, iFixit and FULU Foundation. Its other key finding is that mechanics spend a median of 1.25 hours per repair navigating manufacturer software. The report's estimate of 83 million mechanic hours a year, equal to about 42,000 full-time technicians, is the basis for the $12 billion cost figure. A critical read in The Auto Wire argues the $12 billion rests on a thin survey base (28 answers) and a $140 labor-rate assumption, so the price list is the strongest evidence and the aggregate is the most assailable. Automakers' stated position is safety and security: Ford's Jim Farley has said that letting owners repair a new vehicle at home \"would put people's lives at risk.\" Automakers and dealers say they support repair access but raise cybersecurity and counterfeit-parts concerns. Federal right-to-repair legislation remains stalled as of 2026. In June 2026 the Trump administration issued a \"freedom to fix\" memo that, according to critics, covers only emissions parts and not the broader software-paywall problem. Reuters reported that the White House met with the auto industry in June 2026 over the debate.\n\nSuggested angle: Riley can argue the price list is concrete proof that a repair toll road now exists, and that open diagnostic data is the practical fix, the same way independent Linux and open hardware communities solved lock-in elsewhere. Casey should press on the aggregate: a $12 billion headline built on 28 survey responses and an assumed labor rate deserves scrutiny, and the safety/cybersecurity objection is not trivial for a car's braking or driver-assistance systems. The strongest exchange is over who should hold the keys to diagnostic access (owners, independent shops, or regulators with security certification), not whether repair matters. Riley's best counter is that the safety argument is currently used to justify paywalls that the same manufacturers already share with franchised dealers.\n\n",
+    "log": [
+      {
+        "kind": "kagi-extract",
+        "story": "[My Cariboo Now] Quesnel City Council seeks provincial help to try to get QRP up and running again",
+        "result": "used"
+      },
+      {
+        "kind": "kagi-extract",
+        "story": "[NYT Top Stories] A Punk Rocker’s Painful Wait for Wheelchair Repairs",
+        "result": "timed out"
+      },
+      {
+        "kind": "kagi-extract",
+        "story": "[Hackster News] Upcycle Your Old Desktop Into a Four-Bay High-Performance NAS with the AGP4SATA Board",
+        "result": "used"
+      },
+      {
+        "kind": "kagi-extract",
+        "story": "[Adafruit Blog] PC Shadow Model PCT 5000 video terminal",
+        "result": "used"
+      },
+      {
+        "kind": "kagi-extract",
+        "story": "[Hackster News] This Homemade Hoverboard Floats on Magnets",
+        "result": "used"
+      },
+      {
+        "kind": "kagi-extract",
+        "story": "[Adafruit Blog] A TV console inside an antenna connector: DOOM runs on the ESP32-S3",
+        "result": "used"
+      },
+      {
+        "kind": "body-search",
+        "story": "[NYT Top Stories] A Punk Rocker’s Painful Wait for Wheelchair Repairs",
+        "result": "used (via dnyuz.com)"
+      },
+      {
+        "kind": "agent-search",
+        "query": "Closing Shop iFixit PIRG FULU report automotive software subscriptions $15,878 mechanic",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "agent-search",
+        "query": "automakers response right to repair vehicle software security argument 2026",
+        "pass": "deep_dive"
+      },
+      {
+        "kind": "question",
+        "query": "Quesnel River Pulp Millar Western curtailment tariffs Chinese exports weight"
+      },
+      {
+        "kind": "question",
+        "query": "Closing Shop report iFixit PIRG FULU per manufacturer subscription cost Williams Lake garage"
+      },
+      {
+        "kind": "question",
+        "query": "Elegoo Saturn 4 Ultra 16K LCD connection error ribbon cable firmware guide"
+      }
+    ]
+  },
+  "storyboard": {
+    "roundup": {
+      "opening_frame": "A day of local council business and small-town notices, then a run of stories about who gets to fix, keep and keep running the things people depend on.",
+      "stories": [
+        {
+          "n": 1,
+          "merge_with": [],
+          "point": "WL Kitty Spay, a non-profit founded just over two years ago, held its first Pet Vendor Market at Cariboo Corner on Nov. 21, and has helped fund spaying or neutering for more than 170 cats.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 2,
+          "merge_with": [],
+          "point": "Quesnel City Council unanimously endorsed a letter asking the Ministers of Forests and BC Hydro to meet about the indefinite curtailment at Quesnel River Pulp, which Millar Western blamed on weak demand and tariffs on Chinese exports.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 3,
+          "merge_with": [],
+          "point": "The Cariboo-Chilcotin School District board elected Mike Franklin of Zone 6 as chair and Melissa Coates of Zone 4 as vice-chair.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 4,
+          "merge_with": [],
+          "point": "70 Mile House has a Christmas craft fair on Nov. 28, monthly pancake breakfasts are back, and the community hall's Christmas dinner waits on hall work being finished.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 5,
+          "merge_with": [],
+          "point": "An air quality warning for coarse particulate matter was issued Nov. 24 for the North Cariboo, including Quesnel, with advice to cut strenuous outdoor activity and stay in filtered air.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 6,
+          "merge_with": [],
+          "point": "Low-tech Magazine runs on a solar-powered website that sometimes goes offline, and its book collection is now available in epub.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 7,
+          "merge_with": [],
+          "point": "A repair guide for the Elegoo Saturn 4 Ultra 16K says an LCD connection error may be a slipped ribbon cable or mismatched firmware, checkable in 7 screws, before buying the $129.99 screen that takes 58 screws to fit.",
+          "bridge_to_next": "Repair as a topic: from a hobby printer that can be fixed cheaply to a wheelchair whose repair has become slow."
+        },
+        {
+          "n": 8,
+          "merge_with": [],
+          "point": "Two private equity-backed companies now dominate the U.S. wheelchair market, and as they buy local repair shops, waits for repairs can stretch to weeks or months with dangerous health consequences.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 9,
+          "merge_with": [],
+          "point": "A string of outages at JPMorgan Chase, the FAA and Microsoft over five days left Americans unable to email, fly or reach their accounts, and one adviser says out-of-date systems under upgrade are a likelier cause than attackers. This is a U.S. matter, not ours to vote on, but worth watching for precedent.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 10,
+          "merge_with": [],
+          "point": "Munich-based RECNAS is preparing a crowdfunding campaign for AGP4SATA, a board that turns old AGP-slot PCs into four-bay NAS machines, and says even a Pentium 4 build can idle below 20W.",
+          "bridge_to_next": "Old hardware kept working: from an old PC turned into storage to a 1986 terminal being pieced back together."
+        },
+        {
+          "n": 16,
+          "merge_with": [],
+          "point": "A blog post documents a PC Shadow PCT 5000 green-screen terminal that arrived with 8-inch floppies, is in decent shape apart from failing RIFA capacitors, and was likely built to work with the MultiLink multi-user DOS package.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 11,
+          "merge_with": [],
+          "point": "Earlier this week: Ericsson is developing mobile network technology that detects and tracks drones, with commercial trials planned for 2027 and wider deployment in 2028.",
+          "bridge_to_next": "Drones as a topic: from tracking drones through the phone network to drones that work on power lines."
+        },
+        {
+          "n": 13,
+          "merge_with": [],
+          "point": "Nomadic's 4kg drones land on live 420 kV power lines, recharge from the magnetic field, and have logged 20,000 hours inspecting European and US grids for bottlenecks.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 12,
+          "merge_with": [],
+          "point": "A hacker stopped a LiftMaster MyQ Home Bridge garage door controller from rebooting when offline by extracting its encryption key and running a dummy MQTT server.",
+          "bridge_to_next": "Devices tied to a maker's servers and data: from a garage opener that wants its maker's cloud to a fitness app that charges to export your own records."
+        },
+        {
+          "n": 14,
+          "merge_with": [],
+          "point": "MyFitnessPal only lets users export their data with a premium subscription, so one user wrote a free Chrome extension to export it and shared it.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 15,
+          "merge_with": [],
+          "point": "Koshiro Robot built a dozen robot actuator motors, drivers and control firmware almost entirely DIY, all published openly.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 17,
+          "merge_with": [],
+          "point": "ArchDaily says shipping container buildings are cheap and durable but constrained by their 2.44m width and thermal conductivity, and need careful planning.",
+          "bridge_to_next": "clean pivot"
+        },
+        {
+          "n": 18,
+          "merge_with": [],
+          "point": "USB-C cables look alike but differ in data and power capability, because the standard only fixes the connector shape, so a tester had to check dozens of cables.",
+          "bridge_to_next": "handoff"
+        }
+      ],
+      "handoff": "Who holds the keys to the things people fix and keep running: the owner, the maker, or whoever sells the diagnostic access.",
+      "kicker_repeats": 0
+    },
+    "deep_dive": {
+      "central_question": "When a small-town mechanic or tinkerer builds their own shop and network rather than leaving for a city job, is the independence they get something they own, or access they rent from manufacturers and have to defend alone?",
+      "riley_holds": "Riley holds that a tradesperson who stays and builds a shop is making a real choice, and that access can be won back through rules and open tools.",
+      "casey_holds": "Casey holds that a shop kept going on subscriptions and an exposed network may be making do rather than self-reliance, because the keys sit with others.",
+      "beats": [
+        {
+          "claim": "The question gets asked plainly here: is staying and running your own shop a virtue or a failure of nerve? The first test is cost, because a mechanic who stays and fixes cars is renting the ability to do so from the manufacturers.",
+          "evidence": "Adafruit Blog on the iFixit report Closing Shop, written with U.S. PIRG Education Fund and FULU: one mechanic needs $15,878 a year in subscriptions to work on cars from five major manufacturers, and diagnosing a Ford F-150 taillight fault costs $2,178 in repair information, software and an adapter kit.",
+          "pushback": "Riley: the $15,878 figure covers five manufacturers, so a shop that picks its makes pays less, and choosing what to serve is itself an act of independence.",
+          "leads_to_next": "If cost is a choice the shop can manage, the next question is whether the shop's own tools, such as a server or network, are actually under its owner's control."
+        },
+        {
+          "claim": "A homelab or shop network that the owner built is only as independent as its security, and the owner is their own security staff.",
+          "evidence": "WIRED on Artex: since around the end of August, companies, agencies and banks worldwide have been hit by AI penetration-testing harnesses that scan targets and force their way into poorly secured networks, letting newbie hackers wage attacks via chatbot prompts.",
+          "pushback": "Riley: WIRED says many of these setups mimic legitimate defensive penetration testing, so the same methods are available to a careful owner to test their own network.",
+          "leads_to_next": "Casey's point stands that self-reliance carries a duty, so the question becomes whether independence depends on the individual's nerve or on rules that give them access."
+        },
+        {
+          "claim": "The independence that staying promises becomes real only when the law frees the access, which shifts the question from nerve to policy.",
+          "evidence": "Adafruit Blog: the iFixit report says automakers are putting ordinary repairs behind software locks that mechanics must subscribe to, and the post's headline is a call to demand the right to repair cars.",
+          "pushback": "Casey: the headline is a demand, not a result. The report documents locks that exist now, and a shop owner cannot plan a decade of staying on a law that has not passed.",
+          "leads_to_next": "If the rules are still being fought for, the test has to be applied to a real place where someone is staying now."
+        },
+        {
+          "claim": "In the Cariboo, the independent garage is the clearest test: a Williams Lake or Quesnel shop serving local pickups stays by choice only if it controls its diagnostics, data and network, and otherwise it is making do.",
+          "evidence": "Draws on the iFixit figures from the Adafruit Blog item on subscription costs per manufacturer and the WIRED report on attacks on poorly secured networks, applied to a shop that serves several makes of truck.",
+          "pushback": "Riley: a shop that serves ranch and logging trucks locally can choose to specialise in the makes it can afford to support, so staying can still be deliberate.",
+          "leads_to_next": "This points to what a shop must own outright for staying to count as self-reliance, which sets up the landing."
+        }
+      ],
+      "set_aside": [
+        "The Tyee on a BC public developer building a housing asset portfolio, which does not bear on repair or self-reliance in the material provided",
+        "WIRED on the lawsuit against xAI over Grok-edited images, which is about image abuse and not about staying put or self-reliance"
+      ],
+      "cariboo_beat": "Beat 4: a Williams Lake or Quesnel independent garage serving ranch and logging trucks stands in for the question, asking what that shop owns outright versus rents.",
+      "landing": "Held open: which parts of a shop must its owner hold outright, diagnostic access, the repair records or the network, before staying counts as self-reliance rather than making do, and who decides when that line is crossed."
+    }
+  },
+  "cuts": [
+    {
+      "kind": "deep_dive",
+      "url": "https://dreaming3d.net/blogs/news/saturn-4-ultra-16k-lcd-connection-error-cable-firmware-screen-or-mainboard-how-to-tell-and-what-to-buy",
+      "title": "[Dreaming3D Inc - News] Saturn 4 Ultra 16K LCD Connection Error: Cable, Firmware, Screen or Mainboard? How to Tell, and What to Buy",
+      "source": "",
+      "theme_pct": 100,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.nytimes.com/2026/11/21/us/wheelchair-repair-delays-public-equity.html",
+      "title": "[NYT Top Stories] A Punk Rocker’s Painful Wait for Wheelchair Repairs",
+      "source": "",
+      "theme_pct": 99,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.hackster.io/news/upcycle-your-old-desktop-into-a-four-bay-high-performance-nas-with-the-agp4sata-board-884c58c1d494",
+      "title": "[Hackster News] Upcycle Your Old Desktop Into a Four-Bay High-Performance NAS with the AGP4SATA Board",
+      "source": "",
+      "theme_pct": 98,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://hackaday.com/2026/11/19/preventing-a-garage-door-opener-from-rebooting-when-offline/",
+      "title": "[Hackaday] Preventing a Garage Door Opener From Rebooting When Offline",
+      "source": "",
+      "theme_pct": 98,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.hackster.io/news/this-homemade-hoverboard-floats-on-magnets-b78b1d63ba45",
+      "title": "[Hackster News] This Homemade Hoverboard Floats on Magnets",
+      "source": "",
+      "theme_pct": 98,
+      "reason": "not picked for the deep dive"
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://hackaday.com/2026/11/23/a-dozen-completely-diy-robot-actuators/",
+      "title": "[Hackaday] A Dozen Completely DIY Robot Actuators",
+      "source": "",
+      "theme_pct": 97,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://blog.adafruit.com/2026/11/20/pc-shadow-model-pct-5000-video-terminal/",
+      "title": "[Adafruit Blog] PC Shadow Model PCT 5000 video terminal",
+      "source": "",
+      "theme_pct": 97,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://solar.lowtechmagazine.com/",
+      "title": "[Low-tech Magazine] LOW←TECH MAGAZINE",
+      "source": "",
+      "theme_pct": 96,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.archdaily.com/1185946/beyond-the-box-what-shipping-container-architecture-gets-right-and-where-it-falls-short",
+      "title": "[ArchDaily] When Does Shipping Container Architecture Make Sense?",
+      "source": "",
+      "theme_pct": 96,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://blog.kamens.us/2026/11/23/exporting-myfitnesspal-data-without-paying-myfitnesspal/",
+      "title": "[jik] Exporting MyFitnessPal data without paying MyFitnessPal",
+      "source": "",
+      "theme_pct": 95,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.zdnet.com/tech/usb-c-cable-speed-power-differences/",
+      "title": "[ZDNet] Why your USB-C cables look alike, but work differently – and how to tell them apart",
+      "source": "",
+      "theme_pct": 95,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://hackaday.com/2026/11/23/debian-comes-to-the-surface-duo-2/",
+      "title": "[Hackaday] Debian Comes to the Surface Duo 2",
+      "source": "",
+      "theme_pct": 95,
+      "reason": "not picked for the deep dive"
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.techradar.com/phones/android/i-spent-a-month-trying-to-de-google-with-the-fairphone-6-plus-but-it-left-me-wishing-for-my-android-phone-back",
+      "title": "[TechRadar] I’m sick of Google running my life, but the /e/OS Fairphone wasn't the de-Googled solution I needed",
+      "source": "",
+      "theme_pct": 95,
+      "reason": "not picked for the deep dive"
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.techradar.com/pro/these-4-kg-drones-land-on-live-420-kv-power-lines-to-recharge-from-the-magnetic-field-logging-20-000-hours-hunting-hidden-bottlenecks-across-european-and-us-grids",
+      "title": "[TechRadar] These 4kg drones land on live 420 kV power lines to recharge from the magnetic field — logging 20,000 hours hunting hidden bottlenecks across European and US grids",
+      "source": "",
+      "theme_pct": 93,
+      "reason": "aired in the roundup; not picked for the deep dive",
+      "aired": true
+    },
+    {
+      "kind": "deep_dive",
+      "url": "https://www.engadget.com/2319295/what-can-happen-too-many-devices-on-home-network/",
+      "title": "[Engadget] This is what can happen if too many devices are sharing your home network",
+      "source": "",
+      "theme_pct": 93,
+      "reason": "not picked for the deep dive"
+    }
+  ]
+}

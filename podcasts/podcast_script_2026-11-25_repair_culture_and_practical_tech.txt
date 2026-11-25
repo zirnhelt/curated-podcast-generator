@@ -1,0 +1,178 @@
+# Cariboo Signals Podcast Script - 2026-11-25
+# Theme: Repair Culture & Practical Tech
+# Brave: yes
+# Weather: Environment Canada
+# Kagi: yes
+# Anchor: Is staying put a virtue or a failure of nerve?
+# Generated: 2026-11-25 01:16:39 MST
+
+**COLD OPEN**
+**RILEY:** Hey there, good to have you. It's Wednesday, so it's repair day. Today we've got a Cariboo shop-owner's problem: a subscription that rents you the ability to fix a truck you already own. We're also looking at Quesnel's shut mill and the council letter asking the province to meet, a Williams Lake cat-spay market, and a garage door that needs its maker's server to stay online. Stay with us.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. I'm Riley. It's Wednesday, November 25th, 2026. Today's theme is Repair Culture & Practical Tech. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+**CASEY:** [pause:1000] And I'm Casey. Today we're looking at things you can fix, keep running, and hand to the next person, which matters most where the nearest repair shop is a long drive. Quick weather check: Williams Lake is around 2 degrees this morning under partly cloudy skies, with a high of 7 today, a mix of sun and cloud turning cloudy in the afternoon, and a 30 percent chance of showers later. Southeast winds are 30 kilometres an hour, gusting to 50. 100 Mile House is cloudy with a high of 6, Quesnel has a chance of showers and a high of 7, and Environment Canada has a yellow air quality warning in effect.
+
+**RILEY:** Into the news now.
+
+**NEWS ROUNDUP**
+
+**RILEY:** A lot of today's news lands in our own backyard, from a council asking for help with a closed mill to a new school board chair and a hall full of Christmas plans.
+
+**RILEY:** [pause:1200] WL Kitty Spay, a Williams Lake non-profit, held its first Pet Vendor Market at Cariboo Corner on Saturday, November 21st. The group helps pay for spaying and neutering. Founder Cassidy Porter is severely allergic to cats, and collecting donations is how she helps them anyway. The market sold entries for three Christmas baskets, and Save-On-Foods donated pet dishes.
+
+**CASEY:** Spay money is the cheapest maintenance there is. It just doesn't come with a ribbon.
+
+**CASEY:** [pause:1200] Quesnel City Council unanimously endorsed a letter asking the province to meet about the indefinite curtailment at Quesnel River Pulp. Millar Western announced earlier this month that it was shutting the mill, citing market challenges and significant tariffs on Chinese exports that have weakened demand and pricing. Mayor Coralee Oakes wants the Minister of Forests and the minister responsible for BC Hydro to meet with the company and the city to see whether the mill can run again. Quesnel is a city of about 9,000 people, and council meets MLA Sheldon Clare today.
+
+**RILEY:** [pause:1200] The Cariboo-Chilcotin School District has a new board chair and vice-chair. At its inaugural meeting on November 3rd, the trustees elected Mike Franklin, trustee for Zone 6, as chair. Franklin is in his second term, and he takes over from Angie Delainey, who did not seek re-election. Melissa Coates, trustee for Zone 4, was chosen as vice-chair.
+
+**CASEY:** [pause:1200] In 70 Mile House, the community hall hosts a Christmas craft fair on Saturday, November 28th, from 10 to 2, with a 50/50 draw at 1 p.m. Pancake breakfasts are back on the first Saturday of each month, from 9 to 11. The annual Christmas dinner has no date yet, because the people who run it are waiting for hall renovations to finish. The same local column closes with a plea to slow down on winter roads, from a writer who learned the hard way.
+
+**RILEY:** [pause:1200] An air quality warning for coarse particulate matter was issued Tuesday, November 24th, for the North Cariboo, including Quesnel. The Ministry of Environment and Parks issued it with Northern Health. The advice is to postpone or cut back strenuous outdoor activity and to spend time indoors in filtered air. Infants, older adults, pregnant people, and anyone with asthma, COPD, heart disease, or diabetes are particularly at risk. Environment Canada says conditions may improve during the day as weather patterns change.
+
+**CASEY:** [pause:1200] Low-tech Magazine runs on solar power, which means the website sometimes goes offline when the weather doesn't cooperate. The publication's original book series is available again, redesigned from the edits made for the compressed edition, and its complete book collection is now offered in epub format.
+
+**RILEY:** Going dark when the sun is low is the power budget, showing in public.
+
+**RILEY:** [pause:1200] A repair guide for the Elegoo Saturn 4 Ultra 16K resin printer tackles a common startup message, an LCD connection error. The guide, written by a San Diego repair shop that sells repairs, says the screen is the expensive guess. A ribbon cable that has slipped out of its latch, or firmware that doesn't match the mainboard, can throw the same message. Checking both means removing seven screws. A new screen means fifty-eight, and Elegoo sells the screen for $129.99.
+
+**CASEY:** Seven screws before a hundred and thirty dollars. Cheap diagnosis is the skill that disappears first.
+
+**CASEY:** [pause:1200] Two private equity-backed companies now dominate the U.S. wheelchair market. As they buy up local repair shops, waits for repairs can stretch to weeks or months. A New York Times story follows a singer whose specialized chair broke down a month before a reunion show. It describes the limbo many wheelchair users now face, with dangerous health consequences.
+
+**RILEY:** [pause:1200] Over five days, a string of tech outages at JPMorgan Chase, the U.S. Federal Aviation Administration, and Microsoft left people unable to send email, catch flights, or reach their bank accounts. An adviser quoted by the New York Post says outages like these often come when old systems are going through major upgrades, and that bolting new tools onto old systems is the bigger issue. This is a U.S. matter, not ours to vote on, but worth watching for precedent.
+
+**CASEY:** Old systems with new bolts. Somebody pays for that later, usually the customer on hold.
+
+**CASEY:** [pause:1200] Munich-based RECNAS is preparing a crowdfunding campaign for AGP4SATA, a board that uses the obsolete graphics slot on an old PC to run SATA drives, turning the machine into a four-bay network storage box. The founder says even a first-generation AGP system can make a usable NAS, and he claims a Pentium 4 build can idle below 20 watts. The campaign hasn't launched yet, so those claims are his to back up.
+
+**RILEY:** Twenty watts at idle is the number to check against your battery bank.
+
+**RILEY:** [pause:1200] A blog post documents a PC Shadow PCT 5000, a green-screen CRT terminal that came with a stack of 8-inch floppy disks. The terminal is in reasonable shape, apart from dead and dying RIFA capacitors, the mains filter parts of that era that crack and smoke with age. A paper manual is now archived online. The post suggests the terminal was built to work with MultiLink, a DOS package that ran several text programs out to terminals from a single PC.
+
+**CASEY:** [pause:1200] A TechRadar piece from earlier this month says Ericsson is developing mobile network technology that detects and tracks drones. Commercial trials are planned for 2027, with wider deployment in 2028.
+
+**RILEY:** Whoever runs the tower ends up holding the tracking data. That's the part to watch.
+
+**RILEY:** [pause:1200] TechRadar reports that Nomadic's 4-kilogram drones land on live 420-kilovolt power lines and recharge from the magnetic field around them. The company says the drones have logged 20,000 hours inspecting European and U.S. grids for transmission bottlenecks. The job is finding hidden weak spots on lines that are already carrying power.
+
+**CASEY:** [pause:1200] A Hackaday writer, Kusha, got a LiftMaster MyQ Home Bridge garage door controller to stop rebooting when offline. The device kept timing out against remote servers, so the fix was to pull the encryption key off the chip and run a dummy server that answers the device's pings. The device still tries to reach the manufacturer's domains.
+
+**RILEY:** A garage door that needs its maker's server to stay up is a design choice.
+
+**RILEY:** [pause:1200] MyFitnessPal lets you enter your own food records for free, but exporting them takes a premium subscription, $20 a month or $80 a year. One user spent several hours writing a free Chrome extension that exports the data, and shared it. The writer calls the subscription a ransom.
+
+**CASEY:** Free to put in, paid to take out. That's the whole model in one sentence.
+
+**CASEY:** [pause:1200] A maker called Koshiro Robot built a dozen custom robot actuator motors, their drivers, and field-oriented control firmware, with almost everything made in-house. The only bought parts were a couple of precision components. The designs and code are published openly for anyone to look over.
+
+**RILEY:** [pause:1200] ArchDaily says shipping container buildings are quick, cost-effective, and durable. The catch is the box itself. Intermodal containers are 2.44 metres wide, barely wider than a motorhome. Steel also conducts heat, so insulation has to be planned from the start, and cutting openings or joining containers brings engineering work that careless planning makes painful.
+
+**CASEY:** [pause:1200] A ZDNet writer bought a Thunderbolt 5 docking station and fell down a USB-C rabbit hole. The standard fixes the shape of the plug, not what the cable can do. What a cable carries for data and power depends on what's inside it, so the writer tested dozens of cables to sort them out.
+
+**RILEY:** A cable you can't read is a small version of a bigger problem. We'll come back to that in a minute.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Williams Lake Women's Centre provides crisis support, advocacy, and community programming for women and families across the Williams Lake area. Much of that work happens without any fanfare, and the people who depend on it need it to be there when they call. Giving Tuesday is December 1st. If you want to give, the centre's website is wlwomenscentre dot org.
+
+**RILEY:** Reliable support is the kind of maintenance a community only notices once it's gone.
+
+**CASEY:** Now the shop bench, and who holds its keys.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**RILEY:** [pause:900] Say a mechanic stays in a small town and builds their own shop, their own network, their own way of fixing things. Is that independence something they own, or access they rent and have to defend alone? We got into the right-to-repair fight on October 21st, including the trust question around open home systems. Today's material is the cost side of the same fight, and it comes with numbers.
+
+**CASEY:** Numbers that come with a subscription.
+
+**RILEY:** Per manufacturer, yes. The Closing Shop report, from iFixit with the U.S. PIRG Education Fund and the FULU Foundation, puts the cost for one shop working on cars from five manufacturers at $15,878 a year. That's paid before a single repair brings in revenue. Diagnosing an electrical fault in a Ford F-150 taillight costs $2,178 once you add repair information, diagnostic software, and an adapter kit.
+
+**CASEY:** So the mechanic who stays is renting the ability to fix the truck. The truck is paid for. The fix is not.
+
+**RILEY:** Renting, yes, and the labour is the other cost. The report finds mechanics spend a median of 1.25 hours per repair just getting through manufacturer software. That's the middle job, not the worst one.
+
+**CASEY:** That time never reaches the invoice. The customer pays for the repair, not for the login screen.
+
+**RILEY:** And the $15,878 covers five manufacturers. A shop that picks its makes pays less. Choosing what to serve is a form of independence too.
+
+**CASEY:** [overlap:-100] Quesnel has about 9,000 people. The owner of the other make is still standing in the parking lot.
+
+**RILEY:** Ha. Then the shop turns some owners away, and that's still a decision the shop made.
+
+**CASEY:** Fine, but every one of these numbers is a U.S. shop number. Nothing in front of us says what a shop in Williams Lake pays per manufacturer, or whether the same subscription tiers apply up here.
+
+**RILEY:** The gap is real. The price list is a U.S. price list. The manufacturers sell the same software across borders, so the structure is likely similar, but I can't give you the exact dollar amount for a BC garage.
+
+**CASEY:** Likely similar isn't a budget line.
+
+**CASEY:** The $12 billion headline is a different animal. The report gets it from 83 million mechanic hours a year, which is roughly 42,000 full-time technicians. A critical read in The Auto Wire points out the survey base was 28 answers, and the estimate assumes a $140 labour rate. Thin sample, assumed rate, big total.
+
+**RILEY:** Then argue the total down. Cut it in half and the shop still pays the subscription every month. The price list is the strongest evidence in the report, and a shop owner can check it without a calculator.
+
+**CASEY:** Fine. Put the price list in front of a council. My question is still whose shop it is once the subscription lapses.
+
+**RILEY:** Which brings us to the network, because the shop's tools run on it now. WIRED reports that since around the end of August, companies, government agencies, and banks around the world have been hit by a new wave of AI penetration-testing tools. Operators point a language model at a target, it scans for weak spots, and it tries to force its way in, with a human writing the attack plan. A shop with a server in the back room faces the same threat.
+
+**CASEY:** And the owner is the security team. One person, after closing, with a router they set up one Saturday and haven't touched since.
+
+**RILEY:** WIRED also says many of these setups copy legitimate defensive penetration testing. The same methods are available to an owner who wants to test their own network.
+
+**CASEY:** Available isn't affordable. Someone has to run the tests, read the output, and install the patch. That line never makes it into anybody's budget.
+
+**RILEY:** [overlap:-100] Mm-hm. Then make the update path the design problem. A server that patches itself on a schedule the owner sets is a smaller job than an audit every month.
+
+**CASEY:** Maybe. And the automakers have an argument ready for the keys. Ford's Jim Farley has said letting owners repair a new vehicle at home "would put people's lives at risk." Automakers and dealers say they support repair access, but they raise cybersecurity and counterfeit-parts concerns. On brakes and driver-assistance systems, that argument has force.
+
+**RILEY:** Then the question is who holds the access, and who checks them. If the access is safe for a franchised dealer, the safety argument has to explain why a certified independent is different. If it can't, the paywall is about revenue, not safety.
+
+**CASEY:** That test assumes regulators can check certification. Who checks the checkers? That's where this stalls.
+
+**RILEY:** Stalling is a pattern, not a verdict. In June, the Trump administration issued a "freedom to fix" memo. Critics say it covers emissions parts and not the software paywall. Federal right-to-repair legislation is still stalled as of 2026. Reuters reported that the White House met with the auto industry over the debate in June. A narrow memo is a draft you can rewrite. A stalled bill can come back.
+
+**CASEY:** So the headline says demand the right to repair, and the law is still at the demand stage. A shop can't plan a decade around a bill that hasn't passed.
+
+**RILEY:** Stalled isn't dead. The price list gives a legislator a number to point at, which is more than most repair fights start with.
+
+**CASEY:** The subscriptions are moving faster than the bills.
+
+**RILEY:** That solar-powered magazine from the roundup has a shop's budget problem too: what stays up when the money is short, and what goes dark first.
+
+**CASEY:** Except the site can't be shut down by a software update. A shop can lose a diagnostic tool the week the subscription renewal goes up.
+
+**RILEY:** Which is the argument for owning the records and the tools that read them. A shop that keeps its own repair history can move to a different tool, or to a different make, when the mix changes.
+
+**CASEY:** Now bring it home. Williams Lake and Quesnel both have independent shops working on the trucks that haul ranch and logging freight. Quesnel's mill is shut indefinitely. If the logging rigs thin out, the makes that justified the subscription go with them.
+
+**RILEY:** Then the shop specialises. It keeps the makes it can afford to support and tells everyone else where to go. That's a deliberate kind of staying, and plenty of people in those towns do it without calling it independence. Is that a failure of nerve? I don't think so. It's a budget decision made in daylight.
+
+**CASEY:** And what happens when the owner retires? A shop with one person who knows the diagnostic login, and nobody else who knows where the passwords are, is making do with a lot of luck.
+
+**RILEY:** Succession is the same problem we had in September with off-grid systems. The fix is cheap and boring: a written record, the subscription logins, the network password, and the reset steps, stored where the next person can find them.
+
+**CASEY:** Boring is the point. If the record lives only in the owner's head, the shop is rented by the owner.
+
+**RILEY:** The Elegoo guide makes the same case at hobby scale. Its advice is to check the cheap parts first, the cable and the firmware, before buying the expensive screen. A truck has no seven-screw check. The diagnostic software is the check, and the shop has to pay to open it.
+
+**CASEY:** So the cheap diagnosis is locked behind the expensive subscription. That's the design problem, written in the manufacturer's favour.
+
+**RILEY:** It has a known fix. Open diagnostic data is what Linux and open hardware communities used against lock-in in other fields. The question is whether a rule forces that, or a shop begs for it one case at a time.
+
+**CASEY:** Rules, if they come, will arrive after a lot of shops have already signed the subscriptions. The owner pays for the wait.
+
+**RILEY:** Then the owner has leverage now. A shop can ask its suppliers which subscriptions it pays for, and whether each one still works if the owner leaves. Write that list down this winter.
+
+**CASEY:** And test the network. Have someone other than the owner try to log in from outside the building.
+
+**RILEY:** So which parts must the owner hold outright? Diagnostic access, the repair records, or the network? My answer: the records and the network are within reach of most owners. Diagnostic access is the expensive one, and that's where the lock sits.
+
+**CASEY:** I'd say all three, and the records are the cheapest of them. What's still unproven is who decides when a shop crosses from staying by choice to making do. The owner, a regulator, or whoever holds the support contract?
+
+**RILEY:** Nobody has settled that. A regulator can set the access rules, and a shop can set its own record-keeping. The line between them isn't drawn in a Cariboo garage yet. If you've got a correction, a tip, or a shop story, write to feedback at cariboo signals dot c-a.
+
+**CASEY:** Then leave it open. A shop that can't leave is one bad renewal away from making do. Have a good Wednesday.
+
+**RILEY:** Keep the spare key somewhere you can find it.

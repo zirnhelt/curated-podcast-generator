@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] These social media posts promise big online disc",
       "AI",
       "[TechRadar] Australian government introduces Digital Duty of",
       "The Tyee Podcast: Inside Canada\u2019s AI Data Centre Fervour",
@@ -10,7 +9,8 @@
       "[simon42.com] AI tool HA-MCP arrives in the Home Assistant M",
       "[ZDNet] This tiny box gives your older tech smart home super",
       "[Outside Online] Lawmakers Move to Ban AI Data Centers on Na",
-      "[agritechinsights.com] Farmers test soil and heat-tolerant c"
+      "[agritechinsights.com] Farmers test soil and heat-tolerant c",
+      "[WIRED] A Muslim Author Is Suing xAI After People Used Grok "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -24,11 +24,6 @@
       "concedes when evidence is compelling"
     ],
     "personality_clues": [
-      {
-        "date": "2026-11-19",
-        "clue": "funding-risk:x \u2014 admitted unpriced cost of Nation participation",
-        "occurrences": 2
-      },
       {
         "date": "2026-11-09",
         "clue": "community-trust:~ \u2014 concedes attendance is open door, but authorship remains unproven",
@@ -140,11 +135,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-23",
-        "clue": "structural-lens:+ \u2014 insists records need visibility and off-site, durable copies",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-22",
         "clue": "structural-lens:~ \u2014 gap notes need an independent reader beyond keeper",
         "occurrences": 2
@@ -157,6 +147,11 @@
       {
         "date": "2026-11-22",
         "clue": "community-trust:- \u2014 softens on camera surveillance, favors rule-setting over refusal",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-25",
+        "clue": "evidence-bar:~ \u2014 concedes U.S. price list may not apply to BC",
         "occurrences": 1
       }
     ],
@@ -434,23 +429,8 @@
         "occurrences": 2
       },
       {
-        "date": "2026-11-24",
-        "clue": "funding-risk:~ \u2014 sale looks same whether forced or chosen, complexity added",
-        "occurrences": 2
-      },
-      {
         "date": "2026-11-22",
         "clue": "structural-lens:x \u2014 concedes a sooner companion test exists",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-23",
-        "clue": "community-trust:~ \u2014 shelf write-downs cheap, but museum sentences expensive to recover",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-11-24",
-        "clue": "evidence-bar:+ \u2014 questions PLUSAGRI survey sample and audience bias",
         "occurrences": 2
       }
     ],
