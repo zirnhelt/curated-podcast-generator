@@ -881,6 +881,23 @@ failure. The first draft also let a one-source lead on the week's focus through;
 producer tightened it ("Tighten", 2026-11-16): a focus hit is no substitute for a
 second outlet.
 
+### A second report can come from the bonus stories (2026-11-25, the producer's call)
+
+On 2026-11-24 the bar picked the Williams Lake Tribune's story on the Labour Relations Board
+ruling against replacement workers at Highland Valley Copper, then set it aside for want of a
+second report. The Tyee had one ("Teck Used Illegal Replacement Workers, Labour Board Finds",
+raw 72), but with no theme keyword it sat in the bonus stories, which the bar never saw; the
+deep dive aired four overseas farm stories. `_second_report_candidates` now offers the bar up to
+`DEEP_DIVE_PICK_REPORTS_MAX` (6) non-local bonus stories whose headline shares a word with a
+local candidate, in their own prompt block: a same-story report only, never `passes` or `lead`
+(a lead outside the candidates is rejected), and the pick's headline-word check against the
+lead still applies. A report carries `_same_story_as`; the deep-dive prompt tells the hosts to
+tell both reports as one story, credit both outlets and say what the second adds. The producer's
+comment on approving it, "Connect the dots more obviously rather than imply them": the pick's
+`cariboo_angle` must name the place and the people and say how, and the deep-dive prompt asks
+for it on air in plain words. About 400 more input tokens on the Haiku pick on a day with
+offered reports, under $0.0001.
+
 ## Williams Lake leads the local block every day (2026-11-18)
 
 The producer's note of 2026-11-17: "Quesnel has been over weighted in the stories for the

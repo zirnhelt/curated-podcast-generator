@@ -8621,6 +8621,11 @@ DEEP_DIVE_PICK_MIN_PCT = 70
 # An unscored local story still competes.
 DEEP_DIVE_PICK_LOCAL_MIN_RAW = HOLD_RANK_MIN_THEME_RAW
 DEEP_DIVE_PICK_SUMMARY_CHARS = 240
+# Other outlets' reports a local candidate's second report may come from: bonus
+# stories (no theme keyword) the bar's pool never held. On 2026-11-24 the Tyee's
+# report of the Highland Valley strike ruling sat there while the bar set the
+# Williams Lake Tribune's one-source pick aside. Report only, never the lead.
+DEEP_DIVE_PICK_REPORTS_MAX = 6
 RECENT_LOCAL_DAYS = 7
 # The storyboard's look back (week_so_far_block): rolling, so Monday sees last week.
 WEEK_SO_FAR_DAYS = 6
@@ -8880,7 +8885,8 @@ def _headline_words(article: dict) -> set:
 
 def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
                            anchor_question: str | None = None,
-                           recent_local: list | None = None) -> list | None:
+                           recent_local: list | None = None,
+                           reports_only: list | None = None) -> list | None:
     """The deep dive as one Cariboo-relevant story and its other reports, or None.
 
     `candidates` arrive best theme fit first; the lead is the first that passes
@@ -8889,17 +8895,24 @@ def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
     reports of the same story, never a neighbouring one. A recently aired local
     story that bears on the lead rides along tagged `_recalled_from`. None when
     nothing passes or the call fails; the caller keeps the rule-ranked pick.
+    `reports_only` are other outlets' stories that may be a same-story report
+    and never the lead; each report carries `_same_story_as` (the lead's title).
     """
     client = get_anthropic_client()
     if not client or not candidates:
         return None
     recent_local = (recent_local or [])[:10]
+    reports_only = [a for a in (reports_only or []) if a not in candidates]
+    every = list(candidates) + reports_only
     prompt = (
         "Choose the deep dive for Cariboo Signals, a daily show for households in the "
         "Cariboo-Chilcotin of interior British Columbia: small towns, ranches, First "
         "Nations communities, long drives, wildfire country. "
         f"Today's theme: {theme_name}.\n\nCANDIDATES (best theme fit first):\n"
         + "\n".join(_pick_line(i, a) for i, a in enumerate(candidates, 1))
+        + ("\n\nOTHER OUTLETS' REPORTS (same_story only, never passes or lead):\n"
+           + "\n".join(_pick_line(i, a) for i, a in enumerate(reports_only, len(candidates) + 1))
+           if reports_only else "")
         + ("\n\nLOCAL STORIES AIRED THIS WEEK:\n"
            + "\n".join(_pick_line(i, a) for i, a in enumerate(recent_local, 1))
            if recent_local else "")
@@ -8914,10 +8927,11 @@ def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
         + (f". When two are close, prefer the one that speaks to this week's question: "
            f"{anchor_question}" if anchor_question else "")
         + ". 0 when nothing passes.\n"
-        f"same_story: up to {count - 1} other candidates reporting the same event, product "
-        "or decision as the lead. Not the same field or theme: the same story.\n"
+        f"same_story: up to {count - 1} other candidates or reports telling the same event, "
+        "product or decision as the lead. Not the same field or theme: the same story.\n"
         "cariboo_angle: one sentence on what the lead means for a Cariboo household, built "
-        "only from the material.\n"
+        "only from the material: name the place and the people it touches, and say how, "
+        "so the connection is stated, not implied.\n"
         "local_context: the number of an aired local story that bears directly on the "
         "lead's subject, or 0."
     )
@@ -8941,27 +8955,45 @@ def pick_cariboo_deep_dive(candidates: list, count: int, theme_name: str,
                 f"rule-ranked deep dive aired")
         return None
     reports = [i for i in pick.get("same_story") or []
-               if isinstance(i, int) and 1 <= i <= len(candidates) and i != lead]
+               if isinstance(i, int) and 1 <= i <= len(every) and i != lead]
     # A report of the same story shares a headline word with the lead. On 2026-11-04
     # the pick took two Anduril-laptop stories and an FCC-ban roundup as reports of
     # an EU-repairability story, and the deep dive became a trade-policy debate.
     lead_words = _headline_words(candidates[lead - 1])
-    neighbours = [i for i in reports if not lead_words & _headline_words(candidates[i - 1])]
+    neighbours = [i for i in reports if not lead_words & _headline_words(every[i - 1])]
     if neighbours:
         print(f"  🧭 Cariboo pick: {len(neighbours)} 'same story' pick(s) share no headline "
               f"word with the lead, left out: "
-              + "; ".join(candidates[i - 1].get('title', '')[:50] for i in neighbours))
+              + "; ".join(every[i - 1].get('title', '')[:50] for i in neighbours))
     chosen = [lead] + [i for i in reports if i not in neighbours]
-    deep_dive = [candidates[i - 1] for i in dict.fromkeys(chosen)][:count]
+    deep_dive = [every[i - 1] for i in dict.fromkeys(chosen)][:count]
     angle = (pick.get("cariboo_angle") or "").strip()
     if angle:
         deep_dive[0]['_cariboo_angle'] = angle
+    for a in deep_dive[1:]:
+        a['_same_story_as'] = deep_dive[0].get('title', '')
     ctx = pick.get("local_context")
     if isinstance(ctx, int) and 1 <= ctx <= len(recent_local):
         deep_dive.append(recent_local[ctx - 1])
     print(f"  🏡 Cariboo pick: {deep_dive[0].get('title', '')[:80]} "
           f"(+{len(deep_dive) - 1} report(s) or aired context)")
     return deep_dive
+
+
+def _second_report_candidates(pool: list, bonus: list | None) -> list:
+    """Bonus stories whose headline shares a word with a local candidate in `pool`,
+    most shared words first, at most `DEEP_DIVE_PICK_REPORTS_MAX`.
+
+    The pick still has to name one as the same story and pass its headline-word
+    check against the lead; this only lets the bar see it.
+    """
+    local_words = [_headline_words(a) for a in pool if _is_local_article(a)]
+    if not local_words or not bonus:
+        return []
+    scored = [(max(len(w & _headline_words(a)) for w in local_words), i, a)
+              for i, a in enumerate(bonus) if a not in pool and not _is_local_article(a)]
+    return [a for n, _, a in sorted((t for t in scored if t[0]), key=lambda t: (-t[0], t[1]))
+            ][:DEEP_DIVE_PICK_REPORTS_MAX]
 
 
 def _cariboo_pick_holds(picked: list, recent_local: list | None = None) -> bool:
@@ -8979,7 +9011,7 @@ def _cariboo_pick_holds(picked: list, recent_local: list | None = None) -> bool:
 
 def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT, focus=None,
                                event_focus=None, anchor_question=None, local_extras=None,
-                               recent_local=None):
+                               recent_local=None, bonus_reports=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
     The feed already sorts articles by boosted score (theme relevance).
@@ -9009,6 +9041,8 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
     stories from the bonus bucket), goes through `pick_cariboo_deep_dive`: one
     story a Cariboo household could act on, told by several outlets, with an
     aired local story from `recent_local` as its connection when one bears on it.
+    `bonus_reports` (non-local bonus stories) may supply a local candidate's second
+    report, never the lead, when a headline shares a word with it.
     """
     pinned = [a for a in theme_articles if a.get('_pin_deep_dive')]
     if pinned:
@@ -9209,14 +9243,20 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
                   f"{DEEP_DIVE_PICK_LOCAL_MIN_RAW} on today's charter left out: "
                   + "; ".join(a.get('title', '')[:50] for a in off))
         pool += [a for a in extras if a not in off]
+        reports = _second_report_candidates(pool, bonus_reports)
+        if reports:
+            print(f"  🧭 Cariboo bar: {len(reports)} other outlet report(s) offered as "
+                  "second reports: " + "; ".join(a.get('title', '')[:50] for a in reports))
         picked = pick_cariboo_deep_dive(pool, count, theme_name,
                                         anchor_question=anchor_question,
-                                        recent_local=recent_local)
+                                        recent_local=recent_local, reports_only=reports)
         if picked and _cariboo_pick_holds(picked, recent_local):
             deep_dive = picked
             focus_centred = False
         elif picked:
             picked[0].pop('_cariboo_angle', None)
+            for a in picked[1:]:
+                a.pop('_same_story_as', None)
             print(f"  🏡 Cariboo pick set aside (one source, no second report): "
                   f"{picked[0].get('title', '')[:70]} airs in the roundup; the ranked "
                   f"deep dive stands")
@@ -11120,7 +11160,11 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
         body_line = f"\n  Content: {body[:1000]}" if body else ""
         body_line += _kite_context_line(a, DEEP_DIVE_PROMPT_CONTEXT_CHARS)
         if a.get('_cariboo_angle'):
-            body_line += f"\n  Why it matters here: {a['_cariboo_angle']}"
+            body_line += (f"\n  Why it matters here (say it on air in plain words: the place, "
+                          f"the people and how it reaches them): {a['_cariboo_angle']}")
+        if a.get('_same_story_as'):
+            body_line += ("\n  SAME STORY as the lead, another outlet's report: tell them as "
+                          "one story, credit both outlets and say what this report adds")
         pub_tag = _format_pub_date_tag(a)
         return f"- [{source}] {title}{jurisdiction_tag}{recall_tag}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
 
@@ -15114,7 +15158,8 @@ def run_script_stage() -> tuple[str, str] | None:
                     focus=today_focus, event_focus=today_event,
                     anchor_question=(today_anchor or {}).get('question'),
                     local_extras=[a for a in bonus_articles if _is_local_article(a)],
-                    recent_local=recent_local_roundup(pacific_now.date()))
+                    recent_local=recent_local_roundup(pacific_now.date()),
+                    bonus_reports=[a for a in bonus_articles if not _is_local_article(a)])
                 _dd_urls = {a.get('url', '') for a in deep_dive_articles}
                 bonus_articles = [a for a in bonus_articles if a.get('url', '') not in _dd_urls]
 
