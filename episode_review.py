@@ -1308,6 +1308,144 @@ def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
     return "\n".join(r for r in rows if r)
 
 
+# Storyboard fidelity: a model reads the plan beside the aired script. The flow line's
+# word overlap counts what reached the script; it cannot tell a beat that aired from one
+# that aired as a different point, or a host who argued the other side's stance.
+# Judgement, so it is shown, never a signal: run_signals stays what a fact can show.
+# ponytail: one Haiku call on the shipped files, no new log line or citations field.
+FIDELITY_MAX_TOKENS = 1500
+# A 3,300-word script is ~20K characters; the cap only stops a runaway file.
+FIDELITY_SCRIPT_CHARS = 40000
+SCRIPT_GLOB = "podcasts/podcast_script_{date}_*.txt"
+_FIDELITY_STATUS = ["aired", "changed", "dropped"]
+_FIDELITY_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "verdict": {"type": "string", "enum": ["kept", "loosely kept", "drifted"],
+                    "description": "How faithfully the script carried out the plan overall."},
+        "summary": {"type": "string",
+                    "description": "One or two plain sentences on the biggest gap, or that there was none."},
+        "roundup": {"type": "object", "properties": {
+            "frame": {"type": "string", "enum": _FIDELITY_STATUS,
+                      "description": "Whether the roundup opened on the plan's frame."},
+            "order": {"type": "string", "enum": ["held", "mostly held", "changed"],
+                      "description": "Whether the stories aired in the plan's order."},
+            "bridges": {"type": "string", "enum": ["used", "partly used", "ignored", "none planned"],
+                        "description": "Whether the named bridges were used where the plan named one."},
+            "note": {"type": "string", "description": "The main roundup difference, under 25 words, or empty."},
+        }, "required": ["frame", "order", "bridges", "note"], "additionalProperties": False},
+        "question": {"type": "string", "enum": ["asked", "reworded", "dropped"],
+                     "description": "Whether the deep dive argues the plan's central question."},
+        "stances": {"type": "string", "enum": ["held", "blurred", "swapped"],
+                    "description": "Whether each host held the stance the plan gave them."},
+        "beats": {"type": "array", "description": "One entry per planned beat, in plan order.",
+                  "items": {"type": "object", "properties": {
+                      "beat": {"type": "integer", "description": "The beat's 1-based position in the plan."},
+                      "status": {"type": "string", "enum": _FIDELITY_STATUS},
+                      "note": {"type": "string",
+                               "description": "What differs, under 25 words; empty when it aired as planned."},
+                  }, "required": ["beat", "status", "note"], "additionalProperties": False}},
+        "cariboo_beat": {"type": "string", "enum": _FIDELITY_STATUS + ["none planned"]},
+        "landing": {"type": "string", "enum": _FIDELITY_STATUS,
+                    "description": "Whether the deep dive ended where the plan's landing says."},
+        "additions": {"type": "array", "items": {"type": "string"},
+                      "description": "Material the script argues that the plan did not plan, under 20 words each."},
+    },
+    "required": ["verdict", "summary", "roundup", "question", "stances", "beats",
+                 "cariboo_beat", "landing", "additions"],
+    "additionalProperties": False,
+}
+
+
+def load_script(date: str) -> str:
+    """The day's aired script without its `#` metadata header, or ""."""
+    for path in sorted(glob.glob(SCRIPT_GLOB.format(date=date))):
+        try:
+            lines = Path(path).read_text("utf-8").splitlines()
+        except OSError:
+            continue
+        return "\n".join(l for l in lines if not l.startswith("#")).strip()
+    return ""
+
+
+def judge_storyboard_fidelity(plan: dict | None, script: str) -> dict | None:
+    """One Claude call: the storyboard and the aired script in, a fidelity judgement out.
+
+    None when there is no plan or script, or on any failure: the page then shows the
+    plan and the flow numbers alone, as before.
+    """
+    if not plan or not script:
+        return None
+    import anthropic
+
+    template = load_prompts_config().get("storyboard_fidelity", {}).get("template", "")
+    if not template:
+        print("  ⚠️  No storyboard_fidelity prompt configured — skipping the fidelity check")
+        return None
+    prompt = template.format(plan_json=json.dumps(plan, ensure_ascii=False),
+                             script=script[:FIDELITY_SCRIPT_CHARS],
+                             tell_block=format_static_tell_block())
+    try:
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        resp = client.messages.create(
+            model=REVIEW_MODEL,
+            thinking=thinking_off(REVIEW_MODEL),
+            max_tokens=FIDELITY_MAX_TOKENS,
+            messages=[{"role": "user", "content": prompt}],
+            output_config=json_output_config(_FIDELITY_SCHEMA),
+        )
+        usage = getattr(resp, "usage", None)
+        if usage:
+            print(f"  [api] service=claude model={REVIEW_MODEL} "
+                  f"input_tokens={usage.input_tokens} output_tokens={usage.output_tokens}")
+        judged = json.loads(message_text(resp))
+    except Exception as exc:
+        print(f"  ⚠️  Storyboard fidelity check failed ({exc}) — the plan is shown without it")
+        return None
+    if not (isinstance(judged, dict) and judged.get("verdict") in ("kept", "loosely kept", "drifted")):
+        return None
+    print(f"  🧩 Storyboard fidelity: {judged['verdict']}")
+    return judged
+
+
+def _fidelity_lede(judged: dict) -> str:
+    return (f"<p><strong>Script vs. storyboard: {escape(str(judged.get('verdict', '')))}.</strong> "
+            f"{escape(str(judged.get('summary', ''))[:400])}</p>")
+
+
+def render_fidelity(judged: dict | None, *, full: bool = True) -> str:
+    """The fidelity judgement as HTML. `full=False` is the verdict line alone, for the RSS copy.
+
+    Every string came from a model reading third-party text, so all of it is escaped.
+    """
+    if not judged:
+        return ""
+    if not full:
+        return _fidelity_lede(judged)
+    s = lambda v, cap=200: escape(str(v or "")[:cap])  # noqa: E731
+    rd = judged.get("roundup") if isinstance(judged.get("roundup"), dict) else {}
+    rows = [("Roundup frame", s(rd.get("frame"))), ("Roundup order", s(rd.get("order"))),
+            ("Named bridges", s(rd.get("bridges"))),
+            ("Deep-dive question", s(judged.get("question"))),
+            ("Host stances", s(judged.get("stances"))),
+            ("Cariboo beat", s(judged.get("cariboo_beat"))),
+            ("Landing", s(judged.get("landing")))]
+    for b in judged.get("beats") or []:
+        if isinstance(b, dict):
+            note = f" — {s(b.get('note'))}" if b.get("note") else ""
+            rows.append((f"Beat {s(b.get('beat'), 4)}", f"{s(b.get('status'))}{note}"))
+    table = "<table>" + "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in rows if v) + "</table>"
+    parts = ["<h2>Did the script keep to the plan?</h2>", _fidelity_lede(judged), table]
+    if rd.get("note"):
+        parts.append(f"<p class=\"note\">Roundup: {s(rd['note'])}</p>")
+    adds = [f"<li>{s(a)}</li>" for a in judged.get("additions") or [] if isinstance(a, str) and a.strip()]
+    if adds:
+        parts.append(f"<p><strong>Not in the plan:</strong></p><ul>{''.join(adds[:6])}</ul>")
+    parts.append("<p class=\"note\">A model's reading of the plan against the aired script; "
+                 "the flow numbers above are the counted check.</p>")
+    return "\n".join(parts)
+
+
 # The research log's paid kinds, by the service that billed them. Pages read, candidate
 # profiles and a reused ballot pass cost nothing and stay off the page.
 _RESEARCH_SERVICES = (
@@ -1352,11 +1490,13 @@ def render_research(rows: list[dict]) -> str:
 
 def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str,
                  history: list[dict] | None = None,
-                 ledger: dict | None = None) -> tuple[str, str, str]:
+                 ledger: dict | None = None,
+                 fidelity: dict | None = None) -> tuple[str, str, str]:
     """Return (title, content_html, page_html).
 
     content_html goes into the RSS feed, which super-rss-feed reads as text, so
-    it carries the verdict, the actions and the prose but no charts.
+    it carries the verdict, the actions, the prose and the storyboard-fidelity
+    line but no charts. `fidelity` is `judge_storyboard_fidelity`'s judgement.
     """
     theme = facts.get("theme_feed") or facts.get("theme_configured") or ""
     # The day's theme makes each title distinct: a templated "Cariboo Signals,
@@ -1385,12 +1525,14 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
     detail = f"<h2>What happened</h2>\n{narrative}" if narrative else ""
     tables = "\n\n".join(t for t in [render_run_table(runs), render_numbers_table(facts)] if t)
 
-    content = "\n\n".join(p for p in [lede, banner, actions, detail, tables] if p)
+    content = "\n\n".join(p for p in [lede, banner, actions, detail,
+                                      render_fidelity(fidelity, full=False), tables] if p)
     page_body = "\n\n".join(p for p in [
         lede, banner, render_kpis(facts, runs), render_cycle(rows, week_anchor(date, facts)),
         actions, render_charts(facts),
         render_trends(history or [], review_metrics(facts), date), detail,
         render_plan(load_storyboard(date), facts),
+        render_fidelity(fidelity),
         render_research(load_research(date)),
         f"<details><summary>Raw numbers</summary>\n{tables}\n</details>" if tables else ""] if p)
     page = PAGE.format(title=escape(title), published=_human_date(date),
@@ -2188,8 +2330,11 @@ def main() -> int:
         return 1
 
     narrative = "" if args.no_llm else generate_narrative(facts)
+    fidelity = None if args.no_llm else judge_storyboard_fidelity(load_storyboard(date),
+                                                                  load_script(date))
     title, content, page = build_review(date, runs, facts, narrative,
-                                        history=load_index(), ledger=load_ledger())
+                                        history=load_index(), ledger=load_ledger(),
+                                        fidelity=fidelity)
 
     REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
     page_path = REVIEWS_DIR / f"episode-review-{date}.html"
