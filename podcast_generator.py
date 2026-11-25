@@ -7749,6 +7749,24 @@ def _article_first_mention(article: dict, turns: list,
     return min(found) if found else None
 
 
+# Region names, not places: "here in the Cariboo" brings nothing home to anyone.
+_CARIBOO_REGION_WORDS = frozenset({'cariboo', 'chilcotin'})
+
+
+def _deep_dive_names_cariboo(script: str) -> bool:
+    """Whether the aired deep dive names a Cariboo community, nation or organisation.
+
+    The storyboard plans a Cariboo beat every day (`cariboo_beat`), so a deep dive
+    with no local source still reaches the Cariboo on air: 2026-11-20..25 named
+    Clinton, Horsefly, Williams Lake and Quesnel while the check, reading only the
+    sources, said it had no Cariboo angle five nights of six.
+    """
+    places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])
+              if p.lower() not in _CARIBOO_REGION_WORDS]
+    body = _deep_dive_body(script or "").lower()
+    return bool(places and body) and _keyword_hit_count(body, places) > 0
+
+
 def roundup_shape_line(script: str, roundup: list, deep_dive: list,
                        local_available: int) -> str:
     """One log line the episode review reads its shape signals from.
@@ -7778,8 +7796,9 @@ def roundup_shape_line(script: str, roundup: list, deep_dive: list,
         if any(min(spots) < pos < max(spots) and pos not in spots
                for pos, a in placed if key not in keys[id(a)]):
             split.add(key)
-    dd_local = any(a.get('_cariboo_angle') or a.get('_recalled_from') or _is_local_article(a)
-                   for a in deep_dive)
+    dd_local = (any(a.get('_cariboo_angle') or a.get('_recalled_from') or _is_local_article(a)
+                    for a in deep_dive)
+                or _deep_dive_names_cariboo(script))
     return (f"🧭 Roundup shape: local available {local_available}, aired {aired_local}, "
             f"opened local {'yes' if opened_local else 'no'}; split subjects: "
             f"{', '.join(sorted(split)) or 'none'}; deep dive Cariboo: "

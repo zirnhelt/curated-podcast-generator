@@ -1669,7 +1669,8 @@ def run_signals(facts: dict[str, Any]) -> dict[str, str]:
         if split != "none":
             signals["split-topic"] = f"one subject aired in separate places: {split}"
         if dd_local == "no":
-            signals["deep-dive-non-local"] = "the deep dive had no Cariboo story or angle"
+            signals["deep-dive-non-local"] = ("the deep dive had no local source and named no "
+                                              "Cariboo community on air")
     # Theme fit, from `theme_fit_line`: the charter scores the feed already sends,
     # compared the way the 2026-11-03 producer note had to compare them by hand.
     fit = facts.get("theme_fit")

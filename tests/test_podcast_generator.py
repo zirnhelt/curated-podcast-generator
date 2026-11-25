@@ -8926,6 +8926,28 @@ class TestRoundupShapeLine:
                         "split subjects: iphone duo; deep dive Cariboo: no")
 
 
+    _ROUNDUP = [{"title": "[Prusa Blog] Prusa ships a hotter hotend", "_roundup_block": "theme"}]
+
+    def _deep_dive_line(self, deep_dive_text):
+        import podcast_generator as pg
+        script = ("**NEWS ROUNDUP**\n\n**RILEY:** Prusa ships a hotter hotend.\n\n"
+                  "**DEEP DIVE: Cariboo Connections - Repair**\n\n" + deep_dive_text
+                  + "\n\n**OUTRO**\n\n**RILEY:** Bye.\n")
+        return pg.roundup_shape_line(script, self._ROUNDUP, [{"title": "[WIRED] Right to repair"}], 0)
+
+    def test_a_deep_dive_that_names_a_cariboo_town_reaches_the_cariboo(self):
+        # 2026-11-25: the right-to-repair deep dive put the question to a Williams Lake
+        # garage and the check, reading only the sources, said it had no Cariboo angle.
+        line = self._deep_dive_line("**CASEY:** Picture a garage in Williams Lake fixing logging "
+                                    "trucks.")
+        assert line.endswith("deep dive Cariboo: yes")
+
+    def test_the_region_word_alone_or_the_header_is_not_enough(self):
+        line = self._deep_dive_line("**CASEY:** Here in the Cariboo, and out in the Chilcotin, "
+                                    "repair matters.")
+        assert line.endswith("deep dive Cariboo: no")
+
+
 class TestProducerPinnedDeepDive:
     """A `deep_dive` seed is the deep dive on its date, past every ranking."""
 

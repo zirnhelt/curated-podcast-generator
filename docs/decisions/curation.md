@@ -806,6 +806,18 @@ stories the pool offered and aired, whether the roundup opened local, which subj
 separate places, and whether the deep dive reached the Cariboo. `episode_review.run_signals`
 turns those into `no-local-roundup`, `split-topic` and `deep-dive-non-local`.
 
+**The deep dive reaches the Cariboo on air too (2026-11-25).** `deep-dive-non-local` read
+only the deep dive's sources (a local story, a Cariboo pick's angle, an aired local story
+riding along). After #568 set aside one-source local picks, it fired on five of six themed
+nights, 11-20 to 11-25, although the storyboard's Cariboo beat brought each of those deep
+dives home on air (Horsefly, Clinton, Williams Lake, Quesnel). The weekly triage (#560)
+proposed firing only when a local story also went unaired; that would silence the check on
+every themed day, since the roundup airs every local story, and the producer's 11-24 note
+asks that every deep dive reach the Cariboo. So `_deep_dive_names_cariboo` reads the aired
+deep dive: it reaches the Cariboo when it names a `local_places` community, nation or
+organisation, the region words `cariboo` and `chilcotin` alone excepted. Replayed over 11-12 to
+11-25 it fires on 2 of 14 nights (11-13, and 11-20, which named only Clinton).
+
 
 ## The charter fit overrules a stray keyword (2026-11-03)
 
