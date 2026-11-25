@@ -1,5 +1,313 @@
 [
   {
+    "date": "2026-11-25",
+    "title": "Episode Review — Repair Culture & Practical Tech, November 25, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-25.html",
+    "content_html": "<p class=\"meta\">Theme: Repair Culture &amp; Practical Tech. Focus: Homestead &amp; Off-Grid Tech (week 2 of 5). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/45573271021\">45573271021</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>2 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Investigate.</strong><br><span class=\"evidence\">the deep dive had no Cariboo story or angle</span> <span class=\"recur\">Recurring: on the roadmap, seen 4 nights.</span></li>\n<li><strong><code>script/weather-fallback</code> fell back. Search the run log for <code>Degraded 'script/weather-fallback'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Open-Meteo did not answer — Environment Canada's forecast stood in (Williams Lake leads; Horsefly gets no figure)</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Focus fallback: no article matched Homestead &amp; Off-Grid Tech, so the base theme ran</h3>\n<p>The cycle was in week 2 of 5 on the focus <code>Homestead &amp; Off-Grid Tech</code>, but zero articles matched it. The pipeline needs at least 4, so it fell back to the base theme selection, <code>Gear, Gadgets &amp; Practical Tech</code>, with the theme feed <code>Repair Culture &amp; Practical Tech</code>. Of 78 articles loaded, 19 were on theme and 58 were bonus. After 65 were removed as duplicates, 3 were released by focus routing and 7 were held for other focus days. The listener got the standing theme for the day, not the week's planned focus, and nothing on the homestead theme aired.</p>\n<p>The held queue shows what the routing sent to other days. Seven items were held, four of them for <code>Discovery, Health &amp; How Science Works</code> and <code>Economic Development</code>, and the earliest release date is 2026-11-26. Nothing was lost, but the focus cycle will not carry the homestead story unless homestead articles arrive on their own.</p>\n<p>Change: if zero-match weeks recur, check the homestead feed sources in the focus configuration before the cycle starts, not after it has already fallen back.</p>\n\n<h3>Roundup built from 18 stories; 39 cut by the airtime budget</h3>\n<p>The roundup pool held 18 stories, 13 on theme and 5 local. All 5 local stories aired, and the roundup opened on local news. The airtime budget cut 39 stories from the pool; by design those can resurface on a better-matched day. The short-script result is the tension to watch: the first draft came in at 2738 words against a target of 3400, was sent back for one expand pass, and shipped at 3255 words. That is under target but above the short-episode threshold, so no alert fired.</p>\n<p>Citations were matched on 14 of 18 roundup stories and 2 of 4 deep-dive stories, so the deep dive is the weaker of the two on sourcing.</p>\n<p>Change: none for the budget. If the citation gap on deep dives repeats, inspect the four deep-dive source links in the script stage.</p>\n\n<h3>Weather came from Environment Canada; Open-Meteo did not respond</h3>\n<p>Open-Meteo did not answer, so the weather segment used the Environment Canada forecast. Williams Lake was reported, and Horsefly got no figure. Listeners in Horsefly heard no forecast for their own town.</p>\n<p>Change: add a Horsefly fallback source to the weather step, or drop the town from the segment when the primary feed is down.</p>\n\n<h3>One TTS take stayed short after retry; the longer take was kept</h3>\n<p>One TTS take came back shorter than its word count predicted and was retried. The retry was still short, so the longer of the two takes was kept and nothing was dropped from the episode. The retry count is one take, not a run of problems.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>78</td></tr>\n<tr><td>Kept after dedup</td><td>65</td></tr>\n<tr><td>Held / released</td><td>3 released, 7 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:13, local:5</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.68, 3255 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 38% of the words</td></tr>\n<tr><td>Audio</td><td>19.4 min</td></tr>\n<tr><td>Audio size</td><td>17.8 MB</td></tr>\n<tr><td>Citations matched</td><td>14/18 roundup, 2/4 deep dive</td></tr>\n<tr><td>Feed</td><td>301 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>73,913</td></tr>\n<tr><td>API calls</td><td>118 total: openai-tts 86 · claude 11 · brave-search 7 · kagi-extract 6 · cohere 5 · brave-answers 3</td></tr>\n<tr><td>Anthropic cost</td><td>$0.14 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.60 at list price: OpenAI TTS $0.276 · Anthropic $0.143 · Brave Answers $0.123 · Brave Search $0.035 · Kagi Extract $0.024 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-25T10:06:02+00:00",
+    "metrics": {
+      "audio_minutes": 19.4,
+      "script_words": 3255,
+      "tell_hits": 0,
+      "roundup_cite_pct": 77.8,
+      "deep_dive_cite_pct": 50.0,
+      "cost_usd": 0.604
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "2 things to look at before tomorrow's run.",
+      "theme": "Repair Culture & Practical Tech",
+      "kpis": [
+        [
+          "Episode",
+          "19.4 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,255",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "14/18 · 2/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.60",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:27 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "deep-dive-non-local",
+          "todo": "Investigate.",
+          "evidence": "the deep dive had no Cariboo story or angle",
+          "minor": false,
+          "nights_seen": 4
+        },
+        {
+          "signal": "degraded:script/weather-fallback",
+          "todo": "script/weather-fallback fell back.",
+          "evidence": "degrade() row: Open-Meteo did not answer — Environment Canada's forecast stood in (Williams Lake leads; Horsefly gets no figure)",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-23",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Music & Live Performance",
+          "week": 2,
+          "of": 5,
+          "next": "Visual Arts & Heritage",
+          "event": null
+        },
+        {
+          "date": "2026-11-24",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Mining & Energy",
+          "week": 3,
+          "of": 4,
+          "next": "Tourism & the Outdoor Economy",
+          "event": null
+        },
+        {
+          "date": "2026-11-25",
+          "day": "Wed",
+          "today": true,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Homestead & Off-Grid Tech",
+          "week": 2,
+          "of": 5,
+          "next": "Digital Life & Security",
+          "event": null
+        },
+        {
+          "date": "2026-11-26",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Economic Development",
+          "week": 3,
+          "of": 4,
+          "next": "Guardians & Land Stewardship",
+          "event": null
+        },
+        {
+          "date": "2026-11-27",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 4,
+          "next": "Conservation & the Environment",
+          "event": null
+        },
+        {
+          "date": "2026-11-28",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-29",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Earth Systems & Climate Science",
+          "week": 3,
+          "of": 5,
+          "next": "Discovery, Health & How Science Works",
+          "event": null
+        }
+      ],
+      "anchor": "Is staying put a virtue or a failure of nerve?",
+      "focus": {
+        "name": "Homestead & Off-Grid Tech",
+        "centred": false
+      },
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://dreaming3d.net/blogs/news/saturn-4-ultra-16k-lcd-connection-error-cable-firmware-screen-or-mainboard-how-to-tell-and-what-to-buy",
+          "title": "[Dreaming3D Inc - News] Saturn 4 Ultra 16K LCD Connection Error: Cable, Firmware, Screen or Mainboard? How to Tell, and What to Buy",
+          "source": "",
+          "theme_pct": 100,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.nytimes.com/2026/11/21/us/wheelchair-repair-delays-public-equity.html",
+          "title": "[NYT Top Stories] A Punk Rocker’s Painful Wait for Wheelchair Repairs",
+          "source": "",
+          "theme_pct": 99,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.hackster.io/news/upcycle-your-old-desktop-into-a-four-bay-high-performance-nas-with-the-agp4sata-board-884c58c1d494",
+          "title": "[Hackster News] Upcycle Your Old Desktop Into a Four-Bay High-Performance NAS with the AGP4SATA Board",
+          "source": "",
+          "theme_pct": 98,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/19/preventing-a-garage-door-opener-from-rebooting-when-offline/",
+          "title": "[Hackaday] Preventing a Garage Door Opener From Rebooting When Offline",
+          "source": "",
+          "theme_pct": 98,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.hackster.io/news/this-homemade-hoverboard-floats-on-magnets-b78b1d63ba45",
+          "title": "[Hackster News] This Homemade Hoverboard Floats on Magnets",
+          "source": "",
+          "theme_pct": 98,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/23/a-dozen-completely-diy-robot-actuators/",
+          "title": "[Hackaday] A Dozen Completely DIY Robot Actuators",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/20/pc-shadow-model-pct-5000-video-terminal/",
+          "title": "[Adafruit Blog] PC Shadow Model PCT 5000 video terminal",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://solar.lowtechmagazine.com/",
+          "title": "[Low-tech Magazine] LOW←TECH MAGAZINE",
+          "source": "",
+          "theme_pct": 96,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.archdaily.com/1185946/beyond-the-box-what-shipping-container-architecture-gets-right-and-where-it-falls-short",
+          "title": "[ArchDaily] When Does Shipping Container Architecture Make Sense?",
+          "source": "",
+          "theme_pct": 96,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.kamens.us/2026/11/23/exporting-myfitnesspal-data-without-paying-myfitnesspal/",
+          "title": "[jik] Exporting MyFitnessPal data without paying MyFitnessPal",
+          "source": "",
+          "theme_pct": 95,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.zdnet.com/tech/usb-c-cable-speed-power-differences/",
+          "title": "[ZDNet] Why your USB-C cables look alike, but work differently – and how to tell them apart",
+          "source": "",
+          "theme_pct": 95,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hackaday.com/2026/11/23/debian-comes-to-the-surface-duo-2/",
+          "title": "[Hackaday] Debian Comes to the Surface Duo 2",
+          "source": "",
+          "theme_pct": 95,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.techradar.com/phones/android/i-spent-a-month-trying-to-de-google-with-the-fairphone-6-plus-but-it-left-me-wishing-for-my-android-phone-back",
+          "title": "[TechRadar] I’m sick of Google running my life, but the /e/OS Fairphone wasn't the de-Googled solution I needed",
+          "source": "",
+          "theme_pct": 95,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.techradar.com/pro/these-4-kg-drones-land-on-live-420-kv-power-lines-to-recharge-from-the-magnetic-field-logging-20-000-hours-hunting-hidden-bottlenecks-across-european-and-us-grids",
+          "title": "[TechRadar] These 4kg drones land on live 420 kV power lines to recharge from the magnetic field — logging 20,000 hours hunting hidden bottlenecks across European and US grids",
+          "source": "",
+          "theme_pct": 93,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.engadget.com/2319295/what-can-happen-too-many-devices-on-home-network/",
+          "title": "[Engadget] This is what can happen if too many devices are sharing your home network",
+          "source": "",
+          "theme_pct": 93,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "Is a small independent repair shop's ability to service vehicles and maintain its systems something it truly owns, or access it rents and must defend alone?",
+        "riley": "The subscription and software costs are a real lock-in, but shops can make deliberate, budget-conscious choices about which makes to serve, and the fight is better won through open diagnostic access rules and owner-held records than through despair.",
+        "casey": "The access is rented and the owner carries the costs and risks alone, since the numbers are U.S.-based, the headline estimates rest on thin evidence, and rules will arrive too late for shops already locked into subscriptions.",
+        "resolution": "They did not fully agree. Riley conceded that the Williams Lake and Quesnel pricing is unverified and likely similar rather than confirmed, and Casey conceded the records are the cheapest safeguard. They left open who decides when a shop moves from choosing to stay to making do, agreeing only on practical steps like writing down subscriptions, passwords, and reset steps and testing the network.",
+        "topics": [
+          "Manufacturer subscription costs and diagnostic software pricing for independent shops",
+          "Reliability and sourcing of U.S. repair cost estimates versus local Cariboo conditions",
+          "Cybersecurity risks and safety arguments used by automakers against independent repair access",
+          "Right-to-repair legislation and federal executive actions, including the stalled bill and June memo",
+          "Succession planning and owner-held records as protection against lock-in"
+        ],
+        "sources": [
+          {
+            "title": "Artex Is Criminals’ New Favorite ‘Point-and-Shoot’ AI Hacking Tool",
+            "url": "https://www.wired.com/story/artex-ai-hacking-tools/"
+          },
+          {
+            "title": "It’s time we demand the right to repair our cars",
+            "url": "https://blog.adafruit.com/2026/11/23/its-time-we-demand-the-right-to-repair-our-cars/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-24",
     "title": "Episode Review — Working Lands & Industry, November 24, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-24.html",
@@ -5257,20 +5565,6 @@
       "script_words": 3955,
       "tell_hits": 2,
       "roundup_cite_pct": 61.1,
-      "deep_dive_cite_pct": 75.0
-    }
-  },
-  {
-    "date": "2026-10-26",
-    "title": "Episode Review — Cariboo Signals, October 26, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-26.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/40290051982\">40290051982</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong>Read the expand passes in the script stage log. Target and floor are <code>TARGET_SCRIPT_WORDS</code> / <code>MIN_SCRIPT_WORDS</code> in <code>podcast_generator.py</code>.</strong><br><span class=\"evidence\">shipped 3272 words against a 3400-word target (first draft 2879)</span> <span class=\"recur\">Recurring: on the roadmap, seen 10 nights.</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>The script shipped 3272 words against a 3400 target after two expand passes</h3>\n<p>The first draft came in at 2879 words, under the 3400-word target, and was sent back for up to two expand passes. The shipped script is 3272 words, still short of target. The expansion recovered most of the gap but not all of it, and the episode runs at 19.8 minutes of audio.</p>\n<p>Lower the target word count or the expand threshold in the script stage if a 3400-word target is meant to be met on most nights. Otherwise leave it, since the gap is small.</p>\n\n<h3>Four stories were cut from the roundup pool by the airtime budget</h3>\n<p>The roundup pool is larger than one segment can air, so 24 stories were dropped by NEWS_ROUNDUP_COUNT. This is by design: a cut story can resurface on a better-matched day.</p>\n<p>Two sources disagree on citations. Of the 18 roundup citations, 14 matched; of the 4 deep-dive citations, 3 matched. Check the unmatched citations before trusting the roundup attributions on this episode.</p>\n\n<h3>One AI-tell pattern hit reached the shipped script</h3>\n<p>The quality check recorded one AI-tell pattern hit in the final script. Casey's share of the voice ratio against Riley is 0.92, and Casey carries 48% of the deep-dive word count.</p>\n<p>If the AI-tell hit recurs on consecutive nights, add the matched phrase to the banned list in the script prompt.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:07 AM Pacific</td><td>+2 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.92, 3272 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 48% of the words</td></tr>\n<tr><td>Audio</td><td>19.8 min</td></tr>\n<tr><td>Audio size</td><td>18.1 MB</td></tr>\n<tr><td>Citations matched</td><td>14/18 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>271 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>54,555</td></tr>\n<tr><td>API calls</td><td>21 total: claude 11 · kagi-extract 4 · brave-answers 4 · brave-search 2</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-26T10:05:58+00:00",
-    "metrics": {
-      "audio_minutes": 19.8,
-      "script_words": 3272,
-      "tell_hits": 1,
-      "roundup_cite_pct": 77.8,
       "deep_dive_cite_pct": 75.0
     }
   }

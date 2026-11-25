@@ -757,8 +757,8 @@
       "title": "One AI-tell pattern shipped in the episode script despite quality checks.",
       "detail": "The quality block reports ai_tell_pattern_hits of 1 on the 2026-11-10 episode, so a machine-prose pattern passed the checks and reached the final script. This matches the already-tracked ai-tells-shipped problem, so the recurrence count should carry it forward. Closing it would need the quality gate to reject or rewrite the matched pattern before audio is rendered rather than logging it.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-10",
       "seen": [
         "2026-11-10"
@@ -866,17 +866,18 @@
       "detail": "On 2026-11-20 the roundup opened with two local stories, but the deep_dive_cariboo field reads no, and the deep dive led with p87 from four sources, none of them local. The facts show 10 on-theme candidates went unused, so a local angle was available to the deep-dive selector and was not chosen. The closing change is to have the deep-dive selection step require at least one Cariboo-tagged candidate when one exists in the theme feed, and log the reason when it does not.",
       "source": "review",
       "status": "open",
-      "occurrences": 4,
+      "occurrences": 5,
       "first_seen": "2026-11-20",
       "seen": [
         "2026-11-20",
         "2026-11-22",
         "2026-11-23",
-        "2026-11-24"
+        "2026-11-24",
+        "2026-11-25"
       ],
       "signal": "deep-dive-non-local",
-      "signal_seen": "2026-11-24",
-      "last_seen": "2026-11-24"
+      "signal_seen": "2026-11-25",
+      "last_seen": "2026-11-25"
     },
     {
       "id": "weather-check-dropped-when-open-meteo-unreachable",
@@ -907,5 +908,5 @@
       "last_seen": "2026-11-23"
     }
   ],
-  "updated": "2026-11-24"
+  "updated": "2026-11-25"
 }
