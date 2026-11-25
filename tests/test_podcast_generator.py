@@ -8495,6 +8495,60 @@ class TestCaribooDeepDivePick:
         assert dd[0]["_cariboo_angle"].startswith("A cracked screen")
         assert dd[2]["_recalled_from"] == "Thursday"
 
+    # 2026-11-24: the Tyee's report of the Highland Valley strike ruling had no theme
+    # keyword, so it sat in the bonus stories while the bar set the Williams Lake
+    # Tribune's one-source pick aside and four overseas farm stories aired.
+    STRIKE = {"title": "[Williams Lake Tribune] Company ordered to stop using ineligible "
+                       "replacement workers during Logan Lake strike", "url": "https://wlt",
+              "source": "Williams Lake Tribune", "_is_bonus": True}
+    TYEE = {"title": "[The Tyee] Teck Used Illegal Replacement Workers, Labour Board Finds",
+            "url": "https://tyee", "_is_bonus": True, "_theme_score_raw": 72}
+    CATTLE = {"title": "[meatingplace.com] U.S. cattle placements hit October record low",
+              "url": "https://cattle", "_is_bonus": True}
+
+    def test_a_bonus_story_sharing_a_local_headline_word_is_offered(self):
+        import podcast_generator as pg
+        pool = [dict(a) for a in self.CANDS] + [dict(self.STRIKE)]
+        offered = pg._second_report_candidates(pool, [dict(self.CATTLE), dict(self.TYEE)])
+        assert [a["url"] for a in offered] == ["https://tyee"]
+        assert pg._second_report_candidates([dict(a) for a in self.CANDS], [dict(self.TYEE)]) == []
+
+    def test_an_offered_report_can_be_the_second_report_never_the_lead(self, monkeypatch):
+        import podcast_generator as pg
+        cands = [dict(a) for a in self.CANDS] + [dict(self.STRIKE)]
+        client = self._client({"passes": [5], "lead": 5, "same_story": [6], "local_context": 0,
+                               "cariboo_angle": "Steelworkers' families in Williams Lake ride "
+                                                "on the ruling."})
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        dd = pg.pick_cariboo_deep_dive(cands, 4, "Working Lands", reports_only=[dict(self.TYEE)])
+        assert [a["url"] for a in dd] == ["https://wlt", "https://tyee"]
+        assert dd[1]["_same_story_as"] == self.STRIKE["title"]
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "OTHER OUTLETS' REPORTS (same_story only, never passes or lead)" in prompt
+        assert "6. [The Tyee]" in prompt and "the connection is stated, not implied" in prompt
+        monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: self._client(
+            {"passes": [], "lead": 6, "same_story": [], "local_context": 0, "cariboo_angle": ""}))
+        assert pg.pick_cariboo_deep_dive(cands, 4, "Working Lands",
+                                         reports_only=[dict(self.TYEE)]) is None
+
+    def test_the_offered_report_lets_the_local_pick_hold(self, monkeypatch):
+        import podcast_generator as pg
+        seen = {}
+
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None,
+                      reports_only=None):
+            seen["reports"] = [a["url"] for a in reports_only or []]
+            lead = next(a for a in pool if a["url"] == "https://wlt")
+            return [lead, *(reports_only or [])]
+        monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
+        theme = [dict(a, _keyword_matches=1) for a in self.CANDS]
+        dd, _ = pg.select_deep_dive_from_feed(theme, "Working Lands & Industry", count=4,
+                                              local_extras=[dict(self.STRIKE)],
+                                              bonus_reports=[dict(self.CATTLE), dict(self.TYEE)])
+        assert seen["reports"] == ["https://tyee"]
+        assert [a["url"] for a in dd] == ["https://wlt", "https://tyee"]
+
     def test_an_event_notice_cannot_lead(self, monkeypatch):
         """2026-11-09: a Remembrance Day services notice (times, parade order) led the
         deep dive alone and became a debate about who organizes the service."""
@@ -8588,7 +8642,8 @@ class TestCaribooDeepDivePick:
         import podcast_generator as pg
         captured = {}
 
-        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None,
+                      reports_only=None):
             captured["pool"] = [a["url"] for a in pool]
             return [pool[-1], pool[0]]  # the local lead and a second report of it
         monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
@@ -8609,7 +8664,8 @@ class TestCaribooDeepDivePick:
     def _one_source(self, monkeypatch, picked_extra=()):
         import podcast_generator as pg
 
-        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None,
+                      reports_only=None):
             lead = next(a for a in pool if a["url"] == "https://art")
             lead["_cariboo_angle"] = "Two local projects get art money."
             return [lead, *picked_extra]
@@ -8655,7 +8711,8 @@ class TestCaribooDeepDivePick:
         import podcast_generator as pg
         captured = {}
 
-        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None,
+                      reports_only=None):
             captured["pool"] = [a["url"] for a in pool]
             return [pool[0]]
         monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
@@ -8683,7 +8740,8 @@ class TestCaribooDeepDivePick:
         import podcast_generator as pg
         captured = {}
 
-        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None):
+        def fake_pick(pool, count, theme, anchor_question=None, recent_local=None,
+                      reports_only=None):
             captured["pool"] = [a["url"] for a in pool]
             return [pool[0]]
         monkeypatch.setattr(pg, "pick_cariboo_deep_dive", fake_pick)
