@@ -8561,6 +8561,16 @@ class TestCaribooDeepDivePick:
         prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
         assert "A notice of an event's times, places and participants does not pass" in prompt
 
+    def test_the_storyboard_closes_the_local_block_on_its_junction_and_states_the_cariboo_beat(self):
+        """Episode note 2026-11-24: mining, then Remembrance Day, then mining again; and
+        "every deep dive could be linked back to the cariboo lens somehow"."""
+        import config_loader
+        storyboard = config_loader.load_prompts_config()["script_storyboard"]["template"]
+        assert "the first one listed leads" in storyboard
+        assert "goes last among them, so those stories follow it directly" in storyboard
+        assert "said plainly rather than left for the listener to infer" in storyboard
+        assert "never as a fact about a person, business or event the material does not name" in storyboard
+
     def test_the_hosts_may_agree(self):
         """Episode notes 2026-11-17 and 11-18: "the debate was forced". Every beat had to
         carry a pushback, and an empty one was told to "choose a question it does"."""
