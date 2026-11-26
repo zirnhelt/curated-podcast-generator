@@ -1,5 +1,315 @@
 [
   {
+    "date": "2026-11-26",
+    "title": "Episode Review — Indigenous Lands & Innovation, November 26, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-26.html",
+    "content_html": "<p class=\"meta\">Theme: Indigenous Lands &amp; Innovation. Focus: Economic Development (week 3 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/45780240933\">45780240933</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>2 things to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong><code>script/debate-summary</code> fell back. Search the run log for <code>Degraded 'script/debate-summary'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: Claude debate extraction failed, used keyword fallback: Unterminated string starting at: line 1 column 2940 (char 2939)</span></li>\n<li><strong>Investigate.</strong><br><span class=\"evidence\">one subject aired in separate places: public service</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Focus rotation fell back to the base theme because no article matched</h3>\n<p>The scheduled focus for this cycle was <code>Economic Development</code> (week 3 of 4), but zero articles matched it. The pipeline logged the fallback and used the base theme selection, <code>Indigenous Lands &amp; Innovation</code>, instead. Of the 67 articles loaded, 20 were theme articles and 41 were bonus articles. The fallback meant the day's focus segment was built from the general theme pool rather than from economic-development material.</p>\n<p>Focus routing still ran in parallel. One held article was released (<code>[APTN News] AFN calls for strengthening of First Nations Cle...</code>, held since 2026-11-25), and three remain held: a Recreation &amp; Backcountry Access piece dated 2026-11-27, a Digital Life &amp; Security piece dated 2026-12-02, and an Agriculture &amp; Ranching piece dated 2026-12-08. Those three will wait for their own focus days. If Economic Development stays thin across the cycle, the focus rotation should be reviewed against the feed mix; the intake pool needs more economic coverage before the next Economic Development week.</p>\n\n<h3>Debate extraction failed and fell back to keyword matching</h3>\n<p>Claude's debate-summary extraction failed with an unterminated string at line 1, column 2940, and a batch debate-summary parse failed separately at column 2916. Both were JSON truncation errors, which suggests the model output was cut off before the closing bracket. The pipeline fell back to keyword extraction for the debate summary. The listener gets a debate question, <code>Deep dive on Indigenous Lands &amp; Innovation</code>, that was pulled by keyword rather than by reading the segment, so it may describe the topic less precisely than the model would have. The script itself passed quality checks: 0 AI-tell pattern hits, and a Casey-to-Riley voice ratio of 0.79.</p>\n<p>Both warnings point at the same output-length limit. Raising the token budget for the debate-extraction call, or adding a retry that requests a shorter summary on parse failure, should be the first change to test.</p>\n\n<h3>Script came in under target and shipped under target</h3>\n<p>The first draft came in at 2958 words against a target of 3400. The pipeline sent it back for one expand pass, and the shipped script was 3565 words, which is above target. The expand pass was enough to clear the target, so the thin first draft did not reach the listener. Only one expand pass is allowed per run, so a first draft that starts much thinner would not have been rescued the same way.</p>\n<p>Roundup citations matched 12 of 18, and deep-dive citations matched 4 of 4. The roundup gap is the more useful number: 6 roundup citations did not match a source, and that is where a listener checking the references would find something missing. The roundup pool held 18 stories and dropped 24 to the airtime budget by design, so the 18 that aired were the ones the pipeline ranked highest, not a shortfall. The citation mismatch should be looked at before the next run that carries a similar roundup load.</p>\n\n<p><strong>Script vs. storyboard: loosely kept.</strong> The episode mostly follows the plan's shape, but the roundup frame is replaced by a different opening, several roundup stories are dropped or merged, and the deep dive drops the Kalshi and C-39 pushback framing and adds a new contested detail about Seabridge and the Tsetsaut case. The landing is left open as planned, but the Cariboo beat is substantially reworked.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>67</td></tr>\n<tr><td>Kept after dedup</td><td>48</td></tr>\n<tr><td>Held / released</td><td>1 released, 3 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:10, local:4, public_safety:3, kicker:1</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.79, 3565 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 43% of the words</td></tr>\n<tr><td>Audio</td><td>22.0 min</td></tr>\n<tr><td>Audio size</td><td>20.2 MB</td></tr>\n<tr><td>Citations matched</td><td>12/18 roundup, 4/4 deep dive</td></tr>\n<tr><td>Feed</td><td>302 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>86,085</td></tr>\n<tr><td>API calls</td><td>125 total: openai-tts 85 · claude 13 · brave-search 11 · kagi-extract 7 · cohere 5 · brave-answers 4</td></tr>\n<tr><td>Anthropic cost</td><td>$0.14 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.70 at list price: OpenAI TTS $0.314 · Brave Answers $0.164 · Anthropic $0.138 · Brave Search $0.055 · Kagi Extract $0.028 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-26T10:06:08+00:00",
+    "metrics": {
+      "audio_minutes": 22.0,
+      "script_words": 3565,
+      "tell_hits": 0,
+      "roundup_cite_pct": 66.7,
+      "deep_dive_cite_pct": 100.0,
+      "cost_usd": 0.701
+    },
+    "summary": {
+      "level": "warn",
+      "label": "Shipped, needs a look",
+      "summary": "2 things to look at before tomorrow's run.",
+      "theme": "Indigenous Lands & Innovation",
+      "kpis": [
+        [
+          "Episode",
+          "22.0 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,565",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "12/18 · 4/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.70",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:26 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [
+        {
+          "signal": "degraded:script/debate-summary",
+          "todo": "script/debate-summary fell back.",
+          "evidence": "degrade() row: Claude debate extraction failed, used keyword fallback: Unterminated string starting at: line 1 column 2940 (char 2939)",
+          "minor": false,
+          "nights_seen": 0
+        },
+        {
+          "signal": "split-topic",
+          "todo": "Investigate.",
+          "evidence": "one subject aired in separate places: public service",
+          "minor": false,
+          "nights_seen": 0
+        }
+      ],
+      "cycle": [
+        {
+          "date": "2026-11-23",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Music & Live Performance",
+          "week": 2,
+          "of": 5,
+          "next": "Visual Arts & Heritage",
+          "event": null
+        },
+        {
+          "date": "2026-11-24",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Mining & Energy",
+          "week": 3,
+          "of": 4,
+          "next": "Tourism & the Outdoor Economy",
+          "event": null
+        },
+        {
+          "date": "2026-11-25",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Homestead & Off-Grid Tech",
+          "week": 2,
+          "of": 5,
+          "next": "Digital Life & Security",
+          "event": null
+        },
+        {
+          "date": "2026-11-26",
+          "day": "Thu",
+          "today": true,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Economic Development",
+          "week": 3,
+          "of": 4,
+          "next": "Guardians & Land Stewardship",
+          "event": null
+        },
+        {
+          "date": "2026-11-27",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 4,
+          "next": "Conservation & the Environment",
+          "event": null
+        },
+        {
+          "date": "2026-11-28",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-29",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Earth Systems & Climate Science",
+          "week": 3,
+          "of": 5,
+          "next": "Discovery, Health & How Science Works",
+          "event": null
+        }
+      ],
+      "anchor": "Is staying put a virtue or a failure of nerve?",
+      "focus": {
+        "name": "Economic Development",
+        "centred": false
+      },
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.aptnnews.ca/reportages/nous-prenons-soin-les-uns-des-autres-temoignages-du-square-cabot/",
+          "title": "[APTN News] « Nous prenons soin les uns des autres. » : témoignages du square Cabot",
+          "source": "",
+          "theme_pct": 100,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://yellowheadinstitute.org/2026/whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists/?utm_source=rss&utm_medium=rss&utm_campaign=whither-albertan-independence-how-indigenous-diplomacy-defeated-separatists",
+          "title": "[Yellowhead Institute] Whither Albertan “Independence?” How Indigenous Diplomacy Defeated Separatists",
+          "source": "",
+          "theme_pct": 99,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.piquenewsmagazine.com/national-news/first-nations-leader-says-hes-open-to-talks-with-doerkson-but-opposes-dripa-repeal-13046656",
+          "title": "[Pique Newsmagazine] First Nations leader says he's open to talks with Doerkson, but opposes DRIPA repeal",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.aptnnews.ca/national-news/inuit-led-program-to-replace-child-first-initiative-with-575m-in-proposed-funding/",
+          "title": "[APTN News] Inuit-led program to replace Child First Initiative with $575M in proposed funding",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.aptnnews.ca/investigates/shoal-lake-water-rights-would-cripple-winnipeg-aqueduct/",
+          "title": "[APTN News] Letters from 1914 reveal worry that Shoal Lake water rights would cripple Winnipeg aqueduct",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theguardian.com/global-development/2026/nov/17/indigenous-groups-ashaninka-amazon-peru-crime-drug-gangs",
+          "title": "[The Guardian Global Development] Bows and old guns: Indigenous militias left to fight Peru’s cocaine gangs alone",
+          "source": "",
+          "theme_pct": 96,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theglobeandmail.com/canada/british-columbia/article-doerkson-tasks-new-bc-cabinet-to-undo-key-ndp-policies-as-he-sets-out/",
+          "title": "[theglobeandmail.com] B.C. premier directs cabinet to reverse Indigenous, climate and drug policies",
+          "source": "",
+          "theme_pct": 94,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "roundup",
+          "url": "https://thetyee.ca/News/2026/11/26/Building-Canada-Strong-Act-BC-Environment/",
+          "title": "[The Tyee] The ‘Building Canada Strong Act’ Will Hit BC’s Environment Hardest",
+          "source": "",
+          "theme_pct": 93,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://vancouversun.com/news/bc-doctors-urge-conservatives-to-make-good-on-rural-health-promises",
+          "title": "[Vancouver Sun] B.C. doctors urge Conservatives to make good on rural health promises",
+          "source": "",
+          "theme_pct": 87,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://vancouversun.com/news/bc-mom-of-boy-with-muscular-dystrophy-calls-for-rare-disease-strategy",
+          "title": "[vancouversun.com] Canadian patients face testing and treatment delays across provinces",
+          "source": "",
+          "theme_pct": 85,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.myeastkootenaynow.com/59773/news/municipal-news/city-of-fernie/proposed-zoning-amendment-coming-to-fernie-council/",
+          "title": "[My East Kootenay Now] Proposed zoning amendment coming to Fernie council",
+          "source": "",
+          "theme_pct": 85,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.countrylife.co.uk/countryside/nature-wildlife/the-perfect-theatre-for-a-deep-scientific-enquiry-to-help-the-endangered-atlantic-salmon-how-we-should-be-restoring-our-rivers",
+          "title": "[Country Life] 'The perfect theatre for a deep scientific enquiry to help the endangered Atlantic salmon': How we should be restoring our rivers",
+          "source": "",
+          "theme_pct": 83,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.abc.net.au/news/2026-11-13/salmon-deaths-macquarie-harbour-tasmania-rti/107379706",
+          "title": "[ABC News] Salmon deaths at 'eye-watering' levels in Macquarie Harbour",
+          "source": "",
+          "theme_pct": 83,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.smallfarmcanada.ca/news/preparing-your-woodlot-for-winter-a-practical-checklist/",
+          "title": "[Small Farm Canada] Preparing Your Woodlot for Winter: A Practical Checklist",
+          "source": "",
+          "theme_pct": 76,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.durhamradionews.com/archives/219885",
+          "title": "[durhamradionews.com] Canada’s first small modular reactor faces delay and cost overrun",
+          "source": "",
+          "theme_pct": 76,
+          "reason": "over the airtime budget",
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "Deep dive on Indigenous Lands & Innovation",
+        "topics": [
+          "AI",
+          "funding"
+        ],
+        "sources": [
+          {
+            "title": "First Nations youth plan Dec. 8 protest over federal projects bill",
+            "url": "https://www.winnipegfreepress.com/canada/2026/11/20/first-nations-youth-plan-day-of-action-against-ottawas-major-projects-legislation"
+          },
+          {
+            "title": "Decision on KSM mine in B.C.&#039;s northwest sent back for reconsideration",
+            "url": "https://vancouversun.com/news/local-news/decision-on-ksm-mine-in-bc-s-northwest-sent-back-for-reconsideration"
+          },
+          {
+            "title": "BHP Foundation, Canada’s First Nations Major Projects Coalition strike $3.9 million deal",
+            "url": "https://www.mining.com/bhp-foundation-canadas-first-nations-major-projects-coalition-strike-3-9-million-deal/"
+          },
+          {
+            "title": "Inside the Fight Between Native American Tribes and Kalshi",
+            "url": "https://www.nytimes.com/2026/11/20/business/tribal-gaming-kalshi.html"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-25",
     "title": "Episode Review — Repair Culture & Practical Tech, November 25, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-25.html",
@@ -5551,20 +5861,6 @@
       "script_words": 3529,
       "tell_hits": 3,
       "roundup_cite_pct": 55.6,
-      "deep_dive_cite_pct": 75.0
-    }
-  },
-  {
-    "date": "2026-10-27",
-    "title": "Episode Review — Cariboo Signals, October 27, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-27.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/40471136528\">40471136528</a>.</p>\n\n<div class=\"verdict lvl-good\"><span class=\"icon\" aria-hidden=\"true\">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>\n\n<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>\n\n<h2>What happened</h2>\n<h3>The script shipped at 3955 words, well above the 3400-word target</h3>\n<p>The first draft came in at 3158 words against a 3400 target, so it was sent back for up to two expand passes. The script that shipped ran to 3955 words, 555 over target. Read the drafts with that in mind: the expansion added length rather than correcting a shortfall the listener would have heard.</p>\n<p>Casey carried 52% of the deep-dive words and spoke at a 1.14 ratio over Riley. The pipeline does not balance hosts by word count, so this is the default behaviour showing through, not a fault. Check whether the expand prompt is steering toward whichever host is already ahead.</p>\n\n<h3>Roundup citations matched on 11 of 18 items, against 3 of 4 in the deep dives</h3>\n<p>Eleven of the 18 roundup citations matched their sources, and 3 of the 4 deep-dive citations matched. The roundup gap is the weaker point: seven roundup citations did not align with their stories. Forty roundup stories were dropped by the airtime budget (NEWS_ROUNDUP_COUNT), so the pool is larger than one segment can air and cut stories remain eligible for later days. Whether the seven misaligned citations come from the stories that aired or from the pool is not separated in the figures.</p>\n<p>Tighten the citation check in the roundup stage so that a mismatch is caught before the script is written, not after.</p>\n\n<h3>Debate question asks who controls mining benefit and whether local standing gives a say</h3>\n<p>The debate question for the day was: who actually holds control and benefit from mining and processing ventures, and does local standing (crews, ranch families, Indigenous claims) translate into a real say in outcomes? The four deep dives covered Chile's refining bottleneck, the Seville panel on European mining support, the Sudan strike that killed at least 72 miners, and China's Argentina footprint. The question was broad enough to take all four, which is why the selection held together.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>2 pattern hit(s), voice ratio 1.14, 3955 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 52% of the words</td></tr>\n<tr><td>Audio</td><td>24.3 min</td></tr>\n<tr><td>Audio size</td><td>22.3 MB</td></tr>\n<tr><td>Citations matched</td><td>11/18 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>272 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>58,524</td></tr>\n<tr><td>API calls</td><td>28 total: brave-search 9 · claude 9 · kagi-extract 6 · brave-answers 4</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-27T10:05:59+00:00",
-    "metrics": {
-      "audio_minutes": 24.3,
-      "script_words": 3955,
-      "tell_hits": 2,
-      "roundup_cite_pct": 61.1,
       "deep_dive_cite_pct": 75.0
     }
   }
