@@ -712,6 +712,13 @@ def send_claude(client, stream=False, **kwargs):
     degrade("claude/refusal", f"{model} declined ({category}); retried on {fallback}")
     return send(retry)
 
+# The debate summary's output cap, batch and real-time alike. 1000 cut the JSON
+# mid-string on 2026-11-26 ("Unterminated string ... char 2939"): Haiku 5.5's
+# tokenizer counts ~30% more tokens, and the 11-15..11-25 summaries already ran
+# 2,290-2,992 characters, right at 1000 tokens. The cap bills only what is used.
+DEBATE_SUMMARY_MAX_TOKENS = 2000
+
+
 def _debate_summary_schema(with_calls_to_action: bool) -> dict:
     """JSON schema for the deep-dive debate summary.
 
@@ -5084,7 +5091,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                     "params": {
                         "model": SUMMARY_MODEL,
                         "thinking": thinking_off(SUMMARY_MODEL),
-                        "max_tokens": 1000,
+                        "max_tokens": DEBATE_SUMMARY_MAX_TOKENS,
                         "messages": [{"role": "user", "content": debate_prompt}],
                         "output_config": _json_output(_debate_summary_schema(False)),
                     }
@@ -6176,7 +6183,7 @@ def extract_debate_summary(script, theme_name):
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
             thinking=thinking_off(SUMMARY_MODEL),
-            max_tokens=1000,
+            max_tokens=DEBATE_SUMMARY_MAX_TOKENS,
             messages=[{"role": "user", "content": prompt}],
             output_config=_json_output(_debate_summary_schema(True)),
         ))
