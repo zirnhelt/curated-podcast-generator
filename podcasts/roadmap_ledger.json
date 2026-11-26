@@ -666,14 +666,15 @@
       "detail": "On 2026-10-22 Claude debate extraction failed with an unterminated string at line 1 column 2923 (char 2922), and the debate-summary segment used keyword fallback for the Indigenous Lands and Innovation deep dive. Keyword matching can pick the wrong thread from the debate. Check the model output for truncation before parsing and retry the call when it is cut off. Closing this means the debate-summary segment runs on the model path with no fallback.",
       "source": "review",
       "status": "retired",
-      "occurrences": 0,
+      "occurrences": 1,
       "first_seen": "2026-10-22",
       "seen": [
-        "2026-10-22"
+        "2026-10-22",
+        "2026-11-26"
       ],
       "signal": "degraded:script/debate-summary",
-      "signal_seen": "2026-10-22",
-      "last_seen": "2026-10-22"
+      "signal_seen": "2026-11-26",
+      "last_seen": "2026-11-26"
     },
     {
       "id": "host-memory-json-truncation-skips-personality-clues",
@@ -908,5 +909,5 @@
       "last_seen": "2026-11-23"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-26"
 }
