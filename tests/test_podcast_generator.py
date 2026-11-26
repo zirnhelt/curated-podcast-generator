@@ -1389,6 +1389,68 @@ class TestBraveAnswersKey:
         # ...and an auth failure is not a billing wall.
         assert pg._brave_walled("answers") is False
 
+    def _spent_then_ok(self, seen):
+        class _Spent:
+            status_code = 402
+            text = '{"error":"Usage limit exceeded"}'
+
+        class _Ok:
+            status_code = 200
+
+            def json(self):
+                return {"choices": [{"message": {"content": "42 km"}}]}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            token = headers["x-subscription-token"]
+            seen.append(token)
+            return _Spent() if token == "primary" else _Ok()
+        return fake_post
+
+    def test_a_spent_primary_fails_over_to_the_second_plan(self, monkeypatch):
+        """Prepaid credit is reached once the first plan says 402, and the
+        rest of the run stays on it rather than re-asking the spent plan."""
+        import podcast_generator as pg
+        monkeypatch.setenv("BRAVE_ANSWERS_API_KEY", "primary")
+        monkeypatch.setenv("BRAVE_ANSWERS_FALLBACK_API_KEY", "fallback")
+        recorded, seen = [], []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        monkeypatch.setattr(pg.requests, "post", self._spent_then_ok(seen))
+        assert pg._brave_summarize("how far") == "42 km"
+        assert pg._brave_summarize("again") == "42 km"
+        assert seen == ["primary", "fallback", "fallback"]
+        assert pg._brave_walled("answers") is False
+        assert recorded == ["script/brave-answers-failover"]
+
+    def test_without_a_fallback_a_402_still_closes_the_meter(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("BRAVE_ANSWERS_API_KEY", "primary")
+        monkeypatch.delenv("BRAVE_ANSWERS_FALLBACK_API_KEY", raising=False)
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: None)
+        seen = []
+        monkeypatch.setattr(pg.requests, "post", self._spent_then_ok(seen))
+        assert pg._brave_summarize("how far") == ""
+        assert seen == ["primary"]
+        assert pg._brave_walled("answers") is True
+
+    def test_a_spent_fallback_closes_the_meter(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setenv("BRAVE_ANSWERS_API_KEY", "primary")
+        monkeypatch.setenv("BRAVE_ANSWERS_FALLBACK_API_KEY", "primary2")
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: None)
+        seen = []
+
+        class _Spent:
+            status_code = 402
+            text = '{"error":"Usage limit exceeded"}'
+
+        monkeypatch.setattr(pg.requests, "post",
+                            lambda url, headers=None, json=None, timeout=None:
+                            seen.append(headers["x-subscription-token"]) or _Spent())
+        assert pg._brave_summarize("how far") == ""
+        assert pg._brave_summarize("again") == ""
+        assert seen == ["primary", "primary2"]
+        assert pg._brave_walled("answers") is True
+
     def test_no_key_at_all_never_reaches_the_network(self, monkeypatch):
         import podcast_generator as pg
         monkeypatch.delenv("BRAVE_SEARCH_API_KEY", raising=False)

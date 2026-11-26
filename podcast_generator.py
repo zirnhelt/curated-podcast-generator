@@ -1094,7 +1094,7 @@ EVENT_UNFOUND_DEGRADE_SHARE = 1 / 3
 # October 1-8 43 queries for $1.82 — about $0.041 a query, ~90% of it input
 # tokens (~7K a query). The $5 credit buys ~120 queries a month, so 4 a run
 # lasts the month; October's pace under 8 would have spent it by about the 22nd.
-BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "4"))  # 0=disabled
+BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"))  # 0=disabled
 #
 # September 2026 spent ~65 Answers queries against ~2,750 Search: the only
 # caller that asked Answers first was _resolve_script_questions_with_brave, capped
@@ -3384,6 +3384,18 @@ def _brave_answers_key():
     return os.getenv("BRAVE_ANSWERS_API_KEY") or os.getenv("BRAVE_SEARCH_API_KEY")
 
 
+def _brave_answers_fallback_key():
+    """A second Answers subscription, asked only once the first one is spent.
+
+    Two Answers plans each carry their own monthly credit (2026-11-26: the
+    free-credit postpaid plan plus a prepaid top-up). The primary key runs
+    until Brave says 402; the fallback then serves the rest of the run, so
+    money already paid in is reached before research goes dark. Unset means
+    one plan, and a 402 closes the meter as before.
+    """
+    return os.getenv("BRAVE_ANSWERS_FALLBACK_API_KEY")
+
+
 def _is_brave_auth_failure(error) -> bool:
     """True when Brave rejected the *key* rather than the query or the payload.
 
@@ -3420,6 +3432,8 @@ def _brave_summarize(query, api_key=None):
     here holds the Search token and a Brave key is scoped to one subscription.
     """
     api_key = api_key or _brave_answers_key()
+    if _BRAVE_ANSWERS_STATE.get("failover"):
+        api_key = _brave_answers_fallback_key()
     if not api_key:
         return ""
     if _BRAVE_ANSWERS_STATE["disabled"] or _brave_walled("answers"):
@@ -3475,7 +3489,18 @@ def _brave_summarize(query, api_key=None):
                 # Its own plan, its own meter (2026-08-29): this says nothing
                 # about Search, which the callers fall back to. Trip the Answers
                 # wall rather than letting the second request shape spend a call
-                # proving the same thing.
+                # proving the same thing — unless a second Answers plan has
+                # credit left, which then serves the rest of the run.
+                fallback = _brave_answers_fallback_key()
+                if (fallback and fallback != api_key
+                        and not _BRAVE_ANSWERS_STATE.get("failover")):
+                    _BRAVE_ANSWERS_STATE["failover"] = True
+                    print("  🔁 Brave Answers primary plan spent — switching to "
+                          "the fallback plan for the rest of the run")
+                    degrade("script/brave-answers-failover",
+                            f"Answers primary plan spent ({last_error[:80]}) — "
+                            "rest of the run on BRAVE_ANSWERS_FALLBACK_API_KEY")
+                    return _brave_summarize(query)
                 _trip_brave_wall(e, "answers")
                 return ""
             if _is_brave_auth_failure(e):
