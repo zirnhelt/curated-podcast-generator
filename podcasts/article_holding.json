@@ -127,7 +127,8 @@
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
     "target_focus_name": "Economic Development",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-26"
   },
   "https://news.mit.edu/2026/study-reveals-data-centers-long-distance-damage-air-quality-1119": {
     "article": {
@@ -168,47 +169,6 @@
     "target_focus_slug": "conservation-environment",
     "target_focus_name": "Conservation & the Environment",
     "status": "held"
-  },
-  "https://www.techradar.com/pro/drones-can-now-be-tracked-down-by-mobile-networks-alone-could-this-new-ericsson-tech-spell-the-end-for-the-current-crop-of-flying-uavs": {
-    "article": {
-      "id": "https://www.techradar.com/pro/drones-can-now-be-tracked-down-by-mobile-networks-alone-could-this-new-ericsson-tech-spell-the-end-for-the-current-crop-of-flying-uavs",
-      "url": "https://www.techradar.com/pro/drones-can-now-be-tracked-down-by-mobile-networks-alone-could-this-new-ericsson-tech-spell-the-end-for-the-current-crop-of-flying-uavs",
-      "title": "[TechRadar] Drones can now be tracked down by mobile networks alone \u2014 could this new Ericsson tech spell the end for the current crop of flying UAVs?",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/f4bc45Y5nPZS2UKRydrrYH-1920-80.png\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fdrones-can-now-be-tracked-down-by-mobile-networks-alone-could-this-new-ericsson-tech-spell-the-end-for-the-current-crop-of-flying-uavs\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEricsson is developing mobile network technology that detects and tracks drones, with commercial trials planned for 2027 and wider deployment in 2028.",
-      "summary": "Ericsson is developing mobile network technology that detects and tracks drones, with commercial trials planned for 2027 and wider deployment in 2028.",
-      "_excerpt": "Ericsson is developing mobile network technology that detects and tracks drones, with commercial trials planned for 2027 and wider deployment in 2028.",
-      "date_published": "2026-11-08T00:10:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 87,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 60,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_niche": false,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/f4bc45Y5nPZS2UKRydrrYH-1920-80.png",
-      "_boosted_score": 57
-    },
-    "held_date": "2026-11-20",
-    "target_date": "2026-11-25",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-11-25"
   },
   "https://www.aljazeera.com/news/2026/11/9/smog-blankets-new-delhi-as-diwali-firecrackers-worsen-air-quality?traffic_source=rss": {
     "article": {
@@ -415,47 +375,6 @@
     "target_focus_name": "Conservation & the Environment",
     "status": "held"
   },
-  "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754": {
-    "article": {
-      "id": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
-      "url": "https://www.abc.net.au/news/2026-10-27/bid-to-double-wa-renewable-energy-output-amid-price-rise-warning/107313754",
-      "title": "[ABC News] Huge gas-fired power station plan quietly revealed amid renewables fanfare",
-      "content_html": "<img src=\"https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&amp;cropH=1368&amp;cropW=1026&amp;xPos=511&amp;yPos=0&amp;width=862&amp;height=1149\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.abc.net.au%2Fnews%2F2026-10-27%2Fbid-to-double-wa-renewable-energy-output-amid-price-rise-warning%2F107313754\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
-      "summary": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
-      "_excerpt": "WA's environmental watchdog releases for public comment a plan for a mega gas-fired power plant on the same day the state government trumpets an ambitious plan to almost double renewable energy generation.",
-      "date_published": "2026-10-27T03:39:02+00:00",
-      "authors": [
-        {
-          "name": "ABC News",
-          "url": "https://abc.net.au"
-        }
-      ],
-      "ai_score": 42,
-      "_quality": 60,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 15,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_niche": false,
-      "_thin_body": true,
-      "image": "https://live-production.wcms.abc-cdn.net.au/d1042b25ba3c8791b0d9024b7d985edb?impolicy=wcms_crop_resize&cropH=1368&cropW=1026&xPos=511&yPos=0&width=862&height=1149",
-      "_boosted_score": 42
-    },
-    "held_date": "2026-11-22",
-    "target_date": "2026-11-25",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-11-25"
-  },
   "https://hackaday.com/2026/11/19/digital-badge-gets-reverse-engineered/": {
     "article": {
       "id": "https://hackaday.com/2026/11/19/digital-badge-gets-reverse-engineered/",
@@ -535,51 +454,6 @@
     "target_focus_slug": "forestry",
     "target_focus_name": "Forestry & Timber",
     "status": "aired_early"
-  },
-  "https://www.wired.com/story/a-muslim-author-is-suing-xai-after-people-used-grok-to-strip-her-hijab/": {
-    "article": {
-      "id": "https://www.wired.com/story/a-muslim-author-is-suing-xai-after-people-used-grok-to-strip-her-hijab/",
-      "url": "https://www.wired.com/story/a-muslim-author-is-suing-xai-after-people-used-grok-to-strip-her-hijab/",
-      "title": "[WIRED] A Muslim Author Is Suing xAI After People Used Grok to Strip Her Hijab",
-      "content_html": "<img src=\"https://media.wired.com/photos/6afce67e8d4d47192101a96f/master/pass/AI%20Hijab%20stripping.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Fa-muslim-author-is-suing-xai-after-people-used-grok-to-strip-her-hijab%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n\u201cThe only way you get some change against Big Tech is to sue them,\u201d says lawyer Hillary Nappi, who is representing Amani Al-Khatahtbeh in the lawsuit.",
-      "summary": "\u201cThe only way you get some change against Big Tech is to sue them,\u201d says lawyer Hillary Nappi, who is representing Amani Al-Khatahtbeh in the lawsuit.",
-      "_excerpt": "\u201cThe only way you get some change against Big Tech is to sue them,\u201d says lawyer Hillary Nappi, who is representing Amani Al-Khatahtbeh in the lawsuit.",
-      "date_published": "2026-11-18T17:30:54+00:00",
-      "authors": [
-        {
-          "name": "WIRED",
-          "url": "https://www.wired.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 22,
-      "_kite_sources": 0,
-      "_kite_context": "",
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_niche": false,
-      "_thin_body": true,
-      "image": "https://media.wired.com/photos/6afce67e8d4d47192101a96f/master/pass/AI%20Hijab%20stripping.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_boosted_score": 60
-    },
-    "held_date": "2026-11-23",
-    "target_date": "2026-11-25",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-11-25"
   },
   "https://100milefreepress.net/2026/11/22/free-counselling-now-available-through-canadian-mental-health-association/": {
     "article": {
@@ -795,7 +669,8 @@
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
     "target_focus_name": "Economic Development",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-26"
   },
   "https://www.bmj.com/content/395/bmj-2026-101445/rr": {
     "article": {
@@ -957,14 +832,15 @@
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
     "target_focus_name": "Economic Development",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-11-26"
   },
   "https://www.japantimes.co.jp/environment/2026/11/13/el-nino-climate-change-indonesia-fires/": {
     "article": {
       "id": "https://www.japantimes.co.jp/environment/2026/11/13/el-nino-climate-change-indonesia-fires/",
       "url": "https://www.japantimes.co.jp/environment/2026/11/13/el-nino-climate-change-indonesia-fires/",
       "title": "[japantimes.co.jp] Climate change intensified Indonesia\u2019s worst wildfires in a decade, study finds",
-      "content_html": "<img src=\"https://kagiproxy.com/img/cSip-OCAznyI6vUc8E4pigajqEP99lJgfXiD5y8bgUEZoz1Y9dgH6gwviWZAB7fKXmI-tv02poPrZoaeXJP0yYzKTp0q1gfuPiU09a9fxM-Bi7DnMaXnVEdwArjtWmY-mTa9NKGCq1-Ml8CXyz_6ryVh4zFbc6N-42oc_sdTpC23PSnIDMnBhfLM6Jt46Odt2BXmuINyfz4ekWeD4LcyTGaAxxxIyicKUffnr_WUKmEVzMjD7DG9HegBIgW6Nob7yrvR7zFzJEwsS-TChA\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.japantimes.co.jp%2Fenvironment%2F2026%2F11%2F13%2Fel-nino-climate-change-indonesia-fires%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA World Weather Attribution study published Friday found that a strong El Ni\u00f1o drove Indonesia\u2019s severe rainfall shortfall this year, while human-caused climate change made temperatures during the August-to-October fire season about 1.6 degrees Celsius higher. Researchers said warming made hot, dry fire conditions about three times more likely, while El Ni\u00f1o cut seasonal rainfall by roughly half. Decades of deforestation and peatland drainage also left the landscape more vulnerable to ignition.\n\nThe fires have spread hazardous haze across Indonesia and neighboring Southeast Asian countries. Nusantara Atlas, an independent monitoring platform, estimated that fires affected 2.88 million hectares from January through October. The Indonesian government had not confirmed that total or issued its own estimate. Researchers called for peatland restoration, stronger land protections and reduced fossil-fuel emissions. Fires were still burning, with smoke detected in eastern Kalimantan on Nov. 12.",
+      "content_html": "<img src=\"https://kagiproxy.com/img/cSip-OCAznyI6vUc8E4pigajqEP99lJgfXiD5y8bgUEZoz1Y9dgH6gwviWZAB7fKXmI-tv02poPrZoaeXJP0yYzKTp0q1gfuPiU09a9fxM-Bi7DnMaXnVEdwArjtWmY-mTa9NKGCq1-Ml8CXyz_6ryVh4zFbc6N-42oc_sdTpC23PSnIDMnBhfLM6Jt46Odt2BXmuINyfz4ekWeD4LcyTGaAxxxIyicKUffnr_WUKmEVzMjD7DG9HegBIgW6Nob7yrvR7zFzJEwsS-TChA\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.japantimes.co.jp%2Fenvironment%2F2026%2F11%2F13%2Fel-nino-climate-change-indonesia-fires%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA World Weather Attribution study published Friday found that a strong El Ni\u00f1o drove Indonesia\u2019s severe rainfall shortfall this year, while human-caused climate change made temperatures during the August-to-October fire season about 1.6 degrees Celsius higher. Researchers said warming made hot, dry fire conditions about three times more likely, while El Ni\u00f1o cut seasonal rainfall by roughly half. Decades of deforestation and peatland drainage also left the landscape more vulnerable to ignition.\n\nThe fires have spread hazardous haze across Indonesia and neighboring Southeast Asian countries. Nusantara Atlas, an independent monitoring platform, estimated that fires affected 2.88 million hectares from January through October. The Indonesian government had not confirmed that total or issued its own estimate. Researchers called for peatland restoration, stronger land protections and reduced fossil-fuel emissions. Fires were still burning, with smoke detected in eastern Kalimantan on Nov. 12.",
       "summary": "A World Weather Attribution study published Friday found that a strong El Ni\u00f1o drove Indonesia\u2019s severe rainfall shortfall this year, while human-caused climate change made temperatures during the August-to-October fire season about 1.6 degrees Celsius higher. Researchers said warming made hot, dry",
       "_excerpt": "A World Weather Attribution study published Friday found that a strong El Ni\u00f1o drove Indonesia\u2019s severe rainfall shortfall this year, while human-caused climate change made temperatures during the August-to-October fire season about 1.6 degrees Celsius higher. Researchers said warming made hot, dry fire conditions about three times more likely, while El Ni\u00f1o cut seasonal rainfall by roughly half. Decades of deforestation and peatland drainage also left the landscape more vulnerable to ignition (japantimes.co.jp, theguardian.com, straitstimes.com). The fires have spread hazardous haze across Indonesia and neighboring Southeast Asian countries. Nusantara Atlas, an independent monitoring platform, estimated that fires affected 2.88 million hectares from January through October. The Indonesian government had not confirmed that total or issued its own estimate (koreatimes.co.kr, enca.com). Researchers called for peatland restoration, stronger land protections and reduced fossil-fuel emissions. Fires were still burning, with smoke detected in eastern Kalimantan on Nov. 12 (straitstimes.com, japantimes.co.jp). Health toll: Indonesia\u2019s health ministry reported at least 400,000 respiratory infections linked to smoke, including 180,000 among children, according to The Guardian (theguardian.com). Palm concessions: Nusantara Atlas mapped about 202,000 fire-affected hectares inside oil-palm concessions from January to September (eco-business.com). Regional costs: Haze-related school closures in Malaysia affected more than 1,000 schools and about 600,000 pupils in Johor, while Singapore hospital emergency departments saw 20% more visits for potentially haze-related conditions (eco-business.com, straitstimes.com).",
       "date_published": "2026-11-13T03:01:00+00:00",
@@ -978,21 +854,26 @@
       "_quality": 75,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 61,
+      "_theme_score": 72,
       "_theme_score_raw": 5,
       "_kite_sources": 8,
       "_kite_context": "Perspective: Indonesia\u2019s Ministry of Forestry: The ministry said it presented measures combining fire response, prevention, satellite monitoring, enforcement and restoration at ASEAN and U.N. climate forums. It is also seeking faster ratification of a regional haze (ANTARA News)\nPerspective: Roundtable on Sustainable Palm Oil (RSPO): Chief Executive Joseph D\u2019Cruz said Singapore\u2019s inquiries could help establish whether companies deliberately started fires. He said the organization had received no evidence that certified members had done so (Eco-Business)\nPerspective: TheTreeMap and Nusantara Atlas: Founder David Gaveau said Nusantara Atlas detected burning in concessions linked to some companies under Singaporean scrutiny. He said fires can spread onto concession land from outside its boundaries, requiring ground (Eco-Business)\nQuote: \"El Nino turned off the taps, but fossil fuel emissions turned up the heat\" (Friederike Otto, professor of climate science at Imperial College London, The Japan Times)\nTimeline: June 2026: Indonesia\u2019s dry season began, with poor rainfall persisting through October (japantimes.co.jp, straitstimes.com).\nTimeline: September 2026: Indonesia recorded its fifth-driest September since 1991, with below-normal rainfall across about 84% of the archipelago (straitstimes.com).\nTimeline: 4 November 2026: Singapore strengthened its law against transboundary haze pollution (eco-business.com).",
-      "_composite_podcast": 58,
+      "_composite_podcast": 70,
       "_keyword_matches": 0,
       "_category": "climate",
       "_source_category": "climate",
       "_is_bonus": true,
       "_niche": false,
       "image": "https://kagiproxy.com/img/cSip-OCAznyI6vUc8E4pigajqEP99lJgfXiD5y8bgUEZoz1Y9dgH6gwviWZAB7fKXmI-tv02poPrZoaeXJP0yYzKTp0q1gfuPiU09a9fxM-Bi7DnMaXnVEdwArjtWmY-mTa9NKGCq1-Ml8CXyz_6ryVh4zFbc6N-42oc_sdTpC23PSnIDMnBhfLM6Jt46Odt2BXmuINyfz4ekWeD4LcyTGaAxxxIyicKUffnr_WUKmEVzMjD7DG9HegBIgW6Nob7yrvR7zFzJEwsS-TChA",
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-11-25T06:12:58.035713+00:00"
+      },
       "_boosted_score": 48,
       "_body": "A World Weather Attribution study published Friday found that a strong El Ni\u00f1o drove Indonesia\u2019s severe rainfall shortfall this year, while human-caused climate change made temperatures during the August-to-October fire season about 1.6 degrees Celsius higher. Researchers said warming made hot, dry fire conditions about three times more likely, while El Ni\u00f1o cut seasonal rainfall by roughly half. Decades of deforestation and peatland drainage also left the landscape more vulnerable to ignition (japantimes.co.jp, theguardian.com, straitstimes.com). The fires have spread hazardous haze across Indonesia and neighboring Southeast Asian countries. Nusantara Atlas, an independent monitoring platform, estimated that fires affected 2.88 million hectares from January through October. The Indonesian government had not confirmed that total or issued its own estimate (koreatimes.co.kr, enca.com). Researchers called for peatland restoration, stronger land protections and reduced fossil-fuel emissions. Fires were still burning, with smoke detected in eastern Kalimantan on Nov. 12 (straitstimes.com, japantimes.co.jp). Health toll: Indonesia\u2019s health ministry reported at least 400,000 respiratory infections linked to smoke, including 180,000 among children, according to The Guardian (theguardian.com). Palm concessions: Nusantara Atlas mapped about 202,000 fire-affected hectares inside oil-palm concessions from January to September (eco-business.com). Regional costs: Haze-related school closures in Malaysia affected more than 1,000 schools and about 600,000 pupils in Johor, while Singapore hospital emergency departments saw 20% more visits for potentially haze-related conditions (eco-business.com, straitstimes.com)."
     },
-    "held_date": "2026-11-25",
+    "held_date": "2026-11-26",
     "target_date": "2026-11-27",
     "target_weekday": 4,
     "target_focus_slug": "recreation-access",
@@ -1160,5 +1041,83 @@
     "target_focus_slug": "conservation-environment",
     "target_focus_name": "Conservation & the Environment",
     "status": "aired_early"
+  },
+  "https://hackaday.com/2026/11/25/camera-upgrades-for-3d-printers/": {
+    "article": {
+      "id": "https://hackaday.com/2026/11/25/camera-upgrades-for-3d-printers/",
+      "url": "https://hackaday.com/2026/11/25/camera-upgrades-for-3d-printers/",
+      "title": "[Hackaday] Camera Upgrades for 3D Printers",
+      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/11/prusa-camera-main.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F11%2F25%2Fcamera-upgrades-for-3d-printers%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"450\" src=\"https://hackaday.com/wp-content/uploads/2026/11/prusa-camera-main.jpg?w=800\" style=\"margin:0 auto;margin-bottom:15px;\" width=\"800\"/></div>3D printing has come a long way over the years, from being a fussy, barely usable mess to essentially being plug-and-play for a large variety of plastics. And the industry <a class=\"read-more\" href=\"https://hackaday.com/2026/11/25/camera-upgrades-for-3d-printers/\">\u2026read more</a>",
+      "summary": "3D printing has come a long way over the years, from being a fussy, barely usable mess to essentially being plug-and-play for a large variety of plastics. And the industry \u2026read more",
+      "_excerpt": "3D printing has come a long way over the years, from being a fussy, barely usable mess to essentially being plug-and-play for a large variety of plastics. And the industry \u2026read more",
+      "date_published": "2026-11-26T00:00:27+00:00",
+      "authors": [
+        {
+          "name": "Hackaday",
+          "url": "https://hackaday.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 50,
+      "_relevance": 75,
+      "_local": 0,
+      "_theme_score": 38,
+      "_theme_score_raw": 3,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 37,
+      "_keyword_matches": 0,
+      "_category": "homelab",
+      "_source_category": "homelab",
+      "_is_bonus": true,
+      "_niche": false,
+      "image": "https://hackaday.com/wp-content/uploads/2026/11/prusa-camera-main.jpg",
+      "_boosted_score": 55
+    },
+    "held_date": "2026-11-26",
+    "target_date": "2026-12-02",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
+    "status": "held"
+  },
+  "https://www.realagriculture.com/2026/11/chasing-300-bushel-corn-crop-stress-and-a-smarter-fertilizer-spend-wheat-petes-word-nov-25/": {
+    "article": {
+      "id": "https://www.realagriculture.com/2026/11/chasing-300-bushel-corn-crop-stress-and-a-smarter-fertilizer-spend-wheat-petes-word-nov-25/",
+      "url": "https://www.realagriculture.com/2026/11/chasing-300-bushel-corn-crop-stress-and-a-smarter-fertilizer-spend-wheat-petes-word-nov-25/",
+      "title": "[RealAgriculture] Chasing 300-bushel corn, crop stress, and a smarter fertilizer spend | Wheat Pete's Word, Nov 25",
+      "content_html": "<img src=\"https://www.realagriculture.com/cdn-cgi/image/w=1200,h=630,quality=70,fit=cover,f=auto,metadata=none/https://cdn.realagriculture.com/file/ramedia/uploads/2026/11/Word-Nov-25.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\"/>\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.realagriculture.com%2F2026%2F11%2Fchasing-300-bushel-corn-crop-stress-and-a-smarter-fertilizer-spend-wheat-petes-word-nov-25%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIt\u2019s late November, seed buying season is underway in Ontario, and newly released corn performance trials have host Peter \u201cWheat Pete\u201d Johnson eyeing the 300-bushel-per-acre mark. On this episode of Wheat Pete\u2019s Word, Johnson congratulates RealAgriculture founder Shaun Haney on his CAMA Lifetime Achievement Award before diving into grower plot data and agronomic questions. He... Read More",
+      "summary": "It\u2019s late November, seed buying season is underway in Ontario, and newly released corn performance trials have host Peter \u201cWheat Pete\u201d Johnson eyeing the 300-bushel-per-acre mark. On this episode of Wheat Pete\u2019s Word, Johnson congratulates RealAgriculture founder Shaun Haney on his CAMA Lifetime",
+      "_excerpt": "It\u2019s late November, seed buying season is underway in Ontario, and newly released corn performance trials have host Peter \u201cWheat Pete\u201d Johnson eyeing the 300-bushel-per-acre mark. On this episode of Wheat Pete\u2019s Word, Johnson congratulates RealAgriculture founder Shaun Haney on his CAMA Lifetime Achievement Award before diving into grower plot data and agronomic questions. He... Read More",
+      "date_published": "2026-11-25T21:33:47+00:00",
+      "authors": [
+        {
+          "name": "RealAgriculture",
+          "url": "https://www.realagriculture.com"
+        }
+      ],
+      "ai_score": 64,
+      "_quality": 58,
+      "_relevance": 75,
+      "_local": 35,
+      "_theme_score": 38,
+      "_theme_score_raw": 3,
+      "_kite_sources": 0,
+      "_kite_context": "",
+      "_composite_podcast": 37,
+      "_keyword_matches": 0,
+      "_category": "homestead",
+      "_source_category": "homestead",
+      "_is_bonus": true,
+      "_niche": false,
+      "image": "https://www.realagriculture.com/cdn-cgi/image/w=1200,h=630,quality=70,fit=cover,f=auto,metadata=none/https://cdn.realagriculture.com/file/ramedia/uploads/2026/11/Word-Nov-25.jpg",
+      "_boosted_score": 64
+    },
+    "held_date": "2026-11-26",
+    "target_date": "2026-12-08",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "held"
   }
 }
