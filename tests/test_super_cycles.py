@@ -206,6 +206,17 @@ class TestStarvedFocusTakesTheCluster:
         focus, theme_out, bonus_out = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
         assert focus is cal and theme_out is theme and bonus_out is bonus
 
+    def test_a_week_short_on_theme_matches_keeps_its_focus_with_its_bonus_matches(self):
+        # 2026-11-24: Mining & Energy had 9 with its bonus stories and still lost the day
+        # to a sibling with 11, because only a sibling's bonus matches joined the pool.
+        cal = _monday_focus("small-town-journalism")
+        theme, bonus = self._nov16()
+        focus, theme_out, bonus_out = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus is cal
+        moved = {a["title"][:20] for a in theme_out} - {a["title"][:20] for a in theme}
+        assert moved == {"[Columbia Journalism", "[Nieman Lab] Canada ", "[Committee to Protec"}
+        assert [a["title"][:10] for a in bonus_out] == ["[prensa.co"]
+
     def test_no_sibling_cluster_leaves_the_plain_fallback(self):
         cal = _monday_focus("film-screen")
         theme = [_story("[Hyperallergic] A documentary premieres"), _story("[Arts] A gallery opens")]

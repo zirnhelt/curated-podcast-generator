@@ -8568,6 +8568,13 @@ def pick_focus_for_cluster(focus: dict | None, weekday: int, theme_articles: lis
     (raw fit >= HOLD_MIN_THEME_RAW) join the theme pool so the deep dive can use
     them. Most of that day's journalism cluster sat in the bonus bucket. The
     calendar is untouched, as with a high-impact story (`pick_focus_for_pool`).
+
+    The week's own focus gets the same: on 2026-11-24 Mining & Energy had under
+    `count` theme matches but 9 with its on-charter bonus stories, and the day
+    moved to Agriculture & Ranching (11) because only a sibling's bonus matches
+    ever joined the pool. A week whose theme and on-charter bonus matches reach
+    `count` is not starved: it keeps its focus and its bonus matches join the
+    theme pool.
     """
     if not focus:
         return focus, theme_articles, bonus_articles
@@ -8584,6 +8591,12 @@ def pick_focus_for_cluster(focus: dict | None, weekday: int, theme_articles: lis
     own_theme, own_bonus = matches(focus)
     if len(own_theme) >= count:
         return focus, theme_articles, bonus_articles
+    if len(own_theme) + len(own_bonus) >= count:
+        moved = {id(a) for a in own_bonus}
+        print(f"🎯 Focus {focus.get('name')} keeps the day: {len(own_theme)} theme match(es) "
+              f"and {len(own_bonus)} on-charter bonus stor(ies), which join the theme pool")
+        return (focus, theme_articles + own_bonus,
+                [a for a in bonus_articles if id(a) not in moved])
     cycle = load_super_cycles_config().get(str(weekday), {}).get('cycle', [])
     best = None
     for i, sibling in enumerate(cycle):
