@@ -621,6 +621,16 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   by broad keywords (`climate`, `study`, `research`): fix the keyword, not the rule. The
   calendar is untouched; the cold open and memory record the focus that aired.
 
+- **The week's own focus keeps its bonus matches (2026-11-26, the producer's call on 11-24's
+  note "the deep dive could have stuck to mining").** Tuesday's Mining & Energy had under four
+  theme matches but nine with its on-charter bonus stories (no theme keyword, raw ≥
+  `HOLD_MIN_THEME_RAW`). The cluster rule counted those for the week's own focus but only ever
+  promoted a sibling's, so Agriculture & Ranching (11 theme matches) took the day and the deep
+  dive went to Poland, Sweden and Australia. A week whose theme plus on-charter bonus matches
+  reach `DEEP_DIVE_COUNT` is no longer starved: it keeps its focus and those bonus stories join
+  the theme pool, the way a sibling's do. The p70 floor (below) still decides whether they
+  centre the deep dive.
+
 - **A weak focus doesn't centre the deep dive (2026-11-24, the producer's call on 11-23's
   note).** Monday's week focus (Music & Live Performance) matched one story, so the cluster
   pick moved the day to Visual Arts & Heritage, which matched five, each on a single keyword.
