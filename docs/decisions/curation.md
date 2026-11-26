@@ -936,3 +936,15 @@ local block sorts on it first, after the week-recall tag. It is an ordering rule
 exclusion: every local story still airs. The storyboard keeps the local stories in their
 draft order ("Every close-to-home story stays first, in its listed order"), so the draft
 order is the aired order. The deep dive and the Cariboo bar are unchanged.
+
+Since 2026-11-26 one local story may move: the first listed still leads, and a local story on
+the subject or topic of the stories after the local block goes last among the locals, so those
+stories follow it directly (the producer's call on 11-24's note). Tuesday's roundup opened on
+two mining stories, ran through the Clinton fire, pile burning and Remembrance Day, and only
+then reached the theme block's mining stories; with the strike ruling last among the locals,
+The Tyee, Brazil and Pakistan follow it. The same change makes the storyboard's Cariboo beat say
+its link plainly, rest on a roundup story, an aired local story or the research where one bears
+on it, and otherwise reason from how the story plays out in rural places to a likely benefit or
+challenge here, never inventing a named person, business or event (the producer's comment: "it's
+okay to infer a connection about rural use cases and hypothesize Cariboo benefits or
+challenges"). About 120 more tokens on the batched Sonnet 5.5 storyboard, under $0.0001 a run.
