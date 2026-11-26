@@ -1,25 +1,4 @@
 {
-  "2026-10-21": {
-    "timestamp": 1792570915.657294,
-    "topics": [
-      "[Williams Lake Tribune] Where the parties stand on the major",
-      "[My Cariboo Now] Stay-in-Canada option leads Alberta referen",
-      "[Williams Lake Tribune] NDP, Conservatives pitch dozens of U",
-      "[iFixit] How the iPhone Duo\u2019s Crazy Repair Prices Compare",
-      "[Civil Eats] In the Right to Repair Revolt, Nebraska Leads W",
-      "[Global News] Alberta, Saskatchewan premiers shut down Elon ",
-      "[Business Insider] I broke into tech sales after working in ",
-      "[Nieman Lab] Two 23-year-olds used AI to create a daily audi"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-10-21",
-    "focus": "homestead-offgrid",
-    "focus_name": "Homestead & Off-Grid Tech"
-  },
   "2026-10-22": {
     "timestamp": 1792658055.402289,
     "topics": [
@@ -746,5 +725,27 @@
     "date": "2026-11-25",
     "focus": "homestead-offgrid",
     "focus_name": "Homestead & Off-Grid Tech"
+  },
+  "2026-11-26": {
+    "timestamp": 1795680951.745428,
+    "topics": [
+      "[Williams Lake Tribune] Doerkson orders B.C. public service ",
+      "[My Cariboo Now] B.C. government to remove SOGI 123 resource",
+      "[Quesnel Cariboo Observer] SHOP LOCAL: Family-owned City Fur",
+      "[Castanet.net",
+      "[Yellowhead Institute] Whither Albertan \u201cIndependence?\u201d How ",
+      "[winnipegfreepress.com] First Nations youth plan Dec. 8 prot",
+      "[Vancouver Sun] Decision on KSM mine in B.C.&#039;s northwes",
+      "[Mining.com] BHP Foundation,\u00a0Canada\u2019s First Nations Major Pr"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-26",
+    "focus": "economic-development",
+    "focus_name": "Economic Development"
   }
 }

@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-11-09",
-        "clue": "community-trust:~ \u2014 concedes attendance is open door, but authorship remains unproven",
-        "occurrences": 2
-      },
-      {
         "date": "2026-10-31",
         "clue": "structural-lens:+ Pushes for proactive alerts and budgeted replacement reserves",
         "occurrences": 1
@@ -152,6 +147,16 @@
       {
         "date": "2026-11-25",
         "clue": "evidence-bar:~ \u2014 concedes U.S. price list may not apply to BC",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-26",
+        "clue": "structural-lens:+ \u2014 rules and seats shape Nation power, repeatedly",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-26",
+        "clue": "funding-risk:x \u2014 concedes project-funded negotiator concerns, pushes budgets",
         "occurrences": 1
       }
     ],
@@ -432,6 +437,21 @@
         "date": "2026-11-22",
         "clue": "structural-lens:x \u2014 concedes a sooner companion test exists",
         "occurrences": 2
+      },
+      {
+        "date": "2026-11-26",
+        "clue": "funding-risk:+ \u2014 doubts foundation funding interests and project-line staffing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-26",
+        "clue": "evidence-bar:+ \u2014 demands budget lines before praising any program",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-11-26",
+        "clue": "community-trust:~ \u2014 still open on sacrifice question until budgets seen",
+        "occurrences": 1
       }
     ],
     "core_memories": [
