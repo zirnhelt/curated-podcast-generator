@@ -718,6 +718,15 @@ still sized for Sonnet:
 `BRAVE_ANSWERS_CALL_LIMIT` was refit from 8 to 4 off the measured months (about $0.041 a
 query, mostly input tokens) so the $5 Answers credit lasts the month.
 
+**Two Answers plans, failover on 402 (2026-11-26).** The producer added a prepaid Answers plan
+($3 plus its own $5 monthly free credit) beside the free-credit-only postpaid one. Brave scopes
+a key to one plan, so the prepaid credit was unreachable with one key. `BRAVE_ANSWERS_API_KEY`
+stays the postpaid key and `BRAVE_ANSWERS_FALLBACK_API_KEY` is the prepaid one: a 402 on the
+primary moves the rest of the run to the fallback (`script/brave-answers-failover`). Postpaid
+goes first so both free allowances are spent before the paid $3. The limit went back to 8 a
+run (~$10/mo), the paid $3 is the buffer for heavy weeks. Each run starts on the primary, so
+once it is spent for the month a night costs one refused (unbilled) request before failing over.
+
 **The polish now says how it ended (2026-10-13).** `models.review` in the citations is the model
 `select_review_model` *chose*, not proof its text aired. From 2026-10-07 the batch polish was
 discarded on about four nights in seven (the rewrite landed under `MIN_SCRIPT_WORDS` in

@@ -1094,7 +1094,7 @@ EVENT_UNFOUND_DEGRADE_SHARE = 1 / 3
 # October 1-8 43 queries for $1.82 — about $0.041 a query, ~90% of it input
 # tokens (~7K a query). The $5 credit buys ~120 queries a month, so 4 a run
 # lasts the month; October's pace under 8 would have spent it by about the 22nd.
-BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "4"))  # 0=disabled
+BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"))  # 0=disabled
 #
 # September 2026 spent ~65 Answers queries against ~2,750 Search: the only
 # caller that asked Answers first was _resolve_script_questions_with_brave, capped
