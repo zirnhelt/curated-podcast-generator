@@ -6122,6 +6122,25 @@ class TestScriptStageAnthropicFallbacksHonourBillingWall:
             extract_debate_summary("**DEEP DIVE**\nSome debate text.", "Working Lands & Industry")
         assert exc.value.code == EXIT_CREDITS_EXHAUSTED
 
+    def test_debate_summary_has_room_for_a_long_summary(self, monkeypatch):
+        """2026-11-26: both paths cut the JSON at 1000 tokens ("Unterminated string ...
+        char 2939"); summaries already ran up to 2,992 characters."""
+        import podcast_generator as pg
+        assert pg.DEBATE_SUMMARY_MAX_TOKENS >= 2000
+        client = MagicMock()
+        client.messages.create.return_value = _response(
+            "end_turn", [_text_block('{"central_question": "q"}')])
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        assert extract_debate_summary("**DEEP DIVE**\nSome debate text.", "Theme") == {
+            "central_question": "q"}
+        assert client.messages.create.call_args.kwargs["max_tokens"] == pg.DEBATE_SUMMARY_MAX_TOKENS
+        batch_client = MagicMock()
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: batch_client)
+        pg.submit_post_processing_batch("**DEEP DIVE**\nSome debate text.", "Theme", [], [])
+        requests = batch_client.messages.batches.create.call_args.kwargs["requests"]
+        debate = next(r for r in requests if r["custom_id"] == "debate-summary")
+        assert debate["params"]["max_tokens"] == pg.DEBATE_SUMMARY_MAX_TOKENS
+
     def test_debate_summary_degrades_and_falls_back_on_other_failures(self, monkeypatch, clean_segments):
         client = MagicMock()
         client.messages.create.side_effect = Exception("Error code: 503")

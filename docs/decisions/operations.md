@@ -710,6 +710,11 @@ still sized for Sonnet:
   `max_tokens=300` every night, and its `except` only printed. No Answers query ran from
   10-09 to 10-12. It now has 1000 tokens, asks for at most `SCRIPT_QUESTION_LIMIT`, and
   `degrade()`s as `script/fact-questions`.
+- **The debate summary** (`extract_debate_summary` and its batch twin) had 1000. On
+  2026-11-26 both paths cut the JSON mid-string ("Unterminated string ... char 2939") and
+  the memory got the keyword fallback; the 11-15..11-25 summaries had already run 2,290 to
+  2,992 characters, right at the cap. `DEBATE_SUMMARY_MAX_TOKENS` is 2000 on both paths;
+  the cap bills only what is used.
 - **The script** spent all 24000 tokens thinking at Haiku's default `medium` effort, so
   every aired draft was the low-effort retry. It now has 64000, as do its retries.
 - **Polish** used 18,418 of 24000 at low effort, so `POLISH_MAX_TOKENS` is 64000 on both
