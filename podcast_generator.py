@@ -8584,6 +8584,36 @@ def pick_focus_for_pool(calendar_focus: dict | None, weekday: int,
     return focus, story
 
 
+# A week's focus short of keyword matches can still be the day's subject: on
+# 2026-11-25 Homestead & Off-Grid Tech matched 0 by keyword while a home NAS, a
+# garage-door opener that works offline and "Which solar panel type is best for
+# your home?" sat in the bonus stories. Cohere scores the on-charter pool against
+# the focus's lens; `count` stories at or over this score centre it. A first
+# guess, logged with every score so it can be refit (PODCAST_FOCUS_RERANK_MIN).
+FOCUS_RERANK_MIN_SCORE = float(os.getenv("PODCAST_FOCUS_RERANK_MIN", "0.3"))
+FOCUS_RERANK_POOL = 100  # one Cohere search unit
+
+
+def _focus_by_rerank(focus: dict, pool: list, count: int) -> list:
+    """Stories Cohere scores as about *focus*, best first; [] under `count`."""
+    query = f"News about {focus.get('name', '')}: {focus.get('lens', '')}".strip()
+    scored = cohere_enrichment.rerank_scored(query, pool[:FOCUS_RERANK_POOL], count * 2)
+    if not scored:
+        return []
+    print(f"  🎯 Focus rerank for {focus.get('name')} (cutoff {FOCUS_RERANK_MIN_SCORE:.2f}): "
+          + "; ".join(f"{s:.2f} {a.get('title', '')[:45]}" for a, s in scored))
+    hits = []
+    for a, s in scored:
+        if s >= FOCUS_RERANK_MIN_SCORE:
+            a['_focus_semantic'] = s
+            hits.append(a)
+    if len(hits) < count:
+        for a in hits:
+            a.pop('_focus_semantic', None)
+        return []
+    return hits
+
+
 def pick_focus_for_cluster(focus: dict | None, weekday: int, theme_articles: list,
                            bonus_articles: list, count: int = DEEP_DIVE_COUNT
                            ) -> tuple[dict | None, list, list]:
@@ -8607,6 +8637,11 @@ def pick_focus_for_cluster(focus: dict | None, weekday: int, theme_articles: lis
     ever joined the pool. A week whose theme and on-charter bonus matches reach
     `count` is not starved: it keeps its focus and its bonus matches join the
     theme pool.
+
+    A week still short asks Cohere whether the on-charter pool is about its focus
+    anyway (`_focus_by_rerank`, the producer's call on 2026-11-25's note): `count`
+    stories at or over `FOCUS_RERANK_MIN_SCORE` keep the focus, tagged
+    `_focus_semantic`, and its bonus ones join the theme pool.
     """
     if not focus:
         return focus, theme_articles, bonus_articles
@@ -8628,6 +8663,18 @@ def pick_focus_for_cluster(focus: dict | None, weekday: int, theme_articles: lis
         print(f"🎯 Focus {focus.get('name')} keeps the day: {len(own_theme)} theme match(es) "
               f"and {len(own_bonus)} on-charter bonus stor(ies), which join the theme pool")
         return (focus, theme_articles + own_bonus,
+                [a for a in bonus_articles if id(a) not in moved])
+    pool = [a for a in theme_articles if candidate(a) and _clears_charter_floor(a)] + [
+        a for a in bonus_articles if candidate(a) and _clears_charter_floor(a)
+        and _theme_fit_raw(a) >= HOLD_MIN_THEME_RAW]
+    found = _focus_by_rerank(focus, pool, count)
+    if found:
+        bonus_ids = {id(a) for a in bonus_articles}
+        moved = {id(a) for a in found if id(a) in bonus_ids}
+        print(f"🎯 Focus {focus.get('name')} keeps the day on Cohere's reading: {len(found)} "
+              f"stor(ies) at or over {FOCUS_RERANK_MIN_SCORE:.2f}, {len(moved)} from the bonus "
+              "bucket join the theme pool")
+        return (focus, theme_articles + [a for a in found if id(a) in moved],
                 [a for a in bonus_articles if id(a) not in moved])
     cycle = load_super_cycles_config().get(str(weekday), {}).get('cycle', [])
     best = None
@@ -9227,10 +9274,13 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
     focus_centred = False
     if focus_keywords:
         for a in candidates:
-            a['_focus_matches'] = _focus_hit_count(a, focus_keywords)
+            # A story Cohere read as about the focus counts as one match.
+            a['_focus_matches'] = (_focus_hit_count(a, focus_keywords)
+                                   or (1 if a.get('_focus_semantic') else 0))
         focus_strong = sorted(
             (a for a in candidates if a.get('_focus_matches', 0) > 0),
-            key=lambda a: (a.get('_focus_matches', 0), a.get('_keyword_matches', 0),
+            key=lambda a: (a.get('_focus_matches', 0), a.get('_focus_semantic') or 0,
+                           a.get('_keyword_matches', 0),
                            a.get('_boosted_score', a.get('ai_score', 0))),
             reverse=True,
         )
@@ -9256,7 +9306,8 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=DEEP_DIVE_COUNT
         # then the event): never reranked.
         deep_dive = subject_deep_dive
     elif deep_dive is not None:
-        rerank_pool = focus_fit
+        # Cohere already ranked a focus it found: never a second call for it.
+        rerank_pool = None if any(a.get('_focus_semantic') for a in focus_fit) else focus_fit
     elif strong_match:
         # Feed provided keyword matches — use them
         rerank_pool = strong_match

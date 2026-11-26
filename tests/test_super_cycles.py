@@ -217,6 +217,55 @@ class TestStarvedFocusTakesTheCluster:
         assert moved == {"[Columbia Journalism", "[Nieman Lab] Canada ", "[Committee to Protec"}
         assert [a["title"][:10] for a in bonus_out] == ["[prensa.co"]
 
+    # 2026-11-25: Homestead & Off-Grid Tech matched 0 by keyword; the producer: "Plenty of
+    # articles would have fit the original deep dive super cycle theme."
+    def _offgrid_pool(self):
+        theme = [_story("[Engadget] Which panel type suits a rural roof", raw=40),
+                 _story("[Hackaday] A garage door opener that keeps working offline", raw=62),
+                 _story("[Arts] A gallery opens downtown", raw=50)]
+        bonus = [_story("[Hackster] Upcycle an old desktop into a four-bay home server", raw=62,
+                        bonus=True),
+                 _story("[New Atlas] Sun-powered pump cuts the cost of irrigation", raw=38, bonus=True),
+                 _story("[prensa.com] A stray off the charter", raw=10, bonus=True)]
+        return theme, bonus
+
+    def _scores(self, monkeypatch, scores):
+        seen = {}
+
+        def fake(query, articles, top_n):
+            seen["query"], seen["pool"] = query, [a["title"] for a in articles]
+            return [(a, scores[a["title"]]) for a in articles if a["title"] in scores]
+        monkeypatch.setattr(pg.cohere_enrichment, "rerank_scored", fake)
+        return seen
+
+    def test_a_keyword_starved_focus_keeps_the_day_on_cohere_s_reading(self, monkeypatch):
+        cal = _monday_focus("film-screen")
+        theme, bonus = self._offgrid_pool()
+        seen = self._scores(monkeypatch, {theme[0]["title"]: 0.81, theme[1]["title"]: 0.62,
+                                          bonus[0]["title"]: 0.55, bonus[1]["title"]: 0.47,
+                                          theme[2]["title"]: 0.04})
+        focus, theme_out, bonus_out = pg.pick_focus_for_cluster(cal, 0, theme, bonus)
+        assert focus is cal and focus["name"] in seen["query"]
+        assert "[prensa.com] A stray off the charter" not in seen["pool"]
+        assert [a["title"][:10] for a in bonus_out] == ["[prensa.co"]
+        assert {a["title"][:10] for a in theme_out} >= {"[Hackster]", "[New Atlas"}
+        monkeypatch.setattr(pg, "DEEP_DIVE_PICK_ENABLED", False)
+        monkeypatch.setattr(pg.cohere_enrichment, "rerank_for_deep_dive",
+                            lambda *a, **k: pytest.fail("a second rerank for a found focus"))
+        deep_dive, _ = pg.select_deep_dive_from_feed(
+            theme_out, "Arts, Culture & Digital Storytelling", count=4, focus=focus)
+        assert [a["title"][:10] for a in deep_dive] == [
+            "[Engadget]", "[Hackaday]", "[Hackster]", "[New Atlas"]
+        assert all(a["_focus_centred"] for a in deep_dive)
+
+    def test_too_few_over_the_cutoff_leave_the_focus_starved(self, monkeypatch):
+        cal = _monday_focus("film-screen")
+        theme, bonus = self._offgrid_pool()
+        self._scores(monkeypatch, {theme[0]["title"]: 0.81, theme[1]["title"]: 0.62,
+                                   bonus[0]["title"]: 0.12})
+        assert pg.pick_focus_for_cluster(cal, 0, theme, bonus) == (cal, theme, bonus)
+        assert not any("_focus_semantic" in a for a in theme + bonus)
+
     def test_no_sibling_cluster_leaves_the_plain_fallback(self):
         cal = _monday_focus("film-screen")
         theme = [_story("[Hyperallergic] A documentary premieres"), _story("[Arts] A gallery opens")]

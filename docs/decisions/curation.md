@@ -631,6 +631,21 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   the theme pool, the way a sibling's do. The p70 floor (below) still decides whether they
   centre the deep dive.
 
+- **A keyword-starved focus can still be the day's subject (2026-11-26, the producer's call on
+  11-25's note "plenty of articles would have fit").** Wednesday's Homestead & Off-Grid Tech
+  matched 0 by keyword while a home NAS build, a garage-door opener that keeps working offline
+  and "Which solar panel type is best for your home?" sat in the bonus stories (p87-98), and the
+  keyword list missed solar alone, batteries and home networks. A week still short after its own
+  bonus matches now asks Cohere: one rerank of the on-charter pool (theme stories plus bonus
+  stories at raw ≥ `HOLD_MIN_THEME_RAW`, all at the p70 floor, at most 100, one search unit)
+  against "News about <focus>: <lens>". `DEEP_DIVE_COUNT` stories at or over
+  `FOCUS_RERANK_MIN_SCORE` keep the focus; they are tagged `_focus_semantic` with their score,
+  count as one focus match each, and the deep dive takes them in score order without a second
+  rerank. Otherwise the sibling search and the plain theme run as before. The 0.3 cutoff is a
+  first guess: every score is logged (`🎯 Focus rerank for …`) to refit it. Cost: the call
+  replaces the deep-dive rerank on a day it centres the focus, and adds one ($0.002) on a
+  keyword-starved day it doesn't, about $0.03 a month.
+
 - **A weak focus doesn't centre the deep dive (2026-11-24, the producer's call on 11-23's
   note).** Monday's week focus (Music & Live Performance) matched one story, so the cluster
   pick moved the day to Visual Arts & Heritage, which matched five, each on a single keyword.
