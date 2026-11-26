@@ -780,7 +780,7 @@ jobs:
           review=$(basename "$(ls podcasts/reviews/episode-review-*.html | sort | tail -1)")
           feed="https://zirnhelt.github.io/curated-podcast-generator/episode-reviews.xml"
           for attempt in $(seq 1 30); do
-            curl -sf --max-time 10 "$feed" | grep -q "$review" && break
+            curl -sf --max-time 10 "$feed" | grep -F "$review" >/dev/null && break
             sleep 30
           done
           code=$(curl -sS -o /tmp/dispatch.json -w '%{http_code}' -X POST \
