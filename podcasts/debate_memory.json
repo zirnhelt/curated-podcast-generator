@@ -1,32 +1,4 @@
 {
-  "2026-08-28": {
-    "timestamp": 1787923748.20073,
-    "date": "2026-08-28",
-    "theme": "Wild Spaces & Outdoor Life",
-    "focus": "wildfire-resilience",
-    "anchor": "allowed-to-fix",
-    "central_question": "Who should have the authority to act on their land during wildfires\u2014individual property owners making real-time decisions, or government agencies issuing formal evacuation orders?",
-    "riley_position": "Current informal individual action during emergencies is necessary but dangerous; formalizing property-defense authority through legal frameworks similar to those in the U.S. and Australia would provide structure, training standards, and legal clarity instead of requiring people to improvise in violation of orders.",
-    "riley_key_evidence": [
-      "Sienna Belanger made critical decisions about her horses and barn in real time while evacuation order systems lagged behind actual fire behavior",
-      "The Pear Lake fire changed alert status twice in one week, demonstrating how orders cannot keep pace with fire dynamics",
-      "Structure protection programs in the U.S. and Australia deputize trained property owners with equipment and defined scope, providing a legal alternative to improvisation"
-    ],
-    "casey_position": "Evacuation orders exist because uncoordinated individual action endangers civilians and fire crews, but institutions are slow to grant authority they'd become accountable for; the real policy gap is the absence of a legal middle ground between full evacuation and nothing.",
-    "casey_key_evidence": [
-      "Uncoordinated individual action gets people and fire crews killed, making evacuation orders necessary for safety",
-      "Managed retreat examples like Newtok and Isle de Jean Charles show agencies only ratify decisions residents made years earlier, after communities have already managed decline with no resources or authority",
-      "No formal training standards, liability frameworks, or funding mechanisms currently exist in B.C. to support deputized property owners"
-    ],
-    "resolution": "Riley and Casey converge on the solution: a new legal category\u2014registered property-defense status that property owners could apply for before fire season, with defined scope and training requirements, requiring only regulatory drafting by the province rather than funding, and potentially raisable by the Cariboo Regional District without waiting for grant cycles.",
-    "topics_covered": [
-      "Individual authority versus institutional control during wildfire evacuation decisions",
-      "Comparison between formal structure protection programs in the U.S./Australia and informal B.C. practices",
-      "Managed retreat and climate migration at slow timescales versus emergency response at fast timescales",
-      "Indigenous fire management authority and the T\u015dilhqot'in National Government's independent emergency protocols",
-      "Policy gaps in B.C. wildfire response requiring legal rather than technological solutions"
-    ]
-  },
   "2026-08-29": {
     "timestamp": 1788011917.961836,
     "date": "2026-08-29",
@@ -2561,6 +2533,34 @@
     "topics_covered": [
       "AI",
       "funding"
+    ]
+  },
+  "2026-11-27": {
+    "timestamp": 1795767306.474935,
+    "date": "2026-11-27",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": null,
+    "anchor": "staying-versus-leaving",
+    "central_question": "Is staying on and replanting burned Chilcotin high country protecting ground that can still be held, or is it clinging to work the warming climate is about to undo?",
+    "riley_position": "Staying is how burned country comes back, since someone has to be on site with the seedlings, and a planting program already running (resistant whitebark pine, prescribed fire, monitoring) makes local presence a real step toward recovery.",
+    "riley_key_evidence": [
+      "Central Chilcotin Rehabilitation planted endangered whitebark pine near Middle Lake after the 2023 Hell Raving Creek wildfire, which burned about 12,000 hectares.",
+      "Parks Canada is growing resistant trees across its seven mountain national parks, and the BC government lists similar actions.",
+      "World Weather Attribution found climate change made hot, dry fire conditions about three times likelier in Indonesia, and Peatland drainage contributed about 2.7 percent of present-day human-caused warming."
+    ],
+    "casey_position": "Presence shows loyalty, not that the ground can hold; the planting targets a species under multiple unresolved threats, and restoration outcomes, funding, and decision authority remain unproven and must be tested over years.",
+    "casey_key_evidence": [
+      "Whitebark pine is federally listed as endangered, with populations declining sharply mostly from white pine blister rust, per a 2025 Canadian Journal of Forest Research paper.",
+      "The 2010 federal assessment named four ongoing threats: blister rust, mountain pine beetle, fire exclusion and climate change.",
+      "Nautilus reports oceans absorbed 35 percent and plants 13 percent of fossil-fuel CO2 since 1990, but scientists don't understand how these sinks will behave in the future."
+    ],
+    "resolution": "They did not fully agree. Riley conceded that the governance terms (nation's role, community forest decisions, funding) are unknown and should be named rather than guessed, and both agreed a written pull-out rule and a named, budgeted person should judge whether a site is holdable. Casey remained unconvinced that staying counts as proof, and the question of who can call a burned site holdable was left open.",
+    "topics_covered": [
+      "Whitebark pine restoration after the Hell Raving Creek wildfire",
+      "Fire, prescribed burning, and the Indonesia fire attribution study",
+      "Peatland drainage and local stewardship",
+      "Carbon sinks and the uncertainty of restoration gains",
+      "Human cost of staying versus leaving, and governance of land decisions"
     ]
   }
 }
