@@ -900,14 +900,15 @@
       "title": "Deep dive citations matched only 2 of 4 on this run.",
       "detail": "citation_alignment shows deep_dive_citations_matched 2 of deep_dive_citations_total 4, against 15 of 18 for the roundup. The review notes the expand pass may pull claims from outside the four deep dive sources. Checking whether expansion-added claims are attributed to their sources, and failing or flagging unattributed ones, would close this.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-11-23",
       "seen": [
-        "2026-11-23"
+        "2026-11-23",
+        "2026-11-27"
       ],
-      "last_seen": "2026-11-23"
+      "last_seen": "2026-11-27"
     }
   ],
-  "updated": "2026-11-26"
+  "updated": "2026-11-27"
 }

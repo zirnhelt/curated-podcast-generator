@@ -1,5 +1,303 @@
 [
   {
+    "date": "2026-11-27",
+    "title": "Episode Review — Wild Spaces & Outdoor Life, November 27, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-27.html",
+    "content_html": "<p class=\"meta\">Theme: Wild Spaces &amp; Outdoor Life. Focus: Recreation &amp; Backcountry Access (week 3 of 4). Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/45962996025\">45962996025</a>.</p>\n\n<div class=\"verdict lvl-good\"><span class=\"icon\" aria-hidden=\"true\">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>\n\n<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>\n\n<h2>What happened</h2>\n<h3>Two articles released under the cap; five held back for a missing focus</h3>\n<p>Focus routing released 2 articles and held 5. The held stories were targeted at Discovery, Health &amp; How Science Works, Agriculture &amp; Ranching, and Digital Life &amp; Security, and none of those focuses was active tonight. The two releases were both climate-and-disaster stories that landed in the current theme, and they were held since 2026-11-21 and 2026-11-26 respectively. Five stories waited for focus windows that did not arrive in this run.</p>\n\n<h3>The roundup opened on local news, but 42 stories were cut for airtime</h3>\n<p>The roundup pool kept 18 stories (10 theme, 8 local), and 42 were dropped by the airtime budget under NEWS_ROUNDUP_COUNT. Of 9 local stories available, 8 aired, and the roundup opened on local news. The cut is by design: the pool is larger than one segment can carry, and a dropped story can resurface on a better-matched day. The thing to watch is the imbalance in the cut itself. 18 unused on-theme candidates were left behind, which is the reserve the next runs draw from.</p>\n\n<h3>The short first draft was expanded, and the shipped script still fell short of its target</h3>\n<p>The first draft came in at 2768 words against a target of 3400, so it went back for one expand pass. The shipped script is 3669 words, above target. That is the number that counts; the first-draft shortfall was corrected before release. Shipping at 3669 words means the expand pass did its job, and the episode met length without padding past the target.</p>\n\n<h3>One TTS take came back short and stayed short after retry</h3>\n<p>One TTS segment returned shorter than its word count predicted and was retried once. The retry was still short, so the longer of the two takes was kept. Nothing was dropped from the episode. The single occurrence is the only audio irregularity in the run.</p>\n\n<p><strong>Script vs. storyboard: loosely kept.</strong> The episode keeps the plan's central question, stances and landing, but the deep dive adds a long Indonesia fire-weather and palm oil digression and drops the Chilcotin-specific claim about the nation's and community forest's governance. The roundup mostly holds its order, with the Quesnel airport and Legion stories tightened and the Burwell family story moved and reshaped.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>84</td></tr>\n<tr><td>Kept after dedup</td><td>67</td></tr>\n<tr><td>Held / released</td><td>2 released, 5 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — theme:10, local:8</td></tr>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.77, 3669 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 42% of the words</td></tr>\n<tr><td>Audio</td><td>22.4 min</td></tr>\n<tr><td>Audio size</td><td>20.5 MB</td></tr>\n<tr><td>Citations matched</td><td>16/18 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>303 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>87,383</td></tr>\n<tr><td>API calls</td><td>129 total: openai-tts 102 · claude 11 · cohere 5 · brave-search 4 · brave-answers 4 · kagi-extract 3</td></tr>\n<tr><td>Anthropic cost</td><td>$0.16 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.68 at list price: OpenAI TTS $0.318 · Brave Answers $0.164 · Anthropic $0.161 · Brave Search $0.020 · Kagi Extract $0.012 · Cohere $0.003</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-27T10:06:03+00:00",
+    "metrics": {
+      "audio_minutes": 22.4,
+      "script_words": 3669,
+      "tell_hits": 1,
+      "roundup_cite_pct": 88.9,
+      "deep_dive_cite_pct": 75.0,
+      "cost_usd": 0.678
+    },
+    "summary": {
+      "level": "good",
+      "label": "Shipped clean",
+      "summary": "Nothing broke and nothing fell back.",
+      "theme": "Wild Spaces & Outdoor Life",
+      "kpis": [
+        [
+          "Episode",
+          "22.4 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,669",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "16/18 · 3/4",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.68",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:25 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [],
+      "cycle": [
+        {
+          "date": "2026-11-23",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Music & Live Performance",
+          "week": 2,
+          "of": 5,
+          "next": "Visual Arts & Heritage",
+          "event": null
+        },
+        {
+          "date": "2026-11-24",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Mining & Energy",
+          "week": 3,
+          "of": 4,
+          "next": "Tourism & the Outdoor Economy",
+          "event": null
+        },
+        {
+          "date": "2026-11-25",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Homestead & Off-Grid Tech",
+          "week": 2,
+          "of": 5,
+          "next": "Digital Life & Security",
+          "event": null
+        },
+        {
+          "date": "2026-11-26",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Economic Development",
+          "week": 3,
+          "of": 4,
+          "next": "Guardians & Land Stewardship",
+          "event": null
+        },
+        {
+          "date": "2026-11-27",
+          "day": "Fri",
+          "today": true,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 4,
+          "next": "Conservation & the Environment",
+          "event": null
+        },
+        {
+          "date": "2026-11-28",
+          "day": "Sat",
+          "today": false,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-29",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Earth Systems & Climate Science",
+          "week": 3,
+          "of": 5,
+          "next": "Discovery, Health & How Science Works",
+          "event": null
+        }
+      ],
+      "anchor": "Is staying put a virtue or a failure of nerve?",
+      "focus": {
+        "name": "",
+        "centred": false,
+        "moved_from": "Recreation & Backcountry Access"
+      },
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/26/Pipeline-Threatens-Salmon-Streams-Endangered-Species/",
+          "title": "[The Tyee] Pipeline Threatens Salmon Streams and Endangered Species, New Studies Reveal",
+          "source": "",
+          "theme_pct": 100,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://gizmodo.com/scientists-finally-found-a-way-to-track-hummingbirds-and-one-just-broke-a-migration-record-2000844838",
+          "title": "[gizmodo.com] Tiny solar tracker records hummingbird’s 4,055-mile migration to Alaska",
+          "source": "",
+          "theme_pct": 98,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.livefortheoutdoors.com/hiking/long-reads/how-to-navigate-safely-digitally/",
+          "title": "[Live for the Outdoors (Country Walking)] Young walkers aren’t using maps and compasses anymore. So what do we do about it?",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.scientificamerican.com/article/can-the-amazon-rainforest-survive-the-largest-el-nino-in-living-memory/",
+          "title": "[Scientific American] Can the Amazon rainforest survive the largest El Niño in living memory?",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.outsideonline.com/adventure-travel/national-parks/grand-canyon-superintendent-ed-keable-retirement/",
+          "title": "[Outside Online] After a Scathing Report on the Dragon Bravo Fire, the Grand Canyon’s Superintendent Is Retiring",
+          "source": "",
+          "theme_pct": 97,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.abc.net.au/news/2026-11-25/scientists-issue-great-barrier-reef-coral-bleaching-warning/107412866",
+          "title": "[ABC News] El Niño, climate change create 'unprecedented ocean heat'",
+          "source": "",
+          "theme_pct": 96,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.countrylife.co.uk/countryside/nature-wildlife/the-perfect-theatre-for-a-deep-scientific-enquiry-to-help-the-endangered-atlantic-salmon-how-we-should-be-restoring-our-rivers",
+          "title": "[Country Life] 'The perfect theatre for a deep scientific enquiry to help the endangered Atlantic salmon': How we should be restoring our rivers",
+          "source": "",
+          "theme_pct": 94,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://news.mit.edu/2026/draining-peatlands-leaves-long-warming-legacy-1125",
+          "title": "[MIT News] Draining peatlands leaves a long legacy of warming",
+          "source": "",
+          "theme_pct": 94,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://thetyee.ca/News/2026/11/26/Building-Canada-Strong-Act-BC-Environment/",
+          "title": "[The Tyee] The ‘Building Canada Strong Act’ Will Hit BC’s Environment Hardest",
+          "source": "",
+          "theme_pct": 94,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://blog.adafruit.com/2026/11/18/drones-that-land-on-live-power-lines-and-recharge-from-the-magnetic-field/",
+          "title": "[Adafruit Blog] Drones that land on live power lines and recharge from the magnetic field",
+          "source": "",
+          "theme_pct": 94,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.theguardian.com/us-news/2026/nov/23/california-high-tides-floods-weather-thanksgiving",
+          "title": "[theguardian.com] California king tides and storms threaten record coastal flooding",
+          "source": "",
+          "theme_pct": 94,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://nautil.us/oceans-and-forests-have-absorbed-roughly-half-our-carbon-emissions-for-decades-slowing-climate-change-but-can-they-keep-it-up-1286879/",
+          "title": "[Nautilus] Oceans and Forests Have Absorbed Roughly Half Our Carbon Emissions for Decades, Slowing Climate Change. But Can They Keep It Up?",
+          "source": "",
+          "theme_pct": 92,
+          "reason": "aired in the roundup; not picked for the deep dive",
+          "aired": true
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://macleans.ca/society/technology/whose-land-is-canadas-ai-boom-built-on/",
+          "title": "[Maclean's] Whose Land Is Canada’s AI Boom Built On?",
+          "source": "",
+          "theme_pct": 92,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://hamradio.my/cardputer-hamos-m5stack-cardputer-adv-amateur-radio-toolkit/",
+          "title": "[9M2PJU] Cardputer HamOS: 47 Amateur Radio Apps in One Pocket Firmware for the M5Stack Cardputer ADV",
+          "source": "",
+          "theme_pct": 92,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "deep_dive",
+          "url": "https://www.smallfarmcanada.ca/news/preparing-your-woodlot-for-winter-a-practical-checklist/",
+          "title": "[Small Farm Canada] Preparing Your Woodlot for Winter: A Practical Checklist",
+          "source": "",
+          "theme_pct": 92,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "Is staying on and replanting burned Chilcotin high country protecting ground that can still be held, or is it clinging to work the warming climate is about to undo?",
+        "riley": "Staying is how burned country comes back, since someone has to be on site with the seedlings, and a planting program already running (resistant whitebark pine, prescribed fire, monitoring) makes local presence a real step toward recovery.",
+        "casey": "Presence shows loyalty, not that the ground can hold; the planting targets a species under multiple unresolved threats, and restoration outcomes, funding, and decision authority remain unproven and must be tested over years.",
+        "resolution": "They did not fully agree. Riley conceded that the governance terms (nation's role, community forest decisions, funding) are unknown and should be named rather than guessed, and both agreed a written pull-out rule and a named, budgeted person should judge whether a site is holdable. Casey remained unconvinced that staying counts as proof, and the question of who can call a burned site holdable was ",
+        "topics": [
+          "Whitebark pine restoration after the Hell Raving Creek wildfire",
+          "Fire, prescribed burning, and the Indonesia fire attribution study",
+          "Peatland drainage and local stewardship",
+          "Carbon sinks and the uncertainty of restoration gains",
+          "Human cost of staying versus leaving, and governance of land decisions"
+        ],
+        "sources": [
+          {
+            "title": "Climate change intensified Indonesia’s worst wildfires in a decade, study finds",
+            "url": "https://www.japantimes.co.jp/environment/2026/11/13/el-nino-climate-change-indonesia-fires/"
+          },
+          {
+            "title": "Climate-driven extreme weather kills tens of thousands worldwide in 2026",
+            "url": "https://www.theguardian.com/world/2026/nov/14/fires-heat-floods-extreme-weather-2026"
+          },
+          {
+            "title": "Endangered whitebark pine planted in Chilcotin wildfire recovery effort",
+            "url": "https://www.mycariboonow.com/317597/news/environment/forestry-environment/endangered-whitebark-pine-planted-in-chilcotin-wildfire-recovery-effort/"
+          }
+        ]
+      }
+    }
+  },
+  {
     "date": "2026-11-26",
     "title": "Episode Review — Indigenous Lands & Innovation, November 26, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-26.html",
@@ -5848,20 +6146,6 @@
       "tell_hits": 2,
       "roundup_cite_pct": 72.2,
       "deep_dive_cite_pct": 100.0
-    }
-  },
-  {
-    "date": "2026-10-28",
-    "title": "Episode Review — Cariboo Signals, October 28, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-28.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/40654323854\">40654323854</a>.</p>\n\n<div class=\"verdict lvl-good\"><span class=\"icon\" aria-hidden=\"true\">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>\n\n<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>\n\n<h2>What happened</h2>\n<h3>Two of three runs did not need a fallback, and the third is this review</h3>\n<p>The primary run started at 1:05 AM Pacific, on time, and completed successfully, finishing at 1:34 AM Pacific. Fallback 1 at 2:05 AM Pacific also completed successfully with no delay. Fallback 2 at 3:05 AM Pacific is the run producing this review and is still in progress. The scheduler chain fired as designed, but the primary run was the only one whose output was needed.</p>\n\n<h3>The script shipped 1,000 words over target after one expand pass</h3>\n<p>The first draft came in at 2,536 words against a target of 3,400, so it was sent back for one expand pass. The shipped script is 3,529 words, which is above target, not under it. The expand pass overshot the target by 129 words, so the length control is loose in the upward direction as well as the downward one. The editorial review does not treat this as a failure, but the one-pass rule is what let it land above target.</p>\n<p><em>Change: consider a second length check after the expand pass in the script generator, so the output lands closer to the 3,400-word target.</em></p>\n\n<h3>Ten of eighteen roundup citations matched, and the deep dives matched three of four</h3>\n<p>Ten of the 18 roundup citations were matched to their source, and three of the four deep-dive citations were matched. The unmatched citations were not caught by the pipeline and carry no verified attribution in tonight's script. Of the 23 stories cut from the roundup pool by the airtime budget, that cut is by design, and the stories remain in the pool for a later day.</p>\n<p><em>Change: inspect the eight unmatched roundup citations and the one unmatched deep-dive citation to see whether the matcher or the source attribution is the cause.</em></p>\n\n<h3>Casey carried 57 percent of the deep-dive words, and the AI-tell check flagged three hits</h3>\n<p>Casey's share of the deep-dive words was 57 percent, and the voice ratio of Casey to Riley was 1.4. The ratio is the one the show's voice settings aim for, but the deep-dive word share sits well above half. The AI-tell pattern check flagged three hits in the script. Both results are within the pipeline's acceptance thresholds and are listed here so the maintainer can see the balance of the two voices tonight.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>3 pattern hit(s), voice ratio 1.4, 3529 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 57% of the words</td></tr>\n<tr><td>Audio</td><td>21.0 min</td></tr>\n<tr><td>Audio size</td><td>19.2 MB</td></tr>\n<tr><td>Citations matched</td><td>10/18 roundup, 3/4 deep dive</td></tr>\n<tr><td>Feed</td><td>273 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>73,761</td></tr>\n<tr><td>API calls</td><td>20 total: claude 10 · brave-search 4 · brave-answers 4 · kagi-extract 2</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-28T10:06:02+00:00",
-    "metrics": {
-      "audio_minutes": 21.0,
-      "script_words": 3529,
-      "tell_hits": 3,
-      "roundup_cite_pct": 55.6,
-      "deep_dive_cite_pct": 75.0
     }
   }
 ]

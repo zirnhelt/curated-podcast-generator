@@ -41,7 +41,7 @@ written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-11-20..2026-11-25) — 1 open. An
+_Distilled from the daily reviews by `episode_review.py` (2026-11-20..2026-11-27) — 2 open. An
 item with a signal closes itself once the signal has been absent for 3 days. Check a box to
 close one; it comes back only if the reviews raise it 2 more times._
 
@@ -53,6 +53,12 @@ close one; it comes back only if the reviews raise it 2 more times._
       require at least one Cariboo-tagged candidate when one exists in the theme feed, and log
       the reason when it does not. (signal `deep-dive-non-local`; seen in 5 reviews, latest
       2026-11-25)
+- [ ] **Deep dive citations matched only 2 of 4 on this run.** citation_alignment shows
+      deep_dive_citations_matched 2 of deep_dive_citations_total 4, against 15 of 18 for the
+      roundup. The review notes the expand pass may pull claims from outside the four deep dive
+      sources. Checking whether expansion-added claims are attributed to their sources, and
+      failing or flagging unattributed ones, would close this. (seen in 2 reviews, latest
+      2026-11-27)
 
 <!-- reviews:end -->
 
