@@ -1,14 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-11-06",
-      "words": 3959,
-      "counts": {
-        "severely": 2,
-        "grizzly": 6
-      }
-    },
-    {
       "date": "2026-11-07",
       "words": 3251,
       "counts": {
@@ -154,8 +146,16 @@
         "partly": 2,
         "entirely": 2
       }
+    },
+    {
+      "date": "2026-11-27",
+      "words": 3669,
+      "counts": {
+        "mainly": 4,
+        "sharply": 2
+      }
     }
   ],
   "burned": {},
-  "updated": "2026-11-26"
+  "updated": "2026-11-27"
 }
