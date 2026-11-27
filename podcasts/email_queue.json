@@ -2378,6 +2378,21 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-11-23"
+    },
+    {
+      "id": "7b8084db",
+      "type": "feedback",
+      "message_id": "<CABACRGVqFrRp_Sx68+H2VPLKRFHwUwecTcCT2zo-YX6J0_G+zA@mail.gmail.com>",
+      "from_address": "z***@gmail.com",
+      "from_producer": false,
+      "subject": "Weekly Pop Culture and Silly Themed Days (Nov 30 - Dec 6, 2026)",
+      "received_at": "2026-11-27T17:29:03+01:00",
+      "body_text": "Here is this week's round-up of pop culture and silly themed days for November 30 to December 6, 2026: Monday, Nov 30: National Mason Jar Day and Computer Security Day Tuesday, Dec 1: National Pie Day and Eat a Red Apple Day Wednesday, Dec 2: National Fritters Day and Mutt Day Thursday, Dec 3: Roof Over Your Head Day and Make a Gift Day Friday, Dec 4: National Cookie Day and National Dice Day Saturday, Dec 5: International Ninja Day and Bathtub Party Day Sunday, Dec 6: National Microwave Oven Da",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2562,6 +2577,7 @@
     "1a210b0004e083da",
     "1a21416d64af9d1e",
     "1a2134707d1f9197",
-    "1a21980077f837c4"
+    "1a21980077f837c4",
+    "1a21dd6c549d9640"
   ]
 }
