@@ -220,6 +220,31 @@ def cluster_articles(articles):
     return articles
 
 
+def rerank_scored(query: str, articles: list, top_n: int) -> list | None:
+    """(article, relevance score) pairs against *query*, best first.
+
+    None when Cohere is disabled or the call fails; the caller keeps its keyword
+    answer. Used to ask whether a pool is about the week's focus at all.
+    """
+    global _used
+    if not COHERE_ENABLED or not articles:
+        return None
+    try:
+        client = _get_client()
+        docs = [f"{a.get('title', '')} {a.get('summary', '')[:300]}" for a in articles]
+        resp = client.rerank(query=query, documents=docs, model="rerank-english-v3.0",
+                             top_n=min(top_n, len(docs)))
+        _usage["calls"] += 1
+        _usage["rerank_searches"] += -(-len(docs) // 100)
+        _used = True
+        return [(articles[r.index], float(r.relevance_score)) for r in resp.results]
+    except Exception as exc:
+        print(f"  ⚠️  Cohere focus rerank failed ({exc}), keeping the keyword focus count")
+        _degradations.append(f"focus rerank: Cohere rerank failed ({type(exc).__name__}) — "
+                             "kept the keyword focus count")
+        return None
+
+
 def rerank_for_deep_dive(theme_name, articles, top_n, query=None):
     """
     Rerank candidate articles against the day's theme using Cohere Rerank.
