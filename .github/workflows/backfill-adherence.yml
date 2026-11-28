@@ -4,7 +4,8 @@ name: Backfill review adherence
 # that were reviewed before the heatmap existed (`episode_review.py
 # --backfill-adherence`). It rewrites only podcasts/reviews/index.json; the next
 # nightly review job copies the index to Pages and renders the filled table.
-# Cost: one Haiku fidelity call per night, at most 13.
+# Cost: one Haiku fidelity call per ungraded night, at most 13. Nights that already
+# have cells get their log-counted columns (beats, theme fit) recounted, with no model call.
 
 on:
   workflow_dispatch:

@@ -833,3 +833,15 @@ producer wanted to see it at a glance, tonight and across the week. Two page-onl
 
 No new API call: both reuse the storyboard, the flow numbers and the existing Haiku
 fidelity call. Neither is a signal: six of the eight columns are that model's judgement.
+
+**Theme fit reads like the signals (2026-11-28).** The column read drift on 13 of the first 14
+nights. The log line was parsed right; the grade was wrong. It counted "unused on-theme" (every
+on-charter story the four-source deep dive left to the 18-story roundup, 7-18 a night) as drift
+whenever it reached 2, while the theme block had no off-charter story and the deep dive led at
+p78-p99 on every night checked (11-24..11-27). `_theme_cell` now grades it the way `run_signals`
+does: drift on two or more off-charter theme stories, a lead under p70 or a one-source deep dive
+beside unused on-theme candidates; loose on one off-charter story or an unscored lead. The two
+counted columns (`COUNTED_COLUMNS`: beats, theme) are recounted from each night's job log on
+every `--backfill-adherence`, with no model call, so a fix to a count reaches the past nights.
+The line still doesn't carry the deep dive's other sources' scores, so a p65 second source
+(2026-11-27's COP31 draft) grades nothing.
