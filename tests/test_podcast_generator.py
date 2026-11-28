@@ -1989,6 +1989,23 @@ class TestScriptStoryboard:
         assert rows and rows[0]["status"] == "ok"
         assert pg._storyboard_used == plan
 
+    def test_an_applied_plan_is_marked_applied(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        plan = self._plan()
+        self._run(monkeypatch, tmp_path,
+                  lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        assert pg._storyboard_applied is True
+
+    def test_a_rejected_plan_is_not_marked_applied(self, monkeypatch, tmp_path):
+        # apply_storyboard_order hands back the draft list itself when it rejects the
+        # plan; the review must not draw that draft as "the plan".
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "apply_storyboard_order", lambda plan, arts: arts)
+        plan = self._plan()
+        self._run(monkeypatch, tmp_path,
+                  lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        assert pg._storyboard_used == plan and pg._storyboard_applied is False
+
     def test_week_so_far_reaches_the_storyboard(self, monkeypatch, tmp_path):
         """The week's question builds across the days: the storyboard sees the
         last six days' questions and landings, today's anchor marked THIS WEEK

@@ -10821,6 +10821,9 @@ STORYBOARD_BATCH_TIMEOUT = int(os.getenv("PODCAST_STORYBOARD_BATCH_TIMEOUT", "30
 _storyboard_used: dict | None = None
 # The roundup in the applied plan's order, for storyboard_flow_line; set per run.
 _storyboard_roundup: list | None = None
+# True when apply_storyboard_order took the plan's order (it hands back the draft
+# list itself when it rejects the plan); only then is the aired order saved.
+_storyboard_applied: bool = False
 
 _STORYBOARD_SCHEMA = {
     "type": "object",
@@ -11499,9 +11502,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
     theme_lens = _build_theme_lens(theme_name, focus=focus, event_focus=event_focus,
                                    extra_events=extra_events)
 
-    global _storyboard_used, _storyboard_roundup
+    global _storyboard_used, _storyboard_roundup, _storyboard_applied
     _storyboard_used, storyboard = None, ""  # the fallback; set before the block
-    _storyboard_roundup = None
+    _storyboard_roundup, _storyboard_applied = None, False
     if STORYBOARD_ENABLED and (roundup_articles or deep_dive_articles):
         with segment("script/storyboard", critical=False):
             numbered_news = "\n".join(
@@ -11515,7 +11518,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                 weekday, week_so_far=week_so_far_block(get_pacific_now().date(),
                                                      anchor_id=(anchor or {}).get('id')))
             storyboard = format_storyboard_for_prompt(_storyboard_used, roundup_articles)
+            draft = roundup_articles
             roundup_articles = apply_storyboard_order(_storyboard_used, roundup_articles)
+            _storyboard_applied = bool(_storyboard_used) and roundup_articles is not draft
             _storyboard_roundup = list(roundup_articles)
             news_text = _render_news_text(roundup_articles)
         if not storyboard:
@@ -15681,7 +15686,9 @@ def run_script_stage() -> tuple[str, str] | None:
             print(theme_fit_line(news_articles, deep_dive_articles, _roundup_dropped))
             _flow = storyboard_flow(script, _storyboard_roundup or news_articles, _storyboard_used)
             print(storyboard_flow_line(script, [], None, flow=_flow))
-            if _flow:
+            # A rejected plan aired the draft order: drawing that as "the plan" would
+            # misplace every bridge after a fold, so the page shows no diagram.
+            if _flow and _storyboard_applied:
                 _storyboard_aired = {"roundup": _flow["roundup"], "beats": _flow["beats"]}
 
         with segment("script/cold-open", critical=False):
