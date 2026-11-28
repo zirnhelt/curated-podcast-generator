@@ -944,8 +944,12 @@ ADHERENCE_COLUMNS = [("frame", "Frame"), ("order", "Order"), ("bridges", "Bridge
                      ("landing", "Landing"), ("theme", "Theme fit")]
 BEATS_KEPT_RATIO = 0.8
 BEATS_LOOSE_RATIO = 0.5
-# Off-charter theme-block stories, or unused on-theme candidates, that make a night drift.
+# Off-charter theme-block stories that make a night drift. Theme fit is read the way
+# `run_signals` reads it; "unused on-theme" alone is never a grade (`_theme_cell`).
 THEME_DRIFT_COUNT = 2
+# Columns counted from the job log, not judged by a model: `--backfill-adherence` can
+# regrade them on a night that already has cells, with no model call.
+COUNTED_COLUMNS = ("beats", "theme")
 _FIDELITY_GRADES = {
     "frame": {"aired": "kept", "changed": "loose", "dropped": "drift"},
     "order": {"held": "kept", "mostly held": "loose", "changed": "drift"},
@@ -972,12 +976,28 @@ def adherence_cells(facts: dict[str, Any], fidelity: dict | None) -> dict[str, s
         cells["beats"] = ("kept" if ratio >= BEATS_KEPT_RATIO
                           else "loose" if ratio >= BEATS_LOOSE_RATIO else "drift")
     fit = facts.get("theme_fit")
-    cells["theme"] = "none"
-    if isinstance(fit, list) and len(fit) == 5:
-        off, unused = fit[0], fit[4]
-        cells["theme"] = ("kept" if off == 0 and unused == 0
-                          else "drift" if max(off, unused) >= THEME_DRIFT_COUNT else "loose")
+    cells["theme"] = _theme_cell(fit) if isinstance(fit, list) and len(fit) == 5 else "none"
     return {k: cells[k] for k, _ in ADHERENCE_COLUMNS}
+
+
+def _theme_cell(fit: list) -> str:
+    """One night's theme fit from `theme_fit_line`, graded as `run_signals` reads it.
+
+    Drift: two or more theme-block stories under the charter fit, a deep-dive lead under
+    the floor, or a one-source deep dive beside unused on-theme candidates. Loose: one
+    off-charter theme story, or an unscored lead. "Unused on-theme" alone grades nothing:
+    it counts every on-charter story the four-source deep dive left to the 18-story
+    roundup, so it was 7-18 every night and the column read drift on 13 of 14 (2026-11-28).
+    """
+    mislabelled, _, lead, sources, unused = fit
+    lead_pct = int(lead[1:]) if isinstance(lead, str) and lead.startswith("p") else None
+    if (mislabelled >= THEME_DRIFT_COUNT
+            or (lead_pct is not None and lead_pct < DEEP_DIVE_LEAD_MIN_PCT)
+            or (sources == 1 and unused >= THIN_DEEP_DIVE_UNUSED)):
+        return "drift"
+    if mislabelled or lead == "?":
+        return "loose"
+    return "kept"
 
 
 _TRENDS = [("audio_minutes", "Episode length", "{:.1f} min"),
@@ -2473,34 +2493,52 @@ def _generating_run(runs: list[dict]) -> dict | None:
             or next((r for r in reversed(runs) if r.get("conclusion") == "failure"), None))
 
 
+def _night_facts(session, date: str) -> dict:
+    """The facts scanned from a past night's generating job log; {} when it can't be read."""
+    try:
+        generated = _generating_run(summarize_runs(fetch_runs(session, date)))
+        log = fetch_job_log(session, generated["run_id"])[0] if generated else ""
+    except requests.RequestException as exc:
+        print(f"  ⚠️  {date}: Actions API unreachable ({exc}) — counted columns stay as they are")
+        return {}
+    return scan_log(log) if log else {}
+
+
 def backfill_adherence(dry_run: bool = False) -> int:
     """Grade the heatmap cells for nights reviewed before the heatmap existed.
 
     Only `adherence` (and a blank `theme`) in the index changes: no page, feed,
     narrative or roadmap is touched, so it is cheap (one Haiku fidelity call a
-    night) and idempotent (an entry that already has cells is skipped). A night
-    whose plan or script is gone keeps blank cells rather than invented ones.
+    night) and idempotent. A night that already has cells gets no model call: its
+    `COUNTED_COLUMNS` are regraded from its job log, so a fix to how they are counted
+    reaches the past nights too. A night whose plan or script is gone keeps blank
+    cells rather than invented ones.
     """
     index = load_index()
     todo = [e for e in index if e.get("date") and not e.get("adherence")][:HEATMAP_NIGHTS - 1]
-    print(f"📝 Backfilling adherence: {len(todo)} night(s) without cells")
-    if not todo:
+    regrade = [e for e in index if e.get("date") and e.get("adherence")][:HEATMAP_NIGHTS]
+    print(f"📝 Backfilling adherence: {len(todo)} night(s) without cells, "
+          f"{len(regrade)} to recount")
+    if not todo and not regrade:
         return 0
     session = _session()
     changed = 0
+    for entry in regrade:
+        counted = adherence_cells(_night_facts(session, entry["date"]), None)
+        new = {k: counted[k] for k in COUNTED_COLUMNS if counted[k] != "none"}
+        moved = {k: f"{entry['adherence'].get(k)} → {v}" for k, v in new.items()
+                 if entry["adherence"].get(k) != v}
+        if moved:
+            print(f"  ↻ {entry['date']}: " + ", ".join(f"{k} {m}" for k, m in moved.items()))
+        if moved and not dry_run:
+            entry["adherence"] = {**entry["adherence"], **new}
+            changed += 1
     for entry in todo:
         date = entry["date"]
         plan, script = load_storyboard(date), load_script(date)
-        log = ""
-        try:
-            generated = _generating_run(summarize_runs(fetch_runs(session, date)))
-            if generated:
-                log, _ = fetch_job_log(session, generated["run_id"])
-        except requests.RequestException as exc:
-            print(f"  ⚠️  {date}: Actions API unreachable ({exc}) — counted columns stay blank")
-        facts = scan_log(log) if log else {}
+        facts = _night_facts(session, date)
         print(f"  {date}: plan={'yes' if plan else 'no'} script={'yes' if script else 'no'} "
-              f"log={'yes' if log else 'no'}")
+              f"log={'yes' if facts else 'no'}")
         if dry_run:
             continue
         cells = adherence_cells(facts, judge_storyboard_fidelity(plan, script))

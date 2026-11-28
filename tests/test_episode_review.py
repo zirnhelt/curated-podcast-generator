@@ -1264,10 +1264,25 @@ class TestAdherence:
     def test_adherence_cells_without_fidelity_keep_counted_columns(self):
         er = episode_review
         cells = er.adherence_cells({"storyboard_flow": [3, 4, 1, 3, 3, 5],
-                                    "theme_fit": [1, "x", "p60", 2, 0]}, None)
+                                    "theme_fit": [1, "x", "p80", 2, 0]}, None)
         assert cells["beats"] == "loose" and cells["theme"] == "loose"
         assert all(cells[k] == "none"
                    for k in ("frame", "order", "bridges", "question", "stances", "landing"))
+
+    def test_theme_fit_reads_like_the_signals_not_the_unused_count(self):
+        """2026-11-28: the column read drift on 13 of 14 nights. "Unused on-theme" counts
+        every on-charter story the four-source deep dive left to the 18-story roundup, so
+        it was 7-18 on every night while the theme block and the lead were on charter."""
+        er = episode_review
+        theme = lambda fit: er.adherence_cells({"theme_fit": fit}, None)["theme"]
+        assert theme([0, "", "p93", 4, 18]) == "kept"      # 2026-11-24's line
+        assert theme([0, "", "local", 4, 7]) == "kept"
+        assert theme([0, "", "?", 4, 18]) == "loose"       # 2026-11-27: an unscored lead
+        assert theme([1, "x", "p99", 4, 0]) == "loose"
+        assert theme([2, "x; y", "p99", 4, 0]) == "drift"
+        assert theme([0, "", "p65", 4, 0]) == "drift"      # off-theme-deep-dive
+        assert theme([0, "", "p90", 1, 2]) == "drift"      # thin-deep-dive
+        assert theme([0, "", "p90", 1, 1]) == "kept"
 
     def test_adherence_cells_with_no_data(self):
         er = episode_review
@@ -1323,6 +1338,28 @@ class TestBackfillAdherence:
                             lambda *a: pytest.fail("dry run must not call the model"))
         assert er.backfill_adherence(dry_run=True) == 0
         assert (tmp_path / "index.json").read_text() == before
+
+    def test_graded_nights_get_their_counted_columns_recounted(self, monkeypatch, tmp_path):
+        """A fix to how a counted column is graded reaches the past nights, with no model call."""
+        graded = {"date": "2026-11-27", "title": "t", "theme": "Wild Spaces",
+                  "adherence": {"frame": "kept", "order": "loose", "beats": "kept", "theme": "drift"}}
+        er = self._setup(monkeypatch, tmp_path, [graded])
+        monkeypatch.setattr(er, "scan_log", lambda log: {
+            "theme_fit": [0, "", "p93", 4, 18], "storyboard_flow": [16, 17, 15, 17, 5, 5]})
+        monkeypatch.setattr(er, "judge_storyboard_fidelity",
+                            lambda *a: pytest.fail("a graded night needs no model call"))
+        er.backfill_adherence(dry_run=True)
+        assert json.loads((tmp_path / "index.json").read_text())[0]["adherence"]["theme"] == "drift"
+        er.backfill_adherence()
+        cells = json.loads((tmp_path / "index.json").read_text())[0]["adherence"]
+        assert cells == {"frame": "kept", "order": "loose", "beats": "kept", "theme": "kept"}
+
+    def test_a_night_whose_log_is_gone_keeps_its_cells(self, monkeypatch, tmp_path):
+        graded = {"date": "2026-11-15", "adherence": {"frame": "kept", "theme": "drift"}}
+        er = self._setup(monkeypatch, tmp_path, [graded])
+        monkeypatch.setattr(er, "fetch_job_log", lambda s, rid: ("", []))
+        er.backfill_adherence()
+        assert json.loads((tmp_path / "index.json").read_text())[0]["adherence"]["theme"] == "drift"
 
     def test_night_with_nothing_to_grade_stays_blank(self, monkeypatch, tmp_path):
         er = self._setup(monkeypatch, tmp_path, [{"date": "2026-11-20"}])
