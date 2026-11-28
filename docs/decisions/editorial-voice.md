@@ -812,3 +812,24 @@ and a topic is grouped, never folded (`merge_with` stays for reports of the same
 About 45 more tokens on the batched Sonnet 5.5 storyboard call, under $0.0001 a run. If a
 night still splits a topic, the split check will say so, and a code regroup after
 `apply_storyboard_order` is the next step.
+
+## Storyboard and theme adherence, drawn rather than stated (2026-11-27)
+
+The review page already said how well the script kept to its storyboard (the flow line,
+the fidelity judgement) and how on-theme it ran (`theme_fit`), as numbers and a table. The
+producer wanted to see it at a glance, tonight and across the week. Two page-only visuals:
+
+- **Plan vs. aired** (`render_plan_diagram`): the planned roundup order beside the order
+  stories first aired, a line per story. The script stage saves where each story first aired
+  and which beats made it (`storyboard_flow` → citations `storyboard_aired`); the review no
+  longer has its own copy of the first-mention matcher. Columns, not rows: Saturday's 18
+  stories don't fit a row at phone width. A story "moved" when it sits outside the longest
+  run that aired in plan order, so one story pulled to the end is one move, not every
+  story it jumped.
+- **Night by night** (`render_adherence_heatmap`): 14 nights × frame, order, bridges,
+  question, stances, beats, landing, theme fit, each kept / loose / drift. The grades
+  (`adherence_cells`) ride in each night's `reviews/index.json` entry, the review's only
+  history. Two weeks so each theme appears twice.
+
+No new API call: both reuse the storyboard, the flow numbers and the existing Haiku
+fidelity call. Neither is a signal: six of the eight columns are that model's judgement.

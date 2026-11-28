@@ -1989,6 +1989,23 @@ class TestScriptStoryboard:
         assert rows and rows[0]["status"] == "ok"
         assert pg._storyboard_used == plan
 
+    def test_an_applied_plan_is_marked_applied(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        plan = self._plan()
+        self._run(monkeypatch, tmp_path,
+                  lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        assert pg._storyboard_applied is True
+
+    def test_a_rejected_plan_is_not_marked_applied(self, monkeypatch, tmp_path):
+        # apply_storyboard_order hands back the draft list itself when it rejects the
+        # plan; the review must not draw that draft as "the plan".
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "apply_storyboard_order", lambda plan, arts: arts)
+        plan = self._plan()
+        self._run(monkeypatch, tmp_path,
+                  lambda **kw: _response("end_turn", [_text_block(json.dumps(plan))]))
+        assert pg._storyboard_used == plan and pg._storyboard_applied is False
+
     def test_week_so_far_reaches_the_storyboard(self, monkeypatch, tmp_path):
         """The week's question builds across the days: the storyboard sees the
         last six days' questions and landings, today's anchor marked THIS WEEK
@@ -2091,6 +2108,14 @@ class TestScriptStoryboard:
 
         saved = json.loads(next(tmp_path.glob("citations_*.json")).read_text())
         assert saved["storyboard"] == plan
+
+    def test_citations_keep_the_aired_order(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        aired = {"roundup": [{"title": "a", "turn": 0, "merged": False}], "beats": [True]}
+        pg.generate_citations_file([], [], "Working Lands & Industry", storyboard_aired=aired)
+        saved = json.loads(next(tmp_path.glob("citations_*.json")).read_text())
+        assert saved["storyboard_aired"] == aired
 
 
 class TestGenerateScriptRoundupPool:
@@ -8996,6 +9021,20 @@ class TestStoryboardFlowLine:
     def test_unplanned(self):
         import podcast_generator as pg
         assert pg.storyboard_flow_line(self.SCRIPT, self.ROUNDUP, None) == "🧩 Storyboard flow: unplanned"
+
+    def test_flow_payload_records_turns_and_beats(self):
+        import podcast_generator as pg
+        beats = [{"claim": "The tanker ban caps crude cargo", "evidence": "12,500 tonnes north coast"},
+                 {"claim": "Heiltsuk governance argument", "evidence": "Coastal First Nations Slett"}]
+        flow = pg.storyboard_flow(self.SCRIPT, list(reversed(self.ROUNDUP)), self._plan(beats))
+        assert [r["turn"] for r in flow["roundup"]] == [2, 1, 0]
+        assert flow["roundup"][0]["title"] == self.ROUNDUP[2]["title"]
+        assert flow["beats"] == [True, False]
+        assert flow["roundup"][0]["merged"] is False
+
+    def test_flow_payload_unplanned(self):
+        import podcast_generator as pg
+        assert pg.storyboard_flow(self.SCRIPT, self.ROUNDUP, None) is None
 
 
 class TestRoundupShapeLine:

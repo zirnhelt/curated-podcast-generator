@@ -1240,3 +1240,138 @@ def test_spend_chart_is_a_pie_coloured_by_service():
     assert '<i class="s1"></i>Anthropic' in html and '<i class="s2"></i>OpenAI TTS' in html
     assert "<circle" in er._pie_chart({"anthropic": 0.2})  # one service: a full disc, not a zero-length arc
     assert er._pie_chart({"anthropic": 0}) == ""
+
+
+class TestAdherence:
+    """Each night graded kept/loose/drift/none for the page's heatmap (never a signal)."""
+
+    def test_adherence_cells_grade_a_clean_night(self):
+        er = episode_review
+        fid = {"roundup": {"frame": "aired", "order": "held", "bridges": "used"},
+               "question": "asked", "stances": "held", "landing": "aired"}
+        facts = {"storyboard_flow": [4, 4, 2, 4, 5, 5], "theme_fit": [0, "", "p80", 3, 0]}
+        assert set(er.adherence_cells(facts, fid).values()) == {"kept"}
+
+    def test_adherence_cells_grade_drift_and_loose(self):
+        er = episode_review
+        fid = {"roundup": {"frame": "dropped", "order": "mostly held", "bridges": "none planned"},
+               "question": "reworded", "stances": "swapped", "landing": "changed"}
+        facts = {"storyboard_flow": [1, 4, 0, 3, 2, 5], "theme_fit": [1, "x", "p40", 1, 2]}
+        assert er.adherence_cells(facts, fid) == {
+            "frame": "drift", "order": "loose", "bridges": "none", "question": "loose",
+            "stances": "drift", "beats": "drift", "landing": "loose", "theme": "drift"}
+
+    def test_adherence_cells_without_fidelity_keep_counted_columns(self):
+        er = episode_review
+        cells = er.adherence_cells({"storyboard_flow": [3, 4, 1, 3, 3, 5],
+                                    "theme_fit": [1, "x", "p60", 2, 0]}, None)
+        assert cells["beats"] == "loose" and cells["theme"] == "loose"
+        assert all(cells[k] == "none"
+                   for k in ("frame", "order", "bridges", "question", "stances", "landing"))
+
+    def test_adherence_cells_with_no_data(self):
+        er = episode_review
+        assert set(er.adherence_cells({}, None).values()) == {"none"}
+        assert list(er.adherence_cells({}, None)) == [k for k, _ in er.ADHERENCE_COLUMNS]
+
+    def test_update_index_stores_adherence(self, monkeypatch, tmp_path):
+        er = episode_review
+        monkeypatch.setattr(er, "INDEX_FILE", tmp_path / "index.json")
+        er.update_index("2026-11-27", "t", "c", adherence={"frame": "kept"}, theme="Wild Spaces")
+        entry = json.loads((tmp_path / "index.json").read_text())[0]
+        assert entry["adherence"] == {"frame": "kept"} and entry["theme"] == "Wild Spaces"
+
+
+class TestAdherenceHeatmap:
+    def test_heatmap_rows_newest_first_with_old_entries_blank(self):
+        er = episode_review
+        history = [{"date": "2026-11-26", "theme": "Indigenous Lands", "adherence": {"order": "drift"}},
+                   {"date": "2026-11-25", "theme": "Gear"}]  # an entry from before the heatmap
+        html = er.render_adherence_heatmap(history, {"order": "kept"}, "2026-11-27", "Wild <Spaces>")
+        assert html.index("11-27") < html.index("11-26") < html.index("11-25")
+        assert "Wild &lt;Spaces&gt;" in html and "adh-drift" in html and "·" in html
+
+    def test_heatmap_skips_a_stale_copy_of_today(self):
+        er = episode_review
+        history = [{"date": "2026-11-27", "adherence": {"order": "drift"}}]
+        html = er.render_adherence_heatmap(history, {"order": "kept"}, "2026-11-27", "")
+        assert html.count("11-27") == 1 and "adh-drift" not in html
+
+    def test_heatmap_caps_at_fourteen_nights(self):
+        er = episode_review
+        history = [{"date": f"2026-11-{d:02d}", "adherence": {"order": "kept"}} for d in range(1, 27)]
+        html = er.render_adherence_heatmap(history, {"order": "kept"}, "2026-11-27", "")
+        assert html.count("<tr") == er.HEATMAP_NIGHTS + 1  # plus the header row
+
+    def test_heatmap_empty_when_no_data(self):
+        er = episode_review
+        none = {k: "none" for k, _ in er.ADHERENCE_COLUMNS}
+        assert er.render_adherence_heatmap([], none, "2026-11-27", "") == ""
+
+    def test_heatmap_is_page_only(self):
+        _title, content, page = episode_review.build_review(
+            "2026-08-19", [], {}, "", adherence={"order": "kept"})
+        assert "Plan and theme, night by night" in page
+        assert "Plan and theme, night by night" not in content
+
+
+class TestPlanDiagram:
+    def test_one_story_pulled_late_is_one_move(self):
+        aired = {"roundup": [{"title": t, "turn": turn, "merged": False}
+                             for t, turn in (("A", 9), ("B", 1), ("C", 2), ("D", 3))], "beats": []}
+        svg = episode_review.render_plan_diagram({"roundup": {}}, aired, None)
+        assert svg.count('class="link moved"') == 1 and svg.count('class="link ok"') == 3
+
+
+    AIRED = {"roundup": [{"title": "[CBC] Wildfire <update>", "turn": 0, "merged": False},
+                         {"title": "[Tribune] Broadband & towers", "turn": 4, "merged": False},
+                         {"title": "[Observer] Broadband too", "turn": 3, "merged": True},
+                         {"title": "[CBC] Clinic hours", "turn": 2, "merged": False},
+                         {"title": "[CBC] Mill closes", "turn": None, "merged": False}],
+             "beats": [True, False]}
+    PLAN = {"roundup": {"stories": [{"bridge_to_next": "fire to towers"},
+                                    {"bridge_to_next": "clean pivot"},
+                                    {"bridge_to_next": "clean pivot"},
+                                    {"bridge_to_next": "handoff"}]},
+            "deep_dive": {"beats": [{}, {}]}}
+
+    def test_diagram_escapes_and_draws_one_chip_per_lead(self):
+        svg = episode_review.render_plan_diagram(self.PLAN, self.AIRED, None)
+        assert "<update>" not in svg and "Wildfire &lt;update&gt;" in svg
+        assert "Broadband too" not in svg
+        assert svg.count('class="chip') == 2 * 4
+
+    def test_diagram_marks_unaired_and_reordered(self):
+        svg = episode_review.render_plan_diagram(self.PLAN, self.AIRED, None)
+        assert svg.count('class="link miss"') == 1
+        # Broadband and Clinic swapped: one of them moved, not both.
+        assert svg.count('class="link moved"') == 1
+        assert svg.count('class="link ok"') == 2
+
+    def test_diagram_marks_the_named_bridge(self):
+        svg = episode_review.render_plan_diagram(self.PLAN, self.AIRED, None)
+        assert svg.count('class="bridge') == 1
+
+    def test_diagram_beats_fall_back_to_counted(self):
+        svg = episode_review.render_plan_diagram(self.PLAN, self.AIRED, None)
+        assert svg.count('class="pip aired"') == 1 and svg.count('class="pip dropped"') == 1
+        assert "Question" not in svg
+
+    def test_diagram_uses_fidelity_when_present(self):
+        fid = {"beats": [{"beat": 1, "status": "changed", "note": ""},
+                         {"beat": 2, "status": "aired", "note": ""}],
+               "question": "asked", "stances": "blurred", "landing": "aired",
+               "roundup": {"bridges": "used"}}
+        svg = episode_review.render_plan_diagram(self.PLAN, self.AIRED, fid)
+        assert 'class="pip changed"' in svg and "Stances" in svg
+        assert 'class="bridge adh-kept"' in svg
+
+    def test_diagram_empty_for_old_nights(self):
+        assert episode_review.render_plan_diagram(self.PLAN, None, None) == ""
+        assert episode_review.render_plan_diagram(None, self.AIRED, None) == ""
+        assert episode_review.render_plan_diagram(self.PLAN, {"roundup": [], "beats": []}, None) == ""
+
+    def test_load_storyboard_aired_reads_citations(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(episode_review, "CITATIONS_GLOB", str(tmp_path / "citations_{date}_*.json"))
+        (tmp_path / "citations_2026-11-27_x.json").write_text(json.dumps({"storyboard_aired": self.AIRED}))
+        assert episode_review.load_storyboard_aired("2026-11-27") == self.AIRED

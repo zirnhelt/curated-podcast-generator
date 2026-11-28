@@ -7925,7 +7925,39 @@ def _deep_dive_body(script: str) -> str:
     return "\n".join(lines[start + 1:end])
 
 
-def storyboard_flow_line(script: str, roundup: list, plan: dict | None) -> str:
+def storyboard_flow(script: str, roundup: list, plan: dict | None) -> dict | None:
+    """How the aired script kept to its storyboard; None without a plan.
+
+    `roundup` is the applied plan order. Each entry's `turn` is the roundup turn
+    that first mentions it (None when it never aired); `beats` says which planned
+    beats aired. The review page draws its plan-vs-aired diagram from these.
+    """
+
+    if not plan:
+        return None
+    _, body, _ = _slice_roundup(script)
+    turns = [l for l in (body or "").splitlines() if _SPEAKER_TURN_RE.match(l.strip())]
+    outlets = Counter(_article_source_name(a).lower() for a in roundup)
+    pos = [_article_first_mention(a, turns,
+                                  match_source=outlets[_article_source_name(a).lower()] == 1)
+           for a in roundup]
+    pairs = [(p, q) for p, q in zip(pos, pos[1:]) if p is not None and q is not None]
+    stories = (plan.get("roundup") or {}).get("stories") or []
+    named = sum(1 for st in stories
+                if (st.get("bridge_to_next") or "").strip().lower() not in ("clean pivot", "handoff", ""))
+    dd_words = _significant_words(_deep_dive_body(script))
+    aired = []
+    for b in (plan.get("deep_dive") or {}).get("beats") or []:
+        words = _significant_words(f"{b.get('claim', '')} {b.get('evidence', '')}")
+        aired.append(bool(words) and len(words & dd_words) / len(words) >= STORYBOARD_BEAT_AIRED_OVERLAP)
+    return {"in_order": sum(1 for p, q in pairs if p <= q), "pairs": len(pairs),
+            "named": named, "bridges": max(len(stories) - 1, 0), "beats": aired,
+            "roundup": [{"title": a.get("title", ""), "turn": p, "merged": bool(a.get("_merged_into"))}
+                        for a, p in zip(roundup, pos)]}
+
+
+def storyboard_flow_line(script: str, roundup: list, plan: dict | None,
+                         flow: dict | None = None) -> str:
     """One log line the episode review reads its storyboard-flow signals from.
 
     The storyboard plans an order, bridges and a beat chain; nothing checked
@@ -7936,29 +7968,12 @@ def storyboard_flow_line(script: str, roundup: list, plan: dict | None) -> str:
     own episode, at most 0.39 against another day's, 2026-10-30..11-03). Named
     bridges are shown, never flagged: a clean pivot beats an invented link.
     """
-    if not plan:
+    flow = flow or storyboard_flow(script, roundup, plan)
+    if not flow:
         return "🧩 Storyboard flow: unplanned"
-    _, body, _ = _slice_roundup(script)
-    turns = [l for l in (body or "").splitlines() if _SPEAKER_TURN_RE.match(l.strip())]
-    outlets = Counter(_article_source_name(a).lower() for a in roundup)
-    pos = [_article_first_mention(a, turns,
-                                  match_source=outlets[_article_source_name(a).lower()] == 1)
-           for a in roundup]
-    pairs = [(p, q) for p, q in zip(pos, pos[1:]) if p is not None and q is not None]
-    in_order = sum(1 for p, q in pairs if p <= q)
-    stories = (plan.get("roundup") or {}).get("stories") or []
-    named = sum(1 for st in stories
-                if (st.get("bridge_to_next") or "").strip().lower() not in ("clean pivot", "handoff", ""))
-    dd_words = _significant_words(_deep_dive_body(script))
-    beats = (plan.get("deep_dive") or {}).get("beats") or []
-    aired = 0
-    for b in beats:
-        words = _significant_words(f"{b.get('claim', '')} {b.get('evidence', '')}")
-        if words and len(words & dd_words) / len(words) >= STORYBOARD_BEAT_AIRED_OVERLAP:
-            aired += 1
-    return (f"🧩 Storyboard flow: roundup in plan order {in_order}/{len(pairs)}, "
-            f"bridges named {named}/{max(len(stories) - 1, 0)}; "
-            f"deep dive beats aired {aired}/{len(beats)}")
+    return (f"🧩 Storyboard flow: roundup in plan order {flow['in_order']}/{flow['pairs']}, "
+            f"bridges named {flow['named']}/{flow['bridges']}; "
+            f"deep dive beats aired {sum(flow['beats'])}/{len(flow['beats'])}")
 
 
 def check_roundup_order(script: str, ordered_articles: list) -> list:
@@ -10407,7 +10422,7 @@ def focus_record(calendar_focus: dict | None, used_focus: dict | None,
     return record
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False, storyboard=None, cuts=None, focus=None):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None, research=None, kagi_used=False, kagi_news_used=False, storyboard=None, cuts=None, focus=None, storyboard_aired=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -10545,6 +10560,10 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     # The plan the script was told to follow, to read against what aired.
     if storyboard:
         citations_data["storyboard"] = storyboard
+    # Where each planned story first aired and which beats made it, for the
+    # review page's plan-vs-aired diagram.
+    if storyboard_aired:
+        citations_data["storyboard_aired"] = storyboard_aired
     # What the run passed over, for the reader's agree/disagree on review.html. Top-level,
     # not under segments: dedup reads segments, and a cut must stay free to resurface.
     if cuts:
@@ -10802,6 +10821,9 @@ STORYBOARD_BATCH_TIMEOUT = int(os.getenv("PODCAST_STORYBOARD_BATCH_TIMEOUT", "30
 _storyboard_used: dict | None = None
 # The roundup in the applied plan's order, for storyboard_flow_line; set per run.
 _storyboard_roundup: list | None = None
+# True when apply_storyboard_order took the plan's order (it hands back the draft
+# list itself when it rejects the plan); only then is the aired order saved.
+_storyboard_applied: bool = False
 
 _STORYBOARD_SCHEMA = {
     "type": "object",
@@ -11480,9 +11502,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
     theme_lens = _build_theme_lens(theme_name, focus=focus, event_focus=event_focus,
                                    extra_events=extra_events)
 
-    global _storyboard_used, _storyboard_roundup
+    global _storyboard_used, _storyboard_roundup, _storyboard_applied
     _storyboard_used, storyboard = None, ""  # the fallback; set before the block
-    _storyboard_roundup = None
+    _storyboard_roundup, _storyboard_applied = None, False
     if STORYBOARD_ENABLED and (roundup_articles or deep_dive_articles):
         with segment("script/storyboard", critical=False):
             numbered_news = "\n".join(
@@ -11496,7 +11518,9 @@ def generate_podcast_script(all_articles,deep_dive_articles, theme_name, episode
                 weekday, week_so_far=week_so_far_block(get_pacific_now().date(),
                                                      anchor_id=(anchor or {}).get('id')))
             storyboard = format_storyboard_for_prompt(_storyboard_used, roundup_articles)
+            draft = roundup_articles
             roundup_articles = apply_storyboard_order(_storyboard_used, roundup_articles)
+            _storyboard_applied = bool(_storyboard_used) and roundup_articles is not draft
             _storyboard_roundup = list(roundup_articles)
             news_text = _render_news_text(roundup_articles)
         if not storyboard:
@@ -15656,11 +15680,16 @@ def run_script_stage() -> tuple[str, str] | None:
                 else:
                     print("✅ Roundup re-sequenced into block order")
 
+        _storyboard_aired = None  # the fallback; set before the block
         with segment("script/roundup-shape", critical=False):
             print(roundup_shape_line(script, news_articles, deep_dive_articles, local_available))
             print(theme_fit_line(news_articles, deep_dive_articles, _roundup_dropped))
-            print(storyboard_flow_line(script, _storyboard_roundup or news_articles,
-                                       _storyboard_used))
+            _flow = storyboard_flow(script, _storyboard_roundup or news_articles, _storyboard_used)
+            print(storyboard_flow_line(script, [], None, flow=_flow))
+            # A rejected plan aired the draft order: drawing that as "the plan" would
+            # misplace every bridge after a fold, so the page shows no diagram.
+            if _flow and _storyboard_applied:
+                _storyboard_aired = {"roundup": _flow["roundup"], "beats": _flow["beats"]}
 
         with segment("script/cold-open", critical=False):
             # Generate the cold open last, now that the News Roundup and Deep
@@ -15747,6 +15776,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 anchor=today_anchor,
                 research={"block": brave_context, "log": list(_RESEARCH_LOG)},
                 storyboard=_storyboard_used,
+                storyboard_aired=_storyboard_aired,
                 cuts=episode_cuts(news_articles, deep_dive_articles, _roundup_dropped),
                 focus=focus_record(calendar_focus, today_focus, deep_dive_articles),
             )
