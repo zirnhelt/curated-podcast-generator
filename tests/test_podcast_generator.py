@@ -2092,6 +2092,14 @@ class TestScriptStoryboard:
         saved = json.loads(next(tmp_path.glob("citations_*.json")).read_text())
         assert saved["storyboard"] == plan
 
+    def test_citations_keep_the_aired_order(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        aired = {"roundup": [{"title": "a", "turn": 0, "merged": False}], "beats": [True]}
+        pg.generate_citations_file([], [], "Working Lands & Industry", storyboard_aired=aired)
+        saved = json.loads(next(tmp_path.glob("citations_*.json")).read_text())
+        assert saved["storyboard_aired"] == aired
+
 
 class TestGenerateScriptRoundupPool:
     """The prompt must carry the curated pool and nothing more.
@@ -8996,6 +9004,20 @@ class TestStoryboardFlowLine:
     def test_unplanned(self):
         import podcast_generator as pg
         assert pg.storyboard_flow_line(self.SCRIPT, self.ROUNDUP, None) == "🧩 Storyboard flow: unplanned"
+
+    def test_flow_payload_records_turns_and_beats(self):
+        import podcast_generator as pg
+        beats = [{"claim": "The tanker ban caps crude cargo", "evidence": "12,500 tonnes north coast"},
+                 {"claim": "Heiltsuk governance argument", "evidence": "Coastal First Nations Slett"}]
+        flow = pg.storyboard_flow(self.SCRIPT, list(reversed(self.ROUNDUP)), self._plan(beats))
+        assert [r["turn"] for r in flow["roundup"]] == [2, 1, 0]
+        assert flow["roundup"][0]["title"] == self.ROUNDUP[2]["title"]
+        assert flow["beats"] == [True, False]
+        assert flow["roundup"][0]["merged"] is False
+
+    def test_flow_payload_unplanned(self):
+        import podcast_generator as pg
+        assert pg.storyboard_flow(self.SCRIPT, self.ROUNDUP, None) is None
 
 
 class TestRoundupShapeLine:
