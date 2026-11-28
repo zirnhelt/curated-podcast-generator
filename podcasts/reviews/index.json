@@ -1,5 +1,317 @@
 [
   {
+    "date": "2026-11-28",
+    "title": "Episode Review — Cariboo Local Affairs, November 28, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-28.html",
+    "content_html": "<p class=\"meta\">Theme: Cariboo Local Affairs. Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/46124169681\">46124169681</a>.</p>\n\n<div class=\"verdict lvl-good\"><span class=\"icon\" aria-hidden=\"true\">✓</span><div><strong>Shipped clean</strong>Nothing broke and nothing fell back.</div></div>\n\n<h2>What to do</h2>\n<p>Nothing. The run needs no follow-up.</p>\n\n<h2>What happened</h2>\n<h3>Seven articles were held for focus routing and none were released</h3>\n<p>Seven articles were held back for focus-routed release dates rather than included tonight. Their target focuses were Discovery, Health &amp; How Science Works (three), Wildfire &amp; Climate Resilience, Tourism &amp; the Outdoor Economy, Agriculture &amp; Ranching, and Digital Life &amp; Security. Zero were released. The held items carry release dates between 2026-12-01 and 2026-12-11, so they will wait for their focus days. Nothing from them reached the episode.</p>\n\n<h3>The roundup was built from local stories alone, and 26 local stories were cut for airtime</h3>\n<p>The roundup pool held 18 stories, all local. The pool had 44 local stories available, so 26 were not aired in the roundup. The facts record 45 stories cut from the pool by the airtime budget (NEWS_ROUNDUP_COUNT), which covers the pool overflow. A cut story can resurface on a better-matched day, so this is by design. The Cariboo theme was 62 of the 109 loaded articles, and the roundup opened on local news. Roundup citations matched 10 of 18.</p>\n<p>The gap between 44 local stories available and 18 aired is the main setting to watch. If the maintainer wants more local coverage per episode, NEWS_ROUNDUP_COUNT is where to raise it.</p>\n\n<h3>The first script draft fell short of target and went through one expand pass</h3>\n<p>The first draft came in at 2751 words against a target of 3400, and was sent back for one expand pass. The shipped script was 3478 words, above target. Expansion added the words that closed the gap, so the listener received a full-length episode. Had the draft remained thin, the episode would have been short, and that would have been a problem only under SHORT_EPISODE_WORDS.</p>\n<p>Casey's share of deep-dive words was 56 percent, and the voice ratio of Casey over Riley was 1.16. The AI-tell pattern count was 0.</p>\n\n<p><strong>Script vs. storyboard: loosely kept.</strong> The roundup and deep dive largely followed the plan, but the deep dive's beats were reshaped: the plan's Quesnel bill and Pear Lake hazard beats got heavy additions, and the healthcare-mixer beat expanded into a retention-program argument the plan never planned. Several roundup stories were also reordered or dropped.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Articles loaded</td><td>109</td></tr>\n<tr><td>Kept after dedup</td><td>65</td></tr>\n<tr><td>Held / released</td><td>0 released, 7 held</td></tr>\n<tr><td>Roundup pool</td><td>18 stories — local:18</td></tr>\n<tr><td>Deep dive</td><td>5 articles</td></tr>\n<tr><td>Script</td><td>0 pattern hit(s), voice ratio 1.16, 3478 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 56% of the words</td></tr>\n<tr><td>Audio</td><td>20.9 min</td></tr>\n<tr><td>Audio size</td><td>19.1 MB</td></tr>\n<tr><td>Citations matched</td><td>10/18 roundup, 5/5 deep dive</td></tr>\n<tr><td>Feed</td><td>304 episodes</td></tr>\n<tr><td>YouTube</td><td>ok — processed, public</td></tr>\n<tr><td>Anthropic input tokens</td><td>75,393</td></tr>\n<tr><td>API calls</td><td>111 total: openai-tts 85 · claude 11 · brave-search 5 · brave-answers 4 · cohere 4 · kagi-extract 2</td></tr>\n<tr><td>Anthropic cost</td><td>$0.16 at list price (estimate)</td></tr>\n<tr><td>Total cost</td><td>$0.66 at list price: OpenAI TTS $0.298 · Brave Answers $0.164 · Anthropic $0.162 · Brave Search $0.025 · Kagi Extract $0.008 · Cohere $0.001</td></tr>\n</tbody>\n</table>",
+    "published": "2026-11-28T10:06:10+00:00",
+    "metrics": {
+      "audio_minutes": 20.9,
+      "script_words": 3478,
+      "tell_hits": 0,
+      "roundup_cite_pct": 55.6,
+      "deep_dive_cite_pct": 100.0,
+      "cost_usd": 0.658
+    },
+    "summary": {
+      "level": "good",
+      "label": "Shipped clean",
+      "summary": "Nothing broke and nothing fell back.",
+      "theme": "Cariboo Local Affairs",
+      "kpis": [
+        [
+          "Episode",
+          "20.9 min",
+          "audio runtime"
+        ],
+        [
+          "Script",
+          "3,478",
+          "words shipped"
+        ],
+        [
+          "Citations",
+          "10/18 · 5/5",
+          "roundup · deep dive"
+        ],
+        [
+          "Cost",
+          "$0.66",
+          "list price, all services"
+        ],
+        [
+          "Done at",
+          "1:25 AM",
+          "Primary rung"
+        ]
+      ],
+      "actions": [],
+      "cycle": [
+        {
+          "date": "2026-11-23",
+          "day": "Mon",
+          "today": false,
+          "theme": "Arts, Culture & Digital Storytelling",
+          "focus": "Music & Live Performance",
+          "week": 2,
+          "of": 5,
+          "next": "Visual Arts & Heritage",
+          "event": null
+        },
+        {
+          "date": "2026-11-24",
+          "day": "Tue",
+          "today": false,
+          "theme": "Working Lands & Industry",
+          "focus": "Mining & Energy",
+          "week": 3,
+          "of": 4,
+          "next": "Tourism & the Outdoor Economy",
+          "event": null
+        },
+        {
+          "date": "2026-11-25",
+          "day": "Wed",
+          "today": false,
+          "theme": "Gear, Gadgets & Practical Tech",
+          "focus": "Homestead & Off-Grid Tech",
+          "week": 2,
+          "of": 5,
+          "next": "Digital Life & Security",
+          "event": null
+        },
+        {
+          "date": "2026-11-26",
+          "day": "Thu",
+          "today": false,
+          "theme": "Indigenous Lands & Innovation",
+          "focus": "Economic Development",
+          "week": 3,
+          "of": 4,
+          "next": "Guardians & Land Stewardship",
+          "event": null
+        },
+        {
+          "date": "2026-11-27",
+          "day": "Fri",
+          "today": false,
+          "theme": "Wild Spaces & Outdoor Life",
+          "focus": "Recreation & Backcountry Access",
+          "week": 3,
+          "of": 4,
+          "next": "Conservation & the Environment",
+          "event": null
+        },
+        {
+          "date": "2026-11-28",
+          "day": "Sat",
+          "today": true,
+          "theme": "Cariboo Local Affairs",
+          "focus": null,
+          "week": null,
+          "of": null,
+          "next": null,
+          "event": null
+        },
+        {
+          "date": "2026-11-29",
+          "day": "Sun",
+          "today": false,
+          "theme": "Science, Wonder & the Natural World",
+          "focus": "Earth Systems & Climate Science",
+          "week": 3,
+          "of": 5,
+          "next": "Discovery, Health & How Science Works",
+          "event": null
+        }
+      ],
+      "anchor": "Is staying put a virtue or a failure of nerve?",
+      "focus": {},
+      "cuts": [
+        {
+          "kind": "deep_dive",
+          "url": "https://www.nytimes.com/2026/11/26/world/canada/port-hardy-woman-dies-outside-er.html",
+          "title": "[NYT Top Stories] The E.R. Closed at 5 P.M. A Dying Woman Showed Up 11 Minutes Too Late.",
+          "source": "",
+          "theme_pct": 85,
+          "reason": "not picked for the deep dive",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://vancouversun.com/news/pacific-blue-cross-cyberattack",
+          "title": "[Vancouver Sun] &#039;Cyber incident&#039; hits Burnaby&#039;s Pacific Blue Cross",
+          "source": "",
+          "theme_pct": 93,
+          "reason": "over the 3-story cap for one subject area",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://100milefreepress.net/2026/11/26/photos-south-cariboo-children-experience-magic-of-theatre/",
+          "title": "[100 Mile Free Press] PHOTOS: South Cariboo children experience magic of theatre",
+          "source": "",
+          "theme_pct": 91,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/24/let-me-grow-up-like-so-many-of-us-didnt-youth-pleads-during-trans-day-of-remembrance/",
+          "title": "[Williams Lake Tribune] ‘Let me grow up like so many of us didn’t’ youth pleads during Trans Day of Remembrance",
+          "source": "",
+          "theme_pct": 89,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/23/b-c-greens-lowan-becomes-youngest-woman-ever-in-b-c-legislature/",
+          "title": "[Williams Lake Tribune] B.C. Greens Lowan becomes youngest woman ever to serve in B.C. legislature",
+          "source": "",
+          "theme_pct": 87,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/26/slow-down-plan-ahead-for-holiday-road-trips-this-december/",
+          "title": "[Williams Lake Tribune] Slow down, plan ahead for holiday road trips this December",
+          "source": "",
+          "theme_pct": 87,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/23/opposition-leaders-say-b-c-cabinet-choices-downplay-housing-climate/",
+          "title": "[Williams Lake Tribune] Opposition leaders say B.C. cabinet choices downplay housing, climate",
+          "source": "",
+          "theme_pct": 85,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/27/lawyering-up-b-c-first-nations-leaders-warn-incoming-government-on-dripa-repeal/",
+          "title": "[Williams Lake Tribune] ‘Lawyering up’: B.C. First Nations leaders warn incoming government on DRIPA repeal",
+          "source": "",
+          "theme_pct": 84,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317626/news/business/economy/union-pushes-back-on-bc-governments-return-to-office-plan/",
+          "title": "[My Cariboo Now] Union pushes back on BC government’s return-to-office plan",
+          "source": "",
+          "theme_pct": 84,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317546/news/business/loan-scams-on-the-rise-through-cellphone-texts/",
+          "title": "[My Cariboo Now] Loan scams on the rise through cellphone, texts",
+          "source": "",
+          "theme_pct": 84,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://wltribune.com/2026/11/27/vernon-teachers-pushing-back-against-provinces-repeal-of-sogi123/",
+          "title": "[Williams Lake Tribune] Vernon teachers pushing back against province’s repeal of SOGI123",
+          "source": "",
+          "theme_pct": 83,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://vancouversun.com/news/bc-doctors-urge-conservatives-to-make-good-on-rural-health-promises",
+          "title": "[Vancouver Sun] B.C. doctors urge Conservatives to make good on rural health promises",
+          "source": "",
+          "theme_pct": 83,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://vancouversun.com/news/bc-health-mandate-letter-hints-at-more-public-money-for-private-care",
+          "title": "[Vancouver Sun] Health mandate letter hints at more public money for private care in B.C.",
+          "source": "",
+          "theme_pct": 83,
+          "reason": "over the airtime budget",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://news.gov.bc.ca/releases/2026EMPR0057-001149",
+          "title": "[BC Gov News] Increasing electricity capacity to boost natural-gas growth in South Peace region",
+          "source": "",
+          "theme_pct": 82,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        },
+        {
+          "kind": "roundup",
+          "url": "https://www.mycariboonow.com/317580/news/provincial/report-alleges-chatgpt-gave-tumbler-ridge-advice-on-making-3d-printed-weapons/",
+          "title": "[My Cariboo Now] Report alleges ChatGPT gave Tumbler Ridge advice on making 3D-printed weapons",
+          "source": "",
+          "theme_pct": 80,
+          "reason": "local block trimmed to keep room for the theme",
+          "aired": false
+        }
+      ],
+      "deep_dive": {
+        "question": "Should council approvals and local decisions on development, healthcare staffing, post-fire hazards, and utility fees be accompanied by written reasoning that shows what pressures were weighed, and would such notes actually change decisions?",
+        "riley": "Council decisions can be sound when they are specific and efficient, and a short, rule-based staff note on service load, hazard status, and staffing should be written into the record before votes to help the town weigh pressures without slowing routine business.",
+        "casey": "Approvals and policy choices need reasoning on the record that names the pressures they were read against, because a general preference or claim of underuse does not show that the council weighed the town's needs, and a note must come before the vote to matter.",
+        "resolution": "The hosts agreed that a staff note on service draw, hazard status, and staffing should be written seven days before meetings and tested over several months to see whether approvals are ever narrowed or conditioned, but they left open whether such a note changes decisions or only documents them, to be answered at the next approval.",
+        "topics": [
+          "Council development permit reasoning and written service-load notes for the Lakeview Avenue approval in Williams Lake",
+          "Healthcare staffing, the Williams Lake Social Collective mixer, and the Cariboo Living Healthcare Landing Program's retention measurement",
+          "Pear Lake post-fire slope hazard report, its preliminary status, sequencing of detailed assessments, and ownership of private-land risk",
+          "Quesnel's 2027 water and sewer fee increases and how predictable utility rises affect household budgets"
+        ],
+        "sources": [
+          {
+            "title": "Williams Lake Social Collective helps healthcare professionals build ties",
+            "url": "https://wltribune.com/2026/11/24/williams-lake-social-collective-helps-healthcare-professionals-build-ties/"
+          },
+          {
+            "title": "2 residential units, renovated commercial space approved at Williams Lake property",
+            "url": "https://wltribune.com/2026/11/24/2-residential-units-renovated-commercial-space-approved-at-williams-lake-property/"
+          },
+          {
+            "title": "Williams Lake Salvation Army launches holiday Kettle Campaign with $75,000 goal",
+            "url": "https://wltribune.com/2026/11/27/williams-lake-salvation-army-launches-holiday-kettle-campaign-with-75000-goal/"
+          },
+          {
+            "title": "Post-wildfire risks identified in Pear Lake fire report",
+            "url": "https://wltribune.com/2026/11/13/post-wildfire-risks-identified-in-pear-lake-fire-report/"
+          },
+          {
+            "title": "Water and sewer fees will be going up in Quesnel",
+            "url": "https://www.mycariboonow.com/317619/news/municipal-news/city-of-quesnel/water-and-sewer-fees-will-be-going-up-in-quesnel/"
+          }
+        ]
+      }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "drift",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "loose",
+      "theme": "loose"
+    },
+    "theme": "Cariboo Local Affairs"
+  },
+  {
     "date": "2026-11-27",
     "title": "Episode Review — Wild Spaces & Outdoor Life, November 27, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-11-27.html",
@@ -6132,20 +6444,6 @@
       "tell_hits": 0,
       "roundup_cite_pct": 88.9,
       "deep_dive_cite_pct": 50.0
-    }
-  },
-  {
-    "date": "2026-10-29",
-    "title": "Episode Review — Cariboo Signals, October 29, 2026",
-    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-10-29.html",
-    "content_html": "<p class=\"meta\">Run <a href=\"https://github.com/zirnhelt/curated-podcast-generator/actions/runs/40839664666\">40839664666</a>.</p>\n\n<div class=\"verdict lvl-warn\"><span class=\"icon\" aria-hidden=\"true\">▲</span><div><strong>Shipped, needs a look</strong>1 thing to look at before tomorrow's run.</div></div>\n\n<h2>What to do</h2>\n<ol class=\"actions\">\n<li><strong><code>script/persist-host-memory</code> fell back. Search the run log for <code>Degraded 'script/persist-host-memory'</code> and decide whether the fallback is acceptable or the cause needs fixing.</strong><br><span class=\"evidence\">degrade() row: personality clue extraction skipped: Unterminated string starting at: line 1 column 548 (char 547)</span></li>\n</ol>\n\n<h2>What happened</h2>\n<h3>Script shipped 335 words under target after a single expand pass</h3>\n<p>The first draft came in at 3015 words against a target of 3400. It was sent back once for an expand pass, and what shipped was 3735 words, which is over target. The gap was closed, but only one pass was allowed, so the final figure is the result of that one retry rather than a second check against the target.</p>\n<p>The 3735 figure is the number that matters for the length threshold. A thin day shipping under target is intended behaviour; if this night's length is a problem, it would show against SHORT_EPISODE_WORDS, and no such finding appears here. Nothing needs changing on this count.</p>\n\n<h3>Roundup dropped 22 stories to fit the airtime budget</h3>\n<p>The roundup pool was larger than one segment could air, so 22 stories were cut by the airtime budget set at NEWS_ROUNDUP_COUNT. The pool is designed to run larger than the airtime, and a cut story can come back on a day where it matches better. These stories are not lost to the archive.</p>\n<p>Of the 18 roundup citations in the script, 13 matched their source. The five unmatched citations are the only citation gap in the run. The four deep-dive citations all matched. If the unmatched roundup citations need checking, that is the place to look.</p>\n\n<h3>Personality clue extraction failed on the host-memory step</h3>\n<p>The persist-host-memory step failed with an unterminated string at line 1, column 548. The personality clue extraction was skipped, so the hosts' memory of this episode was not updated from the script. The episode itself shipped and the listener heard it as normal.</p>\n<p>The effect shows up later, when the hosts are expected to recall clues from this episode and cannot. Fix the JSON emitted by the host-memory step, because the extractor only fails when its input is malformed.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific) — Cloudflare scheduler</td><td>1:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler</td><td>2:05 AM Pacific</td><td>+0 min</td><td>success</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler — this review's own run</td><td>3:05 AM Pacific</td><td>+0 min</td><td>running this review</td></tr>\n</tbody>\n</table>\n\n<h3>What shipped</h3>\n<table>\n<thead><tr><th>Measure</th><th>Value</th></tr></thead>\n<tbody>\n<tr><td>Deep dive</td><td>4 articles</td></tr>\n<tr><td>Script</td><td>2 pattern hit(s), voice ratio 0.71, 3735 words</td></tr>\n<tr><td>Deep dive split</td><td>Casey 40% of the words</td></tr>\n<tr><td>Audio</td><td>23.4 min</td></tr>\n<tr><td>Audio size</td><td>21.4 MB</td></tr>\n<tr><td>Citations matched</td><td>13/18 roundup, 4/4 deep dive</td></tr>\n<tr><td>Feed</td><td>274 episodes</td></tr>\n<tr><td>Anthropic input tokens</td><td>79,254</td></tr>\n<tr><td>API calls</td><td>24 total: claude 12 · brave-search 5 · brave-answers 4 · kagi-extract 3</td></tr>\n</tbody>\n</table>",
-    "published": "2026-10-29T10:06:06+00:00",
-    "metrics": {
-      "audio_minutes": 23.4,
-      "script_words": 3735,
-      "tell_hits": 2,
-      "roundup_cite_pct": 72.2,
-      "deep_dive_cite_pct": 100.0
     }
   }
 ]
