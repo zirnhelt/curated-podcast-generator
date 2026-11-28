@@ -307,7 +307,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "loose",
-      "theme": "loose"
+      "theme": "kept"
     },
     "theme": "Cariboo Local Affairs"
   },
@@ -616,7 +616,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "loose",
-      "theme": "drift"
+      "theme": "loose"
     },
     "theme": "Wild Spaces & Outdoor Life"
   },
@@ -937,7 +937,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "loose",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Indigenous Lands & Innovation"
   },
@@ -1256,7 +1256,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "kept",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Repair Culture & Practical Tech"
   },
@@ -1586,7 +1586,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "kept",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Working Lands & Industry"
   },
@@ -2193,7 +2193,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "kept",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Science, Wonder & the Natural World"
   },
@@ -2490,7 +2490,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "kept",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Cariboo Local Affairs"
   },
@@ -2790,7 +2790,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "kept",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Wild Spaces & Outdoor Life"
   },
@@ -3101,7 +3101,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "loose",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Indigenous Lands & Innovation"
   },
@@ -3405,7 +3405,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "loose",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Repair Culture & Practical Tech"
   },
@@ -3698,7 +3698,7 @@
       "stances": "kept",
       "beats": "kept",
       "landing": "kept",
-      "theme": "drift"
+      "theme": "kept"
     },
     "theme": "Working Lands & Industry"
   },
@@ -4544,7 +4544,18 @@
           }
         ]
       }
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "kept",
+      "theme": "kept"
+    },
+    "theme": "Cariboo Local Affairs"
   },
   {
     "date": "2026-11-13",
@@ -4817,7 +4828,18 @@
           "Local knowledge, crew reporting and dated, named signage for burned roads"
         ]
       }
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "loose",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "loose",
+      "theme": "drift"
+    },
+    "theme": "Wild Spaces & Outdoor Life"
   },
   {
     "date": "2026-11-12",
@@ -5089,7 +5111,18 @@
           }
         ]
       }
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "drift",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "loose",
+      "theme": "drift"
+    },
+    "theme": "Indigenous Lands & Innovation"
   },
   {
     "date": "2026-11-11",
@@ -5353,7 +5386,18 @@
           }
         ]
       }
-    }
+    },
+    "adherence": {
+      "frame": "loose",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "loose",
+      "theme": "drift"
+    },
+    "theme": "Repair Culture & Practical Tech"
   },
   {
     "date": "2026-11-10",
@@ -5598,7 +5642,18 @@
           "aired": true
         }
       ]
-    }
+    },
+    "adherence": {
+      "frame": "loose",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "loose",
+      "theme": "drift"
+    },
+    "theme": "Working Lands & Industry"
   },
   {
     "date": "2026-11-09",
@@ -5824,7 +5879,18 @@
           "aired": false
         }
       ]
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "none",
+      "landing": "loose",
+      "theme": "none"
+    },
+    "theme": "Arts, Culture & Digital Storytelling"
   },
   {
     "date": "2026-11-08",
@@ -6084,7 +6150,18 @@
           "aired": false
         }
       ]
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "loose",
+      "theme": "drift"
+    },
+    "theme": "Science, Wonder & the Natural World"
   },
   {
     "date": "2026-11-07",
@@ -6241,7 +6318,18 @@
           "aired": false
         }
       ]
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "kept",
+      "theme": "drift"
+    },
+    "theme": "Cariboo Local Affairs"
   },
   {
     "date": "2026-11-06",
@@ -6372,7 +6460,18 @@
         }
       ],
       "anchor": "When is keeping the peace worth more than being right?"
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "kept",
+      "theme": "drift"
+    },
+    "theme": "Wild Spaces & Outdoor Life"
   },
   {
     "date": "2026-11-05",
@@ -6503,7 +6602,18 @@
         }
       ],
       "anchor": "When is keeping the peace worth more than being right?"
-    }
+    },
+    "adherence": {
+      "frame": "loose",
+      "order": "loose",
+      "bridges": "drift",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "loose",
+      "theme": "kept"
+    },
+    "theme": "Indigenous Lands & Innovation"
   },
   {
     "date": "2026-11-04",
@@ -6517,7 +6627,18 @@
       "tell_hits": 0,
       "roundup_cite_pct": 72.2,
       "deep_dive_cite_pct": 100.0
-    }
+    },
+    "adherence": {
+      "frame": "loose",
+      "order": "loose",
+      "bridges": "drift",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "kept",
+      "landing": "kept",
+      "theme": "kept"
+    },
+    "theme": "Repair Culture & Practical Tech"
   },
   {
     "date": "2026-11-03",
@@ -6531,7 +6652,18 @@
       "tell_hits": 1,
       "roundup_cite_pct": 72.2,
       "deep_dive_cite_pct": 100.0
-    }
+    },
+    "adherence": {
+      "frame": "kept",
+      "order": "loose",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "none",
+      "landing": "loose",
+      "theme": "none"
+    },
+    "theme": "Working Lands & Industry"
   },
   {
     "date": "2026-11-02",
@@ -6545,7 +6677,18 @@
       "tell_hits": 0,
       "roundup_cite_pct": 100.0,
       "deep_dive_cite_pct": 100.0
-    }
+    },
+    "adherence": {
+      "frame": "loose",
+      "order": "drift",
+      "bridges": "loose",
+      "question": "kept",
+      "stances": "kept",
+      "beats": "none",
+      "landing": "loose",
+      "theme": "none"
+    },
+    "theme": "Arts, Culture & Digital Storytelling"
   },
   {
     "date": "2026-11-01",
