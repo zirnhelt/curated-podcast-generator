@@ -1240,3 +1240,43 @@ def test_spend_chart_is_a_pie_coloured_by_service():
     assert '<i class="s1"></i>Anthropic' in html and '<i class="s2"></i>OpenAI TTS' in html
     assert "<circle" in er._pie_chart({"anthropic": 0.2})  # one service: a full disc, not a zero-length arc
     assert er._pie_chart({"anthropic": 0}) == ""
+
+
+class TestAdherence:
+    """Each night graded kept/loose/drift/none for the page's heatmap (never a signal)."""
+
+    def test_adherence_cells_grade_a_clean_night(self):
+        er = episode_review
+        fid = {"roundup": {"frame": "aired", "order": "held", "bridges": "used"},
+               "question": "asked", "stances": "held", "landing": "aired"}
+        facts = {"storyboard_flow": [4, 4, 2, 4, 5, 5], "theme_fit": [0, "", "p80", 3, 0]}
+        assert set(er.adherence_cells(facts, fid).values()) == {"kept"}
+
+    def test_adherence_cells_grade_drift_and_loose(self):
+        er = episode_review
+        fid = {"roundup": {"frame": "dropped", "order": "mostly held", "bridges": "none planned"},
+               "question": "reworded", "stances": "swapped", "landing": "changed"}
+        facts = {"storyboard_flow": [1, 4, 0, 3, 2, 5], "theme_fit": [1, "x", "p40", 1, 2]}
+        assert er.adherence_cells(facts, fid) == {
+            "frame": "drift", "order": "loose", "bridges": "none", "question": "loose",
+            "stances": "drift", "beats": "drift", "landing": "loose", "theme": "drift"}
+
+    def test_adherence_cells_without_fidelity_keep_counted_columns(self):
+        er = episode_review
+        cells = er.adherence_cells({"storyboard_flow": [3, 4, 1, 3, 3, 5],
+                                    "theme_fit": [1, "x", "p60", 2, 0]}, None)
+        assert cells["beats"] == "loose" and cells["theme"] == "loose"
+        assert all(cells[k] == "none"
+                   for k in ("frame", "order", "bridges", "question", "stances", "landing"))
+
+    def test_adherence_cells_with_no_data(self):
+        er = episode_review
+        assert set(er.adherence_cells({}, None).values()) == {"none"}
+        assert list(er.adherence_cells({}, None)) == [k for k, _ in er.ADHERENCE_COLUMNS]
+
+    def test_update_index_stores_adherence(self, monkeypatch, tmp_path):
+        er = episode_review
+        monkeypatch.setattr(er, "INDEX_FILE", tmp_path / "index.json")
+        er.update_index("2026-11-27", "t", "c", adherence={"frame": "kept"}, theme="Wild Spaces")
+        entry = json.loads((tmp_path / "index.json").read_text())[0]
+        assert entry["adherence"] == {"frame": "kept"} and entry["theme"] == "Wild Spaces"

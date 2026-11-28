@@ -936,6 +936,49 @@ def review_metrics(facts: dict[str, Any]) -> dict[str, float]:
     return m
 
 
+# Adherence: each night graded per column for the page's heatmap. Page only and
+# never a signal: six columns are a model's judgement (`judge_storyboard_fidelity`).
+ADHERENCE_COLUMNS = [("frame", "Frame"), ("order", "Order"), ("bridges", "Bridges"),
+                     ("question", "Question"), ("stances", "Stances"), ("beats", "Beats"),
+                     ("landing", "Landing"), ("theme", "Theme fit")]
+BEATS_KEPT_RATIO = 0.8
+BEATS_LOOSE_RATIO = 0.5
+# Off-charter theme-block stories, or unused on-theme candidates, that make a night drift.
+THEME_DRIFT_COUNT = 2
+_FIDELITY_GRADES = {
+    "frame": {"aired": "kept", "changed": "loose", "dropped": "drift"},
+    "order": {"held": "kept", "mostly held": "loose", "changed": "drift"},
+    "bridges": {"used": "kept", "partly used": "loose", "ignored": "drift"},
+    "question": {"asked": "kept", "reworded": "loose", "dropped": "drift"},
+    "stances": {"held": "kept", "blurred": "loose", "swapped": "drift"},
+    "landing": {"aired": "kept", "changed": "loose", "dropped": "drift"},
+}
+
+
+def adherence_cells(facts: dict[str, Any], fidelity: dict | None) -> dict[str, str]:
+    """One night's grade per `ADHERENCE_COLUMNS` key: kept, loose, drift or none."""
+    fid = fidelity if isinstance(fidelity, dict) else {}
+    rd = fid.get("roundup") if isinstance(fid.get("roundup"), dict) else {}
+    source = {"frame": rd.get("frame"), "order": rd.get("order"), "bridges": rd.get("bridges"),
+              "question": fid.get("question"), "stances": fid.get("stances"),
+              "landing": fid.get("landing")}
+    cells = {k: _FIDELITY_GRADES[k].get(v, "none") if isinstance(v, str) else "none"
+             for k, v in source.items()}
+    flow = facts.get("storyboard_flow")
+    cells["beats"] = "none"
+    if isinstance(flow, list) and len(flow) == 6 and flow[5]:
+        ratio = flow[4] / flow[5]
+        cells["beats"] = ("kept" if ratio >= BEATS_KEPT_RATIO
+                          else "loose" if ratio >= BEATS_LOOSE_RATIO else "drift")
+    fit = facts.get("theme_fit")
+    cells["theme"] = "none"
+    if isinstance(fit, list) and len(fit) == 5:
+        off, unused = fit[0], fit[4]
+        cells["theme"] = ("kept" if off == 0 and unused == 0
+                          else "drift" if max(off, unused) >= THEME_DRIFT_COUNT else "loose")
+    return {k: cells[k] for k, _ in ADHERENCE_COLUMNS}
+
+
 _TRENDS = [("audio_minutes", "Episode length", "{:.1f} min"),
            ("script_words", "Script words", "{:,.0f}"),
            ("roundup_cite_pct", "Roundup citations matched", "{:.0f}%"),
@@ -1594,7 +1637,9 @@ def load_index() -> list[dict]:
 
 def update_index(date: str, title: str, content: str,
                  metrics: dict[str, float] | None = None,
-                 summary: dict[str, Any] | None = None) -> list[dict]:
+                 summary: dict[str, Any] | None = None,
+                 adherence: dict[str, str] | None = None,
+                 theme: str = "") -> list[dict]:
     """Record this review in the index, replacing any entry for the same date."""
     index = [e for e in load_index() if e.get("date") != date]
     index.append({
@@ -1607,6 +1652,9 @@ def update_index(date: str, title: str, content: str,
         "metrics": metrics or {},
         # reader.html shows this beside the day's articles; Pages serves the index.
         "summary": summary or {},
+        # The adherence heatmap's history: this night's graded cells and its theme.
+        "adherence": adherence or {},
+        "theme": theme,
     })
     index.sort(key=lambda e: e["date"], reverse=True)
     atomic_write_json(INDEX_FILE, index[:FEED_LIMIT], ensure_ascii=False)
@@ -2332,6 +2380,7 @@ def main() -> int:
     narrative = "" if args.no_llm else generate_narrative(facts)
     fidelity = None if args.no_llm else judge_storyboard_fidelity(load_storyboard(date),
                                                                   load_script(date))
+    cells = adherence_cells(facts, fidelity)
     title, content, page = build_review(date, runs, facts, narrative,
                                         history=load_index(), ledger=load_ledger(),
                                         fidelity=fidelity)
@@ -2340,7 +2389,9 @@ def main() -> int:
     page_path = REVIEWS_DIR / f"episode-review-{date}.html"
     atomic_write_text(page_path, page)
     index = update_index(date, title, content, review_metrics(facts),
-                         review_summary(date, runs, facts, load_ledger()))
+                         review_summary(date, runs, facts, load_ledger()),
+                         adherence=cells,
+                         theme=facts.get("theme_feed") or facts.get("theme_configured") or "")
     atomic_write_text(FEED_FILE, build_feed(index))
 
     print(f"✅ {page_path}")
