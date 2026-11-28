@@ -1282,6 +1282,57 @@ class TestAdherence:
         assert entry["adherence"] == {"frame": "kept"} and entry["theme"] == "Wild Spaces"
 
 
+class TestBackfillAdherence:
+    """`--backfill-adherence` grades old index entries and touches nothing else."""
+
+    def _setup(self, monkeypatch, tmp_path, entries):
+        er = episode_review
+        monkeypatch.setattr(er, "INDEX_FILE", tmp_path / "index.json")
+        (tmp_path / "index.json").write_text(json.dumps(entries))
+        monkeypatch.setattr(er, "_session", lambda: object())
+        monkeypatch.setattr(er, "fetch_runs", lambda s, d: [{"id": 1, "conclusion": "success"}])
+        monkeypatch.setattr(er, "summarize_runs",
+                            lambda runs: [{"run_id": 1, "conclusion": "success"}])
+        monkeypatch.setattr(er, "fetch_job_log", lambda s, rid: ("LOG", []))
+        monkeypatch.setattr(er, "scan_log", lambda log: {"theme_feed": "Wild Spaces"})
+        monkeypatch.setattr(er, "load_storyboard", lambda d: {"plan": 1})
+        monkeypatch.setattr(er, "load_script", lambda d: "script")
+        return er
+
+    def test_fills_only_entries_without_cells(self, monkeypatch, tmp_path):
+        done = {"date": "2026-11-28", "adherence": {"frame": "drift"}, "title": "t", "theme": "X"}
+        old = {"date": "2026-11-27", "title": "old", "content_html": "<p>kept</p>"}
+        er = self._setup(monkeypatch, tmp_path, [done, old])
+        calls = []
+        monkeypatch.setattr(er, "judge_storyboard_fidelity",
+                            lambda plan, script: calls.append(1) or {
+                                "roundup": {"frame": "aired", "order": "held", "bridges": "used"},
+                                "question": "asked", "stances": "held", "landing": "aired"})
+        assert er.backfill_adherence() == 0
+        out = {e["date"]: e for e in json.loads((tmp_path / "index.json").read_text())}
+        assert len(calls) == 1                                  # the graded night is skipped
+        assert out["2026-11-28"] == done                        # untouched
+        assert out["2026-11-27"]["adherence"]["frame"] == "kept"
+        assert out["2026-11-27"]["theme"] == "Wild Spaces"
+        assert out["2026-11-27"]["content_html"] == "<p>kept</p>"   # page text never rewritten
+
+    def test_dry_run_spends_and_writes_nothing(self, monkeypatch, tmp_path):
+        er = self._setup(monkeypatch, tmp_path, [{"date": "2026-11-27"}])
+        before = (tmp_path / "index.json").read_text()
+        monkeypatch.setattr(er, "judge_storyboard_fidelity",
+                            lambda *a: pytest.fail("dry run must not call the model"))
+        assert er.backfill_adherence(dry_run=True) == 0
+        assert (tmp_path / "index.json").read_text() == before
+
+    def test_night_with_nothing_to_grade_stays_blank(self, monkeypatch, tmp_path):
+        er = self._setup(monkeypatch, tmp_path, [{"date": "2026-11-20"}])
+        monkeypatch.setattr(er, "fetch_job_log", lambda s, rid: ("", []))
+        monkeypatch.setattr(er, "load_storyboard", lambda d: None)
+        monkeypatch.setattr(er, "load_script", lambda d: "")
+        er.backfill_adherence()
+        assert "adherence" not in json.loads((tmp_path / "index.json").read_text())[0]
+
+
 class TestAdherenceHeatmap:
     def test_heatmap_rows_newest_first_with_old_entries_blank(self):
         er = episode_review

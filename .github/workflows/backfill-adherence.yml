@@ -1,0 +1,52 @@
+name: Backfill review adherence
+
+# One-off, manual. Grades the episode review's adherence heatmap for past nights
+# that were reviewed before the heatmap existed (`episode_review.py
+# --backfill-adherence`). It rewrites only podcasts/reviews/index.json; the next
+# nightly review job copies the index to Pages and renders the filled table.
+# Cost: one Haiku fidelity call per night, at most 13.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'List the nights that would be graded and spend nothing'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements-lock.txt
+
+      - name: Grade the past nights
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python episode_review.py --backfill-adherence ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Commit the index
+        if: ${{ !inputs.dry_run }}
+        uses: ./.github/actions/commit-push
+        with:
+          message: Backfill review adherence - ${{ github.run_id }}
+          paths: |
+            podcasts/reviews/index.json
+          branch: main
