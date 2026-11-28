@@ -1280,3 +1280,36 @@ class TestAdherence:
         er.update_index("2026-11-27", "t", "c", adherence={"frame": "kept"}, theme="Wild Spaces")
         entry = json.loads((tmp_path / "index.json").read_text())[0]
         assert entry["adherence"] == {"frame": "kept"} and entry["theme"] == "Wild Spaces"
+
+
+class TestAdherenceHeatmap:
+    def test_heatmap_rows_newest_first_with_old_entries_blank(self):
+        er = episode_review
+        history = [{"date": "2026-11-26", "theme": "Indigenous Lands", "adherence": {"order": "drift"}},
+                   {"date": "2026-11-25", "theme": "Gear"}]  # an entry from before the heatmap
+        html = er.render_adherence_heatmap(history, {"order": "kept"}, "2026-11-27", "Wild <Spaces>")
+        assert html.index("11-27") < html.index("11-26") < html.index("11-25")
+        assert "Wild &lt;Spaces&gt;" in html and "adh-drift" in html and "·" in html
+
+    def test_heatmap_skips_a_stale_copy_of_today(self):
+        er = episode_review
+        history = [{"date": "2026-11-27", "adherence": {"order": "drift"}}]
+        html = er.render_adherence_heatmap(history, {"order": "kept"}, "2026-11-27", "")
+        assert html.count("11-27") == 1 and "adh-drift" not in html
+
+    def test_heatmap_caps_at_fourteen_nights(self):
+        er = episode_review
+        history = [{"date": f"2026-11-{d:02d}", "adherence": {"order": "kept"}} for d in range(1, 27)]
+        html = er.render_adherence_heatmap(history, {"order": "kept"}, "2026-11-27", "")
+        assert html.count("<tr") == er.HEATMAP_NIGHTS + 1  # plus the header row
+
+    def test_heatmap_empty_when_no_data(self):
+        er = episode_review
+        none = {k: "none" for k, _ in er.ADHERENCE_COLUMNS}
+        assert er.render_adherence_heatmap([], none, "2026-11-27", "") == ""
+
+    def test_heatmap_is_page_only(self):
+        _title, content, page = episode_review.build_review(
+            "2026-08-19", [], {}, "", adherence={"order": "kept"})
+        assert "Plan and theme, night by night" in page
+        assert "Plan and theme, night by night" not in content

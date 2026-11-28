@@ -1147,6 +1147,9 @@ PAGE = """<!DOCTYPE html>
                   padding: 0.6rem 1rem; }}
     table.cycle tr.today td {{ background: var(--panel); font-weight: 600; }}
     table.cycle tr.today td:first-child {{ box-shadow: inset 4px 0 0 var(--series); }}
+    td.adh {{ text-align: center; font-weight: 700; }}
+    .adh-kept {{ color: var(--good); }} .adh-loose {{ color: var(--warn); }}
+    .adh-drift {{ color: var(--bad); }} .adh-none {{ color: var(--muted); }}
     .pips {{ display: inline-flex; gap: 3px; vertical-align: middle; }}
     .pips i {{ width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--axis); }}
     .pips i.on {{ background: var(--series); border-color: var(--series); }}
@@ -1232,6 +1235,42 @@ def render_cycle(rows: list[dict], anchor: str | None) -> str:
     table = ("<div class=\"table-wrap\"><table class=\"cycle\"><tr><th>Day</th><th>Theme</th>"
              "<th>Super-cycle focus</th><th>Next week</th></tr>" + "".join(body) + "</table></div>")
     return "\n".join(p for p in ["<h2>This week's rotation</h2>", lede, q, table] if p)
+
+
+HEATMAP_NIGHTS = 14
+_ADH_SYMBOL = {"kept": "✓", "loose": "◐", "drift": "✗", "none": "·"}
+
+
+def render_adherence_heatmap(history: list[dict], today: dict[str, str], date: str,
+                             theme: str) -> str:
+    """Storyboard and theme adherence, one row per night, newest first (page only).
+
+    Rows are read from the review index; an entry from before the heatmap has no
+    `adherence` and shows as blank cells. Empty when no night has any grade.
+    """
+    nights = [(date, theme, today or {})]
+    nights += [(e["date"], e.get("theme") or "", e.get("adherence") or {})
+               for e in sorted(history, key=lambda e: e.get("date", ""), reverse=True)
+               if e.get("date") and e["date"] < date]
+    nights = nights[:HEATMAP_NIGHTS]
+    if not any(g in ("kept", "loose", "drift") for _, _, cells in nights for g in cells.values()):
+        return ""
+    head = "<tr><th>Night</th>" + "".join(f"<th>{escape(label)}</th>" for _, label in ADHERENCE_COLUMNS) + "</tr>"
+    rows = []
+    for d, th, cells in nights:
+        day = datetime.strptime(d, "%Y-%m-%d").strftime("%a")
+        label = f"{day} {d[5:]}" + (f" &middot; {escape(th)}" if th else "")
+        tds = []
+        for key, name in ADHERENCE_COLUMNS:
+            grade = cells.get(key) if cells.get(key) in _ADH_SYMBOL else "none"
+            tds.append(f'<td class="adh adh-{grade}" title="{escape(name)}: {grade}">{_ADH_SYMBOL[grade]}</td>')
+        rows.append(f'<tr class="{"today" if d == date else ""}"><td>{label}</td>{"".join(tds)}</tr>')
+    legend = ("<p class=\"note\">✓ kept · ◐ loose · ✗ drifted · <span aria-hidden=\"true\">·</span> "
+              "no data. Frame to landing are a model's reading of the plan against the script; "
+              "beats and theme fit are counted.</p>")
+    return ("<h2>Plan and theme, night by night</h2>\n" + legend +
+            "\n<div class=\"table-wrap\"><table class=\"cycle adherence\">" + head + "".join(rows) +
+            "</table></div>")
 
 
 def _citations_key(date: str, key: str, kind: type) -> Any:
@@ -1534,7 +1573,8 @@ def render_research(rows: list[dict]) -> str:
 def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: str,
                  history: list[dict] | None = None,
                  ledger: dict | None = None,
-                 fidelity: dict | None = None) -> tuple[str, str, str]:
+                 fidelity: dict | None = None,
+                 adherence: dict[str, str] | None = None) -> tuple[str, str, str]:
     """Return (title, content_html, page_html).
 
     content_html goes into the RSS feed, which super-rss-feed reads as text, so
@@ -1572,6 +1612,7 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
                                       render_fidelity(fidelity, full=False), tables] if p)
     page_body = "\n\n".join(p for p in [
         lede, banner, render_kpis(facts, runs), render_cycle(rows, week_anchor(date, facts)),
+        render_adherence_heatmap(history or [], adherence or {}, date, theme),
         actions, render_charts(facts),
         render_trends(history or [], review_metrics(facts), date), detail,
         render_plan(load_storyboard(date), facts),
@@ -2383,7 +2424,7 @@ def main() -> int:
     cells = adherence_cells(facts, fidelity)
     title, content, page = build_review(date, runs, facts, narrative,
                                         history=load_index(), ledger=load_ledger(),
-                                        fidelity=fidelity)
+                                        fidelity=fidelity, adherence=cells)
 
     REVIEWS_DIR.mkdir(parents=True, exist_ok=True)
     page_path = REVIEWS_DIR / f"episode-review-{date}.html"
