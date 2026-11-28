@@ -866,8 +866,8 @@
       "title": "The deep dive aired with no Cariboo story or angle despite the theme feed being local.",
       "detail": "On 2026-11-20 the roundup opened with two local stories, but the deep_dive_cariboo field reads no, and the deep dive led with p87 from four sources, none of them local. The facts show 10 on-theme candidates went unused, so a local angle was available to the deep-dive selector and was not chosen. The closing change is to have the deep-dive selection step require at least one Cariboo-tagged candidate when one exists in the theme feed, and log the reason when it does not.",
       "source": "review",
-      "status": "open",
-      "occurrences": 5,
+      "status": "retired",
+      "occurrences": 0,
       "first_seen": "2026-11-20",
       "seen": [
         "2026-11-20",
@@ -910,5 +910,5 @@
       "last_seen": "2026-11-27"
     }
   ],
-  "updated": "2026-11-27"
+  "updated": "2026-11-28"
 }
