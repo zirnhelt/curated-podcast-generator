@@ -20,6 +20,7 @@ distils is a review nobody acts on — see the roadmap section below.
     python episode_review.py --date 2026-08-19
     python episode_review.py --log run.log --no-llm   # parse a saved log, no spend
     python episode_review.py --no-roadmap             # publish only, leave the roadmap
+    python episode_review.py --backfill-adherence     # fill the heatmap's past nights
 
 Writes podcasts/reviews/episode-review-YYYY-MM-DD.html, regenerates
 episode-reviews.xml — which the site deploys and super-rss-feed subscribes to
@@ -2466,6 +2467,56 @@ def distill_roadmap(date: str, facts: dict[str, Any], narrative: str,
     return True
 
 
+def _generating_run(runs: list[dict]) -> dict | None:
+    """The run that made the episode; failing that, the newest one that failed."""
+    return (next((r for r in runs if r.get("conclusion") == "success"), None)
+            or next((r for r in reversed(runs) if r.get("conclusion") == "failure"), None))
+
+
+def backfill_adherence(dry_run: bool = False) -> int:
+    """Grade the heatmap cells for nights reviewed before the heatmap existed.
+
+    Only `adherence` (and a blank `theme`) in the index changes: no page, feed,
+    narrative or roadmap is touched, so it is cheap (one Haiku fidelity call a
+    night) and idempotent (an entry that already has cells is skipped). A night
+    whose plan or script is gone keeps blank cells rather than invented ones.
+    """
+    index = load_index()
+    todo = [e for e in index if e.get("date") and not e.get("adherence")][:HEATMAP_NIGHTS - 1]
+    print(f"📝 Backfilling adherence: {len(todo)} night(s) without cells")
+    if not todo:
+        return 0
+    session = _session()
+    changed = 0
+    for entry in todo:
+        date = entry["date"]
+        plan, script = load_storyboard(date), load_script(date)
+        log = ""
+        try:
+            generated = _generating_run(summarize_runs(fetch_runs(session, date)))
+            if generated:
+                log, _ = fetch_job_log(session, generated["run_id"])
+        except requests.RequestException as exc:
+            print(f"  ⚠️  {date}: Actions API unreachable ({exc}) — counted columns stay blank")
+        facts = scan_log(log) if log else {}
+        print(f"  {date}: plan={'yes' if plan else 'no'} script={'yes' if script else 'no'} "
+              f"log={'yes' if log else 'no'}")
+        if dry_run:
+            continue
+        cells = adherence_cells(facts, judge_storyboard_fidelity(plan, script))
+        if not any(g in ("kept", "loose", "drift") for g in cells.values()):
+            print(f"  ↷ {date}: nothing to grade — left blank")
+            continue
+        entry["adherence"] = cells
+        entry["theme"] = entry.get("theme") or (
+            facts.get("theme_feed") or facts.get("theme_configured") or "")
+        changed += 1
+    if changed:
+        atomic_write_json(INDEX_FILE, index, ensure_ascii=False)
+    print(f"✅ {changed} night(s) graded" + (" (dry run: nothing written)" if dry_run else ""))
+    return 0
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -2480,7 +2531,13 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="Print the facts, write nothing.")
     parser.add_argument("--skip-if-reviewed", action="store_true",
                         help="Exit if the date already has a review (the backstop after rung 3).")
+    parser.add_argument("--backfill-adherence", action="store_true",
+                        help="Grade the heatmap cells for past nights that lack them; "
+                             "rewrites only the index (--dry-run lists the nights, spends nothing).")
     args = parser.parse_args()
+
+    if args.backfill_adherence:
+        return backfill_adherence(dry_run=args.dry_run)
 
     date = args.date or datetime.now(PACIFIC).strftime("%Y-%m-%d")
     # Both rung 3 and the backstop carry the review job, for the nights the
@@ -2508,9 +2565,7 @@ def main() -> int:
             # The run that made the episode; failing that, the newest one that
             # failed, because a day with no success is the day most worth a
             # review and its log says why (2026-08-23 published a bare table).
-            generated = (next((r for r in runs if r.get("conclusion") == "success"), None)
-                         or next((r for r in reversed(runs)
-                                  if r.get("conclusion") == "failure"), None))
+            generated = _generating_run(runs)
             if generated:
                 log, steps = fetch_job_log(session, generated["run_id"])
                 # Only the steps worth a sentence: sub-minute ones are setup.
