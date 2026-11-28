@@ -1,25 +1,4 @@
 {
-  "2026-10-23": {
-    "timestamp": 1792743652.254298,
-    "topics": [
-      "[Williams Lake Tribune] Symbol of hope, respect and peace fo",
-      "[My Cariboo Now] More than 15,000 Cariboo residents vote ear",
-      "[Williams Lake Tribune] Quesnel RCMP officer unable to wear ",
-      "[My Cariboo Now] B.C. RCMP to begin phased rollout of Next G",
-      "[Quesnel Cariboo Observer] Creativity takes wing at Quesnel\u2019",
-      "[My East Kootenay Now] McInnis seeks another term in Columbi",
-      "[Popular Mechanics] A Tragic Death at Six Flags Has Exposed ",
-      "[Williams Lake Tribune] Conservatives remain ahead in polls "
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-10-23",
-    "focus": "recreation-access",
-    "focus_name": "Recreation & Backcountry Access"
-  },
   "2026-10-24": {
     "timestamp": 1792829991.139169,
     "topics": [
@@ -745,6 +724,26 @@
       "Indigenous tech"
     ],
     "date": "2026-11-27",
+    "focus": null,
+    "focus_name": null
+  },
+  "2026-11-28": {
+    "timestamp": 1795853778.856327,
+    "topics": [
+      "[My Cariboo Now] Operation Red Nose returns to bring another",
+      "[Williams Lake Tribune] Williams Lake TRU trades students da",
+      "[My Cariboo Now] B.C. government to remove SOGI 123 resource",
+      "[My Cariboo Now] Todd Doherty has harsh words for Millar Wes",
+      "[Quesnel Cariboo Observer] Faces behind the counter: Quesnel",
+      "[Williams Lake Tribune] Williams Lake Social Collective help",
+      "[Williams Lake Tribune] 2 residential units, renovated comme",
+      "[Williams Lake Tribune] Williams Lake Salvation Army launche"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-11-28",
     "focus": null,
     "focus_name": null
   }

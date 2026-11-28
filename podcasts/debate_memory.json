@@ -1,32 +1,4 @@
 {
-  "2026-08-29": {
-    "timestamp": 1788011917.961836,
-    "date": "2026-08-29",
-    "theme": "Cariboo Local Affairs",
-    "focus": null,
-    "anchor": "allowed-to-fix",
-    "central_question": "Should local government create formal channels to escalate safety complaints about commercial buildings to provincial regulators, or does existing provincial enforcement already adequately protect residents?",
-    "riley_position": "Provincial agencies like WorkSafeBC have the technical expertise and authority to regulate hazards like asbestos, but local government should create a formal referral bridge so complaints reach provincial inspectors faster and with documented accountability, rather than relying on workers to contact the province directly.",
-    "riley_key_evidence": [
-      "WorkSafeBC's $624,000 fine against Sandman Hotel was imposed after an inspection discovered asbestos, demonstrating reactive rather than preventative enforcement",
-      "Asbestos abatement requires certified contractors and that certification regime functions properly to prevent untrained removal",
-      "Williams Lake currently has no formal local channel to escalate safety complaints to WorkSafeBC, leaving the timing of provincial inspections to chance"
-    ],
-    "casey_position": "The current system has only one enforcement lever\u2014punishment after discovery\u2014and creates an accountability gap where hazards can persist for years while residents have no accessible local pathway to report concerns and ensure they reach provincial authorities.",
-    "casey_key_evidence": [
-      "The fine arrived after WorkSafeBC found the violation during an inspection, not before exposure occurred, showing the certification regime didn't prevent the hazard",
-      "A $624,000 fine is a rounding error for Northland Properties' multi-province portfolio, making it insufficient to deter behavior across their national operations",
-      "Most provincial safety regimes in Canada work reactively rather than preventatively because continuous inspection funding has never been prioritized"
-    ],
-    "resolution": "Riley and Casey reached consensus that the solution is a concrete governance fix: Williams Lake council should pass a bylaw requiring staff to formally log safety complaints about commercial buildings and forward them to WorkSafeBC within a set timeframe, with the referral documented in public records\u2014creating accountability without requiring new certifications or inspectors.",
-    "topics_covered": [
-      "Provincial versus local regulatory authority over workplace hazards",
-      "Reactive enforcement versus preventative inspection models in Canadian safety regulation",
-      "The gap between technical capacity requirements and practical accountability in small-town governance",
-      "How public participation mechanisms differ between zoning regulation and safety enforcement",
-      "Concrete policy alternatives for connecting residents to existing provincial authority without duplicating expertise locally"
-    ]
-  },
   "2026-08-30": {
     "timestamp": 1788098871.087208,
     "date": "2026-08-30",
@@ -2561,6 +2533,33 @@
       "Peatland drainage and local stewardship",
       "Carbon sinks and the uncertainty of restoration gains",
       "Human cost of staying versus leaving, and governance of land decisions"
+    ]
+  },
+  "2026-11-28": {
+    "timestamp": 1795853781.246746,
+    "date": "2026-11-28",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "staying-versus-leaving",
+    "central_question": "Should council approvals and local decisions on development, healthcare staffing, post-fire hazards, and utility fees be accompanied by written reasoning that shows what pressures were weighed, and would such notes actually change decisions?",
+    "riley_position": "Council decisions can be sound when they are specific and efficient, and a short, rule-based staff note on service load, hazard status, and staffing should be written into the record before votes to help the town weigh pressures without slowing routine business.",
+    "riley_key_evidence": [
+      "The Cariboo Living Healthcare Landing Program is a community-based recruitment and retention effort funded through the Cariboo Chilcotin Regional Hospital District, with a housing support component, and the Tribune reports three years of council updates.",
+      "Quesnel's proposed 2027 fees are water up 4 per cent ($13.08) and sewer up 3.5 per cent ($11.64), about $24.72 combined for a single-family dwelling, roughly two dollars a month if annual.",
+      "The Pear Lake preliminary report names a Level 4 Detailed Assessment as the defined next step, so a ranked list lets a council decide which culverts to check before the next storm."
+    ],
+    "casey_position": "Approvals and policy choices need reasoning on the record that names the pressures they were read against, because a general preference or claim of underuse does not show that the council weighed the town's needs, and a note must come before the vote to matter.",
+    "casey_key_evidence": [
+      "The Lakeview approval, as reported, names facade work, a deck, and bike racks but says nothing about the water and sewer draw of two new households, and cites only a general preference and underuse.",
+      "The Williams Lake Social Collective mixer drew 28 healthcare professionals and raised more than $800, but the real measure is how many recruits remain in town after two or three years, and the city's two landing co-ordinators have no published retention count yet.",
+      "The preliminary Pear Lake report, dated October 8 and released November 9, rests largely on August aerial reconnaissance, lists rail and substation exposure with no detailed assessment yet behind them, and leaves private-land slope responsibility unanswered."
+    ],
+    "resolution": "The hosts agreed that a staff note on service draw, hazard status, and staffing should be written seven days before meetings and tested over several months to see whether approvals are ever narrowed or conditioned, but they left open whether such a note changes decisions or only documents them, to be answered at the next approval.",
+    "topics_covered": [
+      "Council development permit reasoning and written service-load notes for the Lakeview Avenue approval in Williams Lake",
+      "Healthcare staffing, the Williams Lake Social Collective mixer, and the Cariboo Living Healthcare Landing Program's retention measurement",
+      "Pear Lake post-fire slope hazard report, its preliminary status, sequencing of detailed assessments, and ownership of private-land risk",
+      "Quesnel's 2027 water and sewer fee increases and how predictable utility rises affect household budgets"
     ]
   }
 }
