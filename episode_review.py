@@ -1147,7 +1147,22 @@ PAGE = """<!DOCTYPE html>
                   padding: 0.6rem 1rem; }}
     table.cycle tr.today td {{ background: var(--panel); font-weight: 600; }}
     table.cycle tr.today td:first-child {{ box-shadow: inset 4px 0 0 var(--series); }}
+    svg.plan {{ width: 100%; max-width: 640px; height: auto; display: block; margin: 0.5rem 0; }}
+    svg.plan text {{ font-size: 12px; fill: var(--ink); }} svg.plan .head {{ font-weight: 700; fill: var(--muted); }}
+    svg.plan .chip rect {{ fill: var(--panel); stroke: var(--rule); }}
+    svg.plan .chip.miss {{ opacity: 0.45; }}
+    svg.plan .link {{ fill: none; stroke-width: 2; }} svg.plan .link.ok {{ stroke: var(--good); }}
+    svg.plan .link.moved {{ stroke: var(--warn); }}
+    svg.plan .link.miss {{ stroke: var(--muted); stroke-dasharray: 4 3; }}
+    svg.plan .bridge {{ stroke-width: 3; stroke: var(--muted); }}
+    svg.plan .bridge.adh-kept {{ stroke: var(--good); }} svg.plan .bridge.adh-loose {{ stroke: var(--warn); }}
+    svg.plan .bridge.adh-drift {{ stroke: var(--bad); }}
+    svg.plan .pip.aired {{ fill: var(--good); }} svg.plan .pip.changed {{ fill: var(--warn); }}
+    svg.plan .pip.dropped {{ fill: none; stroke: var(--bad); stroke-width: 2; }}
+    svg.plan text.adh-kept {{ fill: var(--good); }} svg.plan text.adh-loose {{ fill: var(--warn); }}
+    svg.plan text.adh-drift {{ fill: var(--bad); }}
     td.adh {{ text-align: center; font-weight: 700; }}
+    table.adherence td:first-child {{ min-width: 8.5rem; }}
     .adh-kept {{ color: var(--good); }} .adh-loose {{ color: var(--warn); }}
     .adh-drift {{ color: var(--bad); }} .adh-none {{ color: var(--muted); }}
     .pips {{ display: inline-flex; gap: 3px; vertical-align: middle; }}
@@ -1238,7 +1253,7 @@ def render_cycle(rows: list[dict], anchor: str | None) -> str:
 
 
 HEATMAP_NIGHTS = 14
-_ADH_SYMBOL = {"kept": "✓", "loose": "◐", "drift": "✗", "none": "·"}
+_ADH_SYMBOL = {"kept": "✓", "loose": "~", "drift": "✗", "none": "·"}
 
 
 def render_adherence_heatmap(history: list[dict], today: dict[str, str], date: str,
@@ -1265,7 +1280,7 @@ def render_adherence_heatmap(history: list[dict], today: dict[str, str], date: s
             grade = cells.get(key) if cells.get(key) in _ADH_SYMBOL else "none"
             tds.append(f'<td class="adh adh-{grade}" title="{escape(name)}: {grade}">{_ADH_SYMBOL[grade]}</td>')
         rows.append(f'<tr class="{"today" if d == date else ""}"><td>{label}</td>{"".join(tds)}</tr>')
-    legend = ("<p class=\"note\">✓ kept · ◐ loose · ✗ drifted · <span aria-hidden=\"true\">·</span> "
+    legend = ("<p class=\"note\">✓ kept · ~ loose · ✗ drifted · <span aria-hidden=\"true\">·</span> "
               "no data. Frame to landing are a model's reading of the plan against the script; "
               "beats and theme fit are counted.</p>")
     return ("<h2>Plan and theme, night by night</h2>\n" + legend +
@@ -1288,6 +1303,11 @@ def _citations_key(date: str, key: str, kind: type) -> Any:
 def load_storyboard(date: str) -> dict | None:
     """The day's storyboard from its citations JSON, or None."""
     return _citations_key(date, "storyboard", dict)
+
+
+def load_storyboard_aired(date: str) -> dict | None:
+    """Where each planned story first aired and which beats made it (citations), or None."""
+    return _citations_key(date, "storyboard_aired", dict)
 
 
 _CUT_KINDS = ("deep_dive", "roundup")
@@ -1353,6 +1373,105 @@ def load_deep_dive(date: str) -> dict[str, Any]:
            "casey": text("casey_position"), "resolution": text("resolution"),
            "topics": topics, "sources": sources}
     return {k: v for k, v in out.items() if v}
+
+
+# Plan-vs-aired diagram. Columns, not rows: a Saturday roundup is 18 stories,
+# which a horizontal row can't show legibly at phone width.
+_PLAN_COL_W, _PLAN_GAP, _PLAN_ROW, _PLAN_CHIP_H, _PLAN_LABEL = 170, 80, 28, 22, 24
+_NO_BRIDGE = ("clean pivot", "handoff", "")
+
+
+def _chip_label(title: str) -> str:
+    text = re.sub(r"^\[[^\]]*\]\s*", "", title or "").strip()
+    return text if len(text) <= _PLAN_LABEL else text[:_PLAN_LABEL - 1].rstrip() + "…"
+
+
+def _kept_in_order(idx: list[int], rank: dict[int, int]) -> set[int]:
+    """The largest set of stories that aired in plan order (longest increasing run of ranks).
+
+    Everything outside it is what moved: one story pulled to the end is one move,
+    not every story it jumped over.
+    """
+    best: list[list[int]] = []
+    for i in idx:
+        chain = max((c for c in best if rank[c[-1]] < rank[i]), key=len, default=[])
+        best.append(chain + [i])
+    return set(max(best, key=len, default=[]))
+
+
+def render_plan_diagram(plan: dict | None, aired: dict | None, fidelity: dict | None) -> str:
+    """The planned roundup order beside the aired one, and the deep dive's beats (page only).
+
+    One chip per planned story (a folded same-story report rides with its lead and
+    takes the lead's earliest turn). A "moved" link is a story outside the longest
+    run that aired in the plan's order; a dashed one never aired. Every label is escaped.
+    """
+    if not plan or not isinstance(aired, dict) or not aired.get("roundup"):
+        return ""
+    leads: list[tuple[str, int | None]] = []
+    for r in aired["roundup"]:
+        turn = r.get("turn") if isinstance(r.get("turn"), int) else None
+        if r.get("merged") and leads:
+            title, t = leads[-1]
+            leads[-1] = (title, turn if t is None else t if turn is None else min(t, turn))
+        else:
+            leads.append((str(r.get("title") or ""), turn))
+    n = len(leads)
+    order = sorted(range(n), key=lambda i: (leads[i][1] is None, leads[i][1] or 0, i))
+    aired_rank = {i: rank for rank, i in enumerate(order)}
+    stayed = _kept_in_order([i for i in range(n) if leads[i][1] is not None], aired_rank)
+    fid = fidelity if isinstance(fidelity, dict) else {}
+    right_x = _PLAN_COL_W + _PLAN_GAP
+    width = right_x + _PLAN_COL_W
+    y0 = 24
+    ys = lambda rank: y0 + rank * _PLAN_ROW  # noqa: E731
+    parts = [f'<text x="0" y="14" class="head">Plan</text>',
+             f'<text x="{right_x}" y="14" class="head">Aired</text>']
+    for i, (title, turn) in enumerate(leads):
+        full, label = escape(title), escape(_chip_label(title))
+        missed = turn is None
+        link = "miss" if missed else "ok" if i in stayed else "moved"
+        ya, yb = ys(i) + _PLAN_CHIP_H / 2, ys(aired_rank[i]) + _PLAN_CHIP_H / 2
+        parts.append(f'<path d="M{_PLAN_COL_W},{ya:.0f} C{_PLAN_COL_W + _PLAN_GAP / 2},{ya:.0f} '
+                     f'{right_x - _PLAN_GAP / 2},{yb:.0f} {right_x},{yb:.0f}" class="link {link}"/>')
+        for x, y, extra in ((0, ys(i), ""), (right_x, ys(aired_rank[i]), " miss" if missed else "")):
+            parts.append(f'<g class="chip{extra}"><title>{full}</title><rect x="{x}" y="{y}" '
+                         f'width="{_PLAN_COL_W}" height="{_PLAN_CHIP_H}" rx="4"/>'
+                         f'<text x="{x + 6}" y="{y + 15}">{label}</text></g>')
+    stories = (plan.get("roundup") or {}).get("stories") or []
+    bridge_grade = (_FIDELITY_GRADES["bridges"].get((fid.get("roundup") or {}).get("bridges"), "none")
+                    if isinstance(fid.get("roundup"), dict) else "none")
+    for i, st in enumerate(stories[:max(n - 1, 0)]):
+        if isinstance(st, dict) and (st.get("bridge_to_next") or "").strip().lower() not in _NO_BRIDGE:
+            y = ys(i) + _PLAN_CHIP_H
+            parts.append(f'<path d="M-4,{y - 6} L-4,{y + _PLAN_ROW - _PLAN_CHIP_H + 6}" '
+                         f'class="bridge adh-{bridge_grade}"><title>{escape(st["bridge_to_next"])}</title></path>')
+    # Beats: the model's status per beat when it ran, else the counted check.
+    beats_fid = [b for b in fid.get("beats") or [] if isinstance(b, dict)]
+    counted = [bool(b) for b in aired.get("beats") or []]
+    statuses = ([str(b.get("status")) if b.get("status") in _FIDELITY_STATUS else "dropped" for b in beats_fid]
+                if beats_fid else ["aired" if b else "dropped" for b in counted])
+    yb = y0 + n * _PLAN_ROW + 16
+    if statuses:
+        parts.append(f'<text x="0" y="{yb + 4}" class="head">Deep-dive beats</text>')
+        for j, st in enumerate(statuses):
+            parts.append(f'<circle cx="{120 + j * 18}" cy="{yb}" r="6" class="pip {st}">'
+                         f'<title>Beat {j + 1}: {st}</title></circle>')
+    chips = [(name, _FIDELITY_GRADES[key].get(fid.get(key), "none"))
+             for key, name in (("question", "Question"), ("stances", "Stances"), ("landing", "Landing"))
+             if fid.get(key)]
+    for k, (name, grade) in enumerate(chips):
+        parts.append(f'<text x="{k * 110}" y="{yb + 30}" class="adh-{grade}">'
+                     f'{_ADH_SYMBOL[grade]} {name}</text>')
+    height = yb + (40 if chips else 16)
+    in_order = sum(1 for i in range(n) if leads[i][1] is not None and aired_rank[i] == i)
+    label = (f"{n} planned stories, {in_order} in their planned slot; "
+             f"{statuses.count('aired')}/{len(statuses)} beats aired")
+    svg = (f'<svg class="plan" viewBox="-8 0 {width + 8} {height}" role="img" '
+           f'aria-label="{_attr(label)}">' + "".join(parts) + "</svg>")
+    return ("<h2>Plan vs. aired</h2>\n<p class=\"note\">Left, the storyboard's order; right, the "
+            "order the stories first aired. An amber line is a story that moved; a dashed one never aired. The bar "
+            "on the left marks a named bridge.</p>\n" + svg)
 
 
 def render_plan(plan: dict | None, facts: dict[str, Any]) -> str:
@@ -1615,6 +1734,7 @@ def build_review(date: str, runs: list[dict], facts: dict[str, Any], narrative: 
         render_adherence_heatmap(history or [], adherence or {}, date, theme),
         actions, render_charts(facts),
         render_trends(history or [], review_metrics(facts), date), detail,
+        render_plan_diagram(load_storyboard(date), load_storyboard_aired(date), fidelity),
         render_plan(load_storyboard(date), facts),
         render_fidelity(fidelity),
         render_research(load_research(date)),
