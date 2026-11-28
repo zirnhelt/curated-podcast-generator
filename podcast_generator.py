@@ -7608,6 +7608,87 @@ def _cut_for(articles: list, reason: str) -> list:
     return articles
 
 
+# When the airtime budget cuts, a B.C. story outlasts one from outside Canada (the
+# producer, 2026-11-27): on 2026-11-26 the budget cut rural B.C. doctors (p87) and the
+# Tyee's Building Canada Strong Act story (p93) while two Denmark stories aired, and
+# the script never told either of them.
+ROUNDUP_BC_KEEP_MIN_PCT = 80
+_BUDGET_CUT_REASONS = ("over the airtime budget", "no room left for a pair from its subject area")
+_BC_RE = re.compile(r"(?<![A-Za-z])(?:B\.C\.|BC|British Columbia)(?![A-Za-z])")
+# ponytail: names, not a gazetteer. Inuit is left out: Greenland's news names them too.
+_CANADA_RE = re.compile(
+    r"(?<![A-Za-z])(?:Canada|Canadians?|B\.C\.|BC|British Columbia|Alberta|Saskatchewan|"
+    r"Manitoba|Ontario|Qu[eé]bec|Nova Scotia|New Brunswick|Newfoundland|Labrador|"
+    r"Prince Edward Island|P\.E\.I\.|Yukon|Northwest Territories|Nunavut|Ottawa|"
+    r"First Nations?|M[eé]tis)(?![A-Za-z])")
+
+
+def _headline(article: dict) -> str:
+    return re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+
+
+def _is_bc_story(article: dict) -> bool:
+    """A B.C. story by its headline, or a local one.
+
+    ponytail: the headline, not a list of B.C. outlets (both 2026-11-26 stories say B.C.).
+    """
+    return bool(_BC_RE.search(_headline(article))) or _is_local_article(article)
+
+
+def _outside_canada(article: dict) -> bool:
+    """No Canadian place, people or outlet: not local, no name in headline or summary, no .ca host."""
+    if _is_local_article(article):
+        return False
+    if _CANADA_RE.search(f"{_headline(article)} {article.get('summary', '')}"):
+        return False
+    host = (urlparse(article.get('url', '')).hostname or '').lower()
+    return not host.endswith('.ca')
+
+
+def _bc_before_abroad(protected: list, fill: list, dropped: list) -> list:
+    """Swap budget-cut B.C. stories at p`ROUNDUP_BC_KEEP_MIN_PCT`+ for kept stories from outside Canada.
+
+    The weakest outside-Canada story goes first, from any block but the local one and
+    the kicker; a story imported for today is never cut, and the theme blocks keep their
+    `ROUNDUP_THEME_FLOOR`. A kept B.C. story whose subject-area pair was cut airs as a
+    standalone. Mutates the three lists; returns the B.C. stories it kept.
+    """
+    keep = sorted((a for a in dropped if a.get('_cut_reason') in _BUDGET_CUT_REASONS
+                   and _is_bc_story(a) and (a.get('_theme_score') or 0) >= ROUNDUP_BC_KEEP_MIN_PCT),
+                  key=lambda a: -(a.get('_theme_score') or 0))
+    if not keep:
+        return []
+    theme_blocks = ('theme', 'theme_adjacent')
+    theme_left = sum(1 for a in protected if a['_roundup_block'] in theme_blocks)
+    abroad = sorted((a for a in protected + fill
+                     if a['_roundup_block'] != 'local' and _outside_canada(a)
+                     and not (a.get('_held_from') or a.get('_recalled_from'))),
+                    key=lambda a: a.get('_theme_score') or 0)
+    kept = []
+    for out in abroad:
+        if len(kept) == len(keep):
+            break
+        if out['_roundup_block'] in theme_blocks:
+            if theme_left <= ROUNDUP_THEME_FLOOR:
+                continue
+            theme_left -= 1
+        story = keep[len(kept)]
+        (protected if out in protected else fill).remove(out)
+        dropped.append(_cut_for([out], "made room for a B.C. story")[0])
+        dropped.remove(story)
+        story.pop('_cut_reason', None)
+        mates = [i for i, a in enumerate(fill) if a['_roundup_block'] == story['_roundup_block']]
+        if mates:
+            fill.insert(mates[-1] + 1, story)
+        else:
+            story['_roundup_block'] = 'standalone'
+            fill.append(story)
+        kept.append(story)
+        print(f"   🍁 B.C. story kept: {story.get('title', '')[:60]} "
+              f"(cut instead: {out.get('title', '')[:50]})")
+    return kept
+
+
 def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tuple:
     """Cap the News Roundup pool at `pool_size` while maximizing coherence.
 
@@ -7716,6 +7797,7 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     if not kicker_room:
         dropped.extend(_cut_for(kicker, "no room left for the closing story"))
         kicker = []
+    _bc_before_abroad(protected, kept_fill, dropped)
     return _sequence_roundup(protected + kept_fill + kicker), dropped
 
 
