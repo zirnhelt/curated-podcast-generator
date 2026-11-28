@@ -4678,6 +4678,71 @@ class TestCurateRoundupPool:
         assert len(kickers) == 1
         assert kept[-1] is kickers[0]
 
+    @staticmethod
+    def _bc_pool(theme_abroad=2, bc_pct=87):
+        """Episode note 2026-11-26: the budget cut B.C. doctors (p87) while Denmark aired."""
+        theme = [{"title": f"Zebra gardening in Denmark {i}", "url": f"https://dk{i}.eu",
+                  "_keyword_matches": 1, "_theme_score": 60 + i, "_boosted_score": 90 - i}
+                 for i in range(theme_abroad)]
+        theme += [{"title": f"Zebra gardening across Canada {i}", "url": f"https://ca{i}.ca",
+                   "_keyword_matches": 1, "_theme_score": 95, "_boosted_score": 70 - i}
+                  for i in range(3)]
+        return theme + [
+            {"title": "[Williams Lake Tribune] Arena roof approved", "url": "https://l1.com",
+             "authors": [{"name": "Williams Lake Tribune"}], "_boosted_score": 40},
+            {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
+             "_theme_score": 50, "_boosted_score": 30},
+            {"title": "[Vancouver Sun] B.C. doctors urge action on rural ER closures",
+             "url": "https://vs.com/a", "_is_bonus": True, "_theme_score": bc_pct,
+             "_boosted_score": 10},
+        ]
+
+    def test_a_bc_story_outlasts_one_from_outside_canada(self):
+        kept, dropped = _curate_roundup_pool(self._bc_pool(), _FAKE_THEME, 6)
+        titles = [a["title"] for a in kept]
+        assert "[Vancouver Sun] B.C. doctors urge action on rural ER closures" in titles
+        assert len(kept) == 6
+        out = {a["title"]: a["_cut_reason"] for a in dropped}
+        # The weakest story from outside Canada goes, never a Canadian one or the local lead.
+        assert out["Zebra gardening in Denmark 0"] == "made room for a B.C. story"
+        assert not any("Canada" in t and r == "made room for a B.C. story" for t, r in out.items())
+        assert kept[0]["_roundup_block"] == "local"
+        assert all(a["_roundup_block"] != "kicker" for a in kept[:-1])
+        bc = next(a for a in kept if a["title"].startswith("[Vancouver Sun]"))
+        assert "_cut_reason" not in bc
+
+    def test_a_bc_story_under_the_bar_is_cut_as_before(self):
+        kept, dropped = _curate_roundup_pool(self._bc_pool(bc_pct=79), _FAKE_THEME, 6)
+        assert not any(a["title"].startswith("[Vancouver Sun]") for a in kept)
+        assert "made room for a B.C. story" not in {a["_cut_reason"] for a in dropped}
+
+    def test_the_theme_floor_and_imported_stories_hold(self):
+        # Only theme stories are from abroad and the theme block sits at its floor.
+        pool = [a for a in self._bc_pool(theme_abroad=1) if "Canada" not in a["title"]]
+        pool += [{"title": f"Zebra gardening in Peru {i}", "url": f"https://pe{i}.com",
+                  "_keyword_matches": 1, "_theme_score": 70, "_boosted_score": 80}
+                 for i in range(2)]
+        kept, _ = _curate_roundup_pool(pool, _FAKE_THEME, 4)
+        assert sum(a["_roundup_block"] in ("theme", "theme_adjacent") for a in kept) == 3
+        assert not any(a["title"].startswith("[Vancouver Sun]") for a in kept)
+        # A story the router imported for today is never the one cut.
+        held = self._bc_pool()
+        for a in held[:2]:
+            a["_held_from"] = "2026-11-20"
+        kept, _ = _curate_roundup_pool(held, _FAKE_THEME, 6)
+        assert {"Zebra gardening in Denmark 0", "Zebra gardening in Denmark 1"} <= {
+            a["title"] for a in kept}
+
+    def test_bc_and_canada_are_read_from_whole_names(self):
+        import podcast_generator as pg
+        assert pg._is_bc_story({"title": "[The Tyee] Act Will Hit BC’s Environment Hardest"})
+        assert not pg._is_bc_story({"title": "[ABC News] Salmon deaths at record levels"})
+        assert pg._outside_canada({"title": "Denmark ratifies Greenland pact", "url": "https://e.eu"})
+        assert not pg._outside_canada({"title": "AFN calls for a stronger act",
+                                       "url": "https://www.aptnnews.ca/x"})
+        assert not pg._outside_canada({"title": "Leader opposes repeal",
+                                       "summary": "First Nations leaders met in Victoria."})
+
     def test_kicker_yields_its_slot_to_the_protected_arc(self):
         articles = [
             {"title": f"Zebra gardening story {i}", "url": f"https://t{i}.com",

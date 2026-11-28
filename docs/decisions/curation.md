@@ -963,3 +963,30 @@ on it, and otherwise reason from how the story plays out in rural places to a li
 challenge here, never inventing a named person, business or event (the producer's comment: "it's
 okay to infer a connection about rural use cases and hypothesize Cariboo benefits or
 challenges"). About 120 more tokens on the batched Sonnet 5.5 storyboard, under $0.0001 a run.
+
+## A B.C. story outlasts one from abroad when the budget cuts (2026-11-28)
+
+The producer's note on 2026-11-26's episode, approved on 11-27: the budget cut the
+Vancouver Sun's B.C. doctors pressing the Conservatives on rural health (p87) and The Tyee's
+"Building Canada Strong Act Will Hit BC's Environment Hardest" (p93) as over the airtime
+budget, while two Denmark stories, Brazil, Myanmar and California aired. The script told 13
+of the 18: both Denmark stories and a Guardian tribute were listed and never told. The
+overseas stories were in the theme block, which `_curate_roundup_pool` protects, and the B.C.
+ones were tail stories, so the tail was cut first whatever its geography.
+
+`_bc_before_abroad()` runs after the budget cut: each B.C. story the budget cut at
+p`ROUNDUP_BC_KEEP_MIN_PCT` (80) or better takes the place of the weakest kept story from
+outside Canada, strongest B.C. story first. The cut story's reason is "made room for a B.C.
+story". A B.C. story is one whose headline says B.C., BC or British Columbia, or a local one.
+A story is from outside Canada when it is not local, names no Canadian place, people or
+province in its headline or summary (`_CANADA_RE`), and its host is not `.ca`. The local block
+and the kicker are never cut, nor a story the router imported for today, and the theme blocks
+keep `ROUNDUP_THEME_FLOOR`. A kept B.C. story sits after its subject-area mates, or airs as a
+standalone when they were cut. Python only, no spend.
+
+On 11-26 it would have kept both B.C. stories in place of the two weakest overseas ones; on
+11-27 nothing qualified. Names, not a gazetteer: a story from abroad that names Ottawa or a
+province reads as Canadian and is never cut, which is the safe side. Inuit is left off the
+list because Greenland's news names them too. The headline test skips a B.C. outlet's story
+that never says B.C. (a Fernie council story from My East Kootenay Now); a list of B.C.
+outlets would catch it, and is the next step if one goes missing.
